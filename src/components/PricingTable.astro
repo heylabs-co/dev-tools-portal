@@ -1,0 +1,130 @@
+---
+interface Props {
+  company: {
+    name: string;
+    pricing?: {
+      model?: string;
+      has_free_tier?: boolean;
+      free_tier_limits?: string;
+      entry_price?: string;
+      enterprise_available?: boolean;
+      billing_complexity?: 'low' | 'medium' | 'high';
+      transparency_score?: number;
+      pricing_url?: string;
+    };
+  };
+}
+
+const { company } = Astro.props;
+const p = company.pricing;
+
+const complexityConfig: Record<string, { color: string; label: string }> = {
+  low:    { color: 'text-green-600 dark:text-green-400', label: 'Low' },
+  medium: { color: 'text-yellow-600 dark:text-yellow-400', label: 'Medium' },
+  high:   { color: 'text-red-600 dark:text-red-400', label: 'High' },
+};
+
+const transparencyScore = p?.transparency_score ?? 0;
+const maxScore = 5;
+---
+
+<div class="rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 p-6 shadow-sm">
+  <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4">
+    {company.name} Pricing
+  </h3>
+
+  <dl class="space-y-4">
+    <!-- Pricing Model -->
+    <div class="flex justify-between items-baseline">
+      <dt class="text-sm text-gray-500 dark:text-gray-400">Pricing Model</dt>
+      <dd class="text-sm font-medium capitalize text-gray-900 dark:text-gray-100">
+        {p?.model ?? '—'}
+      </dd>
+    </div>
+
+    <!-- Free Tier -->
+    <div class="flex justify-between items-baseline">
+      <dt class="text-sm text-gray-500 dark:text-gray-400">Free Tier</dt>
+      <dd class="text-sm font-medium text-gray-900 dark:text-gray-100">
+        {p?.has_free_tier ? (
+          <span class="text-green-600 dark:text-green-400">Yes</span>
+        ) : (
+          <span class="text-red-600 dark:text-red-400">No</span>
+        )}
+      </dd>
+    </div>
+
+    {p?.free_tier_limits && (
+      <div class="flex justify-between items-baseline">
+        <dt class="text-sm text-gray-500 dark:text-gray-400">Free Tier Limits</dt>
+        <dd class="text-sm text-gray-700 dark:text-gray-300 text-right max-w-[60%]">
+          {p.free_tier_limits}
+        </dd>
+      </div>
+    )}
+
+    <!-- Entry Price -->
+    <div class="flex justify-between items-baseline">
+      <dt class="text-sm text-gray-500 dark:text-gray-400">Entry Price</dt>
+      <dd class="text-sm font-medium text-gray-900 dark:text-gray-100">
+        {p?.entry_price ?? '—'}
+      </dd>
+    </div>
+
+    <!-- Enterprise -->
+    <div class="flex justify-between items-baseline">
+      <dt class="text-sm text-gray-500 dark:text-gray-400">Enterprise Available</dt>
+      <dd class="text-sm font-medium text-gray-900 dark:text-gray-100">
+        {p?.enterprise_available ? (
+          <span class="text-green-600 dark:text-green-400">Yes</span>
+        ) : (
+          <span class="text-gray-400">No</span>
+        )}
+      </dd>
+    </div>
+
+    <!-- Billing Complexity -->
+    {p?.billing_complexity && (
+      <div class="flex justify-between items-baseline">
+        <dt class="text-sm text-gray-500 dark:text-gray-400">Billing Complexity</dt>
+        <dd class={`text-sm font-medium ${complexityConfig[p.billing_complexity]?.color ?? ''}`}>
+          {complexityConfig[p.billing_complexity]?.label ?? p.billing_complexity}
+        </dd>
+      </div>
+    )}
+
+    <!-- Transparency Score (MetricBar-like) -->
+    <div>
+      <div class="flex justify-between items-baseline mb-1">
+        <dt class="text-sm text-gray-500 dark:text-gray-400">Transparency Score</dt>
+        <dd class="text-sm font-medium text-gray-900 dark:text-gray-100">
+          {transparencyScore > 0 ? `${transparencyScore}/${maxScore}` : '—'}
+        </dd>
+      </div>
+      {transparencyScore > 0 && (
+        <div class="flex gap-1">
+          {Array.from({ length: maxScore }).map((_, i) => (
+            <div
+              class={`h-2 flex-1 rounded-full ${
+                i < transparencyScore
+                  ? 'bg-blue-500 dark:bg-blue-400'
+                  : 'bg-gray-200 dark:bg-gray-700'
+              }`}
+            />
+          ))}
+        </div>
+      )}
+    </div>
+  </dl>
+
+  {p?.pricing_url && (
+    <a
+      href={p.pricing_url}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="mt-5 inline-block text-sm text-blue-600 dark:text-blue-400 hover:underline"
+    >
+      View pricing page &rarr;
+    </a>
+  )}
+</div>

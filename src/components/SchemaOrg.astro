@@ -1,0 +1,119 @@
+---
+interface CompanyData {
+  name: string;
+  slug: string;
+  website?: string;
+  description?: string;
+  logo?: string;
+  pricing?: {
+    model?: string;
+    entry_price?: string;
+    has_free_tier?: boolean;
+  };
+  categories?: {
+    primary: { name: string };
+  };
+}
+
+interface CategoryData {
+  name: string;
+  slug: string;
+  description?: string;
+  companies: Array<{ name: string; slug: string; website?: string }>;
+}
+
+interface ComparisonData {
+  title: string;
+  description?: string;
+  companyA: CompanyData;
+  companyB: CompanyData;
+}
+
+interface Props {
+  type: 'company' | 'category' | 'comparison';
+  data: CompanyData | CategoryData | ComparisonData;
+}
+
+const { type, data } = Astro.props;
+const siteUrl = 'https://devtools.wiki';
+
+function buildCompanySchema(company: CompanyData) {
+  const schema: Record<string, unknown> = {
+    '@type': 'SoftwareApplication',
+    name: company.name,
+    url: company.website ?? `${siteUrl}/tools/${company.slug}/`,
+    applicationCategory: company.categories?.primary?.name ?? 'DeveloperApplication',
+  };
+  if (company.description) schema.description = company.description;
+  if (company.logo) schema.image = company.logo;
+  if (company.pricing?.entry_price || company.pricing?.has_free_tier) {
+    schema.offers = {
+      '@type': 'Offer',
+      price: company.pricing.has_free_tier ? '0' : undefined,
+      priceCurrency: 'USD',
+      description: company.pricing.entry_price ?? (company.pricing.has_free_tier ? 'Free tier available' : undefined),
+    };
+  }
+  return schema;
+}
+
+let jsonLd: Record<string, unknown> = {};
+
+if (type === 'company') {
+  const d = data as CompanyData;
+  jsonLd = {
+    '@context': 'https://schema.org',
+    ...buildCompanySchema(d),
+  };
+}
+
+if (type === 'category') {
+  const d = data as CategoryData;
+  jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: d.name,
+    description: d.description,
+    url: `${siteUrl}/categories/${d.slug}/`,
+    mainEntity: {
+      '@type': 'ItemList',
+      numberOfItems: d.companies.length,
+      itemListElement: d.companies.map((c, i) => ({
+        '@type': 'ListItem',
+        position: i + 1,
+        name: c.name,
+        url: c.website ?? `${siteUrl}/tools/${c.slug}/`,
+      })),
+    },
+  };
+}
+
+if (type === 'comparison') {
+  const d = data as ComparisonData;
+  jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    name: d.title,
+    description: d.description,
+    url: `${siteUrl}/compare/${d.companyA.slug}-vs-${d.companyB.slug}/`,
+    mainEntity: {
+      '@type': 'ItemList',
+      numberOfItems: 2,
+      itemListElement: [
+        {
+          '@type': 'ListItem',
+          position: 1,
+          item: buildCompanySchema(d.companyA),
+        },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          item: buildCompanySchema(d.companyB),
+        },
+      ],
+    },
+  };
+}
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />

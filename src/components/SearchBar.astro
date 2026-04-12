@@ -1,0 +1,42 @@
+---
+// Pagefind search integration component.
+// Pagefind assets are generated at /pagefind/ after build.
+---
+
+<div class="w-full max-w-2xl mx-auto">
+  <div
+    id="search"
+    class="rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 shadow-sm overflow-hidden"
+  >
+  </div>
+</div>
+
+<script>
+  async function initPagefind() {
+    // Load Pagefind CSS
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = '/pagefind/pagefind-ui.css';
+    document.head.appendChild(link);
+
+    // Load Pagefind JS and init
+    // @ts-ignore — Pagefind UI loaded at runtime from static assets
+    const { PagefindUI } = await import(/* @vite-ignore */ '/pagefind/pagefind-ui.js');
+    new PagefindUI({ element: '#search', showSubResults: true });
+  }
+
+  initPagefind();
+</script>
+
+<style>
+  /* Tweak Pagefind defaults to blend with site styling */
+  #search :global(.pagefind-ui__search-input) {
+    @apply rounded-md border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 text-sm;
+  }
+  #search :global(.pagefind-ui__result-link) {
+    @apply text-blue-600 dark:text-blue-400 hover:underline;
+  }
+  #search :global(.pagefind-ui__result-excerpt) {
+    @apply text-gray-600 dark:text-gray-400 text-sm;
+  }
+</style>

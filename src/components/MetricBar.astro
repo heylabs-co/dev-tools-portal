@@ -1,0 +1,22 @@
+---
+interface Props {
+  label: string;
+  value: number;
+  maxValue?: number;
+}
+
+const { label, value, maxValue = 5 } = Astro.props;
+
+const pct = Math.min(Math.max((value / maxValue) * 100, 0), 100);
+---
+
+<div class="flex items-center gap-3">
+  <span class="w-28 shrink-0 text-sm text-gray-600">{label}</span>
+  <div class="relative h-2 flex-1 rounded-full bg-gray-200">
+    <div
+      class="absolute inset-y-0 left-0 rounded-full bg-indigo-500"
+      style={`width: ${pct}%`}
+    />
+  </div>
+  <span class="w-8 shrink-0 text-right text-sm font-medium text-gray-900">{value}</span>
+</div>

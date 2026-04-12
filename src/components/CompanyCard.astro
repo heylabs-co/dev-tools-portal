@@ -1,0 +1,68 @@
+---
+import LockInBadge from './LockInBadge.astro';
+
+interface Props {
+  slug: string;
+  name: string;
+  description?: string;
+  logo: string;
+  category: string;
+  lockInLevel?: 'low' | 'medium' | 'high';
+  pricingModel?: string;
+  hasFree?: boolean;
+}
+
+const { slug, name, description, logo, category, lockInLevel, pricingModel, hasFree } = Astro.props;
+
+const initial = name.charAt(0).toUpperCase();
+---
+
+<article class="group rounded-xl border border-gray-200 bg-white p-5 transition-shadow hover:shadow-lg">
+  <div class="flex items-start gap-4">
+    <div class="relative h-12 w-12 shrink-0 overflow-hidden rounded-lg bg-gray-100">
+      <img
+        src={logo}
+        alt={`${name} logo`}
+        width="48"
+        height="48"
+        loading="lazy"
+        class="h-full w-full object-contain"
+        onerror={`this.style.display='none';this.nextElementSibling.style.display='flex'`}
+      />
+      <span
+        class="absolute inset-0 hidden items-center justify-center text-lg font-bold text-gray-500"
+        aria-hidden="true"
+      >
+        {initial}
+      </span>
+    </div>
+
+    <div class="min-w-0 flex-1">
+      <a
+        href={`/tools/${slug}/`}
+        class="text-base font-semibold text-gray-900 group-hover:text-indigo-600"
+      >
+        {name}
+      </a>
+      {description && (
+        <p class="mt-1 line-clamp-2 text-sm text-gray-500">{description}</p>
+      )}
+    </div>
+  </div>
+
+  <div class="mt-4 flex flex-wrap items-center gap-2">
+    {lockInLevel && <LockInBadge level={lockInLevel} />}
+
+    {pricingModel && (
+      <span class="inline-flex items-center rounded-full bg-gray-100 px-2.5 py-0.5 text-xs font-medium text-gray-700">
+        {pricingModel}
+      </span>
+    )}
+
+    {hasFree && (
+      <span class="inline-flex items-center rounded-full bg-emerald-50 px-2.5 py-0.5 text-xs font-medium text-emerald-700">
+        Free tier
+      </span>
+    )}
+  </div>
+</article>

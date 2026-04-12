@@ -1,0 +1,62 @@
+{
+  "id": "COMP-0030",
+  "slug": "stripe",
+  "name": "Stripe",
+  "description": "Stripe — Payment Gateway / PSP tool for developers",
+  "website": "https://stripe.com",
+  "logo": "https://logo.clearbit.com/stripe.com",
+  "hq_country": "US",
+  "status": "active",
+  "categories": {
+    "primary": {
+      "id": "CAT-02",
+      "slug": "payment-gateway",
+      "name": "Payment Gateway / PSP"
+    },
+    "secondary": [
+      "CAT-03",
+      "CAT-04",
+      "CAT-38"
+    ]
+  },
+  "alternatives": [],
+  "seo": {
+    "title": "Stripe Review 2026: Pricing, Alternatives & Lock-in Score",
+    "meta_description": "Complete Stripe analysis: pricing, lock-in risk, migration difficulty. Compare with alternatives in Payment Gateway / PSP.",
+    "keywords": [
+      "stripe pricing",
+      "stripe alternatives",
+      "stripe review"
+    ]
+  },
+  "updated_at": "2026-04-12T12:53:55.841Z",
+  "created_at": "2026-04-12T12:53:55.841Z",
+  "pricing": {
+    "model": "usage",
+    "has_free_tier": true,
+    "free_tier_limits": "нет monthly fee",
+    "entry_price": "2.9% + $0.30/транзакция",
+    "enterprise_available": true,
+    "billing_complexity": "low",
+    "transparency_score": 4,
+    "last_checked": "2026-04-11",
+    "pricing_url": "https://stripe.com/pricing"
+  },
+  "scores": {
+    "lock_in": {
+      "level": "medium",
+      "score": 3,
+      "migration_complexity": "medium",
+      "data_portability": "PCI Data Export (pm_/card_ объекты), CSV export",
+      "api_compatibility": "Проприетарный, но де-факто стандарт",
+      "explanation": "Medium — проприетарные токены в vault, но PCI-to-PCI export доступен"
+    }
+  },
+  "scale": {
+    "customers": "5 млн+ бизнесов",
+    "revenue": ">$6.1B",
+    "employees": "~8,017",
+    "valuation": "$159B",
+    "data_status": "estimated"
+  }
+}

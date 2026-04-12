@@ -1,0 +1,56 @@
+{
+  "id": "COMP-0305",
+  "slug": "datadog",
+  "name": "Datadog",
+  "description": "Datadog — Performance Monitoring / APM tool for developers",
+  "website": "https://datadog.com",
+  "logo": "https://logo.clearbit.com/datadog.com",
+  "hq_country": "US",
+  "status": "active",
+  "categories": {
+    "primary": {
+      "id": "CAT-21",
+      "slug": "apm",
+      "name": "Performance Monitoring / APM"
+    },
+    "secondary": []
+  },
+  "alternatives": [],
+  "seo": {
+    "title": "Datadog Review 2026: Pricing, Alternatives & Lock-in Score",
+    "meta_description": "Complete Datadog analysis: pricing, lock-in risk, migration difficulty. Compare with alternatives in Performance Monitoring / APM.",
+    "keywords": [
+      "datadog pricing",
+      "datadog alternatives",
+      "datadog review"
+    ]
+  },
+  "updated_at": "2026-04-12T12:53:55.841Z",
+  "created_at": "2026-04-12T12:53:55.841Z",
+  "pricing": {
+    "model": "usage",
+    "has_free_tier": true,
+    "free_tier_limits": "5 hosts free",
+    "entry_price": "$15/host/мес (Infra Pro)",
+    "enterprise_available": true,
+    "billing_complexity": "high",
+    "transparency_score": 4,
+    "last_checked": "2026-04-11",
+    "pricing_url": "https://datadog.com/pricing"
+  },
+  "scores": {
+    "lock_in": {
+      "level": "high",
+      "score": 5,
+      "migration_complexity": "high",
+      "data_portability": "Ограниченная — проприетарный формат",
+      "api_compatibility": "Проприетарный (принимает OTel, но конвертирует)",
+      "explanation": "High — проприетарный агент, конвертирует OTel в свой формат, per-host pricing создаёт switching cost"
+    }
+  },
+  "scale": {
+    "revenue": "$3.43B (+28% YoY)",
+    "customers": "~32,700 в 160+ странах",
+    "data_status": "estimated"
+  }
+}

@@ -1,0 +1,61 @@
+{
+  "id": "COMP-0131",
+  "slug": "firebase",
+  "name": "Firebase",
+  "description": "Firebase — Backend-as-a-Service tool for developers",
+  "website": "https://firebase.google.com",
+  "logo": "https://logo.clearbit.com/firebase.google.com",
+  "hq_country": "US",
+  "status": "active",
+  "categories": {
+    "primary": {
+      "id": "CAT-09",
+      "slug": "backend-as-a-service",
+      "name": "Backend-as-a-Service"
+    },
+    "secondary": [
+      "CAT-16",
+      "CAT-20",
+      "CAT-22",
+      "CAT-23",
+      "CAT-26"
+    ]
+  },
+  "alternatives": [],
+  "seo": {
+    "title": "Firebase Review 2026: Pricing, Alternatives & Lock-in Score",
+    "meta_description": "Complete Firebase analysis: pricing, lock-in risk, migration difficulty. Compare with alternatives in Backend-as-a-Service.",
+    "keywords": [
+      "firebase pricing",
+      "firebase alternatives",
+      "firebase review"
+    ]
+  },
+  "updated_at": "2026-04-12T12:53:55.841Z",
+  "created_at": "2026-04-12T12:53:55.841Z",
+  "pricing": {
+    "model": "hybrid",
+    "has_free_tier": true,
+    "free_tier_limits": "Spark: 50K MAUs, 1GB storage",
+    "entry_price": "Pay-as-you-go (Blaze)",
+    "enterprise_available": true,
+    "billing_complexity": "medium",
+    "transparency_score": 4,
+    "last_checked": "2026-04-11",
+    "pricing_url": "https://firebase.google.com/pricing"
+  },
+  "scores": {
+    "lock_in": {
+      "level": "high",
+      "score": 5,
+      "migration_complexity": "high",
+      "data_portability": "firebaseusers2json для auth, но DB миграция сложна",
+      "api_compatibility": "Проприетарный",
+      "explanation": "High — глубокая привязка к Google ecosystem, Firestore/RTDB проприетарные, требует re-architecting backend"
+    }
+  },
+  "scale": {
+    "revenue": "unknown -- часть Google Cloud",
+    "data_status": "estimated"
+  }
+}

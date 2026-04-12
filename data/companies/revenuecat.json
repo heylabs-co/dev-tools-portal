@@ -1,0 +1,57 @@
+{
+  "id": "COMP-0048",
+  "slug": "revenuecat",
+  "name": "RevenueCat",
+  "description": "RevenueCat — Subscription Billing tool for developers",
+  "website": "https://revenuecat.com",
+  "logo": "https://logo.clearbit.com/revenuecat.com",
+  "hq_country": "US",
+  "status": "active",
+  "categories": {
+    "primary": {
+      "id": "CAT-03",
+      "slug": "subscription-billing",
+      "name": "Subscription Billing"
+    },
+    "secondary": [
+      "CAT-38"
+    ]
+  },
+  "alternatives": [],
+  "seo": {
+    "title": "RevenueCat Review 2026: Pricing, Alternatives & Lock-in Score",
+    "meta_description": "Complete RevenueCat analysis: pricing, lock-in risk, migration difficulty. Compare with alternatives in Subscription Billing.",
+    "keywords": [
+      "revenuecat pricing",
+      "revenuecat alternatives",
+      "revenuecat review"
+    ]
+  },
+  "updated_at": "2026-04-12T12:53:55.841Z",
+  "created_at": "2026-04-12T12:53:55.841Z",
+  "pricing": {
+    "model": "usage",
+    "has_free_tier": true,
+    "free_tier_limits": "до $2,500 MTR бесплатно",
+    "entry_price": "1% от MTR свыше $2,500",
+    "enterprise_available": false,
+    "billing_complexity": "low",
+    "transparency_score": 4,
+    "last_checked": "2026-04-11",
+    "pricing_url": "https://revenuecat.com/pricing"
+  },
+  "scores": {
+    "lock_in": {
+      "level": "medium",
+      "score": 3,
+      "migration_complexity": "medium",
+      "data_portability": "Через API, webhook events",
+      "api_compatibility": "Проприетарный поверх Apple/Google стандартов",
+      "explanation": "Medium — обёртка над StoreKit/Google Play, но subscription state + analytics привязаны"
+    }
+  },
+  "scale": {
+    "revenue": "unknown -- private",
+    "data_status": "estimated"
+  }
+}

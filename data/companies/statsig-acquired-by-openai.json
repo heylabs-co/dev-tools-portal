@@ -55,5 +55,29 @@
     "customers": "OpenAI, Notion и др.",
     "revenue": "unknown -- private",
     "data_status": "estimated"
+  },
+  "content": {
+    "when_to_use": [
+      "Understanding user behavior (funnels, retention)",
+      "Data-driven product decisions",
+      "A/B test analysis"
+    ],
+    "when_not_to_use": [
+      "Pre-product stage",
+      "Simple pageview tracking (use Plausible)"
+    ],
+    "consider_instead": [
+      "session-replay"
+    ],
+    "migration_cheatsheet": {
+      "difficulty": "high",
+      "data_you_keep": "Ограниченная",
+      "api_standard": "Проприетарный",
+      "risk_notes": "High — flags + experimentation analytics в одной платформе, cloud-only, нет self-hosted",
+      "tip": "Plan 2-4 weeks minimum. Consider running parallel during migration"
+    },
+    "works_well_with": [
+      "bitrise"
+    ]
   }
 }

@@ -95,6 +95,24 @@ const companies = defineCollection({
 
     alternatives: z.array(z.string()).optional(),
 
+    content: z.object({
+      when_to_use: z.array(z.string()).optional(),
+      when_not_to_use: z.array(z.string()).optional(),
+      consider_instead: z.array(z.string()).optional(),
+      pricing_at_scale: z.array(z.object({
+        scale: z.string(),
+        estimate: z.string(),
+      })).optional(),
+      migration_cheatsheet: z.object({
+        difficulty: z.string().optional(),
+        data_you_keep: z.string().optional(),
+        api_standard: z.string().optional(),
+        risk_notes: z.string().optional(),
+        tip: z.string().optional(),
+      }).optional(),
+      works_well_with: z.array(z.string()).optional(),
+    }).optional(),
+
     seo: z.object({
       title: z.string(),
       meta_description: z.string(),

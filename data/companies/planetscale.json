@@ -53,5 +53,37 @@
     "revenue": "unknown -- searched planetscale.com, getlatka",
     "customers": "unknown",
     "data_status": "estimated"
+  },
+  "content": {
+    "when_to_use": [
+      "Apps needing managed database",
+      "Serverless architectures",
+      "Global data distribution"
+    ],
+    "when_not_to_use": [
+      "Simple key-value storage needs",
+      "Embedded/offline-first apps"
+    ],
+    "consider_instead": [
+      "backend-as-a-service"
+    ],
+    "pricing_at_scale": [
+      {
+        "scale": "Entry",
+        "estimate": "$5/мес (single node)"
+      }
+    ],
+    "migration_cheatsheet": {
+      "difficulty": "low",
+      "data_you_keep": "Полный SQL export",
+      "api_standard": "MySQL-совместимый",
+      "risk_notes": "Low-Medium — стандартный MySQL (Vitess), но branching = проприетарный feature",
+      "tip": "Standard protocols make switching straightforward"
+    },
+    "works_well_with": [
+      "akamai",
+      "clerk",
+      "flagsmith"
+    ]
   }
 }

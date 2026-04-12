@@ -51,5 +51,24 @@
     "revenue": "$189M - $250-500M range",
     "customers": "1,800+ в 70+ странах",
     "data_status": "estimated"
+  },
+  "content": {
+    "when_to_use": [
+      "UGC platforms (social, marketplace)",
+      "Chat/messaging apps",
+      "Image/video review"
+    ],
+    "when_not_to_use": [
+      "B2B products without user content",
+      "Internal tools"
+    ],
+    "consider_instead": [],
+    "migration_cheatsheet": {
+      "difficulty": "high",
+      "data_you_keep": "SARIF export",
+      "api_standard": "Проприетарный + SARIF",
+      "risk_notes": "Medium-High — enterprise SAST, deep integration",
+      "tip": "Plan 2-4 weeks minimum. Consider running parallel during migration"
+    }
   }
 }

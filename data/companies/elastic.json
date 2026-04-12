@@ -53,5 +53,36 @@
     "customers": "1,510+",
     "employees": "3,537",
     "data_status": "estimated"
+  },
+  "content": {
+    "when_to_use": [
+      "Microservices performance monitoring",
+      "Distributed tracing",
+      "Infrastructure monitoring at scale"
+    ],
+    "when_not_to_use": [
+      "Simple monolith apps",
+      "Static sites"
+    ],
+    "consider_instead": [
+      "observability"
+    ],
+    "pricing_at_scale": [
+      {
+        "scale": "Entry",
+        "estimate": "$95/мес (Standard Cloud)"
+      }
+    ],
+    "migration_cheatsheet": {
+      "difficulty": "medium",
+      "data_you_keep": "Полный — self-hosted",
+      "api_standard": "Open-source, OTel",
+      "risk_notes": "Low-Medium — open-source, но Elastic License 2.0",
+      "tip": "Standard protocols make switching straightforward"
+    },
+    "works_well_with": [
+      "flagsmith",
+      "sentry"
+    ]
   }
 }

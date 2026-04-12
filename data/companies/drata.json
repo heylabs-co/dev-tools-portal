@@ -50,5 +50,32 @@
   "scale": {
     "revenue": "unknown точно -- private",
     "data_status": "estimated"
+  },
+  "content": {
+    "when_to_use": [
+      "Vulnerability scanning in CI/CD",
+      "Dependency audit for compliance",
+      "Mobile app protection"
+    ],
+    "when_not_to_use": [
+      "Personal/hobby projects",
+      "No compliance requirements"
+    ],
+    "consider_instead": [
+      "compliance-automation"
+    ],
+    "pricing_at_scale": [
+      {
+        "scale": "Entry",
+        "estimate": "~$15,000-$25,000/год (Starter)"
+      }
+    ],
+    "migration_cheatsheet": {
+      "difficulty": "medium",
+      "data_you_keep": "Export evidence",
+      "api_standard": "Проприетарный",
+      "risk_notes": "Medium — compliance automation привязана",
+      "tip": "Moderate effort required. Export data before canceling"
+    }
   }
 }

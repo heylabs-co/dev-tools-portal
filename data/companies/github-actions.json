@@ -51,5 +51,32 @@
   "scale": {
     "revenue": "~$2B+ (est.)",
     "data_status": "estimated"
+  },
+  "content": {
+    "when_to_use": [
+      "Conversion optimization",
+      "Data-driven product experiments",
+      "Multi-variant testing"
+    ],
+    "when_not_to_use": [
+      "Products with <1000 daily users (insufficient sample)",
+      "Internal tools"
+    ],
+    "consider_instead": [
+      "feature-flags"
+    ],
+    "pricing_at_scale": [
+      {
+        "scale": "Entry",
+        "estimate": "$0.008/мин (Linux)"
+      }
+    ],
+    "migration_cheatsheet": {
+      "difficulty": "medium",
+      "data_you_keep": "Workflow YAML экспортируем",
+      "api_standard": "Проприетарный YAML",
+      "risk_notes": "Medium — привязка к GitHub ecosystem, YAML-формат уникальный",
+      "tip": "Moderate effort required. Export data before canceling"
+    }
   }
 }

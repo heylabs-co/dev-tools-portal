@@ -53,5 +53,31 @@
   "scale": {
     "revenue": "\"multiple $10s of millions\" (~$30M+), 3x YoY",
     "data_status": "estimated"
+  },
+  "content": {
+    "when_to_use": [
+      "Want analytics + feature flags + session replay in one",
+      "Open-source with self-hosted option",
+      "Developer-friendly with SQL access to raw data"
+    ],
+    "when_not_to_use": [
+      "Enterprise needing dedicated support — Amplitude is more enterprise",
+      "Mobile-first app — Mixpanel has better mobile SDKs",
+      "Need just session replay — Hotjar/FullStory are more focused"
+    ],
+    "consider_instead": [
+      "amplitude",
+      "mixpanel"
+    ],
+    "migration_cheatsheet": {
+      "difficulty": "low",
+      "data_you_keep": "Полный — raw SQL access, self-hosted",
+      "api_standard": "Open-source, стандартные events",
+      "risk_notes": "Low — open-source, self-hosted, raw data access через data warehouse",
+      "tip": "Standard protocols make switching straightforward"
+    },
+    "works_well_with": [
+      "bitrise"
+    ]
   }
 }

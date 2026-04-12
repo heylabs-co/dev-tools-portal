@@ -52,5 +52,30 @@
     "valuation": "$12B",
     "employees": "~2,000 (+15% рост в 2025)",
     "data_status": "estimated"
+  },
+  "content": {
+    "when_to_use": [
+      "SaaS with online payments",
+      "E-commerce checkout",
+      "Marketplace payment processing"
+    ],
+    "when_not_to_use": [
+      "Offline-only retail",
+      "Internal tools without billing"
+    ],
+    "consider_instead": [
+      "payments-orchestration"
+    ],
+    "migration_cheatsheet": {
+      "difficulty": "medium",
+      "data_you_keep": "Через API export",
+      "api_standard": "Проприетарный",
+      "risk_notes": "Medium — проприетарные токены",
+      "tip": "Moderate effort required. Export data before canceling"
+    },
+    "works_well_with": [
+      "clerk",
+      "chargebee"
+    ]
   }
 }

@@ -52,5 +52,30 @@
     "customers": "\"сотни\" -- GoFundMe, Navan, You.com, Branch",
     "revenue": "unknown -- searched sacra, getlatka",
     "data_status": "estimated"
+  },
+  "content": {
+    "when_to_use": [
+      "Apps needing SSO/MFA",
+      "B2B requiring SAML/SCIM",
+      "Passwordless authentication"
+    ],
+    "when_not_to_use": [
+      "Internal tools with basic auth",
+      "Static sites without user accounts"
+    ],
+    "consider_instead": [
+      "backend-as-a-service"
+    ],
+    "migration_cheatsheet": {
+      "difficulty": "medium",
+      "data_you_keep": "API export",
+      "api_standard": "OIDC стандарт",
+      "risk_notes": "Medium — no-code Flows проприетарные",
+      "tip": "Standard protocols make switching straightforward"
+    },
+    "works_well_with": [
+      "appwrite",
+      "adyen"
+    ]
   }
 }

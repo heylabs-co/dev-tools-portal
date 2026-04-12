@@ -52,5 +52,38 @@
     "revenue": ">$400M",
     "customers": "25M+",
     "data_status": "estimated"
+  },
+  "content": {
+    "when_to_use": [
+      "Want open-source observability (Grafana + Loki + Tempo + Mimir)",
+      "OpenTelemetry-native monitoring",
+      "Need dashboards with full customization"
+    ],
+    "when_not_to_use": [
+      "Want zero-setup — Datadog is more turnkey",
+      "Non-technical team — Grafana has a learning curve",
+      "Need built-in APM without configuration"
+    ],
+    "consider_instead": [
+      "datadog",
+      "new-relic"
+    ],
+    "pricing_at_scale": [
+      {
+        "scale": "Entry",
+        "estimate": "$15/user/мес (Cloud), $8/1K series"
+      }
+    ],
+    "migration_cheatsheet": {
+      "difficulty": "low",
+      "data_you_keep": "Полный — self-hosted",
+      "api_standard": "Open-source, OpenTelemetry, Prometheus",
+      "risk_notes": "Low — open-source (Grafana, Loki, Tempo, Mimir), OTel-native",
+      "tip": "Standard protocols make switching straightforward"
+    },
+    "works_well_with": [
+      "flagsmith",
+      "sentry"
+    ]
   }
 }

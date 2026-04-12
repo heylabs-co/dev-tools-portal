@@ -52,5 +52,39 @@
     "customers": "100M+",
     "revenue": "unknown -- searched getlatka, sacra",
     "data_status": "estimated"
+  },
+  "content": {
+    "when_to_use": [
+      "Next.js / React apps needing drop-in auth UI",
+      "Startup wanting generous free tier (50K MAU)",
+      "Need pre-built components (SignIn, UserButton)"
+    ],
+    "when_not_to_use": [
+      "Enterprise requiring SAML/SCIM on day one — Auth0/WorkOS",
+      "Need self-hosted auth — FusionAuth or Keycloak",
+      "Non-JavaScript backend"
+    ],
+    "consider_instead": [
+      "auth0",
+      "workos",
+      "stytch"
+    ],
+    "pricing_at_scale": [
+      {
+        "scale": "Entry",
+        "estimate": "$25/мес (Pro, 10K MAU)"
+      }
+    ],
+    "migration_cheatsheet": {
+      "difficulty": "medium",
+      "data_you_keep": "Полный user data export без платного плана",
+      "api_standard": "OIDC/SAML стандарты",
+      "risk_notes": "Medium — pre-built компоненты создают deep integration, но полный экспорт данных бесплатно",
+      "tip": "Moderate effort required. Export data before canceling"
+    },
+    "works_well_with": [
+      "appwrite",
+      "adyen"
+    ]
   }
 }

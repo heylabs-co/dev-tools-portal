@@ -52,5 +52,39 @@
     "customers": "18,000+",
     "revenue": "unknown -- private",
     "data_status": "estimated"
+  },
+  "content": {
+    "when_to_use": [
+      "E-commerce needing sub-50ms search",
+      "Documentation sites with instant search",
+      "Need AI-powered recommendations"
+    ],
+    "when_not_to_use": [
+      "Budget-conscious — Algolia is expensive at scale",
+      "Simple search on small dataset — use Pagefind or Fuse.js",
+      "Need self-hosted — use Meilisearch or Typesense"
+    ],
+    "consider_instead": [
+      "meilisearch",
+      "typesense"
+    ],
+    "pricing_at_scale": [
+      {
+        "scale": "Entry",
+        "estimate": "~$0.50/1K searches (Grow)"
+      }
+    ],
+    "migration_cheatsheet": {
+      "difficulty": "medium",
+      "data_you_keep": "Index export через API",
+      "api_standard": "Проприетарный API",
+      "risk_notes": "Medium — проприетарный API, но InstantSearch UI = open-source",
+      "tip": "Moderate effort required. Export data before canceling"
+    },
+    "works_well_with": [
+      "appwrite",
+      "akamai",
+      "amplitude"
+    ]
   }
 }

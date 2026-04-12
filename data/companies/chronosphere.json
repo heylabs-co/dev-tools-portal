@@ -51,5 +51,30 @@
     "revenue": "$160M",
     "employees": "307",
     "data_status": "estimated"
+  },
+  "content": {
+    "when_to_use": [
+      "Microservices performance monitoring",
+      "Distributed tracing",
+      "Infrastructure monitoring at scale"
+    ],
+    "when_not_to_use": [
+      "Simple monolith apps",
+      "Static sites"
+    ],
+    "consider_instead": [
+      "observability"
+    ],
+    "migration_cheatsheet": {
+      "difficulty": "low",
+      "data_you_keep": "Prometheus-формат",
+      "api_standard": "Prometheus + OTel",
+      "risk_notes": "Low-Medium — Prometheus-совместимый, OTel",
+      "tip": "Standard protocols make switching straightforward"
+    },
+    "works_well_with": [
+      "flagsmith",
+      "sentry"
+    ]
   }
 }

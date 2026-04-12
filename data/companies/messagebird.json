@@ -36,5 +36,30 @@
       "api_compatibility": "REST стандарт",
       "explanation": "Medium — multi-channel (WhatsApp, WeChat) создаёт зависимость"
     }
+  },
+  "content": {
+    "when_to_use": [
+      "Transactional emails (receipts, alerts)",
+      "SMS verification",
+      "Multi-channel notifications"
+    ],
+    "when_not_to_use": [
+      "Internal team communication",
+      "Marketing-only email campaigns"
+    ],
+    "consider_instead": [
+      "push-in-app-messaging"
+    ],
+    "migration_cheatsheet": {
+      "difficulty": "medium",
+      "data_you_keep": "Через API",
+      "api_standard": "REST стандарт",
+      "risk_notes": "Medium — multi-channel (WhatsApp, WeChat) создаёт зависимость",
+      "tip": "Moderate effort required. Export data before canceling"
+    },
+    "works_well_with": [
+      "clerk",
+      "amplitude"
+    ]
   }
 }

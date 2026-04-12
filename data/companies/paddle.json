@@ -53,5 +53,38 @@
     "revenue": "GBP 49M",
     "customers": "unknown -- searched paddle.com, getlatka",
     "data_status": "estimated"
+  },
+  "content": {
+    "when_to_use": [
+      "SaaS needing Merchant of Record for global tax compliance",
+      "Want to avoid sales tax headaches (Paddle handles it)",
+      "B2B SaaS selling globally"
+    ],
+    "when_not_to_use": [
+      "Marketplace/platform payments — Paddle is seller-focused",
+      "Need deep payment customization — limited vs Stripe",
+      "Physical goods or non-SaaS"
+    ],
+    "consider_instead": [
+      "stripe",
+      "lemon-squeezy"
+    ],
+    "pricing_at_scale": [
+      {
+        "scale": "Entry",
+        "estimate": "5% + $0.50/транзакция"
+      }
+    ],
+    "migration_cheatsheet": {
+      "difficulty": "high",
+      "data_you_keep": "Ограниченная — Paddle владеет отношением с клиентом",
+      "api_standard": "Проприетарный, ограниченная кастомизация",
+      "risk_notes": "High — MoR модель = Paddle обрабатывает всё, бизнес адаптируется под Paddle",
+      "tip": "Plan 2-4 weeks minimum. Consider running parallel during migration"
+    },
+    "works_well_with": [
+      "adyen",
+      "amplitude"
+    ]
   }
 }

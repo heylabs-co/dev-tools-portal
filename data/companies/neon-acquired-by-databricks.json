@@ -53,5 +53,37 @@
   "scale": {
     "revenue": "$25M",
     "data_status": "estimated"
+  },
+  "content": {
+    "when_to_use": [
+      "Apps needing managed database",
+      "Serverless architectures",
+      "Global data distribution"
+    ],
+    "when_not_to_use": [
+      "Simple key-value storage needs",
+      "Embedded/offline-first apps"
+    ],
+    "consider_instead": [
+      "backend-as-a-service"
+    ],
+    "pricing_at_scale": [
+      {
+        "scale": "Entry",
+        "estimate": "$5/мес minimum (Launch)"
+      }
+    ],
+    "migration_cheatsheet": {
+      "difficulty": "low",
+      "data_you_keep": "Полный SQL export",
+      "api_standard": "Стандартный PostgreSQL",
+      "risk_notes": "Low — стандартный PostgreSQL, любой Postgres ORM",
+      "tip": "Standard protocols make switching straightforward"
+    },
+    "works_well_with": [
+      "akamai",
+      "clerk",
+      "flagsmith"
+    ]
   }
 }

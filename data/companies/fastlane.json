@@ -53,5 +53,32 @@
   "scale": {
     "revenue": "N/A (open-source)",
     "data_status": "estimated"
+  },
+  "content": {
+    "when_to_use": [
+      "Conversion optimization",
+      "Data-driven product experiments",
+      "Multi-variant testing"
+    ],
+    "when_not_to_use": [
+      "Products with <1000 daily users (insufficient sample)",
+      "Internal tools"
+    ],
+    "consider_instead": [
+      "feature-flags"
+    ],
+    "pricing_at_scale": [
+      {
+        "scale": "Entry",
+        "estimate": "$0 (OSS)"
+      }
+    ],
+    "migration_cheatsheet": {
+      "difficulty": "medium",
+      "data_you_keep": "N/A — CLI tool",
+      "api_standard": "Open-source",
+      "risk_notes": "Low — open-source CLI, no vendor lock-in",
+      "tip": "Standard protocols make switching straightforward"
+    }
   }
 }

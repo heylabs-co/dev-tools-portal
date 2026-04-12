@@ -53,5 +53,39 @@
     "customers": "4,000-5,500+",
     "revenue": "unknown -- private",
     "data_status": "estimated"
+  },
+  "content": {
+    "when_to_use": [
+      "Enterprise feature management at scale",
+      "Need targeting by user context (plan, region, etc.)",
+      "35+ SDK support across all platforms"
+    ],
+    "when_not_to_use": [
+      "Budget-sensitive — starts at $10/seat/month",
+      "Want open-source — use Flagsmith or Unleash",
+      "Just need basic toggles — Statsig free tier is generous"
+    ],
+    "consider_instead": [
+      "flagsmith",
+      "statsig",
+      "unleash"
+    ],
+    "pricing_at_scale": [
+      {
+        "scale": "Entry",
+        "estimate": "$10/user/мес (Starter)"
+      }
+    ],
+    "migration_cheatsheet": {
+      "difficulty": "high",
+      "data_you_keep": "Через API",
+      "api_standard": "Проприетарный",
+      "risk_notes": "Medium-High — Contexts сложны, 35+ SDK создают глубокую интеграцию",
+      "tip": "Plan 2-4 weeks minimum. Consider running parallel during migration"
+    },
+    "works_well_with": [
+      "better-stack",
+      "drata"
+    ]
   }
 }

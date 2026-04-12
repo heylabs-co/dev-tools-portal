@@ -54,5 +54,40 @@
     "revenue": "$2.168B (+29.85% YoY)",
     "customers": "269 (+55% YoY)",
     "data_status": "estimated"
+  },
+  "content": {
+    "when_to_use": [
+      "CDN + edge compute + DNS + security in one",
+      "Static site hosting for free (Pages)",
+      "DDoS protection and WAF"
+    ],
+    "when_not_to_use": [
+      "Need full PaaS for backend apps — use Railway/Render",
+      "Workers have cold start and memory limits",
+      "Need managed databases beyond D1 (early stage)"
+    ],
+    "consider_instead": [
+      "fastly",
+      "vercel",
+      "netlify"
+    ],
+    "pricing_at_scale": [
+      {
+        "scale": "Entry",
+        "estimate": "$20/мес (Pro)"
+      }
+    ],
+    "migration_cheatsheet": {
+      "difficulty": "low",
+      "data_you_keep": "R2 = S3-compatible export",
+      "api_standard": "Workers = проприетарный, R2 = S3-compatible",
+      "risk_notes": "Medium — Workers/R2/D1/KV = глубокая привязка к ecosystem, но DNS миграция проста",
+      "tip": "Moderate effort required. Export data before canceling"
+    },
+    "works_well_with": [
+      "cockroachdb",
+      "appwrite",
+      "drata"
+    ]
   }
 }

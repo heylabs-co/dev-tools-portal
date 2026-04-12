@@ -26,5 +26,26 @@
     ]
   },
   "updated_at": "2026-04-12T12:53:55.841Z",
-  "created_at": "2026-04-12T12:53:55.841Z"
+  "created_at": "2026-04-12T12:53:55.841Z",
+  "content": {
+    "when_to_use": [
+      "Enterprise needing SAML/SCIM with complex rules",
+      "Existing Okta customer extending to CIAM",
+      "Need extensive social login + MFA options"
+    ],
+    "when_not_to_use": [
+      "Startup watching costs — Auth0 gets expensive fast at scale",
+      "Need pre-built UI components — Clerk is better",
+      "Budget-conscious with <10K users — try FusionAuth self-hosted"
+    ],
+    "consider_instead": [
+      "clerk",
+      "workos",
+      "fusionauth"
+    ],
+    "works_well_with": [
+      "appwrite",
+      "adyen"
+    ]
+  }
 }

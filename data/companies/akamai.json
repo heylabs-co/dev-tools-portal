@@ -50,5 +50,31 @@
   "scale": {
     "revenue": ">$2B",
     "data_status": "estimated"
+  },
+  "content": {
+    "when_to_use": [
+      "Global audience with low latency needs",
+      "Static site hosting",
+      "Edge computing / serverless functions"
+    ],
+    "when_not_to_use": [
+      "Single-region internal apps",
+      "Low-traffic internal tools"
+    ],
+    "consider_instead": [
+      "object-storage-media"
+    ],
+    "migration_cheatsheet": {
+      "difficulty": "high",
+      "data_you_keep": "Ограниченная",
+      "api_standard": "Проприетарный",
+      "risk_notes": "High — enterprise конфигурации, Property Manager = проприетарный",
+      "tip": "Plan 2-4 weeks minimum. Consider running parallel during migration"
+    },
+    "works_well_with": [
+      "cockroachdb",
+      "appwrite",
+      "drata"
+    ]
   }
 }

@@ -36,5 +36,26 @@
       "api_compatibility": "Проприетарный, но simple",
       "explanation": "Low — simple snippet, легко заменить"
     }
+  },
+  "content": {
+    "when_to_use": [
+      "UX debugging and optimization",
+      "Understanding user friction points",
+      "QA and bug reproduction"
+    ],
+    "when_not_to_use": [
+      "Apps with strict privacy requirements (healthcare)",
+      "B2B with very low user volume"
+    ],
+    "consider_instead": [
+      "product-analytics"
+    ],
+    "migration_cheatsheet": {
+      "difficulty": "low",
+      "data_you_keep": "Через dashboard export",
+      "api_standard": "Проприетарный, но simple",
+      "risk_notes": "Low — simple snippet, легко заменить",
+      "tip": "Standard protocols make switching straightforward"
+    }
   }
 }

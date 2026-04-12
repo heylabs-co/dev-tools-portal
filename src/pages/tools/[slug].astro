@@ -118,6 +118,90 @@ const scaleItems = [
       </a>
     </section>
 
+    <!-- When to Use -->
+    {d.content?.when_to_use && (
+      <section class="mt-10">
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white">When to Use {d.name}</h2>
+        <div class="mt-4 grid gap-4 sm:grid-cols-2">
+          <div class="rounded-xl border border-emerald-200 dark:border-emerald-800 bg-emerald-50 dark:bg-emerald-950/30 p-5">
+            <h3 class="text-sm font-semibold text-emerald-800 dark:text-emerald-300 mb-3">Good fit if you need</h3>
+            <ul class="space-y-2">
+              {d.content.when_to_use.map((item: string) => (
+                <li class="flex items-start gap-2 text-sm text-emerald-700 dark:text-emerald-400">
+                  <span class="mt-0.5 shrink-0">✓</span>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+          {d.content.when_not_to_use && (
+            <div class="rounded-xl border border-red-200 dark:border-red-800 bg-red-50 dark:bg-red-950/30 p-5">
+              <h3 class="text-sm font-semibold text-red-800 dark:text-red-300 mb-3">Not the best choice if</h3>
+              <ul class="space-y-2">
+                {d.content.when_not_to_use.map((item: string) => (
+                  <li class="flex items-start gap-2 text-sm text-red-700 dark:text-red-400">
+                    <span class="mt-0.5 shrink-0">✗</span>
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+        </div>
+        {d.content.consider_instead && d.content.consider_instead.length > 0 && (
+          <p class="mt-3 text-sm text-gray-500 dark:text-gray-400">
+            Consider instead:{' '}
+            {d.content.consider_instead.map((alt: string, i: number) => (
+              <>{i > 0 && ', '}<a href={`/tools/${alt}/`} class="text-indigo-600 dark:text-indigo-400 hover:underline">{alt}</a></>
+            ))}
+          </p>
+        )}
+      </section>
+    )}
+
+    <!-- Migration Cheatsheet -->
+    {d.content?.migration_cheatsheet && (
+      <section class="mt-10">
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white">Migration Guide</h2>
+        <div class="mt-4 rounded-xl border border-amber-200 dark:border-amber-800 bg-amber-50 dark:bg-amber-950/30 p-5 space-y-3">
+          <div class="flex items-center gap-2">
+            <span class="text-sm font-medium text-amber-800 dark:text-amber-300">Difficulty:</span>
+            <span class="text-sm text-amber-700 dark:text-amber-400 capitalize">{d.content.migration_cheatsheet.difficulty}</span>
+          </div>
+          <div>
+            <span class="text-sm font-medium text-amber-800 dark:text-amber-300">Data you can export:</span>
+            <span class="ml-1 text-sm text-amber-700 dark:text-amber-400">{d.content.migration_cheatsheet.data_you_keep}</span>
+          </div>
+          <div>
+            <span class="text-sm font-medium text-amber-800 dark:text-amber-300">API standard:</span>
+            <span class="ml-1 text-sm text-amber-700 dark:text-amber-400">{d.content.migration_cheatsheet.api_standard}</span>
+          </div>
+          {d.content.migration_cheatsheet.tip && (
+            <p class="text-sm text-amber-600 dark:text-amber-500 italic border-t border-amber-200 dark:border-amber-800 pt-3">
+              💡 {d.content.migration_cheatsheet.tip}
+            </p>
+          )}
+        </div>
+      </section>
+    )}
+
+    <!-- Works Well With -->
+    {d.content?.works_well_with && d.content.works_well_with.length > 0 && (
+      <section class="mt-10">
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white">Works Well With</h2>
+        <div class="mt-4 flex flex-wrap gap-2">
+          {d.content.works_well_with.map((slug: string) => (
+            <a
+              href={`/tools/${slug}/`}
+              class="inline-flex items-center rounded-full border border-indigo-200 dark:border-indigo-800 bg-indigo-50 dark:bg-indigo-950/30 px-3 py-1.5 text-sm font-medium text-indigo-700 dark:text-indigo-300 hover:bg-indigo-100 dark:hover:bg-indigo-900/50 transition-colors"
+            >
+              {slug}
+            </a>
+          ))}
+        </div>
+      </section>
+    )}
+
     <!-- Lock-in Section -->
     {lockIn && (
       <section class="mt-10">
@@ -185,6 +269,21 @@ const scaleItems = [
         </div>
       </section>
     )}
+
+    <!-- Report incorrect data -->
+    <div class="mt-10 text-center">
+      <a
+        href={`https://github.com/fusssyfusssy/Dev-Tools-Portal/issues/new?title=${encodeURIComponent(`[Data] Incorrect info for ${d.name}`)}&body=${encodeURIComponent(`**Tool:** ${d.name}\n**Page:** /tools/${d.slug}/\n\n**What's incorrect:**\n\n**Correct information:**\n`)}`}
+        target="_blank"
+        rel="noopener"
+        class="inline-flex items-center gap-1.5 text-sm text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
+      >
+        <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+        Report incorrect data
+      </a>
+    </div>
 
     <!-- Comments -->
     <GiscusComments term={d.name} />

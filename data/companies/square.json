@@ -36,5 +36,30 @@
       "api_compatibility": "Проприетарный",
       "explanation": "Medium — проприетарный, ограниченная география"
     }
+  },
+  "content": {
+    "when_to_use": [
+      "SaaS with online payments",
+      "E-commerce checkout",
+      "Marketplace payment processing"
+    ],
+    "when_not_to_use": [
+      "Offline-only retail",
+      "Internal tools without billing"
+    ],
+    "consider_instead": [
+      "payments-orchestration"
+    ],
+    "migration_cheatsheet": {
+      "difficulty": "medium",
+      "data_you_keep": "Ограниченная",
+      "api_standard": "Проприетарный",
+      "risk_notes": "Medium — проприетарный, ограниченная география",
+      "tip": "Moderate effort required. Export data before canceling"
+    },
+    "works_well_with": [
+      "clerk",
+      "chargebee"
+    ]
   }
 }

@@ -52,5 +52,31 @@
     "revenue": "unknown -- searched cockroachlabs.com, getlatka",
     "customers": "unknown -- enterprise-фокус",
     "data_status": "estimated"
+  },
+  "content": {
+    "when_to_use": [
+      "Apps needing managed database",
+      "Serverless architectures",
+      "Global data distribution"
+    ],
+    "when_not_to_use": [
+      "Simple key-value storage needs",
+      "Embedded/offline-first apps"
+    ],
+    "consider_instead": [
+      "backend-as-a-service"
+    ],
+    "migration_cheatsheet": {
+      "difficulty": "low",
+      "data_you_keep": "pg_dump совместимый",
+      "api_standard": "PostgreSQL-совместимый",
+      "risk_notes": "Low — PostgreSQL-совместимый, стандартный SQL",
+      "tip": "Standard protocols make switching straightforward"
+    },
+    "works_well_with": [
+      "akamai",
+      "clerk",
+      "flagsmith"
+    ]
   }
 }

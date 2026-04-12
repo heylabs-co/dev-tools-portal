@@ -52,5 +52,32 @@
     "customers": "500",
     "employees": "136",
     "data_status": "estimated"
+  },
+  "content": {
+    "when_to_use": [
+      "Multi-PSP routing for higher conversion",
+      "Enterprise with multiple payment providers",
+      "Cross-border optimization"
+    ],
+    "when_not_to_use": [
+      "Single-market startups",
+      "Low transaction volume (<$1M/year)"
+    ],
+    "consider_instead": [
+      "payment-gateway"
+    ],
+    "pricing_at_scale": [
+      {
+        "scale": "Entry",
+        "estimate": "Custom (~$16K+/мес для крупных)"
+      }
+    ],
+    "migration_cheatsheet": {
+      "difficulty": "low",
+      "data_you_keep": "Токены переносимы между провайдерами",
+      "api_standard": "Мета-API поверх провайдеров",
+      "risk_notes": "Low — agnostic vault = ядро продукта, предотвращает lock-in к процессорам",
+      "tip": "Standard protocols make switching straightforward"
+    }
   }
 }

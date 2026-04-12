@@ -47,5 +47,35 @@
       "api_compatibility": "Open-source, но License 2.0",
       "explanation": "Low-Medium — open-source (Elastic License 2.0), но complex setup"
     }
+  },
+  "content": {
+    "when_to_use": [
+      "E-commerce product search",
+      "Documentation/knowledge base search",
+      "Content recommendations"
+    ],
+    "when_not_to_use": [
+      "Simple filter/sort on small datasets",
+      "Apps with <1000 records"
+    ],
+    "consider_instead": [],
+    "pricing_at_scale": [
+      {
+        "scale": "Entry",
+        "estimate": "$95/мес (Standard Cloud)"
+      }
+    ],
+    "migration_cheatsheet": {
+      "difficulty": "medium",
+      "data_you_keep": "Полный — self-hosted",
+      "api_standard": "Open-source, но License 2.0",
+      "risk_notes": "Low-Medium — open-source (Elastic License 2.0), но complex setup",
+      "tip": "Standard protocols make switching straightforward"
+    },
+    "works_well_with": [
+      "appwrite",
+      "akamai",
+      "amplitude"
+    ]
   }
 }

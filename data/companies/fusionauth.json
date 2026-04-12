@@ -52,5 +52,36 @@
     "customers": "450+ глобальных организаций",
     "revenue": "2x рост в 2024, ожидают 2x в 2025",
     "data_status": "estimated"
+  },
+  "content": {
+    "when_to_use": [
+      "Apps needing SSO/MFA",
+      "B2B requiring SAML/SCIM",
+      "Passwordless authentication"
+    ],
+    "when_not_to_use": [
+      "Internal tools with basic auth",
+      "Static sites without user accounts"
+    ],
+    "consider_instead": [
+      "backend-as-a-service"
+    ],
+    "pricing_at_scale": [
+      {
+        "scale": "Entry",
+        "estimate": "$37/мес (Basic Cloud)"
+      }
+    ],
+    "migration_cheatsheet": {
+      "difficulty": "low",
+      "data_you_keep": "Полный — вы владеете данными",
+      "api_standard": "OIDC/SAML стандарты",
+      "risk_notes": "Low — self-hosted, open-source, любые password hashing schemes",
+      "tip": "Standard protocols make switching straightforward"
+    },
+    "works_well_with": [
+      "appwrite",
+      "adyen"
+    ]
   }
 }

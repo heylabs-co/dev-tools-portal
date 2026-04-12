@@ -52,5 +52,39 @@
     "revenue": "$3.43B (+28% YoY)",
     "customers": "~32,700 в 160+ странах",
     "data_status": "estimated"
+  },
+  "content": {
+    "when_to_use": [
+      "Enterprise needing unified APM + logs + metrics",
+      "Large infrastructure with 100+ hosts",
+      "Need 700+ integrations out of the box"
+    ],
+    "when_not_to_use": [
+      "Cost-sensitive — Datadog bills add up FAST ($15/host + extras)",
+      "Want OpenTelemetry portability — Datadog converts to proprietary format",
+      "Startup with <10 services — Grafana Cloud free tier is enough"
+    ],
+    "consider_instead": [
+      "grafana-labs",
+      "new-relic",
+      "signoz"
+    ],
+    "pricing_at_scale": [
+      {
+        "scale": "Entry",
+        "estimate": "$15/host/мес (Infra Pro)"
+      }
+    ],
+    "migration_cheatsheet": {
+      "difficulty": "high",
+      "data_you_keep": "Ограниченная — проприетарный формат",
+      "api_standard": "Проприетарный (принимает OTel, но конвертирует)",
+      "risk_notes": "High — проприетарный агент, конвертирует OTel в свой формат, per-host pricing создаёт switching cost",
+      "tip": "Plan 2-4 weeks minimum. Consider running parallel during migration"
+    },
+    "works_well_with": [
+      "flagsmith",
+      "sentry"
+    ]
   }
 }

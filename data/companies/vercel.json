@@ -55,5 +55,39 @@
     "valuation": "$9.3B (Series F)",
     "employees": "823",
     "data_status": "estimated"
+  },
+  "content": {
+    "when_to_use": [
+      "Next.js deployment with zero config",
+      "Frontend teams wanting preview deployments",
+      "Edge functions and serverless"
+    ],
+    "when_not_to_use": [
+      "Non-Next.js frameworks — Cloudflare Pages or Netlify may be better",
+      "Need full backend hosting — Vercel is frontend-focused",
+      "Cost-sensitive at scale — bills can spike"
+    ],
+    "consider_instead": [
+      "netlify",
+      "cloudflare"
+    ],
+    "pricing_at_scale": [
+      {
+        "scale": "Entry",
+        "estimate": "$20/мес/member (Pro)"
+      }
+    ],
+    "migration_cheatsheet": {
+      "difficulty": "medium",
+      "data_you_keep": "Git repo = ваши данные",
+      "api_standard": "Проприетарный, но Next.js open-source",
+      "risk_notes": "Medium — zero-config для Next.js = привязка к Vercel platform",
+      "tip": "Moderate effort required. Export data before canceling"
+    },
+    "works_well_with": [
+      "cockroachdb",
+      "appwrite",
+      "drata"
+    ]
   }
 }

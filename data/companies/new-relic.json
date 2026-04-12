@@ -52,5 +52,36 @@
     "revenue": "~$960M",
     "customers": "16,000+ организаций / 75,000+ бизнесов",
     "data_status": "estimated"
+  },
+  "content": {
+    "when_to_use": [
+      "Microservices performance monitoring",
+      "Distributed tracing",
+      "Infrastructure monitoring at scale"
+    ],
+    "when_not_to_use": [
+      "Simple monolith apps",
+      "Static sites"
+    ],
+    "consider_instead": [
+      "observability"
+    ],
+    "pricing_at_scale": [
+      {
+        "scale": "Entry",
+        "estimate": "$0.30/GB (Standard), $49/core user"
+      }
+    ],
+    "migration_cheatsheet": {
+      "difficulty": "medium",
+      "data_you_keep": "Через API, OTel-совместимый",
+      "api_standard": "OpenTelemetry native",
+      "risk_notes": "Medium — нативная поддержка OpenTelemetry, лучшая OTel-реализация",
+      "tip": "Moderate effort required. Export data before canceling"
+    },
+    "works_well_with": [
+      "flagsmith",
+      "sentry"
+    ]
   }
 }

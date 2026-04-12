@@ -54,5 +54,37 @@
     "revenue": "$347M (+16% YoY)",
     "customers": "4,700+",
     "data_status": "estimated"
+  },
+  "content": {
+    "when_to_use": [
+      "Enterprise product analytics with advanced cohorts",
+      "Need warehouse-native mode (Snowflake/BigQuery)",
+      "Dedicated customer success team"
+    ],
+    "when_not_to_use": [
+      "Startup with <1K users — PostHog free tier is more generous",
+      "Want self-hosted — PostHog or Countly",
+      "Just need basic event tracking — Mixpanel is simpler"
+    ],
+    "consider_instead": [
+      "posthog",
+      "mixpanel"
+    ],
+    "pricing_at_scale": [
+      {
+        "scale": "Entry",
+        "estimate": "$61/мес (Plus)"
+      }
+    ],
+    "migration_cheatsheet": {
+      "difficulty": "medium",
+      "data_you_keep": "Warehouse export, API",
+      "api_standard": "Проприетарный",
+      "risk_notes": "Medium — проприетарная модель данных, warehouse-native снижает lock-in",
+      "tip": "Moderate effort required. Export data before canceling"
+    },
+    "works_well_with": [
+      "bitrise"
+    ]
   }
 }

@@ -50,5 +50,35 @@
   "scale": {
     "revenue": "unknown -- private, early stage",
     "data_status": "estimated"
+  },
+  "content": {
+    "when_to_use": [
+      "E-commerce product search",
+      "Documentation/knowledge base search",
+      "Content recommendations"
+    ],
+    "when_not_to_use": [
+      "Simple filter/sort on small datasets",
+      "Apps with <1000 records"
+    ],
+    "consider_instead": [],
+    "pricing_at_scale": [
+      {
+        "scale": "Entry",
+        "estimate": "$30/мес (Build, 50K searches)"
+      }
+    ],
+    "migration_cheatsheet": {
+      "difficulty": "low",
+      "data_you_keep": "Полный export",
+      "api_standard": "Open-source API",
+      "risk_notes": "Low — open-source, self-hosted",
+      "tip": "Standard protocols make switching straightforward"
+    },
+    "works_well_with": [
+      "appwrite",
+      "akamai",
+      "amplitude"
+    ]
   }
 }

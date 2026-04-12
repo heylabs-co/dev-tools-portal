@@ -54,5 +54,26 @@
     "revenue": "$19.3M (снижение с $26.4M)",
     "customers": "6,000+ организаций",
     "data_status": "estimated"
+  },
+  "content": {
+    "when_to_use": [
+      "Conversion optimization",
+      "Data-driven product experiments",
+      "Multi-variant testing"
+    ],
+    "when_not_to_use": [
+      "Products with <1000 daily users (insufficient sample)",
+      "Internal tools"
+    ],
+    "consider_instead": [
+      "feature-flags"
+    ],
+    "migration_cheatsheet": {
+      "difficulty": "medium",
+      "data_you_keep": "Workflow YAML export",
+      "api_standard": "Проприетарный Steps format",
+      "risk_notes": "Medium — visual workflow, Steps ecosystem",
+      "tip": "Standard protocols make switching straightforward"
+    }
   }
 }

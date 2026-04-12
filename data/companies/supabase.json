@@ -54,5 +54,40 @@
   "scale": {
     "revenue": "$70M",
     "data_status": "estimated"
+  },
+  "content": {
+    "when_to_use": [
+      "Need PostgreSQL with auth + storage + realtime",
+      "Firebase alternative with SQL and lower lock-in",
+      "Open-source preference with managed hosting"
+    ],
+    "when_not_to_use": [
+      "Need offline-first mobile sync — consider Firebase",
+      "Need reactive queries without polling — consider Convex",
+      "Enterprise requiring 99.99% SLA — consider managed Postgres (Neon, RDS)"
+    ],
+    "consider_instead": [
+      "firebase",
+      "neon-acquired-by-databricks",
+      "appwrite"
+    ],
+    "pricing_at_scale": [
+      {
+        "scale": "Entry",
+        "estimate": "$25/мес (Pro)"
+      }
+    ],
+    "migration_cheatsheet": {
+      "difficulty": "low",
+      "data_you_keep": "Полный SQL export",
+      "api_standard": "Стандартный PostgreSQL + REST/GraphQL",
+      "risk_notes": "Low — PostgreSQL под капотом, open-source, стандартный SQL",
+      "tip": "Standard protocols make switching straightforward"
+    },
+    "works_well_with": [
+      "clerk",
+      "akamai",
+      "amplitude"
+    ]
   }
 }

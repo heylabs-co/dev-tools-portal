@@ -36,5 +36,33 @@
       "api_compatibility": "VS Code compatible",
       "explanation": "Low — VS Code fork, settings exportable"
     }
+  },
+  "content": {
+    "when_to_use": [
+      "VS Code user wanting AI-first editor",
+      "Need multi-file context and codebase understanding",
+      "Want AI-assisted refactoring and generation"
+    ],
+    "when_not_to_use": [
+      "Happy with GitHub Copilot in existing editor",
+      "JetBrains user — JetBrains AI is integrated",
+      "Need free solution — Continue.dev is open-source"
+    ],
+    "consider_instead": [
+      "github-copilot",
+      "windsurf-acquired-by-cognition-ai-google-licensed-ip-2-4b"
+    ],
+    "migration_cheatsheet": {
+      "difficulty": "low",
+      "data_you_keep": "Settings export",
+      "api_standard": "VS Code compatible",
+      "risk_notes": "Low — VS Code fork, settings exportable",
+      "tip": "Standard protocols make switching straightforward"
+    },
+    "works_well_with": [
+      "flagsmith",
+      "amplitude",
+      "appwrite"
+    ]
   }
 }

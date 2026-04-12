@@ -52,5 +52,36 @@
     "revenue": "unknown -- часть ActiveCampaign",
     "customers": "unknown",
     "data_status": "estimated"
+  },
+  "content": {
+    "when_to_use": [
+      "Transactional emails (receipts, alerts)",
+      "SMS verification",
+      "Multi-channel notifications"
+    ],
+    "when_not_to_use": [
+      "Internal team communication",
+      "Marketing-only email campaigns"
+    ],
+    "consider_instead": [
+      "push-in-app-messaging"
+    ],
+    "pricing_at_scale": [
+      {
+        "scale": "Entry",
+        "estimate": "$15/мес (10K emails)"
+      }
+    ],
+    "migration_cheatsheet": {
+      "difficulty": "low",
+      "data_you_keep": "Через API",
+      "api_standard": "REST + SMTP стандарт",
+      "risk_notes": "Low — REST API, SMTP",
+      "tip": "Standard protocols make switching straightforward"
+    },
+    "works_well_with": [
+      "clerk",
+      "amplitude"
+    ]
   }
 }

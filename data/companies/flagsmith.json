@@ -51,5 +51,36 @@
   "scale": {
     "revenue": "unknown -- private, early stage",
     "data_status": "estimated"
+  },
+  "content": {
+    "when_to_use": [
+      "Distributed systems debugging",
+      "Log aggregation and analysis",
+      "OpenTelemetry-based monitoring"
+    ],
+    "when_not_to_use": [
+      "Single-server apps with basic logging",
+      "Non-technical teams"
+    ],
+    "consider_instead": [
+      "apm"
+    ],
+    "pricing_at_scale": [
+      {
+        "scale": "Entry",
+        "estimate": "$99/мес (Start-Up, 500 users)"
+      }
+    ],
+    "migration_cheatsheet": {
+      "difficulty": "low",
+      "data_you_keep": "Полный — self-hosted",
+      "api_standard": "Open-source API",
+      "risk_notes": "Low — open-source, self-hosted, audit codebase",
+      "tip": "Standard protocols make switching straightforward"
+    },
+    "works_well_with": [
+      "better-stack",
+      "drata"
+    ]
   }
 }

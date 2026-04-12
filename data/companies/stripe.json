@@ -58,5 +58,39 @@
     "employees": "~8,017",
     "valuation": "$159B",
     "data_status": "estimated"
+  },
+  "content": {
+    "when_to_use": [
+      "SaaS with global customers needing fast integration",
+      "Marketplaces using Stripe Connect",
+      "Companies wanting unified payments + billing stack"
+    ],
+    "when_not_to_use": [
+      "Need Merchant of Record (MoR) for tax compliance — use Paddle",
+      "Very high volume enterprise seeking lowest fees — consider Adyen",
+      "Offline-first retail POS — consider Square"
+    ],
+    "consider_instead": [
+      "adyen",
+      "paddle",
+      "square"
+    ],
+    "pricing_at_scale": [
+      {
+        "scale": "Entry",
+        "estimate": "2.9% + $0.30/транзакция"
+      }
+    ],
+    "migration_cheatsheet": {
+      "difficulty": "medium",
+      "data_you_keep": "PCI Data Export (pm_/card_ объекты), CSV export",
+      "api_standard": "Проприетарный, но де-факто стандарт",
+      "risk_notes": "Medium — проприетарные токены в vault, но PCI-to-PCI export доступен",
+      "tip": "Moderate effort required. Export data before canceling"
+    },
+    "works_well_with": [
+      "clerk",
+      "chargebee"
+    ]
   }
 }

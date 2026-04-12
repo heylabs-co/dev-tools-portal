@@ -53,5 +53,38 @@
   "scale": {
     "revenue": "unknown -- private",
     "data_status": "estimated"
+  },
+  "content": {
+    "when_to_use": [
+      "Mobile app with in-app subscriptions (iOS + Android)",
+      "Need cross-platform entitlement management",
+      "Want paywall A/B testing and analytics"
+    ],
+    "when_not_to_use": [
+      "Web-only SaaS — use Stripe/Paddle",
+      "One-time purchases only — too complex",
+      "Very low revenue (<$2.5K MTR) — free but limited"
+    ],
+    "consider_instead": [
+      "adapty",
+      "qonversion"
+    ],
+    "pricing_at_scale": [
+      {
+        "scale": "Entry",
+        "estimate": "1% от MTR свыше $2,500"
+      }
+    ],
+    "migration_cheatsheet": {
+      "difficulty": "medium",
+      "data_you_keep": "Через API, webhook events",
+      "api_standard": "Проприетарный поверх Apple/Google стандартов",
+      "risk_notes": "Medium — обёртка над StoreKit/Google Play, но subscription state + analytics привязаны",
+      "tip": "Moderate effort required. Export data before canceling"
+    },
+    "works_well_with": [
+      "adyen",
+      "amplitude"
+    ]
   }
 }

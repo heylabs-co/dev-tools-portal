@@ -51,5 +51,39 @@
     "revenue": "$5.067B (+13.66% YoY)",
     "customers": "335,000+ active accounts",
     "data_status": "estimated"
+  },
+  "content": {
+    "when_to_use": [
+      "Multi-channel messaging (SMS + voice + WhatsApp)",
+      "Programmable voice/video",
+      "Need phone number provisioning globally"
+    ],
+    "when_not_to_use": [
+      "Email only — SendGrid/Resend are simpler",
+      "Just need push notifications — use OneSignal",
+      "Cost-sensitive on SMS — Plivo/Telnyx are cheaper"
+    ],
+    "consider_instead": [
+      "vonage",
+      "sinch",
+      "plivo"
+    ],
+    "pricing_at_scale": [
+      {
+        "scale": "Entry",
+        "estimate": "~$0.0079/мин, $0.0079/SMS (US)"
+      }
+    ],
+    "migration_cheatsheet": {
+      "difficulty": "medium",
+      "data_you_keep": "Segment data export (Business plan), porting",
+      "api_standard": "Проприетарный, но REST стандарт",
+      "risk_notes": "Medium — номера переносимы (porting), но ecosystem (Segment, SendGrid) создаёт зависимость",
+      "tip": "Moderate effort required. Export data before canceling"
+    },
+    "works_well_with": [
+      "clerk",
+      "amplitude"
+    ]
   }
 }

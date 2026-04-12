@@ -46,5 +46,36 @@
       "api_compatibility": "REST стандарт",
       "explanation": "Medium — voice network = привязка"
     }
+  },
+  "content": {
+    "when_to_use": [
+      "Transactional emails (receipts, alerts)",
+      "SMS verification",
+      "Multi-channel notifications"
+    ],
+    "when_not_to_use": [
+      "Internal team communication",
+      "Marketing-only email campaigns"
+    ],
+    "consider_instead": [
+      "push-in-app-messaging"
+    ],
+    "pricing_at_scale": [
+      {
+        "scale": "Entry",
+        "estimate": "$0.008/мин voice, $0.008/SMS"
+      }
+    ],
+    "migration_cheatsheet": {
+      "difficulty": "medium",
+      "data_you_keep": "Через API",
+      "api_standard": "REST стандарт",
+      "risk_notes": "Medium — voice network = привязка",
+      "tip": "Moderate effort required. Export data before canceling"
+    },
+    "works_well_with": [
+      "clerk",
+      "amplitude"
+    ]
   }
 }

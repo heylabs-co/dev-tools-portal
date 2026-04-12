@@ -36,5 +36,30 @@
       "api_compatibility": "Проприетарный",
       "explanation": "Medium — Feature Data Platform, Harness acquisition"
     }
+  },
+  "content": {
+    "when_to_use": [
+      "Distributed systems debugging",
+      "Log aggregation and analysis",
+      "OpenTelemetry-based monitoring"
+    ],
+    "when_not_to_use": [
+      "Single-server apps with basic logging",
+      "Non-technical teams"
+    ],
+    "consider_instead": [
+      "apm"
+    ],
+    "migration_cheatsheet": {
+      "difficulty": "medium",
+      "data_you_keep": "Через API",
+      "api_standard": "Проприетарный",
+      "risk_notes": "Medium — Feature Data Platform, Harness acquisition",
+      "tip": "Moderate effort required. Export data before canceling"
+    },
+    "works_well_with": [
+      "better-stack",
+      "drata"
+    ]
   }
 }

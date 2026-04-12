@@ -52,5 +52,32 @@
     "employees": "~4,000",
     "customers": "unknown -- крупные enterprise (Starbucks, eBay)",
     "data_status": "estimated"
+  },
+  "content": {
+    "when_to_use": [
+      "Enterprise with $10M+ TPV needing global coverage",
+      "Unified online + in-store (POS) payments",
+      "Need 250+ local payment methods worldwide"
+    ],
+    "when_not_to_use": [
+      "Startup with <$1M TPV — minimum fees are high",
+      "Need quick self-serve setup — Stripe is faster",
+      "Solo developer building MVP"
+    ],
+    "consider_instead": [
+      "stripe",
+      "checkout-com"
+    ],
+    "migration_cheatsheet": {
+      "difficulty": "medium",
+      "data_you_keep": "CSV import/export recurring payment details",
+      "api_standard": "Проприетарный",
+      "risk_notes": "Medium — проприетарные токены, но CSV import/export поддержан",
+      "tip": "Moderate effort required. Export data before canceling"
+    },
+    "works_well_with": [
+      "clerk",
+      "chargebee"
+    ]
   }
 }

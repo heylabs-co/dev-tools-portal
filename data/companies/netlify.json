@@ -54,5 +54,37 @@
     "revenue": "unknown -- private, searched getlatka",
     "customers": "unknown",
     "data_status": "estimated"
+  },
+  "content": {
+    "when_to_use": [
+      "Global audience with low latency needs",
+      "Static site hosting",
+      "Edge computing / serverless functions"
+    ],
+    "when_not_to_use": [
+      "Single-region internal apps",
+      "Low-traffic internal tools"
+    ],
+    "consider_instead": [
+      "object-storage-media"
+    ],
+    "pricing_at_scale": [
+      {
+        "scale": "Entry",
+        "estimate": "$19/мес/member (Pro)"
+      }
+    ],
+    "migration_cheatsheet": {
+      "difficulty": "medium",
+      "data_you_keep": "Git repo = ваши данные",
+      "api_standard": "Проприетарный",
+      "risk_notes": "Medium — Netlify Functions/Edge = привязка",
+      "tip": "Moderate effort required. Export data before canceling"
+    },
+    "works_well_with": [
+      "cockroachdb",
+      "appwrite",
+      "drata"
+    ]
   }
 }

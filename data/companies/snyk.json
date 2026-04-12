@@ -52,5 +52,34 @@
     "revenue": "~$300M+",
     "customers": "5,000 / ~3,100 платящих",
     "data_status": "estimated"
+  },
+  "content": {
+    "when_to_use": [
+      "Developer-first security scanning in CI/CD",
+      "Open-source dependency vulnerability checking",
+      "Container and IaC security scanning"
+    ],
+    "when_not_to_use": [
+      "Just need basic dependency audit — npm audit is free",
+      "Enterprise SAST — Checkmarx is more comprehensive",
+      "Budget-sensitive team — SonarQube is free OSS"
+    ],
+    "consider_instead": [
+      "sonarqube",
+      "checkmarx"
+    ],
+    "pricing_at_scale": [
+      {
+        "scale": "Entry",
+        "estimate": "$25/мес/developer (Team)"
+      }
+    ],
+    "migration_cheatsheet": {
+      "difficulty": "low",
+      "data_you_keep": "SARIF/JSON export",
+      "api_standard": "Стандартные форматы",
+      "risk_notes": "Low-Medium — CLI + IDE integration, стандартные vulnerability reports",
+      "tip": "Standard protocols make switching straightforward"
+    }
   }
 }

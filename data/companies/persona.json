@@ -51,5 +51,26 @@
     "customers": "3,000+ (OpenAI, Instacart)",
     "valuation": "$2B (Series D, $200M)",
     "data_status": "estimated"
+  },
+  "content": {
+    "when_to_use": [
+      "Fintech requiring identity verification",
+      "Regulated industries (banking, crypto)",
+      "Marketplace seller onboarding"
+    ],
+    "when_not_to_use": [
+      "Consumer apps without regulatory requirements",
+      "B2B SaaS with trusted enterprise clients"
+    ],
+    "consider_instead": [
+      "identity-auth"
+    ],
+    "migration_cheatsheet": {
+      "difficulty": "medium",
+      "data_you_keep": "API export",
+      "api_standard": "REST API",
+      "risk_notes": "Medium — identity verification data",
+      "tip": "Moderate effort required. Export data before canceling"
+    }
   }
 }

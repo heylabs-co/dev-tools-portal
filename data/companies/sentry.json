@@ -54,5 +54,38 @@
     "customers": "1.3M+",
     "revenue": "unknown -- private",
     "data_status": "estimated"
+  },
+  "content": {
+    "when_to_use": [
+      "Error tracking and crash reporting for any platform",
+      "Want open-source with self-hosted option",
+      "Need performance monitoring + profiling"
+    ],
+    "when_not_to_use": [
+      "Need full APM with infrastructure monitoring — use Datadog",
+      "Need log aggregation — Sentry is errors, not logs",
+      "Mobile-only crash reporting — Crashlytics is free"
+    ],
+    "consider_instead": [
+      "bugsnag",
+      "datadog"
+    ],
+    "pricing_at_scale": [
+      {
+        "scale": "Entry",
+        "estimate": "$29/мес (Team)"
+      }
+    ],
+    "migration_cheatsheet": {
+      "difficulty": "low",
+      "data_you_keep": "Полный — self-hosted",
+      "api_standard": "Open-source, OTel",
+      "risk_notes": "Low — open-source, self-hosted опция, OTel-совместимый",
+      "tip": "Standard protocols make switching straightforward"
+    },
+    "works_well_with": [
+      "better-stack",
+      "amplitude"
+    ]
   }
 }

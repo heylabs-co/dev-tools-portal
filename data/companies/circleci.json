@@ -52,5 +52,32 @@
     "revenue": "unknown -- private, searched getlatka",
     "customers": "unknown",
     "data_status": "estimated"
+  },
+  "content": {
+    "when_to_use": [
+      "Conversion optimization",
+      "Data-driven product experiments",
+      "Multi-variant testing"
+    ],
+    "when_not_to_use": [
+      "Products with <1000 daily users (insufficient sample)",
+      "Internal tools"
+    ],
+    "consider_instead": [
+      "feature-flags"
+    ],
+    "pricing_at_scale": [
+      {
+        "scale": "Entry",
+        "estimate": "$0.0006/credit (Performance)"
+      }
+    ],
+    "migration_cheatsheet": {
+      "difficulty": "medium",
+      "data_you_keep": "Config YAML",
+      "api_standard": "Проприетарный YAML",
+      "risk_notes": "Low-Medium — YAML config, orbs проприетарные",
+      "tip": "Standard protocols make switching straightforward"
+    }
   }
 }

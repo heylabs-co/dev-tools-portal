@@ -52,5 +52,36 @@
     "revenue": "$30M",
     "customers": "1,000+ платящих",
     "data_status": "estimated"
+  },
+  "content": {
+    "when_to_use": [
+      "Apps needing SSO/MFA",
+      "B2B requiring SAML/SCIM",
+      "Passwordless authentication"
+    ],
+    "when_not_to_use": [
+      "Internal tools with basic auth",
+      "Static sites without user accounts"
+    ],
+    "consider_instead": [
+      "backend-as-a-service"
+    ],
+    "pricing_at_scale": [
+      {
+        "scale": "Entry",
+        "estimate": "$125/connection/мес (SSO)"
+      }
+    ],
+    "migration_cheatsheet": {
+      "difficulty": "low",
+      "data_you_keep": "API export",
+      "api_standard": "SAML/SCIM стандарты",
+      "risk_notes": "Low — дополнение к основной auth, стандартные протоколы",
+      "tip": "Standard protocols make switching straightforward"
+    },
+    "works_well_with": [
+      "appwrite",
+      "adyen"
+    ]
   }
 }

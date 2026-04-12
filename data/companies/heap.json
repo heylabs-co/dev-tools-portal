@@ -36,5 +36,29 @@
       "api_compatibility": "Проприетарный",
       "explanation": "Medium — autocapture = проприетарный формат"
     }
+  },
+  "content": {
+    "when_to_use": [
+      "Understanding user behavior (funnels, retention)",
+      "Data-driven product decisions",
+      "A/B test analysis"
+    ],
+    "when_not_to_use": [
+      "Pre-product stage",
+      "Simple pageview tracking (use Plausible)"
+    ],
+    "consider_instead": [
+      "session-replay"
+    ],
+    "migration_cheatsheet": {
+      "difficulty": "medium",
+      "data_you_keep": "API export",
+      "api_standard": "Проприетарный",
+      "risk_notes": "Medium — autocapture = проприетарный формат",
+      "tip": "Moderate effort required. Export data before canceling"
+    },
+    "works_well_with": [
+      "bitrise"
+    ]
   }
 }

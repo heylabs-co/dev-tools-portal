@@ -54,5 +54,36 @@
     "revenue": "$202.6M",
     "customers": "~2,958 (Enlyft) / 18K (Latka)",
     "data_status": "estimated"
+  },
+  "content": {
+    "when_to_use": [
+      "SaaS with recurring revenue",
+      "Usage-based pricing models",
+      "Complex plan management"
+    ],
+    "when_not_to_use": [
+      "One-time purchases only",
+      "Simple Stripe Checkout is enough"
+    ],
+    "consider_instead": [
+      "payment-gateway"
+    ],
+    "pricing_at_scale": [
+      {
+        "scale": "Entry",
+        "estimate": "$599/мес (Performance)"
+      }
+    ],
+    "migration_cheatsheet": {
+      "difficulty": "medium",
+      "data_you_keep": "API export, webhook data",
+      "api_standard": "Проприетарный",
+      "risk_notes": "Medium — глубокие интеграции, подписочная логика",
+      "tip": "Moderate effort required. Export data before canceling"
+    },
+    "works_well_with": [
+      "adyen",
+      "amplitude"
+    ]
   }
 }

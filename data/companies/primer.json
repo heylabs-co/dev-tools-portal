@@ -52,5 +52,26 @@
     "valuation": "$425M",
     "employees": "unknown -- searched getlatka, techcrunch",
     "data_status": "estimated"
+  },
+  "content": {
+    "when_to_use": [
+      "Multi-PSP routing for higher conversion",
+      "Enterprise with multiple payment providers",
+      "Cross-border optimization"
+    ],
+    "when_not_to_use": [
+      "Single-market startups",
+      "Low transaction volume (<$1M/year)"
+    ],
+    "consider_instead": [
+      "payment-gateway"
+    ],
+    "migration_cheatsheet": {
+      "difficulty": "low",
+      "data_you_keep": "Через оркестрацию",
+      "api_standard": "Мета-API",
+      "risk_notes": "Low — unified checkout, абстрагирует провайдеров",
+      "tip": "Standard protocols make switching straightforward"
+    }
   }
 }

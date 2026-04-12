@@ -57,5 +57,33 @@
   "scale": {
     "revenue": "unknown -- часть Google Cloud",
     "data_status": "estimated"
+  },
+  "content": {
+    "when_to_use": [
+      "Mobile app MVP with tight deadline",
+      "Need auth + DB + hosting + analytics in one platform",
+      "Google Cloud ecosystem user"
+    ],
+    "when_not_to_use": [
+      "Need SQL database or complex queries — use Supabase",
+      "Want to avoid vendor lock-in — Firebase is HIGH lock-in",
+      "Need self-hosted option"
+    ],
+    "consider_instead": [
+      "supabase",
+      "appwrite"
+    ],
+    "migration_cheatsheet": {
+      "difficulty": "high",
+      "data_you_keep": "firebaseusers2json для auth, но DB миграция сложна",
+      "api_standard": "Проприетарный",
+      "risk_notes": "High — глубокая привязка к Google ecosystem, Firestore/RTDB проприетарные, требует re-architecting backend",
+      "tip": "Plan 2-4 weeks minimum. Consider running parallel during migration"
+    },
+    "works_well_with": [
+      "clerk",
+      "akamai",
+      "amplitude"
+    ]
   }
 }

@@ -51,5 +51,36 @@
   "scale": {
     "revenue": "unknown -- private, searched getlatka",
     "data_status": "estimated"
+  },
+  "content": {
+    "when_to_use": [
+      "Microservices performance monitoring",
+      "Distributed tracing",
+      "Infrastructure monitoring at scale"
+    ],
+    "when_not_to_use": [
+      "Simple monolith apps",
+      "Static sites"
+    ],
+    "consider_instead": [
+      "observability"
+    ],
+    "pricing_at_scale": [
+      {
+        "scale": "Entry",
+        "estimate": "$24/мес (paid plan)"
+      }
+    ],
+    "migration_cheatsheet": {
+      "difficulty": "low",
+      "data_you_keep": "Через API",
+      "api_standard": "REST стандарт",
+      "risk_notes": "Low — simple monitoring, webhook-based",
+      "tip": "Standard protocols make switching straightforward"
+    },
+    "works_well_with": [
+      "flagsmith",
+      "sentry"
+    ]
   }
 }

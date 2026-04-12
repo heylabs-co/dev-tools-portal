@@ -26,5 +26,23 @@
     ]
   },
   "updated_at": "2026-04-12T12:53:55.841Z",
-  "created_at": "2026-04-12T12:53:55.841Z"
+  "created_at": "2026-04-12T12:53:55.841Z",
+  "content": {
+    "when_to_use": [
+      "Gradual rollouts to reduce risk",
+      "Kill switches for features",
+      "Remote config without releases"
+    ],
+    "when_not_to_use": [
+      "Solo developer shipping to production",
+      "Products with no users yet"
+    ],
+    "consider_instead": [
+      "ab-testing"
+    ],
+    "works_well_with": [
+      "bitrise",
+      "amplitude"
+    ]
+  }
 }

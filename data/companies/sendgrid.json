@@ -47,5 +47,36 @@
       "api_compatibility": "SMTP + REST (стандарт)",
       "explanation": "Low-Medium — email API стандартен, SMTP fallback"
     }
+  },
+  "content": {
+    "when_to_use": [
+      "Transactional emails (receipts, alerts)",
+      "SMS verification",
+      "Multi-channel notifications"
+    ],
+    "when_not_to_use": [
+      "Internal team communication",
+      "Marketing-only email campaigns"
+    ],
+    "consider_instead": [
+      "push-in-app-messaging"
+    ],
+    "pricing_at_scale": [
+      {
+        "scale": "Entry",
+        "estimate": "$19.95/мес (Essentials, 50K emails)"
+      }
+    ],
+    "migration_cheatsheet": {
+      "difficulty": "low",
+      "data_you_keep": "Через API",
+      "api_standard": "SMTP + REST (стандарт)",
+      "risk_notes": "Low-Medium — email API стандартен, SMTP fallback",
+      "tip": "Standard protocols make switching straightforward"
+    },
+    "works_well_with": [
+      "clerk",
+      "amplitude"
+    ]
   }
 }

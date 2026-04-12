@@ -51,5 +51,34 @@
   "scale": {
     "customers": "1,000",
     "data_status": "estimated"
+  },
+  "content": {
+    "when_to_use": [
+      "Need strong reasoning and long context (200K tokens)",
+      "Safety-focused applications",
+      "Complex coding and analysis tasks (Claude)"
+    ],
+    "when_not_to_use": [
+      "Need cheapest inference — DeepSeek is cheaper",
+      "Need image generation — OpenAI DALL-E or Stability",
+      "Need broadest model variety — OpenAI has more options"
+    ],
+    "consider_instead": [
+      "openai",
+      "google-gemini-api"
+    ],
+    "pricing_at_scale": [
+      {
+        "scale": "Entry",
+        "estimate": "$20/мес (Pro), API $3/$15 per 1M tokens (Sonnet)"
+      }
+    ],
+    "migration_cheatsheet": {
+      "difficulty": "low",
+      "data_you_keep": "Через API",
+      "api_standard": "Проприетарный, но Vercel AI SDK абстрагирует",
+      "risk_notes": "Low-Medium — Messages API, growing ecosystem compatibility",
+      "tip": "Standard protocols make switching straightforward"
+    }
   }
 }

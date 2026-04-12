@@ -54,5 +54,32 @@
     "revenue": "unknown -- private, searched getlatka",
     "customers": "unknown -- major mobile publishers",
     "data_status": "estimated"
+  },
+  "content": {
+    "when_to_use": [
+      "Mobile apps with paid acquisition",
+      "Multi-channel campaign tracking",
+      "SKAdNetwork/SKAN compliance"
+    ],
+    "when_not_to_use": [
+      "Web-only products",
+      "Organic-only growth strategy"
+    ],
+    "consider_instead": [
+      "product-analytics"
+    ],
+    "pricing_at_scale": [
+      {
+        "scale": "Entry",
+        "estimate": "$0.05-0.07/install (Growth)"
+      }
+    ],
+    "migration_cheatsheet": {
+      "difficulty": "medium",
+      "data_you_keep": "API export, data lockers",
+      "api_standard": "Проприетарный",
+      "risk_notes": "Medium — attribution data привязана к AppsFlyer ecosystem",
+      "tip": "Moderate effort required. Export data before canceling"
+    }
   }
 }

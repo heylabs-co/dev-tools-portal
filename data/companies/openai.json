@@ -52,5 +52,34 @@
     "revenue": "$20B (2025), $25B (фев 2026)",
     "customers": "9M+",
     "data_status": "estimated"
+  },
+  "content": {
+    "when_to_use": [
+      "Best-in-class LLM capabilities (GPT-4+)",
+      "Broadest ecosystem and tooling support",
+      "Need vision, audio, and embeddings in one API"
+    ],
+    "when_not_to_use": [
+      "Cost-sensitive inference — DeepSeek is 10-50x cheaper",
+      "Need on-premise deployment — use Ollama or vLLM",
+      "Data privacy concerns — consider Anthropic or self-hosted"
+    ],
+    "consider_instead": [
+      "anthropic",
+      "google-gemini-api"
+    ],
+    "pricing_at_scale": [
+      {
+        "scale": "Entry",
+        "estimate": "$20/мес (Plus), API pay-per-token"
+      }
+    ],
+    "migration_cheatsheet": {
+      "difficulty": "low",
+      "data_you_keep": "Через API",
+      "api_standard": "OpenAI-compatible = де-факто стандарт",
+      "risk_notes": "Low-Medium — стандартный Chat Completions API (де-факто стандарт, many providers compatible)",
+      "tip": "Standard protocols make switching straightforward"
+    }
   }
 }

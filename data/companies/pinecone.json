@@ -53,5 +53,35 @@
     "customers": "4,000",
     "valuation": "$750M",
     "data_status": "estimated"
+  },
+  "content": {
+    "when_to_use": [
+      "E-commerce product search",
+      "Documentation/knowledge base search",
+      "Content recommendations"
+    ],
+    "when_not_to_use": [
+      "Simple filter/sort on small datasets",
+      "Apps with <1000 records"
+    ],
+    "consider_instead": [],
+    "pricing_at_scale": [
+      {
+        "scale": "Entry",
+        "estimate": "$70/мес (Standard)"
+      }
+    ],
+    "migration_cheatsheet": {
+      "difficulty": "medium",
+      "data_you_keep": "Vector export через API",
+      "api_standard": "Проприетарный, но embeddings стандартные",
+      "risk_notes": "Medium — проприетарный vector format, но стандартные embeddings",
+      "tip": "Moderate effort required. Export data before canceling"
+    },
+    "works_well_with": [
+      "appwrite",
+      "akamai",
+      "amplitude"
+    ]
   }
 }

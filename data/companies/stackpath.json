@@ -26,5 +26,24 @@
     ]
   },
   "updated_at": "2026-04-12T12:53:55.841Z",
-  "created_at": "2026-04-12T12:53:55.841Z"
+  "created_at": "2026-04-12T12:53:55.841Z",
+  "content": {
+    "when_to_use": [
+      "Global audience with low latency needs",
+      "Static site hosting",
+      "Edge computing / serverless functions"
+    ],
+    "when_not_to_use": [
+      "Single-region internal apps",
+      "Low-traffic internal tools"
+    ],
+    "consider_instead": [
+      "object-storage-media"
+    ],
+    "works_well_with": [
+      "cockroachdb",
+      "appwrite",
+      "drata"
+    ]
+  }
 }

@@ -53,5 +53,35 @@
   "scale": {
     "revenue": "unknown -- private",
     "data_status": "estimated"
+  },
+  "content": {
+    "when_to_use": [
+      "Understanding user behavior (funnels, retention)",
+      "Data-driven product decisions",
+      "A/B test analysis"
+    ],
+    "when_not_to_use": [
+      "Pre-product stage",
+      "Simple pageview tracking (use Plausible)"
+    ],
+    "consider_instead": [
+      "session-replay"
+    ],
+    "pricing_at_scale": [
+      {
+        "scale": "Entry",
+        "estimate": "$99/мес (Team)"
+      }
+    ],
+    "migration_cheatsheet": {
+      "difficulty": "medium",
+      "data_you_keep": "API export",
+      "api_standard": "Проприетарный",
+      "risk_notes": "Medium — session data проприетарный",
+      "tip": "Moderate effort required. Export data before canceling"
+    },
+    "works_well_with": [
+      "bitrise"
+    ]
   }
 }

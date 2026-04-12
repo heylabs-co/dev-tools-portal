@@ -5,6 +5,7 @@ import LockInBadge from '../../components/LockInBadge.astro';
 import MetricBar from '../../components/MetricBar.astro';
 import PricingTable from '../../components/PricingTable.astro';
 import SchemaOrg from '../../components/SchemaOrg.astro';
+import GiscusComments from '../../components/GiscusComments.astro';
 import { getCollection } from 'astro:content';
 
 export async function getStaticPaths() {
@@ -184,6 +185,9 @@ const scaleItems = [
         </div>
       </section>
     )}
+
+    <!-- Comments -->
+    <GiscusComments term={d.name} />
 
     <!-- Schema.org -->
     <SchemaOrg

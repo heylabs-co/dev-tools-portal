@@ -48,7 +48,7 @@ const pageUrl = canonical || new URL(Astro.url.pathname, siteUrl).href;
   </head>
   <body class="min-h-screen flex flex-col bg-white text-gray-900 dark:bg-gray-950 dark:text-gray-100">
     <Header />
-    <main class="flex-1">
+    <main class="flex-1" data-pagefind-body>
       <slot />
     </main>
     <Footer />

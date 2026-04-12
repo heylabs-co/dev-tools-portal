@@ -1,0 +1,82 @@
+---
+import { readFileSync } from 'fs';
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import ComparisonTable from '../../components/ComparisonTable.astro';
+import SchemaOrg from '../../components/SchemaOrg.astro';
+
+export async function getStaticPaths() {
+  const pairsRaw = readFileSync('data/comparisons/top-pairs.json', 'utf-8');
+  const pairs = JSON.parse(pairsRaw);
+  const companies = await getCollection('companies');
+  const companyMap = new Map(companies.map(c => [c.id, c.data]));
+
+  return pairs.map((pair: any) => {
+    const pairSlug = pair.pair_slug;
+    const a = companyMap.get(pair.slug_a);
+    const b = companyMap.get(pair.slug_b);
+    return {
+      params: { pair: pairSlug },
+      props: {
+        companyA: a,
+        companyB: b,
+        seo: pair.seo,
+        slugA: pair.slug_a,
+        slugB: pair.slug_b,
+      },
+    };
+  }).filter((p: any) => p.props.companyA && p.props.companyB);
+}
+
+const { companyA, companyB, seo, slugA, slugB } = Astro.props;
+
+const nameA = companyA?.name ?? slugA;
+const nameB = companyB?.name ?? slugB;
+---
+
+<BaseLayout
+  title={seo?.title ?? `${nameA} vs ${nameB}`}
+  description={seo?.meta_description ?? `Side-by-side comparison of ${nameA} and ${nameB}.`}
+>
+  <div class="mx-auto max-w-5xl px-4 py-10">
+    <Breadcrumbs items={[
+      { label: 'Home', href: '/' },
+      { label: 'Compare', href: '/compare/' },
+      { label: `${nameA} vs ${nameB}` },
+    ]} />
+
+    <h1 class="mt-6 text-4xl font-extrabold tracking-tight text-gray-900 dark:text-white">
+      {nameA} vs {nameB}
+    </h1>
+
+    <section class="mt-8">
+      <ComparisonTable companyA={companyA} companyB={companyB} />
+    </section>
+
+    <section class="mt-10 flex flex-wrap gap-4">
+      <a
+        href={`/tools/${slugA}/`}
+        class="inline-flex items-center rounded-lg bg-indigo-600 px-4 py-2 text-sm font-medium text-white hover:bg-indigo-700"
+      >
+        View {nameA} details &rarr;
+      </a>
+      <a
+        href={`/tools/${slugB}/`}
+        class="inline-flex items-center rounded-lg bg-indigo-600 px-4 py-2 text-sm font-medium text-white hover:bg-indigo-700"
+      >
+        View {nameB} details &rarr;
+      </a>
+    </section>
+  </div>
+
+  <SchemaOrg
+    type="comparison"
+    data={{
+      title: seo?.title ?? `${nameA} vs ${nameB}`,
+      description: seo?.meta_description,
+      companyA,
+      companyB,
+    }}
+  />
+</BaseLayout>

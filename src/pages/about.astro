@@ -1,0 +1,51 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="About"
+  description="Learn about DevTools.wiki — an automatic catalog of 630+ developer tools updated every 6 hours."
+>
+  <section class="mx-auto max-w-3xl px-4 py-16">
+    <h1 class="text-4xl font-extrabold tracking-tight text-gray-900 dark:text-white">
+      About DevTools.wiki
+    </h1>
+
+    <div class="mt-8 space-y-6 text-gray-700 dark:text-gray-300 leading-relaxed">
+      <p>
+        DevTools.wiki is an automatic catalog of <strong>630+ developer tools</strong>, updated every
+        <strong>6 hours</strong>. Our goal is to give developers transparent, comparable data so they
+        can pick the right tool without hours of research.
+      </p>
+
+      <h2 class="text-2xl font-bold text-gray-900 dark:text-white pt-4">What makes us different</h2>
+
+      <ul class="list-disc space-y-2 pl-6">
+        <li>
+          <strong>Lock-in Score</strong> — a 0-5 rating of how difficult it is to leave a tool,
+          covering data portability, API compatibility, and proprietary formats.
+        </li>
+        <li>
+          <strong>Migration Difficulty</strong> — an honest assessment of the effort required to
+          switch from one tool to another.
+        </li>
+        <li>
+          <strong>Pricing Transparency</strong> — we surface free tiers, entry prices, billing
+          complexity, and whether pricing is publicly available.
+        </li>
+      </ul>
+
+      <h2 class="text-2xl font-bold text-gray-900 dark:text-white pt-4">How it's built</h2>
+
+      <p>
+        The site is built with <strong>Astro</strong> and hosted on <strong>Cloudflare Pages</strong>.
+        Data is sourced from the <strong>GitHub API</strong>, <strong>npm</strong>, and
+        <strong>Hacker News</strong>, then processed into structured JSON files that feed the catalog.
+      </p>
+
+      <p class="rounded-lg bg-gray-100 dark:bg-gray-800 p-4 text-sm font-medium">
+        $0/month infrastructure — static generation + edge hosting keeps costs at zero.
+      </p>
+    </div>
+  </section>
+</BaseLayout>

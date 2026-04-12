@@ -1,0 +1,94 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import PricingTable from '../../components/PricingTable.astro';
+import LockInBadge from '../../components/LockInBadge.astro';
+
+export async function getStaticPaths() {
+  const companies = await getCollection('companies');
+  return companies
+    .filter(c => c.data.pricing && c.data.pricing.model)
+    .map(c => ({
+      params: { slug: c.id },
+      props: { company: c },
+    }));
+}
+
+const { company } = Astro.props;
+const data = company.data;
+const name = data?.name ?? company.id;
+const slug = company.id;
+
+const scale = data?.scale;
+const lockIn = data?.lock_in;
+---
+
+<BaseLayout
+  title={`${name} Pricing 2026 — Plans, Free Tier & TCO`}
+  description={`Detailed pricing breakdown for ${name}: plans, free tier, enterprise options, and total cost of ownership.`}
+>
+  <div class="mx-auto max-w-5xl px-4 py-10">
+    <Breadcrumbs items={[
+      { label: 'Home', href: '/' },
+      { label: 'Tools', href: '/tools/' },
+      { label: name, href: `/tools/${slug}/` },
+      { label: 'Pricing' },
+    ]} />
+
+    <h1 class="mt-6 text-4xl font-extrabold tracking-tight text-gray-900 dark:text-white">
+      {name} Pricing
+    </h1>
+
+    <section class="mt-8">
+      <PricingTable company={data} />
+    </section>
+
+    {scale && (scale.customers || scale.revenue || scale.employees) && (
+      <section class="mt-10">
+        <h2 class="text-2xl font-bold text-gray-900 dark:text-white">Company Scale</h2>
+        <dl class="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-3">
+          {scale.customers && (
+            <div class="rounded-lg border border-gray-200 p-4 dark:border-gray-700">
+              <dt class="text-sm text-gray-500 dark:text-gray-400">Customers</dt>
+              <dd class="mt-1 text-lg font-semibold text-gray-900 dark:text-white">{scale.customers}</dd>
+            </div>
+          )}
+          {scale.revenue && (
+            <div class="rounded-lg border border-gray-200 p-4 dark:border-gray-700">
+              <dt class="text-sm text-gray-500 dark:text-gray-400">Revenue</dt>
+              <dd class="mt-1 text-lg font-semibold text-gray-900 dark:text-white">{scale.revenue}</dd>
+            </div>
+          )}
+          {scale.employees && (
+            <div class="rounded-lg border border-gray-200 p-4 dark:border-gray-700">
+              <dt class="text-sm text-gray-500 dark:text-gray-400">Employees</dt>
+              <dd class="mt-1 text-lg font-semibold text-gray-900 dark:text-white">{scale.employees}</dd>
+            </div>
+          )}
+        </dl>
+      </section>
+    )}
+
+    {lockIn && lockIn.level && (
+      <section class="mt-10">
+        <h2 class="text-2xl font-bold text-gray-900 dark:text-white">Switching Costs</h2>
+        <div class="mt-4 flex items-start gap-4">
+          <LockInBadge level={lockIn.level} score={lockIn.score} />
+          {lockIn.explanation && (
+            <p class="text-gray-600 dark:text-gray-300">{lockIn.explanation}</p>
+          )}
+        </div>
+      </section>
+    )}
+
+    <div class="mt-10">
+      <a
+        href={`/tools/${slug}/`}
+        class="inline-flex items-center rounded-lg bg-indigo-600 px-4 py-2 text-sm font-medium text-white hover:bg-indigo-700"
+      >
+        &larr; Back to {name}
+      </a>
+    </div>
+  </div>
+</BaseLayout>

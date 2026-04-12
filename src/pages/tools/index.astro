@@ -1,0 +1,45 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import CompanyCard from '../../components/CompanyCard.astro';
+import { getCollection } from 'astro:content';
+
+const allCompanies = await getCollection('companies');
+const sorted = allCompanies.sort((a, b) =>
+  a.data.name.localeCompare(b.data.name, 'en', { sensitivity: 'base' })
+);
+const totalCount = sorted.length;
+---
+
+<BaseLayout
+  title="All 630+ Developer Tools"
+  description="Browse all 630+ developer tools — compare pricing, lock-in scores, migration difficulty and more."
+>
+  <section class="mx-auto max-w-7xl px-4 py-10">
+    <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Tools' }]} />
+
+    <div class="mt-6">
+      <h1 class="text-4xl font-extrabold tracking-tight text-gray-900 dark:text-white">
+        All Developer Tools
+      </h1>
+      <p class="mt-2 text-lg text-gray-600 dark:text-gray-400">
+        {totalCount} tools compared by pricing, lock-in, and migration difficulty
+      </p>
+    </div>
+
+    <div class="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      {sorted.map((entry) => (
+        <CompanyCard
+          slug={entry.data.slug}
+          name={entry.data.name}
+          description={entry.data.description}
+          logo={entry.data.logo ?? ''}
+          category={entry.data.categories.primary.name}
+          lockInLevel={entry.data.scores?.lock_in?.level}
+          pricingModel={entry.data.pricing?.model}
+          hasFree={entry.data.pricing?.has_free_tier}
+        />
+      ))}
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,91 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import CompanyCard from '../../components/CompanyCard.astro';
+import SchemaOrg from '../../components/SchemaOrg.astro';
+
+export async function getStaticPaths() {
+  const categories = await getCollection('categories');
+  return categories.map((entry) => ({
+    params: { slug: entry.id },
+    props: { category: entry },
+  }));
+}
+
+const { category } = Astro.props;
+const { data } = category;
+
+const allCompanies = await getCollection('companies');
+const filtered = allCompanies
+  .filter((c) => c.data.categories.primary.slug === data.slug)
+  .sort((a, b) => a.data.name.localeCompare(b.data.name));
+
+const pageTitle = data.seo?.title ?? data.name;
+const pageDescription = data.seo?.meta_description ?? data.description ?? '';
+const heading = data.seo?.h1 ?? data.name;
+---
+
+<BaseLayout title={pageTitle} description={pageDescription}>
+  <div class="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
+    <Breadcrumbs
+      items={[
+        { label: 'Home', href: '/' },
+        { label: 'Categories', href: '/categories/' },
+        { label: data.name },
+      ]}
+    />
+
+    <div class="mt-6">
+      <div class="flex flex-wrap items-center gap-3">
+        <h1 class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
+          {heading}
+        </h1>
+        {data.ai_native && (
+          <span class="inline-flex items-center rounded-full bg-purple-100 px-3 py-1 text-sm font-medium text-purple-800 dark:bg-purple-900 dark:text-purple-200">
+            AI-Native
+          </span>
+        )}
+      </div>
+
+      {data.description && (
+        <p class="mt-4 max-w-3xl text-lg text-gray-600 dark:text-gray-300">
+          {data.description}
+        </p>
+      )}
+
+      <p class="mt-2 text-sm font-medium text-gray-500 dark:text-gray-400">
+        {filtered.length} {filtered.length === 1 ? 'tool' : 'tools'} in this category
+      </p>
+    </div>
+
+    <div class="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      {filtered.map((company) => (
+        <CompanyCard
+          slug={company.data.slug}
+          name={company.data.name}
+          description={company.data.description}
+          logo={company.data.logo ?? ''}
+          category={data.name}
+          lockInLevel={company.data.scores?.lock_in?.level}
+          pricingModel={company.data.pricing?.model}
+          hasFree={company.data.pricing?.has_free_tier}
+        />
+      ))}
+    </div>
+  </div>
+
+  <SchemaOrg
+    type="category"
+    data={{
+      name: data.name,
+      slug: data.slug,
+      description: data.description,
+      companies: filtered.map((c) => ({
+        name: c.data.name,
+        slug: c.data.slug,
+        website: c.data.website,
+      })),
+    }}
+  />
+</BaseLayout>

@@ -1,0 +1,23 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SearchBar from '../components/SearchBar.astro';
+---
+
+<BaseLayout
+  title="Search Developer Tools"
+  description="Search across 630+ developer tools by name, category, or feature."
+>
+  <section class="mx-auto max-w-3xl px-4 py-16">
+    <h1 class="text-4xl font-extrabold tracking-tight text-gray-900 dark:text-white">
+      Search
+    </h1>
+
+    <div class="mt-8">
+      <SearchBar />
+    </div>
+
+    <p class="mt-6 text-center text-sm text-gray-500 dark:text-gray-400">
+      Search powered by Pagefind — indexes all 630+ tools
+    </p>
+  </section>
+</BaseLayout>

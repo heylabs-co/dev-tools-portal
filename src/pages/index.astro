@@ -1,16 +1,72 @@
 ---
-import '../styles/global.css';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CategoryGrid from '../components/CategoryGrid.astro';
+import CompanyCard from '../components/CompanyCard.astro';
+import { getCollection } from 'astro:content';
+
+const allCategories = await getCollection('categories');
+const categoryData = allCategories.map((entry) => ({
+  slug: entry.data.slug,
+  name: entry.data.name,
+  company_count: entry.data.company_count,
+  ai_native: entry.data.ai_native,
+}));
+
+const allCompanies = await getCollection('companies');
+const recentCompanies = allCompanies
+  .filter((c) => c.data.updated_at)
+  .sort((a, b) => (b.data.updated_at! > a.data.updated_at! ? 1 : -1))
+  .slice(0, 12);
 ---
 
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width" />
-    <title>Dev Tools Portal — Compare 630+ Developer Tools</title>
-  </head>
-  <body class="bg-white text-gray-900">
-    <h1 class="text-4xl font-bold p-8">Dev Tools Portal</h1>
-    <p class="px-8 text-gray-600">Coming soon — 630+ developer tools compared.</p>
-  </body>
-</html>
+<BaseLayout
+  title="Compare 630+ Developer Tools"
+  description="Compare 630+ developer tools — pricing, lock-in scores, migration difficulty, and more."
+>
+  <!-- Hero -->
+  <section class="bg-gradient-to-b from-indigo-50 to-white dark:from-gray-900 dark:to-gray-950 py-20 text-center">
+    <div class="mx-auto max-w-3xl px-4">
+      <h1 class="text-5xl font-extrabold tracking-tight text-gray-900 dark:text-white">
+        DevTools.wiki
+      </h1>
+      <p class="mt-4 text-lg text-gray-600 dark:text-gray-400">
+        Compare 630+ developer tools — pricing, lock-in scores, migration difficulty
+      </p>
+      <a
+        href="/tools/"
+        class="mt-8 inline-block rounded-lg bg-indigo-600 px-6 py-3 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 transition-colors"
+      >
+        Browse all tools
+      </a>
+    </div>
+  </section>
+
+  <!-- Featured Categories -->
+  <section class="mx-auto max-w-7xl px-4 py-16">
+    <h2 class="text-2xl font-bold text-gray-900 dark:text-white">Featured Categories</h2>
+    <p class="mt-2 text-gray-600 dark:text-gray-400">All 42 categories of developer tools</p>
+    <div class="mt-8">
+      <CategoryGrid categories={categoryData} />
+    </div>
+  </section>
+
+  <!-- Recently Updated -->
+  <section class="mx-auto max-w-7xl px-4 py-16">
+    <h2 class="text-2xl font-bold text-gray-900 dark:text-white">Recently Updated</h2>
+    <p class="mt-2 text-gray-600 dark:text-gray-400">The latest tools added or refreshed</p>
+    <div class="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      {recentCompanies.map((company) => (
+        <CompanyCard
+          slug={company.data.slug}
+          name={company.data.name}
+          description={company.data.description}
+          logo={company.data.logo ?? ''}
+          category={company.data.categories.primary.name}
+          lockInLevel={company.data.scores?.lock_in?.level}
+          pricingModel={company.data.pricing?.model}
+          hasFree={company.data.pricing?.has_free_tier}
+        />
+      ))}
+    </div>
+  </section>
+</BaseLayout>

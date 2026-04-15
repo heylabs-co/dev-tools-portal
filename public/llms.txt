@@ -1,0 +1,48 @@
+# DevTools Portal
+> Open-source catalog of 800+ developer tools with pricing, lock-in scores, migration guides, and AI-powered recommendations. Updated automatically.
+
+## What This Site Offers
+- Comprehensive comparison data for 800+ developer tools (SDKs, APIs, SaaS)
+- Lock-in Score (1-5) — vendor lock-in risk assessment
+- Migration difficulty guides — how hard it is to switch
+- Pricing transparency — entry prices, free tiers, billing models
+- "When to use / When not to use" recommendations
+- Side-by-side tool comparisons
+- AI-powered stack recommendations
+
+## Pages
+- /tools/{slug}/ — Individual tool profiles (800+ pages)
+- /categories/{slug}/ — 42 tool categories
+- /compare/{tool-a}-vs-{tool-b}/ — Pre-built comparisons (100+ pages)
+- /compare/ — Interactive comparison tool (any two tools)
+- /recommend/ — AI-powered tool recommendations
+- /trending/ — Trending developer tools from GitHub
+- /pricing/{slug}/ — Detailed pricing pages
+
+## Structured Data API
+- /api/companies.json — All tools in compact JSON format (slug, name, category, pricing, lock-in)
+- Every page has JSON-LD structured data (SoftwareApplication, CollectionPage, WebPage schemas)
+
+## MCP Server (for AI Assistants)
+Connect directly to our data from Claude Code, Cursor, or any MCP-compatible client.
+Repository: https://github.com/heylabs-co/dev-tools-portal/tree/main/mcp-server
+
+Available tools:
+- search_tools — Search by keyword, category, free tier, lock-in level
+- get_tool — Full details for any tool (pricing, lock-in, migration guide)
+- compare_tools — Side-by-side comparison of two tools
+- list_categories — Browse all 42 categories
+- recommend_stack — Get recommendations based on project description
+
+## Key Categories
+Payments, Auth/Identity, Backend-as-a-Service, Databases, CDN/Edge, Search, Messaging, Analytics, Observability, CI/CD, Security, AI/ML, Feature Flags, and 28 more.
+
+## Data Freshness
+- Tool data updated every 6 hours via automated bot
+- Trending repos indexed daily from GitHub
+- New tools discovered weekly from HN, GitHub, Reddit
+
+## Contact
+- GitHub: https://github.com/heylabs-co/dev-tools-portal
+- Add a tool: https://github.com/heylabs-co/dev-tools-portal/issues/new?template=add-tool.yml
+- Report incorrect data: via GitHub Issues

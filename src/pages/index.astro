@@ -23,7 +23,7 @@ const recentCompanies = allCompanies
 
 <BaseLayout
   title={`Compare ${toolCount}+ Developer Tools`}
-  description="Compare 800+ developer tools side-by-side — pricing models, lock-in risk scores, migration guides, and free tier availability. Find the perfect tool for your stack."
+  description="Compare ${toolCount}+ developer tools side-by-side — pricing models, lock-in risk scores, migration guides, and free tier availability. Find the perfect tool for your stack."
   jsonLd={{
     '@context': 'https://schema.org',
     '@graph': [
@@ -31,7 +31,7 @@ const recentCompanies = allCompanies
         '@type': 'WebSite',
         name: 'tool.news',
         url: 'https://tool.news',
-        description: 'Compare 800+ developer tools — pricing, lock-in scores, migration guides',
+        description: 'Compare ${toolCount}+ developer tools — pricing, lock-in scores, migration guides',
         potentialAction: {
           '@type': 'SearchAction',
           target: 'https://tool.news/search/?q={search_term_string}',

@@ -239,8 +239,38 @@ const scaleItems = [
     <!-- Pricing Section -->
     {d.pricing && (
       <section class="mt-10">
-        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">Pricing</h2>
+        <div class="flex items-center justify-between mb-4">
+          <h2 class="text-xl font-bold text-gray-900 dark:text-white">Pricing</h2>
+          <a
+            href={`https://github.com/heylabs-co/dev-tools-portal/issues/new?title=${encodeURIComponent(`[Pricing] ${d.name} — incorrect or outdated pricing`)}&body=${encodeURIComponent(`**Tool:** ${d.name}\n**Current pricing on our site:**\n- Model: ${d.pricing?.model || 'unknown'}\n- Entry price: ${d.pricing?.entry_price || 'unknown'}\n- Free tier: ${d.pricing?.has_free_tier ? 'Yes' : 'No'}\n\n**What's wrong:**\n\n**Correct pricing (with source link):**\n`)}&labels=pricing-fix`}
+            target="_blank"
+            rel="noopener"
+            class="inline-flex items-center gap-1 rounded-lg border border-amber-200 dark:border-amber-800 bg-amber-50 dark:bg-amber-950/30 px-3 py-1.5 text-xs font-medium text-amber-700 dark:text-amber-400 hover:bg-amber-100 dark:hover:bg-amber-900/50 transition-colors"
+          >
+            <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            Price wrong?
+          </a>
+        </div>
         <PricingTable company={{ name: d.name, pricing: d.pricing }} />
+      </section>
+    )}
+
+    <!-- No pricing — help us -->
+    {!d.pricing && (
+      <section class="mt-10">
+        <div class="rounded-xl border border-dashed border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-900/50 p-6 text-center">
+          <p class="text-sm text-gray-500 dark:text-gray-400">No pricing data yet for {d.name}</p>
+          <a
+            href={`https://github.com/heylabs-co/dev-tools-portal/issues/new?title=${encodeURIComponent(`[Pricing] Add pricing for ${d.name}`)}&body=${encodeURIComponent(`**Tool:** ${d.name}\n**Website:** ${d.website}\n\n**Pricing info:**\n- Model (usage/subscription/freemium/seat):\n- Free tier (yes/no):\n- Entry price:\n- Pricing page URL:\n`)}&labels=pricing-data`}
+            target="_blank"
+            rel="noopener"
+            class="mt-3 inline-flex items-center gap-1.5 rounded-lg bg-indigo-600 px-4 py-2 text-sm font-medium text-white hover:bg-indigo-500 transition-colors"
+          >
+            Help us add pricing data
+          </a>
+        </div>
       </section>
     )}
 

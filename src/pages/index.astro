@@ -13,6 +13,8 @@ const categoryData = allCategories.map((entry) => ({
 }));
 
 const allCompanies = await getCollection('companies');
+const toolCount = allCompanies.length;
+const catCount = allCategories.length;
 const recentCompanies = allCompanies
   .filter((c) => c.data.updated_at)
   .sort((a, b) => (b.data.updated_at! > a.data.updated_at! ? 1 : -1))
@@ -20,8 +22,8 @@ const recentCompanies = allCompanies
 ---
 
 <BaseLayout
-  title="Compare 630+ Developer Tools"
-  description="Compare 630+ developer tools — pricing, lock-in scores, migration difficulty, and more."
+  title={`Compare ${toolCount}+ Developer Tools`}
+  description={`Compare ${toolCount}+ developer tools — pricing, lock-in scores, migration difficulty, and more.`}
 >
   <!-- Hero -->
   <section class="relative overflow-hidden py-28 sm:py-36">
@@ -41,7 +43,7 @@ const recentCompanies = allCompanies
         The Developer Tool<br />Intelligence Platform
       </h1>
       <p class="mt-6 text-lg sm:text-xl text-[#64748B] dark:text-[#8A8F98] max-w-2xl mx-auto leading-relaxed">
-        800+ tools compared — pricing, lock-in scores, migration guides.
+        {toolCount}+ tools compared — pricing, lock-in scores, migration guides.
         Make informed decisions, faster.
       </p>
 
@@ -63,12 +65,12 @@ const recentCompanies = allCompanies
       <!-- Stats row -->
       <div class="mt-16 flex items-center justify-center gap-8 sm:gap-16">
         <div class="text-center">
-          <span class="block text-2xl sm:text-3xl font-bold text-[#0F172A] dark:text-[#EDEDEF]" style="font-family: 'JetBrains Mono', monospace;">800+</span>
+          <span class="block text-2xl sm:text-3xl font-bold text-[#0F172A] dark:text-[#EDEDEF]" style="font-family: 'JetBrains Mono', monospace;">{toolCount}+</span>
           <span class="block mt-1 text-sm text-[#64748B] dark:text-[#8A8F98]">Tools</span>
         </div>
         <div class="h-8 w-px bg-gray-200 dark:bg-gray-800"></div>
         <div class="text-center">
-          <span class="block text-2xl sm:text-3xl font-bold text-[#0F172A] dark:text-[#EDEDEF]" style="font-family: 'JetBrains Mono', monospace;">42</span>
+          <span class="block text-2xl sm:text-3xl font-bold text-[#0F172A] dark:text-[#EDEDEF]" style="font-family: 'JetBrains Mono', monospace;">{catCount}</span>
           <span class="block mt-1 text-sm text-[#64748B] dark:text-[#8A8F98]">Categories</span>
         </div>
         <div class="h-8 w-px bg-gray-200 dark:bg-gray-800"></div>

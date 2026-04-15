@@ -30,7 +30,7 @@
   "pricing": {
     "model": "usage",
     "has_free_tier": false,
-    "entry_price": "$0.008/мин voice, $0.008/SMS",
+    "entry_price": "$0.008/min voice, $0.008/SMS",
     "enterprise_available": true,
     "billing_complexity": "high",
     "transparency_score": 3,
@@ -42,9 +42,9 @@
       "level": "medium",
       "score": 3,
       "migration_complexity": "medium",
-      "data_portability": "Через API",
-      "api_compatibility": "REST стандарт",
-      "explanation": "Medium — voice network = привязка"
+      "data_portability": "Via API",
+      "api_compatibility": "REST standard",
+      "explanation": "Medium — voice network = binding"
     }
   },
   "content": {
@@ -63,14 +63,14 @@
     "pricing_at_scale": [
       {
         "scale": "Entry",
-        "estimate": "$0.008/мин voice, $0.008/SMS"
+        "estimate": "$0.008/min voice, $0.008/SMS"
       }
     ],
     "migration_cheatsheet": {
       "difficulty": "medium",
-      "data_you_keep": "Через API",
-      "api_standard": "REST стандарт",
-      "risk_notes": "Medium — voice network = привязка",
+      "data_you_keep": "Via API",
+      "api_standard": "REST standard",
+      "risk_notes": "Medium — voice network = binding",
       "tip": "Moderate effort required. Export data before canceling"
     },
     "works_well_with": [

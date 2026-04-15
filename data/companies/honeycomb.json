@@ -31,7 +31,7 @@
     "model": "event",
     "has_free_tier": true,
     "free_tier_limits": "free tier limited",
-    "entry_price": "$130/мес (100M events)",
+    "entry_price": "$130/mo (100M events)",
     "enterprise_available": true,
     "billing_complexity": "medium",
     "transparency_score": 4,
@@ -43,9 +43,9 @@
       "level": "low",
       "score": 1,
       "migration_complexity": "low",
-      "data_portability": "OTel-формат",
+      "data_portability": "OTel-format",
       "api_compatibility": "OpenTelemetry native",
-      "explanation": "Low — OTel-native по дизайну, легко переключить backend"
+      "explanation": "Low — OTel-native by from, easily switch backend"
     }
   },
   "scale": {
@@ -68,14 +68,14 @@
     "pricing_at_scale": [
       {
         "scale": "Entry",
-        "estimate": "$130/мес (100M events)"
+        "estimate": "$130/mo (100M events)"
       }
     ],
     "migration_cheatsheet": {
       "difficulty": "low",
-      "data_you_keep": "OTel-формат",
+      "data_you_keep": "OTel-format",
       "api_standard": "OpenTelemetry native",
-      "risk_notes": "Low — OTel-native по дизайну, легко переключить backend",
+      "risk_notes": "Low — OTel-native by from, easily switch backend",
       "tip": "Standard protocols make switching straightforward"
     },
     "works_well_with": [

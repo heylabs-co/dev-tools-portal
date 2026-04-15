@@ -25,13 +25,13 @@
       "anthropic review"
     ]
   },
-  "updated_at": "2026-04-15T02:02:39.249Z",
+  "updated_at": "2026-04-15T12:48:48.411Z",
   "created_at": "2026-04-12T12:53:55.841Z",
   "pricing": {
     "model": "hybrid",
     "has_free_tier": true,
     "free_tier_limits": "claude.ai free tier",
-    "entry_price": "$20/мес (Pro), API $3/$15 per 1M tokens (Sonnet)",
+    "entry_price": "$20/mo (Pro), API $3/$15 per 1M tokens (Sonnet)",
     "enterprise_available": true,
     "billing_complexity": "medium",
     "transparency_score": 4,
@@ -43,8 +43,8 @@
       "level": "low",
       "score": 1,
       "migration_complexity": "low",
-      "data_portability": "Через API",
-      "api_compatibility": "Проприетарный, но Vercel AI SDK абстрагирует",
+      "data_portability": "Via API",
+      "api_compatibility": "Proprietary, but Vercel AI SDK withand",
       "explanation": "Low-Medium — Messages API, growing ecosystem compatibility"
     }
   },
@@ -70,18 +70,24 @@
     "pricing_at_scale": [
       {
         "scale": "Entry",
-        "estimate": "$20/мес (Pro), API $3/$15 per 1M tokens (Sonnet)"
+        "estimate": "$20/mo (Pro), API $3/$15 per 1M tokens (Sonnet)"
       }
     ],
     "migration_cheatsheet": {
       "difficulty": "low",
-      "data_you_keep": "Через API",
-      "api_standard": "Проприетарный, но Vercel AI SDK абстрагирует",
+      "data_you_keep": "Via API",
+      "api_standard": "Proprietary, but Vercel AI SDK withand",
       "risk_notes": "Low-Medium — Messages API, growing ecosystem compatibility",
       "tip": "Standard protocols make switching straightforward"
     }
   },
   "community": {
     "hn_mentions_30d": 454
+  },
+  "github": {
+    "repo": "anthropics/anthropic-sdk-python"
+  },
+  "npm": {
+    "package": "@langchain/anthropic"
   }
 }

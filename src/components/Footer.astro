@@ -1,5 +1,8 @@
 ---
+import { getCollection } from 'astro:content';
 const year = new Date().getFullYear();
+const companies = await getCollection('companies');
+const toolCount = companies.length;
 ---
 
 <footer style="border-top: 1px solid var(--color-border);">
@@ -14,7 +17,7 @@ const year = new Date().getFullYear();
         <span class="text-[15px] font-semibold tracking-tight" style="color: var(--color-text);">DevTools</span>
       </a>
       <p class="max-w-xs text-sm leading-relaxed" style="color: var(--color-muted);">
-        Discover and compare 630+ developer tools. Find the right tool for your stack.
+        Discover and compare {toolCount}+ developer tools. Find the right tool for your stack.
       </p>
       <p class="mt-2 text-xs" style="color: color-mix(in srgb, var(--color-muted) 60%, transparent);">
         Built with Astro &middot; &copy; {year}

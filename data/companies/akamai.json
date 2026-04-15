@@ -25,7 +25,7 @@
       "akamai review"
     ]
   },
-  "updated_at": "2026-04-15T02:02:33.263Z",
+  "updated_at": "2026-04-15T12:46:15.711Z",
   "created_at": "2026-04-12T12:53:55.841Z",
   "pricing": {
     "model": "unknown",
@@ -42,9 +42,9 @@
       "level": "high",
       "score": 5,
       "migration_complexity": "high",
-      "data_portability": "Ограниченная",
-      "api_compatibility": "Проприетарный",
-      "explanation": "High — enterprise конфигурации, Property Manager = проприетарный"
+      "data_portability": "Limited",
+      "api_compatibility": "Proprietary",
+      "explanation": "High — enterprise configurations, Property Manager = proprietary"
     }
   },
   "scale": {
@@ -66,9 +66,9 @@
     ],
     "migration_cheatsheet": {
       "difficulty": "high",
-      "data_you_keep": "Ограниченная",
-      "api_standard": "Проприетарный",
-      "risk_notes": "High — enterprise конфигурации, Property Manager = проприетарный",
+      "data_you_keep": "Limited",
+      "api_standard": "Proprietary",
+      "risk_notes": "High — enterprise configurations, Property Manager = proprietary",
       "tip": "Plan 2-4 weeks minimum. Consider running parallel during migration"
     },
     "works_well_with": [
@@ -79,5 +79,11 @@
   },
   "community": {
     "hn_mentions_30d": 4
+  },
+  "github": {
+    "repo": "akamai/akamai-security-research"
+  },
+  "npm": {
+    "package": "akamai-edgegrid"
   }
 }

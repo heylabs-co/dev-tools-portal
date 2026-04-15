@@ -31,7 +31,7 @@
     "model": "usage",
     "has_free_tier": true,
     "free_tier_limits": "5 hosts free",
-    "entry_price": "$15/host/мес (Infra Pro)",
+    "entry_price": "$15/host/mo (Infra Pro)",
     "enterprise_available": true,
     "billing_complexity": "high",
     "transparency_score": 4,
@@ -43,14 +43,14 @@
       "level": "high",
       "score": 5,
       "migration_complexity": "high",
-      "data_portability": "Ограниченная — проприетарный формат",
-      "api_compatibility": "Проприетарный (принимает OTel, но конвертирует)",
-      "explanation": "High — проприетарный агент, конвертирует OTel в свой формат, per-host pricing создаёт switching cost"
+      "data_portability": "Limited — proprietary format",
+      "api_compatibility": "Proprietary (andand OTel, but converts)",
+      "explanation": "High — proprietary agent, converts OTel in within format, per-host pricing creates switching cost"
     }
   },
   "scale": {
     "revenue": "$3.43B (+28% YoY)",
-    "customers": "~32,700 в 160+ странах",
+    "customers": "~32,700 in 160+ countries",
     "data_status": "estimated"
   },
   "content": {
@@ -72,14 +72,14 @@
     "pricing_at_scale": [
       {
         "scale": "Entry",
-        "estimate": "$15/host/мес (Infra Pro)"
+        "estimate": "$15/host/mo (Infra Pro)"
       }
     ],
     "migration_cheatsheet": {
       "difficulty": "high",
-      "data_you_keep": "Ограниченная — проприетарный формат",
-      "api_standard": "Проприетарный (принимает OTel, но конвертирует)",
-      "risk_notes": "High — проприетарный агент, конвертирует OTel в свой формат, per-host pricing создаёт switching cost",
+      "data_you_keep": "Limited — proprietary format",
+      "api_standard": "Proprietary (andand OTel, but converts)",
+      "risk_notes": "High — proprietary agent, converts OTel in within format, per-host pricing creates switching cost",
       "tip": "Plan 2-4 weeks minimum. Consider running parallel during migration"
     },
     "works_well_with": [

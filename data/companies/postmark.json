@@ -30,8 +30,8 @@
   "pricing": {
     "model": "usage",
     "has_free_tier": true,
-    "free_tier_limits": "100 emails/мес developer plan",
-    "entry_price": "$15/мес (10K emails)",
+    "free_tier_limits": "100 emails/mo developer plan",
+    "entry_price": "$15/mo (10K emails)",
     "enterprise_available": true,
     "billing_complexity": "low",
     "transparency_score": 4,
@@ -43,13 +43,13 @@
       "level": "low",
       "score": 1,
       "migration_complexity": "low",
-      "data_portability": "Через API",
-      "api_compatibility": "REST + SMTP стандарт",
+      "data_portability": "Via API",
+      "api_compatibility": "REST + SMTP standard",
       "explanation": "Low — REST API, SMTP"
     }
   },
   "scale": {
-    "revenue": "unknown -- часть ActiveCampaign",
+    "revenue": "unknown -- with ActiveCampaign",
     "customers": "unknown",
     "data_status": "estimated"
   },
@@ -69,13 +69,13 @@
     "pricing_at_scale": [
       {
         "scale": "Entry",
-        "estimate": "$15/мес (10K emails)"
+        "estimate": "$15/mo (10K emails)"
       }
     ],
     "migration_cheatsheet": {
       "difficulty": "low",
-      "data_you_keep": "Через API",
-      "api_standard": "REST + SMTP стандарт",
+      "data_you_keep": "Via API",
+      "api_standard": "REST + SMTP standard",
       "risk_notes": "Low — REST API, SMTP",
       "tip": "Standard protocols make switching straightforward"
     },

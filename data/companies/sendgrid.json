@@ -30,8 +30,8 @@
   "pricing": {
     "model": "hybrid",
     "has_free_tier": true,
-    "free_tier_limits": "100 emails/день",
-    "entry_price": "$19.95/мес (Essentials, 50K emails)",
+    "free_tier_limits": "100 emails/day",
+    "entry_price": "$19.95/mo (Essentials, 50K emails)",
     "enterprise_available": true,
     "billing_complexity": "low",
     "transparency_score": 4,
@@ -43,9 +43,9 @@
       "level": "low",
       "score": 1,
       "migration_complexity": "low",
-      "data_portability": "Через API",
-      "api_compatibility": "SMTP + REST (стандарт)",
-      "explanation": "Low-Medium — email API стандартен, SMTP fallback"
+      "data_portability": "Via API",
+      "api_compatibility": "SMTP + REST (standard)",
+      "explanation": "Low-Medium — email API standard, SMTP fallback"
     }
   },
   "content": {
@@ -64,14 +64,14 @@
     "pricing_at_scale": [
       {
         "scale": "Entry",
-        "estimate": "$19.95/мес (Essentials, 50K emails)"
+        "estimate": "$19.95/mo (Essentials, 50K emails)"
       }
     ],
     "migration_cheatsheet": {
       "difficulty": "low",
-      "data_you_keep": "Через API",
-      "api_standard": "SMTP + REST (стандарт)",
-      "risk_notes": "Low-Medium — email API стандартен, SMTP fallback",
+      "data_you_keep": "Via API",
+      "api_standard": "SMTP + REST (standard)",
+      "risk_notes": "Low-Medium — email API standard, SMTP fallback",
       "tip": "Standard protocols make switching straightforward"
     },
     "works_well_with": [

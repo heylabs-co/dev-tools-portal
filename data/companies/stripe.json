@@ -35,7 +35,7 @@
     "model": "usage",
     "has_free_tier": true,
     "free_tier_limits": "monthly fee",
-    "entry_price": "2.9% + $0.30/транзакция",
+    "entry_price": "2.9% + $0.30/transaction",
     "enterprise_available": true,
     "billing_complexity": "low",
     "transparency_score": 4,
@@ -47,13 +47,13 @@
       "level": "medium",
       "score": 3,
       "migration_complexity": "medium",
-      "data_portability": "PCI Data Export (pm_/card_ объекты), CSV export",
-      "api_compatibility": "Проприетарный, но де-факто стандарт",
-      "explanation": "Medium — проприетарные токены в vault, но PCI-to-PCI export доступен"
+      "data_portability": "PCI Data Export (pm_/card_ to), CSV export",
+      "api_compatibility": "Proprietary, but de facto standard",
+      "explanation": "Medium — proprietary tokens in vault, but PCI-to-PCI export available"
     }
   },
   "scale": {
-    "customers": "5 млн+ бизнесов",
+    "customers": "5M+ businesses",
     "revenue": ">$6.1B",
     "employees": "~8,017",
     "valuation": "$159B",
@@ -78,14 +78,14 @@
     "pricing_at_scale": [
       {
         "scale": "Entry",
-        "estimate": "2.9% + $0.30/транзакция"
+        "estimate": "2.9% + $0.30/transaction"
       }
     ],
     "migration_cheatsheet": {
       "difficulty": "medium",
-      "data_you_keep": "PCI Data Export (pm_/card_ объекты), CSV export",
-      "api_standard": "Проприетарный, но де-факто стандарт",
-      "risk_notes": "Medium — проприетарные токены в vault, но PCI-to-PCI export доступен",
+      "data_you_keep": "PCI Data Export (pm_/card_ to), CSV export",
+      "api_standard": "Proprietary, but de facto standard",
+      "risk_notes": "Medium — proprietary tokens in vault, but PCI-to-PCI export available",
       "tip": "Moderate effort required. Export data before canceling"
     },
     "works_well_with": [

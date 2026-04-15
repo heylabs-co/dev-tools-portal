@@ -32,8 +32,8 @@
   "pricing": {
     "model": "unknown",
     "has_free_tier": true,
-    "free_tier_limits": "30K sessions/мес",
-    "entry_price": "$9,961-$27,500/год",
+    "free_tier_limits": "30K sessions/mo",
+    "entry_price": "$9,961-$27,500/year",
     "enterprise_available": true,
     "billing_complexity": "high",
     "transparency_score": 4,
@@ -46,8 +46,8 @@
       "score": 3,
       "migration_complexity": "medium",
       "data_portability": "API export",
-      "api_compatibility": "Проприетарный",
-      "explanation": "Medium — session replay data проприетарный"
+      "api_compatibility": "Proprietary",
+      "explanation": "Medium — session replay data proprietary"
     }
   },
   "scale": {
@@ -70,14 +70,14 @@
     "pricing_at_scale": [
       {
         "scale": "Entry",
-        "estimate": "~$9,961-$27,500/год"
+        "estimate": "~$9,961-$27,500/year"
       }
     ],
     "migration_cheatsheet": {
       "difficulty": "medium",
       "data_you_keep": "API export",
-      "api_standard": "Проприетарный",
-      "risk_notes": "Medium — session replay data проприетарный",
+      "api_standard": "Proprietary",
+      "risk_notes": "Medium — session replay data proprietary",
       "tip": "Moderate effort required. Export data before canceling"
     },
     "works_well_with": [

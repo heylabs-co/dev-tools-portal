@@ -32,7 +32,7 @@
   "pricing": {
     "model": "hybrid",
     "has_free_tier": false,
-    "entry_price": "$5/мес (single node)",
+    "entry_price": "$5/mo (single node)",
     "enterprise_available": true,
     "billing_complexity": "medium",
     "transparency_score": 3,
@@ -44,9 +44,9 @@
       "level": "low",
       "score": 1,
       "migration_complexity": "low",
-      "data_portability": "Полный SQL export",
-      "api_compatibility": "MySQL-совместимый",
-      "explanation": "Low-Medium — стандартный MySQL (Vitess), но branching = проприетарный feature"
+      "data_portability": " SQL export",
+      "api_compatibility": "MySQL-compatible",
+      "explanation": "Low-Medium — standard MySQL (Vitess), but branching = proprietary feature"
     }
   },
   "scale": {
@@ -70,14 +70,14 @@
     "pricing_at_scale": [
       {
         "scale": "Entry",
-        "estimate": "$5/мес (single node)"
+        "estimate": "$5/mo (single node)"
       }
     ],
     "migration_cheatsheet": {
       "difficulty": "low",
-      "data_you_keep": "Полный SQL export",
-      "api_standard": "MySQL-совместимый",
-      "risk_notes": "Low-Medium — стандартный MySQL (Vitess), но branching = проприетарный feature",
+      "data_you_keep": " SQL export",
+      "api_standard": "MySQL-compatible",
+      "risk_notes": "Low-Medium — standard MySQL (Vitess), but branching = proprietary feature",
       "tip": "Standard protocols make switching straightforward"
     },
     "works_well_with": [

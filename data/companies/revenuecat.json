@@ -32,8 +32,8 @@
   "pricing": {
     "model": "usage",
     "has_free_tier": true,
-    "free_tier_limits": "$2,500 MTR бесплатно",
-    "entry_price": "1% от MTR свыше $2,500",
+    "free_tier_limits": "$2,500 MTR free",
+    "entry_price": "1% from MTR above $2,500",
     "enterprise_available": false,
     "billing_complexity": "low",
     "transparency_score": 4,
@@ -45,9 +45,9 @@
       "level": "medium",
       "score": 3,
       "migration_complexity": "medium",
-      "data_portability": "Через API, webhook events",
-      "api_compatibility": "Проприетарный поверх Apple/Google стандартов",
-      "explanation": "Medium — обёртка над StoreKit/Google Play, но subscription state + analytics привязаны"
+      "data_portability": "Via API, webhook events",
+      "api_compatibility": "Proprietary byin Apple/Google standardin",
+      "explanation": "Medium — ёto on StoreKit/Google Play, but subscription state + analytics andin"
     }
   },
   "scale": {
@@ -72,14 +72,14 @@
     "pricing_at_scale": [
       {
         "scale": "Entry",
-        "estimate": "1% от MTR свыше $2,500"
+        "estimate": "1% from MTR above $2,500"
       }
     ],
     "migration_cheatsheet": {
       "difficulty": "medium",
-      "data_you_keep": "Через API, webhook events",
-      "api_standard": "Проприетарный поверх Apple/Google стандартов",
-      "risk_notes": "Medium — обёртка над StoreKit/Google Play, но subscription state + analytics привязаны",
+      "data_you_keep": "Via API, webhook events",
+      "api_standard": "Proprietary byin Apple/Google standardin",
+      "risk_notes": "Medium — ёto on StoreKit/Google Play, but subscription state + analytics andin",
       "tip": "Moderate effort required. Export data before canceling"
     },
     "works_well_with": [

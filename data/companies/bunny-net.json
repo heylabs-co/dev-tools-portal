@@ -30,7 +30,7 @@
   "pricing": {
     "model": "usage",
     "has_free_tier": false,
-    "entry_price": "$0.002/GB (от $1/мес)",
+    "entry_price": "$0.002/GB (from $1/mo)",
     "enterprise_available": true,
     "billing_complexity": "low",
     "transparency_score": 3,
@@ -42,9 +42,9 @@
       "level": "low",
       "score": 1,
       "migration_complexity": "low",
-      "data_portability": "Через API",
-      "api_compatibility": "REST стандарт",
-      "explanation": "Low — простой CDN, Edge Rules простые"
+      "data_portability": "Via API",
+      "api_compatibility": "REST standard",
+      "explanation": "Low — growth CDN, Edge Rules growth"
     }
   },
   "scale": {
@@ -68,14 +68,14 @@
     "pricing_at_scale": [
       {
         "scale": "Entry",
-        "estimate": "$0.002/GB (от $1/мес)"
+        "estimate": "$0.002/GB (from $1/mo)"
       }
     ],
     "migration_cheatsheet": {
       "difficulty": "low",
-      "data_you_keep": "Через API",
-      "api_standard": "REST стандарт",
-      "risk_notes": "Low — простой CDN, Edge Rules простые",
+      "data_you_keep": "Via API",
+      "api_standard": "REST standard",
+      "risk_notes": "Low — growth CDN, Edge Rules growth",
       "tip": "Standard protocols make switching straightforward"
     },
     "works_well_with": [

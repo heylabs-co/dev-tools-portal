@@ -31,7 +31,7 @@
     "model": "usage",
     "has_free_tier": true,
     "free_tier_limits": "5,000 MAUs",
-    "entry_price": "$0.10/user/мес",
+    "entry_price": "$0.10/user/mo",
     "enterprise_available": true,
     "billing_complexity": "low",
     "transparency_score": 4,
@@ -44,8 +44,8 @@
       "score": 3,
       "migration_complexity": "medium",
       "data_portability": "API export",
-      "api_compatibility": "OIDC стандарт",
-      "explanation": "Medium — проприетарные features (fingerprinting)"
+      "api_compatibility": "OIDC standard",
+      "explanation": "Medium — proprietary features (fingerprinting)"
     }
   },
   "scale": {
@@ -69,14 +69,14 @@
     "pricing_at_scale": [
       {
         "scale": "Entry",
-        "estimate": "$0.10/user/мес"
+        "estimate": "$0.10/user/mo"
       }
     ],
     "migration_cheatsheet": {
       "difficulty": "medium",
       "data_you_keep": "API export",
-      "api_standard": "OIDC стандарт",
-      "risk_notes": "Medium — проприетарные features (fingerprinting)",
+      "api_standard": "OIDC standard",
+      "risk_notes": "Medium — proprietary features (fingerprinting)",
       "tip": "Moderate effort required. Export data before canceling"
     },
     "works_well_with": [

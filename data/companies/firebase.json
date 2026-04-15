@@ -49,13 +49,13 @@
       "level": "high",
       "score": 5,
       "migration_complexity": "high",
-      "data_portability": "firebaseusers2json для auth, но DB миграция сложна",
-      "api_compatibility": "Проприетарный",
-      "explanation": "High — глубокая привязка к Google ecosystem, Firestore/RTDB проприетарные, требует re-architecting backend"
+      "data_portability": "firebaseusers2json for auth, but DB andand withon",
+      "api_compatibility": "Proprietary",
+      "explanation": "High — deep binding to Google ecosystem, Firestore/RTDB proprietary, requires re-architecting backend"
     }
   },
   "scale": {
-    "revenue": "unknown -- часть Google Cloud",
+    "revenue": "unknown -- with Google Cloud",
     "data_status": "estimated"
   },
   "content": {
@@ -75,9 +75,9 @@
     ],
     "migration_cheatsheet": {
       "difficulty": "high",
-      "data_you_keep": "firebaseusers2json для auth, но DB миграция сложна",
-      "api_standard": "Проприетарный",
-      "risk_notes": "High — глубокая привязка к Google ecosystem, Firestore/RTDB проприетарные, требует re-architecting backend",
+      "data_you_keep": "firebaseusers2json for auth, but DB andand withon",
+      "api_standard": "Proprietary",
+      "risk_notes": "High — deep binding to Google ecosystem, Firestore/RTDB proprietary, requires re-architecting backend",
       "tip": "Plan 2-4 weeks minimum. Consider running parallel during migration"
     },
     "works_well_with": [

@@ -3,20 +3,28 @@ interface Props {
   label: string;
   value: number;
   maxValue?: number;
+  inverted?: boolean; // true = low value is good (e.g. lock-in score)
 }
 
-const { label, value, maxValue = 5 } = Astro.props;
+const { label, value, maxValue = 5, inverted = false } = Astro.props;
 
 const segments = Array.from({ length: maxValue }, (_, i) => i < value);
 
-function getColor(val: number, max: number) {
+function getColor(val: number, max: number, inv: boolean) {
   const ratio = val / max;
+  if (inv) {
+    // Inverted: low = green (good), high = red (bad)
+    if (ratio <= 0.3) return { filled: 'bg-emerald-500 dark:bg-emerald-400', empty: 'bg-emerald-100 dark:bg-emerald-900/30' };
+    if (ratio <= 0.6) return { filled: 'bg-amber-500 dark:bg-amber-400', empty: 'bg-amber-100 dark:bg-amber-900/30' };
+    return { filled: 'bg-rose-500 dark:bg-rose-400', empty: 'bg-rose-100 dark:bg-rose-900/30' };
+  }
+  // Normal: high = green (good), low = red (bad)
   if (ratio >= 0.7) return { filled: 'bg-emerald-500 dark:bg-emerald-400', empty: 'bg-emerald-100 dark:bg-emerald-900/30' };
   if (ratio >= 0.4) return { filled: 'bg-amber-500 dark:bg-amber-400', empty: 'bg-amber-100 dark:bg-amber-900/30' };
   return { filled: 'bg-rose-500 dark:bg-rose-400', empty: 'bg-rose-100 dark:bg-rose-900/30' };
 }
 
-const colors = getColor(value, maxValue);
+const colors = getColor(value, maxValue, inverted);
 ---
 
 <div class="flex items-center gap-3">

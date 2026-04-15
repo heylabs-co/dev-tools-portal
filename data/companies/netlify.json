@@ -32,8 +32,8 @@
   "pricing": {
     "model": "freemium",
     "has_free_tier": true,
-    "free_tier_limits": "300 credits/мес",
-    "entry_price": "$19/мес/member (Pro)",
+    "free_tier_limits": "300 credits/mo",
+    "entry_price": "$19/mo/member (Pro)",
     "enterprise_available": true,
     "billing_complexity": "medium",
     "transparency_score": 4,
@@ -45,9 +45,9 @@
       "level": "medium",
       "score": 3,
       "migration_complexity": "medium",
-      "data_portability": "Git repo = ваши данные",
-      "api_compatibility": "Проприетарный",
-      "explanation": "Medium — Netlify Functions/Edge = привязка"
+      "data_portability": "Git repo = your data",
+      "api_compatibility": "Proprietary",
+      "explanation": "Medium — Netlify Functions/Edge = binding"
     }
   },
   "scale": {
@@ -71,14 +71,14 @@
     "pricing_at_scale": [
       {
         "scale": "Entry",
-        "estimate": "$19/мес/member (Pro)"
+        "estimate": "$19/mo/member (Pro)"
       }
     ],
     "migration_cheatsheet": {
       "difficulty": "medium",
-      "data_you_keep": "Git repo = ваши данные",
-      "api_standard": "Проприетарный",
-      "risk_notes": "Medium — Netlify Functions/Edge = привязка",
+      "data_you_keep": "Git repo = your data",
+      "api_standard": "Proprietary",
+      "risk_notes": "Medium — Netlify Functions/Edge = binding",
       "tip": "Moderate effort required. Export data before canceling"
     },
     "works_well_with": [

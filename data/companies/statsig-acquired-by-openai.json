@@ -33,7 +33,7 @@
   "pricing": {
     "model": "usage",
     "has_free_tier": true,
-    "free_tier_limits": "2M events/мес",
+    "free_tier_limits": "2M events/mo",
     "entry_price": "Pro (5M free events)",
     "enterprise_available": true,
     "billing_complexity": "low",
@@ -46,13 +46,13 @@
       "level": "high",
       "score": 5,
       "migration_complexity": "high",
-      "data_portability": "Ограниченная",
-      "api_compatibility": "Проприетарный",
-      "explanation": "High — flags + experimentation analytics в одной платформе, cloud-only, нет self-hosted"
+      "data_portability": "Limited",
+      "api_compatibility": "Proprietary",
+      "explanation": "High — flags + experimentation analytics in one platform, cloud-only, no self-hosted"
     }
   },
   "scale": {
-    "customers": "OpenAI, Notion и др.",
+    "customers": "OpenAI, Notion and .",
     "revenue": "unknown -- private",
     "data_status": "estimated"
   },
@@ -71,9 +71,9 @@
     ],
     "migration_cheatsheet": {
       "difficulty": "high",
-      "data_you_keep": "Ограниченная",
-      "api_standard": "Проприетарный",
-      "risk_notes": "High — flags + experimentation analytics в одной платформе, cloud-only, нет self-hosted",
+      "data_you_keep": "Limited",
+      "api_standard": "Proprietary",
+      "risk_notes": "High — flags + experimentation analytics in one platform, cloud-only, no self-hosted",
       "tip": "Plan 2-4 weeks minimum. Consider running parallel during migration"
     },
     "works_well_with": [

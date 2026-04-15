@@ -27,13 +27,13 @@
       "amplitude review"
     ]
   },
-  "updated_at": "2026-04-12T18:40:30.816Z",
+  "updated_at": "2026-04-15T12:47:40.899Z",
   "created_at": "2026-04-12T12:53:55.841Z",
   "pricing": {
     "model": "freemium",
     "has_free_tier": true,
     "free_tier_limits": "Starter free",
-    "entry_price": "$61/мес (Plus)",
+    "entry_price": "$61/mo (Plus)",
     "enterprise_available": true,
     "billing_complexity": "medium",
     "transparency_score": 4,
@@ -46,8 +46,8 @@
       "score": 3,
       "migration_complexity": "medium",
       "data_portability": "Warehouse export, API",
-      "api_compatibility": "Проприетарный",
-      "explanation": "Medium — проприетарная модель данных, warehouse-native снижает lock-in"
+      "api_compatibility": "Proprietary",
+      "explanation": "Medium — proprietary data model, warehouse-native reduces lock-in"
     }
   },
   "scale": {
@@ -73,14 +73,14 @@
     "pricing_at_scale": [
       {
         "scale": "Entry",
-        "estimate": "$61/мес (Plus)"
+        "estimate": "$61/mo (Plus)"
       }
     ],
     "migration_cheatsheet": {
       "difficulty": "medium",
       "data_you_keep": "Warehouse export, API",
-      "api_standard": "Проприетарный",
-      "risk_notes": "Medium — проприетарная модель данных, warehouse-native снижает lock-in",
+      "api_standard": "Proprietary",
+      "risk_notes": "Medium — proprietary data model, warehouse-native reduces lock-in",
       "tip": "Moderate effort required. Export data before canceling"
     },
     "works_well_with": [
@@ -89,5 +89,11 @@
   },
   "community": {
     "hn_mentions_30d": 1
+  },
+  "github": {
+    "repo": "amplitude/Amplitude-iOS"
+  },
+  "npm": {
+    "package": "amplitude-js"
   }
 }

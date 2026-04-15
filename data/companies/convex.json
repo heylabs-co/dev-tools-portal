@@ -31,7 +31,7 @@
     "model": "hybrid",
     "has_free_tier": true,
     "free_tier_limits": "Starter free",
-    "entry_price": "$25/member/мес (Pro)",
+    "entry_price": "$25/member/mo (Pro)",
     "enterprise_available": true,
     "billing_complexity": "low",
     "transparency_score": 4,
@@ -43,13 +43,13 @@
       "level": "high",
       "score": 5,
       "migration_complexity": "high",
-      "data_portability": "Через API export",
-      "api_compatibility": "Проприетарный",
-      "explanation": "High — реактивная модель данных проприетарная, нет стандартного SQL"
+      "data_portability": "Via API export",
+      "api_compatibility": "Proprietary",
+      "explanation": "High — reactive data model proprietary, no standard SQL"
     }
   },
   "scale": {
-    "revenue": "unknown -- ранняя стадия",
+    "revenue": "unknown --  withand",
     "data_status": "estimated"
   },
   "content": {
@@ -68,14 +68,14 @@
     "pricing_at_scale": [
       {
         "scale": "Entry",
-        "estimate": "$25/member/мес (Pro)"
+        "estimate": "$25/member/mo (Pro)"
       }
     ],
     "migration_cheatsheet": {
       "difficulty": "high",
-      "data_you_keep": "Через API export",
-      "api_standard": "Проприетарный",
-      "risk_notes": "High — реактивная модель данных проприетарная, нет стандартного SQL",
+      "data_you_keep": "Via API export",
+      "api_standard": "Proprietary",
+      "risk_notes": "High — reactive data model proprietary, no standard SQL",
       "tip": "Plan 2-4 weeks minimum. Consider running parallel during migration"
     },
     "works_well_with": [

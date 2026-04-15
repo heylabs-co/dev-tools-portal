@@ -32,7 +32,7 @@
   "pricing": {
     "model": "usage",
     "has_free_tier": false,
-    "entry_price": "5% + $0.50/транзакция",
+    "entry_price": "5% + $0.50/transaction",
     "enterprise_available": true,
     "billing_complexity": "low",
     "transparency_score": 3,
@@ -44,9 +44,9 @@
       "level": "high",
       "score": 5,
       "migration_complexity": "high",
-      "data_portability": "Ограниченная — Paddle владеет отношением с клиентом",
-      "api_compatibility": "Проприетарный, ограниченная кастомизация",
-      "explanation": "High — MoR модель = Paddle обрабатывает всё, бизнес адаптируется под Paddle"
+      "data_portability": "Limited — Paddle owns frombutand with customer",
+      "api_compatibility": "Proprietary, andon towithfromand",
+      "explanation": "High — MoR model = Paddle handles everything, fromwith adapts under Paddle"
     }
   },
   "scale": {
@@ -72,14 +72,14 @@
     "pricing_at_scale": [
       {
         "scale": "Entry",
-        "estimate": "5% + $0.50/транзакция"
+        "estimate": "5% + $0.50/transaction"
       }
     ],
     "migration_cheatsheet": {
       "difficulty": "high",
-      "data_you_keep": "Ограниченная — Paddle владеет отношением с клиентом",
-      "api_standard": "Проприетарный, ограниченная кастомизация",
-      "risk_notes": "High — MoR модель = Paddle обрабатывает всё, бизнес адаптируется под Paddle",
+      "data_you_keep": "Limited — Paddle owns frombutand with customer",
+      "api_standard": "Proprietary, andon towithfromand",
+      "risk_notes": "High — MoR model = Paddle handles everything, fromwith adapts under Paddle",
       "tip": "Plan 2-4 weeks minimum. Consider running parallel during migration"
     },
     "works_well_with": [

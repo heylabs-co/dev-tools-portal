@@ -33,7 +33,7 @@
     "model": "freemium",
     "has_free_tier": true,
     "free_tier_limits": "Free plan, generous",
-    "entry_price": "$20/мес (Pro)",
+    "entry_price": "$20/mo (Pro)",
     "enterprise_available": true,
     "billing_complexity": "low",
     "transparency_score": 4,
@@ -46,8 +46,8 @@
       "score": 3,
       "migration_complexity": "low",
       "data_portability": "R2 = S3-compatible export",
-      "api_compatibility": "Workers = проприетарный, R2 = S3-compatible",
-      "explanation": "Medium — Workers/R2/D1/KV = глубокая привязка к ecosystem, но DNS миграция проста"
+      "api_compatibility": "Workers = proprietary, R2 = S3-compatible",
+      "explanation": "Medium — Workers/R2/D1/KV = deep binding to ecosystem, but DNS andand growth"
     }
   },
   "scale": {
@@ -74,14 +74,14 @@
     "pricing_at_scale": [
       {
         "scale": "Entry",
-        "estimate": "$20/мес (Pro)"
+        "estimate": "$20/mo (Pro)"
       }
     ],
     "migration_cheatsheet": {
       "difficulty": "low",
       "data_you_keep": "R2 = S3-compatible export",
-      "api_standard": "Workers = проприетарный, R2 = S3-compatible",
-      "risk_notes": "Medium — Workers/R2/D1/KV = глубокая привязка к ecosystem, но DNS миграция проста",
+      "api_standard": "Workers = proprietary, R2 = S3-compatible",
+      "risk_notes": "Medium — Workers/R2/D1/KV = deep binding to ecosystem, but DNS andand growth",
       "tip": "Moderate effort required. Export data before canceling"
     },
     "works_well_with": [

@@ -30,8 +30,8 @@
   "pricing": {
     "model": "usage",
     "has_free_tier": true,
-    "free_tier_limits": "2,000 мин/мес free, public repos free",
-    "entry_price": "$0.008/мин (Linux)",
+    "free_tier_limits": "2,000 min/mo free, public repos free",
+    "entry_price": "$0.008/min (Linux)",
     "enterprise_available": true,
     "billing_complexity": "low",
     "transparency_score": 4,
@@ -43,9 +43,9 @@
       "level": "medium",
       "score": 3,
       "migration_complexity": "medium",
-      "data_portability": "Workflow YAML экспортируем",
-      "api_compatibility": "Проприетарный YAML",
-      "explanation": "Medium — привязка к GitHub ecosystem, YAML-формат уникальный"
+      "data_portability": "Workflow YAML towithbyand",
+      "api_compatibility": "Proprietary YAML",
+      "explanation": "Medium — binding to GitHub ecosystem, YAML-format andto"
     }
   },
   "scale": {
@@ -68,14 +68,14 @@
     "pricing_at_scale": [
       {
         "scale": "Entry",
-        "estimate": "$0.008/мин (Linux)"
+        "estimate": "$0.008/min (Linux)"
       }
     ],
     "migration_cheatsheet": {
       "difficulty": "medium",
-      "data_you_keep": "Workflow YAML экспортируем",
-      "api_standard": "Проприетарный YAML",
-      "risk_notes": "Medium — привязка к GitHub ecosystem, YAML-формат уникальный",
+      "data_you_keep": "Workflow YAML towithbyand",
+      "api_standard": "Proprietary YAML",
+      "risk_notes": "Medium — binding to GitHub ecosystem, YAML-format andto",
       "tip": "Moderate effort required. Export data before canceling"
     }
   },

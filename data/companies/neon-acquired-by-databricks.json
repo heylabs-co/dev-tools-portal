@@ -32,8 +32,8 @@
   "pricing": {
     "model": "usage",
     "has_free_tier": true,
-    "free_tier_limits": "100 CU-hours/мес",
-    "entry_price": "$5/мес minimum (Launch)",
+    "free_tier_limits": "100 CU-hours/mo",
+    "entry_price": "$5/mo minimum (Launch)",
     "enterprise_available": true,
     "billing_complexity": "low",
     "transparency_score": 4,
@@ -45,9 +45,9 @@
       "level": "low",
       "score": 1,
       "migration_complexity": "low",
-      "data_portability": "Полный SQL export",
-      "api_compatibility": "Стандартный PostgreSQL",
-      "explanation": "Low — стандартный PostgreSQL, любой Postgres ORM"
+      "data_portability": " SQL export",
+      "api_compatibility": " PostgreSQL",
+      "explanation": "Low — standard PostgreSQL,  Postgres ORM"
     }
   },
   "scale": {
@@ -70,14 +70,14 @@
     "pricing_at_scale": [
       {
         "scale": "Entry",
-        "estimate": "$5/мес minimum (Launch)"
+        "estimate": "$5/mo minimum (Launch)"
       }
     ],
     "migration_cheatsheet": {
       "difficulty": "low",
-      "data_you_keep": "Полный SQL export",
-      "api_standard": "Стандартный PostgreSQL",
-      "risk_notes": "Low — стандартный PostgreSQL, любой Postgres ORM",
+      "data_you_keep": " SQL export",
+      "api_standard": " PostgreSQL",
+      "risk_notes": "Low — standard PostgreSQL,  Postgres ORM",
       "tip": "Standard protocols make switching straightforward"
     },
     "works_well_with": [

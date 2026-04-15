@@ -145,28 +145,28 @@ const pairs = (pairsData as any[]).slice(0, 12);
       background: var(--color-elevated);
     }
     .dd-item img {
-      width: 28px;
-      height: 28px;
-      border-radius: 6px;
+      width: 24px;
+      height: 24px;
+      border-radius: 5px;
       object-fit: contain;
       background: var(--color-elevated);
       flex-shrink: 0;
     }
     .dd-item-info {
       display: flex;
-      flex-direction: column;
+      align-items: baseline;
+      gap: 0.4rem;
       min-width: 0;
+      overflow: hidden;
     }
     .dd-item-name {
       font-weight: 600;
-      font-size: 0.9rem;
+      font-size: 0.88rem;
       color: var(--color-text);
       white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
     }
     .dd-item-cat {
-      font-size: 0.78rem;
+      font-size: 0.75rem;
       color: var(--color-muted);
       white-space: nowrap;
       overflow: hidden;
@@ -369,7 +369,7 @@ const pairs = (pairsData as any[]).slice(0, 12);
           '<img src="' + logo + '" alt="" loading="lazy" onerror="this.style.display=\'none\'" />' +
           '<div class="dd-item-info">' +
             '<span class="dd-item-name">' + escHtml(c.n) + '</span>' +
-            '<span class="dd-item-cat">' + escHtml(c.cn || '') + '</span>' +
+            '<span class="dd-item-cat">· ' + escHtml(c.cn || '') + '</span>' +
           '</div>' +
         '</div>';
       }

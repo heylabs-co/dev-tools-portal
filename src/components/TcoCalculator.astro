@@ -1,0 +1,364 @@
+---
+interface Props {
+  slug: string;
+  name: string;
+  pricing?: {
+    model?: string;
+    has_free_tier?: boolean;
+    free_tier_limits?: string;
+    entry_price?: string;
+    enterprise_available?: boolean;
+  };
+}
+
+const { slug, name, pricing } = Astro.props;
+const model = pricing?.model || 'subscription';
+const entryPrice = pricing?.entry_price || '';
+const id = `tco-${slug}`;
+---
+
+<section class="mt-14" id={id}>
+  <div class="rounded-xl border border-gray-200 dark:border-gray-700/60 bg-white dark:bg-[#13131A] overflow-hidden">
+    <!-- Header (collapsed toggle) -->
+    <button
+      type="button"
+      id={`${id}-toggle`}
+      class="w-full flex items-center justify-between px-6 py-4 text-left hover:bg-gray-50 dark:hover:bg-[#1a1a24] transition-colors cursor-pointer"
+      aria-expanded="false"
+      aria-controls={`${id}-body`}
+    >
+      <div class="flex items-center gap-3">
+        <span class="block w-1 h-6 rounded-full bg-purple-500 dark:bg-purple-400"></span>
+        <h2 class="text-lg font-semibold text-[#0F172A] dark:text-[#EDEDEF]">Cost Calculator</h2>
+        <span class="inline-flex items-center rounded-full bg-purple-100 dark:bg-purple-900/30 border border-purple-200 dark:border-purple-700/50 px-2.5 py-0.5 text-[10px] font-semibold text-purple-700 dark:text-purple-300 uppercase tracking-wide">
+          Beta
+        </span>
+      </div>
+      <svg
+        id={`${id}-chevron`}
+        class="h-5 w-5 text-[#64748B] dark:text-[#8A8F98] transition-transform duration-300"
+        fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"
+      >
+        <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+      </svg>
+    </button>
+
+    <!-- Body (hidden by default) -->
+    <div
+      id={`${id}-body`}
+      class="overflow-hidden transition-all duration-300 ease-in-out"
+      style="max-height: 0; opacity: 0;"
+    >
+      <div class="px-6 pb-6 pt-2">
+        <!-- Beta disclaimer top -->
+        <p class="text-xs text-purple-600 dark:text-purple-400 mb-6">
+          Beta — estimates may differ from actual pricing
+        </p>
+
+        <div class="grid gap-6 md:grid-cols-2">
+          <!-- Sliders column -->
+          <div class="space-y-5">
+            <!-- Users/MAU slider (all models) -->
+            <div>
+              <div class="flex items-center justify-between mb-2">
+                <label class="text-sm font-medium text-[#0F172A] dark:text-[#EDEDEF]" for={`${id}-users`}>Users / MAU</label>
+                <span id={`${id}-users-val`} class="text-sm font-mono font-semibold text-[#5E6AD2] dark:text-[#818CF8]">1,000</span>
+              </div>
+              <input
+                type="range" min="0" max="4" step="1" value="1"
+                id={`${id}-users`}
+                class="tco-range w-full"
+              />
+              <div class="flex justify-between mt-1 text-[10px] text-[#64748B] dark:text-[#8A8F98]">
+                <span>100</span><span>1K</span><span>10K</span><span>100K</span><span>1M</span>
+              </div>
+            </div>
+
+            {/* Seat-based: Team size */}
+            {model === 'seat' && (
+              <div>
+                <div class="flex items-center justify-between mb-2">
+                  <label class="text-sm font-medium text-[#0F172A] dark:text-[#EDEDEF]" for={`${id}-seats`}>Team Size</label>
+                  <span id={`${id}-seats-val`} class="text-sm font-mono font-semibold text-[#5E6AD2] dark:text-[#818CF8]">5</span>
+                </div>
+                <input
+                  type="range" min="0" max="5" step="1" value="1"
+                  id={`${id}-seats`}
+                  class="tco-range w-full"
+                />
+                <div class="flex justify-between mt-1 text-[10px] text-[#64748B] dark:text-[#8A8F98]">
+                  <span>1</span><span>5</span><span>10</span><span>25</span><span>50</span><span>100</span>
+                </div>
+              </div>
+            )}
+
+            {/* Usage-based: Transactions */}
+            {model === 'usage' && (
+              <div>
+                <div class="flex items-center justify-between mb-2">
+                  <label class="text-sm font-medium text-[#0F172A] dark:text-[#EDEDEF]" for={`${id}-txns`}>Transactions / month</label>
+                  <span id={`${id}-txns-val`} class="text-sm font-mono font-semibold text-[#5E6AD2] dark:text-[#818CF8]">10,000</span>
+                </div>
+                <input
+                  type="range" min="0" max="4" step="1" value="1"
+                  id={`${id}-txns`}
+                  class="tco-range w-full"
+                />
+                <div class="flex justify-between mt-1 text-[10px] text-[#64748B] dark:text-[#8A8F98]">
+                  <span>1K</span><span>10K</span><span>100K</span><span>1M</span><span>10M</span>
+                </div>
+              </div>
+            )}
+
+            {model === 'usage' && (
+              <div>
+                <div class="flex items-center justify-between mb-2">
+                  <label class="text-sm font-medium text-[#0F172A] dark:text-[#EDEDEF]" for={`${id}-api`}>API Calls / month</label>
+                  <span id={`${id}-api-val`} class="text-sm font-mono font-semibold text-[#5E6AD2] dark:text-[#818CF8]">100,000</span>
+                </div>
+                <input
+                  type="range" min="0" max="2" step="1" value="1"
+                  id={`${id}-api`}
+                  class="tco-range w-full"
+                />
+                <div class="flex justify-between mt-1 text-[10px] text-[#64748B] dark:text-[#8A8F98]">
+                  <span>1K</span><span>100K</span><span>1M</span>
+                </div>
+              </div>
+            )}
+
+            {/* Event-based: Events */}
+            {(model === 'event' || model === 'event-based') && (
+              <div>
+                <div class="flex items-center justify-between mb-2">
+                  <label class="text-sm font-medium text-[#0F172A] dark:text-[#EDEDEF]" for={`${id}-events`}>Events / month</label>
+                  <span id={`${id}-events-val`} class="text-sm font-mono font-semibold text-[#5E6AD2] dark:text-[#818CF8]">100,000</span>
+                </div>
+                <input
+                  type="range" min="0" max="3" step="1" value="1"
+                  id={`${id}-events`}
+                  class="tco-range w-full"
+                />
+                <div class="flex justify-between mt-1 text-[10px] text-[#64748B] dark:text-[#8A8F98]">
+                  <span>10K</span><span>100K</span><span>1M</span><span>10M</span>
+                </div>
+              </div>
+            )}
+          </div>
+
+          <!-- Output column -->
+          <div class="flex flex-col items-center justify-center rounded-xl bg-[#FAFBFC] dark:bg-[#0e0e15] border border-gray-100 dark:border-gray-800/60 p-6 text-center">
+            <p class="text-xs font-medium text-[#64748B] dark:text-[#8A8F98] uppercase tracking-wider mb-2">Estimated Monthly Cost</p>
+            <p id={`${id}-monthly`} class="text-3xl font-bold font-mono text-[#0F172A] dark:text-[#EDEDEF]">$25</p>
+            <p class="mt-3 text-xs font-medium text-[#64748B] dark:text-[#8A8F98] uppercase tracking-wider mb-1">Estimated Annual Cost</p>
+            <p id={`${id}-annual`} class="text-lg font-semibold font-mono text-[#64748B] dark:text-[#8A8F98]">$300</p>
+            <p id={`${id}-per-user`} class="mt-3 text-xs text-[#64748B] dark:text-[#8A8F98]"></p>
+            <p id={`${id}-hint`} class="mt-4 text-xs text-[#64748B] dark:text-[#8A8F98] italic leading-relaxed"></p>
+          </div>
+        </div>
+
+        <!-- Disclaimer -->
+        <p class="mt-6 text-[11px] text-[#94A3B8] dark:text-[#64748B] leading-relaxed">
+          Estimates are approximate and may not reflect current pricing. Always check the official pricing page.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .tco-range {
+    -webkit-appearance: none;
+    appearance: none;
+    height: 8px;
+    border-radius: 4px;
+    background: #e5e7eb;
+    outline: none;
+    cursor: pointer;
+  }
+  :global(.dark) .tco-range {
+    background: #374151;
+  }
+  .tco-range::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #5E6AD2;
+    border: 2px solid #fff;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+    cursor: pointer;
+  }
+  :global(.dark) .tco-range::-webkit-slider-thumb {
+    background: #818CF8;
+    border-color: #1a1a24;
+  }
+  .tco-range::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #5E6AD2;
+    border: 2px solid #fff;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+    cursor: pointer;
+  }
+  :global(.dark) .tco-range::-moz-range-thumb {
+    background: #818CF8;
+    border-color: #1a1a24;
+  }
+</style>
+
+<script is:inline define:vars={{ id, model, entryPrice }}>
+(function() {
+  var userSteps = [100, 1000, 10000, 100000, 1000000];
+  var seatSteps = [1, 5, 10, 25, 50, 100];
+  var txnSteps = [1000, 10000, 100000, 1000000, 10000000];
+  var apiSteps = [1000, 100000, 1000000];
+  var eventSteps = [10000, 100000, 1000000, 10000000];
+
+  function fmt(n) {
+    if (n >= 1000000) return (n / 1000000).toFixed(n % 1000000 === 0 ? 0 : 1) + 'M';
+    if (n >= 1000) return (n / 1000).toFixed(n % 1000 === 0 ? 0 : 1) + 'K';
+    return n.toString();
+  }
+
+  function fmtDollar(n) {
+    if (n >= 1000) return '$' + n.toLocaleString('en-US', { maximumFractionDigits: 0 });
+    if (n === 0) return '$0';
+    if (n < 1) return '$' + n.toFixed(2);
+    return '$' + n.toLocaleString('en-US', { maximumFractionDigits: 0 });
+  }
+
+  function estimateCost(pModel, ePrice, users, transactions, seats, apiCalls, events) {
+    var basePrice = parseFloat((ePrice || '').replace(/[^0-9.]/g, '')) || 25;
+
+    if (pModel === 'usage') {
+      if (ePrice && ePrice.indexOf('%') !== -1) {
+        var pct = parseFloat(ePrice) / 100;
+        var avgTransaction = 50;
+        return transactions * avgTransaction * pct;
+      }
+      return basePrice * Math.ceil(users / 1000);
+    }
+
+    if (pModel === 'seat') {
+      return basePrice * seats;
+    }
+
+    if (pModel === 'mau' || pModel === 'freemium') {
+      if (users <= 1000) return 0;
+      if (users <= 10000) return basePrice;
+      if (users <= 100000) return basePrice * 3;
+      return basePrice * 10;
+    }
+
+    if (pModel === 'event' || pModel === 'event-based') {
+      if (events <= 10000) return basePrice;
+      if (events <= 100000) return basePrice * 2;
+      if (events <= 1000000) return basePrice * 5;
+      return basePrice * 15;
+    }
+
+    // Default: subscription tiers
+    if (users <= 1000) return basePrice;
+    if (users <= 10000) return basePrice * 2;
+    if (users <= 100000) return basePrice * 5;
+    return basePrice * 15;
+  }
+
+  // Toggle
+  var toggle = document.getElementById(id + '-toggle');
+  var body = document.getElementById(id + '-body');
+  var chevron = document.getElementById(id + '-chevron');
+  var isOpen = false;
+
+  toggle.addEventListener('click', function() {
+    isOpen = !isOpen;
+    if (isOpen) {
+      body.style.maxHeight = body.scrollHeight + 'px';
+      body.style.opacity = '1';
+      chevron.style.transform = 'rotate(180deg)';
+      toggle.setAttribute('aria-expanded', 'true');
+    } else {
+      body.style.maxHeight = '0';
+      body.style.opacity = '0';
+      chevron.style.transform = 'rotate(0deg)';
+      toggle.setAttribute('aria-expanded', 'false');
+    }
+  });
+
+  // Recalculate
+  function update() {
+    var usersSlider = document.getElementById(id + '-users');
+    var seatsSlider = document.getElementById(id + '-seats');
+    var txnsSlider = document.getElementById(id + '-txns');
+    var apiSlider = document.getElementById(id + '-api');
+    var eventsSlider = document.getElementById(id + '-events');
+
+    var users = userSteps[parseInt(usersSlider.value)];
+    var seats = seatsSlider ? seatSteps[parseInt(seatsSlider.value)] : 1;
+    var txns = txnsSlider ? txnSteps[parseInt(txnsSlider.value)] : 0;
+    var apiCalls = apiSlider ? apiSteps[parseInt(apiSlider.value)] : 0;
+    var events = eventsSlider ? eventSteps[parseInt(eventsSlider.value)] : 0;
+
+    // Update displayed values
+    var usersVal = document.getElementById(id + '-users-val');
+    if (usersVal) usersVal.textContent = fmt(users);
+
+    var seatsVal = document.getElementById(id + '-seats-val');
+    if (seatsVal) seatsVal.textContent = seats.toString();
+
+    var txnsVal = document.getElementById(id + '-txns-val');
+    if (txnsVal) txnsVal.textContent = fmt(txns);
+
+    var apiVal = document.getElementById(id + '-api-val');
+    if (apiVal) apiVal.textContent = fmt(apiCalls);
+
+    var eventsVal = document.getElementById(id + '-events-val');
+    if (eventsVal) eventsVal.textContent = fmt(events);
+
+    var monthly = estimateCost(model, entryPrice, users, txns, seats, apiCalls, events);
+    var annual = monthly * 12;
+
+    document.getElementById(id + '-monthly').textContent = fmtDollar(monthly);
+    document.getElementById(id + '-annual').textContent = fmtDollar(annual) + ' / year';
+
+    // Per user cost
+    var perUser = document.getElementById(id + '-per-user');
+    if (users > 0 && monthly > 0) {
+      var cpu = monthly / users;
+      perUser.textContent = fmtDollar(cpu) + ' per user / month';
+    } else {
+      perUser.textContent = '';
+    }
+
+    // Hint
+    var hint = document.getElementById(id + '-hint');
+    if (monthly > 500) {
+      hint.textContent = 'At this scale, consider comparing with alternatives or negotiating enterprise pricing.';
+    } else if (monthly === 0) {
+      hint.textContent = 'This usage may fall within the free tier.';
+    } else {
+      hint.textContent = '';
+    }
+
+    // Re-measure max-height if open
+    if (isOpen) {
+      body.style.maxHeight = body.scrollHeight + 'px';
+    }
+  }
+
+  // Bind sliders
+  var sliderIds = [id + '-users', id + '-seats', id + '-txns', id + '-api', id + '-events'];
+  sliderIds.forEach(function(sid) {
+    var el = document.getElementById(sid);
+    if (el) {
+      el.addEventListener('input', update);
+    }
+  });
+
+  // Initial calc
+  update();
+})();
+</script>

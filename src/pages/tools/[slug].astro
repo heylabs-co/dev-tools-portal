@@ -7,6 +7,7 @@ import PricingTable from '../../components/PricingTable.astro';
 import SchemaOrg from '../../components/SchemaOrg.astro';
 import GiscusComments from '../../components/GiscusComments.astro';
 import VoteButtons from '../../components/VoteButtons.astro';
+import TcoCalculator from '../../components/TcoCalculator.astro';
 import { getCollection } from 'astro:content';
 
 export async function getStaticPaths() {
@@ -302,6 +303,11 @@ const scaleItems = [
           </a>
         </div>
       </section>
+    )}
+
+    <!-- TCO Calculator -->
+    {d.pricing && (
+      <TcoCalculator slug={d.slug} name={d.name} pricing={d.pricing} />
     )}
 
     <!-- Scale Section -->

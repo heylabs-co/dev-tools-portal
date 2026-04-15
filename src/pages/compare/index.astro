@@ -1,0 +1,588 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import pairsData from '../../../data/comparisons/top-pairs.json';
+
+const pairs = (pairsData as any[]).slice(0, 12);
+---
+
+<BaseLayout
+  title="Compare Developer Tools"
+  description="Interactive side-by-side comparison of developer tools. Compare pricing, lock-in risk, and features."
+>
+  <div class="mx-auto max-w-5xl px-4 py-10">
+    <Breadcrumbs items={[
+      { label: 'Home', href: '/' },
+      { label: 'Compare' },
+    ]} />
+
+    <h1 class="mt-6 text-4xl font-extrabold tracking-tight" style="color: var(--color-text);">
+      Compare Developer Tools
+    </h1>
+    <p class="mt-3 text-lg" style="color: var(--color-muted);">
+      Select two tools to see a detailed side-by-side comparison.
+    </p>
+
+    <div class="compare-app mt-10">
+      <!-- Tool selectors -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div class="tool-selector" data-slot="a">
+          <label class="block text-sm font-semibold mb-2" style="color: var(--color-text-secondary);">Tool 1</label>
+          <div class="selector-wrap" style="position: relative;">
+            <input
+              type="text"
+              class="tool-input"
+              placeholder="Search tools..."
+              autocomplete="off"
+              data-slot="a"
+            />
+            <div class="dropdown hidden" data-dropdown="a"></div>
+            <div class="selected-chip hidden" data-chip="a"></div>
+          </div>
+        </div>
+        <div class="tool-selector" data-slot="b">
+          <label class="block text-sm font-semibold mb-2" style="color: var(--color-text-secondary);">Tool 2</label>
+          <div class="selector-wrap" style="position: relative;">
+            <input
+              type="text"
+              class="tool-input"
+              placeholder="Search tools..."
+              autocomplete="off"
+              data-slot="b"
+            />
+            <div class="dropdown hidden" data-dropdown="b"></div>
+            <div class="selected-chip hidden" data-chip="b"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Compare button -->
+      <div class="mt-6 flex justify-center">
+        <button class="compare-btn" disabled id="compareBtn">
+          Compare
+        </button>
+      </div>
+
+      <!-- Results -->
+      <div class="compare-results hidden mt-10" id="compareResults"></div>
+
+      <!-- Popular comparisons -->
+      <div class="popular-comparisons mt-14">
+        <h3 class="text-xl font-bold mb-6" style="color: var(--color-text);">Popular Comparisons</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+          {pairs.map((pair: any) => {
+            const nameA = pair.slug_a.replace(/-/g, ' ').replace(/\b\w/g, (c: string) => c.toUpperCase());
+            const nameB = pair.slug_b.replace(/-/g, ' ').replace(/\b\w/g, (c: string) => c.toUpperCase());
+            return (
+              <a
+                href={`/compare/${pair.pair_slug}/`}
+                class="popular-link"
+              >
+                <span class="pop-name">{nameA}</span>
+                <span class="pop-vs">vs</span>
+                <span class="pop-name">{nameB}</span>
+              </a>
+            );
+          })}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    .tool-input {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border-radius: 0.75rem;
+      border: 1.5px solid var(--color-border-strong);
+      background: var(--color-surface);
+      color: var(--color-text);
+      font-size: 0.95rem;
+      font-family: inherit;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .tool-input::placeholder {
+      color: var(--color-muted);
+    }
+    .tool-input:focus {
+      border-color: var(--color-accent);
+      box-shadow: 0 0 0 3px rgba(94, 106, 210, 0.15);
+    }
+    .dark .tool-input:focus {
+      box-shadow: 0 0 0 3px rgba(129, 140, 248, 0.2);
+    }
+
+    .dropdown {
+      position: absolute;
+      top: calc(100% + 4px);
+      left: 0;
+      right: 0;
+      z-index: 50;
+      background: var(--color-surface);
+      border: 1px solid var(--color-border-strong);
+      border-radius: 0.75rem;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+      max-height: 320px;
+      overflow-y: auto;
+      padding: 0.25rem;
+    }
+    .dark .dropdown {
+      box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+    }
+    .dropdown.hidden { display: none; }
+
+    .dd-item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.6rem 0.75rem;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .dd-item:hover {
+      background: var(--color-elevated);
+    }
+    .dd-item img {
+      width: 28px;
+      height: 28px;
+      border-radius: 6px;
+      object-fit: contain;
+      background: var(--color-elevated);
+      flex-shrink: 0;
+    }
+    .dd-item-info {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+    }
+    .dd-item-name {
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: var(--color-text);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .dd-item-cat {
+      font-size: 0.78rem;
+      color: var(--color-muted);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .selected-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 0.75rem;
+      border-radius: 0.75rem;
+      background: rgba(94, 106, 210, 0.1);
+      border: 1px solid rgba(94, 106, 210, 0.2);
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: var(--color-accent);
+      margin-top: 0.5rem;
+    }
+    .dark .selected-chip {
+      background: rgba(129, 140, 248, 0.1);
+      border-color: rgba(129, 140, 248, 0.2);
+    }
+    .selected-chip.hidden { display: none; }
+    .selected-chip img {
+      width: 22px;
+      height: 22px;
+      border-radius: 5px;
+      object-fit: contain;
+    }
+    .chip-remove {
+      cursor: pointer;
+      margin-left: 0.25rem;
+      font-size: 1.1rem;
+      line-height: 1;
+      opacity: 0.6;
+      transition: opacity 0.15s;
+      background: none;
+      border: none;
+      color: inherit;
+      padding: 0 2px;
+    }
+    .chip-remove:hover { opacity: 1; }
+
+    .compare-btn {
+      padding: 0.75rem 2.5rem;
+      border-radius: 0.75rem;
+      font-weight: 700;
+      font-size: 1rem;
+      font-family: inherit;
+      border: none;
+      cursor: pointer;
+      background: var(--color-accent);
+      color: #fff;
+      transition: background 0.2s, opacity 0.2s, transform 0.15s;
+    }
+    .compare-btn:hover:not(:disabled) {
+      background: var(--color-accent-hover);
+      transform: translateY(-1px);
+    }
+    .compare-btn:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+
+    .compare-results.hidden { display: none; }
+
+    .compare-results table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      border-radius: 0.75rem;
+      overflow: hidden;
+      border: 1px solid var(--color-border-strong);
+    }
+    .compare-results th,
+    .compare-results td {
+      padding: 0.85rem 1rem;
+      text-align: left;
+      font-size: 0.9rem;
+      border-bottom: 1px solid var(--color-border);
+    }
+    .compare-results th {
+      font-weight: 600;
+      color: var(--color-muted);
+      background: var(--color-elevated);
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .compare-results td {
+      color: var(--color-text);
+      background: var(--color-surface);
+    }
+    .compare-results tr:nth-child(even) td {
+      background: var(--color-elevated);
+    }
+    .compare-results tr:last-child td {
+      border-bottom: none;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 0.15rem 0.6rem;
+      border-radius: 9999px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+    }
+    .badge-green { background: rgba(34,197,94,0.12); color: #16a34a; }
+    .dark .badge-green { background: rgba(34,197,94,0.15); color: #4ade80; }
+    .badge-gray { background: rgba(100,116,139,0.12); color: #64748b; }
+    .dark .badge-gray { background: rgba(138,143,152,0.15); color: #8a8f98; }
+    .badge-amber { background: rgba(245,158,11,0.12); color: #d97706; }
+    .dark .badge-amber { background: rgba(245,158,11,0.15); color: #fbbf24; }
+    .badge-red { background: rgba(239,68,68,0.12); color: #dc2626; }
+    .dark .badge-red { background: rgba(239,68,68,0.15); color: #f87171; }
+
+    .result-link {
+      color: var(--color-accent);
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .result-link:hover { text-decoration: underline; }
+
+    .popular-link {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1rem;
+      border-radius: 0.75rem;
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      text-decoration: none;
+      transition: border-color 0.2s, box-shadow 0.2s, transform 0.15s;
+    }
+    .popular-link:hover {
+      border-color: var(--color-accent);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+      transform: translateY(-1px);
+    }
+    .dark .popular-link:hover {
+      box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+    }
+    .pop-name {
+      font-weight: 600;
+      font-size: 0.88rem;
+      color: var(--color-text);
+    }
+    .pop-vs {
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: var(--color-muted);
+    }
+  </style>
+
+  <script is:inline>
+  (function() {
+    var companies = [];
+    var selected = { a: null, b: null };
+
+    fetch('/api/companies.json')
+      .then(function(r) { return r.json(); })
+      .then(function(data) { companies = data; });
+
+    var inputA = document.querySelector('.tool-input[data-slot="a"]');
+    var inputB = document.querySelector('.tool-input[data-slot="b"]');
+    var ddA = document.querySelector('[data-dropdown="a"]');
+    var ddB = document.querySelector('[data-dropdown="b"]');
+    var chipA = document.querySelector('[data-chip="a"]');
+    var chipB = document.querySelector('[data-chip="b"]');
+    var compareBtn = document.getElementById('compareBtn');
+    var resultsDiv = document.getElementById('compareResults');
+
+    function filterCompanies(query) {
+      if (!query || query.length < 1) return [];
+      var q = query.toLowerCase();
+      var results = [];
+      for (var i = 0; i < companies.length; i++) {
+        var c = companies[i];
+        if (c.n.toLowerCase().indexOf(q) !== -1) {
+          results.push(c);
+          if (results.length >= 8) break;
+        }
+      }
+      return results;
+    }
+
+    function renderDropdown(items, dd, slot) {
+      if (items.length === 0) {
+        dd.classList.add('hidden');
+        dd.innerHTML = '';
+        return;
+      }
+      var html = '';
+      for (var i = 0; i < items.length; i++) {
+        var c = items[i];
+        var logo = c.l || '';
+        html += '<div class="dd-item" data-slug="' + c.s + '">' +
+          '<img src="' + logo + '" alt="" loading="lazy" onerror="this.style.display=\'none\'" />' +
+          '<div class="dd-item-info">' +
+            '<span class="dd-item-name">' + escHtml(c.n) + '</span>' +
+            '<span class="dd-item-cat">' + escHtml(c.cn || '') + '</span>' +
+          '</div>' +
+        '</div>';
+      }
+      dd.innerHTML = html;
+      dd.classList.remove('hidden');
+
+      var ddItems = dd.querySelectorAll('.dd-item');
+      for (var j = 0; j < ddItems.length; j++) {
+        (function(idx) {
+          ddItems[idx].addEventListener('click', function() {
+            selectTool(slot, items[idx]);
+          });
+        })(j);
+      }
+    }
+
+    function escHtml(str) {
+      var div = document.createElement('div');
+      div.textContent = str;
+      return div.innerHTML;
+    }
+
+    function selectTool(slot, company) {
+      selected[slot] = company;
+      var input = slot === 'a' ? inputA : inputB;
+      var dd = slot === 'a' ? ddA : ddB;
+      var chip = slot === 'a' ? chipA : chipB;
+
+      input.style.display = 'none';
+      input.value = '';
+      dd.classList.add('hidden');
+      dd.innerHTML = '';
+
+      var logo = company.l || '';
+      chip.innerHTML =
+        '<img src="' + logo + '" alt="" onerror="this.style.display=\'none\'" />' +
+        '<span>' + escHtml(company.n) + '</span>' +
+        '<button class="chip-remove" aria-label="Remove">&times;</button>';
+      chip.classList.remove('hidden');
+
+      chip.querySelector('.chip-remove').addEventListener('click', function() {
+        deselectTool(slot);
+      });
+
+      updateCompareBtn();
+    }
+
+    function deselectTool(slot) {
+      selected[slot] = null;
+      var input = slot === 'a' ? inputA : inputB;
+      var chip = slot === 'a' ? chipA : chipB;
+
+      input.style.display = '';
+      input.value = '';
+      chip.classList.add('hidden');
+      chip.innerHTML = '';
+      updateCompareBtn();
+    }
+
+    function updateCompareBtn() {
+      compareBtn.disabled = !(selected.a && selected.b);
+    }
+
+    function handleInput(e) {
+      var slot = e.target.getAttribute('data-slot');
+      var dd = slot === 'a' ? ddA : ddB;
+      var val = e.target.value.trim();
+
+      // Exclude already-selected tool from other slot
+      var otherSlot = slot === 'a' ? 'b' : 'a';
+      var otherSelected = selected[otherSlot];
+      var items = filterCompanies(val);
+      if (otherSelected) {
+        items = items.filter(function(c) { return c.s !== otherSelected.s; });
+      }
+      renderDropdown(items, dd, slot);
+    }
+
+    inputA.addEventListener('input', handleInput);
+    inputB.addEventListener('input', handleInput);
+
+    // Close dropdowns on outside click
+    document.addEventListener('click', function(e) {
+      if (!e.target.closest('.tool-selector[data-slot="a"]')) {
+        ddA.classList.add('hidden');
+      }
+      if (!e.target.closest('.tool-selector[data-slot="b"]')) {
+        ddB.classList.add('hidden');
+      }
+    });
+
+    // Show dropdown on focus if there's text
+    inputA.addEventListener('focus', function() {
+      if (inputA.value.trim()) handleInput({ target: inputA });
+    });
+    inputB.addEventListener('focus', function() {
+      if (inputB.value.trim()) handleInput({ target: inputB });
+    });
+
+    // Compare button
+    compareBtn.addEventListener('click', function() {
+      if (!selected.a || !selected.b) return;
+      buildComparison(selected.a, selected.b);
+    });
+
+    function pricingLabel(m) {
+      if (!m) return '—';
+      var map = {
+        'usage': 'Usage-based',
+        'subscription': 'Subscription',
+        'per-seat': 'Per Seat',
+        'per-transaction': 'Per Transaction',
+        'flat': 'Flat Rate',
+        'freemium': 'Freemium',
+        'open-source': 'Open Source'
+      };
+      return map[m] || m.charAt(0).toUpperCase() + m.slice(1);
+    }
+
+    function lockInBadge(level) {
+      if (!level) return '<span class="badge badge-gray">Unknown</span>';
+      var l = level.toLowerCase();
+      if (l === 'low') return '<span class="badge badge-green">Low</span>';
+      if (l === 'medium') return '<span class="badge badge-amber">Medium</span>';
+      if (l === 'high') return '<span class="badge badge-red">High</span>';
+      return '<span class="badge badge-gray">' + escHtml(level) + '</span>';
+    }
+
+    function freeTierBadge(val) {
+      if (val === true) return '<span class="badge badge-green">Yes</span>';
+      if (val === false) return '<span class="badge badge-gray">No</span>';
+      return '<span class="badge badge-gray">—</span>';
+    }
+
+    function buildComparison(a, b) {
+      var rows = [
+        {
+          label: 'Category',
+          va: a.cn || '—',
+          vb: b.cn || '—'
+        },
+        {
+          label: 'Website',
+          va: a.w ? '<a class="result-link" href="' + a.w + '" target="_blank" rel="noopener">' + escHtml(a.w.replace(/^https?:\/\//, '')) + '</a>' : '—',
+          vb: b.w ? '<a class="result-link" href="' + b.w + '" target="_blank" rel="noopener">' + escHtml(b.w.replace(/^https?:\/\//, '')) + '</a>' : '—',
+          raw: true
+        },
+        {
+          label: 'Pricing Model',
+          va: pricingLabel(a.p && a.p.m),
+          vb: pricingLabel(b.p && b.p.m)
+        },
+        {
+          label: 'Entry Price',
+          va: (a.p && a.p.e) || '—',
+          vb: (b.p && b.p.e) || '—'
+        },
+        {
+          label: 'Free Tier',
+          va: freeTierBadge(a.p && a.p.f),
+          vb: freeTierBadge(b.p && b.p.f),
+          raw: true
+        },
+        {
+          label: 'Lock-in Level',
+          va: lockInBadge(a.li && a.li.l),
+          vb: lockInBadge(b.li && b.li.l),
+          raw: true
+        },
+        {
+          label: 'Lock-in Score',
+          va: (a.li && a.li.s != null) ? a.li.s + ' / 5' : '—',
+          vb: (b.li && b.li.s != null) ? b.li.s + ' / 5' : '—'
+        }
+      ];
+
+      // Conditionally add customers
+      var cuA = a.sc && a.sc.cu;
+      var cuB = b.sc && b.sc.cu;
+      if (cuA || cuB) {
+        rows.push({ label: 'Customers', va: cuA || '—', vb: cuB || '—' });
+      }
+
+      // Conditionally add revenue
+      var rA = a.sc && a.sc.r;
+      var rB = b.sc && b.sc.r;
+      if (rA || rB) {
+        rows.push({ label: 'Revenue', va: rA || '—', vb: rB || '—' });
+      }
+
+      var logoA = a.l ? '<img src="' + a.l + '" alt="" style="width:22px;height:22px;border-radius:4px;vertical-align:middle;margin-right:6px;" onerror="this.style.display=\'none\'" />' : '';
+      var logoB = b.l ? '<img src="' + b.l + '" alt="" style="width:22px;height:22px;border-radius:4px;vertical-align:middle;margin-right:6px;" onerror="this.style.display=\'none\'" />' : '';
+
+      var html = '<table>' +
+        '<thead><tr>' +
+          '<th style="width:30%;">Attribute</th>' +
+          '<th style="width:35%;">' + logoA + escHtml(a.n) + '</th>' +
+          '<th style="width:35%;">' + logoB + escHtml(b.n) + '</th>' +
+        '</tr></thead><tbody>';
+
+      for (var i = 0; i < rows.length; i++) {
+        var r = rows[i];
+        var tdA = r.raw ? r.va : escHtml(r.va);
+        var tdB = r.raw ? r.vb : escHtml(r.vb);
+        html += '<tr><td style="font-weight:500;color:var(--color-muted);">' + escHtml(r.label) + '</td><td>' + tdA + '</td><td>' + tdB + '</td></tr>';
+      }
+
+      html += '</tbody></table>';
+
+      resultsDiv.innerHTML = html;
+      resultsDiv.classList.remove('hidden');
+      resultsDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  })();
+  </script>
+</BaseLayout>

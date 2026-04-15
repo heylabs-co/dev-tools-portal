@@ -59,20 +59,84 @@ const heading = data.seo?.h1 ?? data.name;
       </p>
     </div>
 
-    <div class="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+    <div id="compare-grid" class="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
       {filtered.map((company) => (
-        <CompanyCard
-          slug={company.data.slug}
-          name={company.data.name}
-          description={company.data.description}
-          logo={company.data.logo ?? ''}
-          category={data.name}
-          lockInLevel={company.data.scores?.lock_in?.level}
-          pricingModel={company.data.pricing?.model}
-          hasFree={company.data.pricing?.has_free_tier}
-        />
+        <div class="compare-wrapper relative" data-slug={company.data.slug}>
+          <CompanyCard
+            slug={company.data.slug}
+            name={company.data.name}
+            description={company.data.description}
+            logo={company.data.logo ?? ''}
+            category={data.name}
+            lockInLevel={company.data.scores?.lock_in?.level}
+            pricingModel={company.data.pricing?.model}
+            hasFree={company.data.pricing?.has_free_tier}
+          />
+        </div>
       ))}
     </div>
+
+    <!-- Floating compare button -->
+    <div id="compare-fab" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 hidden">
+      <button
+        id="compare-btn"
+        class="inline-flex items-center gap-2 rounded-full bg-[#5E6AD2] dark:bg-[#818CF8] px-6 py-3 text-sm font-semibold text-white shadow-lg hover:opacity-90 transition-opacity"
+      >
+        <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
+        </svg>
+        Compare Selected (<span id="compare-count">0</span>)
+      </button>
+    </div>
+
+    <script is:inline>
+    (function() {
+      const selected = new Set();
+      const grid = document.getElementById('compare-grid');
+      const fab = document.getElementById('compare-fab');
+      const btn = document.getElementById('compare-btn');
+      const countEl = document.getElementById('compare-count');
+
+      // Add checkbox overlays to each card wrapper
+      grid.querySelectorAll('.compare-wrapper').forEach(function(wrapper) {
+        const slug = wrapper.dataset.slug;
+        const cb = document.createElement('label');
+        cb.className = 'absolute top-2 right-2 z-20 flex h-6 w-6 items-center justify-center rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-[#13131A] cursor-pointer shadow-sm hover:border-[#5E6AD2] dark:hover:border-[#818CF8] transition-colors';
+        cb.innerHTML = '<input type="checkbox" class="compare-cb sr-only" data-slug="' + slug + '" /><svg class="h-3.5 w-3.5 text-[#5E6AD2] dark:text-[#818CF8] hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>';
+        wrapper.appendChild(cb);
+
+        var input = cb.querySelector('input');
+        var icon = cb.querySelector('svg');
+        input.addEventListener('change', function() {
+          if (input.checked) {
+            selected.add(slug);
+            icon.classList.remove('hidden');
+            wrapper.classList.add('ring-2', 'ring-[#5E6AD2]/40', 'dark:ring-[#818CF8]/40', 'rounded-xl');
+          } else {
+            selected.delete(slug);
+            icon.classList.add('hidden');
+            wrapper.classList.remove('ring-2', 'ring-[#5E6AD2]/40', 'dark:ring-[#818CF8]/40', 'rounded-xl');
+          }
+          updateFab();
+        });
+      });
+
+      function updateFab() {
+        countEl.textContent = selected.size;
+        if (selected.size >= 2) {
+          fab.classList.remove('hidden');
+        } else {
+          fab.classList.add('hidden');
+        }
+      }
+
+      btn.addEventListener('click', function() {
+        var slugs = Array.from(selected);
+        var url = '/compare/?a=' + encodeURIComponent(slugs[0]) + '&b=' + encodeURIComponent(slugs[1]);
+        window.location.href = url;
+      });
+    })();
+    </script>
   </div>
 
   <SchemaOrg

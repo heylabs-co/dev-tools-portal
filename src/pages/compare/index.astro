@@ -177,12 +177,12 @@ const pairs = (pairsData as any[]).slice(0, 12);
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
-      padding: 0.5rem 0.75rem;
-      border-radius: 0.75rem;
-      background: rgba(94, 106, 210, 0.1);
-      border: 1px solid rgba(94, 106, 210, 0.2);
+      padding: 0.4rem 0.65rem;
+      border-radius: 0.5rem;
+      background: rgba(94, 106, 210, 0.08);
+      border: 1px solid rgba(94, 106, 210, 0.18);
       font-weight: 600;
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       color: var(--color-accent);
       margin-top: 0.5rem;
     }
@@ -192,9 +192,9 @@ const pairs = (pairsData as any[]).slice(0, 12);
     }
     .selected-chip.hidden { display: none; }
     .selected-chip img {
-      width: 22px;
-      height: 22px;
-      border-radius: 5px;
+      width: 18px;
+      height: 18px;
+      border-radius: 4px;
       object-fit: contain;
     }
     .chip-remove {
@@ -560,14 +560,15 @@ const pairs = (pairsData as any[]).slice(0, 12);
         rows.push({ label: 'Revenue', va: rA || '—', vb: rB || '—' });
       }
 
-      var logoA = a.l ? '<img src="' + a.l + '" alt="" style="width:22px;height:22px;border-radius:4px;vertical-align:middle;margin-right:6px;" onerror="this.style.display=\'none\'" />' : '';
-      var logoB = b.l ? '<img src="' + b.l + '" alt="" style="width:22px;height:22px;border-radius:4px;vertical-align:middle;margin-right:6px;" onerror="this.style.display=\'none\'" />' : '';
+      var logoStyle = 'width:32px;height:32px;border-radius:8px;object-fit:contain;background:var(--color-elevated);';
+      var logoA = a.l ? '<img src="' + a.l + '" alt="" style="' + logoStyle + '" onerror="this.style.display=\'none\'" />' : '';
+      var logoB = b.l ? '<img src="' + b.l + '" alt="" style="' + logoStyle + '" onerror="this.style.display=\'none\'" />' : '';
 
       var html = '<table>' +
         '<thead><tr>' +
-          '<th style="width:30%;">Attribute</th>' +
-          '<th style="width:35%;">' + logoA + escHtml(a.n) + '</th>' +
-          '<th style="width:35%;">' + logoB + escHtml(b.n) + '</th>' +
+          '<th style="width:28%;vertical-align:bottom;">Attribute</th>' +
+          '<th style="width:36%;"><div style="display:flex;align-items:center;gap:8px;">' + logoA + '<div><div style="font-size:0.95rem;font-weight:700;color:var(--color-text);text-transform:none;letter-spacing:0;">' + escHtml(a.n) + '</div><div style="font-size:0.75rem;font-weight:400;color:var(--color-muted);text-transform:none;letter-spacing:0;">' + escHtml(a.cn || '') + '</div></div></div></th>' +
+          '<th style="width:36%;"><div style="display:flex;align-items:center;gap:8px;">' + logoB + '<div><div style="font-size:0.95rem;font-weight:700;color:var(--color-text);text-transform:none;letter-spacing:0;">' + escHtml(b.n) + '</div><div style="font-size:0.75rem;font-weight:400;color:var(--color-muted);text-transform:none;letter-spacing:0;">' + escHtml(b.cn || '') + '</div></div></div></th>' +
         '</tr></thead><tbody>';
 
       for (var i = 0; i < rows.length; i++) {
@@ -578,6 +579,12 @@ const pairs = (pairsData as any[]).slice(0, 12);
       }
 
       html += '</tbody></table>';
+
+      html += '<div style="display:flex;justify-content:center;gap:1rem;margin-top:1.5rem;">' +
+        '<a href="/tools/' + a.s + '/" class="result-link" style="font-size:0.9rem;">View ' + escHtml(a.n) + ' details →</a>' +
+        '<span style="color:var(--color-muted);">·</span>' +
+        '<a href="/tools/' + b.s + '/" class="result-link" style="font-size:0.9rem;">View ' + escHtml(b.n) + ' details →</a>' +
+      '</div>';
 
       resultsDiv.innerHTML = html;
       resultsDiv.classList.remove('hidden');

@@ -1,6 +1,6 @@
 ---
-import { readFileSync } from 'fs';
 import { getCollection } from 'astro:content';
+import pairsData from '../../../data/comparisons/top-pairs.json';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import ComparisonTable from '../../components/ComparisonTable.astro';
@@ -8,8 +8,7 @@ import SchemaOrg from '../../components/SchemaOrg.astro';
 import GiscusComments from '../../components/GiscusComments.astro';
 
 export async function getStaticPaths() {
-  const pairsRaw = readFileSync('data/comparisons/top-pairs.json', 'utf-8');
-  const pairs = JSON.parse(pairsRaw);
+  const pairs = pairsData as any[];
   const companies = await getCollection('companies');
   const companyMap = new Map(companies.map(c => [c.id, c.data]));
 

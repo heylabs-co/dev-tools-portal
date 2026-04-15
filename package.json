@@ -7,7 +7,7 @@
   },
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build && npx pagefind --site dist",
+    "build": "astro build && npx pagefind --site dist/client",
     "preview": "astro preview",
     "astro": "astro",
     "seed": "npx tsx scripts/seed-from-csv.ts",
@@ -15,6 +15,7 @@
     "seed:comparisons": "npx tsx scripts/generate-comparisons.ts"
   },
   "dependencies": {
+    "@astrojs/cloudflare": "^13.1.9",
     "@astrojs/sitemap": "^3.7.0",
     "@tailwindcss/vite": "^4.2.2",
     "astro": "^6.1.5",

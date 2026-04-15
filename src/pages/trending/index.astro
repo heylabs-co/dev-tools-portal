@@ -1,0 +1,233 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import fs from 'node:fs';
+import path from 'node:path';
+
+// Read trending data at build time
+const dataPath = path.resolve('data/repos/trending.json');
+let trendingData: any = { updated_at: '', weekly: [], rising: [] };
+
+if (fs.existsSync(dataPath)) {
+  trendingData = JSON.parse(fs.readFileSync(dataPath, 'utf-8'));
+}
+
+const { weekly, rising, updated_at } = trendingData;
+
+// Language colors for badges
+const langColors: Record<string, string> = {
+  TypeScript: '#3178c6',
+  JavaScript: '#f1e05a',
+  Python: '#3572A5',
+  Go: '#00ADD8',
+  Rust: '#dea584',
+  Java: '#b07219',
+  Ruby: '#701516',
+  'C#': '#178600',
+  'C++': '#f34b7d',
+  C: '#555555',
+  Swift: '#F05138',
+  Kotlin: '#A97BFF',
+  PHP: '#4F5D95',
+  Shell: '#89e051',
+  Dart: '#00B4AB',
+  Elixir: '#6e4a7e',
+  Scala: '#c22d40',
+  Zig: '#ec915c',
+  Lua: '#000080',
+  Vue: '#41b883',
+};
+
+function formatStars(n: number): string {
+  if (n >= 1000) return `${(n / 1000).toFixed(1).replace(/\.0$/, '')}k`;
+  return String(n);
+}
+---
+
+<BaseLayout
+  title="Trending Developer Tools"
+  description="Discover the most popular and fastest-rising developer tools on GitHub this week."
+>
+  <section class="mx-auto max-w-6xl px-4 py-10">
+    <Breadcrumbs items={[
+      { label: 'Home', href: '/' },
+      { label: 'Trending' },
+    ]} />
+
+    <div class="mt-6">
+      <h1 class="text-4xl font-extrabold tracking-tight" style="color: var(--color-text);">
+        Trending Developer Tools
+      </h1>
+      <p class="mt-2 text-lg" style="color: var(--color-muted);">
+        Popular and fast-rising repos on GitHub
+        {updated_at && <span class="text-sm ml-2">Updated {updated_at}</span>}
+      </p>
+    </div>
+
+    {/* ── Trending This Week ── */}
+    <div class="mt-12">
+      <h2 class="text-2xl font-bold tracking-tight" style="color: var(--color-text);">
+        Trending This Week
+      </h2>
+      <p class="mt-1 text-sm" style="color: var(--color-muted);">
+        Top repositories by stars among recent developer tools
+      </p>
+
+      {weekly.length === 0 && (
+        <p class="mt-6 text-sm" style="color: var(--color-muted);">
+          No data yet. Run <code>npx tsx scripts/index-github-repos.ts</code> to populate.
+        </p>
+      )}
+
+      <div class="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {weekly.map((repo: any) => (
+          <article
+            class="group rounded-xl border p-5 transition-all duration-200 hover:shadow-md"
+            style="background-color: var(--color-surface); border-color: var(--color-border);"
+          >
+            <div class="flex items-start justify-between gap-3">
+              <h3 class="text-base font-semibold leading-tight" style="color: var(--color-text);">
+                <a
+                  href={repo.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="hover:underline"
+                >
+                  {repo.full_name}
+                </a>
+              </h3>
+              <span
+                class="inline-flex shrink-0 items-center gap-1 text-sm font-medium"
+                style="color: var(--color-muted);"
+                title={`${repo.stars.toLocaleString()} stars`}
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                </svg>
+                {formatStars(repo.stars)}
+              </span>
+            </div>
+
+            <p
+              class="mt-2 line-clamp-2 text-sm leading-relaxed"
+              style="color: var(--color-text-secondary);"
+            >
+              {repo.description || 'No description'}
+            </p>
+
+            <div class="mt-3 flex flex-wrap items-center gap-3 text-xs" style="color: var(--color-muted);">
+              {repo.language && (
+                <span class="inline-flex items-center gap-1.5">
+                  <span
+                    class="inline-block h-2.5 w-2.5 rounded-full"
+                    style={`background-color: ${langColors[repo.language] || '#888'};`}
+                  />
+                  {repo.language}
+                </span>
+              )}
+              <a
+                href={repo.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="font-medium transition-colors hover:underline"
+                style="color: var(--color-accent);"
+              >
+                View on GitHub
+              </a>
+              {repo.company_slug && (
+                <a
+                  href={`/tools/${repo.company_slug}/`}
+                  class="font-medium transition-colors hover:underline"
+                  style="color: var(--color-accent);"
+                >
+                  View on DevTools &rarr;
+                </a>
+              )}
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+
+    {/* ── Rising Stars ── */}
+    {rising.length > 0 && (
+      <div class="mt-16">
+        <h2 class="text-2xl font-bold tracking-tight" style="color: var(--color-text);">
+          Rising Stars
+        </h2>
+        <p class="mt-1 text-sm" style="color: var(--color-muted);">
+          Newer repositories gaining traction fast
+        </p>
+
+        <div class="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {rising.map((repo: any) => (
+            <article
+              class="group rounded-xl border p-5 transition-all duration-200 hover:shadow-md"
+              style="background-color: var(--color-surface); border-color: var(--color-border);"
+            >
+              <div class="flex items-start justify-between gap-3">
+                <h3 class="text-base font-semibold leading-tight" style="color: var(--color-text);">
+                  <a
+                    href={repo.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="hover:underline"
+                  >
+                    {repo.full_name}
+                  </a>
+                </h3>
+                <span
+                  class="inline-flex shrink-0 items-center gap-1 text-sm font-medium"
+                  style="color: var(--color-muted);"
+                  title={`${repo.stars.toLocaleString()} stars`}
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                  </svg>
+                  {formatStars(repo.stars)}
+                </span>
+              </div>
+
+              <p
+                class="mt-2 line-clamp-2 text-sm leading-relaxed"
+                style="color: var(--color-text-secondary);"
+              >
+                {repo.description || 'No description'}
+              </p>
+
+              <div class="mt-3 flex flex-wrap items-center gap-3 text-xs" style="color: var(--color-muted);">
+                {repo.language && (
+                  <span class="inline-flex items-center gap-1.5">
+                    <span
+                      class="inline-block h-2.5 w-2.5 rounded-full"
+                      style={`background-color: ${langColors[repo.language] || '#888'};`}
+                    />
+                    {repo.language}
+                  </span>
+                )}
+                <a
+                  href={repo.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="font-medium transition-colors hover:underline"
+                  style="color: var(--color-accent);"
+                >
+                  View on GitHub
+                </a>
+                {repo.company_slug && (
+                  <a
+                    href={`/tools/${repo.company_slug}/`}
+                    class="font-medium transition-colors hover:underline"
+                    style="color: var(--color-accent);"
+                  >
+                    View on DevTools &rarr;
+                  </a>
+                )}
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    )}
+  </section>
+</BaseLayout>

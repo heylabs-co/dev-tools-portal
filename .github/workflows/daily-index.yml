@@ -1,0 +1,27 @@
+name: Index Trending Repos
+on:
+  schedule:
+    - cron: '0 6 * * *'
+  workflow_dispatch: {}
+jobs:
+  index:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npx tsx scripts/index-github-repos.ts
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_PAT }}
+      - run: |
+          git config user.name "devtools-bot"
+          git config user.email "bot@devtools.wiki"
+          git add data/repos/
+          git diff --cached --quiet || git commit -m "data: update trending repos $(date -u +%Y-%m-%d)"
+          git pull --rebase origin main || true
+          git push

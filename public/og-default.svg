@@ -1,0 +1,93 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1200" y2="630" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#0A0A0F"/>
+      <stop offset="50%" stop-color="#0F0F1A"/>
+      <stop offset="100%" stop-color="#0A0A0F"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="200" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#5E6AD2"/>
+      <stop offset="100%" stop-color="#7B85E8"/>
+    </linearGradient>
+    <linearGradient id="glow" x1="600" y1="200" x2="600" y2="500" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#5E6AD2" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="#5E6AD2" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bg)"/>
+
+  <!-- Subtle radial glow -->
+  <ellipse cx="600" cy="315" rx="500" ry="280" fill="url(#glow)"/>
+
+  <!-- Top accent line -->
+  <rect x="0" y="0" width="1200" height="3" fill="url(#accent)"/>
+
+  <!-- Grid dots (subtle texture) -->
+  <g opacity="0.04" fill="white">
+    <circle cx="100" cy="100" r="1.5"/>
+    <circle cx="200" cy="100" r="1.5"/>
+    <circle cx="300" cy="100" r="1.5"/>
+    <circle cx="400" cy="100" r="1.5"/>
+    <circle cx="500" cy="100" r="1.5"/>
+    <circle cx="600" cy="100" r="1.5"/>
+    <circle cx="700" cy="100" r="1.5"/>
+    <circle cx="800" cy="100" r="1.5"/>
+    <circle cx="900" cy="100" r="1.5"/>
+    <circle cx="1000" cy="100" r="1.5"/>
+    <circle cx="1100" cy="100" r="1.5"/>
+    <circle cx="100" cy="200" r="1.5"/>
+    <circle cx="200" cy="200" r="1.5"/>
+    <circle cx="300" cy="200" r="1.5"/>
+    <circle cx="400" cy="200" r="1.5"/>
+    <circle cx="500" cy="200" r="1.5"/>
+    <circle cx="600" cy="200" r="1.5"/>
+    <circle cx="700" cy="200" r="1.5"/>
+    <circle cx="800" cy="200" r="1.5"/>
+    <circle cx="900" cy="200" r="1.5"/>
+    <circle cx="1000" cy="200" r="1.5"/>
+    <circle cx="1100" cy="200" r="1.5"/>
+    <circle cx="100" cy="400" r="1.5"/>
+    <circle cx="200" cy="400" r="1.5"/>
+    <circle cx="300" cy="400" r="1.5"/>
+    <circle cx="400" cy="400" r="1.5"/>
+    <circle cx="500" cy="400" r="1.5"/>
+    <circle cx="600" cy="400" r="1.5"/>
+    <circle cx="700" cy="400" r="1.5"/>
+    <circle cx="800" cy="400" r="1.5"/>
+    <circle cx="900" cy="400" r="1.5"/>
+    <circle cx="1000" cy="400" r="1.5"/>
+    <circle cx="1100" cy="400" r="1.5"/>
+    <circle cx="100" cy="500" r="1.5"/>
+    <circle cx="200" cy="500" r="1.5"/>
+    <circle cx="300" cy="500" r="1.5"/>
+    <circle cx="400" cy="500" r="1.5"/>
+    <circle cx="500" cy="500" r="1.5"/>
+    <circle cx="600" cy="500" r="1.5"/>
+    <circle cx="700" cy="500" r="1.5"/>
+    <circle cx="800" cy="500" r="1.5"/>
+    <circle cx="900" cy="500" r="1.5"/>
+    <circle cx="1000" cy="500" r="1.5"/>
+    <circle cx="1100" cy="500" r="1.5"/>
+  </g>
+
+  <!-- Logo icon -->
+  <rect x="525" y="155" width="44" height="44" rx="10" fill="#5E6AD2"/>
+  <text x="547" y="185" font-family="system-ui, -apple-system, sans-serif" font-size="22" font-weight="700" fill="white" text-anchor="middle">DT</text>
+
+  <!-- Main title -->
+  <text x="600" y="260" font-family="system-ui, -apple-system, sans-serif" font-size="64" font-weight="700" fill="white" text-anchor="middle" letter-spacing="-2">DevTools</text>
+
+  <!-- Subtitle -->
+  <text x="600" y="310" font-family="system-ui, -apple-system, sans-serif" font-size="24" font-weight="400" fill="#8B8FA3" text-anchor="middle">The Developer Tool Intelligence Platform</text>
+
+  <!-- Divider -->
+  <rect x="520" y="340" width="160" height="1" fill="#5E6AD2" opacity="0.4"/>
+
+  <!-- Stats line -->
+  <text x="600" y="390" font-family="system-ui, -apple-system, sans-serif" font-size="20" font-weight="500" fill="#5E6AD2" text-anchor="middle" letter-spacing="1">800+ Tools  ·  42 Categories  ·  Compare &amp; Choose</text>
+
+  <!-- Bottom accent bar -->
+  <rect x="0" y="627" width="1200" height="3" fill="url(#accent)"/>
+</svg>

@@ -8,9 +8,11 @@ interface Props {
   description: string;
   canonical?: string;
   jsonLd?: Record<string, unknown>;
+  ogImage?: string;
 }
 
-const { title, description, canonical, jsonLd } = Astro.props;
+const { title, description, canonical, jsonLd, ogImage } = Astro.props;
+const ogImageUrl = ogImage || 'https://dev-tools-portal.pages.dev/og-default.svg';
 const siteUrl = 'https://devtools.wiki';
 const pageUrl = canonical || new URL(Astro.url.pathname, siteUrl).href;
 ---
@@ -50,9 +52,13 @@ const pageUrl = canonical || new URL(Astro.url.pathname, siteUrl).href;
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
     <meta property="og:url" content={pageUrl} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content={ogImageUrl} />
 
     {jsonLd && (
       <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />

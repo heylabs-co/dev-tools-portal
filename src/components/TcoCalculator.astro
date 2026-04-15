@@ -92,11 +92,13 @@ const id = `tco-${slug}`;
               </div>
             )}
 
-            {/* Usage-based: Transactions */}
+            {/* Usage-based: show transactions if % pricing, otherwise volume */}
             {model === 'usage' && (
               <div>
                 <div class="flex items-center justify-between mb-2">
-                  <label class="text-sm font-medium text-[#0F172A] dark:text-[#EDEDEF]" for={`${id}-txns`}>Transactions / month</label>
+                  <label class="text-sm font-medium text-[#0F172A] dark:text-[#EDEDEF]" for={`${id}-txns`}>
+                    {entryPrice.includes('%') ? 'Transactions / month' : 'Monthly volume'}
+                  </label>
                   <span id={`${id}-txns-val`} class="text-sm font-mono font-semibold text-[#5E6AD2] dark:text-[#818CF8]">10,000</span>
                 </div>
                 <input
@@ -110,19 +112,20 @@ const id = `tco-${slug}`;
               </div>
             )}
 
-            {model === 'usage' && (
+            {/* Average transaction value for % pricing */}
+            {model === 'usage' && entryPrice.includes('%') && (
               <div>
                 <div class="flex items-center justify-between mb-2">
-                  <label class="text-sm font-medium text-[#0F172A] dark:text-[#EDEDEF]" for={`${id}-api`}>API Calls / month</label>
-                  <span id={`${id}-api-val`} class="text-sm font-mono font-semibold text-[#5E6AD2] dark:text-[#818CF8]">100,000</span>
+                  <label class="text-sm font-medium text-[#0F172A] dark:text-[#EDEDEF]" for={`${id}-aov`}>Avg transaction value ($)</label>
+                  <span id={`${id}-aov-val`} class="text-sm font-mono font-semibold text-[#5E6AD2] dark:text-[#818CF8]">$50</span>
                 </div>
                 <input
-                  type="range" min="0" max="2" step="1" value="1"
-                  id={`${id}-api`}
+                  type="range" min="0" max="5" step="1" value="2"
+                  id={`${id}-aov`}
                   class="tco-range w-full"
                 />
                 <div class="flex justify-between mt-1 text-[10px] text-[#64748B] dark:text-[#8A8F98]">
-                  <span>1K</span><span>100K</span><span>1M</span>
+                  <span>$10</span><span>$25</span><span>$50</span><span>$100</span><span>$250</span><span>$500</span>
                 </div>
               </div>
             )}
@@ -214,7 +217,7 @@ const id = `tco-${slug}`;
   var userSteps = [100, 1000, 10000, 100000, 1000000];
   var seatSteps = [1, 5, 10, 25, 50, 100];
   var txnSteps = [1000, 10000, 100000, 1000000, 10000000];
-  var apiSteps = [1000, 100000, 1000000];
+  var aovSteps = [10, 25, 50, 100, 250, 500];
   var eventSteps = [10000, 100000, 1000000, 10000000];
 
   function fmt(n) {
@@ -230,16 +233,19 @@ const id = `tco-${slug}`;
     return '$' + n.toLocaleString('en-US', { maximumFractionDigits: 0 });
   }
 
-  function estimateCost(pModel, ePrice, users, transactions, seats, apiCalls, events) {
+  function estimateCost(pModel, ePrice, users, transactions, seats, aov, events) {
     var basePrice = parseFloat((ePrice || '').replace(/[^0-9.]/g, '')) || 25;
 
     if (pModel === 'usage') {
       if (ePrice && ePrice.indexOf('%') !== -1) {
         var pct = parseFloat(ePrice) / 100;
-        var avgTransaction = 50;
-        return transactions * avgTransaction * pct;
+        // Also add fixed per-transaction fee if present (e.g. "2.9% + $0.30")
+        var fixedFee = 0;
+        var plusMatch = ePrice.match(/\+\s*\$?([\d.]+)/);
+        if (plusMatch) fixedFee = parseFloat(plusMatch[1]);
+        return transactions * (aov * pct + fixedFee);
       }
-      return basePrice * Math.ceil(users / 1000);
+      return basePrice * Math.ceil(transactions / 1000);
     }
 
     if (pModel === 'seat') {
@@ -293,13 +299,13 @@ const id = `tco-${slug}`;
     var usersSlider = document.getElementById(id + '-users');
     var seatsSlider = document.getElementById(id + '-seats');
     var txnsSlider = document.getElementById(id + '-txns');
-    var apiSlider = document.getElementById(id + '-api');
+    var aovSlider = document.getElementById(id + '-aov');
     var eventsSlider = document.getElementById(id + '-events');
 
     var users = userSteps[parseInt(usersSlider.value)];
     var seats = seatsSlider ? seatSteps[parseInt(seatsSlider.value)] : 1;
     var txns = txnsSlider ? txnSteps[parseInt(txnsSlider.value)] : 0;
-    var apiCalls = apiSlider ? apiSteps[parseInt(apiSlider.value)] : 0;
+    var aov = aovSlider ? aovSteps[parseInt(aovSlider.value)] : 50;
     var events = eventsSlider ? eventSteps[parseInt(eventsSlider.value)] : 0;
 
     // Update displayed values
@@ -312,13 +318,13 @@ const id = `tco-${slug}`;
     var txnsVal = document.getElementById(id + '-txns-val');
     if (txnsVal) txnsVal.textContent = fmt(txns);
 
-    var apiVal = document.getElementById(id + '-api-val');
-    if (apiVal) apiVal.textContent = fmt(apiCalls);
+    var aovVal = document.getElementById(id + '-aov-val');
+    if (aovVal) aovVal.textContent = '$' + aov;
 
     var eventsVal = document.getElementById(id + '-events-val');
     if (eventsVal) eventsVal.textContent = fmt(events);
 
-    var monthly = estimateCost(model, entryPrice, users, txns, seats, apiCalls, events);
+    var monthly = estimateCost(model, entryPrice, users, txns, seats, aov, events);
     var annual = monthly * 12;
 
     document.getElementById(id + '-monthly').textContent = fmtDollar(monthly);
@@ -350,7 +356,7 @@ const id = `tco-${slug}`;
   }
 
   // Bind sliders
-  var sliderIds = [id + '-users', id + '-seats', id + '-txns', id + '-api', id + '-events'];
+  var sliderIds = [id + '-users', id + '-seats', id + '-txns', id + '-aov', id + '-events'];
   sliderIds.forEach(function(sid) {
     var el = document.getElementById(sid);
     if (el) {

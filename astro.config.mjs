@@ -4,7 +4,7 @@ import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
-  site: 'https://devtools.wiki',
+  site: 'https://tool.news',
   output: 'static',
   integrations: [
     sitemap({

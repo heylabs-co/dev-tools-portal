@@ -12,8 +12,8 @@ interface Props {
 }
 
 const { title, description, canonical, jsonLd, ogImage } = Astro.props;
-const ogImageUrl = ogImage || 'https://dev-tools-portal.pages.dev/og-default.svg';
-const siteUrl = 'https://devtools.wiki';
+const ogImageUrl = ogImage || 'https://tool.news/og-default.svg';
+const siteUrl = 'https://tool.news';
 const pageUrl = canonical || new URL(Astro.url.pathname, siteUrl).href;
 ---
 
@@ -43,7 +43,7 @@ const pageUrl = canonical || new URL(Astro.url.pathname, siteUrl).href;
     <meta name="theme-color" content="#0A0A0F" media="(prefers-color-scheme: dark)" />
     <meta name="theme-color" content="#FAFBFC" media="(prefers-color-scheme: light)" />
 
-    <title>{title} — DevTools.wiki</title>
+    <title>{title} — tool.news</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={pageUrl} />
 
@@ -52,7 +52,7 @@ const pageUrl = canonical || new URL(Astro.url.pathname, siteUrl).href;
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
     <meta property="og:url" content={pageUrl} />
-    <meta property="og:site_name" content="DevTools Portal" />
+    <meta property="og:site_name" content="tool.news" />
     <meta property="og:image" content={ogImageUrl} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />

@@ -191,7 +191,7 @@ function formatCompanyFull(c: Company): string {
 const server = new McpServer(
   { name: 'devtools-portal', version: '1.0.0' },
   {
-    instructions: `DevTools Portal MCP Server — search, compare, and get recommendations for 630+ developer tools.
+    instructions: `tool.news MCP Server — search, compare, and get recommendations for 630+ developer tools.
 Available tools:
 - search_tools: Search by keyword or category
 - get_tool: Get full details for a specific tool
@@ -321,7 +321,7 @@ server.tool(
       sections.push(`\n## When to use ${b.name}\n${b.content.when_to_use.map(u => `✓ ${u}`).join('\n')}`);
     }
 
-    sections.push(`\nMore details: https://dev-tools-portal.pages.dev/compare/${tool_a}-vs-${tool_b}/`);
+    sections.push(`\nMore details: https://tool.news/compare/${tool_a}-vs-${tool_b}/`);
 
     return { content: [{ type: 'text', text: sections.join('\n') }] };
   }
@@ -442,7 +442,7 @@ server.tool(
 async function main() {
   const transport = new StdioServerTransport();
   await server.connect(transport);
-  console.error('DevTools Portal MCP Server running on stdio');
+  console.error('tool.news MCP Server running on stdio');
 }
 
 main().catch((error) => {

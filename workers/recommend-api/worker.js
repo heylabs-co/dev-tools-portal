@@ -80,7 +80,7 @@ export default {
       budget === 'under100' ? 'Under $100/month' :
       'Any budget';
 
-    const systemPrompt = `You are a developer tools advisor for devtools.wiki. You have access to a catalog of 800+ developer tools.
+    const systemPrompt = `You are a developer tools advisor for tool.news. You have access to a catalog of 800+ developer tools.
 
 Given a project description, recommend 3-5 specific tools that best fit the project needs.
 
@@ -119,8 +119,8 @@ ${TOOL_LIST}`;
         headers: {
           'Authorization': `Bearer ${env.OPENROUTER_API_KEY}`,
           'Content-Type': 'application/json',
-          'HTTP-Referer': 'https://devtools.wiki',
-          'X-Title': 'DevTools Portal Recommender',
+          'HTTP-Referer': 'https://tool.news',
+          'X-Title': 'tool.news Recommender',
         },
         body: JSON.stringify({
           model: 'deepseek/deepseek-chat-v3-0324',

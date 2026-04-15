@@ -64,7 +64,7 @@ const { slug, name } = Astro.props;
     }
 
     // Load current votes
-    fetch('/api/vote?slug=' + encodeURIComponent(slug))
+    fetch('https://devtools-vote-api.sssands.workers.dev/vote?slug=' + encodeURIComponent(slug))
       .then(function(r) { return r.json(); })
       .then(updateUI)
       .catch(function() {
@@ -74,7 +74,7 @@ const { slug, name } = Astro.props;
 
     // Vote handler
     function vote(type) {
-      fetch('/api/vote', {
+      fetch('https://devtools-vote-api.sssands.workers.dev/vote', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ slug: slug, vote: type }),
@@ -83,7 +83,7 @@ const { slug, name } = Astro.props;
         .then(function(data) {
           if (data.ok) {
             // Re-fetch to get user_vote state
-            fetch('/api/vote?slug=' + encodeURIComponent(slug))
+            fetch('https://devtools-vote-api.sssands.workers.dev/vote?slug=' + encodeURIComponent(slug))
               .then(function(r) { return r.json(); })
               .then(updateUI);
           }

@@ -1,0 +1,97 @@
+---
+interface Props {
+  slug: string;
+  name: string;
+}
+const { slug, name } = Astro.props;
+---
+
+<div class="vote-widget flex items-center gap-3" data-slug={slug}>
+  <span class="text-sm text-gray-500 dark:text-gray-400">Is {name} useful?</span>
+
+  <button
+    type="button"
+    class="vote-btn vote-up inline-flex items-center gap-1.5 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 px-3 py-1.5 text-sm font-medium text-gray-600 dark:text-gray-400 hover:border-emerald-300 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors"
+    data-vote="up"
+  >
+    <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7" />
+    </svg>
+    <span class="vote-up-count">—</span>
+  </button>
+
+  <button
+    type="button"
+    class="vote-btn vote-down inline-flex items-center gap-1.5 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 px-3 py-1.5 text-sm font-medium text-gray-600 dark:text-gray-400 hover:border-red-300 hover:text-red-600 dark:hover:text-red-400 transition-colors"
+    data-vote="down"
+  >
+    <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+    </svg>
+    <span class="vote-down-count">—</span>
+  </button>
+
+  <span class="vote-score text-sm font-semibold text-gray-700 dark:text-gray-300"></span>
+</div>
+
+<script is:inline>
+(function() {
+  document.querySelectorAll('.vote-widget').forEach(function(widget) {
+    var slug = widget.dataset.slug;
+    var upBtn = widget.querySelector('.vote-up');
+    var downBtn = widget.querySelector('.vote-down');
+    var upCount = widget.querySelector('.vote-up-count');
+    var downCount = widget.querySelector('.vote-down-count');
+    var scoreEl = widget.querySelector('.vote-score');
+
+    function updateUI(data) {
+      upCount.textContent = data.upvotes || 0;
+      downCount.textContent = data.downvotes || 0;
+      var score = data.score || 0;
+      scoreEl.textContent = (score > 0 ? '+' : '') + score;
+      scoreEl.className = 'vote-score text-sm font-semibold ' +
+        (score > 0 ? 'text-emerald-600 dark:text-emerald-400' :
+         score < 0 ? 'text-red-600 dark:text-red-400' :
+         'text-gray-500 dark:text-gray-400');
+
+      // Highlight user's vote
+      upBtn.classList.toggle('border-emerald-400', data.user_vote === 'up');
+      upBtn.classList.toggle('text-emerald-600', data.user_vote === 'up');
+      upBtn.classList.toggle('bg-emerald-50', data.user_vote === 'up');
+      downBtn.classList.toggle('border-red-400', data.user_vote === 'down');
+      downBtn.classList.toggle('text-red-600', data.user_vote === 'down');
+      downBtn.classList.toggle('bg-red-50', data.user_vote === 'down');
+    }
+
+    // Load current votes
+    fetch('/api/vote?slug=' + encodeURIComponent(slug))
+      .then(function(r) { return r.json(); })
+      .then(updateUI)
+      .catch(function() {
+        upCount.textContent = '0';
+        downCount.textContent = '0';
+      });
+
+    // Vote handler
+    function vote(type) {
+      fetch('/api/vote', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ slug: slug, vote: type }),
+      })
+        .then(function(r) { return r.json(); })
+        .then(function(data) {
+          if (data.ok) {
+            // Re-fetch to get user_vote state
+            fetch('/api/vote?slug=' + encodeURIComponent(slug))
+              .then(function(r) { return r.json(); })
+              .then(updateUI);
+          }
+        });
+    }
+
+    upBtn.addEventListener('click', function() { vote('up'); });
+    downBtn.addEventListener('click', function() { vote('down'); });
+  });
+})();
+</script>

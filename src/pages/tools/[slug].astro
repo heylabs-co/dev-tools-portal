@@ -6,6 +6,7 @@ import MetricBar from '../../components/MetricBar.astro';
 import PricingTable from '../../components/PricingTable.astro';
 import SchemaOrg from '../../components/SchemaOrg.astro';
 import GiscusComments from '../../components/GiscusComments.astro';
+import VoteButtons from '../../components/VoteButtons.astro';
 import { getCollection } from 'astro:content';
 
 export async function getStaticPaths() {
@@ -83,6 +84,11 @@ const scaleItems = [
         </a>
       </div>
     </header>
+
+    <!-- Vote -->
+    <div class="mt-6">
+      <VoteButtons slug={d.slug} name={d.name} />
+    </div>
 
     <!-- Info Section -->
     <section class="mt-10 flex flex-wrap items-center gap-3">

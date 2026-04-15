@@ -7,16 +7,28 @@ interface Props {
 
 const { label, value, maxValue = 5 } = Astro.props;
 
-const pct = Math.min(Math.max((value / maxValue) * 100, 0), 100);
+const segments = Array.from({ length: maxValue }, (_, i) => i < value);
+
+function getColor(val: number, max: number) {
+  const ratio = val / max;
+  if (ratio >= 0.7) return { filled: 'bg-emerald-500 dark:bg-emerald-400', empty: 'bg-emerald-100 dark:bg-emerald-900/30' };
+  if (ratio >= 0.4) return { filled: 'bg-amber-500 dark:bg-amber-400', empty: 'bg-amber-100 dark:bg-amber-900/30' };
+  return { filled: 'bg-rose-500 dark:bg-rose-400', empty: 'bg-rose-100 dark:bg-rose-900/30' };
+}
+
+const colors = getColor(value, maxValue);
 ---
 
 <div class="flex items-center gap-3">
-  <span class="w-28 shrink-0 text-sm text-gray-600">{label}</span>
-  <div class="relative h-2 flex-1 rounded-full bg-gray-200">
-    <div
-      class="absolute inset-y-0 left-0 rounded-full bg-indigo-500"
-      style={`width: ${pct}%`}
-    />
+  <span class="w-28 shrink-0 text-sm text-[#64748B] dark:text-[#8A8F98]">{label}</span>
+  <div class="flex flex-1 items-center gap-1">
+    {segments.map((active) => (
+      <div
+        class={`h-2 flex-1 rounded-full transition-colors duration-150 ${active ? colors.filled : colors.empty}`}
+      />
+    ))}
   </div>
-  <span class="w-8 shrink-0 text-right text-sm font-medium text-gray-900">{value}</span>
+  <span class="w-10 shrink-0 text-right text-sm font-semibold font-mono text-[#0F172A] dark:text-[#EDEDEF]">
+    {value}/{maxValue}
+  </span>
 </div>

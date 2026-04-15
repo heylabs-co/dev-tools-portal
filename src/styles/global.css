@@ -1,1 +1,98 @@
 @import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+@theme {
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+}
+
+:root {
+  /* Light mode */
+  --color-bg: #FAFBFC;
+  --color-surface: #FFFFFF;
+  --color-elevated: #F1F5F9;
+  --color-text: #0F172A;
+  --color-text-secondary: #334155;
+  --color-muted: #64748B;
+  --color-accent: #5E6AD2;
+  --color-accent-hover: #4F5ABF;
+  --color-cta: #F97316;
+  --color-border: rgba(15, 23, 42, 0.08);
+  --color-border-strong: rgba(15, 23, 42, 0.15);
+  --color-selection-bg: #5E6AD2;
+  --color-selection-text: #FFFFFF;
+  --color-scrollbar-track: transparent;
+  --color-scrollbar-thumb: rgba(15, 23, 42, 0.15);
+  --color-scrollbar-thumb-hover: rgba(15, 23, 42, 0.25);
+}
+
+.dark {
+  --color-bg: #0A0A0F;
+  --color-surface: #13131A;
+  --color-elevated: #1A1A24;
+  --color-text: #EDEDEF;
+  --color-text-secondary: #B4B4BB;
+  --color-muted: #8A8F98;
+  --color-accent: #818CF8;
+  --color-accent-hover: #9BA3FB;
+  --color-cta: #F97316;
+  --color-border: rgba(255, 255, 255, 0.08);
+  --color-border-strong: rgba(255, 255, 255, 0.15);
+  --color-selection-bg: #818CF8;
+  --color-selection-text: #0A0A0F;
+  --color-scrollbar-track: transparent;
+  --color-scrollbar-thumb: rgba(255, 255, 255, 0.12);
+  --color-scrollbar-thumb-hover: rgba(255, 255, 255, 0.22);
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Selection */
+::selection {
+  background-color: var(--color-selection-bg);
+  color: var(--color-selection-text);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-scrollbar-track);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-scrollbar-thumb);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-scrollbar-thumb-hover);
+}
+
+/* Firefox scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-scrollbar-thumb) var(--color-scrollbar-track);
+}
+
+/* Page fade-in */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 300ms ease-out both;
+}
+
+/* Code font utility */
+.font-code {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+}

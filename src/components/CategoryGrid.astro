@@ -11,27 +11,66 @@ interface Props {
 }
 
 const { categories } = Astro.props;
+
+const categoryIcons: Record<string, string> = {
+  'ci-cd': '🔄',
+  'monitoring': '📊',
+  'security': '🔒',
+  'testing': '🧪',
+  'database': '🗄️',
+  'cloud': '☁️',
+  'devops': '⚙️',
+  'analytics': '📈',
+  'ai': '🤖',
+  'infrastructure': '🏗️',
+  'communication': '💬',
+  'design': '🎨',
+  'deployment': '🚀',
+  'version-control': '🌿',
+  'documentation': '📝',
+};
+
+function getIcon(slug: string): string {
+  for (const [key, icon] of Object.entries(categoryIcons)) {
+    if (slug.includes(key)) return icon;
+  }
+  return '📦';
+}
 ---
 
 <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
   {categories.map((cat) => (
     <a
       href={`/categories/${cat.slug}/`}
-      class="group rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 p-5 transition-shadow hover:shadow-lg"
+      class="group relative rounded-xl bg-white dark:bg-[#13131A] border border-gray-200/80 dark:border-[rgba(255,255,255,0.08)] shadow-sm dark:shadow-none p-5 transition-all duration-150 hover:-translate-y-0.5 hover:shadow-md dark:hover:border-[rgba(255,255,255,0.14)] cursor-pointer"
     >
-      <div class="flex items-center justify-between">
-        <h3 class="text-base font-semibold text-gray-900 group-hover:text-indigo-600">
-          {cat.name}
-        </h3>
-        {cat.ai_native && (
-          <span class="inline-flex items-center rounded-full bg-purple-100 px-2 py-0.5 text-xs font-medium text-purple-800">
-            AI
+      <div class="accent-bar absolute inset-x-0 top-0 h-[2px] rounded-t-xl bg-gradient-to-r from-[#5E6AD2] to-[#818CF8] opacity-0 transition-opacity duration-150 group-hover:opacity-100" />
+      <div class="flex items-start justify-between gap-3">
+        <div class="flex items-center gap-3 min-w-0">
+          <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-gray-50 dark:bg-white/5 text-lg">
+            {getIcon(cat.slug)}
           </span>
-        )}
+          <div class="min-w-0">
+            <h3 class="text-[15px] font-semibold text-[#0F172A] dark:text-[#EDEDEF] transition-colors duration-150 group-hover:text-[#5E6AD2] dark:group-hover:text-[#818CF8] truncate">
+              {cat.name}
+            </h3>
+            <p class="mt-0.5 text-sm text-[#64748B] dark:text-[#8A8F98]">
+              {cat.company_count} {cat.company_count === 1 ? 'tool' : 'tools'}
+            </p>
+          </div>
+        </div>
+
+        <div class="flex flex-col items-end gap-1.5 shrink-0">
+          <span class="text-2xl font-bold font-mono text-[#0F172A] dark:text-[#EDEDEF] leading-none">
+            {cat.company_count}
+          </span>
+          {cat.ai_native && (
+            <span class="inline-flex items-center rounded-full bg-gradient-to-r from-purple-500 to-indigo-500 px-2 py-0.5 text-[10px] font-semibold text-white shadow-sm">
+              AI
+            </span>
+          )}
+        </div>
       </div>
-      <p class="mt-1 text-sm text-gray-500">
-        {cat.company_count} {cat.company_count === 1 ? 'tool' : 'tools'}
-      </p>
     </a>
   ))}
 </div>

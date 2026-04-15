@@ -22,6 +22,25 @@ const pageUrl = canonical || new URL(Astro.url.pathname, siteUrl).href;
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
+    <!-- Preconnect to Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- Preload Inter (via Tailwind) + JetBrains Mono -->
+    <link
+      rel="preload"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+      as="style"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+    />
+
+    <!-- Theme color -->
+    <meta name="theme-color" content="#0A0A0F" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#FAFBFC" media="(prefers-color-scheme: light)" />
+
     <title>{title} — DevTools.wiki</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={pageUrl} />
@@ -46,7 +65,10 @@ const pageUrl = canonical || new URL(Astro.url.pathname, siteUrl).href;
       }
     </script>
   </head>
-  <body class="min-h-screen flex flex-col bg-white text-gray-900 dark:bg-gray-950 dark:text-gray-100">
+  <body
+    class="min-h-screen flex flex-col animate-fade-in"
+    style="background-color: var(--color-bg); color: var(--color-text); font-family: 'Inter', system-ui, sans-serif;"
+  >
     <Header />
     <main class="flex-1" data-pagefind-body>
       <slot />

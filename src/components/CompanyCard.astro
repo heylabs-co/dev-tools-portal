@@ -17,21 +17,22 @@ const { slug, name, description, logo, category, lockInLevel, pricingModel, hasF
 const initial = name.charAt(0).toUpperCase();
 ---
 
-<article class="group relative rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 p-5 transition-shadow hover:shadow-lg">
+<article class="company-card group relative rounded-xl bg-white dark:bg-[#13131A] border border-gray-200/80 dark:border-[rgba(255,255,255,0.08)] shadow-sm dark:shadow-none p-5 transition-all duration-150 hover:-translate-y-0.5 hover:shadow-md dark:hover:border-[rgba(255,255,255,0.14)]">
+  <div class="accent-bar absolute inset-x-0 top-0 h-[2px] rounded-t-xl bg-gradient-to-r from-[#5E6AD2] to-[#818CF8] opacity-0 transition-opacity duration-150 group-hover:opacity-100" />
   <a href={`/tools/${slug}/`} class="absolute inset-0 z-10" aria-label={`View ${name}`}></a>
-  <div class="flex items-start gap-4">
-    <div class="relative h-12 w-12 shrink-0 overflow-hidden rounded-lg bg-gray-100">
+  <div class="flex items-start gap-3.5">
+    <div class="relative h-10 w-10 shrink-0 overflow-hidden rounded-lg bg-gray-50 dark:bg-white/5">
       <img
         src={logo}
         alt={`${name} logo`}
-        width="48"
-        height="48"
+        width="40"
+        height="40"
         loading="lazy"
         class="h-full w-full object-contain"
         onerror={`this.style.display='none';this.nextElementSibling.style.display='flex'`}
       />
       <span
-        class="absolute inset-0 hidden items-center justify-center text-lg font-bold text-gray-500"
+        class="absolute inset-0 hidden items-center justify-center rounded-lg bg-gradient-to-br from-[#5E6AD2] to-[#818CF8] text-sm font-bold text-white"
         aria-hidden="true"
       >
         {initial}
@@ -39,26 +40,26 @@ const initial = name.charAt(0).toUpperCase();
     </div>
 
     <div class="min-w-0 flex-1">
-      <span class="text-base font-semibold text-gray-900 dark:text-white group-hover:text-indigo-600">
+      <span class="text-[15px] font-semibold text-[#0F172A] dark:text-[#EDEDEF] transition-colors duration-150 group-hover:text-[#5E6AD2] dark:group-hover:text-[#818CF8]">
         {name}
       </span>
       {description && (
-        <p class="mt-1 line-clamp-2 text-sm text-gray-500">{description}</p>
+        <p class="mt-0.5 line-clamp-2 text-sm leading-snug text-[#64748B] dark:text-[#8A8F98]">{description}</p>
       )}
     </div>
   </div>
 
-  <div class="mt-4 flex flex-wrap items-center gap-2">
+  <div class="mt-3 flex flex-wrap items-center gap-1.5">
     {lockInLevel && <LockInBadge level={lockInLevel} />}
 
     {pricingModel && (
-      <span class="inline-flex items-center rounded-full bg-gray-100 px-2.5 py-0.5 text-xs font-medium text-gray-700">
+      <span class="inline-flex items-center rounded-full bg-gray-100 dark:bg-white/5 px-2 py-0.5 text-[11px] font-medium text-[#64748B] dark:text-[#8A8F98]">
         {pricingModel}
       </span>
     )}
 
     {hasFree && (
-      <span class="inline-flex items-center rounded-full bg-emerald-50 px-2.5 py-0.5 text-xs font-medium text-emerald-700">
+      <span class="inline-flex items-center rounded-full bg-emerald-50 dark:bg-emerald-950/40 px-2 py-0.5 text-[11px] font-medium text-emerald-700 dark:text-emerald-400">
         Free tier
       </span>
     )}

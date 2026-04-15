@@ -24,37 +24,82 @@ const recentCompanies = allCompanies
   description="Compare 630+ developer tools — pricing, lock-in scores, migration difficulty, and more."
 >
   <!-- Hero -->
-  <section class="bg-gradient-to-b from-indigo-50 to-white dark:from-gray-900 dark:to-gray-950 py-20 text-center">
-    <div class="mx-auto max-w-3xl px-4">
-      <h1 class="text-5xl font-extrabold tracking-tight text-gray-900 dark:text-white">
-        DevTools.wiki
+  <section class="relative overflow-hidden py-28 sm:py-36">
+    <!-- Background: radial gradient + dot grid -->
+    <div class="absolute inset-0 bg-[#FAFBFC] dark:bg-[#0A0A0F]"></div>
+    <div
+      class="absolute inset-0 opacity-[0.4] dark:opacity-[0.15]"
+      style="background-image: radial-gradient(circle at 1px 1px, #5E6AD2 1px, transparent 0); background-size: 32px 32px;"
+    ></div>
+    <div
+      class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[600px] rounded-full opacity-20 dark:opacity-10 blur-3xl"
+      style="background: radial-gradient(ellipse, #818CF8 0%, #5E6AD2 40%, transparent 70%);"
+    ></div>
+
+    <div class="relative mx-auto max-w-3xl px-6 text-center">
+      <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-[#0F172A] dark:text-[#EDEDEF] leading-[1.1]">
+        The Developer Tool<br />Intelligence Platform
       </h1>
-      <p class="mt-4 text-lg text-gray-600 dark:text-gray-400">
-        Compare 630+ developer tools — pricing, lock-in scores, migration difficulty
+      <p class="mt-6 text-lg sm:text-xl text-[#64748B] dark:text-[#8A8F98] max-w-2xl mx-auto leading-relaxed">
+        800+ tools compared — pricing, lock-in scores, migration guides.
+        Make informed decisions, faster.
       </p>
-      <a
-        href="/tools/"
-        class="mt-8 inline-block rounded-lg bg-indigo-600 px-6 py-3 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 transition-colors"
-      >
-        Browse all tools
-      </a>
+
+      <div class="mt-10 flex items-center justify-center gap-4 flex-wrap">
+        <a
+          href="/tools/"
+          class="inline-flex items-center rounded-lg bg-[#5E6AD2] dark:bg-[#818CF8] px-6 py-3 text-sm font-semibold text-white shadow-sm hover:opacity-90 transition-opacity"
+        >
+          Browse Tools
+        </a>
+        <a
+          href="/compare/"
+          class="inline-flex items-center rounded-lg border border-[#5E6AD2]/30 dark:border-[#818CF8]/30 px-6 py-3 text-sm font-semibold text-[#5E6AD2] dark:text-[#818CF8] hover:bg-[#5E6AD2]/5 dark:hover:bg-[#818CF8]/5 transition-colors"
+        >
+          Compare Tools
+        </a>
+      </div>
+
+      <!-- Stats row -->
+      <div class="mt-16 flex items-center justify-center gap-8 sm:gap-16">
+        <div class="text-center">
+          <span class="block text-2xl sm:text-3xl font-bold text-[#0F172A] dark:text-[#EDEDEF]" style="font-family: 'JetBrains Mono', monospace;">800+</span>
+          <span class="block mt-1 text-sm text-[#64748B] dark:text-[#8A8F98]">Tools</span>
+        </div>
+        <div class="h-8 w-px bg-gray-200 dark:bg-gray-800"></div>
+        <div class="text-center">
+          <span class="block text-2xl sm:text-3xl font-bold text-[#0F172A] dark:text-[#EDEDEF]" style="font-family: 'JetBrains Mono', monospace;">42</span>
+          <span class="block mt-1 text-sm text-[#64748B] dark:text-[#8A8F98]">Categories</span>
+        </div>
+        <div class="h-8 w-px bg-gray-200 dark:bg-gray-800"></div>
+        <div class="text-center">
+          <span class="block text-2xl sm:text-3xl font-bold text-[#0F172A] dark:text-[#EDEDEF]" style="font-family: 'JetBrains Mono', monospace;">100+</span>
+          <span class="block mt-1 text-sm text-[#64748B] dark:text-[#8A8F98]">Comparisons</span>
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- Featured Categories -->
-  <section class="mx-auto max-w-7xl px-4 py-16">
-    <h2 class="text-2xl font-bold text-gray-900 dark:text-white">Featured Categories</h2>
-    <p class="mt-2 text-gray-600 dark:text-gray-400">All 42 categories of developer tools</p>
-    <div class="mt-8">
+  <!-- Browse by Category -->
+  <section class="mx-auto max-w-7xl px-6 py-24">
+    <div class="max-w-2xl">
+      <h2 class="text-2xl font-bold text-[#0F172A] dark:text-[#EDEDEF]">Browse by Category</h2>
+      <p class="mt-2 text-[#64748B] dark:text-[#8A8F98]">
+        Explore 42 categories of developer tools, from CI/CD to observability.
+      </p>
+    </div>
+    <div class="mt-10">
       <CategoryGrid categories={categoryData} />
     </div>
   </section>
 
   <!-- Recently Updated -->
-  <section class="mx-auto max-w-7xl px-4 py-16">
-    <h2 class="text-2xl font-bold text-gray-900 dark:text-white">Recently Updated</h2>
-    <p class="mt-2 text-gray-600 dark:text-gray-400">The latest tools added or refreshed</p>
-    <div class="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+  <section class="mx-auto max-w-7xl px-6 py-24">
+    <div class="max-w-2xl">
+      <h2 class="text-2xl font-bold text-[#0F172A] dark:text-[#EDEDEF]">Recently Updated</h2>
+      <p class="mt-2 text-[#64748B] dark:text-[#8A8F98]">The latest tools added or refreshed on the platform.</p>
+    </div>
+    <div class="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
       {recentCompanies.map((company) => (
         <CompanyCard
           slug={company.data.slug}
@@ -67,6 +112,17 @@ const recentCompanies = allCompanies
           hasFree={company.data.pricing?.has_free_tier}
         />
       ))}
+    </div>
+    <div class="mt-10 text-center">
+      <a
+        href="/tools/"
+        class="inline-flex items-center gap-1.5 text-sm font-medium text-[#5E6AD2] dark:text-[#818CF8] hover:opacity-80 transition-opacity"
+      >
+        View all tools
+        <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+        </svg>
+      </a>
     </div>
   </section>
 </BaseLayout>

@@ -211,6 +211,45 @@ const pairs = (pairsData as any[]).slice(0, 12);
     }
     .chip-remove:hover { opacity: 1; }
 
+    .dd-section-label {
+      padding: 0.35rem 0.75rem;
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--color-accent);
+    }
+    .dd-section-other {
+      color: var(--color-muted);
+      margin-top: 0.25rem;
+      border-top: 1px solid var(--color-border);
+      padding-top: 0.5rem;
+    }
+    .dd-item-dimmed {
+      opacity: 0.55;
+    }
+    .dd-item-dimmed:hover {
+      opacity: 0.85;
+    }
+
+    .compare-warning {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1rem;
+      border-radius: 0.75rem;
+      background: rgba(245, 158, 11, 0.08);
+      border: 1px solid rgba(245, 158, 11, 0.2);
+      color: #d97706;
+      font-size: 0.85rem;
+      margin-bottom: 1rem;
+    }
+    .dark .compare-warning {
+      background: rgba(245, 158, 11, 0.06);
+      border-color: rgba(245, 158, 11, 0.15);
+      color: #fbbf24;
+    }
+
     .compare-btn {
       padding: 0.75rem 2.5rem;
       border-radius: 0.75rem;
@@ -341,49 +380,82 @@ const pairs = (pairsData as any[]).slice(0, 12);
     var compareBtn = document.getElementById('compareBtn');
     var resultsDiv = document.getElementById('compareResults');
 
-    function filterCompanies(query) {
-      if (!query || query.length < 1) return [];
+    function filterCompanies(query, slot) {
+      if (!query || query.length < 1) return { same: [], other: [] };
       var q = query.toLowerCase();
-      var results = [];
+      var otherSlot = slot === 'a' ? 'b' : 'a';
+      var otherTool = selected[otherSlot];
+      var otherCategory = otherTool ? otherTool.c : null;
+      var same = [];
+      var other = [];
+
       for (var i = 0; i < companies.length; i++) {
         var c = companies[i];
-        if (c.n.toLowerCase().indexOf(q) !== -1) {
-          results.push(c);
-          if (results.length >= 8) break;
+        if (c.n.toLowerCase().indexOf(q) === -1) continue;
+        if (otherTool && c.s === otherTool.s) continue;
+
+        if (otherCategory && c.c === otherCategory) {
+          same.push(c);
+        } else {
+          other.push(c);
         }
       }
-      return results;
+      return { same: same.slice(0, 6), other: other.slice(0, 6) };
     }
 
-    function renderDropdown(items, dd, slot) {
-      if (items.length === 0) {
+    function renderDropdown(groups, dd, slot) {
+      var same = groups.same;
+      var other = groups.other;
+      if (same.length === 0 && other.length === 0) {
         dd.classList.add('hidden');
         dd.innerHTML = '';
         return;
       }
+
+      var allItems = [];
       var html = '';
-      for (var i = 0; i < items.length; i++) {
-        var c = items[i];
-        var logo = c.l || '';
-        html += '<div class="dd-item" data-slug="' + c.s + '">' +
-          '<img src="' + logo + '" alt="" loading="lazy" onerror="this.style.display=\'none\'" />' +
-          '<div class="dd-item-info">' +
-            '<span class="dd-item-name">' + escHtml(c.n) + '</span>' +
-            '<span class="dd-item-cat">· ' + escHtml(c.cn || '') + '</span>' +
-          '</div>' +
-        '</div>';
+
+      if (same.length > 0) {
+        html += '<div class="dd-section-label">Same category</div>';
+        for (var i = 0; i < same.length; i++) {
+          allItems.push(same[i]);
+          html += renderDdItem(same[i], false);
+        }
       }
+
+      if (other.length > 0) {
+        if (same.length > 0) {
+          html += '<div class="dd-section-label dd-section-other">Other categories</div>';
+        }
+        for (var j = 0; j < other.length; j++) {
+          allItems.push(other[j]);
+          html += renderDdItem(other[j], same.length > 0);
+        }
+      }
+
       dd.innerHTML = html;
       dd.classList.remove('hidden');
 
       var ddItems = dd.querySelectorAll('.dd-item');
-      for (var j = 0; j < ddItems.length; j++) {
+      for (var k = 0; k < ddItems.length; k++) {
         (function(idx) {
           ddItems[idx].addEventListener('click', function() {
-            selectTool(slot, items[idx]);
+            selectTool(slot, allItems[idx]);
           });
-        })(j);
+        })(k);
       }
+    }
+
+    function renderDdItem(c, dimmed) {
+      var logo = c.l || '';
+      var cls = 'dd-item' + (dimmed ? ' dd-item-dimmed' : '');
+      return '<div class="' + cls + '" data-slug="' + c.s + '">' +
+        '<img src="' + logo + '" alt="" loading="lazy" onerror="this.style.display=\'none\'" />' +
+        '<div class="dd-item-info">' +
+          '<span class="dd-item-name">' + escHtml(c.n) + '</span>' +
+          '<span class="dd-item-cat">· ' + escHtml(c.cn || '') + '</span>' +
+        '</div>' +
+      '</div>';
     }
 
     function escHtml(str) {
@@ -437,15 +509,8 @@ const pairs = (pairsData as any[]).slice(0, 12);
       var slot = e.target.getAttribute('data-slot');
       var dd = slot === 'a' ? ddA : ddB;
       var val = e.target.value.trim();
-
-      // Exclude already-selected tool from other slot
-      var otherSlot = slot === 'a' ? 'b' : 'a';
-      var otherSelected = selected[otherSlot];
-      var items = filterCompanies(val);
-      if (otherSelected) {
-        items = items.filter(function(c) { return c.s !== otherSelected.s; });
-      }
-      renderDropdown(items, dd, slot);
+      var groups = filterCompanies(val, slot);
+      renderDropdown(groups, dd, slot);
     }
 
     inputA.addEventListener('input', handleInput);
@@ -505,6 +570,13 @@ const pairs = (pairsData as any[]).slice(0, 12);
     }
 
     function buildComparison(a, b) {
+      var warningHtml = '';
+      if (a.c !== b.c) {
+        warningHtml = '<div class="compare-warning">' +
+          '<svg style="width:18px;height:18px;flex-shrink:0;" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>' +
+          '<span>These tools are in different categories (' + escHtml(a.cn) + ' vs ' + escHtml(b.cn) + '). Comparison may not be fully meaningful.</span>' +
+        '</div>';
+      }
       var rows = [
         {
           label: 'Category',
@@ -586,7 +658,7 @@ const pairs = (pairsData as any[]).slice(0, 12);
         '<a href="/tools/' + b.s + '/" class="result-link" style="font-size:0.9rem;">View ' + escHtml(b.n) + ' details →</a>' +
       '</div>';
 
-      resultsDiv.innerHTML = html;
+      resultsDiv.innerHTML = warningHtml + html;
       resultsDiv.classList.remove('hidden');
       resultsDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }

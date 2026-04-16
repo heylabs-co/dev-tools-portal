@@ -1,0 +1,172 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import { getCollection } from 'astro:content';
+
+const allExtensions = await getCollection('extensions');
+const sorted = allExtensions.sort((a, b) => {
+  // Sort by installs (extract number), then alphabetical
+  const parseInstalls = (s?: string) => {
+    if (!s) return 0;
+    const n = parseInt(s.replace(/[^0-9]/g, ''), 10);
+    return isNaN(n) ? 0 : n;
+  };
+  const diff = parseInstalls(b.data.installs) - parseInstalls(a.data.installs);
+  if (diff !== 0) return diff;
+  return a.data.name.localeCompare(b.data.name, 'en', { sensitivity: 'base' });
+});
+
+const categories = [...new Set(sorted.map((s) => s.data.category ?? 'other'))].sort();
+const totalCount = sorted.length;
+
+const categoryLabels: Record<string, string> = {
+  ai: 'AI',
+  api: 'API',
+  database: 'Database',
+  debug: 'Debug',
+  devops: 'DevOps',
+  docker: 'Docker',
+  docs: 'Documentation',
+  framework: 'Framework',
+  git: 'Git',
+  language: 'Language',
+  linting: 'Linting',
+  other: 'Other',
+  remote: 'Remote',
+  snippets: 'Snippets',
+  testing: 'Testing',
+  'C# / .NET': 'C# / .NET',
+  'Docker / Kubernetes': 'Docker / Kubernetes',
+  'Flutter / Dart': 'Flutter / Dart',
+  Go: 'Go',
+  Java: 'Java',
+  'JavaScript / TypeScript': 'JS / TS',
+  PHP: 'PHP',
+  Python: 'Python',
+  React: 'React',
+  Ruby: 'Ruby',
+  Rust: 'Rust',
+  Swift: 'Swift',
+  'Tailwind CSS': 'Tailwind',
+  Terraform: 'Terraform',
+  Vue: 'Vue',
+};
+---
+
+<BaseLayout
+  title={`VS Code Extensions — ${totalCount} Must-Have Extensions`}
+  description={`Browse ${totalCount} curated VS Code extensions. Filter by category, find the best extensions for AI, testing, Git, DevOps, and your favorite language.`}
+>
+  <section class="mx-auto max-w-7xl px-4 py-10">
+    <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Extensions' }]} />
+
+    <!-- Hero -->
+    <div class="mt-6">
+      <h1 class="text-4xl font-extrabold tracking-tight text-[#0F172A] dark:text-[#EDEDEF]">
+        VS Code Extensions
+      </h1>
+      <p class="mt-2 text-lg text-[#64748B] dark:text-[#8A8F98]">
+        Find the best extensions for your development workflow &mdash; {totalCount} curated picks
+      </p>
+    </div>
+
+    <!-- Category filter pills -->
+    <div class="mt-8 flex flex-wrap gap-2" id="category-filter">
+      <button
+        data-category="all"
+        class="category-pill active rounded-full border px-4 py-1.5 text-sm font-medium transition-colors"
+      >
+        All
+      </button>
+      {categories.map((cat) => (
+        <button
+          data-category={cat}
+          class="category-pill rounded-full border px-4 py-1.5 text-sm font-medium transition-colors"
+        >
+          {categoryLabels[cat] ?? cat}
+        </button>
+      ))}
+    </div>
+
+    <!-- Extensions grid -->
+    <div class="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3" id="extensions-grid">
+      {sorted.map((entry) => {
+        const d = entry.data;
+        const cat = d.category ?? 'other';
+        return (
+          <a
+            href={`/extensions/${d.slug}/`}
+            class="ext-card group rounded-xl border border-gray-200 dark:border-gray-700/60 bg-white dark:bg-[#13131A] p-5 transition-colors hover:border-[#5E6AD2]/40 dark:hover:border-[#818CF8]/40 shadow-sm"
+            data-category={cat}
+          >
+            <div class="flex items-start justify-between gap-3">
+              <h2 class="text-base font-semibold text-[#0F172A] dark:text-[#EDEDEF] group-hover:text-[#5E6AD2] dark:group-hover:text-[#818CF8] transition-colors">
+                {d.name}
+              </h2>
+              <span class="inline-flex shrink-0 items-center rounded-full bg-[#5E6AD2]/10 dark:bg-[#818CF8]/10 border border-[#5E6AD2]/20 dark:border-[#818CF8]/20 px-2 py-0.5 text-[10px] font-semibold text-[#5E6AD2] dark:text-[#818CF8] capitalize">
+                {categoryLabels[cat] ?? cat}
+              </span>
+            </div>
+
+            {d.publisher && (
+              <p class="mt-1 text-xs text-[#64748B] dark:text-[#8A8F98]">
+                by <span class="font-medium">{d.publisher}</span>
+              </p>
+            )}
+
+            {d.description && (
+              <p class="mt-2 text-sm text-[#64748B] dark:text-[#8A8F98] line-clamp-2 leading-relaxed">
+                {d.description}
+              </p>
+            )}
+
+            {d.installs && (
+              <div class="mt-3 flex items-center gap-1.5 text-xs font-medium text-[#64748B] dark:text-[#8A8F98]">
+                <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                </svg>
+                {d.installs} installs
+              </div>
+            )}
+          </a>
+        );
+      })}
+    </div>
+  </section>
+
+  <style>
+    .category-pill {
+      border-color: var(--color-border);
+      color: var(--color-muted);
+      background: transparent;
+      cursor: pointer;
+    }
+    .category-pill:hover,
+    .category-pill.active {
+      border-color: var(--color-accent, #5E6AD2);
+      color: var(--color-accent, #5E6AD2);
+      background-color: color-mix(in srgb, var(--color-accent, #5E6AD2) 8%, transparent);
+    }
+  </style>
+
+  <script>
+    const pills = document.querySelectorAll<HTMLButtonElement>('.category-pill');
+    const cards = document.querySelectorAll<HTMLElement>('.ext-card');
+
+    pills.forEach((pill) => {
+      pill.addEventListener('click', () => {
+        pills.forEach((p) => p.classList.remove('active'));
+        pill.classList.add('active');
+        const cat = pill.dataset.category;
+
+        cards.forEach((card) => {
+          if (cat === 'all' || card.dataset.category === cat) {
+            card.style.display = '';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+  </script>
+</BaseLayout>

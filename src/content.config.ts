@@ -148,4 +148,47 @@ const categories = defineCollection({
   }),
 });
 
-export const collections = { companies, categories };
+const mcpServers = defineCollection({
+  loader: glob({
+    pattern: '**/*.json',
+    base: './data/mcp-servers',
+    generateId: ({ entry }) => entry.replace(/\.json$/, ''),
+  }),
+  schema: z.object({
+    name: z.string(),
+    slug: z.string(),
+    description: z.string().optional(),
+    github_repo: z.string().optional(),
+    npm_package: z.string().optional(),
+    author: z.string().optional(),
+    category: z.string().optional(),
+    tools_count: z.number().optional(),
+    install_command: z.string().optional(),
+    official: z.boolean().default(false),
+    seo: z.object({
+      title: z.string(),
+      meta_description: z.string(),
+    }).optional(),
+  }),
+});
+
+const skills = defineCollection({
+  loader: glob({
+    pattern: '**/*.json',
+    base: './data/ai-skills-catalog',
+    generateId: ({ entry }) => entry.replace(/\.json$/, ''),
+  }),
+  schema: z.object({
+    name: z.string(),
+    slug: z.string(),
+    description: z.string().optional(),
+    source_url: z.string().optional(),
+    author: z.string().optional(),
+    category: z.string().optional(),
+    framework: z.string().optional(),
+    format: z.string().optional(),
+    stars: z.number().optional(),
+  }),
+});
+
+export const collections = { companies, categories, mcpServers, skills };

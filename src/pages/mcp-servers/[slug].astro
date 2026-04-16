@@ -1,0 +1,191 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const servers = await getCollection('mcpServers');
+  return servers.map((entry) => ({
+    params: { slug: entry.id },
+    props: { server: entry },
+  }));
+}
+
+const { server } = Astro.props;
+const d = server.data;
+
+const pageTitle = d.seo?.title ?? `${d.name} MCP Server — Install & Config`;
+const pageDescription = d.seo?.meta_description ?? d.description ?? `Install and configure ${d.name} MCP server.`;
+
+const ghUrl = d.github_repo ? `https://github.com/${d.github_repo}` : null;
+const npmUrl = d.npm_package ? `https://www.npmjs.com/package/${d.npm_package}` : null;
+
+const categoryLabels: Record<string, string> = {
+  ai: 'AI', cloud: 'Cloud', code: 'Code', communication: 'Communication',
+  database: 'Database', design: 'Design', devops: 'DevOps', finance: 'Finance',
+  other: 'Other', productivity: 'Productivity', search: 'Search', web: 'Web',
+};
+const catLabel = categoryLabels[d.category ?? 'other'] ?? d.category ?? 'Other';
+
+// Build a sample Claude Code config snippet
+const configSnippet = JSON.stringify({
+  mcpServers: {
+    [d.slug]: {
+      command: 'npx',
+      args: ['-y', d.npm_package ?? d.slug],
+    },
+  },
+}, null, 2);
+
+// Schema.org SoftwareApplication
+const schemaOrg = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: `${d.name} MCP Server`,
+  applicationCategory: 'DeveloperApplication',
+  operatingSystem: 'Cross-platform',
+  ...(d.description ? { description: d.description } : {}),
+  ...(ghUrl ? { url: ghUrl } : {}),
+  ...(d.author ? { author: { '@type': 'Person', name: d.author } } : {}),
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+};
+---
+
+<BaseLayout title={pageTitle} description={pageDescription}>
+  <article class="mx-auto max-w-4xl px-6 py-12">
+    <!-- Breadcrumbs -->
+    <Breadcrumbs
+      items={[
+        { label: 'Home', href: '/' },
+        { label: 'MCP Servers', href: '/mcp-servers/' },
+        { label: d.name },
+      ]}
+    />
+
+    <!-- Hero card -->
+    <div class="mt-10 rounded-2xl border border-gray-200 dark:border-gray-700/60 bg-white dark:bg-[#13131A] p-8 shadow-sm">
+      <div class="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+        <div class="min-w-0 flex-1">
+          <div class="flex flex-wrap items-center gap-3">
+            <h1 class="text-3xl font-bold tracking-tight text-[#0F172A] dark:text-[#EDEDEF]">
+              {d.name}
+            </h1>
+            {d.official && (
+              <span class="inline-flex items-center rounded-full bg-emerald-50 dark:bg-emerald-950/30 border border-emerald-200 dark:border-emerald-800/60 px-3 py-1 text-xs font-semibold text-emerald-700 dark:text-emerald-400 uppercase tracking-wider">
+                Official
+              </span>
+            )}
+            <span class="inline-flex items-center rounded-full bg-[#5E6AD2]/10 dark:bg-[#818CF8]/10 border border-[#5E6AD2]/20 dark:border-[#818CF8]/20 px-3 py-1 text-xs font-semibold text-[#5E6AD2] dark:text-[#818CF8]">
+              {catLabel}
+            </span>
+          </div>
+
+          {d.description && (
+            <p class="mt-3 text-base text-[#64748B] dark:text-[#8A8F98] leading-relaxed max-w-2xl">
+              {d.description}
+            </p>
+          )}
+
+          {d.author && (
+            <p class="mt-2 text-sm text-[#64748B] dark:text-[#8A8F98]">
+              by <span class="font-medium text-[#0F172A] dark:text-[#EDEDEF]">{d.author}</span>
+            </p>
+          )}
+        </div>
+
+        {d.tools_count && (
+          <div class="shrink-0 rounded-xl border border-gray-200 dark:border-gray-700/60 bg-[#FAFBFC] dark:bg-[#0A0A0F] px-5 py-4 text-center">
+            <div class="text-2xl font-bold text-[#0F172A] dark:text-[#EDEDEF]" style="font-family: 'JetBrains Mono', monospace;">
+              {d.tools_count}
+            </div>
+            <div class="text-xs text-[#64748B] dark:text-[#8A8F98] font-medium uppercase tracking-wider mt-1">Tools</div>
+          </div>
+        )}
+      </div>
+
+      <!-- Links -->
+      <div class="mt-6 flex flex-wrap items-center gap-3">
+        {ghUrl && (
+          <a
+            href={ghUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-[#13131A] px-4 py-2 text-sm font-medium text-[#0F172A] dark:text-[#EDEDEF] hover:border-[#5E6AD2]/40 dark:hover:border-[#818CF8]/40 transition-colors shadow-sm"
+          >
+            <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+            GitHub
+            <svg class="h-3 w-3 text-[#64748B] dark:text-[#8A8F98]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
+          </a>
+        )}
+        {npmUrl && (
+          <a
+            href={npmUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-[#13131A] px-4 py-2 text-sm font-medium text-[#0F172A] dark:text-[#EDEDEF] hover:border-[#5E6AD2]/40 dark:hover:border-[#818CF8]/40 transition-colors shadow-sm"
+          >
+            npm
+            <svg class="h-3 w-3 text-[#64748B] dark:text-[#8A8F98]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
+          </a>
+        )}
+      </div>
+    </div>
+
+    <!-- Install command -->
+    {d.install_command && (
+      <section class="mt-10">
+        <h2 class="flex items-center gap-3 text-lg font-semibold text-[#0F172A] dark:text-[#EDEDEF]">
+          <span class="block w-1 h-6 rounded-full bg-emerald-500 dark:bg-emerald-400"></span>
+          Quick Install
+        </h2>
+        <div class="mt-4 relative group">
+          <pre class="rounded-xl border border-gray-200 dark:border-gray-700/60 bg-[#FAFBFC] dark:bg-[#0A0A0F] px-5 py-4 overflow-x-auto"><code class="text-sm font-mono text-[#0F172A] dark:text-[#EDEDEF]" id="install-cmd">{d.install_command}</code></pre>
+          <button
+            class="copy-btn absolute top-3 right-3 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-[#13131A] px-2.5 py-1.5 text-xs font-medium text-[#64748B] dark:text-[#8A8F98] opacity-0 group-hover:opacity-100 transition-opacity hover:text-[#0F172A] dark:hover:text-[#EDEDEF]"
+            data-target="install-cmd"
+          >
+            Copy
+          </button>
+        </div>
+      </section>
+    )}
+
+    <!-- How to install in Claude Code -->
+    <section class="mt-10">
+      <h2 class="flex items-center gap-3 text-lg font-semibold text-[#0F172A] dark:text-[#EDEDEF]">
+        <span class="block w-1 h-6 rounded-full bg-[#5E6AD2] dark:bg-[#818CF8]"></span>
+        How to Install in Claude Code
+      </h2>
+      <p class="mt-3 text-sm text-[#64748B] dark:text-[#8A8F98] leading-relaxed">
+        Add this to your Claude Code <code class="rounded bg-gray-100 dark:bg-gray-800 px-1.5 py-0.5 text-xs font-mono">settings.json</code> (or <code class="rounded bg-gray-100 dark:bg-gray-800 px-1.5 py-0.5 text-xs font-mono">.claude/settings.json</code> in your project):
+      </p>
+      <div class="mt-4 relative group">
+        <pre class="rounded-xl border border-gray-200 dark:border-gray-700/60 bg-[#FAFBFC] dark:bg-[#0A0A0F] px-5 py-4 overflow-x-auto"><code class="text-sm font-mono text-[#0F172A] dark:text-[#EDEDEF]" id="config-snippet">{configSnippet}</code></pre>
+        <button
+          class="copy-btn absolute top-3 right-3 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-[#13131A] px-2.5 py-1.5 text-xs font-medium text-[#64748B] dark:text-[#8A8F98] opacity-0 group-hover:opacity-100 transition-opacity hover:text-[#0F172A] dark:hover:text-[#EDEDEF]"
+          data-target="config-snippet"
+        >
+          Copy
+        </button>
+      </div>
+    </section>
+  </article>
+
+  <!-- Schema.org -->
+  <script type="application/ld+json" set:html={JSON.stringify(schemaOrg)} />
+
+  <script>
+    document.querySelectorAll<HTMLButtonElement>('.copy-btn').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const targetId = btn.dataset.target;
+        if (!targetId) return;
+        const el = document.getElementById(targetId);
+        if (!el) return;
+        navigator.clipboard.writeText(el.textContent ?? '').then(() => {
+          btn.textContent = 'Copied!';
+          setTimeout(() => { btn.textContent = 'Copy'; }, 2000);
+        });
+      });
+    });
+  </script>
+</BaseLayout>

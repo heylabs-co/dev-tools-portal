@@ -691,7 +691,7 @@ const SPECIALIZATION_MAP: Array<[RegExp, string]> = [
   [/\bbuild tools? and bundler/i, 'cdn-edge'],
 
   // Dashboard (simple) → product-analytics
-  [/^dashboard$/i, 'product-analytics'],
+  [/\bdashboard\b/i, 'product-analytics'],
 
   // Result Types → backend-as-a-service
   [/\bresult types?\b/i, 'backend-as-a-service'],

@@ -226,4 +226,24 @@ const extensions = defineCollection({
   }),
 });
 
-export const collections = { companies, categories, mcpServers, skills, extensions };
+const jetbrainsPlugins = defineCollection({
+  loader: glob({
+    pattern: '**/*.json',
+    base: './data/jetbrains-catalog',
+    generateId: ({ entry }) => entry.replace(/\.json$/, ''),
+  }),
+  schema: z.object({
+    name: z.string(),
+    slug: z.string(),
+    publisher: z.string().optional(),
+    description: z.string().optional(),
+    category: z.string().optional(),
+    ide: z.string().optional(),
+    seo: z.object({
+      title: z.string(),
+      meta_description: z.string(),
+    }).optional(),
+  }),
+});
+
+export const collections = { companies, categories, mcpServers, skills, extensions, jetbrainsPlugins };

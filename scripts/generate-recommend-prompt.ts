@@ -67,8 +67,56 @@ for (const file of files) {
 
 lines.sort();
 
+// Append MCP servers
+const MCP_SERVERS_FILE = join(import.meta.dirname, '..', 'data', 'mcp-servers.json');
+try {
+  const mcpServers = JSON.parse(readFileSync(MCP_SERVERS_FILE, 'utf-8')) as Array<{
+    slug: string; name: string; description: string; category: string; official?: boolean;
+  }>;
+  lines.push('');
+  lines.push('--- MCP SERVERS ---');
+  for (const s of mcpServers) {
+    lines.push(`${s.slug} | ${s.name} | MCP Server | ${s.category} | ${s.official ? 'official' : 'community'}`);
+  }
+  console.log(`Added ${mcpServers.length} MCP servers`);
+} catch (e) {
+  console.warn(`Skipping MCP servers: ${(e as Error).message}`);
+}
+
+// Append AI skills
+const AI_SKILLS_FILE = join(import.meta.dirname, '..', 'data', 'ai-skills.json');
+try {
+  const skills = JSON.parse(readFileSync(AI_SKILLS_FILE, 'utf-8')) as Array<{
+    slug: string; name: string; description: string; category: string; framework?: string; format: string;
+  }>;
+  lines.push('');
+  lines.push('--- AI SKILLS ---');
+  for (const s of skills) {
+    lines.push(`${s.slug} | ${s.name} | AI Skill | ${s.category} | ${s.framework || 'general'} | ${s.format}`);
+  }
+  console.log(`Added ${skills.length} AI skills`);
+} catch (e) {
+  console.warn(`Skipping AI skills: ${(e as Error).message}`);
+}
+
+// Append VS Code extensions
+const EXTENSIONS_FILE = join(import.meta.dirname, '..', 'data', 'vscode-extensions.json');
+try {
+  const extensions = JSON.parse(readFileSync(EXTENSIONS_FILE, 'utf-8')) as Array<{
+    slug: string; name: string; description: string; category: string; publisher: string; vscode_id: string;
+  }>;
+  lines.push('');
+  lines.push('--- VS CODE EXTENSIONS ---');
+  for (const e of extensions) {
+    lines.push(`${e.slug} | ${e.name} | VS Code Extension | ${e.category} | ${e.publisher} | ${e.vscode_id}`);
+  }
+  console.log(`Added ${extensions.length} VS Code extensions`);
+} catch (err) {
+  console.warn(`Skipping VS Code extensions: ${(err as Error).message}`);
+}
+
 const output = lines.join('\n');
 writeFileSync(OUTPUT_FILE, output, 'utf-8');
 
 const sizeKB = (Buffer.byteLength(output, 'utf-8') / 1024).toFixed(1);
-console.log(`Wrote ${lines.length} tools to ${OUTPUT_FILE} (${sizeKB} KB)`);
+console.log(`Wrote ${lines.length} lines to ${OUTPUT_FILE} (${sizeKB} KB)`);

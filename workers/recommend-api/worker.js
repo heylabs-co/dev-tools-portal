@@ -84,6 +84,13 @@ export default {
 
 Given a project description, recommend 3-5 specific tools that best fit the project needs.
 
+In addition to developer tools, you can also recommend:
+- MCP Servers: tools that connect AI assistants to external services
+- AI Skills: cursor rules and coding instructions for AI assistants
+- VS Code Extensions: editor extensions for the recommended stack
+
+When recommending a stack, include relevant MCP servers, skills, and extensions.
+
 Return ONLY valid JSON (no markdown, no code fences) in this exact format:
 {
   "recommendations": [
@@ -96,6 +103,9 @@ Return ONLY valid JSON (no markdown, no code fences) in this exact format:
       "lock_in_level": "low" or "medium" or "high"
     }
   ],
+  "mcp_servers": [{"name": "Server Name", "slug": "server-slug", "reason": "Why this MCP server is useful"}],
+  "skills": [{"name": "Skill Name", "slug": "skill-slug", "reason": "Why this skill helps"}],
+  "extensions": [{"name": "Extension Name", "slug": "extension-slug", "reason": "Why this extension is useful"}],
   "stack_summary": "Brief summary of the recommended stack (1 sentence)"
 }
 
@@ -104,6 +114,8 @@ RULES:
 - Match the exact slug from the catalog.
 - Be specific about WHY each tool fits.
 - Consider budget and lock-in preferences.
+- Include 1-3 relevant MCP servers, skills, and extensions when applicable.
+- MCP servers, skills, and extensions are optional — only include if relevant.
 
 Budget preference: ${budgetLabel}
 Prefer low vendor lock-in: ${prefer_low_lockin ? 'Yes' : 'No'}
@@ -173,6 +185,21 @@ ${TOOL_LIST}`;
 
       return json({
         recommendations: parsed.recommendations,
+        mcp_servers: Array.isArray(parsed.mcp_servers) ? parsed.mcp_servers.slice(0, 5).map((s) => ({
+          name: s.name || '',
+          slug: s.slug || '',
+          reason: s.reason || '',
+        })) : [],
+        skills: Array.isArray(parsed.skills) ? parsed.skills.slice(0, 5).map((s) => ({
+          name: s.name || '',
+          slug: s.slug || '',
+          reason: s.reason || '',
+        })) : [],
+        extensions: Array.isArray(parsed.extensions) ? parsed.extensions.slice(0, 5).map((e) => ({
+          name: e.name || '',
+          slug: e.slug || '',
+          reason: e.reason || '',
+        })) : [],
         stack_summary: parsed.stack_summary || '',
       });
     } catch (e) {

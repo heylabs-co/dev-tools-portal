@@ -41,6 +41,19 @@ const scaleSchema = z.object({
   data_status: z.enum(['confirmed', 'estimated', 'partial']).optional(),
 }).optional();
 
+const healthSchema = z.object({
+  bus_factor: z.number().optional(),
+  last_commit_days_ago: z.number().optional(),
+  release_frequency_days: z.number().optional(),
+  open_issues: z.number().optional(),
+  issue_close_days: z.number().optional(),
+  license: z.string().optional(),
+  stars: z.number().optional(),
+  forks: z.number().optional(),
+  health_score: z.string().optional(),
+  updated_at: z.string().optional(),
+}).optional();
+
 const lockInSchema = z.object({
   level: z.enum(['low', 'medium', 'high']),
   score: z.number().min(0).max(5),
@@ -80,6 +93,7 @@ const companies = defineCollection({
     npm: npmSchema,
     pricing: pricingSchema,
     scale: scaleSchema,
+    health: healthSchema,
 
     scores: z.object({
       lock_in: lockInSchema,

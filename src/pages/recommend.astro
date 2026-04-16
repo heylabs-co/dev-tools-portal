@@ -286,6 +286,60 @@ const breadcrumbs = [
       });
       html += '</div>';
 
+      // Recommended MCP Servers
+      if (data.mcp_servers && data.mcp_servers.length > 0) {
+        html += '<div class="mt-8">';
+        html += '<h3 class="text-lg font-semibold text-[color:var(--color-text)] mb-3">Recommended MCP Servers</h3>';
+        html += '<div class="grid grid-cols-1 sm:grid-cols-2 gap-3">';
+        data.mcp_servers.forEach(function(s) {
+          html +=
+            '<a href="/mcp-servers/' + encodeURIComponent(s.slug) + '/" class="result-card block rounded-lg border border-gray-200/80 dark:border-[rgba(255,255,255,0.08)] bg-white dark:bg-[#13131A] p-4 shadow-sm transition-all duration-150 hover:-translate-y-0.5 hover:shadow-md hover:border-[#5E6AD2]/40 dark:hover:border-[#818CF8]/40">' +
+            '<div class="flex items-center gap-2 mb-1">' +
+            '<span class="text-lg">&#x1F50C;</span>' +
+            '<span class="text-sm font-semibold text-[color:var(--color-text)]">' + escapeHtml(s.name) + '</span>' +
+            '</div>' +
+            (s.reason ? '<p class="text-xs text-[color:var(--color-muted)] leading-relaxed">' + escapeHtml(s.reason) + '</p>' : '') +
+            '</a>';
+        });
+        html += '</div></div>';
+      }
+
+      // Recommended Skills
+      if (data.skills && data.skills.length > 0) {
+        html += '<div class="mt-8">';
+        html += '<h3 class="text-lg font-semibold text-[color:var(--color-text)] mb-3">Recommended Skills</h3>';
+        html += '<div class="grid grid-cols-1 sm:grid-cols-2 gap-3">';
+        data.skills.forEach(function(s) {
+          html +=
+            '<a href="/skills/' + encodeURIComponent(s.slug) + '/" class="result-card block rounded-lg border border-gray-200/80 dark:border-[rgba(255,255,255,0.08)] bg-white dark:bg-[#13131A] p-4 shadow-sm transition-all duration-150 hover:-translate-y-0.5 hover:shadow-md hover:border-[#5E6AD2]/40 dark:hover:border-[#818CF8]/40">' +
+            '<div class="flex items-center gap-2 mb-1">' +
+            '<span class="text-lg">&#x1F9E0;</span>' +
+            '<span class="text-sm font-semibold text-[color:var(--color-text)]">' + escapeHtml(s.name) + '</span>' +
+            '</div>' +
+            (s.reason ? '<p class="text-xs text-[color:var(--color-muted)] leading-relaxed">' + escapeHtml(s.reason) + '</p>' : '') +
+            '</a>';
+        });
+        html += '</div></div>';
+      }
+
+      // Recommended Extensions
+      if (data.extensions && data.extensions.length > 0) {
+        html += '<div class="mt-8">';
+        html += '<h3 class="text-lg font-semibold text-[color:var(--color-text)] mb-3">Recommended Extensions</h3>';
+        html += '<div class="grid grid-cols-1 sm:grid-cols-2 gap-3">';
+        data.extensions.forEach(function(e) {
+          html +=
+            '<a href="/extensions/' + encodeURIComponent(e.slug) + '/" class="result-card block rounded-lg border border-gray-200/80 dark:border-[rgba(255,255,255,0.08)] bg-white dark:bg-[#13131A] p-4 shadow-sm transition-all duration-150 hover:-translate-y-0.5 hover:shadow-md hover:border-[#5E6AD2]/40 dark:hover:border-[#818CF8]/40">' +
+            '<div class="flex items-center gap-2 mb-1">' +
+            '<span class="text-lg">&#x1F9E9;</span>' +
+            '<span class="text-sm font-semibold text-[color:var(--color-text)]">' + escapeHtml(e.name) + '</span>' +
+            '</div>' +
+            (e.reason ? '<p class="text-xs text-[color:var(--color-muted)] leading-relaxed">' + escapeHtml(e.reason) + '</p>' : '') +
+            '</a>';
+        });
+        html += '</div></div>';
+      }
+
       // Export button
       html += '<div class="mt-6 flex justify-center">' +
         '<button onclick="exportRecommendations()" class="inline-flex items-center gap-2 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-[#13131A] px-4 py-2 text-sm font-medium text-[#0F172A] dark:text-[#EDEDEF] hover:border-[#5E6AD2]/40 dark:hover:border-[#818CF8]/40 transition-colors shadow-sm cursor-pointer">' +
@@ -325,6 +379,30 @@ const breadcrumbs = [
         if (rec.reason) md += '- **Why:** ' + rec.reason + '\n';
         md += '\n';
       });
+
+      if (data.mcp_servers && data.mcp_servers.length > 0) {
+        md += '## Recommended MCP Servers\n\n';
+        data.mcp_servers.forEach(function(s) {
+          md += '- **' + s.name + '** — ' + (s.reason || '') + ' ([details](https://tool.news/mcp-servers/' + s.slug + '/))\n';
+        });
+        md += '\n';
+      }
+
+      if (data.skills && data.skills.length > 0) {
+        md += '## Recommended Skills\n\n';
+        data.skills.forEach(function(s) {
+          md += '- **' + s.name + '** — ' + (s.reason || '') + ' ([details](https://tool.news/skills/' + s.slug + '/))\n';
+        });
+        md += '\n';
+      }
+
+      if (data.extensions && data.extensions.length > 0) {
+        md += '## Recommended Extensions\n\n';
+        data.extensions.forEach(function(e) {
+          md += '- **' + e.name + '** — ' + (e.reason || '') + ' ([details](https://tool.news/extensions/' + e.slug + '/))\n';
+        });
+        md += '\n';
+      }
 
       md += '---\n*Generated on ' + new Date().toISOString().split('T')[0] + ' by [tool.news](https://tool.news)*\n';
 

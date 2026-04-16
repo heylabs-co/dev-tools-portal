@@ -105,7 +105,59 @@ const categories: Category[] = readdirSync(categoriesDir)
   .filter(f => f.endsWith('.json'))
   .map(f => JSON.parse(readFileSync(join(categoriesDir, f), 'utf-8')));
 
-console.error(`Loaded ${companies.length} companies, ${categories.length} categories`);
+// Load MCP servers
+interface McpServerEntry {
+  name: string;
+  slug: string;
+  description: string;
+  github_repo?: string;
+  category: string;
+  official?: boolean;
+}
+
+const mcpServersFile = join(DATA_DIR, 'mcp-servers.json');
+let mcpServers: McpServerEntry[] = [];
+try {
+  mcpServers = JSON.parse(readFileSync(mcpServersFile, 'utf-8'));
+} catch { /* file may not exist */ }
+
+// Load AI skills
+interface AiSkill {
+  name: string;
+  slug: string;
+  description: string;
+  source_url?: string;
+  author?: string;
+  category: string;
+  framework?: string;
+  format: string;
+  stars?: number;
+}
+
+const aiSkillsFile = join(DATA_DIR, 'ai-skills.json');
+let aiSkills: AiSkill[] = [];
+try {
+  aiSkills = JSON.parse(readFileSync(aiSkillsFile, 'utf-8'));
+} catch { /* file may not exist */ }
+
+// Load VS Code extensions
+interface VscodeExtension {
+  name: string;
+  slug: string;
+  publisher: string;
+  description: string;
+  category: string;
+  installs?: string;
+  vscode_id: string;
+}
+
+const vscodeExtensionsFile = join(DATA_DIR, 'vscode-extensions.json');
+let vscodeExtensions: VscodeExtension[] = [];
+try {
+  vscodeExtensions = JSON.parse(readFileSync(vscodeExtensionsFile, 'utf-8'));
+} catch { /* file may not exist */ }
+
+console.error(`Loaded ${companies.length} companies, ${categories.length} categories, ${mcpServers.length} MCP servers, ${aiSkills.length} AI skills, ${vscodeExtensions.length} VS Code extensions`);
 
 // --- Format helpers ---
 function formatCompanyBrief(c: Company): string {
@@ -191,13 +243,17 @@ function formatCompanyFull(c: Company): string {
 const server = new McpServer(
   { name: 'devtools-portal', version: '1.0.0' },
   {
-    instructions: `tool.news MCP Server — search, compare, and get recommendations for 630+ developer tools.
+    instructions: `tool.news MCP Server — search, compare, and get recommendations for 630+ developer tools, MCP servers, AI skills, and VS Code extensions.
 Available tools:
 - search_tools: Search by keyword or category
 - get_tool: Get full details for a specific tool
 - compare_tools: Side-by-side comparison of two tools
 - list_categories: Browse all 42 tool categories
-- recommend_stack: Get tool recommendations for a use case`,
+- recommend_stack: Get tool recommendations for a use case
+- search_mcp_servers: Search MCP servers catalog
+- get_mcp_server: Get details of a specific MCP server
+- search_skills: Search AI coding skills
+- search_extensions: Search VS Code extensions`,
   }
 );
 
@@ -435,6 +491,175 @@ server.tool(
     recommendations.push(`\n---\nUse get_tool or compare_tools for deeper analysis of any recommended tool.`);
 
     return { content: [{ type: 'text', text: recommendations.join('\n') }] };
+  }
+);
+
+// 6. Search MCP servers
+server.tool(
+  'search_mcp_servers',
+  'Search the MCP servers catalog by keyword or category. Returns matching servers with descriptions, categories, and install info.',
+  {
+    query: z.string().describe('Search keyword (server name, description, or feature)'),
+    category: z.string().optional().describe('Filter by category (e.g. "database", "cloud", "communication", "code", "search", "ai", "other")'),
+  },
+  async ({ query, category }) => {
+    let results = mcpServers;
+
+    if (category) {
+      results = results.filter(s => s.category === category);
+    }
+
+    const q = query.toLowerCase();
+    results = results.filter(s =>
+      s.name.toLowerCase().includes(q) ||
+      s.description.toLowerCase().includes(q) ||
+      s.category.toLowerCase().includes(q) ||
+      s.slug.includes(q)
+    );
+
+    if (results.length === 0) {
+      return { content: [{ type: 'text', text: `No MCP servers found matching "${query}"${category ? ` in category "${category}"` : ''}.` }] };
+    }
+
+    const text = results.slice(0, 15).map(s => {
+      const parts = [
+        `**${s.name}**${s.official ? ' (Official)' : ''}`,
+        s.description,
+        `Category: ${s.category}`,
+        `Slug: ${s.slug}`,
+      ];
+      if (s.github_repo) parts.push(`Install: \`npx -y @modelcontextprotocol/server-${s.slug}\``);
+      return parts.join('\n');
+    }).join('\n\n---\n\n');
+
+    return { content: [{ type: 'text', text: `Found ${results.length} MCP servers${results.length > 15 ? ' (showing 15)' : ''}:\n\n${text}` }] };
+  }
+);
+
+// 7. Get MCP server details
+server.tool(
+  'get_mcp_server',
+  'Get full details for a specific MCP server including install command and config snippet.',
+  {
+    slug: z.string().describe('MCP server slug (e.g. "filesystem", "brave-search", "github")'),
+  },
+  async ({ slug }) => {
+    const server = mcpServers.find(s => s.slug === slug);
+    if (!server) {
+      const fuzzy = mcpServers.find(s => s.name.toLowerCase() === slug.toLowerCase());
+      if (fuzzy) {
+        const s = fuzzy;
+        return { content: [{ type: 'text', text: formatMcpServer(s) }] };
+      }
+      return { content: [{ type: 'text', text: `MCP server "${slug}" not found. Try search_mcp_servers to find the correct slug.` }] };
+    }
+    return { content: [{ type: 'text', text: formatMcpServer(server) }] };
+  }
+);
+
+function formatMcpServer(s: McpServerEntry): string {
+  const sections = [
+    `# ${s.name}${s.official ? ' (Official)' : ''}`,
+    s.description,
+    `\n**Category:** ${s.category}`,
+    `**Slug:** ${s.slug}`,
+  ];
+  if (s.github_repo) {
+    sections.push(`**GitHub:** https://github.com/${s.github_repo}`);
+    sections.push(`\n## Install\n\`\`\`\nnpx -y @modelcontextprotocol/server-${s.slug}\n\`\`\``);
+    sections.push(`\n## Config Snippet\n\`\`\`json\n{\n  "mcpServers": {\n    "${s.slug}": {\n      "command": "npx",\n      "args": ["-y", "@modelcontextprotocol/server-${s.slug}"]\n    }\n  }\n}\n\`\`\``);
+  }
+  sections.push(`\nMore details: https://tool.news/mcp-servers/${s.slug}/`);
+  return sections.join('\n');
+}
+
+// 8. Search AI skills
+server.tool(
+  'search_skills',
+  'Search AI coding skills (cursor rules, Claude skills, Copilot instructions). Returns matching skills with descriptions and formats.',
+  {
+    query: z.string().describe('Search keyword (skill name, framework, or description)'),
+    framework: z.string().optional().describe('Filter by framework (e.g. "react", "nextjs", "python", "angular")'),
+    format: z.string().optional().describe('Filter by format: "cursorrules", "claude-skill", or "copilot"'),
+  },
+  async ({ query, framework, format }) => {
+    let results = aiSkills;
+
+    if (framework) {
+      const fw = framework.toLowerCase();
+      results = results.filter(s => (s.framework || '').toLowerCase().includes(fw));
+    }
+
+    if (format) {
+      results = results.filter(s => s.format === format);
+    }
+
+    const q = query.toLowerCase();
+    results = results.filter(s =>
+      s.name.toLowerCase().includes(q) ||
+      s.description.toLowerCase().includes(q) ||
+      (s.framework || '').toLowerCase().includes(q) ||
+      s.slug.includes(q)
+    );
+
+    if (results.length === 0) {
+      return { content: [{ type: 'text', text: `No AI skills found matching "${query}"${framework ? ` for framework "${framework}"` : ''}${format ? ` in format "${format}"` : ''}.` }] };
+    }
+
+    const text = results.slice(0, 15).map(s => {
+      const parts = [
+        `**${s.name}**`,
+        s.description,
+        `Category: ${s.category} | Format: ${s.format}`,
+      ];
+      if (s.framework) parts.push(`Framework: ${s.framework}`);
+      if (s.author) parts.push(`Author: ${s.author}`);
+      return parts.join('\n');
+    }).join('\n\n---\n\n');
+
+    return { content: [{ type: 'text', text: `Found ${results.length} AI skills${results.length > 15 ? ' (showing 15)' : ''}:\n\n${text}` }] };
+  }
+);
+
+// 9. Search VS Code extensions
+server.tool(
+  'search_extensions',
+  'Search VS Code extensions. Returns matching extensions with descriptions, publishers, and install counts.',
+  {
+    query: z.string().describe('Search keyword (extension name, description, or publisher)'),
+    category: z.string().optional().describe('Filter by category (e.g. "ai", "productivity", "language", "theme", "testing")'),
+  },
+  async ({ query, category }) => {
+    let results = vscodeExtensions;
+
+    if (category) {
+      results = results.filter(e => e.category === category);
+    }
+
+    const q = query.toLowerCase();
+    results = results.filter(e =>
+      e.name.toLowerCase().includes(q) ||
+      e.description.toLowerCase().includes(q) ||
+      e.publisher.toLowerCase().includes(q) ||
+      e.slug.includes(q)
+    );
+
+    if (results.length === 0) {
+      return { content: [{ type: 'text', text: `No VS Code extensions found matching "${query}"${category ? ` in category "${category}"` : ''}.` }] };
+    }
+
+    const text = results.slice(0, 15).map(e => {
+      const parts = [
+        `**${e.name}** by ${e.publisher}`,
+        e.description,
+        `Category: ${e.category}`,
+      ];
+      if (e.installs) parts.push(`Installs: ${e.installs}`);
+      parts.push(`Install: \`ext install ${e.vscode_id}\``);
+      return parts.join('\n');
+    }).join('\n\n---\n\n');
+
+    return { content: [{ type: 'text', text: `Found ${results.length} VS Code extensions${results.length > 15 ? ' (showing 15)' : ''}:\n\n${text}` }] };
   }
 );
 

@@ -402,6 +402,299 @@ const SPECIALIZATION_MAP: Array<[RegExp, string]> = [
   [/\b(ml experiment|feature store|reinforcement learning|ml framework|ml demo|ai testing|ai productivity|ml app)\b/i, 'ai-api-sdk'],
   // Web scraping → api-management
   [/\b(web scraping|web crawling|html parser|beautiful soup|colly)\b/i, 'api-management'],
+
+  // ── NEW PATTERNS ──────────────────────────────────────────────────────────
+
+  // Backup & Disaster Recovery → object-storage-media (closest infra category)
+  [/\b(backup|disaster recovery|data recovery|data backup|data protection|ransomware protection|business continuity|data resilience)\b/i, 'object-storage-media'],
+
+  // Cloud Provider → cdn-edge (closest infra category)
+  [/\b(cloud provider|sovereign cloud|cloud platform|iaas|infrastructure as a service|vps provider|bare metal cloud)\b/i, 'cdn-edge'],
+
+  // FinOps / Cloud Cost Management → observability (closest ops category)
+  [/\b(finops|cloud cost|cost management|cost optimization|cloud spend|cloud resource management|cloud resource optimization|cloud management platform|itfm|it financial management|cloud governance)\b/i, 'observability'],
+
+  // Multi-cluster / Multi-cloud Management → cdn-edge
+  [/\b(multi.cloud|multi.cluster|multi cluster|federation|hybrid cloud|cross.cluster|cluster management)\b/i, 'cdn-edge'],
+
+  // Internationalization / i18n → localization (already a category)
+  [/\b(internationali|i18n|l10n|intl\b|next\.js internationali|react internationali|locali|translat|multilingual|language management)\b/i, 'localization'],
+  [/\b(date.?time utilities|date utilities|date library|date parsing|date formatting|time zone)\b/i, 'api-management'],
+
+  // Charting / Data Visualization → product-analytics
+  [/\b(charting library|chart library|data visualization library|3d rendering|mapping library|graph visualization)\b/i, 'product-analytics'],
+
+  // Build Tools & Bundlers → cdn-edge (infra / dev tooling)
+  [/\b(build tool|build tooling|bundler|module bundler|javascript bundler|transpiler|compiler|minifier|code transformer|rollup|webpack|vite|esbuild|parcel)\b/i, 'cdn-edge'],
+
+  // Release Tooling / Changelog → release-app-store
+  [/\b(release tool|release tooling|changelog|changesets|semantic release|version bump|npm publish|release automation|release script)\b/i, 'release-app-store'],
+
+  // Git Hooks → code-assistants
+  [/\b(git hooks?|pre.commit hook|commit hook|commit lint|commitlint|husky|lefthook|lint.staged)\b/i, 'code-assistants'],
+
+  // Code Formatting & Linting → code-assistants
+  [/\b(code formatting|code linting|linting|formatter|linter|biome|prettier|eslint|stylelint|rome|dprint|ultracite)\b/i, 'code-assistants'],
+
+  // Visual Testing / Visual Regression → test-automation
+  [/\b(visual testing|visual regression|screenshot testing|visual comparison|visual diff|pixel testing)\b/i, 'test-automation'],
+
+  // Load Testing → test-automation
+  [/\b(load testing|load test|stress test|benchmark tool|http load|performance test|k6|artillery|autocannon|ddosify|nighthawk)\b/i, 'test-automation'],
+
+  // Accessibility Testing → test-automation
+  [/\b(accessibility testing|accessibility test|a11y|wcag|axe.core|pa11y|lighthouse audit)\b/i, 'test-automation'],
+
+  // Integration Testing (containers etc.) → test-automation
+  [/\b(integration testing|integration test|testcontainers)\b/i, 'test-automation'],
+
+  // Form Management → no-code-low-code
+  [/\b(form management|form library|form validation|form builder|form state|react form|formik)\b/i, 'no-code-low-code'],
+
+  // Schema Validation → backend-as-a-service (closest match for runtime libs)
+  [/\b(schema validation|schema library|data validation library|type validation|runtime validation|zod|yup|superstruct|typebox|valibot|arktype|vine)\b/i, 'backend-as-a-service'],
+
+  // Self-Hosted App Platform / Server Management → cdn-edge
+  [/\b(self.hosted app|self.hosted platform|server management|server control panel|server panel|paas panel|app platform|cloud panel)\b/i, 'cdn-edge'],
+
+  // GUI Framework (non-web) → no-code-low-code
+  [/\b(gui framework|desktop gui|python gui|native gui|cross.platform gui|tkinter|wxpython|flet|toga|nicegui|dear imgui)\b/i, 'no-code-low-code'],
+
+  // Desktop App Framework → no-code-low-code
+  [/\b(desktop app|desktop application|desktop framework|electron alternative|webview app)\b/i, 'no-code-low-code'],
+
+  // Email Templates / Framework → messaging-api
+  [/\b(email template|email framework|email markup|email component|email rendering|email development|mjml|heml|maizzle|react email)\b/i, 'messaging-api'],
+
+  // PDF / Document processing → api-management
+  [/\b(pdf (manipulation|rendering|processing|generation|library|reading)|docx generation|excel processing|spreadsheet processing|csv parsing|openpyxl|xlsx|xlsxwriter)\b/i, 'api-management'],
+
+  // Audio processing → object-storage-media
+  [/\b(audio processing|audio library|audio analysis|sound processing|pydub|soundfile)\b/i, 'object-storage-media'],
+
+  // State Machine → backend-as-a-service
+  [/\b(state machine|statechart|xstate|stately)\b/i, 'backend-as-a-service'],
+
+  // Unique ID Generation → api-management
+  [/\b(unique id|uuid generation|id generation|nanoid|cuid|ulid)\b/i, 'api-management'],
+
+  // Dependency Injection → backend-as-a-service
+  [/\b(dependency injection|di container|ioc container|inversion of control)\b/i, 'backend-as-a-service'],
+
+  // Process Management / Dev Server → cdn-edge
+  [/\b(process management|process manager|process monitor|live reload|dev server|hot reload|nodemon|pm2)\b/i, 'cdn-edge'],
+
+  // Cache utilities → backend-as-a-service
+  [/\b(cache management|cache utility|cache library|in.memory cache|lru cache|cache layer)\b/i, 'backend-as-a-service'],
+
+  // DOM Simulation / Testing → test-automation
+  [/\b(dom simulation|dom emulation|headless dom|jsdom|happy.dom|linkedom)\b/i, 'test-automation'],
+
+  // Translation API (distinct from localization platform) → localization
+  [/\b(translation api|machine translation|ai translation|language translation|deepl|lilt|gtranslate|weblate|transifex)\b/i, 'localization'],
+
+  // Bot Framework → messaging-api
+  [/\b(bot framework|chatbot framework|discord bot|telegram bot|slack bot|social api)\b/i, 'messaging-api'],
+
+  // SDK Generation → api-management
+  [/\b(sdk generation|sdk generator|client generation|api client generation|openapi generation|apimatic|liblab)\b/i, 'api-management'],
+
+  // 3D Graphics / Rendering → no-code-low-code
+  [/\b(3d graphics|3d library|3d rendering|webgl|three\.?js|react three fiber)\b/i, 'no-code-low-code'],
+
+  // Dashboard (non-analytics) → product-analytics
+  [/\b(dashboard library|dashboard framework|reactive dashboard|data dashboard|panel dashboard)\b/i, 'product-analytics'],
+
+  // Graph Analysis / Scientific → data-integration-etl
+  [/\b(graph analysis|graph library|network analysis|networkx|statistical analysis|quantitative finance|backtesting|financial data|financial library|units library|computer algebra|sympy)\b/i, 'data-integration-etl'],
+
+  // Async Framework (Python etc.) → backend-as-a-service
+  [/\b(async framework|async runtime|async library|asyncio|trio|anyio|uvloop|twisted|event loop)\b/i, 'backend-as-a-service'],
+
+  // Overlay Networking / VPN mesh → cdn-edge
+  [/\b(overlay network|mesh network|wireguard|network management|virtual network|peer.to.peer network|zerotier|nebula network|netmaker|skupper|submariner)\b/i, 'cdn-edge'],
+
+  // Message Queue service (hosted) → realtime-websocket
+  [/\b(message queue service|hosted message queue|amqp|rabbitmq hosting|cloudamqp|message broker)\b/i, 'realtime-websocket'],
+
+  // ZeroMQ / messaging library → realtime-websocket
+  [/\b(zeromq|zmq|pyzmq|messaging library|socket messaging)\b/i, 'realtime-websocket'],
+
+  // Collaborative Editing (CRDT) → realtime-websocket
+  [/\b(crdt|collaborative editing|conflict.free|operational transform|yjs|automerge)\b/i, 'realtime-websocket'],
+
+  // Developer Utilities (misc) → code-assistants
+  [/\b(developer utilities|developer utility|utility library|utilities library|command runner|process execution|concurrently|cross.env)\b/i, 'code-assistants'],
+
+  // Type Checker → code-assistants
+  [/\b(type checker|type checking|static type|pyright|pyre|pytype|beartype|mypy)\b/i, 'code-assistants'],
+
+  // Syntax Highlighter → code-assistants
+  [/\b(syntax highlight|code highlight|pygments)\b/i, 'code-assistants'],
+
+  // JIT Compiler / C Extension → cdn-edge
+  [/\b(jit compiler|c extension|python extension|numba|cython)\b/i, 'cdn-edge'],
+
+  // Maps SDK (specific libraries) → maps-geolocation
+  [/\b(maps sdk|mapping sdk|map library|mapping library|geolocation sdk|here maps|mapbox|leaflet|folium)\b/i, 'maps-geolocation'],
+
+  // Web Performance / Audit tool → test-automation
+  [/\b(web performance|performance audit|lighthouse|web audit|performance profiling)\b/i, 'test-automation'],
+
+  // Enrichment API → api-management
+  [/\b(enrichment api|data enrichment|lead enrichment api|company enrichment|clearbit)\b/i, 'api-management'],
+
+  // IP Geolocation → maps-geolocation
+  [/\b(ip geolocation|ip data|ip api|ip address api)\b/i, 'maps-geolocation'],
+
+  // Secure Tunneling → cdn-edge
+  [/\b(secure tunnel|tunneling|tunnel service|ingress tunnel|cloudflare tunnel|ngrok)\b/i, 'cdn-edge'],
+
+  // Edge Cloud Platform → cdn-edge
+  [/\b(edge cloud|edge platform|multi.cloud delivery)\b/i, 'cdn-edge'],
+
+  // Observability Pipeline / Telemetry → observability
+  [/\b(observability pipeline|log pipeline|telemetry pipeline|data pipeline observ|cribl|edge delta)\b/i, 'observability'],
+
+  // Open source observability → observability
+  [/\b(open.?source observability|observability platform|observability tool|coroot|signoz|hyperdx|middleware\.io)\b/i, 'observability'],
+
+  // Network Observability → observability
+  [/\b(network observability|ebpf observability|hubble|cilium observability)\b/i, 'observability'],
+
+  // Result Types / Error Handling → backend-as-a-service
+  [/\b(result type|error handling library|neverthrow|fp.ts|functional programming|result monad)\b/i, 'backend-as-a-service'],
+
+  // Floating UI / Headless UI → no-code-low-code
+  [/\b(floating (elements?|ui|tooltip)|headless ui|headless component|unstyled component|ark.ui|radix)\b/i, 'no-code-low-code'],
+
+  // Headless Table / Virtualization → no-code-low-code
+  [/\b(headless table|table library|virtualization library|virtual scroll|tanstack)\b/i, 'no-code-low-code'],
+
+  // SVG Optimization → api-management
+  [/\b(svg optim|svgo)\b/i, 'api-management'],
+
+  // TypeScript Execution → code-assistants
+  [/\b(typescript execution|ts.node|tsx execution|ts execution runtime)\b/i, 'code-assistants'],
+
+  // Type Safe API Layer → api-management
+  [/\b(type.safe api|type safe api layer|ts.rest|tRPC)\b/i, 'api-management'],
+
+  // PWA Plugin → cdn-edge
+  [/\b(pwa plugin|progressive web app|service worker plugin)\b/i, 'cdn-edge'],
+
+  // Theme Management → no-code-low-code
+  [/\b(theme management|theme provider|dark mode|color scheme)\b/i, 'no-code-low-code'],
+
+  // Drawer / UI Component → no-code-low-code
+  [/\b(drawer component|ui component library|headless drawer|vaul)\b/i, 'no-code-low-code'],
+
+  // Glob Matching / File utilities → code-assistants
+  [/\b(glob matching|file globbing|globby|micromatch|fast.glob)\b/i, 'code-assistants'],
+
+  // HTML Parsing & Scraping → api-management
+  [/\b(html parsing|html scraping|cheerio|htmlparser2)\b/i, 'api-management'],
+
+  // Retry Library → backend-as-a-service
+  [/\b(retry library|retry logic|tenacity|backoff)\b/i, 'backend-as-a-service'],
+
+  // HTTP Mocking → test-automation
+  [/\b(http mock|api mock|request mock|nock|msw|mock service worker)\b/i, 'test-automation'],
+
+  // Projen / Project Config → code-assistants
+  [/\b(project config|project configuration|project scaffold|projen)\b/i, 'code-assistants'],
+
+  // Permissions Service → identity-auth
+  [/\b(permissions service|authorization service|access policy|ory.keto|zanzibar)\b/i, 'identity-auth'],
+
+  // Distributed File System → object-storage-media
+  [/\b(distributed file system|distributed storage|juicefs|ceph|lustre)\b/i, 'object-storage-media'],
+
+  // Atomic CSS / CSS engine → code-assistants
+  [/\b(atomic css|css engine|utility css|unocss|tailwind engine)\b/i, 'code-assistants'],
+
+  // Developer APIs (multi-purpose) → api-management
+  [/\b(developer apis?|developer api platform|multi.purpose developer api)\b/i, 'api-management'],
+
+  // Commit lint / versioning → code-assistants
+  [/\b(commit linting|commit message|conventional commit|commitlint)\b/i, 'code-assistants'],
+
+  // Mapping (data mapping / object mapping) – avoid false positives with maps
+  // (already handled by maps-geolocation above for map libraries)
+
+  // Cloud SDK / CLI → api-management
+  [/\b(cloud sdk|cloud cli|aws sdk|google cloud sdk|azure sdk)\b/i, 'api-management'],
+
+  // Accessibility auditing / WCAG → test-automation
+  [/\b(wcag audit|accessibility audit|a11y audit|deque|axe)\b/i, 'test-automation'],
+
+  // Placeholder for special-named companies
+  // "drizz" and "panto" have names matching the CI/CD description template – keep in ci-cd detection
+
+  // ── FINAL CATCHALL PATTERNS for remaining edge cases ──────────────────────
+
+  // "Internationalization" (specialization exact word) → localization
+  [/^internationali/i, 'localization'],
+  [/\bInternationalization\b/i, 'localization'],
+  [/\blocalization platform\b/i, 'localization'],
+
+  // Date/Time utilities → api-management
+  [/\bdate\/time\b/i, 'api-management'],
+  [/\bdate.?time\b/i, 'api-management'],
+  [/\bdate utilities\b/i, 'api-management'],
+
+  // Data Classes / Utilities (Python libs) → code-assistants
+  [/\bdata classes\b/i, 'code-assistants'],
+  [/\butilities\b/i, 'code-assistants'],
+
+  // ML Inference Platform → ai-api-sdk
+  [/\bml inference\b/i, 'ai-api-sdk'],
+  [/\binference platform\b/i, 'ai-api-sdk'],
+
+  // File Watching → code-assistants
+  [/\bfile watching\b/i, 'code-assistants'],
+  [/\bfile watcher\b/i, 'code-assistants'],
+
+  // Media Management SDK → object-storage-media
+  [/\bmedia management\b/i, 'object-storage-media'],
+
+  // Command Menu (UI) → no-code-low-code
+  [/\bcommand menu\b/i, 'no-code-low-code'],
+
+  // Email Client SDK → messaging-api
+  [/\bemail client\b/i, 'messaging-api'],
+
+  // Task Monitoring → observability
+  [/\btask monitor/i, 'observability'],
+  [/\btask management\b/i, 'observability'],
+
+  // Cache Utilities → backend-as-a-service
+  [/\bcache utilit/i, 'backend-as-a-service'],
+
+  // Software Composition Analysis → security-scanning
+  [/\bsoftware composition\b/i, 'security-scanning'],
+  [/\bcomposition analysis\b/i, 'security-scanning'],
+  [/\bsca\b/i, 'security-scanning'],
+
+  // Developer Cloud (with CI & Builds context but NOT truly ci-cd) → cdn-edge
+  [/\bdeveloper cloud\b/i, 'cdn-edge'],
+  [/\bcloud application framework\b/i, 'cdn-edge'],
+
+  // Overlay Networking → cdn-edge
+  [/\boverlay network/i, 'cdn-edge'],
+
+  // Analytics SDK → product-analytics
+  [/\banalytics sdk\b/i, 'product-analytics'],
+
+  // Build Tools & Bundlers (exact phrase) → cdn-edge
+  [/\bbuild tools? & bundler/i, 'cdn-edge'],
+  [/\bbuild tools? and bundler/i, 'cdn-edge'],
+
+  // Dashboard (simple) → product-analytics
+  [/^dashboard$/i, 'product-analytics'],
+
+  // Result Types → backend-as-a-service
+  [/\bresult types?\b/i, 'backend-as-a-service'],
 ];
 
 // Keywords to extract "Specializes in X" from description
@@ -430,6 +723,13 @@ function isTrulyCiCd(name: string, description: string): boolean {
   // Only check name + specialization, NOT the full description
   // (all ci-cd companies have "CI/CD for Applications" in the description template text)
   const specialization = extractSpecialization(description);
+  // If there is NO specialization, the description is just the template/title with no extra info.
+  // In that case, check if the description itself has a CI/CD indicator beyond the template.
+  if (!specialization) {
+    // These are placeholder entries with no real content — treat as staying in ci-cd
+    // only if their name itself matches CI/CD keywords, otherwise leave them unmatched.
+    return REAL_CICD_KEYWORDS.test(name.toLowerCase());
+  }
   const text = `${name} ${specialization}`.toLowerCase();
   return REAL_CICD_KEYWORDS.test(text);
 }

@@ -1,6 +1,10 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Breadcrumbs from '../components/Breadcrumbs.astro';
+import { getCollection } from 'astro:content';
+
+const companies = await getCollection('companies');
+const totalEntries = companies.length + 377 + 660 + 356 + 229; // tools + MCP + skills + vscode + jetbrains
 
 const breadcrumbs = [
   { label: 'Home', href: '/' },
@@ -10,7 +14,7 @@ const breadcrumbs = [
 
 <BaseLayout
   title="AI Tool Recommender"
-  description="Describe your project and get AI-powered developer tool recommendations. Our AI analyzes 1,700+ tools to suggest the best stack for your needs — pricing, lock-in, and compatibility."
+  description={`Describe your project and get AI-powered developer tool recommendations. Our AI analyzes ${totalEntries.toLocaleString()}+ entries to suggest the best stack — tools, MCP servers, skills, and extensions.`}
 >
   <section class="mx-auto max-w-3xl px-4 pt-8 pb-4">
     <Breadcrumbs items={breadcrumbs} />
@@ -156,7 +160,7 @@ const breadcrumbs = [
     }
   </style>
 
-  <script is:inline>
+  <script is:inline define:vars={{ totalEntries }}>
     var RECOMMEND_API = 'https://devtools-recommend-api.sssands.workers.dev';
 
     document.getElementById('recommend-btn').addEventListener('click', async function () {
@@ -176,7 +180,7 @@ const breadcrumbs = [
       // Fake progress bar with steps
       var steps = [
         { pct: 10, text: 'Analyzing your project description...', time: 800 },
-        { pct: 25, text: 'Searching 5,500+ developer tools...', time: 1500 },
+        { pct: 25, text: 'Searching ' + totalEntries.toLocaleString() + '+ entries...', time: 1500 },
         { pct: 45, text: 'Matching MCP servers & AI skills...', time: 2000 },
         { pct: 65, text: 'Comparing pricing & lock-in scores...', time: 3000 },
         { pct: 80, text: 'Building your recommended stack...', time: 5000 },

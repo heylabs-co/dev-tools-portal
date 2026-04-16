@@ -172,16 +172,57 @@ const breadcrumbs = [
       var results = document.getElementById('recommend-results');
 
       btn.disabled = true;
-      btn.textContent = 'Thinking...';
 
-      // Show loading skeletons
+      // Fake progress bar with steps
+      var steps = [
+        { pct: 10, text: 'Analyzing your project description...', time: 800 },
+        { pct: 25, text: 'Searching 5,500+ developer tools...', time: 1500 },
+        { pct: 45, text: 'Matching MCP servers & AI skills...', time: 2000 },
+        { pct: 65, text: 'Comparing pricing & lock-in scores...', time: 3000 },
+        { pct: 80, text: 'Building your recommended stack...', time: 5000 },
+        { pct: 92, text: 'Almost ready...', time: 8000 },
+      ];
+
       results.innerHTML =
-        '<div class="space-y-4">' +
-        '<div class="skeleton h-36 w-full"></div>' +
-        '<div class="skeleton h-36 w-full"></div>' +
-        '<div class="skeleton h-36 w-full"></div>' +
+        '<div class="rounded-xl border border-gray-200 dark:border-gray-700/60 bg-white dark:bg-[#13131A] p-8">' +
+          '<div class="flex items-center gap-3 mb-4">' +
+            '<div class="h-8 w-8 rounded-lg bg-[#5E6AD2]/10 dark:bg-[#818CF8]/10 flex items-center justify-center">' +
+              '<svg class="h-4 w-4 text-[#5E6AD2] dark:text-[#818CF8] animate-spin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4m0 12v4m-7.07-3.93l2.83-2.83m8.48-8.48l2.83-2.83M2 12h4m12 0h4M4.93 4.93l2.83 2.83m8.48 8.48l2.83 2.83"/></svg>' +
+            '</div>' +
+            '<div class="flex-1">' +
+              '<p id="progress-text" class="text-sm font-medium text-[#0F172A] dark:text-[#EDEDEF]">Analyzing your project description...</p>' +
+              '<div class="mt-2 h-2 w-full rounded-full bg-gray-100 dark:bg-gray-800 overflow-hidden">' +
+                '<div id="progress-bar" class="h-full rounded-full bg-gradient-to-r from-[#5E6AD2] to-[#818CF8] transition-all duration-700 ease-out" style="width: 5%"></div>' +
+              '</div>' +
+            '</div>' +
+            '<span id="progress-pct" class="text-xs font-mono text-[#64748B] dark:text-[#8A8F98]">5%</span>' +
+          '</div>' +
+          '<div class="flex gap-1.5 mt-3">' +
+            '<div class="h-1 flex-1 rounded-full bg-gray-100 dark:bg-gray-800"><div class="progress-dot h-full rounded-full bg-[#5E6AD2]/30 dark:bg-[#818CF8]/30" style="width:0%;transition:width 0.5s"></div></div>'.repeat(5) +
+          '</div>' +
         '</div>';
       results.classList.remove('hidden');
+
+      var progressBar = document.getElementById('progress-bar');
+      var progressText = document.getElementById('progress-text');
+      var progressPct = document.getElementById('progress-pct');
+      var dots = results.querySelectorAll('.progress-dot');
+      var startTime = Date.now();
+
+      var progressInterval = setInterval(function() {
+        var elapsed = Date.now() - startTime;
+        for (var i = steps.length - 1; i >= 0; i--) {
+          if (elapsed >= steps[i].time) {
+            progressBar.style.width = steps[i].pct + '%';
+            progressText.textContent = steps[i].text;
+            progressPct.textContent = steps[i].pct + '%';
+            // Fill dots
+            var dotIdx = Math.min(Math.floor(steps[i].pct / 20), dots.length - 1);
+            for (var j = 0; j <= dotIdx; j++) { dots[j].style.width = '100%'; }
+            break;
+          }
+        }
+      }, 300);
 
       try {
         var res = await fetch(RECOMMEND_API, {
@@ -197,8 +238,16 @@ const breadcrumbs = [
         if (!res.ok) throw new Error('API error ' + res.status);
 
         var data = await res.json();
+        clearInterval(progressInterval);
+        // Complete animation
+        if (progressBar) { progressBar.style.width = '100%'; }
+        if (progressPct) { progressPct.textContent = '100%'; }
+        if (progressText) { progressText.textContent = 'Done! Here are your recommendations.'; }
+        dots.forEach(function(d) { d.style.width = '100%'; });
+        await new Promise(function(r) { setTimeout(r, 500); });
         renderResults(data);
       } catch (e) {
+        clearInterval(progressInterval);
         results.innerHTML =
           '<div class="rounded-xl border border-red-200 dark:border-red-900/50 bg-red-50 dark:bg-red-950/30 p-5 text-center">' +
           '<p class="text-red-600 dark:text-red-400 font-medium">Failed to get recommendations. Please try again.</p>' +

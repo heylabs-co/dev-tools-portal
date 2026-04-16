@@ -58,5 +58,19 @@
   },
   "npm": {
     "package": "@azure/openai"
+  },
+  "review": {
+    "verdict": "Best for api gateway and rate limiting. Azure OpenAI Service offers subscription from $1.",
+    "pros": [
+      "API gateway and rate limiting",
+      "Developer portal for external APIs",
+      "Generous free tier for getting started"
+    ],
+    "cons": [
+      "Internal APIs with few consumers",
+      "Simple REST endpoints"
+    ],
+    "best_for": "API gateway and rate limiting",
+    "not_for": "Internal, Simple projects"
   }
 }

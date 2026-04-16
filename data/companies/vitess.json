@@ -2,7 +2,7 @@
   "id": "COMP-1450",
   "slug": "vitess",
   "name": "Vitess",
-  "description": "Vitess \u2014 CDN / Edge / Acceleration tool for developers. Specializes in Database Clustering.",
+  "description": "Vitess — CDN / Edge / Acceleration tool for developers. Specializes in Database Clustering.",
   "website": "https://vitess.io",
   "logo": "https://logo.clearbit.com/vitess.io",
   "hq_country": "US",
@@ -42,5 +42,16 @@
     "consider_instead": [
       "object-storage-media"
     ]
+  },
+  "review": {
+    "verdict": "Vitess is a DBaaS / Serverless Databases tool.",
+    "pros": [
+      "Managed database removes operational overhead"
+    ],
+    "cons": [
+      "Vendor-specific features increase lock-in"
+    ],
+    "best_for": "Teams without a dedicated DBA",
+    "not_for": "On-premise or air-gapped requirements"
   }
 }

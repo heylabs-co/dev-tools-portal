@@ -127,6 +127,14 @@ const companies = defineCollection({
       works_well_with: z.array(z.string()).optional(),
     }).optional(),
 
+    review: z.object({
+      verdict: z.string().optional(),
+      pros: z.array(z.string()).optional(),
+      cons: z.array(z.string()).optional(),
+      best_for: z.string().optional(),
+      not_for: z.string().optional(),
+    }).optional(),
+
     seo: z.object({
       title: z.string(),
       meta_description: z.string(),

@@ -42,5 +42,16 @@
     "consider_instead": [
       "compliance-automation"
     ]
+  },
+  "review": {
+    "verdict": "KeyHippo is a Secrets Management tool.",
+    "pros": [
+      "Centralizes secrets with audit logs and rotation policies"
+    ],
+    "cons": [
+      "Adds a runtime dependency that can become a bottleneck"
+    ],
+    "best_for": "Teams managing credentials across multiple environments",
+    "not_for": "Single-developer projects with minimal secrets"
   }
 }

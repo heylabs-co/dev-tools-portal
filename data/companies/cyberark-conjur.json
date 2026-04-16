@@ -58,5 +58,19 @@
   },
   "npm": {
     "package": "@activepieces/piece-cyberark"
+  },
+  "review": {
+    "verdict": "Best for teams with many api keys/tokens. CyberArk Conjur offers subscription from 60.",
+    "pros": [
+      "Teams with many API keys/tokens",
+      "CI/CD pipelines needing secure env vars",
+      "Generous free tier for getting started"
+    ],
+    "cons": [
+      "Solo developer with few secrets",
+      "Static sites without backend"
+    ],
+    "best_for": "Teams",
+    "not_for": "Solo, Static projects"
   }
 }

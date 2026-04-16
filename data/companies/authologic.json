@@ -42,5 +42,20 @@
     "consider_instead": [
       "backend-as-a-service"
     ]
+  },
+  "review": {
+    "verdict": "Best for apps needing sso/mfa. Authologic offers custom pricing.",
+    "pros": [
+      "Apps needing SSO/MFA",
+      "B2B requiring SAML/SCIM",
+      "Wide range of social login and MFA options"
+    ],
+    "cons": [
+      "Internal tools with basic auth",
+      "Static sites without user accounts",
+      "MAU-based pricing scales steeply"
+    ],
+    "best_for": "Apps, B2B",
+    "not_for": "Internal, Static projects"
   }
 }

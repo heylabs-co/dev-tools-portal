@@ -60,5 +60,19 @@
   },
   "npm": {
     "package": "@itwin/object-storage-azure"
+  },
+  "review": {
+    "verdict": "Best for image/video heavy applications. Azure Blob Storage offers subscription from $1.",
+    "pros": [
+      "Image/video heavy applications",
+      "User-generated content platforms",
+      "Generous free tier for getting started"
+    ],
+    "cons": [
+      "Text-only applications",
+      "Small file storage needs (<1GB)"
+    ],
+    "best_for": "Image/video heavy applications",
+    "not_for": "Small projects"
   }
 }

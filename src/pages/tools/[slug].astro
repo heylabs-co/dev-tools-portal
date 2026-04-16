@@ -9,6 +9,7 @@ import HealthScore from '../../components/HealthScore.astro';
 import GiscusComments from '../../components/GiscusComments.astro';
 import VoteButtons from '../../components/VoteButtons.astro';
 import TcoCalculator from '../../components/TcoCalculator.astro';
+import ReviewCard from '../../components/ReviewCard.astro';
 import { getCollection } from 'astro:content';
 
 export async function getStaticPaths() {
@@ -139,6 +140,9 @@ const scaleItems = [
         {d.categories.primary.name}
       </a>
     </div>
+
+    <!-- Review Card -->
+    {d.review && <ReviewCard review={d.review} />}
 
     <!-- When to Use -->
     {d.content?.when_to_use && (

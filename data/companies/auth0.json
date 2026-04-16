@@ -67,5 +67,20 @@
   },
   "npm": {
     "package": "@auth0/nextjs-auth0"
+  },
+  "review": {
+    "verdict": "Best for enterprise needing saml/scim with complex rules. Auth0 offers freemium, paid from $5.",
+    "pros": [
+      "Enterprise needing SAML/SCIM with complex rules",
+      "Existing Okta customer extending to CIAM",
+      "Wide range of social login and MFA options"
+    ],
+    "cons": [
+      "Expensive for costs — Auth0 gets expensive fast at scale",
+      "Need pre-built UI components — Clerk is better",
+      "MAU-based pricing scales steeply"
+    ],
+    "best_for": "Enterprise",
+    "not_for": "Budget projects"
   }
 }

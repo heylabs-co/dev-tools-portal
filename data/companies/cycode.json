@@ -60,5 +60,18 @@
   },
   "npm": {
     "package": "@vandevlinalfonso/n8n-nodes-cycode"
+  },
+  "review": {
+    "verdict": "Best for teams with many api keys/tokens. Cycode offers subscription from $1.",
+    "pros": [
+      "Teams with many API keys/tokens",
+      "CI/CD pipelines needing secure env vars"
+    ],
+    "cons": [
+      "Solo developer with few secrets",
+      "Static sites without backend"
+    ],
+    "best_for": "Teams",
+    "not_for": "Solo, Static projects"
   }
 }

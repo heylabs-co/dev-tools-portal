@@ -11,7 +11,7 @@ import { join } from 'path';
 
 const COMPANIES_DIR = join(process.cwd(), 'data/companies');
 const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
-const MAX_COMPANIES = 100;
+const MAX_COMPANIES = 1000;
 const RATE_LIMIT_MS = 500;
 
 const headers: Record<string, string> = {

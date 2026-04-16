@@ -86,5 +86,20 @@
   },
   "community": {
     "hn_mentions_30d": 27
+  },
+  "review": {
+    "verdict": "Best for apps needing sso/mfa. Stytch offers usage-based at $0.10/user/mo. Moderate vendor lock-in.",
+    "pros": [
+      "Apps needing SSO/MFA",
+      "B2B requiring SAML/SCIM",
+      "Wide range of social login and MFA options"
+    ],
+    "cons": [
+      "Internal tools with basic auth",
+      "Static sites without user accounts",
+      "Proprietary data formats add switching costs"
+    ],
+    "best_for": "Apps, B2B",
+    "not_for": "Internal, Static projects"
   }
 }

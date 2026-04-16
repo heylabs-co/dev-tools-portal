@@ -86,5 +86,20 @@
   },
   "community": {
     "hn_mentions_30d": 723
+  },
+  "review": {
+    "verdict": "Best for apps needing sso/mfa. WorkOS offers $125/connection/mo (SSO). Low vendor lock-in.",
+    "pros": [
+      "Apps needing SSO/MFA",
+      "B2B requiring SAML/SCIM",
+      "Low lock-in — easy to migrate away"
+    ],
+    "cons": [
+      "Internal tools with basic auth",
+      "Static sites without user accounts",
+      "MAU-based pricing scales steeply"
+    ],
+    "best_for": "Apps, B2B",
+    "not_for": "Internal, Static projects"
   }
 }

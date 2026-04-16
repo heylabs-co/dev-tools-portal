@@ -90,5 +90,20 @@
   },
   "community": {
     "hn_mentions_30d": 18
+  },
+  "review": {
+    "verdict": "Best for error tracking and crash reporting for any platform. Sentry offers freemium, paid from $29/mo (Team). Low vendor lock-in.",
+    "pros": [
+      "Error tracking and crash reporting for any platform",
+      "open-source with self-hosted option",
+      "Low lock-in — easy to migrate away"
+    ],
+    "cons": [
+      "Need full APM with infrastructure monitoring",
+      "Need log aggregation — Sentry is errors, not logs",
+      "Event-volume pricing can surprise at scale"
+    ],
+    "best_for": "Error tracking and crash reporting for any platform",
+    "not_for": "Need full APM with infrastructure monitoring"
   }
 }

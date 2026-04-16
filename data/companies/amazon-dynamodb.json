@@ -67,5 +67,31 @@
     "package": "@aws/dynamodb-expressions",
     "weekly_downloads": 62100,
     "latest_version": "0.7.3"
+  },
+  "health": {
+    "bus_factor": 2,
+    "last_commit_days_ago": 22,
+    "open_issues": 49,
+    "issue_close_days": 148,
+    "license": "Apache-2.0",
+    "stars": 516,
+    "forks": 93,
+    "updated_at": "2026-04-16",
+    "health_score": "C"
+  },
+  "review": {
+    "verdict": "Best for apps needing managed database. Amazon DynamoDB offers subscription from $0.02.",
+    "pros": [
+      "Apps needing managed database",
+      "Serverless architectures",
+      "Managed infrastructure removes ops overhead"
+    ],
+    "cons": [
+      "Simple key-value storage needs",
+      "Embedded/offline-first apps",
+      "Storage and compute costs grow with data volume"
+    ],
+    "best_for": "Apps, Global",
+    "not_for": "Simple, Offline projects"
   }
 }

@@ -99,5 +99,20 @@
   },
   "npm": {
     "package": "@clerk/nextjs"
+  },
+  "review": {
+    "verdict": "Best for next.js / react apps needing drop-in auth ui. Clerk offers freemium, paid from $25/mo (Pro, 10K MAU). Moderate vendor lock-in.",
+    "pros": [
+      "Next.js / React apps needing drop-in auth UI",
+      "Startup wanting generous free tier (50K MAU)",
+      "Wide range of social login and MFA options"
+    ],
+    "cons": [
+      "Enterprise requiring SAML/SCIM on day one — Auth0/WorkOS",
+      "Need self-hosted auth — FusionAuth or Keycloak",
+      "MAU-based pricing scales steeply"
+    ],
+    "best_for": "apps, Startup",
+    "not_for": "Enterprise requiring SAML/SCIM on day one"
   }
 }

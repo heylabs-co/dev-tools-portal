@@ -88,5 +88,20 @@
   },
   "community": {
     "hn_mentions_30d": 26
+  },
+  "review": {
+    "verdict": "Best for mobile app mvp with tight deadline. Firebase offers Pay-as-you-go (Blaze). High vendor lock-in.",
+    "pros": [
+      "Mobile app MVP with tight deadline",
+      "auth + DB + hosting + analytics in one platform",
+      "Faster time-to-market vs. building from scratch"
+    ],
+    "cons": [
+      "Need SQL database or complex queries",
+      "Want to avoid vendor lock-in — Firebase is HIGH lock-in",
+      "High lock-in — proprietary APIs make migration difficult"
+    ],
+    "best_for": "Mobile",
+    "not_for": "Need SQL database or complex queries"
   }
 }

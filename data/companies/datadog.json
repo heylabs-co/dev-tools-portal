@@ -89,5 +89,20 @@
   },
   "community": {
     "hn_mentions_30d": 15
+  },
+  "review": {
+    "verdict": "Best for enterprise needing unified apm + logs + metrics. Datadog offers usage-based at $15/host/mo (Infra Pro). High vendor lock-in.",
+    "pros": [
+      "Enterprise needing unified APM + logs + metrics",
+      "Large infrastructure with 100+ hosts",
+      "Deep integrations across the observability stack"
+    ],
+    "cons": [
+      "Cost-sensitive — Datadog bills add up FAST ($15/host + extras)",
+      "Want OpenTelemetry portability — Datadog converts to proprietary format",
+      "High lock-in — proprietary APIs make migration difficult"
+    ],
+    "best_for": "Enterprise",
+    "not_for": "Cost-sensitive"
   }
 }

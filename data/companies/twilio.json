@@ -88,5 +88,20 @@
   },
   "community": {
     "hn_mentions_30d": 8
+  },
+  "review": {
+    "verdict": "Best for multi-channel messaging (sms + voice + whatsapp). Twilio offers usage-based at $0.0079/min, $0.0079/SMS (US). Moderate vendor lock-in.",
+    "pros": [
+      "Multi-channel messaging (SMS + voice + WhatsApp)",
+      "Programmable voice/video",
+      "Multi-channel delivery (SMS, email, voice) from one API"
+    ],
+    "cons": [
+      "Email only — SendGrid/Resend are simpler",
+      "Just need push notifications",
+      "Per-message pricing adds up at high send volumes"
+    ],
+    "best_for": "Multi-channel messaging (SMS + voice + WhatsApp)",
+    "not_for": "Email only"
   }
 }

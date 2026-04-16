@@ -93,5 +93,19 @@
   },
   "npm": {
     "package": "@langchain/anthropic"
+  },
+  "review": {
+    "verdict": "Best for strong reasoning and long context (200k tokens). Anthropic offers $20/mo (Pro), API $3/$15 per 1M tokens (Sonnet). Low vendor lock-in.",
+    "pros": [
+      "strong reasoning and long context (200K tokens)",
+      "Safety-focused applications",
+      "Low lock-in — easy to migrate away"
+    ],
+    "cons": [
+      "Need cheapest inference — DeepSeek is cheaper",
+      "Need image generation — OpenAI DALL-E or Stability"
+    ],
+    "best_for": "Need strong reasoning and long context (200K tokens)",
+    "not_for": "Need cheapest inference"
   }
 }

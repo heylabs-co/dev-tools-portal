@@ -88,5 +88,20 @@
   },
   "community": {
     "hn_mentions_30d": 8
+  },
+  "review": {
+    "verdict": "Best for apps needing managed database. PlanetScale offers $5/mo (single node). Low vendor lock-in.",
+    "pros": [
+      "Apps needing managed database",
+      "Serverless architectures",
+      "Low lock-in — easy to migrate away"
+    ],
+    "cons": [
+      "Simple key-value storage needs",
+      "Embedded/offline-first apps",
+      "Storage and compute costs grow with data volume"
+    ],
+    "best_for": "Apps, Global",
+    "not_for": "Simple, Offline projects"
   }
 }

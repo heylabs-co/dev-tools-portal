@@ -201,6 +201,12 @@ async function main() {
       continue;
     }
 
+    // Skip companies that already have health data
+    if (data.health?.updated_at) {
+      skipped++;
+      continue;
+    }
+
     const repo = data.github.repo;
     processed++;
 

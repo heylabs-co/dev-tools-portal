@@ -89,5 +89,20 @@
   },
   "npm": {
     "package": "@bunny.net/cli"
+  },
+  "review": {
+    "verdict": "Best for global audience with low latency needs. Bunny.net offers usage-based at $0.002/GB (from $1/mo). Low vendor lock-in.",
+    "pros": [
+      "Global audience with low latency needs",
+      "Static site hosting",
+      "Low lock-in — easy to migrate away"
+    ],
+    "cons": [
+      "Single-region internal apps",
+      "Low-traffic internal tools",
+      "Proprietary edge functions create platform dependency"
+    ],
+    "best_for": "Global",
+    "not_for": "Internal projects"
   }
 }

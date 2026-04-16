@@ -102,5 +102,20 @@
   },
   "npm": {
     "package": "@cloudflare/unenv-preset"
+  },
+  "review": {
+    "verdict": "Best for cdn + edge compute + dns + security in one. Cloudflare offers freemium, paid from $20/mo (Pro). Moderate vendor lock-in.",
+    "pros": [
+      "CDN + edge compute + DNS + security in one",
+      "Static site hosting for free (Pages)",
+      "Global edge network for low-latency delivery"
+    ],
+    "cons": [
+      "Need full PaaS for backend apps",
+      "Workers have cold start and memory limits",
+      "Proprietary edge functions create platform dependency"
+    ],
+    "best_for": "CDN + edge compute + DNS + security in one",
+    "not_for": "Need full PaaS for backend apps"
   }
 }

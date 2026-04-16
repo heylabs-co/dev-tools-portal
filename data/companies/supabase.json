@@ -92,5 +92,20 @@
   },
   "community": {
     "hn_mentions_30d": 41
+  },
+  "review": {
+    "verdict": "Best for postgresql with auth + storage + realtime. Supabase offers freemium, paid from $25/mo (Pro). Low vendor lock-in.",
+    "pros": [
+      "PostgreSQL with auth + storage + realtime",
+      "Firebase alternative with SQL and lower lock-in",
+      "Low lock-in — easy to migrate away"
+    ],
+    "cons": [
+      "Need offline-first mobile sync",
+      "Need reactive queries without polling",
+      "Limited customization for complex business logic"
+    ],
+    "best_for": "Need PostgreSQL with auth + storage + realtime",
+    "not_for": "Offline projects"
   }
 }

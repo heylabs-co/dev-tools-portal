@@ -88,5 +88,20 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "review": {
+    "verdict": "Best for open-source observability (grafana + loki + tempo + mimir). Grafana Labs offers usage-based at $15/user/mo (Cloud), $8/1K series. Low vendor lock-in.",
+    "pros": [
+      "open-source observability (Grafana + Loki + Tempo + Mimir)",
+      "OpenTelemetry-native monitoring",
+      "Low lock-in — easy to migrate away"
+    ],
+    "cons": [
+      "Want zero-setup — Datadog is more turnkey",
+      "Non-technical team — Grafana has a learning curve",
+      "Per-host / per-seat billing grows fast with team size"
+    ],
+    "best_for": "Want open-source observability (Grafana + Loki + Tempo + Mimir)",
+    "not_for": "Non-technical projects"
   }
 }

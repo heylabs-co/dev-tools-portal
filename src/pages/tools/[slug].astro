@@ -37,7 +37,7 @@ const scaleItems = [
 ---
 
 <BaseLayout title={pageTitle} description={pageDescription}>
-  <article class="mx-auto max-w-4xl px-6 py-12">
+  <article class="mx-auto max-w-4xl px-6 py-12" data-pagefind-body>
     <!-- Breadcrumbs -->
     <Breadcrumbs
       items={[
@@ -235,6 +235,7 @@ const scaleItems = [
     )}
 
     <!-- Lock-in Section -->
+    <div data-pagefind-ignore>
     {lockIn && (
       <section class="mt-14">
         <h2 class="flex items-center gap-3 text-lg font-semibold text-[#0F172A] dark:text-[#EDEDEF]">
@@ -265,7 +266,9 @@ const scaleItems = [
       </section>
     )}
 
+    </div>
     <!-- Pricing Section -->
+    <div data-pagefind-ignore>
     {d.pricing && (
       <section class="mt-14">
         <div class="flex items-center justify-between mb-5">
@@ -311,7 +314,9 @@ const scaleItems = [
       <TcoCalculator slug={d.slug} name={d.name} pricing={d.pricing} />
     )}
 
+    </div>
     <!-- Scale Section -->
+    <div data-pagefind-ignore>
     {scaleItems.length > 0 && (
       <section class="mt-14">
         <h2 class="flex items-center gap-3 text-lg font-semibold text-[#0F172A] dark:text-[#EDEDEF] mb-5">
@@ -353,7 +358,9 @@ const scaleItems = [
       </section>
     )}
 
+    </div>
     <!-- Report incorrect data -->
+    <div data-pagefind-ignore>
     <div class="mt-16 pt-8 border-t border-gray-100 dark:border-gray-800/60 text-center">
       <a
         href={`https://github.com/heylabs-co/dev-tools-portal/issues/new?title=${encodeURIComponent(`[Data] Incorrect info for ${d.name}`)}&body=${encodeURIComponent(`**Tool:** ${d.name}\n**Page:** /tools/${d.slug}/\n\n**What's incorrect:**\n\n**Correct information:**\n`)}`}

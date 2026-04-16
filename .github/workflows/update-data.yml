@@ -24,6 +24,10 @@ jobs:
         run: npx tsx scripts/fetch-npm.ts
       - name: Fetch HN data
         run: npx tsx scripts/fetch-hn.ts
+      - name: Fetch OSS Health
+        run: npx tsx scripts/fetch-oss-health.ts
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_PAT }}
       - name: Commit & Push
         run: |
           git config user.name "devtools-bot"

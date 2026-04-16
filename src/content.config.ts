@@ -191,4 +191,25 @@ const skills = defineCollection({
   }),
 });
 
-export const collections = { companies, categories, mcpServers, skills };
+const extensions = defineCollection({
+  loader: glob({
+    pattern: '**/*.json',
+    base: './data/vscode-catalog',
+    generateId: ({ entry }) => entry.replace(/\.json$/, ''),
+  }),
+  schema: z.object({
+    name: z.string(),
+    slug: z.string(),
+    publisher: z.string().optional(),
+    description: z.string().optional(),
+    category: z.string().optional(),
+    installs: z.string().optional(),
+    vscode_id: z.string().optional(),
+    seo: z.object({
+      title: z.string(),
+      meta_description: z.string(),
+    }).optional(),
+  }),
+});
+
+export const collections = { companies, categories, mcpServers, skills, extensions };

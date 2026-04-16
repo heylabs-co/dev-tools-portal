@@ -1,6 +1,6 @@
 /**
- * Seed script for batch 2 — new_tools_batch3_merged.csv (951 companies).
- * Reads data/new_tools_batch3_merged.csv and creates company JSON files,
+ * Seed script for batch 2 — new_tools_batch4_merged.csv (951 companies).
+ * Reads data/new_tools_batch4_merged.csv and creates company JSON files,
  * updates category files and registry.
  *
  * Usage: npx tsx scripts/seed-batch2.ts
@@ -10,7 +10,7 @@ import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'fs';
 import { join } from 'path';
 
 const BASE = process.cwd();
-const CSV_PATH = join(BASE, 'data/new_tools_batch3_merged.csv');
+const CSV_PATH = join(BASE, 'data/new_tools_batch4_merged.csv');
 const COMPANIES_DIR = join(BASE, 'data/companies');
 const CATEGORIES_DIR = join(BASE, 'data/categories');
 const META_DIR = join(BASE, 'data/meta');
@@ -425,7 +425,7 @@ function parseCSV(content: string): Array<Record<string, string>> {
 
 // --- Main ---
 function main() {
-  console.log('=== Seed Batch 2: new_tools_batch3_merged.csv ===\n');
+  console.log('=== Seed Batch 2: new_tools_batch4_merged.csv ===\n');
   console.log('Reading CSV...');
   const csvContent = readFileSync(CSV_PATH, 'utf-8');
   const rows = parseCSV(csvContent);
@@ -441,7 +441,7 @@ function main() {
     ? JSON.parse(readFileSync(REGISTRY_PATH, 'utf-8'))
     : {};
 
-  // Start IDs from COMP-1755
+  // Start IDs from COMP-2694
   let nextId = 804;
   console.log(`Starting company IDs from COMP-${String(nextId).padStart(4, '0')}`);
 

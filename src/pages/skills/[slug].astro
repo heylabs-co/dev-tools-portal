@@ -99,6 +99,39 @@ const installInstructions: Record<string, { title: string; steps: string[] }> = 
 
 const install = installInstructions[fmt];
 
+// Generate a one-liner install command from source_url.
+// github.com/user/repo/tree/branch/path → npx degit user/repo/path ~/.claude/skills/<slug>
+// github.com/user/repo/blob/branch/path.md → curl raw → ~/.claude/skills/<slug>/SKILL.md
+// github.com/user/repo (bare repo) → npx degit user/repo ~/.claude/skills/<slug>
+function buildInstallCommand(src: string | undefined, slug: string, format: string): string | null {
+  if (!src) return null;
+  const target = {
+    'claude-skill': `~/.claude/skills/${slug}`,
+    cursorrules: `./.cursorrules`,
+    copilot: `./.github/copilot-instructions.md`,
+    windsurf: `./.windsurfrules`,
+  }[format];
+  if (!target) return null;
+
+  const ghMatch = src.match(/github\.com\/([^\/]+)\/([^\/]+)(?:\/(tree|blob)\/([^\/]+)\/(.+))?/);
+  if (!ghMatch) return null;
+  const [, owner, repo, kind, branch, path] = ghMatch;
+  const cleanRepo = repo.replace(/\.git$/, '').replace(/\/$/, '');
+
+  if (kind === 'blob' && path && /\.(md|txt|mdc|yml|yaml|json)$/.test(path)) {
+    const rawUrl = `https://raw.githubusercontent.com/${owner}/${cleanRepo}/${branch}/${path}`;
+    if (format === 'claude-skill') return `mkdir -p ${target} && curl -fsSL ${rawUrl} -o ${target}/SKILL.md`;
+    return `curl -fsSL ${rawUrl} -o ${target}`;
+  }
+
+  // Directory or bare repo → degit (works for both, preserves folder structure)
+  const degitSource = path ? `${owner}/${cleanRepo}/${path}${branch !== 'main' && branch !== 'master' ? `#${branch}` : ''}` : `${owner}/${cleanRepo}`;
+  if (format === 'claude-skill') return `npx -y degit ${degitSource} ${target}`;
+  return `npx -y degit ${degitSource} ${target.replace(/\/[^\/]+$/, '')}`;
+}
+
+const installCommand = buildInstallCommand(d.source_url, d.slug, fmt);
+
 // Schema.org
 const siteUrl = 'https://tool.news';
 const jsonLd = {
@@ -235,7 +268,29 @@ const jsonLd = {
           <span class="block w-1 h-6 rounded-full bg-emerald-500 dark:bg-emerald-400"></span>
           {install.title}
         </h2>
+
+        {installCommand && (
+          <div class="mt-5">
+            <p class="mb-2 text-xs font-semibold uppercase tracking-wider" style="color: var(--color-muted);">
+              One-line install
+            </p>
+            <div class="relative group">
+              <pre class="overflow-x-auto rounded-xl border px-5 py-4 text-sm font-mono leading-relaxed"
+                   style="border-color: var(--color-border); background-color: var(--color-elevated); color: var(--color-text);"><code id="skill-install-cmd">{installCommand}</code></pre>
+              <button
+                type="button"
+                class="skill-copy-btn absolute top-3 right-3 rounded-lg border px-2.5 py-1.5 text-xs font-medium opacity-0 transition-opacity group-hover:opacity-100"
+                style="border-color: var(--color-border); background-color: var(--color-surface); color: var(--color-muted);"
+                data-target="skill-install-cmd"
+              >Copy</button>
+            </div>
+          </div>
+        )}
+
         <div class="mt-5 rounded-xl border p-6" style="border-color: var(--color-border); background-color: var(--color-surface);">
+          <p class="mb-3 text-xs font-semibold uppercase tracking-wider" style="color: var(--color-muted);">
+            Manual steps
+          </p>
           <ol class="list-decimal list-inside space-y-3 text-sm leading-relaxed" style="color: var(--color-text-secondary);">
             {install.steps.map((step) => (
               <li set:html={step} />
@@ -289,4 +344,18 @@ const jsonLd = {
     <!-- Schema.org -->
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
   </article>
+
+  <script>
+    document.querySelectorAll<HTMLElement>('.skill-copy-btn').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const el = document.getElementById(btn.dataset.target ?? '');
+        if (!el) return;
+        navigator.clipboard.writeText(el.textContent ?? '').then(() => {
+          const orig = btn.textContent;
+          btn.textContent = 'Copied!';
+          setTimeout(() => { btn.textContent = orig ?? 'Copy'; }, 1500);
+        });
+      });
+    });
+  </script>
 </BaseLayout>

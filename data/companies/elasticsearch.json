@@ -1,0 +1,99 @@
+{
+  "id": "COMP-0207",
+  "slug": "elasticsearch",
+  "name": "Elasticsearch",
+  "description": "Elasticsearch — Search / Recommendations API tool for developers",
+  "website": "https://elastic.co",
+  "logo": "https://www.google.com/s2/favicons?domain=elastic.co&sz=128",
+  "hq_country": "US",
+  "status": "active",
+  "categories": {
+    "primary": {
+      "id": "CAT-14",
+      "slug": "search-recommendations",
+      "name": "Search / Recommendations API"
+    },
+    "secondary": []
+  },
+  "alternatives": [],
+  "seo": {
+    "title": "Elasticsearch Review 2026: Pricing, Alternatives & Lock-in Score",
+    "meta_description": "Complete Elasticsearch analysis: pricing, lock-in risk, migration difficulty. Compare with alternatives in Search / Recommendations API.",
+    "keywords": [
+      "elasticsearch pricing",
+      "elasticsearch alternatives",
+      "elasticsearch review"
+    ]
+  },
+  "updated_at": "2026-04-18T01:14:55.817Z",
+  "created_at": "2026-04-12T12:53:55.841Z",
+  "pricing": {
+    "model": "subscription",
+    "has_free_tier": true,
+    "free_tier_limits": "OSS free, cloud free trial",
+    "entry_price": "$95/mo (Standard Cloud)",
+    "enterprise_available": true,
+    "billing_complexity": "medium",
+    "transparency_score": 4,
+    "last_checked": "2026-04-11",
+    "pricing_url": "https://elastic.co/pricing"
+  },
+  "scores": {
+    "lock_in": {
+      "level": "low",
+      "score": 1,
+      "migration_complexity": "medium",
+      "data_portability": "Full — self-hosted",
+      "api_compatibility": "Open-source, but License 2.0",
+      "explanation": "Low-Medium — open-source (Elastic License 2.0), but complex setup"
+    }
+  },
+  "content": {
+    "when_to_use": [
+      "E-commerce product search",
+      "Documentation/knowledge base search",
+      "Content recommendations"
+    ],
+    "when_not_to_use": [
+      "Simple filter/sort on small datasets",
+      "Apps with <1000 records"
+    ],
+    "consider_instead": [],
+    "pricing_at_scale": [
+      {
+        "scale": "Entry",
+        "estimate": "$95/mo (Standard Cloud)"
+      }
+    ],
+    "migration_cheatsheet": {
+      "difficulty": "medium",
+      "data_you_keep": "Full — self-hosted",
+      "api_standard": "Open-source, but License 2.0",
+      "risk_notes": "Low-Medium — open-source (Elastic License 2.0), but complex setup",
+      "tip": "Standard protocols make switching straightforward"
+    },
+    "works_well_with": [
+      "appwrite",
+      "akamai",
+      "amplitude"
+    ]
+  },
+  "community": {
+    "hn_mentions_30d": 4
+  },
+  "review": {
+    "verdict": "Best for e-commerce product search. Elasticsearch offers subscription from $95/mo (Standard Cloud). Low vendor lock-in.",
+    "pros": [
+      "E-commerce product search",
+      "Documentation/knowledge base search",
+      "Low lock-in — easy to migrate away"
+    ],
+    "cons": [
+      "Simple filter/sort on small datasets",
+      "Apps with <1000 records",
+      "Pricing jumps sharply above free tier limits"
+    ],
+    "best_for": "E-commerce",
+    "not_for": "Simple projects"
+  }
+}

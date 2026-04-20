@@ -1,0 +1,107 @@
+{
+  "id": "COMP-0044",
+  "slug": "paddle",
+  "name": "Paddle",
+  "description": "Paddle — Subscription Billing tool for developers",
+  "website": "https://paddle.com",
+  "logo": "https://www.google.com/s2/favicons?domain=paddle.com&sz=128",
+  "hq_country": "UK",
+  "status": "active",
+  "categories": {
+    "primary": {
+      "id": "CAT-03",
+      "slug": "subscription-billing",
+      "name": "Subscription Billing"
+    },
+    "secondary": [
+      "CAT-38"
+    ]
+  },
+  "alternatives": [],
+  "seo": {
+    "title": "Paddle Review 2026: Pricing, Alternatives & Lock-in Score",
+    "meta_description": "Complete Paddle analysis: pricing, lock-in risk, migration difficulty. Compare with alternatives in Subscription Billing.",
+    "keywords": [
+      "paddle pricing",
+      "paddle alternatives",
+      "paddle review"
+    ]
+  },
+  "updated_at": "2026-04-20T19:03:59.346Z",
+  "created_at": "2026-04-12T12:53:55.841Z",
+  "pricing": {
+    "model": "usage",
+    "has_free_tier": false,
+    "entry_price": "5% + $0.50/transaction",
+    "enterprise_available": true,
+    "billing_complexity": "low",
+    "transparency_score": 3,
+    "last_checked": "2026-04-11",
+    "pricing_url": "https://paddle.com/pricing"
+  },
+  "scores": {
+    "lock_in": {
+      "level": "high",
+      "score": 5,
+      "migration_complexity": "high",
+      "data_portability": "Limited — Paddle owns frombutand with customer",
+      "api_compatibility": "Proprietary, andon towithfromand",
+      "explanation": "High — MoR model = Paddle handles everything, fromwith adapts under Paddle"
+    }
+  },
+  "scale": {
+    "revenue": "GBP 49M",
+    "customers": "unknown -- searched paddle.com, getlatka",
+    "data_status": "estimated"
+  },
+  "content": {
+    "when_to_use": [
+      "SaaS needing Merchant of Record for global tax compliance",
+      "Want to avoid sales tax headaches (Paddle handles it)",
+      "B2B SaaS selling globally"
+    ],
+    "when_not_to_use": [
+      "Marketplace/platform payments — Paddle is seller-focused",
+      "Need deep payment customization — limited vs Stripe",
+      "Physical goods or non-SaaS"
+    ],
+    "consider_instead": [
+      "stripe",
+      "lemon-squeezy"
+    ],
+    "pricing_at_scale": [
+      {
+        "scale": "Entry",
+        "estimate": "5% + $0.50/transaction"
+      }
+    ],
+    "migration_cheatsheet": {
+      "difficulty": "high",
+      "data_you_keep": "Limited — Paddle owns frombutand with customer",
+      "api_standard": "Proprietary, andon towithfromand",
+      "risk_notes": "High — MoR model = Paddle handles everything, fromwith adapts under Paddle",
+      "tip": "Plan 2-4 weeks minimum. Consider running parallel during migration"
+    },
+    "works_well_with": [
+      "adyen",
+      "amplitude"
+    ]
+  },
+  "community": {
+    "hn_mentions_30d": 10
+  },
+  "review": {
+    "verdict": "Best for saas needing merchant of record for global tax compliance. Paddle offers usage-based at 5% + $0.50/transaction. High vendor lock-in.",
+    "pros": [
+      "SaaS needing Merchant of Record for global tax compliance",
+      "to avoid sales tax headaches (Paddle handles it)"
+    ],
+    "cons": [
+      "Marketplace/platform payments — Paddle is seller-focused",
+      "Need deep payment customization — limited vs Stripe",
+      "High lock-in — proprietary APIs make migration difficult"
+    ],
+    "best_for": "SaaS, B2B",
+    "not_for": "Marketplace/platform payments"
+  }
+}

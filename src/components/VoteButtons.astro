@@ -1,0 +1,117 @@
+---
+interface Props {
+  slug: string;
+  name: string;
+}
+const { slug, name } = Astro.props;
+---
+
+<div class="vote-widget inline-flex items-center gap-1" data-slug={slug}>
+  <button
+    type="button"
+    class="vote-btn vote-up inline-flex h-7 w-7 items-center justify-center rounded-md text-[#64748B] dark:text-[#8A8F98] hover:bg-emerald-50 dark:hover:bg-emerald-950/30 hover:text-emerald-600 dark:hover:text-emerald-400 transition-all duration-150 cursor-pointer"
+    data-vote="up"
+    aria-label={`Upvote ${name}`}
+  >
+    <svg class="vote-up-icon h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7" />
+    </svg>
+    <svg class="vote-up-icon-filled h-4 w-4 hidden" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M12 4l-8 10h16z" />
+    </svg>
+  </button>
+
+  <span class="vote-score min-w-[1.75rem] text-center text-sm font-semibold font-mono text-[#0F172A] dark:text-[#EDEDEF] tabular-nums">
+    <span class="vote-up-count text-[11px] text-[#64748B] dark:text-[#8A8F98]">-</span>
+  </span>
+
+  <button
+    type="button"
+    class="vote-btn vote-down inline-flex h-7 w-7 items-center justify-center rounded-md text-[#64748B] dark:text-[#8A8F98] hover:bg-rose-50 dark:hover:bg-rose-950/30 hover:text-rose-600 dark:hover:text-rose-400 transition-all duration-150 cursor-pointer"
+    data-vote="down"
+    aria-label={`Downvote ${name}`}
+  >
+    <svg class="vote-down-icon h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+    </svg>
+    <svg class="vote-down-icon-filled h-4 w-4 hidden" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M12 20l8-10H4z" />
+    </svg>
+  </button>
+</div>
+
+<script is:inline>
+(function() {
+  document.querySelectorAll('.vote-widget').forEach(function(widget) {
+    var slug = widget.dataset.slug;
+    var upBtn = widget.querySelector('.vote-up');
+    var downBtn = widget.querySelector('.vote-down');
+    var scoreEl = widget.querySelector('.vote-score');
+
+    function updateUI(data) {
+      var score = data.score || 0;
+      scoreEl.innerHTML = '<span class="text-sm font-semibold font-mono tabular-nums">' +
+        (score > 0 ? '+' : '') + score + '</span>';
+      scoreEl.className = 'vote-score min-w-[1.75rem] text-center text-sm font-semibold font-mono tabular-nums ' +
+        (score > 0 ? 'text-emerald-600 dark:text-emerald-400' :
+         score < 0 ? 'text-rose-600 dark:text-rose-400' :
+         'text-[#64748B] dark:text-[#8A8F98]');
+
+      // Toggle filled/outline icons for active state
+      var upOutline = upBtn.querySelector('.vote-up-icon');
+      var upFilled = upBtn.querySelector('.vote-up-icon-filled');
+      var downOutline = downBtn.querySelector('.vote-down-icon');
+      var downFilled = downBtn.querySelector('.vote-down-icon-filled');
+
+      if (data.user_vote === 'up') {
+        upOutline.classList.add('hidden');
+        upFilled.classList.remove('hidden');
+        upBtn.classList.add('text-emerald-600', 'dark:text-emerald-400', 'bg-emerald-50', 'dark:bg-emerald-950/30');
+      } else {
+        upOutline.classList.remove('hidden');
+        upFilled.classList.add('hidden');
+        upBtn.classList.remove('text-emerald-600', 'dark:text-emerald-400', 'bg-emerald-50', 'dark:bg-emerald-950/30');
+      }
+
+      if (data.user_vote === 'down') {
+        downOutline.classList.add('hidden');
+        downFilled.classList.remove('hidden');
+        downBtn.classList.add('text-rose-600', 'dark:text-rose-400', 'bg-rose-50', 'dark:bg-rose-950/30');
+      } else {
+        downOutline.classList.remove('hidden');
+        downFilled.classList.add('hidden');
+        downBtn.classList.remove('text-rose-600', 'dark:text-rose-400', 'bg-rose-50', 'dark:bg-rose-950/30');
+      }
+    }
+
+    // Load current votes
+    fetch('https://devtools-vote-api.sssands.workers.dev?slug=' + encodeURIComponent(slug))
+      .then(function(r) { return r.json(); })
+      .then(updateUI)
+      .catch(function() {
+        scoreEl.innerHTML = '<span class="text-sm font-mono">0</span>';
+      });
+
+    // Vote handler
+    function vote(type) {
+      fetch('https://devtools-vote-api.sssands.workers.dev', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ slug: slug, vote: type }),
+      })
+        .then(function(r) { return r.json(); })
+        .then(function(data) {
+          if (data.ok) {
+            // Re-fetch to get user_vote state
+            fetch('https://devtools-vote-api.sssands.workers.dev?slug=' + encodeURIComponent(slug))
+              .then(function(r) { return r.json(); })
+              .then(updateUI);
+          }
+        });
+    }
+
+    upBtn.addEventListener('click', function() { vote('up'); });
+    downBtn.addEventListener('click', function() { vote('down'); });
+  });
+})();
+</script>

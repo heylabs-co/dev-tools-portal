@@ -1,0 +1,107 @@
+{
+  "id": "COMP-0048",
+  "slug": "revenuecat",
+  "name": "RevenueCat",
+  "description": "RevenueCat — Subscription Billing tool for developers",
+  "website": "https://revenuecat.com",
+  "logo": "https://www.google.com/s2/favicons?domain=revenuecat.com&sz=128",
+  "hq_country": "US",
+  "status": "active",
+  "categories": {
+    "primary": {
+      "id": "CAT-03",
+      "slug": "subscription-billing",
+      "name": "Subscription Billing"
+    },
+    "secondary": [
+      "CAT-38"
+    ]
+  },
+  "alternatives": [],
+  "seo": {
+    "title": "RevenueCat Review 2026: Pricing, Alternatives & Lock-in Score",
+    "meta_description": "Complete RevenueCat analysis: pricing, lock-in risk, migration difficulty. Compare with alternatives in Subscription Billing.",
+    "keywords": [
+      "revenuecat pricing",
+      "revenuecat alternatives",
+      "revenuecat review"
+    ]
+  },
+  "updated_at": "2026-04-15T19:02:07.009Z",
+  "created_at": "2026-04-12T12:53:55.841Z",
+  "pricing": {
+    "model": "usage",
+    "has_free_tier": true,
+    "free_tier_limits": "$2,500 MTR free",
+    "entry_price": "1% from MTR above $2,500",
+    "enterprise_available": false,
+    "billing_complexity": "low",
+    "transparency_score": 4,
+    "last_checked": "2026-04-11",
+    "pricing_url": "https://revenuecat.com/pricing"
+  },
+  "scores": {
+    "lock_in": {
+      "level": "medium",
+      "score": 3,
+      "migration_complexity": "medium",
+      "data_portability": "Via API, webhook events",
+      "api_compatibility": "Proprietary byin Apple/Google standardin",
+      "explanation": "Medium — to on StoreKit/Google Play, but subscription state + analytics andin"
+    }
+  },
+  "scale": {
+    "revenue": "unknown -- private",
+    "data_status": "estimated"
+  },
+  "content": {
+    "when_to_use": [
+      "Mobile app with in-app subscriptions (iOS + Android)",
+      "Need cross-platform entitlement management",
+      "Want paywall A/B testing and analytics"
+    ],
+    "when_not_to_use": [
+      "Web-only SaaS — use Stripe/Paddle",
+      "One-time purchases only — too complex",
+      "Very low revenue (<$2.5K MTR) — free but limited"
+    ],
+    "consider_instead": [
+      "adapty",
+      "qonversion"
+    ],
+    "pricing_at_scale": [
+      {
+        "scale": "Entry",
+        "estimate": "1% from MTR above $2,500"
+      }
+    ],
+    "migration_cheatsheet": {
+      "difficulty": "medium",
+      "data_you_keep": "Via API, webhook events",
+      "api_standard": "Proprietary byin Apple/Google standardin",
+      "risk_notes": "Medium — to on StoreKit/Google Play, but subscription state + analytics andin",
+      "tip": "Moderate effort required. Export data before canceling"
+    },
+    "works_well_with": [
+      "adyen",
+      "amplitude"
+    ]
+  },
+  "community": {
+    "hn_mentions_30d": 1
+  },
+  "review": {
+    "verdict": "Best for mobile app with in-app subscriptions (ios + android). RevenueCat offers usage-based at 1% from MTR above $2,500. Moderate vendor lock-in.",
+    "pros": [
+      "Mobile app with in-app subscriptions (iOS + Android)",
+      "cross-platform entitlement management",
+      "Generous free tier for getting started"
+    ],
+    "cons": [
+      "Web-only SaaS",
+      "One-time purchases only — too complex"
+    ],
+    "best_for": "Mobile",
+    "not_for": "Web-only SaaS"
+  }
+}

@@ -1,0 +1,97 @@
+{
+  "id": "COMP-0075",
+  "slug": "auth0",
+  "name": "Auth0",
+  "description": "Auth0 — Identity / Auth / User Management tool for developers",
+  "website": "https://auth0.com",
+  "logo": "https://github.com/auth0.png?size=128",
+  "hq_country": "US",
+  "status": "active",
+  "categories": {
+    "primary": {
+      "id": "CAT-06",
+      "slug": "identity-auth",
+      "name": "Identity / Auth / User Management"
+    },
+    "secondary": []
+  },
+  "alternatives": [],
+  "seo": {
+    "title": "Auth0 Review 2026: Pricing, Alternatives & Lock-in Score",
+    "meta_description": "Complete Auth0 analysis: pricing, lock-in risk, migration difficulty. Compare with alternatives in Identity / Auth / User Management.",
+    "keywords": [
+      "auth0 pricing",
+      "auth0 alternatives",
+      "auth0 review"
+    ]
+  },
+  "updated_at": "2026-04-20T18:49:13.604Z",
+  "created_at": "2026-04-12T12:53:55.841Z",
+  "content": {
+    "when_to_use": [
+      "Enterprise needing SAML/SCIM with complex rules",
+      "Existing Okta customer extending to CIAM",
+      "Need extensive social login + MFA options"
+    ],
+    "when_not_to_use": [
+      "Startup watching costs — Auth0 gets expensive fast at scale",
+      "Need pre-built UI components — Clerk is better",
+      "Budget-conscious with <10K users — try FusionAuth self-hosted"
+    ],
+    "consider_instead": [
+      "clerk",
+      "workos",
+      "fusionauth"
+    ],
+    "works_well_with": [
+      "appwrite",
+      "adyen"
+    ]
+  },
+  "community": {
+    "hn_mentions_30d": 275
+  },
+  "pricing": {
+    "model": "freemium",
+    "has_free_tier": true,
+    "entry_price": "$5",
+    "enterprise_available": true,
+    "pricing_url": "https://auth0.com/pricing",
+    "transparency_score": 5,
+    "last_checked": "2026-04-15"
+  },
+  "github": {
+    "repo": "auth0/node-jsonwebtoken",
+    "stars": 18166,
+    "open_issues": 195
+  },
+  "npm": {
+    "package": "@auth0/nextjs-auth0"
+  },
+  "review": {
+    "verdict": "Best for enterprise needing saml/scim with complex rules. Auth0 offers freemium, paid from $5.",
+    "pros": [
+      "Enterprise needing SAML/SCIM with complex rules",
+      "Existing Okta customer extending to CIAM",
+      "Wide range of social login and MFA options"
+    ],
+    "cons": [
+      "Expensive for costs — Auth0 gets expensive fast at scale",
+      "Need pre-built UI components — Clerk is better",
+      "MAU-based pricing scales steeply"
+    ],
+    "best_for": "Enterprise",
+    "not_for": "Budget projects"
+  },
+  "health": {
+    "bus_factor": 5,
+    "last_commit_days_ago": 17,
+    "open_issues": 195,
+    "issue_close_days": 0,
+    "license": "MIT",
+    "stars": 18169,
+    "forks": 1270,
+    "updated_at": "2026-04-16",
+    "health_score": "B"
+  }
+}

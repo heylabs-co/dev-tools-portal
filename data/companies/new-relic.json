@@ -1,0 +1,105 @@
+{
+  "id": "COMP-0316",
+  "slug": "new-relic",
+  "name": "New Relic",
+  "description": "New Relic — Performance Monitoring / APM tool for developers",
+  "website": "https://newrelic.com",
+  "logo": "https://www.google.com/s2/favicons?domain=newrelic.com&sz=128",
+  "hq_country": "US",
+  "status": "active",
+  "categories": {
+    "primary": {
+      "id": "CAT-21",
+      "slug": "apm",
+      "name": "Performance Monitoring / APM"
+    },
+    "secondary": []
+  },
+  "alternatives": [],
+  "seo": {
+    "title": "New Relic Review 2026: Pricing, Alternatives & Lock-in Score",
+    "meta_description": "Complete New Relic analysis: pricing, lock-in risk, migration difficulty. Compare with alternatives in Performance Monitoring / APM.",
+    "keywords": [
+      "new relic pricing",
+      "new relic alternatives",
+      "new relic review"
+    ]
+  },
+  "updated_at": "2026-04-20T19:02:34.098Z",
+  "created_at": "2026-04-12T12:53:55.841Z",
+  "pricing": {
+    "model": "hybrid",
+    "has_free_tier": true,
+    "free_tier_limits": "100GB data, 1 full user",
+    "entry_price": "$0.30/GB (Standard), $49/core user",
+    "enterprise_available": true,
+    "billing_complexity": "medium",
+    "transparency_score": 4,
+    "last_checked": "2026-04-11",
+    "pricing_url": "https://newrelic.com/pricing"
+  },
+  "scores": {
+    "lock_in": {
+      "level": "medium",
+      "score": 3,
+      "migration_complexity": "medium",
+      "data_portability": "Via API, OTel-compatible",
+      "api_compatibility": "OpenTelemetry native",
+      "explanation": "Medium — onandinon underto OpenTelemetry,  OTel-fromand"
+    }
+  },
+  "scale": {
+    "revenue": "~$960M",
+    "customers": "16,000+ organizations / 75,000+ businesses",
+    "data_status": "estimated"
+  },
+  "content": {
+    "when_to_use": [
+      "Microservices performance monitoring",
+      "Distributed tracing",
+      "Infrastructure monitoring at scale"
+    ],
+    "when_not_to_use": [
+      "Simple monolith apps",
+      "Static sites"
+    ],
+    "consider_instead": [
+      "observability"
+    ],
+    "pricing_at_scale": [
+      {
+        "scale": "Entry",
+        "estimate": "$0.30/GB (Standard), $49/core user"
+      }
+    ],
+    "migration_cheatsheet": {
+      "difficulty": "medium",
+      "data_you_keep": "Via API, OTel-compatible",
+      "api_standard": "OpenTelemetry native",
+      "risk_notes": "Medium — onandinon underto OpenTelemetry,  OTel-fromand",
+      "tip": "Moderate effort required. Export data before canceling"
+    },
+    "works_well_with": [
+      "flagsmith",
+      "sentry"
+    ]
+  },
+  "community": {
+    "hn_mentions_30d": 28
+  },
+  "review": {
+    "verdict": "Best for microservices performance monitoring. New Relic offers $0.30/GB (Standard), $49/core user. Moderate vendor lock-in.",
+    "pros": [
+      "Microservices performance monitoring",
+      "Distributed tracing",
+      "Deep integrations across the observability stack"
+    ],
+    "cons": [
+      "Simple monolith apps",
+      "Static sites",
+      "Per-host / per-seat billing grows fast with team size"
+    ],
+    "best_for": "Microservices performance monitoring",
+    "not_for": "Simple, Static projects"
+  }
+}

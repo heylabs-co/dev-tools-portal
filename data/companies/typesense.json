@@ -1,0 +1,103 @@
+{
+  "id": "COMP-0214",
+  "slug": "typesense",
+  "name": "Typesense",
+  "description": "Typesense — Search / Recommendations API tool for developers",
+  "website": "https://typesense.org",
+  "logo": "https://www.google.com/s2/favicons?domain=typesense.org&sz=128",
+  "hq_country": "US",
+  "status": "active",
+  "categories": {
+    "primary": {
+      "id": "CAT-14",
+      "slug": "search-recommendations",
+      "name": "Search / Recommendations API"
+    },
+    "secondary": []
+  },
+  "alternatives": [],
+  "seo": {
+    "title": "Typesense Review 2026: Pricing, Alternatives & Lock-in Score",
+    "meta_description": "Complete Typesense analysis: pricing, lock-in risk, migration difficulty. Compare with alternatives in Search / Recommendations API.",
+    "keywords": [
+      "typesense pricing",
+      "typesense alternatives",
+      "typesense review"
+    ]
+  },
+  "updated_at": "2026-04-12T18:43:48.043Z",
+  "created_at": "2026-04-12T12:53:55.841Z",
+  "pricing": {
+    "model": "unknown",
+    "has_free_tier": true,
+    "free_tier_limits": "1 mo free cluster",
+    "entry_price": "$7/mo (cloud)",
+    "enterprise_available": true,
+    "billing_complexity": "low",
+    "transparency_score": 4,
+    "last_checked": "2026-04-11",
+    "pricing_url": "https://typesense.org/pricing"
+  },
+  "scores": {
+    "lock_in": {
+      "level": "low",
+      "score": 1,
+      "migration_complexity": "low",
+      "data_portability": " export, self-hosted",
+      "api_compatibility": "Open-source, Algolia-compatible adapter",
+      "explanation": "Low — open-source, InstantSearch-compatible adapter"
+    }
+  },
+  "scale": {
+    "revenue": "unknown -- private",
+    "data_status": "estimated"
+  },
+  "content": {
+    "when_to_use": [
+      "E-commerce product search",
+      "Documentation/knowledge base search",
+      "Content recommendations"
+    ],
+    "when_not_to_use": [
+      "Simple filter/sort on small datasets",
+      "Apps with <1000 records"
+    ],
+    "consider_instead": [],
+    "pricing_at_scale": [
+      {
+        "scale": "Entry",
+        "estimate": "~$7/mo (cloud)"
+      }
+    ],
+    "migration_cheatsheet": {
+      "difficulty": "low",
+      "data_you_keep": " export, self-hosted",
+      "api_standard": "Open-source, Algolia-compatible adapter",
+      "risk_notes": "Low — open-source, InstantSearch-compatible adapter",
+      "tip": "Standard protocols make switching straightforward"
+    },
+    "works_well_with": [
+      "appwrite",
+      "akamai",
+      "amplitude"
+    ]
+  },
+  "community": {
+    "hn_mentions_30d": 1
+  },
+  "review": {
+    "verdict": "Best for e-commerce product search. Typesense offers $7/mo (cloud). Low vendor lock-in.",
+    "pros": [
+      "E-commerce product search",
+      "Documentation/knowledge base search",
+      "Low lock-in — easy to migrate away"
+    ],
+    "cons": [
+      "Simple filter/sort on small datasets",
+      "Apps with <1000 records",
+      "Pricing jumps sharply above free tier limits"
+    ],
+    "best_for": "E-commerce",
+    "not_for": "Simple projects"
+  }
+}

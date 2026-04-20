@@ -1,0 +1,91 @@
+{
+  "id": "COMP-0226",
+  "slug": "messagebird",
+  "name": "MessageBird",
+  "description": "MessageBird — Messaging API (Email / SMS / Voice) tool for developers",
+  "website": "https://messagebird.com",
+  "logo": "https://www.google.com/s2/favicons?domain=messagebird.com&sz=128",
+  "hq_country": "NL",
+  "status": "active",
+  "categories": {
+    "primary": {
+      "id": "CAT-15",
+      "slug": "messaging-api",
+      "name": "Messaging API (Email / SMS / Voice)"
+    },
+    "secondary": []
+  },
+  "alternatives": [],
+  "seo": {
+    "title": "MessageBird Review 2026: Pricing, Alternatives & Lock-in Score",
+    "meta_description": "Complete MessageBird analysis: pricing, lock-in risk, migration difficulty. Compare with alternatives in Messaging API (Email / SMS / Voice).",
+    "keywords": [
+      "messagebird pricing",
+      "messagebird alternatives",
+      "messagebird review"
+    ]
+  },
+  "updated_at": "2026-04-12T18:42:28.911Z",
+  "created_at": "2026-04-12T12:53:55.841Z",
+  "scores": {
+    "lock_in": {
+      "level": "medium",
+      "score": 3,
+      "migration_complexity": "medium",
+      "data_portability": "Via API",
+      "api_compatibility": "REST standard",
+      "explanation": "Medium — multi-channel (WhatsApp, WeChat) creates inandwithandwith"
+    }
+  },
+  "content": {
+    "when_to_use": [
+      "Transactional emails (receipts, alerts)",
+      "SMS verification",
+      "Multi-channel notifications"
+    ],
+    "when_not_to_use": [
+      "Internal team communication",
+      "Marketing-only email campaigns"
+    ],
+    "consider_instead": [
+      "push-in-app-messaging"
+    ],
+    "migration_cheatsheet": {
+      "difficulty": "medium",
+      "data_you_keep": "Via API",
+      "api_standard": "REST standard",
+      "risk_notes": "Medium — multi-channel (WhatsApp, WeChat) creates inandwithandwith",
+      "tip": "Moderate effort required. Export data before canceling"
+    },
+    "works_well_with": [
+      "clerk",
+      "amplitude"
+    ]
+  },
+  "community": {
+    "hn_mentions_30d": 0
+  },
+  "pricing": {
+    "model": "unknown",
+    "has_free_tier": false,
+    "enterprise_available": false,
+    "pricing_url": "https://messagebird.com/pricing",
+    "transparency_score": 1,
+    "last_checked": "2026-04-15"
+  },
+  "review": {
+    "verdict": "Best for transactional emails (receipts, alerts). MessageBird offers unknown. Moderate vendor lock-in.",
+    "pros": [
+      "Transactional emails (receipts, alerts)",
+      "SMS verification",
+      "Multi-channel delivery (SMS, email, voice) from one API"
+    ],
+    "cons": [
+      "Internal team communication",
+      "Marketing-only email campaigns",
+      "Per-message pricing adds up at high send volumes"
+    ],
+    "best_for": "Transactional emails (receipts, alerts)",
+    "not_for": "Internal projects"
+  }
+}

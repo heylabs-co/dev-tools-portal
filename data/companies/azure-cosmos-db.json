@@ -1,0 +1,98 @@
+{
+  "id": "COMP-0140",
+  "slug": "azure-cosmos-db",
+  "name": "Azure Cosmos DB",
+  "description": "Azure Cosmos DB — DBaaS / Serverless Databases tool for developers",
+  "website": "https://azure.microsoft.com",
+  "logo": "https://github.com/Azure.png?size=128",
+  "hq_country": "US",
+  "status": "active",
+  "categories": {
+    "primary": {
+      "id": "CAT-10",
+      "slug": "dbaas",
+      "name": "DBaaS / Serverless Databases"
+    },
+    "secondary": []
+  },
+  "alternatives": [],
+  "seo": {
+    "title": "Azure Cosmos DB Review 2026: Pricing, Alternatives & Lock-in Score",
+    "meta_description": "Complete Azure Cosmos DB analysis: pricing, lock-in risk, migration difficulty. Compare with alternatives in DBaaS / Serverless Databases.",
+    "keywords": [
+      "azure cosmos db pricing",
+      "azure cosmos db alternatives",
+      "azure cosmos db review"
+    ]
+  },
+  "updated_at": "2026-04-19T12:30:55.414Z",
+  "created_at": "2026-04-12T12:53:55.841Z",
+  "content": {
+    "when_to_use": [
+      "Apps needing managed database",
+      "Serverless architectures",
+      "Global data distribution"
+    ],
+    "when_not_to_use": [
+      "Simple key-value storage needs",
+      "Embedded/offline-first apps"
+    ],
+    "consider_instead": [
+      "backend-as-a-service"
+    ],
+    "works_well_with": [
+      "akamai",
+      "clerk",
+      "flagsmith"
+    ]
+  },
+  "community": {
+    "hn_mentions_30d": 1
+  },
+  "pricing": {
+    "model": "subscription",
+    "has_free_tier": true,
+    "entry_price": "$1",
+    "enterprise_available": true,
+    "pricing_url": "https://azure.microsoft.com/pricing",
+    "transparency_score": 5,
+    "last_checked": "2026-04-15"
+  },
+  "github": {
+    "repo": "Azure/azure-cosmos-db-emulator-docker",
+    "stars": 220,
+    "open_issues": 88,
+    "latest_release": "EN20260331",
+    "release_date": "2026-04-01T23:50:03Z"
+  },
+  "npm": {
+    "package": "@azure/cosmos"
+  },
+  "review": {
+    "verdict": "Best for apps needing managed database. Azure Cosmos DB offers subscription from $1.",
+    "pros": [
+      "Apps needing managed database",
+      "Serverless architectures",
+      "Managed infrastructure removes ops overhead"
+    ],
+    "cons": [
+      "Simple key-value storage needs",
+      "Embedded/offline-first apps",
+      "Storage and compute costs grow with data volume"
+    ],
+    "best_for": "Apps, Global",
+    "not_for": "Simple, Offline projects"
+  },
+  "health": {
+    "bus_factor": 0,
+    "last_commit_days_ago": 15,
+    "release_frequency_days": 27,
+    "open_issues": 83,
+    "issue_close_days": 12,
+    "license": "MIT",
+    "stars": 220,
+    "forks": 50,
+    "updated_at": "2026-04-16",
+    "health_score": "D"
+  }
+}

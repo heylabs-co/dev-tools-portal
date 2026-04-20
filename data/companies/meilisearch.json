@@ -1,0 +1,102 @@
+{
+  "id": "COMP-0210",
+  "slug": "meilisearch",
+  "name": "Meilisearch",
+  "description": "Meilisearch — Search / Recommendations API tool for developers",
+  "website": "https://meilisearch.com",
+  "logo": "https://www.google.com/s2/favicons?domain=meilisearch.com&sz=128",
+  "hq_country": "FR",
+  "status": "active",
+  "categories": {
+    "primary": {
+      "id": "CAT-14",
+      "slug": "search-recommendations",
+      "name": "Search / Recommendations API"
+    },
+    "secondary": []
+  },
+  "alternatives": [],
+  "seo": {
+    "title": "Meilisearch Review 2026: Pricing, Alternatives & Lock-in Score",
+    "meta_description": "Complete Meilisearch analysis: pricing, lock-in risk, migration difficulty. Compare with alternatives in Search / Recommendations API.",
+    "keywords": [
+      "meilisearch pricing",
+      "meilisearch alternatives",
+      "meilisearch review"
+    ]
+  },
+  "updated_at": "2026-04-19T18:44:11.036Z",
+  "created_at": "2026-04-12T12:53:55.841Z",
+  "pricing": {
+    "model": "hybrid",
+    "has_free_tier": false,
+    "entry_price": "$30/mo (Build, 50K searches)",
+    "enterprise_available": true,
+    "billing_complexity": "low",
+    "transparency_score": 3,
+    "last_checked": "2026-04-11",
+    "pricing_url": "https://meilisearch.com/pricing"
+  },
+  "scores": {
+    "lock_in": {
+      "level": "low",
+      "score": 1,
+      "migration_complexity": "low",
+      "data_portability": " export",
+      "api_compatibility": "Open-source API",
+      "explanation": "Low — open-source, self-hosted"
+    }
+  },
+  "scale": {
+    "revenue": "unknown -- private, early stage",
+    "data_status": "estimated"
+  },
+  "content": {
+    "when_to_use": [
+      "E-commerce product search",
+      "Documentation/knowledge base search",
+      "Content recommendations"
+    ],
+    "when_not_to_use": [
+      "Simple filter/sort on small datasets",
+      "Apps with <1000 records"
+    ],
+    "consider_instead": [],
+    "pricing_at_scale": [
+      {
+        "scale": "Entry",
+        "estimate": "$30/mo (Build, 50K searches)"
+      }
+    ],
+    "migration_cheatsheet": {
+      "difficulty": "low",
+      "data_you_keep": " export",
+      "api_standard": "Open-source API",
+      "risk_notes": "Low — open-source, self-hosted",
+      "tip": "Standard protocols make switching straightforward"
+    },
+    "works_well_with": [
+      "appwrite",
+      "akamai",
+      "amplitude"
+    ]
+  },
+  "community": {
+    "hn_mentions_30d": 0
+  },
+  "review": {
+    "verdict": "Best for e-commerce product search. Meilisearch offers $30/mo (Build, 50K searches). Low vendor lock-in.",
+    "pros": [
+      "E-commerce product search",
+      "Documentation/knowledge base search",
+      "Low lock-in — easy to migrate away"
+    ],
+    "cons": [
+      "Simple filter/sort on small datasets",
+      "Apps with <1000 records",
+      "Pricing jumps sharply above free tier limits"
+    ],
+    "best_for": "E-commerce",
+    "not_for": "Simple projects"
+  }
+}

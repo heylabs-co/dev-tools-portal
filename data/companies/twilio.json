@@ -1,0 +1,107 @@
+{
+  "id": "COMP-0234",
+  "slug": "twilio",
+  "name": "Twilio",
+  "description": "Twilio — Messaging API (Email / SMS / Voice) tool for developers",
+  "website": "https://twilio.com",
+  "logo": "https://www.google.com/s2/favicons?domain=twilio.com&sz=128",
+  "hq_country": "US",
+  "status": "active",
+  "categories": {
+    "primary": {
+      "id": "CAT-15",
+      "slug": "messaging-api",
+      "name": "Messaging API (Email / SMS / Voice)"
+    },
+    "secondary": []
+  },
+  "alternatives": [],
+  "seo": {
+    "title": "Twilio Review 2026: Pricing, Alternatives & Lock-in Score",
+    "meta_description": "Complete Twilio analysis: pricing, lock-in risk, migration difficulty. Compare with alternatives in Messaging API (Email / SMS / Voice).",
+    "keywords": [
+      "twilio pricing",
+      "twilio alternatives",
+      "twilio review"
+    ]
+  },
+  "updated_at": "2026-04-18T12:56:06.863Z",
+  "created_at": "2026-04-12T12:53:55.841Z",
+  "pricing": {
+    "model": "usage",
+    "has_free_tier": false,
+    "entry_price": "$0.0079/min, $0.0079/SMS (US)",
+    "enterprise_available": true,
+    "billing_complexity": "medium",
+    "transparency_score": 3,
+    "last_checked": "2026-04-11",
+    "pricing_url": "https://twilio.com/pricing"
+  },
+  "scores": {
+    "lock_in": {
+      "level": "medium",
+      "score": 3,
+      "migration_complexity": "medium",
+      "data_portability": "Segment data export (Business plan), porting",
+      "api_compatibility": "Proprietary, but REST standard",
+      "explanation": "Medium — but butwithand (porting), but ecosystem (Segment, SendGrid) creates inandwithandwith"
+    }
+  },
+  "scale": {
+    "revenue": "$5.067B (+13.66% YoY)",
+    "customers": "335,000+ active accounts",
+    "data_status": "estimated"
+  },
+  "content": {
+    "when_to_use": [
+      "Multi-channel messaging (SMS + voice + WhatsApp)",
+      "Programmable voice/video",
+      "Need phone number provisioning globally"
+    ],
+    "when_not_to_use": [
+      "Email only — SendGrid/Resend are simpler",
+      "Just need push notifications — use OneSignal",
+      "Cost-sensitive on SMS — Plivo/Telnyx are cheaper"
+    ],
+    "consider_instead": [
+      "vonage",
+      "sinch",
+      "plivo"
+    ],
+    "pricing_at_scale": [
+      {
+        "scale": "Entry",
+        "estimate": "~$0.0079/min, $0.0079/SMS (US)"
+      }
+    ],
+    "migration_cheatsheet": {
+      "difficulty": "medium",
+      "data_you_keep": "Segment data export (Business plan), porting",
+      "api_standard": "Proprietary, but REST standard",
+      "risk_notes": "Medium — but butwithand (porting), but ecosystem (Segment, SendGrid) creates inandwithandwith",
+      "tip": "Moderate effort required. Export data before canceling"
+    },
+    "works_well_with": [
+      "clerk",
+      "amplitude"
+    ]
+  },
+  "community": {
+    "hn_mentions_30d": 7
+  },
+  "review": {
+    "verdict": "Best for multi-channel messaging (sms + voice + whatsapp). Twilio offers usage-based at $0.0079/min, $0.0079/SMS (US). Moderate vendor lock-in.",
+    "pros": [
+      "Multi-channel messaging (SMS + voice + WhatsApp)",
+      "Programmable voice/video",
+      "Multi-channel delivery (SMS, email, voice) from one API"
+    ],
+    "cons": [
+      "Email only — SendGrid/Resend are simpler",
+      "Just need push notifications",
+      "Per-message pricing adds up at high send volumes"
+    ],
+    "best_for": "Multi-channel messaging (SMS + voice + WhatsApp)",
+    "not_for": "Email only"
+  }
+}

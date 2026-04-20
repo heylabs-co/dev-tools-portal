@@ -1,0 +1,134 @@
+{
+  "id": "COMP-0175",
+  "slug": "cloudflare",
+  "name": "Cloudflare",
+  "description": "Cloudflare — CDN / Edge / Acceleration tool for developers",
+  "website": "https://cloudflare.com",
+  "logo": "https://www.google.com/s2/favicons?domain=cloudflare.com&sz=128",
+  "hq_country": "US",
+  "status": "active",
+  "categories": {
+    "primary": {
+      "id": "CAT-12",
+      "slug": "cdn-edge",
+      "name": "CDN / Edge / Acceleration"
+    },
+    "secondary": [
+      "CAT-40"
+    ]
+  },
+  "alternatives": [],
+  "seo": {
+    "title": "Cloudflare Review 2026: Pricing, Alternatives & Lock-in Score",
+    "meta_description": "Complete Cloudflare analysis: pricing, lock-in risk, migration difficulty. Compare with alternatives in CDN / Edge / Acceleration.",
+    "keywords": [
+      "cloudflare pricing",
+      "cloudflare alternatives",
+      "cloudflare review"
+    ]
+  },
+  "updated_at": "2026-04-20T18:51:40.950Z",
+  "created_at": "2026-04-12T12:53:55.841Z",
+  "pricing": {
+    "model": "freemium",
+    "has_free_tier": true,
+    "free_tier_limits": "Free plan, generous",
+    "entry_price": "$20/mo (Pro)",
+    "enterprise_available": true,
+    "billing_complexity": "low",
+    "transparency_score": 4,
+    "last_checked": "2026-04-11",
+    "pricing_url": "https://cloudflare.com/pricing"
+  },
+  "scores": {
+    "lock_in": {
+      "level": "medium",
+      "score": 3,
+      "migration_complexity": "low",
+      "data_portability": "R2 = S3-compatible export",
+      "api_compatibility": "Workers = proprietary, R2 = S3-compatible",
+      "explanation": "Medium — Workers/R2/D1/KV = deep binding to ecosystem, but DNS andand growth"
+    }
+  },
+  "scale": {
+    "revenue": "$2.168B (+29.85% YoY)",
+    "customers": "269 (+55% YoY)",
+    "data_status": "estimated"
+  },
+  "content": {
+    "when_to_use": [
+      "CDN + edge compute + DNS + security in one",
+      "Static site hosting for free (Pages)",
+      "DDoS protection and WAF"
+    ],
+    "when_not_to_use": [
+      "Need full PaaS for backend apps — use Railway/Render",
+      "Workers have cold start and memory limits",
+      "Need managed databases beyond D1 (early stage)"
+    ],
+    "consider_instead": [
+      "fastly",
+      "vercel",
+      "netlify"
+    ],
+    "pricing_at_scale": [
+      {
+        "scale": "Entry",
+        "estimate": "$20/mo (Pro)"
+      }
+    ],
+    "migration_cheatsheet": {
+      "difficulty": "low",
+      "data_you_keep": "R2 = S3-compatible export",
+      "api_standard": "Workers = proprietary, R2 = S3-compatible",
+      "risk_notes": "Medium — Workers/R2/D1/KV = deep binding to ecosystem, but DNS andand growth",
+      "tip": "Moderate effort required. Export data before canceling"
+    },
+    "works_well_with": [
+      "cockroachdb",
+      "appwrite",
+      "drata"
+    ]
+  },
+  "community": {
+    "hn_mentions_30d": 156
+  },
+  "github": {
+    "repo": "cloudflare/pingora",
+    "stars": 26464,
+    "open_issues": 251,
+    "latest_release": "0.8.0",
+    "release_date": "2026-03-02T21:44:43Z"
+  },
+  "npm": {
+    "package": "@cloudflare/unenv-preset",
+    "weekly_downloads": 8425046,
+    "latest_version": "2.16.0"
+  },
+  "review": {
+    "verdict": "Best for cdn + edge compute + dns + security in one. Cloudflare offers freemium, paid from $20/mo (Pro). Moderate vendor lock-in.",
+    "pros": [
+      "CDN + edge compute + DNS + security in one",
+      "Static site hosting for free (Pages)",
+      "Global edge network for low-latency delivery"
+    ],
+    "cons": [
+      "Need full PaaS for backend apps",
+      "Workers have cold start and memory limits",
+      "Proprietary edge functions create platform dependency"
+    ],
+    "best_for": "CDN + edge compute + DNS + security in one",
+    "not_for": "Need full PaaS for backend apps"
+  },
+  "health": {
+    "bus_factor": 8,
+    "last_commit_days_ago": 6,
+    "release_frequency_days": 122,
+    "open_issues": 249,
+    "license": "Apache-2.0",
+    "stars": 26403,
+    "forks": 1624,
+    "updated_at": "2026-04-16",
+    "health_score": "B"
+  }
+}

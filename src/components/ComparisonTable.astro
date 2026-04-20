@@ -1,0 +1,189 @@
+---
+interface Company {
+  name: string;
+  slug: string;
+  logo?: string;
+  pricing?: {
+    model?: string;
+    has_free_tier?: boolean;
+    entry_price?: string;
+    enterprise_available?: boolean;
+  };
+  scores?: {
+    lock_in?: {
+      level?: 'low' | 'medium' | 'high';
+      score?: number;
+      migration_complexity?: 'low' | 'medium' | 'high';
+      data_portability?: string;
+    };
+  };
+  scale?: {
+    customers?: string;
+    revenue?: string;
+    employees?: string;
+  };
+  categories: {
+    primary: { id: string; slug: string; name: string };
+    secondary?: string[];
+  };
+}
+
+interface Props {
+  companyA: Company;
+  companyB: Company;
+}
+
+const { companyA, companyB } = Astro.props;
+
+type Row = {
+  label: string;
+  a: string;
+  b: string;
+  highlight?: 'lower-better' | 'higher-better' | 'bool-good' | 'level-lower-better';
+};
+
+function levelValue(level?: string): number {
+  if (level === 'low') return 1;
+  if (level === 'medium') return 2;
+  if (level === 'high') return 3;
+  return 0;
+}
+
+const rows: Row[] = [
+  {
+    label: 'Category',
+    a: companyA.categories.primary.name,
+    b: companyB.categories.primary.name,
+  },
+  {
+    label: 'Pricing Model',
+    a: companyA.pricing?.model ?? '—',
+    b: companyB.pricing?.model ?? '—',
+  },
+  {
+    label: 'Entry Price',
+    a: companyA.pricing?.entry_price ?? '—',
+    b: companyB.pricing?.entry_price ?? '—',
+  },
+  {
+    label: 'Free Tier',
+    a: companyA.pricing?.has_free_tier ? 'Yes' : 'No',
+    b: companyB.pricing?.has_free_tier ? 'Yes' : 'No',
+    highlight: 'bool-good',
+  },
+  {
+    label: 'Lock-in Level',
+    a: companyA.scores?.lock_in?.level ?? '—',
+    b: companyB.scores?.lock_in?.level ?? '—',
+    highlight: 'level-lower-better',
+  },
+  {
+    label: 'Lock-in Score',
+    a: companyA.scores?.lock_in?.score != null ? `${companyA.scores.lock_in.score}/5` : '—',
+    b: companyB.scores?.lock_in?.score != null ? `${companyB.scores.lock_in.score}/5` : '—',
+    highlight: 'lower-better',
+  },
+  {
+    label: 'Migration Complexity',
+    a: companyA.scores?.lock_in?.migration_complexity ?? '—',
+    b: companyB.scores?.lock_in?.migration_complexity ?? '—',
+    highlight: 'level-lower-better',
+  },
+  {
+    label: 'Data Portability',
+    a: companyA.scores?.lock_in?.data_portability ?? '—',
+    b: companyB.scores?.lock_in?.data_portability ?? '—',
+  },
+  {
+    label: 'Enterprise Available',
+    a: companyA.pricing?.enterprise_available ? 'Yes' : 'No',
+    b: companyB.pricing?.enterprise_available ? 'Yes' : 'No',
+    highlight: 'bool-good',
+  },
+];
+
+function cellClasses(row: Row, side: 'a' | 'b'): string {
+  const val = side === 'a' ? row.a : row.b;
+  const other = side === 'a' ? row.b : row.a;
+  if (!row.highlight || val === '—' || other === '—') return '';
+
+  if (row.highlight === 'bool-good') {
+    if (val === 'Yes' && other === 'No') return 'bg-green-50 text-green-700 dark:bg-green-900/30 dark:text-green-300';
+    if (val === 'No' && other === 'Yes') return 'bg-red-50 text-red-700 dark:bg-red-900/30 dark:text-red-300';
+  }
+
+  if (row.highlight === 'level-lower-better') {
+    const v = levelValue(val);
+    const o = levelValue(other);
+    if (v && o && v < o) return 'bg-green-50 text-green-700 dark:bg-green-900/30 dark:text-green-300';
+    if (v && o && v > o) return 'bg-red-50 text-red-700 dark:bg-red-900/30 dark:text-red-300';
+  }
+
+  if (row.highlight === 'lower-better') {
+    const numA = parseFloat(val);
+    const numB = parseFloat(other);
+    if (!isNaN(numA) && !isNaN(numB)) {
+      if (numA < numB) return 'bg-green-50 text-green-700 dark:bg-green-900/30 dark:text-green-300';
+      if (numA > numB) return 'bg-red-50 text-red-700 dark:bg-red-900/30 dark:text-red-300';
+    }
+  }
+
+  return '';
+}
+---
+
+<div class="overflow-x-auto">
+  <!-- Desktop table -->
+  <table class="hidden md:table w-full border-collapse text-sm">
+    <thead>
+      <tr class="border-b border-gray-200 dark:border-gray-700">
+        <th class="py-3 px-4 text-left font-medium text-gray-500 dark:text-gray-400 w-1/3"></th>
+        <th class="py-3 px-4 text-center w-1/3">
+          <a href={`/tools/${companyA.slug}/`} class="inline-flex flex-col items-center gap-2 hover:opacity-80 transition-opacity">
+            {companyA.logo && <img src={companyA.logo} alt={companyA.name} class="h-8 w-8 object-contain" />}
+            <span class="font-semibold text-gray-900 dark:text-gray-100">{companyA.name}</span>
+          </a>
+        </th>
+        <th class="py-3 px-4 text-center w-1/3">
+          <a href={`/tools/${companyB.slug}/`} class="inline-flex flex-col items-center gap-2 hover:opacity-80 transition-opacity">
+            {companyB.logo && <img src={companyB.logo} alt={companyB.name} class="h-8 w-8 object-contain" />}
+            <span class="font-semibold text-gray-900 dark:text-gray-100">{companyB.name}</span>
+          </a>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      {rows.map((row) => (
+        <tr class="border-b border-gray-100 dark:border-gray-800">
+          <td class="py-3 px-4 font-medium text-gray-600 dark:text-gray-400">{row.label}</td>
+          <td class={`py-3 px-4 text-center capitalize ${cellClasses(row, 'a')}`}>{row.a}</td>
+          <td class={`py-3 px-4 text-center capitalize ${cellClasses(row, 'b')}`}>{row.b}</td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+
+  <!-- Mobile stacked view -->
+  <div class="md:hidden space-y-4">
+    <div class="flex justify-around border-b border-gray-200 dark:border-gray-700 pb-4">
+      <a href={`/tools/${companyA.slug}/`} class="flex flex-col items-center gap-1 hover:opacity-80">
+        {companyA.logo && <img src={companyA.logo} alt={companyA.name} class="h-8 w-8 object-contain" />}
+        <span class="font-semibold text-sm">{companyA.name}</span>
+      </a>
+      <span class="self-center text-gray-400 font-medium">vs</span>
+      <a href={`/tools/${companyB.slug}/`} class="flex flex-col items-center gap-1 hover:opacity-80">
+        {companyB.logo && <img src={companyB.logo} alt={companyB.name} class="h-8 w-8 object-contain" />}
+        <span class="font-semibold text-sm">{companyB.name}</span>
+      </a>
+    </div>
+    {rows.map((row) => (
+      <div class="border-b border-gray-100 dark:border-gray-800 pb-3">
+        <div class="text-xs font-medium text-gray-500 dark:text-gray-400 mb-1">{row.label}</div>
+        <div class="grid grid-cols-2 gap-2 text-sm">
+          <div class={`text-center capitalize rounded px-2 py-1 ${cellClasses(row, 'a')}`}>{row.a}</div>
+          <div class={`text-center capitalize rounded px-2 py-1 ${cellClasses(row, 'b')}`}>{row.b}</div>
+        </div>
+      </div>
+    ))}
+  </div>
+</div>

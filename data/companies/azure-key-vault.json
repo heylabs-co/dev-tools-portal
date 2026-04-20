@@ -1,0 +1,92 @@
+{
+  "id": "COMP-0114",
+  "slug": "azure-key-vault",
+  "name": "Azure Key Vault",
+  "description": "Azure Key Vault — Secrets Management tool for developers",
+  "website": "https://azure.microsoft.com",
+  "logo": "https://github.com/SparebankenVest.png?size=128",
+  "hq_country": "US",
+  "status": "active",
+  "categories": {
+    "primary": {
+      "id": "CAT-08",
+      "slug": "secrets-management",
+      "name": "Secrets Management"
+    },
+    "secondary": []
+  },
+  "alternatives": [],
+  "seo": {
+    "title": "Azure Key Vault Review 2026: Pricing, Alternatives & Lock-in Score",
+    "meta_description": "Complete Azure Key Vault analysis: pricing, lock-in risk, migration difficulty. Compare with alternatives in Secrets Management.",
+    "keywords": [
+      "azure key vault pricing",
+      "azure key vault alternatives",
+      "azure key vault review"
+    ]
+  },
+  "updated_at": "2026-04-15T18:57:05.361Z",
+  "created_at": "2026-04-12T12:53:55.841Z",
+  "content": {
+    "when_to_use": [
+      "Teams with many API keys/tokens",
+      "CI/CD pipelines needing secure env vars",
+      "SOC2/compliance requirements"
+    ],
+    "when_not_to_use": [
+      "Solo developer with few secrets",
+      "Static sites without backend"
+    ],
+    "consider_instead": [
+      "identity-auth"
+    ]
+  },
+  "community": {
+    "hn_mentions_30d": 0
+  },
+  "pricing": {
+    "model": "subscription",
+    "has_free_tier": true,
+    "entry_price": "$1",
+    "enterprise_available": true,
+    "pricing_url": "https://azure.microsoft.com/pricing",
+    "transparency_score": 5,
+    "last_checked": "2026-04-15"
+  },
+  "github": {
+    "repo": "SparebankenVest/azure-key-vault-to-kubernetes",
+    "stars": 451,
+    "open_issues": 100,
+    "latest_release": "1.8.0",
+    "release_date": "2025-07-28T07:38:07Z"
+  },
+  "npm": {
+    "package": "@azure/keyvault-secrets"
+  },
+  "review": {
+    "verdict": "Best for teams with many api keys/tokens. Azure Key Vault offers subscription from $1.",
+    "pros": [
+      "Teams with many API keys/tokens",
+      "CI/CD pipelines needing secure env vars",
+      "Generous free tier for getting started"
+    ],
+    "cons": [
+      "Solo developer with few secrets",
+      "Static sites without backend"
+    ],
+    "best_for": "Teams",
+    "not_for": "Solo, Static projects"
+  },
+  "health": {
+    "bus_factor": 5,
+    "last_commit_days_ago": 1,
+    "release_frequency_days": 75,
+    "open_issues": 100,
+    "issue_close_days": 27,
+    "license": "Apache-2.0",
+    "stars": 451,
+    "forks": 98,
+    "updated_at": "2026-04-16",
+    "health_score": "B"
+  }
+}

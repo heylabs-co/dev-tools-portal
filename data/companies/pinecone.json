@@ -1,0 +1,105 @@
+{
+  "id": "COMP-0211",
+  "slug": "pinecone",
+  "name": "Pinecone",
+  "description": "Pinecone — Search / Recommendations API tool for developers",
+  "website": "https://pinecone.io",
+  "logo": "https://www.google.com/s2/favicons?domain=pinecone.io&sz=128",
+  "hq_country": "US",
+  "status": "active",
+  "categories": {
+    "primary": {
+      "id": "CAT-14",
+      "slug": "search-recommendations",
+      "name": "Search / Recommendations API"
+    },
+    "secondary": []
+  },
+  "alternatives": [],
+  "seo": {
+    "title": "Pinecone Review 2026: Pricing, Alternatives & Lock-in Score",
+    "meta_description": "Complete Pinecone analysis: pricing, lock-in risk, migration difficulty. Compare with alternatives in Search / Recommendations API.",
+    "keywords": [
+      "pinecone pricing",
+      "pinecone alternatives",
+      "pinecone review"
+    ]
+  },
+  "updated_at": "2026-04-20T01:33:49.094Z",
+  "created_at": "2026-04-12T12:53:55.841Z",
+  "pricing": {
+    "model": "hybrid",
+    "has_free_tier": true,
+    "free_tier_limits": "Starter: 2GB, 2M writes",
+    "entry_price": "$70/mo (Standard)",
+    "enterprise_available": true,
+    "billing_complexity": "medium",
+    "transparency_score": 4,
+    "last_checked": "2026-04-11",
+    "pricing_url": "https://pinecone.io/pricing"
+  },
+  "scores": {
+    "lock_in": {
+      "level": "medium",
+      "score": 3,
+      "migration_complexity": "medium",
+      "data_portability": "Vector export  API",
+      "api_compatibility": "Proprietary, but embeddings standard",
+      "explanation": "Medium — proprietary vector format, but standard embeddings"
+    }
+  },
+  "scale": {
+    "revenue": "$14M (down from $26.6M)",
+    "customers": "4,000",
+    "valuation": "$750M",
+    "data_status": "estimated"
+  },
+  "content": {
+    "when_to_use": [
+      "E-commerce product search",
+      "Documentation/knowledge base search",
+      "Content recommendations"
+    ],
+    "when_not_to_use": [
+      "Simple filter/sort on small datasets",
+      "Apps with <1000 records"
+    ],
+    "consider_instead": [],
+    "pricing_at_scale": [
+      {
+        "scale": "Entry",
+        "estimate": "$70/mo (Standard)"
+      }
+    ],
+    "migration_cheatsheet": {
+      "difficulty": "medium",
+      "data_you_keep": "Vector export  API",
+      "api_standard": "Proprietary, but embeddings standard",
+      "risk_notes": "Medium — proprietary vector format, but standard embeddings",
+      "tip": "Moderate effort required. Export data before canceling"
+    },
+    "works_well_with": [
+      "appwrite",
+      "akamai",
+      "amplitude"
+    ]
+  },
+  "community": {
+    "hn_mentions_30d": 3
+  },
+  "review": {
+    "verdict": "Best for e-commerce product search. Pinecone offers $70/mo (Standard). Moderate vendor lock-in.",
+    "pros": [
+      "E-commerce product search",
+      "Documentation/knowledge base search",
+      "Sub-50ms search with managed indexing"
+    ],
+    "cons": [
+      "Simple filter/sort on small datasets",
+      "Apps with <1000 records",
+      "Proprietary data formats add switching costs"
+    ],
+    "best_for": "E-commerce",
+    "not_for": "Simple projects"
+  }
+}

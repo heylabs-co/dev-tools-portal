@@ -1,0 +1,108 @@
+{
+  "id": "COMP-0183",
+  "slug": "netlify",
+  "name": "Netlify",
+  "description": "Netlify — CDN / Edge / Acceleration tool for developers",
+  "website": "https://netlify.com",
+  "logo": "https://www.google.com/s2/favicons?domain=netlify.com&sz=128",
+  "hq_country": "US",
+  "status": "active",
+  "categories": {
+    "primary": {
+      "id": "CAT-12",
+      "slug": "cdn-edge",
+      "name": "CDN / Edge / Acceleration"
+    },
+    "secondary": [
+      "CAT-40"
+    ]
+  },
+  "alternatives": [],
+  "seo": {
+    "title": "Netlify Review 2026: Pricing, Alternatives & Lock-in Score",
+    "meta_description": "Complete Netlify analysis: pricing, lock-in risk, migration difficulty. Compare with alternatives in CDN / Edge / Acceleration.",
+    "keywords": [
+      "netlify pricing",
+      "netlify alternatives",
+      "netlify review"
+    ]
+  },
+  "updated_at": "2026-04-20T19:02:29.450Z",
+  "created_at": "2026-04-12T12:53:55.841Z",
+  "pricing": {
+    "model": "freemium",
+    "has_free_tier": true,
+    "free_tier_limits": "300 credits/mo",
+    "entry_price": "$19/mo/member (Pro)",
+    "enterprise_available": true,
+    "billing_complexity": "medium",
+    "transparency_score": 4,
+    "last_checked": "2026-04-11",
+    "pricing_url": "https://netlify.com/pricing"
+  },
+  "scores": {
+    "lock_in": {
+      "level": "medium",
+      "score": 3,
+      "migration_complexity": "medium",
+      "data_portability": "Git repo = your data",
+      "api_compatibility": "Proprietary",
+      "explanation": "Medium — Netlify Functions/Edge = binding"
+    }
+  },
+  "scale": {
+    "revenue": "unknown -- private, searched getlatka",
+    "customers": "unknown",
+    "data_status": "estimated"
+  },
+  "content": {
+    "when_to_use": [
+      "Global audience with low latency needs",
+      "Static site hosting",
+      "Edge computing / serverless functions"
+    ],
+    "when_not_to_use": [
+      "Single-region internal apps",
+      "Low-traffic internal tools"
+    ],
+    "consider_instead": [
+      "object-storage-media"
+    ],
+    "pricing_at_scale": [
+      {
+        "scale": "Entry",
+        "estimate": "$19/mo/member (Pro)"
+      }
+    ],
+    "migration_cheatsheet": {
+      "difficulty": "medium",
+      "data_you_keep": "Git repo = your data",
+      "api_standard": "Proprietary",
+      "risk_notes": "Medium — Netlify Functions/Edge = binding",
+      "tip": "Moderate effort required. Export data before canceling"
+    },
+    "works_well_with": [
+      "cockroachdb",
+      "appwrite",
+      "drata"
+    ]
+  },
+  "community": {
+    "hn_mentions_30d": 41
+  },
+  "review": {
+    "verdict": "Best for global audience with low latency needs. Netlify offers freemium, paid from $19/mo/member (Pro). Moderate vendor lock-in.",
+    "pros": [
+      "Global audience with low latency needs",
+      "Static site hosting",
+      "Global edge network for low-latency delivery"
+    ],
+    "cons": [
+      "Single-region internal apps",
+      "Low-traffic internal tools",
+      "Proprietary edge functions create platform dependency"
+    ],
+    "best_for": "Global",
+    "not_for": "Internal projects"
+  }
+}

@@ -1,0 +1,99 @@
+{
+  "id": "COMP-0078",
+  "slug": "descope",
+  "name": "Descope",
+  "description": "Descope — Identity / Auth / User Management tool for developers",
+  "website": "https://descope.com",
+  "logo": "https://www.google.com/s2/favicons?domain=descope.com&sz=128",
+  "hq_country": "US",
+  "status": "active",
+  "categories": {
+    "primary": {
+      "id": "CAT-06",
+      "slug": "identity-auth",
+      "name": "Identity / Auth / User Management"
+    },
+    "secondary": []
+  },
+  "alternatives": [],
+  "seo": {
+    "title": "Descope Review 2026: Pricing, Alternatives & Lock-in Score",
+    "meta_description": "Complete Descope analysis: pricing, lock-in risk, migration difficulty. Compare with alternatives in Identity / Auth / User Management.",
+    "keywords": [
+      "descope pricing",
+      "descope alternatives",
+      "descope review"
+    ]
+  },
+  "updated_at": "2026-04-20T18:53:44.571Z",
+  "created_at": "2026-04-12T12:53:55.841Z",
+  "pricing": {
+    "model": "freemium",
+    "has_free_tier": true,
+    "free_tier_limits": "Free tier",
+    "entry_price": "Pro (custom)",
+    "enterprise_available": true,
+    "billing_complexity": "low",
+    "transparency_score": 4,
+    "last_checked": "2026-04-11",
+    "pricing_url": "https://descope.com/pricing"
+  },
+  "scores": {
+    "lock_in": {
+      "level": "low",
+      "score": 1,
+      "migration_complexity": "medium",
+      "data_portability": "API export",
+      "api_compatibility": "OIDC standard",
+      "explanation": "Medium — no-code Flows proprietary"
+    }
+  },
+  "scale": {
+    "customers": "\"withfromand\"-- GoFundMe, Navan, You.com, Branch",
+    "revenue": "unknown -- searched sacra, getlatka",
+    "data_status": "estimated"
+  },
+  "content": {
+    "when_to_use": [
+      "Apps needing SSO/MFA",
+      "B2B requiring SAML/SCIM",
+      "Passwordless authentication"
+    ],
+    "when_not_to_use": [
+      "Internal tools with basic auth",
+      "Static sites without user accounts"
+    ],
+    "consider_instead": [
+      "backend-as-a-service"
+    ],
+    "migration_cheatsheet": {
+      "difficulty": "medium",
+      "data_you_keep": "API export",
+      "api_standard": "OIDC standard",
+      "risk_notes": "Medium — no-code Flows proprietary",
+      "tip": "Standard protocols make switching straightforward"
+    },
+    "works_well_with": [
+      "appwrite",
+      "adyen"
+    ]
+  },
+  "community": {
+    "hn_mentions_30d": 85
+  },
+  "review": {
+    "verdict": "Best for apps needing sso/mfa. Descope offers freemium, paid from Pro (custom). Low vendor lock-in.",
+    "pros": [
+      "Apps needing SSO/MFA",
+      "B2B requiring SAML/SCIM",
+      "Low lock-in — easy to migrate away"
+    ],
+    "cons": [
+      "Internal tools with basic auth",
+      "Static sites without user accounts",
+      "MAU-based pricing scales steeply"
+    ],
+    "best_for": "Apps, B2B",
+    "not_for": "Internal, Static projects"
+  }
+}

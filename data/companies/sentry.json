@@ -1,0 +1,109 @@
+{
+  "id": "COMP-0299",
+  "slug": "sentry",
+  "name": "Sentry",
+  "description": "Sentry — Crash Reporting tool for developers",
+  "website": "https://sentry.io",
+  "logo": "https://www.google.com/s2/favicons?domain=sentry.io&sz=128",
+  "hq_country": "US",
+  "status": "active",
+  "categories": {
+    "primary": {
+      "id": "CAT-20",
+      "slug": "crash-reporting",
+      "name": "Crash Reporting"
+    },
+    "secondary": [
+      "CAT-21"
+    ]
+  },
+  "alternatives": [],
+  "seo": {
+    "title": "Sentry Review 2026: Pricing, Alternatives & Lock-in Score",
+    "meta_description": "Complete Sentry analysis: pricing, lock-in risk, migration difficulty. Compare with alternatives in Crash Reporting.",
+    "keywords": [
+      "sentry pricing",
+      "sentry alternatives",
+      "sentry review"
+    ]
+  },
+  "updated_at": "2026-04-20T19:07:49.670Z",
+  "created_at": "2026-04-12T12:53:55.841Z",
+  "pricing": {
+    "model": "freemium",
+    "has_free_tier": true,
+    "free_tier_limits": "Developer free",
+    "entry_price": "$29/mo (Team)",
+    "enterprise_available": true,
+    "billing_complexity": "low",
+    "transparency_score": 4,
+    "last_checked": "2026-04-11",
+    "pricing_url": "https://sentry.io/pricing"
+  },
+  "scores": {
+    "lock_in": {
+      "level": "low",
+      "score": 1,
+      "migration_complexity": "low",
+      "data_portability": "Full — self-hosted",
+      "api_compatibility": "Open-source, OTel",
+      "explanation": "Low — open-source, self-hosted option, OTel-compatible"
+    }
+  },
+  "scale": {
+    "customers": "1.3M+",
+    "revenue": "unknown -- private",
+    "data_status": "estimated"
+  },
+  "content": {
+    "when_to_use": [
+      "Error tracking and crash reporting for any platform",
+      "Want open-source with self-hosted option",
+      "Need performance monitoring + profiling"
+    ],
+    "when_not_to_use": [
+      "Need full APM with infrastructure monitoring — use Datadog",
+      "Need log aggregation — Sentry is errors, not logs",
+      "Mobile-only crash reporting — Crashlytics is free"
+    ],
+    "consider_instead": [
+      "bugsnag",
+      "datadog"
+    ],
+    "pricing_at_scale": [
+      {
+        "scale": "Entry",
+        "estimate": "$29/mo (Team)"
+      }
+    ],
+    "migration_cheatsheet": {
+      "difficulty": "low",
+      "data_you_keep": "Full — self-hosted",
+      "api_standard": "Open-source, OTel",
+      "risk_notes": "Low — open-source, self-hosted option, OTel-compatible",
+      "tip": "Standard protocols make switching straightforward"
+    },
+    "works_well_with": [
+      "better-stack",
+      "amplitude"
+    ]
+  },
+  "community": {
+    "hn_mentions_30d": 61
+  },
+  "review": {
+    "verdict": "Best for error tracking and crash reporting for any platform. Sentry offers freemium, paid from $29/mo (Team). Low vendor lock-in.",
+    "pros": [
+      "Error tracking and crash reporting for any platform",
+      "open-source with self-hosted option",
+      "Low lock-in — easy to migrate away"
+    ],
+    "cons": [
+      "Need full APM with infrastructure monitoring",
+      "Need log aggregation — Sentry is errors, not logs",
+      "Event-volume pricing can surprise at scale"
+    ],
+    "best_for": "Error tracking and crash reporting for any platform",
+    "not_for": "Need full APM with infrastructure monitoring"
+  }
+}

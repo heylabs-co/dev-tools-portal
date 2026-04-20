@@ -1,0 +1,104 @@
+{
+  "id": "COMP-0329",
+  "slug": "flagsmith",
+  "name": "Flagsmith",
+  "description": "Flagsmith — Observability / Logging / Tracing tool for developers",
+  "website": "https://flagsmith.com",
+  "logo": "https://www.google.com/s2/favicons?domain=flagsmith.com&sz=128",
+  "hq_country": "UK",
+  "status": "active",
+  "categories": {
+    "primary": {
+      "id": "CAT-22",
+      "slug": "observability",
+      "name": "Observability / Logging / Tracing"
+    },
+    "secondary": []
+  },
+  "alternatives": [],
+  "seo": {
+    "title": "Flagsmith Review 2026: Pricing, Alternatives & Lock-in Score",
+    "meta_description": "Complete Flagsmith analysis: pricing, lock-in risk, migration difficulty. Compare with alternatives in Observability / Logging / Tracing.",
+    "keywords": [
+      "flagsmith pricing",
+      "flagsmith alternatives",
+      "flagsmith review"
+    ]
+  },
+  "updated_at": "2026-04-12T18:41:37.673Z",
+  "created_at": "2026-04-12T12:53:55.841Z",
+  "pricing": {
+    "model": "hybrid",
+    "has_free_tier": true,
+    "free_tier_limits": "50 users, unlimited flags",
+    "entry_price": "$99/mo (Start-Up, 500 users)",
+    "enterprise_available": true,
+    "billing_complexity": "low",
+    "transparency_score": 4,
+    "last_checked": "2026-04-11",
+    "pricing_url": "https://flagsmith.com/pricing"
+  },
+  "scores": {
+    "lock_in": {
+      "level": "low",
+      "score": 1,
+      "migration_complexity": "low",
+      "data_portability": "Full — self-hosted",
+      "api_compatibility": "Open-source API",
+      "explanation": "Low — open-source, self-hosted, audit codebase"
+    }
+  },
+  "scale": {
+    "revenue": "unknown -- private, early stage",
+    "data_status": "estimated"
+  },
+  "content": {
+    "when_to_use": [
+      "Distributed systems debugging",
+      "Log aggregation and analysis",
+      "OpenTelemetry-based monitoring"
+    ],
+    "when_not_to_use": [
+      "Single-server apps with basic logging",
+      "Non-technical teams"
+    ],
+    "consider_instead": [
+      "apm"
+    ],
+    "pricing_at_scale": [
+      {
+        "scale": "Entry",
+        "estimate": "$99/mo (Start-Up, 500 users)"
+      }
+    ],
+    "migration_cheatsheet": {
+      "difficulty": "low",
+      "data_you_keep": "Full — self-hosted",
+      "api_standard": "Open-source API",
+      "risk_notes": "Low — open-source, self-hosted, audit codebase",
+      "tip": "Standard protocols make switching straightforward"
+    },
+    "works_well_with": [
+      "better-stack",
+      "drata"
+    ]
+  },
+  "community": {
+    "hn_mentions_30d": 0
+  },
+  "review": {
+    "verdict": "Best for distributed systems debugging. Flagsmith offers $99/mo (Start-Up, 500 users). Low vendor lock-in.",
+    "pros": [
+      "Distributed systems debugging",
+      "Log aggregation and analysis",
+      "Low lock-in — easy to migrate away"
+    ],
+    "cons": [
+      "Single-server apps with basic logging",
+      "Non-technical teams",
+      "Data ingestion pricing can spike unexpectedly"
+    ],
+    "best_for": "Distributed systems debugging",
+    "not_for": "Non-technical projects"
+  }
+}

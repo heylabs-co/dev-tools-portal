@@ -1,0 +1,914 @@
+[
+  {
+    "name": "PostHog MCP",
+    "slug": "posthog-mcp",
+    "description": "Official PostHog MCP server for querying product analytics, feature flags, session recordings, and user behavior data.",
+    "github_repo": "PostHog/mcp",
+    "category": "other",
+    "official": true
+  },
+  {
+    "name": "Mixpanel MCP (dragonkhoi)",
+    "slug": "mixpanel-mcp-dragonkhoi",
+    "description": "MCP server for the Mixpanel API — talk to your Mixpanel events data, query retention, funnels, and insights from any MCP client.",
+    "github_repo": "dragonkhoi/mixpanel-mcp",
+    "category": "other",
+    "official": false
+  },
+  {
+    "name": "Mixpanel MCP Server (moonbirdai)",
+    "slug": "mixpanel-mcp-moonbirdai",
+    "description": "MCP server for Mixpanel Analytics integration enabling Claude and other MCP clients to track events, pageviews, and user profiles.",
+    "github_repo": "moonbirdai/mixpanel-mcp-server",
+    "category": "other",
+    "official": false
+  },
+  {
+    "name": "ArgoCD MCP (argoproj-labs)",
+    "slug": "argocd-mcp-official",
+    "description": "Official Argo CD MCP server from argoproj-labs — manage GitOps deployments and Kubernetes apps via natural language.",
+    "github_repo": "argoproj-labs/mcp-for-argocd",
+    "category": "devops",
+    "official": true
+  },
+  {
+    "name": "ArgoCD MCP (severity1)",
+    "slug": "argocd-mcp-severity1",
+    "description": "MCP server integrating with the ArgoCD API, enabling agentic tools to manage ArgoCD through natural language interactions.",
+    "github_repo": "severity1/argocd-mcp",
+    "category": "devops",
+    "official": false
+  },
+  {
+    "name": "Jenkins MCP (kud)",
+    "slug": "jenkins-mcp-kud",
+    "description": "Jenkins MCP server with 25+ tools for managing jobs, builds, nodes, views, and CI/CD workflows via AI assistants.",
+    "github_repo": "kud/mcp-jenkins",
+    "category": "devops",
+    "official": false
+  },
+  {
+    "name": "Jenkins MCP (LokiMCPUniverse)",
+    "slug": "jenkins-mcp-loki",
+    "description": "MCP server for Jenkins CI/CD — intelligent automation server integration for GenAI applications.",
+    "github_repo": "LokiMCPUniverse/jenkins-mcp-server",
+    "category": "devops",
+    "official": false
+  },
+  {
+    "name": "PagerDuty MCP (Official)",
+    "slug": "pagerduty-mcp-official",
+    "description": "Official PagerDuty MCP server with tools to manage incidents, services, schedules, and event orchestrations directly from MCP-enabled clients.",
+    "github_repo": "PagerDuty/pagerduty-mcp-server",
+    "category": "devops",
+    "official": true
+  },
+  {
+    "name": "OpsGenie MCP",
+    "slug": "opsgenie-mcp",
+    "description": "MCP server for OpsGenie providing AI assistants with access to alerts, teams, and heartbeats via natural language.",
+    "github_repo": "giantswarm/mcp-opsgenie",
+    "category": "devops",
+    "official": false
+  },
+  {
+    "name": "Prometheus MCP Server",
+    "slug": "prometheus-mcp-server",
+    "description": "MCP server enabling AI agents and LLMs to query and analyze Prometheus metrics through standardized interfaces.",
+    "github_repo": "pab1it0/prometheus-mcp-server",
+    "category": "devops",
+    "official": false
+  },
+  {
+    "name": "Contentful MCP Server (Official)",
+    "slug": "contentful-mcp-official",
+    "description": "Official Contentful MCP server providing AI assistants with tools to create, edit, organize, and publish content via the Contentful Management API.",
+    "github_repo": "contentful/contentful-mcp-server",
+    "category": "other",
+    "official": true
+  },
+  {
+    "name": "Contentful MCP (ivo-toby)",
+    "slug": "contentful-mcp-community",
+    "description": "Community MCP server for the Contentful Content Management API enabling AI-powered content management.",
+    "github_repo": "ivo-toby/contentful-mcp",
+    "category": "other",
+    "official": false
+  },
+  {
+    "name": "Sanity MCP Server (Official)",
+    "slug": "sanity-mcp-official",
+    "description": "Official Sanity MCP server connecting Sanity projects with Claude, Cursor, and VS Code for content structure and operations via natural language.",
+    "github_repo": "sanity-io/sanity-mcp-server",
+    "category": "other",
+    "official": true
+  },
+  {
+    "name": "Strapi MCP (l33tdawg)",
+    "slug": "strapi-mcp-l33tdawg",
+    "description": "MCP server for your Strapi CMS providing access to content types and entries through the Model Context Protocol.",
+    "github_repo": "l33tdawg/strapi-mcp",
+    "category": "other",
+    "official": false
+  },
+  {
+    "name": "Strapi MCP Server (misterboe)",
+    "slug": "strapi-mcp-misterboe",
+    "description": "MCP server for interacting with Strapi CMS instances through a standardized interface supporting content types and REST API operations.",
+    "github_repo": "misterboe/strapi-mcp-server",
+    "category": "other",
+    "official": false
+  },
+  {
+    "name": "WooCommerce MCP Server",
+    "slug": "woocommerce-mcp-server",
+    "description": "MCP server for WooCommerce store management via WordPress REST API — products, orders, customers, and more.",
+    "github_repo": "techspawn/woocommerce-mcp-server",
+    "category": "other",
+    "official": false
+  },
+  {
+    "name": "Shopify MCP (GeLi2001)",
+    "slug": "shopify-mcp-geli",
+    "description": "MCP server for Shopify Admin API with full CRUD for products, customers, orders, metafields, and inventory management.",
+    "github_repo": "GeLi2001/shopify-mcp",
+    "category": "other",
+    "official": false
+  },
+  {
+    "name": "Pinecone MCP (Official)",
+    "slug": "pinecone-mcp-official",
+    "description": "Official Pinecone MCP server connecting AI coding assistants to Pinecone projects and documentation for vector database operations.",
+    "github_repo": "pinecone-io/pinecone-mcp",
+    "category": "database",
+    "official": true
+  },
+  {
+    "name": "Pinecone Assistant MCP",
+    "slug": "pinecone-assistant-mcp",
+    "description": "Official Pinecone Assistant MCP server for retrieving information from Pinecone Assistant knowledge bases.",
+    "github_repo": "pinecone-io/assistant-mcp",
+    "category": "database",
+    "official": true
+  },
+  {
+    "name": "mcp-pinecone (sirmews)",
+    "slug": "mcp-pinecone-sirmews",
+    "description": "MCP server for reading and writing to Pinecone vector database with rudimentary RAG support.",
+    "github_repo": "sirmews/mcp-pinecone",
+    "category": "database",
+    "official": false
+  },
+  {
+    "name": "Weaviate MCP Server (Official)",
+    "slug": "weaviate-mcp-official",
+    "description": "Official MCP server for Weaviate vector database enabling semantic search and knowledge management via AI assistants.",
+    "github_repo": "weaviate/mcp-server-weaviate",
+    "category": "database",
+    "official": true
+  },
+  {
+    "name": "ChromaDB MCP Server",
+    "slug": "chroma-mcp-server",
+    "description": "MCP server for ChromaDB integration — store decisions, insights, and vectors in ChromaDB from AI coding tools.",
+    "github_repo": "djm81/chroma_mcp_server",
+    "category": "database",
+    "official": false
+  },
+  {
+    "name": "LlamaCloud MCP",
+    "slug": "llamacloud-mcp",
+    "description": "Official LlamaIndex MCP server providing access to LlamaCloud's managed document parsing, indexing, and retrieval pipelines.",
+    "github_repo": "run-llama/llamacloud-mcp",
+    "category": "ai",
+    "official": true
+  },
+  {
+    "name": "Twitter/X MCP (EnesCinr)",
+    "slug": "twitter-mcp-enesciner",
+    "description": "MCP server for Twitter/X enabling posting tweets, searching Twitter, and retrieving user timelines via AI assistants.",
+    "github_repo": "EnesCinr/twitter-mcp",
+    "category": "communication",
+    "official": false
+  },
+  {
+    "name": "Social CLI MCP",
+    "slug": "social-cli-mcp",
+    "description": "CLI tool and MCP server for posting to multiple social media platforms including Twitter, Reddit, LinkedIn, and Instagram.",
+    "github_repo": "Alemusica/social-cli-mcp",
+    "category": "communication",
+    "official": false
+  },
+  {
+    "name": "Ayrshare MCP",
+    "slug": "ayrshare-mcp",
+    "description": "FastMCP server for the Ayrshare Social Media API with 75+ tools for multi-platform posting to Facebook, Instagram, Twitter/X, LinkedIn, TikTok, YouTube, and more.",
+    "github_repo": "vanman2024/ayrshare-mcp",
+    "category": "communication",
+    "official": false
+  },
+  {
+    "name": "Dropbox MCP (Official Dash)",
+    "slug": "dropbox-mcp-dash",
+    "description": "Official Dropbox Dash MCP server for searching and accessing files across your connected apps.",
+    "github_repo": "dropbox/mcp-server-dash",
+    "category": "productivity",
+    "official": true
+  },
+  {
+    "name": "Dropbox MCP (ngs)",
+    "slug": "dropbox-mcp-ngs",
+    "description": "Go implementation of a Dropbox MCP server for file browsing, reading, and management via AI assistants.",
+    "github_repo": "ngs/dropbox-mcp-server",
+    "category": "productivity",
+    "official": false
+  },
+  {
+    "name": "Dropbox MCP (Tommy2Face)",
+    "slug": "dropbox-mcp-tommy",
+    "description": "Dropbox MCP server connecting Claude, Cursor, and AI tools to Dropbox with 11 tools for file management, search, and sharing.",
+    "github_repo": "Tommy2Face/dropbox-mcp-server",
+    "category": "productivity",
+    "official": false
+  },
+  {
+    "name": "OneDrive MCP Server",
+    "slug": "onedrive-mcp-server",
+    "description": "Minimal, secure MCP server for OneDrive file sharing via Microsoft Graph API.",
+    "github_repo": "MrFixit96/onedrive-mcp-server",
+    "category": "productivity",
+    "official": false
+  },
+  {
+    "name": "Microsoft Graph MCP (elyxlz)",
+    "slug": "microsoft-graph-mcp",
+    "description": "Minimal, powerful MCP server for Microsoft Graph API covering Outlook email, Calendar, and OneDrive.",
+    "github_repo": "elyxlz/microsoft-mcp",
+    "category": "productivity",
+    "official": false
+  },
+  {
+    "name": "Cypress MCP (yashpreetbathla)",
+    "slug": "cypress-mcp-yash",
+    "description": "MCP server for Cypress — run tests, manage specs, snapshot pages, and automate browsers with AI assistants.",
+    "github_repo": "yashpreetbathla/cypress-mcp",
+    "category": "code",
+    "official": false
+  },
+  {
+    "name": "Cypress Test Generator MCP",
+    "slug": "cypress-test-gen-mcp",
+    "description": "MCP server that automatically generates Cypress test cases and Page Object Models by scraping and analyzing web pages.",
+    "github_repo": "kerrfat/cypress-test-Gen-mcp",
+    "category": "code",
+    "official": false
+  },
+  {
+    "name": "Selenium MCP (angiejones)",
+    "slug": "mcp-selenium",
+    "description": "Official Selenium WebDriver MCP server implementation for AI-driven browser automation and testing.",
+    "github_repo": "angiejones/mcp-selenium",
+    "category": "code",
+    "official": false
+  },
+  {
+    "name": "Semgrep MCP (Official)",
+    "slug": "semgrep-mcp-official",
+    "description": "Official Semgrep MCP server for scanning code for security vulnerabilities using static analysis rules.",
+    "github_repo": "semgrep/mcp",
+    "category": "code",
+    "official": true
+  },
+  {
+    "name": "Monday.com MCP (Official)",
+    "slug": "monday-mcp-official",
+    "description": "Official Monday.com MCP server enabling AI agents to interact with the monday.com Work OS API for project and task management.",
+    "github_repo": "mondaycom/mcp",
+    "category": "productivity",
+    "official": true
+  },
+  {
+    "name": "ClickUp MCP (taazkareem)",
+    "slug": "clickup-mcp-taazkareem",
+    "description": "High-performance ClickUp MCP server for managing tasks, checklists, sprints, comments, tags, spaces, lists, and more via natural language.",
+    "github_repo": "taazkareem/clickup-mcp-server",
+    "category": "productivity",
+    "official": false
+  },
+  {
+    "name": "ClickUp MCP (m-HLPR)",
+    "slug": "clickup-mcp-mhlpr",
+    "description": "MCP server integrating ClickUp project management with AI through the Model Context Protocol.",
+    "github_repo": "m-HLPR/clickup-mcp",
+    "category": "productivity",
+    "official": false
+  },
+  {
+    "name": "Basecamp MCP Server",
+    "slug": "basecamp-mcp-server",
+    "description": "FastMCP-powered MCP server for Basecamp 3 — manage to-dos, messages, and projects from AI assistants.",
+    "github_repo": "georgeantonopoulos/Basecamp-MCP-Server",
+    "category": "productivity",
+    "official": false
+  },
+  {
+    "name": "Spotify MCP (varunneal)",
+    "slug": "spotify-mcp-varunneal",
+    "description": "MCP server connecting LLMs with Spotify for playback control, playlist management, and music search.",
+    "github_repo": "varunneal/spotify-mcp",
+    "category": "other",
+    "official": false
+  },
+  {
+    "name": "Spotify MCP Server (marcelmarais)",
+    "slug": "spotify-mcp-marcel",
+    "description": "Lightweight MCP server enabling AI assistants like Cursor and Claude to control Spotify playback and manage playlists.",
+    "github_repo": "marcelmarais/spotify-mcp-server",
+    "category": "other",
+    "official": false
+  },
+  {
+    "name": "YouTube Music MCP",
+    "slug": "youtube-music-mcp-server",
+    "description": "MCP server that enables AI models to control YouTube Music playback through natural language commands.",
+    "github_repo": "mondweep/youtube-music-mcp-server",
+    "category": "other",
+    "official": false
+  },
+  {
+    "name": "Algolia MCP (Official)",
+    "slug": "algolia-mcp-official",
+    "description": "Official Algolia MCP servers for interacting with Algolia search, analytics, A/B testing, and recommendations APIs.",
+    "github_repo": "algolia/mcp",
+    "category": "search",
+    "official": true
+  },
+  {
+    "name": "RSS MCP (veithly)",
+    "slug": "rss-mcp-veithly",
+    "description": "MCP server for fetching and parsing RSS/Atom feeds and RSSHub feeds for AI assistants.",
+    "github_repo": "veithly/rss-mcp",
+    "category": "other",
+    "official": false
+  },
+  {
+    "name": "Feed MCP",
+    "slug": "feed-mcp",
+    "description": "MCP server for RSS, Atom, and JSON Feeds — aggregate and parse news feeds for LLM consumption.",
+    "github_repo": "richardwooding/feed-mcp",
+    "category": "other",
+    "official": false
+  },
+  {
+    "name": "Zendesk MCP (reminia)",
+    "slug": "zendesk-mcp-reminia",
+    "description": "MCP server for Zendesk providing AI assistants with ticket management, search, and knowledge base access.",
+    "github_repo": "reminia/zendesk-mcp-server",
+    "category": "other",
+    "official": false
+  },
+  {
+    "name": "Zendesk MCP (wlaubernds)",
+    "slug": "zendesk-mcp-wlaubernds",
+    "description": "MCP server for Zendesk with AI-powered support ticket search and knowledge base integration for Cursor.",
+    "github_repo": "wlaubernds/zendesk-mcp-server",
+    "category": "other",
+    "official": false
+  },
+  {
+    "name": "Intercom MCP Server",
+    "slug": "intercom-mcp-server",
+    "description": "MCP server for Intercom with capabilities for filtering tickets by customer, date ranges, and keywords via AI assistants.",
+    "github_repo": "raoulbia-ai/mcp-server-for-intercom",
+    "category": "communication",
+    "official": false
+  },
+  {
+    "name": "SendGrid MCP (Garoth)",
+    "slug": "sendgrid-mcp-garoth",
+    "description": "MCP server for SendGrid v3 API — manage contact lists, dynamic templates, single sends, and email stats via AI agents.",
+    "github_repo": "Garoth/sendgrid-mcp",
+    "category": "communication",
+    "official": false
+  },
+  {
+    "name": "SendGrid MCP (deyikong)",
+    "slug": "sendgrid-mcp-deyikong",
+    "description": "Comprehensive SendGrid MCP server with 59 tools covering email marketing, transactional email, templates, and analytics.",
+    "github_repo": "deyikong/sendgrid-mcp",
+    "category": "communication",
+    "official": false
+  },
+  {
+    "name": "Mailchimp MCP (LokiMCPUniverse)",
+    "slug": "mailchimp-mcp-loki",
+    "description": "MCP server for Mailchimp — email marketing campaigns, lists, templates, reports, and automations via GenAI.",
+    "github_repo": "LokiMCPUniverse/mailchimp-mcp-server",
+    "category": "communication",
+    "official": false
+  },
+  {
+    "name": "Email MCP (sandraschi)",
+    "slug": "email-mcp-multi",
+    "description": "Multi-service email MCP platform supporting SMTP/IMAP, SendGrid, Mailgun, Resend, Amazon SES, and Postmark.",
+    "github_repo": "sandraschi/email-mcp",
+    "category": "communication",
+    "official": false
+  },
+  {
+    "name": "Mobile MCP",
+    "slug": "mobile-mcp",
+    "description": "MCP server for mobile automation on iOS and Android — real devices, emulators, and simulators via accessibility snapshots.",
+    "github_repo": "mobile-next/mobile-mcp",
+    "category": "code",
+    "official": false
+  },
+  {
+    "name": "XcodeBuildMCP",
+    "slug": "xcode-build-mcp",
+    "description": "MCP server and CLI from Sentry for Xcode — build, run, and test iOS and macOS projects from AI coding agents.",
+    "github_repo": "getsentry/XcodeBuildMCP",
+    "category": "code",
+    "official": false
+  },
+  {
+    "name": "Xcode MCP Server (r-huijts)",
+    "slug": "xcode-mcp-server",
+    "description": "Comprehensive Xcode MCP server for AI assistants — manage iOS simulators, interact with Xcode projects, and automate tasks.",
+    "github_repo": "r-huijts/xcode-mcp-server",
+    "category": "code",
+    "official": false
+  },
+  {
+    "name": "Appium MCP",
+    "slug": "appium-mcp",
+    "description": "Official Appium MCP server for AI-driven mobile app test automation on iOS and Android.",
+    "github_repo": "appium/appium-mcp",
+    "category": "code",
+    "official": true
+  },
+  {
+    "name": "Bitbucket MCP (aashari)",
+    "slug": "bitbucket-mcp-aashari",
+    "description": "Node.js/TypeScript MCP server for Atlassian Bitbucket — workspaces, repositories, and pull requests for AI systems.",
+    "github_repo": "aashari/mcp-server-atlassian-bitbucket",
+    "category": "code",
+    "official": false
+  },
+  {
+    "name": "Bitbucket MCP (MatanYemini)",
+    "slug": "bitbucket-mcp-matan",
+    "description": "MCP server for Bitbucket Cloud and Server — AI assistants can interact with repos, PRs, and branches.",
+    "github_repo": "MatanYemini/bitbucket-mcp",
+    "category": "code",
+    "official": false
+  },
+  {
+    "name": "Atlassian MCP Server (Official Remote)",
+    "slug": "atlassian-mcp-server-official",
+    "description": "Official Atlassian remote MCP server securely connecting Jira and Confluence with LLMs, IDEs, and agent platforms.",
+    "github_repo": "atlassian/atlassian-mcp-server",
+    "category": "productivity",
+    "official": true
+  },
+  {
+    "name": "Financial Datasets MCP",
+    "slug": "financial-datasets-mcp",
+    "description": "MCP server for the Financial Datasets stock market API — access earnings, fundamentals, prices, and SEC filings.",
+    "github_repo": "financial-datasets/mcp-server",
+    "category": "finance",
+    "official": true
+  },
+  {
+    "name": "Crypto Price MCP",
+    "slug": "crypto-price-mcp",
+    "description": "MCP server providing real-time cryptocurrency analysis via CoinCap's API — prices, market trends, and historical data.",
+    "github_repo": "truss44/mcp-crypto-price",
+    "category": "finance",
+    "official": false
+  },
+  {
+    "name": "CoinMarketCap MCP",
+    "slug": "coinmarketcap-mcp",
+    "description": "MCP server providing access to CoinMarketCap's cryptocurrency data — listings, quotes, and coin information.",
+    "github_repo": "longmans/coin_api_mcp",
+    "category": "finance",
+    "official": false
+  },
+  {
+    "name": "Helium MCP",
+    "slug": "helium-mcp",
+    "description": "MCP server with 10 tools for real-time news with bias scoring, live stock/ETF/crypto data, AI options pricing, and meme search from 5000+ sources.",
+    "github_repo": "connerlambden/helium-mcp",
+    "category": "finance",
+    "official": false
+  },
+  {
+    "name": "PDF Reader MCP",
+    "slug": "pdf-reader-mcp",
+    "description": "MCP server for reading and analyzing PDF files — text extraction, image extraction, and OCR for AI assistants.",
+    "github_repo": "labeveryday/mcp_pdf_reader",
+    "category": "other",
+    "official": false
+  },
+  {
+    "name": "PDF.co MCP",
+    "slug": "pdfco-mcp",
+    "description": "MCP server for PDF.co — convert, merge, split, compress, and extract data from PDFs via AI workflows.",
+    "github_repo": "pdfdotco/pdfco-mcp",
+    "category": "other",
+    "official": true
+  },
+  {
+    "name": "Mistral OCR MCP",
+    "slug": "mistral-ocr-mcp",
+    "description": "MCP server using Mistral's OCR API to extract text content from PDF files and images.",
+    "github_repo": "lemopian/mistral-ocr-mcp",
+    "category": "ai",
+    "official": false
+  },
+  {
+    "name": "OpenWeatherMap MCP",
+    "slug": "openweathermap-mcp",
+    "description": "MCP server for OpenWeatherMap API — current weather, forecasts, air quality, alerts, and geocoding.",
+    "github_repo": "robertn702/mcp-openweathermap",
+    "category": "other",
+    "official": false
+  },
+  {
+    "name": "Open-Meteo MCP",
+    "slug": "open-meteo-mcp",
+    "description": "Comprehensive MCP server for the Open-Meteo weather APIs — forecasts, historical data, and geocoding for LLMs.",
+    "github_repo": "cmer81/open-meteo-mcp",
+    "category": "other",
+    "official": false
+  },
+  {
+    "name": "Gemini MCP (RLabs-Inc)",
+    "slug": "gemini-mcp-rlabs",
+    "description": "MCP server enabling Claude Code to interact with Google's Gemini AI models for alternative LLM access.",
+    "github_repo": "RLabs-Inc/gemini-mcp",
+    "category": "ai",
+    "official": false
+  },
+  {
+    "name": "Gemini CLI MCP Server",
+    "slug": "gemini-cli-mcp",
+    "description": "MCP server exposing Gemini CLI capabilities including deep research, code analysis, and Google search grounding.",
+    "github_repo": "centminmod/gemini-cli-mcp-server",
+    "category": "ai",
+    "official": false
+  },
+  {
+    "name": "AI CLI MCP",
+    "slug": "ai-cli-mcp",
+    "description": "MCP server to run Claude, Codex, and Gemini CLI agents in the background from any MCP client.",
+    "github_repo": "mkXultra/ai-cli-mcp",
+    "category": "ai",
+    "official": false
+  },
+  {
+    "name": "MCP Crawl4AI RAG",
+    "slug": "mcp-crawl4ai-rag",
+    "description": "Database-agnostic MCP server for web crawling and RAG with support for Supabase, SQLite, Pinecone, Neo4j, and Weaviate.",
+    "github_repo": "rbj2000/mcp-crawl4ai-rag",
+    "category": "ai",
+    "official": false
+  },
+  {
+    "name": "Ultimate MCP Server",
+    "slug": "ultimate-mcp-server",
+    "description": "Comprehensive MCP server exposing dozens of capabilities: multi-provider LLM delegation, browser automation, document processing, vector ops, and cognitive memory.",
+    "github_repo": "Dicklesworthstone/ultimate_mcp_server",
+    "category": "ai",
+    "official": false
+  },
+  {
+    "name": "MCP for Security Tools",
+    "slug": "mcp-for-security",
+    "description": "Collection of MCP servers for security tools including SQLMap, FFUF, NMAP, Masscan — integrate pentesting into AI workflows.",
+    "github_repo": "cyproxio/mcp-for-security",
+    "category": "other",
+    "official": false
+  },
+  {
+    "name": "AWS Security Scanner MCP",
+    "slug": "aws-security-scanner-mcp",
+    "description": "AWS sample MCP server integrating Checkov, Semgrep, and Bandit for comprehensive code and IaC security analysis.",
+    "github_repo": "aws-samples/sample-mcp-security-scanner",
+    "category": "cloud",
+    "official": true
+  },
+  {
+    "name": "Atlassian Bitbucket DC MCP",
+    "slug": "atlassian-dc-mcp",
+    "description": "MCP servers for Atlassian Data Center products including Jira, Confluence, and Bitbucket self-hosted deployments.",
+    "github_repo": "b1ff/atlassian-dc-mcp",
+    "category": "productivity",
+    "official": false
+  },
+  {
+    "name": "PagerDuty MCP (wpfleger96)",
+    "slug": "pagerduty-mcp-community",
+    "description": "Community PagerDuty MCP server for LLM agent integration — incidents, services, and on-call schedules.",
+    "github_repo": "wpfleger96/pagerduty-mcp-server",
+    "category": "devops",
+    "official": false
+  },
+  {
+    "name": "Recast MCP",
+    "slug": "recast-mcp",
+    "description": "MCP server that turns any URL into LinkedIn posts, Twitter threads, Reddit posts, and newsletter content via AI.",
+    "github_repo": "DrewDawson2027/recast-mcp",
+    "category": "communication",
+    "official": false
+  },
+  {
+    "name": "Trello MCP (v4lheru)",
+    "slug": "trello-mcp-v4lheru",
+    "description": "Trello MCP server for AI assistants to manage boards, lists, and cards with rate limiting and error handling.",
+    "github_repo": "v4lheru/trello-mcp-server",
+    "category": "productivity",
+    "official": false
+  },
+  {
+    "name": "Accessibility Bridge MCP",
+    "slug": "accessibility-bridge-mcp",
+    "description": "MCP server exposing Chrome's accessibility tree to Claude — generate Playwright/Selenium/Cypress/WebdriverIO selectors from natural language.",
+    "github_repo": "yashpreetbathla/mcp-accessibility-bridge",
+    "category": "code",
+    "official": false
+  },
+  {
+    "name": "Frontend Testing MCP",
+    "slug": "frontend-testing-mcp",
+    "description": "MCP server that generates and executes unit and component tests for Jest and Cypress from AI assistants.",
+    "github_repo": "StudentOfJS/mcp-frontend-testing",
+    "category": "code",
+    "official": false
+  },
+  {
+    "name": "Xcode Studio MCP",
+    "slug": "xcode-studio-mcp",
+    "description": "Unified MCP server for Xcode and iOS Simulator — build, deploy, screenshot, and interact with iOS apps from Claude Code or Cursor.",
+    "github_repo": "kevinswint/xcode-studio-mcp",
+    "category": "code",
+    "official": false
+  },
+  {
+    "name": "Crypto MCP Server (rosendolu)",
+    "slug": "crypto-mcp-server",
+    "description": "Powerful MCP server for cryptocurrency market data, cross-platform trading, arbitrage, candlestick analysis, and portfolio management.",
+    "github_repo": "rosendolu/crypto-mcp-server",
+    "category": "finance",
+    "official": false
+  },
+  {
+    "name": "ReplenishRadar MCP",
+    "slug": "replenishradar-mcp",
+    "description": "Inventory intelligence MCP server with 28 tools for stockout risk, demand forecasts, and purchase orders across Shopify and Amazon.",
+    "github_repo": "ReplenishRadar/MCP",
+    "category": "other",
+    "official": false
+  },
+  {
+    "name": "RSS Reader MCP (kwp-lab)",
+    "slug": "rss-reader-mcp",
+    "description": "MCP server for RSS feed aggregation and article content extraction for AI assistants.",
+    "github_repo": "kwp-lab/rss-reader-mcp",
+    "category": "other",
+    "official": false
+  },
+  {
+    "name": "RSSidian MCP",
+    "slug": "rssidian-mcp",
+    "description": "MCP-capable intelligent RSS feed ingestion and summarization tool that writes to Obsidian markdown.",
+    "github_repo": "pedramamini/RSSidian",
+    "category": "productivity",
+    "official": false
+  },
+  {
+    "name": "Mailchimp MCP (AgentX)",
+    "slug": "mailchimp-mcp-agentx",
+    "description": "MCP server for Mailchimp providing comprehensive access to campaigns, lists, templates, and reports.",
+    "github_repo": "AgentX-ai/mailchimp-mcp",
+    "category": "communication",
+    "official": false
+  },
+  {
+    "name": "Nanonets OCR MCP",
+    "slug": "nanonets-ocr-mcp",
+    "description": "MCP server for Nanonets OCR with PDF, Word, and Excel document processing support.",
+    "github_repo": "ArneJanning/nanonets-mcp",
+    "category": "other",
+    "official": false
+  },
+  {
+    "name": "Florence-2 MCP",
+    "slug": "florence2-mcp",
+    "description": "MCP server for processing images using Florence-2 — OCR, captioning, and object detection from local or web images.",
+    "github_repo": "jkawamoto/mcp-florence2",
+    "category": "ai",
+    "official": false
+  },
+  {
+    "name": "Zendesk Help Center MCP",
+    "slug": "zendesk-help-center-mcp",
+    "description": "MCP server for the Zendesk Help Center API — articles, sections, and categories for AI knowledge base management.",
+    "github_repo": "hidechae/zendesk-help-center-mcp-server",
+    "category": "other",
+    "official": false
+  },
+  {
+    "name": "Gemini MCP Server (Garblesnarff)",
+    "slug": "gemini-mcp-garblesnarff",
+    "description": "MCP server enabling Claude Desktop to interact with Google's Gemini AI featuring 7 tools with Smart Tool Intelligence.",
+    "github_repo": "Garblesnarff/gemini-mcp-server",
+    "category": "ai",
+    "official": false
+  },
+  {
+    "name": "Web Crawler MCP",
+    "slug": "web-crawler-mcp",
+    "description": "MCP server for web crawling and news extraction — browse the web, extract articles, and process news feeds.",
+    "github_repo": "saiminhtet/web-crawler-mcp-server",
+    "category": "search",
+    "official": false
+  },
+  {
+    "name": "Finance MCP Server",
+    "slug": "finance-mcp-server",
+    "description": "MCP server providing up-to-date stock prices and cryptocurrency news for AI assistants.",
+    "github_repo": "Otman404/finance-mcp-server",
+    "category": "finance",
+    "official": false
+  },
+  {
+    "name": "Bitbucket Server MCP",
+    "slug": "bitbucket-server-mcp",
+    "description": "MCP server for self-hosted Bitbucket Server — PR discovery, branch management, and commit history for AI agents.",
+    "github_repo": "garc33/bitbucket-server-mcp-server",
+    "category": "code",
+    "official": false
+  },
+  {
+    "name": "Mobile Dev MCP Server",
+    "slug": "mobile-dev-mcp",
+    "description": "MCP server for managing and interacting with mobile devices and simulators for iOS and Android development.",
+    "github_repo": "jsuarezruiz/mobile-dev-mcp-server",
+    "category": "code",
+    "official": false
+  },
+  {
+    "name": "PAL MCP Server",
+    "slug": "pal-mcp-server",
+    "description": "MCP server combining multiple AI models — Gemini, OpenAI, Anthropic, Grok, Azure, Ollama, and OpenRouter — in a single prompt.",
+    "github_repo": "BeehiveInnovations/pal-mcp-server",
+    "category": "ai",
+    "official": false
+  },
+  {
+    "name": "OCR MCP (sandraschi)",
+    "slug": "ocr-mcp-sandraschi",
+    "description": "FastMCP server with advanced OCR using DeepSeek-OCR, Florence-2, and PP-OCRv5 plus WIA scanner control and PDF processing.",
+    "github_repo": "sandraschi/ocr-mcp",
+    "category": "other",
+    "official": false
+  },
+  {
+    "name": "Bitbucket MCP (redlinelabs)",
+    "slug": "bitbucket-mcp-redlinelabs",
+    "description": "MCP server wrapping the Bitbucket REST API — browse PRs, review diffs, post comments, and approve changes via AI.",
+    "github_repo": "redlinelabs-dev/bitbucket-mcp",
+    "category": "code",
+    "official": false
+  },
+  {
+    "name": "Spotify MCP (thebigredgeek)",
+    "slug": "spotify-mcp-thebigredgeek",
+    "description": "Production-ready MCP server for Spotify with bulletproof error handling and automatic token management.",
+    "github_repo": "thebigredgeek/spotify-mcp-server",
+    "category": "other",
+    "official": false
+  },
+  {
+    "name": "Atlassian Bitbucket Server MCP",
+    "slug": "atlassian-bitbucket-server-mcp",
+    "description": "MCP server for self-hosted Atlassian Bitbucket Server instances with repository and PR management.",
+    "github_repo": "guenichone/atlassian-bitbucket-server-mcp",
+    "category": "code",
+    "official": false
+  },
+  {
+    "name": "ClickUp MCP (aukik)",
+    "slug": "clickup-mcp-aukik",
+    "description": "MCP server integrating ClickUp task management with AI through the Model Context Protocol.",
+    "github_repo": "aukik/clickup-mcp-server",
+    "category": "productivity",
+    "official": false
+  },
+  {
+    "name": "Weaviate MCP (sajal2692)",
+    "slug": "weaviate-mcp-sajal",
+    "description": "FastMCP-based MCP server for Weaviate with semantic, keyword, and hybrid search capabilities.",
+    "github_repo": "sajal2692/mcp-weaviate",
+    "category": "database",
+    "official": false
+  },
+  {
+    "name": "Pinecone Vector DB MCP",
+    "slug": "pinecone-vector-db-mcp",
+    "description": "MCP server for reading and writing vectorized information to Pinecone, designed for RAG with PDF and Confluence data.",
+    "github_repo": "zx8086/pinecone-vector-db-mcp-server",
+    "category": "database",
+    "official": false
+  },
+  {
+    "name": "Stock Market MCP",
+    "slug": "stock-market-mcp",
+    "description": "MCP server for real-time stock market data access via AI assistants.",
+    "github_repo": "MCP-100/stock-market-server",
+    "category": "finance",
+    "official": false
+  },
+  {
+    "name": "Sanity MCP (Purple-Horizons)",
+    "slug": "sanity-mcp-community",
+    "description": "Community MCP server for Sanity CMS — query documents, search content, and explore schemas via GROQ.",
+    "github_repo": "Purple-Horizons/sanity-mcp",
+    "category": "other",
+    "official": false
+  },
+  {
+    "name": "Social Media MCP (tayler-id)",
+    "slug": "social-media-mcp-tayler",
+    "description": "MCP server connecting to multiple social media platforms for reading and posting content.",
+    "github_repo": "tayler-id/social-media-mcp",
+    "category": "communication",
+    "official": false
+  },
+  {
+    "name": "rgthelen MCP Servers Collection",
+    "slug": "rgthelen-mcp-servers",
+    "description": "Collection of working MCP servers for Claude Desktop covering Discord, Reddit, LinkedIn, and X (Twitter) integrations.",
+    "github_repo": "rgthelen/mcp-servers",
+    "category": "communication",
+    "official": false
+  },
+  {
+    "name": "MCP Massive (Financial Data)",
+    "slug": "mcp-massive-financial",
+    "description": "MCP server for Massive.com Financial Market Data providing real-time and historical financial data via AI agents.",
+    "github_repo": "massive-com/mcp_massive",
+    "category": "finance",
+    "official": false
+  },
+  {
+    "name": "Crypto Stocks MCP",
+    "slug": "crypto-stocks-mcp",
+    "description": "MCP server tracking real-time data for major crypto-related stocks including Coinbase, MicroStrategy, and Marathon.",
+    "github_repo": "kukapay/crypto-stocks-mcp",
+    "category": "finance",
+    "official": false
+  },
+  {
+    "name": "mcp-pdf (rsp2k)",
+    "slug": "mcp-pdf-rsp2k",
+    "description": "Secure FastMCP server for comprehensive PDF processing with 40 tools — text extraction, OCR, tables, forms, and annotations.",
+    "github_repo": "rsp2k/mcp-pdf",
+    "category": "other",
+    "official": false
+  },
+  {
+    "name": "Shopify MCP (antoineschaller)",
+    "slug": "shopify-mcp-antoineschaller",
+    "description": "Comprehensive Shopify Admin API MCP server with 22 tools for products, orders, customers, inventory, and analytics.",
+    "github_repo": "antoineschaller/shopify-mcp-server",
+    "category": "other",
+    "official": false
+  },
+  {
+    "name": "Dropbox MCP (CData)",
+    "slug": "dropbox-mcp-cdata",
+    "description": "Read-only MCP server connecting to Dropbox data from Claude Desktop through CData JDBC Drivers.",
+    "github_repo": "CDataSoftware/dropbox-mcp-server-by-cdata",
+    "category": "productivity",
+    "official": false
+  },
+  {
+    "name": "LlamaIndex AI MCP",
+    "slug": "llamaindex-ai-mcp",
+    "description": "Official LlamaIndex point-and-click MCP server for RAG and agent workflows using LlamaIndex components.",
+    "github_repo": "run-llama/mcp-llamaindex-ai",
+    "category": "ai",
+    "official": true
+  },
+  {
+    "name": "Zendesk MCP (mattcoatsworth)",
+    "slug": "zendesk-mcp-mattcoatsworth",
+    "description": "MCP server for Zendesk support platform — tickets, users, and organizations for AI-powered support automation.",
+    "github_repo": "mattcoatsworth/zendesk-mcp-server",
+    "category": "other",
+    "official": false
+  }
+]

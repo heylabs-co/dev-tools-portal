@@ -1,0 +1,101 @@
+{
+  "id": "COMP-0262",
+  "slug": "statsig-acquired-by-openai",
+  "name": "Statsig (acquired by OpenAI)",
+  "description": "Statsig (acquired by OpenAI) — Product Analytics tool for developers",
+  "website": "https://statsig.com",
+  "logo": "https://www.google.com/s2/favicons?domain=statsig.com&sz=128",
+  "hq_country": "US",
+  "status": "active",
+  "categories": {
+    "primary": {
+      "id": "CAT-17",
+      "slug": "product-analytics",
+      "name": "Product Analytics"
+    },
+    "secondary": [
+      "CAT-22",
+      "CAT-23"
+    ]
+  },
+  "alternatives": [],
+  "seo": {
+    "title": "Statsig (acquired by OpenAI) Review 2026: Pricing, Alternatives & Lock-in Score",
+    "meta_description": "Complete Statsig (acquired by OpenAI) analysis: pricing, lock-in risk, migration difficulty. Compare with alternatives in Product Analytics.",
+    "keywords": [
+      "statsig (acquired by openai) pricing",
+      "statsig (acquired by openai) alternatives",
+      "statsig (acquired by openai) review"
+    ]
+  },
+  "updated_at": "2026-04-12T18:43:30.460Z",
+  "created_at": "2026-04-12T12:53:55.841Z",
+  "pricing": {
+    "model": "usage",
+    "has_free_tier": true,
+    "free_tier_limits": "2M events/mo",
+    "entry_price": "Pro (5M free events)",
+    "enterprise_available": true,
+    "billing_complexity": "low",
+    "transparency_score": 4,
+    "last_checked": "2026-04-11",
+    "pricing_url": "https://statsig.com/pricing"
+  },
+  "scores": {
+    "lock_in": {
+      "level": "high",
+      "score": 5,
+      "migration_complexity": "high",
+      "data_portability": "Limited",
+      "api_compatibility": "Proprietary",
+      "explanation": "High — flags + experimentation analytics in one platform, cloud-only, no self-hosted"
+    }
+  },
+  "scale": {
+    "customers": "OpenAI, Notion and .",
+    "revenue": "unknown -- private",
+    "data_status": "estimated"
+  },
+  "content": {
+    "when_to_use": [
+      "Understanding user behavior (funnels, retention)",
+      "Data-driven product decisions",
+      "A/B test analysis"
+    ],
+    "when_not_to_use": [
+      "Pre-product stage",
+      "Simple pageview tracking (use Plausible)"
+    ],
+    "consider_instead": [
+      "session-replay"
+    ],
+    "migration_cheatsheet": {
+      "difficulty": "high",
+      "data_you_keep": "Limited",
+      "api_standard": "Proprietary",
+      "risk_notes": "High — flags + experimentation analytics in one platform, cloud-only, no self-hosted",
+      "tip": "Plan 2-4 weeks minimum. Consider running parallel during migration"
+    },
+    "works_well_with": [
+      "bitrise"
+    ]
+  },
+  "community": {
+    "hn_mentions_30d": 0
+  },
+  "review": {
+    "verdict": "Best for understanding user behavior (funnels, retention). Statsig (acquired by OpenAI) offers usage-based at Pro (5M free events). High vendor lock-in.",
+    "pros": [
+      "Understanding user behavior (funnels, retention)",
+      "Data-driven product decisions",
+      "Deep funnel and cohort analysis capabilities"
+    ],
+    "cons": [
+      "Pre-product stage",
+      "Simple pageview tracking (use Plausible)",
+      "High lock-in — proprietary APIs make migration difficult"
+    ],
+    "best_for": "Understanding user behavior (funnels, retention)",
+    "not_for": "Simple projects"
+  }
+}

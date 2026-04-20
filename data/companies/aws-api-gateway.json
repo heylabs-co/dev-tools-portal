@@ -1,0 +1,89 @@
+{
+  "id": "COMP-0491",
+  "slug": "aws-api-gateway",
+  "name": "AWS API Gateway",
+  "description": "AWS API Gateway — Data Integration / ETL / Reverse ETL tool for developers",
+  "website": "https://aws.amazon.com",
+  "logo": "https://github.com/awslabs.png?size=128",
+  "hq_country": "US",
+  "status": "active",
+  "categories": {
+    "primary": {
+      "id": "CAT-34",
+      "slug": "data-integration-etl",
+      "name": "Data Integration / ETL / Reverse ETL"
+    },
+    "secondary": []
+  },
+  "alternatives": [],
+  "seo": {
+    "title": "AWS API Gateway Review 2026: Pricing, Alternatives & Lock-in Score",
+    "meta_description": "Complete AWS API Gateway analysis: pricing, lock-in risk, migration difficulty. Compare with alternatives in Data Integration / ETL / Reverse ETL.",
+    "keywords": [
+      "aws api gateway pricing",
+      "aws api gateway alternatives",
+      "aws api gateway review"
+    ]
+  },
+  "updated_at": "2026-04-20T07:49:02.286Z",
+  "created_at": "2026-04-12T12:53:55.841Z",
+  "content": {
+    "when_to_use": [
+      "Data warehouse syncing",
+      "Multi-source data pipelines",
+      "Reverse ETL for activation"
+    ],
+    "when_not_to_use": [
+      "Simple API-to-API integrations",
+      "Small datasets (<10K records)"
+    ],
+    "consider_instead": []
+  },
+  "community": {
+    "hn_mentions_30d": 10
+  },
+  "pricing": {
+    "model": "subscription",
+    "has_free_tier": true,
+    "entry_price": "$0.02",
+    "enterprise_available": true,
+    "pricing_url": "https://aws.amazon.com/pricing",
+    "transparency_score": 5,
+    "last_checked": "2026-04-15"
+  },
+  "github": {
+    "repo": "awslabs/aws-api-gateway-developer-portal",
+    "stars": 948,
+    "open_issues": 170,
+    "latest_release": "v4.1.1",
+    "release_date": "2022-01-18T18:59:51Z"
+  },
+  "npm": {
+    "package": "aws-api-gateway-client"
+  },
+  "review": {
+    "verdict": "Best for data warehouse syncing. AWS API Gateway offers subscription from $0.02.",
+    "pros": [
+      "Data warehouse syncing",
+      "Multi-source data pipelines",
+      "Generous free tier for getting started"
+    ],
+    "cons": [
+      "Simple API-to-API integrations",
+      "Small datasets (<10K records)"
+    ],
+    "best_for": "Data warehouse syncing",
+    "not_for": "Simple, Small projects"
+  },
+  "health": {
+    "bus_factor": 9,
+    "last_commit_days_ago": 827,
+    "release_frequency_days": 137,
+    "open_issues": 170,
+    "license": "Apache-2.0",
+    "stars": 948,
+    "forks": 409,
+    "updated_at": "2026-04-16",
+    "health_score": "F"
+  }
+}

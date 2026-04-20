@@ -1,0 +1,100 @@
+{
+  "id": "COMP-0172",
+  "slug": "amazon-cloudfront",
+  "name": "Amazon CloudFront",
+  "description": "Amazon CloudFront — CDN / Edge / Acceleration tool for developers",
+  "website": "https://aws.amazon.com/cloudfront",
+  "logo": "https://github.com/aws-solutions.png?size=128",
+  "hq_country": "US",
+  "status": "active",
+  "categories": {
+    "primary": {
+      "id": "CAT-12",
+      "slug": "cdn-edge",
+      "name": "CDN / Edge / Acceleration"
+    },
+    "secondary": []
+  },
+  "alternatives": [],
+  "seo": {
+    "title": "Amazon CloudFront Review 2026: Pricing, Alternatives & Lock-in Score",
+    "meta_description": "Complete Amazon CloudFront analysis: pricing, lock-in risk, migration difficulty. Compare with alternatives in CDN / Edge / Acceleration.",
+    "keywords": [
+      "amazon cloudfront pricing",
+      "amazon cloudfront alternatives",
+      "amazon cloudfront review"
+    ]
+  },
+  "updated_at": "2026-04-20T07:46:42.651Z",
+  "created_at": "2026-04-12T12:53:55.841Z",
+  "content": {
+    "when_to_use": [
+      "Global audience with low latency needs",
+      "Static site hosting",
+      "Edge computing / serverless functions"
+    ],
+    "when_not_to_use": [
+      "Single-region internal apps",
+      "Low-traffic internal tools"
+    ],
+    "consider_instead": [
+      "object-storage-media"
+    ],
+    "works_well_with": [
+      "cockroachdb",
+      "appwrite",
+      "drata"
+    ]
+  },
+  "community": {
+    "hn_mentions_30d": 0
+  },
+  "pricing": {
+    "model": "freemium",
+    "has_free_tier": true,
+    "entry_price": "$0/month",
+    "enterprise_available": true,
+    "pricing_url": "https://aws.amazon.com/cloudfront/pricing",
+    "transparency_score": 5,
+    "last_checked": "2026-04-15"
+  },
+  "github": {
+    "repo": "aws-solutions/dynamic-image-transformation-for-amazon-cloudfront",
+    "stars": 1452,
+    "open_issues": 17,
+    "latest_release": "v8.0.3",
+    "release_date": "2026-03-03T20:21:40Z"
+  },
+  "npm": {
+    "package": "@aws-solutions-constructs/aws-wafwebacl-cloudfront",
+    "weekly_downloads": 7016,
+    "latest_version": "2.101.0"
+  },
+  "health": {
+    "bus_factor": 3,
+    "last_commit_days_ago": 44,
+    "release_frequency_days": 37,
+    "open_issues": 17,
+    "issue_close_days": 2,
+    "license": "Apache-2.0",
+    "stars": 1452,
+    "forks": 581,
+    "updated_at": "2026-04-16",
+    "health_score": "C"
+  },
+  "review": {
+    "verdict": "Best for global audience with low latency needs. Amazon CloudFront offers freemium, paid from $0/month.",
+    "pros": [
+      "Global audience with low latency needs",
+      "Static site hosting",
+      "Global edge network for low-latency delivery"
+    ],
+    "cons": [
+      "Single-region internal apps",
+      "Low-traffic internal tools",
+      "Proprietary edge functions create platform dependency"
+    ],
+    "best_for": "Global",
+    "not_for": "Internal projects"
+  }
+}

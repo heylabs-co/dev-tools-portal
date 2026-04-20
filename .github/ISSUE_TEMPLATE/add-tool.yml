@@ -1,0 +1,100 @@
+name: Add a Tool
+description: Submit a developer tool to be listed on DevTools Portal
+title: "[Tool] "
+labels: ["new-tool"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for submitting a tool! Fill out the details below and we'll review it.
+  - type: input
+    id: name
+    attributes:
+      label: Tool Name
+      placeholder: e.g. Stripe
+    validations:
+      required: true
+  - type: input
+    id: website
+    attributes:
+      label: Website
+      placeholder: e.g. stripe.com
+    validations:
+      required: true
+  - type: dropdown
+    id: category
+    attributes:
+      label: Primary Category
+      options:
+        - Payments Orchestration
+        - Payment Gateway / PSP
+        - Subscription Billing
+        - Invoicing / Taxes
+        - Fraud & Risk Management
+        - Identity / Auth
+        - KYC / KYB / AML
+        - Secrets Management
+        - Backend-as-a-Service
+        - DBaaS / Serverless Databases
+        - Object Storage / Media API
+        - CDN / Edge
+        - Maps / Geolocation
+        - Search / Recommendations
+        - Messaging API
+        - Push / In-app Messaging
+        - Product Analytics
+        - Mobile Attribution
+        - Session Replay
+        - Crash Reporting
+        - APM
+        - Observability / Logging
+        - Feature Flags
+        - A/B Testing
+        - CI/CD
+        - Test Automation
+        - Release / App Store
+        - Customer Support SDK
+        - CRM / Lifecycle
+        - Localization
+        - Content Moderation
+        - Security Scanning
+        - Compliance Automation
+        - Data Integration / ETL
+        - API Management
+        - AI API / SDK
+        - Code Assistants
+        - Ad Monetization
+        - In-app Purchase
+        - App Growth / ASO
+        - Real-time / WebSocket
+        - No-code / Low-code
+    validations:
+      required: true
+  - type: input
+    id: hq_country
+    attributes:
+      label: HQ Country
+      placeholder: e.g. US
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      placeholder: Brief description of what this tool does
+  - type: input
+    id: pricing_url
+    attributes:
+      label: Pricing Page URL
+      placeholder: e.g. https://stripe.com/pricing
+  - type: dropdown
+    id: has_free_tier
+    attributes:
+      label: Has Free Tier?
+      options:
+        - "Yes"
+        - "No"
+        - "Unknown"
+  - type: input
+    id: github_repo
+    attributes:
+      label: GitHub Repository (if open source)
+      placeholder: e.g. stripe/stripe-node

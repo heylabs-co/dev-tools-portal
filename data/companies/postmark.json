@@ -1,0 +1,105 @@
+{
+  "id": "COMP-0228",
+  "slug": "postmark",
+  "name": "Postmark",
+  "description": "Postmark — Messaging API (Email / SMS / Voice) tool for developers",
+  "website": "https://postmarkapp.com",
+  "logo": "https://www.google.com/s2/favicons?domain=postmarkapp.com&sz=128",
+  "hq_country": "US",
+  "status": "active",
+  "categories": {
+    "primary": {
+      "id": "CAT-15",
+      "slug": "messaging-api",
+      "name": "Messaging API (Email / SMS / Voice)"
+    },
+    "secondary": []
+  },
+  "alternatives": [],
+  "seo": {
+    "title": "Postmark Review 2026: Pricing, Alternatives & Lock-in Score",
+    "meta_description": "Complete Postmark analysis: pricing, lock-in risk, migration difficulty. Compare with alternatives in Messaging API (Email / SMS / Voice).",
+    "keywords": [
+      "postmark pricing",
+      "postmark alternatives",
+      "postmark review"
+    ]
+  },
+  "updated_at": "2026-04-20T19:05:16.511Z",
+  "created_at": "2026-04-12T12:53:55.841Z",
+  "pricing": {
+    "model": "usage",
+    "has_free_tier": true,
+    "free_tier_limits": "100 emails/mo developer plan",
+    "entry_price": "$15/mo (10K emails)",
+    "enterprise_available": true,
+    "billing_complexity": "low",
+    "transparency_score": 4,
+    "last_checked": "2026-04-11",
+    "pricing_url": "https://postmarkapp.com/pricing"
+  },
+  "scores": {
+    "lock_in": {
+      "level": "low",
+      "score": 1,
+      "migration_complexity": "low",
+      "data_portability": "Via API",
+      "api_compatibility": "REST + SMTP standard",
+      "explanation": "Low — REST API, SMTP"
+    }
+  },
+  "scale": {
+    "revenue": "unknown -- with ActiveCampaign",
+    "customers": "unknown",
+    "data_status": "estimated"
+  },
+  "content": {
+    "when_to_use": [
+      "Transactional emails (receipts, alerts)",
+      "SMS verification",
+      "Multi-channel notifications"
+    ],
+    "when_not_to_use": [
+      "Internal team communication",
+      "Marketing-only email campaigns"
+    ],
+    "consider_instead": [
+      "push-in-app-messaging"
+    ],
+    "pricing_at_scale": [
+      {
+        "scale": "Entry",
+        "estimate": "$15/mo (10K emails)"
+      }
+    ],
+    "migration_cheatsheet": {
+      "difficulty": "low",
+      "data_you_keep": "Via API",
+      "api_standard": "REST + SMTP standard",
+      "risk_notes": "Low — REST API, SMTP",
+      "tip": "Standard protocols make switching straightforward"
+    },
+    "works_well_with": [
+      "clerk",
+      "amplitude"
+    ]
+  },
+  "community": {
+    "hn_mentions_30d": 61
+  },
+  "review": {
+    "verdict": "Best for transactional emails (receipts, alerts). Postmark offers usage-based at $15/mo (10K emails). Low vendor lock-in.",
+    "pros": [
+      "Transactional emails (receipts, alerts)",
+      "SMS verification",
+      "Low lock-in — easy to migrate away"
+    ],
+    "cons": [
+      "Internal team communication",
+      "Marketing-only email campaigns",
+      "Per-message pricing adds up at high send volumes"
+    ],
+    "best_for": "Transactional emails (receipts, alerts)",
+    "not_for": "Internal projects"
+  }
+}

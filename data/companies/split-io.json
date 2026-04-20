@@ -1,0 +1,93 @@
+{
+  "id": "COMP-0333",
+  "slug": "split-io",
+  "name": "Split.io",
+  "description": "Split.io — Observability / Logging / Tracing tool for developers",
+  "website": "https://split.io",
+  "logo": "https://www.google.com/s2/favicons?domain=split.io&sz=128",
+  "hq_country": "US",
+  "status": "active",
+  "categories": {
+    "primary": {
+      "id": "CAT-22",
+      "slug": "observability",
+      "name": "Observability / Logging / Tracing"
+    },
+    "secondary": []
+  },
+  "alternatives": [],
+  "seo": {
+    "title": "Split.io Review 2026: Pricing, Alternatives & Lock-in Score",
+    "meta_description": "Complete Split.io analysis: pricing, lock-in risk, migration difficulty. Compare with alternatives in Observability / Logging / Tracing.",
+    "keywords": [
+      "split.io pricing",
+      "split.io alternatives",
+      "split.io review"
+    ]
+  },
+  "updated_at": "2026-04-12T18:43:25.659Z",
+  "created_at": "2026-04-12T12:53:55.841Z",
+  "scores": {
+    "lock_in": {
+      "level": "medium",
+      "score": 3,
+      "migration_complexity": "medium",
+      "data_portability": "Via API",
+      "api_compatibility": "Proprietary",
+      "explanation": "Medium — Feature Data Platform, Harness acquisition"
+    }
+  },
+  "content": {
+    "when_to_use": [
+      "Distributed systems debugging",
+      "Log aggregation and analysis",
+      "OpenTelemetry-based monitoring"
+    ],
+    "when_not_to_use": [
+      "Single-server apps with basic logging",
+      "Non-technical teams"
+    ],
+    "consider_instead": [
+      "apm"
+    ],
+    "migration_cheatsheet": {
+      "difficulty": "medium",
+      "data_you_keep": "Via API",
+      "api_standard": "Proprietary",
+      "risk_notes": "Medium — Feature Data Platform, Harness acquisition",
+      "tip": "Moderate effort required. Export data before canceling"
+    },
+    "works_well_with": [
+      "better-stack",
+      "drata"
+    ]
+  },
+  "community": {
+    "hn_mentions_30d": 0
+  },
+  "pricing": {
+    "model": "freemium",
+    "has_free_tier": true,
+    "free_tier_limits": "free plan for individual d",
+    "entry_price": "$240",
+    "enterprise_available": true,
+    "pricing_url": "https://split.io/pricing",
+    "transparency_score": 5,
+    "last_checked": "2026-04-15"
+  },
+  "review": {
+    "verdict": "Best for distributed systems debugging. Split.io offers freemium, paid from $240. Moderate vendor lock-in.",
+    "pros": [
+      "Distributed systems debugging",
+      "Log aggregation and analysis",
+      "Centralized logs, metrics, and traces in one place"
+    ],
+    "cons": [
+      "Single-server apps with basic logging",
+      "Non-technical teams",
+      "Data ingestion pricing can spike unexpectedly"
+    ],
+    "best_for": "Distributed systems debugging",
+    "not_for": "Non-technical projects"
+  }
+}

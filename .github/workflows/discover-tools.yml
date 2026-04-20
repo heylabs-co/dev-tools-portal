@@ -1,0 +1,53 @@
+name: Discover New Tools
+on:
+  schedule:
+    - cron: '0 9 * * 1'  # Every Monday 9am UTC
+  workflow_dispatch: {}
+
+jobs:
+  discover:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      issues: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Discover new tools
+        run: npx tsx scripts/discover-new-tools.ts
+      - name: Commit discoveries
+        run: |
+          git config user.name "devtools-bot"
+          git config user.email "bot@devtools.wiki"
+          git add data/discovered/
+          git diff --cached --quiet || git commit -m "data: weekly tool discovery $(date -u +%Y-%m-%d)"
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_PAT }}
+      - name: Create issues for review
+        run: |
+          DATE=$(date -u +%Y-%m-%d)
+          FILE="data/discovered/${DATE}.json"
+          if [ -f "$FILE" ]; then
+            COUNT=$(node -e "console.log(JSON.parse(require('fs').readFileSync('$FILE','utf-8')).length)")
+            if [ "$COUNT" -gt "0" ]; then
+              gh issue create \
+                --title "🔍 Weekly Discovery: ${COUNT} new tools found (${DATE})" \
+                --body "$(node -e "
+                  const tools = JSON.parse(require('fs').readFileSync('$FILE','utf-8'));
+                  let md = '## New tools discovered this week\n\n';
+                  tools.forEach(t => {
+                    md += '- **' + t.name + '** (' + t.website + ') — ' + t.description + ' [' + t.source + ']\n';
+                  });
+                  md += '\n\nReview and approve tools to add to the catalog.';
+                  console.log(md);
+                ")" \
+                --label "new-tool-discovery"
+            fi
+          fi
+        env:
+          GH_TOKEN: ${{ secrets.GH_PAT }}

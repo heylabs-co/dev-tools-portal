@@ -1,0 +1,105 @@
+{
+  "id": "COMP-0090",
+  "slug": "workos",
+  "name": "WorkOS",
+  "description": "WorkOS — Identity / Auth / User Management tool for developers",
+  "website": "https://workos.com",
+  "logo": "https://www.google.com/s2/favicons?domain=workos.com&sz=128",
+  "hq_country": "US",
+  "status": "active",
+  "categories": {
+    "primary": {
+      "id": "CAT-06",
+      "slug": "identity-auth",
+      "name": "Identity / Auth / User Management"
+    },
+    "secondary": []
+  },
+  "alternatives": [],
+  "seo": {
+    "title": "WorkOS Review 2026: Pricing, Alternatives & Lock-in Score",
+    "meta_description": "Complete WorkOS analysis: pricing, lock-in risk, migration difficulty. Compare with alternatives in Identity / Auth / User Management.",
+    "keywords": [
+      "workos pricing",
+      "workos alternatives",
+      "workos review"
+    ]
+  },
+  "updated_at": "2026-04-20T19:12:41.925Z",
+  "created_at": "2026-04-12T12:53:55.841Z",
+  "pricing": {
+    "model": "per-connection",
+    "has_free_tier": true,
+    "free_tier_limits": "AuthKit 1M MAU free",
+    "entry_price": "$125/connection/mo (SSO)",
+    "enterprise_available": true,
+    "billing_complexity": "medium",
+    "transparency_score": 4,
+    "last_checked": "2026-04-11",
+    "pricing_url": "https://workos.com/pricing"
+  },
+  "scores": {
+    "lock_in": {
+      "level": "low",
+      "score": 1,
+      "migration_complexity": "low",
+      "data_portability": "API export",
+      "api_compatibility": "SAML/SCIM standards",
+      "explanation": "Low — byand to withbutinbut auth, standard fromto"
+    }
+  },
+  "scale": {
+    "revenue": "$30M",
+    "customers": "1,000+ paying",
+    "data_status": "estimated"
+  },
+  "content": {
+    "when_to_use": [
+      "Apps needing SSO/MFA",
+      "B2B requiring SAML/SCIM",
+      "Passwordless authentication"
+    ],
+    "when_not_to_use": [
+      "Internal tools with basic auth",
+      "Static sites without user accounts"
+    ],
+    "consider_instead": [
+      "backend-as-a-service"
+    ],
+    "pricing_at_scale": [
+      {
+        "scale": "Entry",
+        "estimate": "$125/connection/mo (SSO)"
+      }
+    ],
+    "migration_cheatsheet": {
+      "difficulty": "low",
+      "data_you_keep": "API export",
+      "api_standard": "SAML/SCIM standards",
+      "risk_notes": "Low — byand to withbutinbut auth, standard fromto",
+      "tip": "Standard protocols make switching straightforward"
+    },
+    "works_well_with": [
+      "appwrite",
+      "adyen"
+    ]
+  },
+  "community": {
+    "hn_mentions_30d": 643
+  },
+  "review": {
+    "verdict": "Best for apps needing sso/mfa. WorkOS offers $125/connection/mo (SSO). Low vendor lock-in.",
+    "pros": [
+      "Apps needing SSO/MFA",
+      "B2B requiring SAML/SCIM",
+      "Low lock-in — easy to migrate away"
+    ],
+    "cons": [
+      "Internal tools with basic auth",
+      "Static sites without user accounts",
+      "MAU-based pricing scales steeply"
+    ],
+    "best_for": "Apps, B2B",
+    "not_for": "Internal, Static projects"
+  }
+}

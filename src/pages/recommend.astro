@@ -1,0 +1,480 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import { getCollection } from 'astro:content';
+
+const companies = await getCollection('companies');
+const totalEntries = companies.length + 377 + 660 + 356 + 229; // tools + MCP + skills + vscode + jetbrains
+
+const breadcrumbs = [
+  { label: 'Home', href: '/' },
+  { label: 'Recommend' },
+];
+---
+
+<BaseLayout
+  title="AI Tool Recommender"
+  description={`Describe your project and get AI-powered developer tool recommendations. Our AI analyzes ${totalEntries.toLocaleString()}+ entries to suggest the best stack — tools, MCP servers, skills, and extensions.`}
+>
+  <section class="mx-auto max-w-3xl px-4 pt-8 pb-4">
+    <Breadcrumbs items={breadcrumbs} />
+  </section>
+
+  <!-- Hero -->
+  <section class="mx-auto max-w-3xl px-4 pt-4 pb-12 text-center">
+    <h1 class="text-4xl font-extrabold tracking-tight text-gray-900 dark:text-white sm:text-5xl">
+      Find Your Perfect Stack
+    </h1>
+    <p class="mt-4 text-lg text-[color:var(--color-muted)]">
+      Describe what you're building and our AI will recommend the best tools
+    </p>
+  </section>
+
+  <!-- Form -->
+  <section class="mx-auto max-w-2xl px-4 pb-16">
+    <div class="rounded-2xl border border-[color:var(--color-border)] bg-[color:var(--color-surface)] p-6 shadow-sm">
+      <label for="recommend-input" class="block text-sm font-medium text-[color:var(--color-text-secondary)] mb-2">
+        What are you building?
+      </label>
+      <textarea
+        id="recommend-input"
+        rows="4"
+        placeholder="I'm building a SaaS app that needs auth, payments, and analytics..."
+        class="recommend-textarea w-full rounded-xl border border-[color:var(--color-border-strong)] bg-[color:var(--color-bg)] px-4 py-3 text-[color:var(--color-text)] text-[15px] leading-relaxed placeholder:text-[color:var(--color-muted)] resize-none transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[#5E6AD2]/40 focus:border-[#5E6AD2] dark:focus:ring-[#818CF8]/40 dark:focus:border-[#818CF8]"
+      ></textarea>
+
+      <!-- Filters -->
+      <div class="mt-4 flex flex-wrap items-center gap-4">
+        <div class="flex items-center gap-2">
+          <label for="budget-select" class="text-sm text-[color:var(--color-muted)]">Budget:</label>
+          <select
+            id="budget-select"
+            class="rounded-lg border border-[color:var(--color-border-strong)] bg-[color:var(--color-bg)] px-3 py-1.5 text-sm text-[color:var(--color-text)] focus:outline-none focus:ring-2 focus:ring-[#5E6AD2]/40"
+          >
+            <option value="any">Any</option>
+            <option value="free">Free only</option>
+            <option value="under100">Under $100/mo</option>
+          </select>
+        </div>
+
+        <label class="flex items-center gap-2 text-sm text-[color:var(--color-muted)] cursor-pointer select-none">
+          <input
+            type="checkbox"
+            id="low-lockin"
+            class="h-4 w-4 rounded border-[color:var(--color-border-strong)] text-[#5E6AD2] focus:ring-[#5E6AD2]/40"
+          />
+          Prefer low lock-in
+        </label>
+      </div>
+
+      <!-- Button -->
+      <button
+        id="recommend-btn"
+        class="mt-5 w-full rounded-xl bg-[#5E6AD2] px-6 py-3 text-[15px] font-semibold text-white shadow-sm transition-all duration-150 hover:bg-[#4F5ABF] hover:shadow-md active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed dark:bg-[#818CF8] dark:hover:bg-[#9BA3FB] dark:text-[#0A0A0F]"
+      >
+        Get Recommendations
+      </button>
+
+      <p class="mt-3 text-center text-xs text-[color:var(--color-muted)]">
+        Powered by AI &middot; 10 recommendations per day
+      </p>
+    </div>
+
+    <!-- Results -->
+    <div id="recommend-results" class="mt-8 hidden">
+      <!-- Populated by JS -->
+    </div>
+  </section>
+
+  <style>
+    .recommend-textarea {
+      background-image: linear-gradient(135deg, transparent 0%, transparent 100%);
+      transition: box-shadow 0.2s, border-color 0.2s, background-image 0.3s;
+    }
+    .recommend-textarea:focus {
+      background-image: linear-gradient(
+        135deg,
+        rgba(94, 106, 210, 0.03) 0%,
+        rgba(129, 140, 248, 0.03) 100%
+      );
+    }
+    .dark .recommend-textarea:focus {
+      background-image: linear-gradient(
+        135deg,
+        rgba(129, 140, 248, 0.05) 0%,
+        rgba(94, 106, 210, 0.05) 100%
+      );
+    }
+
+    @keyframes shimmer {
+      0% { background-position: -200% 0; }
+      100% { background-position: 200% 0; }
+    }
+    .skeleton {
+      background: linear-gradient(
+        90deg,
+        var(--color-elevated) 25%,
+        var(--color-surface) 50%,
+        var(--color-elevated) 75%
+      );
+      background-size: 200% 100%;
+      animation: shimmer 1.5s infinite;
+      border-radius: 0.75rem;
+    }
+
+    @keyframes resultFadeIn {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .result-card {
+      animation: resultFadeIn 0.4s ease-out both;
+    }
+    .result-card:nth-child(2) { animation-delay: 0.08s; }
+    .result-card:nth-child(3) { animation-delay: 0.16s; }
+    .result-card:nth-child(4) { animation-delay: 0.24s; }
+    .result-card:nth-child(5) { animation-delay: 0.32s; }
+
+    .lockin-low {
+      background-color: rgb(236 253 245);
+      color: rgb(21 128 61);
+    }
+    .dark .lockin-low {
+      background-color: rgba(6, 78, 59, 0.5);
+      color: rgb(52 211 153);
+    }
+    .lockin-medium {
+      background-color: rgb(254 252 232);
+      color: rgb(161 98 7);
+    }
+    .dark .lockin-medium {
+      background-color: rgba(120, 53, 15, 0.5);
+      color: rgb(251 191 36);
+    }
+    .lockin-high {
+      background-color: rgb(255 241 242);
+      color: rgb(190 18 60);
+    }
+    .dark .lockin-high {
+      background-color: rgba(136, 19, 55, 0.5);
+      color: rgb(251 113 133);
+    }
+  </style>
+
+  <script is:inline define:vars={{ totalEntries }}>
+    var RECOMMEND_API = 'https://devtools-recommend-api.sssands.workers.dev';
+
+    document.getElementById('recommend-btn').addEventListener('click', async function () {
+      var desc = document.getElementById('recommend-input').value.trim();
+      if (!desc) {
+        document.getElementById('recommend-input').focus();
+        return;
+      }
+
+      var budget = document.getElementById('budget-select').value;
+      var lowLockin = document.getElementById('low-lockin').checked;
+      var btn = document.getElementById('recommend-btn');
+      var results = document.getElementById('recommend-results');
+
+      btn.disabled = true;
+
+      // Fake progress bar with steps
+      var steps = [
+        { pct: 10, text: 'Analyzing your project description...', time: 800 },
+        { pct: 25, text: 'Searching ' + totalEntries.toLocaleString() + '+ entries...', time: 1500 },
+        { pct: 45, text: 'Matching MCP servers & AI skills...', time: 2000 },
+        { pct: 65, text: 'Comparing pricing & lock-in scores...', time: 3000 },
+        { pct: 80, text: 'Building your recommended stack...', time: 5000 },
+        { pct: 92, text: 'Almost ready...', time: 8000 },
+      ];
+
+      results.innerHTML =
+        '<div class="rounded-xl border border-gray-200 dark:border-gray-700/60 bg-white dark:bg-[#13131A] p-8">' +
+          '<div class="flex items-center gap-3 mb-4">' +
+            '<div class="h-8 w-8 rounded-lg bg-[#5E6AD2]/10 dark:bg-[#818CF8]/10 flex items-center justify-center">' +
+              '<svg class="h-4 w-4 text-[#5E6AD2] dark:text-[#818CF8] animate-spin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4m0 12v4m-7.07-3.93l2.83-2.83m8.48-8.48l2.83-2.83M2 12h4m12 0h4M4.93 4.93l2.83 2.83m8.48 8.48l2.83 2.83"/></svg>' +
+            '</div>' +
+            '<div class="flex-1">' +
+              '<p id="progress-text" class="text-sm font-medium text-[#0F172A] dark:text-[#EDEDEF]">Analyzing your project description...</p>' +
+              '<div class="mt-2 h-2 w-full rounded-full bg-gray-100 dark:bg-gray-800 overflow-hidden">' +
+                '<div id="progress-bar" class="h-full rounded-full bg-gradient-to-r from-[#5E6AD2] to-[#818CF8] transition-all duration-700 ease-out" style="width: 5%"></div>' +
+              '</div>' +
+            '</div>' +
+            '<span id="progress-pct" class="text-xs font-mono text-[#64748B] dark:text-[#8A8F98]">5%</span>' +
+          '</div>' +
+          '<div class="flex gap-1.5 mt-3">' +
+            '<div class="h-1 flex-1 rounded-full bg-gray-100 dark:bg-gray-800"><div class="progress-dot h-full rounded-full bg-[#5E6AD2]/30 dark:bg-[#818CF8]/30" style="width:0%;transition:width 0.5s"></div></div>'.repeat(5) +
+          '</div>' +
+        '</div>';
+      results.classList.remove('hidden');
+
+      var progressBar = document.getElementById('progress-bar');
+      var progressText = document.getElementById('progress-text');
+      var progressPct = document.getElementById('progress-pct');
+      var dots = results.querySelectorAll('.progress-dot');
+      var startTime = Date.now();
+
+      var progressInterval = setInterval(function() {
+        var elapsed = Date.now() - startTime;
+        for (var i = steps.length - 1; i >= 0; i--) {
+          if (elapsed >= steps[i].time) {
+            progressBar.style.width = steps[i].pct + '%';
+            progressText.textContent = steps[i].text;
+            progressPct.textContent = steps[i].pct + '%';
+            // Fill dots
+            var dotIdx = Math.min(Math.floor(steps[i].pct / 20), dots.length - 1);
+            for (var j = 0; j <= dotIdx; j++) { dots[j].style.width = '100%'; }
+            break;
+          }
+        }
+      }, 300);
+
+      try {
+        var res = await fetch(RECOMMEND_API, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            description: desc,
+            budget: budget,
+            prefer_low_lockin: lowLockin,
+          }),
+        });
+
+        if (!res.ok) throw new Error('API error ' + res.status);
+
+        var data = await res.json();
+        clearInterval(progressInterval);
+        // Complete animation
+        if (progressBar) { progressBar.style.width = '100%'; }
+        if (progressPct) { progressPct.textContent = '100%'; }
+        if (progressText) { progressText.textContent = 'Done! Here are your recommendations.'; }
+        dots.forEach(function(d) { d.style.width = '100%'; });
+        await new Promise(function(r) { setTimeout(r, 500); });
+        renderResults(data);
+      } catch (e) {
+        clearInterval(progressInterval);
+        results.innerHTML =
+          '<div class="rounded-xl border border-red-200 dark:border-red-900/50 bg-red-50 dark:bg-red-950/30 p-5 text-center">' +
+          '<p class="text-red-600 dark:text-red-400 font-medium">Failed to get recommendations. Please try again.</p>' +
+          '</div>';
+      } finally {
+        btn.disabled = false;
+        btn.textContent = 'Get Recommendations';
+      }
+    });
+
+    function renderResults(data) {
+      var results = document.getElementById('recommend-results');
+
+      if (!data || !data.recommendations || data.recommendations.length === 0) {
+        results.innerHTML =
+          '<div class="rounded-xl border border-[color:var(--color-border)] bg-[color:var(--color-surface)] p-5 text-center">' +
+          '<p class="text-[color:var(--color-muted)]">No recommendations found. Try a more detailed description.</p>' +
+          '</div>';
+        return;
+      }
+
+      var html = '';
+
+      // Stack summary
+      if (data.stack_summary) {
+        html +=
+          '<div class="mb-6 rounded-xl border border-[#5E6AD2]/20 dark:border-[#818CF8]/20 bg-[#5E6AD2]/5 dark:bg-[#818CF8]/5 p-4">' +
+          '<p class="text-sm font-medium text-[#5E6AD2] dark:text-[#818CF8]">' +
+          escapeHtml(data.stack_summary) +
+          '</p></div>';
+      }
+
+      // Cards
+      html += '<div class="space-y-4">';
+      data.recommendations.forEach(function (rec) {
+        var logoUrl = rec.logo || 'https://www.google.com/s2/favicons?domain=' + (rec.slug || 'example') + '.com&sz=128';
+        var initial = (rec.name || '?').charAt(0).toUpperCase();
+        var lockinClass = rec.lock_in_level ? 'lockin-' + rec.lock_in_level : '';
+        var lockinLabel = rec.lock_in_level
+          ? rec.lock_in_level.charAt(0).toUpperCase() + rec.lock_in_level.slice(1) + ' lock-in'
+          : '';
+
+        html +=
+          '<div class="result-card group relative rounded-xl border border-gray-200/80 dark:border-[rgba(255,255,255,0.08)] bg-white dark:bg-[#13131A] p-5 shadow-sm transition-all duration-150 hover:-translate-y-0.5 hover:shadow-md dark:hover:border-[rgba(255,255,255,0.14)]">' +
+          '<div class="accent-bar absolute inset-x-0 top-0 h-[2px] rounded-t-xl bg-gradient-to-r from-[#5E6AD2] to-[#818CF8] opacity-0 transition-opacity duration-150 group-hover:opacity-100"></div>' +
+
+          '<div class="flex items-start gap-3.5">' +
+          '<div class="relative h-10 w-10 shrink-0 overflow-hidden rounded-lg bg-gray-50 dark:bg-white/5">' +
+          '<img src="' + escapeHtml(logoUrl) + '" alt="' + escapeHtml(rec.name) + ' logo" width="40" height="40" loading="lazy" class="h-full w-full object-contain" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'flex\'" />' +
+          '<span class="absolute inset-0 hidden items-center justify-center rounded-lg bg-gradient-to-br from-[#5E6AD2] to-[#818CF8] text-sm font-bold text-white">' + initial + '</span>' +
+          '</div>' +
+
+          '<div class="min-w-0 flex-1">' +
+          '<a href="/tools/' + encodeURIComponent(rec.slug) + '/" class="text-[15px] font-semibold text-[#0F172A] dark:text-[#EDEDEF] hover:text-[#5E6AD2] dark:hover:text-[#818CF8] transition-colors">' +
+          escapeHtml(rec.name) +
+          '</a>' +
+
+          '<div class="mt-1.5 flex flex-wrap items-center gap-1.5">' +
+          (rec.category
+            ? '<span class="inline-flex items-center rounded-full bg-gray-100 dark:bg-white/5 px-2 py-0.5 text-[11px] font-medium text-[#64748B] dark:text-[#8A8F98]">' +
+              escapeHtml(rec.category) +
+              '</span>'
+            : '') +
+          (rec.pricing_note
+            ? '<span class="inline-flex items-center rounded-full bg-emerald-50 dark:bg-emerald-950/40 px-2 py-0.5 text-[11px] font-medium text-emerald-700 dark:text-emerald-400">' +
+              escapeHtml(rec.pricing_note) +
+              '</span>'
+            : '') +
+          (lockinLabel
+            ? '<span class="inline-flex items-center rounded-full px-2 py-0.5 text-[11px] font-medium ' + lockinClass + '">' +
+              escapeHtml(lockinLabel) +
+              '</span>'
+            : '') +
+          '</div>' +
+
+          (rec.reason
+            ? '<p class="mt-2 text-sm leading-relaxed text-[#64748B] dark:text-[#8A8F98]">' +
+              '<span class="font-medium text-[color:var(--color-text-secondary)]">Why: </span>' +
+              escapeHtml(rec.reason) +
+              '</p>'
+            : '') +
+          '</div>' +
+          '</div>' +
+          '</div>';
+      });
+      html += '</div>';
+
+      // Recommended MCP Servers
+      if (data.mcp_servers && data.mcp_servers.length > 0) {
+        html += '<div class="mt-8">';
+        html += '<h3 class="text-lg font-semibold text-[color:var(--color-text)] mb-3">Recommended MCP Servers</h3>';
+        html += '<div class="grid grid-cols-1 sm:grid-cols-2 gap-3">';
+        data.mcp_servers.forEach(function(s) {
+          html +=
+            '<a href="/mcp-servers/' + encodeURIComponent(s.slug) + '/" class="result-card block rounded-lg border border-gray-200/80 dark:border-[rgba(255,255,255,0.08)] bg-white dark:bg-[#13131A] p-4 shadow-sm transition-all duration-150 hover:-translate-y-0.5 hover:shadow-md hover:border-[#5E6AD2]/40 dark:hover:border-[#818CF8]/40">' +
+            '<div class="flex items-center gap-2 mb-1">' +
+            '<span class="text-lg">&#x1F50C;</span>' +
+            '<span class="text-sm font-semibold text-[color:var(--color-text)]">' + escapeHtml(s.name) + '</span>' +
+            '</div>' +
+            (s.reason ? '<p class="text-xs text-[color:var(--color-muted)] leading-relaxed">' + escapeHtml(s.reason) + '</p>' : '') +
+            '</a>';
+        });
+        html += '</div></div>';
+      }
+
+      // Recommended Skills
+      if (data.skills && data.skills.length > 0) {
+        html += '<div class="mt-8">';
+        html += '<h3 class="text-lg font-semibold text-[color:var(--color-text)] mb-3">Recommended Skills</h3>';
+        html += '<div class="grid grid-cols-1 sm:grid-cols-2 gap-3">';
+        data.skills.forEach(function(s) {
+          html +=
+            '<a href="/skills/' + encodeURIComponent(s.slug) + '/" class="result-card block rounded-lg border border-gray-200/80 dark:border-[rgba(255,255,255,0.08)] bg-white dark:bg-[#13131A] p-4 shadow-sm transition-all duration-150 hover:-translate-y-0.5 hover:shadow-md hover:border-[#5E6AD2]/40 dark:hover:border-[#818CF8]/40">' +
+            '<div class="flex items-center gap-2 mb-1">' +
+            '<span class="text-lg">&#x1F9E0;</span>' +
+            '<span class="text-sm font-semibold text-[color:var(--color-text)]">' + escapeHtml(s.name) + '</span>' +
+            '</div>' +
+            (s.reason ? '<p class="text-xs text-[color:var(--color-muted)] leading-relaxed">' + escapeHtml(s.reason) + '</p>' : '') +
+            '</a>';
+        });
+        html += '</div></div>';
+      }
+
+      // Recommended VS Code Extensions
+      if (data.extensions && data.extensions.length > 0) {
+        html += '<div class="mt-8">';
+        html += '<h3 class="text-lg font-semibold text-[color:var(--color-text)] mb-3">Recommended VS Code Extensions</h3>';
+        html += '<div class="grid grid-cols-1 sm:grid-cols-2 gap-3">';
+        data.extensions.forEach(function(e) {
+          html +=
+            '<a href="/extensions/' + encodeURIComponent(e.slug) + '/" class="result-card block rounded-lg border border-gray-200/80 dark:border-[rgba(255,255,255,0.08)] bg-white dark:bg-[#13131A] p-4 shadow-sm transition-all duration-150 hover:-translate-y-0.5 hover:shadow-md hover:border-[#5E6AD2]/40 dark:hover:border-[#818CF8]/40">' +
+            '<div class="flex items-center gap-2 mb-1">' +
+            '<span class="text-lg">&#x1F9E9;</span>' +
+            '<span class="text-sm font-semibold text-[color:var(--color-text)]">' + escapeHtml(e.name) + '</span>' +
+            '</div>' +
+            (e.reason ? '<p class="text-xs text-[color:var(--color-muted)] leading-relaxed">' + escapeHtml(e.reason) + '</p>' : '') +
+            '</a>';
+        });
+        html += '</div></div>';
+      }
+
+      // Export button
+      html += '<div class="mt-6 flex justify-center">' +
+        '<button onclick="exportRecommendations()" class="inline-flex items-center gap-2 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-[#13131A] px-4 py-2 text-sm font-medium text-[#0F172A] dark:text-[#EDEDEF] hover:border-[#5E6AD2]/40 dark:hover:border-[#818CF8]/40 transition-colors shadow-sm cursor-pointer">' +
+        '<svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>' +
+        'Export as Markdown' +
+        '</button></div>';
+
+      results.innerHTML = html;
+
+      // Store data for export
+      window._lastRecommendations = data;
+    }
+
+    window.exportRecommendations = function() {
+      var data = window._lastRecommendations;
+      if (!data) return;
+
+      var desc = document.getElementById('recommend-input').value.trim();
+      var md = '# Recommended Developer Stack\n\n';
+      md += '> Generated by [tool.news](https://tool.news/recommend/)\n\n';
+
+      if (desc) {
+        md += '## Project Description\n\n' + desc + '\n\n';
+      }
+
+      if (data.stack_summary) {
+        md += '## Summary\n\n' + data.stack_summary + '\n\n';
+      }
+
+      md += '## Recommended Tools\n\n';
+      (data.recommendations || []).forEach(function(rec, i) {
+        md += '### ' + (i + 1) + '. ' + rec.name + '\n\n';
+        md += '- **Category:** ' + (rec.category || 'N/A') + '\n';
+        md += '- **Website:** https://tool.news/tools/' + rec.slug + '/\n';
+        md += '- **Pricing:** ' + (rec.pricing_note || 'N/A') + '\n';
+        if (rec.lock_in_level) md += '- **Lock-in:** ' + rec.lock_in_level + '\n';
+        if (rec.reason) md += '- **Why:** ' + rec.reason + '\n';
+        md += '\n';
+      });
+
+      if (data.mcp_servers && data.mcp_servers.length > 0) {
+        md += '## Recommended MCP Servers\n\n';
+        data.mcp_servers.forEach(function(s) {
+          md += '- **' + s.name + '** — ' + (s.reason || '') + ' ([details](https://tool.news/mcp-servers/' + s.slug + '/))\n';
+        });
+        md += '\n';
+      }
+
+      if (data.skills && data.skills.length > 0) {
+        md += '## Recommended Skills\n\n';
+        data.skills.forEach(function(s) {
+          md += '- **' + s.name + '** — ' + (s.reason || '') + ' ([details](https://tool.news/skills/' + s.slug + '/))\n';
+        });
+        md += '\n';
+      }
+
+      if (data.extensions && data.extensions.length > 0) {
+        md += '## Recommended VS Code Extensions\n\n';
+        data.extensions.forEach(function(e) {
+          md += '- **' + e.name + '** — ' + (e.reason || '') + ' ([details](https://tool.news/extensions/' + e.slug + '/))\n';
+        });
+        md += '\n';
+      }
+
+      md += '---\n*Generated on ' + new Date().toISOString().split('T')[0] + ' by [tool.news](https://tool.news)*\n';
+
+      var blob = new Blob([md], { type: 'text/markdown' });
+      var url = URL.createObjectURL(blob);
+      var a = document.createElement('a');
+      a.href = url;
+      a.download = 'recommended-stack.md';
+      a.click();
+      URL.revokeObjectURL(url);
+    };
+
+    function escapeHtml(str) {
+      if (!str) return '';
+      return str
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+    }
+  </script>
+</BaseLayout>

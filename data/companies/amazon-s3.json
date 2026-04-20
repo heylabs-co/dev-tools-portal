@@ -1,0 +1,94 @@
+{
+  "id": "COMP-0156",
+  "slug": "amazon-s3",
+  "name": "Amazon S3",
+  "description": "Amazon S3 — Object Storage / Media API tool for developers",
+  "website": "https://aws.amazon.com/s3",
+  "logo": "https://github.com/tpyo.png?size=128",
+  "hq_country": "US",
+  "status": "active",
+  "categories": {
+    "primary": {
+      "id": "CAT-11",
+      "slug": "object-storage-media",
+      "name": "Object Storage / Media API"
+    },
+    "secondary": []
+  },
+  "alternatives": [],
+  "seo": {
+    "title": "Amazon S3 Review 2026: Pricing, Alternatives & Lock-in Score",
+    "meta_description": "Complete Amazon S3 analysis: pricing, lock-in risk, migration difficulty. Compare with alternatives in Object Storage / Media API.",
+    "keywords": [
+      "amazon s3 pricing",
+      "amazon s3 alternatives",
+      "amazon s3 review"
+    ]
+  },
+  "updated_at": "2026-04-20T07:46:44.077Z",
+  "created_at": "2026-04-12T12:53:55.841Z",
+  "content": {
+    "when_to_use": [
+      "Image/video heavy applications",
+      "User-generated content platforms",
+      "Media processing pipelines"
+    ],
+    "when_not_to_use": [
+      "Text-only applications",
+      "Small file storage needs (<1GB)"
+    ],
+    "consider_instead": [
+      "cdn-edge"
+    ]
+  },
+  "community": {
+    "hn_mentions_30d": 6
+  },
+  "pricing": {
+    "model": "subscription",
+    "has_free_tier": true,
+    "free_tier_limits": "free tier as of july 15, 2025, new aws customers will receive up",
+    "entry_price": "$5.87 per month",
+    "enterprise_available": true,
+    "pricing_url": "https://aws.amazon.com/s3/pricing",
+    "transparency_score": 5,
+    "last_checked": "2026-04-15"
+  },
+  "github": {
+    "repo": "tpyo/amazon-s3-php-class",
+    "stars": 1027,
+    "open_issues": 73,
+    "latest_release": "v0.5.1",
+    "release_date": "2015-04-27T06:13:52Z"
+  },
+  "npm": {
+    "package": "@rushstack/rush-amazon-s3-build-cache-plugin",
+    "weekly_downloads": 502091,
+    "latest_version": "5.175.0"
+  },
+  "health": {
+    "bus_factor": 1,
+    "last_commit_days_ago": 420,
+    "release_frequency_days": 569,
+    "open_issues": 73,
+    "issue_close_days": 40,
+    "stars": 1027,
+    "forks": 490,
+    "updated_at": "2026-04-16",
+    "health_score": "F"
+  },
+  "review": {
+    "verdict": "Best for image/video heavy applications. Amazon S3 offers subscription from $5.87 per month.",
+    "pros": [
+      "Image/video heavy applications",
+      "User-generated content platforms",
+      "Generous free tier for getting started"
+    ],
+    "cons": [
+      "Text-only applications",
+      "Small file storage needs (<1GB)"
+    ],
+    "best_for": "Image/video heavy applications",
+    "not_for": "Small projects"
+  }
+}

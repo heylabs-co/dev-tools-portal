@@ -1,0 +1,95 @@
+{
+  "id": "COMP-0017",
+  "slug": "braintree",
+  "name": "Braintree",
+  "description": "Braintree — Payment Gateway / PSP tool for developers",
+  "website": "https://braintreepayments.com",
+  "logo": "https://github.com/braintree.png?size=128",
+  "hq_country": "US",
+  "status": "active",
+  "categories": {
+    "primary": {
+      "id": "CAT-02",
+      "slug": "payment-gateway",
+      "name": "Payment Gateway / PSP"
+    },
+    "secondary": []
+  },
+  "alternatives": [],
+  "seo": {
+    "title": "Braintree Review 2026: Pricing, Alternatives & Lock-in Score",
+    "meta_description": "Complete Braintree analysis: pricing, lock-in risk, migration difficulty. Compare with alternatives in Payment Gateway / PSP.",
+    "keywords": [
+      "braintree pricing",
+      "braintree alternatives",
+      "braintree review"
+    ]
+  },
+  "updated_at": "2026-04-20T18:46:19.885Z",
+  "created_at": "2026-04-12T12:53:55.841Z",
+  "content": {
+    "when_to_use": [
+      "SaaS with online payments",
+      "E-commerce checkout",
+      "Marketplace payment processing"
+    ],
+    "when_not_to_use": [
+      "Offline-only retail",
+      "Internal tools without billing"
+    ],
+    "consider_instead": [
+      "payments-orchestration"
+    ],
+    "works_well_with": [
+      "clerk",
+      "chargebee"
+    ]
+  },
+  "community": {
+    "hn_mentions_30d": 0
+  },
+  "pricing": {
+    "model": "usage",
+    "has_free_tier": false,
+    "enterprise_available": true,
+    "pricing_url": "https://braintreepayments.com/pricing",
+    "transparency_score": 2,
+    "last_checked": "2026-04-15"
+  },
+  "github": {
+    "repo": "braintree/credit-card-type",
+    "stars": 1028,
+    "open_issues": 14,
+    "latest_release": "v10.0.2",
+    "release_date": "2025-04-30T19:41:49Z"
+  },
+  "npm": {
+    "package": "@types/braintree"
+  },
+  "review": {
+    "verdict": "Best for saas with online payments. Braintree offers usage.",
+    "pros": [
+      "SaaS with online payments",
+      "E-commerce checkout",
+      "Excellent developer documentation and SDKs"
+    ],
+    "cons": [
+      "Offline-only retail",
+      "Internal tools without billing",
+      "Per-transaction fees add up at high volume"
+    ],
+    "best_for": "SaaS, E-commerce, Marketplace",
+    "not_for": "Offline, Internal projects"
+  },
+  "health": {
+    "bus_factor": 4,
+    "last_commit_days_ago": 2,
+    "release_frequency_days": 911,
+    "open_issues": 14,
+    "license": "MIT",
+    "stars": 1028,
+    "forks": 155,
+    "updated_at": "2026-04-16",
+    "health_score": "C"
+  }
+}

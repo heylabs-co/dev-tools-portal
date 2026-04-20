@@ -1,0 +1,107 @@
+{
+  "id": "COMP-0131",
+  "slug": "firebase",
+  "name": "Firebase",
+  "description": "Firebase — Backend-as-a-Service tool for developers",
+  "website": "https://firebase.google.com",
+  "logo": "https://www.google.com/s2/favicons?domain=firebase.google.com&sz=128",
+  "hq_country": "US",
+  "status": "active",
+  "categories": {
+    "primary": {
+      "id": "CAT-09",
+      "slug": "backend-as-a-service",
+      "name": "Backend-as-a-Service"
+    },
+    "secondary": [
+      "CAT-16",
+      "CAT-20",
+      "CAT-22",
+      "CAT-23",
+      "CAT-26"
+    ]
+  },
+  "alternatives": [],
+  "seo": {
+    "title": "Firebase Review 2026: Pricing, Alternatives & Lock-in Score",
+    "meta_description": "Complete Firebase analysis: pricing, lock-in risk, migration difficulty. Compare with alternatives in Backend-as-a-Service.",
+    "keywords": [
+      "firebase pricing",
+      "firebase alternatives",
+      "firebase review"
+    ]
+  },
+  "updated_at": "2026-04-20T13:07:18.320Z",
+  "created_at": "2026-04-12T12:53:55.841Z",
+  "pricing": {
+    "model": "hybrid",
+    "has_free_tier": true,
+    "free_tier_limits": "Spark: 50K MAUs, 1GB storage",
+    "entry_price": "Pay-as-you-go (Blaze)",
+    "enterprise_available": true,
+    "billing_complexity": "medium",
+    "transparency_score": 4,
+    "last_checked": "2026-04-11",
+    "pricing_url": "https://firebase.google.com/pricing"
+  },
+  "scores": {
+    "lock_in": {
+      "level": "high",
+      "score": 5,
+      "migration_complexity": "high",
+      "data_portability": "firebaseusers2json for auth, but DB andand withon",
+      "api_compatibility": "Proprietary",
+      "explanation": "High — deep binding to Google ecosystem, Firestore/RTDB proprietary, requires re-architecting backend"
+    }
+  },
+  "scale": {
+    "revenue": "unknown -- with Google Cloud",
+    "data_status": "estimated"
+  },
+  "content": {
+    "when_to_use": [
+      "Mobile app MVP with tight deadline",
+      "Need auth + DB + hosting + analytics in one platform",
+      "Google Cloud ecosystem user"
+    ],
+    "when_not_to_use": [
+      "Need SQL database or complex queries — use Supabase",
+      "Want to avoid vendor lock-in — Firebase is HIGH lock-in",
+      "Need self-hosted option"
+    ],
+    "consider_instead": [
+      "supabase",
+      "appwrite"
+    ],
+    "migration_cheatsheet": {
+      "difficulty": "high",
+      "data_you_keep": "firebaseusers2json for auth, but DB andand withon",
+      "api_standard": "Proprietary",
+      "risk_notes": "High — deep binding to Google ecosystem, Firestore/RTDB proprietary, requires re-architecting backend",
+      "tip": "Plan 2-4 weeks minimum. Consider running parallel during migration"
+    },
+    "works_well_with": [
+      "clerk",
+      "akamai",
+      "amplitude"
+    ]
+  },
+  "community": {
+    "hn_mentions_30d": 16
+  },
+  "review": {
+    "verdict": "Best for mobile app mvp with tight deadline. Firebase offers Pay-as-you-go (Blaze). High vendor lock-in.",
+    "pros": [
+      "Mobile app MVP with tight deadline",
+      "auth + DB + hosting + analytics in one platform",
+      "Faster time-to-market vs. building from scratch"
+    ],
+    "cons": [
+      "Need SQL database or complex queries",
+      "Want to avoid vendor lock-in — Firebase is HIGH lock-in",
+      "High lock-in — proprietary APIs make migration difficult"
+    ],
+    "best_for": "Mobile",
+    "not_for": "Need SQL database or complex queries"
+  }
+}

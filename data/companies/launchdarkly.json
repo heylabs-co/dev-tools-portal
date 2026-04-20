@@ -1,0 +1,109 @@
+{
+  "id": "COMP-0331",
+  "slug": "launchdarkly",
+  "name": "LaunchDarkly",
+  "description": "LaunchDarkly — Observability / Logging / Tracing tool for developers",
+  "website": "https://launchdarkly.com",
+  "logo": "https://www.google.com/s2/favicons?domain=launchdarkly.com&sz=128",
+  "hq_country": "US",
+  "status": "active",
+  "categories": {
+    "primary": {
+      "id": "CAT-22",
+      "slug": "observability",
+      "name": "Observability / Logging / Tracing"
+    },
+    "secondary": [
+      "CAT-23"
+    ]
+  },
+  "alternatives": [],
+  "seo": {
+    "title": "LaunchDarkly Review 2026: Pricing, Alternatives & Lock-in Score",
+    "meta_description": "Complete LaunchDarkly analysis: pricing, lock-in risk, migration difficulty. Compare with alternatives in Observability / Logging / Tracing.",
+    "keywords": [
+      "launchdarkly pricing",
+      "launchdarkly alternatives",
+      "launchdarkly review"
+    ]
+  },
+  "updated_at": "2026-04-12T18:42:19.308Z",
+  "created_at": "2026-04-12T12:53:55.841Z",
+  "pricing": {
+    "model": "hybrid",
+    "has_free_tier": false,
+    "entry_price": "$10/user/mo (Starter)",
+    "enterprise_available": true,
+    "billing_complexity": "medium",
+    "transparency_score": 3,
+    "last_checked": "2026-04-11",
+    "pricing_url": "https://launchdarkly.com/pricing"
+  },
+  "scores": {
+    "lock_in": {
+      "level": "high",
+      "score": 5,
+      "migration_complexity": "high",
+      "data_portability": "Via API",
+      "api_compatibility": "Proprietary",
+      "explanation": "Medium-High — Contexts with, 35+ SDK creat to andand"
+    }
+  },
+  "scale": {
+    "customers": "4,000-5,500+",
+    "revenue": "unknown -- private",
+    "data_status": "estimated"
+  },
+  "content": {
+    "when_to_use": [
+      "Enterprise feature management at scale",
+      "Need targeting by user context (plan, region, etc.)",
+      "35+ SDK support across all platforms"
+    ],
+    "when_not_to_use": [
+      "Budget-sensitive — starts at $10/seat/month",
+      "Want open-source — use Flagsmith or Unleash",
+      "Just need basic toggles — Statsig free tier is generous"
+    ],
+    "consider_instead": [
+      "flagsmith",
+      "statsig",
+      "unleash"
+    ],
+    "pricing_at_scale": [
+      {
+        "scale": "Entry",
+        "estimate": "$10/user/mo (Starter)"
+      }
+    ],
+    "migration_cheatsheet": {
+      "difficulty": "high",
+      "data_you_keep": "Via API",
+      "api_standard": "Proprietary",
+      "risk_notes": "Medium-High — Contexts with, 35+ SDK creat to andand",
+      "tip": "Plan 2-4 weeks minimum. Consider running parallel during migration"
+    },
+    "works_well_with": [
+      "better-stack",
+      "drata"
+    ]
+  },
+  "community": {
+    "hn_mentions_30d": 0
+  },
+  "review": {
+    "verdict": "Best for enterprise feature management at scale. LaunchDarkly offers $10/user/mo (Starter). High vendor lock-in.",
+    "pros": [
+      "Enterprise feature management at scale",
+      "targeting by user context (plan, region, etc.)",
+      "Centralized logs, metrics, and traces in one place"
+    ],
+    "cons": [
+      "Budget-sensitive — starts at $10/seat/month",
+      "Want open-source",
+      "High lock-in — proprietary APIs make migration difficult"
+    ],
+    "best_for": "Enterprise",
+    "not_for": "Budget projects"
+  }
+}

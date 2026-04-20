@@ -1,0 +1,111 @@
+{
+  "id": "COMP-0136",
+  "slug": "supabase",
+  "name": "Supabase",
+  "description": "Supabase — Backend-as-a-Service tool for developers",
+  "website": "https://supabase.com",
+  "logo": "https://www.google.com/s2/favicons?domain=supabase.com&sz=128",
+  "hq_country": "US",
+  "status": "active",
+  "categories": {
+    "primary": {
+      "id": "CAT-09",
+      "slug": "backend-as-a-service",
+      "name": "Backend-as-a-Service"
+    },
+    "secondary": [
+      "CAT-10",
+      "CAT-40"
+    ]
+  },
+  "alternatives": [],
+  "seo": {
+    "title": "Supabase Review 2026: Pricing, Alternatives & Lock-in Score",
+    "meta_description": "Complete Supabase analysis: pricing, lock-in risk, migration difficulty. Compare with alternatives in Backend-as-a-Service.",
+    "keywords": [
+      "supabase pricing",
+      "supabase alternatives",
+      "supabase review"
+    ]
+  },
+  "updated_at": "2026-04-19T18:52:10.634Z",
+  "created_at": "2026-04-12T12:53:55.841Z",
+  "pricing": {
+    "model": "freemium",
+    "has_free_tier": true,
+    "free_tier_limits": "50K MAU, 500MB DB",
+    "entry_price": "$25/mo (Pro)",
+    "enterprise_available": true,
+    "billing_complexity": "low",
+    "transparency_score": 4,
+    "last_checked": "2026-04-11",
+    "pricing_url": "https://supabase.com/pricing"
+  },
+  "scores": {
+    "lock_in": {
+      "level": "low",
+      "score": 1,
+      "migration_complexity": "low",
+      "data_portability": " SQL export",
+      "api_compatibility": " PostgreSQL + REST/GraphQL",
+      "explanation": "Low — PostgreSQL under tofrom, open-source, standard SQL"
+    }
+  },
+  "scale": {
+    "revenue": "$70M",
+    "data_status": "estimated"
+  },
+  "content": {
+    "when_to_use": [
+      "Need PostgreSQL with auth + storage + realtime",
+      "Firebase alternative with SQL and lower lock-in",
+      "Open-source preference with managed hosting"
+    ],
+    "when_not_to_use": [
+      "Need offline-first mobile sync — consider Firebase",
+      "Need reactive queries without polling — consider Convex",
+      "Enterprise requiring 99.99% SLA — consider managed Postgres (Neon, RDS)"
+    ],
+    "consider_instead": [
+      "firebase",
+      "neon-acquired-by-databricks",
+      "appwrite"
+    ],
+    "pricing_at_scale": [
+      {
+        "scale": "Entry",
+        "estimate": "$25/mo (Pro)"
+      }
+    ],
+    "migration_cheatsheet": {
+      "difficulty": "low",
+      "data_you_keep": " SQL export",
+      "api_standard": " PostgreSQL + REST/GraphQL",
+      "risk_notes": "Low — PostgreSQL under tofrom, open-source, standard SQL",
+      "tip": "Standard protocols make switching straightforward"
+    },
+    "works_well_with": [
+      "clerk",
+      "akamai",
+      "amplitude"
+    ]
+  },
+  "community": {
+    "hn_mentions_30d": 37
+  },
+  "review": {
+    "verdict": "Best for postgresql with auth + storage + realtime. Supabase offers freemium, paid from $25/mo (Pro). Low vendor lock-in.",
+    "pros": [
+      "PostgreSQL with auth + storage + realtime",
+      "Firebase alternative with SQL and lower lock-in",
+      "Low lock-in — easy to migrate away"
+    ],
+    "cons": [
+      "Need offline-first mobile sync",
+      "Need reactive queries without polling",
+      "Limited customization for complex business logic"
+    ],
+    "best_for": "Need PostgreSQL with auth + storage + realtime",
+    "not_for": "Offline projects"
+  }
+}

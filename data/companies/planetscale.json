@@ -1,0 +1,107 @@
+{
+  "id": "COMP-0150",
+  "slug": "planetscale",
+  "name": "PlanetScale",
+  "description": "PlanetScale — DBaaS / Serverless Databases tool for developers",
+  "website": "https://planetscale.com",
+  "logo": "https://www.google.com/s2/favicons?domain=planetscale.com&sz=128",
+  "hq_country": "US",
+  "status": "active",
+  "categories": {
+    "primary": {
+      "id": "CAT-10",
+      "slug": "dbaas",
+      "name": "DBaaS / Serverless Databases"
+    },
+    "secondary": [
+      "CAT-40"
+    ]
+  },
+  "alternatives": [],
+  "seo": {
+    "title": "PlanetScale Review 2026: Pricing, Alternatives & Lock-in Score",
+    "meta_description": "Complete PlanetScale analysis: pricing, lock-in risk, migration difficulty. Compare with alternatives in DBaaS / Serverless Databases.",
+    "keywords": [
+      "planetscale pricing",
+      "planetscale alternatives",
+      "planetscale review"
+    ]
+  },
+  "updated_at": "2026-04-17T13:06:13.102Z",
+  "created_at": "2026-04-12T12:53:55.841Z",
+  "pricing": {
+    "model": "hybrid",
+    "has_free_tier": false,
+    "entry_price": "$5/mo (single node)",
+    "enterprise_available": true,
+    "billing_complexity": "medium",
+    "transparency_score": 3,
+    "last_checked": "2026-04-11",
+    "pricing_url": "https://planetscale.com/pricing"
+  },
+  "scores": {
+    "lock_in": {
+      "level": "low",
+      "score": 1,
+      "migration_complexity": "low",
+      "data_portability": " SQL export",
+      "api_compatibility": "MySQL-compatible",
+      "explanation": "Low-Medium — standard MySQL (Vitess), but branching = proprietary feature"
+    }
+  },
+  "scale": {
+    "revenue": "unknown -- searched planetscale.com, getlatka",
+    "customers": "unknown",
+    "data_status": "estimated"
+  },
+  "content": {
+    "when_to_use": [
+      "Apps needing managed database",
+      "Serverless architectures",
+      "Global data distribution"
+    ],
+    "when_not_to_use": [
+      "Simple key-value storage needs",
+      "Embedded/offline-first apps"
+    ],
+    "consider_instead": [
+      "backend-as-a-service"
+    ],
+    "pricing_at_scale": [
+      {
+        "scale": "Entry",
+        "estimate": "$5/mo (single node)"
+      }
+    ],
+    "migration_cheatsheet": {
+      "difficulty": "low",
+      "data_you_keep": " SQL export",
+      "api_standard": "MySQL-compatible",
+      "risk_notes": "Low-Medium — standard MySQL (Vitess), but branching = proprietary feature",
+      "tip": "Standard protocols make switching straightforward"
+    },
+    "works_well_with": [
+      "akamai",
+      "clerk",
+      "flagsmith"
+    ]
+  },
+  "community": {
+    "hn_mentions_30d": 8
+  },
+  "review": {
+    "verdict": "Best for apps needing managed database. PlanetScale offers $5/mo (single node). Low vendor lock-in.",
+    "pros": [
+      "Apps needing managed database",
+      "Serverless architectures",
+      "Low lock-in — easy to migrate away"
+    ],
+    "cons": [
+      "Simple key-value storage needs",
+      "Embedded/offline-first apps",
+      "Storage and compute costs grow with data volume"
+    ],
+    "best_for": "Apps, Global",
+    "not_for": "Simple, Offline projects"
+  }
+}

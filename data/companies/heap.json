@@ -1,0 +1,91 @@
+{
+  "id": "COMP-0254",
+  "slug": "heap",
+  "name": "Heap",
+  "description": "Heap — Product Analytics tool for developers",
+  "website": "https://heap.io",
+  "logo": "https://www.google.com/s2/favicons?domain=heap.io&sz=128",
+  "hq_country": "US",
+  "status": "active",
+  "categories": {
+    "primary": {
+      "id": "CAT-17",
+      "slug": "product-analytics",
+      "name": "Product Analytics"
+    },
+    "secondary": []
+  },
+  "alternatives": [],
+  "seo": {
+    "title": "Heap Review 2026: Pricing, Alternatives & Lock-in Score",
+    "meta_description": "Complete Heap analysis: pricing, lock-in risk, migration difficulty. Compare with alternatives in Product Analytics.",
+    "keywords": [
+      "heap pricing",
+      "heap alternatives",
+      "heap review"
+    ]
+  },
+  "updated_at": "2026-04-20T18:57:21.806Z",
+  "created_at": "2026-04-12T12:53:55.841Z",
+  "scores": {
+    "lock_in": {
+      "level": "medium",
+      "score": 3,
+      "migration_complexity": "medium",
+      "data_portability": "API export",
+      "api_compatibility": "Proprietary",
+      "explanation": "Medium — autocapture = proprietary format"
+    }
+  },
+  "content": {
+    "when_to_use": [
+      "Understanding user behavior (funnels, retention)",
+      "Data-driven product decisions",
+      "A/B test analysis"
+    ],
+    "when_not_to_use": [
+      "Pre-product stage",
+      "Simple pageview tracking (use Plausible)"
+    ],
+    "consider_instead": [
+      "session-replay"
+    ],
+    "migration_cheatsheet": {
+      "difficulty": "medium",
+      "data_you_keep": "API export",
+      "api_standard": "Proprietary",
+      "risk_notes": "Medium — autocapture = proprietary format",
+      "tip": "Moderate effort required. Export data before canceling"
+    },
+    "works_well_with": [
+      "bitrise"
+    ]
+  },
+  "community": {
+    "hn_mentions_30d": 1046
+  },
+  "pricing": {
+    "model": "subscription",
+    "has_free_tier": false,
+    "entry_price": "$1.7",
+    "enterprise_available": true,
+    "pricing_url": "https://heap.io/pricing",
+    "transparency_score": 4,
+    "last_checked": "2026-04-15"
+  },
+  "review": {
+    "verdict": "Best for understanding user behavior (funnels, retention). Heap offers subscription from $1.7. Moderate vendor lock-in.",
+    "pros": [
+      "Understanding user behavior (funnels, retention)",
+      "Data-driven product decisions",
+      "Deep funnel and cohort analysis capabilities"
+    ],
+    "cons": [
+      "Pre-product stage",
+      "Simple pageview tracking (use Plausible)",
+      "Proprietary data formats add switching costs"
+    ],
+    "best_for": "Understanding user behavior (funnels, retention)",
+    "not_for": "Simple projects"
+  }
+}

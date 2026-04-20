@@ -1,0 +1,13 @@
+name = "devtools-recommend-api"
+main = "worker.js"
+compatibility_date = "2024-12-01"
+
+# Allow importing .txt files as text modules
+[[rules]]
+type = "Text"
+globs = ["**/*.txt"]
+fallthrough = false
+
+[vars]
+# OPENROUTER_API_KEY — set as a secret via Cloudflare dashboard or:
+#   npx wrangler secret put OPENROUTER_API_KEY --config workers/recommend-api/wrangler.toml

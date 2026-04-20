@@ -1,0 +1,95 @@
+{
+  "id": "COMP-0115",
+  "slug": "bitwarden",
+  "name": "Bitwarden",
+  "description": "Bitwarden — Secrets Management tool for developers",
+  "website": "https://bitwarden.com",
+  "logo": "https://github.com/bitwarden.png?size=128",
+  "hq_country": "US",
+  "status": "active",
+  "categories": {
+    "primary": {
+      "id": "CAT-08",
+      "slug": "secrets-management",
+      "name": "Secrets Management"
+    },
+    "secondary": []
+  },
+  "alternatives": [],
+  "seo": {
+    "title": "Bitwarden Review 2026: Pricing, Alternatives & Lock-in Score",
+    "meta_description": "Complete Bitwarden analysis: pricing, lock-in risk, migration difficulty. Compare with alternatives in Secrets Management.",
+    "keywords": [
+      "bitwarden pricing",
+      "bitwarden alternatives",
+      "bitwarden review"
+    ]
+  },
+  "updated_at": "2026-04-20T18:46:17.829Z",
+  "created_at": "2026-04-12T12:53:55.841Z",
+  "content": {
+    "when_to_use": [
+      "Teams with many API keys/tokens",
+      "CI/CD pipelines needing secure env vars",
+      "SOC2/compliance requirements"
+    ],
+    "when_not_to_use": [
+      "Solo developer with few secrets",
+      "Static sites without backend"
+    ],
+    "consider_instead": [
+      "identity-auth"
+    ]
+  },
+  "community": {
+    "hn_mentions_30d": 8
+  },
+  "pricing": {
+    "model": "freemium",
+    "has_free_tier": true,
+    "free_tier_limits": "free organization 2 users, 2 collections&quot;,&quot;content&quot;:{&quot;data&",
+    "entry_price": "$1.65/Month",
+    "enterprise_available": true,
+    "pricing_url": "https://bitwarden.com/pricing",
+    "transparency_score": 5,
+    "last_checked": "2026-04-15"
+  },
+  "github": {
+    "repo": "bitwarden/server",
+    "stars": 18472,
+    "open_issues": 188,
+    "latest_release": "v2026.4.0",
+    "release_date": "2026-04-15T01:01:07Z"
+  },
+  "npm": {
+    "package": "@bitwarden/sdk-internal",
+    "weekly_downloads": 26271,
+    "latest_version": "0.2.0-main.691"
+  },
+  "review": {
+    "verdict": "Best for teams with many api keys/tokens. Bitwarden offers freemium, paid from $1.65/Month.",
+    "pros": [
+      "Teams with many API keys/tokens",
+      "CI/CD pipelines needing secure env vars",
+      "Generous free tier for getting started"
+    ],
+    "cons": [
+      "Solo developer with few secrets",
+      "Static sites without backend"
+    ],
+    "best_for": "Teams",
+    "not_for": "Solo, Static projects"
+  },
+  "health": {
+    "bus_factor": 10,
+    "last_commit_days_ago": 0,
+    "release_frequency_days": 11,
+    "open_issues": 187,
+    "issue_close_days": 0,
+    "license": "NOASSERTION",
+    "stars": 18444,
+    "forks": 1567,
+    "updated_at": "2026-04-16",
+    "health_score": "A"
+  }
+}

@@ -1,0 +1,92 @@
+{
+  "id": "COMP-0116",
+  "slug": "cyberark-conjur",
+  "name": "CyberArk Conjur",
+  "description": "CyberArk Conjur — Secrets Management tool for developers",
+  "website": "https://cyberark.com",
+  "logo": "https://www.google.com/s2/favicons?domain=cyberark.com&sz=128",
+  "hq_country": "US",
+  "status": "active",
+  "categories": {
+    "primary": {
+      "id": "CAT-08",
+      "slug": "secrets-management",
+      "name": "Secrets Management"
+    },
+    "secondary": []
+  },
+  "alternatives": [],
+  "seo": {
+    "title": "CyberArk Conjur Review 2026: Pricing, Alternatives & Lock-in Score",
+    "meta_description": "Complete CyberArk Conjur analysis: pricing, lock-in risk, migration difficulty. Compare with alternatives in Secrets Management.",
+    "keywords": [
+      "cyberark conjur pricing",
+      "cyberark conjur alternatives",
+      "cyberark conjur review"
+    ]
+  },
+  "updated_at": "2026-04-19T18:30:07.710Z",
+  "created_at": "2026-04-12T12:53:55.841Z",
+  "content": {
+    "when_to_use": [
+      "Teams with many API keys/tokens",
+      "CI/CD pipelines needing secure env vars",
+      "SOC2/compliance requirements"
+    ],
+    "when_not_to_use": [
+      "Solo developer with few secrets",
+      "Static sites without backend"
+    ],
+    "consider_instead": [
+      "identity-auth"
+    ]
+  },
+  "community": {
+    "hn_mentions_30d": 0
+  },
+  "pricing": {
+    "model": "subscription",
+    "has_free_tier": true,
+    "entry_price": "60",
+    "enterprise_available": true,
+    "pricing_url": "https://cyberark.com/#pricing",
+    "transparency_score": 5,
+    "last_checked": "2026-04-15"
+  },
+  "github": {
+    "repo": "cyberark/conjur",
+    "stars": 917,
+    "open_issues": 166,
+    "latest_release": "v1.24.0",
+    "release_date": "2025-11-20T20:24:03Z"
+  },
+  "npm": {
+    "package": "@activepieces/piece-cyberark"
+  },
+  "review": {
+    "verdict": "Best for teams with many api keys/tokens. CyberArk Conjur offers subscription from 60.",
+    "pros": [
+      "Teams with many API keys/tokens",
+      "CI/CD pipelines needing secure env vars",
+      "Generous free tier for getting started"
+    ],
+    "cons": [
+      "Solo developer with few secrets",
+      "Static sites without backend"
+    ],
+    "best_for": "Teams",
+    "not_for": "Solo, Static projects"
+  },
+  "health": {
+    "bus_factor": 10,
+    "last_commit_days_ago": 147,
+    "release_frequency_days": 32,
+    "open_issues": 166,
+    "issue_close_days": 1,
+    "license": "NOASSERTION",
+    "stars": 916,
+    "forks": 143,
+    "updated_at": "2026-04-16",
+    "health_score": "D"
+  }
+}

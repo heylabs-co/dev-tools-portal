@@ -1,0 +1,129 @@
+{
+  "id": "COMP-0077",
+  "slug": "clerk",
+  "name": "Clerk",
+  "description": "Clerk — Identity / Auth / User Management tool for developers",
+  "website": "https://clerk.com",
+  "logo": "https://www.google.com/s2/favicons?domain=clerk.com&sz=128",
+  "hq_country": "US",
+  "status": "active",
+  "categories": {
+    "primary": {
+      "id": "CAT-06",
+      "slug": "identity-auth",
+      "name": "Identity / Auth / User Management"
+    },
+    "secondary": []
+  },
+  "alternatives": [],
+  "seo": {
+    "title": "Clerk Review 2026: Pricing, Alternatives & Lock-in Score",
+    "meta_description": "Complete Clerk analysis: pricing, lock-in risk, migration difficulty. Compare with alternatives in Identity / Auth / User Management.",
+    "keywords": [
+      "clerk pricing",
+      "clerk alternatives",
+      "clerk review"
+    ]
+  },
+  "updated_at": "2026-04-20T01:20:45.276Z",
+  "created_at": "2026-04-12T12:53:55.841Z",
+  "pricing": {
+    "model": "freemium",
+    "has_free_tier": true,
+    "free_tier_limits": "50,000 MAUs",
+    "entry_price": "$25/mo (Pro, 10K MAU)",
+    "enterprise_available": true,
+    "billing_complexity": "low",
+    "transparency_score": 4,
+    "last_checked": "2026-04-11",
+    "pricing_url": "https://clerk.com/pricing"
+  },
+  "scores": {
+    "lock_in": {
+      "level": "medium",
+      "score": 3,
+      "migration_complexity": "medium",
+      "data_portability": " user data export  but on",
+      "api_compatibility": "OIDC/SAML standards",
+      "explanation": "Medium — pre-built toby creat deep integration, but by towithby  free"
+    }
+  },
+  "scale": {
+    "customers": "100M+",
+    "revenue": "unknown -- searched getlatka, sacra",
+    "data_status": "estimated"
+  },
+  "content": {
+    "when_to_use": [
+      "Next.js / React apps needing drop-in auth UI",
+      "Startup wanting generous free tier (50K MAU)",
+      "Need pre-built components (SignIn, UserButton)"
+    ],
+    "when_not_to_use": [
+      "Enterprise requiring SAML/SCIM on day one — Auth0/WorkOS",
+      "Need self-hosted auth — FusionAuth or Keycloak",
+      "Non-JavaScript backend"
+    ],
+    "consider_instead": [
+      "auth0",
+      "workos",
+      "stytch"
+    ],
+    "pricing_at_scale": [
+      {
+        "scale": "Entry",
+        "estimate": "$25/mo (Pro, 10K MAU)"
+      }
+    ],
+    "migration_cheatsheet": {
+      "difficulty": "medium",
+      "data_you_keep": " user data export  but on",
+      "api_standard": "OIDC/SAML standards",
+      "risk_notes": "Medium — pre-built toby creat deep integration, but by towithby  free",
+      "tip": "Moderate effort required. Export data before canceling"
+    },
+    "works_well_with": [
+      "appwrite",
+      "adyen"
+    ]
+  },
+  "community": {
+    "hn_mentions_30d": 12
+  },
+  "github": {
+    "repo": "clerk/t3-turbo-and-clerk",
+    "stars": 1028,
+    "open_issues": 13,
+    "latest_release": "v1.1.0",
+    "release_date": "2023-01-28T12:26:38Z"
+  },
+  "npm": {
+    "package": "@clerk/nextjs"
+  },
+  "review": {
+    "verdict": "Best for next.js / react apps needing drop-in auth ui. Clerk offers freemium, paid from $25/mo (Pro, 10K MAU). Moderate vendor lock-in.",
+    "pros": [
+      "Next.js / React apps needing drop-in auth UI",
+      "Startup wanting generous free tier (50K MAU)",
+      "Wide range of social login and MFA options"
+    ],
+    "cons": [
+      "Enterprise requiring SAML/SCIM on day one — Auth0/WorkOS",
+      "Need self-hosted auth — FusionAuth or Keycloak",
+      "MAU-based pricing scales steeply"
+    ],
+    "best_for": "apps, Startup",
+    "not_for": "Enterprise requiring SAML/SCIM on day one"
+  },
+  "health": {
+    "bus_factor": 1,
+    "last_commit_days_ago": 656,
+    "release_frequency_days": 4,
+    "open_issues": 13,
+    "issue_close_days": 28,
+    "stars": 1029,
+    "forks": 75,
+    "updated_at": "2026-04-16",
+    "health_score": "F"
+  }
+}

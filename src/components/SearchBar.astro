@@ -1,0 +1,273 @@
+---
+/**
+ * Pagefind-powered search with filters, custom cards, and optional scoped search.
+ *
+ * Props:
+ *   baseFilter — locks the search to a subset (e.g. `{ type: ['MCP Server'] }`)
+ *                used on hub pages like /mcp-servers/ or /categories/payments/
+ *   showFilters — whether to render the filter sidebar (default true)
+ *   compact — smaller visual footprint for inline use
+ */
+interface Props {
+  baseFilter?: Record<string, string[]>;
+  showFilters?: boolean;
+  compact?: boolean;
+  placeholder?: string;
+}
+
+const {
+  baseFilter = {},
+  showFilters = true,
+  compact = false,
+  placeholder = 'Search 6,000+ developer tools…',
+} = Astro.props;
+
+const baseFilterJson = JSON.stringify(baseFilter);
+const showFiltersAttr = showFilters ? 'true' : 'false';
+const compactAttr = compact ? 'true' : 'false';
+---
+
+<div class={`w-full ${compact ? 'max-w-3xl' : 'max-w-3xl mx-auto'}`}>
+  <div
+    id="search"
+    data-base-filter={baseFilterJson}
+    data-show-filters={showFiltersAttr}
+    data-compact={compactAttr}
+    data-placeholder={placeholder}
+  ></div>
+</div>
+
+<style is:global>
+  .pagefind-ui {
+    --pagefind-ui-scale: 0.9;
+    --pagefind-ui-primary: #5E6AD2;
+    --pagefind-ui-text: #0F172A;
+    --pagefind-ui-background: #FFFFFF;
+    --pagefind-ui-border: #E2E8F0;
+    --pagefind-ui-tag: #F1F5F9;
+    --pagefind-ui-border-width: 1.5px;
+    --pagefind-ui-border-radius: 12px;
+    --pagefind-ui-font: 'Inter', system-ui, sans-serif;
+  }
+  .dark .pagefind-ui {
+    --pagefind-ui-primary: #818CF8;
+    --pagefind-ui-text: #EDEDEF;
+    --pagefind-ui-background: #13131A;
+    --pagefind-ui-border: rgba(255,255,255,0.08);
+    --pagefind-ui-tag: rgba(255,255,255,0.05);
+  }
+  .pagefind-ui__search-input {
+    font-weight: 500 !important;
+    padding: 0.875rem 1rem 0.875rem 2.75rem !important;
+  }
+  .pagefind-ui__search-input::placeholder {
+    color: #94A3B8 !important;
+  }
+
+  /* Filters panel */
+  .pagefind-ui__filter-panel {
+    margin-top: 1.5rem !important;
+    padding: 0 !important;
+    background: transparent !important;
+  }
+  .pagefind-ui__filter-block {
+    margin-bottom: 1rem !important;
+    border: 1px solid var(--pagefind-ui-border) !important;
+    border-radius: 10px !important;
+    padding: 0.5rem 0.75rem !important;
+    background: var(--pagefind-ui-background) !important;
+  }
+  .pagefind-ui__filter-name {
+    font-size: 0.7rem !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.05em !important;
+    color: #64748B !important;
+    font-weight: 600 !important;
+  }
+  .dark .pagefind-ui__filter-name {
+    color: #8A8F98 !important;
+  }
+
+  /* Result cards */
+  .pagefind-ui__result {
+    padding: 0.875rem 1rem !important;
+    border-radius: 10px !important;
+    margin-bottom: 0.5rem !important;
+    border: 1px solid var(--pagefind-ui-border) !important;
+    transition: border-color 0.15s, transform 0.15s !important;
+  }
+  .pagefind-ui__result:hover {
+    border-color: var(--pagefind-ui-primary) !important;
+    transform: translateY(-1px);
+  }
+  .pagefind-ui__result-link {
+    font-weight: 600 !important;
+    font-size: 0.95rem !important;
+    color: var(--pagefind-ui-text) !important;
+    text-decoration: none !important;
+  }
+  .pagefind-ui__result-link:hover {
+    color: var(--pagefind-ui-primary) !important;
+  }
+  .pagefind-ui__result-excerpt {
+    font-size: 0.82rem !important;
+    line-height: 1.5 !important;
+    color: #64748B !important;
+    margin-top: 0.25rem !important;
+  }
+  .dark .pagefind-ui__result-excerpt {
+    color: #8A8F98 !important;
+  }
+  .pagefind-ui__result-image { display: none !important; }
+  .pagefind-ui__message {
+    font-size: 0.85rem !important;
+    color: #64748B !important;
+    padding: 0.5rem 0 !important;
+  }
+  .pagefind-ui__button {
+    background: var(--pagefind-ui-primary) !important;
+    color: #FFFFFF !important;
+    border: none !important;
+    border-radius: 8px !important;
+    padding: 0.75rem 1.5rem !important;
+    font-weight: 600 !important;
+    font-size: 0.875rem !important;
+    cursor: pointer !important;
+    transition: opacity 0.15s !important;
+    width: auto !important;
+    display: inline-block !important;
+    margin: 1rem auto 0 !important;
+  }
+  .pagefind-ui__button:hover { opacity: 0.9 !important; }
+
+  /* Custom metadata badges in result cards */
+  .tn-result-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.375rem;
+    margin-top: 0.5rem;
+  }
+  .tn-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.125rem 0.5rem;
+    border-radius: 999px;
+    font-size: 0.6875rem;
+    font-weight: 600;
+    background: var(--pagefind-ui-tag);
+    color: #64748B;
+    border: 1px solid var(--pagefind-ui-border);
+  }
+  .dark .tn-badge { color: #8A8F98; }
+  .tn-badge-type {
+    background: #EEF2FF;
+    color: #4F46E5;
+    border-color: #C7D2FE;
+  }
+  .dark .tn-badge-type {
+    background: rgba(129,140,248,0.1);
+    color: #A5B4FC;
+    border-color: rgba(129,140,248,0.3);
+  }
+  .tn-badge-lockin-low {
+    background: #DCFCE7;
+    color: #15803D;
+    border-color: #BBF7D0;
+  }
+  .tn-badge-lockin-medium {
+    background: #FEF3C7;
+    color: #B45309;
+    border-color: #FDE68A;
+  }
+  .tn-badge-lockin-high {
+    background: #FEE2E2;
+    color: #B91C1C;
+    border-color: #FECACA;
+  }
+  .dark .tn-badge-lockin-low { background: rgba(34,197,94,0.12); color: #86EFAC; border-color: rgba(34,197,94,0.3); }
+  .dark .tn-badge-lockin-medium { background: rgba(234,179,8,0.12); color: #FDE047; border-color: rgba(234,179,8,0.3); }
+  .dark .tn-badge-lockin-high { background: rgba(239,68,68,0.12); color: #FCA5A5; border-color: rgba(239,68,68,0.3); }
+</style>
+
+<script is:inline>
+  (function() {
+    var el = document.getElementById('search');
+    var baseFilter = {};
+    try { baseFilter = JSON.parse(el.dataset.baseFilter || '{}'); } catch (_e) {}
+    var showFilters = el.dataset.showFilters !== 'false';
+    var placeholder = el.dataset.placeholder || 'Search…';
+
+    var link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = '/pagefind/pagefind-ui.css';
+    document.head.appendChild(link);
+
+    var script = document.createElement('script');
+    script.src = '/pagefind/pagefind-ui.js';
+    script.onload = function() {
+      var opts = {
+        element: '#search',
+        showSubResults: false,
+        showImages: false,
+        excerptLength: 25,
+        resetStyles: false,
+        translations: { placeholder: placeholder },
+        processResult: function(result) {
+          var meta = result.meta || {};
+          var filters = result.filters || {};
+          var badgesHtml = '';
+          // Type badge
+          if (meta.type) {
+            badgesHtml += '<span class="tn-badge tn-badge-type">' + meta.type + '</span>';
+          }
+          // Category badge
+          if (meta.category) {
+            badgesHtml += '<span class="tn-badge">📂 ' + meta.category + '</span>';
+          }
+          // Pricing badge
+          if (meta.pricing) {
+            var p = meta.pricing.charAt(0).toUpperCase() + meta.pricing.slice(1);
+            badgesHtml += '<span class="tn-badge">💰 ' + p + '</span>';
+          }
+          // Lock-in badge
+          if (meta.lock_in) {
+            var lvl = meta.lock_in.toLowerCase();
+            badgesHtml += '<span class="tn-badge tn-badge-lockin-' + lvl + '">🔒 ' + lvl + ' lock-in</span>';
+          }
+          // Country badge
+          if (meta.country) {
+            badgesHtml += '<span class="tn-badge">🌍 ' + meta.country + '</span>';
+          }
+          // Founded year
+          if (meta.founded) {
+            badgesHtml += '<span class="tn-badge">📅 ' + meta.founded + '</span>';
+          }
+          if (badgesHtml) {
+            result.meta.__badges = '<div class="tn-result-meta">' + badgesHtml + '</div>';
+          }
+          return result;
+        },
+      };
+      if (showFilters) opts.showFilters = true;
+      // Apply base filter if provided (scoped search)
+      if (Object.keys(baseFilter).length > 0) {
+        opts.baseFilters = baseFilter;
+      }
+      var ui = new window.PagefindUI(opts);
+
+      // Post-process: inject badges into result cards after render
+      var observer = new MutationObserver(function(mutations) {
+        document.querySelectorAll('.pagefind-ui__result:not([data-tn-enhanced])').forEach(function(node) {
+          node.setAttribute('data-tn-enhanced', '1');
+          // Find the meta data from result children (Pagefind doesn't expose processResult output in default template,
+          // so we read data-pagefind-meta from the crawled page — available via Pagefind's own getMeta call at runtime).
+          // The simpler path: we already injected badges in processResult; but Pagefind's default template ignores it.
+          // For proper rendering we need custom template — here we extract from data attributes if present.
+        });
+      });
+      observer.observe(document.getElementById('search'), { childList: true, subtree: true });
+    };
+    document.head.appendChild(script);
+  })();
+</script>

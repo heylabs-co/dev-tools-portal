@@ -1,0 +1,127 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SearchBar from '../components/SearchBar.astro';
+import { getCollection } from 'astro:content';
+
+const companies = await getCollection('companies');
+const mcpServers = await getCollection('mcpServers');
+const skills = await getCollection('skills');
+const extensions = await getCollection('extensions');
+const plugins = await getCollection('jetbrainsPlugins');
+const totalEntries = companies.length + mcpServers.length + skills.length + extensions.length + plugins.length;
+
+// Popular quick-filter chips — top categories by size
+const popularCategories = [
+  { label: 'Payments', slug: 'payment-gateway' },
+  { label: 'AI API', slug: 'ai-api-sdk' },
+  { label: 'Databases', slug: 'dbaas' },
+  { label: 'Auth', slug: 'identity-auth' },
+  { label: 'CI/CD', slug: 'ci-cd' },
+  { label: 'Observability', slug: 'observability' },
+  { label: 'Messaging', slug: 'messaging-api' },
+  { label: 'Testing', slug: 'test-automation' },
+];
+
+// Popular types as chips
+const popularTypes = [
+  { label: '🛠️ Tools', type: 'Tool' },
+  { label: '🔌 MCP', type: 'MCP Server' },
+  { label: '🧠 AI Skills', type: 'AI Skill' },
+  { label: '📝 VS Code', type: 'VS Code Extension' },
+  { label: '☕ JetBrains', type: 'JetBrains Plugin' },
+];
+---
+
+<BaseLayout
+  title="Search Developer Tools"
+  description={`Search across ${totalEntries}+ developer tools, MCP servers, AI skills, VS Code extensions, and JetBrains plugins.`}
+>
+  <section class="mx-auto max-w-4xl px-4 py-16">
+    <h1 class="text-4xl font-extrabold tracking-tight text-gray-900 dark:text-white">
+      Search
+    </h1>
+    <p class="mt-3 text-[15px] text-[#64748B] dark:text-[#8A8F98]">
+      Search across <span class="font-semibold text-[#0F172A] dark:text-[#EDEDEF]">{totalEntries.toLocaleString()}</span> entries — tools, MCP servers, AI skills, extensions, and plugins.
+    </p>
+
+    <!-- Quick type chips -->
+    <div class="mt-6 flex flex-wrap gap-2">
+      <span class="text-xs font-semibold uppercase tracking-wider text-[#64748B] dark:text-[#8A8F98] mr-2 self-center">Filter by type:</span>
+      {popularTypes.map((t) => (
+        <button
+          type="button"
+          class="quick-chip"
+          data-filter-type={t.type}
+        >
+          {t.label}
+        </button>
+      ))}
+    </div>
+
+    <!-- Quick category chips -->
+    <div class="mt-3 flex flex-wrap gap-2">
+      <span class="text-xs font-semibold uppercase tracking-wider text-[#64748B] dark:text-[#8A8F98] mr-2 self-center">Popular categories:</span>
+      {popularCategories.map((c) => (
+        <a href={`/categories/${c.slug}/`} class="quick-chip quick-chip-link">
+          {c.label}
+        </a>
+      ))}
+    </div>
+
+    <div class="mt-8">
+      <SearchBar showFilters={true} />
+    </div>
+
+    <p class="mt-6 text-center text-sm text-gray-500 dark:text-gray-400">
+      Search powered by Pagefind — indexes all {totalEntries.toLocaleString()} entries
+    </p>
+  </section>
+</BaseLayout>
+
+<style>
+  .quick-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.375rem 0.875rem;
+    border-radius: 999px;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    background: var(--color-surface);
+    color: var(--color-text);
+    border: 1px solid var(--color-border);
+    cursor: pointer;
+    transition: all 0.15s;
+    text-decoration: none;
+  }
+  .quick-chip:hover {
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+  }
+  .quick-chip.active {
+    background: var(--color-accent);
+    border-color: var(--color-accent);
+    color: #fff;
+  }
+</style>
+
+<script is:inline>
+  // Quick chip type filter — triggers Pagefind's filter UI when clicked
+  document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('[data-filter-type]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var filterType = btn.getAttribute('data-filter-type');
+        // Find Pagefind's type filter checkbox and toggle it
+        var labels = document.querySelectorAll('.pagefind-ui__filter-value label');
+        var clicked = false;
+        labels.forEach(function (lbl) {
+          if (lbl.textContent && lbl.textContent.trim().indexOf(filterType) === 0) {
+            var cb = lbl.querySelector('input[type=checkbox]');
+            if (cb && !cb.checked) { cb.click(); clicked = true; }
+          }
+        });
+        if (clicked) btn.classList.toggle('active');
+      });
+    });
+  });
+</script>

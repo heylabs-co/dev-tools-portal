@@ -1,0 +1,168 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import CompanyCard from '../../components/CompanyCard.astro';
+import SchemaOrg from '../../components/SchemaOrg.astro';
+import SearchBar from '../../components/SearchBar.astro';
+
+export async function getStaticPaths() {
+  const categories = await getCollection('categories');
+  return categories.map((entry) => ({
+    params: { slug: entry.id },
+    props: { category: entry },
+  }));
+}
+
+const { category } = Astro.props;
+const { data } = category;
+
+const allCompanies = await getCollection('companies');
+const filtered = allCompanies
+  .filter((c) => c.data.categories.primary.slug === data.slug)
+  .sort((a, b) => a.data.name.localeCompare(b.data.name));
+
+const pageTitle = data.seo?.title ?? data.name;
+const pageDescription = data.seo?.meta_description ?? data.description ?? '';
+const heading = data.seo?.h1 ?? data.name;
+---
+
+<BaseLayout title={pageTitle} description={pageDescription}>
+  <div class="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
+    <Breadcrumbs
+      items={[
+        { label: 'Home', href: '/' },
+        { label: 'Categories', href: '/categories/' },
+        { label: data.name },
+      ]}
+    />
+
+    <div class="mt-6">
+      <div class="flex flex-wrap items-center gap-3">
+        <h1 class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
+          {heading}
+        </h1>
+        {data.ai_native && (
+          <span class="inline-flex items-center rounded-full bg-purple-100 px-3 py-1 text-sm font-medium text-purple-800 dark:bg-purple-900 dark:text-purple-200">
+            AI-Native
+          </span>
+        )}
+      </div>
+
+      {data.description && (
+        <p class="mt-4 max-w-3xl text-lg text-gray-600 dark:text-gray-300">
+          {data.description}
+        </p>
+      )}
+
+      <p class="mt-2 text-sm font-medium text-gray-500 dark:text-gray-400">
+        {filtered.length} {filtered.length === 1 ? 'tool' : 'tools'} in this category
+      </p>
+
+      <!-- Scoped search within this category -->
+      {filtered.length > 10 && (
+        <div class="mt-6 max-w-2xl">
+          <SearchBar
+            baseFilter={{ category: [data.name] }}
+            showFilters={false}
+            compact={true}
+            placeholder={`Search within ${data.name}…`}
+          />
+        </div>
+      )}
+    </div>
+
+    <div id="compare-grid" class="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      {filtered.map((company) => (
+        <div class="compare-wrapper relative" data-slug={company.data.slug}>
+          <CompanyCard
+            slug={company.data.slug}
+            name={company.data.name}
+            description={company.data.description}
+            logo={company.data.logo ?? ''}
+            category={data.name}
+            lockInLevel={company.data.scores?.lock_in?.level}
+            pricingModel={company.data.pricing?.model}
+            hasFree={company.data.pricing?.has_free_tier}
+          />
+        </div>
+      ))}
+    </div>
+
+    <!-- Floating compare button -->
+    <div id="compare-fab" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 hidden">
+      <button
+        id="compare-btn"
+        class="inline-flex items-center gap-2 rounded-full bg-[#5E6AD2] dark:bg-[#818CF8] px-6 py-3 text-sm font-semibold text-white shadow-lg hover:opacity-90 transition-opacity"
+      >
+        <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
+        </svg>
+        Compare Selected (<span id="compare-count">0</span>)
+      </button>
+    </div>
+
+    <script is:inline>
+    (function() {
+      const selected = new Set();
+      const grid = document.getElementById('compare-grid');
+      const fab = document.getElementById('compare-fab');
+      const btn = document.getElementById('compare-btn');
+      const countEl = document.getElementById('compare-count');
+
+      // Add checkbox overlays to each card wrapper
+      grid.querySelectorAll('.compare-wrapper').forEach(function(wrapper) {
+        const slug = wrapper.dataset.slug;
+        const cb = document.createElement('label');
+        cb.className = 'absolute top-2 right-2 z-20 flex h-6 w-6 items-center justify-center rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-[#13131A] cursor-pointer shadow-sm hover:border-[#5E6AD2] dark:hover:border-[#818CF8] transition-colors';
+        cb.innerHTML = '<input type="checkbox" class="compare-cb sr-only" data-slug="' + slug + '" /><svg class="h-3.5 w-3.5 text-[#5E6AD2] dark:text-[#818CF8] hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>';
+        wrapper.appendChild(cb);
+
+        var input = cb.querySelector('input');
+        var icon = cb.querySelector('svg');
+        input.addEventListener('change', function() {
+          if (input.checked) {
+            selected.add(slug);
+            icon.classList.remove('hidden');
+            wrapper.classList.add('ring-2', 'ring-[#5E6AD2]/40', 'dark:ring-[#818CF8]/40', 'rounded-xl');
+          } else {
+            selected.delete(slug);
+            icon.classList.add('hidden');
+            wrapper.classList.remove('ring-2', 'ring-[#5E6AD2]/40', 'dark:ring-[#818CF8]/40', 'rounded-xl');
+          }
+          updateFab();
+        });
+      });
+
+      function updateFab() {
+        countEl.textContent = selected.size;
+        if (selected.size >= 2) {
+          fab.classList.remove('hidden');
+        } else {
+          fab.classList.add('hidden');
+        }
+      }
+
+      btn.addEventListener('click', function() {
+        var slugs = Array.from(selected);
+        var url = '/compare/?a=' + encodeURIComponent(slugs[0]) + '&b=' + encodeURIComponent(slugs[1]);
+        window.location.href = url;
+      });
+    })();
+    </script>
+  </div>
+
+  <SchemaOrg
+    type="category"
+    data={{
+      name: data.name,
+      slug: data.slug,
+      description: data.description,
+      companies: filtered.map((c) => ({
+        name: c.data.name,
+        slug: c.data.slug,
+        website: c.data.website,
+      })),
+    }}
+  />
+</BaseLayout>

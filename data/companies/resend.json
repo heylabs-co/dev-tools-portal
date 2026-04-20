@@ -1,0 +1,105 @@
+{
+  "id": "COMP-0229",
+  "slug": "resend",
+  "name": "Resend",
+  "description": "Resend — Messaging API (Email / SMS / Voice) tool for developers",
+  "website": "https://resend.com",
+  "logo": "https://www.google.com/s2/favicons?domain=resend.com&sz=128",
+  "hq_country": "US",
+  "status": "active",
+  "categories": {
+    "primary": {
+      "id": "CAT-15",
+      "slug": "messaging-api",
+      "name": "Messaging API (Email / SMS / Voice)"
+    },
+    "secondary": []
+  },
+  "alternatives": [],
+  "seo": {
+    "title": "Resend Review 2026: Pricing, Alternatives & Lock-in Score",
+    "meta_description": "Complete Resend analysis: pricing, lock-in risk, migration difficulty. Compare with alternatives in Messaging API (Email / SMS / Voice).",
+    "keywords": [
+      "resend pricing",
+      "resend alternatives",
+      "resend review"
+    ]
+  },
+  "updated_at": "2026-04-20T08:05:56.751Z",
+  "created_at": "2026-04-12T12:53:55.841Z",
+  "pricing": {
+    "model": "hybrid",
+    "has_free_tier": true,
+    "free_tier_limits": "3,000 emails/mo",
+    "entry_price": "$20/mo (Pro, 50K emails)",
+    "enterprise_available": true,
+    "billing_complexity": "low",
+    "transparency_score": 4,
+    "last_checked": "2026-04-11",
+    "pricing_url": "https://resend.com/pricing"
+  },
+  "scores": {
+    "lock_in": {
+      "level": "low",
+      "score": 1,
+      "migration_complexity": "low",
+      "data_portability": "Via API",
+      "api_compatibility": "REST + SMTP standard",
+      "explanation": "Low — REST API, SMTP, migration guides from competitors"
+    }
+  },
+  "scale": {
+    "customers": "400,000",
+    "revenue": "unknown -- searched getlatka, sacra",
+    "data_status": "estimated"
+  },
+  "content": {
+    "when_to_use": [
+      "Transactional emails (receipts, alerts)",
+      "SMS verification",
+      "Multi-channel notifications"
+    ],
+    "when_not_to_use": [
+      "Internal team communication",
+      "Marketing-only email campaigns"
+    ],
+    "consider_instead": [
+      "push-in-app-messaging"
+    ],
+    "pricing_at_scale": [
+      {
+        "scale": "Entry",
+        "estimate": "$20/mo (Pro, 50K emails)"
+      }
+    ],
+    "migration_cheatsheet": {
+      "difficulty": "low",
+      "data_you_keep": "Via API",
+      "api_standard": "REST + SMTP standard",
+      "risk_notes": "Low — REST API, SMTP, migration guides from competitors",
+      "tip": "Standard protocols make switching straightforward"
+    },
+    "works_well_with": [
+      "clerk",
+      "amplitude"
+    ]
+  },
+  "community": {
+    "hn_mentions_30d": 12
+  },
+  "review": {
+    "verdict": "Best for transactional emails (receipts, alerts). Resend offers $20/mo (Pro, 50K emails). Low vendor lock-in.",
+    "pros": [
+      "Transactional emails (receipts, alerts)",
+      "SMS verification",
+      "Low lock-in — easy to migrate away"
+    ],
+    "cons": [
+      "Internal team communication",
+      "Marketing-only email campaigns",
+      "Per-message pricing adds up at high send volumes"
+    ],
+    "best_for": "Transactional emails (receipts, alerts)",
+    "not_for": "Internal projects"
+  }
+}

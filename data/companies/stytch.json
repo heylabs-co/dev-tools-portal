@@ -1,0 +1,105 @@
+{
+  "id": "COMP-0088",
+  "slug": "stytch",
+  "name": "Stytch",
+  "description": "Stytch — Identity / Auth / User Management tool for developers",
+  "website": "https://stytch.com",
+  "logo": "https://www.google.com/s2/favicons?domain=stytch.com&sz=128",
+  "hq_country": "US",
+  "status": "active",
+  "categories": {
+    "primary": {
+      "id": "CAT-06",
+      "slug": "identity-auth",
+      "name": "Identity / Auth / User Management"
+    },
+    "secondary": []
+  },
+  "alternatives": [],
+  "seo": {
+    "title": "Stytch Review 2026: Pricing, Alternatives & Lock-in Score",
+    "meta_description": "Complete Stytch analysis: pricing, lock-in risk, migration difficulty. Compare with alternatives in Identity / Auth / User Management.",
+    "keywords": [
+      "stytch pricing",
+      "stytch alternatives",
+      "stytch review"
+    ]
+  },
+  "updated_at": "2026-04-20T01:38:33.975Z",
+  "created_at": "2026-04-12T12:53:55.841Z",
+  "pricing": {
+    "model": "usage",
+    "has_free_tier": true,
+    "free_tier_limits": "5,000 MAUs",
+    "entry_price": "$0.10/user/mo",
+    "enterprise_available": true,
+    "billing_complexity": "low",
+    "transparency_score": 4,
+    "last_checked": "2026-04-11",
+    "pricing_url": "https://stytch.com/pricing"
+  },
+  "scores": {
+    "lock_in": {
+      "level": "medium",
+      "score": 3,
+      "migration_complexity": "medium",
+      "data_portability": "API export",
+      "api_compatibility": "OIDC standard",
+      "explanation": "Medium — proprietary features (fingerprinting)"
+    }
+  },
+  "scale": {
+    "customers": "Cisco, Replit, HubSpot, Workday, Calendly",
+    "revenue": "unknown -- searched sacra, getlatka",
+    "data_status": "estimated"
+  },
+  "content": {
+    "when_to_use": [
+      "Apps needing SSO/MFA",
+      "B2B requiring SAML/SCIM",
+      "Passwordless authentication"
+    ],
+    "when_not_to_use": [
+      "Internal tools with basic auth",
+      "Static sites without user accounts"
+    ],
+    "consider_instead": [
+      "backend-as-a-service"
+    ],
+    "pricing_at_scale": [
+      {
+        "scale": "Entry",
+        "estimate": "$0.10/user/mo"
+      }
+    ],
+    "migration_cheatsheet": {
+      "difficulty": "medium",
+      "data_you_keep": "API export",
+      "api_standard": "OIDC standard",
+      "risk_notes": "Medium — proprietary features (fingerprinting)",
+      "tip": "Moderate effort required. Export data before canceling"
+    },
+    "works_well_with": [
+      "appwrite",
+      "adyen"
+    ]
+  },
+  "community": {
+    "hn_mentions_30d": 17
+  },
+  "review": {
+    "verdict": "Best for apps needing sso/mfa. Stytch offers usage-based at $0.10/user/mo. Moderate vendor lock-in.",
+    "pros": [
+      "Apps needing SSO/MFA",
+      "B2B requiring SAML/SCIM",
+      "Wide range of social login and MFA options"
+    ],
+    "cons": [
+      "Internal tools with basic auth",
+      "Static sites without user accounts",
+      "Proprietary data formats add switching costs"
+    ],
+    "best_for": "Apps, B2B",
+    "not_for": "Internal, Static projects"
+  }
+}

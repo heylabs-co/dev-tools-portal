@@ -1,0 +1,70 @@
+name: Update Tool Data
+on:
+  schedule:
+    - cron: '0 */6 * * *'
+  workflow_dispatch: {}
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Fetch GitHub data
+        run: npx tsx scripts/fetch-github.ts
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_PAT }}
+      - name: Fetch npm data
+        run: npx tsx scripts/fetch-npm.ts
+      - name: Fetch HN data
+        run: npx tsx scripts/fetch-hn.ts
+      - name: Fetch OSS Health
+        run: npx tsx scripts/fetch-oss-health.ts
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_PAT }}
+      - name: Commit & Push
+        shell: bash
+        run: |
+          set +e  # let us handle errors manually
+
+          git config user.name "devtools-bot"
+          git config user.email "bot@devtools.wiki"
+          git add data/
+
+          if git diff --cached --quiet; then
+            echo "No data changes, nothing to commit"
+            exit 0
+          fi
+
+          git commit -m "data: update tool data $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+
+          # Try up to 3 times: pull --rebase -X theirs, then push.
+          for attempt in 1 2 3; do
+            echo "=== attempt $attempt ==="
+
+            if ! git pull --rebase -X theirs origin main; then
+              echo "Rebase failed — aborting and resetting to origin/main"
+              git rebase --abort 2>/dev/null || true
+              git fetch origin main
+              git reset --hard origin/main
+              echo "State clean; next scheduled run will re-fetch data. Exiting soft."
+              exit 0
+            fi
+
+            if git push; then
+              echo "Push succeeded on attempt $attempt"
+              exit 0
+            fi
+
+            echo "Push failed (likely remote moved), retrying..."
+            sleep 5
+          done
+
+          echo "All retries exhausted; waiting for next cycle"
+          exit 0

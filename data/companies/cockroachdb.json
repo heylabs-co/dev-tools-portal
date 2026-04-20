@@ -1,0 +1,117 @@
+{
+  "id": "COMP-0142",
+  "slug": "cockroachdb",
+  "name": "CockroachDB",
+  "description": "CockroachDB — DBaaS / Serverless Databases tool for developers",
+  "website": "https://cockroachlabs.com",
+  "logo": "https://www.google.com/s2/favicons?domain=cockroachlabs.com&sz=128",
+  "hq_country": "US",
+  "status": "active",
+  "categories": {
+    "primary": {
+      "id": "CAT-10",
+      "slug": "dbaas",
+      "name": "DBaaS / Serverless Databases"
+    },
+    "secondary": []
+  },
+  "alternatives": [],
+  "seo": {
+    "title": "CockroachDB Review 2026: Pricing, Alternatives & Lock-in Score",
+    "meta_description": "Complete CockroachDB analysis: pricing, lock-in risk, migration difficulty. Compare with alternatives in DBaaS / Serverless Databases.",
+    "keywords": [
+      "cockroachdb pricing",
+      "cockroachdb alternatives",
+      "cockroachdb review"
+    ]
+  },
+  "updated_at": "2026-04-20T18:46:32.135Z",
+  "created_at": "2026-04-12T12:53:55.841Z",
+  "pricing": {
+    "model": "hybrid",
+    "has_free_tier": true,
+    "entry_price": "Serverless pay-as-you-go",
+    "enterprise_available": true,
+    "billing_complexity": "medium",
+    "transparency_score": 4,
+    "last_checked": "2026-04-11",
+    "pricing_url": "https://cockroachlabs.com/pricing"
+  },
+  "scores": {
+    "lock_in": {
+      "level": "low",
+      "score": 1,
+      "migration_complexity": "low",
+      "data_portability": "pg_dump compatible",
+      "api_compatibility": "PostgreSQL-compatible",
+      "explanation": "Low — PostgreSQL-compatible, standard SQL"
+    }
+  },
+  "scale": {
+    "revenue": "unknown -- searched cockroachlabs.com, getlatka",
+    "customers": "unknown -- enterprise-towith",
+    "data_status": "estimated"
+  },
+  "content": {
+    "when_to_use": [
+      "Apps needing managed database",
+      "Serverless architectures",
+      "Global data distribution"
+    ],
+    "when_not_to_use": [
+      "Simple key-value storage needs",
+      "Embedded/offline-first apps"
+    ],
+    "consider_instead": [
+      "backend-as-a-service"
+    ],
+    "migration_cheatsheet": {
+      "difficulty": "low",
+      "data_you_keep": "pg_dump compatible",
+      "api_standard": "PostgreSQL-compatible",
+      "risk_notes": "Low — PostgreSQL-compatible, standard SQL",
+      "tip": "Standard protocols make switching straightforward"
+    },
+    "works_well_with": [
+      "akamai",
+      "clerk",
+      "flagsmith"
+    ]
+  },
+  "community": {
+    "hn_mentions_30d": 4
+  },
+  "github": {
+    "repo": "cockroachdb/cockroach",
+    "stars": 32069,
+    "open_issues": 8195
+  },
+  "npm": {
+    "package": "sequelize-cockroachdb"
+  },
+  "review": {
+    "verdict": "Best for apps needing managed database. CockroachDB offers Serverless pay-as-you-go. Low vendor lock-in.",
+    "pros": [
+      "Apps needing managed database",
+      "Serverless architectures",
+      "Low lock-in — easy to migrate away"
+    ],
+    "cons": [
+      "Simple key-value storage needs",
+      "Embedded/offline-first apps",
+      "Storage and compute costs grow with data volume"
+    ],
+    "best_for": "Apps, Global",
+    "not_for": "Simple, Offline projects"
+  },
+  "health": {
+    "bus_factor": 10,
+    "last_commit_days_ago": 0,
+    "open_issues": 8137,
+    "license": "NOASSERTION",
+    "stars": 32058,
+    "forks": 4116,
+    "updated_at": "2026-04-16",
+    "health_score": "A"
+  }
+}

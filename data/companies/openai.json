@@ -1,0 +1,102 @@
+{
+  "id": "COMP-0538",
+  "slug": "openai",
+  "name": "OpenAI",
+  "description": "OpenAI — Developer Portals / API Management tool for developers",
+  "website": "https://openai.com",
+  "logo": "https://www.google.com/s2/favicons?domain=openai.com&sz=128",
+  "hq_country": "US",
+  "status": "active",
+  "categories": {
+    "primary": {
+      "id": "CAT-35",
+      "slug": "api-management",
+      "name": "Developer Portals / API Management"
+    },
+    "secondary": []
+  },
+  "alternatives": [],
+  "seo": {
+    "title": "OpenAI Review 2026: Pricing, Alternatives & Lock-in Score",
+    "meta_description": "Complete OpenAI analysis: pricing, lock-in risk, migration difficulty. Compare with alternatives in Developer Portals / API Management.",
+    "keywords": [
+      "openai pricing",
+      "openai alternatives",
+      "openai review"
+    ]
+  },
+  "updated_at": "2026-04-20T19:03:25.422Z",
+  "created_at": "2026-04-12T12:53:55.841Z",
+  "pricing": {
+    "model": "hybrid",
+    "has_free_tier": true,
+    "free_tier_limits": "ChatGPT free",
+    "entry_price": "$20/mo (Plus), API pay-per-token",
+    "enterprise_available": true,
+    "billing_complexity": "medium",
+    "transparency_score": 4,
+    "last_checked": "2026-04-11",
+    "pricing_url": "https://openai.com/pricing"
+  },
+  "scores": {
+    "lock_in": {
+      "level": "low",
+      "score": 1,
+      "migration_complexity": "low",
+      "data_portability": "Via API",
+      "api_compatibility": "OpenAI-compatible = -to standard",
+      "explanation": "Low-Medium — standard Chat Completions API (-to standard, many providers compatible)"
+    }
+  },
+  "scale": {
+    "revenue": "$20B (2025), $25B (Feb 2026)",
+    "customers": "9M+",
+    "data_status": "estimated"
+  },
+  "content": {
+    "when_to_use": [
+      "Best-in-class LLM capabilities (GPT-4+)",
+      "Broadest ecosystem and tooling support",
+      "Need vision, audio, and embeddings in one API"
+    ],
+    "when_not_to_use": [
+      "Cost-sensitive inference — DeepSeek is 10-50x cheaper",
+      "Need on-premise deployment — use Ollama or vLLM",
+      "Data privacy concerns — consider Anthropic or self-hosted"
+    ],
+    "consider_instead": [
+      "anthropic",
+      "google-gemini-api"
+    ],
+    "pricing_at_scale": [
+      {
+        "scale": "Entry",
+        "estimate": "$20/mo (Plus), API pay-per-token"
+      }
+    ],
+    "migration_cheatsheet": {
+      "difficulty": "low",
+      "data_you_keep": "Via API",
+      "api_standard": "OpenAI-compatible = -to standard",
+      "risk_notes": "Low-Medium — standard Chat Completions API (-to standard, many providers compatible)",
+      "tip": "Standard protocols make switching straightforward"
+    }
+  },
+  "community": {
+    "hn_mentions_30d": 509
+  },
+  "review": {
+    "verdict": "Best for best-in-class llm capabilities (gpt-4+). OpenAI offers $20/mo (Plus), API pay-per-token. Low vendor lock-in.",
+    "pros": [
+      "Best-in-class LLM capabilities (GPT-4+)",
+      "Broadest ecosystem and tooling support",
+      "Low lock-in — easy to migrate away"
+    ],
+    "cons": [
+      "Cost-sensitive inference — DeepSeek is 10-50x cheaper",
+      "Need on-premise deployment"
+    ],
+    "best_for": "Best-in-class LLM capabilities (GPT-4+)",
+    "not_for": "Cost-sensitive inference"
+  }
+}

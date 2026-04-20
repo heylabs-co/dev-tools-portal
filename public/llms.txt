@@ -1,0 +1,77 @@
+# tool.news
+> The developer ecosystem intelligence platform. Open catalog of 5,000+ entries across developer tools, MCP servers, AI skills, and IDE extensions — with pricing, lock-in scores, migration guides, and AI-powered recommendations. Updated automatically every 6 hours.
+
+## What This Site Offers
+- 3,903+ developer tools (SDKs, APIs, SaaS) with full comparison data
+- 263+ MCP servers for AI assistants (Claude Code, Cursor, etc.)
+- 524+ AI skills / agents catalog
+- 356+ VS Code extensions + 229+ JetBrains plugins
+- Lock-in Score (1-5) — vendor lock-in risk assessment
+- OSS Health Score (A-F) — bus factor, release frequency, issue response
+- Migration difficulty guides — how hard it is to switch
+- Pricing transparency — entry prices, free tiers, billing models
+- TCO Calculator — real cost at scale, interactive sliders
+- "When to use / When not to use" recommendations
+- Side-by-side tool comparisons (100+ pre-built)
+- AI-powered stack recommendations based on project description
+
+## Pages
+- / — Homepage with category browser and featured tools
+- /tools/ — All 3,903 tools (paginated, filterable)
+- /tools/{slug}/ — Individual tool profile: pricing, lock-in, pros/cons, migration, alternatives
+- /categories/ — All 42 categories (Payments, Auth, Databases, AI/ML, CI/CD, etc.)
+- /categories/{slug}/ — Tools in one category
+- /mcp-servers/ — MCP server catalog for AI assistants
+- /mcp-servers/{slug}/ — Individual MCP server details
+- /skills/ — AI skills and agent templates
+- /skills/{slug}/ — Individual skill details
+- /extensions/ — VS Code extensions catalog
+- /plugins/ — JetBrains plugins catalog
+- /compare/ — Interactive compare any two tools (autocomplete)
+- /compare/{tool-a}-vs-{tool-b}/ — Pre-built SEO comparison pages
+- /recommend/ — AI-powered recommendation wizard
+- /trending/ — Trending GitHub repos (updated daily)
+- /search/ — Full-text search across all entries
+
+## Structured Data & APIs
+- Every page has JSON-LD (SoftwareApplication, CollectionPage, WebPage, BreadcrumbList schemas)
+- /api/companies.json — All tools in compact JSON
+- /sitemap-index.xml — Full sitemap (6,000+ URLs)
+
+## MCP Server (for AI Assistants)
+Connect directly to tool.news data from Claude Code, Cursor, or any MCP-compatible client.
+Repository: https://github.com/heylabs-co/dev-tools-portal/tree/main/mcp-server
+
+Available tools:
+- search_tools — Search by keyword, category, free tier, lock-in level
+- get_tool — Full details for any tool
+- compare_tools — Side-by-side comparison of two tools
+- list_categories — Browse all 42 categories
+- recommend_stack — Get recommendations based on project description
+- search_mcp_servers — Find MCP servers
+- get_mcp_server — MCP server details
+- search_skills — Find AI skills
+- search_extensions — Find VS Code extensions
+
+## Key Categories
+Payments, Auth/Identity, Backend-as-a-Service, Databases, CDN/Edge, Search, Messaging,
+Analytics, Observability, APM, Crash Reporting, CI/CD, Security, AI/ML, Feature Flags,
+Code Assistants, Data Integration/ETL, Customer Support SDK, and 24 more.
+
+## Data Freshness
+- Tool data (stars, releases, downloads) updated every 6 hours
+- OSS Health metrics recalculated daily
+- Trending repos indexed daily from GitHub
+- New tools discovered weekly from HN, GitHub, Reddit, Product Hunt
+- All data versioned in open-source Git repository
+
+## License & Attribution
+- Site content: free to cite with attribution to tool.news
+- Source code: MIT license
+- Data: aggregated from public sources (GitHub, npm, company websites)
+
+## Contact
+- GitHub: https://github.com/heylabs-co/dev-tools-portal
+- Add a tool: https://github.com/heylabs-co/dev-tools-portal/issues/new?template=add-tool.yml
+- Report incorrect data: via GitHub Issues
+- Operated by: HeyLabs (https://github.com/heylabs-co)

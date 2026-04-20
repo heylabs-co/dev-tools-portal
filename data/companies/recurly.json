@@ -1,0 +1,103 @@
+{
+  "id": "COMP-0047",
+  "slug": "recurly",
+  "name": "Recurly",
+  "description": "Recurly — Subscription Billing tool for developers",
+  "website": "https://recurly.com",
+  "logo": "https://www.google.com/s2/favicons?domain=recurly.com&sz=128",
+  "hq_country": "US",
+  "status": "active",
+  "categories": {
+    "primary": {
+      "id": "CAT-03",
+      "slug": "subscription-billing",
+      "name": "Subscription Billing"
+    },
+    "secondary": [
+      "CAT-38"
+    ]
+  },
+  "alternatives": [],
+  "seo": {
+    "title": "Recurly Review 2026: Pricing, Alternatives & Lock-in Score",
+    "meta_description": "Complete Recurly analysis: pricing, lock-in risk, migration difficulty. Compare with alternatives in Subscription Billing.",
+    "keywords": [
+      "recurly pricing",
+      "recurly alternatives",
+      "recurly review"
+    ]
+  },
+  "updated_at": "2026-04-20T19:06:27.061Z",
+  "created_at": "2026-04-12T12:53:55.841Z",
+  "pricing": {
+    "model": "hybrid",
+    "has_free_tier": false,
+    "entry_price": "$249/mo (Core)",
+    "enterprise_available": true,
+    "billing_complexity": "medium",
+    "transparency_score": 3,
+    "last_checked": "2026-04-11",
+    "pricing_url": "https://recurly.com/pricing"
+  },
+  "scores": {
+    "lock_in": {
+      "level": "medium",
+      "score": 3,
+      "migration_complexity": "medium",
+      "data_portability": "API export",
+      "api_compatibility": "Proprietary",
+      "explanation": "Medium — underandwithon logic, 20+ gateways"
+    }
+  },
+  "scale": {
+    "customers": "~549 companies",
+    "data_status": "estimated"
+  },
+  "content": {
+    "when_to_use": [
+      "SaaS with recurring revenue",
+      "Usage-based pricing models",
+      "Complex plan management"
+    ],
+    "when_not_to_use": [
+      "One-time purchases only",
+      "Simple Stripe Checkout is enough"
+    ],
+    "consider_instead": [
+      "payment-gateway"
+    ],
+    "pricing_at_scale": [
+      {
+        "scale": "Entry",
+        "estimate": "$249/mo (Core)"
+      }
+    ],
+    "migration_cheatsheet": {
+      "difficulty": "medium",
+      "data_you_keep": "API export",
+      "api_standard": "Proprietary",
+      "risk_notes": "Medium — underandwithon logic, 20+ gateways",
+      "tip": "Moderate effort required. Export data before canceling"
+    },
+    "works_well_with": [
+      "adyen",
+      "amplitude"
+    ]
+  },
+  "community": {
+    "hn_mentions_30d": 10
+  },
+  "review": {
+    "verdict": "Best for saas with recurring revenue. Recurly offers $249/mo (Core). Moderate vendor lock-in.",
+    "pros": [
+      "SaaS with recurring revenue",
+      "Usage-based pricing models"
+    ],
+    "cons": [
+      "One-time purchases only",
+      "Simple Stripe Checkout is enough"
+    ],
+    "best_for": "SaaS",
+    "not_for": "Simple projects"
+  }
+}

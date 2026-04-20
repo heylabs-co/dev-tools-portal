@@ -1,0 +1,129 @@
+{
+  "id": "COMP-0203",
+  "slug": "algolia",
+  "name": "Algolia",
+  "description": "Algolia — Search / Recommendations API tool for developers",
+  "website": "https://algolia.com",
+  "logo": "https://github.com/algolia.png?size=128",
+  "hq_country": "unclear",
+  "status": "active",
+  "categories": {
+    "primary": {
+      "id": "CAT-14",
+      "slug": "search-recommendations",
+      "name": "Search / Recommendations API"
+    },
+    "secondary": []
+  },
+  "alternatives": [],
+  "seo": {
+    "title": "Algolia Review 2026: Pricing, Alternatives & Lock-in Score",
+    "meta_description": "Complete Algolia analysis: pricing, lock-in risk, migration difficulty. Compare with alternatives in Search / Recommendations API.",
+    "keywords": [
+      "algolia pricing",
+      "algolia alternatives",
+      "algolia review"
+    ]
+  },
+  "updated_at": "2026-04-20T12:59:46.725Z",
+  "created_at": "2026-04-12T12:53:55.841Z",
+  "pricing": {
+    "model": "hybrid",
+    "has_free_tier": true,
+    "free_tier_limits": "Build: 1M records, 10K searches",
+    "entry_price": "$0.50/1K searches (Grow)",
+    "enterprise_available": true,
+    "billing_complexity": "medium",
+    "transparency_score": 4,
+    "last_checked": "2026-04-11",
+    "pricing_url": "https://algolia.com/pricing"
+  },
+  "scores": {
+    "lock_in": {
+      "level": "medium",
+      "score": 3,
+      "migration_complexity": "medium",
+      "data_portability": "Index export  API",
+      "api_compatibility": "Proprietary API",
+      "explanation": "Medium — proprietary API, but InstantSearch UI = open-source"
+    }
+  },
+  "scale": {
+    "customers": "18,000+",
+    "revenue": "unknown -- private",
+    "data_status": "estimated"
+  },
+  "content": {
+    "when_to_use": [
+      "E-commerce needing sub-50ms search",
+      "Documentation sites with instant search",
+      "Need AI-powered recommendations"
+    ],
+    "when_not_to_use": [
+      "Budget-conscious — Algolia is expensive at scale",
+      "Simple search on small dataset — use Pagefind or Fuse.js",
+      "Need self-hosted — use Meilisearch or Typesense"
+    ],
+    "consider_instead": [
+      "meilisearch",
+      "typesense"
+    ],
+    "pricing_at_scale": [
+      {
+        "scale": "Entry",
+        "estimate": "~$0.50/1K searches (Grow)"
+      }
+    ],
+    "migration_cheatsheet": {
+      "difficulty": "medium",
+      "data_you_keep": "Index export  API",
+      "api_standard": "Proprietary API",
+      "risk_notes": "Medium — proprietary API, but InstantSearch UI = open-source",
+      "tip": "Moderate effort required. Export data before canceling"
+    },
+    "works_well_with": [
+      "appwrite",
+      "akamai",
+      "amplitude"
+    ]
+  },
+  "community": {
+    "hn_mentions_30d": 166
+  },
+  "github": {
+    "repo": "algolia/places",
+    "stars": 5305,
+    "open_issues": 2
+  },
+  "npm": {
+    "package": "@algolia/autocomplete-plugin-algolia-insights",
+    "weekly_downloads": 1536049,
+    "latest_version": "1.19.8"
+  },
+  "health": {
+    "bus_factor": 8,
+    "last_commit_days_ago": 1169,
+    "open_issues": 2,
+    "issue_close_days": 0,
+    "license": "MIT",
+    "stars": 5305,
+    "forks": 225,
+    "updated_at": "2026-04-16",
+    "health_score": "F"
+  },
+  "review": {
+    "verdict": "Best for e-commerce needing sub-50ms search. Algolia offers $0.50/1K searches (Grow). Moderate vendor lock-in.",
+    "pros": [
+      "E-commerce needing sub-50ms search",
+      "Documentation sites with instant search",
+      "Open-source underpinnings reduce lock-in"
+    ],
+    "cons": [
+      "Budget-conscious — Algolia is expensive at scale",
+      "Simple search on small dataset",
+      "Proprietary data formats add switching costs"
+    ],
+    "best_for": "E-commerce",
+    "not_for": "Budget, Simple projects"
+  }
+}

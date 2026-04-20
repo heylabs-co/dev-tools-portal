@@ -1,0 +1,128 @@
+{
+  "id": "COMP-0035",
+  "slug": "chargebee",
+  "name": "Chargebee",
+  "description": "Chargebee — Subscription Billing tool for developers",
+  "website": "https://chargebee.com",
+  "logo": "https://www.google.com/s2/favicons?domain=chargebee.com&sz=128",
+  "hq_country": "US",
+  "status": "active",
+  "categories": {
+    "primary": {
+      "id": "CAT-03",
+      "slug": "subscription-billing",
+      "name": "Subscription Billing"
+    },
+    "secondary": [
+      "CAT-38"
+    ]
+  },
+  "alternatives": [],
+  "seo": {
+    "title": "Chargebee Review 2026: Pricing, Alternatives & Lock-in Score",
+    "meta_description": "Complete Chargebee analysis: pricing, lock-in risk, migration difficulty. Compare with alternatives in Subscription Billing.",
+    "keywords": [
+      "chargebee pricing",
+      "chargebee alternatives",
+      "chargebee review"
+    ]
+  },
+  "updated_at": "2026-04-20T07:50:50.808Z",
+  "created_at": "2026-04-12T12:53:55.841Z",
+  "pricing": {
+    "model": "hybrid",
+    "has_free_tier": true,
+    "free_tier_limits": "Starter  $250K billing",
+    "entry_price": "$599/mo (Performance)",
+    "enterprise_available": true,
+    "billing_complexity": "medium",
+    "transparency_score": 4,
+    "last_checked": "2026-04-11",
+    "pricing_url": "https://chargebee.com/pricing"
+  },
+  "scores": {
+    "lock_in": {
+      "level": "medium",
+      "score": 3,
+      "migration_complexity": "medium",
+      "data_portability": "API export, webhook data",
+      "api_compatibility": "Proprietary",
+      "explanation": "Medium — deep integrations, underandwithon logic"
+    }
+  },
+  "scale": {
+    "revenue": "$202.6M",
+    "customers": "~2,958 (Enlyft) / 18K (Latka)",
+    "data_status": "estimated"
+  },
+  "content": {
+    "when_to_use": [
+      "SaaS with recurring revenue",
+      "Usage-based pricing models",
+      "Complex plan management"
+    ],
+    "when_not_to_use": [
+      "One-time purchases only",
+      "Simple Stripe Checkout is enough"
+    ],
+    "consider_instead": [
+      "payment-gateway"
+    ],
+    "pricing_at_scale": [
+      {
+        "scale": "Entry",
+        "estimate": "$599/mo (Performance)"
+      }
+    ],
+    "migration_cheatsheet": {
+      "difficulty": "medium",
+      "data_you_keep": "API export, webhook data",
+      "api_standard": "Proprietary",
+      "risk_notes": "Medium — deep integrations, underandwithon logic",
+      "tip": "Moderate effort required. Export data before canceling"
+    },
+    "works_well_with": [
+      "adyen",
+      "amplitude"
+    ]
+  },
+  "community": {
+    "hn_mentions_30d": 2
+  },
+  "github": {
+    "repo": "chargebee/chargebee-php",
+    "stars": 76,
+    "open_issues": 10,
+    "latest_release": "v4.19.0",
+    "release_date": "2026-03-27T06:26:20Z"
+  },
+  "npm": {
+    "package": "chargebee"
+  },
+  "review": {
+    "verdict": "Best for saas with recurring revenue. Chargebee offers $599/mo (Performance). Moderate vendor lock-in.",
+    "pros": [
+      "SaaS with recurring revenue",
+      "Usage-based pricing models",
+      "Generous free tier for getting started"
+    ],
+    "cons": [
+      "One-time purchases only",
+      "Simple Stripe Checkout is enough"
+    ],
+    "best_for": "SaaS",
+    "not_for": "Simple projects"
+  },
+  "health": {
+    "bus_factor": 8,
+    "last_commit_days_ago": 20,
+    "release_frequency_days": 16,
+    "open_issues": 10,
+    "issue_close_days": 0,
+    "license": "MIT",
+    "stars": 76,
+    "forks": 67,
+    "updated_at": "2026-04-16",
+    "health_score": "B"
+  }
+}

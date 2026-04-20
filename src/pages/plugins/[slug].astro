@@ -70,9 +70,11 @@ const schemaOrg = {
     data-pagefind-filter="type:JetBrains Plugin"
     data-pagefind-meta="type:JetBrains Plugin"
   >
-    {d.category && <span hidden data-pagefind-filter={`category:${d.category}`}>{d.category}</span>}
-    {d.ide && <span hidden data-pagefind-filter={`ide:${d.ide}`}>{d.ide}</span>}
-    {d.publisher && <span hidden data-pagefind-meta={`publisher:${d.publisher}`}>{d.publisher}</span>}
+    <div data-pagefind-ignore="all" hidden>
+      {d.category && <span data-pagefind-filter={`category:${d.category}`}></span>}
+      {d.ide && <span data-pagefind-filter={`ide:${d.ide}`}></span>}
+      {d.publisher && <span data-pagefind-meta={`publisher:${d.publisher}`}></span>}
+    </div>
     <!-- Breadcrumbs -->
     <Breadcrumbs
       items={[

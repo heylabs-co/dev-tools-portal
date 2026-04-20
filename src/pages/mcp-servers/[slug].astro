@@ -69,8 +69,10 @@ const schemaOrg = {
     data-pagefind-filter="type:MCP Server"
     data-pagefind-meta="type:MCP Server"
   >
-    {d.category && <span hidden data-pagefind-filter={`category:${d.category}`}>{d.category}</span>}
-    {d.official && <span hidden data-pagefind-filter="official:Yes">Official</span>}
+    <div data-pagefind-ignore="all" hidden>
+      {d.category && <span data-pagefind-filter={`category:${d.category}`}></span>}
+      {d.official && <span data-pagefind-filter="official:Yes"></span>}
+    </div>
     <!-- Breadcrumbs -->
     <Breadcrumbs
       items={[

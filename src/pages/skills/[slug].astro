@@ -154,8 +154,10 @@ const jsonLd = {
     data-pagefind-filter="type:AI Skill"
     data-pagefind-meta="type:AI Skill"
   >
-    {d.category && <span hidden data-pagefind-filter={`category:${d.category}`}>{d.category}</span>}
-    {d.framework && <span hidden data-pagefind-filter={`framework:${d.framework}`}>{d.framework}</span>}
+    <div data-pagefind-ignore="all" hidden>
+      {d.category && <span data-pagefind-filter={`category:${d.category}`}></span>}
+      {d.framework && <span data-pagefind-filter={`framework:${d.framework}`}></span>}
+    </div>
     <!-- Breadcrumbs -->
     <Breadcrumbs
       items={[

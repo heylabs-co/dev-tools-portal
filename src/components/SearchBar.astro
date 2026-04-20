@@ -88,8 +88,9 @@ const compactAttr = compact ? 'true' : 'false';
     color: #8A8F98 !important;
   }
 
-  /* Result cards */
+  /* Result cards — whole card clickable via overlaid pseudo-element */
   .pagefind-ui__result {
+    position: relative;
     padding: 0.875rem 1rem !important;
     border-radius: 10px !important;
     margin-bottom: 0.5rem !important;
@@ -99,6 +100,19 @@ const compactAttr = compact ? 'true' : 'false';
   .pagefind-ui__result:hover {
     border-color: var(--pagefind-ui-primary) !important;
     transform: translateY(-1px);
+    cursor: pointer;
+  }
+  /* Stretch the title link over the entire card so clicking anywhere works */
+  .pagefind-ui__result-link::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+  }
+  .pagefind-ui__result-excerpt,
+  .pagefind-ui__result-tags {
+    position: relative;
+    z-index: 2;
   }
   .pagefind-ui__result-link {
     font-weight: 600 !important;
@@ -213,60 +227,14 @@ const compactAttr = compact ? 'true' : 'false';
         excerptLength: 25,
         resetStyles: false,
         translations: { placeholder: placeholder },
-        processResult: function(result) {
-          var meta = result.meta || {};
-          var filters = result.filters || {};
-          var badgesHtml = '';
-          // Type badge
-          if (meta.type) {
-            badgesHtml += '<span class="tn-badge tn-badge-type">' + meta.type + '</span>';
-          }
-          // Category badge
-          if (meta.category) {
-            badgesHtml += '<span class="tn-badge">📂 ' + meta.category + '</span>';
-          }
-          // Pricing badge
-          if (meta.pricing) {
-            var p = meta.pricing.charAt(0).toUpperCase() + meta.pricing.slice(1);
-            badgesHtml += '<span class="tn-badge">💰 ' + p + '</span>';
-          }
-          // Lock-in badge
-          if (meta.lock_in) {
-            var lvl = meta.lock_in.toLowerCase();
-            badgesHtml += '<span class="tn-badge tn-badge-lockin-' + lvl + '">🔒 ' + lvl + ' lock-in</span>';
-          }
-          // Country badge
-          if (meta.country) {
-            badgesHtml += '<span class="tn-badge">🌍 ' + meta.country + '</span>';
-          }
-          // Founded year
-          if (meta.founded) {
-            badgesHtml += '<span class="tn-badge">📅 ' + meta.founded + '</span>';
-          }
-          if (badgesHtml) {
-            result.meta.__badges = '<div class="tn-result-meta">' + badgesHtml + '</div>';
-          }
-          return result;
-        },
       };
       if (showFilters) opts.showFilters = true;
       // Apply base filter if provided (scoped search)
+      // Pagefind UI's option is `mergeFilter` — it's applied to every query.
       if (Object.keys(baseFilter).length > 0) {
-        opts.baseFilters = baseFilter;
+        opts.mergeFilter = baseFilter;
       }
-      var ui = new window.PagefindUI(opts);
-
-      // Post-process: inject badges into result cards after render
-      var observer = new MutationObserver(function(mutations) {
-        document.querySelectorAll('.pagefind-ui__result:not([data-tn-enhanced])').forEach(function(node) {
-          node.setAttribute('data-tn-enhanced', '1');
-          // Find the meta data from result children (Pagefind doesn't expose processResult output in default template,
-          // so we read data-pagefind-meta from the crawled page — available via Pagefind's own getMeta call at runtime).
-          // The simpler path: we already injected badges in processResult; but Pagefind's default template ignores it.
-          // For proper rendering we need custom template — here we extract from data attributes if present.
-        });
-      });
-      observer.observe(document.getElementById('search'), { childList: true, subtree: true });
+      new window.PagefindUI(opts);
     };
     document.head.appendChild(script);
   })();

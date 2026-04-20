@@ -81,9 +81,11 @@ const schemaOrg = {
     data-pagefind-filter="type:VS Code Extension"
     data-pagefind-meta="type:VS Code Extension"
   >
-    {d.category && <span hidden data-pagefind-filter={`category:${d.category}`}>{d.category}</span>}
-    {d.publisher && <span hidden data-pagefind-meta={`publisher:${d.publisher}`}>{d.publisher}</span>}
-    {d.installs && <span hidden data-pagefind-meta={`installs:${d.installs}`}>{d.installs}</span>}
+    <div data-pagefind-ignore="all" hidden>
+      {d.category && <span data-pagefind-filter={`category:${d.category}`}></span>}
+      {d.publisher && <span data-pagefind-meta={`publisher:${d.publisher}`}></span>}
+      {d.installs && <span data-pagefind-meta={`installs:${d.installs}`}></span>}
+    </div>
     <!-- Breadcrumbs -->
     <Breadcrumbs
       items={[

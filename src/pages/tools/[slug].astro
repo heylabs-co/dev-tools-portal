@@ -44,30 +44,20 @@ const scaleItems = [
     data-pagefind-filter={`type:Tool`}
     data-pagefind-meta={`type:Tool`}
   >
-    <!-- Pagefind facets: additional filters + metadata -->
-    <span hidden data-pagefind-filter={`category:${d.categories.primary.name}`}>{d.categories.primary.name}</span>
-    {d.pricing?.model && (
-      <span hidden data-pagefind-filter={`pricing:${d.pricing.model}`}>{d.pricing.model}</span>
-    )}
-    {d.pricing?.has_free_tier !== undefined && (
-      <span hidden data-pagefind-filter={`free_tier:${d.pricing.has_free_tier ? 'Yes' : 'No'}`}>
-        {d.pricing.has_free_tier ? 'Yes' : 'No'}
-      </span>
-    )}
-    {lockIn && (
-      <span hidden data-pagefind-filter={`lock_in:${lockIn.level.charAt(0).toUpperCase() + lockIn.level.slice(1)}`}>
-        {lockIn.level}
-      </span>
-    )}
-    {d.health?.health_score && (
-      <span hidden data-pagefind-filter={`health:${d.health.health_score}`}>{d.health.health_score}</span>
-    )}
-    <span hidden data-pagefind-meta={`category:${d.categories.primary.name}`}>{d.categories.primary.name}</span>
-    {d.logo && <span hidden data-pagefind-meta={`logo:${d.logo}`}>{d.logo}</span>}
-    {d.hq_country && <span hidden data-pagefind-meta={`country:${d.hq_country}`}>{d.hq_country}</span>}
-    {d.founded && <span hidden data-pagefind-meta={`founded:${d.founded}`}>{d.founded}</span>}
-    {d.pricing?.model && <span hidden data-pagefind-meta={`pricing:${d.pricing.model}`}>{d.pricing.model}</span>}
-    {lockIn && <span hidden data-pagefind-meta={`lock_in:${lockIn.level}`}>{lockIn.level}</span>}
+    <!-- Pagefind facets: filters + metadata. data-pagefind-ignore keeps body out of indexed text. -->
+    <div data-pagefind-ignore="all" hidden>
+      <span data-pagefind-filter={`category:${d.categories.primary.name}`}></span>
+      {d.pricing?.model && <span data-pagefind-filter={`pricing:${d.pricing.model}`}></span>}
+      {d.pricing?.has_free_tier !== undefined && <span data-pagefind-filter={`free_tier:${d.pricing.has_free_tier ? 'Yes' : 'No'}`}></span>}
+      {lockIn && <span data-pagefind-filter={`lock_in:${lockIn.level.charAt(0).toUpperCase() + lockIn.level.slice(1)}`}></span>}
+      {d.health?.health_score && <span data-pagefind-filter={`health:${d.health.health_score}`}></span>}
+      <span data-pagefind-meta={`category:${d.categories.primary.name}`}></span>
+      {d.logo && <span data-pagefind-meta={`logo:${d.logo}`}></span>}
+      {d.hq_country && <span data-pagefind-meta={`country:${d.hq_country}`}></span>}
+      {d.founded && <span data-pagefind-meta={`founded:${d.founded}`}></span>}
+      {d.pricing?.model && <span data-pagefind-meta={`pricing:${d.pricing.model}`}></span>}
+      {lockIn && <span data-pagefind-meta={`lock_in:${lockIn.level}`}></span>}
+    </div>
     <!-- Breadcrumbs -->
     <Breadcrumbs
       items={[

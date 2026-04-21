@@ -255,6 +255,27 @@ const compactAttr = compact ? 'true' : 'false';
         opts.mergeFilter = baseFilter;
       }
       new window.PagefindUI(opts);
+
+      // Honor ?q=<term> from the URL — lets Google sitelinks search box,
+      // internal "Search this page" links, and shared URLs prefill the query.
+      try {
+        var qs = new URLSearchParams(window.location.search);
+        var q = qs.get('q');
+        if (q) {
+          var tries = 0;
+          var poll = setInterval(function () {
+            var input = document.querySelector('.pagefind-ui__search-input');
+            if (input) {
+              clearInterval(poll);
+              input.value = q;
+              input.dispatchEvent(new Event('input', { bubbles: true }));
+              input.focus();
+            } else if (++tries > 30) {
+              clearInterval(poll);
+            }
+          }, 100);
+        }
+      } catch (_e) { /* ignore */ }
     };
     document.head.appendChild(script);
   })();

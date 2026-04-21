@@ -369,7 +369,24 @@ const pairs = (pairsData as any[]).slice(0, 12);
 
     fetch('/api/companies.json')
       .then(function(r) { return r.json(); })
-      .then(function(data) { companies = data; });
+      .then(function(data) {
+        companies = data;
+        // Honor ?a=<slug>&b=<slug> query params so external links
+        // like /compare/?a=stripe&b=adyen pre-fill the form.
+        try {
+          var params = new URLSearchParams(window.location.search);
+          var aSlug = params.get('a');
+          var bSlug = params.get('b');
+          if (aSlug) {
+            var aMatch = companies.find(function (c) { return c.s === aSlug; });
+            if (aMatch) selectTool('a', aMatch);
+          }
+          if (bSlug) {
+            var bMatch = companies.find(function (c) { return c.s === bSlug; });
+            if (bMatch) selectTool('b', bMatch);
+          }
+        } catch (_e) { /* ignore */ }
+      });
 
     var inputA = document.querySelector('.tool-input[data-slot="a"]');
     var inputB = document.querySelector('.tool-input[data-slot="b"]');

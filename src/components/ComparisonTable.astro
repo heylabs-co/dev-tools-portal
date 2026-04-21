@@ -57,8 +57,8 @@ const rows: Row[] = [
   },
   {
     label: 'Pricing Model',
-    a: companyA.pricing?.model ?? '—',
-    b: companyB.pricing?.model ?? '—',
+    a: companyA.pricing?.model && companyA.pricing.model !== 'unknown' ? companyA.pricing.model : '—',
+    b: companyB.pricing?.model && companyB.pricing.model !== 'unknown' ? companyB.pricing.model : '—',
   },
   {
     label: 'Entry Price',
@@ -133,8 +133,7 @@ function cellClasses(row: Row, side: 'a' | 'b'): string {
 ---
 
 <div class="overflow-x-auto">
-  <!-- Desktop table -->
-  <table class="hidden md:table w-full border-collapse text-sm">
+  <table class="w-full border-collapse text-sm">
     <thead>
       <tr class="border-b border-gray-200 dark:border-gray-700">
         <th class="py-3 px-4 text-left font-medium text-gray-500 dark:text-gray-400 w-1/3"></th>
@@ -162,28 +161,4 @@ function cellClasses(row: Row, side: 'a' | 'b'): string {
       ))}
     </tbody>
   </table>
-
-  <!-- Mobile stacked view -->
-  <div class="md:hidden space-y-4">
-    <div class="flex justify-around border-b border-gray-200 dark:border-gray-700 pb-4">
-      <a href={`/tools/${companyA.slug}/`} class="flex flex-col items-center gap-1 hover:opacity-80">
-        {companyA.logo && <img src={companyA.logo} alt={companyA.name} class="h-8 w-8 object-contain" />}
-        <span class="font-semibold text-sm">{companyA.name}</span>
-      </a>
-      <span class="self-center text-gray-400 font-medium">vs</span>
-      <a href={`/tools/${companyB.slug}/`} class="flex flex-col items-center gap-1 hover:opacity-80">
-        {companyB.logo && <img src={companyB.logo} alt={companyB.name} class="h-8 w-8 object-contain" />}
-        <span class="font-semibold text-sm">{companyB.name}</span>
-      </a>
-    </div>
-    {rows.map((row) => (
-      <div class="border-b border-gray-100 dark:border-gray-800 pb-3">
-        <div class="text-xs font-medium text-gray-500 dark:text-gray-400 mb-1">{row.label}</div>
-        <div class="grid grid-cols-2 gap-2 text-sm">
-          <div class={`text-center capitalize rounded px-2 py-1 ${cellClasses(row, 'a')}`}>{row.a}</div>
-          <div class={`text-center capitalize rounded px-2 py-1 ${cellClasses(row, 'b')}`}>{row.b}</div>
-        </div>
-      </div>
-    ))}
-  </div>
 </div>

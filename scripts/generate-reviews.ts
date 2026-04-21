@@ -87,6 +87,7 @@ function pricingDescription(c: CompanyData): string {
   if (model === 'flat' && entry) return `flat rate at ${entry}`;
   if (model === 'subscription' && entry) return `subscription from ${entry}`;
   if (entry) return entry;
+  if (model === 'unknown' || !model) return 'pricing details on their website';
   return model;
 }
 
@@ -117,7 +118,10 @@ function generateVerdict(c: CompanyData): string {
     const audience = primary.charAt(0).toUpperCase() + primary.slice(1).toLowerCase();
 
     const lockInNote = lockIn ? ` ${lockIn.charAt(0).toUpperCase() + lockIn.slice(1)}.` : '';
-    return `Best for ${audience.toLowerCase()}. ${name} offers ${pricing}.${lockInNote}`;
+    const pricingSentence = pricing.startsWith('pricing details')
+      ? 'Pricing details on their website.'
+      : `${name} offers ${pricing}.`;
+    return `Best for ${audience.toLowerCase()}. ${pricingSentence}${lockInNote}`;
   }
 
   // Fallback: name + category + pricing

@@ -52,7 +52,7 @@ const initial = name.charAt(0).toUpperCase();
   <div class="mt-3 flex flex-wrap items-center gap-1.5">
     {lockInLevel && <LockInBadge level={lockInLevel} />}
 
-    {pricingModel && (
+    {pricingModel && pricingModel !== 'unknown' && (
       <span class="inline-flex items-center rounded-full bg-gray-100 dark:bg-white/5 px-2 py-0.5 text-[11px] font-medium text-[#64748B] dark:text-[#8A8F98]">
         {pricingModel}
       </span>

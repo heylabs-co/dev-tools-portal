@@ -38,7 +38,7 @@ const maxScore = 5;
     <div class="flex justify-between items-baseline">
       <dt class="text-sm text-gray-500 dark:text-gray-400">Pricing Model</dt>
       <dd class="text-sm font-medium capitalize text-gray-900 dark:text-gray-100">
-        {p?.model ?? '—'}
+        {p?.model && p.model !== 'unknown' ? p.model : '—'}
       </dd>
     </div>
 

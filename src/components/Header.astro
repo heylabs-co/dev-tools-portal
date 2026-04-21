@@ -4,10 +4,23 @@ const mobileLinks = [
   { label: 'Recommend ✨', href: '/recommend/' },
   { label: 'MCP Servers', href: '/mcp-servers/' },
   { label: 'AI Skills', href: '/skills/' },
+  { label: 'Trending', href: '/trending/' },
+  { label: 'Use Cases', href: '/use-cases/' },
+  { label: 'Compare', href: '/compare/' },
   { label: 'VS Code Extensions', href: '/extensions/' },
   { label: 'JetBrains Plugins', href: '/plugins/' },
+];
+
+const aiEcosystemLinks = [
+  { label: 'MCP Servers', href: '/mcp-servers/' },
+  { label: 'AI Skills', href: '/skills/' },
+];
+
+const moreLinks = [
+  { label: 'Use Cases', href: '/use-cases/' },
   { label: 'Compare', href: '/compare/' },
-  { label: 'Trending', href: '/trending/' },
+  { label: 'VS Code Extensions', href: '/extensions/' },
+  { label: 'JetBrains Plugins', href: '/plugins/' },
 ];
 ---
 
@@ -20,41 +33,30 @@ const mobileLinks = [
     class="backdrop-blur-xl"
     style="background-color: color-mix(in srgb, var(--color-surface) 80%, transparent); border-bottom: 1px solid var(--color-border);"
   >
-    <nav class="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 lg:px-6">
+    <nav class="mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 py-3 lg:px-6">
       <!-- Logo -->
-      <a href="/" class="flex items-center gap-2.5 group">
+      <a href="/" class="flex items-center gap-2.5 group shrink-0">
         <span
           class="inline-flex h-8 w-8 items-center justify-center rounded-lg text-sm font-black text-white transition-transform duration-200 group-hover:scale-105"
           style="background-color: var(--color-accent);"
         >TN</span>
         <span
-          class="hidden text-[15px] font-semibold tracking-tight sm:inline"
+          class="hidden text-[15px] font-semibold tracking-tight lg:inline"
           style="color: var(--color-text);"
         >tool.news</span>
       </a>
 
       <!-- Desktop nav -->
       <ul class="hidden items-center gap-1 md:flex">
-
-        <!-- Tools (direct link) -->
         <li>
-          <a
-            href="/tools/"
-            class="nav-link relative px-3 py-2 text-sm font-medium transition-colors duration-150"
-            style="color: var(--color-muted);"
-          >
+          <a href="/tools/" class="nav-link relative px-3 py-2 text-sm font-medium transition-colors duration-150" style="color: var(--color-muted);">
             Tools
             <span class="nav-underline absolute bottom-0.5 left-3 right-3 h-px origin-left scale-x-0 transition-transform duration-200 ease-out" style="background-color: var(--color-accent);"></span>
           </a>
         </li>
 
-        <!-- AI Recommender (direct link, highlighted) -->
         <li>
-          <a
-            href="/recommend/"
-            class="nav-link recommend-link relative flex items-center gap-1.5 px-3 py-2 text-sm font-medium transition-colors duration-150"
-            style="color: var(--color-accent);"
-          >
+          <a href="/recommend/" class="nav-link recommend-link relative flex items-center gap-1.5 px-3 py-2 text-sm font-medium transition-colors duration-150" style="color: var(--color-accent);">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="currentColor">
               <path d="M12 2l2.4 7.4L22 12l-7.6 2.6L12 22l-2.4-7.4L2 12l7.6-2.6L12 2z" />
             </svg>
@@ -78,25 +80,26 @@ const mobileLinks = [
             <span class="nav-underline absolute bottom-0.5 left-3 right-3 h-px origin-left scale-x-0 transition-transform duration-200 ease-out" style="background-color: var(--color-accent);"></span>
           </button>
           <div class="dropdown-menu absolute left-0 top-full pt-1 hidden">
-            <ul
-              class="min-w-[180px] rounded-xl shadow-lg py-1.5"
-              style="background-color: var(--color-surface); border: 1px solid var(--color-border);"
-            >
-              <li>
-                <a href="/mcp-servers/" class="dropdown-item flex items-center gap-2 px-4 py-2.5 text-sm font-medium transition-colors duration-150" style="color: var(--color-text-secondary);">
-                  MCP Servers
-                </a>
-              </li>
-              <li>
-                <a href="/skills/" class="dropdown-item flex items-center gap-2 px-4 py-2.5 text-sm font-medium transition-colors duration-150" style="color: var(--color-text-secondary);">
-                  AI Skills
-                </a>
-              </li>
+            <ul class="min-w-[180px] rounded-xl shadow-lg py-1.5" style="background-color: var(--color-surface); border: 1px solid var(--color-border);">
+              {aiEcosystemLinks.map((link) => (
+                <li>
+                  <a href={link.href} class="dropdown-item flex items-center gap-2 px-4 py-2.5 text-sm font-medium transition-colors duration-150" style="color: var(--color-text-secondary);">
+                    {link.label}
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
         </li>
 
-        <!-- IDE dropdown -->
+        <li>
+          <a href="/trending/" class="nav-link relative px-3 py-2 text-sm font-medium transition-colors duration-150" style="color: var(--color-muted);">
+            Trending
+            <span class="nav-underline absolute bottom-0.5 left-3 right-3 h-px origin-left scale-x-0 transition-transform duration-200 ease-out" style="background-color: var(--color-accent);"></span>
+          </a>
+        </li>
+
+        <!-- More dropdown -->
         <li class="dropdown-parent relative">
           <button
             class="nav-link dropdown-trigger relative flex items-center gap-1 px-3 py-2 text-sm font-medium transition-colors duration-150 cursor-default select-none"
@@ -104,53 +107,23 @@ const mobileLinks = [
             tabindex="0"
             aria-haspopup="true"
           >
-            IDE
+            More
             <svg class="chevron h-3.5 w-3.5 transition-transform duration-200" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
               <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
             </svg>
             <span class="nav-underline absolute bottom-0.5 left-3 right-3 h-px origin-left scale-x-0 transition-transform duration-200 ease-out" style="background-color: var(--color-accent);"></span>
           </button>
           <div class="dropdown-menu absolute left-0 top-full pt-1 hidden">
-            <ul
-              class="min-w-[200px] rounded-xl shadow-lg py-1.5"
-              style="background-color: var(--color-surface); border: 1px solid var(--color-border);"
-            >
-              <li>
-                <a href="/extensions/" class="dropdown-item flex items-center gap-2 px-4 py-2.5 text-sm font-medium transition-colors duration-150" style="color: var(--color-text-secondary);">
-                  VS Code Extensions
-                </a>
-              </li>
-              <li>
-                <a href="/plugins/" class="dropdown-item flex items-center gap-2 px-4 py-2.5 text-sm font-medium transition-colors duration-150" style="color: var(--color-text-secondary);">
-                  JetBrains Plugins
-                </a>
-              </li>
+            <ul class="min-w-[200px] rounded-xl shadow-lg py-1.5" style="background-color: var(--color-surface); border: 1px solid var(--color-border);">
+              {moreLinks.map((link) => (
+                <li>
+                  <a href={link.href} class="dropdown-item flex items-center gap-2 px-4 py-2.5 text-sm font-medium transition-colors duration-150" style="color: var(--color-text-secondary);">
+                    {link.label}
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
-        </li>
-
-        <!-- Compare (direct link) -->
-        <li>
-          <a
-            href="/compare/"
-            class="nav-link relative px-3 py-2 text-sm font-medium transition-colors duration-150"
-            style="color: var(--color-muted);"
-          >
-            Compare
-            <span class="nav-underline absolute bottom-0.5 left-3 right-3 h-px origin-left scale-x-0 transition-transform duration-200 ease-out" style="background-color: var(--color-accent);"></span>
-          </a>
-        </li>
-
-        <!-- Trending (direct link) -->
-        <li>
-          <a
-            href="/trending/"
-            class="nav-link relative px-3 py-2 text-sm font-medium transition-colors duration-150"
-            style="color: var(--color-muted);"
-          >
-            Trending
-            <span class="nav-underline absolute bottom-0.5 left-3 right-3 h-px origin-left scale-x-0 transition-transform duration-200 ease-out" style="background-color: var(--color-accent);"></span>
-          </a>
         </li>
 
         <!-- Add Tool button -->
@@ -171,13 +144,14 @@ const mobileLinks = [
       </ul>
 
       <!-- Search + mobile toggle -->
-      <div class="flex items-center gap-2">
-        <!-- Inline header search (always visible, submits to /search/?q=…) -->
+      <div class="flex items-center gap-2 flex-1 justify-end min-w-0">
+        <!-- Inline header search with live autocomplete -->
         <form
           action="/search/"
           method="get"
           role="search"
-          class="header-search relative hidden sm:flex items-center"
+          class="header-search relative flex items-center flex-1 sm:flex-none max-w-[280px] md:max-w-none"
+          autocomplete="off"
         >
           <svg
             class="absolute left-2.5 h-4 w-4 pointer-events-none"
@@ -198,7 +172,9 @@ const mobileLinks = [
             autocomplete="off"
             placeholder="Search tools…"
             aria-label="Search tools"
-            class="w-44 md:w-60 lg:w-72 rounded-lg border py-1.5 pl-8 pr-8 text-sm transition-colors duration-150 focus:outline-none"
+            aria-autocomplete="list"
+            aria-controls="header-search-results"
+            class="w-full md:w-60 lg:w-72 rounded-lg border py-1.5 pl-8 pr-8 text-sm transition-colors duration-150 focus:outline-none"
             style="background-color: var(--color-elevated); border-color: var(--color-border); color: var(--color-text);"
           />
           <kbd
@@ -206,24 +182,20 @@ const mobileLinks = [
             style="border-color: var(--color-border); color: var(--color-muted); background-color: var(--color-surface);"
             aria-hidden="true"
           >/</kbd>
-        </form>
 
-        <!-- Mobile search icon (visible on small screens only) -->
-        <a
-          href="/search/"
-          aria-label="Search"
-          class="sm:hidden inline-flex h-8 w-8 items-center justify-center rounded-lg transition-colors duration-150"
-          style="color: var(--color-muted);"
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-[18px] w-[18px]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35M11 19a8 8 0 100-16 8 8 0 000 16z" />
-          </svg>
-        </a>
+          <!-- Live autocomplete dropdown -->
+          <div
+            id="header-search-results"
+            role="listbox"
+            class="absolute left-0 right-0 top-full mt-1 hidden rounded-xl shadow-lg overflow-hidden z-50"
+            style="background-color: var(--color-surface); border: 1px solid var(--color-border);"
+          ></div>
+        </form>
 
         <!-- Mobile hamburger -->
         <button
           id="mobile-menu-btn"
-          class="inline-flex h-8 w-8 items-center justify-center rounded-lg transition-colors duration-150 md:hidden"
+          class="inline-flex h-8 w-8 items-center justify-center rounded-lg transition-colors duration-150 md:hidden shrink-0"
           style="color: var(--color-muted);"
           aria-label="Toggle menu"
         >
@@ -243,10 +215,7 @@ const mobileLinks = [
     id="mobile-menu"
     class="fixed inset-0 top-[57px] z-40 translate-x-full transition-transform duration-300 ease-out md:hidden"
   >
-    <!-- Backdrop -->
     <div class="absolute inset-0 backdrop-blur-sm" style="background-color: rgba(0,0,0,0.3);" id="mobile-backdrop"></div>
-
-    <!-- Panel -->
     <div
       class="absolute right-0 top-0 bottom-0 w-72 overflow-y-auto p-5"
       style="background-color: color-mix(in srgb, var(--color-surface) 95%, transparent); backdrop-filter: blur(20px); border-left: 1px solid var(--color-border);"
@@ -285,13 +254,11 @@ const mobileLinks = [
 </header>
 
 <style>
-  /* Header inline search */
   .header-search input:focus {
     border-color: var(--color-accent) !important;
     box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-accent) 20%, transparent);
   }
 
-  /* Direct nav links */
   .nav-link:hover {
     color: var(--color-text) !important;
   }
@@ -299,7 +266,6 @@ const mobileLinks = [
     transform: scaleX(1);
   }
 
-  /* Dropdown trigger: show underline and chevron rotation on parent hover */
   .dropdown-parent:hover .dropdown-trigger {
     color: var(--color-text) !important;
   }
@@ -309,23 +275,83 @@ const mobileLinks = [
   .dropdown-parent:hover .chevron {
     transform: rotate(180deg);
   }
-
-  /* Show dropdown on parent hover — CSS only, no JS */
   .dropdown-parent:hover .dropdown-menu,
   .dropdown-parent:focus-within .dropdown-menu {
     display: block !important;
   }
 
-  /* Dropdown item hover */
   .dropdown-item:hover {
     background-color: var(--color-elevated) !important;
     color: var(--color-text) !important;
   }
 
-  /* Add Tool button */
   .add-tool-btn:hover {
     background-color: var(--color-accent) !important;
     color: #fff !important;
+  }
+
+  /* Live search dropdown */
+  .hs-result {
+    display: block;
+    padding: 0.625rem 0.875rem;
+    text-decoration: none;
+    color: var(--color-text);
+    border-bottom: 1px solid var(--color-border);
+    transition: background-color 0.12s;
+  }
+  .hs-result:last-child { border-bottom: none; }
+  .hs-result:hover,
+  .hs-result.hs-active {
+    background-color: var(--color-elevated);
+  }
+  .hs-result-title {
+    font-size: 0.875rem;
+    font-weight: 600;
+    line-height: 1.2;
+  }
+  .hs-result-meta {
+    margin-top: 0.15rem;
+    font-size: 0.72rem;
+    color: var(--color-muted);
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+  }
+  .hs-result-excerpt {
+    margin-top: 0.2rem;
+    font-size: 0.75rem;
+    color: var(--color-text-secondary);
+    line-height: 1.35;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .hs-result-excerpt mark {
+    background: color-mix(in srgb, var(--color-accent) 22%, transparent);
+    color: inherit;
+    padding: 0 0.125rem;
+    border-radius: 2px;
+  }
+  .hs-footer {
+    padding: 0.55rem 0.875rem;
+    font-size: 0.75rem;
+    color: var(--color-muted);
+    border-top: 1px solid var(--color-border);
+    background-color: var(--color-elevated);
+    display: flex;
+    justify-content: space-between;
+  }
+  .hs-footer a {
+    color: var(--color-accent);
+    font-weight: 600;
+    text-decoration: none;
+  }
+  .hs-empty {
+    padding: 0.875rem;
+    font-size: 0.8125rem;
+    color: var(--color-muted);
+    text-align: center;
   }
 </style>
 
@@ -357,11 +383,145 @@ const mobileLinks = [
          target.tagName === 'TEXTAREA' ||
          target.isContentEditable);
       if (isEditable) return;
-      const input = document.getElementById('header-search-input');
-      if (input) {
+      const inp = document.getElementById('header-search-input') as HTMLInputElement | null;
+      if (inp) {
         e.preventDefault();
-        input.focus();
+        inp.focus();
       }
     }
   });
+
+  // ─── Live autocomplete (Pagefind JS API) ───────────────────────────────
+  const input = document.getElementById('header-search-input') as HTMLInputElement | null;
+  const results = document.getElementById('header-search-results');
+  const form = input?.closest('form');
+
+  if (input && results && form) {
+    let pagefind: any = null;
+    let pfLoading: Promise<any> | null = null;
+    let activeIdx = -1;
+    let currentQuery = '';
+
+    async function loadPagefind() {
+      if (pagefind) return pagefind;
+      if (pfLoading) return pfLoading;
+      pfLoading = (async () => {
+        try {
+          // @ts-ignore — dynamic import of built asset
+          const pf = await import(/* @vite-ignore */ '/pagefind/pagefind.js');
+          if (pf?.options) await pf.options({ excerptLength: 20 });
+          pagefind = pf;
+          return pf;
+        } catch (e) {
+          return null;
+        }
+      })();
+      return pfLoading;
+    }
+
+    function hide() {
+      results!.classList.add('hidden');
+      results!.innerHTML = '';
+      activeIdx = -1;
+    }
+
+    function show() {
+      results!.classList.remove('hidden');
+    }
+
+    function escapeHtml(s: string) {
+      return s.replace(/[&<>"']/g, (c) => ({
+        '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;',
+      }[c] || c));
+    }
+
+    function typeLabel(meta: Record<string, string> | undefined): string {
+      const t = meta?.type || '';
+      if (!t) return '';
+      return t;
+    }
+
+    function render(items: any[], query: string) {
+      if (!items.length) {
+        results!.innerHTML = `<div class="hs-empty">No matches for "${escapeHtml(query)}"</div>
+          <div class="hs-footer"><span></span><a href="/search/?q=${encodeURIComponent(query)}">Open full search →</a></div>`;
+        show();
+        return;
+      }
+      const html = items.map((d, i) => {
+        const title = escapeHtml(d.meta?.title || d.url);
+        const type = typeLabel(d.meta);
+        const excerpt = d.excerpt || '';
+        return `<a class="hs-result" role="option" href="${d.url}" data-idx="${i}">
+          <div class="hs-result-title">${title}</div>
+          ${type ? `<div class="hs-result-meta"><span>${escapeHtml(type)}</span></div>` : ''}
+          ${excerpt ? `<div class="hs-result-excerpt">${excerpt}</div>` : ''}
+        </a>`;
+      }).join('');
+      results!.innerHTML = html +
+        `<div class="hs-footer"><span>${items.length} of ${items.length}+ results</span><a href="/search/?q=${encodeURIComponent(query)}">Open full search →</a></div>`;
+      show();
+    }
+
+    function setActive(idx: number) {
+      const cards = results!.querySelectorAll<HTMLAnchorElement>('.hs-result');
+      if (!cards.length) return;
+      activeIdx = (idx + cards.length) % cards.length;
+      cards.forEach((c, i) => c.classList.toggle('hs-active', i === activeIdx));
+      cards[activeIdx]?.scrollIntoView({ block: 'nearest' });
+    }
+
+    let debounce: number | null = null;
+    async function onInput() {
+      const q = input!.value.trim();
+      currentQuery = q;
+      if (debounce) window.clearTimeout(debounce);
+      if (q.length < 2) { hide(); return; }
+      debounce = window.setTimeout(async () => {
+        const pf = await loadPagefind();
+        if (!pf || currentQuery !== q) return;
+        try {
+          const search = await pf.search(q);
+          if (currentQuery !== q) return;
+          const top = await Promise.all(search.results.slice(0, 5).map((r: any) => r.data()));
+          render(top, q);
+        } catch (_e) {
+          hide();
+        }
+      }, 140);
+    }
+
+    input.addEventListener('input', onInput);
+    input.addEventListener('focus', () => {
+      if (input.value.trim().length >= 2 && results!.innerHTML) show();
+    });
+
+    input.addEventListener('keydown', (e) => {
+      const cards = results!.querySelectorAll<HTMLAnchorElement>('.hs-result');
+      if (e.key === 'ArrowDown' && cards.length) {
+        e.preventDefault();
+        setActive(activeIdx + 1);
+      } else if (e.key === 'ArrowUp' && cards.length) {
+        e.preventDefault();
+        setActive(activeIdx - 1);
+      } else if (e.key === 'Enter') {
+        if (activeIdx >= 0 && cards[activeIdx]) {
+          e.preventDefault();
+          window.location.href = cards[activeIdx].href;
+        }
+        // else: let form submit to /search/
+      } else if (e.key === 'Escape') {
+        hide();
+        input.blur();
+      }
+    });
+
+    // Click outside → hide
+    document.addEventListener('click', (e) => {
+      if (!form.contains(e.target as Node)) hide();
+    });
+
+    // Prefetch Pagefind on first focus so the first keystroke feels instant
+    input.addEventListener('focus', () => { loadPagefind(); }, { once: true });
+  }
 </script>

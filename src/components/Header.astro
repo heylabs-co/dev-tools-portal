@@ -355,7 +355,7 @@ const moreLinks = [
   }
 </style>
 
-<script>
+<script is:inline type="module">
   const btn = document.getElementById('mobile-menu-btn');
   const menu = document.getElementById('mobile-menu');
   const backdrop = document.getElementById('mobile-backdrop');
@@ -373,32 +373,23 @@ const moreLinks = [
   btn?.addEventListener('click', toggleMenu);
   backdrop?.addEventListener('click', toggleMenu);
 
-  // Keyboard shortcut: "/" focuses header search
   document.addEventListener('keydown', (e) => {
     if (e.key === '/' && !e.ctrlKey && !e.metaKey) {
-      const target = e.target;
-      const isEditable =
-        target instanceof HTMLElement &&
-        (target.tagName === 'INPUT' ||
-         target.tagName === 'TEXTAREA' ||
-         target.isContentEditable);
-      if (isEditable) return;
-      const inp = document.getElementById('header-search-input') as HTMLInputElement | null;
-      if (inp) {
-        e.preventDefault();
-        inp.focus();
-      }
+      const t = e.target;
+      if (t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA' || t.isContentEditable)) return;
+      const inp = document.getElementById('header-search-input');
+      if (inp) { e.preventDefault(); inp.focus(); }
     }
   });
 
   // ─── Live autocomplete (Pagefind JS API) ───────────────────────────────
-  const input = document.getElementById('header-search-input') as HTMLInputElement | null;
+  const input = document.getElementById('header-search-input');
   const results = document.getElementById('header-search-results');
-  const form = input?.closest('form');
+  const form = input && input.closest('form');
 
   if (input && results && form) {
-    let pagefind: any = null;
-    let pfLoading: Promise<any> | null = null;
+    let pagefind = null;
+    let pfLoading = null;
     let activeIdx = -1;
     let currentQuery = '';
 
@@ -407,12 +398,11 @@ const moreLinks = [
       if (pfLoading) return pfLoading;
       pfLoading = (async () => {
         try {
-          // @ts-ignore — dynamic import of built asset
-          const pf = await import(/* @vite-ignore */ '/pagefind/pagefind.js');
-          if (pf?.options) await pf.options({ excerptLength: 20 });
+          const pf = await import('/pagefind/pagefind.js');
+          if (pf && pf.options) await pf.options({ excerptLength: 20 });
           pagefind = pf;
           return pf;
-        } catch (e) {
+        } catch (_e) {
           return null;
         }
       })();
@@ -420,37 +410,29 @@ const moreLinks = [
     }
 
     function hide() {
-      results!.classList.add('hidden');
-      results!.innerHTML = '';
+      results.classList.add('hidden');
+      results.innerHTML = '';
       activeIdx = -1;
     }
 
-    function show() {
-      results!.classList.remove('hidden');
-    }
+    function show() { results.classList.remove('hidden'); }
 
-    function escapeHtml(s: string) {
-      return s.replace(/[&<>"']/g, (c) => ({
+    function escapeHtml(s) {
+      return String(s).replace(/[&<>"']/g, (c) => ({
         '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;',
       }[c] || c));
     }
 
-    function typeLabel(meta: Record<string, string> | undefined): string {
-      const t = meta?.type || '';
-      if (!t) return '';
-      return t;
-    }
-
-    function render(items: any[], query: string) {
+    function render(items, query) {
       if (!items.length) {
-        results!.innerHTML = `<div class="hs-empty">No matches for "${escapeHtml(query)}"</div>
+        results.innerHTML = `<div class="hs-empty">No matches for "${escapeHtml(query)}"</div>
           <div class="hs-footer"><span></span><a href="/search/?q=${encodeURIComponent(query)}">Open full search →</a></div>`;
         show();
         return;
       }
       const html = items.map((d, i) => {
-        const title = escapeHtml(d.meta?.title || d.url);
-        const type = typeLabel(d.meta);
+        const title = escapeHtml((d.meta && d.meta.title) || d.url);
+        const type = (d.meta && d.meta.type) || '';
         const excerpt = d.excerpt || '';
         return `<a class="hs-result" role="option" href="${d.url}" data-idx="${i}">
           <div class="hs-result-title">${title}</div>
@@ -458,70 +440,54 @@ const moreLinks = [
           ${excerpt ? `<div class="hs-result-excerpt">${excerpt}</div>` : ''}
         </a>`;
       }).join('');
-      results!.innerHTML = html +
-        `<div class="hs-footer"><span>${items.length} of ${items.length}+ results</span><a href="/search/?q=${encodeURIComponent(query)}">Open full search →</a></div>`;
+      results.innerHTML = html +
+        `<div class="hs-footer"><span>${items.length} shown</span><a href="/search/?q=${encodeURIComponent(query)}">Open full search →</a></div>`;
       show();
     }
 
-    function setActive(idx: number) {
-      const cards = results!.querySelectorAll<HTMLAnchorElement>('.hs-result');
+    function setActive(idx) {
+      const cards = results.querySelectorAll('.hs-result');
       if (!cards.length) return;
       activeIdx = (idx + cards.length) % cards.length;
       cards.forEach((c, i) => c.classList.toggle('hs-active', i === activeIdx));
-      cards[activeIdx]?.scrollIntoView({ block: 'nearest' });
+      cards[activeIdx] && cards[activeIdx].scrollIntoView({ block: 'nearest' });
     }
 
-    let debounce: number | null = null;
+    let debounce = null;
     async function onInput() {
-      const q = input!.value.trim();
+      const q = input.value.trim();
       currentQuery = q;
-      if (debounce) window.clearTimeout(debounce);
+      if (debounce) clearTimeout(debounce);
       if (q.length < 2) { hide(); return; }
-      debounce = window.setTimeout(async () => {
+      debounce = setTimeout(async () => {
         const pf = await loadPagefind();
         if (!pf || currentQuery !== q) return;
         try {
-          const search = await pf.search(q);
+          const s = await pf.search(q);
           if (currentQuery !== q) return;
-          const top = await Promise.all(search.results.slice(0, 5).map((r: any) => r.data()));
+          const top = await Promise.all(s.results.slice(0, 5).map((r) => r.data()));
           render(top, q);
-        } catch (_e) {
-          hide();
-        }
+        } catch (_e) { hide(); }
       }, 140);
     }
 
     input.addEventListener('input', onInput);
     input.addEventListener('focus', () => {
-      if (input.value.trim().length >= 2 && results!.innerHTML) show();
+      if (input.value.trim().length >= 2 && results.innerHTML) show();
     });
-
     input.addEventListener('keydown', (e) => {
-      const cards = results!.querySelectorAll<HTMLAnchorElement>('.hs-result');
-      if (e.key === 'ArrowDown' && cards.length) {
-        e.preventDefault();
-        setActive(activeIdx + 1);
-      } else if (e.key === 'ArrowUp' && cards.length) {
-        e.preventDefault();
-        setActive(activeIdx - 1);
-      } else if (e.key === 'Enter') {
-        if (activeIdx >= 0 && cards[activeIdx]) {
-          e.preventDefault();
-          window.location.href = cards[activeIdx].href;
-        }
-        // else: let form submit to /search/
-      } else if (e.key === 'Escape') {
-        hide();
-        input.blur();
-      }
+      const cards = results.querySelectorAll('.hs-result');
+      if (e.key === 'ArrowDown' && cards.length) { e.preventDefault(); setActive(activeIdx + 1); }
+      else if (e.key === 'ArrowUp' && cards.length) { e.preventDefault(); setActive(activeIdx - 1); }
+      else if (e.key === 'Enter') {
+        if (activeIdx >= 0 && cards[activeIdx]) { e.preventDefault(); window.location.href = cards[activeIdx].href; }
+      } else if (e.key === 'Escape') { hide(); input.blur(); }
     });
 
-    // Click outside → hide
     document.addEventListener('click', (e) => {
-      if (!form.contains(e.target as Node)) hide();
+      if (!form.contains(e.target)) hide();
     });
 
-    // Prefetch Pagefind on first focus so the first keystroke feels instant
     input.addEventListener('focus', () => { loadPagefind(); }, { once: true });
   }
 </script>

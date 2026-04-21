@@ -22,7 +22,7 @@ const npmSchema = z.object({
 }).optional();
 
 const pricingSchema = z.object({
-  model: z.enum(['usage', 'subscription', 'freemium', 'seat', 'hybrid', 'credit', 'per-connection', 'mau', 'event', 'unknown']).optional(),
+  model: z.enum(['usage', 'subscription', 'freemium', 'seat', 'hybrid', 'credit', 'per-connection', 'mau', 'event', 'free', 'custom', 'unknown']).optional(),
   has_free_tier: z.boolean().optional(),
   free_tier_limits: z.string().optional(),
   entry_price: z.string().optional(),
@@ -61,6 +61,13 @@ const lockInSchema = z.object({
   data_portability: z.string().optional(),
   api_compatibility: z.string().optional(),
   explanation: z.string().optional(),
+  reason: z.string().optional(),
+}).optional();
+
+const dimensionScoreSchema = z.object({
+  level: z.enum(['low', 'medium', 'high']),
+  score: z.number().min(0).max(5),
+  reason: z.string().optional(),
 }).optional();
 
 const companies = defineCollection({
@@ -97,8 +104,9 @@ const companies = defineCollection({
 
     scores: z.object({
       lock_in: lockInSchema,
+      transparency: dimensionScoreSchema,
+      developer_experience: dimensionScoreSchema,
       time_to_first_value_minutes: z.number().optional(),
-      developer_experience: z.number().min(0).max(5).optional(),
     }).optional(),
 
     community: z.object({

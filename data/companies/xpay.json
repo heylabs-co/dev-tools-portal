@@ -21,6 +21,16 @@
       "score": 2,
       "data_portability": "no_export",
       "migration_complexity": "medium"
+    },
+    "transparency": {
+      "level": "medium",
+      "score": 4,
+      "reason": "Usage pricing public"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "India dev-focused, decent docs"
     }
   },
   "description": "xPay — India payment gateway with UPI, cards, and net banking support targeted at startups and developer-focused online merchants.",
@@ -54,5 +64,9 @@
     "verdict": "Lower-friction Indian gateway for early startups — but Razorpay and Cashfree still dominate mindshare and scale.",
     "best_for": "Early-stage Indian startups wanting simple UPI and card integration",
     "not_for": "High-volume merchants or anyone needing top-tier India gateway reliability"
+  },
+  "pricing": {
+    "model": "usage",
+    "has_free_tier": false
   }
 }

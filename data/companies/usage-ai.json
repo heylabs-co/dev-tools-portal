@@ -48,5 +48,26 @@
     "verdict": "Competent AWS commitment autopilot, largely interchangeable with Antimetal and ProsperOps on core value.",
     "best_for": "AWS shops that want autonomous RI/SP management without hiring FinOps",
     "not_for": "Multi-cloud orgs or teams preferring native AWS Savings Plans management"
+  },
+  "pricing": {
+    "model": "custom",
+    "has_free_tier": false
+  },
+  "scores": {
+    "lock_in": {
+      "level": "medium",
+      "score": 3,
+      "reason": "AWS commitments managed externally"
+    },
+    "transparency": {
+      "level": "low",
+      "score": 1,
+      "reason": "Custom enterprise pricing"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "AWS RI automation docs"
+    }
   }
 }

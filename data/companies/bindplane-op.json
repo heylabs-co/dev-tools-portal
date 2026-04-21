@@ -52,5 +52,26 @@
     "verdict": "The go-to control plane for OTel fleets at scale; worth it once you manage 50+ collectors.",
     "best_for": "Platform teams managing OpenTelemetry collectors across hundreds of hosts or clusters.",
     "not_for": "Small teams running a handful of collectors where manual config suffices."
+  },
+  "pricing": {
+    "model": "freemium",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "low",
+      "score": 5,
+      "reason": "OTel collector management, standard protocol"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 4,
+      "reason": "Freemium with public tiers"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 4,
+      "reason": "OpenTelemetry native, good docs"
+    }
   }
 }

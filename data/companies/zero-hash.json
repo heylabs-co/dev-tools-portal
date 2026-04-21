@@ -21,6 +21,16 @@
       "score": 4,
       "data_portability": "no_export",
       "migration_complexity": "medium"
+    },
+    "transparency": {
+      "level": "low",
+      "score": 1,
+      "reason": "Custom pricing"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Enterprise APIs"
     }
   },
   "description": "Zero Hash — US crypto-as-a-service infrastructure enabling fintechs to embed Bitcoin, Ethereum, and stablecoin buy/sell/transfer via API.",
@@ -54,5 +64,9 @@
     "verdict": "Leading US embedded-crypto infrastructure for fintechs adding Bitcoin and stables — not really a payment gateway though.",
     "best_for": "US fintechs embedding crypto buy/sell/transfer into their apps without becoming regulated themselves",
     "not_for": "Merchants wanting to accept crypto for goods or teams outside US regulatory scope"
+  },
+  "pricing": {
+    "model": "custom",
+    "has_free_tier": false
   }
 }

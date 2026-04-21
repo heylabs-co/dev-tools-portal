@@ -48,5 +48,26 @@
     "verdict": "Solid traditional CA for enterprises; overkill when free CAs meet your trust needs.",
     "best_for": "Enterprises consolidating cert issuance and identity under one trusted CA.",
     "not_for": "Small teams fine with Let's Encrypt or ZeroSSL."
+  },
+  "pricing": {
+    "model": "subscription",
+    "has_free_tier": false
+  },
+  "scores": {
+    "lock_in": {
+      "level": "medium",
+      "score": 3,
+      "reason": "CA switchable via standards"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 4,
+      "reason": "Subscription public"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "PKI docs adequate"
+    }
   }
 }

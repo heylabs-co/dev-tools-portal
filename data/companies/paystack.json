@@ -47,5 +47,26 @@
     "verdict": "Gold standard DX for African payments, especially Nigeria and Ghana, with Stripe backing reliability.",
     "best_for": "African-focused startups and SaaS wanting Stripe-quality DX with local rails",
     "not_for": "Merchants outside Paystack's specific country list or needing pan-African reach"
+  },
+  "pricing": {
+    "model": "usage",
+    "has_free_tier": false
+  },
+  "scores": {
+    "lock_in": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Nigeria/Ghana gateway, Stripe-owned"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 5,
+      "reason": "published usage fees"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 5,
+      "reason": "excellent API docs, clean SDKs"
+    }
   }
 }

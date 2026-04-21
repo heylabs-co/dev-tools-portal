@@ -21,6 +21,16 @@
       "score": 3,
       "data_portability": "partial_export",
       "migration_complexity": "medium"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 4,
+      "reason": "usage-based, clear fees"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 4,
+      "reason": "Stripe-like API, good docs"
     }
   },
   "description": "Pay.jp — Japan payment gateway for online merchants supporting domestic and international credit cards with simple REST API.",
@@ -54,5 +64,9 @@
     "verdict": "Clean Stripe-style API for Japanese card acceptance, but misses key local methods bigger rivals cover.",
     "best_for": "Small Japanese merchants wanting a clean REST API for card-only checkout",
     "not_for": "Merchants needing PayPay, konbini, or carrier billing in Japan"
+  },
+  "pricing": {
+    "model": "usage",
+    "has_free_tier": false
   }
 }

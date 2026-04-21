@@ -49,5 +49,26 @@
     "verdict": "The reference-grade FHIR repository for serious healthcare orgs, but priced and scoped for payer/provider scale.",
     "best_for": "Payers, HIEs, and large providers building FHIR-native data platforms",
     "not_for": "Small digital health startups or teams just needing a FHIR sandbox"
+  },
+  "pricing": {
+    "model": "custom",
+    "has_free_tier": false
+  },
+  "scores": {
+    "lock_in": {
+      "level": "medium",
+      "score": 3,
+      "reason": "HAPI FHIR portable standards"
+    },
+    "transparency": {
+      "level": "low",
+      "score": 1,
+      "reason": "Custom enterprise pricing"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 4,
+      "reason": "FHIR-based, good docs"
+    }
   }
 }

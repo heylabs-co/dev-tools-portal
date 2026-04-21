@@ -47,5 +47,26 @@
     "verdict": "Still the cleanest subscription analytics tool for Stripe-based SaaS; pricey but worth it once MRR is meaningful.",
     "best_for": "Stripe or Braintree SaaS wanting trustworthy MRR, churn, and cohort reports without building them.",
     "not_for": "Teams wanting billing in the same tool or very early startups with tight budgets."
+  },
+  "pricing": {
+    "model": "subscription",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Proprietary SaaS analytics with API export"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 5,
+      "reason": "Public subscription tiers"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 4,
+      "reason": "Import/Metrics APIs, good docs"
+    }
   }
 }

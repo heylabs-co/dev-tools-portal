@@ -49,5 +49,26 @@
     "verdict": "Leading-edge Wasm runtime bet that pays off only if Wasm server-side takes off widely.",
     "best_for": "Teams exploring WebAssembly edge and serverless for performance-critical workloads",
     "not_for": "Mainstream production apps, JavaScript-centric teams, or conservative tech choices"
+  },
+  "pricing": {
+    "model": "free",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "high",
+      "score": 5,
+      "reason": "OSS WasmEdge, standard Wasm"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 5,
+      "reason": "Free OSS"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 4,
+      "reason": "Rust/Wasm focus, good docs"
+    }
   }
 }

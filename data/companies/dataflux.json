@@ -47,5 +47,26 @@
     "verdict": "A legacy enterprise workhorse that makes sense only when SAS is already the center of gravity.",
     "best_for": "Regulated enterprises standardized on SAS for analytics and governance",
     "not_for": "Modern data teams on dbt, Great Expectations or Soda with cloud warehouses"
+  },
+  "pricing": {
+    "model": "custom",
+    "has_free_tier": false
+  },
+  "scores": {
+    "lock_in": {
+      "level": "high",
+      "score": 2,
+      "reason": "SAS ecosystem lock-in"
+    },
+    "transparency": {
+      "level": "low",
+      "score": 1,
+      "reason": "Custom SAS pricing"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "SAS-centric docs"
+    }
   }
 }

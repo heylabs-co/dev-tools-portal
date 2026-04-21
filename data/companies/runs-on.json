@@ -67,5 +67,26 @@
     "verdict": "The right call when GitHub-hosted Actions bills are painful and you already live on AWS.",
     "best_for": "AWS-based teams with heavy CI spend on GitHub Actions wanting cheaper, bigger runners.",
     "not_for": "Teams not on AWS or unwilling to manage EC2 runners."
+  },
+  "pricing": {
+    "model": "subscription",
+    "has_free_tier": false
+  },
+  "scores": {
+    "lock_in": {
+      "level": "low",
+      "score": 4,
+      "reason": "Runs on your AWS account"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 5,
+      "reason": "Public subscription pricing"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 4,
+      "reason": "Drop-in GitHub Actions docs"
+    }
   }
 }

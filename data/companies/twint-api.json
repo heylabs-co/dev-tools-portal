@@ -46,5 +46,26 @@
     "verdict": "Non-negotiable for Swiss merchants, but access is through PSP partners — you won't integrate TWINT directly alone.",
     "best_for": "Merchants selling in Switzerland needing local mobile payment acceptance",
     "not_for": "Non-Swiss merchants or teams wanting direct self-serve API access"
+  },
+  "pricing": {
+    "model": "custom",
+    "has_free_tier": false
+  },
+  "scores": {
+    "lock_in": {
+      "level": "high",
+      "score": 2,
+      "reason": "Swiss network, partner-only"
+    },
+    "transparency": {
+      "level": "low",
+      "score": 1,
+      "reason": "Custom partner pricing"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Partner API docs for QR payments"
+    }
   }
 }

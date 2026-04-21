@@ -66,5 +66,22 @@
     ],
     "best_for": "Cross-browser/device testing",
     "not_for": "Unit tests only (use Jest/Vitest)"
+  },
+  "scores": {
+    "lock_in": {
+      "level": "medium",
+      "score": 3,
+      "reason": "visual testing, baselines exportable"
+    },
+    "transparency": {
+      "level": "low",
+      "score": 2,
+      "reason": "pricing tier unclear"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 4,
+      "reason": "integrates with popular CI/test tools"
+    }
   }
 }

@@ -46,5 +46,26 @@
     "verdict": "Conversion booster for Japanese checkout via frictionless BNPL, but fees and single-country scope are real.",
     "best_for": "E-commerce selling to Japanese consumers who prefer post-pay consolidated billing",
     "not_for": "Merchants outside Japan or those sensitive to BNPL merchant fees"
+  },
+  "pricing": {
+    "model": "usage",
+    "has_free_tier": false
+  },
+  "scores": {
+    "lock_in": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Japan BNPL"
+    },
+    "transparency": {
+      "level": "medium",
+      "score": 3,
+      "reason": "usage fees"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "merchant API docs"
+    }
   }
 }

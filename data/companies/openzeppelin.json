@@ -48,5 +48,26 @@
     "verdict": "The default Solidity security stack; hard to justify rolling your own primitives against it.",
     "best_for": "EVM protocol teams building production smart contracts who want proven primitives and tooling.",
     "not_for": "Non-EVM chains or teams allergic to open-source licensing obligations in Defender."
+  },
+  "pricing": {
+    "model": "freemium",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "high",
+      "score": 5,
+      "reason": "OSS Solidity lib"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 4,
+      "reason": "freemium Defender tier"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 5,
+      "reason": "industry-standard docs"
+    }
   }
 }

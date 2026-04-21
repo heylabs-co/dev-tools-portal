@@ -61,5 +61,26 @@
     "verdict": "Only pick this if you are stuck on Selenium; new browser tests belong in Playwright or Cypress.",
     "best_for": "Legacy Selenium suites migrated into pytest",
     "not_for": "Greenfield browser testing where Playwright offers far less flakiness"
+  },
+  "pricing": {
+    "model": "free",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "low",
+      "score": 5,
+      "reason": "OSS pytest plugin"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 5,
+      "reason": "Free open source"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Decent Selenium fixtures"
+    }
   }
 }

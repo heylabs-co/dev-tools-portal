@@ -46,5 +46,26 @@
     "verdict": "Math works for mid-volume US SMBs — below $10k/month, flat-rate processors beat the subscription.",
     "best_for": "US SMBs processing $15k+/month wanting predictable interchange-plus pricing",
     "not_for": "Low-volume merchants or anyone needing modern developer APIs"
+  },
+  "pricing": {
+    "model": "subscription",
+    "has_free_tier": false
+  },
+  "scores": {
+    "lock_in": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Payment processor subscription"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 4,
+      "reason": "Subscription pricing public"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Decent integration docs"
+    }
   }
 }

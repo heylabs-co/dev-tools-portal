@@ -47,5 +47,26 @@
     "verdict": "Focused US ACH API — great if ACH is all you need, limiting if you want a full payments stack.",
     "best_for": "US platforms needing white-label ACH transfers and mass payouts",
     "not_for": "Merchants needing card acceptance or non-US rails"
+  },
+  "pricing": {
+    "model": "custom",
+    "has_free_tier": false
+  },
+  "scores": {
+    "lock_in": {
+      "level": "medium",
+      "score": 3,
+      "reason": "ACH data exportable"
+    },
+    "transparency": {
+      "level": "low",
+      "score": 1,
+      "reason": "Custom enterprise pricing"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 4,
+      "reason": "Good API docs"
+    }
   }
 }

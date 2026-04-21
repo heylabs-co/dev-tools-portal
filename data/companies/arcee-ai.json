@@ -66,5 +66,26 @@
     "verdict": "For teams that want owned, domain-tuned open models rather than renting frontier APIs.",
     "best_for": "Enterprises building domain-specific LLMs on open weights",
     "not_for": "Teams wanting a hosted chat API with zero training effort"
+  },
+  "pricing": {
+    "model": "freemium",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "low",
+      "score": 4,
+      "reason": "Open-weight models, portable"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 4,
+      "reason": "Freemium with public pricing"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 4,
+      "reason": "Model cards and docs"
+    }
   }
 }

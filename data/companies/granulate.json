@@ -48,5 +48,26 @@
     "verdict": "Compelling for compute-heavy services that can prove the agent delivers savings, skeptical for lightweight apps.",
     "best_for": "Compute-intensive backends on large instance fleets with JVM or Python hot paths",
     "not_for": "Lightweight web apps or teams unwilling to run closed-source agents in production"
+  },
+  "pricing": {
+    "model": "custom",
+    "has_free_tier": false
+  },
+  "scores": {
+    "lock_in": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Runtime agent, removable"
+    },
+    "transparency": {
+      "level": "low",
+      "score": 1,
+      "reason": "Custom contact-sales"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Enterprise profiler"
+    }
   }
 }

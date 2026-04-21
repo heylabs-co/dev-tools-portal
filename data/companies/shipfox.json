@@ -48,5 +48,26 @@
     "verdict": "A low-effort way to speed up and cheapen GitHub Actions without running your own infra.",
     "best_for": "Teams with slow GitHub Actions pipelines who won't self-host runners.",
     "not_for": "Shops requiring data-residency, VPC, or self-managed runners."
+  },
+  "pricing": {
+    "model": "usage",
+    "has_free_tier": false
+  },
+  "scores": {
+    "lock_in": {
+      "level": "high",
+      "score": 5,
+      "reason": "Drop-in GitHub runners, easily switchable"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 5,
+      "reason": "Public usage pricing"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 4,
+      "reason": "Easy setup, good docs"
+    }
   }
 }

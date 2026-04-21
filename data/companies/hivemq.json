@@ -46,5 +46,26 @@
     "verdict": "The go-to enterprise MQTT broker when uptime, Kafka bridging, and support SLAs matter.",
     "best_for": "Enterprise IoT and connected-car fleets needing MQTT plus Kafka",
     "not_for": "Small projects that could live on Mosquitto or a cheap managed broker"
+  },
+  "pricing": {
+    "model": "freemium",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "low",
+      "score": 4,
+      "reason": "MQTT standard, clients portable"
+    },
+    "transparency": {
+      "level": "medium",
+      "score": 4,
+      "reason": "Freemium, enterprise opaque"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 5,
+      "reason": "Excellent MQTT docs and SDKs"
+    }
   }
 }

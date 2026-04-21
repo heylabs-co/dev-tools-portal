@@ -48,5 +48,26 @@
     "verdict": "Default pick for managed Airflow, though modern orchestrators now offer cleaner abstractions.",
     "best_for": "Enterprises already on Airflow who want managed infra and observability",
     "not_for": "Greenfield teams evaluating modern orchestrators like Dagster or Prefect"
+  },
+  "pricing": {
+    "model": "subscription",
+    "has_free_tier": false
+  },
+  "scores": {
+    "lock_in": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Managed Airflow, DAGs portable"
+    },
+    "transparency": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Subscription, enterprise opaque"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 4,
+      "reason": "Airflow ecosystem strong"
+    }
   }
 }

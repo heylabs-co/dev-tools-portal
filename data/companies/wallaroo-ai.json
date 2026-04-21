@@ -49,5 +49,26 @@
     "verdict": "A legitimate choice for regulated inference across edge and on-prem, but open alternatives cover most cases.",
     "best_for": "Regulated enterprises deploying ML to edge and on-prem with central observability",
     "not_for": "Teams happy with open-source serving like KServe, BentoML or vLLM"
+  },
+  "pricing": {
+    "model": "subscription",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Models portable, runtime proprietary"
+    },
+    "transparency": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Subscription, tiered"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 4,
+      "reason": "Python SDK, good docs"
+    }
   }
 }

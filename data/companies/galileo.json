@@ -24,6 +24,16 @@
       "score": 4,
       "data_portability": "api_only",
       "migration_complexity": "medium"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 4,
+      "reason": "Freemium pricing"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 4,
+      "reason": "Python SDK, ML-focused"
     }
   },
   "description": "Galileo — ML data observability platform for finding and fixing bad training data in NLP and computer vision pipelines.",
@@ -56,5 +66,9 @@
     "verdict": "Worth it if bad data is actively blocking your model quality; overkill for small projects.",
     "best_for": "ML teams shipping NLP, CV or LLM models where data quality drives metrics",
     "not_for": "Early-stage prototypes or teams without a formal MLOps pipeline yet"
+  },
+  "pricing": {
+    "model": "freemium",
+    "has_free_tier": true
   }
 }

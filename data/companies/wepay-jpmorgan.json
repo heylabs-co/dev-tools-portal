@@ -46,5 +46,26 @@
     "verdict": "Bank-grade reliability for SaaS embedding payments, but DX is clearly a generation behind Stripe Connect.",
     "best_for": "US SaaS platforms wanting bank-backed embedded payments with Chase integration",
     "not_for": "Developer-first teams prioritizing modern API ergonomics and fast onboarding"
+  },
+  "pricing": {
+    "model": "usage",
+    "has_free_tier": false
+  },
+  "scores": {
+    "lock_in": {
+      "level": "high",
+      "score": 2,
+      "reason": "Platform payments, Chase-bound"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 4,
+      "reason": "Usage-based public pricing"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "APIs, enterprise-focused"
+    }
   }
 }

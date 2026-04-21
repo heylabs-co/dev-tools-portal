@@ -46,5 +46,26 @@
     "verdict": "Safe choice for Brazilian SMBs wanting one vendor for POS and online, but DX trails modern rivals.",
     "best_for": "Brazilian SMBs wanting unified POS hardware plus online payments from one vendor",
     "not_for": "API-first teams expecting modern Stripe-level developer experience"
+  },
+  "pricing": {
+    "model": "usage",
+    "has_free_tier": false
+  },
+  "scores": {
+    "lock_in": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Brazil PSP"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 4,
+      "reason": "public per-transaction fees"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "standard API docs"
+    }
   }
 }

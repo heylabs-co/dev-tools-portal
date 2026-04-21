@@ -49,5 +49,26 @@
     "verdict": "Reliable Japanese IaaS for local workloads, but don't expect hyperscaler breadth or global POPs.",
     "best_for": "Japanese developers and enterprises wanting local IaaS with Terraform support",
     "not_for": "Global products, modern serverless needs, or non-Japanese teams"
+  },
+  "pricing": {
+    "model": "usage",
+    "has_free_tier": false
+  },
+  "scores": {
+    "lock_in": {
+      "level": "medium",
+      "score": 3,
+      "reason": "JP-specific IaaS"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 4,
+      "reason": "Usage pricing public"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 4,
+      "reason": "Terraform provider and docs"
+    }
   }
 }

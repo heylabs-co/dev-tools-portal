@@ -47,5 +47,26 @@
     "verdict": "Useful for exploring unknown repos, but narrow scope makes it a companion tool rather than a daily driver.",
     "best_for": "Developers onboarding to a new open-source repo or reviewing unfamiliar code",
     "not_for": "Teams needing full IDE integration, refactoring agents, or private enterprise repos"
+  },
+  "pricing": {
+    "model": "freemium",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "high",
+      "score": 4,
+      "reason": "Operates on GitHub repos, no data import needed"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 4,
+      "reason": "Freemium with public tiers"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Web UI explains code; no SDK, limited extensibility"
+    }
   }
 }

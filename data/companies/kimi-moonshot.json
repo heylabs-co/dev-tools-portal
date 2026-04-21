@@ -52,5 +52,26 @@
     "verdict": "A standout for long-context workloads if you can access the API from your region.",
     "best_for": "Apps processing long documents, contracts or codebases in single calls",
     "not_for": "Teams needing stable global SLAs or strict enterprise compliance"
+  },
+  "pricing": {
+    "model": "freemium",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "low",
+      "score": 4,
+      "reason": "API swappable with other LLMs"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 4,
+      "reason": "Freemium with public rates"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 4,
+      "reason": "OpenAI-compatible API"
+    }
   }
 }

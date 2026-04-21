@@ -24,6 +24,16 @@
       "score": 2,
       "data_portability": "api_only",
       "migration_complexity": "medium"
+    },
+    "transparency": {
+      "level": "medium",
+      "score": 3,
+      "reason": "subscription, limited public tiers"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "decent docs for agents"
     }
   },
   "description": "Ofox — AI agent orchestration platform for building and deploying automated business workflow agents.",
@@ -58,5 +68,9 @@
     "verdict": "Fine for experimenting with agent workflows, but most teams will reach for LangGraph or established orchestrators first.",
     "best_for": "Ops teams prototyping agent automations without code",
     "not_for": "Engineering teams with LangChain or Temporal stack in place"
+  },
+  "pricing": {
+    "model": "subscription",
+    "has_free_tier": true
   }
 }

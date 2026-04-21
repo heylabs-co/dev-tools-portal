@@ -48,5 +48,26 @@
     "verdict": "Right pick when accuracy actually matters; wrong pick when you just need cheap real-time MT.",
     "best_for": "Enterprises localizing legal, medical or marketing content where errors are costly",
     "not_for": "Apps translating high-volume UGC where DeepL or Google MT at API speed suffice"
+  },
+  "pricing": {
+    "model": "usage",
+    "has_free_tier": false
+  },
+  "scores": {
+    "lock_in": {
+      "level": "medium",
+      "score": 3,
+      "reason": "API translations exportable"
+    },
+    "transparency": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Usage-based with rates"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "REST API with decent docs"
+    }
   }
 }

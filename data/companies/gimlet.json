@@ -46,5 +46,26 @@
     "verdict": "An approachable GitOps tool for small platform teams, not yet a replacement for heavyweights.",
     "best_for": "Small teams wanting GitOps on k8s without wiring Argo themselves",
     "not_for": "Large orgs already standardized on Argo CD or Flux"
+  },
+  "pricing": {
+    "model": "freemium",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "low",
+      "score": 4,
+      "reason": "OSS GitOps, Helm-based"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 4,
+      "reason": "Freemium public"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 4,
+      "reason": "Good K8s docs"
+    }
   }
 }

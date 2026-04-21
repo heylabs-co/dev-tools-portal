@@ -48,5 +48,26 @@
     "verdict": "Promising middle ground between Docker and raw Nix, but pick it knowing the tool is still maturing.",
     "best_for": "Teams wanting Nix guarantees with a friendlier CLI and workflow",
     "not_for": "Orgs that need mature tooling and a large community today"
+  },
+  "pricing": {
+    "model": "freemium",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "low",
+      "score": 5,
+      "reason": "OSS Nix-based env mgr"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 4,
+      "reason": "Freemium pricing"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 4,
+      "reason": "Nix abstraction, good docs"
+    }
   }
 }

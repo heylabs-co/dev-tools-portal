@@ -49,5 +49,26 @@
     "verdict": "The mature pick for Kubernetes DR when downtime and data loss are existential risks.",
     "best_for": "Enterprises running stateful Kubernetes workloads with strict RPO and RTO requirements",
     "not_for": "Small teams, stateless apps, or budget-conscious startups"
+  },
+  "pricing": {
+    "model": "freemium",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "medium",
+      "score": 3,
+      "reason": "K8s backup data portable"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 4,
+      "reason": "Freemium tier available"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 4,
+      "reason": "Veeam-backed, good docs"
+    }
   }
 }

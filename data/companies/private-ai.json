@@ -46,5 +46,26 @@
     "verdict": "The redaction layer you deploy before other moderation or LLM steps; narrow purpose, excellent execution.",
     "best_for": "Regulated industries and LLM apps needing PII redaction before storage, training, or inference.",
     "not_for": "Teams that just need toxicity, NSFW, or general UGC moderation."
+  },
+  "pricing": {
+    "model": "usage",
+    "has_free_tier": false
+  },
+  "scores": {
+    "lock_in": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Usage-based PII redaction API"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 4,
+      "reason": "Public usage pricing"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 4,
+      "reason": "Good redaction API docs"
+    }
   }
 }

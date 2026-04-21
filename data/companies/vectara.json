@@ -48,5 +48,26 @@
     "verdict": "A grown-up managed RAG service for teams who do not want to assemble their own retrieval stack.",
     "best_for": "Enterprises needing multilingual RAG with hallucination controls but no retrieval engineers",
     "not_for": "Teams comfortable wiring pgvector or LanceDB plus their own chunking and rerankers"
+  },
+  "pricing": {
+    "model": "freemium",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Indexed corpora exportable"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 4,
+      "reason": "Freemium public pricing"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 4,
+      "reason": "REST/SDK with good docs"
+    }
   }
 }

@@ -47,5 +47,26 @@
     "verdict": "Developer-friendly AML screening with honest docs; a reasonable default outside tier-1 bank deals.",
     "best_for": "Regulated SMBs and fintechs that want quick AML integration with transparent documentation",
     "not_for": "Global banks whose audit teams insist on WorldCheck or Dow Jones as the data source"
+  },
+  "pricing": {
+    "model": "usage",
+    "has_free_tier": false
+  },
+  "scores": {
+    "lock_in": {
+      "level": "low",
+      "score": 4,
+      "reason": "REST API, screening data portable via exports"
+    },
+    "transparency": {
+      "level": "medium",
+      "score": 4,
+      "reason": "Usage-based pricing published online"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 4,
+      "reason": "Good API docs, clear AML integration guide"
+    }
   }
 }

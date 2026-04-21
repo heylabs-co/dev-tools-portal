@@ -46,5 +46,26 @@
     "verdict": "Essential cash rail for Mexican e-commerce, but slow settlement and PSP dependency add friction.",
     "best_for": "E-commerce selling in Mexico to unbanked or cash-preferring shoppers",
     "not_for": "Merchants needing instant confirmation or non-Mexican coverage"
+  },
+  "pricing": {
+    "model": "usage",
+    "has_free_tier": false
+  },
+  "scores": {
+    "lock_in": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Mexico cash method"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 4,
+      "reason": "per-transaction fees"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "via Stripe/Conekta docs"
+    }
   }
 }

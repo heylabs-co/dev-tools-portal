@@ -49,5 +49,26 @@
     "verdict": "A credible AMD-first GPU cloud if your stack tolerates ROCm, cheaper HBM that Nvidia shops will struggle to use.",
     "best_for": "Inference teams chasing HBM-heavy workloads and willing to work in ROCm",
     "not_for": "CUDA-only shops or teams needing mature Nvidia tooling and ecosystem"
+  },
+  "pricing": {
+    "model": "usage",
+    "has_free_tier": false
+  },
+  "scores": {
+    "lock_in": {
+      "level": "low",
+      "score": 4,
+      "reason": "AMD GPU cloud, standard VM access"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 4,
+      "reason": "Public usage-based pricing"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Standard cloud tooling"
+    }
   }
 }

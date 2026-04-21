@@ -45,5 +45,26 @@
     "verdict": "Solid open-source pick for dev teams wiring a11y into CI, but automation alone won't pass a WCAG audit.",
     "best_for": "Engineering teams adding automated a11y checks to CI pipelines.",
     "not_for": "Legal or compliance teams needing certified WCAG audits."
+  },
+  "pricing": {
+    "model": "freemium",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "high",
+      "score": 5,
+      "reason": "Open-source accessibility scanner, self-hostable"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 4,
+      "reason": "Freemium with public tiers and OSS code"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "CLI, API, GitHub Action integration; docs moderate"
+    }
   }
 }

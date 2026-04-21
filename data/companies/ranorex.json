@@ -6,9 +6,8 @@
   "status": "active",
   "categories": {
     "primary": {
-      "id": "CAT-35",
-      "slug": "api-management",
-      "name": "Developer Portals / API Management"
+      "slug": "test-automation",
+      "name": "Test Automation / Device Cloud"
     }
   },
   "created_at": "2026-04-20T20:57:23.939Z",
@@ -46,5 +45,26 @@
     "verdict": "Serious GUI automation suite for Windows shops, but miscategorized here and aging against Playwright for web.",
     "best_for": "Windows enterprises automating legacy desktop apps",
     "not_for": "Web-first teams or mac/linux development shops"
+  },
+  "pricing": {
+    "model": "subscription",
+    "has_free_tier": false
+  },
+  "scores": {
+    "lock_in": {
+      "level": "medium",
+      "score": 3,
+      "reason": "GUI test tool, tests exportable"
+    },
+    "transparency": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Subscription, pricing partial"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Decent docs, Windows-focused"
+    }
   }
 }

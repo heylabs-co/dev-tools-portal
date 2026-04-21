@@ -48,5 +48,26 @@
     "verdict": "Worth evaluating for platforms wanting collections, payouts, and FX bundled under a single modern API.",
     "best_for": "Marketplaces and platforms needing turnkey multi-rail payment ops",
     "not_for": "Teams needing only single-country card acquiring"
+  },
+  "pricing": {
+    "model": "custom",
+    "has_free_tier": false
+  },
+  "scores": {
+    "lock_in": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Payments PaaS, integration lock"
+    },
+    "transparency": {
+      "level": "low",
+      "score": 1,
+      "reason": "Custom pricing"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Standard REST APIs"
+    }
   }
 }

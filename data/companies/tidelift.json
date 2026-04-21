@@ -46,5 +46,26 @@
     "verdict": "Ethically-sound OSS compliance option, but pricing and scope make Snyk or Mend the pragmatic default.",
     "best_for": "Enterprises wanting paid OSS maintainer support contracts",
     "not_for": "Startups with light compliance or tight security budgets"
+  },
+  "pricing": {
+    "model": "subscription",
+    "has_free_tier": false
+  },
+  "scores": {
+    "lock_in": {
+      "level": "low",
+      "score": 4,
+      "reason": "OSS subscription, data exportable"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 4,
+      "reason": "Public subscription pricing"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Decent API for OSS metadata"
+    }
   }
 }

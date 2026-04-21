@@ -49,5 +49,26 @@
     "verdict": "Smart pick for companies that can't afford to re-index sensitive SaaS data, but federation has real latency trade-offs.",
     "best_for": "Mid-size companies needing enterprise search across Slack, Notion, Drive without reindexing.",
     "not_for": "Teams needing sub-second latency or advanced semantic ranking over a unified index."
+  },
+  "pricing": {
+    "model": "subscription",
+    "has_free_tier": false
+  },
+  "scores": {
+    "lock_in": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Federated search, doesn't index data"
+    },
+    "transparency": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Subscription with enterprise tiers"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Integration-focused, limited API"
+    }
   }
 }

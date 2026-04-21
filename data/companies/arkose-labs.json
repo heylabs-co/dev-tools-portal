@@ -47,5 +47,26 @@
     "verdict": "Strong choice for enterprises under active bot attack, but pricing and integration overhead make it wrong for startups.",
     "best_for": "Banks, marketplaces and gaming platforms facing organized bot and ATO attacks at scale.",
     "not_for": "Indie SaaS or small e-commerce with modest signup abuse and a tight budget."
+  },
+  "pricing": {
+    "model": "custom",
+    "has_free_tier": false
+  },
+  "scores": {
+    "lock_in": {
+      "level": "high",
+      "score": 3,
+      "reason": "Anti-fraud SDK ties auth flows"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 1,
+      "reason": "Custom enterprise pricing"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 4,
+      "reason": "Good integration docs"
+    }
   }
 }

@@ -51,5 +51,26 @@
     "verdict": "Gold standard for high-quality academic and RLHF data; overkill for bulk labeling where Scale or Toloka fit better.",
     "best_for": "AI labs and researchers needing high-quality human feedback",
     "not_for": "Teams needing cheap, high-volume labeling at scale"
+  },
+  "pricing": {
+    "model": "usage",
+    "has_free_tier": false
+  },
+  "scores": {
+    "lock_in": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Usage-based participant marketplace"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 4,
+      "reason": "Public usage pricing"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "API available for studies"
+    }
   }
 }

@@ -47,5 +47,26 @@
     "verdict": "Niche but useful if Lambda latency is your main pain; most teams will fold this into a broader observability stack instead.",
     "best_for": "Teams running many Lambdas where cold starts hurt UX",
     "not_for": "Organizations needing APM across containers, VMs, and SaaS"
+  },
+  "pricing": {
+    "model": "freemium",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Lambda monitor, AWS-tied"
+    },
+    "transparency": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Freemium tier"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Serverless APM"
+    }
   }
 }

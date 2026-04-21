@@ -48,5 +48,26 @@
     "verdict": "Strong Wasm runtime for edge and AI inference when you want lightweight alternatives to containers.",
     "best_for": "Teams running AI inference or edge workloads on Wasm instead of containers",
     "not_for": "Shops that want a managed serverless platform with zero runtime ops"
+  },
+  "pricing": {
+    "model": "free",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "low",
+      "score": 5,
+      "reason": "OSS CNCF WASM runtime"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 5,
+      "reason": "Free OSS"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 4,
+      "reason": "WASI-NN, solid docs"
+    }
   }
 }

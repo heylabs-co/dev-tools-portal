@@ -21,6 +21,16 @@
       "score": 4,
       "data_portability": "partial_export",
       "migration_complexity": "medium"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 1,
+      "reason": "Custom enterprise pricing"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Moderate docs"
     }
   },
   "description": "Archipelo — Developer security posture management platform tracking risky developer behaviors and securing the SDLC.",
@@ -56,5 +66,9 @@
     "verdict": "Interesting early-stage DevSecOps play, worth piloting if insider SDLC risk is on your radar.",
     "best_for": "Security teams worried about shadow dev activity and SDLC-origin risk",
     "not_for": "Teams who haven't yet covered basics like SAST, SCA, and secrets scanning"
+  },
+  "pricing": {
+    "model": "custom",
+    "has_free_tier": false
   }
 }

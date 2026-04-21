@@ -48,5 +48,26 @@
     "verdict": "Capable serverless AI hosting option, but Replicate and Modal have more momentum and features.",
     "best_for": "ML teams shipping custom Python inference pipelines needing serverless GPU scaling",
     "not_for": "Teams needing mature fine-tuning workflows or large enterprise-grade support"
+  },
+  "pricing": {
+    "model": "usage",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Usage serverless ML hosting"
+    },
+    "transparency": {
+      "level": "medium",
+      "score": 4,
+      "reason": "Usage-based public pricing"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 4,
+      "reason": "Serverless ML deploy with SDK"
+    }
   }
 }

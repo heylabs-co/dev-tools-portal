@@ -66,5 +66,26 @@
     "verdict": "A fast path from Compose to cloud; promising but not yet a replacement for real IaC.",
     "best_for": "Solo devs and small teams shipping Compose apps to AWS/GCP without learning Terraform.",
     "not_for": "Teams with strict IaC, compliance, or complex networking requirements."
+  },
+  "pricing": {
+    "model": "freemium",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "low",
+      "score": 5,
+      "reason": "Uses standard Docker Compose spec"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 4,
+      "reason": "Freemium with public tier pricing"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 4,
+      "reason": "Clear CLI docs, quickstart guides"
+    }
   }
 }

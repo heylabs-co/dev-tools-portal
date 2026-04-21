@@ -49,5 +49,26 @@
     "verdict": "A sensible wallet-friendly GPU option for indie devs and early startups willing to tolerate rough edges.",
     "best_for": "Indie devs and startups needing affordable GPU hours for fine-tuning and inference",
     "not_for": "Enterprises needing guaranteed H100/H200 capacity with strict SLAs"
+  },
+  "pricing": {
+    "model": "usage",
+    "has_free_tier": false
+  },
+  "scores": {
+    "lock_in": {
+      "level": "low",
+      "score": 4,
+      "reason": "GPU cloud, standard access"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 5,
+      "reason": "Public hourly pricing"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "APIs for inference/fine-tune"
+    }
   }
 }

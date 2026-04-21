@@ -48,5 +48,26 @@
     "verdict": "Useful SSO glue for SaaS selling to enterprise, but mislabeled here; it is auth infra, not fraud tooling.",
     "best_for": "SaaS platforms adding SAML/OIDC SSO for enterprise customers without building it in-house.",
     "not_for": "Anyone actually looking for fraud detection, bot management or transaction risk scoring."
+  },
+  "pricing": {
+    "model": "freemium",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "high",
+      "score": 4,
+      "reason": "OSS SAML/OIDC"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 4,
+      "reason": "public freemium"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 4,
+      "reason": "good SSO docs"
+    }
   }
 }

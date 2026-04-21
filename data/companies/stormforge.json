@@ -46,5 +46,26 @@
     "verdict": "A solid Kubernetes right-sizing tool, though its placement in test automation catalogs is a misnomer.",
     "best_for": "Mid-to-large Kubernetes clusters with enough scale to justify optimization SaaS",
     "not_for": "Small clusters or teams looking for actual test automation tooling"
+  },
+  "pricing": {
+    "model": "subscription",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "medium",
+      "score": 3,
+      "reason": "K8s resource tuning, swappable"
+    },
+    "transparency": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Subscription, opaque tiers"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 4,
+      "reason": "Good K8s integration"
+    }
   }
 }

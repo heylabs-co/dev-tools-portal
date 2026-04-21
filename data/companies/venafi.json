@@ -48,5 +48,26 @@
     "verdict": "If machine identity sprawl is a real cost center, Venafi is the serious option; otherwise too heavy.",
     "best_for": "Large enterprises managing tens of thousands of certs and keys.",
     "not_for": "Smaller orgs where Let's Encrypt + Vault is enough."
+  },
+  "pricing": {
+    "model": "custom",
+    "has_free_tier": false
+  },
+  "scores": {
+    "lock_in": {
+      "level": "high",
+      "score": 2,
+      "reason": "Enterprise certificate platform"
+    },
+    "transparency": {
+      "level": "low",
+      "score": 1,
+      "reason": "Custom pricing only"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "APIs but enterprise-focused"
+    }
   }
 }

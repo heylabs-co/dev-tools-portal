@@ -47,5 +47,26 @@
     "verdict": "Essential chargeback-prevention infrastructure for large Visa merchants; pair with Ethoca for full issuer coverage.",
     "best_for": "Large card-not-present merchants with heavy Visa chargeback volume.",
     "not_for": "Small merchants with minimal disputes or those needing upstream authorization-time fraud scoring."
+  },
+  "pricing": {
+    "model": "custom",
+    "has_free_tier": false
+  },
+  "scores": {
+    "lock_in": {
+      "level": "high",
+      "score": 2,
+      "reason": "Visa/issuer-bound dispute APIs"
+    },
+    "transparency": {
+      "level": "low",
+      "score": 1,
+      "reason": "Custom pricing"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "API, enterprise docs"
+    }
   }
 }

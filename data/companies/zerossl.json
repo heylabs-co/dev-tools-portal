@@ -48,5 +48,26 @@
     "verdict": "A credible Let's Encrypt alternative with a useful API; usually a backup, not the default.",
     "best_for": "Teams wanting API-driven cert issuance with optional paid tiers.",
     "not_for": "Users fully served by Let's Encrypt and standard ACME clients."
+  },
+  "pricing": {
+    "model": "freemium",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "low",
+      "score": 5,
+      "reason": "ACME standard, swappable"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 5,
+      "reason": "Public freemium pricing"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 4,
+      "reason": "ACME/REST API, docs"
+    }
   }
 }

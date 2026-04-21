@@ -47,5 +47,26 @@
     "verdict": "Still the default IaC tool, but evaluate OpenTofu seriously given the licensing change.",
     "best_for": "Multi-cloud teams needing mature IaC with a massive provider and module ecosystem.",
     "not_for": "Teams already committed to CDK, Pulumi, or fully cloud-native IaC."
+  },
+  "pricing": {
+    "model": "freemium",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "low",
+      "score": 5,
+      "reason": "Terraform HCL portable across clouds"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 4,
+      "reason": "Freemium, core OSS free"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 5,
+      "reason": "Industry-standard IaC docs"
+    }
   }
 }

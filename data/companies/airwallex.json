@@ -48,5 +48,26 @@
     "verdict": "Solid Stripe alternative for global SMBs needing real multi-currency rails, weaker for pure US merchants.",
     "best_for": "Cross-border SaaS and marketplaces paying contractors in 40+ currencies",
     "not_for": "US-only merchants who just need card acceptance with best-in-class docs"
+  },
+  "pricing": {
+    "model": "usage",
+    "has_free_tier": false
+  },
+  "scores": {
+    "lock_in": {
+      "level": "low",
+      "score": 2,
+      "reason": "Account and payout data bound to platform; migration heavy"
+    },
+    "transparency": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Usage rates partly public, enterprise negotiated"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 4,
+      "reason": "REST APIs, SDKs, test tools; strong global docs"
+    }
   }
 }

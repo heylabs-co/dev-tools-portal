@@ -47,5 +47,26 @@
     "verdict": "Purpose-built for foreign merchants selling into Brazil, handling local methods without a BR entity.",
     "best_for": "International merchants needing Pix and boleto acceptance without a Brazilian entity",
     "not_for": "Brazilian-domestic merchants who would pay less with a local PSP"
+  },
+  "pricing": {
+    "model": "usage",
+    "has_free_tier": false
+  },
+  "scores": {
+    "lock_in": {
+      "level": "medium",
+      "score": 3,
+      "reason": "cross-border Brazil gateway"
+    },
+    "transparency": {
+      "level": "medium",
+      "score": 3,
+      "reason": "usage fees"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "REST API"
+    }
   }
 }

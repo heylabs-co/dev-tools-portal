@@ -21,6 +21,16 @@
       "score": 3,
       "data_portability": "api_only",
       "migration_complexity": "medium"
+    },
+    "transparency": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Subscription pricing visible"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "API monitoring docs"
     }
   },
   "description": "Treeline — API-level monitoring platform tracking backend service performance and error rates in production.",
@@ -55,5 +65,9 @@
     "verdict": "Niche backend API monitor that could be replaced by any modern APM with endpoint dashboards.",
     "best_for": "Small teams wanting simple per-endpoint performance monitoring without APM sprawl.",
     "not_for": "Teams needing distributed tracing, full observability, or deep integrations."
+  },
+  "pricing": {
+    "model": "subscription",
+    "has_free_tier": false
   }
 }

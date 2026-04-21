@@ -48,5 +48,26 @@
     "verdict": "Best free DAST scanner for recon and known-CVE hunting; expect to build pipelines around it.",
     "best_for": "Bug bounty hunters, red teams, and DevSecOps pipelines needing CVE sweeps at scale.",
     "not_for": "Teams wanting a turnkey web-app scanner with GUI, auth flows, and managed reporting."
+  },
+  "pricing": {
+    "model": "freemium",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "low",
+      "score": 5,
+      "reason": "OSS ProjectDiscovery DAST, templates portable"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 4,
+      "reason": "Freemium with cloud pricing"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 5,
+      "reason": "YAML templates, active community"
+    }
   }
 }

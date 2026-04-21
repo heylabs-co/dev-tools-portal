@@ -48,5 +48,26 @@
     "verdict": "Strong pick for causal incrementality, but it is a measurement layer on top of an MMP rather than a replacement.",
     "best_for": "Mid-market and enterprise brands running geo and holdout experiments for channel ROI.",
     "not_for": "Small budgets or teams that need per-install deterministic attribution."
+  },
+  "pricing": {
+    "model": "custom",
+    "has_free_tier": false
+  },
+  "scores": {
+    "lock_in": {
+      "level": "high",
+      "score": 2,
+      "reason": "Proprietary experiment models"
+    },
+    "transparency": {
+      "level": "low",
+      "score": 1,
+      "reason": "Custom enterprise pricing"
+    },
+    "developer_experience": {
+      "level": "low",
+      "score": 2,
+      "reason": "No public SDK, closed"
+    }
   }
 }

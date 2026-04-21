@@ -47,5 +47,26 @@
     "verdict": "Interesting for K8s-heavy teams but still early — evaluate against DevPod, Gitpod, and Coder first.",
     "best_for": "Teams already on Kubernetes who want reproducible dev environments across the org.",
     "not_for": "Small teams or non-K8s stacks where plain Docker Compose suffices."
+  },
+  "pricing": {
+    "model": "subscription",
+    "has_free_tier": false
+  },
+  "scores": {
+    "lock_in": {
+      "level": "medium",
+      "score": 3,
+      "reason": "K8s envs declarative, portable"
+    },
+    "transparency": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Subscription opaque tiers"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Decent docs, niche"
+    }
   }
 }

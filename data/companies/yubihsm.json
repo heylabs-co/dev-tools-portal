@@ -48,5 +48,26 @@
     "verdict": "The best small-form-factor HSM for most teams; just don't expect datacenter-grade throughput.",
     "best_for": "Teams needing real HSM-backed keys without six-figure hardware budgets.",
     "not_for": "High-TPS signing workloads that need network HSMs."
+  },
+  "pricing": {
+    "model": "subscription",
+    "has_free_tier": false
+  },
+  "scores": {
+    "lock_in": {
+      "level": "medium",
+      "score": 3,
+      "reason": "HSM hardware, standard interfaces"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 5,
+      "reason": "Public hardware pricing"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 4,
+      "reason": "Good Yubico docs, SDKs"
+    }
   }
 }

@@ -24,6 +24,16 @@
       "score": 2,
       "data_portability": "partial_export",
       "migration_complexity": "medium"
+    },
+    "transparency": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Subscription with limited tiers"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "No-code AI platform"
     }
   },
   "description": "Baserock AI — Platform for building and deploying AI-powered internal tools and workflows with no-code configuration.",
@@ -56,5 +66,9 @@
     "verdict": "Good prototyping layer for internal ops; Retool still wins for production-grade tools.",
     "best_for": "Ops and PM teams spinning up admin tools without engineering time",
     "not_for": "Engineering teams needing version control and complex custom logic"
+  },
+  "pricing": {
+    "model": "subscription",
+    "has_free_tier": false
   }
 }

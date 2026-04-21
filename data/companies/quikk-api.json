@@ -21,6 +21,16 @@
       "score": 3,
       "data_portability": "no_export",
       "migration_complexity": "medium"
+    },
+    "transparency": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Usage pricing, partial detail"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "REST API with docs"
     }
   },
   "description": "Quikk API — Developer-first payment orchestration API for routing transactions across multiple PSPs with smart retry and failover logic.",
@@ -54,5 +64,9 @@
     "verdict": "Orchestration layer useful at scale, but adds a dependency and only pays off with meaningful volume.",
     "best_for": "High-volume merchants or platforms routing across multiple PSPs for redundancy",
     "not_for": "Small merchants happy with a single primary PSP"
+  },
+  "pricing": {
+    "model": "usage",
+    "has_free_tier": false
   }
 }

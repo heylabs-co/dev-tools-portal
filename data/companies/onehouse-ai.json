@@ -67,5 +67,26 @@
     "verdict": "Interesting managed lakehouse for multi-format shops; Iceberg-first teams may still prefer Tabular/Databricks.",
     "best_for": "Data platform teams wanting managed Hudi plus multi-engine openness",
     "not_for": "Teams already committed to Databricks or pure Iceberg stack"
+  },
+  "pricing": {
+    "model": "custom",
+    "has_free_tier": false
+  },
+  "scores": {
+    "lock_in": {
+      "level": "high",
+      "score": 4,
+      "reason": "Apache Hudi OSS foundation"
+    },
+    "transparency": {
+      "level": "low",
+      "score": 1,
+      "reason": "contact sales"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 4,
+      "reason": "strong OSS ecosystem docs"
+    }
   }
 }

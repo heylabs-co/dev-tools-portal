@@ -49,5 +49,26 @@
     "verdict": "Mature choice for social-login wallets across many chains; review key share model carefully before shipping.",
     "best_for": "Multi-chain dApps wanting social login with MPC wallets",
     "not_for": "Apps that need institutional custody or full self-custody"
+  },
+  "pricing": {
+    "model": "freemium",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "medium",
+      "score": 3,
+      "reason": "MPC wallet, keys recoverable"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 4,
+      "reason": "Freemium with public pricing"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 4,
+      "reason": "Multi-chain SDKs, good docs"
+    }
   }
 }

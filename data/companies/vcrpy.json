@@ -63,5 +63,26 @@
     "verdict": "A powerful pattern for third-party API tests, but stale cassettes cause more pain than most teams expect.",
     "best_for": "Python projects with many third-party HTTP integrations needing fast test runs",
     "not_for": "Fast-moving external APIs where cassette drift hides real regressions"
+  },
+  "pricing": {
+    "model": "free",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "low",
+      "score": 5,
+      "reason": "OSS Python test library"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 5,
+      "reason": "Free OSS"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 4,
+      "reason": "Simple API, decent docs"
+    }
   }
 }

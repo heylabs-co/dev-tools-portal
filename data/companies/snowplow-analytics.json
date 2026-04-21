@@ -21,6 +21,16 @@
       "score": 2,
       "data_portability": "no_export",
       "migration_complexity": "medium"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 4,
+      "reason": "Freemium OSS with cloud"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 4,
+      "reason": "SDKs for many platforms"
     }
   },
   "description": "Snowplow Analytics — Open-source behavioral data platform for collecting granular event data into your own warehouse.",
@@ -56,5 +66,9 @@
     "verdict": "Gold standard for owning your event data; real cost is engineering time, not software license.",
     "best_for": "Data-mature teams wanting warehouse-native, schema-controlled behavioral data they fully own.",
     "not_for": "Small teams without data engineers or anyone wanting turnkey packaged analytics."
+  },
+  "pricing": {
+    "model": "freemium",
+    "has_free_tier": true
   }
 }

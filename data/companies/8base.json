@@ -78,5 +78,22 @@
     ],
     "best_for": "Mobile, Teams",
     "not_for": "Complex custom business logic"
+  },
+  "scores": {
+    "lock_in": {
+      "level": "low",
+      "score": 2,
+      "reason": "Proprietary BaaS layer with GraphQL abstraction; migration complex"
+    },
+    "transparency": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Per-seat pricing published but feature tiers muddled"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "GraphQL API, web IDE; ecosystem smaller than Firebase/Supabase"
+    }
   }
 }

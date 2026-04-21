@@ -47,5 +47,26 @@
     "verdict": "The easiest way to run Dapr in production, with obvious dependence on Dapr as your paradigm.",
     "best_for": "Microservice teams betting on Dapr and durable workflow patterns",
     "not_for": "Teams happy with plain Kubernetes and no Dapr abstraction"
+  },
+  "pricing": {
+    "model": "freemium",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Based on OSS Dapr, some proprietary"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 4,
+      "reason": "Freemium with published tiers"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 5,
+      "reason": "Excellent Dapr docs and examples"
+    }
   }
 }

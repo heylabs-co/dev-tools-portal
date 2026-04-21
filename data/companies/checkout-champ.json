@@ -6,9 +6,8 @@
   "status": "active",
   "categories": {
     "primary": {
-      "id": "CAT-02",
-      "slug": "payment-gateway",
-      "name": "Payment Gateway / PSP"
+      "slug": "payments-orchestration",
+      "name": "Payments Orchestration"
     }
   },
   "created_at": "2026-04-20T20:57:23.892Z",
@@ -47,5 +46,26 @@
     "verdict": "Specialized funnel and routing layer for high-volume DTC — not for merchants wanting a simple checkout.",
     "best_for": "High-volume DTC brands running aggressive funnels and upsell flows",
     "not_for": "Standard SaaS or low-volume merchants wanting simple checkout"
+  },
+  "pricing": {
+    "model": "subscription",
+    "has_free_tier": false
+  },
+  "scores": {
+    "lock_in": {
+      "level": "high",
+      "score": 2,
+      "reason": "Proprietary checkout platform"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 4,
+      "reason": "Public subscription tiers"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Integrations, moderate API"
+    }
   }
 }

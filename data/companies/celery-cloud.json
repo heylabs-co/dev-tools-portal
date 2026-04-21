@@ -48,5 +48,26 @@
     "verdict": "Celery itself remains the Python job-queue default—just be sure which 'cloud' vendor you're evaluating.",
     "best_for": "Python backends needing a mature, flexible distributed task queue",
     "not_for": "Teams wanting minimal configuration or non-Python workers"
+  },
+  "pricing": {
+    "model": "freemium",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "low",
+      "score": 4,
+      "reason": "Managed Celery, OSS core portable"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 4,
+      "reason": "Public freemium tiers"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 5,
+      "reason": "Python-first, mature docs, huge community"
+    }
   }
 }

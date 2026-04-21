@@ -48,5 +48,26 @@
     "verdict": "The serious pick for ephemeral full-stack previews when Netlify/Vercel can't model your backend.",
     "best_for": "Backend-heavy teams wanting per-PR environments with DBs, queues, and services.",
     "not_for": "Frontend-only apps where Vercel or Netlify preview deploys already suffice."
+  },
+  "pricing": {
+    "model": "subscription",
+    "has_free_tier": false
+  },
+  "scores": {
+    "lock_in": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Env-as-a-service, K8s-portable"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 4,
+      "reason": "Public subscription pricing"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 4,
+      "reason": "Good docs and GitHub integration"
+    }
   }
 }

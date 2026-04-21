@@ -21,6 +21,16 @@
       "score": 3,
       "data_portability": "no_export",
       "migration_complexity": "medium"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 4,
+      "reason": "Public merchant fees"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 4,
+      "reason": "Solid merchant API docs"
     }
   },
   "description": "Satispay — Italy mobile payment network for in-store QR and online payments using direct bank account debit without card intermediaries.",
@@ -54,5 +64,9 @@
     "verdict": "Attractive low-fee Italian payment method, but only worth it if your customer base skews Italian.",
     "best_for": "Italian merchants wanting low-fee direct-debit payments without card intermediaries",
     "not_for": "Merchants whose customers live outside Italy or won't adopt a new wallet"
+  },
+  "pricing": {
+    "model": "usage",
+    "has_free_tier": false
   }
 }

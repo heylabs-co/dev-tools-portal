@@ -48,5 +48,26 @@
     "verdict": "Logical billing choice if you already run NetSuite; painful and expensive to adopt just for subscriptions.",
     "best_for": "Enterprises running NetSuite ERP wanting native subscription and ARM in the same ledger.",
     "not_for": "Teams not on NetSuite or anyone wanting a modern, API-first billing experience."
+  },
+  "pricing": {
+    "model": "custom",
+    "has_free_tier": false
+  },
+  "scores": {
+    "lock_in": {
+      "level": "high",
+      "score": 2,
+      "reason": "NetSuite ERP module, deep Oracle ties"
+    },
+    "transparency": {
+      "level": "low",
+      "score": 1,
+      "reason": "Custom enterprise pricing"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Oracle docs, complex customization"
+    }
   }
 }

@@ -6,9 +6,8 @@
   "status": "active",
   "categories": {
     "primary": {
-      "id": "CAT-08",
-      "slug": "secrets-management",
-      "name": "Secrets Management"
+      "slug": "cdn-edge",
+      "name": "CDN / Edge / Acceleration"
     }
   },
   "created_at": "2026-04-20T20:57:23.917Z",
@@ -48,5 +47,26 @@
     "verdict": "Great self-hosted tunnel story; listing it under secrets management is a stretch.",
     "best_for": "Operators wanting self-hosted ngrok alternatives with LB capabilities.",
     "not_for": "Anyone looking for secrets storage or rotation."
+  },
+  "pricing": {
+    "model": "subscription",
+    "has_free_tier": false
+  },
+  "scores": {
+    "lock_in": {
+      "level": "low",
+      "score": 4,
+      "reason": "Self-hostable tunnel tool"
+    },
+    "transparency": {
+      "level": "medium",
+      "score": 4,
+      "reason": "Subscription pricing published"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 4,
+      "reason": "CLI docs, Kubernetes support"
+    }
   }
 }

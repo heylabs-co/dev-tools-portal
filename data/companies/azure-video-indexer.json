@@ -47,5 +47,26 @@
     "verdict": "Decent default if you already live in Azure, but dedicated moderation APIs beat it on accuracy and latency.",
     "best_for": "Enterprises on Azure needing VOD moderation plus metadata extraction in one call.",
     "not_for": "Real-time livestream safety or teams outside the Microsoft ecosystem."
+  },
+  "pricing": {
+    "model": "usage",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Video AI API, outputs portable"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 4,
+      "reason": "Usage-based public pricing"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 4,
+      "reason": "Azure AI SDKs"
+    }
   }
 }

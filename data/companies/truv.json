@@ -49,5 +49,26 @@
     "verdict": "Credible challenger to The Work Number for income verification, though coverage gaps still force fallback flows.",
     "best_for": "Lenders and banks cutting verification costs and loan approval times",
     "not_for": "Verifying income for gig workers or self-employed borrowers at scale"
+  },
+  "pricing": {
+    "model": "usage",
+    "has_free_tier": false
+  },
+  "scores": {
+    "lock_in": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Consumer-permissioned data portable"
+    },
+    "transparency": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Usage-based with published rates"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Income/employment API docs"
+    }
   }
 }

@@ -63,5 +63,26 @@
     "verdict": "Default native crash capture plumbing; pair with Sentry, Backtrace or your own backend to see the data.",
     "best_for": "Native apps needing proven minidump capture across OSes",
     "not_for": "Teams wanting a turnkey crash reporting product"
+  },
+  "pricing": {
+    "model": "free",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "low",
+      "score": 5,
+      "reason": "Open-source Chromium crash handler"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 5,
+      "reason": "Free open source"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Technical docs, limited tutorials"
+    }
   }
 }

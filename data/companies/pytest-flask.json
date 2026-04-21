@@ -62,5 +62,26 @@
     "verdict": "Useful sugar for Flask tests, but the value is modest since Flask ships a capable test client already.",
     "best_for": "Flask applications wanting pytest fixtures over unittest-style harness",
     "not_for": "FastAPI or Starlette projects where httpx async clients work better"
+  },
+  "pricing": {
+    "model": "free",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "low",
+      "score": 5,
+      "reason": "OSS pytest plugin"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 5,
+      "reason": "Free open source"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 4,
+      "reason": "Clear Flask testing fixtures"
+    }
   }
 }

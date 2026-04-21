@@ -21,6 +21,16 @@
       "score": 3,
       "data_portability": "full_export",
       "migration_complexity": "medium"
+    },
+    "transparency": {
+      "level": "medium",
+      "score": 4,
+      "reason": "Usage pricing public"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 4,
+      "reason": "API-first with docs"
     }
   },
   "description": "Invopop — API-first e-invoicing and tax document workflow engine supporting EU, LATAM, and global digital invoice standards.",
@@ -55,5 +65,9 @@
     "verdict": "Refreshing API-first e-invoicing stack with open schemas — strong bet for teams that value clean DX.",
     "best_for": "Engineering teams wanting a modern, open-standard API for e-invoicing across EU and LATAM.",
     "not_for": "Enterprises needing guaranteed coverage in every global jurisdiction today."
+  },
+  "pricing": {
+    "model": "usage",
+    "has_free_tier": true
   }
 }

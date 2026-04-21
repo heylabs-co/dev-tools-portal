@@ -8,9 +8,8 @@
   "status": "active",
   "categories": {
     "primary": {
-      "id": "CAT-02",
-      "slug": "payment-gateway",
-      "name": "Payment Gateway / PSP"
+      "slug": "backend-as-a-service",
+      "name": "Backend-as-a-Service"
     }
   },
   "created_at": "2026-04-20T21:55:26.268Z",
@@ -46,5 +45,26 @@
     "verdict": "Serious modern core banking for large institutions — not a payment gateway, wrong category fit for most.",
     "best_for": "Tier 1-2 banks and neobanks replacing or launching a core banking platform",
     "not_for": "Fintech startups or anyone needing a payment gateway to embed"
+  },
+  "pricing": {
+    "model": "custom",
+    "has_free_tier": false
+  },
+  "scores": {
+    "lock_in": {
+      "level": "high",
+      "score": 2,
+      "reason": "Core banking, massive switching cost"
+    },
+    "transparency": {
+      "level": "low",
+      "score": 1,
+      "reason": "Custom enterprise pricing"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 4,
+      "reason": "Strong Python smart contract DSL"
+    }
   }
 }

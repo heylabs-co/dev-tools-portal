@@ -6,9 +6,8 @@
   "status": "active",
   "categories": {
     "primary": {
-      "id": "CAT-22",
-      "slug": "observability",
-      "name": "Observability / Logging / Tracing"
+      "slug": "feature-flags",
+      "name": "Feature Flags / Remote Config"
     }
   },
   "created_at": "2026-04-20T20:57:23.908Z",
@@ -47,5 +46,26 @@
     "verdict": "Serviceable feature flag and experimentation tool, but LaunchDarkly and open-source GrowthBook dominate.",
     "best_for": "Product teams already on AB Tasty wanting integrated feature flags and testing.",
     "not_for": "Teams seeking best-in-class flag tooling or experimentation stats."
+  },
+  "pricing": {
+    "model": "custom",
+    "has_free_tier": false
+  },
+  "scores": {
+    "lock_in": {
+      "level": "medium",
+      "score": 3,
+      "reason": "AB testing SDK, data exportable"
+    },
+    "transparency": {
+      "level": "low",
+      "score": 1,
+      "reason": "Custom pricing only"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 4,
+      "reason": "Multi-language SDKs, good docs"
+    }
   }
 }

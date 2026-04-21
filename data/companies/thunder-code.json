@@ -24,6 +24,16 @@
       "score": 3,
       "data_portability": "api_only",
       "migration_complexity": "medium"
+    },
+    "transparency": {
+      "level": "low",
+      "score": 1,
+      "reason": "Custom enterprise pricing"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Enterprise-focused tool"
     }
   },
   "description": "Thunder Code — AI coding assistant with context-aware code completion and refactoring for enterprise teams.",
@@ -56,5 +66,9 @@
     "verdict": "Another enterprise coding copilot — hard to justify unless it clearly beats Copilot Enterprise on your stack.",
     "best_for": "Enterprise teams seeking an alternative to Copilot with stronger data controls",
     "not_for": "Individual developers or teams already productive on Cursor or Copilot"
+  },
+  "pricing": {
+    "model": "custom",
+    "has_free_tier": false
   }
 }

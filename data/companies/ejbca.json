@@ -48,5 +48,26 @@
     "verdict": "The heavyweight open-source PKI; if you actually need CMP/EST, this is your tool.",
     "best_for": "Telecom, govtech, and IoT teams running serious public PKI.",
     "not_for": "Devs who just want short-lived internal mTLS certs."
+  },
+  "pricing": {
+    "model": "freemium",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "low",
+      "score": 5,
+      "reason": "OSS PKI/CA, fully portable"
+    },
+    "transparency": {
+      "level": "medium",
+      "score": 4,
+      "reason": "OSS free, enterprise tier opaque"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Mature but dense Java config"
+    }
   }
 }

@@ -48,5 +48,26 @@
     "verdict": "Decent managed Elasticsearch for small teams avoiding ops, but Elastic Cloud and AWS OpenSearch are stronger defaults.",
     "best_for": "Small teams needing hosted Elasticsearch without cluster management effort.",
     "not_for": "Teams already on AWS/Elastic Cloud or needing latest Elasticsearch features immediately."
+  },
+  "pricing": {
+    "model": "subscription",
+    "has_free_tier": false
+  },
+  "scores": {
+    "lock_in": {
+      "level": "high",
+      "score": 4,
+      "reason": "Elasticsearch-compatible, portable"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 5,
+      "reason": "Public subscription pricing"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 4,
+      "reason": "ES APIs, docs"
+    }
   }
 }

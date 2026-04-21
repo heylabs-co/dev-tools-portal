@@ -47,5 +47,26 @@
     "verdict": "The default API-first practice-management backend for digital health startups in the US.",
     "best_for": "US digital health startups needing EHR, scheduling, and billing APIs",
     "not_for": "Non-US healthcare products or tiny solo-practitioner tools"
+  },
+  "pricing": {
+    "model": "subscription",
+    "has_free_tier": false
+  },
+  "scores": {
+    "lock_in": {
+      "level": "medium",
+      "score": 3,
+      "reason": "EHR data exportable via API"
+    },
+    "transparency": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Subscription tiers, some opaque"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 5,
+      "reason": "Great API-first docs and SDKs"
+    }
   }
 }

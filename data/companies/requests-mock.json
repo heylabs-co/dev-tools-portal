@@ -64,5 +64,26 @@
     "verdict": "A solid choice for requests-based tests, though httpx users need respx and many teams prefer responses instead.",
     "best_for": "Python code using requests where you need deterministic HTTP stubs",
     "not_for": "httpx-based codebases where respx fits natively"
+  },
+  "pricing": {
+    "model": "free",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "low",
+      "score": 5,
+      "reason": "OSS test adapter"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 5,
+      "reason": "Free open source"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 4,
+      "reason": "Good pytest integration docs"
+    }
   }
 }

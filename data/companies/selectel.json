@@ -67,5 +67,26 @@
     "verdict": "Core cloud option for Russian market workloads, avoid for international projects with compliance exposure.",
     "best_for": "Russian companies needing local IaaS, object storage, and managed Kubernetes",
     "not_for": "International companies or those with sanctions compliance requirements"
+  },
+  "pricing": {
+    "model": "usage",
+    "has_free_tier": false
+  },
+  "scores": {
+    "lock_in": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Standard cloud APIs, OpenStack-based"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 4,
+      "reason": "Usage pricing public"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "API, docs mostly in Russian"
+    }
   }
 }

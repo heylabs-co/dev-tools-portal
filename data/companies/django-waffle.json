@@ -67,5 +67,26 @@
     "verdict": "Fine default for small/medium Django apps; outgrow it once you need multi-service or advanced targeting.",
     "best_for": "Django monoliths that need simple, in-process flags",
     "not_for": "Polyglot architectures or experimentation-heavy teams"
+  },
+  "pricing": {
+    "model": "free",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "low",
+      "score": 5,
+      "reason": "OSS feature flag lib"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 5,
+      "reason": "Free open-source"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 4,
+      "reason": "Good docs"
+    }
   }
 }

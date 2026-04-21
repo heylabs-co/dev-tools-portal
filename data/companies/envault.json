@@ -48,5 +48,26 @@
     "verdict": "Decent .env sync for small teams, but hard to bet your secrets stack on a niche vendor.",
     "best_for": "Indie teams needing simple shared env vars across dev and CI.",
     "not_for": "Enterprises needing dynamic secrets, PKI, or compliance features."
+  },
+  "pricing": {
+    "model": "freemium",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "low",
+      "score": 4,
+      "reason": "Env var manager, easily swapped"
+    },
+    "transparency": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Freemium tiers"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Simple CLI, basic docs"
+    }
   }
 }

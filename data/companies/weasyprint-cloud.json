@@ -50,5 +50,26 @@
     "verdict": "Managed WeasyPrint is handy — gives you OSS renderer without infra pain, but skip if you need JS rendering.",
     "best_for": "Devs who love WeasyPrint output but don't want to run the Python stack themselves.",
     "not_for": "Apps rendering JS-heavy pages to PDF — WeasyPrint can't see JS output."
+  },
+  "pricing": {
+    "model": "freemium",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "low",
+      "score": 5,
+      "reason": "OSS-based PDF service"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 4,
+      "reason": "Freemium public pricing"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 4,
+      "reason": "Simple HTML-to-PDF API"
+    }
   }
 }

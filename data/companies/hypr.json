@@ -21,6 +21,16 @@
       "score": 3,
       "data_portability": "full_export",
       "migration_complexity": "medium"
+    },
+    "transparency": {
+      "level": "low",
+      "score": 1,
+      "reason": "Custom enterprise pricing"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 4,
+      "reason": "Good SDKs and FIDO2 docs"
     }
   },
   "description": "HYPR — Passwordless authentication platform using FIDO2/WebAuthn for phishing-resistant employee and customer MFA.",
@@ -56,5 +66,9 @@
     "verdict": "Enterprise-grade passwordless for banks and regulated shops; overkill for startups that just need passkeys.",
     "best_for": "Banks, healthcare and regulated enterprises replacing passwords",
     "not_for": "Small teams wanting a quick passkey drop-in SDK"
+  },
+  "pricing": {
+    "model": "custom",
+    "has_free_tier": false
   }
 }

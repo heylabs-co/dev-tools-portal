@@ -49,5 +49,26 @@
     "verdict": "The fastest path to HIPAA production for small healthtech teams willing to pay the abstraction premium.",
     "best_for": "Early-stage healthtech startups that need HIPAA yesterday without a DevOps hire",
     "not_for": "Teams with deep AWS expertise or unusual infra requirements"
+  },
+  "pricing": {
+    "model": "subscription",
+    "has_free_tier": false
+  },
+  "scores": {
+    "lock_in": {
+      "level": "medium",
+      "score": 3,
+      "reason": "PaaS for HIPAA, app code portable"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 4,
+      "reason": "Subscription with public pricing"
+    },
+    "developer_experience": {
+      "level": "low",
+      "score": 5,
+      "reason": "Good deploy docs, compliance focused"
+    }
   }
 }

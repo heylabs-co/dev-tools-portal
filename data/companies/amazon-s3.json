@@ -90,5 +90,22 @@
     ],
     "best_for": "Image/video heavy applications",
     "not_for": "Small projects"
+  },
+  "scores": {
+    "lock_in": {
+      "level": "medium",
+      "score": 3,
+      "reason": "S3 API became de facto standard; data egress costly"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 4,
+      "reason": "Published per-GB storage and request pricing"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 5,
+      "reason": "Extensive SDKs, tools like s3cmd, vast ecosystem"
+    }
   }
 }

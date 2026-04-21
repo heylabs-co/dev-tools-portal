@@ -52,5 +52,26 @@
     "verdict": "Enterprise muscle behind ShardingSphere, most new projects just pick TiDB or CockroachDB instead.",
     "best_for": "Enterprises running ShardingSphere wanting vendor support and consulting",
     "not_for": "Teams free to choose fully-distributed SQL engines over sharding middleware"
+  },
+  "pricing": {
+    "model": "custom",
+    "has_free_tier": false
+  },
+  "scores": {
+    "lock_in": {
+      "level": "low",
+      "score": 4,
+      "reason": "OSS ShardingSphere base"
+    },
+    "transparency": {
+      "level": "low",
+      "score": 2,
+      "reason": "Custom enterprise pricing"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 4,
+      "reason": "OSS DB middleware, docs"
+    }
   }
 }

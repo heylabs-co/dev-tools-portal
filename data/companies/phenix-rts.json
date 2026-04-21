@@ -50,5 +50,26 @@
     "verdict": "Premium sub-second CDN for when stream sync drives revenue — otherwise Millicast or Mux do fine.",
     "best_for": "Sports betting, auctions, iGaming needing identical-time streams to every viewer.",
     "not_for": "VOD, general OTT, or latency-tolerant streaming."
+  },
+  "pricing": {
+    "model": "custom",
+    "has_free_tier": false
+  },
+  "scores": {
+    "lock_in": {
+      "level": "high",
+      "score": 2,
+      "reason": "proprietary streaming CDN"
+    },
+    "transparency": {
+      "level": "low",
+      "score": 1,
+      "reason": "custom enterprise pricing"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "SDK for low-latency streaming"
+    }
   }
 }

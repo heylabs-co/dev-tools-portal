@@ -1,7 +1,6 @@
 ---
 const mobileLinks = [
   { label: 'Tools', href: '/tools/' },
-  { label: 'Use Cases', href: '/use-cases/' },
   { label: 'Recommend ✨', href: '/recommend/' },
   { label: 'MCP Servers', href: '/mcp-servers/' },
   { label: 'AI Skills', href: '/skills/' },
@@ -130,18 +129,6 @@ const mobileLinks = [
           </div>
         </li>
 
-        <!-- Use Cases (direct link) -->
-        <li>
-          <a
-            href="/use-cases/"
-            class="nav-link relative px-3 py-2 text-sm font-medium transition-colors duration-150"
-            style="color: var(--color-muted);"
-          >
-            Use Cases
-            <span class="nav-underline absolute bottom-0.5 left-3 right-3 h-px origin-left scale-x-0 transition-transform duration-200 ease-out" style="background-color: var(--color-accent);"></span>
-          </a>
-        </li>
-
         <!-- Compare (direct link) -->
         <li>
           <a
@@ -185,13 +172,48 @@ const mobileLinks = [
 
       <!-- Search + mobile toggle -->
       <div class="flex items-center gap-2">
+        <!-- Inline header search (always visible, submits to /search/?q=…) -->
+        <form
+          action="/search/"
+          method="get"
+          role="search"
+          class="header-search relative hidden sm:flex items-center"
+        >
+          <svg
+            class="absolute left-2.5 h-4 w-4 pointer-events-none"
+            style="color: var(--color-muted);"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="2"
+            aria-hidden="true"
+          >
+            <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35M11 19a8 8 0 100-16 8 8 0 000 16z" />
+          </svg>
+          <input
+            id="header-search-input"
+            type="search"
+            name="q"
+            autocomplete="off"
+            placeholder="Search tools…"
+            aria-label="Search tools"
+            class="w-44 md:w-60 lg:w-72 rounded-lg border py-1.5 pl-8 pr-8 text-sm transition-colors duration-150 focus:outline-none"
+            style="background-color: var(--color-elevated); border-color: var(--color-border); color: var(--color-text);"
+          />
+          <kbd
+            class="absolute right-2 pointer-events-none rounded border px-1 text-[10px] font-mono hidden md:inline-block"
+            style="border-color: var(--color-border); color: var(--color-muted); background-color: var(--color-surface);"
+            aria-hidden="true"
+          >/</kbd>
+        </form>
+
+        <!-- Mobile search icon (visible on small screens only) -->
         <a
           href="/search/"
           aria-label="Search"
-          class="inline-flex h-8 w-8 items-center justify-center rounded-lg transition-colors duration-150"
+          class="sm:hidden inline-flex h-8 w-8 items-center justify-center rounded-lg transition-colors duration-150"
           style="color: var(--color-muted);"
-          onmouseenter="this.style.color='var(--color-text)';this.style.backgroundColor='var(--color-elevated)'"
-          onmouseleave="this.style.color='var(--color-muted)';this.style.backgroundColor='transparent'"
         >
           <svg xmlns="http://www.w3.org/2000/svg" class="h-[18px] w-[18px]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
             <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35M11 19a8 8 0 100-16 8 8 0 000 16z" />
@@ -263,6 +285,12 @@ const mobileLinks = [
 </header>
 
 <style>
+  /* Header inline search */
+  .header-search input:focus {
+    border-color: var(--color-accent) !important;
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-accent) 20%, transparent);
+  }
+
   /* Direct nav links */
   .nav-link:hover {
     color: var(--color-text) !important;
@@ -318,4 +346,22 @@ const mobileLinks = [
 
   btn?.addEventListener('click', toggleMenu);
   backdrop?.addEventListener('click', toggleMenu);
+
+  // Keyboard shortcut: "/" focuses header search
+  document.addEventListener('keydown', (e) => {
+    if (e.key === '/' && !e.ctrlKey && !e.metaKey) {
+      const target = e.target;
+      const isEditable =
+        target instanceof HTMLElement &&
+        (target.tagName === 'INPUT' ||
+         target.tagName === 'TEXTAREA' ||
+         target.isContentEditable);
+      if (isEditable) return;
+      const input = document.getElementById('header-search-input');
+      if (input) {
+        e.preventDefault();
+        input.focus();
+      }
+    }
+  });
 </script>

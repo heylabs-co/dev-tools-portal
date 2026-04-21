@@ -47,5 +47,26 @@
     "verdict": "Best-value cross-border transfers and multi-currency accounts — just remember, it isn't a payment gateway for card acceptance.",
     "best_for": "Businesses doing international transfers and payouts needing low FX cost",
     "not_for": "Merchants needing to accept card payments from customers"
+  },
+  "pricing": {
+    "model": "usage",
+    "has_free_tier": false
+  },
+  "scores": {
+    "lock_in": {
+      "level": "medium",
+      "score": 3,
+      "reason": "API integration, switchable"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 5,
+      "reason": "Public FX/fee pricing"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 4,
+      "reason": "Good API docs, SDKs"
+    }
   }
 }

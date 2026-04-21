@@ -47,5 +47,26 @@
     "verdict": "Budget KYB option with UBO and monitoring; validate registry coverage against Kyckr before signing.",
     "best_for": "Fintechs and marketplaces needing affordable global KYB with UBO and ongoing business monitoring",
     "not_for": "Tier-1 banks whose auditors require named, court-defensible primary registry data sources"
+  },
+  "pricing": {
+    "model": "usage",
+    "has_free_tier": false
+  },
+  "scores": {
+    "lock_in": {
+      "level": "medium",
+      "score": 3,
+      "reason": "KYB data exportable, standard APIs"
+    },
+    "transparency": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Usage-based, some opacity"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Standard KYB API docs"
+    }
   }
 }

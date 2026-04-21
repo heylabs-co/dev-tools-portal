@@ -67,5 +67,26 @@
     "verdict": "Powerful when time-series features are the bottleneck; otherwise a simpler feature store wins.",
     "best_for": "ML teams with heavy event-based streaming feature requirements",
     "not_for": "Batch-heavy ML or teams without real-time feature pain"
+  },
+  "pricing": {
+    "model": "custom",
+    "has_free_tier": false
+  },
+  "scores": {
+    "lock_in": {
+      "level": "high",
+      "score": 2,
+      "reason": "Proprietary feature engine"
+    },
+    "transparency": {
+      "level": "low",
+      "score": 1,
+      "reason": "Custom pricing"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "DSL learning curve"
+    }
   }
 }

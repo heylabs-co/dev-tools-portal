@@ -48,5 +48,26 @@
     "verdict": "Quick path to end-to-end encryption without cryptography expertise, lock-in trade-off against rolling your own.",
     "best_for": "Product teams adding E2EE without hiring cryptographers, especially in healthcare or legal",
     "not_for": "Teams preferring open-source crypto stacks they can audit and self-host"
+  },
+  "pricing": {
+    "model": "subscription",
+    "has_free_tier": false
+  },
+  "scores": {
+    "lock_in": {
+      "level": "medium",
+      "score": 3,
+      "reason": "E2EE keys managed, migration complex"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 4,
+      "reason": "Subscription pricing"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 4,
+      "reason": "SDKs, good docs"
+    }
   }
 }

@@ -49,5 +49,26 @@
     "verdict": "Solid all-in-one for teams without dedicated MLOps staff; too constrained for ML-first shops.",
     "best_for": "Mid-size enterprises needing custom AI without hiring a full ML team",
     "not_for": "ML research teams or anyone wanting fine-grained infra control"
+  },
+  "pricing": {
+    "model": "custom",
+    "has_free_tier": false
+  },
+  "scores": {
+    "lock_in": {
+      "level": "low",
+      "score": 2,
+      "reason": "Proprietary ML platform with custom model registry"
+    },
+    "transparency": {
+      "level": "low",
+      "score": 1,
+      "reason": "Custom enterprise pricing only"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Python SDK, notebook integration; ecosystem narrow"
+    }
   }
 }

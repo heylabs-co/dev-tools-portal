@@ -47,5 +47,26 @@
     "verdict": "Fine for a small React app that just needs on/off flags; outgrow it once you need real experimentation.",
     "best_for": "Small React/Node apps needing basic feature toggles fast",
     "not_for": "Teams needing advanced targeting, experiments or governance"
+  },
+  "pricing": {
+    "model": "freemium",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "low",
+      "score": 4,
+      "reason": "Simple flag service, easy migration"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 4,
+      "reason": "Freemium with public tiers"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Basic REST API and React SDK"
+    }
   }
 }

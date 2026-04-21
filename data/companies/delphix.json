@@ -47,5 +47,26 @@
     "verdict": "The heavyweight standard for test data virtualization, priced and staffed accordingly.",
     "best_for": "Large enterprises with massive relational DBs and strict data privacy rules",
     "not_for": "Startups or SaaS teams that can reseed small Postgres DBs in seconds"
+  },
+  "pricing": {
+    "model": "custom",
+    "has_free_tier": false
+  },
+  "scores": {
+    "lock_in": {
+      "level": "high",
+      "score": 2,
+      "reason": "Proprietary virtualization, hard migrate"
+    },
+    "transparency": {
+      "level": "low",
+      "score": 1,
+      "reason": "Custom enterprise pricing only"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Enterprise docs available"
+    }
   }
 }

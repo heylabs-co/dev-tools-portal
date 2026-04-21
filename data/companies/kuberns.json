@@ -49,5 +49,26 @@
     "verdict": "Interesting AWS abstraction layer, but still early and risky for production-critical workloads.",
     "best_for": "Small teams wanting AWS power without managing CloudFormation or Terraform directly",
     "not_for": "Multi-cloud strategies, enterprises, or mission-critical production workloads"
+  },
+  "pricing": {
+    "model": "freemium",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "medium",
+      "score": 3,
+      "reason": "AI PaaS on AWS, configs partly portable"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 4,
+      "reason": "Freemium public"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Growing product"
+    }
   }
 }

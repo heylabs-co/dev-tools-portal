@@ -67,5 +67,26 @@
     "verdict": "Ambitious polyglot observability on ClickHouse; great for cost savings if you can operate it.",
     "best_for": "Teams wanting unified ClickHouse storage for LGTM stack without Grafana Cloud bills.",
     "not_for": "Teams without ClickHouse expertise or wanting turnkey hosted experience."
+  },
+  "pricing": {
+    "model": "free",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "low",
+      "score": 5,
+      "reason": "OSS observability stack"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 5,
+      "reason": "Free open source"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 4,
+      "reason": "API-compatible with Loki/Prom"
+    }
   }
 }

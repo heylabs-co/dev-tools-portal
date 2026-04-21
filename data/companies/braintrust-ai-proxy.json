@@ -48,5 +48,26 @@
     "verdict": "Clear win if you already use Braintrust; weaker as a standalone proxy vs Helicone or Portkey.",
     "best_for": "Teams standardizing LLM evals and observability on Braintrust",
     "not_for": "Teams only needing a lightweight proxy without eval tooling"
+  },
+  "pricing": {
+    "model": "freemium",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "low",
+      "score": 5,
+      "reason": "Proxy is drop-in, provider-agnostic"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 4,
+      "reason": "Freemium public tiers"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 5,
+      "reason": "OpenAI-compatible proxy, great UX"
+    }
   }
 }

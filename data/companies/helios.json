@@ -47,5 +47,26 @@
     "verdict": "Sharp tool for developer-time distributed tracing; not a full replacement for a production APM platform.",
     "best_for": "Dev teams debugging complex microservice interactions",
     "not_for": "SRE teams needing full production APM, logs, and alerting"
+  },
+  "pricing": {
+    "model": "freemium",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "low",
+      "score": 4,
+      "reason": "OpenTelemetry standard, portable traces"
+    },
+    "transparency": {
+      "level": "medium",
+      "score": 4,
+      "reason": "Freemium pricing public"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 4,
+      "reason": "Good OTel-based SDKs"
+    }
   }
 }

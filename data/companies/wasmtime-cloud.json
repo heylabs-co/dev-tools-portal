@@ -48,5 +48,26 @@
     "verdict": "The most serious Wasm runtime for server-side use, but don't mistake it for a managed cloud product.",
     "best_for": "Infrastructure teams embedding Wasm execution into their own platforms",
     "not_for": "App developers wanting a deploy-this-URL managed Wasm platform"
+  },
+  "pricing": {
+    "model": "freemium",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "low",
+      "score": 4,
+      "reason": "WASI-compatible, portable"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 4,
+      "reason": "Freemium with public pricing"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 4,
+      "reason": "Bytecode Alliance, good docs"
+    }
   }
 }

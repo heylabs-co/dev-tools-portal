@@ -48,5 +48,26 @@
     "verdict": "Cost-predictable ETL for long-tail connectors; not as slick as Fivetran but often cheaper at scale.",
     "best_for": "Teams needing niche SaaS connectors without Fivetran's row-based pricing",
     "not_for": "Modern data stack shops wanting tight dbt and orchestrator integration"
+  },
+  "pricing": {
+    "model": "subscription",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "low",
+      "score": 4,
+      "reason": "Standard JDBC/ODBC connectors, portable"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 4,
+      "reason": "Public subscription tiers"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 4,
+      "reason": "Standard protocols, extensive connectors"
+    }
   }
 }

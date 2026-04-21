@@ -65,5 +65,26 @@
     "verdict": "Essential for serious Go integration testing; it pays back its Docker overhead within the first week.",
     "best_for": "Go teams needing realistic integration tests against real databases and queues",
     "not_for": "CI environments without Docker access or latency-sensitive unit suites"
+  },
+  "pricing": {
+    "model": "free",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "low",
+      "score": 5,
+      "reason": "Open source, Docker-based, portable"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 5,
+      "reason": "Free open source"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 5,
+      "reason": "Excellent Go docs and examples"
+    }
   }
 }

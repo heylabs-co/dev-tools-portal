@@ -64,5 +64,26 @@
     "verdict": "Promising open-source IaaS, great for CI cost savings but not a full AWS replacement yet.",
     "best_for": "Teams cutting GitHub Actions bills or wanting open-source IaaS on Hetzner",
     "not_for": "Enterprises needing the full breadth of AWS managed services"
+  },
+  "pricing": {
+    "model": "usage",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "low",
+      "score": 5,
+      "reason": "OSS AWS alternative, portable"
+    },
+    "transparency": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Usage-based rates published"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "OSS IaaS docs"
+    }
   }
 }

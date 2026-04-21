@@ -48,5 +48,26 @@
     "verdict": "Reasonable Mapbox alternative for EU-focused apps prioritizing data residency and lower costs.",
     "best_for": "European SaaS needing GDPR-compliant maps without Google pricing",
     "not_for": "Apps requiring best-in-class routing and traffic data"
+  },
+  "pricing": {
+    "model": "freemium",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "low",
+      "score": 5,
+      "reason": "OSM-based tiles, portable"
+    },
+    "transparency": {
+      "level": "medium",
+      "score": 4,
+      "reason": "Freemium pricing public"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 4,
+      "reason": "Mapbox GL compatible"
+    }
   }
 }

@@ -52,5 +52,26 @@
     "verdict": "A credible Chinese-market alternative to Qwen and Doubao; less relevant globally.",
     "best_for": "Chinese developers building chat and RAG apps in Mandarin",
     "not_for": "Western teams with US or EU data residency constraints"
+  },
+  "pricing": {
+    "model": "usage",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "medium",
+      "score": 3,
+      "reason": "API-based, replaceable"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 4,
+      "reason": "Usage-based pricing"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "LLM API, docs mainly Chinese"
+    }
   }
 }

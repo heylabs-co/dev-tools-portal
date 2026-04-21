@@ -48,5 +48,26 @@
     "verdict": "The pragmatic billing choice for European SaaS needing compliance-grade SEPA and PSD2 without US-first tooling.",
     "best_for": "DACH and Nordic SaaS prioritizing EU data residency and local payment methods.",
     "not_for": "US-centric SaaS or teams wanting modern developer experience and polished UI."
+  },
+  "pricing": {
+    "model": "hybrid",
+    "has_free_tier": false
+  },
+  "scores": {
+    "lock_in": {
+      "level": "medium",
+      "score": 3,
+      "reason": "EU-hosted subscription billing, exportable"
+    },
+    "transparency": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Hybrid pricing with contact tiers"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 4,
+      "reason": "REST API with good docs"
+    }
   }
 }

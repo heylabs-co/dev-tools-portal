@@ -49,5 +49,26 @@
     "verdict": "Mature pick for enterprise CX teams that want to avoid building their own agent stack.",
     "best_for": "Enterprise support orgs automating tier-1 chat and voice deflection",
     "not_for": "Engineering teams wanting code-level control over agent behavior"
+  },
+  "pricing": {
+    "model": "custom",
+    "has_free_tier": false
+  },
+  "scores": {
+    "lock_in": {
+      "level": "low",
+      "score": 2,
+      "reason": "Conversation flows and training data tied to Ada's proprietary builder"
+    },
+    "transparency": {
+      "level": "low",
+      "score": 1,
+      "reason": "Custom enterprise pricing only"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "JS SDK and webhooks; no-code interface dominates"
+    }
   }
 }

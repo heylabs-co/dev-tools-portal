@@ -52,5 +52,26 @@
     "verdict": "Interesting middleware idea for multi-engine shops, but niche adoption limits long-term bets.",
     "best_for": "Enterprises needing governed access to many compute engines at once",
     "not_for": "Teams standardizing on a single engine like Snowflake or BigQuery"
+  },
+  "pricing": {
+    "model": "free",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "low",
+      "score": 5,
+      "reason": "Apache OSS middleware"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 5,
+      "reason": "Free OSS"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Docs adequate"
+    }
   }
 }

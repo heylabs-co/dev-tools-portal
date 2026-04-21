@@ -47,5 +47,26 @@
     "verdict": "The right pick for SaaS teams that want ATO and signup protection via API without an enterprise contract.",
     "best_for": "B2B and B2C SaaS protecting logins, signups and workspace abuse with a small risk team.",
     "not_for": "Payment-first merchants or bot-heavy retail needing dedicated WAF-layer mitigation."
+  },
+  "pricing": {
+    "model": "freemium",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Proprietary fraud API with webhooks"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 5,
+      "reason": "Public freemium pricing"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 5,
+      "reason": "Developer-first API, SDKs, webhooks"
+    }
   }
 }

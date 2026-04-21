@@ -48,5 +48,26 @@
     "verdict": "Works for local dev sharing, but don't mistake it for production secrets infrastructure.",
     "best_for": "Developers sharing local previews with a little secret metadata.",
     "not_for": "Teams needing a proper production secrets vault."
+  },
+  "pricing": {
+    "model": "free",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "low",
+      "score": 5,
+      "reason": "OSS tunneling tool, portable"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 5,
+      "reason": "Free open-source"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "CLI-focused, growing docs"
+    }
   }
 }

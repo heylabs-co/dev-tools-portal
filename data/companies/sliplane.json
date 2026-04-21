@@ -49,5 +49,26 @@
     "verdict": "Refreshingly simple flat-rate container host, but small-vendor risk is real for production bets.",
     "best_for": "Indie devs and small teams wanting predictable container hosting without per-resource billing",
     "not_for": "Enterprises, global-scale apps, or teams needing managed databases bundled"
+  },
+  "pricing": {
+    "model": "subscription",
+    "has_free_tier": false
+  },
+  "scores": {
+    "lock_in": {
+      "level": "medium",
+      "score": 4,
+      "reason": "Docker containers portable"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 5,
+      "reason": "Flat-rate public pricing"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Simple container hosting"
+    }
   }
 }

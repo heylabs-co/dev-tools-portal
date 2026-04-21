@@ -21,6 +21,16 @@
       "score": 2,
       "data_portability": "partial_export",
       "migration_complexity": "medium"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 4,
+      "reason": "Usage-based pricing public"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 4,
+      "reason": "Agent sandbox API docs"
     }
   },
   "description": "Runloop — Cloud sandbox infrastructure for AI coding agents providing isolated development environments via API.",
@@ -55,5 +65,9 @@
     "verdict": "Solid pick if you are shipping AI coding agents at scale, but irrelevant for typical developers.",
     "best_for": "Companies building AI coding agents needing managed sandbox infrastructure",
     "not_for": "Individual developers who just want an IDE assistant, not agent infrastructure"
+  },
+  "pricing": {
+    "model": "usage",
+    "has_free_tier": true
   }
 }

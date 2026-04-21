@@ -48,5 +48,26 @@
     "verdict": "Clean DAST option well-suited to API-first teams; pair it with SAST and SCA for full AppSec.",
     "best_for": "API-heavy dev teams wanting developer-friendly DAST inside CI/CD pipelines.",
     "not_for": "Shops wanting one vendor for SAST, SCA, and DAST in a single unified console."
+  },
+  "pricing": {
+    "model": "subscription",
+    "has_free_tier": false
+  },
+  "scores": {
+    "lock_in": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Subscription DAST scanner"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 4,
+      "reason": "Public subscription"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 4,
+      "reason": "CI/CD-friendly API docs"
+    }
   }
 }

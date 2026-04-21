@@ -48,5 +48,26 @@
     "verdict": "Solid status aggregator competing directly with IsDown; pick based on specific vendor coverage and UX preference.",
     "best_for": "Ops teams tracking dependency outages across many SaaS vendors.",
     "not_for": "Teams wanting proactive outage detection ahead of vendor status updates."
+  },
+  "pricing": {
+    "model": "freemium",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "low",
+      "score": 4,
+      "reason": "Aggregator, easy to leave"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 5,
+      "reason": "Public freemium tiers"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Simple webhook API"
+    }
   }
 }

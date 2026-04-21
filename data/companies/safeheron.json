@@ -49,5 +49,26 @@
     "verdict": "Compelling self-custody MPC for crypto teams, but miscategorized as generic secrets management.",
     "best_for": "Crypto institutions wanting MPC self-custody with open protocols.",
     "not_for": "Teams that need API keys and TLS certs, not crypto wallets."
+  },
+  "pricing": {
+    "model": "freemium",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "low",
+      "score": 4,
+      "reason": "Open MPC protocol libraries"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 4,
+      "reason": "Freemium wallet pricing"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 4,
+      "reason": "MPC SDK docs strong"
+    }
   }
 }

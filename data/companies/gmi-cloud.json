@@ -21,6 +21,16 @@
       "score": 3,
       "data_portability": "api_only",
       "migration_complexity": "medium"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 4,
+      "reason": "Usage public pricing"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "GPU cluster docs"
     }
   },
   "description": "GMI Cloud — GPU-focused cloud platform targeting AI inference and model training with H100 and A100 cluster access.",
@@ -54,5 +64,9 @@
     "verdict": "A credible specialist GPU cloud for AI teams prioritizing price and availability over breadth.",
     "best_for": "AI startups training or serving models on H100 and A100",
     "not_for": "Teams needing databases, queues, and a full managed cloud"
+  },
+  "pricing": {
+    "model": "usage",
+    "has_free_tier": false
   }
 }

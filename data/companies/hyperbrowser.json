@@ -52,5 +52,26 @@
     "verdict": "Useful infra if you're building agents that live in a real browser at scale.",
     "best_for": "Teams building web automation and scraping agents in production",
     "not_for": "Simple deterministic scraping where Playwright solo is cheaper"
+  },
+  "pricing": {
+    "model": "freemium",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "low",
+      "score": 4,
+      "reason": "Browser automation API swappable"
+    },
+    "transparency": {
+      "level": "medium",
+      "score": 4,
+      "reason": "Freemium pricing public"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 4,
+      "reason": "Good SDKs, Playwright-compatible"
+    }
   }
 }

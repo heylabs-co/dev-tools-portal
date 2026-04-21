@@ -6,9 +6,8 @@
   "status": "active",
   "categories": {
     "primary": {
-      "id": "CAT-35",
-      "slug": "api-management",
-      "name": "Developer Portals / API Management"
+      "slug": "backend-as-a-service",
+      "name": "Backend-as-a-Service"
     }
   },
   "created_at": "2026-04-20T20:57:23.944Z",
@@ -46,5 +45,26 @@
     "verdict": "The obvious choice for Ruby background jobs, though it's miscategorized — this isn't an API management product.",
     "best_for": "Rails applications running background jobs at scale",
     "not_for": "Non-Ruby stacks or pure API gateway needs"
+  },
+  "pricing": {
+    "model": "freemium",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "high",
+      "score": 4,
+      "reason": "OSS core Ruby, Redis-based"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 4,
+      "reason": "Freemium with public tiers"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 5,
+      "reason": "Ruby standard, great docs"
+    }
   }
 }

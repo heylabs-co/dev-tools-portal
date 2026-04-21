@@ -66,5 +66,26 @@
     "verdict": "When you need real MSI/MSIX and enterprise deployment, WiX is still the right answer — just budget the ramp-up.",
     "best_for": "Enterprise Windows apps requiring MSI/MSIX and Group Policy deployment.",
     "not_for": "Indie apps where Inno Setup or Velopack are vastly simpler."
+  },
+  "pricing": {
+    "model": "free",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "low",
+      "score": 5,
+      "reason": "OSS installer toolset"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 5,
+      "reason": "Free OSS"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Steep XML learning curve"
+    }
   }
 }

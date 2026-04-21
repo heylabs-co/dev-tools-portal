@@ -45,5 +45,26 @@
     "verdict": "Clear winner for large JVM monorepos with painful builds; hard to justify for smaller codebases or non-JVM stacks.",
     "best_for": "Enterprises with large Gradle, Maven, or Bazel monorepos and slow CI",
     "not_for": "Small teams, non-JVM stacks, or budget-constrained startups"
+  },
+  "pricing": {
+    "model": "custom",
+    "has_free_tier": false
+  },
+  "scores": {
+    "lock_in": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Build scans proprietary, configs portable"
+    },
+    "transparency": {
+      "level": "low",
+      "score": 1,
+      "reason": "Custom enterprise pricing"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 5,
+      "reason": "Excellent Gradle docs"
+    }
   }
 }

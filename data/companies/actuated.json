@@ -52,5 +52,26 @@
     "verdict": "The right answer when GitHub-hosted Actions bills explode and you have metal to run jobs on.",
     "best_for": "Teams with heavy CI spend and in-house ops willing to self-host runners for isolation and cost.",
     "not_for": "Small teams without hardware or Linux/Firecracker expertise."
+  },
+  "pricing": {
+    "model": "freemium",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "high",
+      "score": 4,
+      "reason": "Standard GitHub Actions runners; easy to revert to hosted"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 4,
+      "reason": "Public freemium tiers and clear docs"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 4,
+      "reason": "Focused product, thorough blog/docs by OpenFaaS author"
+    }
   }
 }

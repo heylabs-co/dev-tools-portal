@@ -47,5 +47,26 @@
     "verdict": "The only real option for public JVM libs; painful to onboard, reliable once you're in.",
     "best_for": "Java/Kotlin/Scala library authors publishing for the broader ecosystem.",
     "not_for": "Private internal artifacts — use a private Nexus or Artifactory instead."
+  },
+  "pricing": {
+    "model": "free",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "low",
+      "score": 5,
+      "reason": "Open public repo"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 5,
+      "reason": "Free"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 5,
+      "reason": "De-facto JVM registry"
+    }
   }
 }

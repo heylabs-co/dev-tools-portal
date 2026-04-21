@@ -6,9 +6,8 @@
   "status": "active",
   "categories": {
     "primary": {
-      "id": "CAT-37",
-      "slug": "code-assistants",
-      "name": "Code Assistants / Agent Tooling"
+      "slug": "no-code-low-code",
+      "name": "No-code / Low-code App Builders"
     }
   },
   "created_at": "2026-04-20T20:57:23.926Z",
@@ -21,6 +20,16 @@
       "score": 4,
       "data_portability": "partial_export",
       "migration_complexity": "medium"
+    },
+    "transparency": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Subscription with some tiers"
+    },
+    "developer_experience": {
+      "level": "low",
+      "score": 2,
+      "reason": "PM tool, not dev-focused"
     }
   },
   "description": "Moda — AI project management and development planning tool for organizing and prioritizing engineering work.",
@@ -55,5 +64,9 @@
     "verdict": "A nice planning aid, but not a coding tool and unlikely to dethrone Linear for most teams.",
     "best_for": "Small engineering teams wanting a lightweight AI-assisted planning tool",
     "not_for": "Teams committed to Linear, Jira, or needing deep ticket tracking"
+  },
+  "pricing": {
+    "model": "subscription",
+    "has_free_tier": false
   }
 }

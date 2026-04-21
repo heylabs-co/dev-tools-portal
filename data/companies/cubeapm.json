@@ -48,5 +48,26 @@
     "verdict": "Worth a serious look for teams fed up with Datadog bills; mature stacks may miss incumbents' breadth.",
     "best_for": "Kubernetes-heavy teams seeking APM and logs at predictable cost",
     "not_for": "Large enterprises needing the deepest integration ecosystem"
+  },
+  "pricing": {
+    "model": "usage",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "medium",
+      "score": 3,
+      "reason": "OTel-based, somewhat portable"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 4,
+      "reason": "Usage pricing published"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "OTel standard, growing docs"
+    }
   }
 }

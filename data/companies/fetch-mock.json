@@ -64,5 +64,26 @@
     "verdict": "Pragmatic fetch mocker that is fine until you outgrow it and want MSW-level fidelity.",
     "best_for": "Node-side units that only need to stub fetch calls quickly",
     "not_for": "Frontend integration tests better served by Mock Service Worker"
+  },
+  "pricing": {
+    "model": "free",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "low",
+      "score": 5,
+      "reason": "OSS library, no lock-in"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 5,
+      "reason": "Free OSS"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 4,
+      "reason": "Well-documented fetch mocking"
+    }
   }
 }

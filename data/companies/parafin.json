@@ -47,5 +47,26 @@
     "verdict": "Strong embedded-capital API for US platforms, but limited to US merchants and platform customers.",
     "best_for": "US vertical SaaS and marketplace platforms adding capital as a retention lever",
     "not_for": "Individual merchants or non-US platforms needing direct lending access"
+  },
+  "pricing": {
+    "model": "custom",
+    "has_free_tier": false
+  },
+  "scores": {
+    "lock_in": {
+      "level": "high",
+      "score": 2,
+      "reason": "embedded lending, integration coupled"
+    },
+    "transparency": {
+      "level": "low",
+      "score": 1,
+      "reason": "custom pricing per platform"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "API-first, docs behind contact"
+    }
   }
 }

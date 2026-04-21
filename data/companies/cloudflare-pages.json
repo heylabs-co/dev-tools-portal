@@ -46,5 +46,26 @@
     "verdict": "The best free tier in static/full-stack hosting, with edge constraints you must design around.",
     "best_for": "Static sites and edge-first full-stack apps already on Cloudflare",
     "not_for": "Heavy Node.js monoliths that assume a full server runtime"
+  },
+  "pricing": {
+    "model": "freemium",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "low",
+      "score": 4,
+      "reason": "Static/SSR hosting, standard builds portable"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 5,
+      "reason": "Public freemium tiers"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 5,
+      "reason": "Git-based, Workers integration, great docs"
+    }
   }
 }

@@ -47,5 +47,26 @@
     "verdict": "A pragmatic reCAPTCHA replacement with extra signals; not a substitute for a real bot management platform.",
     "best_for": "Sites swapping reCAPTCHA for privacy or risk-signal reasons without ripping up their stack.",
     "not_for": "High-value e-commerce under sophisticated ATO where a full bot manager is warranted."
+  },
+  "pricing": {
+    "model": "custom",
+    "has_free_tier": false
+  },
+  "scores": {
+    "lock_in": {
+      "level": "medium",
+      "score": 3,
+      "reason": "CAPTCHA provider swap possible but work"
+    },
+    "transparency": {
+      "level": "low",
+      "score": 1,
+      "reason": "Custom enterprise pricing"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 4,
+      "reason": "Solid docs and integration SDKs"
+    }
   }
 }

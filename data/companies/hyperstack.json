@@ -49,5 +49,26 @@
     "verdict": "A solid cost-effective GPU cloud if you don't need the full hyperscaler toolbox.",
     "best_for": "AI startups and labs running training or inference without AWS lock-in",
     "not_for": "Enterprises needing deep integration with AWS/GCP/Azure services"
+  },
+  "pricing": {
+    "model": "usage",
+    "has_free_tier": false
+  },
+  "scores": {
+    "lock_in": {
+      "level": "low",
+      "score": 4,
+      "reason": "Standard GPU cloud, migratable"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 5,
+      "reason": "Usage pricing public"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 4,
+      "reason": "Good API and CLI docs"
+    }
   }
 }

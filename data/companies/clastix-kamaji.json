@@ -65,5 +65,26 @@
     "verdict": "A clever multi-tenant k8s pattern for platform teams, overkill for single-cluster shops.",
     "best_for": "Platform engineers offering hosted k8s control planes internally",
     "not_for": "Teams running a handful of clusters without tenant isolation needs"
+  },
+  "pricing": {
+    "model": "free",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "low",
+      "score": 5,
+      "reason": "OSS K8s control plane manager"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 5,
+      "reason": "Free OSS"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "K8s-native, niche but documented"
+    }
   }
 }

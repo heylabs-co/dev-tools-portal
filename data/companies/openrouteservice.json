@@ -48,5 +48,26 @@
     "verdict": "Great free tier for prototypes; at production scale expect to self-host or pay commercial alternatives.",
     "best_for": "Side projects and research needing routing without vendor lock-in",
     "not_for": "Production apps needing 99.9% SLA and traffic-aware routing"
+  },
+  "pricing": {
+    "model": "freemium",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "high",
+      "score": 5,
+      "reason": "OSS routing on OSM"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 4,
+      "reason": "freemium with quotas"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 4,
+      "reason": "good API docs"
+    }
   }
 }

@@ -51,5 +51,26 @@
     "verdict": "Cheaper, EU-sovereign S3 alternative with no egress — good fit if AWS egress bills sting or GDPR looms.",
     "best_for": "European teams wanting S3-compatible storage with data sovereignty and predictable costs.",
     "not_for": "Global enterprises needing 20+ regions and hyperscaler SLAs."
+  },
+  "pricing": {
+    "model": "usage",
+    "has_free_tier": false
+  },
+  "scores": {
+    "lock_in": {
+      "level": "low",
+      "score": 4,
+      "reason": "S3-compatible, portable"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 4,
+      "reason": "Usage-based with public pricing"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "S3 SDK compatible, decent docs"
+    }
   }
 }

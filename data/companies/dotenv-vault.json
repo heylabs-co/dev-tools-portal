@@ -48,5 +48,26 @@
     "verdict": "Nice upgrade over sharing .env files in Slack, but stops short of real secrets management.",
     "best_for": "Small teams syncing Node/Next.js .env files across devs and CI safely.",
     "not_for": "Orgs needing RBAC, dynamic creds, or audit trails."
+  },
+  "pricing": {
+    "model": "freemium",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Secrets exportable"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 4,
+      "reason": "Freemium with tiers"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 4,
+      "reason": "Good CLI docs"
+    }
   }
 }

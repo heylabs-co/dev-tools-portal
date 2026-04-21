@@ -58,5 +58,26 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "pricing": {
+    "model": "usage",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "high",
+      "score": 5,
+      "reason": "Managed Apache Kafka, standard protocol, fully portable"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 4,
+      "reason": "Public per-hour usage pricing"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 4,
+      "reason": "Managed Kafka with Terraform, CLI, strong docs"
+    }
   }
 }

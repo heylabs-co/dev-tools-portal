@@ -48,5 +48,26 @@
     "verdict": "A serious option when HSM-grade key custody and confidential computing actually matter.",
     "best_for": "Banks, healthcare, and gov teams needing FIPS-level key protection.",
     "not_for": "SaaS startups fine with cloud KMS and a standard vault."
+  },
+  "pricing": {
+    "model": "custom",
+    "has_free_tier": false
+  },
+  "scores": {
+    "lock_in": {
+      "level": "high",
+      "score": 2,
+      "reason": "Enterprise HSM/confidential compute"
+    },
+    "transparency": {
+      "level": "low",
+      "score": 1,
+      "reason": "Custom pricing"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "HSM APIs, decent docs"
+    }
   }
 }

@@ -47,5 +47,26 @@
     "verdict": "Pragmatic choice for .NET shops that want ELMAH-style logging in the cloud without heavy vendor lock-in.",
     "best_for": ".NET/ASP.NET teams needing focused error logging and uptime",
     "not_for": "Polyglot shops or teams wanting full APM-grade tooling"
+  },
+  "pricing": {
+    "model": "freemium",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "medium",
+      "score": 3,
+      "reason": ".NET-centric SDKs, logs exportable"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 4,
+      "reason": "Public freemium tiers"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 4,
+      "reason": "Strong .NET integrations, docs"
+    }
   }
 }

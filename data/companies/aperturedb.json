@@ -48,5 +48,26 @@
     "verdict": "Useful when vectors, blobs, and metadata must live together; overkill for text-only RAG.",
     "best_for": "CV and multimodal ML teams managing image, video, and embedding datasets",
     "not_for": "Simple text-only RAG projects where Pinecone or pgvector suffice"
+  },
+  "pricing": {
+    "model": "freemium",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Proprietary multi-modal DB, data exportable"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 4,
+      "reason": "Freemium with pricing"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 4,
+      "reason": "Python SDK and docs"
+    }
   }
 }

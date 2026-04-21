@@ -48,5 +48,26 @@
     "verdict": "Strong eBPF runtime security concept, but crowded market dominated by Sysdig and Wiz makes differentiation hard.",
     "best_for": "Container security teams wanting causal attack-chain tracing without big-vendor lock-in.",
     "not_for": "Organizations already invested in Sysdig Secure or Wiz runtime."
+  },
+  "pricing": {
+    "model": "subscription",
+    "has_free_tier": false
+  },
+  "scores": {
+    "lock_in": {
+      "level": "medium",
+      "score": 3,
+      "reason": "eBPF agent, data portable"
+    },
+    "transparency": {
+      "level": "medium",
+      "score": 4,
+      "reason": "Subscription public pricing"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Runtime security, eBPF"
+    }
   }
 }

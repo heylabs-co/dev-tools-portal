@@ -48,5 +48,26 @@
     "verdict": "Interesting pick for teams who need rich dynamic config, not just flags; evaluate vs building it yourself.",
     "best_for": "Platform teams needing FAANG-style remote, typed config",
     "not_for": "Small teams that only need on/off flags and rollouts"
+  },
+  "pricing": {
+    "model": "freemium",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "low",
+      "score": 4,
+      "reason": "Config as code, git-backed"
+    },
+    "transparency": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Freemium tiers"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 4,
+      "reason": "Code-native approach"
+    }
   }
 }

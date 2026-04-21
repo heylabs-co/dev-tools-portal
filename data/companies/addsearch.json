@@ -48,5 +48,26 @@
     "verdict": "Solid hosted search for marketing sites and docs when you want zero ops, but outgrown by large e-commerce catalogs.",
     "best_for": "Content sites, documentation, and small e-commerce needing site search without running infra.",
     "not_for": "Teams needing push-indexing, custom ranking models, or sub-10ms global latency at scale."
+  },
+  "pricing": {
+    "model": "subscription",
+    "has_free_tier": false
+  },
+  "scores": {
+    "lock_in": {
+      "level": "low",
+      "score": 2,
+      "reason": "Index and relevance tuning proprietary; reindexing required to switch"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 4,
+      "reason": "Published tiered subscription pricing"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "JS SDK, REST API; simpler than Algolia"
+    }
   }
 }

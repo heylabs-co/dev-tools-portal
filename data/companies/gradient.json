@@ -48,5 +48,26 @@
     "verdict": "A pragmatic middle ground for teams who want fine-tuning without running their own GPUs.",
     "best_for": "Product teams fine-tuning open LLMs without dedicated ML infra staff",
     "not_for": "Research labs needing cutting-edge models or deep training control"
+  },
+  "pricing": {
+    "model": "usage",
+    "has_free_tier": false
+  },
+  "scores": {
+    "lock_in": {
+      "level": "low",
+      "score": 4,
+      "reason": "Fine-tuning, weights exportable"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 4,
+      "reason": "Usage public pricing"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 4,
+      "reason": "Clean API docs"
+    }
   }
 }

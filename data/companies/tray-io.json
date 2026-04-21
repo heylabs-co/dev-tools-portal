@@ -46,5 +46,26 @@
     "verdict": "Capable enterprise iPaaS with embed support, but costs escalate fast and n8n covers simpler cases cheaply.",
     "best_for": "SaaS companies embedding native integrations into products",
     "not_for": "Small teams automating internal workflows on a budget"
+  },
+  "pricing": {
+    "model": "custom",
+    "has_free_tier": false
+  },
+  "scores": {
+    "lock_in": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Workflows hard to migrate"
+    },
+    "transparency": {
+      "level": "low",
+      "score": 1,
+      "reason": "Custom enterprise pricing"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "iPaaS API and connector docs"
+    }
   }
 }

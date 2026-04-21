@@ -52,5 +52,26 @@
     "verdict": "Strong OLAP alternative to ClickHouse with MySQL protocol familiarity, Chinese-origin maturity outpaces global adoption.",
     "best_for": "Real-time analytics workloads wanting MySQL-compatible OLAP at scale",
     "not_for": "Teams wanting a managed cloud service with rich Western community support"
+  },
+  "pricing": {
+    "model": "free",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "low",
+      "score": 5,
+      "reason": "Apache OSS OLAP DB, MySQL protocol"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 5,
+      "reason": "Free OSS"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 4,
+      "reason": "Good docs, MySQL compatible"
+    }
   }
 }

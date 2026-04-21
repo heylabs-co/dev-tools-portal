@@ -63,5 +63,26 @@
     "verdict": "Mandatory once your pytest suite crosses a few minutes, though it will expose hidden coupling between tests.",
     "best_for": "Python teams with test suites over 2 minutes on a single worker",
     "not_for": "Small codebases where parallelism adds complexity without payoff"
+  },
+  "pricing": {
+    "model": "free",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "low",
+      "score": 5,
+      "reason": "OSS pytest plugin"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 5,
+      "reason": "Free open source"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 4,
+      "reason": "Clear parallel-test docs"
+    }
   }
 }

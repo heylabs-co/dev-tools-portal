@@ -48,5 +48,26 @@
     "verdict": "Still a safe enterprise STT pick, but Deepgram and AssemblyAI now rival it at lower cost.",
     "best_for": "Media and enterprise teams wanting an editor-first transcription workflow",
     "not_for": "Cost-sensitive developers who are fine running Whisper or cheaper STT APIs"
+  },
+  "pricing": {
+    "model": "subscription",
+    "has_free_tier": false
+  },
+  "scores": {
+    "lock_in": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Transcripts exportable"
+    },
+    "transparency": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Subscription tiers visible"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 4,
+      "reason": "REST API with good SDKs"
+    }
   }
 }

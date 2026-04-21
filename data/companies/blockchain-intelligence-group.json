@@ -49,5 +49,26 @@
     "verdict": "Solid BitRank wallet screening option when you want AML scoring without paying Chainalysis prices.",
     "best_for": "Crypto exchanges and fintechs needing programmatic AML wallet risk scoring at mid-market pricing",
     "not_for": "Large investigations teams needing broad chain coverage and forensic-grade attribution data"
+  },
+  "pricing": {
+    "model": "custom",
+    "has_free_tier": false
+  },
+  "scores": {
+    "lock_in": {
+      "level": "high",
+      "score": 2,
+      "reason": "AML scoring, reports portable"
+    },
+    "transparency": {
+      "level": "low",
+      "score": 1,
+      "reason": "Custom enterprise pricing"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "BitRank API, compliance docs"
+    }
   }
 }

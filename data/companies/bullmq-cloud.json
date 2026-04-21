@@ -48,5 +48,26 @@
     "verdict": "Sensible managed queue for Node teams who love BullMQ but hate operating Redis clusters.",
     "best_for": "Node.js teams that already use BullMQ and want to skip Redis operations",
     "not_for": "Polyglot backends or teams needing at-least-once SQS-style guarantees and scale"
+  },
+  "pricing": {
+    "model": "subscription",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "low",
+      "score": 4,
+      "reason": "Managed BullMQ, can self-host OSS"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 4,
+      "reason": "Subscription public pricing"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 4,
+      "reason": "BullMQ-compatible managed service"
+    }
   }
 }

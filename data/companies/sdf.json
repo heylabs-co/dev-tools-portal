@@ -6,9 +6,8 @@
   "status": "active",
   "categories": {
     "primary": {
-      "id": "CAT-35",
-      "slug": "api-management",
-      "name": "Developer Portals / API Management"
+      "slug": "data-integration-etl",
+      "name": "Data Integration / ETL / Reverse ETL"
     }
   },
   "created_at": "2026-04-20T20:57:23.943Z",
@@ -46,5 +45,26 @@
     "verdict": "Interesting dbt alternative with better lineage, but miscategorized here and fighting a very entrenched incumbent.",
     "best_for": "Data teams wanting SQL-first lineage beyond dbt",
     "not_for": "API gateway workflows or non-SQL data stacks"
+  },
+  "pricing": {
+    "model": "freemium",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "high",
+      "score": 4,
+      "reason": "SQL-based, standard warehouses"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 4,
+      "reason": "Freemium with public tiers"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 4,
+      "reason": "CLI, lineage, good docs"
+    }
   }
 }

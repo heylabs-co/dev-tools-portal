@@ -21,6 +21,16 @@
       "score": 2,
       "data_portability": "partial_export",
       "migration_complexity": "medium"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 5,
+      "reason": "Public per-transaction pricing"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 5,
+      "reason": "Great SEA payment docs, SDKs"
     }
   },
   "description": "Xendit — Southeast Asia payment infrastructure covering Indonesia, Philippines, Malaysia, and Thailand with VA, QR, cards, and disbursements.",
@@ -54,5 +64,9 @@
     "verdict": "The Stripe of Southeast Asia — if you're selling in Indonesia or the Philippines, Xendit is the obvious default.",
     "best_for": "Merchants and platforms operating across Southeast Asia needing unified local methods",
     "not_for": "Businesses outside SEA or needing enterprise SLAs with guaranteed support times"
+  },
+  "pricing": {
+    "model": "usage",
+    "has_free_tier": false
   }
 }

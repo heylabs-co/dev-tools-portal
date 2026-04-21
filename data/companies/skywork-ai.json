@@ -52,5 +52,26 @@
     "verdict": "Decent open-weight Chinese LLMs plus agentic search, best used self-hosted rather than via hosted API.",
     "best_for": "Chinese-market teams or open-weight fans running models on their own GPUs",
     "not_for": "Regulated Western firms sending data to China-hosted inference"
+  },
+  "pricing": {
+    "model": "free",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "low",
+      "score": 4,
+      "reason": "Open models, free weights available"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 5,
+      "reason": "Free access, open models"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Models available, limited tooling"
+    }
   }
 }

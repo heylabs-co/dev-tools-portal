@@ -62,5 +62,26 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "pricing": {
+    "model": "usage",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "high",
+      "score": 4,
+      "reason": "Open-weight Yi models available; API is swappable via OpenAI-compatible interface"
+    },
+    "transparency": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Usage-based pricing published but enterprise tiers less clear"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Standard LLM API with Python SDK, docs adequate but not extensive"
+    }
   }
 }

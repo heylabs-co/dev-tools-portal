@@ -47,5 +47,26 @@
     "verdict": "A credible serverless GPU option for ML inference, especially when cold starts must stay tiny.",
     "best_for": "ML teams serving models with spiky, latency-sensitive traffic",
     "not_for": "Always-on training jobs or simple CPU-only APIs"
+  },
+  "pricing": {
+    "model": "usage",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Serverless GPU platform-specific"
+    },
+    "transparency": {
+      "level": "medium",
+      "score": 4,
+      "reason": "Usage pricing public"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 4,
+      "reason": "CLI, SDKs, good docs"
+    }
   }
 }

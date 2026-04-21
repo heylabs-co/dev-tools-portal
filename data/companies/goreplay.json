@@ -65,5 +65,26 @@
     "verdict": "A powerful way to test changes with real traffic, provided you respect privacy and session state.",
     "best_for": "Backend teams validating refactors against realistic production request patterns",
     "not_for": "Teams needing synthetic, scripted load profiles with precise user counts"
+  },
+  "pricing": {
+    "model": "freemium",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "low",
+      "score": 5,
+      "reason": "OSS traffic replay"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 4,
+      "reason": "Freemium public"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 4,
+      "reason": "Good CLI docs"
+    }
   }
 }

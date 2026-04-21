@@ -21,6 +21,16 @@
       "score": 3,
       "data_portability": "partial_export",
       "migration_complexity": "medium"
+    },
+    "transparency": {
+      "level": "medium",
+      "score": 4,
+      "reason": "Usage pricing published"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 4,
+      "reason": "MariaDB docs, good tooling"
     }
   },
   "description": "SkySQL — MariaDB's managed cloud database service with Xpand distributed SQL and ColumnStore analytics engine.",
@@ -56,5 +66,9 @@
     "verdict": "Solid managed MariaDB with distributed SQL, but Postgres-first trends make it a harder pick now.",
     "best_for": "MariaDB-centric teams needing managed service with distributed SQL or analytics add-ons",
     "not_for": "Postgres shops, greenfield projects, or teams chasing the largest managed DB ecosystem"
+  },
+  "pricing": {
+    "model": "usage",
+    "has_free_tier": true
   }
 }

@@ -49,5 +49,26 @@
     "verdict": "Clever universal transaction layer for polyglot persistence, most apps are better off with a single SQL database.",
     "best_for": "Teams with legitimate polyglot persistence needing ACID guarantees across stores",
     "not_for": "Apps that could just use a single distributed SQL database like CockroachDB"
+  },
+  "pricing": {
+    "model": "freemium",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "low",
+      "score": 4,
+      "reason": "OSS transactional layer"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 4,
+      "reason": "Freemium plans public"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 4,
+      "reason": "Multi-DB ACID docs"
+    }
   }
 }

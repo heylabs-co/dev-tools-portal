@@ -6,9 +6,8 @@
   "status": "active",
   "categories": {
     "primary": {
-      "id": "CAT-37",
-      "slug": "code-assistants",
-      "name": "Code Assistants / Agent Tooling"
+      "slug": "no-code-low-code",
+      "name": "No-code / Low-code App Builders"
     }
   },
   "created_at": "2026-04-20T20:57:23.947Z",
@@ -21,6 +20,16 @@
       "score": 2,
       "data_portability": "api_only",
       "migration_complexity": "medium"
+    },
+    "transparency": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Subscription opaque tiers"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Basic API for agile"
     }
   },
   "description": "Stride — AI-powered agile project management tool for software teams with sprint planning and velocity tracking.",
@@ -55,5 +64,9 @@
     "verdict": "Reasonable agile tool if Jira is too heavy, but miscategorized here and not a coding product.",
     "best_for": "Small agile teams wanting lightweight AI-flavored sprint planning",
     "not_for": "Teams needing coding help or enterprises committed to Jira or Linear"
+  },
+  "pricing": {
+    "model": "subscription",
+    "has_free_tier": false
   }
 }

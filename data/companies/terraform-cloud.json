@@ -47,5 +47,26 @@
     "verdict": "The simplest way to run Terraform at team scale, if you accept HashiCorp's pricing and BSL baggage.",
     "best_for": "Teams standardizing on Terraform who want managed state, policy, and runs.",
     "not_for": "Teams moving to OpenTofu or those needing fully self-hosted workflows cheaply."
+  },
+  "pricing": {
+    "model": "freemium",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "low",
+      "score": 4,
+      "reason": "Terraform configs fully portable"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 4,
+      "reason": "Freemium with published tiers"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 5,
+      "reason": "Excellent HashiCorp docs and API"
+    }
   }
 }

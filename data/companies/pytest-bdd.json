@@ -61,5 +61,26 @@
     "verdict": "A pragmatic BDD option when your team already lives in pytest and does not want a second test runner.",
     "best_for": "pytest shops needing Gherkin for stakeholder-readable acceptance tests",
     "not_for": "Teams doing strict BDD where Cucumber's tooling ecosystem matters more"
+  },
+  "pricing": {
+    "model": "free",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "low",
+      "score": 5,
+      "reason": "OSS pytest plugin"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 5,
+      "reason": "Free open source"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 4,
+      "reason": "Gherkin docs, integrates pytest"
+    }
   }
 }

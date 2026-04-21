@@ -45,5 +45,26 @@
     "verdict": "Top-tier choice for serious Bazel shops; small teams will get little value versus the cost and complexity.",
     "best_for": "Large Bazel or Buck2 monorepos with painful build and test times",
     "not_for": "Teams not using Bazel or without dedicated build engineers"
+  },
+  "pricing": {
+    "model": "custom",
+    "has_free_tier": false
+  },
+  "scores": {
+    "lock_in": {
+      "level": "low",
+      "score": 4,
+      "reason": "REAPI-compatible, portable Bazel"
+    },
+    "transparency": {
+      "level": "low",
+      "score": 2,
+      "reason": "Custom enterprise pricing"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 4,
+      "reason": "Strong Bazel docs, CLI"
+    }
   }
 }

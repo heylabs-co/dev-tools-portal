@@ -48,5 +48,26 @@
     "verdict": "Solid managed CDC at a fraction of DIY Kafka+Debezium cost, if Debezium's source list covers your stack.",
     "best_for": "Data teams needing real-time Postgres/MySQL/Mongo to warehouse pipelines",
     "not_for": "Batch-only ELT use cases or sources outside Debezium's connector range"
+  },
+  "pricing": {
+    "model": "subscription",
+    "has_free_tier": false
+  },
+  "scores": {
+    "lock_in": {
+      "level": "low",
+      "score": 4,
+      "reason": "Built on Debezium OSS"
+    },
+    "transparency": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Subscription, partly opaque"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 4,
+      "reason": "CDC focused docs"
+    }
   }
 }

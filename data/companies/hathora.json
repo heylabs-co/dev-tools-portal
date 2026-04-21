@@ -47,5 +47,26 @@
     "verdict": "The cleanest serverless multiplayer host today, with the usual serverless tradeoffs around cold starts.",
     "best_for": "Indie and mid-size studios with spiky multiplayer traffic",
     "not_for": "Persistent-world games needing always-on regional clusters"
+  },
+  "pricing": {
+    "model": "usage",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Proprietary game-server routing"
+    },
+    "transparency": {
+      "level": "medium",
+      "score": 4,
+      "reason": "Usage-based pricing public"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 4,
+      "reason": "Good SDKs for Unity/Unreal"
+    }
   }
 }

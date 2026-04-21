@@ -48,5 +48,26 @@
     "verdict": "Fine for background jobs if you already use Redis, purpose-built brokers beat it for complex messaging patterns.",
     "best_for": "Web apps running BullMQ or Sidekiq-style background jobs at moderate scale",
     "not_for": "Event-driven architectures needing fan-out, routing, or Kafka-style streams"
+  },
+  "pricing": {
+    "model": "freemium",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Managed Redis, protocol portable"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 4,
+      "reason": "Public freemium pricing"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 5,
+      "reason": "Standard Redis API, great docs"
+    }
   }
 }

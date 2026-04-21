@@ -50,5 +50,26 @@
     "verdict": "Best PDF quality money can buy, but Adobe tax and clunky DX make it overkill for simple rendering jobs.",
     "best_for": "Enterprises needing Acrobat-grade fidelity, OCR, and structured extraction from messy PDFs.",
     "not_for": "Startups generating templated invoices — cheaper, faster APIs exist."
+  },
+  "pricing": {
+    "model": "usage",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Standard PDF in/out; API calls portable to other vendors"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 4,
+      "reason": "Published per-transaction usage pricing"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 4,
+      "reason": "SDKs for Java, Node, Python, .NET; good docs"
+    }
   }
 }

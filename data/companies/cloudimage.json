@@ -48,5 +48,26 @@
     "verdict": "Straightforward image CDN with good AVIF support, a budget alternative to Cloudinary for simpler needs.",
     "best_for": "Ecommerce or media sites needing basic on-the-fly image resizing at fair cost",
     "not_for": "Media-heavy platforms needing deep video transforms and advanced AI features"
+  },
+  "pricing": {
+    "model": "freemium",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "medium",
+      "score": 3,
+      "reason": "URL-based CDN transforms, swappable but URLs bound"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 5,
+      "reason": "Freemium with public pricing tiers"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 4,
+      "reason": "Solid docs, SDKs, URL API"
+    }
   }
 }

@@ -52,5 +52,26 @@
     "verdict": "Seata solves real pain but adds its own operational weight—only adopt when sagas in code hurt more.",
     "best_for": "Microservice teams with cross-service ACID needs and engineers to run Seata",
     "not_for": "Small teams where event sourcing or saga patterns would be simpler"
+  },
+  "pricing": {
+    "model": "free",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "low",
+      "score": 5,
+      "reason": "Apache OSS distributed tx"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 5,
+      "reason": "Free OSS"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Docs improving, Java focused"
+    }
   }
 }

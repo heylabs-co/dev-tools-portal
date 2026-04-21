@@ -63,5 +63,26 @@
     "verdict": "A reasonable nose migration path, but most Python teams should skip it and adopt pytest directly.",
     "best_for": "Teams maintaining legacy nose test suites who need incremental migration",
     "not_for": "New Python projects where pytest offers more plugins and momentum"
+  },
+  "pricing": {
+    "model": "free",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "low",
+      "score": 5,
+      "reason": "OSS Python test framework"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 5,
+      "reason": "Free OSS"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Older project, pytest preferred"
+    }
   }
 }

@@ -24,6 +24,16 @@
       "score": 2,
       "data_portability": "api_only",
       "migration_complexity": "medium"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 4,
+      "reason": "Public subscription pricing"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "No-code plus some API"
     }
   },
   "description": "Synthflow — No-code AI voice agent builder for automating phone calls with natural conversation flows.",
@@ -56,5 +66,9 @@
     "verdict": "Quick path to a working voice agent for SMBs, but serious call centers will outgrow the no-code ceiling.",
     "best_for": "SMB sales and support teams launching their first AI phone agent",
     "not_for": "Enterprises needing deep customization, analytics or sub-second latency targets"
+  },
+  "pricing": {
+    "model": "subscription",
+    "has_free_tier": true
   }
 }

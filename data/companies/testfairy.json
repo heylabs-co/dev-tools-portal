@@ -47,5 +47,26 @@
     "verdict": "Interesting for session replay, but most mobile teams use TestFlight plus Firebase App Distribution instead.",
     "best_for": "Mobile teams needing session recording alongside beta distribution",
     "not_for": "Teams happy with TestFlight or Firebase App Distribution for beta builds"
+  },
+  "pricing": {
+    "model": "freemium",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Beta distro, builds movable"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 4,
+      "reason": "Freemium with published tiers"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Mobile SDKs and CLI"
+    }
   }
 }

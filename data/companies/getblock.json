@@ -49,5 +49,26 @@
     "verdict": "A reasonable multichain RPC budget choice—suits secondary provider or cost-sensitive projects.",
     "best_for": "Cost-sensitive multichain apps wanting both shared and dedicated node options",
     "not_for": "Projects needing premium SLAs or rich enhanced APIs"
+  },
+  "pricing": {
+    "model": "freemium",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "low",
+      "score": 4,
+      "reason": "Standard RPC endpoints, portable"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 4,
+      "reason": "Freemium public"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 4,
+      "reason": "Multi-chain docs"
+    }
   }
 }

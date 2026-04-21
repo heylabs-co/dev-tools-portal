@@ -8,9 +8,8 @@
   "status": "active",
   "categories": {
     "primary": {
-      "id": "CAT-05",
-      "slug": "fraud-risk-management",
-      "name": "Fraud & Risk Management"
+      "slug": "kyc-kyb-aml",
+      "name": "KYC / KYB / AML API"
     }
   },
   "created_at": "2026-04-20T21:54:29.613Z",
@@ -47,5 +46,26 @@
     "verdict": "Reliable identity data backbone for custom risk models, but not a turnkey fraud decision engine.",
     "best_for": "Risk teams building their own scoring who need global email, phone and address intelligence.",
     "not_for": "Teams wanting out-of-box approve/decline decisions without engineering work."
+  },
+  "pricing": {
+    "model": "custom",
+    "has_free_tier": false
+  },
+  "scores": {
+    "lock_in": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Data vendor API, swappable"
+    },
+    "transparency": {
+      "level": "low",
+      "score": 1,
+      "reason": "Custom enterprise sales"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "REST APIs, SDKs"
+    }
   }
 }

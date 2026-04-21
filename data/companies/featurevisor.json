@@ -47,5 +47,26 @@
     "verdict": "Clean fit for engineering-driven orgs that want flags in Git and zero flag-service infra to run.",
     "best_for": "Platform teams running flags via GitOps and CI",
     "not_for": "PM/marketing-led flag flipping from a dashboard"
+  },
+  "pricing": {
+    "model": "free",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "low",
+      "score": 5,
+      "reason": "Git-based OSS, flags as code fully portable"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 5,
+      "reason": "Free OSS, no pricing opacity"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 5,
+      "reason": "CI/CD native, great docs for config-as-code"
+    }
   }
 }

@@ -65,5 +65,26 @@
     "verdict": "The obvious FHIR choice for .NET shops, less compelling if your stack is Java or Node.",
     "best_for": "Healthcare teams building interoperability on .NET Core",
     "not_for": "Non-.NET shops who already use HAPI FHIR or Aidbox"
+  },
+  "pricing": {
+    "model": "subscription",
+    "has_free_tier": false
+  },
+  "scores": {
+    "lock_in": {
+      "level": "low",
+      "score": 4,
+      "reason": "FHIR OSS SDK, open standard"
+    },
+    "transparency": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Subscription for platform"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 4,
+      "reason": ".NET FHIR SDK, good docs"
+    }
   }
 }

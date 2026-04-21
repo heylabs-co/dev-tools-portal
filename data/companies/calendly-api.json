@@ -48,5 +48,26 @@
     "verdict": "Essential if your users are on Calendly, restrictive if you expected a general-purpose scheduling API.",
     "best_for": "Products integrating with users' existing Calendly accounts for meeting data",
     "not_for": "Apps that need a full scheduling engine—use Cronofy or Cal.com instead"
+  },
+  "pricing": {
+    "model": "freemium",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Proprietary Calendly data exportable via API"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 4,
+      "reason": "Public pricing tiers plus enterprise custom"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 4,
+      "reason": "REST API with webhooks and OAuth documented"
+    }
   }
 }

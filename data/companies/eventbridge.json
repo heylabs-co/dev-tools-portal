@@ -58,5 +58,26 @@
   },
   "community": {
     "hn_mentions_30d": 1
+  },
+  "pricing": {
+    "model": "usage",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "high",
+      "score": 2,
+      "reason": "AWS-specific event bus, IAM tied"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 4,
+      "reason": "Public AWS pay-per-use"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 4,
+      "reason": "Great AWS docs, SDKs"
+    }
   }
 }

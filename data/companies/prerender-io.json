@@ -48,5 +48,26 @@
     "verdict": "Useful escape hatch for legacy SPAs with SEO issues, greenfield projects should use SSR in the framework instead.",
     "best_for": "Legacy Angular or Backbone SPAs with SEO problems no one wants to rewrite",
     "not_for": "New Next.js, Nuxt, or Remix projects that already do SSR/ISR natively"
+  },
+  "pricing": {
+    "model": "freemium",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "low",
+      "score": 4,
+      "reason": "Freemium, HTML cache portable"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 4,
+      "reason": "Public freemium"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 4,
+      "reason": "Simple SEO prerender docs"
+    }
   }
 }

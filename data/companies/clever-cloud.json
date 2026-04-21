@@ -47,5 +47,26 @@
     "verdict": "The solid, boring, EU-compliant PaaS many regulated European teams should be using.",
     "best_for": "EU startups and regulated teams needing HDS or GDPR-friendly PaaS",
     "not_for": "Teams needing deep managed-service breadth of AWS or GCP"
+  },
+  "pricing": {
+    "model": "usage",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "low",
+      "score": 4,
+      "reason": "Standard git-push, portable workloads"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 5,
+      "reason": "Public usage pricing"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 4,
+      "reason": "Git deploy, CLI, multi-lang, good docs"
+    }
   }
 }

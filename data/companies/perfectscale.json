@@ -49,5 +49,26 @@
     "verdict": "A legitimate k8s cost tool — just know this is FinOps, not a compliance automation play as marketed here.",
     "best_for": "Ops teams with large Kubernetes footprints chasing cloud savings",
     "not_for": "Anyone expecting a SOC 2 or HIPAA compliance platform"
+  },
+  "pricing": {
+    "model": "custom",
+    "has_free_tier": false
+  },
+  "scores": {
+    "lock_in": {
+      "level": "medium",
+      "score": 3,
+      "reason": "K8s optimization, removable"
+    },
+    "transparency": {
+      "level": "low",
+      "score": 1,
+      "reason": "custom enterprise pricing"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "K8s integration, auto-sizing"
+    }
   }
 }

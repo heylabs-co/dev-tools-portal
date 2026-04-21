@@ -8,9 +8,8 @@
   "status": "active",
   "categories": {
     "primary": {
-      "id": "CAT-08",
-      "slug": "secrets-management",
-      "name": "Secrets Management"
+      "slug": "feature-flags",
+      "name": "Feature Flags / Remote Config"
     }
   },
   "created_at": "2026-04-20T21:56:55.814Z",
@@ -48,5 +47,26 @@
     "verdict": "Interesting if you want flags and config in one place, but not a dedicated secrets vault.",
     "best_for": "Teams willing to co-locate feature flags and runtime config with light secrets.",
     "not_for": "Security teams wanting a hardened, audit-ready secrets backend."
+  },
+  "pricing": {
+    "model": "freemium",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Flags swappable with effort"
+    },
+    "transparency": {
+      "level": "medium",
+      "score": 4,
+      "reason": "Freemium pricing public"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Basic SDKs, moderate docs"
+    }
   }
 }

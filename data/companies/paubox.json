@@ -49,5 +49,26 @@
     "verdict": "If you ship healthcare software in the US, Paubox saves the HIPAA email headache — elsewhere it is overkill.",
     "best_for": "US healthtech apps needing HIPAA-compliant transactional and team email",
     "not_for": "Non-healthcare products or teams already comfortable with SendGrid plus BAAs"
+  },
+  "pricing": {
+    "model": "subscription",
+    "has_free_tier": false
+  },
+  "scores": {
+    "lock_in": {
+      "level": "medium",
+      "score": 3,
+      "reason": "HIPAA email, standard SMTP portable"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 4,
+      "reason": "subscription plans public"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 4,
+      "reason": "REST API, good HIPAA docs"
+    }
   }
 }

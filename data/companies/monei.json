@@ -21,6 +21,16 @@
       "score": 3,
       "data_portability": "no_export",
       "migration_complexity": "medium"
+    },
+    "transparency": {
+      "level": "medium",
+      "score": 4,
+      "reason": "Usage-based public pricing"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 4,
+      "reason": "Spain payment gateway APIs"
     }
   },
   "description": "MONEI — Spain-focused payment gateway supporting cards, Bizum, PayPal, Apple Pay, Google Pay, and other European payment methods.",
@@ -55,5 +65,9 @@
     "verdict": "Modern Spain-focused gateway — strong Bizum support makes it the pragmatic pick for Spanish merchants.",
     "best_for": "Spain and Europe merchants needing Bizum and local methods",
     "not_for": "Merchants outside EU or needing global multi-currency acquiring"
+  },
+  "pricing": {
+    "model": "usage",
+    "has_free_tier": false
   }
 }

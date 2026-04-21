@@ -49,5 +49,26 @@
     "verdict": "Strong pick when docs are messy and LLM-only extraction keeps failing.",
     "best_for": "Ops teams parsing invoices, contracts, and claims with workflow logic",
     "not_for": "Simple text extraction — Unstructured.io or raw LLM may suffice"
+  },
+  "pricing": {
+    "model": "freemium",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Document AI extracts structured data"
+    },
+    "transparency": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Freemium tiers"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 4,
+      "reason": "Clean API, good examples"
+    }
   }
 }

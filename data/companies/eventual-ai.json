@@ -67,5 +67,26 @@
     "verdict": "Exciting multimodal data engine for ML teams; early-stage risk remains compared to Spark/Ray.",
     "best_for": "ML teams processing images, video, and audio at distributed scale in Python",
     "not_for": "Pure tabular analytics workloads where Spark or DuckDB suffice"
+  },
+  "pricing": {
+    "model": "freemium",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "low",
+      "score": 4,
+      "reason": "OSS Daft engine, data portable"
+    },
+    "transparency": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Freemium cloud tier"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Python-native, growing docs"
+    }
   }
 }

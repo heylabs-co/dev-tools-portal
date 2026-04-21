@@ -48,5 +48,26 @@
     "verdict": "The default AI risk layer for lenders operating in Indonesia, Philippines, and Vietnam.",
     "best_for": "Fintechs and banks scaling consumer credit in Southeast Asia",
     "not_for": "Global SaaS or anyone needing self-serve API access"
+  },
+  "pricing": {
+    "model": "custom",
+    "has_free_tier": false
+  },
+  "scores": {
+    "lock_in": {
+      "level": "low",
+      "score": 2,
+      "reason": "Custom ML models per client, hard to port scoring"
+    },
+    "transparency": {
+      "level": "low",
+      "score": 1,
+      "reason": "Custom enterprise pricing in APAC"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "REST APIs behind sales; regional focus"
+    }
   }
 }

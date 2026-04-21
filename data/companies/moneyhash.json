@@ -48,5 +48,26 @@
     "verdict": "Best orchestration pick for MENA merchants; less compelling if your GMV centers on EU or North America.",
     "best_for": "Merchants expanding into MENA, Pakistan, and Africa who need local APMs and PSPs via one integration.",
     "not_for": "EU or US merchants with mature Stripe, Adyen, or Braintree setups."
+  },
+  "pricing": {
+    "model": "custom",
+    "has_free_tier": false
+  },
+  "scores": {
+    "lock_in": {
+      "level": "low",
+      "score": 2,
+      "reason": "Custom payment orchestration"
+    },
+    "transparency": {
+      "level": "low",
+      "score": 1,
+      "reason": "Custom enterprise pricing"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 4,
+      "reason": "MENA payment orchestration API"
+    }
   }
 }

@@ -21,6 +21,16 @@
       "score": 2,
       "data_portability": "api_only",
       "migration_complexity": "medium"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 5,
+      "reason": "Free open source"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Lightweight sandbox lib"
     }
   },
   "description": "SmolVM — Lightweight VM sandbox for safely executing untrusted code in isolated microVM environments.",
@@ -55,5 +65,9 @@
     "verdict": "Useful building block for self-hosted agent sandboxes, but expect real ops work to productionize.",
     "best_for": "Teams with infra expertise self-hosting sandboxes for AI code execution",
     "not_for": "Developers who prefer managed sandbox services or lack Linux virtualization experience"
+  },
+  "pricing": {
+    "model": "free",
+    "has_free_tier": true
   }
 }

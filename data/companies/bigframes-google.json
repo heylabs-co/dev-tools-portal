@@ -62,5 +62,26 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "pricing": {
+    "model": "free",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Free SDK but tied to BigQuery backend"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 5,
+      "reason": "Free OSS, BigQuery priced publicly"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 4,
+      "reason": "Pandas-like API, Google docs"
+    }
   }
 }

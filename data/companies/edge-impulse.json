@@ -24,6 +24,16 @@
       "score": 2,
       "data_portability": "api_only",
       "migration_complexity": "medium"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 4,
+      "reason": "Public freemium tiers"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 4,
+      "reason": "Strong docs, hardware examples"
     }
   },
   "description": "Edge Impulse — ML development platform for training and deploying TinyML models on microcontrollers and edge devices.",
@@ -56,5 +66,9 @@
     "verdict": "The default TinyML platform when you need MCU-class models without a full ML team.",
     "best_for": "IoT and embedded teams shipping ML on Cortex-M and similar MCUs",
     "not_for": "Cloud-only ML use cases — overkill and mis-targeted"
+  },
+  "pricing": {
+    "model": "freemium",
+    "has_free_tier": true
   }
 }

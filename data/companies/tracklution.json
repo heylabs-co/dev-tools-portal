@@ -8,9 +8,8 @@
   "status": "active",
   "categories": {
     "primary": {
-      "id": "CAT-18",
-      "slug": "mobile-attribution",
-      "name": "Mobile Attribution / MMP"
+      "slug": "product-analytics",
+      "name": "Product Analytics"
     }
   },
   "created_at": "2026-04-20T21:33:16.862Z",
@@ -47,5 +46,26 @@
     "verdict": "Handy server-side tracker for web conversions, but miscategorized as mobile attribution.",
     "best_for": "DTC and SMB web advertisers wanting first-party, server-side tracking to Meta and Google.",
     "not_for": "Mobile app teams needing SKAN, install attribution and partner postbacks."
+  },
+  "pricing": {
+    "model": "custom",
+    "has_free_tier": false
+  },
+  "scores": {
+    "lock_in": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Server-side tracking with custom setup; exportable data"
+    },
+    "transparency": {
+      "level": "low",
+      "score": 1,
+      "reason": "Custom pricing, contact sales only"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "CAPI and first-party tracking with decent docs"
+    }
   }
 }

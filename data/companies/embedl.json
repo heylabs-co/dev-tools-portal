@@ -24,6 +24,16 @@
       "score": 3,
       "data_portability": "no_export",
       "migration_complexity": "medium"
+    },
+    "transparency": {
+      "level": "low",
+      "score": 2,
+      "reason": "Custom enterprise pricing"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "ML platform docs"
     }
   },
   "description": "Embedl — ML model optimization platform that automatically quantizes and compresses models for faster edge inference.",
@@ -56,5 +66,9 @@
     "verdict": "Useful shortcut when your team lacks MCU-level optimization skill.",
     "best_for": "Edge ML teams without dedicated model-optimization engineers",
     "not_for": "Teams already skilled with TensorRT, ONNX Runtime, or TVM"
+  },
+  "pricing": {
+    "model": "custom",
+    "has_free_tier": false
   }
 }

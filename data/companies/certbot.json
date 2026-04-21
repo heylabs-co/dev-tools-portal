@@ -48,5 +48,26 @@
     "verdict": "The default way to automate Let's Encrypt on a single host; less ideal once you're juggling dozens.",
     "best_for": "Admins running a handful of Linux servers needing free, renewable TLS.",
     "not_for": "Enterprises needing centralized cert lifecycle management across thousands of endpoints."
+  },
+  "pricing": {
+    "model": "free",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "low",
+      "score": 5,
+      "reason": "EFF open-source tool, fully portable"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 5,
+      "reason": "Free tool"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 5,
+      "reason": "Excellent docs, widely used"
+    }
   }
 }

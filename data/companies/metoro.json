@@ -48,5 +48,26 @@
     "verdict": "Genuinely exciting eBPF-first APM that eliminates SDK toil; early but production-credible for Kubernetes shops.",
     "best_for": "Kubernetes teams tired of per-language SDK instrumentation for tracing.",
     "not_for": "Non-Kubernetes stacks or teams needing custom business metrics in code."
+  },
+  "pricing": {
+    "model": "subscription",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "medium",
+      "score": 3,
+      "reason": "eBPF observability, OTel-compatible data"
+    },
+    "transparency": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Subscription, some public pricing"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 4,
+      "reason": "eBPF auto-instrumentation, k8s native"
+    }
   }
 }

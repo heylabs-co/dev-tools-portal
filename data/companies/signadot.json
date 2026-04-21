@@ -47,5 +47,26 @@
     "verdict": "A smart pattern for testing microservice changes when full preview environments are too expensive to spin up.",
     "best_for": "Kubernetes shops with dozens of microservices doing integration testing on feature branches",
     "not_for": "Teams without service mesh or with monolithic deployment models"
+  },
+  "pricing": {
+    "model": "freemium",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "high",
+      "score": 4,
+      "reason": "K8s-native sandboxes, portable"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 4,
+      "reason": "Freemium with public tiers"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 4,
+      "reason": "K8s-native, good docs"
+    }
   }
 }

@@ -21,6 +21,16 @@
       "score": 2,
       "data_portability": "api_only",
       "migration_complexity": "medium"
+    },
+    "transparency": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Usage pricing, rates on request"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Decent docs, regional focus"
     }
   },
   "description": "Kushki — LatAm payment gateway focused on Colombia, Ecuador, Mexico, Chile, and Peru supporting cards and local bank rails.",
@@ -55,5 +65,9 @@
     "verdict": "Credible LatAm gateway for merchants wanting local rails across Andean countries and Mexico through one API.",
     "best_for": "Global merchants expanding to Colombia, Ecuador, Mexico, Chile, Peru",
     "not_for": "Merchants focused only on Brazil or outside LatAm"
+  },
+  "pricing": {
+    "model": "usage",
+    "has_free_tier": false
   }
 }

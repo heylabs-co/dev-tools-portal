@@ -48,5 +48,26 @@
     "verdict": "Focused GCP cost optimizer for teams that live on Google Cloud, lacks multi-cloud scope for enterprise use.",
     "best_for": "GCP-only startups wanting affordable cost visibility and anomaly alerts",
     "not_for": "Multi-cloud organizations needing unified cost attribution across providers"
+  },
+  "pricing": {
+    "model": "freemium",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "low",
+      "score": 4,
+      "reason": "Read-only GCP cost tool, no deep coupling"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 4,
+      "reason": "Freemium, clear plans"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Dashboard-first, limited API"
+    }
   }
 }

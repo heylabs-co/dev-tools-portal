@@ -62,5 +62,26 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "pricing": {
+    "model": "usage",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "medium",
+      "score": 3,
+      "reason": "API-based image gen; prompts portable but outputs tied to service"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 5,
+      "reason": "Usage-based public pricing per image"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 4,
+      "reason": "Clean API, SDKs, good model docs"
+    }
   }
 }

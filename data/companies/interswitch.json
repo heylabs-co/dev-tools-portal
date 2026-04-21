@@ -21,6 +21,16 @@
       "score": 2,
       "data_portability": "partial_export",
       "migration_complexity": "medium"
+    },
+    "transparency": {
+      "level": "low",
+      "score": 1,
+      "reason": "Custom enterprise pricing"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "API docs available"
     }
   },
   "description": "Interswitch — Nigeria-founded pan-African payment infrastructure company operating Verve card network and Quickteller platform.",
@@ -55,5 +65,9 @@
     "verdict": "The infrastructure incumbent in African payments — strong if you need Verve and bank rails, rough DX otherwise.",
     "best_for": "Nigerian and pan-African banks, telcos, and large merchants",
     "not_for": "Agile startups needing quick Stripe-like onboarding"
+  },
+  "pricing": {
+    "model": "custom",
+    "has_free_tier": false
   }
 }

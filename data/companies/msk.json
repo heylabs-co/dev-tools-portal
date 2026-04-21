@@ -54,5 +54,26 @@
   },
   "community": {
     "hn_mentions_30d": 1146
+  },
+  "pricing": {
+    "model": "usage",
+    "has_free_tier": false
+  },
+  "scores": {
+    "lock_in": {
+      "level": "low",
+      "score": 2,
+      "reason": "AWS-managed Kafka, ecosystem lock"
+    },
+    "transparency": {
+      "level": "medium",
+      "score": 4,
+      "reason": "AWS usage-based pricing"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 4,
+      "reason": "Managed Kafka with AWS SDK"
+    }
   }
 }

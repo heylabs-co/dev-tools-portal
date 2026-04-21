@@ -48,5 +48,26 @@
     "verdict": "Solid multichain RPC at a better price than Alchemy, but consistency dips outside the top chains.",
     "best_for": "Multichain dapps needing broad RPC coverage at a lower unit cost",
     "not_for": "Teams wanting white-glove support or deep per-chain enriched APIs"
+  },
+  "pricing": {
+    "model": "freemium",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Standard RPC endpoints, portable to other providers"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 4,
+      "reason": "Freemium with public plan tiers"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 4,
+      "reason": "Good multi-chain docs and SDKs"
+    }
   }
 }

@@ -67,5 +67,26 @@
     "verdict": "The go-to managed Bazel build service: worth every cent once your monorepo is big enough to hurt.",
     "best_for": "Teams on Bazel with multi-minute builds that need remote caching and execution.",
     "not_for": "Teams not on Bazel or with small, fast builds."
+  },
+  "pricing": {
+    "model": "freemium",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "low",
+      "score": 4,
+      "reason": "Managed Bazel, self-hostable OSS"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 4,
+      "reason": "Freemium public tiers"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 5,
+      "reason": "Bazel remote exec with great docs"
+    }
   }
 }

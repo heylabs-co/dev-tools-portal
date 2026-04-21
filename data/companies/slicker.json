@@ -47,5 +47,26 @@
     "verdict": "Solid decline-recovery tool with a sharper AI angle; compare carefully against FlexPay and Butter before committing.",
     "best_for": "Subscription and recurring merchants with measurable involuntary churn from declines.",
     "not_for": "One-time commerce teams or merchants with minimal recurring revenue exposure."
+  },
+  "pricing": {
+    "model": "custom",
+    "has_free_tier": false
+  },
+  "scores": {
+    "lock_in": {
+      "level": "high",
+      "score": 2,
+      "reason": "Payment retry logic proprietary"
+    },
+    "transparency": {
+      "level": "low",
+      "score": 1,
+      "reason": "Custom pricing, contact sales"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "API for payment recovery"
+    }
   }
 }

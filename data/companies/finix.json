@@ -47,5 +47,26 @@
     "verdict": "Serious Stripe Connect alternative for SaaS platforms wanting payfac economics and control over the stack.",
     "best_for": "SaaS platforms ready to operate as payment facilitators for sub-merchants",
     "not_for": "Single merchants or teams wanting zero-ops turnkey checkout"
+  },
+  "pricing": {
+    "model": "usage",
+    "has_free_tier": false
+  },
+  "scores": {
+    "lock_in": {
+      "level": "high",
+      "score": 2,
+      "reason": "Payfac infra, deep integration"
+    },
+    "transparency": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Usage-based, custom tiers"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 4,
+      "reason": "Good payments API docs"
+    }
   }
 }

@@ -48,5 +48,26 @@
     "verdict": "The canonical way to run Crossplane in production, but only worth it if you're building an internal platform.",
     "best_for": "Platform teams building internal developer platforms with Crossplane",
     "not_for": "Small teams happy with Terraform or Pulumi for their infra"
+  },
+  "pricing": {
+    "model": "freemium",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "low",
+      "score": 4,
+      "reason": "Managed Crossplane, OSS portable"
+    },
+    "transparency": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Freemium with tiers"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 4,
+      "reason": "Crossplane control plane docs"
+    }
   }
 }

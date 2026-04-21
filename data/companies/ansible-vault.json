@@ -48,5 +48,26 @@
     "verdict": "Fine for encrypting playbook vars, but not a real secrets manager for teams past a handful of admins.",
     "best_for": "Ops teams already on Ansible that need file-level encryption in Git.",
     "not_for": "Organizations needing audit trails, RBAC, or dynamic secrets."
+  },
+  "pricing": {
+    "model": "free",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "low",
+      "score": 5,
+      "reason": "OSS built into Ansible, fully portable"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 5,
+      "reason": "Free OSS"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 4,
+      "reason": "Well documented inside Ansible docs"
+    }
   }
 }

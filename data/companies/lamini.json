@@ -64,5 +64,26 @@
     "verdict": "Worth evaluating when hallucination is the actual blocker for your LLM rollout.",
     "best_for": "Enterprises needing factual grounding on private data via fine-tuning",
     "not_for": "Teams that can get by with RAG on a managed LLM API"
+  },
+  "pricing": {
+    "model": "usage",
+    "has_free_tier": false
+  },
+  "scores": {
+    "lock_in": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Fine-tuned models on platform"
+    },
+    "transparency": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Usage-based pricing"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Decent Python SDK"
+    }
   }
 }

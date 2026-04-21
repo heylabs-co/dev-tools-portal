@@ -46,5 +46,26 @@
     "verdict": "Solid mid-tier mobile DSP with decent ML, but you pay enterprise rates without enterprise polish.",
     "best_for": "Mid-to-large mobile apps scaling UA and retargeting with a dedicated media buyer.",
     "not_for": "Indie developers or anyone needing self-serve access under $10k/month budgets."
+  },
+  "pricing": {
+    "model": "custom",
+    "has_free_tier": false
+  },
+  "scores": {
+    "lock_in": {
+      "level": "low",
+      "score": 2,
+      "reason": "DSP with proprietary ML models; campaign learnings not portable"
+    },
+    "transparency": {
+      "level": "low",
+      "score": 1,
+      "reason": "Custom rate-card negotiation, no public pricing"
+    },
+    "developer_experience": {
+      "level": "low",
+      "score": 2,
+      "reason": "Ad platform with limited public SDK surface"
+    }
   }
 }

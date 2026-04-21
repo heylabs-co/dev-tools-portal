@@ -8,9 +8,8 @@
   "status": "active",
   "categories": {
     "primary": {
-      "id": "CAT-02",
-      "slug": "payment-gateway",
-      "name": "Payment Gateway / PSP"
+      "slug": "subscription-billing",
+      "name": "Subscription Billing"
     }
   },
   "created_at": "2026-04-20T21:33:16.823Z",
@@ -48,5 +47,26 @@
     "verdict": "Financing layer — useful for B2B SaaS offering payment terms, not a general payment processor.",
     "best_for": "B2B SaaS vendors offering financed annual contracts to customers",
     "not_for": "B2C merchants or teams needing core card processing"
+  },
+  "pricing": {
+    "model": "custom",
+    "has_free_tier": false
+  },
+  "scores": {
+    "lock_in": {
+      "level": "high",
+      "score": 2,
+      "reason": "Proprietary embedded financing partner"
+    },
+    "transparency": {
+      "level": "low",
+      "score": 1,
+      "reason": "Custom pricing only"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "API available, limited public docs"
+    }
   }
 }

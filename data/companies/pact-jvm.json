@@ -65,5 +65,26 @@
     "verdict": "The standard JVM choice for consumer-driven contract testing, worth the complexity at microservice scale.",
     "best_for": "JVM teams with 5+ microservices needing reliable API compatibility checks",
     "not_for": "Small teams or monoliths where integration tests suffice"
+  },
+  "pricing": {
+    "model": "free",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "high",
+      "score": 5,
+      "reason": "OSS contract testing"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 5,
+      "reason": "free"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 4,
+      "reason": "solid JVM docs"
+    }
   }
 }

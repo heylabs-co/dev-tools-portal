@@ -48,5 +48,26 @@
     "verdict": "Quick and dirty localhost tunnel; fine for testing, inappropriate for anything near production.",
     "best_for": "Devs testing webhooks and callbacks for a few minutes.",
     "not_for": "Long-running exposures or anything involving real secrets."
+  },
+  "pricing": {
+    "model": "free",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "low",
+      "score": 5,
+      "reason": "Open-source tunnel tool"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 5,
+      "reason": "Free OSS"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 4,
+      "reason": "Simple CLI"
+    }
   }
 }

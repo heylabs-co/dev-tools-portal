@@ -46,5 +46,26 @@
     "verdict": "A default choice for Shopify/WooCommerce stores chasing cart recovery via web push; ignore for native apps.",
     "best_for": "E-commerce sites running cart abandonment and drip web push",
     "not_for": "Mobile-first apps or B2B SaaS"
+  },
+  "pricing": {
+    "model": "freemium",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Subscribers tied to domain, exportable"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 5,
+      "reason": "Public freemium pricing"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "WordPress plugin plus REST API"
+    }
   }
 }

@@ -46,5 +46,26 @@
     "verdict": "Useful Istio wrapper for regulated enterprises, but a heavy bet given the product's uncertain roadmap.",
     "best_for": "Regulated enterprises needing managed Istio with audit-ready dashboards",
     "not_for": "Small teams wanting lean service mesh without Istio overhead"
+  },
+  "pricing": {
+    "model": "custom",
+    "has_free_tier": false
+  },
+  "scores": {
+    "lock_in": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Istio-based, portable config"
+    },
+    "transparency": {
+      "level": "low",
+      "score": 1,
+      "reason": "Custom enterprise pricing only"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Istio docs, enterprise focus"
+    }
   }
 }

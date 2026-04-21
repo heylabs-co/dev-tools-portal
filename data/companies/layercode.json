@@ -21,6 +21,16 @@
       "score": 4,
       "data_portability": "full_export",
       "migration_complexity": "medium"
+    },
+    "transparency": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Freemium tiers"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 4,
+      "reason": "WebRTC SDKs, good docs"
     }
   },
   "description": "Layercode — Real-time AI voice pipeline platform for building phone and web voice agents with WebRTC streaming.",
@@ -54,5 +64,9 @@
     "verdict": "Promising turnkey voice-agent pipeline that shortcuts custom plumbing, but verify latency for your stack.",
     "best_for": "Teams shipping real-time voice AI agents quickly",
     "not_for": "Async voice tasks or custom low-level audio control"
+  },
+  "pricing": {
+    "model": "freemium",
+    "has_free_tier": true
   }
 }

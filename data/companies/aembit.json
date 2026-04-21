@@ -48,5 +48,26 @@
     "verdict": "Solid option for non-human IAM if you have the scale to justify a managed trust broker.",
     "best_for": "Security teams managing many service-to-SaaS credentials across cloud accounts.",
     "not_for": "Small teams happy with vault-stored static tokens and simple rotation."
+  },
+  "pricing": {
+    "model": "custom",
+    "has_free_tier": false
+  },
+  "scores": {
+    "lock_in": {
+      "level": "low",
+      "score": 2,
+      "reason": "Workload identity policies proprietary to Aembit control plane"
+    },
+    "transparency": {
+      "level": "low",
+      "score": 1,
+      "reason": "Custom enterprise pricing"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Kubernetes operators and SDKs; niche emerging category"
+    }
   }
 }

@@ -47,5 +47,26 @@
     "verdict": "Solid pick for Stripe merchants who want to stop hand-crafting dispute evidence, but it is recovery, not prevention.",
     "best_for": "Mid-to-large Stripe merchants with recurring card chargebacks across multiple reason codes.",
     "not_for": "Teams that need pre-dispute prevention via CDRN/Ethoca or non-Stripe ACH disputes."
+  },
+  "pricing": {
+    "model": "usage",
+    "has_free_tier": false
+  },
+  "scores": {
+    "lock_in": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Stripe-owned API, moderate migration"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 4,
+      "reason": "Usage-based pricing"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 4,
+      "reason": "Clean REST API, Stripe-quality docs"
+    }
   }
 }

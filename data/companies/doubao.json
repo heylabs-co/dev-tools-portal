@@ -49,5 +49,26 @@
     "verdict": "Top-tier model access inside China; mostly a non-starter for Western production.",
     "best_for": "Chinese developers running multimodal apps on Volcano Engine",
     "not_for": "Western teams with GDPR, HIPAA, or residency constraints"
+  },
+  "pricing": {
+    "model": "usage",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "high",
+      "score": 2,
+      "reason": "ByteDance-proprietary LLM"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 4,
+      "reason": "Usage-based public pricing"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Docs mainly Chinese"
+    }
   }
 }

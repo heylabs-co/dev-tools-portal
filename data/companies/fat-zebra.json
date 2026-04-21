@@ -48,5 +48,26 @@
     "verdict": "Practical Australian choice for local acquiring and card vaulting — limited outside ANZ.",
     "best_for": "Australian and NZ merchants needing local acquiring with PCI vault",
     "not_for": "Global businesses wanting a single multi-region gateway"
+  },
+  "pricing": {
+    "model": "usage",
+    "has_free_tier": false
+  },
+  "scores": {
+    "lock_in": {
+      "level": "medium",
+      "score": 2,
+      "reason": "PCI vault binds tokens to gateway"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 4,
+      "reason": "Public usage pricing"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "REST API, AU-focused docs"
+    }
   }
 }

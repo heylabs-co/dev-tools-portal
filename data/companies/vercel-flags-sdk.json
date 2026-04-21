@@ -66,5 +66,26 @@
     "verdict": "Essentially required glue for feature flags in Next.js; pair it with a real flag provider of your choice.",
     "best_for": "Next.js/SvelteKit teams integrating existing flag SaaS cleanly",
     "not_for": "Non-Vercel stacks or teams needing the provider itself"
+  },
+  "pricing": {
+    "model": "free",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "low",
+      "score": 5,
+      "reason": "OSS provider-agnostic flags SDK"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 5,
+      "reason": "Free open-source"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 5,
+      "reason": "Framework-native, adapters for many"
+    }
   }
 }

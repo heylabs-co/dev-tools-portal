@@ -47,5 +47,26 @@
     "verdict": "Safe and cheap default for Chinese mobile/game teams; Western teams should stick with Sentry or Firebase.",
     "best_for": "Chinese mobile and game studios needing free crash/ANR data",
     "not_for": "Western apps with strict data residency requirements"
+  },
+  "pricing": {
+    "model": "free",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Crash data tied to Tencent ecosystem"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 4,
+      "reason": "Free SDK, clear offering"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Docs mostly Chinese, solid SDK"
+    }
   }
 }

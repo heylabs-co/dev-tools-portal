@@ -47,5 +47,26 @@
     "verdict": "The right tool when you are migrating a large monorepo across major versions; otherwise use ast-grep or jscodeshift directly.",
     "best_for": "Platform and DX teams running cross-repo framework or API migrations",
     "not_for": "Solo developers and small projects where a single PR beats tooling overhead"
+  },
+  "pricing": {
+    "model": "freemium",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "low",
+      "score": 4,
+      "reason": "Codemods run locally, output yours"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 4,
+      "reason": "Freemium public pricing"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 4,
+      "reason": "Good CLI and registry"
+    }
   }
 }

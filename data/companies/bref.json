@@ -46,5 +46,26 @@
     "verdict": "The cleanest path to serverless PHP on AWS, as long as cold starts fit your workload.",
     "best_for": "Laravel and Symfony teams wanting AWS-native serverless hosting",
     "not_for": "Low-latency PHP apps or teams uncomfortable with AWS ops"
+  },
+  "pricing": {
+    "model": "free",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "low",
+      "score": 4,
+      "reason": "OSS PHP Lambda runtime, AWS tied"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 5,
+      "reason": "Free and open"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 5,
+      "reason": "Great PHP Lambda docs"
+    }
   }
 }

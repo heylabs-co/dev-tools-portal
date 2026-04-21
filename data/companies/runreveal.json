@@ -48,5 +48,26 @@
     "verdict": "Cost-sane SIEM alternative for cloud-native teams willing to build; not a plug-and-play replacement.",
     "best_for": "Cloud-heavy security teams tired of Splunk bills who can own detection engineering.",
     "not_for": "Traditional SOCs wanting extensive out-of-box content, compliance packs, and GUI-driven workflows."
+  },
+  "pricing": {
+    "model": "usage",
+    "has_free_tier": false
+  },
+  "scores": {
+    "lock_in": {
+      "level": "medium",
+      "score": 3,
+      "reason": "SIEM with portable data"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 4,
+      "reason": "Usage-based pricing public"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 4,
+      "reason": "Log pipeline docs good"
+    }
   }
 }

@@ -48,5 +48,26 @@
     "verdict": "A reasonable mid-market commercial CA; fine for enterprise needs but not exciting.",
     "best_for": "Enterprises wanting an alternative to DigiCert at lower price points.",
     "not_for": "Teams who can standardize on free ACME-based CAs."
+  },
+  "pricing": {
+    "model": "subscription",
+    "has_free_tier": false
+  },
+  "scores": {
+    "lock_in": {
+      "level": "high",
+      "score": 4,
+      "reason": "Standard SSL certs portable"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 4,
+      "reason": "Subscription with public pricing"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "APIs available, moderate docs"
+    }
   }
 }

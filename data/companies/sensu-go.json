@@ -66,5 +66,26 @@
     "verdict": "Solid option for hybrid-infra event monitoring, but Prometheus dominates cloud-native attention and community.",
     "best_for": "Hybrid infrastructure teams needing event-driven monitoring across cloud and on-prem.",
     "not_for": "Cloud-native teams already standardized on Prometheus and Grafana."
+  },
+  "pricing": {
+    "model": "freemium",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "high",
+      "score": 4,
+      "reason": "OSS monitoring, configs portable"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 4,
+      "reason": "Freemium with public tiers"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 4,
+      "reason": "Good docs, CLI, API"
+    }
   }
 }

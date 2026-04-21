@@ -49,5 +49,26 @@
     "verdict": "Safe pick for Japan-domiciled apps that need data locality and NTT-backed support.",
     "best_for": "JP enterprises needing compliant domestic WebRTC hosting",
     "not_for": "Global-first apps optimizing for cost and breadth"
+  },
+  "pricing": {
+    "model": "freemium",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "medium",
+      "score": 3,
+      "reason": "WebRTC SDKs, Japan-hosted"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 4,
+      "reason": "Freemium tier public"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "SDKs for realtime, JP docs"
+    }
   }
 }

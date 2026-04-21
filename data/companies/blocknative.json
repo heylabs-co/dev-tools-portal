@@ -48,5 +48,26 @@
     "verdict": "Essential infrastructure for serious EVM dApp builders; no equivalent alternative for mempool visibility.",
     "best_for": "Web3 teams building wallets, dApps or MEV tools on EVM chains.",
     "not_for": "Non-Web3 projects or teams on Solana/Cosmos/non-EVM chains."
+  },
+  "pricing": {
+    "model": "freemium",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Mempool APIs, standard Web3 integration"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 4,
+      "reason": "Freemium public tiers"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 5,
+      "reason": "WebSockets, webhooks, great docs"
+    }
   }
 }

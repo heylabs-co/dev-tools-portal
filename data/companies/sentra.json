@@ -6,9 +6,8 @@
   "status": "active",
   "categories": {
     "primary": {
-      "id": "CAT-35",
-      "slug": "api-management",
-      "name": "Developer Portals / API Management"
+      "slug": "security-scanning",
+      "name": "Security Scanning / Mobile App Sec"
     }
   },
   "created_at": "2026-04-20T20:57:23.943Z",
@@ -21,6 +20,16 @@
       "score": 3,
       "data_portability": "api_only",
       "migration_complexity": "medium"
+    },
+    "transparency": {
+      "level": "low",
+      "score": 1,
+      "reason": "Custom pricing, contact sales"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Integrations, limited dev API"
     }
   },
   "description": "Sentra — Cloud data security platform discovering and classifying sensitive data across AWS, Azure, and GCP storage.",
@@ -54,5 +63,9 @@
     "verdict": "Solid data-security posture tool, but miscategorized here and competing in a crowded DSPM field.",
     "best_for": "Security teams classifying sensitive cloud data at scale",
     "not_for": "API gateway needs or small-team security budgets"
+  },
+  "pricing": {
+    "model": "custom",
+    "has_free_tier": false
   }
 }

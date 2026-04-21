@@ -52,5 +52,26 @@
     "verdict": "Compelling if you want queues plus streams in one system; ecosystem inertia still favors Kafka for most teams.",
     "best_for": "Data teams needing unified queueing and streaming at scale",
     "not_for": "Small teams already well-served by managed Kafka"
+  },
+  "pricing": {
+    "model": "usage",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "low",
+      "score": 4,
+      "reason": "Managed Pulsar OSS core"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 4,
+      "reason": "Usage pricing public"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 4,
+      "reason": "Good Pulsar docs"
+    }
   }
 }

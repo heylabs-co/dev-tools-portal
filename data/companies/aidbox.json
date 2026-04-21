@@ -47,5 +47,26 @@
     "verdict": "One of the fastest FHIR servers around, ideal when Postgres and performance matter more than free.",
     "best_for": "Digital health builders needing production-grade multi-version FHIR",
     "not_for": "Teams that only need a lightweight open-source FHIR sandbox"
+  },
+  "pricing": {
+    "model": "freemium",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "high",
+      "score": 4,
+      "reason": "FHIR-native, data portable via open HL7 standards"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 4,
+      "reason": "Freemium dev tier with public pricing"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 4,
+      "reason": "Strong developer docs, REST FHIR APIs, SDKs"
+    }
   }
 }

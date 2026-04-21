@@ -24,6 +24,16 @@
       "score": 4,
       "data_portability": "full_export",
       "migration_complexity": "medium"
+    },
+    "transparency": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Freemium, enterprise opaque"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "NLP testing with decent docs"
     }
   },
   "description": "testRigor — NLP-based test automation platform for writing end-to-end tests in plain English without code.",
@@ -56,5 +66,9 @@
     "verdict": "Effective if your QA team cannot code, but engineering-heavy shops still get more value from Playwright plus AI.",
     "best_for": "QA teams without strong coding skills who want broad coverage fast",
     "not_for": "Mature engineering orgs already invested in Playwright or Cypress"
+  },
+  "pricing": {
+    "model": "freemium",
+    "has_free_tier": true
   }
 }

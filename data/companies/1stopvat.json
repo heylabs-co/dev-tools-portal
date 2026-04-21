@@ -47,5 +47,26 @@
     "verdict": "Solid managed VAT service for cross-border SaaS, but devs wanting a programmatic API should look elsewhere.",
     "best_for": "SaaS and e-commerce sellers needing managed EU VAT + OSS/IOSS without in-house tax staff.",
     "not_for": "Engineering teams that need a first-class REST API and self-serve onboarding."
+  },
+  "pricing": {
+    "model": "subscription",
+    "has_free_tier": false
+  },
+  "scores": {
+    "lock_in": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Compliance data portable but historical filings stay with provider"
+    },
+    "transparency": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Subscription pricing available, some tiers opaque"
+    },
+    "developer_experience": {
+      "level": "low",
+      "score": 2,
+      "reason": "Tax-compliance service, limited API/SDK surface"
+    }
   }
 }

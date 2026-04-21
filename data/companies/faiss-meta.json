@@ -48,5 +48,26 @@
     "verdict": "The reference baseline — use directly only if you want infra ownership.",
     "best_for": "ML engineers embedding vector search inside their own services",
     "not_for": "App teams that just want a managed vector DB like Pinecone"
+  },
+  "pricing": {
+    "model": "free",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "low",
+      "score": 5,
+      "reason": "OSS Meta library, portable vectors"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 5,
+      "reason": "Free open-source"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 4,
+      "reason": "Strong paper+docs"
+    }
   }
 }

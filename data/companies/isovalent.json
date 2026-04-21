@@ -49,5 +49,26 @@
     "verdict": "The gold standard for eBPF Kubernetes networking, but only justified at serious enterprise scale.",
     "best_for": "Large enterprises running multi-cluster Kubernetes needing deep network security and observability",
     "not_for": "Small teams, single-cluster setups, or shops without dedicated platform engineers"
+  },
+  "pricing": {
+    "model": "custom",
+    "has_free_tier": false
+  },
+  "scores": {
+    "lock_in": {
+      "level": "low",
+      "score": 4,
+      "reason": "Built on OSS Cilium"
+    },
+    "transparency": {
+      "level": "low",
+      "score": 1,
+      "reason": "Custom enterprise"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 4,
+      "reason": "Strong K8s docs"
+    }
   }
 }

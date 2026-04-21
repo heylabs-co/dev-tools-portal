@@ -24,6 +24,16 @@
       "score": 2,
       "data_portability": "full_export",
       "migration_complexity": "medium"
+    },
+    "transparency": {
+      "level": "low",
+      "score": 2,
+      "reason": "Unknown pricing model"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Limited public info"
     }
   },
   "description": "Bitteiler — AI-powered data transformation and pipeline tool for processing and routing structured data streams.",
@@ -56,5 +66,9 @@
     "verdict": "Interesting idea, but too immature to bet production pipelines on today.",
     "best_for": "Early-stage teams experimenting with AI-guided ETL",
     "not_for": "Production data platforms where Airbyte or Fivetran are proven"
+  },
+  "pricing": {
+    "model": "unknown",
+    "has_free_tier": false
   }
 }

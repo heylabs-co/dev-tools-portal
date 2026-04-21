@@ -48,5 +48,26 @@
     "verdict": "Go-to load balancer when raw performance matters and you want a vendor behind the OSS, pricing needs negotiation.",
     "best_for": "High-traffic sites needing enterprise L4/L7 load balancing with vendor support",
     "not_for": "Teams preferring cloud-native Kubernetes-first ingress (Istio, Envoy-based)"
+  },
+  "pricing": {
+    "model": "subscription",
+    "has_free_tier": false
+  },
+  "scores": {
+    "lock_in": {
+      "level": "low",
+      "score": 4,
+      "reason": "Built on OSS HAProxy, configs portable"
+    },
+    "transparency": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Enterprise pricing contact-sales"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 5,
+      "reason": "Excellent docs and community"
+    }
   }
 }

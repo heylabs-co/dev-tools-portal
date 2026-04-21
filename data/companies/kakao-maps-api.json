@@ -48,5 +48,26 @@
     "verdict": "Must-use if you ship maps to Korean users; useless outside the peninsula.",
     "best_for": "Apps serving Korean users needing local POI accuracy",
     "not_for": "Global apps or projects without Korean market focus"
+  },
+  "pricing": {
+    "model": "freemium",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Korean map tiles proprietary"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 4,
+      "reason": "Freemium public quotas"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 4,
+      "reason": "JS and REST APIs documented"
+    }
   }
 }

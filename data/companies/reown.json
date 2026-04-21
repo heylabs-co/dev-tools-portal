@@ -49,5 +49,26 @@
     "verdict": "Unavoidable plumbing for external wallet connect; pair with an auth SDK for social and email login.",
     "best_for": "dApps supporting a broad range of external wallets",
     "not_for": "Apps that only need embedded wallet onboarding"
+  },
+  "pricing": {
+    "model": "freemium",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "low",
+      "score": 4,
+      "reason": "Open standard WalletConnect"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 4,
+      "reason": "Published freemium tiers"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 5,
+      "reason": "Strong SDKs across chains"
+    }
   }
 }

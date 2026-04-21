@@ -21,6 +21,16 @@
       "score": 2,
       "data_portability": "full_export",
       "migration_complexity": "medium"
+    },
+    "transparency": {
+      "level": "low",
+      "score": 1,
+      "reason": "Custom enterprise pricing"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 4,
+      "reason": "Global KYC API with good docs"
     }
   },
   "description": "Trulioo — Global identity verification platform with document checks, biometric matching, and database verification in 195+ countries.",
@@ -56,5 +66,9 @@
     "verdict": "Default global IDV option when country breadth wins; benchmark country-level accuracy before committing.",
     "best_for": "Global fintechs and enterprises needing identity verification in dozens of regulated markets",
     "not_for": "Single-market teams where local specialists deliver deeper, cheaper verification than a global vendor"
+  },
+  "pricing": {
+    "model": "custom",
+    "has_free_tier": false
   }
 }

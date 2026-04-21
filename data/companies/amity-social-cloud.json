@@ -46,5 +46,26 @@
     "verdict": "Good shortcut if you want chat plus baseline moderation in one SDK; weak if moderation is mission-critical.",
     "best_for": "Apps adding community features that need chat SDK with light moderation included.",
     "not_for": "Platforms with serious abuse risk or regulatory pressure like DSA."
+  },
+  "pricing": {
+    "model": "freemium",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "low",
+      "score": 2,
+      "reason": "Chat data in proprietary schema; hard to migrate"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 4,
+      "reason": "Freemium with public tiered pricing"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 4,
+      "reason": "SDKs for iOS, Android, Web, RN; UIKit components"
+    }
   }
 }

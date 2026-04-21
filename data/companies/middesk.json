@@ -21,6 +21,16 @@
       "score": 2,
       "data_portability": "api_only",
       "migration_complexity": "medium"
+    },
+    "transparency": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Usage-based with some tiers"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 4,
+      "reason": "KYB API with good developer docs"
     }
   },
   "description": "Middesk — Business identity and KYB verification API providing tax ID validation, beneficial ownership, and business data.",
@@ -56,5 +66,9 @@
     "verdict": "The default US KYB API for fintechs; expect to bolt on a KYC vendor and global registry source.",
     "best_for": "US fintechs, lenders and B2B platforms verifying business customers with EIN and UBO checks",
     "not_for": "Global KYB programs or teams needing consumer KYC and sanctions screening in one platform"
+  },
+  "pricing": {
+    "model": "usage",
+    "has_free_tier": false
   }
 }

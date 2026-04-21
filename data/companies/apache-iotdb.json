@@ -52,5 +52,26 @@
     "verdict": "Technically strong IoT time-series DB, adoption curve steeper than InfluxDB outside Chinese industrial sector.",
     "best_for": "Industrial IoT projects with heavy sensor ingest and edge-cloud pipelines",
     "not_for": "Teams preferring Influx or Timescale with mature tooling and broad community"
+  },
+  "pricing": {
+    "model": "free",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "low",
+      "score": 5,
+      "reason": "Apache OSS IoT time-series DB"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 5,
+      "reason": "Free OSS"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 4,
+      "reason": "Good IoT-focused docs"
+    }
   }
 }

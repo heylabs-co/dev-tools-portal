@@ -47,5 +47,26 @@
     "verdict": "The safe enterprise default for card fraud at issuers, but increasingly challenged by newer ML-native rivals.",
     "best_for": "Issuing banks and processors running card transaction fraud at national scale.",
     "not_for": "Digital-first fintechs or non-card use cases like signup or content abuse."
+  },
+  "pricing": {
+    "model": "custom",
+    "has_free_tier": false
+  },
+  "scores": {
+    "lock_in": {
+      "level": "high",
+      "score": 1,
+      "reason": "Enterprise neural models, deep lock-in"
+    },
+    "transparency": {
+      "level": "low",
+      "score": 1,
+      "reason": "Custom enterprise pricing"
+    },
+    "developer_experience": {
+      "level": "low",
+      "score": 2,
+      "reason": "Enterprise integration, limited public docs"
+    }
   }
 }

@@ -45,5 +45,26 @@
     "verdict": "Predictable pricing makes it attractive for high-volume senders; evaluate features before committing.",
     "best_for": "Apps sending millions of pushes who hate per-message pricing",
     "not_for": "Teams needing rich journeys, CDP, or advanced analytics"
+  },
+  "pricing": {
+    "model": "freemium",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "low",
+      "score": 4,
+      "reason": "Push API standard, switchable"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 5,
+      "reason": "Flat-rate public pricing"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 4,
+      "reason": "Solid SDKs and docs"
+    }
   }
 }

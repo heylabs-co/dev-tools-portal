@@ -50,5 +50,26 @@
     "verdict": "Still a legitimate self-hosted file sync choice, but Nextcloud's momentum makes ownCloud a harder sell.",
     "best_for": "Orgs needing on-prem file sync with S3 backend and GDPR-aligned hosting.",
     "not_for": "Teams wanting the biggest self-hosted community — Nextcloud leads there now."
+  },
+  "pricing": {
+    "model": "freemium",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "high",
+      "score": 5,
+      "reason": "OSS self-hosted sync"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 4,
+      "reason": "freemium with enterprise"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 4,
+      "reason": "WebDAV, S3 backend"
+    }
   }
 }

@@ -24,6 +24,16 @@
       "score": 3,
       "data_portability": "api_only",
       "migration_complexity": "medium"
+    },
+    "transparency": {
+      "level": "low",
+      "score": 1,
+      "reason": "Custom pricing"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Edge SDK docs"
     }
   },
   "description": "LatentAI — Model compression and optimization SDK for deploying efficient neural networks on edge and embedded devices.",
@@ -56,5 +66,9 @@
     "verdict": "The specialist pick when you must fit models onto constrained edge silicon at scale.",
     "best_for": "Industrial, defense and IoT teams deploying AI on embedded hardware",
     "not_for": "Cloud-native AI products where model size is not a constraint"
+  },
+  "pricing": {
+    "model": "custom",
+    "has_free_tier": false
   }
 }

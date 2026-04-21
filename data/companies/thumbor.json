@@ -48,5 +48,26 @@
     "verdict": "Venerable self-hosted image processor with smart cropping, imgproxy is often faster for pure resize workloads.",
     "best_for": "Teams needing self-hosted image processing with face detection and smart crops",
     "not_for": "High-throughput pipelines where imgproxy's Go performance wins"
+  },
+  "pricing": {
+    "model": "free",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "low",
+      "score": 5,
+      "reason": "Open source image service"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 5,
+      "reason": "Free open source"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 4,
+      "reason": "Solid docs, self-hostable"
+    }
   }
 }

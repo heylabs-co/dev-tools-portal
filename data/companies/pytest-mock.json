@@ -63,5 +63,26 @@
     "verdict": "A small quality-of-life upgrade over unittest.mock that is nearly universal in modern pytest test suites.",
     "best_for": "pytest users who want mock teardown handled automatically per test",
     "not_for": "Teams preferring dependency injection over patch-based mocking"
+  },
+  "pricing": {
+    "model": "free",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "low",
+      "score": 5,
+      "reason": "OSS pytest plugin"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 5,
+      "reason": "Free open source"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 5,
+      "reason": "Thin, well-documented mock wrapper"
+    }
   }
 }

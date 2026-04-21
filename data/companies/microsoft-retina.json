@@ -66,5 +66,26 @@
     "verdict": "Credible open alternative to Cilium Hubble, but Hubble has a head start and broader ecosystem.",
     "best_for": "Kubernetes network engineers wanting a vendor-neutral eBPF observability tool.",
     "not_for": "Teams already running Cilium with Hubble or needing polished commercial support."
+  },
+  "pricing": {
+    "model": "free",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "high",
+      "score": 5,
+      "reason": "Free OSS eBPF k8s observability"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 5,
+      "reason": "Fully free open source"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 4,
+      "reason": "eBPF network observability for k8s"
+    }
   }
 }

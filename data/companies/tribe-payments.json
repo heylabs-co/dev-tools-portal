@@ -47,5 +47,26 @@
     "verdict": "Credible card-program infra for European fintechs; not a merchant-facing orchestration layer despite the label.",
     "best_for": "Banks, fintechs, and card programs needing modular issuing and acquiring infra in Europe.",
     "not_for": "Merchants looking for checkout orchestration over existing PSPs."
+  },
+  "pricing": {
+    "model": "custom",
+    "has_free_tier": false
+  },
+  "scores": {
+    "lock_in": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Orchestrator requires integration"
+    },
+    "transparency": {
+      "level": "low",
+      "score": 1,
+      "reason": "Custom enterprise pricing"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Modular APIs with docs"
+    }
   }
 }

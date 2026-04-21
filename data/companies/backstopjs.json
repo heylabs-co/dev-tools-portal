@@ -65,5 +65,26 @@
     "verdict": "Good free starting point for visual regression, but expect to babysit flakes and storage yourself.",
     "best_for": "Small teams wanting self-hosted visual diffing without SaaS fees",
     "not_for": "Teams needing parallel cloud runs, review workflows or cross-browser matrices"
+  },
+  "pricing": {
+    "model": "free",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "high",
+      "score": 5,
+      "reason": "OSS visual regression"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 5,
+      "reason": "Free open source"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 4,
+      "reason": "Good Puppeteer/Playwright docs"
+    }
   }
 }

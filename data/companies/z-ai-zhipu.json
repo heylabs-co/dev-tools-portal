@@ -52,5 +52,26 @@
     "verdict": "Genuine frontier-tier Chinese LLM access, but weigh the sanctions and compliance exposure carefully.",
     "best_for": "Developers globally who want GLM-class reasoning at lower token costs",
     "not_for": "US federal, defense, and other teams blocked from Chinese-origin models"
+  },
+  "pricing": {
+    "model": "usage",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "low",
+      "score": 4,
+      "reason": "LLM API swappable"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 5,
+      "reason": "Public token pricing"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 4,
+      "reason": "OpenAI-compatible API"
+    }
   }
 }

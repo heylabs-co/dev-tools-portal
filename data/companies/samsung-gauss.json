@@ -50,5 +50,26 @@
     "verdict": "Important for Samsung device strategy, but not a practical API choice for independent developers today.",
     "best_for": "Samsung-internal teams building Galaxy AI features",
     "not_for": "Third-party developers needing cross-platform LLM APIs"
+  },
+  "pricing": {
+    "model": "custom",
+    "has_free_tier": false
+  },
+  "scores": {
+    "lock_in": {
+      "level": "high",
+      "score": 2,
+      "reason": "Samsung-internal models"
+    },
+    "transparency": {
+      "level": "low",
+      "score": 1,
+      "reason": "Custom/internal only"
+    },
+    "developer_experience": {
+      "level": "low",
+      "score": 2,
+      "reason": "No public SDK"
+    }
   }
 }

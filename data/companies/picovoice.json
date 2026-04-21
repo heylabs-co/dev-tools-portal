@@ -50,5 +50,26 @@
     "verdict": "The go-to SDK for offline voice AI on edge devices; cloud STT still wins on accuracy for connected apps.",
     "best_for": "Edge and IoT developers needing offline voice AI with privacy",
     "not_for": "Cloud-first apps where Whisper or Deepgram accuracy wins"
+  },
+  "pricing": {
+    "model": "freemium",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "medium",
+      "score": 3,
+      "reason": "on-device voice AI SDKs"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 4,
+      "reason": "freemium with tiers"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 4,
+      "reason": "strong on-device voice SDKs"
+    }
   }
 }

@@ -21,6 +21,16 @@
       "score": 2,
       "data_portability": "no_export",
       "migration_complexity": "medium"
+    },
+    "transparency": {
+      "level": "low",
+      "score": 1,
+      "reason": "custom pricing"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "AI alert routing"
     }
   },
   "description": "Phoebe — Intelligent on-call alerting platform using AI to detect, triage, and route operational incidents.",
@@ -55,5 +65,9 @@
     "verdict": "Another AI-alerting entrant worth piloting, but crowded category needs clear differentiation to stand out.",
     "best_for": "Teams piloting AI-assisted on-call to cut alert noise and routing overhead.",
     "not_for": "Teams needing battle-tested, enterprise-scale alert infrastructure now."
+  },
+  "pricing": {
+    "model": "custom",
+    "has_free_tier": false
   }
 }

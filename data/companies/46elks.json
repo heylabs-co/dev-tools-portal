@@ -49,5 +49,26 @@
     "verdict": "Reliable Nordic SMS/voice API for teams who value Swedish-hosted infra over global channel breadth.",
     "best_for": "Nordic and EU apps needing dependable SMS/voice with GDPR-friendly hosting",
     "not_for": "Global senders needing WhatsApp, RCS, or deep APAC/US carrier reach"
+  },
+  "pricing": {
+    "model": "usage",
+    "has_free_tier": false
+  },
+  "scores": {
+    "lock_in": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Standard messaging APIs so switching to competitors is feasible"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 5,
+      "reason": "Fully public per-message pricing, no-contract model"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 4,
+      "reason": "Clean REST API, code samples in many languages, friendly docs"
+    }
   }
 }

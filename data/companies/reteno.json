@@ -8,9 +8,8 @@
   "status": "active",
   "categories": {
     "primary": {
-      "id": "CAT-39",
-      "slug": "iap-optimization",
-      "name": "In-app Purchase Optimization"
+      "slug": "crm-lifecycle",
+      "name": "CRM / Lifecycle Automation"
     }
   },
   "created_at": "2026-04-20T21:33:16.857Z",
@@ -50,5 +49,26 @@
     "verdict": "Capable multi-channel CRM for app retention, but miscategorized as IAP; compare it to Braze, CleverTap, OneSignal.",
     "best_for": "Subscription app teams running retention and winback campaigns.",
     "not_for": "Teams looking for paywalls, receipt validation or IAP infrastructure."
+  },
+  "pricing": {
+    "model": "subscription",
+    "has_free_tier": false
+  },
+  "scores": {
+    "lock_in": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Mobile SDK integrations"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 4,
+      "reason": "Published subscription plans"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Decent messaging SDKs"
+    }
   }
 }

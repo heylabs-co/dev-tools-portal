@@ -8,9 +8,8 @@
   "status": "active",
   "categories": {
     "primary": {
-      "id": "CAT-02",
-      "slug": "payment-gateway",
-      "name": "Payment Gateway / PSP"
+      "slug": "data-integration-etl",
+      "name": "Data Integration / ETL / Reverse ETL"
     }
   },
   "created_at": "2026-04-20T21:33:16.824Z",
@@ -48,5 +47,26 @@
     "verdict": "Useful connectivity layer for crypto platforms — think Plaid for exchanges, not a traditional gateway.",
     "best_for": "Crypto apps and tax tools needing exchange and wallet aggregation",
     "not_for": "Fiat-only merchants or teams needing payment acceptance"
+  },
+  "pricing": {
+    "model": "custom",
+    "has_free_tier": false
+  },
+  "scores": {
+    "lock_in": {
+      "level": "high",
+      "score": 2,
+      "reason": "Proprietary crypto aggregator"
+    },
+    "transparency": {
+      "level": "low",
+      "score": 1,
+      "reason": "Custom pricing"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 4,
+      "reason": "Good SDK, unified API"
+    }
   }
 }

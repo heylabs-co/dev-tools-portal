@@ -46,5 +46,26 @@
     "verdict": "Specialist for US utility and government bill payments, not relevant unless you operate in that vertical.",
     "best_for": "US utilities, municipalities, and financial services needing multi-channel bill pay",
     "not_for": "E-commerce merchants or SMBs outside regulated bill-pay verticals"
+  },
+  "pricing": {
+    "model": "custom",
+    "has_free_tier": false
+  },
+  "scores": {
+    "lock_in": {
+      "level": "high",
+      "score": 2,
+      "reason": "US bill payment, vertical platform"
+    },
+    "transparency": {
+      "level": "low",
+      "score": 1,
+      "reason": "custom enterprise pricing"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "multi-channel APIs"
+    }
   }
 }

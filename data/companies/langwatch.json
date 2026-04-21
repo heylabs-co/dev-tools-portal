@@ -24,6 +24,16 @@
       "score": 4,
       "data_portability": "no_export",
       "migration_complexity": "medium"
+    },
+    "transparency": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Freemium tiers"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 4,
+      "reason": "Good LLM observability docs"
     }
   },
   "description": "LangWatch — LLM monitoring and analytics platform for tracking quality, cost, and performance of AI pipelines.",
@@ -56,5 +66,9 @@
     "verdict": "A credible pick for LLM observability, especially if open-source matters to you.",
     "best_for": "Teams shipping LLM features needing cost, latency and quality dashboards",
     "not_for": "Enterprises wanting the largest vendor with deepest integrations"
+  },
+  "pricing": {
+    "model": "freemium",
+    "has_free_tier": true
   }
 }

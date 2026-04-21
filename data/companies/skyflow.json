@@ -8,9 +8,8 @@
   "status": "active",
   "categories": {
     "primary": {
-      "id": "CAT-01",
-      "slug": "payments-orchestration",
-      "name": "Payments Orchestration"
+      "slug": "secrets-management",
+      "name": "Secrets Management"
     }
   },
   "created_at": "2026-04-20T21:33:16.865Z",
@@ -47,5 +46,26 @@
     "verdict": "Top-tier data-privacy vault, especially for multi-data-type programs; not a replacement for payment orchestration.",
     "best_for": "Companies needing one vault for cards, PII, and LLM data with strict residency and governance.",
     "not_for": "Teams whose only need is basic PCI-scope reduction around a single PSP."
+  },
+  "pricing": {
+    "model": "custom",
+    "has_free_tier": false
+  },
+  "scores": {
+    "lock_in": {
+      "level": "high",
+      "score": 1,
+      "reason": "Proprietary vault, data migration complex"
+    },
+    "transparency": {
+      "level": "low",
+      "score": 1,
+      "reason": "Custom pricing, contact sales"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Decent SDKs and API docs"
+    }
   }
 }

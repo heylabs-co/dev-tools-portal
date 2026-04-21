@@ -61,5 +61,26 @@
     "verdict": "Historically strong for multi-protocol load tests, but k6 and Locust have surpassed it for most teams.",
     "best_for": "Legacy setups or niche protocols like XMPP needing distributed load simulation",
     "not_for": "New load testing where k6 scripts offer vastly better ergonomics"
+  },
+  "pricing": {
+    "model": "free",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "low",
+      "score": 5,
+      "reason": "Free OSS load tester"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 5,
+      "reason": "Free open source"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Erlang tool, decent docs"
+    }
   }
 }

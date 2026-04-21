@@ -47,5 +47,26 @@
     "verdict": "Account-data API for N26 customers — useful for accounting sync, irrelevant as payment gateway.",
     "best_for": "N26 business customers automating accounting and transaction sync",
     "not_for": "Merchants needing payment acceptance or non-N26 users"
+  },
+  "pricing": {
+    "model": "free",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "high",
+      "score": 4,
+      "reason": "Free N26 banking API"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 5,
+      "reason": "Free for developers"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "N26 bank REST API"
+    }
   }
 }

@@ -48,5 +48,26 @@
     "verdict": "The default choice for public TLS in 2026; almost no reason not to use it for standard websites.",
     "best_for": "Any site needing free, automated public TLS with broad client support.",
     "not_for": "Cases legally requiring EV, OV, or paid CA contracts."
+  },
+  "pricing": {
+    "model": "free",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "low",
+      "score": 5,
+      "reason": "Open CA, standard certs"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 5,
+      "reason": "Free service"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 5,
+      "reason": "Excellent ACME docs"
+    }
   }
 }

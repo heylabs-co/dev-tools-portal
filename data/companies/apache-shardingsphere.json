@@ -52,5 +52,26 @@
     "verdict": "Powerful sharding middleware for MySQL and PostgreSQL, requires real DBA chops to operate confidently in production.",
     "best_for": "Teams needing transparent sharding layer over existing MySQL or PostgreSQL",
     "not_for": "Greenfield projects where TiDB or CockroachDB offer simpler distributed SQL"
+  },
+  "pricing": {
+    "model": "free",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "low",
+      "score": 5,
+      "reason": "Apache OSS SQL middleware"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 5,
+      "reason": "Free OSS"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 4,
+      "reason": "Good docs for sharding"
+    }
   }
 }

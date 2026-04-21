@@ -47,5 +47,26 @@
     "verdict": "A high-value utility belt for signup and basic transaction risk when you do not need an enterprise vendor.",
     "best_for": "Small to mid-market SaaS and marketplaces fighting signup abuse and low-risk payment fraud.",
     "not_for": "Tier-1 banks or high-stakes fintech flows where data depth and SLAs are critical."
+  },
+  "pricing": {
+    "model": "freemium",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "low",
+      "score": 4,
+      "reason": "Standard fraud REST APIs"
+    },
+    "transparency": {
+      "level": "medium",
+      "score": 4,
+      "reason": "Freemium tiers published"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 4,
+      "reason": "SDKs, API docs"
+    }
   }
 }

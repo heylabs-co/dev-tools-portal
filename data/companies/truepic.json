@@ -47,5 +47,26 @@
     "verdict": "Best bet for provenance-based authenticity, but depends on industry-wide C2PA adoption to pay off fully.",
     "best_for": "Insurance, claims, media, and regulated flows where capture-time verification matters.",
     "not_for": "Detecting existing deepfakes in the wild without controlled capture."
+  },
+  "pricing": {
+    "model": "custom",
+    "has_free_tier": false
+  },
+  "scores": {
+    "lock_in": {
+      "level": "medium",
+      "score": 3,
+      "reason": "C2PA standard supports portability"
+    },
+    "transparency": {
+      "level": "low",
+      "score": 1,
+      "reason": "Custom enterprise pricing"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Content auth API docs"
+    }
   }
 }

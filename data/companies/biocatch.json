@@ -47,5 +47,26 @@
     "verdict": "Best-in-class for scam and ATO detection in banking, but too heavy and expensive for generic SaaS fraud.",
     "best_for": "Banks and fintechs fighting social-engineering scams and account takeover at scale.",
     "not_for": "E-commerce checkout fraud or small apps without a mature risk team."
+  },
+  "pricing": {
+    "model": "custom",
+    "has_free_tier": false
+  },
+  "scores": {
+    "lock_in": {
+      "level": "high",
+      "score": 2,
+      "reason": "Proprietary behavioral fraud signals"
+    },
+    "transparency": {
+      "level": "low",
+      "score": 1,
+      "reason": "Custom enterprise pricing"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "SDKs/APIs but limited public info"
+    }
   }
 }

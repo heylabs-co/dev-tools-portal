@@ -48,5 +48,26 @@
     "verdict": "Interesting curation layer for global payouts — worth evaluating against Thunes and dLocal for coverage fit.",
     "best_for": "Platforms wanting one API to access global pay-in and pay-out rails",
     "not_for": "Teams that need direct provider relationships or single-country scope"
+  },
+  "pricing": {
+    "model": "custom",
+    "has_free_tier": false
+  },
+  "scores": {
+    "lock_in": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Curation platform but vendor-specific integration"
+    },
+    "transparency": {
+      "level": "low",
+      "score": 1,
+      "reason": "Custom pricing only"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Single API, limited public docs"
+    }
   }
 }

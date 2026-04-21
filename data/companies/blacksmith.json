@@ -58,5 +58,26 @@
   },
   "community": {
     "hn_mentions_30d": 1
+  },
+  "pricing": {
+    "model": "usage",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "low",
+      "score": 4,
+      "reason": "CI build drop-in, GitHub Actions compatible"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 5,
+      "reason": "Usage-based public pricing"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 4,
+      "reason": "Easy GHA migration, good docs"
+    }
   }
 }

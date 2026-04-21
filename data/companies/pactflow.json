@@ -45,5 +45,26 @@
     "verdict": "Worth paying for if contract testing is central to your microservice strategy and you hate running infra.",
     "best_for": "Enterprises with many microservices who want managed contract testing",
     "not_for": "Small teams content self-hosting the open-source Pact Broker"
+  },
+  "pricing": {
+    "model": "freemium",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "high",
+      "score": 4,
+      "reason": "OSS Pact foundation"
+    },
+    "transparency": {
+      "level": "medium",
+      "score": 3,
+      "reason": "freemium with pro tiers"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 4,
+      "reason": "managed Pact broker"
+    }
   }
 }

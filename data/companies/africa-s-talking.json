@@ -48,5 +48,26 @@
     "verdict": "The default choice for SMS, USSD and airtime across Africa — coverage no global provider matches locally.",
     "best_for": "Fintech and civic apps targeting Sub-Saharan Africa with USSD and SMS",
     "not_for": "Teams needing WhatsApp-first workflows or premium global CPaaS tooling"
+  },
+  "pricing": {
+    "model": "usage",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "high",
+      "score": 4,
+      "reason": "Standard SMS/voice/USSD APIs, portable between providers"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 4,
+      "reason": "Public per-message/minute pricing for each African market"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 4,
+      "reason": "SDKs in Python, PHP, Node, Java; clear docs and sandbox"
+    }
   }
 }

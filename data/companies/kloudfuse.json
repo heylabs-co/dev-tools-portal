@@ -48,5 +48,26 @@
     "verdict": "Excellent choice for regulated teams fleeing Datadog costs, if you have the ops muscle to run it.",
     "best_for": "Regulated or data-sovereign enterprises wanting Datadog UX without vendor hosting.",
     "not_for": "Small teams without Kubernetes and ops capacity to operate the platform."
+  },
+  "pricing": {
+    "model": "custom",
+    "has_free_tier": false
+  },
+  "scores": {
+    "lock_in": {
+      "level": "low",
+      "score": 4,
+      "reason": "VPC-deployed, Datadog-compatible"
+    },
+    "transparency": {
+      "level": "low",
+      "score": 1,
+      "reason": "Custom pricing"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 4,
+      "reason": "OTel and DD-compatible"
+    }
   }
 }

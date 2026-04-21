@@ -49,5 +49,26 @@
     "verdict": "Capable enterprise alerting with deep integrations, but UX and onboarding lag behind PagerDuty.",
     "best_for": "Enterprises needing flexible bidirectional alert workflows across legacy and modern tools.",
     "not_for": "Small teams wanting simple on-call with minimal configuration overhead."
+  },
+  "pricing": {
+    "model": "subscription",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "medium",
+      "score": 3,
+      "reason": "On-call schedules exportable; deep integrations sticky"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 4,
+      "reason": "Public per-seat subscription tiers"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "REST API and webhooks, alt to PagerDuty"
+    }
   }
 }

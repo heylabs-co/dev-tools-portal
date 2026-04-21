@@ -47,5 +47,26 @@
     "verdict": "The easiest way to ship gasless UX today, at the cost of tying your dApp to their infra.",
     "best_for": "Consumer dApps that need smooth onboarding and gasless flows",
     "not_for": "Protocols prioritizing fully self-hosted, trust-minimized infra"
+  },
+  "pricing": {
+    "model": "usage",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Open SDK but ERC-4337 bundler/paymaster tied to provider"
+    },
+    "transparency": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Usage-based, some tiers opaque"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 5,
+      "reason": "Strong Web3 docs, SDKs, examples"
+    }
   }
 }

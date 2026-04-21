@@ -48,5 +48,26 @@
     "verdict": "Pragmatic option when you only need reproducible CLI tool versions, not full environment reproducibility.",
     "best_for": "Monorepos wanting pinned CLI toolchains without adopting Nix",
     "not_for": "Teams needing reproducible services, databases, or full sandboxes"
+  },
+  "pricing": {
+    "model": "free",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "low",
+      "score": 5,
+      "reason": "Open-source hermetic tool manager"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 5,
+      "reason": "Free open source"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 4,
+      "reason": "Good docs, Cash App-backed"
+    }
   }
 }

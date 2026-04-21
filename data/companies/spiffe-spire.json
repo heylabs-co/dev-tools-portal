@@ -48,5 +48,26 @@
     "verdict": "The serious answer to workload identity; plan on real engineering investment to deploy it well.",
     "best_for": "Platform teams building zero-trust identity across heterogeneous infra.",
     "not_for": "Small teams whose identity needs are solved by cloud IAM."
+  },
+  "pricing": {
+    "model": "free",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "low",
+      "score": 5,
+      "reason": "CNCF open standard"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 5,
+      "reason": "Free open source"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 4,
+      "reason": "Identity framework, CNCF docs"
+    }
   }
 }

@@ -49,5 +49,26 @@
     "verdict": "Solid FHIR backbone for US healthcare integrations, but irrelevant outside payer/provider regulatory context.",
     "best_for": "US payers and providers needing CMS-compliant patient-access APIs",
     "not_for": "Non-healthcare teams or orgs outside US regulatory frameworks"
+  },
+  "pricing": {
+    "model": "custom",
+    "has_free_tier": false
+  },
+  "scores": {
+    "lock_in": {
+      "level": "medium",
+      "score": 3,
+      "reason": "FHIR is an open standard so data is portable; platform layer proprietary"
+    },
+    "transparency": {
+      "level": "low",
+      "score": 1,
+      "reason": "Custom enterprise pricing, no public rates"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Standard FHIR APIs with developer portal; niche vertical"
+    }
   }
 }

@@ -21,6 +21,16 @@
       "score": 4,
       "data_portability": "api_only",
       "migration_complexity": "medium"
+    },
+    "transparency": {
+      "level": "low",
+      "score": 1,
+      "reason": "Custom enterprise pricing"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Enterprise PAM-like tool"
     }
   },
   "description": "Bastion — Secure remote access and privileged session management platform for cloud infrastructure and developer access.",
@@ -56,5 +66,9 @@
     "verdict": "Necessary plumbing for SOC 2 and PCI access controls, but expect developers to grumble about the extra friction.",
     "best_for": "Regulated orgs needing auditable access to production systems",
     "not_for": "Small teams where everyone already has tight IAM controls"
+  },
+  "pricing": {
+    "model": "custom",
+    "has_free_tier": false
   }
 }

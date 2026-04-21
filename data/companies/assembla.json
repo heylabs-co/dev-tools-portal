@@ -47,5 +47,26 @@
     "verdict": "Niche enterprise forge worth it mainly if you still run Perforce or SVN and need SOC2.",
     "best_for": "Regulated enterprises with mixed SVN/Perforce/Git repos needing compliance hosting.",
     "not_for": "Modern teams on Git who would rather use GitHub or GitLab."
+  },
+  "pricing": {
+    "model": "subscription",
+    "has_free_tier": false
+  },
+  "scores": {
+    "lock_in": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Git/SVN exportable, tickets harder"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 4,
+      "reason": "Subscription with public tiers"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Mature but dated docs"
+    }
   }
 }

@@ -49,5 +49,26 @@
     "verdict": "The right pick for consumer health apps needing payer data via CMS rules, limited outside that lane.",
     "best_for": "Consumer health apps building patient-consented claims features",
     "not_for": "Teams needing provider-side data or non-FHIR integrations"
+  },
+  "pricing": {
+    "model": "custom",
+    "has_free_tier": false
+  },
+  "scores": {
+    "lock_in": {
+      "level": "low",
+      "score": 4,
+      "reason": "FHIR standard, open data"
+    },
+    "transparency": {
+      "level": "low",
+      "score": 1,
+      "reason": "Custom pricing"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "FHIR API, health-specific docs"
+    }
   }
 }

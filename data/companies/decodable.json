@@ -48,5 +48,26 @@
     "verdict": "Best way to run Flink without DevOps pain, though Confluent remains the default for streaming.",
     "best_for": "Data teams wanting managed Flink streaming without Kubernetes operations",
     "not_for": "Teams standardized on Kafka Streams or ksqlDB within Confluent"
+  },
+  "pricing": {
+    "model": "usage",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "low",
+      "score": 4,
+      "reason": "Flink-based, standards portable"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 4,
+      "reason": "Usage-based with public pricing"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 4,
+      "reason": "SQL-first Flink, good docs"
+    }
   }
 }

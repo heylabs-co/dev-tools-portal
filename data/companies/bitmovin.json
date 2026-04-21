@@ -48,5 +48,26 @@
     "verdict": "Serious codec flexibility for video engineering teams, probably too heavy for simple VOD use cases.",
     "best_for": "Streaming platforms needing AV1, per-title encoding, and BYOC deployment",
     "not_for": "Small teams that just want upload-and-embed video hosting"
+  },
+  "pricing": {
+    "model": "usage",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Video encoding API, standard formats output"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 4,
+      "reason": "Per-minute public pricing"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 5,
+      "reason": "Rich APIs, players, SDKs, great docs"
+    }
   }
 }

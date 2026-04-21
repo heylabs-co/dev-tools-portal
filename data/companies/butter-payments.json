@@ -48,5 +48,26 @@
     "verdict": "Worthwhile bolt-on for subscription businesses losing revenue to soft declines; not a replacement for orchestration.",
     "best_for": "Subscription and card-on-file merchants with meaningful involuntary churn from declines.",
     "not_for": "One-time e-commerce checkouts or teams without a recurring billing problem."
+  },
+  "pricing": {
+    "model": "custom",
+    "has_free_tier": false
+  },
+  "scores": {
+    "lock_in": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Failed payment recovery"
+    },
+    "transparency": {
+      "level": "low",
+      "score": 1,
+      "reason": "Custom pricing"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "ML-based, limited dev info"
+    }
   }
 }

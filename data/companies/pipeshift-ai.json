@@ -51,5 +51,26 @@
     "verdict": "Reasonable if model ownership matters, but Together, Fireworks, and Modal often beat them on ecosystem depth.",
     "best_for": "Teams fine-tuning open LLMs who need to own the weights",
     "not_for": "Teams fine with closed-model APIs like GPT or Claude"
+  },
+  "pricing": {
+    "model": "usage",
+    "has_free_tier": false
+  },
+  "scores": {
+    "lock_in": {
+      "level": "medium",
+      "score": 3,
+      "reason": "fine-tuning platform, models portable"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 4,
+      "reason": "usage-based pricing"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 4,
+      "reason": "OpenAI-compatible API"
+    }
   }
 }

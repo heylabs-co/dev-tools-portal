@@ -48,5 +48,26 @@
     "verdict": "Strong pick for Korean-market and document-heavy workloads where a small efficient LLM is enough.",
     "best_for": "Document AI and Korean-language apps wanting small, open LLMs with OpenAI-compatible API",
     "not_for": "Teams needing frontier reasoning or long-context English generation"
+  },
+  "pricing": {
+    "model": "usage",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "low",
+      "score": 5,
+      "reason": "Open-weight model, OpenAI-compatible"
+    },
+    "transparency": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Usage-based rates published"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 4,
+      "reason": "OpenAI-compatible API docs"
+    }
   }
 }

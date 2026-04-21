@@ -48,5 +48,26 @@
     "verdict": "Decent middle ground for self-hosted video conferencing; consider LiveKit or mediasoup for newer deployments.",
     "best_for": "Teams self-hosting video conferencing with a friendly API",
     "not_for": "Large-scale real-time products that need cutting-edge perf"
+  },
+  "pricing": {
+    "model": "freemium",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "high",
+      "score": 5,
+      "reason": "OSS WebRTC server"
+    },
+    "transparency": {
+      "level": "medium",
+      "score": 3,
+      "reason": "freemium with pro tier"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 4,
+      "reason": "strong SDK docs"
+    }
   }
 }

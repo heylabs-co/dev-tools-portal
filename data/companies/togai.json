@@ -46,5 +46,26 @@
     "verdict": "A lean usage-billing option for SaaS experimenting with hybrid pricing without enterprise overhead.",
     "best_for": "Growing SaaS introducing usage or hybrid pricing that want developer-friendly metering.",
     "not_for": "Large enterprises with regulatory rev rec needs or flat-rate products without metering."
+  },
+  "pricing": {
+    "model": "subscription",
+    "has_free_tier": false
+  },
+  "scores": {
+    "lock_in": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Usage billing engine, some lock-in"
+    },
+    "transparency": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Subscription tiers visible"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 4,
+      "reason": "Good billing APIs and docs"
+    }
   }
 }

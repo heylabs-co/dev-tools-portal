@@ -24,6 +24,16 @@
       "score": 2,
       "data_portability": "no_export",
       "migration_complexity": "medium"
+    },
+    "transparency": {
+      "level": "medium",
+      "score": 4,
+      "reason": "Public freemium pricing"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Consumer app, limited dev API"
     }
   },
   "description": "Wispr Flow — AI voice dictation app for macOS that transcribes speech to text in any application with context awareness.",
@@ -56,5 +66,9 @@
     "verdict": "The best dictation tool on macOS today — worth it if you type a lot and live on Apple hardware.",
     "best_for": "Mac power users and writers who want to dictate into any app quickly",
     "not_for": "Windows or Linux users and anyone with strict local-only transcription requirements"
+  },
+  "pricing": {
+    "model": "freemium",
+    "has_free_tier": true
   }
 }

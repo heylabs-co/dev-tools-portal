@@ -52,5 +52,26 @@
     "verdict": "Classic cube-based OLAP that still wins on query speed, but modern MPP engines reduce its relative appeal.",
     "best_for": "Enterprises with fixed BI dashboards needing sub-second queries on huge datasets",
     "not_for": "Ad-hoc analytics workloads where query patterns change frequently"
+  },
+  "pricing": {
+    "model": "free",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "low",
+      "score": 5,
+      "reason": "Apache OSS OLAP engine"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 5,
+      "reason": "Free OSS"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Docs decent but aging"
+    }
   }
 }

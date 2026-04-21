@@ -21,6 +21,16 @@
       "score": 3,
       "data_portability": "full_export",
       "migration_complexity": "medium"
+    },
+    "transparency": {
+      "level": "low",
+      "score": 1,
+      "reason": "Custom pricing"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "SDKs, gated docs"
     }
   },
   "description": "Keyless — Biometric authentication platform using multi-party computation to enable privacy-preserving facial recognition MFA.",
@@ -56,5 +66,9 @@
     "verdict": "Interesting privacy-first biometric MFA for regulated fintech; evaluate against simpler passkey solutions first.",
     "best_for": "Regulated fintechs needing biometric MFA without storing templates",
     "not_for": "Teams that can solve their MFA problem with passkeys alone"
+  },
+  "pricing": {
+    "model": "custom",
+    "has_free_tier": false
   }
 }

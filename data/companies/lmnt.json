@@ -48,5 +48,26 @@
     "verdict": "A strong pick when sub-second latency matters more than broadest voice catalog.",
     "best_for": "Voice agents, IVR replacements and real-time conversational apps",
     "not_for": "Audiobook, dubbing or localization needing huge voice libraries"
+  },
+  "pricing": {
+    "model": "usage",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Proprietary TTS API"
+    },
+    "transparency": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Usage-based pricing"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 4,
+      "reason": "Good real-time SDKs"
+    }
   }
 }

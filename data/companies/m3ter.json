@@ -47,5 +47,26 @@
     "verdict": "Best-in-class metering infrastructure for AI and high-volume SaaS, but you still need a billing system around it.",
     "best_for": "AI and infrastructure SaaS with high-cardinality usage needing a dedicated metering layer.",
     "not_for": "Simple flat-rate SaaS or teams wanting one tool that covers billing end to end."
+  },
+  "pricing": {
+    "model": "custom",
+    "has_free_tier": false
+  },
+  "scores": {
+    "lock_in": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Billing data exportable"
+    },
+    "transparency": {
+      "level": "low",
+      "score": 1,
+      "reason": "Custom pricing only"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 4,
+      "reason": "Developer-first billing API"
+    }
   }
 }

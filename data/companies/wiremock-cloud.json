@@ -45,5 +45,26 @@
     "verdict": "Worth paying for if mocks are a team-wide artifact; otherwise self-hosted WireMock covers most use cases.",
     "best_for": "Cross-team mock libraries needing governance and collaboration features",
     "not_for": "Small teams happy self-hosting the free WireMock JAR"
+  },
+  "pricing": {
+    "model": "freemium",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "low",
+      "score": 4,
+      "reason": "Built on OSS WireMock, exportable"
+    },
+    "transparency": {
+      "level": "medium",
+      "score": 4,
+      "reason": "Public tiered pricing"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 4,
+      "reason": "Good docs, OpenAPI support"
+    }
   }
 }

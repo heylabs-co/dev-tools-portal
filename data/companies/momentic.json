@@ -24,6 +24,16 @@
       "score": 2,
       "data_portability": "partial_export",
       "migration_complexity": "medium"
+    },
+    "transparency": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Subscription with some tiers"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 4,
+      "reason": "AI E2E test generation"
     }
   },
   "description": "Momentic — AI-powered end-to-end test generation platform that creates web UI tests from natural language instructions.",
@@ -58,5 +68,9 @@
     "verdict": "Solid AI test generator for web QA teams tired of Playwright boilerplate, but weigh lock-in vs OSS options.",
     "best_for": "Mid-size web product teams without dedicated QA engineers",
     "not_for": "Mobile-first shops or teams committed to open-source Playwright"
+  },
+  "pricing": {
+    "model": "subscription",
+    "has_free_tier": false
   }
 }

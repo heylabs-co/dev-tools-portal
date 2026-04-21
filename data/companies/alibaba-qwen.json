@@ -49,5 +49,26 @@
     "verdict": "The open-weights champion for teams operating in or across Chinese-speaking markets.",
     "best_for": "APAC developers needing multilingual LLMs with self-host option",
     "not_for": "US/EU enterprises with strict data residency requirements"
+  },
+  "pricing": {
+    "model": "freemium",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "high",
+      "score": 5,
+      "reason": "Open-weight Qwen models downloadable under Apache 2.0"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 4,
+      "reason": "Freemium API with public pricing and open weights"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 4,
+      "reason": "Hugging Face, vLLM, and DashScope SDK support"
+    }
   }
 }

@@ -47,5 +47,26 @@
     "verdict": "Predictable pricing helps high-volume US merchants — low-volume shops should stick with per-transaction models.",
     "best_for": "High-volume US SMBs who benefit from flat-fee interchange-plus pricing",
     "not_for": "Low-volume merchants or businesses outside the US"
+  },
+  "pricing": {
+    "model": "subscription",
+    "has_free_tier": false
+  },
+  "scores": {
+    "lock_in": {
+      "level": "medium",
+      "score": 2,
+      "reason": "Integrated POS+gateway bundle"
+    },
+    "transparency": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Subscription pricing, partial public"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "REST API, US-focused docs"
+    }
   }
 }

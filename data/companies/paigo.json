@@ -50,5 +50,26 @@
     "verdict": "Useful if you ship AI SaaS with token-based pricing, but test Orb and Lago before committing.",
     "best_for": "AI SaaS startups launching usage-based or hybrid billing",
     "not_for": "Flat-rate SaaS with simple Stripe Billing already working"
+  },
+  "pricing": {
+    "model": "usage",
+    "has_free_tier": false
+  },
+  "scores": {
+    "lock_in": {
+      "level": "medium",
+      "score": 3,
+      "reason": "usage billing API"
+    },
+    "transparency": {
+      "level": "medium",
+      "score": 3,
+      "reason": "usage pricing"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "SDK and API"
+    }
   }
 }

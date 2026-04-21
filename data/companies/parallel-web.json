@@ -51,5 +51,26 @@
     "verdict": "Strong choice when agent research quality matters more than speed or cost; overkill for trivial lookups.",
     "best_for": "Agent builders needing deep multi-step web research quality",
     "not_for": "Simple keyword lookup where Tavily or Brave suffice"
+  },
+  "pricing": {
+    "model": "usage",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "medium",
+      "score": 3,
+      "reason": "search API, switchable"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 4,
+      "reason": "usage-based pricing public"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 4,
+      "reason": "clean API for AI agents"
+    }
   }
 }

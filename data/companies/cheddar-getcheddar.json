@@ -48,5 +48,26 @@
     "verdict": "Workable niche API for metered SaaS billing, but stagnation makes it a risky long-term bet.",
     "best_for": "Small SaaS with usage-based pricing needing a lean billing API and modest scale.",
     "not_for": "Enterprise teams or anyone wanting an actively evolving platform with broad integrations."
+  },
+  "pricing": {
+    "model": "subscription",
+    "has_free_tier": false
+  },
+  "scores": {
+    "lock_in": {
+      "level": "high",
+      "score": 2,
+      "reason": "Proprietary subscription billing platform"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 4,
+      "reason": "Public subscription tiers"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "REST API with moderate docs"
+    }
   }
 }

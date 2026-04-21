@@ -46,5 +46,26 @@
     "verdict": "Workable budget visual moderation API with useful face/age checks; not the strongest on hard NSFW cases.",
     "best_for": "Dating, classifieds, and UGC apps needing affordable image and video screening with face signals.",
     "not_for": "Platforms with high-volume CSAM risk or strict regulatory compliance needs."
+  },
+  "pricing": {
+    "model": "usage",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "medium",
+      "score": 3,
+      "reason": "moderation API, switchable"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 4,
+      "reason": "usage-based pricing public"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "REST API for moderation"
+    }
   }
 }

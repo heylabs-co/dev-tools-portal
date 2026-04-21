@@ -48,5 +48,26 @@
     "verdict": "Legacy managed Postgres being wound down, migrate to Neon, Supabase, or RDS for new projects.",
     "best_for": "Existing ElephantSQL customers planning an orderly migration off the service",
     "not_for": "New projects, given the announced service sunset"
+  },
+  "pricing": {
+    "model": "freemium",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "low",
+      "score": 5,
+      "reason": "Managed Postgres, fully portable"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 5,
+      "reason": "Transparent freemium tiers"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 4,
+      "reason": "Simple setup, Postgres native"
+    }
   }
 }

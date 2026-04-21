@@ -46,5 +46,26 @@
     "verdict": "Serious PayFac-in-a-box for US vertical SaaS, but complexity and sales cycle are not for small teams.",
     "best_for": "US vertical SaaS platforms becoming full payment facilitators at scale",
     "not_for": "Small teams or non-US platforms wanting quick embedded-payments launch"
+  },
+  "pricing": {
+    "model": "custom",
+    "has_free_tier": false
+  },
+  "scores": {
+    "lock_in": {
+      "level": "high",
+      "score": 2,
+      "reason": "PayFac infrastructure, deep coupling"
+    },
+    "transparency": {
+      "level": "low",
+      "score": 1,
+      "reason": "custom enterprise pricing"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "API for SaaS embedded payments"
+    }
   }
 }

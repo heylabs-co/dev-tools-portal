@@ -24,6 +24,16 @@
       "score": 2,
       "data_portability": "partial_export",
       "migration_complexity": "medium"
+    },
+    "transparency": {
+      "level": "low",
+      "score": 1,
+      "reason": "Custom pricing"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Platform with APIs"
     }
   },
   "description": "Quantstruct — AI-powered quantitative finance platform for analyzing financial data and building trading strategies.",
@@ -58,5 +68,9 @@
     "verdict": "Potentially useful for quant shops experimenting with AI, but treat as alpha until proven against QuantConnect.",
     "best_for": "Buy-side quant teams evaluating AI-assisted research",
     "not_for": "Retail traders or generic financial data apps"
+  },
+  "pricing": {
+    "model": "custom",
+    "has_free_tier": false
   }
 }

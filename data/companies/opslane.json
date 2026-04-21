@@ -21,6 +21,16 @@
       "score": 2,
       "data_portability": "partial_export",
       "migration_complexity": "medium"
+    },
+    "transparency": {
+      "level": "medium",
+      "score": 3,
+      "reason": "subscription"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "niche docs"
     }
   },
   "description": "Opslane — AI-powered alert noise reduction platform for on-call teams, correlating incidents across monitoring tools.",
@@ -56,5 +66,9 @@
     "verdict": "Interesting AI-native alert deduper for noisy on-call teams, but you need real volume to benefit.",
     "best_for": "SRE teams drowning in alerts from multiple monitoring tools wanting AI-driven correlation",
     "not_for": "Small teams with manageable alert volume or those without existing observability stack"
+  },
+  "pricing": {
+    "model": "subscription",
+    "has_free_tier": false
   }
 }

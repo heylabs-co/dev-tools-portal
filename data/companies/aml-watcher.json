@@ -47,5 +47,26 @@
     "verdict": "Budget-friendly sanctions and PEP API with broad coverage, solid fit when Refinitiv is overkill.",
     "best_for": "SaaS platforms and mid-market fintechs needing global AML screening at a predictable cost",
     "not_for": "Tier-1 banks requiring audited, named-source watchlist feeds with formal SLAs"
+  },
+  "pricing": {
+    "model": "custom",
+    "has_free_tier": false
+  },
+  "scores": {
+    "lock_in": {
+      "level": "low",
+      "score": 2,
+      "reason": "Sanctions data lists portable but workflows proprietary"
+    },
+    "transparency": {
+      "level": "low",
+      "score": 1,
+      "reason": "Custom enterprise pricing"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "REST API, docs focused on compliance integrations"
+    }
   }
 }

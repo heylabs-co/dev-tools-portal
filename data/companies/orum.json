@@ -48,5 +48,26 @@
     "verdict": "Best-in-class for US instant payouts with deterministic routing, but US-only scope is a real ceiling.",
     "best_for": "US marketplaces and payroll platforms needing instant ACH/RTP/FedNow routing",
     "not_for": "Merchants needing checkout acceptance or non-US payment rails"
+  },
+  "pricing": {
+    "model": "usage",
+    "has_free_tier": false
+  },
+  "scores": {
+    "lock_in": {
+      "level": "medium",
+      "score": 3,
+      "reason": "proprietary payment rails"
+    },
+    "transparency": {
+      "level": "medium",
+      "score": 3,
+      "reason": "usage pricing"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "standard REST API"
+    }
   }
 }

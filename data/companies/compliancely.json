@@ -47,5 +47,26 @@
     "verdict": "One-stop identity and tax verification for US marketplaces, weaker fit for EU-focused compliance.",
     "best_for": "US marketplaces and enterprises needing TIN/EIN plus KYC/KYB in a single platform",
     "not_for": "European banks needing deep registry UBO data and eIDAS-aligned identity schemes"
+  },
+  "pricing": {
+    "model": "usage",
+    "has_free_tier": false
+  },
+  "scores": {
+    "lock_in": {
+      "level": "medium",
+      "score": 3,
+      "reason": "KYB/KYC API, swappable"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 4,
+      "reason": "Usage public pricing"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "REST API docs"
+    }
   }
 }

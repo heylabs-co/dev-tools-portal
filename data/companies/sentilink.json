@@ -47,5 +47,26 @@
     "verdict": "A must-have layer for US lenders attacked by synthetic identities, but not a standalone KYC stack.",
     "best_for": "US banks, credit unions and lenders exposed to synthetic and first-party identity fraud.",
     "not_for": "International fintechs or teams without SSN-based flows."
+  },
+  "pricing": {
+    "model": "custom",
+    "has_free_tier": false
+  },
+  "scores": {
+    "lock_in": {
+      "level": "medium",
+      "score": 3,
+      "reason": "API-based scoring, switchable"
+    },
+    "transparency": {
+      "level": "low",
+      "score": 1,
+      "reason": "Custom pricing, contact sales"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "REST API, moderate docs"
+    }
   }
 }

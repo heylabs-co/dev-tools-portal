@@ -69,5 +69,26 @@
     "verdict": "Pragmatic for large, cheap automated labeling pipelines; human-in-the-loop remains necessary for the hardest cases.",
     "best_for": "ML teams labeling millions of rows where accuracy is flexible",
     "not_for": "High-stakes tasks needing expert human review"
+  },
+  "pricing": {
+    "model": "freemium",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "medium",
+      "score": 3,
+      "reason": "OSS Autolabel, managed option"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 4,
+      "reason": "Public freemium pricing"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 4,
+      "reason": "Good Python library docs"
+    }
   }
 }

@@ -48,5 +48,26 @@
     "verdict": "Decent if you need a lightweight eval harness; Braintrust or Langfuse have stronger ecosystems.",
     "best_for": "Small teams running structured prompt evals during LLM app development",
     "not_for": "Orgs already committed to Braintrust, Langfuse, or Helicone stacks"
+  },
+  "pricing": {
+    "model": "freemium",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "medium",
+      "score": 3,
+      "reason": "LLM eval data exportable"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 4,
+      "reason": "Freemium with public tiers"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 4,
+      "reason": "LLM testing SDK"
+    }
   }
 }

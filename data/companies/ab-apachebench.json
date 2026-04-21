@@ -47,5 +47,26 @@
     "verdict": "A quick-and-dirty benchmark hammer that is great for one-off checks but wrong for serious load testing.",
     "best_for": "Sysadmins doing quick sanity benchmarks on a single HTTP endpoint from the shell",
     "not_for": "Teams needing realistic user flows, HTTP/2, or accurate tail-latency numbers"
+  },
+  "pricing": {
+    "model": "free",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "high",
+      "score": 5,
+      "reason": "Bundled with Apache HTTPD, fully open-source CLI"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 5,
+      "reason": "Free open-source Apache-licensed tool"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Simple CLI with man pages; limited features vs k6/wrk"
+    }
   }
 }

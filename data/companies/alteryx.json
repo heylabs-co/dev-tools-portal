@@ -56,5 +56,26 @@
   },
   "community": {
     "hn_mentions_30d": 245
+  },
+  "pricing": {
+    "model": "subscription",
+    "has_free_tier": false
+  },
+  "scores": {
+    "lock_in": {
+      "level": "low",
+      "score": 2,
+      "reason": "Proprietary .yxmd workflow files, heavy vendor coupling"
+    },
+    "transparency": {
+      "level": "low",
+      "score": 2,
+      "reason": "Subscription with enterprise-negotiated seats"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "GUI-driven ETL; limited developer SDK"
+    }
   }
 }

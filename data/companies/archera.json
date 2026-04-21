@@ -48,5 +48,26 @@
     "verdict": "Insurance-backed commitment management useful when usage is volatile, overkill for stable predictable workloads.",
     "best_for": "Teams with fluctuating cloud spend wanting insured short-term commitments",
     "not_for": "Steady-state workloads where native 1/3-year RIs already work fine"
+  },
+  "pricing": {
+    "model": "custom",
+    "has_free_tier": false
+  },
+  "scores": {
+    "lock_in": {
+      "level": "medium",
+      "score": 3,
+      "reason": "RI guarantees platform-specific"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 1,
+      "reason": "Custom enterprise pricing"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Moderate docs"
+    }
   }
 }

@@ -21,6 +21,16 @@
       "score": 2,
       "data_portability": "full_export",
       "migration_complexity": "medium"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 4,
+      "reason": "Usage-based public pricing"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Hosted checkout, basic API"
     }
   },
   "description": "Spike — Crypto payment gateway supporting Bitcoin, Ethereum, USDT, and stablecoin payments for online merchants via hosted checkout.",
@@ -54,5 +64,9 @@
     "verdict": "Workable hosted crypto checkout for niche merchants, but brand recognition and regulatory fit lag competitors.",
     "best_for": "Merchants in crypto-friendly niches wanting hosted stablecoin checkout",
     "not_for": "Mainstream retailers whose customers pay with cards"
+  },
+  "pricing": {
+    "model": "usage",
+    "has_free_tier": false
   }
 }

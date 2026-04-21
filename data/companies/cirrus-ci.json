@@ -47,5 +47,26 @@
     "verdict": "The best CI for cross-OS testing, especially if you actually need FreeBSD or macOS M-series.",
     "best_for": "OSS projects and cross-platform tools needing FreeBSD, macOS, and Linux in one pipeline.",
     "not_for": "Teams fully inside GitHub who want the default Actions workflow."
+  },
+  "pricing": {
+    "model": "freemium",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "low",
+      "score": 4,
+      "reason": "YAML-based CI, reasonably portable"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 5,
+      "reason": "Public freemium pricing"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 4,
+      "reason": "Multi-OS support, clear docs"
+    }
   }
 }

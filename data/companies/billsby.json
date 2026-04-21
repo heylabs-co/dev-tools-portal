@@ -47,5 +47,26 @@
     "verdict": "Solid mid-market subscription engine with excellent retention tooling, but weak on analytics and global tax handling.",
     "best_for": "SMB and mid-market SaaS wanting quick checkout and dunning without building billing from scratch.",
     "not_for": "Teams needing Merchant of Record coverage, enterprise CPQ, or deep revenue analytics."
+  },
+  "pricing": {
+    "model": "hybrid",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Subscription billing, exportable"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 4,
+      "reason": "Hybrid pricing publicly documented"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 4,
+      "reason": "Checkout widgets and API docs"
+    }
   }
 }

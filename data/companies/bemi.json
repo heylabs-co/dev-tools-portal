@@ -48,5 +48,26 @@
     "verdict": "Neat audit logging add-on for Postgres teams, overkill unless compliance explicitly requires immutable history.",
     "best_for": "Postgres shops needing SOC2/HIPAA-grade immutable audit trails with minimal code change",
     "not_for": "Teams on non-Postgres databases or without formal compliance requirements"
+  },
+  "pricing": {
+    "model": "freemium",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "high",
+      "score": 4,
+      "reason": "Postgres CDC, data in DB"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 4,
+      "reason": "Freemium with public tiers"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 4,
+      "reason": "Simple Postgres extension"
+    }
   }
 }

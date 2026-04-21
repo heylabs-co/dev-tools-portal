@@ -30,7 +30,21 @@ type Company = {
   pricing?: { model?: string; has_free_tier?: boolean; entry_price?: string };
   scores?: { lock_in?: { level?: string; score?: number } };
   scale?: { customers?: string; revenue?: string; employees?: string };
-  review?: { verdict?: string; pros?: string[]; cons?: string[] };
+  review?: { verdict?: string; pros?: string[]; cons?: string[]; best_for?: string; not_for?: string };
+};
+
+type FullTool = {
+  slug: string;
+  name: string;
+  description?: string;
+  website?: string;
+  category?: { slug?: string; name?: string };
+  pricing?: { model?: string; has_free_tier?: boolean; entry_price?: string };
+  scores?: { lock_in?: { level?: string; score?: number } };
+  review?: { verdict?: string; pros?: string[]; cons?: string[]; best_for?: string; not_for?: string };
+  when_to_use?: string[];
+  works_well_with?: string[];
+  url?: string;
 };
 
 type McpServerRow = {
@@ -96,6 +110,7 @@ async function fetchJson<T>(path: string): Promise<T> {
 }
 
 const getCompanies = () => fetchJson<Company[]>('/api/companies.json');
+const getTool = (slug: string) => fetchJson<FullTool>(`/api/tools/${slug}.json`);
 const getMcpServers = () => fetchJson<McpServerRow[]>('/api/mcp-servers.json');
 const getSkills = () => fetchJson<SkillRow[]>('/api/skills.json');
 const getExtensions = () => fetchJson<ExtensionRow[]>('/api/extensions.json');
@@ -105,7 +120,7 @@ const getCategories = () => fetchJson<CategoryRow[]>('/api/categories.json');
 // ---- Server setup -----------------------------------------------------
 
 const server = new McpServer(
-  { name: 'tool-news', version: '2.0.0' },
+  { name: 'tool-news', version: '2.1.0' },
   { capabilities: { tools: {} } },
 );
 
@@ -157,47 +172,68 @@ server.tool(
 
 server.tool(
   'get_tool',
-  'Get full details for a specific tool by slug — pricing, lock-in, review, pros/cons, alternatives.',
+  'Get full details for a specific tool by slug — pricing, lock-in, review, pros/cons, use cases, verdict.',
   { slug: z.string() },
   async ({ slug }) => {
-    const companies = await getCompanies();
-    const c = companies.find((x) => x.slug === slug);
-    if (!c) return { content: [{ type: 'text', text: `Tool "${slug}" not found. Try search_tools first.` }] };
+    let t: FullTool;
+    try {
+      t = await getTool(slug);
+    } catch {
+      return { content: [{ type: 'text', text: `Tool "${slug}" not found. Try search_tools first.` }] };
+    }
     const lines: string[] = [
-      `# ${c.name}`,
-      `URL: https://tool.news/tools/${c.slug}/`,
-      `Website: ${c.website}`,
-      `Category: ${c.categories?.primary?.name ?? '—'}`,
-      `HQ Country: ${c.hq_country ?? '—'}`,
+      `# ${t.name}`,
+      `URL: ${t.url ?? `https://tool.news/tools/${t.slug}/`}`,
+      `Website: ${t.website ?? '—'}`,
+      `Category: ${t.category?.name ?? '—'}`,
       '',
     ];
-    if (c.description) lines.push(c.description, '');
-    if (c.pricing) {
+    if (t.description) lines.push(t.description, '');
+
+    if (t.review?.verdict) {
+      lines.push('## Verdict', t.review.verdict, '');
+    }
+    if (t.review?.best_for || t.review?.not_for) {
+      if (t.review.best_for) lines.push(`**Best for:** ${t.review.best_for}`);
+      if (t.review.not_for) lines.push(`**Not for:** ${t.review.not_for}`);
+      lines.push('');
+    }
+
+    if (t.review?.pros?.length) {
+      lines.push('## Pros');
+      t.review.pros.forEach((p) => lines.push(`- ${p}`));
+      lines.push('');
+    }
+    if (t.review?.cons?.length) {
+      lines.push('## Cons');
+      t.review.cons.forEach((p) => lines.push(`- ${p}`));
+      lines.push('');
+    }
+
+    if (t.when_to_use?.length) {
+      lines.push('## When to use');
+      t.when_to_use.forEach((u) => lines.push(`- ${u}`));
+      lines.push('');
+    }
+
+    if (t.pricing?.model || t.pricing?.entry_price !== undefined || t.pricing?.has_free_tier !== undefined) {
       lines.push('## Pricing');
-      lines.push(`- Model: ${c.pricing.model ?? '—'}`);
-      lines.push(`- Free tier: ${c.pricing.has_free_tier ? 'yes' : 'no'}`);
-      if (c.pricing.entry_price) lines.push(`- Entry price: ${c.pricing.entry_price}`);
+      if (t.pricing.model) lines.push(`- Model: ${t.pricing.model}`);
+      if (t.pricing.has_free_tier !== undefined) lines.push(`- Free tier: ${t.pricing.has_free_tier ? 'yes' : 'no'}`);
+      if (t.pricing.entry_price) lines.push(`- Entry price: ${t.pricing.entry_price}`);
       lines.push('');
     }
-    if (c.scores?.lock_in) {
+    if (t.scores?.lock_in) {
       lines.push('## Lock-in');
-      lines.push(`- Level: ${c.scores.lock_in.level ?? '—'}`);
-      if (c.scores.lock_in.score !== undefined) lines.push(`- Score: ${c.scores.lock_in.score}/5`);
+      lines.push(`- Level: ${t.scores.lock_in.level ?? '—'}`);
+      if (t.scores.lock_in.score !== undefined) lines.push(`- Score: ${t.scores.lock_in.score}/5`);
       lines.push('');
     }
-    if (c.review) {
-      lines.push('## Review');
-      if (c.review.verdict) lines.push(c.review.verdict);
-      if (c.review.pros?.length) {
-        lines.push('**Pros:**');
-        c.review.pros.forEach((p) => lines.push(`- ${p}`));
-      }
-      if (c.review.cons?.length) {
-        lines.push('**Cons:**');
-        c.review.cons.forEach((p) => lines.push(`- ${p}`));
-      }
+    if (t.works_well_with?.length) {
+      lines.push(`## Pairs well with`, t.works_well_with.map((s) => `- ${s}`).join('\n'), '');
     }
-    return { content: [{ type: 'text', text: lines.join('\n') }] };
+
+    return { content: [{ type: 'text', text: lines.join('\n').trimEnd() }] };
   },
 );
 

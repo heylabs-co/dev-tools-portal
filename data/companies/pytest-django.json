@@ -64,5 +64,26 @@
     "verdict": "The obvious choice for Django testing, mostly because --reuse-db alone repays the switch from manage.py test.",
     "best_for": "Django projects wanting pytest ergonomics and faster test iteration",
     "not_for": "Tiny Django apps where manage.py test is sufficient"
+  },
+  "pricing": {
+    "model": "free",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "low",
+      "score": 5,
+      "reason": "OSS pytest plugin"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 5,
+      "reason": "Free open source"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 5,
+      "reason": "Excellent Django integration docs"
+    }
   }
 }

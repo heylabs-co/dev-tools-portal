@@ -64,5 +64,26 @@
     "verdict": "Historically important mocking lib mostly justified today only in legacy enterprise codebases.",
     "best_for": "Teams maintaining existing EasyMock suites with no budget to migrate",
     "not_for": "Greenfield JVM projects that should simply start with Mockito"
+  },
+  "pricing": {
+    "model": "free",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "low",
+      "score": 5,
+      "reason": "OSS Java mocking library, fully portable"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 5,
+      "reason": "Free OSS, no pricing"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Legacy API, superseded by Mockito"
+    }
   }
 }

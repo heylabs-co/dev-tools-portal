@@ -49,5 +49,26 @@
     "verdict": "Capable Chinese multimodal API for APAC workloads, not yet a serious option for global teams.",
     "best_for": "Chinese-market apps needing multimodal and reasoning at local pricing",
     "not_for": "Global apps sending regulated data or needing English-first support"
+  },
+  "pricing": {
+    "model": "usage",
+    "has_free_tier": false
+  },
+  "scores": {
+    "lock_in": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Chinese LLM API, migratable"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 4,
+      "reason": "Usage pricing public"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "OpenAI-compatible API"
+    }
   }
 }

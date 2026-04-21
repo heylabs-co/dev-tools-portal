@@ -46,5 +46,26 @@
     "verdict": "Compelling CI optimizer once your suites are too big to run fully per change, a leap of faith otherwise.",
     "best_for": "Teams with multi-hour CI where wall-clock time blocks deploys",
     "not_for": "Small or already-fast suites where selection risk outweighs savings"
+  },
+  "pricing": {
+    "model": "custom",
+    "has_free_tier": false
+  },
+  "scores": {
+    "lock_in": {
+      "level": "medium",
+      "score": 3,
+      "reason": "CI integration, test selection"
+    },
+    "transparency": {
+      "level": "low",
+      "score": 1,
+      "reason": "Custom pricing"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "CI integrations"
+    }
   }
 }

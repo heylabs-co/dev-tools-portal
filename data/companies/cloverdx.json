@@ -48,5 +48,26 @@
     "verdict": "Competent enterprise ETL, but the gravity of modern data stacks has moved elsewhere.",
     "best_for": "Enterprises with heavy file-based ETL and strict data-quality requirements",
     "not_for": "Modern data teams building cloud-native ELT on warehouses"
+  },
+  "pricing": {
+    "model": "custom",
+    "has_free_tier": false
+  },
+  "scores": {
+    "lock_in": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Proprietary ETL but data exportable"
+    },
+    "transparency": {
+      "level": "low",
+      "score": 1,
+      "reason": "Custom enterprise pricing"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Decent docs, niche tool"
+    }
   }
 }

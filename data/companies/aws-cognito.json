@@ -60,5 +60,26 @@
   },
   "community": {
     "hn_mentions_30d": 22
+  },
+  "pricing": {
+    "model": "usage",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "low",
+      "score": 2,
+      "reason": "Auth migration painful, AWS-bound"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 4,
+      "reason": "Usage-based public pricing"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "AWS docs OK, rough DX"
+    }
   }
 }

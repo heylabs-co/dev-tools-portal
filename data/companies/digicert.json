@@ -48,5 +48,26 @@
     "verdict": "Reliable commercial CA for compliance-heavy use cases where Let's Encrypt just won't cut it.",
     "best_for": "Enterprises needing EV, code signing, or IoT certs with a trusted vendor.",
     "not_for": "Startups who can live with free DV certs and ACME."
+  },
+  "pricing": {
+    "model": "subscription",
+    "has_free_tier": false
+  },
+  "scores": {
+    "lock_in": {
+      "level": "low",
+      "score": 4,
+      "reason": "Standard X.509 certs, portable"
+    },
+    "transparency": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Some pricing public, enterprise opaque"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 4,
+      "reason": "Good API docs"
+    }
   }
 }

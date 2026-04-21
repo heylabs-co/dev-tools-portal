@@ -46,5 +46,26 @@
     "verdict": "Good shortcut for US SaaS wanting embedded payments revenue without 18 months of PayFac setup.",
     "best_for": "US vertical SaaS platforms embedding payments without registering as a PayFac",
     "not_for": "Platforms outside US or at scale where full PayFac economics pay off"
+  },
+  "pricing": {
+    "model": "usage",
+    "has_free_tier": false
+  },
+  "scores": {
+    "lock_in": {
+      "level": "medium",
+      "score": 3,
+      "reason": "PayFac-as-a-service, migratable"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 4,
+      "reason": "Usage-based, interchange plus"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 4,
+      "reason": "Strong embedded payments docs"
+    }
   }
 }

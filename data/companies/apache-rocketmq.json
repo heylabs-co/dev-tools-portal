@@ -52,5 +52,26 @@
     "verdict": "Credible Kafka alternative, especially if you are Java-heavy or already operate in the Alibaba stack.",
     "best_for": "Java shops needing transactional, ordered messaging at scale",
     "not_for": "Teams that would benefit more from managed Kafka or Pulsar"
+  },
+  "pricing": {
+    "model": "free",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "low",
+      "score": 5,
+      "reason": "Apache OSS messaging"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 5,
+      "reason": "Free OSS"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 4,
+      "reason": "Docs strong in Chinese ecosystem"
+    }
   }
 }

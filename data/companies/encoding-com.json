@@ -50,5 +50,26 @@
     "verdict": "Dependable old-school transcoder, fine for batch VOD jobs — modern APIs offer better DX for new projects.",
     "best_for": "Media libraries migrating legacy video catalogs with broad format requirements.",
     "not_for": "Greenfield apps — Mux, Bitmovin, or MediaConvert offer cleaner DX."
+  },
+  "pricing": {
+    "model": "usage",
+    "has_free_tier": false
+  },
+  "scores": {
+    "lock_in": {
+      "level": "low",
+      "score": 4,
+      "reason": "API transcoding, easy swap"
+    },
+    "transparency": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Usage-based, some custom tiers"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Mature REST API, older docs"
+    }
   }
 }

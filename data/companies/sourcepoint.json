@@ -48,5 +48,26 @@
     "verdict": "The CMP of choice for serious publishers — small sites should not even bother with a demo.",
     "best_for": "Large publishers monetizing via programmatic ads and subscriptions",
     "not_for": "SMBs and SaaS sites without ad revenue"
+  },
+  "pricing": {
+    "model": "custom",
+    "has_free_tier": false
+  },
+  "scores": {
+    "lock_in": {
+      "level": "high",
+      "score": 2,
+      "reason": "CMP configs proprietary"
+    },
+    "transparency": {
+      "level": "low",
+      "score": 1,
+      "reason": "Custom enterprise pricing"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "CMP SDKs for web/mobile"
+    }
   }
 }

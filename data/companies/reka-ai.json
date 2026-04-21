@@ -50,5 +50,26 @@
     "verdict": "Worth benchmarking when multimodal matters, but most teams will still default to frontier labs for reliability.",
     "best_for": "Teams prioritizing multimodal video and image understanding",
     "not_for": "Text-only apps where OpenAI or Claude quality wins"
+  },
+  "pricing": {
+    "model": "usage",
+    "has_free_tier": false
+  },
+  "scores": {
+    "lock_in": {
+      "level": "medium",
+      "score": 3,
+      "reason": "LLM API, swappable models"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 5,
+      "reason": "Public usage pricing"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 4,
+      "reason": "OpenAI-like API, good docs"
+    }
   }
 }

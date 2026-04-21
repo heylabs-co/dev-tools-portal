@@ -47,5 +47,26 @@
     "verdict": "Reasonable full-stack observability for SMBs on a budget; large orgs will outgrow it into Datadog or Grafana stacks.",
     "best_for": "SMBs wanting metrics, logs, and traces at a fraction of Datadog cost",
     "not_for": "Enterprises needing deep AIOps and best-in-class per module"
+  },
+  "pricing": {
+    "model": "freemium",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Logs/metrics exportable"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 4,
+      "reason": "Freemium with public tiers"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 4,
+      "reason": "Agents, integrations, docs"
+    }
   }
 }

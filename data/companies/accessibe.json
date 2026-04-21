@@ -48,5 +48,26 @@
     "verdict": "Cheap compliance theater that may create more legal risk than it prevents — fix your actual markup instead.",
     "best_for": "Small sites needing a cosmetic compliance statement without engineering budget",
     "not_for": "Teams seriously committed to WCAG compliance or serving screen reader users"
+  },
+  "pricing": {
+    "model": "subscription",
+    "has_free_tier": false
+  },
+  "scores": {
+    "lock_in": {
+      "level": "medium",
+      "score": 3,
+      "reason": "JS widget easily removed but remediation data stays proprietary"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 4,
+      "reason": "Published tiered subscription pricing"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Script-based install, minimal developer API"
+    }
   }
 }

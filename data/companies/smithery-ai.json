@@ -64,5 +64,26 @@
     "verdict": "The default MCP registry today — useful for discovery but treat hosted servers like any third-party dependency.",
     "best_for": "Claude and MCP client users who want to browse and install servers fast",
     "not_for": "Teams with strict supply-chain review who need to audit each MCP server themselves"
+  },
+  "pricing": {
+    "model": "freemium",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "low",
+      "score": 5,
+      "reason": "MCP servers open standard"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 4,
+      "reason": "Freemium public tiers"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 4,
+      "reason": "MCP marketplace, easy deploy"
+    }
   }
 }

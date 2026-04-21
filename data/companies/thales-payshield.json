@@ -8,9 +8,8 @@
   "status": "active",
   "categories": {
     "primary": {
-      "id": "CAT-01",
-      "slug": "payments-orchestration",
-      "name": "Payments Orchestration"
+      "slug": "secrets-management",
+      "name": "Secrets Management"
     }
   },
   "created_at": "2026-04-20T21:33:16.867Z",
@@ -47,5 +46,26 @@
     "verdict": "Gold-standard payment HSM for banks and processors; unrelated to merchant orchestration in practice.",
     "best_for": "Banks, issuers, and processors needing certified HSMs for card issuance and key management.",
     "not_for": "E-commerce merchants looking for a software-based orchestration or routing product."
+  },
+  "pricing": {
+    "model": "custom",
+    "has_free_tier": false
+  },
+  "scores": {
+    "lock_in": {
+      "level": "high",
+      "score": 2,
+      "reason": "Payment HSM hardware, specialized"
+    },
+    "transparency": {
+      "level": "low",
+      "score": 1,
+      "reason": "Custom enterprise pricing"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Specialized docs for payments"
+    }
   }
 }

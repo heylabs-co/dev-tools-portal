@@ -48,5 +48,26 @@
     "verdict": "Still useful for media processing pipelines, but not the default choice for new WebRTC apps in 2026.",
     "best_for": "Apps needing server-side media processing and filters",
     "not_for": "New projects that just need a lean low-latency SFU"
+  },
+  "pricing": {
+    "model": "free",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "low",
+      "score": 5,
+      "reason": "Open-source WebRTC media server"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 5,
+      "reason": "Free OSS"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Aging docs but mature APIs"
+    }
   }
 }

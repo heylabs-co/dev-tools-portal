@@ -52,5 +52,26 @@
     "verdict": "Powerful platform if you need Tencent-scale ingestion, overkill for typical data pipelines.",
     "best_for": "Large platform teams consolidating streaming and batch ingestion",
     "not_for": "Small teams who just need a few Kafka-to-warehouse pipelines"
+  },
+  "pricing": {
+    "model": "free",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "low",
+      "score": 5,
+      "reason": "Apache OSS ingestion platform"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 5,
+      "reason": "Free OSS"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Docs improving, niche"
+    }
   }
 }

@@ -46,5 +46,26 @@
     "verdict": "Good budget image moderation API with custom models, but not the sharpest tool for hard NSFW edge cases.",
     "best_for": "Startups and mid-market apps needing cheap image moderation plus category tagging.",
     "not_for": "Platforms with CSAM, deepfake, or high-stakes visual risk requirements."
+  },
+  "pricing": {
+    "model": "freemium",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "low",
+      "score": 4,
+      "reason": "Standard moderation API"
+    },
+    "transparency": {
+      "level": "medium",
+      "score": 4,
+      "reason": "Freemium tier public"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "REST API and SDKs"
+    }
   }
 }

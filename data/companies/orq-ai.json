@@ -50,5 +50,26 @@
     "verdict": "Solid LLMOps layer if you manage many prompts across models, but justify the added dependency carefully.",
     "best_for": "LLM teams managing many prompts and multi-model routing",
     "not_for": "Single-model apps where one provider SDK is sufficient"
+  },
+  "pricing": {
+    "model": "subscription",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "medium",
+      "score": 3,
+      "reason": "proprietary LLM ops"
+    },
+    "transparency": {
+      "level": "medium",
+      "score": 3,
+      "reason": "subscription, opaque"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "decent SDK"
+    }
   }
 }

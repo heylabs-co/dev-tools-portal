@@ -67,5 +67,26 @@
     "verdict": "The default Windows package manager for ops and CI, with caveats around rate limits and quality.",
     "best_for": "Windows admins and CI pipelines installing third-party tooling at scale.",
     "not_for": "Developers who prefer the leaner, no-admin Scoop or MSIX flows."
+  },
+  "pricing": {
+    "model": "freemium",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "low",
+      "score": 4,
+      "reason": "OSS Windows package manager"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 4,
+      "reason": "Public freemium tiers"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 4,
+      "reason": "PowerShell-based, strong Windows docs"
+    }
   }
 }

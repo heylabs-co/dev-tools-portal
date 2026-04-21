@@ -24,6 +24,16 @@
       "score": 3,
       "data_portability": "api_only",
       "migration_complexity": "medium"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 4,
+      "reason": "Subscription public tiers"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "NL-based testing, niche"
     }
   },
   "description": "BlinqIO — AI-powered test automation platform that generates and maintains UI tests using natural language.",
@@ -56,5 +66,9 @@
     "verdict": "Worth trying if manual QA still dominates; skip if your team already writes Playwright well.",
     "best_for": "QA-led teams without strong test-automation engineering",
     "not_for": "Engineering-led teams already productive in Playwright or Cypress"
+  },
+  "pricing": {
+    "model": "subscription",
+    "has_free_tier": false
   }
 }

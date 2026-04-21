@@ -47,5 +47,26 @@
     "verdict": "A must-have for large merchants to bleed less on chargebacks, but it is damage control, not prevention.",
     "best_for": "Large e-commerce merchants and PSPs with meaningful friendly-fraud and chargeback exposure.",
     "not_for": "Small merchants with low dispute volume or those wanting upstream fraud blocking."
+  },
+  "pricing": {
+    "model": "custom",
+    "has_free_tier": false
+  },
+  "scores": {
+    "lock_in": {
+      "level": "high",
+      "score": 2,
+      "reason": "Mastercard network membership lock-in"
+    },
+    "transparency": {
+      "level": "low",
+      "score": 1,
+      "reason": "Custom enterprise pricing"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 2,
+      "reason": "REST API, enterprise fraud docs"
+    }
   }
 }

@@ -48,5 +48,26 @@
     "verdict": "Useful lineage and catalog for enterprises with legacy BI sprawl, modern data teams lean Atlan or dbt-native lineage.",
     "best_for": "Enterprises with legacy BI tools needing end-to-end lineage without manual effort",
     "not_for": "Modern data stacks already using dbt and Atlan for lineage and catalog"
+  },
+  "pricing": {
+    "model": "custom",
+    "has_free_tier": false
+  },
+  "scores": {
+    "lock_in": {
+      "level": "high",
+      "score": 3,
+      "reason": "Lineage platform with proprietary parsers"
+    },
+    "transparency": {
+      "level": "low",
+      "score": 1,
+      "reason": "Custom enterprise pricing"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Admin-focused, limited dev tooling"
+    }
   }
 }

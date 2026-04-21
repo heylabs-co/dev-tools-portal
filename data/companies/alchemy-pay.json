@@ -48,5 +48,26 @@
     "verdict": "Practical fiat-crypto bridge for merchants wanting stablecoin settlement without running wallets themselves.",
     "best_for": "Web3 apps and exchanges needing compliant global fiat on-ramps",
     "not_for": "Merchants wanting traditional card processing without crypto exposure"
+  },
+  "pricing": {
+    "model": "usage",
+    "has_free_tier": false
+  },
+  "scores": {
+    "lock_in": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Standardized fiat-crypto APIs; switching gateways possible"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 4,
+      "reason": "Usage-based public rates"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "REST APIs, docs for crypto on/off-ramp"
+    }
   }
 }

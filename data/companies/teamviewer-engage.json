@@ -48,5 +48,26 @@
     "verdict": "Enterprise remote access and IoT tooling; not a secrets manager despite the category tag.",
     "best_for": "Enterprises standardizing remote support and IoT connectivity.",
     "not_for": "Teams looking for a secrets vault or credential manager."
+  },
+  "pricing": {
+    "model": "subscription",
+    "has_free_tier": false
+  },
+  "scores": {
+    "lock_in": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Embedded SDK creates some integration lock"
+    },
+    "transparency": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Subscription tiers, enterprise opaque"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Tensor APIs with docs"
+    }
   }
 }

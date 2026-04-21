@@ -66,5 +66,26 @@
     "verdict": "Default pick for native crash reporting if youre already in the Sentry world; otherwise evaluate Backtrace.",
     "best_for": "Native/C++ teams already using Sentry for their other stacks",
     "not_for": "Teams committed to a different error-tracking vendor"
+  },
+  "pricing": {
+    "model": "freemium",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "high",
+      "score": 5,
+      "reason": "OSS SDK, self-hostable Sentry"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 4,
+      "reason": "Freemium with public tiers"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 4,
+      "reason": "C/C++ SDK, good docs"
+    }
   }
 }

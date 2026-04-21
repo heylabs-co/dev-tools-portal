@@ -47,5 +47,26 @@
     "verdict": "The default QR rail for South African merchants, but irrelevant outside that single market.",
     "best_for": "South African SMBs and apps needing fast QR and mobile acceptance",
     "not_for": "Businesses operating outside ZA or needing card-present processing"
+  },
+  "pricing": {
+    "model": "usage",
+    "has_free_tier": false
+  },
+  "scores": {
+    "lock_in": {
+      "level": "medium",
+      "score": 3,
+      "reason": "QR payment rails SA-specific"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 4,
+      "reason": "Usage-based public pricing"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Mobile payment API"
+    }
   }
 }

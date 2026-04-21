@@ -69,5 +69,22 @@
     ],
     "best_for": "Teams",
     "not_for": "Solo, Static projects"
+  },
+  "scores": {
+    "lock_in": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Secrets exportable via API; policies platform-specific"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 4,
+      "reason": "Public subscription tiers"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 4,
+      "reason": "CLI, Terraform, SDKs; alt to Vault"
+    }
   }
 }

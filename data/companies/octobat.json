@@ -46,5 +46,26 @@
     "verdict": "Niche but useful for Stripe-based SaaS needing compliant EU invoices — check roadmap before betting big.",
     "best_for": "Digital businesses on Stripe needing compliant VAT invoices without building logic themselves.",
     "not_for": "Teams needing cutting-edge global tax determination or heavy product investment."
+  },
+  "pricing": {
+    "model": "subscription",
+    "has_free_tier": false
+  },
+  "scores": {
+    "lock_in": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Tax/invoicing platform, exports available"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 4,
+      "reason": "Public subscription pricing"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "API docs, Stripe integration"
+    }
   }
 }

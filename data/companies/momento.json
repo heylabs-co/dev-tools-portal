@@ -49,5 +49,26 @@
     "verdict": "The cleanest serverless cache experience if you hate managing Redis, watch per-request costs.",
     "best_for": "Serverless apps wanting cache and pub/sub without provisioning Redis clusters",
     "not_for": "High-volume workloads where predictable reserved Redis pricing wins"
+  },
+  "pricing": {
+    "model": "usage",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Usage cache, simple cache API"
+    },
+    "transparency": {
+      "level": "medium",
+      "score": 4,
+      "reason": "Usage-based public pricing"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 5,
+      "reason": "Great serverless cache SDKs"
+    }
   }
 }

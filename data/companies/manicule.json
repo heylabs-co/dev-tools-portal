@@ -48,5 +48,26 @@
     "verdict": "Worth piloting against rivals when you have real enterprise document extraction pain.",
     "best_for": "Ops and finance teams extracting structured data from enterprise docs",
     "not_for": "Simple invoice parsing where a generic vision LLM is enough"
+  },
+  "pricing": {
+    "model": "custom",
+    "has_free_tier": false
+  },
+  "scores": {
+    "lock_in": {
+      "level": "high",
+      "score": 2,
+      "reason": "Proprietary extraction"
+    },
+    "transparency": {
+      "level": "low",
+      "score": 1,
+      "reason": "Custom pricing"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 2,
+      "reason": "Limited public docs"
+    }
   }
 }

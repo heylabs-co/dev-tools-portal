@@ -8,9 +8,8 @@
   "status": "active",
   "categories": {
     "primary": {
-      "id": "CAT-18",
-      "slug": "mobile-attribution",
-      "name": "Mobile Attribution / MMP"
+      "slug": "product-analytics",
+      "name": "Product Analytics"
     }
   },
   "created_at": "2026-04-20T21:33:16.861Z",
@@ -48,5 +47,26 @@
     "verdict": "Useful server-side attribution for DTC web brands, but miscategorized as a mobile attribution platform.",
     "best_for": "DTC Shopify brands syncing first-party conversions back to Meta and Google.",
     "not_for": "Mobile app developers needing SKAN, install tracking and MMP postbacks."
+  },
+  "pricing": {
+    "model": "subscription",
+    "has_free_tier": false
+  },
+  "scores": {
+    "lock_in": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Attribution data exportable"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 4,
+      "reason": "Subscription public pricing"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Decent docs, API"
+    }
   }
 }

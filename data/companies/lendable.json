@@ -47,5 +47,26 @@
     "verdict": "Lending infrastructure, not a payments gateway — relevant only for partners embedding consumer credit.",
     "best_for": "UK fintechs and platforms embedding consumer lending decisions",
     "not_for": "Merchants or teams seeking payment acceptance"
+  },
+  "pricing": {
+    "model": "custom",
+    "has_free_tier": false
+  },
+  "scores": {
+    "lock_in": {
+      "level": "high",
+      "score": 2,
+      "reason": "Internal lending platform"
+    },
+    "transparency": {
+      "level": "low",
+      "score": 1,
+      "reason": "Custom partner deals"
+    },
+    "developer_experience": {
+      "level": "low",
+      "score": 2,
+      "reason": "Limited public docs"
+    }
   }
 }

@@ -64,5 +64,26 @@
     "verdict": "Solid VCR-style recorder if you are on python-requests, but check maintenance before betting on it.",
     "best_for": "Python projects pinned to requests that need reproducible integration tests",
     "not_for": "Async-first stacks on httpx/aiohttp or teams wanting actively maintained tooling"
+  },
+  "pricing": {
+    "model": "free",
+    "has_free_tier": true
+  },
+  "scores": {
+    "lock_in": {
+      "level": "high",
+      "score": 5,
+      "reason": "OSS Python HTTP recorder"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 5,
+      "reason": "Free open source"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 4,
+      "reason": "VCR-style testing docs"
+    }
   }
 }

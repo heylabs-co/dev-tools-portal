@@ -46,5 +46,26 @@
     "verdict": "Acceptable only if Japanese data residency is mandatory; otherwise AWS Tokyo region wins on almost every axis.",
     "best_for": "Japanese enterprises requiring domestic cloud compliance",
     "not_for": "Modern cloud-native workloads or global deployments"
+  },
+  "pricing": {
+    "model": "usage",
+    "has_free_tier": false
+  },
+  "scores": {
+    "lock_in": {
+      "level": "high",
+      "score": 2,
+      "reason": "Fujitsu cloud with proprietary services"
+    },
+    "transparency": {
+      "level": "medium",
+      "score": 4,
+      "reason": "Usage-based published pricing"
+    },
+    "developer_experience": {
+      "level": "medium",
+      "score": 3,
+      "reason": "Docs primarily Japanese"
+    }
   }
 }

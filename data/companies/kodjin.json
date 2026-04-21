@@ -49,5 +49,26 @@
     "verdict": "Pragmatic FHIR server if you need commercial support and low-code, otherwise open-source alternatives win.",
     "best_for": "Healthcare product teams needing commercial FHIR backend with support SLAs",
     "not_for": "Non-healthcare projects or teams comfortable self-hosting open-source FHIR servers"
+  },
+  "pricing": {
+    "model": "custom",
+    "has_free_tier": false
+  },
+  "scores": {
+    "lock_in": {
+      "level": "medium",
+      "score": 3,
+      "reason": "FHIR standard, data portable"
+    },
+    "transparency": {
+      "level": "low",
+      "score": 1,
+      "reason": "Custom pricing"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 4,
+      "reason": "FHIR REST docs"
+    }
   }
 }

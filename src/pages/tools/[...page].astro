@@ -6,17 +6,16 @@ import SearchBar from '../../components/SearchBar.astro';
 import { getCollection } from 'astro:content';
 import type { GetStaticPaths } from 'astro';
 
-const PAGE_SIZE = 120;
-
 export const getStaticPaths = (async ({ paginate }) => {
   const companies = await getCollection('companies');
   const sorted = companies.sort((a, b) =>
     a.data.name.localeCompare(b.data.name, 'en', { sensitivity: 'base' }),
   );
-  return paginate(sorted, { pageSize: PAGE_SIZE });
+  return paginate(sorted, { pageSize: 120 });
 }) satisfies GetStaticPaths;
 
 const { page } = Astro.props;
+const PAGE_SIZE = 120;
 const allCategories = await getCollection('categories');
 const categoryCount = allCategories.length;
 ---

@@ -1,0 +1,123 @@
+{
+  "slug": "kyc-kyb-compliance-api-stack",
+  "title": "KYC / KYB Compliance API Stack for Fintech",
+  "short_description": "Verify individual and business customers at onboarding, screen against sanctions and PEP lists, and monitor ongoing AML risk — all via API.",
+  "long_description": "Know Your Customer (KYC) and Know Your Business (KYB) verification is mandatory for any fintech product that handles money movement, lending, or regulated financial services. A production-grade compliance stack must cover: identity document verification (passport, driving licence, national ID), liveness/selfie checks to prevent spoofing, database checks (credit bureau, government ID registries), sanctions and PEP screening, adverse media monitoring, beneficial ownership verification for business entities, and ongoing transaction monitoring. Each layer can be a different vendor or consolidated with a platform like Sumsub or Jumio that covers multiple checks.",
+  "meta_category": "fintech",
+  "target_audience": "Compliance officers, engineering teams, and founders at fintech startups, neobanks, lenders, crypto exchanges, or any company with regulatory KYC/AML obligations.",
+
+  "tools": [
+    {
+      "slug": "sumsub",
+      "role": "All-in-one KYC/KYB/AML platform (ID verification + liveness + monitoring)",
+      "why": "Sumsub covers 220+ countries with document verification, selfie liveness, database checks, and AML screening in a single SDK/API. The no-code workflow builder lets compliance teams update verification flows without engineering. Best for companies needing global coverage with one vendor.",
+      "required": true
+    },
+    {
+      "slug": "jumio",
+      "role": "Enterprise KYC with AI-powered document authenticity checks",
+      "why": "Jumio's AI identity verification is used by tier-1 banks and major crypto exchanges. Superior at detecting document forgery and deepfake selfies. Higher cost per verification but lower false positive rate — worth it when regulated by OCC or FCA.",
+      "required": false
+    },
+    {
+      "slug": "onfido",
+      "role": "KYC focused on user experience and conversion optimisation",
+      "why": "Onfido (now part of Entrust) is known for the highest completion rates in KYC flows (~85% vs industry ~70%). Their Smart Capture SDK minimises re-submissions. Best for consumer-facing fintechs where KYC friction directly impacts activation.",
+      "required": false
+    },
+    {
+      "slug": "veriff",
+      "role": "KYC with strongest European document coverage",
+      "why": "Veriff supports 11,500+ document types across 230+ countries with human review fallback. Particularly strong for EU national ID cards, residence permits, and Baltic/Nordic documents. GDPR-compliant data processing in EU.",
+      "required": false
+    },
+    {
+      "slug": "persona",
+      "role": "Flexible KYC orchestration platform for custom workflows",
+      "why": "Persona lets you build complex KYC workflows visually: combine ID verification, watchlist screening, custom document collection, and manual review queues. Ideal for companies with non-standard compliance requirements (e.g. cannabis fintech, gambling, DAOs).",
+      "required": false
+    },
+    {
+      "slug": "trulioo",
+      "role": "Global identity and business verification via government and credit bureau data",
+      "why": "Trulioo specialises in database-based identity verification (no document needed) by querying 450+ authoritative data sources (credit bureaus, telecom records, government databases) in 195 countries. Best for markets where document scanning has low reliability.",
+      "required": false
+    },
+    {
+      "slug": "middesk",
+      "role": "KYB — US business entity verification",
+      "why": "Middesk automates business verification for US entities: Secretary of State filings, beneficial ownership (Beneficial Ownership Information under FinCEN CTA 2024), watchlist screening, and business health signals. Real-time API with <2 second response for most queries.",
+      "required": false
+    },
+    {
+      "slug": "kyckr",
+      "role": "KYB — global company registry lookups",
+      "why": "Kyckr provides real-time access to 200+ company registries worldwide for KYB on international businesses. Essential when your business customers are incorporated outside the US — Middesk only covers US entities.",
+      "required": false
+    },
+    {
+      "slug": "complyadvantage",
+      "role": "Sanctions, PEP, and adverse media screening",
+      "why": "Every KYC flow must check customers against OFAC, EU, UN, and UK sanctions lists plus Politically Exposed Persons databases. ComplyAdvantage updates within 15 minutes of new designations and includes adverse media NLP scanning from 100M+ sources.",
+      "required": true
+    },
+    {
+      "slug": "unit21",
+      "role": "Ongoing AML transaction monitoring post-onboarding",
+      "why": "KYC is a point-in-time check; AML compliance requires continuous monitoring. Unit21 provides rules-based and ML transaction monitoring, case management, and SAR/CTR filing workflows. Plugs into your existing payment data via API or Kafka.",
+      "required": true
+    },
+    {
+      "slug": "alloy",
+      "role": "Decision orchestration layer — combine multiple KYC/KYB vendors",
+      "why": "Alloy is an identity decisioning platform that orchestrates calls to multiple KYC/KYB/fraud vendors and applies your approval logic. Lets you waterfall (try Sumsub first, fall back to Jumio), apply risk-based rules, and get a unified audit trail across vendors.",
+      "required": false
+    }
+  ],
+
+  "alternatives": {
+    "sumsub": ["jumio", "onfido", "veriff", "persona"],
+    "complyadvantage": ["chainalysis", "elliptic"],
+    "unit21": ["feedzai", "sardine", "hummingbird"],
+    "middesk": ["kyckr"],
+    "alloy": ["persona"]
+  },
+
+  "gotchas": [
+    "CIP vs KYC: US regulated entities need a formal Customer Identification Program (CIP) that specifies exactly what data you collect and how. KYC vendor tooling is just the execution layer — you still need documented policies.",
+    "Beneficial Ownership Information (BOI): under FinCEN's Corporate Transparency Act (effective 2024), US legal entities must report beneficial owners. Your KYB vendor must be updated to collect 25%+ ownership data and cross-check against FinCEN's BOI database.",
+    "Re-KYC triggers: customer risk profiles change. Set up periodic re-verification workflows for high-risk customers and event-triggered re-KYC (e.g. customer changes address, large transaction pattern change).",
+    "GDPR and data retention: ID documents and biometric data are sensitive personal data. You typically cannot retain them longer than necessary for compliance. Most KYC vendors offer data deletion APIs but you must build the orchestration to call them at retention deadline.",
+    "False positive management: overly aggressive KYC thresholds block legitimate customers. Build a manual review queue and track your approval/decline/pending rates. Industry baseline: 85% auto-approve, 10% pending, 5% decline.",
+    "Vendor uptime affects activation: KYC is on the critical path for user activation. If your KYC API is down, users cannot onboard. Build fallback (queue for async review) and set SLA requirements in vendor contracts (99.9% uptime minimum)."
+  ],
+
+  "estimated_monthly_cost": "$1,000–$20,000/month depending on volume. Sumsub: $1.50–$4/verification. ComplyAdvantage: $500–$3,000/month base + per-query. Unit21: $1,500–$5,000/month. Alloy: custom pricing (~$0.20–0.50/decision).",
+
+  "related_use_cases": [
+    "two-sided-marketplace-payments",
+    "cross-border-remittance-stack",
+    "embedded-finance-baas-stack",
+    "open-banking-integration-stack"
+  ],
+
+  "seo": {
+    "title": "KYC / KYB Compliance API Stack — Sumsub, Jumio, Onfido, ComplyAdvantage",
+    "meta_description": "The complete KYC/KYB API stack for fintech: identity verification with Sumsub, Jumio, or Onfido; sanctions screening with ComplyAdvantage; ongoing AML monitoring with Unit21.",
+    "keywords": [
+      "kyc api",
+      "kyb verification",
+      "aml compliance api",
+      "sumsub integration",
+      "jumio kyc",
+      "onfido sdk",
+      "complyadvantage sanctions",
+      "identity verification fintech",
+      "beneficial ownership verification",
+      "aml transaction monitoring"
+    ]
+  },
+
+  "created_at": "2026-04-20T00:00:00Z",
+  "updated_at": "2026-04-20T00:00:00Z"
+}

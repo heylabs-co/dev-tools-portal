@@ -1,0 +1,88 @@
+{
+  "slug": "enterprise-sso-saml-stack",
+  "title": "Adding enterprise SSO, SAML, and SCIM to an existing B2B SaaS",
+  "short_description": "Bolt enterprise SSO, SAML 2.0, OIDC, and SCIM provisioning onto an existing product without owning IdP integrations yourself.",
+  "long_description": "Enterprise deals above $15k ACV almost always stall on a security questionnaire item: \"Do you support SSO?\" Answering yes requires SAML 2.0, OIDC, and often SCIM user provisioning — roughly 6-10 weeks of engineering time to build correctly, or a $125-300/mo SaaS abstraction that handles it in a week.\n\nWorkOS is the dominant choice for B2B SaaS teams retrofitting enterprise auth. Its Admin Portal UI — an embeddable React component — lets customer IT admins configure their own IdP connections without involving your support team. BoxyHQ is the open-source alternative: self-hosted SAML Jackson handles the protocol translation and stores nothing on their servers, which some regulated-industry buyers require. For teams that need a broader identity platform (MFA, adaptive risk, lifecycle management), Okta's B2B offering covers 100+ IdP integrations at higher price points.\n\nCerbos or Permit.io complement SSO by enforcing fine-grained authorization (RBAC/ABAC) after the user is authenticated. This is commonly overlooked until an enterprise customer asks for per-resource permission auditing. The Svix webhook engine rounds out the stack: when SCIM provisions or deprovisions a user, you'll want to emit events to downstream integrations immediately rather than polling. Pagerduty handles on-call escalation if an IdP connection drops or SCIM sync fails silently — a real failure mode that deletes users from production.",
+  "meta_category": "b2b-saas",
+  "target_audience": "Engineering teams at early-stage B2B SaaS startups",
+  "tools": [
+    {
+      "slug": "workos",
+      "role": "SAML 2.0, OIDC, and SCIM abstraction layer",
+      "why": "WorkOS normalizes 40+ IdPs (Okta, Azure AD, Google Workspace, Ping, ADFS) into a single API. The embedded Admin Portal means IT admins self-configure their IdP without a ticket to your team. $125/connection/mo with a free Developer tier for up to 1 connection.",
+      "required": true
+    },
+    {
+      "slug": "boxyhq",
+      "role": "Open-source self-hosted SAML/OIDC proxy",
+      "why": "BoxyHQ's SAML Jackson is a Docker container that translates SAML assertions into OAuth 2.0 tokens. Zero vendor lock-in and free if self-hosted — preferred for regulated industries (HIPAA, FedRAMP) where customer data cannot touch a SaaS intermediary.",
+      "required": false
+    },
+    {
+      "slug": "okta",
+      "role": "Enterprise identity platform with lifecycle management",
+      "why": "Okta's Workforce Identity Cloud covers SSO, MFA, Universal Directory, and Lifecycle Management (automated deprovisioning). Its 7,000+ app integrations make it the IdP of choice at Fortune 500 buyers, so supporting Okta natively via SAML or OIDC is a non-negotiable checkbox.",
+      "required": false
+    },
+    {
+      "slug": "permit-io",
+      "role": "Fine-grained authorization (RBAC/ABAC/ReBAC)",
+      "why": "Permit.io provides a hosted policy engine with a no-code UI for configuring roles and resource-level permissions. After SSO establishes identity, Permit enforces who can do what — critical when enterprise buyers demand per-document or per-project access controls and audit logs.",
+      "required": false
+    },
+    {
+      "slug": "cerbos",
+      "role": "Self-hosted policy-based authorization engine",
+      "why": "Cerbos is a sidecar or gRPC service that evaluates authorization policies stored as YAML. It never calls home, making it suitable for air-gapped or on-prem enterprise deployments where cloud-based authz engines are disqualified.",
+      "required": false
+    },
+    {
+      "slug": "svix",
+      "role": "Webhook delivery for SCIM provisioning events",
+      "why": "When WorkOS fires a SCIM user.created or user.deleted event, Svix fans it out to customer integrations with automatic retries, delivery receipts, and a customer-facing dashboard. Eliminates the need to build a reliable outbound event bus.",
+      "required": false
+    },
+    {
+      "slug": "pagerduty",
+      "role": "On-call alerting for IdP connection failures",
+      "why": "Silent SCIM sync failures can delete or strand users without anyone noticing. PagerDuty routing rules trigger on-call when WorkOS reports a connection error, preventing a support escalation from becoming an enterprise churn event.",
+      "required": false
+    },
+    {
+      "slug": "sentry",
+      "role": "Error tracking for SAML assertion and token exchange errors",
+      "why": "SAML errors surface as cryptic HTTP redirects. Sentry's breadcrumb trail captures the full assertion payload at the moment of failure, reducing debug time from hours to minutes when an enterprise customer reports broken SSO.",
+      "required": true
+    }
+  ],
+  "alternatives": {
+    "workos": ["auth0", "propelauth", "descope"],
+    "boxyhq": ["keycloak", "zitadel"],
+    "okta": ["ping-identity", "fusionauth"],
+    "permit-io": ["cerbos", "oso"],
+    "svix": ["hookdeck", "inngest"]
+  },
+  "gotchas": [
+    "SCIM provisioning and SSO are separate WorkOS products billed separately — budget $250/mo per enterprise customer for both connections combined, not $125.",
+    "Azure AD sends SAML assertions with 5-minute clock skew tolerance; your servers must have NTP synced. A drifting server clock causes intermittent 'Invalid assertion timestamp' errors that are nearly impossible to reproduce locally.",
+    "BoxyHQ SAML Jackson stores IdP metadata in a Postgres database — you own backup, HA, and schema migrations. A missed migration during deployment has caused production SSO outages; add a migration health check to your deploy pipeline."
+  ],
+  "estimated_monthly_cost": "$200-500/mo at 5 enterprise SSO connections",
+  "related_use_cases": [
+    "b2b-saas-subscription-stack",
+    "multi-tenant-admin-dashboard"
+  ],
+  "seo": {
+    "title": "Enterprise SSO SAML stack for B2B SaaS — WorkOS, BoxyHQ & tools guide",
+    "meta_description": "Add SAML 2.0, OIDC, and SCIM to your B2B SaaS in under a week. WorkOS, BoxyHQ, Okta, and Cerbos — real costs and gotchas.",
+    "keywords": [
+      "enterprise sso saas",
+      "saml saas integration",
+      "workos vs auth0",
+      "scim provisioning b2b saas",
+      "sso tools 2026"
+    ]
+  },
+  "created_at": "2026-04-21",
+  "updated_at": "2026-04-21"
+}

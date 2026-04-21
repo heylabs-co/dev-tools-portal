@@ -1,0 +1,118 @@
+{
+  "slug": "self-hosted-oss-replacements-stack",
+  "title": "Self-Hosted OSS Replacements for Common SaaS",
+  "short_description": "Replace Zapier, Google Analytics, Mixpanel, Auth0, Firebase, and Slack with open-source self-hosted alternatives — for privacy compliance or cost control.",
+  "long_description": "SaaS sprawl is expensive and a growing compliance liability. This stack replaces the most common SaaS tools with battle-tested open-source alternatives you can run on a single VPS or in Kubernetes. The tradeoff is real: you gain data sovereignty and cost control, but absorb operational overhead for upgrades, backups, and on-call. This guide quantifies the TCO honestly and highlights where managed OSS hosting (e.g. Elestio, Coolify) can bridge the gap.",
+  "meta_category": "devtools-infra",
+  "target_audience": "GDPR/HIPAA-constrained startups, cost-conscious scale-ups, and privacy-first product teams who want to own their data stack",
+
+  "tools": [
+    {
+      "slug": "n8n",
+      "role": "Zapier / Make replacement — workflow automation",
+      "why": "Visual workflow builder with 400+ integrations. Self-host on a $10/mo VPS to replace Zapier at $500+/mo for heavy automation workloads. Source-available license (fair-code).",
+      "required": true
+    },
+    {
+      "slug": "plausible",
+      "role": "Google Analytics replacement — privacy-first web analytics",
+      "why": "GDPR-compliant by design — no cookies, no PII stored. Lightweight script (< 1 KB). Self-host for $0 or use their cloud at $9/mo. Ideal for EU-regulated products.",
+      "required": false
+    },
+    {
+      "slug": "umami",
+      "role": "Google Analytics replacement — minimal self-hosted analytics",
+      "why": "Even simpler than Plausible. MIT licensed, single PostgreSQL database, trivial to deploy. Best for teams that want raw event counts without any product analytics complexity.",
+      "required": false
+    },
+    {
+      "slug": "posthog",
+      "role": "Mixpanel / Amplitude replacement — product analytics",
+      "why": "Full product analytics suite (funnels, cohorts, session replay, feature flags). Self-hosted version is fully free and open-source. Managed cloud starts at $0 for small volumes.",
+      "required": false
+    },
+    {
+      "slug": "supabase",
+      "role": "Firebase replacement — database + auth + storage",
+      "why": "Open-source Firebase alternative built on PostgreSQL. Real-time subscriptions, Row-Level Security, auth, edge functions, and S3-compatible storage. Self-host or use managed cloud.",
+      "required": false
+    },
+    {
+      "slug": "appwrite",
+      "role": "Firebase replacement — BaaS for mobile/web",
+      "why": "REST and realtime APIs for auth, databases, storage, and functions. More mobile-friendly than Supabase. MIT licensed, Docker Compose deployment in minutes.",
+      "required": false
+    },
+    {
+      "slug": "minio",
+      "role": "AWS S3 replacement — object storage",
+      "why": "S3-compatible API. Run on bare metal or VMs for near-zero storage costs. Used as the storage backend for many other tools in this stack (Loki, Tempo, Thanos).",
+      "required": false
+    },
+    {
+      "slug": "gitea",
+      "role": "GitHub replacement — source code hosting",
+      "why": "Lightweight self-hosted Git service with CI (Gitea Actions, GitHub Actions-compatible). Single binary, < 128 MB RAM. Good for air-gapped environments or cost-sensitive teams.",
+      "required": false
+    },
+    {
+      "slug": "mattermost",
+      "role": "Slack replacement — team messaging",
+      "why": "Open-source Slack alternative with threads, channels, and integrations. Self-host on a single server. HIPAA/GDPR compliant with data residency control.",
+      "required": false
+    },
+    {
+      "slug": "keycloak",
+      "role": "Auth0 / Okta replacement — identity and SSO",
+      "why": "Enterprise-grade SSO, OIDC, SAML, and MFA. Free and open-source. Complex to operate but eliminates $5–$10/user/mo Auth0 fees at scale. Used by Red Hat and banks.",
+      "required": false
+    },
+    {
+      "slug": "netdata",
+      "role": "Datadog infrastructure monitoring replacement",
+      "why": "Real-time infrastructure metrics with near-zero configuration. Free agent with 1-second granularity. Optional Netdata Cloud for multi-host dashboards.",
+      "required": false
+    }
+  ],
+
+  "alternatives": {
+    "plausible": ["umami"],
+    "supabase": ["appwrite"],
+    "mattermost": ["nextcloud"],
+    "keycloak": ["vault-hashicorp", "bitwarden"],
+    "n8n": ["activepieces"]
+  },
+
+  "gotchas": [
+    "Self-hosted TCO is rarely zero. Factor in: VPS/VM cost, engineering time for upgrades (est. 2–4 hrs/month per tool), backup infrastructure, and incident response. For a team of 5, $500/mo in SaaS may be cheaper than 10 hrs/mo of ops time.",
+    "Keycloak has a steep operational learning curve. One misconfigured OIDC client can lock your entire engineering team out of internal tools. Run a secondary admin account on a separate realm and document the recovery procedure before go-live.",
+    "n8n's fair-code license prohibits using it as a commercial workflow automation service for others. If you are building a product that exposes n8n-powered automation to customers, you need an Enterprise license.",
+    "Supabase self-hosted does not include all managed-cloud features (Branching, Log Explorer, Read Replicas). Plan for this gap if you rely on those features in development but self-host in production.",
+    "MinIO in distributed mode requires a minimum of 4 drives/nodes for erasure coding. Single-node deployments are not suitable for production without a separate backup strategy.",
+    "GDPR compliance for self-hosted tools still requires proper data processing agreements, deletion workflows, and security hardening — self-hosting alone is not sufficient for compliance."
+  ],
+
+  "estimated_monthly_cost": "$30–$150/mo (VPS infrastructure) vs $1,000–$5,000/mo (equivalent SaaS subscriptions)",
+
+  "related_use_cases": [
+    "modern-observability-stack",
+    "kubernetes-platform-starter-stack"
+  ],
+
+  "seo": {
+    "title": "Self-Hosted OSS Replacements for SaaS Tools | tool.news",
+    "meta_description": "Replace Zapier, Google Analytics, Auth0, Firebase, and Slack with self-hosted open-source tools — n8n, Plausible, Keycloak, Supabase, and more.",
+    "keywords": [
+      "self-hosted open source",
+      "SaaS replacement",
+      "n8n Zapier alternative",
+      "Plausible Google Analytics alternative",
+      "Supabase Firebase alternative",
+      "Keycloak Auth0 alternative",
+      "GDPR compliant analytics"
+    ]
+  },
+
+  "created_at": "2026-04-20T00:00:00Z",
+  "updated_at": "2026-04-20T00:00:00Z"
+}

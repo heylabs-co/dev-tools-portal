@@ -1,0 +1,105 @@
+{
+  "slug": "ios-subscription-app-stack",
+  "title": "iOS Subscription App Stack",
+  "short_description": "Production-ready toolchain for building an iOS app with in-app purchases, subscriptions, crash monitoring, and growth analytics.",
+  "long_description": "Launching a paid iOS app in 2026 means wrestling with StoreKit 2, App Store Review, receipt validation, subscription lifecycle management, churn prevention, and attribution — all before a single user pays you. This stack wires together the best-in-class tools for each concern so you can ship a monetised iOS app without building payment plumbing from scratch. RevenueCat handles the entire subscription lifecycle (purchase, restore, grace periods, billing-retry), Superwall lets you A/B test paywalls without resubmitting to App Store Review, and AppsFlyer ties every install to the campaign that drove it — all while Sentry and Firebase Crashlytics keep the app stable. The result is a repeatable, revenue-optimised iOS monetisation architecture that works at every scale, from indie launch to Series B.",
+  "meta_category": "consumer-mobile",
+  "target_audience": "iOS developers, indie hackers, and mobile growth teams shipping subscription-based apps on the App Store",
+
+  "tools": [
+    {
+      "slug": "revenuecat",
+      "role": "Subscription & IAP management",
+      "why": "Abstracts StoreKit 2 and StoreKit 1, handles receipt validation, webhooks, entitlements, and subscriber lifecycle events across all Apple platforms with a single SDK.",
+      "required": true
+    },
+    {
+      "slug": "superwall",
+      "role": "Paywall A/B testing & remote config",
+      "why": "Lets you iterate on paywall copy, pricing, and layout remotely without an App Store release cycle, with built-in conversion tracking.",
+      "required": false
+    },
+    {
+      "slug": "firebase",
+      "role": "Auth, real-time database & remote config",
+      "why": "Firebase Auth handles Sign in with Apple (required by App Store guidelines), Firestore stores user data, and Remote Config controls feature flags without a redeploy.",
+      "required": true
+    },
+    {
+      "slug": "appsflyer",
+      "role": "Mobile measurement & attribution",
+      "why": "SKAdNetwork-compatible MMP that accurately attributes paid installs to campaigns and passes conversion values back to ad networks under iOS 14+ privacy rules.",
+      "required": true
+    },
+    {
+      "slug": "sentry",
+      "role": "Error monitoring & performance tracing",
+      "why": "Captures Swift/Objective-C crashes and ANRs with full stack traces, session replay, and performance breadcrumbs — faster triage than native Xcode organiser.",
+      "required": true
+    },
+    {
+      "slug": "firebase-crashlytics",
+      "role": "Crash reporting (second layer)",
+      "why": "Google's free crash reporter integrates natively with Firebase Analytics for crash-free users metric and is required by many App Store Connect data dashboards.",
+      "required": false
+    },
+    {
+      "slug": "amplitude",
+      "role": "Product analytics & funnel analysis",
+      "why": "Tracks funnel steps from install → trial → paid → churn with cohort retention analysis, crucial for validating paywall experiments driven by Superwall.",
+      "required": true
+    },
+    {
+      "slug": "onesignal",
+      "role": "Push notifications & in-app messaging",
+      "why": "Sends trial-ending reminders, re-engagement nudges, and feature announcements via APNs with a visual automation builder — no backend code required.",
+      "required": true
+    },
+    {
+      "slug": "fastlane",
+      "role": "CI/CD & App Store delivery",
+      "why": "Automates code signing, screenshot generation, and App Store Connect uploads so every release is a single command rather than a 45-minute manual process.",
+      "required": false
+    }
+  ],
+
+  "alternatives": {
+    "revenuecat": ["adapty", "glassfy", "qonversion"],
+    "superwall": ["purchasely", "adapty"],
+    "appsflyer": ["adjust", "singular", "kochava"],
+    "sentry": ["bugsnag", "firebase-crashlytics", "datadog"],
+    "amplitude": ["mixpanel", "posthog", "google-analytics"],
+    "onesignal": ["braze", "airship", "clevertap"],
+    "fastlane": ["codemagic", "bitrise", "xcode-cloud"]
+  },
+
+  "gotchas": [
+    "StoreKit 2 (iOS 15+) uses async/await and server-to-server JWS receipts instead of the legacy base64 receipt blob. If you support iOS 14, RevenueCat's SDK silently falls back to StoreKit 1 — but your backend webhooks will look different. Audit your webhook handlers for both receipt formats before launch.",
+    "SKAdNetwork 4.0 gives you up to 64 conversion values and two postback windows, but ad networks must be registered in your Info.plist. A missing or stale SKAdNetworkItems list means zero attribution for entire ad networks. Run AppsFlyer's SKAdNetwork validation tool before your first paid campaign.",
+    "Apple's App Store Review guideline 3.1.1 requires Sign in with Apple whenever any other third-party social login is offered. Firebase Auth supports Sign in with Apple, but you must handle the 'real name' and private relay email edge cases (users may get a randomised @privaterelay.appleid.com address) — store the Apple User ID as your canonical identifier, not the email."
+  ],
+
+  "estimated_monthly_cost": "$0–$450 at launch (RevenueCat free up to $2.5k MRR, Firebase Spark free tier, AppsFlyer free up to 6k installs/month, Amplitude free up to 10M events, OneSignal free up to 10k subscribers). Scales to ~$500–$2k/month at $50k MRR.",
+
+  "related_use_cases": [
+    "cross-platform-mobile-iap",
+    "mobile-ad-monetization-stack",
+    "fitness-wellness-app-stack"
+  ],
+
+  "seo": {
+    "title": "iOS Subscription App Stack — RevenueCat, Superwall, AppsFlyer & More",
+    "meta_description": "The definitive tool stack for building a monetised iOS subscription app in 2026. Covers StoreKit 2, paywall A/B testing, SKAdNetwork attribution, crash monitoring, and push notifications.",
+    "keywords": [
+      "ios subscription app",
+      "revenuecat storekit 2",
+      "superwall paywall",
+      "skadnetwork attribution",
+      "ios iap stack",
+      "mobile subscription monetization"
+    ]
+  },
+
+  "created_at": "2026-04-21",
+  "updated_at": "2026-04-21"
+}

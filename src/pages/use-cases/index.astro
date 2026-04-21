@@ -1,0 +1,135 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import SearchBar from '../../components/SearchBar.astro';
+import { getCollection } from 'astro:content';
+
+const useCases = await getCollection('useCases');
+
+const metaCategoryLabels: Record<string, { name: string; emoji: string; description: string }> = {
+  'b2b-saas': {
+    name: 'B2B SaaS',
+    emoji: '💼',
+    description: 'Building blocks for B2B software: subscriptions, SSO, billing, ops.',
+  },
+  'consumer-mobile': {
+    name: 'Consumer Mobile',
+    emoji: '📱',
+    description: 'Stacks for mobile apps with IAP, attribution, crash reporting.',
+  },
+  'ai-startup': {
+    name: 'AI Startup',
+    emoji: '🤖',
+    description: 'AI-native product stacks — LLM, RAG, agents, voice, observability.',
+  },
+  fintech: {
+    name: 'Fintech',
+    emoji: '💳',
+    description: 'Payments, cross-border, KYC, open banking, embedded finance.',
+  },
+  'devtools-infra': {
+    name: 'DevTools & Infra',
+    emoji: '⚙️',
+    description: 'Observability, CI/CD, Kubernetes, developer productivity.',
+  },
+  ecommerce: {
+    name: 'E-commerce',
+    emoji: '🛒',
+    description: 'Headless commerce, marketplaces, subscriptions, trust & safety.',
+  },
+};
+
+// Group by meta_category
+const grouped = new Map<string, typeof useCases>();
+for (const uc of useCases) {
+  const cat = uc.data.meta_category;
+  if (!grouped.has(cat)) grouped.set(cat, []);
+  grouped.get(cat)!.push(uc);
+}
+
+// Sort within each group alphabetically by title
+for (const arr of grouped.values()) {
+  arr.sort((a, b) => a.data.title.localeCompare(b.data.title));
+}
+
+// Ordered rendering
+const orderedKeys: Array<keyof typeof metaCategoryLabels> = [
+  'b2b-saas', 'consumer-mobile', 'ai-startup', 'fintech', 'devtools-infra', 'ecommerce',
+];
+---
+
+<BaseLayout
+  title={`Dev Stack Use Cases — ${useCases.length} Curated Setups`}
+  description={`${useCases.length} developer stack recommendations for common scenarios: B2B SaaS, mobile apps, AI startups, fintech, infrastructure, and e-commerce. Each includes 5-10 hand-picked tools with rationale and alternatives.`}
+>
+  <section class="mx-auto max-w-7xl px-4 py-10">
+    <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Use Cases' }]} />
+
+    <!-- Hero -->
+    <div class="mt-8 mb-10">
+      <h1 class="text-4xl font-extrabold tracking-tight" style="color: var(--color-text);">
+        Dev Stack Use Cases
+      </h1>
+      <p class="mt-3 text-lg max-w-3xl" style="color: var(--color-muted);">
+        Pre-built tool stacks for common developer scenarios — each one 5-10 tools
+        picked for a specific job. Mix and match, compare alternatives, skip the guesswork.
+      </p>
+    </div>
+
+    <!-- Scoped search -->
+    <div class="mb-10 max-w-2xl">
+      <SearchBar
+        baseFilter={{ type: ['Use Case'] }}
+        showFilters={false}
+        compact={true}
+        placeholder={`Search ${useCases.length} stacks…`}
+      />
+    </div>
+
+    <!-- Grouped sections -->
+    {orderedKeys.map((key) => {
+      const items = grouped.get(key);
+      if (!items || items.length === 0) return null;
+      const meta = metaCategoryLabels[key];
+      return (
+        <section class="mb-14">
+          <header class="mb-5 flex items-baseline gap-3 border-b pb-3" style="border-color: var(--color-border);">
+            <span class="text-3xl">{meta.emoji}</span>
+            <h2 class="text-2xl font-bold" style="color: var(--color-text);">{meta.name}</h2>
+            <span class="text-sm" style="color: var(--color-muted);">
+              {items.length} {items.length === 1 ? 'stack' : 'stacks'}
+            </span>
+          </header>
+          <p class="mb-5 text-sm" style="color: var(--color-muted);">{meta.description}</p>
+          <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {items.map((uc) => (
+              <a
+                href={`/use-cases/${uc.data.slug}/`}
+                class="group relative rounded-xl border p-5 transition-all duration-150 hover:-translate-y-0.5 hover:shadow-md"
+                style="border-color: var(--color-border); background-color: var(--color-surface);"
+              >
+                <div class="absolute inset-x-0 top-0 h-[2px] rounded-t-xl bg-gradient-to-r from-[#5E6AD2] to-[#818CF8] opacity-0 transition-opacity duration-150 group-hover:opacity-100"></div>
+                <h3 class="text-base font-semibold transition-colors duration-150 group-hover:text-[#5E6AD2] dark:group-hover:text-[#818CF8]" style="color: var(--color-text);">
+                  {uc.data.title}
+                </h3>
+                <p class="mt-2 line-clamp-3 text-sm leading-relaxed" style="color: var(--color-muted);">
+                  {uc.data.short_description}
+                </p>
+                <div class="mt-4 flex flex-wrap items-center gap-2 text-xs" style="color: var(--color-muted);">
+                  <span class="inline-flex items-center gap-1 rounded-full border px-2 py-0.5" style="border-color: var(--color-border);">
+                    📦 {uc.data.tools.length} tools
+                  </span>
+                  {uc.data.estimated_monthly_cost && (
+                    <span class="inline-flex items-center gap-1 rounded-full border px-2 py-0.5" style="border-color: var(--color-border);">
+                      💰 {uc.data.estimated_monthly_cost}
+                    </span>
+                  )}
+                </div>
+              </a>
+            ))}
+          </div>
+        </section>
+      );
+    })}
+  </section>
+</BaseLayout>

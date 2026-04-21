@@ -1,0 +1,107 @@
+{
+  "slug": "fitness-wellness-app-stack",
+  "title": "Fitness & Wellness App Stack",
+  "short_description": "Full-stack toolchain for health tracking apps: HealthKit / Google Fit integration, subscription monetisation, wearable data, push notification coaching, and GDPR-compliant analytics.",
+  "long_description": "Health and fitness apps face a unique intersection of technical and regulatory challenges: HealthKit and Google Fit APIs have per-permission data access that users can revoke at any time, wearable integrations have inconsistent data granularity across device makers, GDPR and HIPAA impose strict requirements on health data storage and processing, and the subscription churn curve in fitness is steeper than any other category. This stack addresses each constraint. RevenueCat manages the subscription lifecycle with trial-to-paid conversion tooling, Supabase stores structured workout and goal data behind row-level security, and a wearable aggregation approach via Polar API covers third-party device data. Firebase handles push notifications for daily workout reminders and coaching nudges. Amplitude tracks the retention metrics that matter for wellness (streak length, weekly active workouts) while Sentry keeps the health data sync pipeline stable.",
+  "meta_category": "consumer-mobile",
+  "target_audience": "Mobile developers and health tech founders building fitness tracking, workout, nutrition, or wellness apps that integrate with Apple Health / Google Fit and need subscription monetisation",
+
+  "tools": [
+    {
+      "slug": "revenuecat",
+      "role": "Subscription & IAP management",
+      "why": "Fitness apps have high trial-to-paid conversion stakes; RevenueCat's paywall A/B testing, grace period handling, and billing retry reduce involuntary churn — which is disproportionately high in fitness.",
+      "required": true
+    },
+    {
+      "slug": "supabase",
+      "role": "User data, workout logs & auth",
+      "why": "Postgres row-level security ensures each user can only access their own health data, with real-time subscriptions for live workout tracking and storage for exported GPX/FIT files.",
+      "required": true
+    },
+    {
+      "slug": "firebase",
+      "role": "Push notifications, remote config & A/B testing",
+      "why": "Firebase Cloud Messaging powers daily workout reminder notifications via APNs/FCM, while Remote Config drives motivational copy and challenge parameters without app updates.",
+      "required": true
+    },
+    {
+      "slug": "amplitude",
+      "role": "Health-focused product analytics",
+      "why": "Tracks streak completion rates, workout session funnels, and subscription cohort retention — the primary KPIs for wellness app growth — with powerful cohort comparison across user segments.",
+      "required": true
+    },
+    {
+      "slug": "appsflyer",
+      "role": "Install attribution",
+      "why": "Measures which paid fitness keywords and creatives drive users who actually complete a trial, not just installs — essential for efficient fitness app paid UA given the high CPIs.",
+      "required": true
+    },
+    {
+      "slug": "sentry",
+      "role": "Error & health data sync monitoring",
+      "why": "HealthKit and Google Fit background sync operations fail silently without monitoring; Sentry captures read-permission errors, background refresh failures, and data parsing exceptions.",
+      "required": true
+    },
+    {
+      "slug": "polar",
+      "role": "Wearable device data integration",
+      "why": "Polar's Open API provides access to training data, sleep, and fitness metrics from Polar wearables, complementing HealthKit for users without Apple Watch.",
+      "required": false
+    },
+    {
+      "slug": "onesignal",
+      "role": "Motivational push notifications",
+      "why": "Sends personalised workout reminders, streak protection nudges, and milestone celebrations with behavioural triggers — critical for the habit formation loop that drives fitness app retention.",
+      "required": true
+    },
+    {
+      "slug": "segment",
+      "role": "Customer data platform (events routing)",
+      "why": "Routes fitness events (workout_completed, goal_set, trial_started) to Amplitude, AppsFlyer, and Braze from a single SDK, avoiding per-tool SDK bloat that increases app binary size.",
+      "required": false
+    }
+  ],
+
+  "alternatives": {
+    "revenuecat": ["adapty", "superwall", "glassfy"],
+    "supabase": ["firebase", "appwrite", "back4app"],
+    "firebase": ["onesignal", "braze", "airship"],
+    "amplitude": ["mixpanel", "posthog", "heap"],
+    "appsflyer": ["adjust", "branch", "singular"],
+    "sentry": ["bugsnag", "firebase-crashlytics", "datadog"],
+    "polar": ["appwrite"],
+    "onesignal": ["braze", "clevertap", "moengage"],
+    "segment": ["rudderstack", "posthog", "amplitude"]
+  },
+
+  "gotchas": [
+    "HealthKit permission requests on iOS are per-data-type and non-reversible without going to Settings. If your app requests all permissions upfront (steps, heart rate, sleep, workouts), iOS 15+ users see an overwhelming permission sheet and commonly deny everything. Use progressive permission requests triggered by specific features — only ask for heart rate data when the user activates a heart-rate-based workout mode.",
+    "Apple's Health app requires apps that write to HealthKit to be reviewed under App Store guideline 5.1.3 (health data privacy). Apps that request HealthKit access but don't demonstrably use it are rejected. More critically, health data is considered 'sensitive personal data' under GDPR Article 9 — you must not pass raw HealthKit data to any third-party analytics SDK (including Amplitude or Firebase Analytics) without explicit consent and a Data Processing Agreement.",
+    "Google Fit's REST API (for web/server-side access) and the Android Fit SDK have divergent data type schemas. 'Steps' in the Fit REST API use com.google.step_count.delta while the Android SDK uses TYPE_STEP_COUNT_DELTA with different field keys. If you build a cross-platform app that syncs workouts from both HealthKit and Google Fit to your backend, you need explicit normalisation logic or you will end up with duplicate and conflicting workout records."
+  ],
+
+  "estimated_monthly_cost": "$0–$350 at launch (RevenueCat free to $2.5k MRR, Supabase free tier, Firebase free tier, Amplitude free 10M events, OneSignal free 10k subscribers). Scales to $600–$2.5k/month at 50k MAU.",
+
+  "related_use_cases": [
+    "ios-subscription-app-stack",
+    "cross-platform-mobile-iap",
+    "social-app-backend-stack"
+  ],
+
+  "seo": {
+    "title": "Fitness & Wellness App Stack — HealthKit, RevenueCat, Supabase & Firebase",
+    "meta_description": "Complete tool stack for health and fitness mobile apps in 2026. Covers HealthKit and Google Fit integration, subscriptions, wearable data, GDPR-compliant analytics, and push notification coaching.",
+    "keywords": [
+      "fitness app backend",
+      "healthkit integration stack",
+      "google fit api",
+      "wellness app subscriptions",
+      "health tracking app tools",
+      "fitness app monetization"
+    ]
+  },
+
+  "created_at": "2026-04-21",
+  "updated_at": "2026-04-21"
+}

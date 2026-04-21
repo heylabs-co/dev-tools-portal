@@ -1,0 +1,101 @@
+{
+  "slug": "crypto-onramp-for-app",
+  "title": "Fiat-to-Crypto On-Ramp Integration for Your App",
+  "short_description": "Let users buy crypto with card or bank transfer directly inside your app, without building a money transmitter from scratch.",
+  "long_description": "Adding a fiat-to-crypto on-ramp means your users can buy Bitcoin, ETH, stablecoins, or your native token using their credit card, debit card, bank transfer, or local payment method — without leaving your app. The core challenge is regulatory: in most jurisdictions selling crypto for fiat requires you to be a Virtual Asset Service Provider (VASP), hold a money transmitter licence, and run a full AML/KYC programme. The practical path for 95% of apps is to use a white-label on-ramp provider (MoonPay, Transak, Onramper) who holds the licences, while you embed their widget or API. This use case covers both the embedded widget path and the API-first path for more advanced integrations.",
+  "meta_category": "fintech",
+  "target_audience": "Web3 founders, DeFi protocol teams, NFT marketplace builders, and mobile app developers wanting to reduce friction for first-time crypto buyers.",
+
+  "tools": [
+    {
+      "slug": "onramper",
+      "role": "On-ramp aggregator — best rates across multiple providers via single API",
+      "why": "Onramper is a widget/API aggregator that routes each user to the cheapest available on-ramp (MoonPay, Transak, Sardine, Wyre-successor, etc.) based on their country, payment method, and crypto. You integrate once and get access to 95%+ global coverage with automatic provider fallback.",
+      "required": true
+    },
+    {
+      "slug": "banxa",
+      "role": "Direct on-ramp with strong APAC and AU coverage",
+      "why": "Banxa holds licences in AU, EU, and Canada and is preferred by exchanges serving the APAC region. Lower fees than MoonPay for AU-denominated purchases. Provides hosted checkout, SDK, and REST API.",
+      "required": false
+    },
+    {
+      "slug": "nowpayments",
+      "role": "Crypto payment acceptance and conversion",
+      "why": "If you also need to accept crypto payments (not just sell crypto), NOWPayments handles 300+ coins with automatic conversion to stablecoins or fiat. Useful for NFT mints, subscription paywalls, or SaaS billing in crypto.",
+      "required": false
+    },
+    {
+      "slug": "stripe",
+      "role": "Card processing for on-ramp providers in the US",
+      "why": "Some on-ramp APIs (e.g. Sardine) use Stripe as the underlying card processor. If building a custom on-ramp (rare), Stripe's Crypto Onramp SDK handles card acceptance and fraud scoring for crypto purchases with specialised crypto chargeback rules.",
+      "required": false
+    },
+    {
+      "slug": "sumsub",
+      "role": "KYC/AML verification required by most on-ramp providers",
+      "why": "Even when using a white-label on-ramp widget, you may need to pass KYC verification results for users you have already onboarded. Sumsub lets you share a reusable KYC status with on-ramp partners so users aren't re-verified.",
+      "required": false
+    },
+    {
+      "slug": "persona",
+      "role": "KYC for self-hosted on-ramp flows",
+      "why": "If you are building a custom on-ramp (requires VASP licence), Persona handles ID verification + liveness check and integrates with your wallet infrastructure. Cheaper per-verification than enterprise KYC vendors at early stage.",
+      "required": false
+    },
+    {
+      "slug": "chainalysis",
+      "role": "Blockchain transaction monitoring and VASP compliance",
+      "why": "Once a user receives crypto via your on-ramp, you must monitor on-chain activity for sanctions exposure (OFAC-designated wallet addresses). Chainalysis KYT (Know Your Transaction) screens wallet addresses at point of purchase.",
+      "required": true
+    },
+    {
+      "slug": "sardine",
+      "role": "Fraud prevention specialised for crypto purchases",
+      "why": "Crypto on-ramp fraud (stolen cards, synthetic identities, chargeback fraud) is 10–20x higher than normal e-commerce. Sardine's device intelligence and ML models are trained specifically on crypto purchase fraud patterns.",
+      "required": true
+    }
+  ],
+
+  "alternatives": {
+    "onramper": ["banxa", "nowpayments"],
+    "chainalysis": ["elliptic"],
+    "sardine": ["sift", "unit21"],
+    "sumsub": ["jumio", "onfido", "veriff"]
+  },
+
+  "gotchas": [
+    "Regulatory status of stablecoins: in most jurisdictions, facilitating stablecoin (USDC, USDT) purchases still qualifies as VASP activity. Don't assume stablecoins are exempt from crypto regulations.",
+    "Card network restrictions: Visa and Mastercard impose higher interchange (1.5–2.5% surcharge) on crypto purchases and allow issuers to block them. Card approval rates for crypto on-ramps are typically 60–80% vs 95%+ for normal e-commerce.",
+    "Chargeback fraud is the biggest financial risk: crypto transactions are irreversible. A chargeback fraud attack can be catastrophic. Sardine or similar fraud tooling is not optional.",
+    "FATF Travel Rule for on-chain transfers: transfers of >$1,000 (US) / €1,000 (EU) between VASPs must include sender/receiver information. Your on-ramp provider should handle this but confirm before launch.",
+    "Widget vs API tradeoffs: embedded widgets (Onramper, Transak) launch in days but you lose UX control. API integrations give full UX control but require you to manage your own VASP licence or a formal referral agreement with a licensed partner.",
+    "Geography: US is the hardest market — New York requires BitLicense (separate from MTL), and many providers restrict NY users. Always check your provider's supported states list."
+  ],
+
+  "estimated_monthly_cost": "$0 platform fee for widget-based integrations (providers charge 1.5–4.9% per transaction). For API integrations: Sumsub $2–5/KYC, Chainalysis KYT ~$0.10–0.50/transaction, Sardine ~$0.05/transaction.",
+
+  "related_use_cases": [
+    "kyc-kyb-compliance-api-stack",
+    "cross-border-remittance-stack"
+  ],
+
+  "seo": {
+    "title": "Fiat-to-Crypto On-Ramp Stack — Widget APIs, KYC & Blockchain Compliance",
+    "meta_description": "Integrate a fiat-to-crypto on-ramp into your app using Onramper, Banxa, or NOWPayments with Chainalysis blockchain monitoring and Sardine fraud prevention.",
+    "keywords": [
+      "crypto on-ramp api",
+      "fiat to crypto widget",
+      "onramper integration",
+      "banxa api",
+      "crypto kyc",
+      "blockchain transaction monitoring",
+      "chainalysis kyt",
+      "sardine fraud crypto",
+      "web3 payments"
+    ]
+  },
+
+  "created_at": "2026-04-20T00:00:00Z",
+  "updated_at": "2026-04-20T00:00:00Z"
+}

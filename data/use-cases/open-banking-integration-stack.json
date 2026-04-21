@@ -1,0 +1,110 @@
+{
+  "slug": "open-banking-integration-stack",
+  "title": "Open Banking Integration Stack (EU / UK PSD2)",
+  "short_description": "Connect to bank accounts via open banking APIs to read transactions, verify identity, initiate payments, and run affordability checks — without asking users for their login credentials.",
+  "long_description": "Open Banking in the EU (PSD2) and UK (CMA Order) requires banks to expose standardised APIs for Account Information Services (AIS) and Payment Initiation Services (PIS). As a Third Party Provider (TPP), you can access these with user consent. Practical use cases include: account aggregation (see all bank accounts in one view), income/affordability verification for lending, instant bank transfers as an alternative to cards (lower fees, no chargebacks), bank account ownership verification for KYC, and financial data enrichment. The UK has the most mature ecosystem; EU implementation quality varies significantly by country and bank.",
+  "meta_category": "fintech",
+  "target_audience": "Fintech founders building lending, personal finance management, accounting, B2B payments, or identity products that benefit from direct bank connectivity in the EU or UK.",
+
+  "tools": [
+    {
+      "slug": "truelayer",
+      "role": "Open banking API aggregator — UK and EU bank connectivity",
+      "why": "TrueLayer is the leading UK open banking aggregator with 99%+ bank coverage in the UK and strong coverage in IE, FR, DE, ES, IT, NL. Provides unified API for AIS (account data) and PIS (payment initiation). Used by Freetrade, Revolut, Monzo, and 1000+ fintechs.",
+      "required": true
+    },
+    {
+      "slug": "yapily",
+      "role": "Open banking with broadest pan-European bank coverage",
+      "why": "Yapily covers 2,000+ banks across 18+ European countries with a single API. Stronger than TrueLayer for DE/AT/CH coverage. Provides both AIS and PIS with a developer-friendly sandbox. Best for truly pan-European products.",
+      "required": false
+    },
+    {
+      "slug": "plaid",
+      "role": "Bank connectivity for US + EU (Plaid Exchange)",
+      "why": "Plaid is the default choice for US bank connectivity (10,000+ institutions) and is expanding in EU via open banking APIs. If your product spans US and EU, Plaid provides a single integration. Note: Plaid in EU is open banking compliant; in US it uses direct connectivity.",
+      "required": false
+    },
+    {
+      "slug": "tink",
+      "role": "Open banking platform (owned by Visa) with strong Nordic coverage",
+      "why": "Tink (Visa subsidiary) has the deepest Nordic bank coverage (SE, NO, DK, FI) and strong presence across EU. Provides account aggregation, payment initiation, and Tink Link (hosted UI for bank consent). Enterprise-tier reliability with Visa backing.",
+      "required": false
+    },
+    {
+      "slug": "salt-edge",
+      "role": "Open banking with Eastern Europe and CIS coverage",
+      "why": "Salt Edge covers 5,000+ financial institutions across 50+ countries including Eastern Europe (PL, CZ, RO, BG, HU), Baltics, and CIS — regions where TrueLayer and Yapily have gaps. Important for products targeting these markets.",
+      "required": false
+    },
+    {
+      "slug": "moneyhub",
+      "role": "Financial data enrichment and categorisation layer",
+      "why": "Moneyhub enriches raw bank transaction data with merchant categorisation, income identification, and affordability scoring. Built on top of open banking data, it provides a higher-level API for lending underwriting and PFM features.",
+      "required": false
+    },
+    {
+      "slug": "finicity",
+      "role": "Open banking and bank data for US lending and verification",
+      "why": "Finicity (Mastercard) is the leading US bank data provider for mortgage and lending use cases. Provides Verification of Income (VOI) and Verification of Assets (VOA) reports accepted by Fannie Mae/Freddie Mac. Required for digital mortgage workflows.",
+      "required": false
+    },
+    {
+      "slug": "volt-io",
+      "role": "Open banking payment initiation (account-to-account payments)",
+      "why": "Volt specialises in open banking payments (PIS) — account-to-account transfers that bypass card networks. No chargebacks, lower fees than cards (flat fee vs %). Covers UK, EU, and Brazil (Pix). Ideal as a card alternative for checkout or B2B invoices.",
+      "required": false
+    },
+    {
+      "slug": "token-io",
+      "role": "Open banking payment initiation for B2B use cases",
+      "why": "Token.io provides API-based bank payment initiation with a strong B2B focus (accounts payable, invoice payments, payroll). Used by enterprises replacing BACS or SEPA Credit Transfers with API-driven flows. Holds FCA and NB of Lithuania licences.",
+      "required": false
+    }
+  ],
+
+  "alternatives": {
+    "truelayer": ["yapily", "tink", "plaid"],
+    "volt-io": ["token-io", "truelayer"],
+    "moneyhub": ["finicity"],
+    "plaid": ["finicity", "yodlee"]
+  },
+
+  "gotchas": [
+    "Strong Customer Authentication (SCA): all PIS transactions in EU/UK require SCA. This means users must authenticate with their bank for each payment (redirection). Session caching (90-day exemption) only applies to AIS, not PIS.",
+    "Bank coverage varies: even within the UK, smaller building societies and credit unions may not be covered. Always test your top 20 target banks before committing to an open banking provider.",
+    "API quality is uneven: some banks implement PSD2 APIs poorly (missing pagination, incorrect error codes, inconsistent date formats). Your aggregator abstracts most of this but you will still see edge cases. Build retry logic and graceful degradation.",
+    "Consent management: open banking consents expire (90 days in EU, variable in UK). You must build consent refresh UX and handle expired consent errors — this is often 10–20% of your backend surface area.",
+    "Not a real-time payments system: AIS data is typically delayed 15 minutes to several hours depending on the bank. Do not use open banking account data for real-time fraud decisioning.",
+    "PISP licence requirements: to initiate payments (PIS), you need your own Payment Institution licence or must operate under your aggregator's licence as an Agent. The agent route is faster but limits your go-to-market in some countries.",
+    "UK regulatory divergence post-Brexit: UK open banking is regulated by the CMA and FCA (not PSD2). Variable Recurring Payments (VRP) exist in UK but not yet standardised across EU. Build separate UK and EU flows if you need VRP."
+  ],
+
+  "estimated_monthly_cost": "$500–$5,000/month. TrueLayer: £0.10–0.25/API call or monthly subscription. Yapily: custom pricing. Plaid: $0.30–$1.50/connected account/month (US), similar for EU. Tink: custom. Salt Edge: $0.05–0.20/call.",
+
+  "related_use_cases": [
+    "kyc-kyb-compliance-api-stack",
+    "embedded-finance-baas-stack",
+    "two-sided-marketplace-payments"
+  ],
+
+  "seo": {
+    "title": "Open Banking Integration Stack — TrueLayer, Yapily, Plaid, Tink (PSD2)",
+    "meta_description": "Integrate open banking in EU and UK with TrueLayer, Yapily, or Tink for account data and payment initiation. Covers PSD2 compliance, SCA, consent management, and affordability checks.",
+    "keywords": [
+      "open banking api",
+      "psd2 integration",
+      "truelayer api",
+      "yapily api",
+      "tink open banking",
+      "plaid europe",
+      "account information service",
+      "payment initiation",
+      "bank data api",
+      "affordability check api"
+    ]
+  },
+
+  "created_at": "2026-04-20T00:00:00Z",
+  "updated_at": "2026-04-20T00:00:00Z"
+}

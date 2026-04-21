@@ -1,0 +1,114 @@
+{
+  "slug": "mobile-ad-monetization-stack",
+  "title": "Free Ad-Supported Mobile App Monetization Stack",
+  "short_description": "Toolchain for ad-monetised mobile apps: mediation, waterfall configuration, user-level ROAS measurement, consent management, and in-app event analytics.",
+  "long_description": "Ad-supported mobile apps live and die by eCPM, fill rate, and ROAS — three metrics that require a sophisticated mediation setup and precise attribution to optimise. A naive single-network integration caps your revenue at one buyer's demand; a well-tuned mediation stack with 5–8 networks bidding in real-time (In-App Bidding) can 3–5x eCPM for the same impression. This stack covers the full ad monetisation architecture: AppLovin MAX as the primary mediation layer orchestrates competing demand from Google AdMob, Meta Audience Network, ironSource, Digital Turbine, and InMobi. AppsFlyer's ad revenue attribution connects ad impression revenue back to install source so you know the true LTV of each campaign. Amplitude tracks in-app engagement funnels while OneSignal provides the push notification re-engagement layer that keeps DAU high — the single biggest lever for ad revenue per user.",
+  "meta_category": "consumer-mobile",
+  "target_audience": "Mobile app developers monetising with advertising — casual games, utility apps, content apps — who want to maximise eCPM through mediation and measure true ROAS",
+
+  "tools": [
+    {
+      "slug": "applovin-max",
+      "role": "Primary ad mediation platform",
+      "why": "Industry-leading in-app bidding mediator with first-party demand from AppLovin's own DSP plus integrations for all major networks; consistently delivers top eCPMs for casual games and utility apps.",
+      "required": true
+    },
+    {
+      "slug": "google-admob",
+      "role": "Ad network & mediation (Google demand)",
+      "why": "Google's programmatic demand is essential in any mediation stack — AdMob's SDK doubles as the primary Google bidder inside AppLovin MAX and provides a standalone mediation fallback.",
+      "required": true
+    },
+    {
+      "slug": "meta-audience-network",
+      "role": "Social ad demand (Meta)",
+      "why": "Meta's Audience Network provides high-quality advertiser demand from Facebook and Instagram campaigns, particularly strong for demographic targeting and rewarded video formats.",
+      "required": true
+    },
+    {
+      "slug": "ironsource",
+      "role": "Secondary ad network & rewarded video demand",
+      "why": "ironSource (now part of Unity) is the strongest rewarded video network for gaming and utility apps; plugging it into MAX mediation adds high-eCPM gaming advertiser demand.",
+      "required": false
+    },
+    {
+      "slug": "digital-turbine",
+      "role": "OEM & carrier demand network",
+      "why": "Digital Turbine's Ignite platform has exclusive access to pre-install and carrier billing demand that no other network can bid, providing unique supply that lifts overall eCPM floor.",
+      "required": false
+    },
+    {
+      "slug": "inmobi",
+      "role": "Emerging market ad demand",
+      "why": "InMobi's demand is disproportionately strong in India, Southeast Asia, and Africa — if your app has significant emerging market DAU, InMobi in the mediation waterfall materially increases fill rate.",
+      "required": false
+    },
+    {
+      "slug": "appsflyer",
+      "role": "MMP with ad revenue attribution",
+      "why": "AppsFlyer's Ad Revenue Attribution links every ad impression to the install source via impression-level revenue data APIs from MAX, enabling true LTV and ROAS calculation per campaign.",
+      "required": true
+    },
+    {
+      "slug": "amplitude",
+      "role": "Product analytics & ad engagement funnels",
+      "why": "Tracks which in-app flows drive ad impressions (session depth, feature usage before ad exposure) and measures DAU/MAU retention — the primary driver of total ad revenue.",
+      "required": true
+    },
+    {
+      "slug": "onesignal",
+      "role": "Push re-engagement",
+      "why": "Daily active users are the single biggest lever for total ad revenue. OneSignal's automated re-engagement campaigns (lapsed user nudges, daily streak notifications) directly lift DAU and thus ad revenue.",
+      "required": true
+    },
+    {
+      "slug": "sentry",
+      "role": "SDK crash monitoring",
+      "why": "Mediation SDKs are notorious for introducing ANRs and native crashes — Sentry catches ad SDK-originated crashes with full stack traces so you can identify and disable misbehaving network adapters.",
+      "required": true
+    }
+  ],
+
+  "alternatives": {
+    "applovin-max": ["ironsource", "chartboost", "appodeal"],
+    "google-admob": ["google-admob"],
+    "meta-audience-network": ["ironsource", "unity-ads", "chartboost"],
+    "ironsource": ["unity-ads", "chartboost", "inmobi"],
+    "digital-turbine": ["moloco", "liftoff", "mintegral"],
+    "inmobi": ["mintegral", "moloco", "tapjoy"],
+    "appsflyer": ["adjust", "singular", "kochava"],
+    "amplitude": ["mixpanel", "posthog", "firebase"],
+    "onesignal": ["braze", "airship", "moengage"],
+    "sentry": ["bugsnag", "firebase-crashlytics", "datadog"]
+  },
+
+  "gotchas": [
+    "iOS 14.5+ requires ATT consent before any IDFA-based ad personalisation. Non-personalised ads serve at 40–70% lower eCPM than personalised ones. The timing and framing of your ATT prompt is the single most important factor for ad revenue on iOS — showing it after a clear value exchange (e.g. 'To keep the app free, allow personalised ads') routinely achieves 50%+ opt-in rates vs. 15–20% for a bare system prompt.",
+    "AppLovin MAX's In-App Bidding requires each network's adapter SDK to be included in your binary. Seven network adapters can add 5–15MB to your app size and materially increase build times. More critically, each adapter SDK makes separate ATT disclosures which must all be included in your iOS privacy manifest and app privacy nutrition label on App Store Connect. A missing adapter declaration causes App Store rejection.",
+    "Ad revenue from impression-level data (ILR APIs) has a 24–72 hour reporting delay across all networks. If you build dashboards that compare UA spend (real-time) against ad revenue (delayed), you will consistently see negative ROAS for recent cohorts, causing premature campaign pausing. Build a data pipeline that holds revenue attribution open for 72 hours before calculating final ROAS for any cohort day."
+  ],
+
+  "estimated_monthly_cost": "$0 upfront (all ad networks and mediation are free; you earn revenue from impressions). AppsFlyer paid plan from ~$0.06/active device/month for >6k installs. Amplitude free up to 10M events. OneSignal free up to 10k subscribers. Expect $50–$300/month in tooling at 100k DAU; ad revenue at that scale should be $3k–$30k/month depending on genre and geography.",
+
+  "related_use_cases": [
+    "mobile-game-backend-stack",
+    "ios-subscription-app-stack",
+    "cross-platform-mobile-iap"
+  ],
+
+  "seo": {
+    "title": "Mobile Ad Monetization Stack — AppLovin MAX, AdMob, Meta & AppsFlyer",
+    "meta_description": "Best tools for ad-supported mobile app monetization in 2026. Covers ad mediation, in-app bidding, eCPM optimisation, ROAS measurement, and ATT consent management.",
+    "keywords": [
+      "mobile ad monetization",
+      "applovin max mediation",
+      "in-app bidding stack",
+      "mobile ecpm optimization",
+      "appsflyer ad revenue",
+      "att consent ios ads"
+    ]
+  },
+
+  "created_at": "2026-04-21",
+  "updated_at": "2026-04-21"
+}

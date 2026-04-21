@@ -1,0 +1,115 @@
+{
+  "slug": "mobile-game-backend-stack",
+  "title": "Mobile Game Backend Stack",
+  "short_description": "Scalable backend for mobile games: leaderboards, matchmaking, real-time multiplayer, IAP, and live-ops without building game server infrastructure from scratch.",
+  "long_description": "Mobile game backends have unique demands that general-purpose BaaS platforms handle poorly: sub-100ms leaderboard queries, real-time multiplayer state sync, authoritative server-side game logic, live-ops content updates, and deep IAP validation tied to in-game currency economies. This stack combines purpose-built game backend services (Nakama, PlayFab) with a proven IAP layer (RevenueCat), game analytics (GameAnalytics), and a real-time multiplayer transport (Photon). The architecture supports both casual games that only need cloud saves and leaderboards and mid-core games that need authoritative multiplayer. Sentry handles crash monitoring while AppsFlyer tracks install attribution across ad networks. LootLocker provides item and achievement management without a custom CMS, freeing the team to focus on game design rather than backend plumbing.",
+  "meta_category": "consumer-mobile",
+  "target_audience": "Mobile game developers building casual, mid-core, or live-service games on iOS and Android who need scalable backend services without managing game servers",
+
+  "tools": [
+    {
+      "slug": "nakama",
+      "role": "Open-source game server (leaderboards, matchmaking, chat)",
+      "why": "Self-hostable game backend that provides leaderboards, tournaments, matchmaking, social features, and real-time multiplayer via WebSocket — all with a Go/Lua/TypeScript runtime for custom game logic.",
+      "required": false
+    },
+    {
+      "slug": "playfab",
+      "role": "Managed game backend (LiveOps, economy, analytics)",
+      "why": "Microsoft's fully managed game backend handles player data, virtual economy, A/B testing, LiveOps catalog updates, and CloudScript — ideal when you need managed infrastructure rather than self-hosting.",
+      "required": false
+    },
+    {
+      "slug": "photon",
+      "role": "Real-time multiplayer networking",
+      "why": "Low-latency relay server network with Unity and Unreal SDKs, supporting room-based and lobby multiplayer with automatic region routing and 99.95% SLA.",
+      "required": false
+    },
+    {
+      "slug": "revenuecat",
+      "role": "IAP & in-game purchase management",
+      "why": "Validates App Store and Google Play receipts server-side, manages entitlement grants for premium currency or unlockable content, and provides subscription analytics.",
+      "required": true
+    },
+    {
+      "slug": "gameanalytics",
+      "role": "Game-specific analytics & telemetry",
+      "why": "Purpose-built for game metrics: session length, level progression funnels, sink/source economy tracking, and ad impression ROAS — free tier for indie budgets.",
+      "required": true
+    },
+    {
+      "slug": "lootlocker",
+      "role": "Player progression, items & achievements",
+      "why": "Cloud-based platform for player XP, inventories, achievements, and leaderboards with a REST API and Unity/Unreal SDKs — removes 80% of custom backend work for progression systems.",
+      "required": false
+    },
+    {
+      "slug": "appsflyer",
+      "role": "Install attribution & ROAS measurement",
+      "why": "Measures cost-per-install and ROAS across Unity Ads, ironSource, and Meta with SKAdNetwork compliance on iOS and Google Privacy Sandbox support on Android.",
+      "required": true
+    },
+    {
+      "slug": "unity-ads",
+      "role": "In-game ad network (rewarded & interstitial)",
+      "why": "Highest eCPM for Unity-based games with rewarded video, interstitial, and playable ad formats — integrates directly with the Unity Editor with no external SDK configuration.",
+      "required": false
+    },
+    {
+      "slug": "ironsource",
+      "role": "Ad mediation platform",
+      "why": "Mediates multiple ad networks (Unity Ads, AppLovin MAX, Meta, AdColony) to maximise fill rate and eCPM — particularly strong for hyper-casual and casual game genres.",
+      "required": false
+    },
+    {
+      "slug": "sentry",
+      "role": "Crash monitoring & performance",
+      "why": "Captures native iOS and Android crashes plus Unity C# exceptions with full stack traces and breadcrumbs — critical for catching regressions in live-service game updates.",
+      "required": true
+    }
+  ],
+
+  "alternatives": {
+    "nakama": ["playfab", "playfab-microsoft", "back4app", "appwrite"],
+    "playfab": ["nakama", "lootlocker", "xano"],
+    "photon": ["colyseus", "agora", "livekit"],
+    "revenuecat": ["adapty", "glassfy", "stripe"],
+    "gameanalytics": ["amplitude", "mixpanel", "firebase"],
+    "lootlocker": ["playfab-microsoft", "nakama"],
+    "appsflyer": ["adjust", "singular", "kochava"],
+    "unity-ads": ["ironsource", "applovin-max", "google-admob"],
+    "ironsource": ["applovin-max", "chartboost", "inmobi"],
+    "sentry": ["bugsnag", "firebase-crashlytics", "datadog"]
+  },
+
+  "gotchas": [
+    "SKAdNetwork's conversion value window is 24–72 hours from install. For games with long first-session onboarding or tutorial gates, most valuable events (first purchase, level 10 completion) happen after the window closes — meaning your ad network ROAS reports will show 0 revenue on SKAdNetwork postbacks. Implement fine-grained conversion value mapping with AppsFlyer or Adjust to compress your most important early-game events into the 64-value window.",
+    "Nakama's matchmaker requires careful tuning of the matchmaking notation (min_count, max_count, query strings). In production, an under-tuned matchmaker will either create 1-player matches (poor experience) or queue players indefinitely (churn). Budget 2–3 weeks for matchmaker tuning with real player data before a soft launch.",
+    "PlayFab's CloudScript runs on Azure Functions with a cold-start penalty of 300ms–2s. For latency-sensitive authoritative game logic (move validation, damage calculation), this is unacceptable. Use Nakama's Lua/Go runtime or a dedicated game server instead for low-latency authoritative logic, and restrict PlayFab CloudScript to async operations like economy grants and leaderboard writes."
+  ],
+
+  "estimated_monthly_cost": "$50–$500 at launch (Nakama self-hosted on a $20/month VPS, RevenueCat free to $2.5k MRR, GameAnalytics free tier, AppsFlyer free 6k installs). PlayFab managed: $1/1000 MAU. Scales to $2k–$10k/month for 500k MAU live-service game.",
+
+  "related_use_cases": [
+    "mobile-ad-monetization-stack",
+    "ios-subscription-app-stack",
+    "social-app-backend-stack"
+  ],
+
+  "seo": {
+    "title": "Mobile Game Backend Stack — Nakama, PlayFab, RevenueCat, GameAnalytics",
+    "meta_description": "The best backend stack for mobile games in 2026. Covers leaderboards, real-time multiplayer, IAP, ad mediation, and crash monitoring for iOS and Android games.",
+    "keywords": [
+      "mobile game backend",
+      "nakama game server",
+      "playfab mobile",
+      "game leaderboard backend",
+      "mobile game iap stack",
+      "unity ads mediation",
+      "mobile multiplayer backend"
+    ]
+  },
+
+  "created_at": "2026-04-21",
+  "updated_at": "2026-04-21"
+}

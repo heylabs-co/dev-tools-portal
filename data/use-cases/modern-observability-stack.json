@@ -1,0 +1,110 @@
+{
+  "slug": "modern-observability-stack",
+  "title": "Modern Full-Stack Observability",
+  "short_description": "Cover logs, metrics, traces, and RUM for production engineering teams — with both a cost-efficient OSS path and a premium managed path.",
+  "long_description": "Production systems fail in ways you cannot predict. Full-stack observability means correlating logs, metrics, distributed traces, and real-user monitoring (RUM) in one coherent workflow. This use case presents two parallel paths: a Grafana-stack OSS tier (free up to scale) and a premium managed tier (Datadog / Honeycomb / Axiom) for teams that prefer operational simplicity. Sentry covers frontend/backend error tracking on both paths, and PostHog captures product-level RUM. OpenTelemetry is the vendor-neutral instrumentation layer that makes switching between backends feasible.",
+  "meta_category": "devtools-infra",
+  "target_audience": "Platform and SRE teams at growth-stage or enterprise companies running distributed services in production",
+
+  "tools": [
+    {
+      "slug": "opentelemetry",
+      "role": "Instrumentation layer",
+      "why": "Vendor-neutral SDK and collector for traces, metrics, and logs. Instrument once, route to any backend. Prevents lock-in to a single observability vendor.",
+      "required": true
+    },
+    {
+      "slug": "grafana",
+      "role": "Unified observability dashboards (OSS path)",
+      "why": "Connects to Prometheus, Loki, and Tempo as data sources. Single pane of glass for all signals. Free self-hosted; Grafana Cloud has a generous free tier.",
+      "required": false
+    },
+    {
+      "slug": "prometheus",
+      "role": "Metrics storage and alerting (OSS path)",
+      "why": "Industry-standard pull-based metrics. PromQL is the de-facto metrics query language. Pairs with Alertmanager for on-call routing.",
+      "required": false
+    },
+    {
+      "slug": "loki",
+      "role": "Log aggregation (OSS path)",
+      "why": "Prometheus-style log indexing — stores only labels, not full text. Dramatically cheaper than Elasticsearch at scale. Integrates natively with Grafana.",
+      "required": false
+    },
+    {
+      "slug": "tempo",
+      "role": "Distributed tracing backend (OSS path)",
+      "why": "Pairs with Grafana for trace correlation. Stores traces in object storage (S3/GCS), keeping cost predictable even at high trace volume.",
+      "required": false
+    },
+    {
+      "slug": "datadog",
+      "role": "All-in-one managed observability (premium path)",
+      "why": "Unified APM, logs, metrics, synthetics, and RUM in one SaaS platform. Best-in-class AI-assisted root-cause analysis. High cost at scale — budget carefully.",
+      "required": false
+    },
+    {
+      "slug": "honeycomb",
+      "role": "High-cardinality event analytics (premium path)",
+      "why": "Purpose-built for query-driven debugging of distributed traces. Excels where Datadog/Grafana struggle with high-cardinality fields (user IDs, request paths).",
+      "required": false
+    },
+    {
+      "slug": "axiom",
+      "role": "Affordable managed log analytics",
+      "why": "Stores unlimited logs at a flat predictable price. Good Datadog logs replacement for log-heavy workloads. Ships a native OpenTelemetry endpoint.",
+      "required": false
+    },
+    {
+      "slug": "sentry",
+      "role": "Error tracking and session replay",
+      "why": "Captures stack traces, release regressions, and user session replays. Covers both frontend JS errors and backend exceptions. Works on OSS and managed paths.",
+      "required": true
+    },
+    {
+      "slug": "posthog",
+      "role": "Product analytics and RUM",
+      "why": "Adds user-level session recordings, feature flags, funnels, and A/B testing alongside basic frontend performance monitoring. Can be self-hosted for data privacy.",
+      "required": false
+    }
+  ],
+
+  "alternatives": {
+    "prometheus": ["thanos", "cortex", "victoria-metrics"],
+    "datadog": ["new-relic", "honeycomb"],
+    "loki": ["jaeger", "zipkin"],
+    "posthog": ["umami", "plausible"]
+  },
+
+  "gotchas": [
+    "Datadog billing is notoriously complex — ingestion volume, number of hosts, and APM spans are billed separately. A single chatty microservice can triple your bill overnight. Set spend alerts and carve out log exclusion filters on day one.",
+    "The Grafana OSS stack requires real operational investment: Prometheus needs sharding or Thanos/Cortex for HA, Loki needs careful label design to stay performant, and Tempo needs object-storage lifecycle policies. Budget 0.5–1 FTE of platform time.",
+    "OpenTelemetry auto-instrumentation adds ~5–15 ms overhead per request in some languages. Benchmark your critical paths before rolling out to production.",
+    "Sentry session replay captures PII by default. Configure scrubbing rules before enabling replay in production environments subject to GDPR/CCPA.",
+    "Mixing OSS and managed tools (e.g. Grafana Cloud + Axiom + Sentry) can create alert correlation gaps — invest in a unified on-call runbook so engineers know which tool to open first."
+  ],
+
+  "estimated_monthly_cost": "$0 (full OSS self-hosted) to $3,000–$15,000+ (Datadog managed, 50–200 hosts with APM and logs)",
+
+  "related_use_cases": [
+    "kubernetes-platform-starter-stack",
+    "ci-cd-starter-kit-stack"
+  ],
+
+  "seo": {
+    "title": "Modern Observability Stack: Logs, Metrics, Traces & RUM | tool.news",
+    "meta_description": "Curated observability stack for engineering teams — Grafana/Prometheus OSS path vs Datadog/Honeycomb managed path, with OpenTelemetry, Sentry, and PostHog.",
+    "keywords": [
+      "observability stack",
+      "grafana prometheus loki tempo",
+      "datadog alternative",
+      "opentelemetry setup",
+      "distributed tracing",
+      "log aggregation",
+      "SRE tooling"
+    ]
+  },
+
+  "created_at": "2026-04-20T00:00:00Z",
+  "updated_at": "2026-04-20T00:00:00Z"
+}

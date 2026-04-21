@@ -1,0 +1,99 @@
+{
+  "slug": "voice-ai-app-stack",
+  "title": "Voice-First AI App (Assistant or Call Automation)",
+  "short_description": "End-to-end stack for building a low-latency voice AI application — from microphone input to intelligent response to synthesized speech.",
+  "long_description": "Voice AI requires a multi-stage pipeline with strict latency budgets: speech-to-text transcription must finish in under 500ms, the LLM must stream its first token within 300ms, and text-to-speech must buffer the first audio chunk before the LLM finishes. Retell AI or Vapi orchestrate the full telephony stack including call management, interruption handling, and turn detection. Deepgram Nova-3 handles real-time transcription with <300ms latency. ElevenLabs or Cartesia provides human-quality TTS with voice cloning. For outbound call automation, Bland AI combines all three stages behind a single API call.",
+  "meta_category": "ai-startup",
+  "target_audience": "Startups building AI phone assistants, appointment booking bots, customer support voice agents, or voice-enabled consumer apps.",
+
+  "tools": [
+    {
+      "slug": "vapi-ai",
+      "role": "Voice agent platform (full-stack)",
+      "why": "Vapi handles the entire voice pipeline: telephony (inbound/outbound calls), STT, LLM routing, TTS, barge-in detection, and call recordings — reduces integration from weeks to hours.",
+      "required": true
+    },
+    {
+      "slug": "deepgram",
+      "role": "Speech-to-text transcription",
+      "why": "Deepgram Nova-3 achieves <300ms streaming transcription latency with state-of-the-art accuracy on noisy telephone audio and domain-specific vocabulary fine-tuning.",
+      "required": false
+    },
+    {
+      "slug": "elevenlabs",
+      "role": "Text-to-speech synthesis",
+      "why": "ElevenLabs Turbo v2.5 generates human-quality speech at 300ms TTFB with voice cloning from a 30-second sample — essential for branded or persona-driven voice products.",
+      "required": false
+    },
+    {
+      "slug": "cartesia",
+      "role": "Ultra-low-latency TTS",
+      "why": "Cartesia's Sonic model delivers the lowest TTS latency on the market (~90ms TTFB) at the cost of slightly less naturalness — use when the call flow requires faster back-and-forth.",
+      "required": false
+    },
+    {
+      "slug": "openai",
+      "role": "Conversational LLM",
+      "why": "GPT-4o-realtime provides native voice-in/voice-out with built-in emotion detection. GPT-4o via streaming text works for orchestration-based pipelines.",
+      "required": true
+    },
+    {
+      "slug": "retell-ai",
+      "role": "Alternative voice agent platform",
+      "why": "Retell AI offers a no-code agent builder and pre-built telephony integrations — better for teams that need a fast production deployment without custom pipeline wiring.",
+      "required": false
+    },
+    {
+      "slug": "bland-ai",
+      "role": "Outbound call automation",
+      "why": "Bland AI is purpose-built for high-volume outbound calling (lead qualification, scheduling, surveys) with built-in compliance controls for TCPA and GDPR.",
+      "required": false
+    },
+    {
+      "slug": "livekit",
+      "role": "Real-time audio/video WebRTC infrastructure",
+      "why": "LiveKit handles the WebRTC signaling, TURN servers, and media routing for browser-based voice apps — eliminates the need to manage your own WebRTC infrastructure.",
+      "required": false
+    },
+    {
+      "slug": "langfuse",
+      "role": "Conversation quality tracing",
+      "why": "Langfuse traces each voice turn — transcription text, LLM response, TTS latency, and user interruption events — so you can identify which pipeline stage is degrading call quality.",
+      "required": false
+    }
+  ],
+
+  "alternatives": {
+    "vapi-ai": ["retell-ai", "bland-ai", "livekit", "daily-co"],
+    "deepgram": ["assemblyai"],
+    "elevenlabs": ["playht", "cartesia", "coqui-ai"],
+    "openai": ["anthropic", "groq", "deepseek-api", "minimax-ai", "iflytek-spark"],
+    "livekit": ["daily-co", "agora"],
+    "langfuse": ["langsmith", "agentops"]
+  },
+
+  "gotchas": [
+    "End-to-end latency perception compounds: 400ms STT + 400ms LLM TTFT + 300ms TTS = 1.1s before the user hears anything. Users perceive >800ms as 'slow' — choose Groq for LLM and Cartesia for TTS when speed beats quality.",
+    "Barge-in (user interrupting the bot mid-speech) must be handled at the WebRTC layer, not the application layer — if you use Vapi or Retell, this is handled; if building custom, it requires VAD integration.",
+    "Telephone audio quality (8kHz G.711) degrades TTS naturalness significantly — enable Deepgram's telephony model, not the general Nova model, for inbound PSTN calls.",
+    "Voice cloning with ElevenLabs requires consent documentation per jurisdiction — check local laws before using a cloned voice in production calls.",
+    "LLM-generated transcripts of calls may be classified as personal data under GDPR/CCPA — implement configurable retention policies and deletion endpoints from day one.",
+    "ElevenLabs latency spikes under heavy load — implement a TTS fallback (e.g. Cartesia) or queue management to avoid dead air during peak traffic."
+  ],
+
+  "estimated_monthly_cost": "$300–$3,000; Vapi charges per minute of call time (~$0.05–0.12/min depending on model tier); at 10k minutes/month expect ~$600–1,200.",
+
+  "related_use_cases": [
+    "ai-chatbot-saas-stack",
+    "ai-agent-platform-stack"
+  ],
+
+  "seo": {
+    "title": "Voice AI App Stack — Vapi + Deepgram + ElevenLabs + LiveKit | tool.news",
+    "meta_description": "Production stack for voice AI apps and call automation: real-time STT, streaming LLM, ultra-low-latency TTS, and WebRTC infrastructure.",
+    "keywords": ["voice ai stack", "vapi deepgram elevenlabs", "ai phone assistant", "voice agent platform 2025", "low latency tts"]
+  },
+
+  "created_at": "2026-04-20T00:00:00Z",
+  "updated_at": "2026-04-20T00:00:00Z"
+}

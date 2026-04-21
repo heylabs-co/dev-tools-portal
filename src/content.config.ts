@@ -254,4 +254,48 @@ const jetbrainsPlugins = defineCollection({
   }),
 });
 
-export const collections = { companies, categories, mcpServers, skills, extensions, jetbrainsPlugins };
+const useCases = defineCollection({
+  loader: glob({
+    pattern: '**/*.json',
+    base: './data/use-cases',
+    generateId: ({ entry }) => entry.replace(/\.json$/, ''),
+  }),
+  schema: z.object({
+    slug: z.string(),
+    title: z.string(),
+    short_description: z.string(),
+    long_description: z.string().optional(),
+    meta_category: z.enum([
+      'b2b-saas',
+      'consumer-mobile',
+      'ai-startup',
+      'fintech',
+      'devtools-infra',
+      'ecommerce',
+    ]),
+    target_audience: z.string(),
+
+    tools: z.array(z.object({
+      slug: z.string(),
+      role: z.string(),
+      why: z.string(),
+      required: z.boolean().default(true),
+    })).min(3).max(15),
+
+    alternatives: z.record(z.string(), z.array(z.string())).optional(),
+    gotchas: z.array(z.string()).optional(),
+    estimated_monthly_cost: z.string().optional(),
+    related_use_cases: z.array(z.string()).optional(),
+
+    seo: z.object({
+      title: z.string(),
+      meta_description: z.string(),
+      keywords: z.array(z.string()).optional(),
+    }).optional(),
+
+    created_at: z.string().optional(),
+    updated_at: z.string().optional(),
+  }),
+});
+
+export const collections = { companies, categories, mcpServers, skills, extensions, jetbrainsPlugins, useCases };

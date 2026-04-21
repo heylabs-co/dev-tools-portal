@@ -1,0 +1,117 @@
+{
+  "slug": "embedded-finance-baas-stack",
+  "title": "Embedded Finance & BaaS Stack — Banking Services in a Non-Fintech Product",
+  "short_description": "Embed bank accounts, cards, lending, and payments into a non-fintech SaaS, marketplace, or vertical app — without getting a banking licence.",
+  "long_description": "Embedded finance allows non-fintech companies to offer financial products (spending accounts, virtual cards, loans, insurance) inside their existing product. A HR platform can offer earned wage access; a logistics SaaS can issue fleet cards; an e-commerce marketplace can offer merchant cash advances. The underlying infrastructure is provided by Banking-as-a-Service (BaaS) platforms that sit between you and a sponsor bank that holds the actual banking licence. This use case covers the full BaaS stack: sponsor bank API, card issuance, account infrastructure, compliance programme, and ledgering.",
+  "meta_category": "fintech",
+  "target_audience": "SaaS founders, marketplace operators, and vertical software companies wanting to add financial products (accounts, cards, lending) to their existing product — without building regulated fintech infrastructure from scratch.",
+
+  "tools": [
+    {
+      "slug": "unit",
+      "role": "BaaS platform — embedded bank accounts and cards for US products",
+      "why": "Unit is the leading US BaaS for embedded finance. Provides FDIC-insured bank accounts, ACH/RTP transfers, debit card issuance (Visa), and charge cards via a single API with partner bank (Blue Ridge Bank, Thread Bank). Best developer experience in the space — minutes to first sandbox transaction.",
+      "required": true
+    },
+    {
+      "slug": "treasury-prime",
+      "role": "US BaaS with multi-bank network (redundancy and specialised use cases)",
+      "why": "Treasury Prime connects to multiple partner banks (Grasshopper, Bangor Savings, etc.) giving you redundancy if one bank exits BaaS (which has happened: Cross River 2023, Synapse 2024 collapse). Essential for products where bank partner continuity is critical.",
+      "required": false
+    },
+    {
+      "slug": "synapse",
+      "role": "Legacy BaaS reference (use with caution — bankruptcy 2024)",
+      "why": "Listed for reference: Synapse filed for bankruptcy in 2024, leaving $100M+ in end-user funds in limbo. This is the cautionary tale for embedded finance. If evaluating BaaS platforms, verify your provider's balance sheet and partner bank relationships before committing.",
+      "required": false
+    },
+    {
+      "slug": "marqeta",
+      "role": "Card issuing platform — virtual and physical card infrastructure",
+      "why": "Marqeta provides just-in-time funded card issuing with just-in-time (JIT) funding — cards are funded at transaction time, not pre-loaded. Powers DoorDash, Instacart, Square, and Cash App cards. Preferred for gig-economy fleet cards and spend management cards.",
+      "required": false
+    },
+    {
+      "slug": "moov",
+      "role": "Money movement API — ACH, RTP, push-to-card",
+      "why": "Moov provides a modular approach to BaaS: use only the components you need (ACH, RTP, card payouts, wallets). Holds its own money transmitter licences in all US states. Suitable if you want to build custom BaaS infrastructure rather than use an all-in-one platform.",
+      "required": false
+    },
+    {
+      "slug": "modern-treasury",
+      "role": "Payment operations and ledgering layer",
+      "why": "Modern Treasury sits above your bank API and provides a programmable ledger, payment workflows, and reconciliation. If you are building complex money-movement logic (multi-step transfers, conditional payouts, escrow), Modern Treasury handles the orchestration.",
+      "required": false
+    },
+    {
+      "slug": "column",
+      "role": "Chartered bank with direct API access (no BaaS middleman)",
+      "why": "Column is a nationally chartered bank that exposes its core banking system via API. Eliminates the BaaS middleman, giving lower fees and direct control. Higher integration complexity but eliminates Synapse-style counterparty risk. Best for scale ($50M+ TPV/month).",
+      "required": false
+    },
+    {
+      "slug": "increase",
+      "role": "Banking API for startups — direct Fed access, ACH, wire, RTP",
+      "why": "Increase is a bank-licenced API platform with direct Federal Reserve access for ACH and wire. No per-account fees at launch, clean TypeScript SDK, and excellent documentation. Well-suited for B2B embedded finance products needing reliable wire/ACH.",
+      "required": false
+    },
+    {
+      "slug": "persona",
+      "role": "KYC/KYB for end-user onboarding",
+      "why": "Your BaaS platform may handle some compliance but you still own the customer relationship and KYC programme. Persona handles ID verification, business onboarding, and ongoing watchlist monitoring with workflows you control.",
+      "required": true
+    },
+    {
+      "slug": "alloy",
+      "role": "Identity decisioning and compliance orchestration",
+      "why": "Alloy is the standard compliance layer between your product and BaaS infrastructure. Orchestrates KYC (Sumsub/Persona), fraud signals, and bank partner compliance requirements. Many BaaS platforms (Unit, Treasury Prime) integrate directly with Alloy.",
+      "required": false
+    }
+  ],
+
+  "alternatives": {
+    "unit": ["treasury-prime", "increase", "column"],
+    "marqeta": ["paymentology", "tribe-payments"],
+    "moov": ["dwolla", "modern-treasury"],
+    "persona": ["sumsub", "jumio", "onfido"],
+    "alloy": ["persona"]
+  },
+
+  "gotchas": [
+    "BaaS partner bank risk is existential: when Synapse collapsed in 2024, fintech companies using it lost access to customer funds for months. Vet your BaaS provider's bank relationships deeply — ask which bank(s), whether funds are in pooled or sub-accounts, and what happens if the BaaS provider goes bankrupt.",
+    "You own the compliance programme: BaaS platforms provide infrastructure but the BSA/AML compliance programme is your responsibility (or you are a 'Banking as a Service programme manager' under the partner bank's charter). Hire a BSA officer or engage a compliance consultant before launch.",
+    "Durbin Amendment exemption: if your BaaS bank is a small bank (<$10B assets), your debit cards are exempt from Durbin interchange caps and earn higher interchange (~1.4% vs 0.05% for large bank cards). This is a meaningful revenue source — verify your BaaS partner qualifies.",
+    "True end-user FDIC coverage: user funds must be titled and tracked correctly for pass-through FDIC insurance to apply. Your BaaS provider handles this but audit the bank agreement — some pooled structures do not provide individual end-user coverage.",
+    "Chargebacks on embedded cards: as the card programme manager you absorb dispute liability. Card programmes need robust dispute management workflows and reserve funding. Budget 0.1–0.5% of card spend for disputes.",
+    "Regulatory creep: regulators (OCC, FDIC, state DFIs) are scrutinising BaaS bank partnerships more heavily since 2023. Your bank partner may add compliance requirements (enhanced KYC, transaction limits, industry restrictions) mid-programme with 30-day notice.",
+    "Column and Increase require more engineering: unlike Unit which abstracts complexity, Column and Increase are lower-level APIs requiring you to implement more compliance and operational logic. Budget 3–6 months extra engineering time."
+  ],
+
+  "estimated_monthly_cost": "$500–$10,000/month platform fees + per-transaction costs. Unit: custom pricing (typically $0.25–0.50/account/month). Marqeta: $0.01–0.05/transaction + interchange split. Increase: no platform fee early-stage. Column: no monthly fee, per-transaction pricing.",
+
+  "related_use_cases": [
+    "kyc-kyb-compliance-api-stack",
+    "two-sided-marketplace-payments",
+    "open-banking-integration-stack"
+  ],
+
+  "seo": {
+    "title": "Embedded Finance & BaaS Stack — Unit, Marqeta, Column, Treasury Prime",
+    "meta_description": "Build embedded banking into your SaaS or marketplace with Unit, Treasury Prime, or Column for bank accounts, Marqeta for card issuance, and Alloy for compliance orchestration.",
+    "keywords": [
+      "embedded finance",
+      "banking as a service",
+      "baas api",
+      "unit banking api",
+      "marqeta card issuing",
+      "embedded banking saas",
+      "column bank api",
+      "treasury prime",
+      "virtual card issuance",
+      "fintech infrastructure"
+    ]
+  },
+
+  "created_at": "2026-04-20T00:00:00Z",
+  "updated_at": "2026-04-20T00:00:00Z"
+}

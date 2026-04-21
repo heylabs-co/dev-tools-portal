@@ -1,0 +1,100 @@
+{
+  "slug": "llm-observability-ops-stack",
+  "title": "LLM Production Observability and Evaluation",
+  "short_description": "Stack for monitoring LLM applications in production: tracing every call, evaluating output quality, catching model drift, and controlling costs.",
+  "long_description": "Shipping an LLM app to production without observability is flying blind. Token costs spike, output quality degrades silently after a model update, prompt injections slip through, and users receive hallucinated answers — all without a single alert firing. A mature LLM ops stack traces every inference call with its full context, evaluates outputs against ground-truth datasets on each deployment, monitors cost per user per day, and alerts on quality metric regressions. Langfuse or LangSmith serve as the tracing backbone. Braintrust handles dataset management and CI-integrated evals. RAGAS or DeepEval run the evaluation metrics. Helicone adds a proxy layer for cost controls and rate limiting.",
+  "meta_category": "ai-startup",
+  "target_audience": "ML engineers and platform teams running LLM apps in production who need cost visibility, quality regression detection, and debugging capabilities.",
+
+  "tools": [
+    {
+      "slug": "langfuse",
+      "role": "LLM tracing and session observability",
+      "why": "Langfuse is open-source and self-hostable — traces every LLM call with token counts, latency, model version, user ID, and nested span trees for complex agent chains.",
+      "required": true
+    },
+    {
+      "slug": "braintrust",
+      "role": "Evaluation and dataset management",
+      "why": "Braintrust stores golden test datasets, runs LLM-graded and code-based evals on CI/CD, and provides a scoring UI that lets non-engineers review failures — closes the feedback loop between prod and evals.",
+      "required": false
+    },
+    {
+      "slug": "ragas",
+      "role": "RAG-specific evaluation metrics",
+      "why": "RAGAS computes faithfulness, context precision, and answer relevancy without human labels — run it in CI to catch retrieval degradation when chunk sizes or embedding models change.",
+      "required": false
+    },
+    {
+      "slug": "deepeval",
+      "role": "General LLM evaluation framework",
+      "why": "DeepEval provides 15+ built-in metrics (hallucination, toxicity, summarization, task completion) and integrates with pytest for automated evaluation in CI pipelines.",
+      "required": false
+    },
+    {
+      "slug": "helicone",
+      "role": "LLM gateway and cost controls",
+      "why": "Helicone proxies every OpenAI/Anthropic/Mistral call, enforcing per-user rate limits, spend caps, and prompt caching — adds 1ms overhead while giving you one-line observability.",
+      "required": false
+    },
+    {
+      "slug": "weights-biases",
+      "role": "Experiment tracking for fine-tuning",
+      "why": "W&B Weave provides prompt versioning, model comparison tables, and fine-tuning run tracking — the reference tool when your team is iterating on custom models or prompt versions.",
+      "required": false
+    },
+    {
+      "slug": "phoenix-arize",
+      "role": "LLM performance and drift monitoring",
+      "why": "Arize Phoenix visualizes embedding drift, retrieval quality, and output distribution shifts over time — catches model degradation days before user complaints surface.",
+      "required": false
+    },
+    {
+      "slug": "promptlayer",
+      "role": "Prompt version management",
+      "why": "PromptLayer tracks every prompt template version with A/B testing and user segment analysis — allows non-technical team members to iterate on prompts without code deploys.",
+      "required": false
+    },
+    {
+      "slug": "opik",
+      "role": "Open-source LLM evaluation platform",
+      "why": "Opik (by Comet) is a fully open-source eval and tracing platform — suitable for teams with strict data residency requirements who need self-hosted observability without vendor lock-in.",
+      "required": false
+    }
+  ],
+
+  "alternatives": {
+    "langfuse": ["langsmith", "helicone", "agentops", "opik"],
+    "braintrust": ["langsmith", "opik", "weights-biases"],
+    "ragas": ["deepeval", "trulens"],
+    "helicone": ["litellm", "openrouter"],
+    "weights-biases": ["mlflow", "comet-ml"],
+    "phoenix-arize": ["evidently", "whylabs"]
+  },
+
+  "gotchas": [
+    "LLM output quality is multi-dimensional — a single score or thumbs-up rating from users misses hallucination rate, instruction following, and tone. Define at least 3 separate eval dimensions per use case.",
+    "Evaluation with LLM-as-judge is cheap but circular — using GPT-4o to judge GPT-4o outputs introduces systematic blind spots. Always pair with deterministic checks and human spot reviews.",
+    "Langfuse's cloud plan caps trace storage at 90 days — older traces are pruned before you can analyze trends. Self-host on PostgreSQL for long-term retention.",
+    "Helicone adds 1ms latency per call — negligible for most uses, but at 10M calls/month the cumulative overhead becomes a consideration for latency-SLA products.",
+    "Model version drift is invisible unless you log the exact model ID string per call — OpenAI's 'gpt-4o' alias silently changes the underlying model; always pin to explicit version IDs in production.",
+    "Cost spikes from prompt injection attacks (users crafting prompts that trigger verbose outputs) won't fire billing alerts until the invoice arrives — implement token budget hard limits at the gateway layer."
+  ],
+
+  "estimated_monthly_cost": "$0–$500; Langfuse is free self-hosted, Braintrust has a generous free tier. Main cost is compute for running automated evals at CI time (LLM API calls for LLM-as-judge).",
+
+  "related_use_cases": [
+    "rag-knowledge-base-stack",
+    "ai-chatbot-saas-stack",
+    "ai-agent-platform-stack"
+  ],
+
+  "seo": {
+    "title": "LLM Observability Stack — Langfuse + Braintrust + RAGAS + Helicone | tool.news",
+    "meta_description": "Complete LLM ops stack for production monitoring: tracing, evaluation, cost controls, prompt versioning, and model drift detection.",
+    "keywords": ["llm observability", "langfuse braintrust", "llm evaluation stack", "ragas deepeval", "llm cost monitoring 2025", "model drift detection"]
+  },
+
+  "created_at": "2026-04-20T00:00:00Z",
+  "updated_at": "2026-04-20T00:00:00Z"
+}

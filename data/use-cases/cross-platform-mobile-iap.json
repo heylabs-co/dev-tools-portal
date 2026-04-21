@@ -1,0 +1,105 @@
+{
+  "slug": "cross-platform-mobile-iap",
+  "title": "Cross-Platform Mobile App with IAP (React Native / Flutter)",
+  "short_description": "End-to-end stack for React Native or Flutter apps that need in-app purchases, subscriptions, and parity across iOS App Store and Google Play.",
+  "long_description": "Shipping a cross-platform mobile app with real monetisation is significantly harder than it looks. Apple and Google have diverging subscription APIs, receipt formats, promotional offer mechanics, and refund policies. Building an abstraction layer yourself is a multi-month project with endless edge cases — billing retry logic alone has broken more apps than bad code. This stack delegates that pain to RevenueCat (or Adapty) while React Native or Flutter provides the cross-platform UI. Supabase handles auth and structured app data via PostgreSQL, AppsFlyer provides unified attribution across both stores, and PostHog gives cross-platform funnel visibility without per-event pricing. The result is a maintainable, single-codebase app with production-grade monetisation on day one.",
+  "meta_category": "consumer-mobile",
+  "target_audience": "React Native and Flutter developers building subscription or one-time-purchase apps for both the App Store and Google Play",
+
+  "tools": [
+    {
+      "slug": "react-native",
+      "role": "Cross-platform UI framework",
+      "why": "Widely adopted, massive ecosystem of native modules, and mature RevenueCat / AppsFlyer SDKs available as first-class React Native packages.",
+      "required": false
+    },
+    {
+      "slug": "flutter",
+      "role": "Cross-platform UI framework (alternative)",
+      "why": "Single Dart codebase that compiles to native iOS and Android; RevenueCat, Supabase, and Sentry all publish official Flutter plugins.",
+      "required": false
+    },
+    {
+      "slug": "revenuecat",
+      "role": "Cross-platform IAP & subscription management",
+      "why": "Single SDK normalises App Store and Google Play purchase flows, handles subscription status, promotional offers, and sends unified webhooks regardless of store.",
+      "required": true
+    },
+    {
+      "slug": "supabase",
+      "role": "Backend-as-a-service (auth + database)",
+      "why": "Provides Postgres-backed auth, row-level security, real-time subscriptions, and storage — all with official React Native and Flutter SDKs, replacing Firebase for teams who want SQL.",
+      "required": true
+    },
+    {
+      "slug": "appsflyer",
+      "role": "Multi-platform attribution",
+      "why": "Measures installs from both App Store and Google Play campaigns in a single dashboard; handles SKAdNetwork on iOS and Google's Privacy Sandbox on Android simultaneously.",
+      "required": true
+    },
+    {
+      "slug": "posthog",
+      "role": "Product analytics (self-hostable)",
+      "why": "Open-source analytics with session replay, feature flags, and A/B testing — can be self-hosted for full GDPR compliance, and the React Native / Flutter SDKs are actively maintained.",
+      "required": true
+    },
+    {
+      "slug": "sentry",
+      "role": "Cross-platform crash & error monitoring",
+      "why": "Single Sentry project captures both iOS and Android crashes from a unified React Native or Flutter integration, with source map support for minified bundles.",
+      "required": true
+    },
+    {
+      "slug": "onesignal",
+      "role": "Push notifications (APNs + FCM unified)",
+      "why": "Abstracts APNs and FCM into a single REST API and dashboard, handles token management and device targeting across both platforms without separate integrations.",
+      "required": true
+    },
+    {
+      "slug": "codemagic",
+      "role": "CI/CD for React Native & Flutter",
+      "why": "Purpose-built CI for mobile with Flutter-specific build workflows, automatic code signing, and one-click delivery to App Store Connect and Google Play Console.",
+      "required": false
+    }
+  ],
+
+  "alternatives": {
+    "revenuecat": ["adapty", "glassfy", "qonversion"],
+    "supabase": ["firebase", "appwrite", "back4app"],
+    "appsflyer": ["adjust", "branch", "singular"],
+    "posthog": ["amplitude", "mixpanel", "google-analytics"],
+    "sentry": ["bugsnag", "firebase-crashlytics", "datadog"],
+    "onesignal": ["braze", "airship", "moengage"],
+    "codemagic": ["bitrise", "fastlane", "github-actions"]
+  },
+
+  "gotchas": [
+    "Google Play's billing library v5+ (required from November 2023) changed how subscriptions work: there are now 'base plans' and 'offers', which are fundamentally different from Apple's subscription groups. RevenueCat maps these for you, but if you query the Play Billing API directly or use an older SDK version, you will see empty product lists on Android 12+ devices.",
+    "On iOS 14+, the ATT (App Tracking Transparency) prompt must be shown before any advertising-ID-based attribution can fire. The timing of this prompt is critical — showing it too early (before your value prop is clear) tanks opt-in rates to single digits. AppsFlyer's Probabilistic Matching provides install attribution even for users who decline ATT, but is less accurate.",
+    "React Native's JSI (JavaScript Interface) hermes bundle and Flutter's AOT binary both require separate dSYM / symbol upload steps to get readable crash stack traces in Sentry. Missing this step in your CI pipeline means Sentry shows only memory addresses. Add the Sentry Gradle plugin (Android) and the Sentry CLI Upload dSYMs step (iOS) to your Codemagic workflow from day one."
+  ],
+
+  "estimated_monthly_cost": "$0–$300 at launch (RevenueCat free to $2.5k MRR, Supabase free tier 50k MAUs, AppsFlyer free 6k installs/month, PostHog free 1M events, OneSignal free 10k subscribers). Expect $800–$3k/month at scale (100k MAU).",
+
+  "related_use_cases": [
+    "ios-subscription-app-stack",
+    "social-app-backend-stack",
+    "mobile-ad-monetization-stack"
+  ],
+
+  "seo": {
+    "title": "Cross-Platform Mobile IAP Stack — React Native / Flutter with RevenueCat & Supabase",
+    "meta_description": "Best tools for cross-platform mobile apps with in-app purchases in 2026. Covers React Native, Flutter, RevenueCat, Supabase, attribution, and push notifications.",
+    "keywords": [
+      "react native iap",
+      "flutter in-app purchases",
+      "cross platform subscription app",
+      "revenuecat flutter",
+      "mobile app stack 2026",
+      "google play billing library v5"
+    ]
+  },
+
+  "created_at": "2026-04-21",
+  "updated_at": "2026-04-21"
+}

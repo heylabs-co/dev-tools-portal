@@ -1,0 +1,88 @@
+{
+  "slug": "multi-tenant-admin-dashboard",
+  "title": "Multi-tenant admin dashboard with audit logs and role management",
+  "short_description": "Internal admin tooling stack for B2B SaaS: tenant impersonation, RBAC, immutable audit logs, and ops dashboards without building from scratch.",
+  "long_description": "Every B2B SaaS eventually needs two admin surfaces: an internal ops console for your team (impersonate users, debug subscriptions, manage feature flags per tenant) and a customer-facing admin panel (manage team members, assign roles, view their own audit trail). Building both from scratch typically takes 8-12 weeks. This stack cuts that to 2-3 weeks by assembling proven tools for each layer.\n\nRetool handles your internal ops console: connect it directly to your production Postgres, Stripe, and WorkOS APIs via the GUI, then build CRUD tables, impersonation flows, and subscription management panels in hours rather than days. Tooljet and Appsmith are open-source alternatives that self-host cleanly on Railway or Render if Retool's $10/user/mo cost is prohibitive at scale. For the customer-facing RBAC layer, Permit.io or Cerbos evaluate role policies without embedding access control logic in application code — a critical separation that survives team growth and new feature additions.\n\nAxiom provides the immutable, queryable audit log backend: every permission change, login, and data export is written as a structured event. At $25/mo for 500GB/month of ingestion, it's dramatically cheaper than building a dedicated audit trail in Postgres (which grows unboundedly and adds query load). Grafana connects to Axiom for ops dashboards, alerting on anomalous admin actions. Sentry captures errors in admin-only code paths that often have lower test coverage than product paths.",
+  "meta_category": "b2b-saas",
+  "target_audience": "Engineering teams at early-stage B2B SaaS startups",
+  "tools": [
+    {
+      "slug": "retool",
+      "role": "Internal admin console and ops dashboard builder",
+      "why": "Retool's drag-and-drop UI connects to Postgres, Stripe, and REST APIs in minutes. A tenant impersonation panel, subscription override form, and feature-flag editor can be built in a day. Free up to 5 users; $10/user/mo thereafter with SSO/SAML support at the Business tier.",
+      "required": true
+    },
+    {
+      "slug": "tooljet",
+      "role": "Open-source self-hosted admin panel alternative",
+      "why": "ToolJet is MIT-licensed and Docker-deployable, making it viable when Retool's per-seat cost becomes significant or when customer data regulations prohibit third-party SaaS access to production databases. Feature-parity for 80% of common admin use cases.",
+      "required": false
+    },
+    {
+      "slug": "appsmith",
+      "role": "Open-source internal tool builder with Git-sync",
+      "why": "Appsmith supports Git-based version control for app definitions — critical for teams that need code review on admin tooling changes. Its JSObject layer allows custom JavaScript logic without leaving the app builder.",
+      "required": false
+    },
+    {
+      "slug": "permit-io",
+      "role": "Customer-facing RBAC and permission management",
+      "why": "Permit.io's embeddable UI components let end-users manage their own org roles without you building a permissions panel. Its policy sync API supports ABAC rules like 'project owner can invite only within their plan's seat limit'.",
+      "required": true
+    },
+    {
+      "slug": "axiom",
+      "role": "Immutable audit log storage and query layer",
+      "why": "Axiom is a columnar event store that accepts structured JSON at high ingestion rates. Audit events (user.role_changed, data.exported, tenant.impersonated) are append-only and retained for custom durations. At $25/mo it's 10x cheaper than storing equivalent audit data in Postgres.",
+      "required": true
+    },
+    {
+      "slug": "grafana",
+      "role": "Ops monitoring dashboards and alerting",
+      "why": "Grafana connects to Axiom, Postgres, and Prometheus to surface per-tenant error rates, API latency, and admin action frequency. Alert on anomalous patterns (e.g. 50+ impersonations/hour) as a fraud detection signal.",
+      "required": false
+    },
+    {
+      "slug": "sentry",
+      "role": "Error tracking for admin code paths",
+      "why": "Admin panels have lower test coverage and often break silently because internal users don't file bug reports. Sentry's user context tagging identifies which admin triggered an error, enabling faster triage.",
+      "required": false
+    },
+    {
+      "slug": "launchdarkly",
+      "role": "Per-tenant feature flag control",
+      "why": "LaunchDarkly's targeting rules allow toggling features per organization ID directly from Retool via its SDK. Enterprise customers expect to be on stable 'release trains' — LaunchDarkly's flag variants enforce this without code deploys.",
+      "required": false
+    }
+  ],
+  "alternatives": {
+    "retool": ["tooljet", "appsmith"],
+    "permit-io": ["cerbos", "oso"],
+    "axiom": ["better-stack", "datadog"],
+    "launchdarkly": ["growthbook", "flagsmith", "posthog"]
+  },
+  "gotchas": [
+    "Retool queries run under the service account credentials you provide — a Retool user with 'view only' Retool role can still trigger any SQL query you've built, including deletes. Implement row-level security in Postgres and a read-only replica for Retool to limit blast radius.",
+    "Audit logs written to Axiom are not replicated by default; configure Axiom's cross-region dataset replication if SOC 2 or ISO 27001 requires audit log redundancy. The default single-region setup fails the 'audit log integrity' control.",
+    "Permit.io's hosted PDP (Policy Decision Point) adds ~15ms of network latency per authorization check. For endpoints called 100+ times per page render, switch to the embedded PDP sidecar or cache policy decisions at the application layer."
+  ],
+  "estimated_monthly_cost": "$150-400/mo at 10 internal admins and 500 tenant orgs",
+  "related_use_cases": [
+    "enterprise-sso-saml-stack",
+    "b2b-saas-subscription-stack",
+    "customer-support-saas-stack"
+  ],
+  "seo": {
+    "title": "Multi-tenant admin dashboard stack for B2B SaaS — Retool, Permit.io & audit logs",
+    "meta_description": "Build internal ops consoles, customer RBAC, and immutable audit logs for B2B SaaS. Retool, Axiom, Permit.io, and LaunchDarkly — real costs included.",
+    "keywords": [
+      "multi-tenant admin dashboard",
+      "b2b saas admin panel",
+      "audit log saas",
+      "rbac saas tools",
+      "retool b2b saas"
+    ]
+  },
+  "created_at": "2026-04-21",
+  "updated_at": "2026-04-21"
+}

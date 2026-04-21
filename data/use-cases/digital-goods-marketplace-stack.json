@@ -1,0 +1,113 @@
+{
+  "slug": "digital-goods-marketplace-stack",
+  "title": "Digital Products Marketplace",
+  "short_description": "Sell software licenses, downloadable assets, templates, courses, and digital content with secure delivery, global tax compliance via merchant of record, and copy protection.",
+  "long_description": "Digital product marketplaces — selling fonts, plugins, e-books, software licenses, stock assets, or online courses — share a distinct set of infrastructure needs: instant secure file delivery, per-sale license key generation, global VAT/GST compliance, and abuse prevention (download link sharing, license key sharing). The biggest architectural decision is merchant-of-record vs. direct: Paddle and Lemon Squeezy act as your legal seller in all countries, collecting and remitting VAT/GST on your behalf. This eliminates the need to register for VAT in 30+ countries but costs 5-8% vs. Stripe's 1.4-2.9%. Below $1M ARR the MOR premium almost always wins; above $3M ARR the tradeoff becomes nuanced.",
+  "meta_category": "ecommerce",
+  "target_audience": "Independent developers, design studios, content creators, and small software teams selling digital downloads, SaaS, licenses, or courses globally without a dedicated finance/tax team.",
+
+  "tools": [
+    {
+      "slug": "lemon-squeezy",
+      "role": "Merchant of record and checkout",
+      "why": "Lemon Squeezy acts as the legal seller of record, handling VAT/GST collection and remittance in 100+ countries. Built for developers: clean API, webhook-driven fulfillment, license key generation, and a well-designed checkout.",
+      "required": false
+    },
+    {
+      "slug": "paddle",
+      "role": "Merchant of record (enterprise/SaaS option)",
+      "why": "Paddle covers both digital downloads and SaaS subscriptions as MOR. Stronger at $1M+ ARR with dedicated fraud protection, checkout localisation, and subscription management that Lemon Squeezy lacks.",
+      "required": false
+    },
+    {
+      "slug": "gumroad",
+      "role": "Marketplace platform (creator focus)",
+      "why": "Gumroad combines the storefront, payments, and file delivery in one product. Zero engineering required — best for solo creators selling courses, e-books, and templates who want to launch in hours.",
+      "required": false
+    },
+    {
+      "slug": "whop",
+      "role": "Marketplace for digital communities and software",
+      "why": "Whop is a marketplace where buyers discover products — giving sellers distribution on top of the transaction infrastructure. Strong for Discord servers, scripts, bots, and community products.",
+      "required": false
+    },
+    {
+      "slug": "stripe",
+      "role": "Direct payment processing (non-MOR path)",
+      "why": "For teams choosing direct sales (not MOR), Stripe handles checkout, subscriptions, and payouts. Requires separate tax compliance tools (TaxJar/Avalara) and manual VAT registration in high-volume markets.",
+      "required": false
+    },
+    {
+      "slug": "cloudflare-r2",
+      "role": "Secure file storage and delivery",
+      "why": "R2 provides S3-compatible object storage with zero egress fees and Cloudflare edge delivery. Signed URL generation with short expiry times (15 min) prevents link sharing and unauthorized downloads.",
+      "required": true
+    },
+    {
+      "slug": "cloudflare-workers",
+      "role": "Download gate and license validation edge function",
+      "why": "A lightweight Worker validates purchase status, generates signed download URLs, and rate-limits download attempts at edge. Adds <5ms overhead vs. routing through an origin server.",
+      "required": false
+    },
+    {
+      "slug": "supabase",
+      "role": "Purchase records, license keys, and user database",
+      "why": "Supabase (Postgres + Auth + Storage) stores purchase events, generated license keys, download counts, and user profiles. Row-level security policies cleanly enforce per-user file access.",
+      "required": false
+    },
+    {
+      "slug": "clerk",
+      "role": "Authentication and user management",
+      "why": "Clerk provides pre-built login/signup UI, social OAuth, and a customer portal where buyers access their purchases. Integrates with Supabase via JWT templates.",
+      "required": false
+    },
+    {
+      "slug": "postmark",
+      "role": "Transactional email",
+      "why": "Delivery confirmations, license key emails, and download link emails must arrive instantly and reliably. Postmark's deliverability focus and 10-second average delivery make it the right tool for post-purchase transactional email.",
+      "required": true
+    },
+    {
+      "slug": "posthog",
+      "role": "Product analytics",
+      "why": "Tracks funnel conversion from product page → checkout → download, feature flag controlled A/B tests on pricing pages, and session replay for diagnosing checkout drop-off.",
+      "required": false
+    }
+  ],
+
+  "alternatives": {
+    "lemon-squeezy": ["paddle", "fastspring", "2checkout", "cleverbridge", "digital-river"],
+    "gumroad": ["whop", "fastspring", "2checkout"],
+    "cloudflare-r2": ["amazon-s3"],
+    "supabase": ["neon", "firebase", "convex", "pocketbase"],
+    "clerk": ["auth0", "stytch", "magic-link"],
+    "postmark": ["sendgrid"],
+    "stripe": ["braintree", "paypal"]
+  },
+
+  "gotchas": [
+    "Merchant of record vs. direct: below $1M ARR use Paddle or Lemon Squeezy — the 5-8% fee is cheaper than EU VAT registration ($500-2000 per country), US sales tax nexus filings, and an accountant who understands digital goods tax rules.",
+    "License key sharing and piracy: software licenses and digital assets are trivially shared. Implement hardware-locked or machine-count-limited licenses via a license validation API. Gumroad and Lemon Squeezy provide basic license key generation; for robust protection use a dedicated licensing service.",
+    "Download link abuse: never expose direct S3/R2 URLs. Always generate signed short-lived URLs (15-30 min expiry) server-side after verifying the purchase. Rate-limit by user ID and IP.",
+    "Chargeback fraud on digital goods: banks often side with buyers on digital goods disputes ('I didn't receive it'). Keep download logs with timestamps and IP addresses as evidence. Paddle/Lemon Squeezy handle chargebacks as MOR.",
+    "Currency localisation: pricing in local currencies increases conversion by 10-25% in non-USD markets. Paddle's checkout does this automatically; on Stripe you need to maintain price objects per currency and handle FX risk.",
+    "Update delivery for software products: customers expect to receive future updates they've paid for. Build a version/release management system (or use Lemon Squeezy's built-in update URL feature) before you ship v2."
+  ],
+
+  "estimated_monthly_cost": "Lemon Squeezy or Paddle charge 5-8% of GMV (no monthly fee). Cloudflare R2 is ~$0.015/GB/mo with free egress. Supabase free tier covers most early-stage products; Pro is $25/mo. Postmark $15/mo for 50K emails. Total fixed overhead: $50-100/mo until meaningful GMV.",
+
+  "related_use_cases": [
+    "marketplace-trust-safety-stack",
+    "headless-ecommerce-stack",
+    "b2b-wholesale-commerce-stack"
+  ],
+
+  "seo": {
+    "title": "Digital Products Marketplace Stack — Sell Software, Downloads & Licenses",
+    "meta_description": "The best tools for selling digital goods: merchant of record (Paddle vs Lemon Squeezy), secure file delivery, license key generation, and global VAT compliance. Compare options.",
+    "keywords": ["digital products marketplace", "sell digital downloads", "merchant of record", "paddle vs lemon squeezy", "digital goods VAT", "software license delivery"]
+  },
+
+  "created_at": "2026-04-20T00:00:00Z",
+  "updated_at": "2026-04-20T00:00:00Z"
+}

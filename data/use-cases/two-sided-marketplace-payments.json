@@ -1,0 +1,109 @@
+{
+  "slug": "two-sided-marketplace-payments",
+  "title": "Two-Sided Marketplace Payments (Airbnb / Uber Style)",
+  "short_description": "Accept payments from buyers, split funds, and pay out providers — with chargebacks, compliance, and tax forms handled.",
+  "long_description": "Marketplaces face a unique set of payment challenges: you collect money from one party, hold it briefly, split it between your platform fee and the provider, then disburse funds on a schedule. Every step carries risk — chargebacks land on you, not the provider; you may be classified as a Payment Facilitator (PayFac) or need to register as a money transmitter; and providers in 130+ countries expect local bank payouts. This stack covers the full lifecycle: checkout, escrow/holding, automated splits, mass payouts, tax identity collection (W-9/W-8), and chargeback management.",
+  "meta_category": "fintech",
+  "target_audience": "Founders and engineers building marketplace platforms, gig-economy apps, rental platforms, or service marketplaces where money flows from buyers to multiple sellers or service providers.",
+
+  "tools": [
+    {
+      "slug": "stripe",
+      "role": "Core payment processing + Connect platform",
+      "why": "Stripe Connect is purpose-built for marketplaces: it handles PayFac liability, onboards providers with Express/Custom accounts, and executes destination charges or separate charges + transfers. Covered by Stripe's PCI DSS L1 cert so you stay out of scope.",
+      "required": true
+    },
+    {
+      "slug": "adyen",
+      "role": "Alternative PSP with built-in marketplace splitting (Adyen for Platforms)",
+      "why": "Preferred over Stripe for high-volume enterprise marketplaces in EU/APAC. Adyen for Platforms provides split API, escrow accounts, and local acquiring in 40+ countries — better interchange rates at scale (>$5M GMV/month).",
+      "required": false
+    },
+    {
+      "slug": "moov",
+      "role": "ACH payouts and bank-to-bank transfers for US providers",
+      "why": "Moov provides a developer-first money-movement API for ACH, RTP, and wire payouts to US bank accounts. Lower cost than Stripe payouts for high-frequency domestic disbursements.",
+      "required": false
+    },
+    {
+      "slug": "trolley",
+      "role": "Global mass payouts to providers in 200+ countries",
+      "why": "Trolley (formerly Payment Rails) specialises in global payouts: bank transfer, PayPal, and e-wallet to 200+ countries. Handles W-9/W-8 tax form collection, TIN verification, and 1099/1042-S filing — critical once you exceed $600/year per US provider.",
+      "required": false
+    },
+    {
+      "slug": "sardine",
+      "role": "Fraud and risk scoring for buyer payments",
+      "why": "Marketplace fraud (friendly fraud, triangulation fraud, account takeover) is 3–5x higher than e-commerce. Sardine layers device intelligence, behaviour biometrics, and a merchant network to score each transaction before charge.",
+      "required": true
+    },
+    {
+      "slug": "persona",
+      "role": "Provider identity verification and onboarding KYC",
+      "why": "When your marketplace holds and disburses funds you are typically required to KYC providers above certain thresholds (BSA/AML, EU AMLD). Persona's no-code ID verification flows integrate into provider onboarding in <1 day.",
+      "required": true
+    },
+    {
+      "slug": "middesk",
+      "role": "KYB verification for business sellers",
+      "why": "If providers are businesses (not individuals), you need KYB: entity verification, beneficial ownership, watchlist checks. Middesk is purpose-built for KYB with real-time Secretary of State data and a clean API.",
+      "required": false
+    },
+    {
+      "slug": "modern-treasury",
+      "role": "Ledgering and reconciliation layer",
+      "why": "Modern Treasury provides a programmable ledger that tracks virtual balances across your marketplace — inflows, fees withheld, payouts — and reconciles against your bank in real time. Prevents the 'where is the money?' question at audit time.",
+      "required": false
+    },
+    {
+      "slug": "unit21",
+      "role": "Transaction monitoring and SAR filing",
+      "why": "If your platform processes >$1M/month you are likely a Money Services Business and need AML transaction monitoring. Unit21 lets you write no-code rules to flag suspicious patterns and file SARs from the same dashboard.",
+      "required": false
+    }
+  ],
+
+  "alternatives": {
+    "stripe": ["adyen", "braintree", "rapyd"],
+    "trolley": ["payoneer", "hyperwallet", "wise"],
+    "sardine": ["sift", "kount", "unit21"],
+    "persona": ["jumio", "onfido", "sumsub"],
+    "modern-treasury": ["moov"]
+  },
+
+  "gotchas": [
+    "PayFac vs ISO registration: if you use Stripe Connect with Standard accounts, Stripe is the PayFac. If you use Custom accounts (full control), Stripe may require you to register as a PayFac with card networks — check with your legal counsel before launch.",
+    "Chargeback liability by default falls on whoever processes the charge. With destination charges on Stripe Connect, the platform (you) absorbs the chargeback — build a reserve policy.",
+    "US Tax: any provider earning >$600/year requires a W-9 (US persons) or W-8BEN (non-US). Stripe Tax Reporting handles this if using Connect, but trolley is needed for non-Stripe payout methods.",
+    "PCI DSS scope: use Stripe.js / Adyen Web SDK so card data never touches your servers. If you build a custom checkout, you are liable for full SAQ D compliance.",
+    "Money transmitter licences (MTLs): holding funds between receipt and payout may require MTLs in 49 US states unless you qualify for the 'agent of the payee' exemption. Get a fintech lawyer opinion before launch.",
+    "Provider onboarding friction: aggressive KYC checks cause 40–60% drop-off. Use progressive KYC (collect minimum at signup, gate payouts until identity is verified)."
+  ],
+
+  "estimated_monthly_cost": "$500–$5,000/month platform tooling (excluding per-transaction fees). Stripe Connect: 0.25% + $2 per payout. Sardine: ~$0.05/transaction. Persona: ~$1.50/verification. Trolley: $0.25–$3 per payout depending on method.",
+
+  "related_use_cases": [
+    "kyc-kyb-compliance-api-stack",
+    "cross-border-remittance-stack",
+    "embedded-finance-baas-stack"
+  ],
+
+  "seo": {
+    "title": "Two-Sided Marketplace Payments Stack — Split Payouts, KYC & Fraud",
+    "meta_description": "The complete tool stack for marketplace payments: Stripe Connect or Adyen for Platforms, global payouts with Trolley, fraud prevention with Sardine, and provider KYC with Persona.",
+    "keywords": [
+      "marketplace payments",
+      "stripe connect",
+      "split payouts",
+      "marketplace platform",
+      "adyen for platforms",
+      "payfac",
+      "mass payouts api",
+      "marketplace kyc",
+      "two-sided marketplace fintech"
+    ]
+  },
+
+  "created_at": "2026-04-20T00:00:00Z",
+  "updated_at": "2026-04-20T00:00:00Z"
+}

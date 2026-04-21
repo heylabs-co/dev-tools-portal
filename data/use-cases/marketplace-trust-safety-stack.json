@@ -1,0 +1,110 @@
+{
+  "slug": "marketplace-trust-safety-stack",
+  "title": "Trust & Safety for Two-Sided Marketplaces",
+  "short_description": "Fraud detection, content moderation, KYC/AML verification, and abuse prevention for platforms connecting buyers and sellers.",
+  "long_description": "Two-sided marketplaces face a unique trust & safety surface: fake listings, payment fraud, fake seller identities, stolen card usage, buyer-seller disputes, and illegal content. This stack covers the full lifecycle from seller onboarding (KYC/AML) through transaction fraud scoring (Sift, Signifyd), bot and fake account prevention (HUMAN Security, PerimeterX), and content moderation for user-generated text and images. The tools layer on top of each other — identity verification at signup prevents a class of fraud that no amount of transaction scoring can catch after the fact.",
+  "meta_category": "ecommerce",
+  "target_audience": "Platform engineering and trust & safety teams at two-sided marketplaces (goods, services, gig economy, rental) handling payments between strangers at scale.",
+
+  "tools": [
+    {
+      "slug": "sift",
+      "role": "Account and transaction fraud scoring",
+      "why": "Sift's machine-learning risk scores cover account takeover, fake account creation, payment fraud, and dispute abuse. The Score API integrates at account creation, login, and checkout with sub-50ms latency.",
+      "required": true
+    },
+    {
+      "slug": "signifyd",
+      "role": "Chargeback guarantee and order decisioning",
+      "why": "Signifyd provides financial liability shift: if an order they approve results in a chargeback, they pay. Eliminates manual review queues for low-to-medium risk orders.",
+      "required": false
+    },
+    {
+      "slug": "human-security",
+      "role": "Bot detection and fake account prevention",
+      "why": "HUMAN (formerly PerimeterX) protects account creation, login, and checkout flows from credential stuffing, carding attacks, and inventory hoarding bots.",
+      "required": true
+    },
+    {
+      "slug": "hive-moderation",
+      "role": "AI content moderation for UGC",
+      "why": "Hive's vision and text classifiers detect NSFW content, hate speech, spam listings, and counterfeit product signals in user-uploaded images and descriptions at scale without a large human moderation team.",
+      "required": true
+    },
+    {
+      "slug": "sumsub",
+      "role": "KYC and seller identity verification",
+      "why": "Automated document verification, liveness check, and AML watchlist screening for seller onboarding. Covers 220+ countries and 6,000+ document types. Webhook-driven decision flow.",
+      "required": false
+    },
+    {
+      "slug": "onfido",
+      "role": "KYC identity verification (alternative)",
+      "why": "Onfido's Atlas AI runs document and biometric verification with a strong US/EU presence. Good fit for regulated verticals (financial services marketplace, alcohol, cannabis) where audit trails matter.",
+      "required": false
+    },
+    {
+      "slug": "stripe",
+      "role": "Payment processing and Stripe Radar",
+      "why": "Stripe Connect handles split payments and payouts to sellers. Stripe Radar provides ML-based card fraud scoring at checkout with customisable rules, reducing friendly-fraud chargebacks.",
+      "required": true
+    },
+    {
+      "slug": "accertify",
+      "role": "Enterprise fraud management",
+      "why": "Accertify (an Amex company) provides device fingerprinting, link analysis, and a rules engine for high-volume marketplaces needing fine-grained manual review workflows.",
+      "required": false
+    },
+    {
+      "slug": "kount",
+      "role": "Digital identity trust network",
+      "why": "Kount's global identity network links device, email, and payment signals across 60B+ interactions to score both buyers and sellers before the first transaction.",
+      "required": false
+    },
+    {
+      "slug": "twilio",
+      "role": "Phone verification and 2FA",
+      "why": "Twilio Verify provides phone number verification and TOTP/SMS 2FA for seller and buyer account hardening. Phone verification at signup significantly reduces fake account rates.",
+      "required": true
+    },
+    {
+      "slug": "datadog",
+      "role": "Fraud signal monitoring and alerting",
+      "why": "Custom dashboards tracking chargeback rate, dispute rate by seller cohort, and moderation queue backlogs. Anomaly detection alerts on sudden spikes in fraud signals.",
+      "required": false
+    }
+  ],
+
+  "alternatives": {
+    "sift": ["kount", "accertify", "feedzai", "riskified", "signifyd"],
+    "sumsub": ["onfido", "jumio", "veriff", "au10tix", "idenfy", "trulioo", "smile-id"],
+    "hive-moderation": ["activefence"],
+    "human-security": ["datadog-asm", "fastly-waf", "cloudflare-waf"]
+  },
+
+  "gotchas": [
+    "False-positive friction kills conversion: aggressive fraud blocks frustrate legitimate users. Use risk tiering — auto-approve low-risk, step-up verify medium-risk, manual review high-risk — rather than binary block/allow.",
+    "Seller KYC vs. buyer KYC: full KYC (document scan + liveness) is appropriate for sellers receiving payouts but adds too much friction for buyers. Implement proportional verification based on transaction value and risk signals.",
+    "AML thresholds: in the US, payments platforms must file CTRs for transactions over $10,000 and SARs for suspicious activity. Ensure your KYC provider covers AML screening, not just identity verification.",
+    "Content moderation latency: synchronous ML moderation on listing creation can slow down seller UX. Use async moderation with a hold-for-review state for flagged content rather than blocking the listing creation API call.",
+    "Dispute rate benchmarks: card networks flag merchants at >1% dispute rate (Visa) or >0.9% (Mastercard). Track dispute rate by seller and proactively offboard high-dispute sellers before the marketplace account is flagged.",
+    "Network effects for fraud: fraud rings test stolen cards on low-friction platforms first. Implement velocity checks (same card across multiple accounts, multiple failed attempts) in addition to per-transaction scoring."
+  ],
+
+  "estimated_monthly_cost": "$2,000–$25,000/mo depending on GMV and verification volume. Sift charges per event (~$0.01–$0.03), Sumsub per verification ($1.50–$4), HUMAN by monthly MAU. Stripe Radar is included in Stripe pricing; Radar for Fraud Teams adds $0.02/screened charge.",
+
+  "related_use_cases": [
+    "digital-goods-marketplace-stack",
+    "b2b-wholesale-commerce-stack",
+    "headless-ecommerce-stack"
+  ],
+
+  "seo": {
+    "title": "Trust & Safety Stack for Marketplaces — Fraud, KYC, Content Moderation Tools",
+    "meta_description": "The best fraud detection, KYC/AML, content moderation, and bot prevention tools for two-sided marketplaces. Compare Sift, Signifyd, Sumsub, HUMAN Security, and more.",
+    "keywords": ["marketplace fraud prevention", "KYC verification marketplace", "content moderation tools", "two-sided marketplace trust safety", "sift fraud detection", "signifyd chargeback"]
+  },
+
+  "created_at": "2026-04-20T00:00:00Z",
+  "updated_at": "2026-04-20T00:00:00Z"
+}

@@ -1,0 +1,88 @@
+{
+  "slug": "usage-based-billing-stack",
+  "title": "Modern usage-based and metered billing stack for API-first products",
+  "short_description": "Metered billing infrastructure for API products: ingest usage events, aggregate meters, invoice with overages, and report MRR accurately.",
+  "long_description": "Usage-based billing (UBB) is structurally different from seat-based SaaS: you must ingest millions of fine-grained events, aggregate them into billing meters in real time, apply tiered pricing, and reconcile against invoices — all without losing a single event or double-charging. Stripe Billing alone is insufficient for non-trivial UBB; it lacks durable event ingestion and real-time meter dashboards that customers need to avoid bill shock.\n\nLago is the open-source metering layer that sits between your application and your payment processor. It ingests usage events via API or batch webhook, computes charge amounts against configurable billing rules (per-unit, graduated tiers, packages), and pushes finalized invoices to Stripe or Paddle. Self-hosted Lago has zero licensing cost; Lago Cloud starts at $500/mo. Metronome and Orb are the SaaS-native alternatives at higher price points with stronger real-time dashboards and commitment drawdown tracking — important for enterprise contracts with prepaid credits.\n\nTinybird serves as the real-time analytics backbone: it ingests usage events from Kafka or your API at sub-second latency and exposes REST endpoints your product UI can query to show customers their live consumption. Pairing Tinybird with Lago means customers see a usage dashboard that matches their invoice down to the cent — reducing billing disputes. Amberflo provides an alternative all-in-one metering+analytics layer if you prefer less infrastructure ownership. Svix handles the critical case of notifying customers when they approach usage limits via webhooks, giving them time to upgrade before getting hard-blocked.",
+  "meta_category": "b2b-saas",
+  "target_audience": "Engineering teams at early-stage B2B SaaS startups",
+  "tools": [
+    {
+      "slug": "lago",
+      "role": "Open-source metering and billing engine",
+      "why": "Lago's event ingestion API accepts batched usage events with idempotency keys, aggregates them into billing periods using configurable charge models (sum, count, max, unique count), and generates invoices via Stripe or Paddle. Self-hosted is free; critical for avoiding vendor lock-in on billing logic.",
+      "required": true
+    },
+    {
+      "slug": "stripe",
+      "role": "Payment processing and invoice settlement",
+      "why": "Stripe Billing's Meters API handles basic usage aggregation for simpler models, but pairs with Lago for complex graduated tiers. Stripe handles card charging, dunning, and retries — don't rebuild payment collection logic when $0.5% transaction fee is justified by the reliability.",
+      "required": true
+    },
+    {
+      "slug": "tinybird",
+      "role": "Real-time usage analytics API for customer dashboards",
+      "why": "Tinybird ingests usage events at millions of rows/second and exposes low-latency REST endpoints. Your product dashboard can query 'total API calls this billing period' in under 50ms — preventing the dreaded 'why is my bill so high?' support ticket.",
+      "required": false
+    },
+    {
+      "slug": "metronome",
+      "role": "Enterprise UBB platform with commitment tracking",
+      "why": "Metronome handles prepaid credit drawdown, contract amendments, and multi-currency invoicing — features Lago lacks. Worth the premium ($1,000+/mo) when you have enterprise customers with annual commit deals that include overage tiers and credit rollovers.",
+      "required": false
+    },
+    {
+      "slug": "svix",
+      "role": "Usage limit and billing alert webhooks",
+      "why": "Svix delivers threshold alerts (e.g. '80% of monthly quota used') to customer endpoints with retries and signed payloads. Customers integrate this into their own alerting pipelines to auto-scale or request quota increases before hitting hard limits.",
+      "required": false
+    },
+    {
+      "slug": "chartmogul",
+      "role": "MRR and churn analytics for UBB revenue",
+      "why": "UBB makes MRR inherently variable; ChartMogul normalizes invoice data from Stripe into recognized ARR, expansion MRR, and contraction MRR. Its Stripe integration syncs nightly and handles partial-month prorations that would otherwise skew cohort analysis.",
+      "required": false
+    },
+    {
+      "slug": "amberflo",
+      "role": "All-in-one metering, rating, and pricing analytics",
+      "why": "Amberflo combines event ingestion, real-time meter display, and pricing experimentation in a hosted platform. Useful if you want to avoid operating Lago infrastructure; pricing is usage-based which aligns incentives with your own growth.",
+      "required": false
+    },
+    {
+      "slug": "orb",
+      "role": "SaaS billing platform for hybrid pricing models",
+      "why": "Orb's pricing model editor supports per-seat + per-event hybrid billing and bulk tier customization per contract — common at $50k+ ACV where every enterprise deal has custom pricing. Its plan amendment workflow avoids manual Stripe invoice adjustments.",
+      "required": false
+    }
+  ],
+  "alternatives": {
+    "lago": ["metronome", "orb", "amberflo"],
+    "stripe": ["paddle", "chargebee"],
+    "tinybird": ["clickhouse", "posthog"],
+    "chartmogul": ["baremetrics", "profitwell-paddle"],
+    "svix": ["hookdeck", "trigger-dev"]
+  },
+  "gotchas": [
+    "Usage events must be idempotent — if your API retries an event submission without a stable idempotency key, Lago will double-count it and overcharge the customer. Assign event IDs at the source (e.g. request_id), not at the ingestion layer.",
+    "Stripe Meters has a hard limit of 1,000 meter events per second per account; above that you'll need Lago's batched ingestion or face dropped events. Test your peak load against Stripe's rate limits before going to production.",
+    "TinyBird Pipes are append-only; retroactive usage corrections (refunds, disputed charges) require a separate 'correction event' pattern rather than updating existing rows. Define your correction schema upfront or you'll rewrite the data pipeline mid-quarter."
+  ],
+  "estimated_monthly_cost": "$300-800/mo at 1,000 paying API customers (excluding Stripe transaction fees)",
+  "related_use_cases": [
+    "b2b-saas-subscription-stack",
+    "sales-ops-integration-stack"
+  ],
+  "seo": {
+    "title": "Usage-based billing stack for API SaaS — Lago, Stripe Meters & tools 2026",
+    "meta_description": "Build metered billing for API-first products: Lago, Stripe, Tinybird, and Metronome. Real event ingestion patterns, costs, and pitfalls.",
+    "keywords": [
+      "usage based billing saas",
+      "metered billing api",
+      "lago billing open source",
+      "stripe meters alternative",
+      "api billing stack 2026"
+    ]
+  },
+  "created_at": "2026-04-21",
+  "updated_at": "2026-04-21"
+}

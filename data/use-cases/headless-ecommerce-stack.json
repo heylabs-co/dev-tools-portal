@@ -1,0 +1,117 @@
+{
+  "slug": "headless-ecommerce-stack",
+  "title": "Headless E-commerce Architecture",
+  "short_description": "Full headless commerce stack: decoupled storefront, API-first commerce engine, global CDN, and composable services for content, search, and media.",
+  "long_description": "A headless commerce architecture separates the frontend presentation layer from backend commerce logic. You pick an API-first commerce platform (Shopify, commercetools, Medusa, or Saleor) as the system of record, then compose best-of-breed services for search, content, media, payments, and CDN. This stack is ideal for teams that need custom storefronts, multi-channel selling (web, mobile, kiosk), and sub-100ms page loads via edge rendering. The tradeoff is integration complexity: every service requires careful data sync, and inventory consistency across channels is a recurring challenge.",
+  "meta_category": "ecommerce",
+  "target_audience": "Engineering teams building custom storefronts for mid-market or enterprise brands that need performance, flexibility, and multi-channel capabilities beyond what hosted themes allow.",
+
+  "tools": [
+    {
+      "slug": "shopify",
+      "role": "Commerce engine (SaaS option)",
+      "why": "Shopify Storefront API and Hydrogen framework provide a battle-tested, fully hosted commerce backend with payments, inventory, and fulfillment built in. Lowest operational overhead for headless.",
+      "required": false
+    },
+    {
+      "slug": "medusa",
+      "role": "Commerce engine (self-hosted option)",
+      "why": "Open-source, Node.js-based headless commerce platform. Full control over data, no per-transaction fees, and a modular plugin system. Best for teams that need deep customisation without vendor lock-in.",
+      "required": false
+    },
+    {
+      "slug": "saleor",
+      "role": "Commerce engine (GraphQL-first option)",
+      "why": "Python/Django headless commerce with a powerful GraphQL API, built-in multi-channel and multi-currency support, and a React Dashboard. Strong choice for marketplaces and B2C.",
+      "required": false
+    },
+    {
+      "slug": "elastic-path",
+      "role": "Commerce engine (enterprise composable option)",
+      "why": "MACH-certified composable commerce platform with flexible catalog, promotions, and cart APIs. Suits complex product models (configurable products, bundles) at enterprise scale.",
+      "required": false
+    },
+    {
+      "slug": "next-js",
+      "role": "Storefront framework",
+      "why": "Next.js with React Server Components is the de-facto standard for headless storefronts. Shopify's Hydrogen is built on it; Medusa and Saleor ship official Next.js starter templates.",
+      "required": true
+    },
+    {
+      "slug": "vercel",
+      "role": "Edge hosting and CDN",
+      "why": "Instant edge deployments, ISR/On-demand revalidation for product pages, and a global CDN optimised for Next.js. Reduces storefront TTFB to <50ms worldwide.",
+      "required": false
+    },
+    {
+      "slug": "algolia",
+      "role": "Product search and discovery",
+      "why": "Sub-10ms search, AI-powered ranking, and merchandising rules. Algolia's InstantSearch UI library accelerates PLP and autocomplete implementation.",
+      "required": true
+    },
+    {
+      "slug": "contentful",
+      "role": "Headless CMS for editorial content",
+      "why": "Manages landing pages, banners, blog posts, and campaign content independently of the commerce platform. Marketers can publish without engineering deploys.",
+      "required": false
+    },
+    {
+      "slug": "cloudinary",
+      "role": "Image and video management",
+      "why": "On-the-fly image transformation, responsive srcsets, and automatic format optimisation (WebP/AVIF). Critical for product imagery performance on PDPs.",
+      "required": true
+    },
+    {
+      "slug": "stripe",
+      "role": "Payments",
+      "why": "Stripe Payment Intents API handles cards, wallets, and local payment methods globally. Pairs cleanly with headless checkout flows.",
+      "required": true
+    },
+    {
+      "slug": "taxjar",
+      "role": "Sales tax calculation and remittance",
+      "why": "Real-time tax calculation at checkout for US nexus and Canada. TaxJar AutoFile handles remittance, removing the biggest compliance headache for US merchants.",
+      "required": false
+    },
+    {
+      "slug": "klaviyo",
+      "role": "Email and SMS marketing",
+      "why": "Deep Shopify/custom event integration for cart abandonment, post-purchase flows, and segmented campaigns. Klaviyo's CDP capabilities reduce the need for a separate analytics tool.",
+      "required": false
+    }
+  ],
+
+  "alternatives": {
+    "shopify": ["medusa", "saleor", "vendure", "elastic-path", "crystallize"],
+    "next-js": ["remix", "nuxt", "astro", "sveltekit"],
+    "algolia": ["typesense", "meilisearch", "elasticsearch", "constructor"],
+    "contentful": ["sanity", "storyblok", "prismic", "tina-cms"],
+    "cloudinary": ["imgix", "cloudinary-sdk"],
+    "taxjar": ["avalara"]
+  },
+
+  "gotchas": [
+    "Inventory sync lag: product availability shown in the storefront can be stale by seconds to minutes when using CDN caching. Implement real-time availability checks on add-to-cart, not just on PLP renders.",
+    "International tax complexity: TaxJar covers US/Canada well but EU VAT (OSS regime) and UK VAT require Avalara or a merchant-of-record solution like Paddle to avoid manual VAT registration in 27+ countries.",
+    "Storefront cache invalidation: ISR revalidation works well for product pages but flash-sale price changes or flash-out-of-stock events require on-demand revalidation webhooks from the commerce platform.",
+    "Checkout redirect vs. embedded: Shopify's hosted checkout cannot be fully embedded in a custom storefront (Shopify Plus unlocks some customisation). Medusa/Saleor allow fully custom checkout but increase PCI scope.",
+    "Bundle complexity: a composable stack of 8-12 services means 8-12 vendor contracts, SLA negotiations, and potential cascade failures. Start with a minimal stack and add services only when the pain is clear."
+  ],
+
+  "estimated_monthly_cost": "$500–$8,000 depending on Shopify plan tier (Basic $39 → Plus $2,300), Algolia record/search volume, Cloudinary transformations, and Vercel bandwidth. Pure open-source path (Medusa + Typesense + self-hosted) can start at $100/mo on a single VPS.",
+
+  "related_use_cases": [
+    "subscription-boxes-stack",
+    "digital-goods-marketplace-stack",
+    "b2b-wholesale-commerce-stack"
+  ],
+
+  "seo": {
+    "title": "Headless E-commerce Stack — Tools for Composable Commerce",
+    "meta_description": "The best tools for building a headless e-commerce architecture: API-first commerce engines, search, CMS, image CDN, payments, and tax. Compare Shopify vs Medusa vs Saleor.",
+    "keywords": ["headless ecommerce", "composable commerce", "shopify headless", "medusa commerce", "next.js storefront", "api-first ecommerce"]
+  },
+
+  "created_at": "2026-04-20T00:00:00Z",
+  "updated_at": "2026-04-20T00:00:00Z"
+}

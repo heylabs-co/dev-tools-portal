@@ -1,0 +1,95 @@
+{
+  "slug": "customer-support-saas-stack",
+  "title": "Customer support, onboarding, and product tours stack for B2B SaaS",
+  "short_description": "Activate, retain, and support SaaS customers with a layered stack covering in-app onboarding, proactive support, and help desk — without a 6-figure CS platform.",
+  "long_description": "Customer activation is the highest-leverage investment for B2B SaaS below $5M ARR. Research consistently shows that users who reach their 'aha moment' within 7 days have 3x the 12-month retention rate of those who don't. This stack wires together in-app onboarding, proactive lifecycle email, a human support layer, and product analytics to measure whether any of it actually works.\n\nIntercom anchors the stack as the unified inbox for live chat, proactive messages, and product tours. Its 'Series' automation sequences can fire onboarding checklists, tooltips, and upgrade nudges based on user events — replacing three separate tools. For pure in-app product tours with finer design control, Appcues or Userflow layer on top of Intercom's messaging: Appcues at $249/mo covers 2,500 MAU, while Userflow's code-based approach gives engineers more control over tour logic. For lightweight teams, Chameleon is the engineering-friendly alternative with a JavaScript SDK.\n\nCustomer.io handles lifecycle email (trial-expiry warnings, reactivation, feature announcements) with event-based triggers piped from Segment or PostHog. It supports Liquid templating for personalization and has a visual journey builder, making it far more powerful than Intercom alone for complex multi-step drips. For support ticket handling beyond chat, Plain is a new-generation B2B support tool that integrates directly with Slack and treats each conversation as a structured thread with GitHub/Jira links — a meaningfully better developer-facing support experience than Zendesk for technical products. June tracks product-qualified leads (PQLs) by surfacing which trial users have hit activation milestones, allowing CS to intervene before churn.",
+  "meta_category": "b2b-saas",
+  "target_audience": "Engineering teams at early-stage B2B SaaS startups",
+  "tools": [
+    {
+      "slug": "intercom",
+      "role": "In-app chat, proactive messages, and onboarding tours",
+      "why": "Intercom's Messenger + Series automation handles live chat, onboarding checklists, feature announcements, and NPS surveys from a single platform. The Starter plan at $74/mo covers up to 1,000 people reached — sufficient through $500k ARR for most B2B SaaS with 500 trial users.",
+      "required": true
+    },
+    {
+      "slug": "appcues",
+      "role": "No-code in-app product tours and onboarding flows",
+      "why": "Appcues lets PMs build onboarding checklists, tooltips, and modal flows without engineering involvement. The WYSIWYG builder targets elements by CSS selector and fires based on event conditions. Unlike Intercom tours, Appcues supports multi-step branching flows with completion tracking.",
+      "required": false
+    },
+    {
+      "slug": "userflow",
+      "role": "Code-first in-app onboarding with React SDK",
+      "why": "Userflow's JavaScript SDK integrates with React and Next.js and fires flows based on custom events. At $240/mo for unlimited flows on 3,000 MAU, it's cheaper than Appcues at equivalent scale and offers tighter programmatic control over when flows trigger.",
+      "required": false
+    },
+    {
+      "slug": "chameleon",
+      "role": "Product tours and in-app surveys",
+      "why": "Chameleon is built for engineering-led teams: its API lets you trigger tours from your own event bus, and its Microsurveys product collects NPS and CSAT without a separate tool. Unlike Appcues, it doesn't require a Chrome extension for the no-code builder.",
+      "required": false
+    },
+    {
+      "slug": "customer-io",
+      "role": "Lifecycle email automation and behavioral triggers",
+      "why": "Customer.io triggers emails on user-defined events (e.g. 'trial_day_6_no_integration') and supports A/B testing subject lines. At $100/mo for up to 12,000 profiles it's dramatically cheaper than Marketo/HubSpot for product-led email sequences.",
+      "required": true
+    },
+    {
+      "slug": "plain",
+      "role": "B2B-native support inbox with Slack and GitHub integration",
+      "why": "Plain treats support threads as structured data: each conversation links to a customer record, a Slack thread, and an optional GitHub issue. For developer-facing B2B SaaS, Plain's API-first design means your support tooling matches your customers' technical sophistication.",
+      "required": false
+    },
+    {
+      "slug": "help-scout",
+      "role": "Shared inbox and knowledge base for support teams",
+      "why": "Help Scout's $50/mo Starter plan covers 3 mailboxes and 1 Docs site — a full support setup at under a third of Zendesk's equivalent cost. Its Beacon widget provides a help-center-first chat experience that deflects tickets before they reach a human.",
+      "required": false
+    },
+    {
+      "slug": "june",
+      "role": "Product analytics and PQL detection for CS teams",
+      "why": "June builds on top of Segment and surfaces activation metrics (e.g. 'reached 3 core actions in trial') in a Slack-native interface. CS reps get a daily digest of which trial users are activation-ready for an expansion call — without writing SQL.",
+      "required": false
+    },
+    {
+      "slug": "posthog",
+      "role": "Session replay and funnel analysis for onboarding",
+      "why": "PostHog's session replay identifies exactly where trial users drop off in onboarding flows. Pair with Appcues: replay sessions of users who saw a tour but didn't complete it, then use that data to redesign the flow.",
+      "required": true
+    }
+  ],
+  "alternatives": {
+    "intercom": ["crisp", "chatwoot"],
+    "appcues": ["userflow", "chameleon", "pendo"],
+    "customer-io": ["brevo", "sendgrid"],
+    "plain": ["help-scout", "freshdesk", "front"],
+    "june": ["posthog", "amplitude"]
+  },
+  "gotchas": [
+    "Intercom's pricing jumped in 2023 from per-seat to 'people reached' and 'resolutions' — a high-volume onboarding campaign that sends 10,000 proactive messages in a month can trigger $2,000+ in overage fees. Set message frequency caps and test pricing impact on a staging workspace before launching sequences.",
+    "Appcues and Intercom product tours both inject JavaScript into your DOM; running both simultaneously causes CSS z-index conflicts and click-event hijacking. Pick one tool as the single source of in-app overlays and use the other for messaging only.",
+    "Customer.io emails sent from a shared sending domain (e.g. mail.customer.io) will fail SPF/DKIM checks if your app domain has a strict DMARC p=reject policy. Set up a dedicated sending subdomain (e.g. mail.yourdomain.com) with CNAME records before your first send, not after your first deliverability incident."
+  ],
+  "estimated_monthly_cost": "$350-700/mo at 1,000 paying users with active onboarding",
+  "related_use_cases": [
+    "b2b-saas-subscription-stack",
+    "multi-tenant-admin-dashboard",
+    "sales-ops-integration-stack"
+  ],
+  "seo": {
+    "title": "Customer support and onboarding stack for B2B SaaS — Intercom, Appcues & tools",
+    "meta_description": "Activate and retain B2B SaaS users with Intercom, Appcues, Customer.io, and Plain. Real costs, onboarding tour comparison, and lifecycle email setup.",
+    "keywords": [
+      "b2b saas customer onboarding",
+      "saas product tours",
+      "intercom appcues comparison",
+      "customer support saas stack",
+      "saas onboarding tools 2026"
+    ]
+  },
+  "created_at": "2026-04-21",
+  "updated_at": "2026-04-21"
+}

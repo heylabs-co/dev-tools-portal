@@ -1,0 +1,96 @@
+{
+  "slug": "sales-ops-integration-stack",
+  "title": "Sales ops, data pipeline, and revenue intelligence stack for B2B SaaS",
+  "short_description": "Sync product data to CRM, track PQLs, automate revenue reporting, and wire sales ops without a $50k/year Salesforce implementation.",
+  "long_description": "At $500k-$2M ARR, B2B SaaS companies hit a predictable crisis: the founder closes deals from a spreadsheet, but the first sales hire demands a CRM, a marketing hire wants HubSpot, and the data team wants a warehouse. The naive solution is a $150k/year Salesforce implementation. The smart solution is assembling a composable stack that gives each stakeholder what they need without a 6-month implementation.\n\nHubSpot CRM is the pragmatic anchor for sub-$5M ARR companies: free for unlimited contacts, $450/mo unlocks sequences and forecasting. Attio is the modern alternative for product-led growth (PLG) companies — it syncs product events directly from your database via its API and treats contacts as structured data with custom attributes, rather than forcing a Salesforce data model on a product-led business.\n\nHightouch or Census sync Postgres or Snowflake product data (activation events, feature usage, health scores) into HubSpot as custom properties, enabling sales reps to sort their CRM by product-qualified signals without manual data entry. Airbyte replicates data from Stripe, Intercom, and other SaaS tools into your warehouse on a schedule. Rudderstack acts as the event router: one SDK call in your product fans out to Segment-compatible destinations (HubSpot, Amplitude, June) without re-deploying when you add a new destination. ChartMogul or Baremetrics provide investor-grade MRR, churn, and cohort reporting on top of Stripe data without building a reporting layer.",
+  "meta_category": "b2b-saas",
+  "target_audience": "Engineering teams at early-stage B2B SaaS startups",
+  "tools": [
+    {
+      "slug": "hubspot",
+      "role": "CRM, deal pipeline, and sales sequences",
+      "why": "HubSpot's free CRM tier is unlimited; the Starter CRM Suite at $20/mo adds email sequences and calling. The Starter Operations Hub at $20/mo unlocks data sync — total $40/mo to wire product signals into sales rep workflows. Avoids a $15k Salesforce implementation at the critical $500k-$2M ARR stage.",
+      "required": true
+    },
+    {
+      "slug": "hightouch",
+      "role": "Reverse ETL: sync warehouse data to HubSpot/CRM",
+      "why": "Hightouch reads product-qualified lead (PQL) scores, feature adoption metrics, and health scores from your Postgres or Snowflake warehouse and writes them as custom HubSpot properties. Sales reps see 'used core feature 5x in last 7 days' directly in their CRM view without any manual data entry.",
+      "required": true
+    },
+    {
+      "slug": "airbyte",
+      "role": "ELT data ingestion from SaaS sources to warehouse",
+      "why": "Airbyte's 300+ connectors replicate Stripe, Intercom, HubSpot, and GitHub data into Postgres or Snowflake on a cron schedule. The open-source self-hosted version is free; Airbyte Cloud starts at $200/mo. Critical for building a single source of truth before hiring a data analyst.",
+      "required": true
+    },
+    {
+      "slug": "rudderstack",
+      "role": "Customer data platform and event routing",
+      "why": "Rudderstack is an open-source CDP: one JavaScript SDK in your product fans events to HubSpot, Amplitude, June, and Intercom simultaneously. Unlike Segment ($120/mo for 1k MTUs), Rudderstack's open-source tier is free to self-host with 15+ cloud destinations available at $75/mo.",
+      "required": false
+    },
+    {
+      "slug": "segment",
+      "role": "Managed customer data platform",
+      "why": "Segment's Teams plan at $120/mo for 10k MTUs covers most early-stage B2B SaaS needs. Its 400+ integrations mean adding HubSpot, Intercom, or Braze as a destination requires a UI toggle rather than a code deploy — worth the cost if your team lacks DevOps capacity to maintain Rudderstack.",
+      "required": false
+    },
+    {
+      "slug": "chartmogul",
+      "role": "MRR, churn, and cohort revenue analytics",
+      "why": "ChartMogul syncs Stripe billing data nightly and computes recognized ARR, expansion MRR, churn rate, and LTV cohorts in a dashboard format investors recognize. The $100/mo Launch plan covers up to $10k MRR — after that you're paying ~1% of MRR for reporting infrastructure you'd spend 4 weeks building.",
+      "required": false
+    },
+    {
+      "slug": "baremetrics",
+      "role": "Real-time Stripe MRR and dunning analytics",
+      "why": "Baremetrics connects to Stripe in 5 minutes and provides real-time MRR, failed payment recovery (Recover feature), and a public metrics page for transparency. Its Cancellation Insights feature captures churn reasons in a structured form that feeds directly into product roadmap decisions.",
+      "required": false
+    },
+    {
+      "slug": "june",
+      "role": "PLG analytics and PQL signals for sales",
+      "why": "June builds feature-adoption reports on top of Segment events and surfaces weekly 'companies to reach out to' based on activation milestones. At $149/mo it replaces a custom Metabase dashboard and gives the first sales hire a prospecting workflow on day one.",
+      "required": false
+    },
+    {
+      "slug": "n8n",
+      "role": "Workflow automation for sales ops triggers",
+      "why": "n8n self-hosted automates cross-system workflows that Zapier bills per-task: 'when Stripe charge.succeeded, update HubSpot deal stage and send Slack notification'. At 0$/mo self-hosted vs $200/mo on Zapier for equivalent task volume, it's the obvious choice for technical teams.",
+      "required": false
+    }
+  ],
+  "alternatives": {
+    "hubspot": ["salesforce-marketing-cloud", "salesforce-einstein-ai"],
+    "hightouch": ["census", "rudderstack"],
+    "airbyte": ["fivetran", "stitch"],
+    "rudderstack": ["segment"],
+    "chartmogul": ["baremetrics", "profitwell-paddle"],
+    "n8n": ["zapier", "make", "inngest"]
+  },
+  "gotchas": [
+    "HubSpot's free CRM silently limits API calls to 100 requests per 10 seconds per portal; Hightouch sync jobs that upsert 50,000 contacts will be throttled and take hours to complete, not minutes. Upgrade to a paid Operations Hub tier or batch sync during off-peak hours with exponential backoff.",
+    "Airbyte CDC (change data capture) on Postgres requires enabling logical replication (wal_level=logical) on your primary database, which requires a server restart on RDS or Cloud SQL and a maintenance window. Run CDC on a read replica, not the primary, to avoid replication lag affecting your production app.",
+    "Reverse ETL tools like Hightouch write data back to HubSpot with the integration's API key, not the sales rep's user token — meaning all synced updates show as 'modified by API' in HubSpot's activity feed. Train reps to filter activity feeds or the CRM feed looks polluted and reps stop trusting the data."
+  ],
+  "estimated_monthly_cost": "$400-900/mo at 5,000 customers with full warehouse + CRM sync",
+  "related_use_cases": [
+    "b2b-saas-subscription-stack",
+    "usage-based-billing-stack",
+    "customer-support-saas-stack"
+  ],
+  "seo": {
+    "title": "B2B SaaS sales ops and revenue data stack — HubSpot, Hightouch & tools 2026",
+    "meta_description": "Wire product data to CRM, automate revenue reporting, and track PQLs without Salesforce. HubSpot, Hightouch, Airbyte, and ChartMogul — costs and gotchas.",
+    "keywords": [
+      "b2b saas sales ops stack",
+      "reverse etl saas",
+      "hubspot hightouch integration",
+      "pql product qualified leads",
+      "saas revenue analytics tools"
+    ]
+  },
+  "created_at": "2026-04-21",
+  "updated_at": "2026-04-21"
+}

@@ -7,7 +7,7 @@
   },
   "scripts": {
     "dev": "astro dev",
-    "build": "npx tsx scripts/generate-compare-json.ts && astro build && npx pagefind --site dist",
+    "build": "npx tsx scripts/generate-compare-json.ts && npx tsx scripts/build-use-case-reverse-index.ts && astro build && npx pagefind --site dist",
     "generate:compare": "npx tsx scripts/generate-compare-json.ts",
     "preview": "astro preview",
     "astro": "astro",

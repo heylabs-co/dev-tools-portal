@@ -1,0 +1,105 @@
+{
+  "slug": "ai-image-video-generation-stack",
+  "title": "AI Image and Video Generation SaaS",
+  "short_description": "Infrastructure stack for building a generative media SaaS — image generation, video synthesis, async job queuing, and cost-efficient model routing.",
+  "long_description": "Building a generative media product requires solving three distinct problems: model access (which image/video models to use and how to call them), infrastructure (async job queues, GPU compute, CDN delivery), and product UX (galleries, prompt editors, credit systems). Replicate and Fal AI provide serverless GPU inference for 100+ generative models with pay-per-second billing. Modal Labs is better for teams with custom fine-tuned models that need dedicated GPU capacity. BullMQ handles the async job queue when users submit generation requests. Cloudflare R2 + CDN delivers generated assets cheaply at scale.",
+  "meta_category": "ai-startup",
+  "target_audience": "Product teams building AI image editors, creative tools, avatar generators, marketing asset generators, or video synthesis SaaS products.",
+
+  "tools": [
+    {
+      "slug": "fal-ai",
+      "role": "Serverless image/video inference",
+      "why": "Fal AI offers the fastest cold start times (<200ms) for FLUX, Stable Diffusion, and video models like Kling and Luma Dream Machine — critical for keeping generation times under 5 seconds.",
+      "required": true
+    },
+    {
+      "slug": "replicate",
+      "role": "Model marketplace and inference",
+      "why": "Replicate hosts 10,000+ community models and lets you run or fine-tune them with a single API call — ideal for rapid prototyping before committing to a model choice.",
+      "required": false
+    },
+    {
+      "slug": "stability-ai",
+      "role": "Image generation API",
+      "why": "Stability AI's Stable Image Ultra API provides commercial-license image generation via REST — useful when you need SDXL-class quality without managing your own GPU fleet.",
+      "required": false
+    },
+    {
+      "slug": "bfl-flux",
+      "role": "State-of-the-art image generation model",
+      "why": "FLUX.1 Pro/Dev by Black Forest Labs is the highest-quality open-weight image model in 2025 — delivers photorealistic and artistic outputs that outperform SDXL and DALL-E 3 on most benchmarks.",
+      "required": false
+    },
+    {
+      "slug": "runway-ml",
+      "role": "Video generation API",
+      "why": "Runway Gen-3 Alpha Turbo produces the highest-consistency AI video outputs for commercial use — supports image-to-video, text-to-video, and motion brush controls.",
+      "required": false
+    },
+    {
+      "slug": "kling-ai",
+      "role": "Alternative video generation",
+      "why": "Kling (Kuaishou) delivers competitive video generation quality at lower per-second cost than Runway — strong for Chinese market and cost-sensitive use cases.",
+      "required": false
+    },
+    {
+      "slug": "bullmq",
+      "role": "Async job queue",
+      "why": "Generation requests are inherently async (5–60s). BullMQ on Redis handles job queuing, retries, priority lanes, and concurrency limits with a simple Node.js API.",
+      "required": true
+    },
+    {
+      "slug": "modal-labs",
+      "role": "Custom model fine-tuning and deployment",
+      "why": "Modal runs your custom LoRA or full fine-tuned models on A100s with autoscaling — essential when product differentiation requires a proprietary model that off-the-shelf APIs can't provide.",
+      "required": false
+    },
+    {
+      "slug": "cloudflare",
+      "role": "CDN and asset delivery",
+      "why": "Cloudflare R2 stores generated images and videos with zero egress cost; Cloudflare Images handles on-the-fly resizing and WebP conversion for gallery UX.",
+      "required": true
+    },
+    {
+      "slug": "sentry",
+      "role": "Error monitoring",
+      "why": "GPU inference failures are silent — Sentry captures job exceptions, timeout patterns, and model API errors so you detect generation failure rates before users start complaining.",
+      "required": false
+    }
+  ],
+
+  "alternatives": {
+    "fal-ai": ["replicate", "modal-labs", "together-ai"],
+    "stability-ai": ["openai", "ideogram", "leonardo-ai", "novita-ai"],
+    "runway-ml": ["kling-ai", "luma-ai", "pika-labs", "sora-openai"],
+    "bfl-flux": ["stability-ai", "ideogram"],
+    "bullmq": ["inngest", "trigger-dev", "celery"],
+    "cloudflare": ["aws-bedrock", "supabase"]
+  },
+
+  "gotchas": [
+    "Video generation APIs have long queue times (30–180s) under load — never call them synchronously in a user request. Always return a job ID immediately and poll or use webhooks.",
+    "Replicate's per-second billing is deceptive for video models: a 10-second Gen-3 clip at $0.02/second = $0.20/generation. At 10k generations/month = $2,000 in model costs alone.",
+    "FLUX.1 Dev is non-commercial licensed — you must use FLUX.1 Pro or obtain a commercial agreement for production SaaS products.",
+    "NSFW detection is mandatory for any user-facing generative image product — implement a content moderation layer (e.g. AWS Rekognition or Sightengine) before allowing public access.",
+    "Generated asset storage costs compound fast: 1M 1024x1024 PNG images at ~500KB each = 500GB — implement aggressive CDN caching and convert to WebP/AVIF in the delivery pipeline.",
+    "Fine-tuned model cold starts on Modal/Replicate can be 20–40s for large checkpoint loads — use volume mounts and model warming to keep popular models hot."
+  ],
+
+  "estimated_monthly_cost": "$800–$8,000; dominated by GPU inference costs. Fal AI FLUX.1 Pro at ~$0.05/image × 50k images/month = $2,500.",
+
+  "related_use_cases": [
+    "ai-chatbot-saas-stack",
+    "ai-agent-platform-stack"
+  ],
+
+  "seo": {
+    "title": "AI Image & Video Generation SaaS Stack — Fal AI + FLUX + Runway | tool.news",
+    "meta_description": "Production stack for generative media SaaS: serverless GPU inference, async job queuing, CDN delivery, and custom model fine-tuning.",
+    "keywords": ["ai image generation stack", "fal ai flux", "runway video api", "generative media saas", "stable diffusion infrastructure 2025"]
+  },
+
+  "created_at": "2026-04-20T00:00:00Z",
+  "updated_at": "2026-04-20T00:00:00Z"
+}

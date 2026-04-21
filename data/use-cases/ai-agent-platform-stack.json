@@ -1,0 +1,101 @@
+{
+  "slug": "ai-agent-platform-stack",
+  "title": "Multi-Agent Autonomous Platform",
+  "short_description": "Stack for building production multi-agent systems that browse the web, write and run code, use tools, and complete long-horizon tasks autonomously.",
+  "long_description": "Autonomous agent platforms go far beyond single LLM calls — they require an orchestration layer to route tasks between specialized sub-agents, secure sandboxed environments for code execution, browser automation for web interactions, durable workflow execution for long-running tasks, and a memory layer so agents retain context across sessions. LangGraph provides the stateful, cyclical graph execution model that agent loops require. E2B or Modal runs generated code in isolated sandboxes. Browserbase or Stagehand gives agents a programmatic browser. Temporal or Inngest handles durable multi-step workflows. And Agentops traces every decision so you can debug unexpected agent paths.",
+  "meta_category": "ai-startup",
+  "target_audience": "AI-native startup teams building autonomous task agents, RPA replacements, research agents, or developer productivity bots that take actions in the real world.",
+
+  "tools": [
+    {
+      "slug": "langgraph",
+      "role": "Agent orchestration framework",
+      "why": "LangGraph's directed graph model with cycles, checkpointing, and human-in-the-loop breakpoints is the only major framework that handles complex multi-agent state machines robustly in production.",
+      "required": true
+    },
+    {
+      "slug": "anthropic",
+      "role": "Primary LLM for reasoning",
+      "why": "Claude 3.5 Sonnet and Claude 3.7 Sonnet (extended thinking) outperform GPT-4o on tool-use accuracy and multi-step reasoning, which directly reduces agent hallucination and bad actions.",
+      "required": true
+    },
+    {
+      "slug": "e2b",
+      "role": "Sandboxed code execution",
+      "why": "E2B spins up a cloud sandbox VM in <200ms so agents can execute Python, run shell commands, install packages, and read results safely without touching your infrastructure.",
+      "required": true
+    },
+    {
+      "slug": "browserbase",
+      "role": "Cloud browser for web automation",
+      "why": "Browserbase provides persistent, anti-bot-hardened cloud browsers that agents control via Playwright — no need to manage headless Chrome fleet or deal with IP blocks.",
+      "required": false
+    },
+    {
+      "slug": "stagehand",
+      "role": "AI-native browser automation",
+      "why": "Stagehand wraps Playwright with an LLM observation layer — agents describe what to click in natural language and Stagehand handles the selector logic, dramatically reducing prompt complexity.",
+      "required": false
+    },
+    {
+      "slug": "temporal",
+      "role": "Durable workflow execution",
+      "why": "Agent tasks can run for minutes or hours. Temporal's durable execution model persists state across restarts, retries failed steps, and enforces timeouts — essential for production reliability.",
+      "required": false
+    },
+    {
+      "slug": "mem0",
+      "role": "Agent long-term memory",
+      "why": "Mem0 provides a managed memory layer that agents can write to and query across sessions — stores user preferences, past decisions, and accumulated knowledge in a structured vector+graph store.",
+      "required": false
+    },
+    {
+      "slug": "agentops",
+      "role": "Agent observability",
+      "why": "AgentOps captures every LLM call, tool invocation, token cost, and execution trace in an agent session — built specifically for multi-agent debugging unlike generic APM tools.",
+      "required": true
+    },
+    {
+      "slug": "modal-labs",
+      "role": "Serverless compute for agent tasks",
+      "why": "Modal runs Python functions as GPU-accelerated or CPU serverless jobs with zero infrastructure management — useful for spawning parallel sub-agents and running expensive inference.",
+      "required": false
+    }
+  ],
+
+  "alternatives": {
+    "langgraph": ["crewai", "ag2", "autogen", "agno", "pydantic-ai"],
+    "anthropic": ["openai", "deepseek-api", "kimi-moonshot", "zhipu-ai", "groq"],
+    "e2b": ["modal-labs", "replit"],
+    "browserbase": ["stagehand", "playwright", "apify"],
+    "temporal": ["inngest", "trigger-dev", "celery"],
+    "mem0": ["cognee", "upstash"],
+    "agentops": ["langfuse", "langsmith", "braintrust"]
+  },
+
+  "gotchas": [
+    "Autonomous agents with real tool access (web browsing, code execution, email) can cause irreversible damage — always implement human-in-the-loop checkpoints for destructive actions before shipping to production.",
+    "Agent loops can cycle indefinitely on ambiguous tasks and burn $50+ in tokens in a single runaway session. Set hard token budgets and maximum step counts in LangGraph's recursion_limit.",
+    "LangGraph's checkpointing writes to disk by default — use a PostgreSQL or Redis checkpointer in production or you lose all state on pod restart.",
+    "E2B sandbox sessions timeout after 5 minutes by default — for long-running tasks, ping the sandbox to keep it alive or implement session resume logic.",
+    "Prompt injection through web-scraped content is the #1 security risk for browser-using agents — never pass raw web content directly into an agent's reasoning context without sanitization.",
+    "Multi-agent coordination overhead (routing LLM calls between orchestrator and sub-agents) can add 2-4x latency to tasks. Profile the routing logic before blaming the task LLM."
+  ],
+
+  "estimated_monthly_cost": "$500–$5,000+ depending on task volume; autonomous agent tasks with browser automation can easily run $0.50–$5 per task due to multi-step LLM calls and sandbox compute.",
+
+  "related_use_cases": [
+    "ai-chatbot-saas-stack",
+    "llm-observability-ops-stack",
+    "ai-coding-assistant-app-stack"
+  ],
+
+  "seo": {
+    "title": "Multi-Agent Platform Stack — LangGraph + Claude + E2B + Temporal | tool.news",
+    "meta_description": "Production stack for autonomous multi-agent platforms: orchestration, sandboxed code execution, browser automation, durable workflows, and observability.",
+    "keywords": ["multi-agent stack", "langgraph agents", "autonomous ai platform", "e2b sandbox", "agent orchestration 2025"]
+  },
+
+  "created_at": "2026-04-20T00:00:00Z",
+  "updated_at": "2026-04-20T00:00:00Z"
+}

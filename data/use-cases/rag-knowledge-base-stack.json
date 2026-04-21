@@ -1,0 +1,101 @@
+{
+  "slug": "rag-knowledge-base-stack",
+  "title": "RAG Knowledge Base (Internal or External)",
+  "short_description": "Retrieval-Augmented Generation stack for grounding an LLM in your company's docs, PDFs, and data sources with accurate citations.",
+  "long_description": "RAG turns a general-purpose LLM into a domain expert by retrieving relevant document chunks at query time and injecting them into the model's context. A production-grade RAG pipeline requires robust document ingestion (handling PDFs, HTML, DOCX), high-quality embedding and chunking strategies, a vector store with hybrid search, a reranker to filter low-quality hits, and an LLM orchestration framework that assembles the prompt correctly. LlamaIndex is the go-to framework for the retrieval pipeline; Qdrant or Pinecone serves as the vector store; Cohere or Voyage AI provides best-in-class reranking; and LangSmith or Langfuse traces every retrieval round-trip so you can iterate on chunk sizes and query rewriting.",
+  "meta_category": "ai-startup",
+  "target_audience": "Product and engineering teams building internal knowledge assistants, customer-facing documentation search, or enterprise search over proprietary data.",
+
+  "tools": [
+    {
+      "slug": "llamaindex",
+      "role": "RAG orchestration framework",
+      "why": "LlamaIndex provides the full retrieval pipeline out of the box: document loaders, node parsers, embedding models, query engines, and multi-step query rewriting. Faster to wire than building from primitives.",
+      "required": true
+    },
+    {
+      "slug": "qdrant",
+      "role": "Vector store",
+      "why": "Qdrant's hybrid search (dense + sparse BM25 fusion) reduces the hallucination rate from retrieval misses by 30–50% compared to pure semantic search. Fully open-source and self-hostable.",
+      "required": true
+    },
+    {
+      "slug": "openai",
+      "role": "Embedding + generation",
+      "why": "text-embedding-3-large produces the highest-quality English embeddings at 3,072 dimensions; GPT-4o handles synthesis of retrieved chunks.",
+      "required": true
+    },
+    {
+      "slug": "unstructured",
+      "role": "Document ingestion",
+      "why": "Unstructured parses PDFs, HTML, DOCX, PPTX, and images (via OCR) into clean text chunks, preserving table structure that naive text splitters destroy.",
+      "required": true
+    },
+    {
+      "slug": "cohere",
+      "role": "Reranking",
+      "why": "Cohere Rerank-3 re-scores the top-k retrieved chunks by semantic relevance before injection, filtering noise and cutting context window waste by 40–60%.",
+      "required": false
+    },
+    {
+      "slug": "langsmith",
+      "role": "Retrieval tracing and evaluation",
+      "why": "LangSmith records every query, retrieved nodes, prompt, and output. The LangSmith Evals framework lets you run automated RAGAS-style correctness benchmarks on dataset regressions.",
+      "required": false
+    },
+    {
+      "slug": "ragas",
+      "role": "RAG evaluation metrics",
+      "why": "RAGAS computes faithfulness, answer relevancy, context precision, and context recall without human labels — critical for catching retrieval drift after re-indexing.",
+      "required": false
+    },
+    {
+      "slug": "firecrawl",
+      "role": "Web and documentation crawling",
+      "why": "Firecrawl turns any documentation site or web app into clean Markdown chunks ready for indexing — handles JavaScript-rendered pages that simple HTTP scrapers miss.",
+      "required": false
+    },
+    {
+      "slug": "supabase",
+      "role": "Metadata and user data store",
+      "why": "Supabase postgres stores document metadata, access control lists, and user queries alongside pgvector as a lightweight secondary vector index for simpler setups.",
+      "required": false
+    }
+  ],
+
+  "alternatives": {
+    "llamaindex": ["langchain", "dspy"],
+    "qdrant": ["pinecone", "weaviate", "pgvector", "milvus", "chroma"],
+    "openai": ["anthropic", "cohere", "deepseek-api", "qwen-api", "zhipu-ai"],
+    "unstructured": ["firecrawl"],
+    "cohere": ["voyage-ai", "jina-ai"],
+    "langsmith": ["langfuse", "braintrust", "opik"],
+    "ragas": ["deepeval", "trulens"]
+  },
+
+  "gotchas": [
+    "Chunk size is the single biggest lever — 512 tokens is a safe default but optimal size varies wildly by document type. Always benchmark retrieval precision before shipping.",
+    "text-embedding-3-large is 5x the cost of text-embedding-3-small with ~15% quality gain — use small for high-volume production ingestion and large only for re-ranking experiments.",
+    "Qdrant's HNSW index must be rebuilt on major schema changes — plan downtime or maintain a blue/green collection during re-indexing.",
+    "Context stuffing with retrieved chunks eats the model's output budget. GPT-4o's 128k context is not free: at $15/1M input tokens, 100k input tokens per query = $1.50/query.",
+    "Without access control, RAG can leak documents between tenants — implement payload filters in Qdrant or row-level security in Supabase before multi-tenant launch.",
+    "Hallucination in RAG is rarely eliminated, only reduced — always display source citations so users can verify answers."
+  ],
+
+  "estimated_monthly_cost": "$200–$2,000; primary cost drivers are embedding inference volume and vector store storage/queries. Self-hosting Qdrant cuts storage cost by 80%.",
+
+  "related_use_cases": [
+    "ai-chatbot-saas-stack",
+    "llm-observability-ops-stack",
+    "ai-coding-assistant-app-stack"
+  ],
+
+  "seo": {
+    "title": "RAG Knowledge Base Stack — LlamaIndex + Qdrant + OpenAI | tool.news",
+    "meta_description": "The complete RAG stack for production knowledge bases: document ingestion, vector search, reranking, evaluation, and LLM synthesis.",
+    "keywords": ["rag stack", "retrieval augmented generation", "llamaindex qdrant", "knowledge base ai", "vector search 2025", "rag evaluation"]
+  },
+
+  "created_at": "2026-04-20T00:00:00Z",
+  "updated_at": "2026-04-20T00:00:00Z"
+}

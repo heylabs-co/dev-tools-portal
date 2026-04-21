@@ -1,0 +1,212 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import { getCollection, getEntry } from 'astro:content';
+
+export async function getStaticPaths() {
+  const useCases = await getCollection('useCases');
+  return useCases.map((uc) => ({
+    params: { slug: uc.data.slug },
+    props: { useCase: uc },
+  }));
+}
+
+const { useCase } = Astro.props;
+const d = useCase.data;
+
+// Resolve referenced tools by slug → company data
+const companies = await getCollection('companies');
+const companyMap = new Map(companies.map((c) => [c.data.slug, c.data]));
+const resolvedTools = d.tools.map((t) => ({
+  ...t,
+  company: companyMap.get(t.slug),
+}));
+
+// Build related use cases
+const allUseCases = await getCollection('useCases');
+const related = (d.related_use_cases ?? [])
+  .map((slug) => allUseCases.find((uc) => uc.data.slug === slug))
+  .filter((uc): uc is NonNullable<typeof uc> => uc !== undefined)
+  .slice(0, 4);
+
+const metaCategoryLabels: Record<string, string> = {
+  'b2b-saas': 'B2B SaaS',
+  'consumer-mobile': 'Consumer Mobile',
+  'ai-startup': 'AI Startup',
+  fintech: 'Fintech',
+  'devtools-infra': 'DevTools & Infra',
+  ecommerce: 'E-commerce',
+};
+
+const pageTitle = d.seo?.title ?? d.title;
+const pageDescription = d.seo?.meta_description ?? d.short_description;
+
+// JSON-LD HowTo schema
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'HowTo',
+  name: d.title,
+  description: d.short_description,
+  step: resolvedTools.map((t, i) => ({
+    '@type': 'HowToStep',
+    position: i + 1,
+    name: t.role,
+    text: t.why,
+    url: `https://tool.news/tools/${t.slug}/`,
+  })),
+};
+---
+
+<BaseLayout title={pageTitle} description={pageDescription} jsonLd={jsonLd}>
+  <article
+    class="mx-auto max-w-4xl px-6 py-12"
+    data-pagefind-body
+    data-pagefind-filter="type:Use Case"
+    data-pagefind-meta="type:Use Case"
+  >
+    <div data-pagefind-ignore="all" hidden>
+      <span data-pagefind-filter={`category:${metaCategoryLabels[d.meta_category] ?? d.meta_category}`}></span>
+    </div>
+
+    <Breadcrumbs
+      items={[
+        { label: 'Home', href: '/' },
+        { label: 'Use Cases', href: '/use-cases/' },
+        { label: metaCategoryLabels[d.meta_category] ?? d.meta_category, href: `/use-cases/#${d.meta_category}` },
+        { label: d.title },
+      ]}
+    />
+
+    <!-- Hero -->
+    <header class="mt-8 mb-10">
+      <span
+        class="inline-flex items-center rounded-full border px-3 py-1 text-xs font-semibold uppercase tracking-wider"
+        style="border-color: var(--color-border); color: var(--color-accent);"
+      >
+        {metaCategoryLabels[d.meta_category] ?? d.meta_category}
+      </span>
+      <h1 class="mt-4 text-4xl font-extrabold tracking-tight leading-[1.15]" style="color: var(--color-text);">
+        {d.title}
+      </h1>
+      <p class="mt-4 text-lg leading-relaxed" style="color: var(--color-muted);">
+        {d.short_description}
+      </p>
+      <div class="mt-5 flex flex-wrap items-center gap-3 text-sm" style="color: var(--color-muted);">
+        <span class="inline-flex items-center gap-1 rounded-full border px-3 py-1" style="border-color: var(--color-border);">
+          👥 {d.target_audience}
+        </span>
+        {d.estimated_monthly_cost && (
+          <span class="inline-flex items-center gap-1 rounded-full border px-3 py-1" style="border-color: var(--color-border);">
+            💰 {d.estimated_monthly_cost}
+          </span>
+        )}
+        <span class="inline-flex items-center gap-1 rounded-full border px-3 py-1" style="border-color: var(--color-border);">
+          📦 {d.tools.length} tools
+        </span>
+      </div>
+    </header>
+
+    {d.long_description && (
+      <section class="mb-10">
+        <div class="prose max-w-none text-[15px] leading-relaxed whitespace-pre-wrap" style="color: var(--color-text-secondary);">
+          {d.long_description}
+        </div>
+      </section>
+    )}
+
+    <!-- The Stack -->
+    <section class="mb-12">
+      <h2 class="mb-5 flex items-center gap-3 text-2xl font-bold" style="color: var(--color-text);">
+        <span class="block w-1 h-6 rounded-full" style="background-color: var(--color-accent);"></span>
+        The Stack
+      </h2>
+      <div class="space-y-3">
+        {resolvedTools.map((t) => (
+          <a
+            href={`/tools/${t.slug}/`}
+            class="group block rounded-xl border p-5 transition-all duration-150 hover:-translate-y-0.5 hover:shadow-md"
+            style="border-color: var(--color-border); background-color: var(--color-surface);"
+          >
+            <div class="flex items-start gap-4">
+              {t.company?.logo && (
+                <img
+                  src={t.company.logo}
+                  alt=""
+                  class="h-11 w-11 shrink-0 rounded-lg object-contain p-1"
+                  style="background-color: var(--color-elevated);"
+                  loading="lazy"
+                  onerror="this.style.display='none'"
+                />
+              )}
+              <div class="min-w-0 flex-1">
+                <div class="flex flex-wrap items-baseline gap-2">
+                  <h3 class="text-base font-semibold transition-colors duration-150 group-hover:text-[#5E6AD2] dark:group-hover:text-[#818CF8]" style="color: var(--color-text);">
+                    {t.company?.name ?? t.slug}
+                  </h3>
+                  <span class="text-sm font-medium" style="color: var(--color-muted);">
+                    — {t.role}
+                  </span>
+                  {!t.required && (
+                    <span class="rounded-full border px-2 py-0.5 text-[11px] font-medium uppercase tracking-wider" style="border-color: var(--color-border); color: var(--color-muted);">
+                      optional
+                    </span>
+                  )}
+                </div>
+                <p class="mt-1.5 text-sm leading-relaxed" style="color: var(--color-text-secondary);">
+                  {t.why}
+                </p>
+                {d.alternatives?.[t.slug] && d.alternatives[t.slug].length > 0 && (
+                  <p class="mt-2 text-xs" style="color: var(--color-muted);">
+                    Alternatives: {d.alternatives[t.slug].join(', ')}
+                  </p>
+                )}
+              </div>
+            </div>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    {d.gotchas && d.gotchas.length > 0 && (
+      <section class="mb-12">
+        <h2 class="mb-5 flex items-center gap-3 text-2xl font-bold" style="color: var(--color-text);">
+          <span class="block w-1 h-6 rounded-full bg-amber-500"></span>
+          Gotchas
+        </h2>
+        <ul class="space-y-3">
+          {d.gotchas.map((g) => (
+            <li class="flex items-start gap-3 rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 dark:border-amber-900/50 dark:bg-amber-950/20">
+              <span class="mt-0.5 text-amber-600 dark:text-amber-400">⚠️</span>
+              <span class="text-sm leading-relaxed text-amber-900 dark:text-amber-100">{g}</span>
+            </li>
+          ))}
+        </ul>
+      </section>
+    )}
+
+    {related.length > 0 && (
+      <section class="mb-12">
+        <h2 class="mb-5 flex items-center gap-3 text-2xl font-bold" style="color: var(--color-text);">
+          <span class="block w-1 h-6 rounded-full bg-[#5E6AD2] dark:bg-[#818CF8]"></span>
+          Related Stacks
+        </h2>
+        <div class="grid grid-cols-1 gap-3 sm:grid-cols-2">
+          {related.map((uc) => (
+            <a
+              href={`/use-cases/${uc.data.slug}/`}
+              class="group rounded-xl border p-4 transition-all duration-150 hover:-translate-y-0.5 hover:shadow-md"
+              style="border-color: var(--color-border); background-color: var(--color-surface);"
+            >
+              <h3 class="text-sm font-semibold transition-colors duration-150 group-hover:text-[#5E6AD2] dark:group-hover:text-[#818CF8]" style="color: var(--color-text);">
+                {uc.data.title}
+              </h3>
+              <p class="mt-1 line-clamp-2 text-xs" style="color: var(--color-muted);">
+                {uc.data.short_description}
+              </p>
+            </a>
+          ))}
+        </div>
+      </section>
+    )}
+  </article>
+</BaseLayout>

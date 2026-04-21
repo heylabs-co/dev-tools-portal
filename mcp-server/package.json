@@ -1,14 +1,32 @@
 {
-  "name": "devtools-mcp",
-  "version": "1.0.0",
+  "name": "@tool-news/mcp",
+  "version": "2.0.0",
   "type": "module",
-  "description": "MCP server for DevTools Portal — search, compare, and get recommendations for 630+ developer tools",
+  "description": "MCP server for tool.news — search, compare, and get install commands for 7,400+ developer tools, MCP servers, AI skills, VS Code extensions, and JetBrains plugins.",
   "bin": {
-    "devtools-mcp": "./build/index.js"
+    "tool-news-mcp": "./build/index.js"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "claude",
+    "cursor",
+    "devtools",
+    "catalog",
+    "tool-news"
+  ],
+  "author": "HeyLabs",
+  "license": "MIT",
+  "homepage": "https://tool.news/mcp/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/heylabs-co/dev-tools-portal.git",
+    "directory": "mcp-server"
   },
   "scripts": {
     "build": "tsc && chmod 755 build/index.js",
-    "start": "node build/index.js"
+    "start": "node build/index.js",
+    "dev": "tsc --watch"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.12.0",
@@ -18,5 +36,5 @@
     "typescript": "^5.8.0",
     "@types/node": "^22.0.0"
   },
-  "files": ["build"]
+  "files": ["build", "README.md"]
 }

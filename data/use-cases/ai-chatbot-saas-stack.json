@@ -1,0 +1,93 @@
+{
+  "slug": "ai-chatbot-saas-stack",
+  "title": "Customer-Facing AI Chatbot SaaS",
+  "short_description": "Production stack for shipping a multi-tenant AI chatbot with streaming, memory, guardrails, and usage-based billing.",
+  "long_description": "Building a customer-facing chatbot SaaS requires more than wrapping a language model in a REST endpoint. You need streaming responses with low latency, per-tenant conversation memory, content guardrails to block prompt injection and off-topic outputs, usage metering for billing, and observability to catch regressions. This stack pairs OpenAI or Anthropic for the core LLM, LangChain or Vercel AI SDK for orchestration, Upstash Redis for fast conversation state, Nemo Guardrails or Guardrails AI for policy enforcement, and Langfuse for tracing every token that flows through your pipeline.",
+  "meta_category": "ai-startup",
+  "target_audience": "Indie hackers and early-stage SaaS teams shipping a chat widget or embedded AI assistant product to paying customers.",
+
+  "tools": [
+    {
+      "slug": "openai",
+      "role": "Primary LLM",
+      "why": "GPT-4o delivers the best out-of-the-box instruction following, function calling, and JSON mode for structured responses. The streaming API keeps perceived latency under 1 second.",
+      "required": true
+    },
+    {
+      "slug": "vercel-ai-sdk",
+      "role": "Streaming orchestration layer",
+      "why": "AI SDK by Vercel handles SSE streaming, tool calling, and multi-step agent loops with a single `streamText` call — saves hundreds of lines of glue code.",
+      "required": true
+    },
+    {
+      "slug": "langfuse",
+      "role": "LLM observability and tracing",
+      "why": "Every conversation turn is traced with token counts, latency, and model version. Lets you compare prompt iterations and catch quality regressions before customers notice.",
+      "required": true
+    },
+    {
+      "slug": "upstash",
+      "role": "Conversation memory store",
+      "why": "Upstash Redis gives sub-millisecond reads for conversation history in a serverless-compatible HTTP API — no persistent connections, no cold starts.",
+      "required": true
+    },
+    {
+      "slug": "nemo-guardrails",
+      "role": "Content policy enforcement",
+      "why": "Declarative Colang rules intercept off-topic requests, jailbreak attempts, and PII leakage before they hit the model or reach the user.",
+      "required": false
+    },
+    {
+      "slug": "anthropic",
+      "role": "Alternative primary LLM",
+      "why": "Claude 3.5 Sonnet is preferred when outputs need to be longer, more nuanced, or when customers require data processing agreements with stricter privacy terms.",
+      "required": false
+    },
+    {
+      "slug": "stripe",
+      "role": "Usage-based billing",
+      "why": "Stripe Meters + Billing lets you charge per token or per conversation without building a custom billing engine.",
+      "required": true
+    },
+    {
+      "slug": "next-js",
+      "role": "App framework",
+      "why": "Next.js App Router with Edge Runtime routes stream responses to users with minimal infrastructure — deploys to Vercel in one command.",
+      "required": true
+    }
+  ],
+
+  "alternatives": {
+    "openai": ["anthropic", "deepseek-api", "zhipu-ai", "kimi-moonshot", "groq"],
+    "vercel-ai-sdk": ["langchain", "llamaindex"],
+    "langfuse": ["langsmith", "helicone", "braintrust"],
+    "upstash": ["redis", "mem0"],
+    "nemo-guardrails": ["guardrails-ai"],
+    "stripe": ["lemon-squeezy"]
+  },
+
+  "gotchas": [
+    "OpenAI rate limits (TPM/RPM) will throttle multi-tenant traffic unexpectedly — implement per-tenant rate limiting in your API layer before launch.",
+    "Conversation context windows fill up fast with long chat histories; naively appending messages leads to 10x cost inflation. Implement sliding window or summary-based truncation.",
+    "Prompt injection via user input can exfiltrate system prompt contents — always treat user messages as untrusted and use a guardrails layer for customer-facing apps.",
+    "Langfuse's free tier caps ingestion at 50k events/month — at scale, switch to self-hosted Langfuse or upgrade before you're blind in production.",
+    "Streaming over Vercel Edge Functions has a 25s timeout ceiling — long document analysis tasks will silently cut off unless you handle reconnects or use background jobs."
+  ],
+
+  "estimated_monthly_cost": "$150–$1,200 depending on token volume; OpenAI GPT-4o at ~$5/1M output tokens is the dominant cost driver.",
+
+  "related_use_cases": [
+    "rag-knowledge-base-stack",
+    "llm-observability-ops-stack",
+    "ai-agent-platform-stack"
+  ],
+
+  "seo": {
+    "title": "AI Chatbot SaaS Stack — OpenAI + Vercel AI SDK + Langfuse | tool.news",
+    "meta_description": "Production-ready tool stack for building a customer-facing AI chatbot SaaS: LLM, streaming, memory, guardrails, billing, and observability.",
+    "keywords": ["ai chatbot saas", "openai streaming", "vercel ai sdk", "langfuse tracing", "nemo guardrails", "chatbot stack 2025"]
+  },
+
+  "created_at": "2026-04-20T00:00:00Z",
+  "updated_at": "2026-04-20T00:00:00Z"
+}

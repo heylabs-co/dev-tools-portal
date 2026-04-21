@@ -1,0 +1,116 @@
+{
+  "slug": "cross-border-remittance-stack",
+  "title": "Cross-Border Remittance & International Money Transfer App",
+  "short_description": "Build a consumer or B2B remittance product that moves money across borders with competitive FX rates, local payout rails, and AML compliance.",
+  "long_description": "Remittance is one of the most regulated and operationally complex verticals in fintech. You need to: accept fiat in the sender's country (card, bank transfer, cash), convert at competitive FX rates, route to a local payout network in the recipient country (bank account, mobile money, cash agent, wallet), monitor every transaction for AML/CFT, screen against OFAC/EU sanctions lists, and file SARs when required. For each corridor you also need the right payment licences or a licensed partner. This stack covers everything from sender payment collection to last-mile delivery in emerging markets.",
+  "meta_category": "fintech",
+  "target_audience": "Fintech founders building consumer or SMB cross-border payment products, neobanks adding international transfer features, or enterprises needing B2B FX/payment flows.",
+
+  "tools": [
+    {
+      "slug": "currencycloud",
+      "role": "FX conversion and multi-currency settlement",
+      "why": "Currencycloud (now part of Visa) provides API-based FX at interbank-adjacent rates, virtual multi-currency accounts per customer, and settlement in 35+ currencies. The Collections and Payments API covers the full corridor in a single integration.",
+      "required": true
+    },
+    {
+      "slug": "airwallex",
+      "role": "Alternative multi-currency infrastructure with built-in SWIFT and local rails",
+      "why": "Airwallex offers global accounts, local collection in AU/UK/EU/US/HK/SG, FX conversion, and payouts to 150+ countries. Strong option if you need to collect in APAC (Australia, Singapore, HK) and pay out in LatAm or Africa.",
+      "required": false
+    },
+    {
+      "slug": "nium",
+      "role": "Real-time cross-border payments network (B2B)",
+      "why": "Nium's licensed network reaches 190+ countries with real-time bank transfers to 100+ markets. Particularly strong for B2B corridors (SMB payroll, supplier payments) with a single API connection to local rails globally.",
+      "required": false
+    },
+    {
+      "slug": "thunes",
+      "role": "Last-mile payout to mobile money and cash networks in Africa, LatAm, APAC",
+      "why": "Thunes connects to 700+ mobile money wallets and cash agent networks across Africa (M-Pesa, MTN MoMo), LatAm, and Southeast Asia — corridors where bank account penetration is low. Essential for true financial inclusion remittance.",
+      "required": false
+    },
+    {
+      "slug": "dlocal",
+      "role": "Card collection and local payment methods in LatAm, Africa, APAC",
+      "why": "dLocal provides a single API to accept payments via local methods in 40+ emerging markets (Boleto in Brazil, OXXO in Mexico, M-Pesa in Kenya). Critical for the 'sender side' when your users are in emerging markets.",
+      "required": false
+    },
+    {
+      "slug": "stripe",
+      "role": "Card and bank debit collection in developed markets (US, EU, UK, AU)",
+      "why": "For the sender-side in North America and Europe, Stripe handles card, ACH Debit, SEPA Direct Debit, and BACS. Low integration friction and 3DS2 compliance out of the box.",
+      "required": true
+    },
+    {
+      "slug": "sumsub",
+      "role": "Global KYC/AML onboarding and ongoing monitoring",
+      "why": "Remittance products need KYC at onboarding (ID + selfie), sanctions screening at transaction time, and ongoing monitoring for high-risk customers. Sumsub's 220-country coverage makes it the default choice for multi-corridor products.",
+      "required": true
+    },
+    {
+      "slug": "complyadvantage",
+      "role": "Real-time sanctions, PEP, and adverse media screening",
+      "why": "Every transfer must screen both sender and recipient against OFAC SDN, EU sanctions, and PEP lists in real time. ComplyAdvantage updates within 15 minutes of new designations and exposes a REST API for transaction screening.",
+      "required": true
+    },
+    {
+      "slug": "unit21",
+      "role": "AML transaction monitoring and SAR management",
+      "why": "As a Money Services Business, you must file SARs within 30 days of suspicious activity. Unit21 provides rule-based transaction monitoring (structuring detection, velocity rules, corridor-specific thresholds) and a case management dashboard for SAR filing.",
+      "required": true
+    },
+    {
+      "slug": "hummingbird",
+      "role": "SAR/CTR filing workflow and BSA officer tooling",
+      "why": "Hummingbird streamlines the FinCEN SAR filing process with auto-populated forms, workflow approvals, and audit trails. Designed for the BSA officer role that every US MSB must maintain.",
+      "required": false
+    }
+  ],
+
+  "alternatives": {
+    "currencycloud": ["airwallex", "wise", "nium"],
+    "thunes": ["chipper-cash", "flutterwave", "dlocal"],
+    "sumsub": ["jumio", "onfido", "trulioo"],
+    "complyadvantage": ["chainalysis", "elliptic"],
+    "unit21": ["sardine", "feedzai"]
+  },
+
+  "gotchas": [
+    "Money Transmitter Licences (MTLs): remittance is the most heavily licensed fintech vertical. In the US you need an MTL in each state you operate in (or use a licensed partner/sponsor bank). In EU you need an EMI or PI licence. Budget 12–18 months and $500K+ in legal fees for direct licensing.",
+    "Corridor-specific compliance: FATF travel rule requires you to share sender/beneficiary data for transfers >$3,000 (US) or €1,000 (EU). Implement travel rule compliance from day one — retrofitting is painful.",
+    "FX margin vs spread: remittance companies make money on FX spread. CurrencyCloud and Airwallex charge a markup over interbank. Negotiate rates early — at low volume expect 0.5–1.5% spread; at >$10M/month you can negotiate down to 0.1–0.3%.",
+    "Bank account verification before payout: always verify recipient bank accounts (micro-deposit or instant verification) before sending. Failed payouts in APAC and Africa are expensive to reverse or re-route.",
+    "Sanction screening latency: your compliance provider must return results in <500ms so you can block the transaction inline. Test your p99 latency under load — slowdowns cause transaction failures, not just delays.",
+    "Stale rate locks: FX quotes are typically locked for 30–60 seconds. If the user takes longer to confirm, re-quote. Stale rates at high volume create FX exposure that compounds quickly."
+  ],
+
+  "estimated_monthly_cost": "$2,000–$15,000/month in platform fees (excluding FX spread and per-transaction fees). CurrencyCloud: custom pricing, typically 0.2–0.8% FX margin. Sumsub: ~$2–5/verification. ComplyAdvantage: $500–$3,000/month base. Unit21: $1,500–$5,000/month.",
+
+  "related_use_cases": [
+    "kyc-kyb-compliance-api-stack",
+    "two-sided-marketplace-payments",
+    "crypto-onramp-for-app"
+  ],
+
+  "seo": {
+    "title": "Cross-Border Remittance Stack — FX, Payouts, AML & Compliance APIs",
+    "meta_description": "Build a remittance or international money transfer product with CurrencyCloud, Airwallex, Thunes for last-mile payouts, Sumsub KYC, and ComplyAdvantage sanctions screening.",
+    "keywords": [
+      "remittance api stack",
+      "cross-border payments",
+      "international money transfer",
+      "currencycloud api",
+      "fx api",
+      "mobile money payout",
+      "aml compliance fintech",
+      "money transmitter",
+      "thunes api",
+      "sumsub kyc"
+    ]
+  },
+
+  "created_at": "2026-04-20T00:00:00Z",
+  "updated_at": "2026-04-20T00:00:00Z"
+}

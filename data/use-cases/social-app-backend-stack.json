@@ -1,0 +1,107 @@
+{
+  "slug": "social-app-backend-stack",
+  "title": "Social & Community Mobile App Infrastructure",
+  "short_description": "Production backend for consumer social apps: real-time chat, feeds, media storage, moderation, push notifications, and growth attribution — without a custom server fleet.",
+  "long_description": "Consumer social apps have some of the most demanding backend requirements in mobile: sub-second feed ranking, real-time presence and typing indicators, media transcoding at scale, user-generated content moderation, viral loop attribution, and aggressive push notification re-engagement. Building all of this yourself is how early-stage teams run out of runway before they find product-market fit. This stack delegates the hardest infrastructure problems to purpose-built services — Stream for feeds and chat, Supabase for structured user data and auth, Cloudinary for media, OneSignal for push — so the team can focus on the social mechanics that actually differentiate the product. AppsFlyer with deep-link attribution (via Branch) closes the viral loop so every shared link drives measurable installs.",
+  "meta_category": "consumer-mobile",
+  "target_audience": "Mobile developers building consumer social apps, community platforms, or creator-focused apps that require feeds, chat, media sharing, and viral growth mechanics",
+
+  "tools": [
+    {
+      "slug": "stream",
+      "role": "Activity feeds & real-time chat",
+      "why": "Purpose-built feed infrastructure that handles ranked timelines, follow graphs, aggregation, and real-time chat at scale — saves months of custom feed infrastructure work and is used by 1B+ end users.",
+      "required": true
+    },
+    {
+      "slug": "supabase",
+      "role": "Auth, database & real-time presence",
+      "why": "Postgres with row-level security for per-user data isolation, real-time channel subscriptions for presence/typing indicators, and OAuth social login — all from one managed service.",
+      "required": true
+    },
+    {
+      "slug": "cloudinary",
+      "role": "Media upload, transcoding & delivery",
+      "why": "Handles image/video upload directly from mobile (signed upload presets), on-the-fly transcoding, CDN delivery, and automatic content moderation APIs — prevents media serving from becoming a bottleneck.",
+      "required": true
+    },
+    {
+      "slug": "onesignal",
+      "role": "Push notifications & in-app messaging",
+      "why": "Sends social triggers (new followers, likes, replies) via APNs and FCM with per-user segmentation, notification templates, and delivery analytics — critical for DAU retention in social apps.",
+      "required": true
+    },
+    {
+      "slug": "branch",
+      "role": "Deep linking & viral loop attribution",
+      "why": "Creates deferred deep links that survive App Store and Google Play installs, attributing new users to the exact content or referral that drove them — essential for share-to-install growth loops.",
+      "required": true
+    },
+    {
+      "slug": "appsflyer",
+      "role": "Install attribution & growth analytics",
+      "why": "Measures paid and organic install sources with SKAdNetwork and Privacy Sandbox support, integrating with Branch for a complete paid-to-organic attribution picture.",
+      "required": false
+    },
+    {
+      "slug": "amplitude",
+      "role": "Product analytics & retention",
+      "why": "Tracks D1/D7/D30 retention, engagement funnels, and social graph metrics (follower growth, content creation rates) with cohort analysis essential for social product iteration.",
+      "required": true
+    },
+    {
+      "slug": "sentry",
+      "role": "Error monitoring & performance",
+      "why": "Captures API timeouts, feed render errors, and media upload failures with full request context — helps you triage regressions before 1-star reviews accumulate.",
+      "required": true
+    },
+    {
+      "slug": "braze",
+      "role": "Lifecycle messaging & CRM",
+      "why": "Orchestrates multi-channel re-engagement (push, email, in-app) based on user behaviour, with connected content blocks and Canvas automation for onboarding flows and win-back campaigns.",
+      "required": false
+    }
+  ],
+
+  "alternatives": {
+    "stream": ["sendbird", "cometchat", "pubnub"],
+    "supabase": ["firebase", "appwrite", "convex"],
+    "cloudinary": ["imgix", "imgproxy", "firebase"],
+    "onesignal": ["braze", "airship", "clevertap"],
+    "branch": ["appsflyer", "adjust"],
+    "appsflyer": ["adjust", "singular", "kochava"],
+    "amplitude": ["mixpanel", "posthog", "heap"],
+    "sentry": ["bugsnag", "firebase-crashlytics", "datadog"],
+    "braze": ["clevertap", "moengage", "leanplum"]
+  },
+
+  "gotchas": [
+    "Apple's privacy manifest requirements (introduced in iOS 17) require you to declare every third-party SDK's reason codes for using certain APIs (UserDefaults, file timestamps, disk space, etc.) in a PrivacyInfo.xcprivacy file. Stream Chat SDK, Branch SDK, and AppsFlyer SDK all access these APIs. Missing entries cause App Store submission rejection with no warning. Audit all SDK privacy manifests before your first iOS 17-targeted release.",
+    "Stream's Activity Feed counts in the free tier (25 MAU) are easy to exhaust during TestFlight. Stream charges per MAU on the paid plan, and social apps with viral growth can see MAU spike 10x overnight. Model your projected Stream cost at 100k MAU before selecting a feed architecture — at that scale a self-hosted open-source alternative (e.g. building on Supabase real-time) may be more cost-effective.",
+    "Branch deferred deep links require the app to call Branch.getInstance().initSession() early in the app lifecycle — before any navigation occurs. On React Native, this means handling the initial URL in your root navigator before rendering screens. Getting this ordering wrong causes the deferred deep link to fire on the wrong screen or not at all, silently breaking your viral loop."
+  ],
+
+  "estimated_monthly_cost": "$0–$400 at launch (Stream free 25 MAU, Supabase free tier, Cloudinary free 25 credits, OneSignal free 10k subscribers, Branch free 10k installs). Scales to $2k–$8k/month at 200k MAU depending on Stream plan and media volume.",
+
+  "related_use_cases": [
+    "ios-subscription-app-stack",
+    "cross-platform-mobile-iap",
+    "fitness-wellness-app-stack"
+  ],
+
+  "seo": {
+    "title": "Social App Backend Stack — Stream, Supabase, Branch & Braze for Mobile",
+    "meta_description": "The best backend infrastructure for consumer social mobile apps in 2026. Covers real-time feeds, chat, media upload, viral deep links, push notifications, and product analytics.",
+    "keywords": [
+      "social app backend",
+      "mobile social infrastructure",
+      "stream feeds react native",
+      "branch deep linking",
+      "supabase social app",
+      "consumer mobile backend stack"
+    ]
+  },
+
+  "created_at": "2026-04-21",
+  "updated_at": "2026-04-21"
+}

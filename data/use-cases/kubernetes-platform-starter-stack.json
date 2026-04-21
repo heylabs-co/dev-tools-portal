@@ -1,0 +1,115 @@
+{
+  "slug": "kubernetes-platform-starter-stack",
+  "title": "Kubernetes Platform Foundation",
+  "short_description": "Core tooling for an internal Kubernetes platform team — GitOps delivery, policy enforcement, secret management, cluster autoscaling, and backup.",
+  "meta_category": "devtools-infra",
+  "target_audience": "Platform/infra teams at companies adopting Kubernetes who need a repeatable, secure, and operationally sound cluster foundation",
+
+  "tools": [
+    {
+      "slug": "argocd",
+      "role": "GitOps continuous delivery (declarative path)",
+      "why": "Syncs Kubernetes manifests from Git to clusters. UI-first with strong RBAC and multi-cluster support. Most widely adopted GitOps tool with a large community and plugin ecosystem.",
+      "required": false
+    },
+    {
+      "slug": "fluxcd",
+      "role": "GitOps continuous delivery (Kubernetes-native path)",
+      "why": "Controller-only (no UI by default), pure Kubernetes CRD-based. Slightly more GitOps-orthodox than Argo CD. Better for teams that want to avoid cluster-side UI exposure.",
+      "required": false
+    },
+    {
+      "slug": "helm",
+      "role": "Kubernetes package manager",
+      "why": "De-facto standard for packaging and deploying Kubernetes applications. Required for almost every third-party chart in the ecosystem. Pairs with Argo CD or Flux for GitOps delivery.",
+      "required": true
+    },
+    {
+      "slug": "cilium",
+      "role": "eBPF-based CNI networking and security",
+      "why": "Replaces iptables with eBPF for high-performance pod networking and Kubernetes NetworkPolicy enforcement. Provides built-in service mesh (Cilium Mesh), Hubble observability, and L7 policy.",
+      "required": false
+    },
+    {
+      "slug": "cert-manager",
+      "role": "TLS certificate automation",
+      "why": "Automates Let's Encrypt (and internal CA) certificate issuance and renewal for Ingress, Gateway API, and pod mTLS. Required for any cluster serving HTTPS traffic.",
+      "required": true
+    },
+    {
+      "slug": "external-secrets-operator",
+      "role": "Secret sync from external vaults",
+      "why": "Syncs secrets from AWS Secrets Manager, HashiCorp Vault, GCP Secret Manager, and Azure Key Vault into Kubernetes Secrets. Eliminates storing plaintext secrets in Git.",
+      "required": true
+    },
+    {
+      "slug": "karpenter",
+      "role": "Node autoscaler",
+      "why": "Provisions the right EC2 instance type for each workload within seconds — much faster than Cluster Autoscaler. Dramatically reduces over-provisioning and cuts AWS compute costs.",
+      "required": false
+    },
+    {
+      "slug": "kyverno",
+      "role": "Policy engine and admission controller",
+      "why": "Kubernetes-native policy engine (no Rego required). Enforces security baselines, resource quotas, label standards, and image registry restrictions as admission webhook policies.",
+      "required": false
+    },
+    {
+      "slug": "crossplane",
+      "role": "Infrastructure-as-code via Kubernetes CRDs",
+      "why": "Provision and manage cloud resources (RDS, S3, GKE, etc.) via Kubernetes manifests. Enables platform teams to offer self-service infrastructure to developers through the Kubernetes API.",
+      "required": false
+    },
+    {
+      "slug": "velero",
+      "role": "Cluster backup and disaster recovery",
+      "why": "Backs up Kubernetes resource definitions and persistent volume snapshots to S3-compatible storage. Essential for disaster recovery, cluster migration, and namespace restoration.",
+      "required": true
+    }
+  ],
+
+  "alternatives": {
+    "argocd": ["fluxcd"],
+    "fluxcd": ["argocd"],
+    "cilium": ["calico"],
+    "karpenter": ["cluster-autoscaler"],
+    "kyverno": ["opa-gatekeeper"],
+    "crossplane": ["terraform", "pulumi"]
+  },
+
+  "gotchas": [
+    "Choosing between Argo CD and Flux is an early architectural decision that is expensive to reverse. Argo CD's UI wins team adoption faster; Flux integrates more naturally into pure GitOps workflows. Many teams run both — avoid this.",
+    "Cert-manager with Let's Encrypt requires outbound HTTPS from the cluster (or DNS01 challenge configuration) and rate-limit awareness. Staging environment — use Let's Encrypt staging CA to avoid hitting prod rate limits during testing.",
+    "External Secrets Operator rotates secrets on a polling interval (default 1 hour). Applications must handle secret reloads without restart, or pair ESO with Reloader to trigger rolling deployments on secret changes.",
+    "Karpenter is AWS-only (EKS). GKE and AKS have equivalent managed autoscalers but Karpenter's provider for those clouds is still maturing as of 2026.",
+    "Kyverno policies can accidentally block legitimate workloads (e.g., system DaemonSets). Start in Audit mode, review violations for one sprint, then switch to Enforce mode. Never deploy Enforce mode to production without audit baseline.",
+    "Crossplane manages cloud resources via the Kubernetes reconciliation loop — this is powerful but debugging drift or failed reconciliations requires Kubernetes operator knowledge. Ensure your team has that skill before adopting.",
+    "Velero backup does not include etcd-level cluster state by default. For full cluster recovery, combine Velero with your cloud provider's etcd backup (EKS automated etcd snapshots, etc.)."
+  ],
+
+  "estimated_monthly_cost": "$0 (all OSS tooling, excluding cloud infrastructure) — typical EKS cluster with these tools: $200–$800/mo in AWS costs depending on node count and storage",
+
+  "related_use_cases": [
+    "modern-observability-stack",
+    "ci-cd-starter-kit-stack",
+    "self-hosted-oss-replacements-stack"
+  ],
+
+  "seo": {
+    "title": "Kubernetes Platform Starter Stack: Argo CD, Cilium, Karpenter & More | tool.news",
+    "meta_description": "Foundation tooling for a Kubernetes platform team — GitOps with Argo CD or Flux, Cilium CNI, cert-manager, External Secrets Operator, Karpenter, and Velero.",
+    "keywords": [
+      "Kubernetes platform engineering",
+      "ArgoCD GitOps",
+      "Flux CD",
+      "Cilium CNI",
+      "Karpenter autoscaler",
+      "Kyverno policy",
+      "External Secrets Operator",
+      "Helm Kubernetes"
+    ]
+  },
+
+  "created_at": "2026-04-20T00:00:00Z",
+  "updated_at": "2026-04-20T00:00:00Z"
+}

@@ -1,0 +1,100 @@
+{
+  "slug": "devex-metrics-productivity-stack",
+  "title": "Developer Productivity Metrics (DORA + SPACE)",
+  "short_description": "Tooling for engineering leaders to measure and improve team productivity using DORA metrics, SPACE framework signals, and developer experience surveys.",
+  "long_description": "Engineering productivity is notoriously hard to measure without creating perverse incentives. This stack helps VPs of Engineering and CTOs instrument the right signals: DORA four-key metrics (deployment frequency, lead time, change failure rate, MTTR), SPACE framework dimensions (satisfaction, performance, activity, collaboration, efficiency), and qualitative DX surveys. Tools range from turnkey DORA dashboards (LinearB, Swarmia) to deeper engineering intelligence platforms (Jellyfish, Waydev) for companies that want org-level insights.",
+  "meta_category": "devtools-infra",
+  "target_audience": "VPs of Engineering, CTOs, and engineering managers at companies with 20+ developers seeking to quantify and improve engineering effectiveness",
+
+  "tools": [
+    {
+      "slug": "linearb",
+      "role": "DORA metrics + engineering benchmarks",
+      "why": "Pulls data from GitHub/GitLab and Jira to compute DORA four-key metrics with industry benchmarks. Adds team-level planning accuracy and PR cycle time breakdowns. Best out-of-box DORA experience.",
+      "required": false
+    },
+    {
+      "slug": "swarmia",
+      "role": "Engineering effectiveness and team health",
+      "why": "Focuses on investment distribution (features vs. debt vs. incidents), PR review health, and working agreements. Less sales-heavy than LinearB; popular with European teams.",
+      "required": false
+    },
+    {
+      "slug": "jellyfish",
+      "role": "Engineering investment reporting for executives",
+      "why": "Maps engineering work to business initiatives. Shows how much time is spent on roadmap vs. tech debt vs. incidents. Most powerful for board-level and finance reporting.",
+      "required": false
+    },
+    {
+      "slug": "waydev",
+      "role": "Git analytics and team performance insights",
+      "why": "Deep Git-level analytics: commit patterns, code churn, review latency. Good for technical managers who want raw signal without abstraction. Covers GitHub, GitLab, and Bitbucket.",
+      "required": false
+    },
+    {
+      "slug": "sleuth",
+      "role": "Deployment tracking and change failure correlation",
+      "why": "Automatically detects deployments across services and correlates them with incidents and rollbacks. Best-in-class MTTR and change failure rate tracking. Integrates with PagerDuty and Opsgenie.",
+      "required": false
+    },
+    {
+      "slug": "dx",
+      "role": "Developer experience surveys (DX Core 4 framework)",
+      "why": "Runs automated developer surveys aligned to the DX Core 4 and SPACE frameworks. Identifies top friction points by team and role. Closes the quantitative-qualitative gap that pure Git analytics misses.",
+      "required": false
+    },
+    {
+      "slug": "faros-ai",
+      "role": "Engineering data platform (open-source connectors)",
+      "why": "Open-source ETL connectors for engineering signals (Git, CI, ticketing, incidents). Feeds into any BI tool (Metabase, Looker). Best for teams that want full control over their metrics data warehouse.",
+      "required": false
+    },
+    {
+      "slug": "code-climate-velocity",
+      "role": "Pull request health and team throughput",
+      "why": "Focuses on PR review cycle time, merge rate, and WIP limits. Useful for identifying bottleneck reviewers and unbalanced workloads. Strong Jira and Linear integration.",
+      "required": false
+    }
+  ],
+
+  "alternatives": {
+    "linearb": ["swarmia", "code-climate-velocity"],
+    "jellyfish": ["waydev", "faros-ai"],
+    "dx": ["linearb"],
+    "sleuth": ["linearb"]
+  },
+
+  "gotchas": [
+    "DORA metrics become gaming targets quickly. Deployment frequency goes up if you split PRs artificially; MTTR goes down if incidents are closed prematurely. Establish a 'spirit of the metric' document before publishing dashboards to the team.",
+    "Individual developer metrics (commits per day, PR size, review latency per person) damage psychological safety and trust. All tools in this stack can be configured to show team-aggregated data only — enforce this policy in your rollout.",
+    "Most tools require GitHub/GitLab org-admin OAuth access to read PR and commit data. This access is broader than teams expect. Review what data each vendor stores, for how long, and whether it can be deleted on request.",
+    "Correlating Git metrics with business outcomes (Jellyfish, Waydev) requires clean Jira/Linear ticket hygiene. If your team doesn't consistently link PRs to tickets, the investment reporting is unreliable. Fix process before buying the tool.",
+    "DX surveys have a survey-fatigue problem if run too frequently. DX (the company) recommends quarterly pulse surveys of 8–12 questions per cohort. Running weekly will tank response rates within a month.",
+    "No single tool covers all SPACE dimensions. Plan to combine at least one quantitative tool (LinearB/Swarmia) with one qualitative tool (DX surveys) for a complete picture."
+  ],
+
+  "estimated_monthly_cost": "$200–$500/mo (Swarmia or LinearB, 20–50 devs) to $2,000–$8,000/mo (Jellyfish enterprise, 100+ devs)",
+
+  "related_use_cases": [
+    "ci-cd-starter-kit-stack",
+    "modern-observability-stack"
+  ],
+
+  "seo": {
+    "title": "Developer Productivity Metrics Stack: DORA + SPACE | tool.news",
+    "meta_description": "Tools for engineering leaders to measure DORA four-key metrics and SPACE framework signals — LinearB, Swarmia, Jellyfish, DX surveys, and Sleuth.",
+    "keywords": [
+      "DORA metrics tools",
+      "SPACE framework engineering",
+      "developer productivity",
+      "engineering effectiveness",
+      "LinearB",
+      "Swarmia",
+      "Jellyfish engineering",
+      "developer experience survey"
+    ]
+  },
+
+  "created_at": "2026-04-20T00:00:00Z",
+  "updated_at": "2026-04-20T00:00:00Z"
+}

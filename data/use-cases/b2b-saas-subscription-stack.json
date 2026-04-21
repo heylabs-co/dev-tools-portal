@@ -1,0 +1,91 @@
+{
+  "slug": "b2b-saas-subscription-stack",
+  "title": "End-to-end B2B SaaS subscription billing, auth, and product stack",
+  "short_description": "Complete stack for launching a B2B SaaS with seat-based subscriptions, SSO-ready auth, feature flags, and error monitoring.",
+  "long_description": "Most B2B SaaS teams spend their first six months stitching together billing, authentication, and observability before writing a single line of product code. This stack eliminates that tax by pairing proven primitives that are already integrated with each other.\n\nStripe Billing handles seat-based and flat-rate subscriptions with a battle-tested webhook system, and its Customer Portal lets users self-serve plan upgrades without any custom UI. WorkOS sits alongside it as the single source of truth for user identity, unlocking enterprise SSO and directory sync (SCIM) from day one — critical for landing $20k+ ACV deals where IT admins won't accept email/password auth. Clerk is the preferred drop-in SDK for the auth UI layer on top of WorkOS or standalone; it handles magic links, MFA, and org switching in under an hour of integration time.\n\nPostHog co-locates product analytics, session replay, feature flags, and A/B testing in a single self-hostable product. At the $0-$1M ARR stage this avoids paying for four separate tools. Sentry captures frontend and backend exceptions with full stack traces; at 5,000 monthly active users its free tier covers most early-stage workloads. Svix provides a hosted webhook engine so your SaaS can emit events to customer integrations without building an event bus. LaunchDarkly or Growthbook handles feature flag rollouts to safely ship to enterprise tenants without breaking existing contracts.",
+  "meta_category": "b2b-saas",
+  "target_audience": "Engineering teams at early-stage B2B SaaS startups",
+  "tools": [
+    {
+      "slug": "stripe",
+      "role": "Subscription billing + payment processing",
+      "why": "Stripe Billing's proration engine and Customer Portal handle seat upgrades, downgrades, and annual prepay out of the box. The metered billing add-on supports hybrid pricing (flat + overage) without a custom billing service.",
+      "required": true
+    },
+    {
+      "slug": "workos",
+      "role": "Enterprise SSO, SAML, and SCIM directory sync",
+      "why": "WorkOS abstracts SAML 2.0, OIDC, Google Workspace, and Azure AD into a single API. At $125/mo it's cheaper than building SAML in-house, and enterprise buyers at $20k+ ACV routinely require it on security questionnaires.",
+      "required": true
+    },
+    {
+      "slug": "clerk",
+      "role": "Authentication UI and session management",
+      "why": "Clerk's pre-built React components cover sign-up, sign-in, MFA, org switcher, and invitation flows. First 10,000 MAU are free; it connects directly to WorkOS via SAML federation so enterprise SSO doesn't require a separate integration.",
+      "required": true
+    },
+    {
+      "slug": "posthog",
+      "role": "Product analytics, session replay, and feature flags",
+      "why": "PostHog replaces four tools (Mixpanel, FullStory, LaunchDarkly, Optimizely) in a single EU-hosted or self-hosted package. The free tier covers 1M events/mo; cohort-based feature flags let you toggle features per workspace or plan tier.",
+      "required": true
+    },
+    {
+      "slug": "sentry",
+      "role": "Error monitoring and performance tracing",
+      "why": "Sentry's SDK auto-instruments Next.js, Rails, and Django; release tracking shows whether a deploy introduced new errors. Free tier covers 5k errors/mo — sufficient through $500k ARR for most products.",
+      "required": true
+    },
+    {
+      "slug": "svix",
+      "role": "Outbound webhooks as a service",
+      "why": "Svix manages webhook delivery, retry logic, failure dashboards, and customer portal so enterprise buyers can debug their own integrations. Costs ~$50/mo vs. 3-4 weeks of engineering to build an equivalent system.",
+      "required": false
+    },
+    {
+      "slug": "resend",
+      "role": "Transactional email delivery",
+      "why": "Resend's React Email integration lets engineers write email templates in JSX with live preview. 3,000 emails/mo free; DKIM/DMARC setup is automatic — critical for invoice and billing notification deliverability.",
+      "required": true
+    },
+    {
+      "slug": "chartmogul",
+      "role": "SaaS revenue analytics (MRR, churn, LTV)",
+      "why": "ChartMogul imports Stripe data daily and surfaces MRR, churn rate, ARPU, and cohort LTV without any SQL. Essential when you need to share investor-grade metrics without building a BI layer.",
+      "required": false
+    }
+  ],
+  "alternatives": {
+    "stripe": ["chargebee", "paddle", "recurly"],
+    "workos": ["auth0", "okta"],
+    "clerk": ["propelauth", "supertokens"],
+    "posthog": ["mixpanel", "amplitude"],
+    "sentry": ["rollbar", "bugsnag"],
+    "resend": ["postmark", "sendgrid"],
+    "chartmogul": ["baremetrics", "profitwell-paddle"]
+  },
+  "gotchas": [
+    "Stripe's Tax product (automatic sales tax) is billed at 0.5% of transaction volume — at $500k GMV that's $2,500/mo. Factor this into pricing before enabling it; Avalara or TaxJar are cheaper above $1M GMV.",
+    "WorkOS charges per connection (SAML/OIDC/SCIM) at $125/connection/mo after the free tier. Budget $375-750/mo at 3-6 enterprise customers before you've collected a dollar from them.",
+    "Clerk and WorkOS have overlapping org-management features; clarify at implementation time which system is the source of truth for org membership, or you'll end up with dual writes and sync bugs in production."
+  ],
+  "estimated_monthly_cost": "$250-600/mo at 1,000 paying users",
+  "related_use_cases": [
+    "enterprise-sso-saml-stack",
+    "usage-based-billing-stack",
+    "multi-tenant-admin-dashboard"
+  ],
+  "seo": {
+    "title": "Best B2B SaaS subscription billing stack in 2026 — tools & setup guide",
+    "meta_description": "End-to-end stack for B2B SaaS: Stripe billing, WorkOS SSO, Clerk auth, PostHog analytics, and Sentry monitoring. Real costs at 1,000 users.",
+    "keywords": [
+      "b2b saas stack",
+      "subscription billing saas",
+      "saas auth stack",
+      "stripe workos clerk",
+      "b2b saas tools 2026"
+    ]
+  },
+  "created_at": "2026-04-21",
+  "updated_at": "2026-04-21"
+}

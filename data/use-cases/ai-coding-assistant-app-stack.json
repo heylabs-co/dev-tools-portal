@@ -1,0 +1,100 @@
+{
+  "slug": "ai-coding-assistant-app-stack",
+  "title": "Building Your Own AI Coding Assistant Product",
+  "short_description": "Stack for shipping a custom AI coding assistant — code completion, chat, code search, and agentic refactoring — as a standalone product or IDE plugin.",
+  "long_description": "Building a coding assistant product (not just using Cursor for yourself) means solving hard problems: indexing large codebases accurately, providing low-latency completions, routing between models (fast cheap model for completion, powerful model for chat), and building a code-aware context retrieval system. The core loop is: parse the codebase with Tree-sitter for AST-level understanding, embed code chunks with a code-specialized model, retrieve relevant context via a vector store, route to the right LLM via LiteLLM, and evaluate outputs with code execution sandboxes. DeepSeek Coder and Codestral are excellent cost-efficient alternatives to GPT-4o for code-specific tasks.",
+  "meta_category": "ai-startup",
+  "target_audience": "Developer tools founders and platform engineering teams building custom AI coding tools, IDE extensions, internal developer portals, or coding agents for specific languages or frameworks.",
+
+  "tools": [
+    {
+      "slug": "anthropic",
+      "role": "Primary reasoning LLM",
+      "why": "Claude 3.5/3.7 Sonnet leads benchmarks on code generation, refactoring, and multi-file edits. Its 200k context window handles full repository context without truncation for most codebases.",
+      "required": true
+    },
+    {
+      "slug": "litellm",
+      "role": "LLM routing and cost optimization",
+      "why": "LiteLLM proxies 100+ LLM APIs behind a single OpenAI-compatible interface — route completions to fast/cheap models (Groq + Llama) and chat to powerful models (Claude/GPT-4o) without changing application code.",
+      "required": true
+    },
+    {
+      "slug": "ast-grep",
+      "role": "AST-based code search and refactoring",
+      "why": "ast-grep performs structural code search and rewrite across repositories — essential for building refactoring features that understand syntax rather than just text patterns.",
+      "required": false
+    },
+    {
+      "slug": "qdrant",
+      "role": "Code vector search",
+      "why": "Qdrant stores AST-chunked code embeddings with payload filters by file path, language, and symbol type — enables accurate semantic code search across millions of lines.",
+      "required": true
+    },
+    {
+      "slug": "e2b",
+      "role": "Code execution sandbox",
+      "why": "E2B runs AI-generated code in isolated sandboxes to verify correctness before presenting to users — the foundation for 'AI writes and tests the code' workflows.",
+      "required": false
+    },
+    {
+      "slug": "instructor",
+      "role": "Structured LLM outputs for code edits",
+      "why": "Instructor validates LLM JSON outputs against Pydantic schemas — ensures code edit payloads (file path, start/end lines, replacement text) parse correctly without custom retry logic.",
+      "required": false
+    },
+    {
+      "slug": "langfuse",
+      "role": "Prompt and completion tracing",
+      "why": "Every completion and chat turn is traced with prompt template version, model, token count, and user ID — lets you compare model upgrades on real user queries before rolling out.",
+      "required": false
+    },
+    {
+      "slug": "deepeval",
+      "role": "Code generation evaluation",
+      "why": "DeepEval's code-specific metrics (correctness via execution, test pass rate) let you benchmark model upgrades against a golden set of coding tasks before deployment.",
+      "required": false
+    },
+    {
+      "slug": "semgrep",
+      "role": "Security scanning for generated code",
+      "why": "Semgrep scans AI-generated code for known vulnerability patterns (SQL injection, hardcoded secrets, insecure deserialization) before surfacing it to users — critical for trust in coding tools.",
+      "required": false
+    }
+  ],
+
+  "alternatives": {
+    "anthropic": ["openai", "deepseek-api", "codestral", "groq", "zhipu-ai", "baichuan-ai"],
+    "litellm": ["openrouter", "fireworks-ai", "together-ai"],
+    "qdrant": ["chroma", "weaviate", "pgvector", "milvus"],
+    "e2b": ["modal-labs", "replit"],
+    "instructor": ["outlines", "guidance", "mirascope"],
+    "langfuse": ["langsmith", "braintrust", "helicone"]
+  },
+
+  "gotchas": [
+    "Code context windows are expensive: a 2,000-file repository fully embedded and retrieved can easily inject 50k+ tokens per chat turn at $0.75+ per message with GPT-4o.",
+    "Completion latency requirements (<100ms first token) are incompatible with GPT-4o — use Groq (Llama 3.1 70B) or Fireworks AI for inline autocomplete and reserve powerful models for chat.",
+    "AST-chunking is language-specific — a generic text splitter will split function bodies mid-logic. Invest in Tree-sitter-based chunking early or retrieval quality will be permanently poor.",
+    "AI-generated code that looks plausible but introduces security vulnerabilities is worse than no suggestion — implement at minimum a Semgrep scan before surfacing suggestions to users.",
+    "DeepSeek Coder and Codestral are 10x cheaper than GPT-4o for code tasks with comparable quality on most benchmarks — benchmark your specific language/framework before defaulting to GPT-4o.",
+    "Multi-file edits require transactional semantics — if the LLM generates edits to 5 files and file 3 fails validation, you need rollback logic. Most off-the-shelf frameworks don't handle this."
+  ],
+
+  "estimated_monthly_cost": "$300–$3,000; LiteLLM routing to Groq for completions and Claude for chat is the most cost-effective strategy. At 1k active devs × 500 completions/day × 200 tokens = 100M tokens/month.",
+
+  "related_use_cases": [
+    "rag-knowledge-base-stack",
+    "ai-agent-platform-stack",
+    "llm-observability-ops-stack"
+  ],
+
+  "seo": {
+    "title": "AI Coding Assistant Stack — Claude + LiteLLM + Qdrant + E2B | tool.news",
+    "meta_description": "Complete stack for building a custom AI coding assistant: LLM routing, code vector search, AST parsing, sandboxed execution, and evaluation.",
+    "keywords": ["ai coding assistant stack", "build coding assistant", "litellm routing", "code vector search", "deepseek coder", "claude code generation 2025"]
+  },
+
+  "created_at": "2026-04-20T00:00:00Z",
+  "updated_at": "2026-04-20T00:00:00Z"
+}

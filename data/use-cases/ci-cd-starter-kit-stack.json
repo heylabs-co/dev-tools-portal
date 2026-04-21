@@ -1,0 +1,98 @@
+{
+  "slug": "ci-cd-starter-kit-stack",
+  "title": "Modern CI/CD Starter Kit",
+  "short_description": "Fast, maintainable CI/CD for a new codebase — GitHub Actions as the orchestrator, turbo/Nx for build caching, and drop-in fast runners to cut pipeline minutes.",
+  "long_description": "Most teams start CI/CD with vanilla GitHub Actions and end up with slow, expensive pipelines as the repo grows. This starter kit layers fast remote caching (Turborepo or Nx) on top of GitHub Actions, then adds managed fast runners (Depot, Blacksmith, or Buildkite) to cut cold-start times from 2–4 minutes to under 30 seconds. Dagger provides a portable pipeline-as-code layer so your CI logic isn't trapped in YAML. Buildbuddy or Earthly handle monorepo test caching at scale.",
+  "meta_category": "devtools-infra",
+  "target_audience": "Engineering teams at startups and scale-ups setting up CI/CD from scratch, or teams migrating away from Jenkins/CircleCI",
+
+  "tools": [
+    {
+      "slug": "github-actions",
+      "role": "CI/CD orchestrator",
+      "why": "Native to GitHub repos, huge marketplace of reusable actions, free for public repos and generous for private. Baseline for all other tools in this stack.",
+      "required": true
+    },
+    {
+      "slug": "depot",
+      "role": "Managed fast CI runners (AWS-native)",
+      "why": "Up to 10x faster builds via persistent layer caching and NVMe-backed runners. Transparent pricing per minute — typically 50–70% cheaper than GitHub-hosted runners for heavy workloads.",
+      "required": false
+    },
+    {
+      "slug": "blacksmith",
+      "role": "Managed fast CI runners (GitHub Actions drop-in)",
+      "why": "Drop-in GitHub Actions runner replacement. Persistent Docker layer caching and fast NVMe SSD. Zero pipeline YAML changes needed. Good alternative to Depot.",
+      "required": false
+    },
+    {
+      "slug": "turborepo",
+      "role": "Monorepo build cache and task orchestration",
+      "why": "Caches build/test outputs locally and remotely. Only re-runs tasks affected by changed code. Cuts CI time by 60–80% in JS/TS monorepos.",
+      "required": false
+    },
+    {
+      "slug": "nx",
+      "role": "Monorepo build system (broader language support)",
+      "why": "Covers JS, Python, Java, Go, and more. Nx Cloud provides hosted remote cache. More opinionated than Turborepo with first-class task graph visualization.",
+      "required": false
+    },
+    {
+      "slug": "dagger",
+      "role": "Pipeline-as-code engine",
+      "why": "Define CI steps in Go, Python, or TypeScript instead of YAML. Run the exact same pipeline locally as in CI. Prevents 'works on my machine' CI drift.",
+      "required": false
+    },
+    {
+      "slug": "earthly",
+      "role": "Dockerfile-style build language",
+      "why": "Combines Makefile and Dockerfile syntax for reproducible builds. Strong caching, parallel execution, and easy local CI replication. Good for polyglot repos.",
+      "required": false
+    },
+    {
+      "slug": "buildkite",
+      "role": "Self-hosted CI orchestrator (enterprise path)",
+      "why": "Runs agents on your own infrastructure for security-sensitive workloads. No source code leaves your network. Better audit trail than GitHub Actions for compliance.",
+      "required": false
+    }
+  ],
+
+  "alternatives": {
+    "github-actions": ["circleci", "buildkite", "tekton"],
+    "depot": ["blacksmith", "buildkite"],
+    "turborepo": ["nx", "earthly"],
+    "dagger": ["earthly", "tekton"]
+  },
+
+  "gotchas": [
+    "GitHub Actions concurrency limits (20 concurrent jobs on free, 60 on Team) will become a bottleneck before you expect. Plan your parallelism strategy early and consider fast runners before hitting the wall.",
+    "Turborepo remote cache is free when self-hosted but requires an S3-compatible store and a cache server. Vercel's hosted cache is paid. Nx Cloud has a free tier but locks advanced features behind a subscription.",
+    "Dagger's API is still evolving rapidly (breaking changes between minor versions). Pin SDK versions in your pipeline definitions and test upgrades in a branch first.",
+    "Fast runner services (Depot, Blacksmith) charge per compute-minute. An accidental infinite loop or runaway matrix job can generate a large bill in minutes. Set job-level timeout limits in every workflow file.",
+    "Do not store secrets in workflow environment variables — use GitHub Encrypted Secrets or a secrets manager (Vault, AWS Secrets Manager) referenced at runtime. Leaked secrets in logs are a common incident source."
+  ],
+
+  "estimated_monthly_cost": "$0–$50 (small team, GitHub-hosted runners) to $500–$2,000 (20+ engineers, fast runners + Nx Cloud)",
+
+  "related_use_cases": [
+    "kubernetes-platform-starter-stack",
+    "modern-observability-stack"
+  ],
+
+  "seo": {
+    "title": "Modern CI/CD Starter Kit: GitHub Actions + Fast Runners | tool.news",
+    "meta_description": "Curated CI/CD stack for new codebases — GitHub Actions, Depot/Blacksmith fast runners, Turborepo/Nx remote caching, and Dagger pipeline-as-code.",
+    "keywords": [
+      "CI/CD starter kit",
+      "GitHub Actions fast runners",
+      "Depot CI",
+      "Blacksmith CI runners",
+      "Turborepo remote cache",
+      "monorepo CI",
+      "Dagger pipeline"
+    ]
+  },
+
+  "created_at": "2026-04-20T00:00:00Z",
+  "updated_at": "2026-04-20T00:00:00Z"
+}

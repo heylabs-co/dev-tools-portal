@@ -1,0 +1,110 @@
+{
+  "slug": "subscription-boxes-stack",
+  "title": "Recurring Physical-Goods Subscription Service",
+  "short_description": "End-to-end stack for subscription box businesses: recurring billing, subscriber management, physical fulfilment, shipping, retention, and dunning.",
+  "long_description": "A physical subscription business combines SaaS-style recurring billing complexity with the operational weight of physical logistics — pick-and-pack, carrier integration, returns, and perishables handling. This stack starts with a recurring billing engine layered onto Shopify (via Recharge) or a headless commerce platform (Chargebee + Medusa), adds a 3PL integration for fulfilment, carrier APIs for label generation and tracking, and a retention layer (dunning, cancellation deflection, and churn analytics) to protect MRR. The biggest failure modes are involuntary churn from failed payments and fulfilment delays that damage NPS.",
+  "meta_category": "ecommerce",
+  "target_audience": "Founders and engineering teams building subscription box products — beauty, food, pet, apparel, hobby — where customers receive physical goods on a weekly, monthly, or quarterly cadence.",
+
+  "tools": [
+    {
+      "slug": "shopify",
+      "role": "Storefront and commerce backend",
+      "why": "Shopify is the dominant platform for subscription boxes. Its ecosystem of subscription apps (Recharge, Bold, Smartrr) integrates directly with Shopify's checkout and admin APIs.",
+      "required": false
+    },
+    {
+      "slug": "chargebee",
+      "role": "Subscription billing and lifecycle management",
+      "why": "Chargebee handles recurring billing, dunning sequences, plan changes, pause/skip/swap flows, and revenue recognition. It supports Shopify-independent stacks when you need more billing flexibility than Recharge provides.",
+      "required": false
+    },
+    {
+      "slug": "recurly",
+      "role": "Subscription billing (enterprise alternative)",
+      "why": "Recurly is strong on dunning automation and revenue recovery — its smart dunning retries failed payments at optimal times, typically recovering 5-10% of failed charges. Suits mid-market and above.",
+      "required": false
+    },
+    {
+      "slug": "stripe",
+      "role": "Payment processing",
+      "why": "Stripe Billing powers recurring charges for platforms not using a dedicated subscription tool. Stripe's network-level card updater automatically updates expired card details, reducing involuntary churn.",
+      "required": true
+    },
+    {
+      "slug": "easypost",
+      "role": "Multi-carrier shipping API",
+      "why": "EasyPost normalises label creation, tracking, and address validation across USPS, UPS, FedEx, and DHL in a single API. Essential for comparing carrier rates and switching carriers without code changes.",
+      "required": true
+    },
+    {
+      "slug": "klaviyo",
+      "role": "Lifecycle email and SMS",
+      "why": "Klaviyo's deep Shopify integration and pre-built subscription flows (upcoming shipment, box shipped, skip reminder, win-back) reduce the email engineering surface area significantly.",
+      "required": true
+    },
+    {
+      "slug": "segment",
+      "role": "Customer data platform",
+      "why": "Centralises subscriber events (subscribed, skipped, paused, cancelled, reactivated) from billing, storefront, and fulfilment into a single stream for analytics and marketing tool routing.",
+      "required": false
+    },
+    {
+      "slug": "profitwell-paddle",
+      "role": "Subscription analytics and retention insights",
+      "why": "ProfitWell (now part of Paddle) provides MRR dashboards, cohort churn analysis, and the Retain product for automated payment failure recovery — often the highest-ROI tool in this stack.",
+      "required": false
+    },
+    {
+      "slug": "baremetrics",
+      "role": "Subscription metrics dashboard",
+      "why": "Connects to Stripe, Chargebee, or Recurly to provide real-time MRR, LTV, churn rate, and cohort visualisations without SQL. Useful for founder-level dashboards when the team is small.",
+      "required": false
+    },
+    {
+      "slug": "gorgias",
+      "role": "E-commerce helpdesk",
+      "why": "Gorgias integrates with Shopify and most subscription apps to surface order and subscription data inside support tickets. Reduces handle time by 40%+ vs. generic helpdesks for subscription box teams.",
+      "required": false
+    },
+    {
+      "slug": "twilio",
+      "role": "SMS notifications and alerts",
+      "why": "Shipping notifications, payment failure alerts, and reactivation campaigns via SMS. SMS open rates (98%) far outperform email for time-sensitive subscription events like failed payments.",
+      "required": false
+    }
+  ],
+
+  "alternatives": {
+    "chargebee": ["recurly", "stripe", "zuora"],
+    "shopify": ["medusa", "bigcommerce"],
+    "easypost": ["sendgrid"],
+    "klaviyo": ["sendgrid", "loops"],
+    "baremetrics": ["profitwell-paddle", "chartmogul"]
+  },
+
+  "gotchas": [
+    "Involuntary churn is the #1 killer: 20-40% of subscription cancellations are involuntary (failed payments). Implement smart dunning with multiple retry attempts over 7-14 days, card updater integration, and SMS/email failure notifications.",
+    "Skip and pause flows reduce cancellations: subscribers who can easily skip a month or pause their subscription cancel at half the rate of those who cannot. Build these flows before launch, not after churn becomes painful.",
+    "Box curation vs. subscriber preference: if customers can customise their box, your fulfilment system must handle per-subscriber pick lists, not just batch pack runs. Most 3PLs charge a premium for this.",
+    "Inventory forecasting: over-ordering is expensive, under-ordering means sending partial boxes and destroying NPS. Subscriber counts at time of ordering are stale by weeks — model expected skip rates and churn into your forecast.",
+    "Tax on subscriptions: some US states tax recurring subscriptions differently from one-time purchases (especially food and beauty). TaxJar or Avalara handles this automatically; manual tax calculation will generate nexus errors.",
+    "Prepaid subscriptions and revenue recognition: if you sell 3-month or 12-month prepaid boxes, you need deferred revenue accounting. Chargebee and Recurly handle this natively; Stripe Billing requires manual journal entries."
+  ],
+
+  "estimated_monthly_cost": "$800–$5,000/mo for a subscription box doing $50K–$500K MRR. Chargebee starts at $599/mo (Scale), Klaviyo at $150-$600 depending on list size, EasyPost at per-label rates. Stripe Billing at 0.5% of recurring charges is often the largest cost at scale.",
+
+  "related_use_cases": [
+    "headless-ecommerce-stack",
+    "digital-goods-marketplace-stack"
+  ],
+
+  "seo": {
+    "title": "Subscription Box Tech Stack — Recurring Billing, Fulfilment & Retention Tools",
+    "meta_description": "The best tools for subscription box businesses: recurring billing, multi-carrier shipping, lifecycle email, dunning, and churn analytics. Compare Chargebee, Recurly, Stripe Billing, and Klaviyo.",
+    "keywords": ["subscription box tech stack", "recurring billing ecommerce", "subscription management platform", "chargebee vs recurly", "subscription churn prevention", "ecommerce subscription tools"]
+  },
+
+  "created_at": "2026-04-20T00:00:00Z",
+  "updated_at": "2026-04-20T00:00:00Z"
+}

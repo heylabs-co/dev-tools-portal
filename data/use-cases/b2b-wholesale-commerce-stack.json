@@ -1,0 +1,120 @@
+{
+  "slug": "b2b-wholesale-commerce-stack",
+  "title": "B2B Wholesale & Enterprise Commerce Platform",
+  "short_description": "Technology stack for B2B wholesale and enterprise commerce: tiered pricing, net terms, purchase orders, ERP integration, and account-based buying experiences.",
+  "long_description": "B2B commerce is fundamentally different from B2C: buyers negotiate custom price lists, require net-30/60/90 payment terms, place orders via purchase order workflows, have multiple buyers under a single company account, and expect a self-service portal mirroring their existing buying process. This stack combines an API-first commerce engine capable of complex pricing rules (Vendure, Elastic Path, Spryker, or BigCommerce B2B Edition), an ERP integration layer for inventory and order sync, B2B payment terms infrastructure, tax calculation across multiple jurisdictions, and a CRM/CPQ layer for the sales-assisted deals above a certain ACV threshold.",
+  "meta_category": "ecommerce",
+  "target_audience": "Engineering and product teams at manufacturers, distributors, and brands building a digital wholesale channel or replacing an aging EDI/phone-order process with a self-service B2B portal.",
+
+  "tools": [
+    {
+      "slug": "vendure",
+      "role": "B2B commerce engine (headless, open-source)",
+      "why": "Vendure is a TypeScript/Node.js headless commerce framework with first-class multi-channel, customer group pricing, and a plugin architecture that handles complex B2B product catalogs, tiered pricing, and custom workflows without platform fees.",
+      "required": false
+    },
+    {
+      "slug": "elastic-path",
+      "role": "Enterprise composable commerce engine",
+      "why": "Elastic Path's Price Books, Catalogs, and Hierarchies model the complexity of B2B pricing (customer-specific price lists, volume tiers, contract pricing) without brittle workarounds. MACH-certified and available in multi-region.",
+      "required": false
+    },
+    {
+      "slug": "spryker",
+      "role": "Enterprise B2B commerce suite",
+      "why": "Spryker is purpose-built for B2B: it ships approval workflows, punchout/cXML for ERP integration, company account management, and quote/proposal flows out of the box. Best for $50M+ GMV wholesale operations.",
+      "required": false
+    },
+    {
+      "slug": "bigcommerce",
+      "role": "B2B Edition hosted platform",
+      "why": "BigCommerce B2B Edition adds corporate accounts, custom price lists, purchase order payments, quote management, and a buyer portal to BigCommerce's hosted storefront — lowest engineering lift for distributors under $10M GMV.",
+      "required": false
+    },
+    {
+      "slug": "algolia",
+      "role": "B2B product search and catalog discovery",
+      "why": "B2B catalogs with 10,000-500,000 SKUs need faceted search with account-specific catalog filtering (not all products are available to all customers). Algolia's Rules and Personalization handle per-customer catalog visibility.",
+      "required": true
+    },
+    {
+      "slug": "stripe",
+      "role": "Card and ACH payment processing",
+      "why": "Stripe's B2B features include ACH Direct Debit (low-cost for large orders), Stripe Invoicing for net terms, and the Customer Balance API for pre-pay accounts. Pairs with Stripe Tax for US sales tax.",
+      "required": false
+    },
+    {
+      "slug": "adyen",
+      "role": "Enterprise payment processing",
+      "why": "Adyen handles international card acquiring, local payment methods (SEPA, iDEAL, Sofort), and commercial card interchange optimisation. Better pricing than Stripe at $50M+ processing volume.",
+      "required": false
+    },
+    {
+      "slug": "avalara",
+      "role": "Enterprise tax calculation",
+      "why": "Avalara AvaTax covers US sales tax (including reseller exemption certificate management — critical for B2B), EU VAT, and Canada GST/HST in real time. TaxJar handles US well but Avalara's resale certificate workflow is essential for B2B.",
+      "required": true
+    },
+    {
+      "slug": "netsuite-suitebilling",
+      "role": "ERP and order management",
+      "why": "NetSuite is the dominant ERP for mid-market wholesale. SuiteBilling handles subscription and contract billing. Real-time inventory sync between NetSuite and the storefront is the most critical (and most complex) integration in this stack.",
+      "required": false
+    },
+    {
+      "slug": "workos",
+      "role": "Enterprise SSO and admin portal",
+      "why": "B2B buyers at large accounts require SAML SSO and directory sync (SCIM) so their IT team can provision/deprovision buyer users. WorkOS provides this via a single API, avoiding per-enterprise SSO integrations.",
+      "required": true
+    },
+    {
+      "slug": "hubspot",
+      "role": "CRM for sales-assisted B2B orders",
+      "why": "Above a certain order value, B2B sales are relationship-driven. HubSpot CRM tracks company accounts, deal stages, and contact history. HubSpot's Commerce Hub syncs deals to invoices for assisted-order workflows.",
+      "required": false
+    },
+    {
+      "slug": "segment",
+      "role": "Behavioral data for account-based analytics",
+      "why": "Tracks per-account browsing and ordering behavior to surface re-order propensity, identify at-risk accounts (declining order frequency), and feed account-based marketing tools.",
+      "required": false
+    }
+  ],
+
+  "alternatives": {
+    "vendure": ["medusa", "saleor", "crystallize", "elastic-path"],
+    "spryker": ["scayle", "elastic-path", "bigcommerce"],
+    "algolia": ["constructor", "klevu", "bloomreach", "searchspring", "typesense"],
+    "avalara": ["taxjar"],
+    "adyen": ["stripe", "braintree", "worldpay", "checkout-com", "spreedly"],
+    "workos": ["auth0", "okta", "frontegg", "clerk"],
+    "netsuite-suitebilling": ["erpnext"],
+    "hubspot": ["salesforce-marketing-cloud"]
+  },
+
+  "gotchas": [
+    "Inventory sync is the hardest problem: ERP inventory data is the system of record, but B2B buyers need real-time availability to commit to an order. A 15-minute polling sync is fine for catalog browsing but creates oversell risk at checkout. Implement a reservation/hold pattern at checkout time.",
+    "Customer-specific pricing is complex to cache: if each account has a different price list, CDN page caching is ineffective for catalog pages. Render prices client-side after authentication or use Algolia's secure API keys to serve per-customer filtered results.",
+    "Resale certificate management: US B2B buyers purchasing for resale are sales-tax exempt and will submit a resale certificate. You must collect, validate, and store these certificates by state. Avalara's CertCapture handles this; doing it manually is an audit liability.",
+    "PO-based buying requires AR/invoicing: net-terms orders are not captured at time of order. You need an AR workflow (invoice generation, payment tracking, dunning for late payers) that integrates with your ERP. Stripe Invoicing or NetSuite AR handles this; do not bolt it onto a B2C checkout.",
+    "Punchout/cXML: large enterprise buyers often require punchout catalog integration with their procurement system (SAP Ariba, Coupa, Jaggaer). This is a significant engineering effort. Spryker and Elastic Path support it natively; homegrown solutions take 3-6 months.",
+    "Minimum order quantities and case packs: B2B products often sell in cases, pallets, or minimum quantities. Your commerce engine's cart validation must enforce MOQ and UOM (unit of measure) rules, which most B2C platforms handle poorly."
+  ],
+
+  "estimated_monthly_cost": "Highly variable. Vendure + Postgres on a $200/mo VPS is viable at small scale. Elastic Path starts at $3,000/mo, Spryker at $5,000-15,000/mo for SaaS tiers. Avalara AvaTax starts at $50/mo for basic US tax, scales by transaction volume. Algolia at $500-5,000/mo depending on search volume. Total stack for a serious B2B deployment: $5,000-30,000/mo.",
+
+  "related_use_cases": [
+    "headless-ecommerce-stack",
+    "marketplace-trust-safety-stack",
+    "digital-goods-marketplace-stack"
+  ],
+
+  "seo": {
+    "title": "B2B Wholesale Commerce Stack — Enterprise Buying, Pricing & ERP Integration Tools",
+    "meta_description": "The best tools for B2B wholesale and enterprise commerce: headless commerce engines, tiered pricing, net-terms payments, ERP sync, tax exemptions, and SSO. Compare Vendure, Spryker, Elastic Path, and BigCommerce B2B.",
+    "keywords": ["B2B commerce platform", "wholesale ecommerce stack", "enterprise commerce tools", "B2B pricing engine", "headless B2B storefront", "vendure vs elastic path", "B2B ERP integration"]
+  },
+
+  "created_at": "2026-04-20T00:00:00Z",
+  "updated_at": "2026-04-20T00:00:00Z"
+}

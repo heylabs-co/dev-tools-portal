@@ -39,7 +39,10 @@ try {
       string,
       Array<{ slug: string; title: string; meta_category: string }>
     >;
-    usedInStacks = idx[d.slug] ?? [];
+    // Use hasOwnProperty so slugs like "constructor" (which collide with
+    // Object.prototype members) don't return the prototype method.
+    const found = Object.prototype.hasOwnProperty.call(idx, d.slug) ? idx[d.slug] : undefined;
+    usedInStacks = Array.isArray(found) ? found : [];
   }
 } catch { /* reverse index not built yet — fall back to empty */ }
 

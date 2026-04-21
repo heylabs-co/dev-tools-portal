@@ -1,0 +1,113 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import CompanyCard from '../../components/CompanyCard.astro';
+import SearchBar from '../../components/SearchBar.astro';
+import { getCollection } from 'astro:content';
+import type { GetStaticPaths } from 'astro';
+
+const PAGE_SIZE = 120;
+
+export const getStaticPaths = (async ({ paginate }) => {
+  const companies = await getCollection('companies');
+  const sorted = companies.sort((a, b) =>
+    a.data.name.localeCompare(b.data.name, 'en', { sensitivity: 'base' }),
+  );
+  return paginate(sorted, { pageSize: PAGE_SIZE });
+}) satisfies GetStaticPaths;
+
+const { page } = Astro.props;
+const allCategories = await getCollection('categories');
+const categoryCount = allCategories.length;
+---
+
+<BaseLayout
+  title={`All ${page.total}+ Developer Tools — Page ${page.currentPage}/${page.lastPage}`}
+  description={`Browse ${page.total}+ developer tools across ${categoryCount} categories. Compare pricing, vendor lock-in scores, and migration difficulty.`}
+>
+  <section class="mx-auto max-w-7xl px-4 py-10">
+    <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Tools' }]} />
+
+    <div class="mt-6 mb-6">
+      <h1 class="text-4xl font-extrabold tracking-tight text-gray-900 dark:text-white">
+        All Developer Tools
+      </h1>
+      <p class="mt-2 text-lg text-gray-600 dark:text-gray-400">
+        {page.total.toLocaleString()} tools compared by pricing, lock-in, and migration difficulty.
+        Page {page.currentPage} of {page.lastPage}.
+      </p>
+    </div>
+
+    <!-- Scoped search — Tools only -->
+    <div class="mb-8 max-w-2xl">
+      <SearchBar
+        baseFilter={{ type: ['Tool'] }}
+        showFilters={false}
+        compact={true}
+        placeholder={`Search ${page.total.toLocaleString()} tools…`}
+      />
+    </div>
+
+    <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      {page.data.map((entry) => (
+        <CompanyCard
+          slug={entry.data.slug}
+          name={entry.data.name}
+          description={entry.data.description}
+          logo={entry.data.logo ?? ''}
+          category={entry.data.categories.primary.name}
+          lockInLevel={entry.data.scores?.lock_in?.level}
+          pricingModel={entry.data.pricing?.model}
+          hasFree={entry.data.pricing?.has_free_tier}
+        />
+      ))}
+    </div>
+
+    <!-- Pagination nav -->
+    <nav class="mt-12 flex flex-wrap items-center justify-between gap-3" aria-label="Pagination">
+      <div class="text-sm" style="color: var(--color-muted);">
+        Showing {(page.currentPage - 1) * PAGE_SIZE + 1}&ndash;{Math.min(page.currentPage * PAGE_SIZE, page.total)} of {page.total.toLocaleString()}
+      </div>
+      <div class="flex items-center gap-2">
+        {page.url.prev && (
+          <a
+            href={page.url.prev}
+            class="inline-flex items-center gap-1.5 rounded-lg border px-4 py-2 text-sm font-medium transition-colors"
+            style="border-color: var(--color-border); color: var(--color-text); background-color: var(--color-surface);"
+          >
+            ← Previous
+          </a>
+        )}
+        <span class="px-3 text-sm" style="color: var(--color-muted);">
+          Page {page.currentPage} / {page.lastPage}
+        </span>
+        {page.url.next && (
+          <a
+            href={page.url.next}
+            class="inline-flex items-center gap-1.5 rounded-lg border px-4 py-2 text-sm font-medium transition-colors"
+            style="border-color: var(--color-border); color: var(--color-text); background-color: var(--color-surface);"
+          >
+            Next →
+          </a>
+        )}
+      </div>
+    </nav>
+
+    <!-- Jump to page (small pages 1-5, last few, current +/- 2) -->
+    {page.lastPage > 3 && (
+      <div class="mt-4 flex flex-wrap items-center justify-center gap-1 text-sm">
+        {Array.from({ length: page.lastPage }, (_, i) => i + 1)
+          .filter((p) => p === 1 || p === page.lastPage || Math.abs(p - page.currentPage) <= 2)
+          .map((p) => (
+            <a
+              href={p === 1 ? '/tools/' : `/tools/${p}/`}
+              class={`inline-flex items-center rounded-md border px-2.5 py-1 font-medium transition-colors ${p === page.currentPage ? 'border-[#5E6AD2] text-white bg-[#5E6AD2]' : ''}`}
+              style={p === page.currentPage ? '' : 'border-color: var(--color-border); color: var(--color-text);'}
+            >
+              {p}
+            </a>
+          ))}
+      </div>
+    )}
+  </section>
+</BaseLayout>

@@ -39,5 +39,29 @@
     "forks": 261,
     "updated_at": "2026-04-21",
     "health_score": "A"
+  },
+  "content": {
+    "when_to_use": [
+      "Distribute pytest tests across multiple CPU cores",
+      "Run test suites in parallel across remote machines",
+      "Loop-on-failures mode to reproduce intermittent bugs",
+      "Speed up large Python test suites by 4-8x in CI"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Distributes tests across CPUs and machines",
+      "Loop-on-failure mode speeds debugging",
+      "Massive wall-clock gains on large suites",
+      "Battle-tested in big Python codebases"
+    ],
+    "cons": [
+      "Test isolation bugs surface under parallelism",
+      "Shared fixtures need careful scoping",
+      "DB tests often need per-worker databases"
+    ],
+    "verdict": "Mandatory once your pytest suite crosses a few minutes, though it will expose hidden coupling between tests.",
+    "best_for": "Python teams with test suites over 2 minutes on a single worker",
+    "not_for": "Small codebases where parallelism adds complexity without payoff"
   }
 }

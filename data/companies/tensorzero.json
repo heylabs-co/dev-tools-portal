@@ -33,5 +33,28 @@
   },
   "community": {
     "hn_mentions_30d": 2
+  },
+  "content": {
+    "when_to_use": [
+      "Optimizing LLM prompts automatically using reinforcement signals",
+      "Running A/B experiments on prompts with production traffic routing",
+      "Building self-improving LLM pipelines with feedback loops",
+      "Deploying inference with automatic cost vs quality optimization"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Open source with real observability",
+      "Structured outputs plus prompt optimization",
+      "Gateway pattern avoids vendor lock-in"
+    ],
+    "cons": [
+      "Self-hosting overhead is non-trivial",
+      "Ecosystem smaller than LangSmith/Langfuse",
+      "Prompt optimization results vary"
+    ],
+    "verdict": "Underrated open LLM gateway — worth a serious look if you dislike LangSmith lock-in and can run infra.",
+    "best_for": "Platform teams wanting a self-hosted gateway with evals and optimization",
+    "not_for": "Small teams that want a hosted, zero-ops observability SaaS"
   }
 }

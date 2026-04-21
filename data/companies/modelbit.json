@@ -22,5 +22,31 @@
   },
   "community": {
     "hn_mentions_30d": 44
+  },
+  "content": {
+    "when_to_use": [
+      "Deploying Python ML models as REST API endpoints in minutes",
+      "Serving notebook-based models without engineering handoff",
+      "Adding ML inference to SQL via Redshift and Snowflake UDFs",
+      "Version-controlled model deployment for data science teams",
+      "Low-friction ML productionization without MLOps infra setup"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Deploy Python models from notebooks fast",
+      "Handles packaging and dependencies",
+      "Clean REST endpoint output",
+      "Good for data scientists without DevOps"
+    ],
+    "cons": [
+      "Python-only runtime focus",
+      "Enterprise pricing gets steep",
+      "Scaling controls more opinionated",
+      "Less flexible than SageMaker for custom needs"
+    ],
+    "verdict": "Friction-free model deployment for data scientists, but power users may outgrow its abstractions.",
+    "best_for": "Data scientists shipping Python ML models without wanting to touch Docker or Kubernetes",
+    "not_for": "ML platform teams needing full control or non-Python inference workloads"
   }
 }

@@ -22,5 +22,29 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "ML-based Kubernetes CPU and memory right-sizing",
+      "Automated resource request/limit optimization for pods",
+      "Load test integration to recommend production-ready limits",
+      "Cost reduction without manual HPA and VPA tuning"
+    ]
+  },
+  "review": {
+    "pros": [
+      "ML-driven CPU and memory right-sizing",
+      "Cuts Kubernetes waste measurably",
+      "Integrates with existing HPA and VPA",
+      "Observability-plus-optimization in one tool"
+    ],
+    "cons": [
+      "Not a testing tool despite category listing",
+      "Paid product with enterprise pricing",
+      "Requires meaningful Kubernetes scale to justify"
+    ],
+    "verdict": "A solid Kubernetes right-sizing tool, though its placement in test automation catalogs is a misnomer.",
+    "best_for": "Mid-to-large Kubernetes clusters with enough scale to justify optimization SaaS",
+    "not_for": "Small clusters or teams looking for actual test automation tooling"
   }
 }

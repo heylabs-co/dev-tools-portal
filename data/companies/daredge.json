@@ -22,5 +22,29 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "Deploying latency-sensitive workloads closer to end users",
+      "Edge compute for IoT processing near data sources",
+      "Reducing round-trip latency for real-time API responses",
+      "Distributed application hosting across edge PoPs globally",
+      "Offloading origin compute to edge nodes for performance"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Low latency for edge workloads",
+      "Distributed points of presence",
+      "Useful for latency-critical apps"
+    ],
+    "cons": [
+      "Small, less-known provider",
+      "Ecosystem and tooling limited",
+      "Docs thinner than Cloudflare or Fastly"
+    ],
+    "verdict": "Niche edge compute option, hard to justify over Cloudflare Workers or Fastly Compute today.",
+    "best_for": "Specific regional edge workloads where Cloudflare gaps exist",
+    "not_for": "Teams wanting a mature global edge platform with rich tooling"
   }
 }

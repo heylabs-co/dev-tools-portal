@@ -23,5 +23,31 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "Automatically purchasing Reserved Instances to cut AWS bills",
+      "Optimizing Savings Plan coverage without upfront commitment",
+      "Reducing idle EC2 spend with automated scheduling",
+      "Getting instant AWS cost savings without engineering effort",
+      "Cloud cost governance for teams spending $50K+/month on AWS"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Automated RI and Savings Plan purchasing for AWS",
+      "Performance-based pricing tied to actual savings",
+      "No upfront commitment risk for customers",
+      "Zero-config onboarding with read-only IAM role"
+    ],
+    "cons": [
+      "AWS-only, no Azure or GCP coverage",
+      "Takes percentage of savings, can get pricey at scale",
+      "Limited visibility into algorithm decisions",
+      "Less useful for already heavily committed accounts"
+    ],
+    "verdict": "Hands-off RI automation for AWS-heavy shops willing to pay for savings share, weak for multi-cloud FinOps teams.",
+    "best_for": "AWS-only startups wanting autopilot commitment management without a FinOps hire",
+    "not_for": "Multi-cloud orgs or teams already running mature RI strategies in-house"
   }
 }

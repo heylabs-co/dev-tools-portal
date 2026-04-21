@@ -23,5 +23,31 @@
   },
   "community": {
     "hn_mentions_30d": 1
+  },
+  "content": {
+    "when_to_use": [
+      "ACID transactions spanning multiple heterogeneous databases",
+      "Unified transactional layer over Cassandra, MySQL, and DynamoDB",
+      "Cross-database consistency for distributed microservice data",
+      "Two-phase commit protocol across polyglot persistence layers",
+      "Financial transaction integrity across multi-database architectures"
+    ]
+  },
+  "review": {
+    "pros": [
+      "ACID transactions across heterogeneous databases",
+      "Works with Cassandra, DynamoDB, JDBC sources",
+      "Removes 2PC complexity for polyglot stacks",
+      "Academic-grade correctness pedigree"
+    ],
+    "cons": [
+      "Adds a transactional layer to manage",
+      "Performance overhead for cross-DB operations",
+      "Smaller community outside Japan",
+      "Requires careful schema design"
+    ],
+    "verdict": "Clever universal transaction layer for polyglot persistence, most apps are better off with a single SQL database.",
+    "best_for": "Teams with legitimate polyglot persistence needing ACID guarantees across stores",
+    "not_for": "Apps that could just use a single distributed SQL database like CockroachDB"
   }
 }

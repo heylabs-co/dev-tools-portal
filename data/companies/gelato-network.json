@@ -23,5 +23,29 @@
   },
   "community": {
     "hn_mentions_30d": 3
+  },
+  "content": {
+    "when_to_use": [
+      "Automating smart-contract execution with keeper infrastructure",
+      "Gasless relay transactions in Web3 applications",
+      "On-chain VRF for provably fair randomness in games",
+      "ERC-4337 account abstraction bundling for Web3 apps",
+      "Rollup-as-a-service deployment for custom L2 chains"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Broad web3 automation primitives",
+      "Covers keepers, VRF, AA, and relay",
+      "Rollup-as-a-service is maturing"
+    ],
+    "cons": [
+      "Pricing and fees can be opaque",
+      "Heavy dependency on Gelato infra",
+      "Not every chain fully supported"
+    ],
+    "verdict": "A versatile web3 infra Swiss Army knife, with the usual tradeoff of trusting one provider.",
+    "best_for": "dApp teams wanting automation, relay, VRF, and AA from one stack",
+    "not_for": "Protocols that insist on fully self-hosted, minimal-trust infra"
   }
 }

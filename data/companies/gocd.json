@@ -22,5 +22,30 @@
   },
   "community": {
     "hn_mentions_30d": 444
+  },
+  "content": {
+    "when_to_use": [
+      "Pipeline-as-code with value stream map visualization",
+      "Continuous delivery server with approval gates",
+      "Fan-in/fan-out pipeline dependencies for complex flows",
+      "Open-source CD alternative to Jenkins with modern UI"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Value stream mapping visualizes complex pipelines",
+      "First-class dependency modeling between pipelines",
+      "Self-hosted, no per-user tax",
+      "Battle-tested by ThoughtWorks consulting"
+    ],
+    "cons": [
+      "UI and concepts feel dated vs GitHub Actions",
+      "You run and upgrade the server and agents",
+      "Plugin ecosystem thinner than Jenkins",
+      "Configuration is verbose"
+    ],
+    "verdict": "Powerful for modeling complex delivery pipelines, but hard to justify over modern hosted CI.",
+    "best_for": "Enterprises modeling long, branching delivery pipelines with strict stage gating.",
+    "not_for": "Small teams wanting a fast, hosted, low-maintenance CI setup."
   }
 }

@@ -39,5 +39,30 @@
     "forks": 293,
     "updated_at": "2026-04-21",
     "health_score": "A"
+  },
+  "content": {
+    "when_to_use": [
+      "Service virtualization for HTTP, TCP, SMTP dependencies",
+      "Programmable imposters for contract testing scenarios",
+      "Simulate third-party API behavior in integration tests",
+      "Record and replay real service interactions as stubs"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Covers HTTP, HTTPS, TCP and SMTP in one tool",
+      "Programmable imposters with predicates and responses",
+      "Record-and-replay mode for fast stubbing",
+      "Language-agnostic, driven over HTTP"
+    ],
+    "cons": [
+      "Node-based, extra runtime to operate",
+      "Docs can feel academic and dense",
+      "Maintenance pace has slowed in recent years",
+      "Less polished than WireMock for HTTP-only needs"
+    ],
+    "verdict": "Powerful multi-protocol service virtualization, overkill when WireMock or MSW already fit.",
+    "best_for": "Teams virtualizing non-HTTP protocols alongside HTTP in one tool",
+    "not_for": "Pure HTTP projects where WireMock or MSW are simpler choices"
   }
 }

@@ -44,5 +44,28 @@
     "forks": 806,
     "updated_at": "2026-04-21",
     "health_score": "A"
+  },
+  "content": {
+    "when_to_use": [
+      "Orchestrating ML workflows at scale using Flyte and Union Cloud",
+      "Running reproducible ML training jobs with typed artifact tracking",
+      "Managing cross-cloud compute for distributed ML pipeline execution",
+      "Deploying ML workflows from local Flyte dev to production cluster"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Built by the Flyte creators themselves",
+      "Production-grade workflow orchestration",
+      "Strong typing and caching for ML pipelines"
+    ],
+    "cons": [
+      "Steep learning curve vs Prefect/Dagster",
+      "Kubernetes-heavy operationally",
+      "Smaller community than Airflow"
+    ],
+    "verdict": "The right choice if you already love Flyte; otherwise Prefect or Dagster usually have a gentler onramp.",
+    "best_for": "ML platform teams running typed, reproducible pipelines on Kubernetes at scale",
+    "not_for": "Small data teams wanting a lightweight Pythonic orchestrator"
   }
 }

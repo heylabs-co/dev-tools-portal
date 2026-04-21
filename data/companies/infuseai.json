@@ -26,5 +26,28 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "Managing ML experiment tracking and model registry on Kubernetes",
+      "Deploying Jupyter-based ML workflows for distributed teams",
+      "Building reproducible ML pipelines with a hosted MLOps layer",
+      "Running GPU workloads on hybrid on-premise/cloud infrastructure"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Solid open-core PrimeHub on Kubernetes",
+      "Good fit for teams already standardized on K8s",
+      "Strong Taiwan/APAC enterprise presence"
+    ],
+    "cons": [
+      "Smaller community than Kubeflow or MLflow",
+      "Kubernetes expertise required to operate",
+      "Less polished than commercial SaaS MLOps"
+    ],
+    "verdict": "Reasonable self-hosted MLOps if you already run Kubernetes and want data control.",
+    "best_for": "APAC enterprises running ML on-prem with Kubernetes expertise",
+    "not_for": "Small teams wanting managed SaaS MLOps without DevOps overhead"
   }
 }

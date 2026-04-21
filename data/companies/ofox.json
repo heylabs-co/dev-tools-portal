@@ -33,5 +33,30 @@
   },
   "community": {
     "hn_mentions_30d": 32
+  },
+  "content": {
+    "when_to_use": [
+      "Automating OCR and document digitization for enterprise workflows",
+      "Running structured data extraction from scanned paper documents",
+      "Building document processing pipelines for logistics and compliance",
+      "Digitizing legacy paper records with AI OCR automation"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Visual agent-orchestration canvas",
+      "Pre-built templates for common business flows",
+      "Multi-model routing across providers",
+      "Event-triggered execution for async tasks"
+    ],
+    "cons": [
+      "Early-stage, small user community",
+      "Limited third-party reviews or case studies",
+      "Pricing tiers unclear for high-volume usage",
+      "No clear differentiation vs LangGraph or n8n"
+    ],
+    "verdict": "Fine for experimenting with agent workflows, but most teams will reach for LangGraph or established orchestrators first.",
+    "best_for": "Ops teams prototyping agent automations without code",
+    "not_for": "Engineering teams with LangChain or Temporal stack in place"
   }
 }

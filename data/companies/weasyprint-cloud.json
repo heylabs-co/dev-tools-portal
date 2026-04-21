@@ -22,5 +22,33 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "Cloud HTML/CSS to PDF with full pagination and print CSS",
+      "Managed WeasyPrint API for server-side document generation",
+      "Complex multi-page report generation from styled HTML templates",
+      "CSS Paged Media-compliant PDF without managing WeasyPrint server",
+      "Replacing wkhtmltopdf with standards-compliant PDF cloud API"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Hosted wrapper around respected OSS WeasyPrint",
+      "Strong CSS Paged Media support",
+      "Open-source core means no hidden rendering",
+      "Good for report and invoice generation",
+      "Pay-as-you-go pricing"
+    ],
+    "cons": [
+      "JS-rendered pages unsupported (WeasyPrint limit)",
+      "Smaller operator, limited SLAs",
+      "Fewer enterprise features than PDFShift",
+      "Dashboard and monitoring basic",
+      "Support channels thin"
+    ],
+    "verdict": "Managed WeasyPrint is handy — gives you OSS renderer without infra pain, but skip if you need JS rendering.",
+    "best_for": "Devs who love WeasyPrint output but don't want to run the Python stack themselves.",
+    "not_for": "Apps rendering JS-heavy pages to PDF — WeasyPrint can't see JS output."
   }
 }

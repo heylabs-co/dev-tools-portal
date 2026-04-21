@@ -22,5 +22,31 @@
   },
   "community": {
     "hn_mentions_30d": 2
+  },
+  "content": {
+    "when_to_use": [
+      "Historical inbox audit for credential exposure in old emails",
+      "Phishing-resistant MFA enforcement for Gmail and Outlook",
+      "Sensitive data detection in employee email archives",
+      "Email data loss prevention for compliance-sensitive teams",
+      "SOC 2 access control evidence via email security audit logs"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Retroactive inbox scanning finds historical credential exposure",
+      "Redacts sensitive data in email at rest",
+      "Strong phishing-resistant MFA enforcement features",
+      "Works with existing M365 and Google Workspace deployments"
+    ],
+    "cons": [
+      "Retroactive scanning of years of email is slow initially",
+      "Enterprise pricing excludes smaller organizations",
+      "Overlaps with features in E5 and Google enterprise plans",
+      "Some redaction workflows frustrate end users"
+    ],
+    "verdict": "Unique angle on email security with retroactive risk reduction, but priced and sized for enterprises only.",
+    "best_for": "Enterprises worried about historical credential leakage and executive account takeover.",
+    "not_for": "SMBs satisfied with native M365 or Google security and tight budgets."
   }
 }

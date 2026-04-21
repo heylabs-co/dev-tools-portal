@@ -22,5 +22,29 @@
   },
   "community": {
     "hn_mentions_30d": 26
+  },
+  "content": {
+    "when_to_use": [
+      "Single API for payout and acquiring across multiple rails",
+      "Switching between payment providers without re-integration",
+      "Unified reconciliation across global payout methods"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Single API across many PSPs and rails",
+      "Treasury and payout orchestration",
+      "Reduces multi-PSP maintenance burden",
+      "Good for scaling fintechs"
+    ],
+    "cons": [
+      "Abstracts detail, loses rail-specific features",
+      "Pricing opaque, enterprise-only",
+      "Newer vendor, smaller community",
+      "Integration still needs compliance work"
+    ],
+    "verdict": "Useful curation layer for fintechs juggling multiple PSPs, but only pays off at meaningful scale.",
+    "best_for": "Scaling fintechs and treasuries consolidating many payout and acquiring rails",
+    "not_for": "Single-country merchants who need only one PSP"
   }
 }

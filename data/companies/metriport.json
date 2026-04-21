@@ -42,5 +42,31 @@
     "forks": 95,
     "updated_at": "2026-04-21",
     "health_score": "C"
+  },
+  "content": {
+    "when_to_use": [
+      "Aggregating patient medical records from HIEs like CommonWell",
+      "Universal healthcare API abstracting multiple data networks",
+      "Building clinical decision tools with multi-source patient data",
+      "Open-source alternative to Health Gorilla for HIE connectivity",
+      "Populating patient records from nationwide clinical data exchange"
+    ]
+  },
+  "review": {
+    "pros": [
+      "OSS approach unusual in US healthcare APIs",
+      "HIE network access via CommonWell and Carequality",
+      "Covers 300M+ US patient records at scale",
+      "Self-hostable for compliance flexibility"
+    ],
+    "cons": [
+      "Healthcare-only, US-only scope",
+      "Network onboarding still requires paperwork",
+      "Young project compared to 1upHealth",
+      "FHIR plumbing complexity inherent to domain"
+    ],
+    "verdict": "Refreshing OSS option in US healthcare integration; 1upHealth still has deeper enterprise scaffolding.",
+    "best_for": "US healthtech startups wanting OSS FHIR integration with HIE coverage",
+    "not_for": "Non-US teams or enterprises needing turnkey managed payer/provider platforms"
   }
 }

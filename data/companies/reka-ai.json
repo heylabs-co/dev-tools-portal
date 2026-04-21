@@ -25,5 +25,30 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "Building multimodal AI apps with Reka's text, image, and video models",
+      "Accessing a competitive frontier LLM via API for enterprise tasks",
+      "Running Reka Flash for cost-effective high-throughput inference",
+      "Deploying vision-language models for document and chart understanding"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Strong multimodal vision-language models",
+      "Edge-deployable Flash and Edge variants",
+      "Independent of hyperscaler-tied labs",
+      "Competitive benchmarks on video understanding"
+    ],
+    "cons": [
+      "Smaller ecosystem than OpenAI or Anthropic",
+      "Tooling and integrations less mature",
+      "Pricing not always cheaper at scale",
+      "Fewer third-party eval reports available"
+    ],
+    "verdict": "Worth benchmarking when multimodal matters, but most teams will still default to frontier labs for reliability.",
+    "best_for": "Teams prioritizing multimodal video and image understanding",
+    "not_for": "Text-only apps where OpenAI or Claude quality wins"
   }
 }

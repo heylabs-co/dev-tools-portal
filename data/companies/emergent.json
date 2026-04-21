@@ -22,5 +22,30 @@
   },
   "community": {
     "hn_mentions_30d": 101
+  },
+  "content": {
+    "when_to_use": [
+      "Prototyping multi-agent AI applications through visual canvas",
+      "Orchestrating complex LLM-powered workflows without boilerplate",
+      "Experimenting with emergent agent behaviors in sandbox env",
+      "Building AI pipelines connecting multiple tools and APIs"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Visual builder for autonomous coding and research agents",
+      "Web access built in without custom scraping code",
+      "Lower barrier than writing LangChain or AG2 code",
+      "Good for prototyping agent ideas quickly"
+    ],
+    "cons": [
+      "Crowded market with Dify, Flowise, and LangFlow competing hard",
+      "Debugging agents in a visual canvas hits walls fast",
+      "Vendor lock-in if you build on proprietary platform",
+      "Production-grade reliability remains unproven"
+    ],
+    "verdict": "Good for quick agent prototypes, but serious production systems still demand code-level control.",
+    "best_for": "PMs and engineers prototyping agent workflows without full custom code",
+    "not_for": "Teams running mission-critical agents or requiring deep observability and control"
   }
 }

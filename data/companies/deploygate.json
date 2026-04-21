@@ -23,5 +23,30 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "iOS/Android beta distribution to testers with crash feedback collection",
+      "Japanese mobile app QA workflow with tester feedback and version management",
+      "OTA app distribution for internal stakeholders before App Store submission",
+      "Automated build upload and tester notification via CI/CD integration"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Smooth OTA install flow for iOS and Android testers",
+      "Good feedback and crash capture from testers",
+      "Strong fit for Japanese mobile teams and workflows",
+      "API integrates well with CI pipelines"
+    ],
+    "cons": [
+      "Brand and docs skew Japanese-first",
+      "Global enterprise features lag Firebase or TestFlight",
+      "Pricing not always obvious outside Japan",
+      "Smaller community and plugin ecosystem"
+    ],
+    "verdict": "Strong beta distribution tool if you work in Japan; elsewhere TestFlight plus Firebase usually wins.",
+    "best_for": "Japanese mobile teams distributing internal betas to testers",
+    "not_for": "Global teams already standardized on TestFlight or Firebase"
   }
 }

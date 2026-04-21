@@ -22,5 +22,31 @@
   },
   "community": {
     "hn_mentions_30d": 18
+  },
+  "content": {
+    "when_to_use": [
+      "Connect AI assistant to internal database via MCP server",
+      "Tool-calling standard for multi-agent orchestration",
+      "Expose REST API as MCP tool for LLM integration",
+      "File system access for AI coding assistant context",
+      "OSS protocol for interoperable AI tool ecosystems"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Open standard with growing ecosystem",
+      "Clean spec for tool and resource exposure",
+      "SDKs in Python, TS, Go, more",
+      "Backed by Anthropic plus community"
+    ],
+    "cons": [
+      "Still stabilizing, breaking changes happen",
+      "Tooling maturity lags the spec",
+      "Security model needs careful review",
+      "Discovery/registry story is early"
+    ],
+    "verdict": "The emerging standard for connecting LLMs to tools—worth adopting now despite rough edges.",
+    "best_for": "Dev tool teams exposing APIs or data to LLM agents in a portable way",
+    "not_for": "Teams needing a frozen, battle-tested protocol today"
   }
 }

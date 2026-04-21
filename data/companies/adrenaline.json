@@ -22,5 +22,30 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "Exploring and understanding unfamiliar GitHub codebases quickly",
+      "Asking natural language questions about a repo's architecture",
+      "Onboarding to open-source projects with AI-guided code walkthrough",
+      "Debugging logic by querying how functions interact across files"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Explains unfamiliar GitHub repos without local cloning",
+      "Answers questions grounded in specific codebase context",
+      "Quick onboarding aid for open-source contributors",
+      "Handles repo-wide search beyond single-file context"
+    ],
+    "cons": [
+      "Quality drops on very large or poorly documented repos",
+      "Limited write/refactor capability versus full IDE agents",
+      "Depends on public GitHub access for most features",
+      "Smaller moat as Copilot Chat and Cursor cover same ground"
+    ],
+    "verdict": "Useful for exploring unknown repos, but narrow scope makes it a companion tool rather than a daily driver.",
+    "best_for": "Developers onboarding to a new open-source repo or reviewing unfamiliar code",
+    "not_for": "Teams needing full IDE integration, refactoring agents, or private enterprise repos"
   }
 }

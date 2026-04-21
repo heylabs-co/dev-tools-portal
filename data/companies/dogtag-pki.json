@@ -22,5 +22,31 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "On-premise certificate authority deployment for enterprise PKI",
+      "Smart card credential issuance for government identity programs",
+      "TLS certificate lifecycle management for Red Hat environments",
+      "SCEP-based device certificate enrollment for MDM systems",
+      "OCSP responder setup for certificate revocation checking"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Fully open source enterprise-grade PKI",
+      "Supports CA, KRA, OCSP, TPS subsystems",
+      "Upstream of Red Hat Certificate System",
+      "No license fees even at scale"
+    ],
+    "cons": [
+      "Complex install and operational burden",
+      "Docs skew toward Red Hat/Fedora users",
+      "Java stack can feel heavy for small shops",
+      "Community support thinner than commercial PKI"
+    ],
+    "verdict": "Capable open-source PKI if you have patience and Red Hat expertise; rough going otherwise.",
+    "best_for": "Red Hat shops wanting RHCS features without the subscription.",
+    "not_for": "Teams who'd rather pay for a managed PKI or use Smallstep."
   }
 }

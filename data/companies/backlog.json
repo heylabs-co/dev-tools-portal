@@ -23,5 +23,30 @@
   },
   "community": {
     "hn_mentions_30d": 23
+  },
+  "content": {
+    "when_to_use": [
+      "Git hosting with Gantt charts for Japanese dev teams",
+      "SVN to Git migration with issue tracker integration",
+      "Webhook-driven CI triggers on pull requests",
+      "Burndown charts and milestone tracking for sprints"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Gantt charts and Kanban in one tool, rare combo",
+      "Tight Git/SVN hosting integrated with tickets",
+      "Popular and well-localized for Japanese market",
+      "Simple, approachable UI for non-developers"
+    ],
+    "cons": [
+      "Limited adoption outside Japan hurts ecosystem",
+      "CI/CD is webhook-based, not built-in",
+      "Repository features lag GitHub/GitLab",
+      "Pricing scales oddly by user and project"
+    ],
+    "verdict": "A solid PM + repo combo for small mixed teams, best when you want Gantt without Jira.",
+    "best_for": "Small teams mixing devs and PMs, especially in APAC, who want Gantt-centric PM.",
+    "not_for": "Engineering-only teams who just need Git hosting and pipelines."
   }
 }

@@ -23,5 +23,29 @@
   },
   "community": {
     "hn_mentions_30d": 1
+  },
+  "content": {
+    "when_to_use": [
+      "ANR detection and crash reporting for Chinese Android apps",
+      "Unity game crash reporting for China mobile game studios",
+      "iOS crash tracking for apps distributed in Chinese app stores"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Mature iOS/Android/Unity crash and ANR reporting",
+      "Widely adopted across Chinese mobile apps",
+      "Free tier sufficient for many studios",
+      "Good symbolication and Unity support"
+    ],
+    "cons": [
+      "Best experience inside Chinese ecosystem",
+      "English docs and support patchy",
+      "Compliance questions for Western markets",
+      "Integrations outside Tencent cloud are limited"
+    ],
+    "verdict": "Safe and cheap default for Chinese mobile/game teams; Western teams should stick with Sentry or Firebase.",
+    "best_for": "Chinese mobile and game studios needing free crash/ANR data",
+    "not_for": "Western apps with strict data residency requirements"
   }
 }

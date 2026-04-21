@@ -36,5 +36,29 @@
     "forks": 623,
     "updated_at": "2026-04-21",
     "health_score": "D"
+  },
+  "content": {
+    "when_to_use": [
+      "Test case management with plan and execution tracking",
+      "Jira and Bugzilla integration for defect traceability",
+      "Test suite organization across releases and milestones",
+      "Reporting on test coverage and execution progress"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Mature open-source test management",
+      "Test cases, plans, execution, reporting in one",
+      "Integrations with Jira, Bugzilla, Redmine",
+      "Self-hosted for data control"
+    ],
+    "cons": [
+      "Dated PHP UI and UX",
+      "Manual test focus, weak on automation integration",
+      "TestRail and Xray dominate modern choices"
+    ],
+    "verdict": "A free option for self-hosted test management, though the UX gap vs TestRail and Xray is hard to justify.",
+    "best_for": "Teams with strict self-hosting needs and tight budgets for QA tooling",
+    "not_for": "Modern QA teams where TestRail or Xray pay off in usability"
   }
 }

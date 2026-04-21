@@ -37,5 +37,29 @@
     "forks": 403,
     "updated_at": "2026-04-21",
     "health_score": "C"
+  },
+  "content": {
+    "when_to_use": [
+      "Distributed Erlang-based load testing at extreme scale",
+      "Multi-protocol load tests: HTTP, PostgreSQL, MQTT, XMPP",
+      "Simulate realistic user behavior with XML scenario files",
+      "Scale load across a cluster of machines effortlessly"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Distributed load testing in Erlang",
+      "Supports HTTP, XMPP, MQTT, Postgres, LDAP",
+      "Scales to millions of simulated users",
+      "Open source with long track record"
+    ],
+    "cons": [
+      "XML scenarios feel archaic in 2026",
+      "Small community, slow releases",
+      "k6 and Locust dominate modern load testing"
+    ],
+    "verdict": "Historically strong for multi-protocol load tests, but k6 and Locust have surpassed it for most teams.",
+    "best_for": "Legacy setups or niche protocols like XMPP needing distributed load simulation",
+    "not_for": "New load testing where k6 scripts offer vastly better ergonomics"
   }
 }

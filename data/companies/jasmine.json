@@ -40,5 +40,30 @@
     "forks": 2244,
     "updated_at": "2026-04-21",
     "health_score": "A"
+  },
+  "content": {
+    "when_to_use": [
+      "Spec-style unit tests for JavaScript without dependencies",
+      "Behavior-driven test organization for Angular projects",
+      "Standalone browser-runnable test suites",
+      "Custom equality testers for domain object comparisons"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Zero external dependencies, batteries included",
+      "Stable, mature BDD-style spec syntax",
+      "Still the default in many Angular projects",
+      "Works in Node and browsers"
+    ],
+    "cons": [
+      "Losing mindshare rapidly to Jest and Vitest",
+      "Slower TypeScript and ESM story",
+      "Mocking primitives feel dated",
+      "Ecosystem innovation has largely stopped"
+    ],
+    "verdict": "Solid but clearly past its prime, mostly justified today for legacy Angular codebases.",
+    "best_for": "Existing Angular or AngularJS projects with sizeable Jasmine suites",
+    "not_for": "New JavaScript projects where Vitest or native runners are better defaults"
   }
 }

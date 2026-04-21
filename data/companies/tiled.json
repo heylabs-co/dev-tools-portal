@@ -19,5 +19,31 @@
   "seo": {
     "title": "Tiled — Game Development Tools",
     "meta_description": "Tiled: Free, open-source 2D map editor for tile-based games. Exports TMX maps readable by every major 2D game engine—widely used in RPGs, platformers, and strat"
+  },
+  "content": {
+    "when_to_use": [
+      "RPG world map built as multi-layer Tiled TMX project",
+      "Platformer level exported as JSON and loaded into Phaser game",
+      "Entity metadata attached to map objects and read in engine",
+      "Tileset collision masks defined in Tiled and imported to Unity",
+      "Open-source level editor integrated into Godot 2D project"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Stable, battle-tested since 2008 with huge ecosystem",
+      "TMX format readable by almost every 2D engine",
+      "Donation-based, truly open source under GPL",
+      "Isometric and hex grid support out of the box"
+    ],
+    "cons": [
+      "UI feels dated compared to LDtk",
+      "Auto-tile rules less polished than LDtks",
+      "Single-maintainer project like LDtk",
+      "Workflow becomes tedious on very large worlds"
+    ],
+    "verdict": "The safe, broadly-compatible 2D level editor; LDtk feels more modern, but Tileds ecosystem advantage remains real.",
+    "best_for": "Isometric, hex, or orthogonal 2D games needing broad engine compatibility",
+    "not_for": "Teams wanting the most modern UX — LDtk has the edge there"
   }
 }

@@ -23,5 +23,29 @@
   },
   "community": {
     "hn_mentions_30d": 1
+  },
+  "content": {
+    "when_to_use": [
+      "PII data vault for storing and tokenizing payment credentials",
+      "Privacy-preserving data access for LLM applications",
+      "PCI-compliant card data storage with field-level access control"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Purpose-built data privacy vault as an API",
+      "Covers payments, PII, and LLM data",
+      "Strong compliance posture with residency options",
+      "Clean developer ergonomics"
+    ],
+    "cons": [
+      "Vault only — no routing or acquiring",
+      "Pricing scales quickly with records and APIs",
+      "Adds a hop to every sensitive-data flow",
+      "Overkill if PSP-provided vault already suffices"
+    ],
+    "verdict": "Top-tier data-privacy vault, especially for multi-data-type programs; not a replacement for payment orchestration.",
+    "best_for": "Companies needing one vault for cards, PII, and LLM data with strict residency and governance.",
+    "not_for": "Teams whose only need is basic PCI-scope reduction around a single PSP."
   }
 }

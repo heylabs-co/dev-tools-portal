@@ -38,5 +38,31 @@
     "forks": 24,
     "updated_at": "2026-04-21",
     "health_score": "F"
+  },
+  "content": {
+    "when_to_use": [
+      "Open-source IoT cloud with messaging, auth, and device management",
+      "Microservices-based IoT platform deployable on Kubernetes",
+      "MQTT and HTTP device messaging with rules-based routing",
+      "Self-hosted IoT backend without cloud vendor lock-in",
+      "Edge-to-cloud IoT connectivity via open protocol bridges"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Fully open-source and patent-free",
+      "Microservices-based modular design",
+      "Multi-protocol support",
+      "Self-hostable with no vendor lock"
+    ],
+    "cons": [
+      "Requires real ops investment to run",
+      "Community support limited",
+      "Setup complexity for smaller teams",
+      "Docs occasionally lag features"
+    ],
+    "verdict": "Solid open-source IoT backbone for teams willing to self-host, not a managed-service replacement.",
+    "best_for": "Teams with DevOps capacity wanting self-hosted open-source IoT infrastructure",
+    "not_for": "Small teams wanting managed IoT or those without Kubernetes operations experience"
   }
 }

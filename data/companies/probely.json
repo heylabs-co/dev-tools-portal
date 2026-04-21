@@ -22,5 +22,31 @@
   },
   "community": {
     "hn_mentions_30d": 565
+  },
+  "content": {
+    "when_to_use": [
+      "DAST web application scanning integrated with GitHub Actions",
+      "Swagger/OpenAPI-driven API security testing automation",
+      "OWASP Top 10 vulnerability detection in staging environments",
+      "Continuous DAST scan scheduling for production monitoring",
+      "PCI DSS-aligned web application scanning for compliance"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Strong API and OpenAPI-driven scanning workflows",
+      "Clean, developer-friendly UI and reporting",
+      "Solid CI/CD integrations for pipeline scanning",
+      "Transparent per-target pricing model"
+    ],
+    "cons": [
+      "DAST-only, no SAST or SCA coverage",
+      "Coverage depends heavily on spec quality",
+      "Smaller brand footprint than Burp or Invicti",
+      "Advanced auth flows still need manual configuration"
+    ],
+    "verdict": "Clean DAST option well-suited to API-first teams; pair it with SAST and SCA for full AppSec.",
+    "best_for": "API-heavy dev teams wanting developer-friendly DAST inside CI/CD pipelines.",
+    "not_for": "Shops wanting one vendor for SAST, SCA, and DAST in a single unified console."
   }
 }

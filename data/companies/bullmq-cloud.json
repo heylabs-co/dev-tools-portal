@@ -22,5 +22,31 @@
   },
   "community": {
     "hn_mentions_30d": 1
+  },
+  "content": {
+    "when_to_use": [
+      "Managed background job queue for Node.js workers",
+      "Delayed job scheduling for email digests",
+      "Priority queues for time-sensitive notification delivery",
+      "Job retry with exponential backoff for flaky tasks",
+      "BullMQ hosting without self-managing Redis infrastructure"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Managed BullMQ removes Redis ops burden",
+      "Good Node.js developer experience",
+      "Dashboard for queue visibility",
+      "Same API as self-hosted BullMQ"
+    ],
+    "cons": [
+      "Node-only ecosystem",
+      "Costlier than running Redis yourself at scale",
+      "Smaller vendor than AWS SQS",
+      "Limited features beyond BullMQ core"
+    ],
+    "verdict": "Sensible managed queue for Node teams who love BullMQ but hate operating Redis clusters.",
+    "best_for": "Node.js teams that already use BullMQ and want to skip Redis operations",
+    "not_for": "Polyglot backends or teams needing at-least-once SQS-style guarantees and scale"
   }
 }

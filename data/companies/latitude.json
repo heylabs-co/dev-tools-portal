@@ -25,5 +25,28 @@
   },
   "community": {
     "hn_mentions_30d": 7
+  },
+  "content": {
+    "when_to_use": [
+      "Managing and versioning LLM prompts across production apps",
+      "Running evals and regression tests on prompt changes before deploy",
+      "Collaborating on prompts with a team via a shared prompt library",
+      "Analyzing prompt performance with built-in observability traces"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Clean prompt versioning and collaboration",
+      "Evaluations integrated with prompt management",
+      "Open-source core appeals to dev teams"
+    ],
+    "cons": [
+      "Competing against PromptLayer, Langfuse, Humanloop",
+      "Feature surface still narrower than incumbents",
+      "Workflow requires prompt discipline upfront"
+    ],
+    "verdict": "A solid open-source-leaning prompt platform; best when your team treats prompts as code.",
+    "best_for": "Engineering teams managing prompts as versioned artifacts with evals",
+    "not_for": "Simple apps with a handful of static prompts"
   }
 }

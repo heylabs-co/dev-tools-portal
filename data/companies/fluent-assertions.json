@@ -40,5 +40,30 @@
     "forks": 731,
     "updated_at": "2026-04-21",
     "health_score": "A"
+  },
+  "content": {
+    "when_to_use": [
+      "Natural English-style assertions in .NET test code",
+      "Deep equivalence checks with detailed failure diffs",
+      "Collection assertions: BeInAscendingOrder, Contain, etc.",
+      "Custom assertion extensions for domain model testing"
+    ]
+  },
+  "review": {
+    "pros": [
+      "The most readable .NET assertion syntax available",
+      "Deep object graph comparison with BeEquivalentTo",
+      "Great failure messages with precise paths",
+      "Broad type coverage: dates, collections, exceptions"
+    ],
+    "cons": [
+      "Recent v8 moved to paid commercial license",
+      "Heavy API, easy to misuse BeEquivalentTo",
+      "Slightly slower than raw Assert calls at scale",
+      "License change has splintered the community"
+    ],
+    "verdict": "Best-in-class ergonomics for .NET tests, but the new license has made adoption a governance decision.",
+    "best_for": ".NET teams who value readable assertions and can accept the v8 licensing model",
+    "not_for": "Projects unwilling to pay, better off pinning v7 or moving to Shouldly"
   }
 }

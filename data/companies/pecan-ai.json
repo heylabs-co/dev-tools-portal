@@ -26,5 +26,30 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "Running predictive analytics on Snowflake/BigQuery without code",
+      "Building churn and CLV prediction models connected to CRM data",
+      "Deploying lead scoring pipelines for marketing and sales teams",
+      "Generating predictive features from existing SQL data sources"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Predictive GenAI auto-builds churn and CLV models",
+      "Low-code UI for marketing and CX teams",
+      "Handles data prep and feature engineering",
+      "Faster time-to-prediction than DIY ML"
+    ],
+    "cons": [
+      "Less control than hand-coded ML pipelines",
+      "Pricing targets mid-market and enterprise",
+      "Feature set narrower than Databricks ML",
+      "Black-box models harder to explain to stakeholders"
+    ],
+    "verdict": "Solid no-code predictive layer for marketing teams, but serious ML teams will prefer Databricks or Vertex AI.",
+    "best_for": "Marketing analytics teams wanting predictive models without data scientists",
+    "not_for": "ML engineering teams needing transparent, hand-tuned pipelines"
   }
 }

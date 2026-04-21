@@ -22,5 +22,31 @@
   },
   "community": {
     "hn_mentions_30d": 28
+  },
+  "content": {
+    "when_to_use": [
+      "BPMN process automation integrated with Drools rules engine",
+      "Case management for adaptive processes in Red Hat ecosystems",
+      "Enterprise workflow automation in JBoss/WildFly environments",
+      "Human task management with process simulation in jBPM Suite",
+      "Process analytics and reporting on workflow execution data"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Full BPM suite including case management",
+      "Drools rules engine integration out of the box",
+      "Backed by Red Hat (IBM) for enterprise support",
+      "Supports BPMN 2.0 and DMN standards"
+    ],
+    "cons": [
+      "Heavyweight compared to modern alternatives",
+      "Steep learning curve for full stack adoption",
+      "Red Hat focus biases toward JBoss/EAP deployment",
+      "Less cloud-native than Camunda 8"
+    ],
+    "verdict": "Serious BPM suite for Red Hat shops; overkill for teams that just need a BPMN engine.",
+    "best_for": "Red Hat / JBoss shops needing BPM plus rules engine together",
+    "not_for": "Teams wanting lightweight embeddable BPMN without Drools or EAP"
   }
 }

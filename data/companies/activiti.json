@@ -22,5 +22,31 @@
   },
   "community": {
     "hn_mentions_30d": 69
+  },
+  "content": {
+    "when_to_use": [
+      "Embedding BPMN approval workflows in a Spring Boot app",
+      "Automating multi-step loan origination processes in Java",
+      "Modeling order fulfillment state machines with REST APIs",
+      "Cloud-native process orchestration for Java microservices",
+      "Lightweight alternative to heavyweight BPMS for Java teams"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Lightweight embeddable BPMN 2.0 engine in Java",
+      "Spring Boot starter makes integration trivial",
+      "Apache 2.0 license with no vendor lock-in",
+      "REST API for language-agnostic clients"
+    ],
+    "cons": [
+      "Community momentum has shifted to Flowable fork",
+      "Modeling tools feel dated vs commercial BPM",
+      "Limited built-in UI for business users",
+      "Scaling clusters requires significant DIY work"
+    ],
+    "verdict": "Still viable for embedded Java BPM, but Flowable is where most active development now lives.",
+    "best_for": "Java teams needing embeddable BPMN engine inside existing apps",
+    "not_for": "Non-Java stacks or teams wanting citizen-developer tooling"
   }
 }

@@ -42,5 +42,29 @@
     "forks": 694,
     "updated_at": "2026-04-21",
     "health_score": "A"
+  },
+  "content": {
+    "when_to_use": [
+      "Unified StoreKit 2 and Google Play Billing for React Native apps",
+      "Purchase restoration and receipt validation across platforms",
+      "Handling subscription lifecycle events in React Native via Nitro Modules"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Open-source RN IAP aligned with OpenIAP",
+      "Uses Nitro Modules for modern native bridging",
+      "Broad community adoption in RN ecosystem",
+      "Type-safe interfaces across iOS and Android"
+    ],
+    "cons": [
+      "Library, not a managed subscription service",
+      "Receipt validation still your responsibility",
+      "Upgrades can require native linking work",
+      "Complex edge cases push many teams to RevenueCat"
+    ],
+    "verdict": "The default RN IAP library when you want to own the stack, but most teams still bolt RevenueCat on top eventually.",
+    "best_for": "React Native teams that want to own IAP and validation in-house.",
+    "not_for": "Teams that prefer a managed subscription backend."
   }
 }

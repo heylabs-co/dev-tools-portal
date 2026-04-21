@@ -26,5 +26,30 @@
   },
   "community": {
     "hn_mentions_30d": 16
+  },
+  "content": {
+    "when_to_use": [
+      "Recruiting diverse participant panels for AI evaluation studies",
+      "Collecting human preference data for RLHF training pipelines",
+      "Running A/B studies on LLM output quality with real users",
+      "Gathering behavioral data for training or fine-tuning AI models"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Vetted research-participant pool",
+      "Transparent, fair pay for participants",
+      "Used by major AI labs for RLHF data",
+      "Strong reliability versus MTurk"
+    ],
+    "cons": [
+      "Higher per-response cost than MTurk",
+      "Smaller pool than Amazon Mechanical Turk",
+      "Best for research, not production labeling",
+      "Demographic filters limited outside US/UK"
+    ],
+    "verdict": "Gold standard for high-quality academic and RLHF data; overkill for bulk labeling where Scale or Toloka fit better.",
+    "best_for": "AI labs and researchers needing high-quality human feedback",
+    "not_for": "Teams needing cheap, high-volume labeling at scale"
   }
 }

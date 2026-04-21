@@ -22,5 +22,31 @@
   },
   "community": {
     "hn_mentions_30d": 110
+  },
+  "content": {
+    "when_to_use": [
+      "Feature flag-gated secrets for staged production rollouts",
+      "Runtime configuration management for cloud microservices",
+      "Environment-specific secret injection via config API",
+      "Secrets versioning with rollback for incident response",
+      "Multi-tenant config isolation for SaaS platform deployments"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Combines feature flags with config and secrets",
+      "Single SDK reduces service sprawl",
+      "Lightweight runtime footprint",
+      "Cloud-friendly integration story"
+    ],
+    "cons": [
+      "Secrets story is thinner than flags story",
+      "Smaller ecosystem vs LaunchDarkly",
+      "Mixing flags and secrets can complicate audit",
+      "Docs coverage varies by feature"
+    ],
+    "verdict": "Interesting if you want flags and config in one place, but not a dedicated secrets vault.",
+    "best_for": "Teams willing to co-locate feature flags and runtime config with light secrets.",
+    "not_for": "Security teams wanting a hardened, audit-ready secrets backend."
   }
 }

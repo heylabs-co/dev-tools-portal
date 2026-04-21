@@ -22,5 +22,31 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "Workload identity issuance for Kubernetes pod-to-pod mTLS",
+      "Cross-platform service identity federation for multi-cloud",
+      "Short-lived SVID certificate rotation without manual ops",
+      "Zero-trust service mesh identity without static secrets",
+      "OIDC federation from SPIFFE identity for cloud provider auth"
+    ]
+  },
+  "review": {
+    "pros": [
+      "CNCF standard for workload identity",
+      "SVIDs give cryptographic workload IDs",
+      "Works across K8s, VMs, bare metal",
+      "Solid basis for zero-trust architectures"
+    ],
+    "cons": [
+      "Operationally complex to roll out",
+      "Steep learning curve for concepts",
+      "Docs skew toward infra engineers",
+      "Not a drop-in replacement for vaults"
+    ],
+    "verdict": "The serious answer to workload identity; plan on real engineering investment to deploy it well.",
+    "best_for": "Platform teams building zero-trust identity across heterogeneous infra.",
+    "not_for": "Small teams whose identity needs are solved by cloud IAM."
   }
 }

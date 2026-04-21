@@ -39,5 +39,29 @@
     "forks": 786,
     "updated_at": "2026-04-21",
     "health_score": "B"
+  },
+  "content": {
+    "when_to_use": [
+      "Test spies tracking calls, arguments, and return values",
+      "Stubs replacing functions with controllable behavior",
+      "Mock timers for testing setTimeout and setInterval code",
+      "Framework-agnostic: works with Mocha, Jest, or QUnit"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Runner-agnostic spies, stubs, and mocks",
+      "Works with Mocha, Jest, Vitest, etc.",
+      "Mature API with clear documentation",
+      "Timers and fake XHR helpers included"
+    ],
+    "cons": [
+      "Jest and Vitest have built-in mocks now",
+      "API surface is larger than most teams need",
+      "Less active development recently"
+    ],
+    "verdict": "Still useful for non-Jest runners, though built-in mocking in Jest and Vitest covers most new projects.",
+    "best_for": "JavaScript teams using Mocha or other runners without built-in mocking",
+    "not_for": "Jest or Vitest projects where native mocks remove the dependency"
   }
 }

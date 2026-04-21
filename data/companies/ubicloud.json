@@ -38,5 +38,31 @@
     "forks": 559,
     "updated_at": "2026-04-21",
     "health_score": "A"
+  },
+  "content": {
+    "when_to_use": [
+      "Open-source AWS alternative running on Hetzner bare-metal",
+      "Self-hosted GitHub Actions runners at lower cost than cloud",
+      "IaaS on commodity hardware without hyperscaler pricing",
+      "Managed Postgres and Kubernetes on your own servers via API",
+      "Community-run cloud for cost-sensitive open-source teams"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Open source: auditable and self-hostable",
+      "Cheaper GitHub Actions runners vs GitHub-hosted",
+      "Runs on commodity bare metal like Hetzner",
+      "Transparent pricing and architecture"
+    ],
+    "cons": [
+      "Young project; fewer services than AWS",
+      "No managed databases or higher-level PaaS yet",
+      "Smaller community and limited integrations",
+      "Self-hosting still requires real ops skill"
+    ],
+    "verdict": "Promising open-source IaaS, great for CI cost savings but not a full AWS replacement yet.",
+    "best_for": "Teams cutting GitHub Actions bills or wanting open-source IaaS on Hetzner",
+    "not_for": "Enterprises needing the full breadth of AWS managed services"
   }
 }

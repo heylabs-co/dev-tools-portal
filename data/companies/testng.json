@@ -42,5 +42,29 @@
     "forks": 1026,
     "updated_at": "2026-04-21",
     "health_score": "B"
+  },
+  "content": {
+    "when_to_use": [
+      "Parallel test execution with XML suite configuration",
+      "Data provider annotation for parameterized Java tests",
+      "Test group inclusion/exclusion for selective CI runs",
+      "Dependency declaration between test methods and classes"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Data providers and powerful parameterization",
+      "Parallel execution at multiple levels",
+      "Test groups and dependency ordering",
+      "XML suite config for complex runs"
+    ],
+    "cons": [
+      "JUnit 5 has closed most feature gaps",
+      "XML configuration feels verbose today",
+      "Fewer new projects choose TestNG"
+    ],
+    "verdict": "Still strong for data-driven and parallel Java testing, though JUnit 5 is the default new choice.",
+    "best_for": "Java teams needing complex suite orchestration and data-driven tests",
+    "not_for": "Greenfield Java projects where JUnit 5 plus Jupiter extensions suffice"
   }
 }

@@ -42,5 +42,30 @@
     "forks": 304,
     "updated_at": "2026-04-21",
     "health_score": "C"
+  },
+  "content": {
+    "when_to_use": [
+      "Web UI to deploy Docker containers across server fleets",
+      "Open-source server fleet management for container workloads",
+      "Git-triggered Docker deployments with rollback support",
+      "Stack deployments with Docker Compose file management"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Clean web UI for managing Docker across many servers",
+      "Self-hosted, open-source, predictable ops",
+      "Good middle ground between Portainer and K8s",
+      "Build + deploy unified in one tool"
+    ],
+    "cons": [
+      "Young project, smaller community than Portainer",
+      "Not a real orchestrator, no advanced scheduling",
+      "Docs still sparse on advanced topics",
+      "Limited RBAC and enterprise features"
+    ],
+    "verdict": "A pragmatic Docker fleet manager for small teams who don't want full Kubernetes complexity.",
+    "best_for": "Homelab and small-company ops managing a handful of Docker hosts with a GUI.",
+    "not_for": "Teams needing real orchestration, autoscaling, or multi-tenant isolation."
   }
 }

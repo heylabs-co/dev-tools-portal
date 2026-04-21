@@ -25,5 +25,30 @@
   },
   "community": {
     "hn_mentions_30d": 7
+  },
+  "content": {
+    "when_to_use": [
+      "Detecting objects in satellite and aerial imagery via API",
+      "Training custom geospatial detectors on drone footage",
+      "Automating land use classification from remote sensing data",
+      "Running change detection between satellite image time series"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Geospatial AI tuned for satellite imagery",
+      "Detector API for custom object detection",
+      "Handles imagery at aerial and satellite scale",
+      "GIS-friendly outputs in GeoJSON"
+    ],
+    "cons": [
+      "Narrow geospatial imagery focus",
+      "Requires imagery-source contracts separately",
+      "Limited docs for non-GIS developers",
+      "Competes with Descartes Labs and Up42"
+    ],
+    "verdict": "Sharp fit for geospatial analytics teams, irrelevant for anyone not processing satellite or aerial imagery.",
+    "best_for": "GIS and remote-sensing teams detecting objects in imagery",
+    "not_for": "Generic CV workloads on consumer photos or video"
   }
 }

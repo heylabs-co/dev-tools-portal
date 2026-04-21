@@ -22,5 +22,29 @@
   },
   "community": {
     "hn_mentions_30d": 15
+  },
+  "content": {
+    "when_to_use": [
+      "Generating EU VAT-compliant invoices for digital services",
+      "Automating VAT OSS reporting for EU cross-border B2C sales",
+      "Reconciling Stripe/Paddle payments with tax invoice records"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Automated tax-compliant invoicing for digital goods",
+      "Handles EU VAT MOSS and global rules",
+      "Works well alongside Stripe subscriptions",
+      "Clean API for invoice and credit note issuance"
+    ],
+    "cons": [
+      "Product development pace has slowed",
+      "Narrower scope than full tax engines",
+      "Documentation is dated in places",
+      "Smaller ecosystem and community"
+    ],
+    "verdict": "Niche but useful for Stripe-based SaaS needing compliant EU invoices — check roadmap before betting big.",
+    "best_for": "Digital businesses on Stripe needing compliant VAT invoices without building logic themselves.",
+    "not_for": "Teams needing cutting-edge global tax determination or heavy product investment."
   }
 }

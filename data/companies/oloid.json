@@ -22,5 +22,31 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "Face-based physical access control for frontline workers",
+      "Passwordless mobile authentication for factory floor devices",
+      "Identity verification for shared-device workforce environments",
+      "Biometric time and attendance for compliance audit trails",
+      "Zero-trust access enforcement for shift-based operations"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Face and mobile-based auth for frontline workers",
+      "Works in shared-device and deskless environments",
+      "Integrates with badge, kiosk and time-clock hardware",
+      "Strong ROI story for manufacturing and retail"
+    ],
+    "cons": [
+      "Very vertical; weak fit for pure digital apps",
+      "Biometric compliance burden varies by region",
+      "Hardware-dependent rollouts can be slow",
+      "Pricing and specs not fully public"
+    ],
+    "verdict": "Purpose-built for frontline identity; avoid if your users are primarily office or remote knowledge workers.",
+    "best_for": "Manufacturing, healthcare and retail authenticating shift workers",
+    "not_for": "SaaS apps needing standard consumer or workforce SSO"
   }
 }

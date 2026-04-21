@@ -23,5 +23,31 @@
   },
   "community": {
     "hn_mentions_30d": 1
+  },
+  "content": {
+    "when_to_use": [
+      "MPC-based passwordless onboarding for Web3 applications",
+      "Social login (Google, Twitter) with embedded wallet creation",
+      "OIDC-compatible auth for dApps with backend API access",
+      "Multi-chain wallet support for EVM, Solana, and TON",
+      "White-label wallet SDK for crypto fintech product integration"
+    ]
+  },
+  "review": {
+    "pros": [
+      "MPC-based social login across many chains",
+      "Plug-and-play SDKs for web, mobile and Unity",
+      "Supports EVM, Solana and non-EVM ecosystems",
+      "Good free tier for early projects"
+    ],
+    "cons": [
+      "Key share model adds architectural complexity",
+      "Recovery UX still not as smooth as Web2 accounts",
+      "Some pricing tiers require enterprise sales",
+      "History of product rebrands creates doc drift"
+    ],
+    "verdict": "Mature choice for social-login wallets across many chains; review key share model carefully before shipping.",
+    "best_for": "Multi-chain dApps wanting social login with MPC wallets",
+    "not_for": "Apps that need institutional custody or full self-custody"
   }
 }

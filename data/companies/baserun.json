@@ -25,5 +25,28 @@
   },
   "community": {
     "hn_mentions_30d": 1
+  },
+  "content": {
+    "when_to_use": [
+      "Catching prompt regressions before deploying LLM updates",
+      "Tracking prompt performance metrics across model versions",
+      "Running automated eval suites for LLM output correctness",
+      "Comparing GPT-4 vs Claude vs Gemini on the same test set"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Purpose-built for prompt regression testing",
+      "Side-by-side model comparisons",
+      "Trace and eval in one view"
+    ],
+    "cons": [
+      "Overlaps heavily with Braintrust and Langfuse",
+      "Pricing unclear beyond free tier",
+      "Integrations narrower than competitors"
+    ],
+    "verdict": "Decent if you need a lightweight eval harness; Braintrust or Langfuse have stronger ecosystems.",
+    "best_for": "Small teams running structured prompt evals during LLM app development",
+    "not_for": "Orgs already committed to Braintrust, Langfuse, or Helicone stacks"
   }
 }

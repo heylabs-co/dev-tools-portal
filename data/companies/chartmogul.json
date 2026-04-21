@@ -22,5 +22,30 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "MRR, ARR, churn, and LTV analytics from Stripe or Braintree data",
+      "Cohort analysis to identify retention patterns in subscription SaaS",
+      "Revenue reporting for investor dashboards and board reports",
+      "Customer segmentation by plan, region, or acquisition channel for SaaS"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Accurate MRR, churn, and LTV straight from Stripe or Braintree",
+      "Strong cohort analysis and segmentation filters",
+      "CRM-style customer timeline with billing events",
+      "Flexible data import via CSV or API for custom stacks"
+    ],
+    "cons": [
+      "Pure analytics; does not handle billing or invoicing",
+      "Can get expensive at higher MRR tiers",
+      "Data reconciliation needed when rules change",
+      "Attribution of one-time revenue is sometimes awkward"
+    ],
+    "verdict": "Still the cleanest subscription analytics tool for Stripe-based SaaS; pricey but worth it once MRR is meaningful.",
+    "best_for": "Stripe or Braintree SaaS wanting trustworthy MRR, churn, and cohort reports without building them.",
+    "not_for": "Teams wanting billing in the same tool or very early startups with tight budgets."
   }
 }

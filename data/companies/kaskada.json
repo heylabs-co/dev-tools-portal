@@ -44,5 +44,28 @@
     "forks": 17,
     "updated_at": "2026-04-21",
     "health_score": "F"
+  },
+  "content": {
+    "when_to_use": [
+      "Computing time-travel features from event streams for ML",
+      "Building real-time feature pipelines with temporal semantics",
+      "Generating training examples with point-in-time correct joins",
+      "Accelerating feature engineering for recommendation systems"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Purpose-built for real-time ML features",
+      "Temporal query language handles time joins cleanly",
+      "Open-source core lowers lock-in risk"
+    ],
+    "cons": [
+      "Niche tech — small community and talent pool",
+      "Learning curve on temporal DSL",
+      "Roadmap uncertain after DataStax acquisition"
+    ],
+    "verdict": "Powerful when time-series features are the bottleneck; otherwise a simpler feature store wins.",
+    "best_for": "ML teams with heavy event-based streaming feature requirements",
+    "not_for": "Batch-heavy ML or teams without real-time feature pain"
   }
 }

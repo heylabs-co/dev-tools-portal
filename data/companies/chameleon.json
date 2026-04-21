@@ -22,5 +22,30 @@
   },
   "community": {
     "hn_mentions_30d": 1
+  },
+  "content": {
+    "when_to_use": [
+      "No-code product tours triggered by user behavior for SaaS onboarding",
+      "Contextual tooltips to guide users through complex dashboard features",
+      "Modals and launchers for feature announcements and upsell prompts",
+      "Targeted in-app checklist for new user activation and setup completion"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Polished modal, tooltip, and tour builder",
+      "Fine-grained targeting with Segment integration",
+      "A/B testing on in-app experiences",
+      "Tours survive app updates without dev work"
+    ],
+    "cons": [
+      "Pricing climbs quickly past startup tier",
+      "Web-only — no native mobile SDK",
+      "Overlap with features from PostHog and LaunchDarkly",
+      "Performance impact on heavy apps is noticeable"
+    ],
+    "verdict": "Strong no-code in-app UX tool for B2B SaaS, but pricey and web-only — evaluate against Userflow first.",
+    "best_for": "B2B SaaS PMs shipping onboarding and feature adoption flows",
+    "not_for": "Mobile apps or teams on tight budgets"
   }
 }

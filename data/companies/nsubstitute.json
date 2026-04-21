@@ -40,5 +40,29 @@
     "forks": 277,
     "updated_at": "2026-04-21",
     "health_score": "B"
+  },
+  "content": {
+    "when_to_use": [
+      "Simple .NET substitute/mock with Substitute.ForT()",
+      "No record/replay phases for cleaner .NET test code",
+      "Received() assertions for method call verification",
+      "Auto-properties and default return values for fakes"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Clean Substitute.For<T>() syntax",
+      "No record/replay phases to learn",
+      "Strong IntelliSense support in .NET",
+      "Excellent documentation with examples"
+    ],
+    "cons": [
+      "Cannot mock static or sealed classes",
+      "Less powerful than Moq for complex scenarios",
+      "Smaller community than Moq"
+    ],
+    "verdict": "The friendliest .NET mocking library if you want readable tests without Moq's lambda-heavy syntax.",
+    "best_for": ".NET developers who value readable mock syntax over maximum flexibility",
+    "not_for": "Teams needing to mock static methods or sealed third-party classes"
   }
 }

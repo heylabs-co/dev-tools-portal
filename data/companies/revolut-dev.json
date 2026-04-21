@@ -22,5 +22,30 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "Business account payouts via Revolut API for payroll or vendor payments",
+      "Merchant checkout integration with Revolut Pay",
+      "Open Banking endpoints for account data and payment initiation",
+      "Multi-currency business transfers at real exchange rates"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Business API plus Merchant API plus Open Banking",
+      "Strong for multi-currency EU/UK",
+      "Payouts and checkout unified",
+      "Modern REST and webhooks"
+    ],
+    "cons": [
+      "Ecosystem smaller than Stripe/Adyen",
+      "Product changes and repricing common",
+      "Support variable for devs",
+      "Merchant-side coverage limits"
+    ],
+    "verdict": "Compelling for EU/UK teams already on Revolut Business, but depth trails the biggest PSPs.",
+    "best_for": "EU/UK SMBs and fintechs combining banking, payouts, and checkout in one Revolut stack",
+    "not_for": "Enterprises needing deep acquiring features or US-first coverage"
   }
 }

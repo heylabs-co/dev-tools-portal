@@ -22,5 +22,30 @@
   },
   "community": {
     "hn_mentions_30d": 1
+  },
+  "content": {
+    "when_to_use": [
+      "Continuous background test execution while writing code",
+      "Inline coverage indicators directly in Visual Studio",
+      "Instant feedback on test impact of every code change",
+      "Risk coverage metrics showing untested code density"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Continuous test runs as you type, real flow benefit",
+      "Inline coverage markers inside the IDE",
+      "Distributed test execution across machines",
+      "Works in Visual Studio and Rider"
+    ],
+    "cons": [
+      "Paid per-seat commercial license",
+      "High RAM and CPU usage on big solutions",
+      "Steep initial configuration on monorepos",
+      "Windows-centric, limited Mac/Linux story"
+    ],
+    "verdict": "A real productivity boost for disciplined TDD on .NET, if your team will actually use it daily.",
+    "best_for": "Senior .NET developers doing real TDD who benefit from instant feedback",
+    "not_for": "Teams that rarely run tests locally or work on low-spec machines"
   }
 }

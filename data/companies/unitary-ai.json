@@ -22,5 +22,30 @@
   },
   "community": {
     "hn_mentions_30d": 28
+  },
+  "content": {
+    "when_to_use": [
+      "Detecting harmful video content with multimodal AI classification",
+      "Running contextual video moderation beyond frame-level analysis",
+      "Building brand safety workflows for video advertising platforms",
+      "Classifying video content for harmful, illegal, or sensitive material"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Multimodal understanding across video, image, text",
+      "Context-aware, reduces false positives",
+      "Modern ML stack, not legacy classifiers",
+      "Useful for brand-safety and UGC platforms"
+    ],
+    "cons": [
+      "Younger vendor, shorter track record",
+      "Enterprise pricing and sales cycle",
+      "Video inference cost can add up",
+      "Limited public case studies to benchmark"
+    ],
+    "verdict": "Promising modern multimodal moderation API; validate on your content mix before betting core infra on it.",
+    "best_for": "Video-heavy UGC, ad-tech, and brand-safety use cases needing contextual multimodal scoring.",
+    "not_for": "Text-only or small-scale use cases where cheaper specialized tools suffice."
   }
 }

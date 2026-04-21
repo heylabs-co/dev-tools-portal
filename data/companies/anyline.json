@@ -25,5 +25,28 @@
   },
   "community": {
     "hn_mentions_30d": 353
+  },
+  "content": {
+    "when_to_use": [
+      "Scanning driver licenses and IDs on mobile for KYC flows",
+      "Reading utility meter values via smartphone camera SDK",
+      "Extracting VINs from vehicles during field inspections",
+      "On-device barcode scanning without cloud round-trip latency"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Fully on-device scanning — no cloud needed",
+      "Specialized models for meters, VINs, IDs",
+      "Offline and GDPR-friendly by design"
+    ],
+    "cons": [
+      "SDK licence fees per active user",
+      "Narrow scope vs generic OCR APIs",
+      "Mobile-only — no server SDK"
+    ],
+    "verdict": "The right call for field-ops apps where privacy and offline scanning beat general OCR accuracy.",
+    "best_for": "Utilities, logistics, and insurance apps scanning physical assets in the field",
+    "not_for": "Server-side document processing or generic text extraction"
   }
 }

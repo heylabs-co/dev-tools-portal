@@ -1,17 +1,31 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import CategoryGrid from '../components/CategoryGrid.astro';
 import CompanyCard from '../components/CompanyCard.astro';
 import { getCollection } from 'astro:content';
 import pairsData from '../../data/comparisons/top-pairs.json';
+import sectionsData from '../../data/meta/sections.json';
+
+type Section = {
+  slug: string;
+  name: string;
+  icon: string;
+  description: string;
+  order: number;
+  categories: string[];
+};
 
 const allCategories = await getCollection('categories');
-const categoryData = allCategories.map((entry) => ({
-  slug: entry.data.slug,
-  name: entry.data.name,
-  company_count: entry.data.company_count,
-  ai_native: entry.data.ai_native,
-}));
+const catBySlug = new Map(allCategories.map((c) => [c.data.slug, c.data]));
+const sections = (sectionsData as Section[]).slice().sort((a, b) => a.order - b.order);
+
+const sectionsView = sections.map((s) => {
+  const cats = s.categories
+    .map((slug) => catBySlug.get(slug))
+    .filter((c): c is NonNullable<typeof c> => c !== undefined)
+    .sort((a, b) => (b.company_count ?? 0) - (a.company_count ?? 0));
+  const total = cats.reduce((sum, c) => sum + (c.company_count ?? 0), 0);
+  return { ...s, cats: cats.slice(0, 6), totalCats: cats.length, total };
+});
 
 const allCompanies = await getCollection('companies');
 const toolCount = allCompanies.length;
@@ -115,16 +129,70 @@ const recentCompanies = allCompanies
     </div>
   </section>
 
-  <!-- Browse by Category -->
+  <!-- Browse by Section -->
   <section class="mx-auto max-w-7xl px-6 py-24">
     <div class="max-w-2xl">
-      <h2 class="text-2xl font-bold text-[#0F172A] dark:text-[#EDEDEF]">Browse by Category</h2>
+      <h2 class="text-2xl font-bold text-[#0F172A] dark:text-[#EDEDEF]">Browse by Section</h2>
       <p class="mt-2 text-[#64748B] dark:text-[#8A8F98]">
-        Explore {catCount} categories of developer tools, from CI/CD to observability.
+        {catCount} categories across {sections.length} sections — payments, AI, mobile, infrastructure, and more.
       </p>
     </div>
-    <div class="mt-10">
-      <CategoryGrid categories={categoryData} />
+
+    <div class="mt-10 grid grid-cols-1 gap-5 md:grid-cols-2">
+      {sectionsView.map((sec) => (
+        <article
+          class="group rounded-2xl border p-6 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md"
+          style="border-color: var(--color-border); background-color: var(--color-surface);"
+        >
+          <a
+            href={`/sections/${sec.slug}/`}
+            class="flex items-baseline justify-between gap-3"
+          >
+            <div class="flex items-baseline gap-3 min-w-0">
+              <span class="text-3xl leading-none">{sec.icon}</span>
+              <h3 class="text-lg font-bold transition-colors duration-150 group-hover:text-[#5E6AD2] dark:group-hover:text-[#818CF8]" style="color: var(--color-text);">
+                {sec.name}
+              </h3>
+            </div>
+            <span class="text-xs shrink-0" style="color: var(--color-muted);">
+              {sec.totalCats} cats · {sec.total.toLocaleString()} tools
+            </span>
+          </a>
+          <p class="mt-2 text-sm" style="color: var(--color-muted);">{sec.description}</p>
+          <div class="mt-4 flex flex-wrap gap-1.5">
+            {sec.cats.map((cat) => (
+              <a
+                href={`/categories/${cat.slug}/`}
+                class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-medium transition-colors hover:border-[#5E6AD2] dark:hover:border-[#818CF8]"
+                style="border-color: var(--color-border); color: var(--color-text-secondary); background-color: var(--color-elevated);"
+              >
+                {cat.name} <span class="ml-1 opacity-60">{cat.company_count}</span>
+              </a>
+            ))}
+            {sec.totalCats > 6 && (
+              <a
+                href={`/sections/${sec.slug}/`}
+                class="inline-flex items-center rounded-full border border-dashed px-2.5 py-0.5 text-xs font-medium"
+                style="border-color: var(--color-border); color: var(--color-accent);"
+              >
+                +{sec.totalCats - 6} more
+              </a>
+            )}
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <div class="mt-8 text-center">
+      <a
+        href="/categories/"
+        class="inline-flex items-center gap-1.5 text-sm font-medium text-[#5E6AD2] dark:text-[#818CF8] hover:opacity-80 transition-opacity"
+      >
+        See all {catCount} categories
+        <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+        </svg>
+      </a>
     </div>
   </section>
 

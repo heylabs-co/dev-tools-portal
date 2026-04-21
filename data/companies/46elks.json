@@ -23,5 +23,31 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "OTP SMS verification for Nordic e-commerce checkout",
+      "Voice IVR for Swedish customer support line",
+      "Two-way SMS for real-time delivery status updates",
+      "MMS product alerts with image previews for promotions",
+      "A2P bulk SMS campaigns with delivery receipts"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Own Uppsala infra, no third-party carrier dependency",
+      "Transparent per-SMS pricing in EUR/SEK",
+      "Simple REST API with solid Nordic coverage",
+      "Responsive support with actual engineers"
+    ],
+    "cons": [
+      "Limited scale outside Nordics and Europe",
+      "No WhatsApp or RCS channels available",
+      "Smaller SDK ecosystem than Twilio or Sinch",
+      "Docs lean on examples, thin on edge cases"
+    ],
+    "verdict": "Reliable Nordic SMS/voice API for teams who value Swedish-hosted infra over global channel breadth.",
+    "best_for": "Nordic and EU apps needing dependable SMS/voice with GDPR-friendly hosting",
+    "not_for": "Global senders needing WhatsApp, RCS, or deep APAC/US carrier reach"
   }
 }

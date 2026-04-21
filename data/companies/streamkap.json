@@ -22,5 +22,31 @@
   },
   "community": {
     "hn_mentions_30d": 7
+  },
+  "content": {
+    "when_to_use": [
+      "Managed Debezium CDC streaming database changes to Kafka",
+      "Postgres and MySQL CDC to Snowflake with sub-minute latency",
+      "Real-time data lake synchronization from operational databases",
+      "Replacing self-hosted Debezium with a managed CDC service",
+      "Event streaming from relational databases to data warehouses"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Managed Debezium removes CDC operational burden",
+      "Sub-second latency to Snowflake, BigQuery, Iceberg",
+      "Schema evolution handled without pipeline breaks",
+      "Transparent per-connector pricing"
+    ],
+    "cons": [
+      "Still heavily tied to Debezium's source coverage",
+      "Kafka knowledge helpful to debug edge cases",
+      "Smaller company vs Confluent or Fivetran",
+      "Advanced transforms require custom SMTs"
+    ],
+    "verdict": "Solid managed CDC at a fraction of DIY Kafka+Debezium cost, if Debezium's source list covers your stack.",
+    "best_for": "Data teams needing real-time Postgres/MySQL/Mongo to warehouse pipelines",
+    "not_for": "Batch-only ELT use cases or sources outside Debezium's connector range"
   }
 }

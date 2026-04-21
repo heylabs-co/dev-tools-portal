@@ -41,5 +41,30 @@
     "forks": 1647,
     "updated_at": "2026-04-21",
     "health_score": "C"
+  },
+  "content": {
+    "when_to_use": [
+      "Pixel-perfect DOM recording for session replay platforms",
+      "Embed session replay into custom analytics products",
+      "Privacy-first recording with configurable field masking",
+      "Open-source replay library powering PostHog and OpenReplay"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Battle-tested open-source engine behind major platforms",
+      "Pixel-perfect DOM recording with replay APIs",
+      "Strong community and extension ecosystem",
+      "MIT license lets you build proprietary tools on top"
+    ],
+    "cons": [
+      "Just a library, no storage, UI or analytics included",
+      "You own scaling, privacy masking and retention logic",
+      "Event payloads can be heavy without tuning",
+      "Mobile support requires separate native bridges"
+    ],
+    "verdict": "The de facto open-source replay engine, but it's a building block, not a product you deploy to PMs.",
+    "best_for": "Engineers building custom replay, QA or debugging tooling in-house.",
+    "not_for": "Non-technical teams expecting a hosted dashboard out of the box."
   }
 }

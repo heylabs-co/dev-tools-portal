@@ -23,5 +23,31 @@
   "seo": {
     "title": "Mitosis — Design Tools / Design-to-Code",
     "meta_description": "Mitosis: Open-source component compiler by Builder.io that lets you write UI components once and compile them to React, Vue, Svelte, Angular, Solid, Qwik, and m"
+  },
+  "content": {
+    "when_to_use": [
+      "Design system components compiled once to React and Vue",
+      "Framework-agnostic component library published to npm",
+      "Qwik and Solid targets added to existing React component set",
+      "Angular migration de-risked by writing new components in Mitosis",
+      "White-label UI kit shipped to clients using different frameworks"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Write once, compile to React, Vue, Svelte, Angular, Solid, Qwik",
+      "Genuinely useful for framework-agnostic design systems",
+      "Active development backed by Builder.io",
+      "Open-source under MIT"
+    ],
+    "cons": [
+      "Compiler output quality varies per target framework",
+      "Debugging cross-framework issues gets painful",
+      "Limited component patterns supported cleanly",
+      "Small community versus native framework ecosystems"
+    ],
+    "verdict": "Real value for library authors shipping components to many frameworks; overkill for single-framework apps.",
+    "best_for": "Design system teams distributing components across React, Vue, Svelte, and more.",
+    "not_for": "Single-framework product teams — write native components instead."
   }
 }

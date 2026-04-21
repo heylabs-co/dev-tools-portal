@@ -19,5 +19,31 @@
   "seo": {
     "title": "Ink — Game Development Tools",
     "meta_description": "Ink: Open-source narrative scripting language by Inkle Studios powering 80 Days, Heavens Vault, and Disco Elysium. Has a JSON runtime and Unity/Godot plugins fo"
+  },
+  "content": {
+    "when_to_use": [
+      "Branching dialogue tree authored in Ink and compiled to JSON",
+      "Unity plugin driving conversation UI from Ink story runtime",
+      "Godot Ink plugin powering a narrative RPG dialogue system",
+      "Writer-authored Ink script reviewed in GitHub pull requests",
+      "Interactive fiction web export using Inkle's Inky editor"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Proven on shipped hits like Disco Elysium and 80 Days",
+      "Plain-text scripts work beautifully with Git",
+      "Inky editor gives writers fast playtesting loop",
+      "JSON runtime integrates into any engine in a day"
+    ],
+    "cons": [
+      "Syntax takes getting used to for non-writers",
+      "No official visual node editor, writers only",
+      "Complex state tracking still requires engine-side code",
+      "Yarn Spinner has better Unity-native tooling"
+    ],
+    "verdict": "The narrative scripting choice for writer-led teams; Yarn Spinner wins if you want Unity-native visual editing.",
+    "best_for": "Narrative-heavy games where writers own script files and version control",
+    "not_for": "Teams whose designers prefer visual dialogue graph editors"
   }
 }

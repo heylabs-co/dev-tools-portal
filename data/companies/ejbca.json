@@ -22,5 +22,31 @@
   },
   "community": {
     "hn_mentions_30d": 1
+  },
+  "content": {
+    "when_to_use": [
+      "Open source CA deployment for enterprise PKI infrastructure",
+      "Device certificate issuance for IoT manufacturing pipelines",
+      "TLS cert automation for large-scale internal microservices",
+      "SCEP/EST protocol support for network device enrollment",
+      "RA integration for PKI delegation in distributed organizations"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Feature-rich open-source CA used in production",
+      "CA, VA, RA, OCSP, CMP, SCEP, EST covered",
+      "Scales to billions of certs at telcos and govts",
+      "Commercial support available from Keyfactor"
+    ],
+    "cons": [
+      "Steep learning curve and heavy Java stack",
+      "Enterprise features often pushed behind paid tier",
+      "Initial setup is not beginner-friendly",
+      "Docs assume PKI fluency"
+    ],
+    "verdict": "The heavyweight open-source PKI; if you actually need CMP/EST, this is your tool.",
+    "best_for": "Telecom, govtech, and IoT teams running serious public PKI.",
+    "not_for": "Devs who just want short-lived internal mTLS certs."
   }
 }

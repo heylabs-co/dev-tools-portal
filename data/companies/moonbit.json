@@ -26,5 +26,30 @@
   },
   "community": {
     "hn_mentions_30d": 195
+  },
+  "content": {
+    "when_to_use": [
+      "Writing WASM-targeting apps with a type-safe modern language",
+      "Building compact AI tooling for WebAssembly runtime deployment",
+      "Developing compilers or interpreters with MoonBit's IR tooling",
+      "Experimenting with AI-assisted programming using MoonBit's tools"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Designed from scratch for WebAssembly output",
+      "Fast compilation and small binary sizes",
+      "Built-in AI assistance embedded in the toolchain",
+      "Modern syntax with strong type system"
+    ],
+    "cons": [
+      "Tiny ecosystem versus Rust or AssemblyScript for Wasm",
+      "Hiring developers with MoonBit experience is impractical",
+      "Production use cases and case studies are sparse",
+      "Long-term funding and governance unclear"
+    ],
+    "verdict": "Technically interesting Wasm-first language, but ecosystem reality makes Rust the safer choice today.",
+    "best_for": "Wasm enthusiasts and researchers exploring new language designs",
+    "not_for": "Production teams shipping Wasm modules with hiring and support needs"
   }
 }

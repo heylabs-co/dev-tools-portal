@@ -22,5 +22,30 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "Feature flag rollout with multi-language SDK support",
+      "A/B test product hypotheses with targeting rules",
+      "Remote config updates without app redeployment",
+      "Experimentation platform for product and growth teams"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Targeting rules with percentage rollouts and segments",
+      "Multi-language SDKs for web, mobile, server",
+      "Bucketing algorithm works offline in SDK",
+      "A/B testing tied directly to flag variants"
+    ],
+    "cons": [
+      "Miscategorized under observability",
+      "Competes against Optimizely, LaunchDarkly, GrowthBook",
+      "AB Tasty acquisition changed focus and pricing",
+      "Smaller feature set than LaunchDarkly at enterprise tier"
+    ],
+    "verdict": "Serviceable feature flag and experimentation tool, but LaunchDarkly and open-source GrowthBook dominate.",
+    "best_for": "Product teams already on AB Tasty wanting integrated feature flags and testing.",
+    "not_for": "Teams seeking best-in-class flag tooling or experimentation stats."
   }
 }

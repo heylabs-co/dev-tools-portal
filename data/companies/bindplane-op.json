@@ -26,5 +26,31 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "Centrally configure OpenTelemetry collectors at scale",
+      "Route telemetry to multiple backends from one pipeline",
+      "Monitor OTel collector health and pipeline throughput",
+      "Deploy config changes to hundreds of collectors at once",
+      "Manage log, metric, and trace pipelines from one UI"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Graphical management of fleet-wide OTel configs",
+      "Vendor-neutral, works with any OTel backend",
+      "Version control and rollback for collector configs",
+      "Free and commercial editions from observIQ"
+    ],
+    "cons": [
+      "Adds another control plane to maintain",
+      "Commercial features gated behind enterprise tier",
+      "Competes with free OTel operator for Kubernetes",
+      "Small team means slower response to issues"
+    ],
+    "verdict": "The go-to control plane for OTel fleets at scale; worth it once you manage 50+ collectors.",
+    "best_for": "Platform teams managing OpenTelemetry collectors across hundreds of hosts or clusters.",
+    "not_for": "Small teams running a handful of collectors where manual config suffices."
   }
 }

@@ -22,5 +22,31 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "End-to-end encrypted secret sharing for dev teams",
+      "PGP-verified identity for secure code signing key distribution",
+      "Encrypted team file storage for sensitive credentials",
+      "Secure messaging with cryptographic audit trail for ops teams",
+      "Developer-friendly E2EE alternative to Slack for sensitive ops"
+    ]
+  },
+  "review": {
+    "pros": [
+      "End-to-end encrypted team secrets and chat",
+      "PGP-based identity verification built-in",
+      "Free for teams, low setup friction",
+      "Git and KBFS integrations are handy"
+    ],
+    "cons": [
+      "Zoom acquisition stalled product development",
+      "Mobile/desktop clients feel neglected",
+      "No real programmatic secrets API",
+      "Uncertain long-term future"
+    ],
+    "verdict": "Still cryptographically solid, but the stagnation since the Zoom acquisition makes it hard to recommend new.",
+    "best_for": "Small distributed teams wanting encrypted chat and light secret sharing.",
+    "not_for": "Orgs that need an actively maintained, API-driven secrets vault."
   }
 }

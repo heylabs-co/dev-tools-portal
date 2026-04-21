@@ -26,5 +26,31 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "Storing billions of IoT sensor readings with nanosecond precision",
+      "Querying time-series data with SQL on edge-deployed hardware",
+      "Managing industrial equipment telemetry in smart factories",
+      "Replacing InfluxDB with a SQL-native IoT-focused database",
+      "Compressing time-series data with TsFile format at the edge"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Purpose-built for IoT time-series workloads",
+      "First Apache TLP in IoT domain",
+      "High compression ratios for sensor data",
+      "Edge-to-cloud deployment model"
+    ],
+    "cons": [
+      "Smaller ecosystem than InfluxDB or TimescaleDB",
+      "Query language (IoTDB SQL) has learning curve",
+      "Docs and community still China-centric",
+      "Fewer BI tool integrations"
+    ],
+    "verdict": "Technically strong IoT time-series DB, adoption curve steeper than InfluxDB outside Chinese industrial sector.",
+    "best_for": "Industrial IoT projects with heavy sensor ingest and edge-cloud pipelines",
+    "not_for": "Teams preferring Influx or Timescale with mature tooling and broad community"
   }
 }

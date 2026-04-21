@@ -41,5 +41,30 @@
     "forks": 405,
     "updated_at": "2026-04-21",
     "health_score": "A"
+  },
+  "content": {
+    "when_to_use": [
+      "Kotlin-idiomatic mocking with coroutine test support",
+      "Object and companion object mocking for Kotlin code",
+      "Verify DSL with natural Kotlin syntax for call assertions",
+      "Mock suspend functions in Kotlin coroutine test suites"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Designed around Kotlin idioms from day one",
+      "First-class coroutine and suspend function mocking",
+      "Handles object and top-level function mocks",
+      "Readable DSL versus Mockito-Kotlin glue"
+    ],
+    "cons": [
+      "Slower than Mockito on very large suites",
+      "Mistakes produce cryptic stack traces",
+      "Less Stack Overflow coverage than Mockito",
+      "Mocking everything hides Kotlin design smells"
+    ],
+    "verdict": "Clearly the right mocking library for Kotlin, worth the migration from Mockito for Kotlin-heavy code.",
+    "best_for": "Kotlin teams testing coroutines, sealed classes and objects",
+    "not_for": "Mixed Java/Kotlin codebases where Mockito is already well embedded"
   }
 }

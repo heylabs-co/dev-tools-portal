@@ -41,5 +41,31 @@
     "forks": 174,
     "updated_at": "2026-04-21",
     "health_score": "A"
+  },
+  "content": {
+    "when_to_use": [
+      "Git-like branching and versioning for Apache Iceberg tables",
+      "Data CI/CD: branch, test, and merge lakehouse table changes",
+      "Transactional catalog enabling zero-copy data lake experiments",
+      "Time-travel queries across Iceberg and Delta Lake tables",
+      "Reproducible ML experiments with versioned data lake snapshots"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Git-like branching for data lake tables",
+      "Native Iceberg and Delta Lake support",
+      "Enables safe experimentation via branches",
+      "Open source under Apache 2.0"
+    ],
+    "cons": [
+      "Concept new to most data engineers",
+      "Ecosystem tooling still maturing",
+      "Operating Nessie yourself is non-trivial",
+      "Dremio-adjacent branding limits neutrality perception"
+    ],
+    "verdict": "Genuinely novel catalog for lakehouse workflows; adoption still early outside Dremio circles.",
+    "best_for": "Data platform teams wanting Git-style branching for Iceberg or Delta tables",
+    "not_for": "Teams on traditional warehouses without a lakehouse catalog strategy"
   }
 }

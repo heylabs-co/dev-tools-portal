@@ -26,5 +26,28 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "Running low-cost GPU inference for LLMs at Chinese datacenters",
+      "Deploying open-source models on affordable Chinese cloud GPU",
+      "Scaling LLM throughput for high-volume consumer AI products",
+      "Accessing Nvidia H800 capacity for ML training in China"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Aggregates heterogeneous Chinese GPU supply",
+      "Addresses chip-shortage bottlenecks locally",
+      "Strong research pedigree from Tsinghua"
+    ],
+    "cons": [
+      "Performance varies by underlying hardware pool",
+      "Limited visibility outside Chinese market",
+      "Early-stage — tooling and SLAs still maturing"
+    ],
+    "verdict": "Interesting bet if you need scale GPU compute inside China's constrained supply chain.",
+    "best_for": "China-based AI teams needing GPU capacity when H100s are blocked",
+    "not_for": "Global teams with access to NVIDIA-standard hyperscaler clouds"
   }
 }

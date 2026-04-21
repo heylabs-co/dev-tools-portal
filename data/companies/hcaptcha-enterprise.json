@@ -21,5 +21,31 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "Bot detection at registration to block fake account creation",
+      "Invisible risk scoring for frictionless account login",
+      "Account takeover prevention with behavioral challenge signals",
+      "CAPTCHA replacement with privacy-preserving challenge API",
+      "Granular risk score API for custom fraud decisioning logic"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Strong reCAPTCHA alternative with privacy edge",
+      "Rich risk signals beyond a yes/no CAPTCHA",
+      "Invisible challenges keep friction low",
+      "Reasonable pricing vs specialist bot vendors"
+    ],
+    "cons": [
+      "Still a CAPTCHA, sophisticated bots often solve it",
+      "Enterprise features gated behind paid tier",
+      "Less integrated with backend fraud decisions",
+      "Narrower scope than full bot managers"
+    ],
+    "verdict": "A pragmatic reCAPTCHA replacement with extra signals; not a substitute for a real bot management platform.",
+    "best_for": "Sites swapping reCAPTCHA for privacy or risk-signal reasons without ripping up their stack.",
+    "not_for": "High-value e-commerce under sophisticated ATO where a full bot manager is warranted."
   }
 }

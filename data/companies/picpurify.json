@@ -21,5 +21,30 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "Moderating user-uploaded images for nudity, violence, and drugs",
+      "Running NSFW image classification on marketplace listings",
+      "Building real-time visual content safety for social apps",
+      "Filtering inappropriate content from public user galleries"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Focused set of visual moderation categories",
+      "Reasonable pricing for image and video",
+      "Face and age detection useful for dating apps",
+      "Simple API, fast to ship"
+    ],
+    "cons": [
+      "Smaller vendor without brand-name references",
+      "Accuracy on edge cases trails top vendors",
+      "Documentation sparse in places",
+      "No text moderation, visual only"
+    ],
+    "verdict": "Workable budget visual moderation API with useful face/age checks; not the strongest on hard NSFW cases.",
+    "best_for": "Dating, classifieds, and UGC apps needing affordable image and video screening with face signals.",
+    "not_for": "Platforms with high-volume CSAM risk or strict regulatory compliance needs."
   }
 }

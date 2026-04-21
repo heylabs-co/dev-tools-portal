@@ -23,5 +23,31 @@
   },
   "community": {
     "hn_mentions_30d": 68
+  },
+  "content": {
+    "when_to_use": [
+      "Collaborative filtering recommendations for media streaming",
+      "Content-based personalization for news article feed",
+      "E-commerce product recommendations via REST API",
+      "User-item matrix for recommendation engine integration",
+      "Real-time recommendation updates based on session behavior"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Fast setup; usable recommendations within days",
+      "Combines collaborative filtering with content-based models",
+      "A/B testing and segment controls built in",
+      "Fair pricing for mid-sized catalogs and traffic"
+    ],
+    "cons": [
+      "Less control over model internals than custom ML",
+      "Cold-start performance requires careful item metadata",
+      "Dashboard depth trails enterprise personalization suites",
+      "Documentation gaps around advanced tuning"
+    ],
+    "verdict": "Pragmatic recommendations-as-a-service for teams that want results without hiring an ML team, with real tuning headroom.",
+    "best_for": "E-commerce, media, and content sites needing recs without in-house ML engineers.",
+    "not_for": "Teams needing deep model control or sub-50ms hyper-personalization at scale."
   }
 }

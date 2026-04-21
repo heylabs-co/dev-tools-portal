@@ -22,5 +22,30 @@
   },
   "community": {
     "hn_mentions_30d": 1
+  },
+  "content": {
+    "when_to_use": [
+      "Detecting deepfake images and videos via API",
+      "Scanning user-uploaded media for synthetic content before publication",
+      "Integrating deepfake detection into identity verification flows",
+      "Monitoring social media content for AI-generated misinformation"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Multimodal deepfake detection in one API",
+      "Covers images, video, audio, and text",
+      "Good traction with finance and media customers",
+      "Active research team, model updates matter here"
+    ],
+    "cons": [
+      "Deepfake arms race means constant accuracy churn",
+      "Enterprise pricing, opaque until contact",
+      "Not useful for standard UGC toxicity",
+      "False positives still a real issue"
+    ],
+    "verdict": "Leading deepfake detection API, but treat scores as signals not verdicts given the adversarial landscape.",
+    "best_for": "Banks, insurers, newsrooms, and platforms facing synthetic media fraud and impersonation.",
+    "not_for": "General moderation needs or teams expecting static, deterministic accuracy."
   }
 }

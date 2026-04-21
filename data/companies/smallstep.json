@@ -22,5 +22,31 @@
   },
   "community": {
     "hn_mentions_30d": 2
+  },
+  "content": {
+    "when_to_use": [
+      "mTLS certificate automation for zero-trust microservices",
+      "SSH certificate authority for short-lived infrastructure access",
+      "ACME server for internal PKI without public CA dependency",
+      "JWK and OIDC-based identity-linked certificate issuance",
+      "Developer-friendly PKI for cloud-native service mesh security"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Modern open-source CA with ACME support",
+      "First-class mTLS and SSH certificate flows",
+      "step CLI is pleasant to use",
+      "Cloud and self-hosted options"
+    ],
+    "cons": [
+      "Commercial tier required for full features",
+      "Smaller ecosystem than legacy PKI vendors",
+      "Advanced policies still maturing",
+      "Docs assume some PKI background"
+    ],
+    "verdict": "The best developer experience in open-source PKI today; ideal for internal mTLS and zero-trust.",
+    "best_for": "Platform teams rolling out internal mTLS and SSH certs with sane UX.",
+    "not_for": "Orgs needing full public-trust CA services at scale."
   }
 }

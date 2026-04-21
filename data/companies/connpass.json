@@ -23,5 +23,31 @@
   },
   "community": {
     "hn_mentions_30d": 10
+  },
+  "content": {
+    "when_to_use": [
+      "Discover Japanese tech meetups via REST API",
+      "Event aggregation for developer community platforms",
+      "RSVP data integration for attendance tracking tools",
+      "Tech group search for community recommendation engines",
+      "Japanese developer event feed for portals and bots"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Best coverage of Japanese tech meetups and conferences",
+      "Free REST API for events, groups, and RSVPs",
+      "Stable schema used by community tools for years",
+      "No OAuth needed for public event reads"
+    ],
+    "cons": [
+      "API rate limits are strict and undocumented in English",
+      "Japan-only scope limits international reuse",
+      "Response format is quirky and lightly documented",
+      "No webhook or push updates for event changes"
+    ],
+    "verdict": "The default source for Japanese tech event data, but expect Japanese-first docs and basic polling-only access.",
+    "best_for": "Apps aggregating Japanese tech community events or meetup analytics.",
+    "not_for": "Global event platforms or real-time RSVP webhook workflows."
   }
 }

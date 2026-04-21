@@ -22,5 +22,33 @@
   },
   "community": {
     "hn_mentions_30d": 4
+  },
+  "content": {
+    "when_to_use": [
+      "File upload API with CDN delivery and virus scanning",
+      "Document format conversion (PDF/DOCX) via processing API",
+      "User file uploads directly to cloud storage bypassing servers",
+      "Image transformation and optimization from upload onward",
+      "Multi-source file picker supporting Dropbox, Google Drive, S3"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Upload widget drops in with 2 lines of code",
+      "Handles large files, chunked and resumable",
+      "Built-in image/video transformations via URL",
+      "Virus scanning and content moderation add-ons",
+      "150+ integrations (Dropbox, Drive, Instagram)"
+    ],
+    "cons": [
+      "Pricing climbs fast past free tier",
+      "Transformations less powerful than Cloudinary",
+      "Occasional outages reported in status history",
+      "API surface scattered across product lines",
+      "Vendor lock-in for URL-based transforms"
+    ],
+    "verdict": "Fast way to add rich file uploads to any app — pricing and transforms weaker than Cloudinary at scale.",
+    "best_for": "Product teams wanting plug-in upload widgets with source pickers and basic transforms.",
+    "not_for": "Teams doing heavy image/video transformation — Cloudinary leads there."
   }
 }

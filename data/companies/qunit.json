@@ -40,5 +40,29 @@
     "forks": 775,
     "updated_at": "2026-04-21",
     "health_score": "C"
+  },
+  "content": {
+    "when_to_use": [
+      "JavaScript unit tests for jQuery and Ember projects",
+      "Browser-runnable tests without build tools required",
+      "Async test support with done callback and Promises",
+      "Standalone test runner with HTML reporter output"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Zero dependencies, simple browser runner",
+      "Stable API trusted by jQuery and Ember",
+      "Works without a bundler",
+      "Long-term maintained framework"
+    ],
+    "cons": [
+      "Vitest and Jest dominate modern JS testing",
+      "Limited async and mocking primitives",
+      "Smaller ecosystem of plugins now"
+    ],
+    "verdict": "Fine for Ember apps, otherwise new JavaScript projects should pick Vitest or Jest over QUnit.",
+    "best_for": "Ember or legacy jQuery projects with QUnit already embedded",
+    "not_for": "Modern JS or TypeScript projects where Vitest offers better DX"
   }
 }

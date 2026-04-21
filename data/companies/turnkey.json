@@ -41,5 +41,31 @@
     "forks": 55,
     "updated_at": "2026-04-21",
     "health_score": "B"
+  },
+  "content": {
+    "when_to_use": [
+      "Secure enclave key management API for crypto fintech apps",
+      "Wallet infrastructure with policy-based signing controls",
+      "Multi-party approval workflow for institutional asset custody",
+      "Embedded wallet provisioning for fintech user onboarding",
+      "Hardware-backed key storage for payment application signing"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Secure-enclave key management with policy engine",
+      "Non-custodial model with fine-grained permissions",
+      "Low-latency signing suitable for high-throughput apps",
+      "Good docs and programmable approvals"
+    ],
+    "cons": [
+      "Primitive-heavy; you build UX on top yourself",
+      "Learning curve around organizations and policies",
+      "Newer brand vs established custodians",
+      "Pricing not fully transparent"
+    ],
+    "verdict": "Great low-level key infra for teams that want control and speed without running HSMs themselves.",
+    "best_for": "Fintech and crypto infra teams building custom wallet UX on top",
+    "not_for": "Product teams wanting a ready-made end-user wallet SDK"
   }
 }

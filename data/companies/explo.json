@@ -22,5 +22,31 @@
   },
   "community": {
     "hn_mentions_30d": 598
+  },
+  "content": {
+    "when_to_use": [
+      "Embedding white-label analytics dashboards in SaaS products",
+      "Customer-facing reporting for non-technical end users",
+      "No-code chart builder connected directly to warehouses",
+      "Self-serve BI layer added to existing SaaS applications",
+      "Replacing Metabase embed with white-label customer reports"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Customer-facing dashboards in days not months",
+      "White-label theming matches host product",
+      "SQL-first so no proprietary modeling layer",
+      "Fair pricing for early-stage SaaS"
+    ],
+    "cons": [
+      "Less flexible than fully custom charts",
+      "Performance depends on upstream warehouse tuning",
+      "Competes against Cube, Luzmo, Embeddable",
+      "Limited deep interactive visualization options"
+    ],
+    "verdict": "Quick embedded analytics for SaaS, but serious analytics products still need custom builds.",
+    "best_for": "SaaS teams shipping white-labeled customer dashboards quickly",
+    "not_for": "Products requiring deeply bespoke interactive visualizations"
   }
 }

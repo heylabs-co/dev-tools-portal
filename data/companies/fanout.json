@@ -22,5 +22,31 @@
   },
   "community": {
     "hn_mentions_30d": 4
+  },
+  "content": {
+    "when_to_use": [
+      "WebSocket push for real-time API subscription updates",
+      "HTTP streaming for live data feed in SaaS product",
+      "Server-sent events for dashboard live data without polling",
+      "Managed real-time layer on top of existing REST API",
+      "Pub/sub push for event-driven API clients"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Real-time push layer as a service",
+      "Works with HTTP streaming and WebSocket",
+      "Pushpin OSS gives escape hatch",
+      "Handles scale without WebSocket ops"
+    ],
+    "cons": [
+      "Acquired by Fastly—product focus shifted",
+      "Docs around pricing and plans murky",
+      "Niche awareness outside real-time APIs",
+      "Smaller community than Ably/Pusher"
+    ],
+    "verdict": "Powerful real-time proxy tech, but Ably and Pusher have clearer product focus for most teams today.",
+    "best_for": "API teams adding realtime push without building WebSocket infra",
+    "not_for": "Apps wanting a turnkey realtime SDK and mobile-ready channels"
   }
 }

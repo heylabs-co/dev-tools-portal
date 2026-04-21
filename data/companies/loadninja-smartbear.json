@@ -22,5 +22,30 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "Real browser-based load testing without JavaScript emulation",
+      "Record user journeys and replay at 1000+ concurrent users",
+      "CSS/JS execution included in load simulation accuracy",
+      "Integration with ReadyAPI for end-to-end performance gates"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Real browsers avoid protocol-level fidelity issues",
+      "Script-less recording lowers QA barrier",
+      "SmartBear ecosystem integration",
+      "Good for UI-heavy SPA load tests"
+    ],
+    "cons": [
+      "Very expensive per virtual user",
+      "Real browsers cost much more compute",
+      "Less scriptable than k6 or JMeter",
+      "SaaS lock-in with SmartBear"
+    ],
+    "verdict": "Justifies its price only when protocol-level tools cannot simulate your complex SPA traffic.",
+    "best_for": "Enterprises load-testing heavy SPAs where browser fidelity matters",
+    "not_for": "API or microservice load tests where k6 and Gatling are cheaper"
   }
 }

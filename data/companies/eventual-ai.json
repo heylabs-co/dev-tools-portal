@@ -41,5 +41,31 @@
     "forks": 448,
     "updated_at": "2026-04-21",
     "health_score": "A"
+  },
+  "content": {
+    "when_to_use": [
+      "Distributed DataFrame queries over images, video, and audio data",
+      "ML data preprocessing pipelines on multimodal large datasets",
+      "Python-native ETL for unstructured AI training data at scale",
+      "Replacing Spark for Python-first AI data engineering teams",
+      "Parallel query engine for data science on heterogeneous media"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Python-native distributed engine via Daft",
+      "Handles multimodal data including video/audio",
+      "Built for AI/ML pre-processing workloads",
+      "Scales across cluster without Spark baggage"
+    ],
+    "cons": [
+      "Very new category with smaller community",
+      "Daft still maturing vs Spark/Ray incumbents",
+      "Limited third-party integration ecosystem",
+      "Production hardening story still evolving"
+    ],
+    "verdict": "Exciting multimodal data engine for ML teams; early-stage risk remains compared to Spark/Ray.",
+    "best_for": "ML teams processing images, video, and audio at distributed scale in Python",
+    "not_for": "Pure tabular analytics workloads where Spark or DuckDB suffice"
   }
 }

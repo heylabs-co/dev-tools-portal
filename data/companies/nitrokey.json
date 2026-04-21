@@ -22,5 +22,31 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "Hardware SSH key storage for developer privileged access",
+      "OpenPGP smart card for encrypted email and code signing",
+      "FIDO2/U2F security key for phishing-resistant MFA",
+      "HSM for small-team PKI and certificate signing workflows",
+      "Air-gapped secret storage for high-security environments"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Open-source hardware for keys and HSM",
+      "Supports OpenPGP, FIDO2, PIV, OTP",
+      "Made in EU, auditable firmware",
+      "Real HSM options for teams (NetHSM)"
+    ],
+    "cons": [
+      "Ecosystem smaller than YubiKey",
+      "Tooling less polished on macOS/Windows",
+      "Lead times and pricing vary",
+      "HSM models carry steep learning curve"
+    ],
+    "verdict": "Top choice if you want open, auditable hardware keys; YubiKey still wins on polish.",
+    "best_for": "Privacy-conscious devs and EU orgs needing auditable key hardware.",
+    "not_for": "Teams prioritizing mainstream software compatibility over openness."
   }
 }

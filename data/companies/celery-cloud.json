@@ -22,5 +22,31 @@
   },
   "community": {
     "hn_mentions_30d": 1
+  },
+  "content": {
+    "when_to_use": [
+      "Async task queue for long-running Python data jobs",
+      "Scheduled celery beat jobs for periodic data sync",
+      "Distributed task processing across multiple workers",
+      "Email queue offloaded from synchronous Django request",
+      "Background ML inference pipeline with Redis broker"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Python standard for distributed tasks",
+      "Broad broker choice (Redis, RabbitMQ)",
+      "Huge community and patterns library",
+      "Rich routing and scheduling features"
+    ],
+    "cons": [
+      "'Cloud' product is ambiguous branding",
+      "Configuration surface is notoriously large",
+      "Observability requires extra setup",
+      "Perf tuning takes real effort"
+    ],
+    "verdict": "Celery itself remains the Python job-queue default—just be sure which 'cloud' vendor you're evaluating.",
+    "best_for": "Python backends needing a mature, flexible distributed task queue",
+    "not_for": "Teams wanting minimal configuration or non-Python workers"
   }
 }

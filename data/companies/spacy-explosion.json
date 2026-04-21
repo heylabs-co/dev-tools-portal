@@ -26,5 +26,28 @@
   },
   "community": {
     "hn_mentions_30d": 8
+  },
+  "content": {
+    "when_to_use": [
+      "Building industrial-strength NLP pipelines with spaCy",
+      "Training custom NER models on domain-specific text corpora",
+      "Running text classification and dependency parsing at scale",
+      "Deploying production NLP components with Prodigy annotation"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Fast, mature industrial NLP library",
+      "Excellent tokenization and NER pipelines",
+      "Self-hosted — no API cost or lock-in"
+    ],
+    "cons": [
+      "Feels dated vs LLM-based extraction",
+      "Training custom models needs real ML skill",
+      "Weaker on nuanced semantic tasks"
+    ],
+    "verdict": "Still the best choice for high-volume deterministic NLP, even if LLMs steal the headlines.",
+    "best_for": "Backend teams processing millions of docs where cost and latency matter",
+    "not_for": "Teams that want zero-training semantic understanding via a single API call"
   }
 }

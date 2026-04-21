@@ -26,5 +26,31 @@
   },
   "community": {
     "hn_mentions_30d": 11
+  },
+  "content": {
+    "when_to_use": [
+      "Isolated Firecracker microVM runners for every CI job",
+      "Self-hosted GitHub Actions on bare-metal with VM isolation",
+      "Run privileged Docker builds without shared-runner risk",
+      "Scale ephemeral runners on your own hardware fleet",
+      "Eliminate noisy-neighbor problems in CI pipelines"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Firecracker microVMs give real isolation, not Docker-in-Docker hacks",
+      "Runs on your own hardware, cutting Actions bills dramatically",
+      "ARM64 and bare-metal support out of the box",
+      "Fast cold starts compared to full VM runners"
+    ],
+    "cons": [
+      "Commercial license with per-server pricing, not free OSS",
+      "You still own the hardware, power, and uptime",
+      "Firecracker setup is non-trivial for teams without Linux ops skills",
+      "Small team, limited ecosystem vs GitHub-hosted"
+    ],
+    "verdict": "The right answer when GitHub-hosted Actions bills explode and you have metal to run jobs on.",
+    "best_for": "Teams with heavy CI spend and in-house ops willing to self-host runners for isolation and cost.",
+    "not_for": "Small teams without hardware or Linux/Firecracker expertise."
   }
 }

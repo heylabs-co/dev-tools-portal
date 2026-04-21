@@ -22,5 +22,29 @@
   },
   "community": {
     "hn_mentions_30d": 38
+  },
+  "content": {
+    "when_to_use": [
+      "Copy Postgres database snapshots for local development",
+      "Mask PII in production snapshots for GDPR compliance",
+      "Seed test databases with realistic production-shaped data",
+      "Self-service dev database provisioning for the team"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Copies production Postgres with PII masking",
+      "Realistic seed data for local dev",
+      "Declarative seed generation via Copycat",
+      "Cuts hours of synthetic data setup"
+    ],
+    "cons": [
+      "Hosted SaaS shifted to open-source-only in 2024",
+      "Postgres-only, not a general DB tool",
+      "PII masking requires careful configuration"
+    ],
+    "verdict": "A great idea that lost momentum after pivoting; verify the current project status before adopting in 2026.",
+    "best_for": "Postgres teams wanting realistic masked seed data for dev and test",
+    "not_for": "Teams needing a supported SaaS with reliable roadmap"
   }
 }

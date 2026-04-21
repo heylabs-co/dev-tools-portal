@@ -42,5 +42,31 @@
     "forks": 132,
     "updated_at": "2026-04-21",
     "health_score": "B"
+  },
+  "content": {
+    "when_to_use": [
+      "Immutable Linux for edge Kubernetes with bootable OS images",
+      "Declarative edge K8s deployment with GitOps and OTA updates",
+      "Secure edge computing with measured boot and TPM support",
+      "Building custom bootable Kubernetes appliances for edge",
+      "Zero-touch provisioning of edge nodes from cloud configuration"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Immutable OS reduces edge drift",
+      "Native Kubernetes boot experience",
+      "Works across ARM and x86 devices",
+      "Strong GitOps-friendly upgrade model"
+    ],
+    "cons": [
+      "Niche meta-distro with small community",
+      "Debugging immutable systems is harder",
+      "Limited commercial support options",
+      "Learning curve for traditional sysadmins"
+    ],
+    "verdict": "Compelling choice for immutable edge Kubernetes, but still young and community-driven.",
+    "best_for": "Edge computing teams running fleets of Kubernetes devices needing immutable OS",
+    "not_for": "Traditional datacenter workloads or teams without Kubernetes experience"
   }
 }

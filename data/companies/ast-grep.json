@@ -21,5 +21,30 @@
   },
   "community": {
     "hn_mentions_30d": 2
+  },
+  "content": {
+    "when_to_use": [
+      "Searching code by structure rather than text patterns across repos",
+      "Running AST-based lint rules for custom code style enforcement",
+      "Automating large-scale structural refactors with rewrite rules",
+      "Finding all usages of a code pattern across multi-language repos"
+    ]
+  },
+  "review": {
+    "pros": [
+      "AST-based matching avoids regex false positives",
+      "Fast Rust implementation scales to large monorepos",
+      "Supports structural rewrites across many languages",
+      "YAML rule files are readable and shareable"
+    ],
+    "cons": [
+      "Pattern syntax has a real learning curve",
+      "Language support varies in completeness",
+      "Less IDE integration than semgrep or comby",
+      "Debugging non-matching rules is frustrating"
+    ],
+    "verdict": "The best open-source structural search tool right now, worth the learning curve for any serious refactor.",
+    "best_for": "Engineers doing codemods, lint rules, or codebase-wide refactors across languages",
+    "not_for": "Users who just need simple text search or one-off find-and-replace"
   }
 }

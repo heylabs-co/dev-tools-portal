@@ -23,5 +23,30 @@
   },
   "community": {
     "hn_mentions_30d": 30
+  },
+  "content": {
+    "when_to_use": [
+      "Ledger-as-a-service for tracking money movement in fintech products",
+      "Double-entry accounting API for money-moving apps and wallets",
+      "Programmable ledger for marketplace escrow and multi-party settlement",
+      "Financial audit trail and balance tracking for complex payment flows"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Purpose-built money ledger API",
+      "Double-entry correctness out of box",
+      "Solves hard accounting for fintechs",
+      "Developer-first design"
+    ],
+    "cons": [
+      "Not a payment rail itself",
+      "Learning curve for ledger model",
+      "Usage-based pricing adds up",
+      "Narrow use case"
+    ],
+    "verdict": "Exactly what you need if you're building money-movement products — but useless if you're not.",
+    "best_for": "Engineers building fintech products needing correct double-entry ledgers",
+    "not_for": "Merchants wanting payment acceptance or non-money-moving apps"
   }
 }

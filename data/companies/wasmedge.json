@@ -22,5 +22,31 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "Lightweight Wasm runtime for edge, IoT, and cloud functions",
+      "WASI-NN AI inference in WebAssembly containers",
+      "Running Rust or Python via Wasm in serverless environments",
+      "OCI-compatible container alternative with 1/10 the footprint",
+      "Kubernetes sidecar or DaemonSet running Wasm workloads"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Lightweight runtime optimized for edge and AI",
+      "WASI-NN enables Wasm inference with LLMs",
+      "CNCF sandbox project with active community",
+      "Works well as Docker/container alternative"
+    ],
+    "cons": [
+      "WASI-NN and AI features still evolving",
+      "Not a managed service — you host it",
+      "Smaller plugin ecosystem than Wasmtime",
+      "Debugging Wasm stacks still painful"
+    ],
+    "verdict": "Strong Wasm runtime for edge and AI inference when you want lightweight alternatives to containers.",
+    "best_for": "Teams running AI inference or edge workloads on Wasm instead of containers",
+    "not_for": "Shops that want a managed serverless platform with zero runtime ops"
   }
 }

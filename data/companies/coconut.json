@@ -22,5 +22,33 @@
   },
   "community": {
     "hn_mentions_30d": 7
+  },
+  "content": {
+    "when_to_use": [
+      "Cloud video transcoding API for mobile and web platforms",
+      "Converting video uploads to HLS/MP4 with webhook delivery",
+      "Thumbnail extraction and sprite sheet generation from video",
+      "On-demand video processing without managing FFmpeg infra",
+      "Cost-effective video encoding with per-minute pricing"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Clean, job-based transcoding API",
+      "Pay-per-minute pricing, no monthly minimums",
+      "Outputs to S3, Azure, GCS, or your FTP",
+      "Simple job config (JSON or HTTP)",
+      "Reliable service for 10+ years"
+    ],
+    "cons": [
+      "Feature set narrower than Mux or encoding.com",
+      "No live streaming — VOD transcoding only",
+      "Dashboard analytics are minimal",
+      "Slower innovation pace than newer rivals",
+      "EU-focused support hours"
+    ],
+    "verdict": "Dependable no-frills video encoding API — boring in the good way, but modern competitors offer more.",
+    "best_for": "Developers needing simple VOD transcoding with direct cloud-storage output.",
+    "not_for": "Teams requiring live, adaptive bitrate live, or integrated player analytics."
   }
 }

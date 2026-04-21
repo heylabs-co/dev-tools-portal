@@ -25,5 +25,29 @@
   },
   "community": {
     "hn_mentions_30d": 80
+  },
+  "content": {
+    "when_to_use": [
+      "Running open-weight Llama 3 models for self-hosted inference",
+      "Fine-tuning Llama on proprietary data for domain adaptation",
+      "Building multimodal AI apps with Llama's vision capabilities",
+      "Accessing state-of-the-art open LLMs without API costs",
+      "Deploying code generation with Code Llama in CI/CD pipelines"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Zero-setup access inside Meta's social apps",
+      "Backed by the Llama model family",
+      "Free at the point of use for end users"
+    ],
+    "cons": [
+      "Consumer-only — no first-class developer API",
+      "Feature gaps vs ChatGPT and Gemini",
+      "Privacy concerns due to Meta data surface"
+    ],
+    "verdict": "Useful as a distribution surface inside Meta apps, not a developer platform today.",
+    "best_for": "End users already living inside Facebook, Instagram and WhatsApp",
+    "not_for": "Developers — use Llama directly or route via Groq, Together, Fireworks"
   }
 }

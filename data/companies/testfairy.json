@@ -23,5 +23,29 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "Mobile beta distribution to testers via enterprise store",
+      "Session recording for iOS and Android crash reproduction",
+      "Crash logs with video replay for mobile bug reports",
+      "Controlled beta rollout with tester feedback collection"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Mobile beta distribution with session recording",
+      "Crash and session video replay",
+      "Handles iOS and Android in one platform",
+      "Insights into real user testing sessions"
+    ],
+    "cons": [
+      "Acquired by Sauce Labs, product in flux",
+      "TestFlight and App Center cover similar needs",
+      "Session recording raises privacy concerns"
+    ],
+    "verdict": "Interesting for session replay, but most mobile teams use TestFlight plus Firebase App Distribution instead.",
+    "best_for": "Mobile teams needing session recording alongside beta distribution",
+    "not_for": "Teams happy with TestFlight or Firebase App Distribution for beta builds"
   }
 }

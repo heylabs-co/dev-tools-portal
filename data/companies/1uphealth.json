@@ -23,5 +23,31 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "Connecting payer EHRs via bulk FHIR R4 export pipelines",
+      "Building patient-access apps with SMART-on-FHIR OAuth",
+      "Provider-directed data exchange for care coordination teams",
+      "Aggregating claims and clinical data for analytics pipelines",
+      "HIPAA-compliant healthcare data integration for payers"
+    ]
+  },
+  "review": {
+    "pros": [
+      "FHIR R4 native with bulk data export support",
+      "Dual payer + provider use cases covered",
+      "CMS interoperability rule compliance out of box",
+      "Handles Carequality and CommonWell networks"
+    ],
+    "cons": [
+      "Healthcare-only narrows reuse across domains",
+      "FHIR expertise needed to implement effectively",
+      "Enterprise pricing opaque without sales contact",
+      "US-centric data sources limit global scope"
+    ],
+    "verdict": "Solid FHIR backbone for US healthcare integrations, but irrelevant outside payer/provider regulatory context.",
+    "best_for": "US payers and providers needing CMS-compliant patient-access APIs",
+    "not_for": "Non-healthcare teams or orgs outside US regulatory frameworks"
   }
 }

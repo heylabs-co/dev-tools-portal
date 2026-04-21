@@ -41,5 +41,30 @@
     "forks": 0,
     "updated_at": "2026-04-21",
     "health_score": "D"
+  },
+  "content": {
+    "when_to_use": [
+      "Tokenizing payment card data to reduce PCI DSS scope",
+      "Migrating cardholder data between PSPs without re-collecting card info",
+      "Storing raw PANs in a vault while routing tokens to multiple acquirers",
+      "Building processor-agnostic checkout with shared token vault"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Processor-agnostic tokens portable across any PSP",
+      "Clean developer docs and strong SDKs",
+      "Reduces PCI scope to SAQ A without vendor lock-in",
+      "Good fit for multi-PSP and reseller architectures"
+    ],
+    "cons": [
+      "Tokenization only — no routing or acquiring",
+      "Requires you to build the orchestration layer on top",
+      "Pricing scales with tokens and API calls",
+      "Less value if you are happy on one PSP's vault"
+    ],
+    "verdict": "Best-in-class portable card vault for teams building their own orchestration — not a full payments platform.",
+    "best_for": "Engineering teams that want PCI offload and PSP portability without being locked into Stripe or Adyen vaults.",
+    "not_for": "Merchants wanting a full routing, reconciliation, and analytics product out of the box."
   }
 }

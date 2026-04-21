@@ -25,5 +25,28 @@
   },
   "community": {
     "hn_mentions_30d": 18
+  },
+  "content": {
+    "when_to_use": [
+      "Running automated evals on voice AI agents at scale",
+      "Detecting regressions in conversational AI quality over releases",
+      "Simulating thousands of user conversations for QA coverage",
+      "Measuring agent accuracy and latency across scenario suites"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Strong simulation and regression tests for voice agents",
+      "Scorecards make LLM QA measurable",
+      "Built for production, not just benchmarks"
+    ],
+    "cons": [
+      "Niche focus on conversational AI limits appeal",
+      "Requires test dataset investment to pay off",
+      "Smaller ecosystem than Langsmith or Langfuse"
+    ],
+    "verdict": "Narrow but sharp tool for teams shipping voice and LLM agents that need reliable eval.",
+    "best_for": "Voice AI and LLM app teams running regression and eval at scale",
+    "not_for": "Teams doing simple single-turn LLM calls without agent complexity"
   }
 }

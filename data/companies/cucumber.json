@@ -22,5 +22,30 @@
   },
   "community": {
     "hn_mentions_30d": 7
+  },
+  "content": {
+    "when_to_use": [
+      "Executable business requirements with Gherkin scenarios",
+      "Shared feature files between devs, QA, and product",
+      "BDD test automation across Java, Ruby, and JS stacks",
+      "Living documentation from passing acceptance tests"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Shared Gherkin language between QA, devs and product",
+      "Implementations in most mainstream languages",
+      "Encourages thinking in user scenarios, not methods",
+      "Rich reporting and tagging ecosystem"
+    ],
+    "cons": [
+      "Business folks rarely read or write the features",
+      "Step definition regex becomes a maintenance burden",
+      "Adds a translation layer on top of normal tests",
+      "Slower feedback than plain unit tests"
+    ],
+    "verdict": "Great when teams truly practice BDD, mostly overhead when they do not.",
+    "best_for": "Teams with real collaborative three-amigos workflow on specifications",
+    "not_for": "Dev-only shops where features end up authored by developers alone"
   }
 }

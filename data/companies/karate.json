@@ -22,5 +22,30 @@
   },
   "community": {
     "hn_mentions_30d": 6
+  },
+  "content": {
+    "when_to_use": [
+      "API, mock, and performance tests in one BDD DSL",
+      "No Java code required for REST/GraphQL API testing",
+      "Built-in JSON/XML assertions with path expressions",
+      "Parallel execution of API scenarios without extra config"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Unified API, mock and perf testing in one tool",
+      "BDD DSL with no glue code, tests are the scenarios",
+      "Strong JSON/XML matching and schema support",
+      "Built-in Gatling integration for performance"
+    ],
+    "cons": [
+      "Custom DSL is not real Java, tooling limited",
+      "Debugging complex flows is awkward",
+      "Performance module is not best-in-class",
+      "License moved to BSL 1.1 in recent versions"
+    ],
+    "verdict": "Very productive for API testing once you accept its DSL; license change deserves legal review.",
+    "best_for": "QA teams doing heavy API and contract testing across microservices",
+    "not_for": "Shops that want plain Java tests and a permissive open-source license"
   }
 }

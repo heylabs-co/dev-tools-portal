@@ -19,5 +19,31 @@
   "seo": {
     "title": "Colour Contrast Analyser — Accessibility / A11y Testing",
     "meta_description": "Colour Contrast Analyser: Colour Contrast Analyser — Accessibility / A11y Testing tool for developers"
+  },
+  "content": {
+    "when_to_use": [
+      "Eyedropper contrast ratio check for text on brand background",
+      "WCAG AA vs AAA threshold verification for design tokens",
+      "Desktop audit of contrast in screenshot mockups offline",
+      "Color palette validation before design system token commit",
+      "Form label contrast checked against WCAG 1.4.3 criterion"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Free desktop tool from TPGi, widely trusted",
+      "Instant WCAG ratio checks with eyedropper",
+      "Supports color blindness simulation",
+      "Works offline without sending data anywhere"
+    ],
+    "cons": [
+      "Single-purpose tool, not a full a11y suite",
+      "Manual workflow, no automation or CI",
+      "No reporting across pages or components",
+      "Dated UI compared to modern design tools"
+    ],
+    "verdict": "Essential free utility for checking contrast pair by pair, but it's a utility, not a monitoring platform.",
+    "best_for": "Designers and a11y specialists validating specific color pairs against WCAG.",
+    "not_for": "Teams needing automated contrast checks across live sites."
   }
 }

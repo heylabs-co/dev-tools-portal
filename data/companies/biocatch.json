@@ -21,5 +21,31 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "Authorized push payment scam detection for retail banks",
+      "Account opening fraud scoring via behavioral biometrics",
+      "Account takeover detection during authenticated sessions",
+      "Mule account detection through interaction pattern analysis",
+      "Step-up authentication trigger based on behavioral anomaly"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Behavioral biometrics catch scams that device signals miss",
+      "Strong track record on authorised-push-payment fraud",
+      "Passive SDK, no user friction",
+      "Proven in tier-1 bank deployments"
+    ],
+    "cons": [
+      "Requires months of training data per app flow",
+      "Enterprise-only pricing and long procurement",
+      "Limited value outside financial and high-risk flows",
+      "SDK adds weight and privacy review burden"
+    ],
+    "verdict": "Best-in-class for scam and ATO detection in banking, but too heavy and expensive for generic SaaS fraud.",
+    "best_for": "Banks and fintechs fighting social-engineering scams and account takeover at scale.",
+    "not_for": "E-commerce checkout fraud or small apps without a mature risk team."
   }
 }

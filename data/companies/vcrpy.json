@@ -39,5 +39,29 @@
     "forks": 425,
     "updated_at": "2026-04-21",
     "health_score": "B"
+  },
+  "content": {
+    "when_to_use": [
+      "Record real HTTP interactions as cassettes for Python tests",
+      "Deterministic test runs replaying recorded API responses",
+      "Avoid flaky tests caused by live third-party API changes",
+      "Speed up Python tests by eliminating network latency"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Records real HTTP once, replays forever",
+      "Tests become deterministic and fast",
+      "Cassettes commit to git for reproducibility",
+      "Works across requests, urllib, httpx"
+    ],
+    "cons": [
+      "Stale cassettes silently hide API changes",
+      "Secrets leak into cassettes without filtering",
+      "Re-recording cassettes is tedious at scale"
+    ],
+    "verdict": "A powerful pattern for third-party API tests, but stale cassettes cause more pain than most teams expect.",
+    "best_for": "Python projects with many third-party HTTP integrations needing fast test runs",
+    "not_for": "Fast-moving external APIs where cassette drift hides real regressions"
   }
 }

@@ -25,5 +25,28 @@
   },
   "community": {
     "hn_mentions_30d": 27
+  },
+  "content": {
+    "when_to_use": [
+      "Orchestrating multi-agent pipelines with state and memory mgmt",
+      "Deploying collaborative AI agents that delegate to specialized agents",
+      "Managing agent-to-agent communication in production workflows",
+      "Building complex agent swarms for research and analysis tasks"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Visual multi-agent builder out of the box",
+      "Agents can plan, call tools and collaborate",
+      "Reasonable learning curve for non-devs"
+    ],
+    "cons": [
+      "Visual flows hit a wall at real complexity",
+      "Debugging multi-agent runs is painful",
+      "Less code-first than LangGraph/CrewAI"
+    ],
+    "verdict": "Pleasant agent canvas for business automations, but serious agent teams will prefer code-first frameworks.",
+    "best_for": "Ops teams automating internal workflows with non-engineers in the loop",
+    "not_for": "Engineering teams building complex agent graphs that need code-level control"
   }
 }

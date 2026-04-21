@@ -21,5 +21,30 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "Guaranteed delivery push with TCP persistent connection for critical alerts",
+      "Transactional push with SMS fallback for banking or logistics apps",
+      "Delivery confirmation for time-sensitive mobile notifications",
+      "Reliable message delivery in low-connectivity regions with fallback logic"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Persistent TCP channel improves delivery reliability",
+      "Automatic SMS fallback when push fails",
+      "Good for mission-critical transactional messages",
+      "Receipts and delivery guarantees beyond FCM/APNs"
+    ],
+    "cons": [
+      "Niche — not a marketing platform",
+      "SDK maintenance overhead on mobile clients",
+      "Pricing higher than commodity push providers",
+      "Limited segmentation and campaign tooling"
+    ],
+    "verdict": "Specialist pick when delivery guarantees matter — banks, logistics, healthcare — not a general engagement tool.",
+    "best_for": "Apps where missed push equals lost revenue or safety risk",
+    "not_for": "Growth marketers sending broadcast campaigns"
   }
 }

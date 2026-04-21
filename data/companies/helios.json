@@ -22,5 +22,30 @@
   },
   "community": {
     "hn_mentions_30d": 10
+  },
+  "content": {
+    "when_to_use": [
+      "OpenTelemetry-based distributed trace visualization",
+      "Validate microservice call flows in integration tests",
+      "API test generation from observed trace data",
+      "Debug inter-service latency with flow-level context"
+    ]
+  },
+  "review": {
+    "pros": [
+      "OpenTelemetry-based, no proprietary agents",
+      "Great for debugging microservice call flows",
+      "API testing generated from real traces",
+      "Short time-to-value on typical stacks"
+    ],
+    "cons": [
+      "Narrower scope than full APM suites",
+      "Product direction has shifted over time",
+      "Pricing oriented to dev and QA use, not prod SRE",
+      "Smaller customer community"
+    ],
+    "verdict": "Sharp tool for developer-time distributed tracing; not a full replacement for a production APM platform.",
+    "best_for": "Dev teams debugging complex microservice interactions",
+    "not_for": "SRE teams needing full production APM, logs, and alerting"
   }
 }

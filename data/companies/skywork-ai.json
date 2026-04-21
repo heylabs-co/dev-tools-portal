@@ -29,5 +29,28 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "Accessing Skywork's open-source LLMs for reasoning-heavy tasks",
+      "Running mathematical and code reasoning with Skywork-o1 models",
+      "Fine-tuning Skywork models on domain-specific enterprise data",
+      "Benchmarking open Chinese models for logic and coding tasks"
+    ]
+  },
+  "review": {
+    "pros": [
+      "MoE and 13B open-weight options",
+      "Strong Chinese benchmarks at low cost",
+      "Agentic search product alongside models"
+    ],
+    "cons": [
+      "Weaker English than GPT/Claude tier",
+      "China-hosted APIs raise data concerns",
+      "Commercial licensing terms shift often"
+    ],
+    "verdict": "Decent open-weight Chinese LLMs plus agentic search, best used self-hosted rather than via hosted API.",
+    "best_for": "Chinese-market teams or open-weight fans running models on their own GPUs",
+    "not_for": "Regulated Western firms sending data to China-hosted inference"
   }
 }

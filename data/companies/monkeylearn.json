@@ -26,5 +26,30 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "Training custom text classifiers for support ticket routing",
+      "Extracting keywords and entities from customer feedback at scale",
+      "Building no-code NLP pipelines for business analysts",
+      "Automating tagging of product reviews with sentiment and topic"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Simple REST API for text classification",
+      "Pre-trained models for sentiment and topic",
+      "No-code UI for training custom classifiers",
+      "Spreadsheet integrations for analysts"
+    ],
+    "cons": [
+      "Acquired by Medallia, roadmap uncertain",
+      "Outperformed by modern LLMs for most NLP tasks",
+      "Limited language coverage vs Google/Azure",
+      "Pricing model feels dated in LLM era"
+    ],
+    "verdict": "Legacy NLP API; for new projects an LLM with a prompt usually beats MonkeyLearn on quality and flexibility.",
+    "best_for": "Teams already invested with stable legacy classification pipelines",
+    "not_for": "Greenfield projects choosing between LLM-based and classic NLP APIs"
   }
 }

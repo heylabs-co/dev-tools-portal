@@ -22,5 +22,30 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "Running browser-based iOS/Android demos without physical devices",
+      "Supporting customers with live device emulation in web helpdesk",
+      "Automated UI testing via remote device streams in CI pipelines",
+      "Showcasing app builds to stakeholders without App Store distribution"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Runs iOS and Android apps in the browser instantly",
+      "Great for demos, support, and QA without devices",
+      "Shareable links integrate into docs and sales",
+      "API lets you embed emulators in products"
+    ],
+    "cons": [
+      "Streaming, not a real device, for perf testing",
+      "Per-minute pricing adds up with heavy usage",
+      "Limited set of device and OS version combos",
+      "Some native frameworks behave differently than on device"
+    ],
+    "verdict": "Excellent for demos, browser-based QA, and support flows; not a replacement for a real device lab or TestFlight.",
+    "best_for": "Showcasing mobile apps in browsers for sales, support, and QA",
+    "not_for": "Performance benchmarking or detailed native hardware testing"
   }
 }

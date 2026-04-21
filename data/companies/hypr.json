@@ -30,5 +30,31 @@
   },
   "community": {
     "hn_mentions_30d": 192
+  },
+  "content": {
+    "when_to_use": [
+      "FIDO2/WebAuthn passwordless MFA for enterprise workforce",
+      "Phishing-resistant authentication for privileged admin access",
+      "Mobile push authentication replacing SMS OTP for banking",
+      "SCIM-based user provisioning for passwordless SSO rollout",
+      "HYPR Adapt risk-based step-up for high-sensitivity actions"
+    ]
+  },
+  "review": {
+    "pros": [
+      "True passwordless MFA using FIDO2/WebAuthn standards",
+      "Phishing-resistant auth for both workforce and customers",
+      "Mature SSO and IAM integrations",
+      "Strong compliance posture for regulated industries"
+    ],
+    "cons": [
+      "Enterprise pricing not disclosed publicly",
+      "Deployment can require services engagement",
+      "Heavier than modern passkey-only alternatives",
+      "UI feels dated compared to newer passkey SDKs"
+    ],
+    "verdict": "Enterprise-grade passwordless for banks and regulated shops; overkill for startups that just need passkeys.",
+    "best_for": "Banks, healthcare and regulated enterprises replacing passwords",
+    "not_for": "Small teams wanting a quick passkey drop-in SDK"
   }
 }

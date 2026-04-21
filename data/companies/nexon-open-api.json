@@ -25,5 +25,29 @@
   },
   "community": {
     "hn_mentions_30d": 1
+  },
+  "content": {
+    "when_to_use": [
+      "Accessing Nexon game data APIs for player analytics integrations",
+      "Building game companion apps with Nexon's public player data",
+      "Running player behavior analysis for gaming community platforms"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Free public access to MapleStory and DFO data",
+      "RESTful endpoints with character and ranking data",
+      "Enables community tools and analytics sites",
+      "Clear per-game documentation in KR/EN"
+    ],
+    "cons": [
+      "Rate limits restrict commercial-scale usage",
+      "Data restricted to Nexon-owned titles only",
+      "API changes often break third-party tools",
+      "No real-time game-state events"
+    ],
+    "verdict": "Useful for fan tools and MapleStory analytics, but not a general-purpose game-data platform for any studio.",
+    "best_for": "Fan community developers building MapleStory or DFO tools",
+    "not_for": "Studios needing multi-publisher game data or real-time telemetry"
   }
 }

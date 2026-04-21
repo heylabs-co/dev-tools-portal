@@ -22,5 +22,30 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "Reading Monzo account transactions and balances via OAuth2 API",
+      "Triggering custom feed items and webhooks from Monzo account events",
+      "Building personal finance tools on top of Monzo transaction data",
+      "Automating savings or expense tracking using Monzo developer webhooks"
+    ]
+  },
+  "review": {
+    "pros": [
+      "OAuth2 access to Monzo accounts and transactions",
+      "Webhooks and feed items for real-time flows",
+      "Good for personal automation and apps",
+      "Free for individual developer use"
+    ],
+    "cons": [
+      "Personal-only — no commercial use allowed",
+      "Individual users can only access own data",
+      "Not a payment gateway for merchants",
+      "Rate limits and feature scope limited"
+    ],
+    "verdict": "Nice personal-finance API for Monzo users — not a commercial payment gateway despite category label.",
+    "best_for": "Monzo customers building personal automations or side projects",
+    "not_for": "Merchants needing payment acceptance or commercial APIs"
   }
 }

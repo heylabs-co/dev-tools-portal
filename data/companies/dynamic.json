@@ -22,5 +22,31 @@
   },
   "community": {
     "hn_mentions_30d": 102
+  },
+  "content": {
+    "when_to_use": [
+      "Web3 wallet-based login for dApp user authentication",
+      "Social login with embedded wallet creation for non-crypto users",
+      "Multi-chain wallet connection supporting Ethereum and Solana",
+      "OIDC-compatible auth for Web3 apps integrating backend APIs",
+      "Gated access control based on on-chain token ownership"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Clean Web3 auth SDK with wallet + social + email login",
+      "Embedded wallets and multi-chain support out of the box",
+      "Good admin dashboard with user analytics",
+      "Reasonable pricing tier for early-stage dApps"
+    ],
+    "cons": [
+      "Newer product; some enterprise features still maturing",
+      "Heavier bundle size than minimal wallet connectors",
+      "Customization sometimes fights the default UI",
+      "Smaller ecosystem than WalletConnect/Reown"
+    ],
+    "verdict": "Best balance of Web3 UX and developer ergonomics if you want social login plus wallet connect in one SDK.",
+    "best_for": "Consumer dApps wanting embedded wallets plus social onboarding",
+    "not_for": "Institutional custody or apps that need bare-metal wallet control"
   }
 }

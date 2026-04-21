@@ -22,5 +22,29 @@
   },
   "community": {
     "hn_mentions_30d": 1
+  },
+  "content": {
+    "when_to_use": [
+      "On-call alerting and escalation for incident management teams",
+      "Runbook automation triggered by monitoring tool alerts",
+      "Postmortem tracking and incident timeline documentation"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Solid PagerDuty-style on-call and incident management",
+      "Runbooks, escalations and postmortems included",
+      "Competitive pricing vs PagerDuty and Opsgenie",
+      "Broad integrations with monitoring tools"
+    ],
+    "cons": [
+      "Not a crash reporting product itself",
+      "Smaller ecosystem and brand than incumbents",
+      "UI polish lags top competitors in places",
+      "Enterprise features still catching up"
+    ],
+    "verdict": "Good-value on-call platform that pairs with crash tools; do not pick it if you need the crash capture itself.",
+    "best_for": "Teams wanting cheaper PagerDuty-style on-call and runbooks",
+    "not_for": "Engineers looking for stack traces and crash dashboards"
   }
 }

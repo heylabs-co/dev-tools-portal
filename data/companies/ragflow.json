@@ -29,5 +29,30 @@
   },
   "community": {
     "hn_mentions_30d": 1
+  },
+  "content": {
+    "when_to_use": [
+      "Self-hosting a production-grade RAG engine over enterprise docs",
+      "Chunking and indexing complex PDFs and tables for retrieval",
+      "Building knowledge-grounded chatbots with citation support",
+      "Running hybrid search combining keyword and vector retrieval"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Open-source RAG engine, self-hostable",
+      "Deep document understanding for tables and PDFs",
+      "Hybrid search out of the box",
+      "Agent orchestration baked in"
+    ],
+    "cons": [
+      "Self-hosting ops burden is real",
+      "Docs skew toward Chinese community",
+      "Upgrade cadence can be disruptive",
+      "Fewer managed integrations vs Ragie or LlamaIndex Cloud"
+    ],
+    "verdict": "Great OSS alternative to managed RAG if you can host it and want full control over the pipeline.",
+    "best_for": "Engineering teams wanting self-hosted, customizable RAG",
+    "not_for": "Small teams who just want a managed RAG endpoint"
   }
 }

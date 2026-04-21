@@ -41,5 +41,30 @@
     "forks": 549,
     "updated_at": "2026-04-21",
     "health_score": "B"
+  },
+  "content": {
+    "when_to_use": [
+      "XML-driven Windows MSI and MSIX package authoring",
+      "Complex installer logic with custom actions and conditions",
+      "Heat.exe for harvesting file system into WXS fragments",
+      "Bundle installer chaining multiple MSI prerequisites"
+    ]
+  },
+  "review": {
+    "pros": [
+      "The standard for serious Windows MSI/MSIX installers",
+      "XML-authored, diffable, CI-friendly",
+      "Open-source with active v5 development",
+      "Full access to Windows Installer features"
+    ],
+    "cons": [
+      "XML authoring has a steep learning curve",
+      "Error messages are famously inscrutable",
+      "Licensing/sponsorship story shifted in recent years",
+      "Overkill for simple EXE installers"
+    ],
+    "verdict": "When you need real MSI/MSIX and enterprise deployment, WiX is still the right answer — just budget the ramp-up.",
+    "best_for": "Enterprise Windows apps requiring MSI/MSIX and Group Policy deployment.",
+    "not_for": "Indie apps where Inno Setup or Velopack are vastly simpler."
   }
 }

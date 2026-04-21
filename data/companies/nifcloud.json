@@ -22,5 +22,29 @@
   },
   "community": {
     "hn_mentions_30d": 2
+  },
+  "content": {
+    "when_to_use": [
+      "Japanese cloud infrastructure with domestic data residency",
+      "VPS and DBaaS for Japanese enterprise compliance",
+      "Managed services platform for Japanese government apps",
+      "Fujitsu-backed cloud for regulated Japanese industries",
+      "Local-latency compute for Japanese consumer applications"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Fujitsu-operated Japanese data centers",
+      "Local compliance and data residency",
+      "Traditional enterprise SLAs"
+    ],
+    "cons": [
+      "Tiny service catalog vs hyperscalers",
+      "Documentation largely Japanese-only",
+      "Weak modern serverless offerings"
+    ],
+    "verdict": "Acceptable only if Japanese data residency is mandatory; otherwise AWS Tokyo region wins on almost every axis.",
+    "best_for": "Japanese enterprises requiring domestic cloud compliance",
+    "not_for": "Modern cloud-native workloads or global deployments"
   }
 }

@@ -23,5 +23,31 @@
   },
   "community": {
     "hn_mentions_30d": 63
+  },
+  "content": {
+    "when_to_use": [
+      "Banking-as-a-service for building neobanks and fintech products",
+      "Account opening, ACH, and wire payments via a single API",
+      "KYC and AML compliance wrapped in banking infrastructure",
+      "Virtual debit card issuance for expense management apps",
+      "Embedded finance APIs for non-bank companies"
+    ]
+  },
+  "review": {
+    "pros": [
+      "BaaS with accounts, cards, and ACH in one API",
+      "Handles KYC/AML compliance workflows",
+      "Sponsor bank relationships abstracted away",
+      "Ledger primitives for fintech apps"
+    ],
+    "cons": [
+      "Regulatory incidents caused fund freezes historically",
+      "Onboarding and underwriting can take weeks",
+      "Pricing opaque without sales call",
+      "Platform risk concentrated on sponsor bank"
+    ],
+    "verdict": "Full-stack banking APIs that move fast but carry real sponsor-bank and regulatory risk you must underwrite.",
+    "best_for": "Fintech startups needing accounts, cards, and ACH under one compliance umbrella",
+    "not_for": "Teams that need multi-bank redundancy or cannot tolerate BaaS concentration risk"
   }
 }

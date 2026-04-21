@@ -41,5 +41,28 @@
     "forks": 69,
     "updated_at": "2026-04-21",
     "health_score": "F"
+  },
+  "content": {
+    "when_to_use": [
+      "Running ML predictions against a live OLTP database in real time",
+      "Building real-time feature stores on top of operational data",
+      "Combining SQL analytics with in-database ML for low-latency scoring",
+      "Deploying ML models that query live transactional data directly"
+    ]
+  },
+  "review": {
+    "pros": [
+      "OLTP, OLAP and ML on one engine",
+      "SQL-compatible lowers migration cost",
+      "Feature store included for ML teams"
+    ],
+    "cons": [
+      "Unified engines often lose to specialists",
+      "Small community vs Snowflake/Databricks",
+      "Project activity has slowed noticeably"
+    ],
+    "verdict": "Ambitious convergence story, but in 2026 most teams are better served gluing best-of-breed warehouses and feature stores.",
+    "best_for": "Niche teams that genuinely need HTAP plus ML on one stack",
+    "not_for": "Most data teams — Snowflake, Databricks or Feast will serve better"
   }
 }

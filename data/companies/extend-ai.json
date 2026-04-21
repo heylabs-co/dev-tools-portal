@@ -26,5 +26,28 @@
   },
   "community": {
     "hn_mentions_30d": 277
+  },
+  "content": {
+    "when_to_use": [
+      "Extracting structured fields from unstructured documents via AI",
+      "Automating invoice and receipt parsing for accounting workflows",
+      "Building document understanding pipelines for compliance teams",
+      "Processing medical or legal documents with AI field extraction"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Vision models tuned for document parsing",
+      "Splitting and workflow orchestration built-in",
+      "Better accuracy than generic LLMs on forms"
+    ],
+    "cons": [
+      "Per-page pricing adds up on high volume",
+      "Still requires schema design upfront",
+      "Competes with Unstructured.io and Reducto"
+    ],
+    "verdict": "Strong pick when docs are messy and LLM-only extraction keeps failing.",
+    "best_for": "Ops teams parsing invoices, contracts, and claims with workflow logic",
+    "not_for": "Simple text extraction — Unstructured.io or raw LLM may suffice"
   }
 }

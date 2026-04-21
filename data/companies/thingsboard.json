@@ -42,5 +42,31 @@
     "forks": 6237,
     "updated_at": "2026-04-21",
     "health_score": "A"
+  },
+  "content": {
+    "when_to_use": [
+      "Open-source IoT platform with device management and dashboards",
+      "MQTT and CoAP device data ingestion with rule engine",
+      "Real-time telemetry visualization for IoT deployments",
+      "Self-hosted IoT backend for smart city and industrial use cases",
+      "Edge computing with ThingsBoard Edge for local processing"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Open-source core with self-host option",
+      "Built-in rule engine and dashboards",
+      "Supports MQTT, CoAP, HTTP, LwM2M out of box",
+      "Strong device-provisioning workflows"
+    ],
+    "cons": [
+      "UI feels dated compared to modern IoT SaaS",
+      "Scaling requires tuning Cassandra/Postgres yourself",
+      "PE (commercial) features gated behind licenses",
+      "Steep learning curve for rule chains"
+    ],
+    "verdict": "Solid open-source IoT platform with real scale, but you inherit the ops burden unless you pay for PE.",
+    "best_for": "Teams that need self-hosted IoT with device mgmt, telemetry and rule chains",
+    "not_for": "Small teams wanting a polished managed IoT SaaS with zero ops"
   }
 }

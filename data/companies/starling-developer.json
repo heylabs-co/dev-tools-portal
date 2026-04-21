@@ -22,5 +22,29 @@
   },
   "community": {
     "hn_mentions_30d": 5
+  },
+  "content": {
+    "when_to_use": [
+      "Personal and business account integration via Starling Open API",
+      "Webhook-based transaction monitoring for UK neobank apps",
+      "Marketplace app integration using Starling API ecosystem"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Clean REST API with webhooks",
+      "Covers personal and business accounts",
+      "Marketplace integration model well documented",
+      "Free for personal account holders"
+    ],
+    "cons": [
+      "UK-only — GBP-first with limited FX",
+      "Not a true BaaS — partner relationships limited",
+      "Rate limits tight for production scale",
+      "No card issuing for third parties"
+    ],
+    "verdict": "Best-in-class UK consumer banking API for PFM and account aggregation, not a white-label BaaS.",
+    "best_for": "UK fintech apps doing account aggregation, PFM, or Starling account integrations",
+    "not_for": "Teams needing issued accounts, cards, or international BaaS features"
   }
 }

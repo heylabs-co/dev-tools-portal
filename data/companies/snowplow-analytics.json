@@ -30,5 +30,31 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "Collect granular behavioral events into owned warehouse",
+      "Open-source alternative to Segment for data collection",
+      "Server-side event tracking for privacy-first analytics",
+      "Custom event schema for product analytics in Snowflake",
+      "First-party behavioral data pipeline without SaaS lock-in"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Granular, raw event data in your own warehouse",
+      "Open-source core gives full schema control",
+      "No vendor lock-in on your behavioral data",
+      "Strong for data-engineering-led analytics"
+    ],
+    "cons": [
+      "Requires significant engineering to run well",
+      "Steep learning curve versus packaged analytics",
+      "Commercial BDP pricing is enterprise-level",
+      "Need to bring your own BI and modeling tools"
+    ],
+    "verdict": "Gold standard for owning your event data; real cost is engineering time, not software license.",
+    "best_for": "Data-mature teams wanting warehouse-native, schema-controlled behavioral data they fully own.",
+    "not_for": "Small teams without data engineers or anyone wanting turnkey packaged analytics."
   }
 }

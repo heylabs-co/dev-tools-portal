@@ -33,5 +33,28 @@
   },
   "community": {
     "hn_mentions_30d": 32
+  },
+  "content": {
+    "when_to_use": [
+      "Compressing and deploying edge AI models on ARM or RISC-V",
+      "Quantizing vision models for on-device inference at 10x speedup",
+      "Optimizing AI pipelines for embedded and automotive platforms",
+      "Reducing power consumption of ML models on IoT hardware"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Serious model compression for edge targets",
+      "Supports wide range of embedded hardware",
+      "Strong defense and industrial customers"
+    ],
+    "cons": [
+      "Enterprise sales model, no self-serve tier",
+      "Narrow focus on edge and embedded AI",
+      "Docs assume deep ML engineering skill"
+    ],
+    "verdict": "The specialist pick when you must fit models onto constrained edge silicon at scale.",
+    "best_for": "Industrial, defense and IoT teams deploying AI on embedded hardware",
+    "not_for": "Cloud-native AI products where model size is not a constraint"
   }
 }

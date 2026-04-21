@@ -22,5 +22,30 @@
   },
   "community": {
     "hn_mentions_30d": 102
+  },
+  "content": {
+    "when_to_use": [
+      "Analyzing content readability and grade level via API",
+      "Improving text clarity for target reading audiences automatically",
+      "Building content quality workflows with readability scoring",
+      "Checking documentation complexity before publishing for developers"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Automates docstring and comment generation at scale",
+      "Useful for backfilling docs on legacy codebases",
+      "Supports common languages with IDE plugins",
+      "Low-friction setup"
+    ],
+    "cons": [
+      "Generated comments often state the obvious",
+      "Can produce misleading docs if code intent is unclear",
+      "Copilot and Cursor cover this for free",
+      "Standalone tools are being squeezed by general assistants"
+    ],
+    "verdict": "A narrow tool that general-purpose AI assistants already do well enough, hard to justify separately.",
+    "best_for": "Legacy projects needing bulk docstring generation in one pass",
+    "not_for": "Teams already using Copilot or Cursor for inline documentation"
   }
 }

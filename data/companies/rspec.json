@@ -39,5 +39,29 @@
     "forks": 42,
     "updated_at": "2026-04-21",
     "health_score": "B"
+  },
+  "content": {
+    "when_to_use": [
+      "BDD-style unit and integration tests for Ruby apps",
+      "Shared examples for reusable spec behaviors",
+      "Custom matchers for domain-specific assertions",
+      "Describe/it/expect syntax for readable Rails test suites"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Ruby's most popular BDD framework",
+      "Expressive describe/it/expect syntax",
+      "Rich matcher library and community gems",
+      "Excellent Rails integration"
+    ],
+    "cons": [
+      "Slower than Minitest on large suites",
+      "DSL adds indirection over plain Ruby",
+      "Minitest is Rails' own default now"
+    ],
+    "verdict": "The readability winner for Ruby tests, but Minitest is faster and ships with Rails by default.",
+    "best_for": "Ruby and Rails teams prioritizing readable specs over raw speed",
+    "not_for": "Performance-sensitive Ruby codebases where Minitest is faster"
   }
 }

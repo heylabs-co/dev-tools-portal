@@ -30,5 +30,30 @@
   },
   "community": {
     "hn_mentions_30d": 2
+  },
+  "content": {
+    "when_to_use": [
+      "Providing AI coding agents with safe sandboxed code execution",
+      "Building ephemeral dev environments for LLM-generated code testing",
+      "Running AI agent workloads in isolated containers at scale",
+      "Scaling sandbox provisioning for parallel agent coding tasks"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Purpose-built sandbox infrastructure for coding agents",
+      "API-first design suits programmatic agent orchestration",
+      "Handles isolation and snapshotting out of the box",
+      "Reduces need to build E2B or Modal equivalents in-house"
+    ],
+    "cons": [
+      "Niche audience of agent builders, not end-developers",
+      "Competes with E2B, Daytona, and Modal for the same slot",
+      "Pricing opaque without sales contact",
+      "Early stage, ecosystem still forming"
+    ],
+    "verdict": "Solid pick if you are shipping AI coding agents at scale, but irrelevant for typical developers.",
+    "best_for": "Companies building AI coding agents needing managed sandbox infrastructure",
+    "not_for": "Individual developers who just want an IDE assistant, not agent infrastructure"
   }
 }

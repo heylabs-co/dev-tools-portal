@@ -22,5 +22,30 @@
   },
   "community": {
     "hn_mentions_30d": 42
+  },
+  "content": {
+    "when_to_use": [
+      "Cloud Git/SVN hosting with built-in code review",
+      "Ticket-to-deployment traceability with CI webhooks",
+      "Merge-request workflows for distributed dev teams",
+      "Repository-linked wiki for project documentation"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Hosts Git, SVN, and Perforce under one roof",
+      "Strong SOC2 and compliance story for enterprises",
+      "Tickets and repos tied together cleanly",
+      "Decent option for legacy SVN shops"
+    ],
+    "cons": [
+      "Pricing is opaque and steep vs GitHub/GitLab",
+      "UI and workflows feel dated",
+      "Community and third-party integrations thin",
+      "CI is only via webhooks, not first-class"
+    ],
+    "verdict": "Niche enterprise forge worth it mainly if you still run Perforce or SVN and need SOC2.",
+    "best_for": "Regulated enterprises with mixed SVN/Perforce/Git repos needing compliance hosting.",
+    "not_for": "Modern teams on Git who would rather use GitHub or GitLab."
   }
 }

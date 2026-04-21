@@ -22,5 +22,31 @@
   },
   "community": {
     "hn_mentions_30d": 47
+  },
+  "content": {
+    "when_to_use": [
+      "Cloud video encoding with per-minute billing and AV1 support",
+      "Multi-DRM content protection for premium video platforms",
+      "Adaptive bitrate streaming with DASH/HLS packaging via API",
+      "HTML5 video player with analytics and subtitle support",
+      "Live transcoding at broadcast quality with redundancy"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Per-minute encoding pricing, no minimums",
+      "AV1, HEVC, and multi-DRM support out of box",
+      "Strong player SDKs across web and native",
+      "Flexible deployment in your own cloud account"
+    ],
+    "cons": [
+      "Pricing climbs quickly at high volumes",
+      "Setup complexity higher than Mux or api.video",
+      "Analytics dashboard less polished than competitors",
+      "Smaller ecosystem than AWS MediaConvert"
+    ],
+    "verdict": "Serious codec flexibility for video engineering teams, probably too heavy for simple VOD use cases.",
+    "best_for": "Streaming platforms needing AV1, per-title encoding, and BYOC deployment",
+    "not_for": "Small teams that just want upload-and-embed video hosting"
   }
 }

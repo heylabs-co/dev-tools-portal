@@ -22,5 +22,29 @@
   },
   "community": {
     "hn_mentions_30d": 634
+  },
+  "content": {
+    "when_to_use": [
+      "SQL development with lineage for warehouse transformations",
+      "Data documentation auto-generated from SQL definitions",
+      "Type-safe SQL with schema validation in CI pipeline",
+      "Column-level lineage for compliance and audit",
+      "Warehouse-native transformation with built-in docs"
+    ]
+  },
+  "review": {
+    "pros": [
+      "SQL-native lineage and docs",
+      "Warehouse-agnostic transformations",
+      "Local development workflow"
+    ],
+    "cons": [
+      "Not an API management tool",
+      "dbt has strong ecosystem dominance",
+      "Still maturing toward GA features"
+    ],
+    "verdict": "Interesting dbt alternative with better lineage, but miscategorized here and fighting a very entrenched incumbent.",
+    "best_for": "Data teams wanting SQL-first lineage beyond dbt",
+    "not_for": "API gateway workflows or non-SQL data stacks"
   }
 }

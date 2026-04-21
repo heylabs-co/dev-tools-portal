@@ -22,5 +22,31 @@
   },
   "community": {
     "hn_mentions_30d": 10
+  },
+  "content": {
+    "when_to_use": [
+      "Team password sharing with GPG encryption and RBAC",
+      "Self-hosted credential manager for compliance-sensitive orgs",
+      "Secret rotation tracking for SOC 2 access control evidence",
+      "LDAP and SCIM integration for enterprise password governance",
+      "Shared vault for API keys across development team members"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Open-source, self-hosted team password manager",
+      "GPG-based end-to-end encryption",
+      "Granular RBAC and sharing controls",
+      "Active community and enterprise option"
+    ],
+    "cons": [
+      "Self-hosting adds real operational burden",
+      "Mobile/CLI story lags the browser UX",
+      "GPG key management trips up non-technical users",
+      "Less polished than 1Password/Bitwarden"
+    ],
+    "verdict": "The pragmatic open-source team password manager; plan on owning the hosting story.",
+    "best_for": "Security-minded teams wanting self-hosted, GPG-backed password sharing.",
+    "not_for": "Teams that want a polished managed service without ops work."
   }
 }

@@ -21,5 +21,31 @@
   },
   "community": {
     "hn_mentions_30d": 6
+  },
+  "content": {
+    "when_to_use": [
+      "Location and device intelligence for mobile account takeover",
+      "Fake account detection using tamper signal analysis",
+      "Low-friction re-authentication via trusted device location",
+      "GPS spoofing and emulator detection for mobile fraud",
+      "Device risk scoring for account opening fraud prevention"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Device and location signals cut fake accounts",
+      "Low false positive rates on mobile flows",
+      "SDK plus API suits native mobile apps",
+      "Strong anti-ATO signals without extra friction"
+    ],
+    "cons": [
+      "Mobile-first, less useful for web-only products",
+      "Requires SDK integration, not just API calls",
+      "Location signals raise privacy and consent questions",
+      "Not a replacement for document or sanctions checks"
+    ],
+    "verdict": "Best-in-class mobile device intelligence for fraud; pair it with a real KYC stack for compliance.",
+    "best_for": "Mobile-first fintech and marketplace apps fighting account takeovers and fake account farms",
+    "not_for": "Web-only products or teams needing document, sanctions and full KYC from one vendor"
   }
 }

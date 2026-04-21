@@ -41,5 +41,28 @@
     "forks": 3,
     "updated_at": "2026-04-21",
     "health_score": "D"
+  },
+  "content": {
+    "when_to_use": [
+      "Discovering and deploying MCP servers for AI agent tool use",
+      "Connecting AI agents to real-world APIs via a managed MCP registry",
+      "Running tool integrations for Claude, GPT, and open LLMs",
+      "Sharing and installing community MCP servers for agent workflows"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Largest MCP server index available",
+      "One-click hosting simplifies deploy",
+      "Central discovery beats hunting GitHub"
+    ],
+    "cons": [
+      "MCP ecosystem quality is highly uneven",
+      "Hosted servers add supply-chain risk",
+      "Lock-in risk if Smithery pivots"
+    ],
+    "verdict": "The default MCP registry today — useful for discovery but treat hosted servers like any third-party dependency.",
+    "best_for": "Claude and MCP client users who want to browse and install servers fast",
+    "not_for": "Teams with strict supply-chain review who need to audit each MCP server themselves"
   }
 }

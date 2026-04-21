@@ -26,5 +26,31 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "CDC ingestion from 100+ sources with automatic schema evolution",
+      "Replacing fragile Spark ETL scripts with declarative connectors",
+      "Syncing MySQL, Postgres, and MongoDB to Clickhouse or Doris",
+      "High-performance batch and streaming ETL in a single platform",
+      "Community-driven ELT alternative to Fivetran for open-source teams"
+    ]
+  },
+  "review": {
+    "pros": [
+      "100+ connectors with CDC built in",
+      "Distributed engine scales beyond single-node tools",
+      "Apache license avoids Fivetran-style cost lock-in",
+      "Runs on Flink, Spark, or its own Zeta engine"
+    ],
+    "cons": [
+      "Younger than Airbyte with smaller community",
+      "Connector quality uneven across long tail",
+      "Operational complexity higher than managed ETL",
+      "Debugging failed pipelines can be painful"
+    ],
+    "verdict": "Promising OSS CDC+ETL engine, but Airbyte still has a bigger ecosystem in the West.",
+    "best_for": "Teams wanting self-hosted distributed CDC without vendor per-row pricing",
+    "not_for": "Small teams who value plug-and-play managed SaaS over self-hosting"
   }
 }

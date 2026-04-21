@@ -22,5 +22,30 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "Provision masked database subsets for dev environments",
+      "Virtualize production data for parallel test execution",
+      "GDPR-compliant PII masking for test data pipelines",
+      "Refresh test databases with production-like data on demand"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Fast subset and virtualization for test databases",
+      "Built-in masking keeps PII out of lower environments",
+      "Handles complex relational integrity across subsets",
+      "Self-service provisioning for dev and QA"
+    ],
+    "cons": [
+      "Niche vendor, smaller community and ecosystem",
+      "Enterprise-only pricing, not for small teams",
+      "Setup against legacy schemas takes real effort",
+      "Limited cloud-native data warehouse support"
+    ],
+    "verdict": "Credible Delphix alternative for test data management on relational stacks, best for regulated orgs.",
+    "best_for": "Enterprises needing masked, referentially-intact test DBs from production",
+    "not_for": "Cloud-first teams preferring synthetic data or ephemeral branches"
   }
 }

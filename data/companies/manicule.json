@@ -25,5 +25,28 @@
   },
   "community": {
     "hn_mentions_30d": 27
+  },
+  "content": {
+    "when_to_use": [
+      "Extracting structured fields from unstructured enterprise documents",
+      "Building document processing pipelines for compliance and legal",
+      "Automating invoice, contract, and report data extraction at scale",
+      "Replacing manual data entry with AI document understanding API"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Handles messy enterprise docs end-to-end",
+      "Good for structured extraction from PDFs",
+      "Focused product vs broad OCR suites"
+    ],
+    "cons": [
+      "Crowded space vs Unstract, Sensible, Reducto",
+      "Pricing opaque for small volumes",
+      "Limited public benchmarks"
+    ],
+    "verdict": "Worth piloting against rivals when you have real enterprise document extraction pain.",
+    "best_for": "Ops and finance teams extracting structured data from enterprise docs",
+    "not_for": "Simple invoice parsing where a generic vision LLM is enough"
   }
 }

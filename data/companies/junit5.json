@@ -40,5 +40,30 @@
     "forks": 1668,
     "updated_at": "2026-04-21",
     "health_score": "A"
+  },
+  "content": {
+    "when_to_use": [
+      "Parameterized tests with data providers for JVM services",
+      "Extension API for custom lifecycle and condition hooks",
+      "Nested test classes organizing complex test scenarios",
+      "Parallel test execution for faster Java CI pipelines"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Modern extensions API replaces rules cleanly",
+      "Parameterized and dynamic tests built in",
+      "Great IDE and build-tool support everywhere",
+      "Jupiter engine coexists with old JUnit 4"
+    ],
+    "cons": [
+      "Migration from JUnit 4 is tedious in big repos",
+      "API surface is larger, more to learn",
+      "Parallel execution still requires opt-in tuning",
+      "Error messages plainer than AssertJ"
+    ],
+    "verdict": "The non-negotiable default for JVM unit testing in 2026, pair with AssertJ for sanity.",
+    "best_for": "Any JVM team doing unit and integration testing, new or existing",
+    "not_for": "There is no real not-for, unless you are on Kotlin-first Kotest"
   }
 }

@@ -22,5 +22,29 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "GitOps Kubernetes deployment with Helm chart abstractions",
+      "Environment management across dev, staging, and production",
+      "Simplified K8s deployments for developer-owned shipping",
+      "Reducing Helm and kubectl complexity for app teams",
+      "Preview environments on Kubernetes via GitOps workflows"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Clean GitOps UX for Kubernetes",
+      "Environment management built in",
+      "Helm abstraction is approachable"
+    ],
+    "cons": [
+      "Smaller ecosystem than Argo CD",
+      "Opinionated workflows",
+      "Enterprise features still maturing"
+    ],
+    "verdict": "An approachable GitOps tool for small platform teams, not yet a replacement for heavyweights.",
+    "best_for": "Small teams wanting GitOps on k8s without wiring Argo themselves",
+    "not_for": "Large orgs already standardized on Argo CD or Flux"
   }
 }

@@ -22,5 +22,31 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "Self-service infrastructure deployment from blueprints",
+      "Platform engineering tool for developer portal backend",
+      "Standardized environment provisioning for dev teams",
+      "Infrastructure-as-blueprints for multi-cloud consistency",
+      "Reduce infra toil with self-service platform layer"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Blueprint model simplifies platform engineering",
+      "Self-service deploys without IaC drift",
+      "Good Kubernetes abstraction",
+      "Helps enforce standards"
+    ],
+    "cons": [
+      "Another layer on top of IaC to learn",
+      "Lock-in risk on blueprints",
+      "Early-stage vendor",
+      "Pricing enterprise-oriented"
+    ],
+    "verdict": "Promising platform-engineering tool, best for teams who want Backstage-like control with less coding.",
+    "best_for": "Mid-to-large engineering orgs standardizing internal developer platforms",
+    "not_for": "Small teams content with direct Terraform and Helm workflows"
   }
 }

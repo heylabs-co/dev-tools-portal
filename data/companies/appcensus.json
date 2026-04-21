@@ -23,5 +23,30 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "Auditing third-party SDKs for undisclosed data collection behaviors",
+      "Validating privacy compliance before App Store submission or MDM rollout",
+      "Identifying SDK data leakage risks for GDPR/CCPA compliance review",
+      "Assessing data broker activity in mobile ad SDKs for enterprise procurement"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Audits real SDK behavior, not just privacy policies",
+      "Surfaces data leaks and PII collection in apps",
+      "Useful for legal, security and compliance teams",
+      "Independent of ad networks so less conflict of interest"
+    ],
+    "cons": [
+      "Not an attribution platform despite the category",
+      "Reports are research-oriented, less operational",
+      "Niche use case limits day-to-day marketing value",
+      "Smaller team and slower product cadence"
+    ],
+    "verdict": "Excellent SDK privacy auditor, but misplaced under attribution — treat it as a compliance tool instead.",
+    "best_for": "Privacy, legal and security teams auditing third-party SDKs for compliance risk.",
+    "not_for": "Growth teams looking for install attribution or MMP replacement."
   }
 }

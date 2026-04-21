@@ -41,5 +41,30 @@
     "forks": 25,
     "updated_at": "2026-04-21",
     "health_score": "B"
+  },
+  "content": {
+    "when_to_use": [
+      "Deploy Docker Compose apps to AWS with one command",
+      "AI-assisted infrastructure provisioning for GCP and DO",
+      "Auto-managed SSL, networking, and persistent storage",
+      "Eliminate Terraform boilerplate for small team deploys"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Turns a Docker Compose file into multi-cloud deploys",
+      "Sets up SSL, DNS, networking automatically",
+      "Supports AWS, GCP, and DigitalOcean",
+      "AI-assisted config generation is genuinely useful"
+    ],
+    "cons": [
+      "Abstraction leaks when you need custom IAM or VPC",
+      "Young project, limited production track record",
+      "Vendor-specific debugging still required",
+      "Pricing model still evolving"
+    ],
+    "verdict": "A fast path from Compose to cloud; promising but not yet a replacement for real IaC.",
+    "best_for": "Solo devs and small teams shipping Compose apps to AWS/GCP without learning Terraform.",
+    "not_for": "Teams with strict IaC, compliance, or complex networking requirements."
   }
 }

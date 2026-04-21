@@ -22,5 +22,31 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "Enterprise support for HAProxy load balancer deployments",
+      "High-availability L4/L7 load balancing for production traffic",
+      "Traffic routing with health checks and failover for APIs",
+      "SSL termination and request routing for microservice clusters",
+      "Custom HAProxy builds with commercial support and patches"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Enterprise support around battle-tested open-source HAProxy",
+      "HAProxy Enterprise adds WAF, bot management, and clustering",
+      "Proven performance under extreme load",
+      "Kubernetes Ingress Controller available"
+    ],
+    "cons": [
+      "Config syntax is dense for newcomers",
+      "Enterprise licensing can be steep",
+      "UI story weaker than NGINX Plus or envoy vendors",
+      "Feature gap between Community and Enterprise editions"
+    ],
+    "verdict": "Go-to load balancer when raw performance matters and you want a vendor behind the OSS, pricing needs negotiation.",
+    "best_for": "High-traffic sites needing enterprise L4/L7 load balancing with vendor support",
+    "not_for": "Teams preferring cloud-native Kubernetes-first ingress (Istio, Envoy-based)"
   }
 }

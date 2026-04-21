@@ -23,5 +23,30 @@
   },
   "community": {
     "hn_mentions_30d": 5
+  },
+  "content": {
+    "when_to_use": [
+      "High-performance managed GitHub Actions runners",
+      "Built-in caching for faster dependency installations",
+      "Cost savings vs GitHub-hosted on CPU-intensive builds",
+      "Drop-in replacement for GitHub-hosted runner configs"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Noticeably faster GitHub Actions runners out of the box",
+      "Built-in caching reduces cold builds",
+      "Cheaper than GitHub-hosted at scale",
+      "Simple drop-in replacement via runs-on label"
+    ],
+    "cons": [
+      "Managed service means less control over the VMs",
+      "Trust and data residency depend on vendor",
+      "Smaller team than RunsOn or Actuated",
+      "Pricing can still add up for huge CI volumes"
+    ],
+    "verdict": "A low-effort way to speed up and cheapen GitHub Actions without running your own infra.",
+    "best_for": "Teams with slow GitHub Actions pipelines who won't self-host runners.",
+    "not_for": "Shops requiring data-residency, VPC, or self-managed runners."
   }
 }

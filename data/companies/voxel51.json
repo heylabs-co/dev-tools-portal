@@ -44,5 +44,28 @@
     "forks": 742,
     "updated_at": "2026-04-21",
     "health_score": "A"
+  },
+  "content": {
+    "when_to_use": [
+      "Exploring, visualizing, and curating large computer vision datasets",
+      "Building dataset quality pipelines with FiftyOne open source",
+      "Analyzing model predictions alongside ground truth for debugging",
+      "Running active learning and embedding analysis on vision datasets"
+    ]
+  },
+  "review": {
+    "pros": [
+      "FiftyOne is the standard for CV datasets",
+      "Handles 3D, video, images and metadata",
+      "Strong curation and eval tooling"
+    ],
+    "cons": [
+      "Learning curve for non-CV teams",
+      "Enterprise features behind paid tier",
+      "Memory-heavy on very large datasets"
+    ],
+    "verdict": "Essentially required tooling if you do serious computer vision at scale — open core keeps it honest.",
+    "best_for": "Computer vision teams curating and debugging multimodal visual datasets",
+    "not_for": "NLP-only teams or anyone without real CV workloads"
   }
 }

@@ -23,5 +23,31 @@
   "seo": {
     "title": "Algolia DocSearch — Developer Documentation / DevRel",
     "meta_description": "Algolia DocSearch: Algolia DocSearch — free hosted search-as-a-service for open-source documentation sites, powering search for React, Vue, MDN, and thousands o"
+  },
+  "content": {
+    "when_to_use": [
+      "Instant full-text search across versioned API reference",
+      "OSS docs search powering React/Vue/Astro community sites",
+      "Search widget embedded in docs portal with one script tag",
+      "Keyboard-accessible search modal for developer portal",
+      "Search analytics to find most-queried undocumented topics"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Free for qualifying open-source documentation sites",
+      "Fast, typo-tolerant search powered by Algolia infrastructure",
+      "Minimal integration - drop-in crawler plus widget",
+      "Used by thousands of major OSS projects, proven at scale"
+    ],
+    "cons": [
+      "Approval required, not all OSS sites qualify",
+      "Crawler recrawl frequency is Algolia-controlled",
+      "Customization limited versus full Algolia API",
+      "Vendor lock-in if you outgrow the free tier"
+    ],
+    "verdict": "The default search for OSS docs - free, fast, and invisible; just accept the approval gate.",
+    "best_for": "Open-source projects that need production-grade docs search without running infrastructure.",
+    "not_for": "Commercial products or internal docs - DocSearch free tier doesn't apply."
   }
 }

@@ -23,5 +23,29 @@
   },
   "community": {
     "hn_mentions_30d": 284
+  },
+  "content": {
+    "when_to_use": [
+      "Scalable Ethereum RPC for high-traffic Web3 application",
+      "IPFS API for decentralized NFT metadata storage",
+      "Multi-network support: Mainnet, Goerli, Sepolia testnet",
+      "WebSocket subscriptions for real-time blockchain events",
+      "Backup node provider for production dapp resilience"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Multi-chain support beyond Ethereum",
+      "Stable SDKs across major languages",
+      "MetaMask integration is first-class"
+    ],
+    "cons": [
+      "Duplicate of infura-consensys entry",
+      "Centralization risk for Web3 apps",
+      "Pricing climbs fast at scale"
+    ],
+    "verdict": "Same product as the Consensys entry; reliable Web3 RPC but creates single point of failure for dApps.",
+    "best_for": "Production dApps on Ethereum, Polygon, or L2 chains",
+    "not_for": "Teams avoiding centralized RPC dependencies"
   }
 }

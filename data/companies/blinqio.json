@@ -33,5 +33,28 @@
   },
   "community": {
     "hn_mentions_30d": 10
+  },
+  "content": {
+    "when_to_use": [
+      "Auto-generating UI test scripts from natural language specs",
+      "Maintaining test suites that self-heal after UI changes",
+      "Accelerating QA coverage for web apps with AI-written tests",
+      "Reducing test maintenance burden on frontend teams"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Natural-language test generation",
+      "Self-healing selectors reduce flakiness",
+      "Works across web and mobile UIs"
+    ],
+    "cons": [
+      "Less control than code-first Playwright",
+      "AI-generated tests can obscure intent",
+      "Subscription adds cost on top of CI"
+    ],
+    "verdict": "Worth trying if manual QA still dominates; skip if your team already writes Playwright well.",
+    "best_for": "QA-led teams without strong test-automation engineering",
+    "not_for": "Engineering-led teams already productive in Playwright or Cypress"
   }
 }

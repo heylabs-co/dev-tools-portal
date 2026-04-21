@@ -22,5 +22,33 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "High-performance OSS media server with RTMP, SRT, and WebRTC",
+      "Self-hosted live streaming origin with HLS output",
+      "Low-latency WebRTC delivery from RTMP ingest sources",
+      "Open-source Nginx-RTMP replacement with WebRTC support",
+      "Scalable media server for live streaming platforms in China"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Fully open source, MIT licensed",
+      "Supports RTMP, HLS, SRT, WebRTC, HTTP-FLV",
+      "High performance on modest hardware",
+      "Large Chinese and global community",
+      "Production-tested at major scale"
+    ],
+    "cons": [
+      "Docs split between Chinese and English",
+      "You own all ops, scaling, and monitoring",
+      "Community support, not commercial SLA",
+      "Config can be daunting for newcomers",
+      "No hosted SaaS option"
+    ],
+    "verdict": "Best free OSS media server going — if you can run infra, SRS gives you Wowza-class features for zero license cost.",
+    "best_for": "Engineering teams building self-hosted live streaming at significant scale.",
+    "not_for": "Teams without streaming-ops expertise — managed SaaS is safer."
   }
 }

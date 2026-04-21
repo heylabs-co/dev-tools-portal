@@ -23,5 +23,31 @@
   },
   "community": {
     "hn_mentions_30d": 1
+  },
+  "content": {
+    "when_to_use": [
+      "Simple flat-rate container hosting without Kubernetes complexity",
+      "Deploying Docker apps with zero server operations knowledge",
+      "Predictable pricing for containerized web services",
+      "Heroku-like simplicity without per-dyno billing overhead",
+      "Managed hosting for side projects and small SaaS apps"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Flat predictable container pricing",
+      "Zero server operations required",
+      "Simple Docker-first workflow",
+      "Fast deployment from registry"
+    ],
+    "cons": [
+      "Tiny team with uncertain runway",
+      "Feature set thinner than Railway",
+      "Limited regions available",
+      "No managed data layer"
+    ],
+    "verdict": "Refreshingly simple flat-rate container host, but small-vendor risk is real for production bets.",
+    "best_for": "Indie devs and small teams wanting predictable container hosting without per-resource billing",
+    "not_for": "Enterprises, global-scale apps, or teams needing managed databases bundled"
   }
 }

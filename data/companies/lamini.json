@@ -41,5 +41,28 @@
     "forks": 153,
     "updated_at": "2026-04-21",
     "health_score": "F"
+  },
+  "content": {
+    "when_to_use": [
+      "Fine-tuning LLMs on private enterprise data with exact accuracy",
+      "Running deterministic model outputs for compliance-critical tasks",
+      "Hosting private fine-tuned models on enterprise GPU infrastructure",
+      "Eliminating hallucinations with memory-tuned Llama models"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Memory Tuning reduces hallucinations measurably",
+      "Enterprise deployment options including on-prem",
+      "Focused on fine-tuning over API tricks"
+    ],
+    "cons": [
+      "Expensive enterprise pricing model",
+      "Memory Tuning is proprietary — lock-in risk",
+      "Smaller community vs Together or Fireworks"
+    ],
+    "verdict": "Worth evaluating when hallucination is the actual blocker for your LLM rollout.",
+    "best_for": "Enterprises needing factual grounding on private data via fine-tuning",
+    "not_for": "Teams that can get by with RAG on a managed LLM API"
   }
 }

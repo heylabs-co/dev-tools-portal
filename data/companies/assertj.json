@@ -40,5 +40,30 @@
     "forks": 770,
     "updated_at": "2026-04-21",
     "health_score": "A"
+  },
+  "content": {
+    "when_to_use": [
+      "Fluent chained assertions for Java collections and maps",
+      "Custom assertion classes for domain object validation",
+      "Rich exception and message assertions in JUnit tests",
+      "Type-safe assertions reducing boilerplate in test code"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Chainable assertions with excellent IDE autocomplete",
+      "Far better error messages than vanilla JUnit asserts",
+      "Rich support for collections, exceptions and dates",
+      "Custom assertion generator for domain objects"
+    ],
+    "cons": [
+      "Yet another dependency on top of JUnit or TestNG",
+      "Overlap with Hamcrest confuses new Java developers",
+      "Large API surface means many ways to assert the same thing",
+      "Verbose for trivial equality checks"
+    ],
+    "verdict": "Basically required if you want readable JUnit failures without inventing your own assertion helpers.",
+    "best_for": "Java teams that read test output daily and care about diagnostic quality",
+    "not_for": "Projects already standardized on Hamcrest or Truth with no reason to switch"
   }
 }

@@ -22,5 +22,30 @@
   },
   "community": {
     "hn_mentions_30d": 10
+  },
+  "content": {
+    "when_to_use": [
+      "Enterprise data quality profiling and cleansing pipelines",
+      "Standardize and validate test datasets at scale",
+      "Automate data governance workflows for compliance",
+      "Detect schema drift in test data before test runs"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Mature SAS-backed data quality rules engine",
+      "Strong profiling and cleansing for enterprise data",
+      "Integrates into broader SAS analytics stack",
+      "Proven on large governance and MDM programs"
+    ],
+    "cons": [
+      "Expensive SAS licensing model",
+      "Not a modern cloud-native platform",
+      "Overkill for teams outside regulated enterprises",
+      "Limited community, heavy reliance on SAS consulting"
+    ],
+    "verdict": "A legacy enterprise workhorse that makes sense only when SAS is already the center of gravity.",
+    "best_for": "Regulated enterprises standardized on SAS for analytics and governance",
+    "not_for": "Modern data teams on dbt, Great Expectations or Soda with cloud warehouses"
   }
 }

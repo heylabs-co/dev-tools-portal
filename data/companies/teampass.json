@@ -22,5 +22,31 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "Team password vault with folder-level RBAC for orgs",
+      "Self-hosted credential manager for air-gapped environments",
+      "Shared secret access control for IT and DevOps teams",
+      "API key and credentials rotation tracking per project",
+      "Active Directory integration for user-linked vault access"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Free, open-source team password manager",
+      "Granular access controls and folders",
+      "Self-hostable on typical LAMP stacks",
+      "Long-running, mature codebase"
+    ],
+    "cons": [
+      "PHP/LAMP stack feels dated",
+      "UI and mobile experience lag modern tools",
+      "Security track record has had issues",
+      "API usability is limited"
+    ],
+    "verdict": "Works if you need a free self-hosted team vault on LAMP; PassBolt or Bitwarden usually feel nicer.",
+    "best_for": "Budget-constrained teams with LAMP hosting already in place.",
+    "not_for": "Teams that want a modern API-first experience."
   }
 }

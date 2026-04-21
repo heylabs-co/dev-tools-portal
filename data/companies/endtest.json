@@ -22,5 +22,30 @@
   },
   "community": {
     "hn_mentions_30d": 59
+  },
+  "content": {
+    "when_to_use": [
+      "No-code test creation with record-and-playback UI",
+      "Cross-browser automated tests without Selenium setup",
+      "Mobile web test execution on real device cloud",
+      "CI pipeline integration with zero scripting required"
+    ]
+  },
+  "review": {
+    "pros": [
+      "No-code recorder for web and mobile suites",
+      "Cross-browser cloud grid included",
+      "Visual editor accessible to non-engineers",
+      "Decent API and CI integrations"
+    ],
+    "cons": [
+      "Record-and-playback tests are inherently brittle",
+      "Limited escape hatch when logic gets complex",
+      "SaaS-only, everything lives in their cloud",
+      "Pricing escalates quickly with parallel runs"
+    ],
+    "verdict": "Reasonable choice when QA is non-technical, but expect the usual low-code ceiling under real load.",
+    "best_for": "QA teams without scripting skills running straightforward web regressions",
+    "not_for": "Engineering-led teams who should invest in Playwright or Cypress instead"
   }
 }

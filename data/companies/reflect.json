@@ -22,5 +22,29 @@
   },
   "community": {
     "hn_mentions_30d": 99
+  },
+  "content": {
+    "when_to_use": [
+      "No-code browser test creation with visual record/replay",
+      "CI-integrated regression tests without test code",
+      "Version-controlled test cases with diff history",
+      "Run cross-browser tests automatically on every deploy"
+    ]
+  },
+  "review": {
+    "pros": [
+      "True no-code record-and-replay workflow",
+      "Version control for visual tests",
+      "CI integration with common providers",
+      "AI-assisted element locators reduce flakiness"
+    ],
+    "cons": [
+      "Paid SaaS, recurring cost scales with tests",
+      "Locked into Reflect's test format",
+      "Debugging failures can require their UI"
+    ],
+    "verdict": "A reasonable no-code option for non-engineers, but engineering teams get more leverage from Playwright.",
+    "best_for": "QA and product teams wanting browser tests without writing code",
+    "not_for": "Engineering teams preferring version-controlled code-based test suites"
   }
 }

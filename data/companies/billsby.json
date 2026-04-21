@@ -22,5 +22,30 @@
   },
   "community": {
     "hn_mentions_30d": 86
+  },
+  "content": {
+    "when_to_use": [
+      "Dunning management and failed payment recovery for subscription SaaS",
+      "Proration calculation for mid-cycle plan changes in billing engine",
+      "Embeddable checkout widget for subscription sign-up on any website",
+      "Revenue retention tooling for reducing involuntary churn"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Drop-in checkout widgets cut integration time significantly",
+      "Strong dunning and retention tools recover failed payments",
+      "Flexible plan, addon, and coupon modeling out of the box",
+      "Transparent flat-rate pricing with no hidden transaction fees"
+    ],
+    "cons": [
+      "Not a Merchant of Record; you handle global tax yourself",
+      "Reporting depth lags behind ChartMogul or ProfitWell",
+      "Webhook reliability can be spotty under high load",
+      "Fewer native integrations than Chargebee or Recurly"
+    ],
+    "verdict": "Solid mid-market subscription engine with excellent retention tooling, but weak on analytics and global tax handling.",
+    "best_for": "SMB and mid-market SaaS wanting quick checkout and dunning without building billing from scratch.",
+    "not_for": "Teams needing Merchant of Record coverage, enterprise CPQ, or deep revenue analytics."
   }
 }

@@ -21,5 +21,31 @@
   },
   "community": {
     "hn_mentions_30d": 6
+  },
+  "content": {
+    "when_to_use": [
+      "Identity signal scoring for checkout fraud risk assessment",
+      "Email and phone risk API for signup abuse prevention",
+      "Wire transfer risk scoring via Ekata Transaction Risk API",
+      "Address verification enrichment for CNP fraud mitigation",
+      "Account opening risk scoring for banking onboarding flows"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Global coverage via Mastercard data network",
+      "Strong email, phone and address signals",
+      "Stable, well-documented APIs",
+      "Widely trusted by PSPs and marketplaces"
+    ],
+    "cons": [
+      "Per-call pricing stacks up at scale",
+      "Raw signals, you build the scoring",
+      "Less granular on device and behavioral signals",
+      "Procurement via Mastercard can be slow"
+    ],
+    "verdict": "Reliable identity data backbone for custom risk models, but not a turnkey fraud decision engine.",
+    "best_for": "Risk teams building their own scoring who need global email, phone and address intelligence.",
+    "not_for": "Teams wanting out-of-box approve/decline decisions without engineering work."
   }
 }

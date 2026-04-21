@@ -22,5 +22,31 @@
   },
   "community": {
     "hn_mentions_30d": 10
+  },
+  "content": {
+    "when_to_use": [
+      "Free ACME TLS certificate issuance for public web services",
+      "Wildcard certificate via DNS-01 challenge for subdomains",
+      "Auto-renewal via certbot or acme.sh for zero-downtime certs",
+      "HTTPS enablement for open-source and nonprofit projects",
+      "CI/CD cert provisioning for ephemeral staging environments"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Free, automated, universally trusted DV certs",
+      "ACME protocol is well-supported everywhere",
+      "Huge community, countless tutorials and clients",
+      "90-day validity encourages automation"
+    ],
+    "cons": [
+      "DV only; no EV or OV available",
+      "Rate limits can bite at scale",
+      "No commercial SLA or support contract",
+      "Outages, while rare, affect everyone"
+    ],
+    "verdict": "The default choice for public TLS in 2026; almost no reason not to use it for standard websites.",
+    "best_for": "Any site needing free, automated public TLS with broad client support.",
+    "not_for": "Cases legally requiring EV, OV, or paid CA contracts."
   }
 }

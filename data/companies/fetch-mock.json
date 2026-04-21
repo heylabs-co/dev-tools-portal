@@ -39,5 +39,30 @@
     "forks": 194,
     "updated_at": "2026-04-21",
     "health_score": "C"
+  },
+  "content": {
+    "when_to_use": [
+      "Mock fetch calls in Node.js and browser test suites",
+      "Named route matchers for complex URL pattern stubs",
+      "Sandbox mode for test isolation without globals",
+      "Simulate network errors and timeout scenarios"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Mocks fetch in Node and browsers with one API",
+      "Rich matchers, named routes and sandbox mode",
+      "Works with Jest, Vitest, Mocha, Karma",
+      "Easy restore semantics per test"
+    ],
+    "cons": [
+      "Another layer versus MSW service worker approach",
+      "Global patching can leak between tests",
+      "Docs structure is dense for newcomers",
+      "Less realistic than intercepting at network level"
+    ],
+    "verdict": "Pragmatic fetch mocker that is fine until you outgrow it and want MSW-level fidelity.",
+    "best_for": "Node-side units that only need to stub fetch calls quickly",
+    "not_for": "Frontend integration tests better served by Mock Service Worker"
   }
 }

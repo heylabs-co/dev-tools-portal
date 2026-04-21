@@ -22,5 +22,31 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "Encrypting database passwords in Ansible playbooks",
+      "Protecting SSH keys and API tokens in infrastructure repos",
+      "Environment-specific secret injection into deploy workflows",
+      "Rotating secrets in place without plaintext exposure",
+      "Vault-encrypted variable files for multi-tenant deployments"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Free, bundled with Ansible, zero extra infra",
+      "Encrypts vars and files in-place with AES256",
+      "Works cleanly in Git-based workflows",
+      "Simple CLI: encrypt, decrypt, edit, rekey"
+    ],
+    "cons": [
+      "No access control beyond the shared password",
+      "Rekeying is painful across many repos",
+      "No audit log or secret rotation features",
+      "Only useful inside the Ansible ecosystem"
+    ],
+    "verdict": "Fine for encrypting playbook vars, but not a real secrets manager for teams past a handful of admins.",
+    "best_for": "Ops teams already on Ansible that need file-level encryption in Git.",
+    "not_for": "Organizations needing audit trails, RBAC, or dynamic secrets."
   }
 }

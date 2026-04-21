@@ -21,5 +21,31 @@
   },
   "community": {
     "hn_mentions_30d": 4
+  },
+  "content": {
+    "when_to_use": [
+      "BPMN, CMMN, and DMN workflow engine embedded in Java apps",
+      "Low-code process modeling with enterprise workflow automation",
+      "Case management workflows for adaptive process handling",
+      "Decision table execution with DMN for business rules engines",
+      "Open-source BPM alternative to Camunda for Java teams"
+    ]
+  },
+  "review": {
+    "pros": [
+      "BPMN, CMMN, and DMN in one engine",
+      "Active fork with more momentum than Activiti",
+      "Java runtime embeds cleanly into apps",
+      "Enterprise modeler adds citizen-developer UX"
+    ],
+    "cons": [
+      "Enterprise features gated behind commercial license",
+      "UI still feels enterprise-Java in places",
+      "Modern competitors like Camunda 8 went cloud-native",
+      "Smaller ecosystem than Camunda"
+    ],
+    "verdict": "Strongest self-hosted BPMN alternative to Camunda 7, trailing Camunda 8's cloud-native direction.",
+    "best_for": "Java shops wanting embedded BPMN with optional enterprise modeler",
+    "not_for": "Teams wanting cloud-native BPM without running Java runtimes"
   }
 }

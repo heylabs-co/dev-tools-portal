@@ -39,5 +39,30 @@
     "forks": 278,
     "updated_at": "2026-04-21",
     "health_score": "F"
+  },
+  "content": {
+    "when_to_use": [
+      "Validate REST API against OpenAPI spec in CI",
+      "Catch API contract drift before it reaches production",
+      "Language-agnostic HTTP testing from API Blueprint docs",
+      "Prevent breaking changes in public API releases"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Validates real API against OpenAPI or API Blueprint",
+      "Language-agnostic, drops into any CI",
+      "Catches spec/implementation drift early",
+      "Supports hooks for auth and fixtures"
+    ],
+    "cons": [
+      "Maintenance has slowed markedly in recent years",
+      "API Blueprint support increasingly irrelevant",
+      "Hooks in many languages feel bolted on",
+      "Weak on nuanced OpenAPI 3.1 features"
+    ],
+    "verdict": "Useful as a contract-testing safety net, but feels like aging software in an OpenAPI-3 world.",
+    "best_for": "Teams with solid OpenAPI specs who want a CI guardrail against drift",
+    "not_for": "Teams that need rich contract testing, consumer-driven pacts or modern tooling"
   }
 }

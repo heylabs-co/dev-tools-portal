@@ -19,5 +19,31 @@
   "seo": {
     "title": "SpacetimeDB — Game Development Tools",
     "meta_description": "SpacetimeDB: Real-time relational database purpose-built for multiplayer games. Modules run inside the DB process itself, eliminating a separate game server whi"
+  },
+  "content": {
+    "when_to_use": [
+      "Multiplayer game state stored directly in SpacetimeDB modules",
+      "Real-time database subscription replacing WebSocket game server",
+      "Game logic running inside database process eliminating server tier",
+      "Consistent shared state for 1000-player persistent world game",
+      "Open-source alternative to dedicated game server for indie title"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Removes separate game server — runs logic in the DB",
+      "Interesting model for persistent MMO-style worlds",
+      "Active open-source development by Clockwork Labs",
+      "Rust and C# module support with growing language coverage"
+    ],
+    "cons": [
+      "Very young — production case studies thin in 2025",
+      "Mental model shift required from standard server architectures",
+      "Operational tooling and observability still maturing",
+      "Scaling and sharding story still being proven"
+    ],
+    "verdict": "A bet on a radically different backend stack; compelling for persistent worlds if you can tolerate bleeding-edge risk.",
+    "best_for": "Ambitious multiplayer teams building persistent worlds willing to adopt early tech",
+    "not_for": "Conservative studios needing proven stacks and mature operational tooling"
   }
 }

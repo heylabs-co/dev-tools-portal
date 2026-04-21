@@ -40,5 +40,30 @@
     "forks": 2654,
     "updated_at": "2026-04-21",
     "health_score": "A"
+  },
+  "content": {
+    "when_to_use": [
+      "Stub and verify Java/Kotlin service dependencies",
+      "Inline mock-maker for mocking final classes and methods",
+      "Argument captors for inspecting method call parameters",
+      "Spy on real objects while stubbing specific methods"
+    ]
+  },
+  "review": {
+    "pros": [
+      "De facto standard for JVM mocking",
+      "Readable when().thenReturn() stub/verify syntax",
+      "Inline mock-maker handles finals and statics",
+      "Massive community, docs and Stack Overflow coverage"
+    ],
+    "cons": [
+      "Encourages over-mocking if used carelessly",
+      "Static and final mocking can be footgun-heavy",
+      "Kotlin ergonomics less pleasant than MockK",
+      "Bytecode manipulation can clash with agents"
+    ],
+    "verdict": "The obvious default for Java mocking, with the usual caveat that over-mocking hurts design.",
+    "best_for": "Java teams doing any real unit testing on non-trivial codebases",
+    "not_for": "Kotlin-first teams who will be happier with MockK"
   }
 }

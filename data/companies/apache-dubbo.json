@@ -26,5 +26,31 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "Java microservices RPC framework for Spring Cloud apps",
+      "Service registry and discovery for distributed systems",
+      "Traffic routing and load balancing for Alibaba-stack",
+      "Cross-language service calls between Java and Go",
+      "Migrate monolith to microservices with Dubbo mesh"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Mature, proven at Alibaba scale",
+      "Rich service governance features",
+      "Java and Go implementations",
+      "Strong Chinese ecosystem support"
+    ],
+    "cons": [
+      "Outside China, gRPC dominates",
+      "Learning curve for governance model",
+      "Docs translation quality uneven",
+      "Config-heavy compared to newer RPC"
+    ],
+    "verdict": "Dubbo remains a powerhouse in Chinese tech stacks, but Western teams usually default to gRPC.",
+    "best_for": "Java microservice teams needing mature governance and Alibaba-proven scale",
+    "not_for": "Western teams starting fresh where gRPC has better tooling and community"
   }
 }

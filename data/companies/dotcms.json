@@ -22,5 +22,29 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "Enterprise Java headless CMS with REST and GraphQL content APIs",
+      "Multi-tenant content management for large organizations",
+      "Workflow-driven content publishing with approval chains",
+      "Personalized content delivery with rules and targeting engine",
+      "Building complex content architectures with DotCMS templates"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Java-based, enterprise-friendly stack",
+      "REST and GraphQL out of the box",
+      "Strong multi-tenant story"
+    ],
+    "cons": [
+      "Heavy compared to newer headless CMS",
+      "Java ops skills required",
+      "Community smaller than Strapi or Sanity"
+    ],
+    "verdict": "A capable enterprise headless CMS if you already run JVM infra, clunky for leaner teams.",
+    "best_for": "Enterprises standardized on Java with multi-tenant content needs",
+    "not_for": "Small teams wanting a lightweight, JS-first headless CMS"
   }
 }

@@ -37,5 +37,31 @@
     "forks": 134,
     "updated_at": "2026-04-21",
     "health_score": "B"
+  },
+  "content": {
+    "when_to_use": [
+      "Extend Python unittest with test discovery plugins",
+      "Parameterized Python tests with test generators",
+      "Custom test plugins via nose2 plugin architecture",
+      "Unified test runner for legacy unittest and pytest suites"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Drop-in successor to legacy nose framework",
+      "Plugin-based architecture for custom extensions",
+      "Better test discovery than unittest",
+      "Supports parameterized tests natively",
+      "Compatible with existing unittest suites"
+    ],
+    "cons": [
+      "Community has largely moved to pytest",
+      "Slower development pace than pytest",
+      "Fewer third-party plugins available",
+      "Limited learning resources compared to pytest"
+    ],
+    "verdict": "A reasonable nose migration path, but most Python teams should skip it and adopt pytest directly.",
+    "best_for": "Teams maintaining legacy nose test suites who need incremental migration",
+    "not_for": "New Python projects where pytest offers more plugins and momentum"
   }
 }

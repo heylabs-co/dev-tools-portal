@@ -22,5 +22,30 @@
   },
   "community": {
     "hn_mentions_30d": 5
+  },
+  "content": {
+    "when_to_use": [
+      "Kubernetes-based local dev environments as code",
+      "Share reproducible dev environments across the team",
+      "Onboard new engineers with a single environment deploy",
+      "Preview branch environments in Kubernetes clusters"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Shares Kubernetes-based dev environments as code",
+      "Consistent environment between local and CI",
+      "Reduces 'works on my machine' with real clusters",
+      "Snapshot and reset workflows built in"
+    ],
+    "cons": [
+      "Young product, docs and community sparse",
+      "Requires Kubernetes knowledge to debug",
+      "Price and limits not publicly clear",
+      "Overkill for simple Node or Python apps"
+    ],
+    "verdict": "Interesting for K8s-heavy teams but still early — evaluate against DevPod, Gitpod, and Coder first.",
+    "best_for": "Teams already on Kubernetes who want reproducible dev environments across the org.",
+    "not_for": "Small teams or non-K8s stacks where plain Docker Compose suffices."
   }
 }

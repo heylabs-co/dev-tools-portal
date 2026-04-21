@@ -40,5 +40,29 @@
     "forks": 600,
     "updated_at": "2026-04-21",
     "health_score": "A"
+  },
+  "content": {
+    "when_to_use": [
+      "Concise Java Selenium wrapper with built-in smart waits",
+      "PageObject-based web UI tests with reduced boilerplate",
+      "Automatic screenshot capture on assertion failures",
+      "Fluent $ and $$ selector API for web element interaction"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Automatic waits reduce Selenium flakiness",
+      "Concise API vs raw WebDriver",
+      "PageObject support out of the box",
+      "Great screenshot and logging on failure"
+    ],
+    "cons": [
+      "Still Selenium underneath, inherits flakiness",
+      "Java-only, not a cross-language option",
+      "Playwright-Java is pulling ahead for new projects"
+    ],
+    "verdict": "The best way to use Selenium in Java, though Playwright-Java is the smarter default for new suites.",
+    "best_for": "Java teams committed to Selenium WebDriver wanting cleaner APIs",
+    "not_for": "New Java browser testing where Playwright offers lower flakiness"
   }
 }

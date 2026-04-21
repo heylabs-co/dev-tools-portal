@@ -33,5 +33,30 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "Building autonomous driving and robotics AI systems",
+      "Running simulation and validation for self-driving vehicle models",
+      "Deploying AI perception systems for autonomous mobile robots",
+      "Integrating sensor fusion and control AI for vehicle autonomy"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Specialized tooling for self-driving datasets",
+      "Sensor-fusion labeling for LiDAR plus camera",
+      "Active-learning loops reduce labeling cost",
+      "Works with fleet-scale data volumes"
+    ],
+    "cons": [
+      "Only useful for autonomous-vehicle domains",
+      "Enterprise pricing with long sales cycles",
+      "Competition from Scale AI and Labelbox",
+      "Little public info on accuracy benchmarks"
+    ],
+    "verdict": "A niche AV-specific platform; irrelevant for anyone outside self-driving, robotics, or ADAS research.",
+    "best_for": "AV and robotics teams labeling sensor-fusion datasets at scale",
+    "not_for": "General computer-vision labeling outside automotive"
   }
 }

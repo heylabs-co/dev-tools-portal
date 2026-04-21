@@ -39,5 +39,30 @@
     "forks": 103,
     "updated_at": "2026-04-21",
     "health_score": "C"
+  },
+  "content": {
+    "when_to_use": [
+      "Minimal-boilerplate Django fixture generation in tests",
+      "Auto-fill required ORM fields with sensible defaults",
+      "Create related object graphs with one baker.make call",
+      "Generate bulk test data with baker.make(_quantity=100)"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Cuts fixture boilerplate in Django tests",
+      "Understands Django ORM relations automatically",
+      "Actively maintained successor to model_mommy",
+      "Works nicely with pytest-django"
+    ],
+    "cons": [
+      "Django-only, obviously limited scope",
+      "Magic object creation can hide missing validations",
+      "Less flexible than factory_boy in complex cases",
+      "Risk of slow tests if overused on big graphs"
+    ],
+    "verdict": "A pragmatic default for Django fixtures, use factory_boy when you need precise control.",
+    "best_for": "Django teams wanting low-ceremony fixtures for ORM-heavy tests",
+    "not_for": "Projects outside Django or needing complex factory graphs"
   }
 }

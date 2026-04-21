@@ -23,5 +23,30 @@
   },
   "community": {
     "hn_mentions_30d": 1
+  },
+  "content": {
+    "when_to_use": [
+      "Invisible failed-payment recovery reducing involuntary churn for subscriptions",
+      "ML-powered retry scheduling analyzing decline codes for optimal recovery timing",
+      "Recovering churned subscription revenue without customer-facing communication",
+      "Reducing failed payment rate for high-volume subscription billing platforms"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Dedicated engine for failed subscription payments",
+      "Smart retry timing tuned per issuer and BIN",
+      "Transparent lift vs. native PSP retries",
+      "Works alongside existing billing and gateway"
+    ],
+    "cons": [
+      "Narrow scope — recovery only",
+      "Success-fee pricing compounds at scale",
+      "Limited value for one-time transactions",
+      "Integration changes with every new processor"
+    ],
+    "verdict": "Strong pick for subscription teams bleeding revenue on declines, but do not expect broader orchestration features.",
+    "best_for": "Subscription, SaaS, and streaming businesses with high involuntary churn and card-on-file declines.",
+    "not_for": "Marketplaces, one-time checkouts, or teams without a meaningful decline-recovery problem."
   }
 }

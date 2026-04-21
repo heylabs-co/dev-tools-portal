@@ -23,5 +23,30 @@
   },
   "community": {
     "hn_mentions_30d": 20
+  },
+  "content": {
+    "when_to_use": [
+      "Zero-config Kubernetes observability via eBPF probes",
+      "Traces, metrics, and logs without application code changes",
+      "Container-level performance anomaly detection",
+      "Kubernetes workload observability without sidecars"
+    ]
+  },
+  "review": {
+    "pros": [
+      "eBPF instrumentation requires zero code changes",
+      "Traces, metrics, logs from a single agent",
+      "Kubernetes-native with auto-service-map",
+      "Cuts APM setup time dramatically"
+    ],
+    "cons": [
+      "Kernel 4.14+ required for eBPF features",
+      "Newer vendor, limited enterprise references",
+      "Less control over custom instrumentation",
+      "Pricing and scale story still unproven"
+    ],
+    "verdict": "Genuinely exciting eBPF-first APM that eliminates SDK toil; early but production-credible for Kubernetes shops.",
+    "best_for": "Kubernetes teams tired of per-language SDK instrumentation for tracing.",
+    "not_for": "Non-Kubernetes stacks or teams needing custom business metrics in code."
   }
 }

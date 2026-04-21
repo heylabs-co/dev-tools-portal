@@ -23,5 +23,29 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "Lightweight Kubernetes sandbox per developer branch",
+      "Test microservice changes against real production traffic",
+      "Integration testing without spinning up full environments",
+      "Baseline comparison routing for safe service testing"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Lightweight Kubernetes sandbox environments",
+      "Test microservice changes without full stack copy",
+      "Request routing via service mesh",
+      "Cuts cost vs full preview environments"
+    ],
+    "cons": [
+      "Requires Istio or Linkerd in your cluster",
+      "Concepts take time for teams to adopt",
+      "SaaS-first pricing model"
+    ],
+    "verdict": "A smart pattern for testing microservice changes when full preview environments are too expensive to spin up.",
+    "best_for": "Kubernetes shops with dozens of microservices doing integration testing on feature branches",
+    "not_for": "Teams without service mesh or with monolithic deployment models"
   }
 }

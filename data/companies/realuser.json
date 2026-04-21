@@ -22,5 +22,30 @@
   },
   "community": {
     "hn_mentions_30d": 11
+  },
+  "content": {
+    "when_to_use": [
+      "Real user monitoring capturing Core Web Vitals from browsers",
+      "User journey performance analysis from actual sessions",
+      "Browser performance data segmented by geography",
+      "Correlate slow pages with user drop-off behavior"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Real user monitoring ties UX to performance metrics",
+      "Captures browser-side Core Web Vitals per session",
+      "User journey analytics alongside perf data",
+      "Useful for correlating slow sessions with drop-off"
+    ],
+    "cons": [
+      "Positioning overlaps with both RUM and replay tools",
+      "Smaller vendor vs Datadog/New Relic for perf monitoring",
+      "Limited public case studies to validate scale",
+      "Feature depth is unclear vs bigger APM suites"
+    ],
+    "verdict": "Niche RUM tool that blends perf and journey data, but you'll likely compare it against Datadog and Sentry and lose.",
+    "best_for": "Mid-market web teams wanting lightweight RUM with journey context.",
+    "not_for": "Enterprises already on Datadog, New Relic or Sentry performance."
   }
 }

@@ -22,5 +22,31 @@
   },
   "community": {
     "hn_mentions_30d": 50
+  },
+  "content": {
+    "when_to_use": [
+      "Client portal built on Airtable data without React code",
+      "Customer-facing app connected to Google Sheets backend",
+      "Partner portal with login and role-based data views",
+      "Internal operations dashboard from existing Airtable base",
+      "No-code app for sharing data with external stakeholders"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Turns Airtable into usable client portals",
+      "Row-level permissions handled well",
+      "Good for internal tools without code",
+      "Works with Google Sheets as backup source"
+    ],
+    "cons": [
+      "Pricing climbs fast per-user",
+      "Performance lags on tables over 50k rows",
+      "UI customization stays within guardrails",
+      "Competes against cheaper Softr and Noloco"
+    ],
+    "verdict": "Strong choice for Airtable-powered client portals, though Softr and Noloco often win on price and features.",
+    "best_for": "Consultancies and agencies building permissioned client portals from Airtable data",
+    "not_for": "Teams needing low-cost no-code with custom design or large datasets"
   }
 }

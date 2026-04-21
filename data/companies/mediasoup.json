@@ -22,5 +22,31 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "WebRTC SFU for Node.js with low CPU media routing overhead",
+      "Building scalable video conferencing without media server ops",
+      "Recording and broadcasting WebRTC sessions server-side",
+      "Multi-party video rooms without expensive managed WebRTC",
+      "Open-source alternative to Agora or Twilio Video SFU"
+    ]
+  },
+  "review": {
+    "pros": [
+      "High-performance SFU with clean Node.js API",
+      "Low-latency routing suitable for real-time apps",
+      "Actively maintained and widely used",
+      "Fine-grained control over transports and producers"
+    ],
+    "cons": [
+      "Primitive-level; you build signaling and UX",
+      "Steep learning curve for WebRTC newcomers",
+      "Scaling across workers/servers is on you",
+      "No built-in recording or compositing"
+    ],
+    "verdict": "Top open-source SFU for teams willing to own their WebRTC stack in exchange for performance and control.",
+    "best_for": "Engineering teams building custom real-time video with Node.js",
+    "not_for": "Product teams who want a managed video API out of the box"
   }
 }

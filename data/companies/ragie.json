@@ -26,5 +26,30 @@
   },
   "community": {
     "hn_mentions_30d": 14
+  },
+  "content": {
+    "when_to_use": [
+      "Adding RAG to any app via a managed retrieval API",
+      "Ingesting and indexing documents without building chunking pipelines",
+      "Serving contextually relevant chunks to LLMs through REST API",
+      "Replacing custom vector pipeline with a fully managed retrieval layer"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Managed ingestion, chunking, and retrieval",
+      "Multimodal support for PDFs, video, audio",
+      "Good DX with SDKs and webhooks",
+      "Scales without self-hosted vector DB ops"
+    ],
+    "cons": [
+      "Vendor lock-in on retrieval format",
+      "Pricing grows with document volume",
+      "Less custom than LlamaIndex stack",
+      "Fine-grained tuning capped by platform"
+    ],
+    "verdict": "A strong managed RAG pick if you value speed over control; heavy customizers still prefer LlamaIndex plus a vector DB.",
+    "best_for": "AI app teams shipping RAG features quickly without infra work",
+    "not_for": "Teams wanting deep control over chunking and retrieval logic"
   }
 }

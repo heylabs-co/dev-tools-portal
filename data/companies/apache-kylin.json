@@ -26,5 +26,31 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "Pre-computing OLAP cubes on Hadoop/Spark for sub-second BI",
+      "Replacing slow Hive queries with materialized cube queries",
+      "Powering dashboards on multi-billion row data warehouses",
+      "Enabling analysts to query petabyte data interactively",
+      "Building distributed BI on Kylin cubes with JDBC integration"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Sub-second queries on petabyte-scale data",
+      "Pre-computed OLAP cubes for BI workloads",
+      "Supports standard BI tools via JDBC/ODBC",
+      "Mature Apache project with eBay heritage"
+    ],
+    "cons": [
+      "Cube maintenance is operationally heavy",
+      "Less flexible than modern MPP engines",
+      "Adoption declining vs Doris, ClickHouse",
+      "Long build times for large cubes"
+    ],
+    "verdict": "Classic cube-based OLAP that still wins on query speed, but modern MPP engines reduce its relative appeal.",
+    "best_for": "Enterprises with fixed BI dashboards needing sub-second queries on huge datasets",
+    "not_for": "Ad-hoc analytics workloads where query patterns change frequently"
   }
 }

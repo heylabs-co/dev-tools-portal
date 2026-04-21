@@ -23,5 +23,31 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "3D globe visualization with streaming terrain and satellite imagery",
+      "Rendering geospatial data in WebGL without a GIS server",
+      "Flight path and UAV trajectory visualization in 3D",
+      "Digital twin environments with real-world geographic context",
+      "Time-dynamic 3D maps for defense and simulation applications"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Open-source with mature 3D globe rendering",
+      "Handles planet-scale terrain and imagery",
+      "Supports 3D Tiles standard it pioneered",
+      "Used by defense, aerospace, and smart cities"
+    ],
+    "cons": [
+      "Steep learning curve for 3D geospatial concepts",
+      "WebGL performance demanding on low-end devices",
+      "Cesium ion hosted data can get expensive",
+      "Overkill for 2D mapping use cases"
+    ],
+    "verdict": "The definitive 3D geospatial library; essential for aerospace and digital twins, heavy for consumer apps.",
+    "best_for": "3D visualization of terrain, satellite data, and digital twins",
+    "not_for": "Simple 2D location markers on a consumer map"
   }
 }

@@ -22,5 +22,33 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "Open-source streaming server with LL-HLS and WebRTC support",
+      "Sub-3s latency streaming with LL-DASH and CMAF packaging",
+      "Self-hosted streaming origin without managed service costs",
+      "SRT ingest from encoders to WebRTC delivery via OvenMediaEngine",
+      "Low-latency streaming alternative to AWS MediaLive"
+    ]
+  },
+  "review": {
+    "pros": [
+      "OSS LL-HLS and LL-DASH out of the box",
+      "WebRTC sub-second with simple config",
+      "No license fees for commercial use",
+      "Active development on GitHub",
+      "Docker images speed deployment"
+    ],
+    "cons": [
+      "You operate, scale, and monitor it yourself",
+      "Thinner ecosystem than SRS or nginx-rtmp",
+      "Docs sometimes trail feature additions",
+      "Support largely community-driven",
+      "No hosted/SaaS option"
+    ],
+    "verdict": "Promising OSS low-latency streaming server — you save on licensing, you pay in ops.",
+    "best_for": "Engineering teams self-hosting low-latency streaming on commodity infra.",
+    "not_for": "Teams wanting managed SaaS or enterprise SLAs."
   }
 }

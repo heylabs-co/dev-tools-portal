@@ -22,5 +22,29 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "Enabling cash payments for unbanked Mexican online shoppers",
+      "Converting OXXO payment codes for e-commerce order confirmation",
+      "Reducing cart abandonment for Mexico with cash payment option"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Reaches unbanked Mexican customers",
+      "20,000+ physical OXXO locations",
+      "Cash-in-store fills gap left by cards",
+      "Widely integrated via Conekta/Stripe"
+    ],
+    "cons": [
+      "Slow settlement vs card rails",
+      "Confirmation delay after cash payment",
+      "Mexico-only, cannot scale regionally",
+      "Not a direct API, needs PSP bridge"
+    ],
+    "verdict": "Essential cash rail for Mexican e-commerce, but slow settlement and PSP dependency add friction.",
+    "best_for": "E-commerce selling in Mexico to unbanked or cash-preferring shoppers",
+    "not_for": "Merchants needing instant confirmation or non-Mexican coverage"
   }
 }

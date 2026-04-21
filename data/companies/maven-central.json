@@ -22,5 +22,30 @@
   },
   "community": {
     "hn_mentions_30d": 8
+  },
+  "content": {
+    "when_to_use": [
+      "Publish JVM library artifacts to the canonical Maven repo",
+      "Fetch dependencies for Gradle and Maven build pipelines",
+      "GPG-signed artifact publishing for trust and security",
+      "Version management and transitive dependency resolution"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Canonical source of truth for JVM libraries",
+      "Free publishing via Sonatype OSSRH or Central Portal",
+      "Strong signing and verification requirements",
+      "Global CDN with excellent uptime"
+    ],
+    "cons": [
+      "Publishing workflow is famously painful to set up first time",
+      "Immutable: one bad release is forever",
+      "Namespace ownership disputes are slow",
+      "OSSRH migration has been a multi-year saga"
+    ],
+    "verdict": "The only real option for public JVM libs; painful to onboard, reliable once you're in.",
+    "best_for": "Java/Kotlin/Scala library authors publishing for the broader ecosystem.",
+    "not_for": "Private internal artifacts — use a private Nexus or Artifactory instead."
   }
 }

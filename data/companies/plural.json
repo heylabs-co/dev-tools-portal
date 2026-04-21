@@ -22,5 +22,31 @@
   },
   "community": {
     "hn_mentions_30d": 24
+  },
+  "content": {
+    "when_to_use": [
+      "Open-source GitOps platform for self-hosted Kubernetes apps",
+      "One-command Kubernetes deployment of popular OSS stacks",
+      "Managing Airflow, Grafana, Kafka self-hosted via Git workflow",
+      "Reducing overhead of self-hosting complex K8s applications",
+      "Alternative to Replicated for teams owning their infra"
+    ]
+  },
+  "review": {
+    "pros": [
+      "GitOps-driven self-hosted app deployment",
+      "Open-source with paid tier",
+      "Marketplace of ready-to-deploy apps",
+      "Reduces self-hosting friction"
+    ],
+    "cons": [
+      "Small ecosystem vs Helm alone",
+      "Kubernetes knowledge still required",
+      "Commercial traction unclear",
+      "Marketplace depth limited"
+    ],
+    "verdict": "Clever approach to self-hosting enterprise apps on your cluster, still niche and early.",
+    "best_for": "Platform teams wanting to self-host open-source apps on Kubernetes with less yak-shaving",
+    "not_for": "Teams happy with raw Helm or those without Kubernetes infrastructure"
   }
 }

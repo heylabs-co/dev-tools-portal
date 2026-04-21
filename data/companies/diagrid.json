@@ -23,5 +23,29 @@
   },
   "community": {
     "hn_mentions_30d": 1
+  },
+  "content": {
+    "when_to_use": [
+      "Durable Dapr-based workflows for microservice orchestration",
+      "MCP and AI agent backends with Catalyst managed service",
+      "Simplifying distributed service communication with managed Dapr",
+      "Microservices with pub/sub, state, and service invocation via API",
+      "Reliable orchestration for long-running distributed workflows"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Managed Dapr removes self-hosting pain",
+      "Durable workflows for microservices",
+      "Catalyst targets agents and MCP cleanly"
+    ],
+    "cons": [
+      "Only makes sense if you adopt Dapr",
+      "Relatively young commercial product",
+      "Pricing requires sales conversation"
+    ],
+    "verdict": "The easiest way to run Dapr in production, with obvious dependence on Dapr as your paradigm.",
+    "best_for": "Microservice teams betting on Dapr and durable workflow patterns",
+    "not_for": "Teams happy with plain Kubernetes and no Dapr abstraction"
   }
 }

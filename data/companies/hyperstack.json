@@ -26,5 +26,28 @@
   },
   "community": {
     "hn_mentions_30d": 1
+  },
+  "content": {
+    "when_to_use": [
+      "Renting high-performance GPUs for LLM training on demand",
+      "Running distributed fine-tuning jobs on H100 GPU clusters",
+      "Spinning up inference infrastructure for hosted model serving",
+      "Cost-optimizing GPU compute for ML teams vs hyperscalers"
+    ]
+  },
+  "review": {
+    "pros": [
+      "On-demand H100/A100 at competitive hourly rates",
+      "Fast provisioning vs hyperscaler queues",
+      "EU data residency options available"
+    ],
+    "cons": [
+      "Smaller ecosystem than AWS/GCP for ML tools",
+      "Storage and networking less mature",
+      "Capacity can tighten during peak demand"
+    ],
+    "verdict": "A solid cost-effective GPU cloud if you don't need the full hyperscaler toolbox.",
+    "best_for": "AI startups and labs running training or inference without AWS lock-in",
+    "not_for": "Enterprises needing deep integration with AWS/GCP/Azure services"
   }
 }

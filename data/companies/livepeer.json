@@ -22,5 +22,33 @@
   },
   "community": {
     "hn_mentions_30d": 1
+  },
+  "content": {
+    "when_to_use": [
+      "Decentralized video transcoding at lower cost than cloud APIs",
+      "Streaming video on open-source infrastructure with ETH economics",
+      "Transcoding NFT video content on decentralized compute",
+      "Web3-native video pipeline for blockchain-based media apps",
+      "Building OTT apps on Livepeer's community-run video network"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Decentralized transcoding at ~10x cost savings",
+      "Open protocol, not locked to one vendor",
+      "Managed Livepeer Studio SDK is dev-friendly",
+      "Supports RTMP, WebRTC, HLS playback",
+      "Active OSS community and Ethereum roots"
+    ],
+    "cons": [
+      "Decentralized network adds latency variance",
+      "Quality of orchestrators fluctuates",
+      "Web3 tie-in adds conceptual overhead",
+      "Less mature tooling than Mux/Cloudflare Stream",
+      "Compliance story trickier for regulated sectors"
+    ],
+    "verdict": "Cheapest transcoding per minute if you tolerate decentralized quirks — Mux if you want boring-reliable.",
+    "best_for": "Cost-sensitive UGC platforms and web3 apps willing to trade polish for price.",
+    "not_for": "Regulated or latency-critical live workloads."
   }
 }

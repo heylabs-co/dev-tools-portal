@@ -23,5 +23,29 @@
   },
   "community": {
     "hn_mentions_30d": 2
+  },
+  "content": {
+    "when_to_use": [
+      "Deploying containerized apps to embedded Linux IoT fleets",
+      "Over-the-air OS and app updates for Raspberry Pi devices",
+      "Remote device debugging and SSH access at fleet scale",
+      "Managing heterogeneous device hardware from one dashboard",
+      "Secure rollouts with per-device container version control"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Container-based OTA for embedded Linux",
+      "Clean fleet management UI",
+      "Strong community and open-source core"
+    ],
+    "cons": [
+      "Docker overhead on constrained devices",
+      "Per-device pricing adds up fast",
+      "Limited support for non-Linux boards"
+    ],
+    "verdict": "The go-to for container-native IoT fleets on Linux, overkill for microcontroller-class hardware.",
+    "best_for": "Teams shipping Docker-based apps to Raspberry Pi or x86 edge devices",
+    "not_for": "ESP32 or low-power MCU fleets where Docker is impractical"
   }
 }

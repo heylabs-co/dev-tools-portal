@@ -33,5 +33,28 @@
   },
   "community": {
     "hn_mentions_30d": 32
+  },
+  "content": {
+    "when_to_use": [
+      "Monitoring LLM output quality and hallucinations in production",
+      "Running automated evals for RAG retrieval quality and grounding",
+      "Detecting prompt injection or policy violations at inference time",
+      "Debugging LLM application failures with trace-level visibility"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Finds mislabeled and noisy training data fast",
+      "Works across NLP, CV and LLM pipelines",
+      "Evaluation suite useful for RAG and agents"
+    ],
+    "cons": [
+      "Pricey for small ML teams",
+      "Setup requires SDK instrumentation in pipelines",
+      "Overlaps with in-house tooling at larger labs"
+    ],
+    "verdict": "Worth it if bad data is actively blocking your model quality; overkill for small projects.",
+    "best_for": "ML teams shipping NLP, CV or LLM models where data quality drives metrics",
+    "not_for": "Early-stage prototypes or teams without a formal MLOps pipeline yet"
   }
 }

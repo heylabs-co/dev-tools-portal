@@ -37,5 +37,29 @@
     "forks": 237,
     "updated_at": "2026-04-21",
     "health_score": "B"
+  },
+  "content": {
+    "when_to_use": [
+      "Gherkin scenarios executed natively within pytest",
+      "Mix BDD scenarios with regular pytest tests in one run",
+      "Step reuse across feature files via shared step modules",
+      "Parametrize BDD scenarios with example table data"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Gherkin syntax inside pytest, no second runner",
+      "Reuses pytest fixtures in step definitions",
+      "Lighter weight than behave",
+      "Compatible with pytest-xdist parallelism"
+    ],
+    "cons": [
+      "Gherkin parsing less complete than Cucumber",
+      "Less expressive than behave for pure BDD",
+      "Limited IDE support vs full Cucumber tooling"
+    ],
+    "verdict": "A pragmatic BDD option when your team already lives in pytest and does not want a second test runner.",
+    "best_for": "pytest shops needing Gherkin for stakeholder-readable acceptance tests",
+    "not_for": "Teams doing strict BDD where Cucumber's tooling ecosystem matters more"
   }
 }

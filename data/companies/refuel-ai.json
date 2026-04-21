@@ -44,5 +44,30 @@
     "forks": 161,
     "updated_at": "2026-04-21",
     "health_score": "F"
+  },
+  "content": {
+    "when_to_use": [
+      "Auto-labeling large datasets with LLM-assisted annotation",
+      "Reducing human labeling costs with confidence-filtered AI labels",
+      "Building active learning pipelines for data-efficient training",
+      "Programmatic labeling using natural language labeling functions"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Purpose-built Refuel-LLM for labeling",
+      "Open-source Autolabel Python library",
+      "Cost-effective versus human labeling",
+      "Active-learning loops for hard cases"
+    ],
+    "cons": [
+      "Model still weaker than GPT-4 for edge tasks",
+      "Niche beyond data labeling workflows",
+      "Smaller ecosystem than Scale or Snorkel",
+      "Enterprise features gated behind sales"
+    ],
+    "verdict": "Pragmatic for large, cheap automated labeling pipelines; human-in-the-loop remains necessary for the hardest cases.",
+    "best_for": "ML teams labeling millions of rows where accuracy is flexible",
+    "not_for": "High-stakes tasks needing expert human review"
   }
 }

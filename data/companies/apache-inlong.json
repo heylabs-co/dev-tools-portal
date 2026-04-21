@@ -26,5 +26,31 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "One-stop ingestion from data sources to Kafka and data lakes",
+      "High-throughput streaming data integration from WeChat-scale apps",
+      "CDC pipelines feeding Apache Flink stream processing jobs",
+      "Replacing custom Kafka producers with managed connector agents",
+      "Tencent-proven data ingestion for large-scale analytics platforms"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Unified ingestion for streaming and batch sources",
+      "Battle-tested at Tencent scale before Apache",
+      "Handles Kafka, Pulsar, TubeMQ as backbone",
+      "One-stop platform reduces tool sprawl"
+    ],
+    "cons": [
+      "Steep operational complexity for small teams",
+      "English documentation is still catching up",
+      "Narrower connector set than commercial rivals",
+      "Kubernetes setup is not turnkey"
+    ],
+    "verdict": "Powerful platform if you need Tencent-scale ingestion, overkill for typical data pipelines.",
+    "best_for": "Large platform teams consolidating streaming and batch ingestion",
+    "not_for": "Small teams who just need a few Kafka-to-warehouse pipelines"
   }
 }

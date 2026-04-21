@@ -41,5 +41,30 @@
     "forks": 1290,
     "updated_at": "2026-04-21",
     "health_score": "C"
+  },
+  "content": {
+    "when_to_use": [
+      "Full PHP test stack: unit, functional, acceptance in one tool",
+      "WebDriver-based acceptance tests for Laravel or Symfony",
+      "REST API testing with JSON schema validation",
+      "BDD-style Gherkin scenarios without extra runners"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Unit, functional, acceptance and API under one tool",
+      "Readable BDD-style DSL for action-driven tests",
+      "First-class WebDriver module for browser coverage",
+      "Strong Symfony, Laravel, Yii integrations"
+    ],
+    "cons": [
+      "Too many layers for small codebases",
+      "Documentation lags the actual feature set",
+      "Slower than plain PHPUnit for unit tests",
+      "Module configuration can be bewildering"
+    ],
+    "verdict": "A Swiss-army PHP test framework that shines on full stacks but overwhelms simple library projects.",
+    "best_for": "PHP monoliths needing unit, API and browser tests in one consistent toolchain",
+    "not_for": "Small libraries happy with plain PHPUnit and a Composer script"
   }
 }

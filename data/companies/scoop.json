@@ -42,5 +42,30 @@
     "forks": 1524,
     "updated_at": "2026-04-21",
     "health_score": "A"
+  },
+  "content": {
+    "when_to_use": [
+      "Install developer CLI tools on Windows without admin",
+      "User-directory scoped package installs for CI agents",
+      "Automated Windows dev setup with scoop.sh manifests",
+      "Manage development tool versions with Scoop buckets"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Installs to user dir, no admin rights needed",
+      "Great for developer CLI tools on Windows",
+      "Buckets let teams curate their own package sets",
+      "Clean, predictable CLI experience"
+    ],
+    "cons": [
+      "Catalog much smaller than Chocolatey",
+      "Mostly community-maintained bucket definitions",
+      "Less suited for GUI apps and enterprise rollouts",
+      "Some tools need manual PATH fiddling"
+    ],
+    "verdict": "The go-to for devs who want a Homebrew-like experience on Windows without admin prompts.",
+    "best_for": "Windows developers installing CLI dev tools without admin or IT involvement.",
+    "not_for": "IT departments doing enterprise-wide deployments — stick with Chocolatey or WinGet."
   }
 }

@@ -22,5 +22,30 @@
   },
   "community": {
     "hn_mentions_30d": 1
+  },
+  "content": {
+    "when_to_use": [
+      "Generate realistic synthetic relational test data",
+      "Avoid production data copies for GDPR compliance",
+      "Automate test data provisioning in CI pipelines",
+      "Parameterized data scenarios for edge-case testing"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Generates massive referentially-correct synthetic data",
+      "Strong for complex relational and legacy schemas",
+      "Keeps PII out of lower environments entirely",
+      "Integrates with CI and test data pipelines"
+    ],
+    "cons": [
+      "Steep learning curve, scenario-based modeling",
+      "Enterprise pricing, opaque without sales calls",
+      "UI and UX feel dated versus newer entrants",
+      "Overkill for teams with simple schemas"
+    ],
+    "verdict": "Serious enterprise synthetic data engine that repays its complexity on gnarly relational models.",
+    "best_for": "Banks, insurers and telcos needing realistic synthetic data at scale",
+    "not_for": "Startups where Faker or Mimesis plus seed scripts are enough"
   }
 }

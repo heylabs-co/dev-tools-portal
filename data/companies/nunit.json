@@ -42,5 +42,29 @@
     "forks": 763,
     "updated_at": "2026-04-21",
     "health_score": "A"
+  },
+  "content": {
+    "when_to_use": [
+      "Data-driven parameterized tests with TestCase attributes",
+      "Parallel test execution with ParallelScope configuration",
+      "Category filters to run only smoke or regression tests",
+      "Setup/TearDown lifecycle management for .NET test suites"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Mature .NET testing framework since 2002",
+      "Rich parameterized test support via TestCase",
+      "Parallel execution at fixture and test level",
+      "Strong assertion constraint model"
+    ],
+    "cons": [
+      "xUnit.net is now Microsoft's default choice",
+      "Attribute-heavy style feels dated",
+      "Slower releases than xUnit community"
+    ],
+    "verdict": "Battle-tested .NET framework that still works well, though new projects usually pick xUnit.net instead.",
+    "best_for": "Existing .NET codebases with NUnit investment or teams preferring its assertion model",
+    "not_for": "Greenfield .NET projects where xUnit matches dotnet CLI defaults"
   }
 }

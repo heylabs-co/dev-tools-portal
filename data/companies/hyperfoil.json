@@ -22,5 +22,30 @@
   },
   "community": {
     "hn_mentions_30d": 3
+  },
+  "content": {
+    "when_to_use": [
+      "Async distributed HTTP load testing for microservices",
+      "Accurate throughput benchmarking without client-side bottlenecks",
+      "Simulate complex multi-step HTTP scenarios at scale",
+      "Measure microservice throughput under sustained load"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Async architecture avoids coordinated omission",
+      "Accurate tail latency for microservices",
+      "Distributed agents scale to very high load",
+      "Open source from the Red Hat ecosystem"
+    ],
+    "cons": [
+      "Steep learning curve, YAML scenario model",
+      "Smaller community than JMeter or k6",
+      "Less tooling around reports and dashboards",
+      "Few managed hosting options"
+    ],
+    "verdict": "Excellent for rigorous microservice latency work, rough around the edges for casual load testing.",
+    "best_for": "Performance engineers who need correct tail latencies at high throughput",
+    "not_for": "Teams that want a gentle k6/JMeter-style learning curve"
   }
 }

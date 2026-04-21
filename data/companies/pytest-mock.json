@@ -39,5 +39,29 @@
     "forks": 155,
     "updated_at": "2026-04-21",
     "health_score": "C"
+  },
+  "content": {
+    "when_to_use": [
+      "mocker fixture for cleaner patch management in pytest",
+      "Auto-reset mocks after each test without manual teardown",
+      "Spy on real functions while tracking call history",
+      "Combine with pytest fixtures for complex mock scenarios"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Cleaner mocker fixture vs unittest.mock context managers",
+      "Automatic teardown between tests",
+      "Thin, predictable wrapper",
+      "Familiar to anyone who knows unittest.mock"
+    ],
+    "cons": [
+      "Nothing you cannot do with unittest.mock directly",
+      "Encourages over-mocking in some teams",
+      "Adds one more dependency to manage"
+    ],
+    "verdict": "A small quality-of-life upgrade over unittest.mock that is nearly universal in modern pytest test suites.",
+    "best_for": "pytest users who want mock teardown handled automatically per test",
+    "not_for": "Teams preferring dependency injection over patch-based mocking"
   }
 }

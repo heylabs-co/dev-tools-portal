@@ -39,5 +39,29 @@
     "forks": 252,
     "updated_at": "2026-04-21",
     "health_score": "B"
+  },
+  "content": {
+    "when_to_use": [
+      "Self-contained HTML test reports with embedded assets",
+      "Attach screenshots to failing tests automatically",
+      "Custom metadata columns in HTML report tables",
+      "Share test results with stakeholders via HTML artifact"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Self-contained HTML reports, no server needed",
+      "Embeds screenshots and custom metadata",
+      "Easy to share via CI artifacts",
+      "Works with Selenium and Playwright tests"
+    ],
+    "cons": [
+      "Reports look dated versus Allure",
+      "Limited customization without hooks",
+      "Large reports get slow to open in browser"
+    ],
+    "verdict": "A quick way to share pytest results, but teams needing polished dashboards should look at Allure instead.",
+    "best_for": "Teams needing shareable test artifacts from CI without extra infrastructure",
+    "not_for": "Organizations wanting rich dashboards where Allure or ReportPortal shine"
   }
 }

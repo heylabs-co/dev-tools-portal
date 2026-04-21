@@ -22,5 +22,30 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "Detecting CSAM and illegal content in uploaded media via API",
+      "Building child safety protections into content-sharing platforms",
+      "Running hash-matching and AI detection for illegal imagery",
+      "Complying with child protection regulations on user content platforms"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Gold standard for CSAM detection",
+      "Hash matching against NCMEC and internal lists",
+      "Backed by a child-safety nonprofit mission",
+      "Trusted by major platforms"
+    ],
+    "cons": [
+      "Qualification and vetting required before access",
+      "Narrow scope, CSAM only",
+      "Integration is serious work, not a quick API",
+      "Not a general moderation solution"
+    ],
+    "verdict": "If you host user images, you should have a CSAM plan; Safer is the serious-operator default.",
+    "best_for": "Any platform hosting user-generated images or video at meaningful scale.",
+    "not_for": "Teams looking for toxicity, NSFW-only, or general moderation APIs."
   }
 }

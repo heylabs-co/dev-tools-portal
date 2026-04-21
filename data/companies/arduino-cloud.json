@@ -22,5 +22,29 @@
   },
   "community": {
     "hn_mentions_30d": 1
+  },
+  "content": {
+    "when_to_use": [
+      "Provisioning Arduino and ESP32 devices at fleet scale",
+      "Over-the-air firmware updates for deployed IoT hardware",
+      "Storing and visualizing time-series sensor readings from devices",
+      "Remote monitoring of Arduino-based environmental sensors",
+      "Managing IoT device state via MQTT without a custom broker"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Seamless with Arduino and ESP32 boards",
+      "OTA updates without custom infra",
+      "Simple dashboards for time-series data"
+    ],
+    "cons": [
+      "Limited scaling beyond hobby fleets",
+      "Proprietary lock-in for device provisioning",
+      "Pricing tiers restrict variables and devices"
+    ],
+    "verdict": "Great for makers and classroom IoT, underpowered for production fleets above a few thousand devices.",
+    "best_for": "Hobbyists, educators, and small IoT prototypes on Arduino hardware",
+    "not_for": "Industrial IoT deployments needing custom protocols at scale"
   }
 }

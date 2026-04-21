@@ -22,5 +22,31 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "Localhost webhook endpoint exposure for Stripe event testing",
+      "OAuth callback URL hosting for local auth flow development",
+      "Third-party API callback testing without cloud deployment",
+      "Temporary HTTPS endpoint for CI/CD integration testing",
+      "Demo environment exposure for stakeholder review sessions"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Free, open-source, zero-signup tunneling",
+      "Trivial to expose localhost for webhook testing",
+      "Works cross-platform via npm",
+      "No account or token setup"
+    ],
+    "cons": [
+      "Public server reliability is inconsistent",
+      "No auth, URLs are guessable",
+      "Maintenance cadence is slow",
+      "Not suitable for anything sensitive"
+    ],
+    "verdict": "Quick and dirty localhost tunnel; fine for testing, inappropriate for anything near production.",
+    "best_for": "Devs testing webhooks and callbacks for a few minutes.",
+    "not_for": "Long-running exposures or anything involving real secrets."
   }
 }

@@ -22,5 +22,31 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "On-device ID document scanning for KYC mobile apps",
+      "Barcode scanning SDK for warehouse and inventory tracking",
+      "Offline document capture for low-connectivity field apps",
+      "React Native and Flutter cross-platform scan integration",
+      "Machine-readable zone (MRZ) extraction from passports"
+    ]
+  },
+  "review": {
+    "pros": [
+      "On-device scanning keeps sensitive data off servers",
+      "Strong accuracy on barcodes, IDs, and documents",
+      "Covers iOS, Android, web, Flutter, and React Native",
+      "Predictable per-app licensing model"
+    ],
+    "cons": [
+      "License fees are steep for small apps",
+      "SDK size adds meaningful bundle weight",
+      "Advanced features gated behind higher tiers",
+      "Niche fit versus cheaper open-source barcode libs"
+    ],
+    "verdict": "Premium cross-platform scanning SDK that earns its price for privacy-sensitive or regulated apps.",
+    "best_for": "Teams building ID, logistics, or health apps needing accurate on-device document scanning.",
+    "not_for": "Hobby apps, simple barcode use cases, or teams happy with free OS-level scanners."
   }
 }

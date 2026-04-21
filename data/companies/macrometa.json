@@ -22,5 +22,31 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "Multi-model edge database across 175+ PoPs for low latency",
+      "Stream processing and data storage colocated at the edge",
+      "Sub-10ms reads for globally distributed real-time applications",
+      "Document, key-value, and graph storage in one edge platform",
+      "Replacing Cloudflare Workers KV with a full edge database"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Global edge database with 175+ PoPs",
+      "Multi-model query capabilities",
+      "Low-latency streaming at edge",
+      "Strong real-time use case fit"
+    ],
+    "cons": [
+      "Complex data modeling learning curve",
+      "Pricing opaque and enterprise-skewed",
+      "Smaller community than Fauna",
+      "Consistency model requires care"
+    ],
+    "verdict": "Powerful edge-native database for truly global apps, but mental model and cost demand commitment.",
+    "best_for": "Global real-time apps needing consistent low-latency data access across continents",
+    "not_for": "Single-region apps or teams needing simple CRUD with familiar SQL patterns"
   }
 }

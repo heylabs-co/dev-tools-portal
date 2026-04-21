@@ -26,5 +26,31 @@
   },
   "community": {
     "hn_mentions_30d": 6
+  },
+  "content": {
+    "when_to_use": [
+      "High-performance graph database for fraud and risk detection",
+      "Powering Alipay-scale financial graph queries via TuGraph",
+      "Knowledge graph storage with millisecond multi-hop traversal",
+      "Open-source graph DB by Ant Group and Tsinghua University",
+      "Graph analytics for supply chain and social network use cases"
+    ]
+  },
+  "review": {
+    "pros": [
+      "High-performance graph DB proven at Alipay scale",
+      "Open source with Apache license",
+      "Powers fraud and risk graphs in production",
+      "Both property graph and analytics workloads"
+    ],
+    "cons": [
+      "Smaller ecosystem than Neo4j",
+      "Docs partially Chinese-first",
+      "Fewer managed service options abroad",
+      "Cypher support gap vs Neo4j"
+    ],
+    "verdict": "Powerful open-source graph DB with Alipay pedigree, Neo4j still wins on ecosystem and developer experience globally.",
+    "best_for": "Large-scale fraud, risk, and knowledge graph workloads inside China or open-source shops",
+    "not_for": "Teams wanting the biggest graph ecosystem and easiest managed cloud experience"
   }
 }

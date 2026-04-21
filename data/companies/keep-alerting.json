@@ -42,5 +42,30 @@
     "forks": 1306,
     "updated_at": "2026-04-21",
     "health_score": "A"
+  },
+  "content": {
+    "when_to_use": [
+      "Aggregate and deduplicate alerts from 50+ tools",
+      "AIOps correlation of related alerts across systems",
+      "Open-source alert management with Slack and PagerDuty",
+      "Rule-based alert routing and suppression policies"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Open-source AIOps with 50+ tool integrations",
+      "Alert deduplication and correlation in one layer",
+      "Self-hostable for security-sensitive teams",
+      "Alternative to PagerDuty AIOps at lower cost"
+    ],
+    "cons": [
+      "Early project, features still stabilizing",
+      "Self-host operational burden for small teams",
+      "Correlation accuracy depends on tuning",
+      "Smaller community than incumbent vendors"
+    ],
+    "verdict": "Promising open-source alert brain that deserves a pilot, but not yet a drop-in PagerDuty replacement.",
+    "best_for": "Platform teams wanting open alternative to PagerDuty AIOps or BigPanda.",
+    "not_for": "Teams needing battle-tested AIOps with dedicated 24/7 support."
   }
 }

@@ -19,5 +19,31 @@
   "seo": {
     "title": "FMOD — Game Development Tools",
     "meta_description": "FMOD: Audio engine and event-driven sound tool by Firelight Technologies. Used across thousands of games for adaptive audio, spatial sound, and cross-platform a"
+  },
+  "content": {
+    "when_to_use": [
+      "Adaptive music system reacting to in-game combat intensity",
+      "Spatial audio for first-person shooter environment sounds",
+      "Cross-platform audio pipeline integrated with Unity AudioManager",
+      "Branching music transitions triggered by game state events",
+      "Sound parameter system adjusting reverb in real-time environments"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Event-driven workflow that composers and designers love",
+      "Free for indie revenue under $600k annually",
+      "Best-in-class profiler and live update during playtests",
+      "Wide platform support including Switch and mobile"
+    ],
+    "cons": [
+      "Pricing jumps steeply for mid-tier studios",
+      "Integration requires engineer time beyond plug-and-play",
+      "Studio app crashes occasionally on large banks",
+      "Wwise has marginally deeper DSP and middleware docs"
+    ],
+    "verdict": "Together with Wwise, the default audio middleware choice; FMOD wins on indie pricing and UX simplicity.",
+    "best_for": "Indie and mid-tier studios needing event-driven adaptive audio with sane pricing",
+    "not_for": "Hobby projects where Unity or Unreal built-in audio is already enough"
   }
 }

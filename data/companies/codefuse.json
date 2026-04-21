@@ -26,5 +26,30 @@
   },
   "community": {
     "hn_mentions_30d": 2
+  },
+  "content": {
+    "when_to_use": [
+      "Getting AI completions optimized for Ant Group's tech stack",
+      "Running CodeFuse as an open-source alternative to Copilot",
+      "Building internal dev assistants with CodeFuse's API",
+      "Accelerating Java and Python coding in enterprise environments"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Open-source models give real deployment flexibility",
+      "Graph-to-Code approach captures architectural context",
+      "Covers full SDLC including review, test, and docs",
+      "Backed by Ant Group with production-scale validation"
+    ],
+    "cons": [
+      "English documentation trails Chinese releases significantly",
+      "Self-hosting the model stack requires serious GPU budget",
+      "Integration polish weaker than commercial Copilot rivals",
+      "Community outside China remains small"
+    ],
+    "verdict": "One of the strongest open-source AI coding stacks if you can self-host; rough edges for Western teams.",
+    "best_for": "Enterprises wanting open-source, self-hosted AI coding across the SDLC",
+    "not_for": "Small teams without ML ops capacity or access to GPUs"
   }
 }

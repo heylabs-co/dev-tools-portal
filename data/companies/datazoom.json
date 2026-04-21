@@ -22,5 +22,33 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "Real-time QoE metrics pipeline for OTT video platforms",
+      "Streaming video player events to Snowflake or BigQuery",
+      "Per-viewer engagement analytics for broadcast applications",
+      "Replacing custom log pipelines with managed video data collection",
+      "Publisher analytics dashboards backed by real-time event streams"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Unified video data pipeline across players",
+      "Real-time QoE metrics for broadcasters",
+      "Connectors for Datadog, Snowflake, BigQuery",
+      "Vendor-neutral: works with any player SDK",
+      "Strong at identifying rebuffering root causes"
+    ],
+    "cons": [
+      "Enterprise-only pricing (quote-based)",
+      "Setup requires deep player instrumentation",
+      "Docs assume familiarity with video analytics",
+      "Overkill for teams with single-player setups",
+      "Dashboard UX trails Mux Data"
+    ],
+    "verdict": "Specialist video-telemetry pipeline — valuable for broadcasters juggling many players, wasted on simple stacks.",
+    "best_for": "OTT operators and publishers needing player-agnostic QoE data in their own warehouse.",
+    "not_for": "Single-player apps — Mux Data or Bitmovin is simpler."
   }
 }

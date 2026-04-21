@@ -22,5 +22,31 @@
   },
   "community": {
     "hn_mentions_30d": 21
+  },
+  "content": {
+    "when_to_use": [
+      "Open-source smart image cropping with face detection",
+      "Self-hosted image processing proxy on-the-fly via URL",
+      "Replacing paid image CDN with self-hosted Thumbor instance",
+      "Smart crop around faces and subjects in auto-generated thumbnails",
+      "On-demand image resizing and format conversion for web apps"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Open-source with active community",
+      "Face and feature detection for smart cropping",
+      "URL-signed transforms for security",
+      "Pluggable storage and filters"
+    ],
+    "cons": [
+      "Python stack can be slower than Go alternatives",
+      "Self-hosted ops and scaling overhead",
+      "Setup complexity higher than imgproxy",
+      "Docs feel dated in places"
+    ],
+    "verdict": "Venerable self-hosted image processor with smart cropping, imgproxy is often faster for pure resize workloads.",
+    "best_for": "Teams needing self-hosted image processing with face detection and smart crops",
+    "not_for": "High-throughput pipelines where imgproxy's Go performance wins"
   }
 }

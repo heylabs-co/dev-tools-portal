@@ -29,5 +29,28 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "Running AI-controlled browsers at scale for research agents",
+      "Scraping JavaScript-heavy sites with AI navigation handling",
+      "Building multi-page data extraction workflows via AI browsing",
+      "Deploying parallel browser sessions for AI task automation"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Purpose-built for AI agent browsing workloads",
+      "Handles captchas and stealth out of the box",
+      "Session management simplifies multi-step flows"
+    ],
+    "cons": [
+      "Overlaps heavily with Browserbase and Browserless",
+      "Pricing adds up for long agent sessions",
+      "Legal grey zone around stealth and captcha"
+    ],
+    "verdict": "Useful infra if you're building agents that live in a real browser at scale.",
+    "best_for": "Teams building web automation and scraping agents in production",
+    "not_for": "Simple deterministic scraping where Playwright solo is cheaper"
   }
 }

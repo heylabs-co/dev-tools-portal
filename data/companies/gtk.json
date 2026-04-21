@@ -38,5 +38,31 @@
     "forks": 408,
     "updated_at": "2026-04-21",
     "health_score": "A"
+  },
+  "content": {
+    "when_to_use": [
+      "Building a Linux desktop app with GNOME design guidelines",
+      "Cross-platform GUI for an open-source developer tool",
+      "Custom internal Linux application with a native GTK interface",
+      "GNOME extension UI with GTK widget integration",
+      "Desktop app for a Raspberry Pi kiosk running Linux"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Multi-platform toolkit with deep roots",
+      "Powers GNOME and countless Linux apps",
+      "Bindings for C, Python, Rust, JS",
+      "Mature, stable, actively maintained"
+    ],
+    "cons": [
+      "Non-Linux platforms feel second-class",
+      "API breaks between GTK3 and GTK4",
+      "Learning curve without prior Linux context",
+      "Theming inconsistencies across OSes"
+    ],
+    "verdict": "Essential for Linux-native apps but Windows and macOS support is more a courtesy than a priority.",
+    "best_for": "Linux desktop app developers building for GNOME and integrating with the ecosystem",
+    "not_for": "Cross-platform teams where Linux parity isnt a primary target"
   }
 }

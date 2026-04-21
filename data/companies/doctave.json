@@ -20,5 +20,31 @@
   "seo": {
     "title": "Doctave — Developer Documentation / DevRel",
     "meta_description": "Doctave: Doctave — developer documentation platform purpose-built for software teams, with Git integration, Markdown authoring, and CI/CD preview deployments."
+  },
+  "content": {
+    "when_to_use": [
+      "Git-backed docs site with PR preview deployments per branch",
+      "Internal SDK documentation with Markdown authoring workflow",
+      "Versioned developer portal auto-deployed on merge to main",
+      "Dev team runbooks hosted on a self-managed docs platform",
+      "API guide with embedded code samples reviewed in GitHub PRs"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Git-based workflow fits engineering team habits",
+      "Fast preview deployments on every PR",
+      "Clean, distraction-free reader UX",
+      "Docs-as-code without heavy static-site boilerplate"
+    ],
+    "cons": [
+      "Smaller ecosystem than Mintlify, Readme, GitBook",
+      "Fewer themes and customization options",
+      "Newer product means fewer case studies and integrations",
+      "Limited native API reference tooling"
+    ],
+    "verdict": "Clean, engineer-friendly docs platform; smaller ecosystem means fewer templates and escape hatches.",
+    "best_for": "Engineering teams that want docs-as-code with PR previews and zero-infrastructure hosting.",
+    "not_for": "Marketing-heavy docs sites or teams needing extensive templates and non-technical editors."
   }
 }

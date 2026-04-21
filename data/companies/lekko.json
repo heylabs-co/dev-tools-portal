@@ -23,5 +23,30 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "Turn code functions into remotely tunable configuration",
+      "FAANG-style config-as-code for application behavior",
+      "Update business logic without full redeployment",
+      "Version-controlled config changes with audit trail"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Functions-as-config model beyond simple booleans",
+      "Strongly typed dynamic config pushed to services",
+      "Good fit for complex tunables and experiments",
+      "Positioned for config-heavy platforms"
+    ],
+    "cons": [
+      "Novel model has a real learning curve",
+      "Smaller ecosystem and community today",
+      "Overkill for simple boolean flags",
+      "Pricing and maturity less proven than peers"
+    ],
+    "verdict": "Interesting pick for teams who need rich dynamic config, not just flags; evaluate vs building it yourself.",
+    "best_for": "Platform teams needing FAANG-style remote, typed config",
+    "not_for": "Small teams that only need on/off flags and rollouts"
   }
 }

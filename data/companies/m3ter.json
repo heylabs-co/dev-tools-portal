@@ -22,5 +22,30 @@
   },
   "community": {
     "hn_mentions_30d": 75
+  },
+  "content": {
+    "when_to_use": [
+      "Real-time usage metering for API-based SaaS billing at high volume",
+      "Pricing engine handling complex usage + seat hybrid billing configurations",
+      "Metered billing statement generation integrated with Stripe or Chargebee",
+      "Usage-based billing infrastructure for usage-intensive developer tools"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Purpose-built for high-volume real-time metering",
+      "Flexible pricing engine handles complex models",
+      "Integrates with Stripe, Salesforce, and Netsuite",
+      "Strong investor backing and enterprise traction"
+    ],
+    "cons": [
+      "Does not replace full billing stack; needs pairing",
+      "Enterprise sales motion; no self-serve signup",
+      "Pricing is opaque and aimed at larger contracts",
+      "Implementation still requires meaningful engineering effort"
+    ],
+    "verdict": "Best-in-class metering infrastructure for AI and high-volume SaaS, but you still need a billing system around it.",
+    "best_for": "AI and infrastructure SaaS with high-cardinality usage needing a dedicated metering layer.",
+    "not_for": "Simple flat-rate SaaS or teams wanting one tool that covers billing end to end."
   }
 }

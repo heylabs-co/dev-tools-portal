@@ -41,5 +41,30 @@
     "forks": 180,
     "updated_at": "2026-04-21",
     "health_score": "A"
+  },
+  "content": {
+    "when_to_use": [
+      "Event-driven monitoring for hybrid cloud infrastructure",
+      "Agent-based multi-cloud and on-prem metric collection",
+      "Dynamic runtime assets for portable check execution",
+      "Pipeline-as-code monitoring with declarative config"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Event-driven architecture scales horizontally",
+      "Open-source core with commercial options",
+      "Pipeline model flexible for hybrid infra",
+      "Sumo Logic backing adds enterprise support"
+    ],
+    "cons": [
+      "Configuration complexity vs Prometheus",
+      "Smaller community than Prometheus ecosystem",
+      "Sumo Logic acquisition slowed OSS momentum",
+      "Learning curve for event-driven model"
+    ],
+    "verdict": "Solid option for hybrid-infra event monitoring, but Prometheus dominates cloud-native attention and community.",
+    "best_for": "Hybrid infrastructure teams needing event-driven monitoring across cloud and on-prem.",
+    "not_for": "Cloud-native teams already standardized on Prometheus and Grafana."
   }
 }

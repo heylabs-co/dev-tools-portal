@@ -22,5 +22,30 @@
   },
   "community": {
     "hn_mentions_30d": 151
+  },
+  "content": {
+    "when_to_use": [
+      "Publish Python packages to the official package index",
+      "Automated twine upload in CI release pipelines",
+      "Private index mirroring for enterprise Python environments",
+      "Dependency resolution and package discovery for pip"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Canonical registry for all Python packages",
+      "Free publishing, no account fees",
+      "Trusted publishing via OIDC is a real win",
+      "2FA and token-based auth now mandatory"
+    ],
+    "cons": [
+      "Supply-chain attacks on popular names persist",
+      "Sdist vs wheel mismatches still confuse users",
+      "No private registry, must self-host or pay vendor",
+      "Deleted releases can cause dependency breakage"
+    ],
+    "verdict": "The default Python registry — use trusted publishing and pin hashes to keep it safe.",
+    "best_for": "Any Python library or CLI being distributed publicly.",
+    "not_for": "Closed-source or regulated code — use a private index."
   }
 }

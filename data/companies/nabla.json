@@ -26,5 +26,30 @@
   },
   "community": {
     "hn_mentions_30d": 4
+  },
+  "content": {
+    "when_to_use": [
+      "Generating SOAP notes from doctor-patient conversations automatically",
+      "Reducing clinical documentation burden with ambient AI scribe",
+      "Integrating ambient AI documentation into EHR/EMR workflows",
+      "Running HIPAA-compliant medical transcription for telehealth"
+    ]
+  },
+  "review": {
+    "pros": [
+      "HIPAA-compliant ambient clinical scribe",
+      "EHR integrations (Epic, Cerner) via API",
+      "Supports multilingual patient encounters",
+      "Reduces clinician documentation time measurably"
+    ],
+    "cons": [
+      "Vertical-specific, no use outside healthcare",
+      "Requires legal review for patient-data handling",
+      "Priced per clinician, not per API call",
+      "Accuracy varies by specialty vocabulary"
+    ],
+    "verdict": "A mature medical-scribe API if you ship clinician-facing software; overkill for generic speech-to-text use cases.",
+    "best_for": "EHR vendors and digital health startups serving clinicians",
+    "not_for": "General-purpose transcription or non-medical voice apps"
   }
 }

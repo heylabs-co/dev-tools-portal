@@ -22,5 +22,31 @@
   },
   "community": {
     "hn_mentions_30d": 10
+  },
+  "content": {
+    "when_to_use": [
+      "Free TLS certificate via ACME REST API for automation",
+      "Paid OV and EV certificate with validation workflow API",
+      "Let's Encrypt alternative with 90-day auto-renewable certs",
+      "Multi-domain SAN certificate for SaaS platform subdomains",
+      "ACME client integration for Caddy, Nginx, and Traefik"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Free DV certs plus paid OV/EV options",
+      "ACME support with unique EAB flow",
+      "REST API for automation",
+      "Simpler UI than legacy CAs"
+    ],
+    "cons": [
+      "Smaller trust footprint vs Let's Encrypt",
+      "Free tier rate limits can be restrictive",
+      "EAB requirement adds ACME friction",
+      "Paid tiers less competitive than DigiCert"
+    ],
+    "verdict": "A credible Let's Encrypt alternative with a useful API; usually a backup, not the default.",
+    "best_for": "Teams wanting API-driven cert issuance with optional paid tiers.",
+    "not_for": "Users fully served by Let's Encrypt and standard ACME clients."
   }
 }

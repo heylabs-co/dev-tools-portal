@@ -19,5 +19,31 @@
   "seo": {
     "title": "RenderDoc — Game Development Tools",
     "meta_description": "RenderDoc: Free, open-source graphics debugger for Vulkan, DX11/12, OpenGL, and Metal. Lets game developers capture frames, inspect GPU state, and analyse draw "
+  },
+  "content": {
+    "when_to_use": [
+      "Vulkan rendering bug reproduced from single-frame GPU capture",
+      "Draw call mesh viewer used to debug missing geometry",
+      "Shader HLSL debugger inspecting per-pixel interpolation error",
+      "Texture inspector verifying mip levels and format correctness",
+      "Frame time analysis comparing two rendering pipeline variants"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Best free cross-API graphics debugger available",
+      "Captures Vulkan, DX11/12, OpenGL, and Metal",
+      "Active development by Baldur Karlsson",
+      "Shader debug and pipeline state inspection rock solid"
+    ],
+    "cons": [
+      "UI has a steep learning curve for newcomers",
+      "Some mobile GPU captures are unreliable",
+      "No built-in GPU timing profiler like PIX",
+      "Console SDKs need their own vendor debuggers"
+    ],
+    "verdict": "The essential, universal graphics debugger — every rendering engineer should have it installed alongside PIX.",
+    "best_for": "Graphics engineers debugging rendering across Vulkan, DX, OpenGL, and Metal",
+    "not_for": "Console-only teams who rely on first-party SDK debuggers"
   }
 }

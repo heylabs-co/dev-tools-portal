@@ -41,5 +41,31 @@
     "forks": 8,
     "updated_at": "2026-04-21",
     "health_score": "C"
+  },
+  "content": {
+    "when_to_use": [
+      "Managed data lakehouse on Apache Hudi with open engines",
+      "Universal Hudi ingestion from Kafka, DMS, and object storage",
+      "Replacing custom Hudi pipelines with a managed lakehouse SaaS",
+      "Enabling Trino, Flink, and Ray queries on the same Hudi tables",
+      "AI/ML feature engineering pipelines on managed Hudi lakehouse"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Built by Apache Hudi creators directly",
+      "Universal table format across Iceberg/Delta/Hudi",
+      "Managed lakehouse reduces ops burden",
+      "Open engine choice avoids compute lock-in"
+    ],
+    "cons": [
+      "Hudi ecosystem smaller than Iceberg's momentum",
+      "Category still defining itself in 2026",
+      "Pricing and minimums enterprise-leaning",
+      "Less mature than Databricks lakehouse stack"
+    ],
+    "verdict": "Interesting managed lakehouse for multi-format shops; Iceberg-first teams may still prefer Tabular/Databricks.",
+    "best_for": "Data platform teams wanting managed Hudi plus multi-engine openness",
+    "not_for": "Teams already committed to Databricks or pure Iceberg stack"
   }
 }

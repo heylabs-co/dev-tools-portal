@@ -22,5 +22,29 @@
   },
   "community": {
     "hn_mentions_30d": 528
+  },
+  "content": {
+    "when_to_use": [
+      "Deploying Laravel apps to AWS Lambda with Bref PHP runtime",
+      "Serverless PHP functions triggered by API Gateway or SQS",
+      "Symfony applications on Lambda without server provisioning",
+      "Migrating PHP monoliths to pay-per-request serverless billing",
+      "Running PHP workers on Lambda for async queue processing"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Runs Laravel and Symfony on Lambda",
+      "Eliminates always-on server costs",
+      "Active maintainer and good docs"
+    ],
+    "cons": [
+      "Cold starts hurt latency-sensitive apps",
+      "Lambda limits constrain long tasks",
+      "Operational model is a mental shift"
+    ],
+    "verdict": "The cleanest path to serverless PHP on AWS, as long as cold starts fit your workload.",
+    "best_for": "Laravel and Symfony teams wanting AWS-native serverless hosting",
+    "not_for": "Low-latency PHP apps or teams uncomfortable with AWS ops"
   }
 }

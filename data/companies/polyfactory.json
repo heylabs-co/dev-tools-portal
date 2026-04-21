@@ -39,5 +39,29 @@
     "forks": 113,
     "updated_at": "2026-04-21",
     "health_score": "B"
+  },
+  "content": {
+    "when_to_use": [
+      "Generate mock data from Pydantic models with one call",
+      "TypedDict and dataclass factories for Python test fixtures",
+      "Override specific fields while auto-filling the rest",
+      "Bulk fixture generation for performance test seeding"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Generates mocks from Python type hints",
+      "Supports Pydantic, dataclasses, TypedDict, attrs",
+      "Reduces fixture boilerplate significantly",
+      "Works well with pytest and FastAPI tests"
+    ],
+    "cons": [
+      "Random data can mask deterministic bugs",
+      "Complex nested types need custom factories",
+      "Smaller community than factory_boy"
+    ],
+    "verdict": "The right mock data tool for typed Python codebases, far ahead of factory_boy when you already use Pydantic.",
+    "best_for": "Python teams using Pydantic or typed models who need fast fixture generation",
+    "not_for": "Projects without type hints where factory_boy patterns fit better"
   }
 }

@@ -22,5 +22,30 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "Free load testing for REST endpoints with ramp-up config",
+      "Concurrent user simulation up to 100K clients",
+      "Quick API stress test before product launch",
+      "Cloud-based load generation without infra setup"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Dead simple UI, minutes to first load test",
+      "Generous free tier for small endpoints",
+      "No-install cloud runner",
+      "Handy for quick stakeholder demos"
+    ],
+    "cons": [
+      "Limited scripting and scenario complexity",
+      "Small set of metrics versus k6 or Gatling",
+      "Host verification required, friction for some setups",
+      "Future clouded since SendGrid acquisition"
+    ],
+    "verdict": "A fine free warm-up tool, but not a replacement for proper scriptable load testing.",
+    "best_for": "Small teams quickly validating a single endpoint under modest traffic",
+    "not_for": "Serious performance engineering needing scripting and deep metrics"
   }
 }

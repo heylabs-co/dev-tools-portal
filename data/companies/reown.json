@@ -23,5 +23,31 @@
   },
   "community": {
     "hn_mentions_30d": 2
+  },
+  "content": {
+    "when_to_use": [
+      "Multi-wallet connection UX with WalletConnect AppKit",
+      "SIWE (Sign-In with Ethereum) authentication for dApps",
+      "400+ wallet support for broad user onboarding coverage",
+      "Session management for persistent Web3 app authentication",
+      "Cross-chain wallet connection for EVM, Solana, and Bitcoin"
+    ]
+  },
+  "review": {
+    "pros": [
+      "De facto standard for wallet connection across 400+ wallets",
+      "AppKit and WalletKit cover both app and wallet sides",
+      "Multi-chain: EVM, Solana, Bitcoin support",
+      "Large ecosystem and community"
+    ],
+    "cons": [
+      "Brand churn from WalletConnect rename creates confusion",
+      "Not a full auth solution on its own",
+      "Relay infra introduces some latency",
+      "Advanced features require paid tiers"
+    ],
+    "verdict": "Unavoidable plumbing for external wallet connect; pair with an auth SDK for social and email login.",
+    "best_for": "dApps supporting a broad range of external wallets",
+    "not_for": "Apps that only need embedded wallet onboarding"
   }
 }

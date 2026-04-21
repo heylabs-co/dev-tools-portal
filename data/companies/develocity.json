@@ -20,5 +20,30 @@
   "seo": {
     "title": "Develocity — Monorepo & Build Systems",
     "meta_description": "Develocity: Build acceleration and analytics platform for Gradle, Maven, Bazel, and sbt monorepos (formerly Gradle Enterprise). Provides remote build caching, b"
+  },
+  "content": {
+    "when_to_use": [
+      "Remote build caching for Gradle, Maven, and Bazel monorepos",
+      "Predictive test selection to skip unaffected test cases",
+      "Build scan diagnostics for slow CI pipeline analysis",
+      "Distributed test execution across build agents"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Dramatic CI and local build speedups via caching",
+      "Build scans reveal slow tasks and flaky tests fast",
+      "Predictive test selection cuts test time",
+      "Supports Gradle, Maven, Bazel, and sbt"
+    ],
+    "cons": [
+      "Enterprise pricing tier only, no small-team plan",
+      "Significant setup to wire into CI correctly",
+      "Best value assumes JVM-heavy monorepos",
+      "Data locality and compliance add deployment work"
+    ],
+    "verdict": "Clear winner for large JVM monorepos with painful builds; hard to justify for smaller codebases or non-JVM stacks.",
+    "best_for": "Enterprises with large Gradle, Maven, or Bazel monorepos and slow CI",
+    "not_for": "Small teams, non-JVM stacks, or budget-constrained startups"
   }
 }

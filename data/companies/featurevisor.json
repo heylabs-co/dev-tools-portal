@@ -22,5 +22,30 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "Feature flags as code managed entirely in Git",
+      "CI/CD-integrated flag deployments with PR reviews",
+      "Segment-based targeting rules defined in YAML",
+      "Audit trail via Git history for every flag change"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Flags as code with Git-based workflow",
+      "Fits GitOps and CI/CD practices naturally",
+      "Language-agnostic SDKs fed by generated datafiles",
+      "No runtime service required"
+    ],
+    "cons": [
+      "No realtime UI; changes go through PRs",
+      "Not ideal for non-engineer flag edits",
+      "Less mature analytics/experiment story",
+      "Smaller ecosystem vs SaaS competitors"
+    ],
+    "verdict": "Clean fit for engineering-driven orgs that want flags in Git and zero flag-service infra to run.",
+    "best_for": "Platform teams running flags via GitOps and CI",
+    "not_for": "PM/marketing-led flag flipping from a dashboard"
   }
 }

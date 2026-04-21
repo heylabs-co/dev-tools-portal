@@ -22,5 +22,30 @@
   },
   "community": {
     "hn_mentions_30d": 6
+  },
+  "content": {
+    "when_to_use": [
+      "DORA metrics tracking from GitHub and Jira data",
+      "Deployment frequency and change failure rate dashboards",
+      "Change intelligence correlating deploys with incidents",
+      "Team-level deployment health with automatic attribution"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Deployment tracking tied to DORA metrics natively",
+      "GitHub, Jira and CI integrations out of the box",
+      "Change impact correlation with incidents",
+      "Focused product, not sprawling platform"
+    ],
+    "cons": [
+      "Narrower scope than Jellyfish or LinearB",
+      "Requires deployment marker instrumentation",
+      "Insights UI limited vs full analytics platforms",
+      "Pricing gets expensive at enterprise scale"
+    ],
+    "verdict": "Focused DORA and deploy-tracking tool that nails its lane; complements rather than replaces broader EM platforms.",
+    "best_for": "Engineering teams prioritizing deployment visibility and accurate DORA change metrics.",
+    "not_for": "Teams wanting a full engineering intelligence platform with forecasting and cost."
   }
 }

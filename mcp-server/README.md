@@ -1,4 +1,4 @@
-# tool-news-mcp
+# @toolnews/mcp
 
 MCP server that exposes the [tool.news](https://tool.news) developer-tool catalog to AI assistants.
 
@@ -7,7 +7,7 @@ MCP server that exposes the [tool.news](https://tool.news) developer-tool catalo
 ## Install (Claude Code)
 
 ```bash
-claude mcp add-json tool-news '{"command":"npx","args":["-y","tool-news-mcp"]}'
+claude mcp add-json tool-news '{"command":"npx","args":["-y","@toolnews/mcp"]}'
 ```
 
 ## Install (Cursor / VS Code / other MCP clients)
@@ -19,7 +19,7 @@ Add to your MCP config:
   "mcpServers": {
     "tool-news": {
       "command": "npx",
-      "args": ["-y", "tool-news-mcp"]
+      "args": ["-y", "@toolnews/mcp"]
     }
   }
 }

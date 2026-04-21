@@ -25,5 +25,29 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "Gherkin BDD for .NET with MSTest/xUnit/NUnit runners",
+      "Business-readable feature files for .NET acceptance tests",
+      "Living documentation generated from passing scenarios",
+      "Step definition reuse across multiple .NET test projects"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Mature Cucumber-style BDD for .NET",
+      "Works with MSTest, xUnit, and NUnit runners",
+      "Large base of existing .feature files",
+      "Good IDE integration historically"
+    ],
+    "cons": [
+      "Discontinued by Tricentis in late 2024",
+      "No further updates or security fixes",
+      "Reqnroll is the maintained successor"
+    ],
+    "verdict": "Do not start new projects on SpecFlow; migrate to Reqnroll which is a near-drop-in replacement.",
+    "best_for": "Legacy .NET BDD suites awaiting migration to Reqnroll",
+    "not_for": "Any new .NET project, since Reqnroll is the maintained fork"
   }
 }

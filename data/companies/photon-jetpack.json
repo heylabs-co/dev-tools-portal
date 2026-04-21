@@ -22,5 +22,31 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "Serving WordPress images via Automattic's global CDN",
+      "Automatic image optimization for WordPress sites via Jetpack",
+      "Reducing image server load with CDN offloading via plugin",
+      "Resizing images on-the-fly via Photon URL parameters",
+      "Free CDN for WordPress.com and Jetpack-connected sites"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Free image CDN bundled with WordPress Jetpack",
+      "Zero-config for WordPress sites",
+      "Offloads bandwidth from shared hosts",
+      "Automatic basic image optimization"
+    ],
+    "cons": [
+      "WordPress-only, no general-purpose use",
+      "Limited transforms vs Cloudinary or imgix",
+      "Requires Jetpack plugin and account",
+      "Occasional image mismatch and cache issues"
+    ],
+    "verdict": "Convenient free CDN for WordPress blogs on shared hosting, not a serious tool for custom applications.",
+    "best_for": "WordPress hobby sites wanting free image offloading via Jetpack",
+    "not_for": "Custom apps, ecommerce, or teams needing advanced image processing"
   }
 }

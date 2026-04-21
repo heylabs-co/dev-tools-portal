@@ -26,5 +26,28 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "Versioning and distributing ML models through JFrog Artifactory",
+      "Integrating model management into existing DevOps pipelines",
+      "Securing and scanning ML model artifacts for vulnerabilities",
+      "Promoting models through environments (dev → staging → prod)"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Unified MLOps plus LLMOps in one platform",
+      "Leverages JFrog's enterprise trust and sales",
+      "Prompt and model registries integrated"
+    ],
+    "cons": [
+      "Heavy platform — overkill for small teams",
+      "Pricing opaque and enterprise-only",
+      "Newer LLMOps features less battle-tested"
+    ],
+    "verdict": "Makes sense inside existing JFrog shops; outside that, best-of-breed rivals are sharper.",
+    "best_for": "Enterprises already on JFrog wanting end-to-end ML and LLM governance",
+    "not_for": "Startups that can mix Langfuse, MLflow and open tools cheaper"
   }
 }

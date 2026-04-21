@@ -22,5 +22,30 @@
   },
   "community": {
     "hn_mentions_30d": 153
+  },
+  "content": {
+    "when_to_use": [
+      "Building spec-driven development workflows with AI assistance",
+      "Automating code generation from structured requirements specs",
+      "Running AI agent workflows integrated into GitHub Pull Requests",
+      "Generating code from natural language user stories with traceability"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Spec-driven workflow forces requirements before code",
+      "Backed by AWS with serious long-term funding",
+      "Reduces rework from underspecified prompts",
+      "Good fit for teams that already value design docs"
+    ],
+    "cons": [
+      "Spec-first workflow slower than raw Cursor for quick tasks",
+      "Deep AWS ties worry teams on other clouds",
+      "Early product with rough edges and limited plugins",
+      "Pricing and licensing details still evolving"
+    ],
+    "verdict": "Opinionated spec-first IDE that pays off on complex features, but feels heavy for quick hacks.",
+    "best_for": "Teams building larger features who want AI to follow a written spec",
+    "not_for": "Solo devs hacking prototypes or anyone actively avoiding AWS dependencies"
   }
 }

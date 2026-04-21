@@ -41,5 +41,30 @@
     "forks": 698,
     "updated_at": "2026-04-21",
     "health_score": "A"
+  },
+  "content": {
+    "when_to_use": [
+      "Multiple testing styles (BDD, FunSpec) in Kotlin projects",
+      "Property-based testing with Kotlin-idiomatic generators",
+      "Coroutine-aware test execution for Kotlin async code",
+      "Extensive matchers library for Kotlin data structures"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Multiple testing styles fit different teams",
+      "First-class property-based testing",
+      "Rich matcher library, Kotlin-native ergonomics",
+      "Great coroutines and Spring integration"
+    ],
+    "cons": [
+      "More concepts to learn than JUnit 5",
+      "Slower IDE support on some JetBrains builds",
+      "Stack traces can be noisy across styles",
+      "Smaller community than JUnit in enterprise"
+    ],
+    "verdict": "The most Kotlin-feeling test framework, a clear win over JUnit for Kotlin-heavy codebases.",
+    "best_for": "Kotlin teams that value expressive DSLs and property-based testing",
+    "not_for": "Mixed Java teams where JUnit 5 remains the path of least resistance"
   }
 }

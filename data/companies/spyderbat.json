@@ -23,5 +23,30 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "eBPF causal chain tracing of container process activity",
+      "Runtime security with behavioral baseline detection",
+      "Container-level forensic investigation of incidents",
+      "Kubernetes workload anomaly detection without agents"
+    ]
+  },
+  "review": {
+    "pros": [
+      "eBPF gives deep runtime visibility with low overhead",
+      "Causal chains trace attack paths across containers",
+      "Operational and security use cases in one agent",
+      "Kubernetes and Linux container native"
+    ],
+    "cons": [
+      "Overlaps with Sysdig, Falco, and Wiz runtime",
+      "Smaller vendor than big security incumbents",
+      "eBPF kernel requirements limit older hosts",
+      "Security teams may already own Sysdig/Wiz"
+    ],
+    "verdict": "Strong eBPF runtime security concept, but crowded market dominated by Sysdig and Wiz makes differentiation hard.",
+    "best_for": "Container security teams wanting causal attack-chain tracing without big-vendor lock-in.",
+    "not_for": "Organizations already invested in Sysdig Secure or Wiz runtime."
   }
 }

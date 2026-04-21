@@ -25,5 +25,28 @@
   },
   "community": {
     "hn_mentions_30d": 22
+  },
+  "content": {
+    "when_to_use": [
+      "Fine-tuning open LLMs on proprietary data through a managed API",
+      "Deploying private fine-tuned models without managing GPUs",
+      "Running domain adaptation on Llama-based models via REST API",
+      "Combining fine-tuning with RAG for enterprise knowledge tasks"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Simple API for fine-tuning open LLMs",
+      "Managed GPU infra removes DevOps overhead",
+      "Decent pricing for small fine-tune jobs"
+    ],
+    "cons": [
+      "Smaller model catalog than Together or Fireworks",
+      "Limited customization beyond standard LoRA flows",
+      "Roadmap uncertainty after market consolidation"
+    ],
+    "verdict": "A pragmatic middle ground for teams who want fine-tuning without running their own GPUs.",
+    "best_for": "Product teams fine-tuning open LLMs without dedicated ML infra staff",
+    "not_for": "Research labs needing cutting-edge models or deep training control"
   }
 }

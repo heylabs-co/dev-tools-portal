@@ -22,5 +22,30 @@
   },
   "community": {
     "hn_mentions_30d": 6
+  },
+  "content": {
+    "when_to_use": [
+      "Remote Terraform state management with locking",
+      "Policy-as-code enforcement with Sentinel policies",
+      "Cost estimation before applying infrastructure changes",
+      "VCS-triggered runs for GitOps infrastructure workflows"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Managed remote state with locking, no S3 plumbing",
+      "Policy as code with Sentinel or OPA",
+      "Cost estimation and drift detection built in",
+      "VCS-driven runs plug directly into PRs"
+    ],
+    "cons": [
+      "Pricing jumps sharply past free tier",
+      "BSL license fallout still clouds the ecosystem",
+      "Locked into HashiCorp's workflow choices",
+      "Self-hosted option is enterprise-only"
+    ],
+    "verdict": "The simplest way to run Terraform at team scale, if you accept HashiCorp's pricing and BSL baggage.",
+    "best_for": "Teams standardizing on Terraform who want managed state, policy, and runs.",
+    "not_for": "Teams moving to OpenTofu or those needing fully self-hosted workflows cheaply."
   }
 }

@@ -22,5 +22,33 @@
   },
   "community": {
     "hn_mentions_30d": 31
+  },
+  "content": {
+    "when_to_use": [
+      "Sub-500ms live streaming via WebRTC and RTSP",
+      "Interactive live streaming at scale with two-way communication",
+      "Real-time video contribution with sub-second viewer delivery",
+      "Auction and gaming platforms needing frame-accurate live sync",
+      "Self-hosted or cloud real-time streaming without Millicast costs"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Sub-500ms WebRTC, RTMP, SRT ingest",
+      "Self-hosted or cloud autoscaling",
+      "Deep customization via Java API",
+      "Used in iGaming and esports",
+      "Mature clustering and origin/edge model"
+    ],
+    "cons": [
+      "Enterprise licensing required",
+      "Java-based setup complex for non-JVM shops",
+      "Docs dense and engineer-oriented",
+      "UI console feels dated",
+      "Ops burden for self-hosted deployments"
+    ],
+    "verdict": "Strong low-latency media server for teams with JVM ops chops — Millicast easier if you want managed.",
+    "best_for": "Enterprises running interactive live video on their own infra with Java-friendly teams.",
+    "not_for": "Teams wanting managed APIs — Mux or Millicast fit better."
   }
 }

@@ -22,5 +22,30 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "Benchmark REST endpoints at 10K requests/sec",
+      "Measure latency percentiles before and after optimizations",
+      "Stress test Apache/Nginx configs with concurrent connections",
+      "Quick smoke test after deployment to verify throughput"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Ships with Apache, zero install on most Linux boxes",
+      "Dead simple CLI for quick RPS and latency checks",
+      "Negligible resource footprint on the load generator",
+      "Perfect for smoke-testing a single endpoint fast"
+    ],
+    "cons": [
+      "Single-threaded, struggles to saturate modern servers",
+      "No scripting, cannot chain requests or vary payloads",
+      "HTTP/1.0 only, no keep-alive reuse across connections",
+      "Coordinated omission skews latency percentiles"
+    ],
+    "verdict": "A quick-and-dirty benchmark hammer that is great for one-off checks but wrong for serious load testing.",
+    "best_for": "Sysadmins doing quick sanity benchmarks on a single HTTP endpoint from the shell",
+    "not_for": "Teams needing realistic user flows, HTTP/2, or accurate tail-latency numbers"
   }
 }

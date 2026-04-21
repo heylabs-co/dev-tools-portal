@@ -23,5 +23,29 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "Measuring halo effects of brand campaigns with MMM",
+      "Incrementality testing across channels without last-click bias",
+      "Cross-channel revenue impact attribution for DTC brands"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Halo-effect and cross-channel revenue modeling",
+      "Avoids last-click distortion in paid media",
+      "Daily outputs for budget decisions",
+      "Purpose-built for e-commerce brands"
+    ],
+    "cons": [
+      "MMM, not deterministic attribution",
+      "Requires decent spend to produce stable models",
+      "Less useful for pure mobile app UA",
+      "Black-box aspects require trust in vendor"
+    ],
+    "verdict": "Useful MMM alternative for DTC brands escaping last-click, but not a mobile install attribution tool.",
+    "best_for": "DTC e-commerce brands wanting MMM-driven cross-channel allocation beyond last-click.",
+    "not_for": "Mobile apps that need SKAN or deterministic install postbacks."
   }
 }

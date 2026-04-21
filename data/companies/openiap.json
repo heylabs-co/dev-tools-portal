@@ -26,5 +26,29 @@
   },
   "community": {
     "hn_mentions_30d": 474
+  },
+  "content": {
+    "when_to_use": [
+      "Unifying StoreKit 2 and Google Play Billing under one interface",
+      "Handling IAP error codes consistently across iOS and Android",
+      "Standardizing purchase restoration flows for cross-platform apps"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Open spec unifying IAP types across platforms",
+      "Cuts per-platform conditional code for teams",
+      "Neutral governance reduces vendor lock-in",
+      "Adopted by multiple OSS IAP libraries"
+    ],
+    "cons": [
+      "Spec still maturing, breaking changes possible",
+      "Not a product, you need an implementing library",
+      "Adoption outside OSS libs is still early",
+      "Apple and Google may change APIs faster than spec"
+    ],
+    "verdict": "Useful cross-platform IAP spec for OSS library authors and integrators, but a spec is infrastructure, not a product.",
+    "best_for": "OSS library authors and engineers standardizing IAP across platforms.",
+    "not_for": "Product teams looking for a ready-made subscription service."
   }
 }

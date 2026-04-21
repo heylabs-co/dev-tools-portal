@@ -23,5 +23,33 @@
   },
   "community": {
     "hn_mentions_30d": 1
+  },
+  "content": {
+    "when_to_use": [
+      "Template-based PDF generation with dynamic field injection",
+      "Collecting digital signatures on generated documents",
+      "Webhook-delivered PDFs for automated document workflows",
+      "Filling legal forms programmatically from structured app data",
+      "Generating documents at scale without PDF generation infra"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Visual PDF template editor with field mapping",
+      "Generates thousands of PDFs reliably per minute",
+      "Webhooks and async delivery built in",
+      "HIPAA-compliant plans available",
+      "Predictable pricing by submission volume"
+    ],
+    "cons": [
+      "Template editor has learning curve for designers",
+      "No native e-signature flow",
+      "Styling complex layouts requires trial-and-error",
+      "Limited integrations outside Zapier",
+      "No on-prem deployment option"
+    ],
+    "verdict": "Focused PDF-from-template API with solid tooling — better than rolling your own, narrower than PandaDoc.",
+    "best_for": "Devs generating high-volume form-based PDFs (tax docs, invoices, compliance forms).",
+    "not_for": "Teams needing signatures, proposals, or dynamic document workflows."
   }
 }

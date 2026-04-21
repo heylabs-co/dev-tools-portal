@@ -39,5 +39,30 @@
     "forks": 360,
     "updated_at": "2026-04-21",
     "health_score": "B"
+  },
+  "content": {
+    "when_to_use": [
+      "Generate fake data for 46 locales in Python tests",
+      "High-performance fixture generation for database seeding",
+      "Typed fake data for Pydantic models in FastAPI tests",
+      "Address, payment, and person data for integration tests"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Very fast synthetic data generator for Python",
+      "46 locales covering realistic regional data",
+      "Covers people, addresses, payments, science",
+      "Minimal dependencies, easy to install"
+    ],
+    "cons": [
+      "Overlaps heavily with Faker, ecosystem smaller",
+      "No relational integrity across generated rows",
+      "Less documentation for niche providers",
+      "Not a full test-data management platform"
+    ],
+    "verdict": "A faster, cleaner Faker alternative for Python, still just a data generator and nothing more.",
+    "best_for": "Python teams needing quick, realistic fake data in tests and demos",
+    "not_for": "Teams that need referentially-correct datasets across many tables"
   }
 }

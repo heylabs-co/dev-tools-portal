@@ -22,5 +22,31 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "General-purpose WebRTC server for custom real-time media apps",
+      "Self-hosted SFU for video conferencing with plugin architecture",
+      "WebRTC data channels for peer-to-peer gaming connections",
+      "Recording and transcoding WebRTC sessions server-side",
+      "Building custom video platforms on open-source WebRTC stack"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Mature general-purpose WebRTC server (SFU and more)",
+      "Plugin architecture covers rooms, streaming, SIP",
+      "Battle-tested by Meetecho at real scale",
+      "Open-source and self-hostable"
+    ],
+    "cons": [
+      "C codebase; operational expertise required",
+      "Docs and plugin quality vary",
+      "Scaling across nodes needs custom work",
+      "Not a turnkey product; you own the ops"
+    ],
+    "verdict": "Powerful and flexible WebRTC server for teams who want full control and are ready to run C-based infra.",
+    "best_for": "Infra teams building custom WebRTC products with self-hosting",
+    "not_for": "Startups that want a managed video API with SLAs"
   }
 }

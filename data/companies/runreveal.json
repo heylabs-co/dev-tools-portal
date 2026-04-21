@@ -22,5 +22,31 @@
   },
   "community": {
     "hn_mentions_30d": 1
+  },
+  "content": {
+    "when_to_use": [
+      "Cost-efficient SIEM on cloud log data via security data lake",
+      "Detection engineering with SQL-based threat hunting queries",
+      "CloudTrail and GCP audit log ingestion for security monitoring",
+      "Sigma rule deployment for SOC detection use cases",
+      "Incident investigation via unified log search across cloud envs"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Data lake model cuts SIEM ingestion costs dramatically",
+      "Fast query performance over massive log volumes",
+      "Modern detection-as-code workflow in Git",
+      "Flexible schema handles diverse cloud log sources"
+    ],
+    "cons": [
+      "Younger product, fewer integrations than Splunk or Elastic",
+      "Detection content library still growing",
+      "Requires data-engineering mindset to operate well",
+      "Compliance-specific reporting thinner than legacy SIEMs"
+    ],
+    "verdict": "Cost-sane SIEM alternative for cloud-native teams willing to build; not a plug-and-play replacement.",
+    "best_for": "Cloud-heavy security teams tired of Splunk bills who can own detection engineering.",
+    "not_for": "Traditional SOCs wanting extensive out-of-box content, compliance packs, and GUI-driven workflows."
   }
 }

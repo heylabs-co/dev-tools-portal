@@ -25,5 +25,28 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "Analyzing security camera feeds with AI-powered video analytics",
+      "Detecting intrusions and anomalies in surveillance footage via API",
+      "Building smart building safety systems on Hanwha's vision cloud",
+      "Running object tracking and crowd density analysis in video"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Tight integration with Wisenet cameras and VMS",
+      "Built-in video analytics and device SDKs",
+      "Enterprise support channels for integrators"
+    ],
+    "cons": [
+      "Locked to Hanwha hardware ecosystem",
+      "Generic cloud DX compared to AWS/Azure video",
+      "Docs and SDKs aimed at SIs, not product devs"
+    ],
+    "verdict": "Rational choice if you standardize on Hanwha cameras; not a general-purpose video AI cloud.",
+    "best_for": "Security integrators deploying Wisenet at scale with analytics",
+    "not_for": "Developers wanting hardware-agnostic video AI APIs"
   }
 }

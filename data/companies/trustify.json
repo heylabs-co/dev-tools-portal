@@ -22,5 +22,31 @@
   },
   "community": {
     "hn_mentions_30d": 7
+  },
+  "content": {
+    "when_to_use": [
+      "Open-source PKI for internal TLS certificate automation",
+      "Certificate authority deployment for zero-trust environments",
+      "ACME-compatible cert issuance for cloud-native workloads",
+      "mTLS enforcement for microservice-to-microservice auth",
+      "Self-hosted CA for air-gapped or compliance-mandated infra"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Open-source PKI automation platform",
+      "Focus on internal and public TLS",
+      "Avoids vendor lock-in",
+      "Scriptable certificate workflows"
+    ],
+    "cons": [
+      "Small community compared to step-ca/EJBCA",
+      "Docs and examples still thin",
+      "Operational maturity unclear",
+      "Feature parity with commercial tools limited"
+    ],
+    "verdict": "Promising open-source PKI automation, but betting prod on it today demands appetite for risk.",
+    "best_for": "Teams piloting open-source PKI automation with time to contribute.",
+    "not_for": "Production-critical PKI where battle-tested tools are needed."
   }
 }

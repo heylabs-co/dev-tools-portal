@@ -23,5 +23,31 @@
   },
   "community": {
     "hn_mentions_30d": 152
+  },
+  "content": {
+    "when_to_use": [
+      "Managed Apache Superset with enterprise SSO and row-level security",
+      "Embedded analytics in SaaS products via Superset API",
+      "Collaborative data exploration on Snowflake and BigQuery",
+      "Replacing Metabase with managed Superset and chart sharing",
+      "Data visualization platform for data-driven product teams"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Managed Superset removes ops burden",
+      "Solid embedded analytics support",
+      "Row-level security built in",
+      "Good for teams already on Superset"
+    ],
+    "cons": [
+      "Pricing vs open-source tradeoff",
+      "Ties you to Superset's UX quirks",
+      "Smaller ecosystem than Looker or Metabase",
+      "Customization limited by managed model"
+    ],
+    "verdict": "The easy button for running Apache Superset in production, if Superset is your chosen tool.",
+    "best_for": "Data teams wanting Superset in production without running it themselves",
+    "not_for": "Teams preferring Metabase, Looker, or those needing unmanaged customization"
   }
 }

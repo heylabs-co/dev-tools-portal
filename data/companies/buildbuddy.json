@@ -42,5 +42,30 @@
     "forks": 134,
     "updated_at": "2026-04-21",
     "health_score": "B"
+  },
+  "content": {
+    "when_to_use": [
+      "Remote Bazel build caching for large monorepos",
+      "Distributed remote execution to parallelize Bazel builds",
+      "Build results UI with test logs and artifact browsing",
+      "Speed up CI by sharing cache across developer machines"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Dramatic speedups on large Bazel monorepos",
+      "Remote cache and remote execution in one service",
+      "Rich results UI with invocation history and flakiness data",
+      "Self-hosted and cloud options both available"
+    ],
+    "cons": [
+      "Only useful if you have already adopted Bazel",
+      "Pricing scales with build traffic, can get pricey",
+      "Steep learning curve for teams new to RBE",
+      "Ecosystem tied to Bazel's quirks"
+    ],
+    "verdict": "The go-to managed Bazel build service: worth every cent once your monorepo is big enough to hurt.",
+    "best_for": "Teams on Bazel with multi-minute builds that need remote caching and execution.",
+    "not_for": "Teams not on Bazel or with small, fast builds."
   }
 }

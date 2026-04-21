@@ -43,5 +43,28 @@
     "forks": 3,
     "updated_at": "2026-04-21",
     "health_score": "F"
+  },
+  "content": {
+    "when_to_use": [
+      "Fine-tuning open-weight frontier models via model merging",
+      "Distilling large LLMs into smaller deployable versions",
+      "Running Trinity-series models locally for air-gapped deployments",
+      "Benchmarking merged model variants on domain-specific evals"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Model merging expertise lowers training cost",
+      "Open-weight Trinity models for self-host",
+      "Distillation services for custom domain models"
+    ],
+    "cons": [
+      "Less turnkey than closed API providers",
+      "Requires ML ops competency in-house",
+      "Smaller model zoo than major labs"
+    ],
+    "verdict": "For teams that want owned, domain-tuned open models rather than renting frontier APIs.",
+    "best_for": "Enterprises building domain-specific LLMs on open weights",
+    "not_for": "Teams wanting a hosted chat API with zero training effort"
   }
 }

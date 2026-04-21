@@ -23,5 +23,30 @@
   },
   "community": {
     "hn_mentions_30d": 3471
+  },
+  "content": {
+    "when_to_use": [
+      "Orchestrating multi-agent conversations for complex task solving",
+      "Building AutoGen-compatible agents with community-maintained fork",
+      "Running collaborative LLM agent pipelines for coding automation",
+      "Experimenting with agent conversation patterns and tool use"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Community-maintained AutoGen fork with active governance",
+      "Proven multi-agent conversation patterns out of the box",
+      "Python-native, integrates with common LLM providers",
+      "Open source with clearer licensing than original AutoGen"
+    ],
+    "cons": [
+      "Fragmented ecosystem confusion with Microsoft AutoGen",
+      "Documentation still catching up with upstream divergence",
+      "Agent orchestration abstractions can feel heavy for simple tasks",
+      "Debugging multi-agent loops remains painful"
+    ],
+    "verdict": "A credible community fork of AutoGen, but the split ecosystem means you pick a side and accept the churn.",
+    "best_for": "Python teams building multi-agent systems who prefer community governance",
+    "not_for": "Teams that want simple single-agent workflows or vendor-backed stability"
   }
 }

@@ -29,5 +29,28 @@
   },
   "community": {
     "hn_mentions_30d": 265
+  },
+  "content": {
+    "when_to_use": [
+      "Processing extremely long documents (up to 1M tokens) via LLM",
+      "Analyzing full codebases or books in a single context window",
+      "Building RAG-free QA systems using Kimi's native long context",
+      "Accessing Moonshot's frontier Chinese LLM via API for apps"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Market-leading long context (200k+ tokens)",
+      "Strong Chinese and competitive English",
+      "Free consumer tier drives rapid iteration"
+    ],
+    "cons": [
+      "API availability constrained outside China",
+      "Pricing and quotas shift frequently",
+      "Benchmarks don't always match real-world DX"
+    ],
+    "verdict": "A standout for long-context workloads if you can access the API from your region.",
+    "best_for": "Apps processing long documents, contracts or codebases in single calls",
+    "not_for": "Teams needing stable global SLAs or strict enterprise compliance"
   }
 }

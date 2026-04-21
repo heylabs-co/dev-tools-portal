@@ -42,5 +42,30 @@
     "forks": 4596,
     "updated_at": "2026-04-21",
     "health_score": "A"
+  },
+  "content": {
+    "when_to_use": [
+      "Open-source payments switch routing to multiple processors via unified API",
+      "Reducing Stripe lock-in by adding backup acquirer with Hyperswitch routing",
+      "Self-hosted payment orchestration in Rust for cost-sensitive fintech",
+      "Multi-processor failover and smart routing with full transaction visibility"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Open source under Apache 2.0 — fully self-hostable",
+      "Written in Rust for throughput and low latency",
+      "Single API across dozens of processors and APMs",
+      "No vendor lock-in on routing logic or data"
+    ],
+    "cons": [
+      "Self-hosting demands serious infra maturity",
+      "Ecosystem smaller than closed-source incumbents",
+      "Enterprise features and SLAs gated in cloud tier",
+      "Rust talent pool thinner for contributions"
+    ],
+    "verdict": "Most credible open-source alternative to Primer or Payrails if you can operate Rust infra and have a platform team.",
+    "best_for": "Engineering-led teams wanting full control of an orchestrator without paying per-transaction SaaS fees.",
+    "not_for": "Small teams without DevOps capacity or those needing a fully managed, SaaS-only product."
   }
 }

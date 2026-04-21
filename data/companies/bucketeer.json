@@ -42,5 +42,31 @@
     "forks": 35,
     "updated_at": "2026-04-21",
     "health_score": "B"
+  },
+  "content": {
+    "when_to_use": [
+      "Progressive feature rollout to 100M+ users",
+      "A/B experimentation platform with statistical significance",
+      "Targeting flags to user cohorts and account segments",
+      "Kill switch for instant flag disable during incidents",
+      "Audit trail of flag changes with automated compliance logs"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Open-source flags with real scale (CyberAgent)",
+      "Billions of evaluations/month in production",
+      "A/B testing built in, not bolted on",
+      "Self-hostable with Kubernetes"
+    ],
+    "cons": [
+      "Operational complexity of self-hosting",
+      "Smaller community than LaunchDarkly or Unleash",
+      "Docs thinner in English than Japanese",
+      "UI less polished than SaaS competitors"
+    ],
+    "verdict": "Credible OSS flags platform for large engineering orgs willing to run it; most teams should start with Unleash.",
+    "best_for": "Large orgs self-hosting flags with heavy evaluation loads",
+    "not_for": "Small teams that want a simple SaaS flag dashboard"
   }
 }

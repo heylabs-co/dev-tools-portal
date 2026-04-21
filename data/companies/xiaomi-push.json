@@ -21,5 +21,29 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "Reliable push delivery on MIUI devices where FCM is restricted",
+      "System-level notification delivery for Chinese Xiaomi devices",
+      "Supplementing FCM with Mi Push for Chinese Android market reach"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Essential for reliable delivery on MIUI devices",
+      "Free vendor channel — no subscription",
+      "Covers large Xiaomi install base in Asia",
+      "Straightforward integration via aggregators"
+    ],
+    "cons": [
+      "Xiaomi devices only — not a push platform",
+      "Console and docs skew Chinese-first",
+      "MIUI behavior changes break flows periodically",
+      "No campaign or marketing tooling"
+    ],
+    "verdict": "A required vendor channel for MIUI reliability — route through a provider rather than integrating directly.",
+    "best_for": "Apps with meaningful Xiaomi/MIUI user share",
+    "not_for": "Teams without Chinese or Xiaomi-heavy audiences"
   }
 }

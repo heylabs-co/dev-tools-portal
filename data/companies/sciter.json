@@ -39,5 +39,31 @@
     "forks": 227,
     "updated_at": "2026-04-21",
     "health_score": "F"
+  },
+  "content": {
+    "when_to_use": [
+      "Tiny-footprint desktop UI in HTML/CSS without bundling Chromium",
+      "Embedded UI for a C++ native desktop tool",
+      "Electron alternative with under 5MB runtime for desktop apps",
+      "HTML-based settings panel embedded in a low-resource application",
+      "Web tech UI inside a native app without Electron overhead"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Tiny footprint — single MB instead of hundreds",
+      "HTML/CSS/script without shipping Chromium",
+      "Mature — powers Norton, BitDefender desktop UIs",
+      "Low memory usage versus Electron"
+    ],
+    "cons": [
+      "Custom script engine, not standard JS",
+      "Small community, niche docs",
+      "Licensing is source-available not fully open",
+      "Web-std compatibility is partial by design"
+    ],
+    "verdict": "The sensible Electron alternative when binary size matters, if you can accept a non-standard runtime.",
+    "best_for": "Security and utility apps where tiny install size and low RAM are requirements",
+    "not_for": "Teams wanting full Chromium compatibility and npm ecosystem reuse"
   }
 }

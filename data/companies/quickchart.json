@@ -25,5 +25,30 @@
   },
   "community": {
     "hn_mentions_30d": 10
+  },
+  "content": {
+    "when_to_use": [
+      "Generating charts and graphs from data via a simple API URL",
+      "Embedding chart images in emails and reports without JS libraries",
+      "Producing data visualizations in automated reporting pipelines",
+      "Creating charts from templates for no-code dashboards and apps"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Open-source Chart.js as a service",
+      "Simple URL-based chart images for emails",
+      "Self-hostable for privacy or scale",
+      "Generous free tier for small apps"
+    ],
+    "cons": [
+      "Static images, not interactive charts",
+      "Less polished styling than paid BI tools",
+      "Rate limits on hosted free tier",
+      "Limited chart types vs D3 or Plotly"
+    ],
+    "verdict": "A pragmatic pick for dashboards, PDFs, and email reports where static images beat JS-heavy chart embeds.",
+    "best_for": "Teams embedding charts into emails, PDFs, or backend reports",
+    "not_for": "Interactive dashboards where Plotly or Recharts fit better"
   }
 }

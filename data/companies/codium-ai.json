@@ -23,5 +23,30 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "Generating meaningful test cases for Python, JS, or Go functions",
+      "Catching bugs via AI-suggested edge case tests before code review",
+      "Running test generation in VS Code or JetBrains on save",
+      "Improving code coverage metrics with AI-written behavior tests"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Focused on test generation, which most assistants underserve",
+      "Produces meaningful assertions, not just scaffolding",
+      "IDE plugins work across JetBrains and VS Code",
+      "Free tier sufficient for solo developers"
+    ],
+    "cons": [
+      "Generated tests still require human review for correctness",
+      "Coverage for niche frameworks and languages uneven",
+      "Rebranding to Qodo has created product confusion",
+      "Paid tiers push enterprise features solo devs do not need"
+    ],
+    "verdict": "The best dedicated AI test-gen tool, but treat its output as a starting draft, not final tests.",
+    "best_for": "Developers who want automated first-pass unit tests on existing code",
+    "not_for": "Teams already productive with TDD or needing broad code generation beyond tests"
   }
 }

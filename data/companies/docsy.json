@@ -22,5 +22,31 @@
   },
   "community": {
     "hn_mentions_30d": 387
+  },
+  "content": {
+    "when_to_use": [
+      "Hugo-based docs site for open-source project",
+      "Technical documentation with versioned navigation",
+      "Google-standard docs theme with integrated search",
+      "Multi-language documentation site for global OSS project",
+      "Self-hosted docs with Docsy as Gatsby/Docusaurus alternative"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Google-built, technical-doc optimized Hugo theme",
+      "Versioning and i18n baked in",
+      "Sensible IA conventions out of the box",
+      "Self-hosted and free"
+    ],
+    "cons": [
+      "Hugo learning curve non-trivial",
+      "Customizing beyond defaults is work",
+      "Search requires manual setup",
+      "Fewer plugins than Docusaurus"
+    ],
+    "verdict": "A solid pick if your team is already on Hugo; otherwise Docusaurus or Mintlify are easier starts.",
+    "best_for": "OSS and infra projects standardizing on Hugo for technical documentation",
+    "not_for": "Teams unfamiliar with Hugo or wanting minimal-config doc sites"
   }
 }

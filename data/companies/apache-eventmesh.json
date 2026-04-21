@@ -26,5 +26,31 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "Decoupling microservices with a cloud-native event bus",
+      "Bridging Kafka, RocketMQ, and HTTP events in one runtime",
+      "Event-driven orchestration for distributed microservice flows",
+      "Fanout of domain events to multiple heterogeneous consumers",
+      "CNCF-compliant event routing for multi-cloud architectures"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Pluggable runtime for multi-protocol event routing",
+      "Backed by large Chinese fintech production use",
+      "CloudEvents and Kafka/RocketMQ integration",
+      "Apache-licensed and vendor-neutral"
+    ],
+    "cons": [
+      "Smaller community than Kafka or RocketMQ proper",
+      "Operational complexity for small teams",
+      "Docs skew heavily toward Chinese deployments",
+      "Fewer managed service options"
+    ],
+    "verdict": "Interesting event mesh for large orgs already in the Apache ecosystem; not a first pick for small teams.",
+    "best_for": "Large orgs unifying events across Kafka, RocketMQ and HTTP",
+    "not_for": "Startups that can solve messaging with a managed broker"
   }
 }

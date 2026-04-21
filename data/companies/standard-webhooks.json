@@ -22,5 +22,29 @@
   },
   "community": {
     "hn_mentions_30d": 1
+  },
+  "content": {
+    "when_to_use": [
+      "Standardized webhook spec for consistent payload format",
+      "Webhook signature verification for secure integrations",
+      "Community standard adoption for SaaS webhook APIs",
+      "Interoperable webhook format across tool ecosystem",
+      "Retry and delivery convention spec for webhook producers"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Open community-driven specification",
+      "Solves signature verification consistency",
+      "Backed by Svix, GitHub, Twilio"
+    ],
+    "cons": [
+      "Adoption still early across vendors",
+      "Spec, not a runnable product",
+      "Requires producer and consumer buy-in"
+    ],
+    "verdict": "A badly-needed standard that could end webhook signature chaos, if vendors actually adopt it at scale.",
+    "best_for": "Webhook producers wanting consistent signature standards",
+    "not_for": "Teams needing a ready-made webhook platform today"
   }
 }

@@ -22,5 +22,30 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "Detecting misinformation and brand safety risks in content feeds",
+      "Scoring content credibility before programmatic ad placement",
+      "Monitoring news and social content for brand-unsafe narratives",
+      "Integrating content risk scoring into content distribution pipelines"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Specialized in misinformation and hate classification",
+      "Decent accuracy for political and narrative content",
+      "Research-backed models",
+      "Focused API, easy to integrate"
+    ],
+    "cons": [
+      "Rebrand to Cailabs muddies product clarity",
+      "Smaller vendor, uncertain support commitments",
+      "Text only, no multimodal support",
+      "Less transparent model cards than Perspective"
+    ],
+    "verdict": "Narrow-but-good text classifier for misinformation; shop around before committing given rebrand churn.",
+    "best_for": "News platforms and research orgs classifying hate, toxicity, and disinformation in text.",
+    "not_for": "Teams needing multimodal moderation or enterprise-grade support guarantees."
   }
 }

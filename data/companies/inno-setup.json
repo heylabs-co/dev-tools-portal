@@ -41,5 +41,30 @@
     "forks": 1084,
     "updated_at": "2026-04-21",
     "health_score": "B"
+  },
+  "content": {
+    "when_to_use": [
+      "Script-driven Windows installer creation for desktop apps",
+      "Custom install UI with registry and file operations",
+      "Silent installation mode for enterprise MSI-free deploys",
+      "Digitally sign Windows installers in automated pipelines"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Battle-tested Windows installer used by thousands of apps",
+      "Mature Pascal scripting with deep customization",
+      "Small installer footprint",
+      "Free for commercial use"
+    ],
+    "cons": [
+      "Pascal scripting is niche and off-putting",
+      "No MSIX output, only classic EXE installers",
+      "UI feels very Windows-98 by default",
+      "Single maintainer project, slow release cadence"
+    ],
+    "verdict": "The safe, boring, works-forever Windows installer — unbeatable if you don't need MSIX.",
+    "best_for": "Shipping classic Win32 desktop apps with a traditional installer wizard.",
+    "not_for": "Teams that need MSIX, Store submission, or modern cross-platform tooling."
   }
 }

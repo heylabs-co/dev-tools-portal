@@ -22,5 +22,33 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "Synchronous sub-second streaming for interactive live sports",
+      "Real-time betting and second-screen apps with near-zero latency",
+      "Replacing HLS with RTS for interactive live auction platforms",
+      "Sub-100ms live stream delivery to 1M+ concurrent viewers",
+      "Interactive live video where viewers act on synchronized events"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Truly synchronous sub-second streams",
+      "Built-in simulcast and viewer sync",
+      "SDKs for web, iOS, Android, Unity",
+      "Proven in betting and auctions",
+      "Enterprise-grade global infrastructure"
+    ],
+    "cons": [
+      "Expensive, enterprise-only contracts",
+      "Limited community and public docs",
+      "Overkill unless sync really matters",
+      "Fewer VOD/recording features",
+      "Long sales cycle"
+    ],
+    "verdict": "Premium sub-second CDN for when stream sync drives revenue — otherwise Millicast or Mux do fine.",
+    "best_for": "Sports betting, auctions, iGaming needing identical-time streams to every viewer.",
+    "not_for": "VOD, general OTT, or latency-tolerant streaming."
   }
 }

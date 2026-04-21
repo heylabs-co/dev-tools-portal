@@ -21,5 +21,31 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "Bot mitigation for new account registration flows",
+      "Account takeover prevention at login with MatchKey challenges",
+      "Fake account creation blocking for gaming platforms",
+      "Risk-based authentication challenge escalation at checkout",
+      "Automated abuse prevention for marketplace listing creation"
+    ]
+  },
+  "review": {
+    "pros": [
+      "MatchKey puzzles resist solver farms better than reCAPTCHA",
+      "Risk-based flow only challenges suspicious traffic",
+      "Proven at scale with banks and large marketplaces",
+      "Warranty-backed SLAs on bot mitigation outcomes"
+    ],
+    "cons": [
+      "Enterprise pricing and sales cycle, not dev-friendly",
+      "Interactive puzzles add user friction when triggered",
+      "Heavy JS payload can impact page performance",
+      "Overkill for small SaaS with low abuse traffic"
+    ],
+    "verdict": "Strong choice for enterprises under active bot attack, but pricing and integration overhead make it wrong for startups.",
+    "best_for": "Banks, marketplaces and gaming platforms facing organized bot and ATO attacks at scale.",
+    "not_for": "Indie SaaS or small e-commerce with modest signup abuse and a tight budget."
   }
 }

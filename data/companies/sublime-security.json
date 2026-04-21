@@ -22,5 +22,31 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "MQL-based phishing detection rules for custom email threats",
+      "BEC and spear-phishing detection with open-source rules",
+      "Email malware analysis via attachment sandboxing",
+      "Community rule sharing for emerging email threat detection",
+      "Self-hosted email security for privacy-sensitive organizations"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Open source core lets teams audit detection logic",
+      "MQL rule language is expressive and readable",
+      "Active rule-sharing community ships detections fast",
+      "Self-hostable for maximum data control"
+    ],
+    "cons": [
+      "Self-hosting still requires ops effort to run well",
+      "Smaller brand footprint versus Abnormal or Proofpoint",
+      "Cloud version pricing not always public",
+      "Requires detection-engineering mindset to tune"
+    ],
+    "verdict": "A refreshingly transparent email security platform for teams that want to own their detection logic.",
+    "best_for": "Security engineers who want to read, write, and own their email detection rules.",
+    "not_for": "Teams wanting fully black-box AI-driven email protection with zero tuning responsibility."
   }
 }

@@ -22,5 +22,31 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "Self-hosted newsletter with full subscriber data ownership",
+      "REST API integration syncing signups from a product app",
+      "Transactional email and newsletter from a single open-source tool",
+      "High-volume mailing list management on self-managed infra",
+      "Open-source alternative to Mailchimp for developer-operated newsletters"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Self-hosted, no per-subscriber fees at scale",
+      "Single Go binary keeps ops simple",
+      "Full REST API for programmatic sending",
+      "Handles millions of subscribers on modest hardware"
+    ],
+    "cons": [
+      "You own deliverability, warmup, bounce handling",
+      "No built-in transactional email service",
+      "UI less polished than SaaS alternatives",
+      "Deep customization requires Go knowledge"
+    ],
+    "verdict": "Best open-source newsletter tool; saves real money at 100k+ subs if you can run infra.",
+    "best_for": "Technical teams with 100k+ subscribers and DevOps capability",
+    "not_for": "Non-technical marketers wanting managed deliverability"
   }
 }

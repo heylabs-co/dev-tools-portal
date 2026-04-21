@@ -22,5 +22,31 @@
   "seo": {
     "title": "Nuxt Content — Developer Documentation / DevRel",
     "meta_description": "Nuxt Content: Nuxt Content — file-based CMS module for Nuxt.js that reads Markdown, JSON, and YAML files to build documentation sites and content-driven applica"
+  },
+  "content": {
+    "when_to_use": [
+      "Markdown-based docs site built with Nuxt Content module",
+      "Blog powered by Git-stored MDX files in Nuxt application",
+      "API reference authored in YAML and rendered via Nuxt Content",
+      "Content queried with $content API for dynamic filtered listing",
+      "Documentation deployed on Vercel with full-text search"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Deep Nuxt integration makes docs a first-class route",
+      "File-based content model is familiar to Vue devs",
+      "Strong MDC syntax enables interactive Markdown components",
+      "Free, open source, and maintained by Nuxt core team"
+    ],
+    "cons": [
+      "Locked into the Nuxt ecosystem by design",
+      "Breaking changes between versions caused pain historically",
+      "Complex queries can feel awkward for large content sets",
+      "Less polished than standalone docs platforms"
+    ],
+    "verdict": "The obvious docs choice inside Nuxt apps; don't bring it in just for documentation otherwise.",
+    "best_for": "Teams already on Nuxt who want integrated content and docs alongside their app.",
+    "not_for": "Non-Vue teams or projects where docs are the sole reason to adopt a framework."
   }
 }

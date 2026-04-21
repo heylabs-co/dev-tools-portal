@@ -23,5 +23,31 @@
   },
   "community": {
     "hn_mentions_30d": 3
+  },
+  "content": {
+    "when_to_use": [
+      "AMD MI300X GPU clusters for AI training at competitive pricing",
+      "LLM training on AMD accelerators as H100 alternative",
+      "High-bandwidth memory GPUs for large-model training runs",
+      "Cost-efficient AI training without NVIDIA vendor dependency",
+      "Burst GPU capacity on AMD hardware for ML research teams"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Dedicated AMD MI300X/MI325X capacity available",
+      "Cheaper per-GPU than Nvidia H100 alternatives",
+      "Higher HBM capacity suits large-context inference",
+      "Growing ROCm ecosystem support"
+    ],
+    "cons": [
+      "ROCm tooling still lags CUDA maturity",
+      "Smaller software ecosystem vs Nvidia GPUs",
+      "Some kernels need manual porting from CUDA",
+      "Younger company with less track record"
+    ],
+    "verdict": "A credible AMD-first GPU cloud if your stack tolerates ROCm, cheaper HBM that Nvidia shops will struggle to use.",
+    "best_for": "Inference teams chasing HBM-heavy workloads and willing to work in ROCm",
+    "not_for": "CUDA-only shops or teams needing mature Nvidia tooling and ecosystem"
   }
 }

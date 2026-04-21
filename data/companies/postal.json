@@ -22,5 +22,31 @@
   },
   "community": {
     "hn_mentions_30d": 59
+  },
+  "content": {
+    "when_to_use": [
+      "Self-hosted transactional email server for full data control",
+      "SMTP relay for a SaaS app without relying on third-party ESP",
+      "Open-source Mailgun alternative on owned infrastructure",
+      "HTTP API email sending integrated with a self-hosted stack",
+      "High-volume mailing list on own servers for privacy compliance"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Full open-source SMTP + HTTP API server",
+      "Self-hosted means no per-email SaaS fees",
+      "Good choice for EU data residency needs",
+      "Web UI for managing messages and queues"
+    ],
+    "cons": [
+      "Running your own IPs hurts deliverability early",
+      "Requires ongoing abuse/reputation management",
+      "Less polished than Postmark or SES",
+      "Community maintenance, no SLA"
+    ],
+    "verdict": "Viable self-hosted transactional mail for teams committed to mail ops; painful otherwise.",
+    "best_for": "Privacy-focused teams with SRE capacity to manage mail servers",
+    "not_for": "Product teams who just want a reliable email API"
   }
 }

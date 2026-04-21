@@ -22,5 +22,31 @@
   },
   "community": {
     "hn_mentions_30d": 15
+  },
+  "content": {
+    "when_to_use": [
+      "Continuous Lighthouse monitoring for regression detection",
+      "Core Web Vitals tracking tied to specific deploys and commits",
+      "Performance budget alerting for frontend engineering workflows",
+      "Before/after performance comparison for design changes",
+      "Tracking LCP, CLS, INP improvements over weeks and months"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Per-commit regression tracking with detailed waterfalls",
+      "Solid Lighthouse CI integration",
+      "Tracks third-party script impact clearly",
+      "Transparent flat pricing"
+    ],
+    "cons": [
+      "No real user monitoring, synthetic only",
+      "Fewer enterprise features than SpeedCurve",
+      "Limited team collaboration features",
+      "Dashboard less polished than Calibre"
+    ],
+    "verdict": "Focused synthetic perf testing tool with great regression analysis, pair with RUM for a complete picture.",
+    "best_for": "Engineering teams catching perf regressions in CI with Lighthouse",
+    "not_for": "Teams needing real user monitoring or executive-grade perf dashboards"
   }
 }

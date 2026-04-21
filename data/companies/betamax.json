@@ -39,5 +39,30 @@
     "forks": 62,
     "updated_at": "2026-04-21",
     "health_score": "F"
+  },
+  "content": {
+    "when_to_use": [
+      "Record HTTP cassettes for deterministic integration tests",
+      "Offline test runs replaying real API responses",
+      "Speed up Python test suites by eliminating live network calls",
+      "Prevent flaky tests caused by external API changes"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Deterministic HTTP tests without hitting real APIs",
+      "Cassettes are plain files, easy to inspect and commit",
+      "Drop-in with the python-requests library",
+      "Keeps CI fast and offline-friendly"
+    ],
+    "cons": [
+      "Project development is largely quiet these days",
+      "Only works with requests, not httpx or aiohttp",
+      "Cassettes drift when upstream APIs change silently",
+      "Secrets in cassettes need careful scrubbing"
+    ],
+    "verdict": "Solid VCR-style recorder if you are on python-requests, but check maintenance before betting on it.",
+    "best_for": "Python projects pinned to requests that need reproducible integration tests",
+    "not_for": "Async-first stacks on httpx/aiohttp or teams wanting actively maintained tooling"
   }
 }

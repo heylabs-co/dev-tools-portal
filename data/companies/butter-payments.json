@@ -23,5 +23,30 @@
   },
   "community": {
     "hn_mentions_30d": 3
+  },
+  "content": {
+    "when_to_use": [
+      "ML-powered failed subscription payment recovery via smart retry scheduling",
+      "Decline code analysis to optimize card retry timing and reduce churn",
+      "Recovering involuntary churn from expired or declined cards at renewal",
+      "Automated dunning alternative that avoids pestering customers directly"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Focused solely on declined-payment recovery",
+      "ML models trained on decline-code patterns",
+      "Automates retry scheduling per card and issuer",
+      "Clear ROI tied to recovered revenue"
+    ],
+    "cons": [
+      "Point solution — not a full orchestrator",
+      "Revenue-share pricing can get expensive at scale",
+      "Primarily useful for subscription and recurring flows",
+      "Requires data access that some PSPs gate"
+    ],
+    "verdict": "Worthwhile bolt-on for subscription businesses losing revenue to soft declines; not a replacement for orchestration.",
+    "best_for": "Subscription and card-on-file merchants with meaningful involuntary churn from declines.",
+    "not_for": "One-time e-commerce checkouts or teams without a recurring billing problem."
   }
 }

@@ -22,5 +22,30 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "Automated cloud forensics and incident response in AWS/Azure/GCP",
+      "Evidence collection for post-breach investigation in multi-cloud environments",
+      "Rapid triage of compromised EC2 or container workloads",
+      "Compliance-grade forensic capture for SOC teams handling cloud incidents"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Automated cloud forensics across AWS, Azure, GCP",
+      "Fast evidence collection for incident response",
+      "Strong investigation workflows and timelines",
+      "Fits regulated orgs needing chain of custody"
+    ],
+    "cons": [
+      "Security/IR tool; not traditional crash reporting",
+      "Enterprise-only pricing and sales cycle",
+      "Overkill outside incident response teams",
+      "Requires mature SOC processes"
+    ],
+    "verdict": "Great for cloud IR and forensics, but the wrong tool if you actually need app crash reporting.",
+    "best_for": "Cloud security teams doing forensics and incident response",
+    "not_for": "App developers looking for crash reports and stack traces"
   }
 }

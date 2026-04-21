@@ -22,5 +22,31 @@
   },
   "community": {
     "hn_mentions_30d": 36
+  },
+  "content": {
+    "when_to_use": [
+      "Continuous runtime profiling reducing CPU usage by 20-40%",
+      "Autonomous compute optimization without code changes",
+      "Reducing cloud bills by optimizing running workloads in place",
+      "JVM and Python application performance tuning in production",
+      "Cost savings on Kubernetes workloads via Granulate agents"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Automatic runtime optimization without code changes",
+      "Supports JVM, Python, and Go workloads",
+      "Continuous profiling surfaces bottlenecks",
+      "Intel-backed, enterprise support available"
+    ],
+    "cons": [
+      "Closed-source agent raises trust questions",
+      "Savings vary widely by workload type",
+      "Enterprise pricing, not self-serve",
+      "Intel acquisition shifted product priorities"
+    ],
+    "verdict": "Compelling for compute-heavy services that can prove the agent delivers savings, skeptical for lightweight apps.",
+    "best_for": "Compute-intensive backends on large instance fleets with JVM or Python hot paths",
+    "not_for": "Lightweight web apps or teams unwilling to run closed-source agents in production"
   }
 }

@@ -44,5 +44,28 @@
     "forks": 6194,
     "updated_at": "2026-04-21",
     "health_score": "A"
+  },
+  "content": {
+    "when_to_use": [
+      "Running ML predictions as SQL queries against existing databases",
+      "Connecting LLMs directly to databases for AI-powered queries",
+      "Building real-time AI features without a separate ML pipeline",
+      "Fine-tuning and deploying models via SQL syntax on any data source"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Query 200+ data sources with SQL and natural language",
+      "Self-reasoning agents exposed as AI-Tables",
+      "Open-source core with active community"
+    ],
+    "cons": [
+      "Abstraction can hide query performance issues",
+      "Feature surface is broad and sometimes thin",
+      "Enterprise support tier needed for scale"
+    ],
+    "verdict": "Powerful glue layer for data-grounded AI if you accept the leaky SQL-on-everything abstraction.",
+    "best_for": "Analysts and engineers building AI agents over many heterogeneous data sources",
+    "not_for": "Teams needing hand-tuned performance on a single warehouse"
   }
 }

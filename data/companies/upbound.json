@@ -22,5 +22,31 @@
   },
   "community": {
     "hn_mentions_30d": 7
+  },
+  "content": {
+    "when_to_use": [
+      "Managed Crossplane for composing cloud infrastructure via K8s API",
+      "Platform engineering teams building internal cloud platforms",
+      "IaC abstraction layer for self-service cloud provisioning",
+      "Multi-cloud resource management via Kubernetes CRDs",
+      "Replacing Terraform with Crossplane-based declarative infra"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Managed Crossplane control planes as a service",
+      "Kubernetes-native API for multi-cloud infra",
+      "Compositions enable reusable platform APIs",
+      "Company employs core Crossplane maintainers"
+    ],
+    "cons": [
+      "Crossplane's learning curve is steep",
+      "Opinionated around Kubernetes for all infra",
+      "Enterprise pricing, unclear for small teams",
+      "Overkill if Terraform already works for you"
+    ],
+    "verdict": "The canonical way to run Crossplane in production, but only worth it if you're building an internal platform.",
+    "best_for": "Platform teams building internal developer platforms with Crossplane",
+    "not_for": "Small teams happy with Terraform or Pulumi for their infra"
   }
 }

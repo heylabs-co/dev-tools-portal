@@ -23,5 +23,31 @@
   "seo": {
     "title": "API Blueprint — Developer Documentation / DevRel",
     "meta_description": "API Blueprint: API Blueprint — open-source, Markdown-based API description language for designing, documenting, and testing REST APIs."
+  },
+  "content": {
+    "when_to_use": [
+      "Markdown-first API design reviewed in pull requests",
+      "Mock server generated from Blueprint spec during frontend build",
+      "Contract testing between backend and consumers via Dredd",
+      "API changelog tracked as diffs to Blueprint files in Git",
+      "Human-readable spec shared with external integration partners"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Human-readable Markdown syntax lowers authoring friction",
+      "Open specification, not tied to one vendor",
+      "Tooling ecosystem exists for parsing and mocking",
+      "Good fit for design-first API workflows"
+    ],
+    "cons": [
+      "Industry has largely moved to OpenAPI instead",
+      "Active development has slowed significantly",
+      "Fewer modern tools support Blueprint than OpenAPI",
+      "Conversion to OpenAPI often needed for integrations"
+    ],
+    "verdict": "A readable API description format whose moment has passed - OpenAPI is now the safe default.",
+    "best_for": "Existing Blueprint codebases or teams committed to Markdown-first API authoring.",
+    "not_for": "New projects - start with OpenAPI 3.1 for broader tooling and long-term support."
   }
 }

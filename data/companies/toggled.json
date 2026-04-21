@@ -22,5 +22,30 @@
   },
   "community": {
     "hn_mentions_30d": 20
+  },
+  "content": {
+    "when_to_use": [
+      "Lightweight boolean feature flag service with REST API",
+      "React SDK for client-side flag evaluation",
+      "Simple flag management for small team feature releases",
+      "Kill switch deployment with zero-config flag service"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Simple REST API and React SDK for boolean flags",
+      "Low-overhead integration for small apps",
+      "Straightforward pricing for small teams",
+      "Minimal conceptual surface area"
+    ],
+    "cons": [
+      "Limited advanced targeting and experimentation",
+      "Small ecosystem and vendor size",
+      "Few enterprise features (SSO, audit, RBAC)",
+      "Less active community than competitors"
+    ],
+    "verdict": "Fine for a small React app that just needs on/off flags; outgrow it once you need real experimentation.",
+    "best_for": "Small React/Node apps needing basic feature toggles fast",
+    "not_for": "Teams needing advanced targeting, experiments or governance"
   }
 }

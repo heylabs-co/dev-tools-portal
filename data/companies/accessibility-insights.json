@@ -19,5 +19,31 @@
   "seo": {
     "title": "Accessibility Insights — Accessibility / A11y Testing",
     "meta_description": "Accessibility Insights: Accessibility Insights — Accessibility / A11y Testing tool for developers"
+  },
+  "content": {
+    "when_to_use": [
+      "FastPass ARIA landmark check before every release",
+      "Assessment-mode deep audit for WCAG 2.1 compliance",
+      "Keyboard navigation testing for complex web app flows",
+      "Screen reader compatibility validation for new components",
+      "CI-integrated tab stop visualization for React UI library"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Free tool maintained by Microsoft",
+      "FastPass workflow covers automated and assisted checks",
+      "Clear guided instructions for manual WCAG tests",
+      "Works on Windows desktop apps and web"
+    ],
+    "cons": [
+      "Browser extension UX is functional but dated",
+      "No dashboards or multi-site reporting",
+      "Requires manual effort for thorough audits",
+      "Not designed for continuous monitoring at scale"
+    ],
+    "verdict": "Best free pick for guided WCAG checks, especially on Microsoft stacks, but not a replacement for monitoring platforms.",
+    "best_for": "Developers and QA doing per-page or per-feature accessibility reviews.",
+    "not_for": "Teams needing continuous monitoring across hundreds of pages."
   }
 }

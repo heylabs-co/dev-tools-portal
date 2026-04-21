@@ -19,5 +19,31 @@
   "seo": {
     "title": "Fish-Net — Game Development Tools",
     "meta_description": "Fish-Net: Open-source Unity multiplayer networking solution built for performance. Offers client-hosted and dedicated server support with prediction, lag compen"
+  },
+  "content": {
+    "when_to_use": [
+      "Client-hosted multiplayer Unity game with lag compensation",
+      "Prediction-based movement for fast-paced competitive game",
+      "Observer pattern for spectator mode in an online title",
+      "Dedicated server deployment for a Unity battle-arena game",
+      "Free alternative to Mirror for a production Unity multiplayer title"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Free Pro tier via Patreon unlocks advanced features",
+      "Built-in client prediction and lag compensation",
+      "Active Discord with responsive lead developer",
+      "Outperforms Mirror in stress tests on most scenarios"
+    ],
+    "cons": [
+      "Documentation is improving but still incomplete",
+      "Steeper learning curve than Mirror for newcomers",
+      "Unity-only, no multi-engine support",
+      "Rapid version changes can break existing projects"
+    ],
+    "verdict": "The strongest free Unity networking stack in 2025 if you can tolerate sparse docs and a fast-moving API.",
+    "best_for": "Unity teams shipping competitive or physics-heavy multiplayer with prediction",
+    "not_for": "Non-Unity engines or teams needing enterprise-grade commercial support"
   }
 }

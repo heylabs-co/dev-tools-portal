@@ -30,5 +30,31 @@
   },
   "community": {
     "hn_mentions_30d": 14
+  },
+  "content": {
+    "when_to_use": [
+      "Privileged access management for cloud infrastructure SSH",
+      "Session recording for SOC 2 access control evidence",
+      "Just-in-time developer access to production databases",
+      "Zero-trust remote access replacing legacy VPN for ops teams",
+      "HIPAA-compliant audit trail for PHI system access"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Session recording for audit-ready privileged access logs",
+      "Just-in-time access reduces standing credentials",
+      "SSO and MFA enforcement on every infrastructure hop",
+      "Supports SSH, RDP, database, and Kubernetes targets"
+    ],
+    "cons": [
+      "Adds a hop that can slow interactive dev workflows",
+      "Setup complexity grows with many target environments",
+      "Pricing often per-user, scales awkwardly for contractors",
+      "Crowded category with several well-funded alternatives"
+    ],
+    "verdict": "Necessary plumbing for SOC 2 and PCI access controls, but expect developers to grumble about the extra friction.",
+    "best_for": "Regulated orgs needing auditable access to production systems",
+    "not_for": "Small teams where everyone already has tight IAM controls"
   }
 }

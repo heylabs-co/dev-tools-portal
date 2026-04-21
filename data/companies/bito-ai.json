@@ -22,5 +22,30 @@
   },
   "community": {
     "hn_mentions_30d": 60
+  },
+  "content": {
+    "when_to_use": [
+      "Getting AI code review and suggestions directly in VS Code",
+      "Generating unit tests and docstrings for existing functions",
+      "Explaining legacy code blocks with AI context from whole project",
+      "Running CLI-based code review in CI pipelines without IDE"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Covers IDE, CLI, and CI review in one product",
+      "AI code review agent catches real bugs in PRs",
+      "Reasonable pricing versus enterprise Copilot tiers",
+      "Supports multiple LLM backends including your own keys"
+    ],
+    "cons": [
+      "Feature breadth means nothing is truly best-in-class",
+      "UI and IDE plugins feel less polished than Cursor or Copilot",
+      "Code review agent produces noisy comments on large PRs",
+      "Smaller community means fewer prompts and recipes"
+    ],
+    "verdict": "A pragmatic mid-tier assistant that covers a lot of ground; great value but lacks a killer feature.",
+    "best_for": "Small teams wanting an all-in-one IDE plus PR review assistant on a budget",
+    "not_for": "Developers who want the sharpest autocomplete or a polished agentic IDE"
   }
 }

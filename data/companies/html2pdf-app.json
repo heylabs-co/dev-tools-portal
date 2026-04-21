@@ -22,5 +22,33 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "Converting HTML or URLs to PDF with header/footer templates",
+      "Generating invoices and reports from HTML templates via API",
+      "Custom CSS-styled PDF generation for web-based documents",
+      "Batch HTML-to-PDF conversion for document generation workflows",
+      "Serverless PDF creation from existing web page layouts"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Dead-simple REST: URL in, PDF out",
+      "Supports custom CSS, headers, footers",
+      "Pay-per-conversion, no monthly minimums",
+      "Quick to integrate (under 10 minutes)",
+      "Reasonable defaults for invoice-style docs"
+    ],
+    "cons": [
+      "No JS-heavy SPA rendering edge cases",
+      "Feature set smaller than PDFShift or DocRaptor",
+      "Solo-run service, bus-factor concerns",
+      "No SLA on cheaper tiers",
+      "Limited dashboard/analytics"
+    ],
+    "verdict": "Small, sharp HTML-to-PDF API — perfect for side projects, thin for regulated production workloads.",
+    "best_for": "Indie devs and small SaaS rendering invoices, tickets, or receipts from templates.",
+    "not_for": "Regulated industries needing SLAs and audit logs."
   }
 }

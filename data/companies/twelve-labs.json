@@ -25,5 +25,28 @@
   },
   "community": {
     "hn_mentions_30d": 1
+  },
+  "content": {
+    "when_to_use": [
+      "Indexing and searching video content by semantic meaning",
+      "Building video understanding features without frame-by-frame logic",
+      "Generating video summaries and chapter markers via API",
+      "Running multimodal video classification on large content libraries"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Genuinely strong long-video understanding",
+      "Semantic search across hours of footage",
+      "Marengo and Pegasus are differentiated"
+    ],
+    "cons": [
+      "Pricey for indie developer budgets",
+      "Limited control over indexing internals",
+      "Overkill for short-clip use cases"
+    ],
+    "verdict": "The go-to API for serious long-form video understanding; few competitors come close on quality.",
+    "best_for": "Media, sports and security teams indexing long video libraries at scale",
+    "not_for": "Short-clip apps where a frame-sampling plus CLIP pipeline is sufficient"
   }
 }

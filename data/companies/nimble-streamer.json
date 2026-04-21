@@ -22,5 +22,33 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "Lightweight streaming server with HLS/DASH and low memory use",
+      "Self-hosted free streaming solution for small broadcasters",
+      "Multi-protocol delivery: HLS, WebRTC, RTMP in one server",
+      "Live and VOD streaming without per-stream licensing costs",
+      "Video origin server for CDN integration in streaming setups"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Free for most commercial uses",
+      "Very lightweight, runs on small VMs",
+      "Supports SRT, RTMP, HLS, MPEG-DASH, LL-HLS",
+      "WMSPanel gives centralized control",
+      "Active Softvelum support community"
+    ],
+    "cons": [
+      "Advanced features require paid add-ons",
+      "Closed-source despite freeware label",
+      "Docs scattered across blog posts",
+      "Limited API for programmatic control",
+      "UI dated compared to modern SaaS"
+    ],
+    "verdict": "Quiet workhorse for self-hosted streaming — free, fast, feature-rich, but not truly open source.",
+    "best_for": "Ops teams running cost-constrained, self-hosted streaming infra on minimal hardware.",
+    "not_for": "Teams needing open source or modern APIs."
   }
 }

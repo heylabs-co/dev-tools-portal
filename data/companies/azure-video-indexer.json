@@ -22,5 +22,30 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "Indexing video libraries with automatic transcript and keyword tags",
+      "Detecting NSFW content and brand violations in video at scale",
+      "Extracting named entities and topic summaries from video content",
+      "Building content compliance workflows for video platforms"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Bundled with Azure Cognitive Services billing",
+      "Combines moderation with transcripts, faces, and scenes",
+      "Good for enterprises already on Microsoft stack",
+      "Solid compliance posture (SOC, ISO, HIPAA)"
+    ],
+    "cons": [
+      "Video moderation is secondary to indexing, not its focus",
+      "Latency unsuitable for real-time livestream review",
+      "Azure portal UX is notoriously clunky",
+      "Pricing per minute adds up fast at scale"
+    ],
+    "verdict": "Decent default if you already live in Azure, but dedicated moderation APIs beat it on accuracy and latency.",
+    "best_for": "Enterprises on Azure needing VOD moderation plus metadata extraction in one call.",
+    "not_for": "Real-time livestream safety or teams outside the Microsoft ecosystem."
   }
 }

@@ -21,5 +21,30 @@
   },
   "community": {
     "hn_mentions_30d": 47
+  },
+  "content": {
+    "when_to_use": [
+      "Redacting PII from text, documents, and audio before LLM processing",
+      "Building HIPAA-compliant AI pipelines with automated de-identification",
+      "Scanning and anonymizing sensitive data in real-time ingestion",
+      "Integrating PII detection into data preprocessing for ML pipelines"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Best-in-class PII detection across modalities",
+      "Self-hosted deployment available for data residency",
+      "Covers text, audio, images, and documents",
+      "Strong compliance story for GDPR, HIPAA, PCI"
+    ],
+    "cons": [
+      "Not a general content moderation tool",
+      "Enterprise pricing, not cheap at scale",
+      "Setup complexity with self-hosted option",
+      "Redaction tuning takes iteration"
+    ],
+    "verdict": "The redaction layer you deploy before other moderation or LLM steps; narrow purpose, excellent execution.",
+    "best_for": "Regulated industries and LLM apps needing PII redaction before storage, training, or inference.",
+    "not_for": "Teams that just need toxicity, NSFW, or general UGC moderation."
   }
 }

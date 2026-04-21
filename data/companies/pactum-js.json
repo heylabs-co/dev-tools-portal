@@ -39,5 +39,29 @@
     "forks": 61,
     "updated_at": "2026-04-21",
     "health_score": "C"
+  },
+  "content": {
+    "when_to_use": [
+      "End-to-end and contract tests for Node.js REST APIs",
+      "Chainable fluent syntax for complex HTTP test scenarios",
+      "Component test isolation with mock server integration",
+      "Store and reuse data across test steps with variables"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Unified API for e2e, contract, and component tests",
+      "Chainable fluent syntax reads cleanly",
+      "Built-in data management and mock server",
+      "No extra runners needed beyond Mocha/Jest"
+    ],
+    "cons": [
+      "Smaller community than Supertest or Postman",
+      "Node.js only, not a polyglot tool",
+      "Documentation gaps on advanced patterns"
+    ],
+    "verdict": "A solid all-in-one REST testing kit for Node.js if you want more than Supertest without adopting Postman.",
+    "best_for": "Node.js teams wanting contract plus integration tests in one library",
+    "not_for": "Polyglot shops needing a tool that works beyond JavaScript"
   }
 }

@@ -21,5 +21,31 @@
   },
   "community": {
     "hn_mentions_30d": 80
+  },
+  "content": {
+    "when_to_use": [
+      "Phone number validation API for contact data quality",
+      "Reverse phone lookup for identity enrichment at onboarding",
+      "Real Contact API for live person verification at signup",
+      "Caller identification for fraud signal enrichment",
+      "Phone and email risk scoring for fintech KYC workflows"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Phone validation and reverse-phone data APIs",
+      "Real Contact scores contactability not just identity",
+      "Useful for both fintechs and marketers",
+      "Clean APIs with self-serve signup"
+    ],
+    "cons": [
+      "Not a full KYC or AML provider",
+      "Phone-data focus limits compliance coverage",
+      "US-centric data depth versus global coverage",
+      "Overlap with carrier-lookup APIs like Twilio"
+    ],
+    "verdict": "Phone and contact data API that complements KYC; don't mistake it for a full identity vendor.",
+    "best_for": "Fintechs and growth teams validating, enriching and scoring phone-based customer contact data",
+    "not_for": "Compliance teams looking for document verification, sanctions screening or full KYC workflows"
   }
 }

@@ -44,5 +44,28 @@
     "forks": 887,
     "updated_at": "2026-04-21",
     "health_score": "D"
+  },
+  "content": {
+    "when_to_use": [
+      "Finding label errors in training datasets before fine-tuning",
+      "Estimating data quality scores for ML dataset audits",
+      "Cleaning noisy text classification datasets with Datalab",
+      "Improving model accuracy by fixing mislabeled training examples"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Finds label errors across text, vision, tabular",
+      "Research-backed confident-learning algorithms",
+      "Works with existing pipelines"
+    ],
+    "cons": [
+      "Requires labeled dataset to start with",
+      "Value drops with already-clean datasets",
+      "Enterprise pricing gets steep"
+    ],
+    "verdict": "The go-to when dataset quality — not model choice — is limiting your metrics.",
+    "best_for": "ML teams debugging accuracy ceilings caused by label noise",
+    "not_for": "Teams with already-clean data or no labeled ground truth yet"
   }
 }

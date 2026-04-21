@@ -23,5 +23,31 @@
   },
   "community": {
     "hn_mentions_30d": 3
+  },
+  "content": {
+    "when_to_use": [
+      "SSO integration for Nulab suite (Backlog, Cacoo, Typetalk)",
+      "SAML 2.0 single sign-on for enterprise team access control",
+      "SCIM user provisioning from corporate identity providers",
+      "Project management access control via SSO policy enforcement",
+      "Audit log access for SOC 2 user activity evidence"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Unified SSO across Backlog, Cacoo and Typetalk",
+      "Well-known suite among Japanese engineering teams",
+      "Reasonable SAML/OIDC support for enterprise plans",
+      "Good tooling for cross-team collaboration"
+    ],
+    "cons": [
+      "SSO APIs tied to Nulabs own product suite",
+      "Not a general-purpose identity provider",
+      "Limited ecosystem outside Japan",
+      "Feature velocity is slower than major IDPs"
+    ],
+    "verdict": "Only relevant if you already use Nulab products; not a standalone identity platform.",
+    "best_for": "Teams standardizing on Backlog/Cacoo that want unified SSO",
+    "not_for": "Apps needing a general-purpose IDP like Okta or Auth0"
   }
 }

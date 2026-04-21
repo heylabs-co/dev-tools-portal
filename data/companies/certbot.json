@@ -22,5 +22,31 @@
   },
   "community": {
     "hn_mentions_30d": 60
+  },
+  "content": {
+    "when_to_use": [
+      "Auto-renewal of Let's Encrypt TLS certs via cron",
+      "Wildcard certificate issuance with DNS-01 ACME challenge",
+      "HTTPS enforcement for self-hosted web applications",
+      "CI/CD cert automation for staging environment security",
+      "Certbot certonly for custom web server TLS configurations"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Free TLS certs via Let's Encrypt automation",
+      "Auto-renewal with cron or systemd timers",
+      "Wide plugin support: Nginx, Apache, DNS",
+      "Battle-tested on millions of servers"
+    ],
+    "cons": [
+      "CLI-centric, awkward for large fleets",
+      "90-day certs require reliable renewal jobs",
+      "Rate limits hurt during misconfigured retries",
+      "No built-in cert inventory or dashboard"
+    ],
+    "verdict": "The default way to automate Let's Encrypt on a single host; less ideal once you're juggling dozens.",
+    "best_for": "Admins running a handful of Linux servers needing free, renewable TLS.",
+    "not_for": "Enterprises needing centralized cert lifecycle management across thousands of endpoints."
   }
 }

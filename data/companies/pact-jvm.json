@@ -41,5 +41,29 @@
     "forks": 486,
     "updated_at": "2026-04-21",
     "health_score": "A"
+  },
+  "content": {
+    "when_to_use": [
+      "Consumer-driven contract testing for JVM microservices",
+      "Generate pact files from consumer test expectations",
+      "Verify provider implementations against pact contracts",
+      "Prevent breaking API changes in microservice deployments"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Mature consumer-driven contract testing for JVM",
+      "Supports Java, Kotlin, Scala, and Groovy",
+      "Integrates with JUnit 4/5 and Spock",
+      "Generates machine-verifiable pact files"
+    ],
+    "cons": [
+      "Steep learning curve for contract testing concepts",
+      "Requires Pact Broker for team workflows",
+      "Async messaging support less polished than HTTP"
+    ],
+    "verdict": "The standard JVM choice for consumer-driven contract testing, worth the complexity at microservice scale.",
+    "best_for": "JVM teams with 5+ microservices needing reliable API compatibility checks",
+    "not_for": "Small teams or monoliths where integration tests suffice"
   }
 }

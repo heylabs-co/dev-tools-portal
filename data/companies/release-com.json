@@ -23,5 +23,30 @@
   },
   "community": {
     "hn_mentions_30d": 515
+  },
+  "content": {
+    "when_to_use": [
+      "Ephemeral full-stack preview environments per PR",
+      "Environments-as-a-Service with database and service clones",
+      "Share staging links with stakeholders before merging",
+      "Auto-teardown environments when PRs are closed"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Full-stack preview environments from pull requests",
+      "Supports complex multi-service apps, not just frontends",
+      "Integrates with existing cloud accounts",
+      "Good fit for QA and sales demos"
+    ],
+    "cons": [
+      "Pricing is enterprise-centric and opaque",
+      "Setup for complex topologies takes real effort",
+      "Overkill for simple frontend-only previews",
+      "Smaller community than Vercel-style previews"
+    ],
+    "verdict": "The serious pick for ephemeral full-stack previews when Netlify/Vercel can't model your backend.",
+    "best_for": "Backend-heavy teams wanting per-PR environments with DBs, queues, and services.",
+    "not_for": "Frontend-only apps where Vercel or Netlify preview deploys already suffice."
   }
 }

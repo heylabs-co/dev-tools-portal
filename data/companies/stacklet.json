@@ -22,5 +22,31 @@
   },
   "community": {
     "hn_mentions_30d": 26
+  },
+  "content": {
+    "when_to_use": [
+      "Cloud Custodian policy enforcement for AWS security compliance",
+      "Multi-cloud governance automation across AWS, Azure, GCP",
+      "Security policy enforcement with auto-remediation actions",
+      "Cost and compliance policy management at enterprise scale",
+      "SOC 2 continuous control evidence via cloud policy reports"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Built on open-source Cloud Custodian, avoiding lock-in",
+      "Multi-cloud policy enforcement from one console",
+      "Strong cost governance alongside security policies",
+      "GitOps-friendly policy-as-code workflow"
+    ],
+    "cons": [
+      "Requires policy-authoring skills to get full value",
+      "UI less polished than native hyperscaler tools",
+      "Smaller ecosystem than Wiz, Orca, or native CSPM",
+      "Enterprise pricing gates advanced features"
+    ],
+    "verdict": "Solid commercial layer on Cloud Custodian for teams that love policy-as-code multi-cloud governance.",
+    "best_for": "Platform teams at multi-cloud enterprises comfortable writing Custodian policies at scale.",
+    "not_for": "Single-cloud shops or teams wanting a fully graphical, no-code CSPM experience."
   }
 }

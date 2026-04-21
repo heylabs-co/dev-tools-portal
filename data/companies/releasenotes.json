@@ -20,5 +20,31 @@
   "seo": {
     "title": "ReleaseNotes.io — Developer Documentation / DevRel",
     "meta_description": "ReleaseNotes.io: ReleaseNotes.io — dedicated release notes publishing platform for software teams, with public changelog pages and subscriber notifications."
+  },
+  "content": {
+    "when_to_use": [
+      "Public changelog page linked from developer portal footer",
+      "Email digest sent to API subscribers on every release",
+      "Structured release notes separating features, fixes, and breaking changes",
+      "Changelog embedded as iframe in in-app what's-new panel",
+      "RSS feed published for changelog consumed by developer blogs"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Purpose-built for release notes, unlike general tools",
+      "Public changelog pages with subscription notifications",
+      "Simple editor reduces time to publish each release",
+      "Custom domain support for branded changelogs"
+    ],
+    "cons": [
+      "Single-purpose tool duplicates Canny or Headway features",
+      "Limited integration depth with dev tools",
+      "Small team means uncertain long-term roadmap",
+      "Pricing feels steep for a narrow use case"
+    ],
+    "verdict": "Dedicated tool does one thing well; hard to justify if you already have Canny, Headway, or a blog.",
+    "best_for": "Small SaaS teams wanting branded, standalone release-note pages without building their own.",
+    "not_for": "Teams with an existing changelog tool or marketing site that could host release notes."
   }
 }

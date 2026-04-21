@@ -22,5 +22,31 @@
   },
   "community": {
     "hn_mentions_30d": 1
+  },
+  "content": {
+    "when_to_use": [
+      "Cloud-native SAST with microservice context tracing",
+      "IAST instrumentation for runtime vulnerability confirmation",
+      "API security testing across containerized service boundaries",
+      "DevSecOps pipeline integration for pre-merge security scans",
+      "OWASP Top 10 detection with microservice call chain analysis"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Traces vulnerabilities across microservice call graphs",
+      "Context-aware analysis reduces noisy findings",
+      "Handles polyglot codebases better than classic SAST",
+      "Built for cloud-native Kubernetes architectures"
+    ],
+    "cons": [
+      "Acquired by GitLab in 2024, standalone future unclear",
+      "Was enterprise-priced with opaque quotes",
+      "Less valuable for monoliths and simple apps",
+      "Fewer integrations than established SAST vendors"
+    ],
+    "verdict": "Clever cloud-native AppSec approach, though post-GitLab acquisition the standalone product story is murky.",
+    "best_for": "Cloud-native shops with heavy microservice sprawl needing cross-service vulnerability tracing.",
+    "not_for": "Monolith codebases, small apps, or teams wanting a long-term independent vendor."
   }
 }

@@ -22,5 +22,31 @@
   },
   "community": {
     "hn_mentions_30d": 1
+  },
+  "content": {
+    "when_to_use": [
+      "Sharing business logic between Android, iOS, and web in Kotlin",
+      "Cross-platform mobile app development with native UI layers",
+      "Multiplatform libraries shared between JVM server and mobile",
+      "Kotlin-first code sharing for teams using Jetpack Compose",
+      "Gradual KMP adoption starting with shared utility modules"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Share business logic across Android and iOS",
+      "Mature JVM interop and tooling",
+      "Backed by JetBrains and Google",
+      "Compose Multiplatform for shared UI"
+    ],
+    "cons": [
+      "iOS integration still rough around edges",
+      "Smaller ecosystem than React Native",
+      "Debugging cross-platform issues painful",
+      "Build times can be slow"
+    ],
+    "verdict": "The serious choice for Android-first teams sharing logic to iOS, not a React Native replacement.",
+    "best_for": "Android-centric teams wanting to share business logic with iOS without rewriting",
+    "not_for": "Web-first teams or small shops without Kotlin expertise"
   }
 }

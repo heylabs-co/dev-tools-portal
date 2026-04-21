@@ -41,5 +41,29 @@
     "forks": 190,
     "updated_at": "2026-04-21",
     "health_score": "C"
+  },
+  "content": {
+    "when_to_use": [
+      "Multi-tenant Kubernetes with control planes as lightweight pods",
+      "Managed Kubernetes control planes for SaaS platform teams",
+      "Reducing costs by consolidating K8s control planes on shared infra",
+      "Kubernetes-as-a-Service platform on your own cloud infrastructure",
+      "Isolating tenant clusters without full dedicated master nodes"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Kubernetes control planes as pods",
+      "Strong multi-tenancy story",
+      "Open source under CNCF sandbox"
+    ],
+    "cons": [
+      "Requires deep k8s operational skill",
+      "Niche use case for most teams",
+      "Small but growing community"
+    ],
+    "verdict": "A clever multi-tenant k8s pattern for platform teams, overkill for single-cluster shops.",
+    "best_for": "Platform engineers offering hosted k8s control planes internally",
+    "not_for": "Teams running a handful of clusters without tenant isolation needs"
   }
 }

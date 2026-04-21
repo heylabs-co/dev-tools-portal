@@ -30,5 +30,30 @@
   },
   "community": {
     "hn_mentions_30d": 29
+  },
+  "content": {
+    "when_to_use": [
+      "API-level backend performance monitoring in production",
+      "Error rate and latency tracking per backend service",
+      "Alert on SLA breaches for specific API endpoints",
+      "Production API health visibility for engineering teams"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Focused on backend API-level performance",
+      "Tracks error rates and latency per endpoint",
+      "Lightweight alternative to full APM",
+      "Minimal setup for Node and Python services"
+    ],
+    "cons": [
+      "Narrow scope vs full observability platforms",
+      "Little brand presence vs Datadog or New Relic",
+      "Limited tracing depth and distributed systems support",
+      "Integration ecosystem small"
+    ],
+    "verdict": "Niche backend API monitor that could be replaced by any modern APM with endpoint dashboards.",
+    "best_for": "Small teams wanting simple per-endpoint performance monitoring without APM sprawl.",
+    "not_for": "Teams needing distributed tracing, full observability, or deep integrations."
   }
 }

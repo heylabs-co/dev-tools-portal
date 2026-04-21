@@ -22,5 +22,31 @@
   },
   "community": {
     "hn_mentions_30d": 1
+  },
+  "content": {
+    "when_to_use": [
+      "Building custom WebRTC applications in Go without C dependencies",
+      "WebRTC peer-to-peer for IoT device streaming in Go services",
+      "Implementing custom signaling and ICE for Go applications",
+      "Go-native WebRTC SFU/MCU building blocks for media servers",
+      "Unit-testable WebRTC stack for Go developers"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Pure Go WebRTC implementation with strong ergonomics",
+      "Great for building custom SFUs and media tools",
+      "Active maintenance and clean module layout",
+      "Good fit for cloud-native Go backends"
+    ],
+    "cons": [
+      "Library, not a turnkey product",
+      "You build signaling, scaling and ops",
+      "Smaller ecosystem than C/C++ WebRTC stacks",
+      "Some advanced codec paths less optimized"
+    ],
+    "verdict": "Best WebRTC foundation for Go teams building custom real-time infrastructure from the ground up.",
+    "best_for": "Go engineers writing custom SFUs, bots or media servers",
+    "not_for": "Product teams that just want to drop in a video SDK"
   }
 }

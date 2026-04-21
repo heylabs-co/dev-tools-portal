@@ -26,5 +26,31 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "Serverless BaaS for WeChat Mini Programs with cloud functions",
+      "Database, file storage, and hosting integrated in CloudBase",
+      "Tencent-managed backend for rapid Mini Program development",
+      "Cloud functions triggered by WeChat events and HTTP calls",
+      "Replacing custom backend with Tencent CloudBase for mini apps"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Native integration with WeChat Mini Programs",
+      "Serverless functions, DB, and storage in one SDK",
+      "Low latency inside mainland China",
+      "Generous free tier for small apps"
+    ],
+    "cons": [
+      "Mostly useful only inside Tencent/WeChat ecosystem",
+      "Docs and console primarily in Chinese",
+      "Vendor lock-in via proprietary SDKs",
+      "Limited value for users outside China"
+    ],
+    "verdict": "The default BaaS for WeChat Mini Programs, nearly useless for anything outside the Tencent ecosystem.",
+    "best_for": "Developers shipping WeChat Mini Programs or mainland-China mobile apps",
+    "not_for": "Global SaaS teams with no China traffic or WeChat integration needs"
   }
 }

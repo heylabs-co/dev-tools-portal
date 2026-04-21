@@ -22,5 +22,31 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "EDR-as-code for custom threat detection rule deployment",
+      "Security telemetry pipeline for SIEM and SOAR integration",
+      "Detection engineering workflow with YAML-based sigma rules",
+      "Incident response automation via LimaCharlie replay engine",
+      "Managed detection and response infrastructure for MSSPs"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Pay-per-use pricing beats flat SIEM seat licenses",
+      "API-first design lets you wire detection into existing stacks",
+      "Transparent sensor code and open detection rule format",
+      "Fast sensor deployment across Windows, Mac, and Linux"
+    ],
+    "cons": [
+      "Requires engineering to build what other EDRs give out of box",
+      "Fewer pre-built detections than commercial competitors",
+      "Steeper learning curve for non-programmer analysts",
+      "Support model is self-serve heavy for lower tiers"
+    ],
+    "verdict": "Infra-as-code EDR for teams that want to build, not buy; a bad fit if you need turnkey SOC tooling.",
+    "best_for": "Security-engineering teams and MSSPs building custom detection pipelines and tooling.",
+    "not_for": "Small SOCs wanting pre-packaged detections and managed response out of the box."
   }
 }

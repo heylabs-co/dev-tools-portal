@@ -22,5 +22,30 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "Syncing N26 transaction data to accounting software",
+      "Fetching bank statements for open-banking expense apps",
+      "Reconciling business account movements via API",
+      "Building cash-flow dashboards from N26 data"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Programmatic access to N26 account data",
+      "Webhooks for transaction events",
+      "Useful for accounting automation",
+      "Open banking compliance included"
+    ],
+    "cons": [
+      "N26 customers only — limited audience",
+      "Not a merchant payment gateway",
+      "Feature set narrower than dedicated open-banking APIs",
+      "API access gated by account type"
+    ],
+    "verdict": "Account-data API for N26 customers — useful for accounting sync, irrelevant as payment gateway.",
+    "best_for": "N26 business customers automating accounting and transaction sync",
+    "not_for": "Merchants needing payment acceptance or non-N26 users"
   }
 }

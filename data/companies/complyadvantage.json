@@ -22,5 +22,31 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "Real-time PEP and sanctions screening at customer onboarding",
+      "Adverse media monitoring for ongoing customer risk review",
+      "Transaction screening against OFAC and UN watchlists",
+      "AML typology detection for neobank payment monitoring",
+      "Financial crime intelligence API for risk decisioning engines"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Real-time sanctions, PEP and adverse media screening",
+      "API-first with good developer docs",
+      "Strong match scoring reduces false positives",
+      "Covers global watchlists with frequent updates"
+    ],
+    "cons": [
+      "AML focus, not a fraud detection engine",
+      "Enterprise pricing scales with screening volume",
+      "Case management weaker than Unit21 or Actimize",
+      "Adverse media noise still requires human review"
+    ],
+    "verdict": "A strong AML screening API for fintechs, but pair it with a dedicated fraud engine and case tool.",
+    "best_for": "Neobanks, crypto and payment firms needing API-driven sanctions and PEP screening.",
+    "not_for": "Teams looking for transaction fraud scoring or end-to-end AML investigations UI."
   }
 }

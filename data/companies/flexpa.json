@@ -23,5 +23,31 @@
   },
   "community": {
     "hn_mentions_30d": 2
+  },
+  "content": {
+    "when_to_use": [
+      "CMS interoperability-compliant claims data access for payers",
+      "FHIR API for member benefit and coverage data retrieval",
+      "Prior authorization automation via insurer data connections",
+      "Patient-consented health insurance data for fintech lending",
+      "Healthcare cost transparency app via claims data feeds"
+    ]
+  },
+  "review": {
+    "pros": [
+      "CMS Patient Access API standardized across payers",
+      "FHIR output plugs into modern health apps",
+      "OAuth flow lets patients authorize their own data pull",
+      "Covers claims, coverage, and prescription data types"
+    ],
+    "cons": [
+      "Payer network still expanding — gaps persist",
+      "Latency varies by payer backend quality",
+      "Patient-directed authorization limits use cases",
+      "Pricing and rate limits quote-based"
+    ],
+    "verdict": "The right pick for consumer health apps needing payer data via CMS rules, limited outside that lane.",
+    "best_for": "Consumer health apps building patient-consented claims features",
+    "not_for": "Teams needing provider-side data or non-FHIR integrations"
   }
 }

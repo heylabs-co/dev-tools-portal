@@ -22,5 +22,31 @@
   },
   "community": {
     "hn_mentions_30d": 5
+  },
+  "content": {
+    "when_to_use": [
+      "Self-hosted open-source geocoder on OpenStreetMap data",
+      "Address normalization and place search without Google Maps",
+      "Geocoding pipeline using OpenAddresses and WOF datasets",
+      "Building geocoding microservices for privacy-sensitive apps",
+      "Open geocoding API for humanitarian and academic projects"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Open-source geocoder with multiple data sources",
+      "Combines OSM, OpenAddresses, WhosOnFirst",
+      "Self-hostable to avoid Google Places costs",
+      "Customizable to local address formats"
+    ],
+    "cons": [
+      "Self-hosting requires Elasticsearch operations",
+      "Maintenance energy has slowed recently",
+      "Accuracy varies by region data quality",
+      "No commercial SLA unless using a provider"
+    ],
+    "verdict": "Top open-source geocoder; real commitment to run in production without a hosted provider.",
+    "best_for": "Teams with DevOps capacity avoiding Google geocoding bills",
+    "not_for": "Small teams wanting plug-and-play managed geocoding"
   }
 }

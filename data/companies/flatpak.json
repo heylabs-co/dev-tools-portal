@@ -42,5 +42,30 @@
     "forks": 484,
     "updated_at": "2026-04-21",
     "health_score": "A"
+  },
+  "content": {
+    "when_to_use": [
+      "Build sandboxed Linux apps independent of host distro",
+      "Single build target deployed across Ubuntu, Fedora, Arch",
+      "Runtime-based dependency isolation for desktop apps",
+      "OCI-compatible image distribution via Flatpak bundles"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Sandbox and runtime model improve desktop security",
+      "Cross-distro packaging without distro-specific work",
+      "Portals give a clean permission model",
+      "Backed by GNOME, Fedora, and major distros"
+    ],
+    "cons": [
+      "Disk usage from runtimes can be large",
+      "Some system integration still fiddly",
+      "Developers must learn manifest and portal concepts",
+      "Startup time heavier than native packages"
+    ],
+    "verdict": "The best-argued future of Linux desktop distribution, if you accept the runtime overhead.",
+    "best_for": "GUI Linux apps wanting modern sandboxing and cross-distro reach.",
+    "not_for": "Server-side, headless, or tightly system-integrated software."
   }
 }

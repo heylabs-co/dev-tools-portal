@@ -22,5 +22,29 @@
   },
   "community": {
     "hn_mentions_30d": 7
+  },
+  "content": {
+    "when_to_use": [
+      "Authoritative multiplayer game server in Node.js with rooms",
+      "Real-time game state sync between 100+ concurrent players",
+      "WebSocket-based game backend with built-in room lifecycle",
+      "Building turn-based or real-time multiplayer browser games",
+      "Self-hosted game server without Photon or Agora licensing"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Clean room and state abstraction",
+      "Authoritative server out of the box",
+      "Active open-source community"
+    ],
+    "cons": [
+      "Node.js scaling requires careful design",
+      "Not ideal for heavy physics simulation",
+      "Ops still on you unless you use cloud"
+    ],
+    "verdict": "The default open-source choice for turn-based and casual multiplayer, weaker for shooters.",
+    "best_for": "Indie studios building room-based or turn-based multiplayer in Node",
+    "not_for": "Realtime FPS or MMO workloads needing native performance"
   }
 }

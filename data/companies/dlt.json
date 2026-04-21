@@ -22,5 +22,31 @@
   },
   "community": {
     "hn_mentions_30d": 1543
+  },
+  "content": {
+    "when_to_use": [
+      "Python ETL pipelines with automatic schema inference and evolution",
+      "Loading REST API, CSV, or database data to warehouses in Python",
+      "Building self-documenting data loading scripts as code",
+      "Lightweight Fivetran alternative for Python-native data teams",
+      "Incremental loading with source state management for pipelines"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Python-native, fits existing data engineer workflows",
+      "Auto-schema inference eliminates boilerplate",
+      "OSS library, no SaaS lock-in for pipelines",
+      "Integrates with Airflow, Dagster, Prefect easily"
+    ],
+    "cons": [
+      "Code-first means fewer citizen-developer options",
+      "Hosted dlt+ still maturing vs Fivetran",
+      "Fewer prebuilt connectors than Airbyte",
+      "Production hardening remains your responsibility"
+    ],
+    "verdict": "Best-in-class Python ETL library for engineers who prefer code over UIs and lock-in.",
+    "best_for": "Python data engineers building version-controlled pipelines in code",
+    "not_for": "Analyst teams wanting UI-driven pipelines or fully managed SaaS"
   }
 }

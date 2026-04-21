@@ -30,5 +30,29 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "Accepting domestic and international cards for Japanese online merchants",
+      "Recurring subscription billing via Pay.jp REST API",
+      "Tokenizing card data for PCI-compliant Japanese checkout"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Simple REST API for Japan cards",
+      "Supports international Visa/Mastercard",
+      "Clean docs with code samples",
+      "PCI-DSS scope minimized"
+    ],
+    "cons": [
+      "Japan-only acquiring",
+      "Limited local methods vs GMO/SBPS",
+      "No PayPay or konbini natively",
+      "Smaller ecosystem than rivals"
+    ],
+    "verdict": "Clean Stripe-style API for Japanese card acceptance, but misses key local methods bigger rivals cover.",
+    "best_for": "Small Japanese merchants wanting a clean REST API for card-only checkout",
+    "not_for": "Merchants needing PayPay, konbini, or carrier billing in Japan"
   }
 }

@@ -21,5 +21,31 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "Low-latency AML sanctions check at user onboarding (~350ms)",
+      "PEP screening API for cost-effective compliance integration",
+      "Developer-friendly REST API for fintech AML workflows",
+      "Real-time screening for payment authorization pipelines",
+      "Affordable per-call pricing model for startup compliance"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Consistently fast ~350ms average response times",
+      "Simple, cost-effective screening for startups",
+      "Real-time sanctions and PEP endpoints",
+      "Transparent pricing, easy to budget"
+    ],
+    "cons": [
+      "No KYC, docs or case management included",
+      "Adverse media narrower than full AML vendors",
+      "Smaller data sources than tier-1 providers",
+      "Not ideal for complex enterprise workflows"
+    ],
+    "verdict": "Simple screening API done well; pair with a KYC and case-management vendor for full compliance.",
+    "best_for": "Startups and developers needing fast, cheap sanctions and PEP screening behind an onboarding flow",
+    "not_for": "Large firms needing bundled KYC, adverse media depth and audit-ready case management workflows"
   }
 }

@@ -22,5 +22,31 @@
   },
   "community": {
     "hn_mentions_30d": 54
+  },
+  "content": {
+    "when_to_use": [
+      "Replicating 250+ SaaS app data to Snowflake or Redshift",
+      "Scheduled incremental sync from Salesforce to data warehouses",
+      "JDBC/ODBC access to SaaS data for BI tool connections",
+      "ETL pipelines without custom code via drag-and-drop UI",
+      "Replacing manual CSV exports with automated data sync"
+    ]
+  },
+  "review": {
+    "pros": [
+      "250+ native connectors cover long-tail SaaS",
+      "Reuses CData JDBC/ODBC driver library",
+      "Self-hosted option avoids data-residency issues",
+      "Flat licensing instead of per-row pricing"
+    ],
+    "cons": [
+      "UI and UX feel dated compared to Fivetran",
+      "Schema drift handling less automatic than competitors",
+      "Community support thin; mostly enterprise support",
+      "Transformation layer basic vs dbt-native tools"
+    ],
+    "verdict": "Cost-predictable ETL for long-tail connectors; not as slick as Fivetran but often cheaper at scale.",
+    "best_for": "Teams needing niche SaaS connectors without Fivetran's row-based pricing",
+    "not_for": "Modern data stack shops wanting tight dbt and orchestrator integration"
   }
 }

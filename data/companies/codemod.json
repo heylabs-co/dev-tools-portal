@@ -22,5 +22,30 @@
   },
   "community": {
     "hn_mentions_30d": 146
+  },
+  "content": {
+    "when_to_use": [
+      "Running community-maintained codemods for major library upgrades",
+      "Automating API breaking-change migrations at monorepo scale",
+      "Building custom codemods for internal framework version bumps",
+      "Applying code transformations consistently across thousands of files"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Purpose-built for large-scale framework migrations",
+      "AI-assisted authoring cuts codemod writing time sharply",
+      "Registry of prebuilt mods for React, Next.js, and more",
+      "Handles multi-repo rollouts with PR automation"
+    ],
+    "cons": [
+      "Overkill for small codebases or ad-hoc refactors",
+      "Complex migrations still need significant human review",
+      "Pricing for team tier is opaque until sales call",
+      "Quality of community codemods varies widely"
+    ],
+    "verdict": "The right tool when you are migrating a large monorepo across major versions; otherwise use ast-grep or jscodeshift directly.",
+    "best_for": "Platform and DX teams running cross-repo framework or API migrations",
+    "not_for": "Solo developers and small projects where a single PR beats tooling overhead"
   }
 }

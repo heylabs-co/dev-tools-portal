@@ -23,5 +23,30 @@
   "seo": {
     "title": "Hermit — Monorepo & Build Systems",
     "meta_description": "Hermit: Hermetic tool management system for monorepos that installs per-project development tools without polluting the system PATH. Ensures all developers and "
+  },
+  "content": {
+    "when_to_use": [
+      "Lock toolchain versions per project without system PATH pollution",
+      "Identical CLI tools across developer machines and CI",
+      "Bootstrap new developers with hermit activate",
+      "Monorepo tool isolation preventing version conflicts"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Per-project tool installs without polluting PATH",
+      "Ensures CI and devs use identical tool versions",
+      "Simple YAML config, no Nix or Docker needed",
+      "Lightweight install, works well in monorepos"
+    ],
+    "cons": [
+      "Narrower scope than Nix-based tools like devenv",
+      "No services like Postgres or Redis orchestration",
+      "Tool catalog smaller than nixpkgs",
+      "Community and maintenance pace are modest"
+    ],
+    "verdict": "Pragmatic option when you only need reproducible CLI tool versions, not full environment reproducibility.",
+    "best_for": "Monorepos wanting pinned CLI toolchains without adopting Nix",
+    "not_for": "Teams needing reproducible services, databases, or full sandboxes"
   }
 }

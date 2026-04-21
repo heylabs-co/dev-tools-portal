@@ -41,5 +41,31 @@
     "forks": 3161,
     "updated_at": "2026-04-21",
     "health_score": "A"
+  },
+  "content": {
+    "when_to_use": [
+      "In-process OLAP queries on Parquet/CSV files without a server",
+      "Analytics on data lake files directly in Python notebooks",
+      "Lightweight Spark replacement for single-machine ETL scripts",
+      "Running SQL on S3-backed files without data movement",
+      "Embedded analytics engine for Python data science workflows"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Creators of DuckDB providing direct expertise",
+      "Critical for production DuckDB at scale",
+      "Contributes roadmap influence via engagements",
+      "MotherDuck partnership adds cloud option"
+    ],
+    "cons": [
+      "Consultancy model, not a product you just buy",
+      "European focus may complicate US time zones",
+      "Support tiers limited and premium-priced",
+      "Small team so capacity can constrain availability"
+    ],
+    "verdict": "Essential safety net for teams betting heavily on DuckDB in production; not a product offering.",
+    "best_for": "Teams running DuckDB at production scale needing core-team support",
+    "not_for": "Teams just experimenting with DuckDB on laptops or small projects"
   }
 }

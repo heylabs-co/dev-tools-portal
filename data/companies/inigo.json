@@ -22,5 +22,29 @@
   },
   "community": {
     "hn_mentions_30d": 32
+  },
+  "content": {
+    "when_to_use": [
+      "GraphQL query rate limiting and cost analysis",
+      "Field-level access control for multi-tenant GraphQL API",
+      "Caching layer for expensive GraphQL resolvers",
+      "Query performance analytics for GraphQL API optimization",
+      "Schema change monitoring and breaking change detection"
+    ]
+  },
+  "review": {
+    "pros": [
+      "GraphQL-native rate limiting and ACLs",
+      "Field-level access control granularity",
+      "Query analytics without code changes"
+    ],
+    "cons": [
+      "GraphQL-only, no REST support",
+      "Sidecar proxy adds latency hop",
+      "Smaller community than Apollo Router"
+    ],
+    "verdict": "Focused GraphQL gateway with sharp analytics and security controls, best when Apollo GraphOS feels heavy.",
+    "best_for": "Teams running public GraphQL APIs needing observability",
+    "not_for": "REST-first stacks or simple internal GraphQL setups"
   }
 }

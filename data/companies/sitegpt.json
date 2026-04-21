@@ -25,5 +25,28 @@
   },
   "community": {
     "hn_mentions_30d": 1
+  },
+  "content": {
+    "when_to_use": [
+      "Deploying a chatbot trained on website content for visitor support",
+      "Building knowledge base assistants from existing documentation sites",
+      "Automating FAQ answering without manual chatbot training",
+      "Adding an AI support widget to SaaS apps from existing content"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Fast setup — crawl site, get a bot",
+      "Handles lead qualification and handoff",
+      "Multilingual out of the box"
+    ],
+    "cons": [
+      "Thin moat vs dozens of RAG chatbots",
+      "Limited control over retrieval tuning",
+      "Pricing scales fast with traffic"
+    ],
+    "verdict": "A tidy website-to-chatbot wrapper — fine for SMBs, but engineering teams will outgrow it quickly.",
+    "best_for": "SMB marketing teams wanting a site chatbot without writing code",
+    "not_for": "Developers needing fine-grained RAG control or custom retrieval pipelines"
   }
 }

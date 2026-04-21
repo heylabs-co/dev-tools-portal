@@ -22,5 +22,31 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "Distributed search with sharding for high-volume corpus",
+      "Enterprise search replication across data centers",
+      "Faceted search and relevance tuning for large catalogs",
+      "Log analytics platform built on Solr Cloud",
+      "Self-hosted alternative to Elasticsearch for regulated data"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Open-source and Apache-licensed; no vendor lock-in",
+      "Proven at massive scale with sharding and replication",
+      "Rich query syntax and faceting capabilities",
+      "Huge ecosystem of plugins and integrations"
+    ],
+    "cons": [
+      "Operationally heavy; running SolrCloud needs real expertise",
+      "Default relevance tuning trails modern AI-native search",
+      "Community momentum has shifted toward Elasticsearch and OpenSearch",
+      "Admin UIs feel dated compared to newer platforms"
+    ],
+    "verdict": "Still powerful for teams with Solr expertise and specific ranking needs, but Elasticsearch/OpenSearch are more common defaults.",
+    "best_for": "Large enterprises with deep Solr expertise or specialized relevance requirements.",
+    "not_for": "New projects without search ops experience or teams wanting managed simplicity."
   }
 }

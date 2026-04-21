@@ -23,5 +23,30 @@
   },
   "community": {
     "hn_mentions_30d": 97
+  },
+  "content": {
+    "when_to_use": [
+      "Automatic root-cause identification in distributed systems",
+      "Causal AI correlating symptoms to upstream failures",
+      "Reduce MTTR with auto-generated remediation suggestions",
+      "Proactive reliability alerts before incidents escalate"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Causal inference reduces alert fatigue dramatically",
+      "Automated root-cause without manual runbook authoring",
+      "Kubernetes and microservices topology-aware",
+      "Cuts MTTR vs correlation-only AIOps tools"
+    ],
+    "cons": [
+      "Early-stage with limited production references",
+      "Requires rich topology and dependency data",
+      "Opaque model hides reasoning from SREs",
+      "Premium pricing vs traditional APMs"
+    ],
+    "verdict": "Genuinely novel causal AI approach, but unproven scale and trust-building needed before replacing existing tools.",
+    "best_for": "Mature platform teams with complex microservices drowning in correlated alerts.",
+    "not_for": "Small teams or simple monoliths where causal analysis is overkill."
   }
 }

@@ -41,5 +41,30 @@
     "forks": 334,
     "updated_at": "2026-04-21",
     "health_score": "B"
+  },
+  "content": {
+    "when_to_use": [
+      "Enforce layer dependencies in hexagonal architecture",
+      "Prevent cyclic package dependencies in Java monorepo",
+      "Assert naming conventions for services and repositories",
+      "Fail CI builds when architecture rules are violated"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Enforces layering and package rules as real JUnit tests",
+      "Catches cyclic dependencies before they rot the codebase",
+      "Readable fluent DSL, reviewable alongside code",
+      "No runtime overhead, pure static bytecode analysis"
+    ],
+    "cons": [
+      "Java/JVM only, no Kotlin-specific idioms",
+      "Rules can get verbose for nuanced architectures",
+      "Steep ramp for teams new to architecture testing",
+      "Slow on very large monorepos without filtering"
+    ],
+    "verdict": "The cleanest way to turn architecture decisions into executable guardrails on the JVM.",
+    "best_for": "Java teams protecting hexagonal or layered architectures from gradual decay",
+    "not_for": "Small projects or non-JVM stacks where lint rules already suffice"
   }
 }

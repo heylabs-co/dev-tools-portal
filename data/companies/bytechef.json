@@ -21,5 +21,31 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "Self-hosted Zapier/Make alternative for GDPR-sensitive workflows",
+      "Low-code automation platform embedded into SaaS products",
+      "Connecting internal tools and APIs with visual flow designer",
+      "Replacing Zapier for teams needing on-prem data processing",
+      "Building integration workflows without custom connector code"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Open-source Zapier alternative with active dev",
+      "Self-hostable for data sovereignty needs",
+      "Component SDK lets devs ship custom integrations",
+      "MIT-style licensing with no vendor lock-in"
+    ],
+    "cons": [
+      "Younger project with fewer connectors than n8n",
+      "Community still small vs Make and Zapier",
+      "Production operations need Kubernetes knowledge",
+      "Docs gaps around advanced use cases"
+    ],
+    "verdict": "Promising OSS automation platform, but n8n is still the more mature self-host choice today.",
+    "best_for": "Teams wanting a self-hosted automation platform with custom components",
+    "not_for": "Non-technical users or teams needing hundreds of prebuilt connectors"
   }
 }

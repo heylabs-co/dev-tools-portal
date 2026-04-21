@@ -22,5 +22,31 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "Automated data lineage tracing from source to BI reports",
+      "Data catalog with business glossary and pipeline impact analysis",
+      "Compliance auditing by tracing PII through data pipelines",
+      "Cross-tool lineage across dbt, Informatica, and Snowflake",
+      "Reducing time to root-cause data quality issues in pipelines"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Automated data lineage across BI and ETL tools",
+      "Broad connector catalog for legacy systems",
+      "Impact analysis for schema changes",
+      "Strong enterprise data catalog features"
+    ],
+    "cons": [
+      "Enterprise-only pricing",
+      "Setup across heterogeneous stacks takes time",
+      "Cloud feel less modern than Atlan or Collibra",
+      "Onboarding heavy for smaller teams"
+    ],
+    "verdict": "Useful lineage and catalog for enterprises with legacy BI sprawl, modern data teams lean Atlan or dbt-native lineage.",
+    "best_for": "Enterprises with legacy BI tools needing end-to-end lineage without manual effort",
+    "not_for": "Modern data stacks already using dbt and Atlan for lineage and catalog"
   }
 }

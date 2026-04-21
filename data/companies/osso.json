@@ -22,5 +22,31 @@
   },
   "community": {
     "hn_mentions_30d": 103
+  },
+  "content": {
+    "when_to_use": [
+      "SAML SSO integration layer for SaaS enterprise customers",
+      "OIDC connection management without custom IdP code per tenant",
+      "Enterprise SSO onboarding workflow for B2B SaaS products",
+      "SCIM directory sync support for enterprise user provisioning",
+      "Multi-tenant SSO with per-customer IdP configuration"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Simplifies enterprise SSO across SAML and OIDC",
+      "Abstracts the pain of IdP configuration",
+      "Fits SaaS adding enterprise-tier auth",
+      "Open-source heritage increases trust"
+    ],
+    "cons": [
+      "Not actually a fraud or risk tool",
+      "Overlaps with WorkOS and Auth0 SSO",
+      "Smaller vendor than auth incumbents",
+      "Narrow scope compared to full IdP stacks"
+    ],
+    "verdict": "Useful SSO glue for SaaS selling to enterprise, but mislabeled here; it is auth infra, not fraud tooling.",
+    "best_for": "SaaS platforms adding SAML/OIDC SSO for enterprise customers without building it in-house.",
+    "not_for": "Anyone actually looking for fraud detection, bot management or transaction risk scoring."
   }
 }

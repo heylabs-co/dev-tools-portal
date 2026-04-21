@@ -22,5 +22,31 @@
   },
   "community": {
     "hn_mentions_30d": 145
+  },
+  "content": {
+    "when_to_use": [
+      "Secure localhost tunnel sharing for remote pair programming",
+      "Webhook endpoint exposure for local integration testing",
+      "Secrets-safe environment sharing for contractor onboarding",
+      "Temporary secure tunnel for staging demo environments",
+      "Collaborator access to local dev server without VPN"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Bundles tunneling with secret sharing",
+      "Useful for demoing local work securely",
+      "Short-lived URLs reduce exposure",
+      "Decent dev-focused UX"
+    ],
+    "cons": [
+      "Niche overlap of tunnels + secrets is confusing",
+      "Small ecosystem vs ngrok or zrok",
+      "Not a real secrets backend for prod",
+      "Limited integration surface"
+    ],
+    "verdict": "Works for local dev sharing, but don't mistake it for production secrets infrastructure.",
+    "best_for": "Developers sharing local previews with a little secret metadata.",
+    "not_for": "Teams needing a proper production secrets vault."
   }
 }

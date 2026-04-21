@@ -20,5 +20,30 @@
   "seo": {
     "title": "Nx Cloud — Monorepo & Build Systems",
     "meta_description": "Nx Cloud: Remote computation caching and distributed task execution service for Nx monorepos. Speeds up CI by sharing build artifacts across machines and elimin"
+  },
+  "content": {
+    "when_to_use": [
+      "Remote computation caching for Nx monorepo CI runs",
+      "Distributed task execution across multiple CI agents",
+      "Skip redundant builds using cached affected artifacts",
+      "Shared build cache between developer machines and CI"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Remote caching makes Nx CI dramatically faster",
+      "Distributed task execution spreads work across agents",
+      "Tight integration with Nx Console and dashboards",
+      "Generous free tier for smaller repos"
+    ],
+    "cons": [
+      "Pricing scales aggressively for large repos",
+      "Lock-in to Nx conventions and tooling",
+      "Cloud-hosted default; self-hosting is premium tier",
+      "Occasional cache correctness issues reported"
+    ],
+    "verdict": "Essential if you are all-in on Nx at scale, but watch the bill and the vendor lock-in before expanding.",
+    "best_for": "JS and TS monorepos using Nx with slow CI and many projects",
+    "not_for": "Non-Nx stacks or teams priced out at scale"
   }
 }

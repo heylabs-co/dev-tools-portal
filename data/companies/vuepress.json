@@ -22,5 +22,31 @@
   "seo": {
     "title": "VuePress — Developer Documentation / DevRel",
     "meta_description": "VuePress: VuePress — Vue-powered static site generator built for writing technical documentation, with Markdown-centric authoring and built-in search."
+  },
+  "content": {
+    "when_to_use": [
+      "Vue-powered documentation site authored entirely in Markdown",
+      "Component library docs site built with VuePress default theme",
+      "Built-in full-text search enabled without external service",
+      "Custom theme extending VuePress for branded dev portal",
+      "Documentation PR previewed via VuePress static build on Netlify"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Vue-powered customization for dynamic documentation",
+      "Good Markdown authoring with code-focused defaults",
+      "Simple for Vue teams to extend with components",
+      "Free, open source, and easy to self-host"
+    ],
+    "cons": [
+      "Community has largely shifted to VitePress",
+      "Slower build times than modern alternatives",
+      "Development pace has slowed versus peers",
+      "Best for Vue teams - awkward fit elsewhere"
+    ],
+    "verdict": "Workable but clearly succeeded by VitePress; new projects should start with VitePress or Starlight instead.",
+    "best_for": "Existing VuePress sites or teams committed to the legacy Vue 2 documentation ecosystem.",
+    "not_for": "New projects - choose VitePress, Starlight, or Nextra for better performance and momentum."
   }
 }

@@ -19,5 +19,31 @@
   "seo": {
     "title": "GameSparks — Game Development Tools",
     "meta_description": "GameSparks: Cloud gaming backend platform (now part of AWS) offering leaderboards, achievements, player data, live events, and economy management for mobile and"
+  },
+  "content": {
+    "when_to_use": [
+      "Leaderboard and achievement system for mobile AWS game",
+      "Player save data synced to cloud via GameSparks NoSQL store",
+      "Live event and seasonal challenge managed through AWS backend",
+      "Virtual economy with server-authoritative IAP validation",
+      "Match history and stats dashboard powered by GameSparks data"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Backed by AWS infrastructure for reliable scaling",
+      "Extensive features: leaderboards, economy, live events",
+      "Deep analytics and A/B testing built in",
+      "Cross-platform SDKs cover all major engines"
+    ],
+    "cons": [
+      "AWS sunset on-prem and legacy contracts in 2024-2025",
+      "Migration path to AWS GameLift or PlayFab is mandatory",
+      "Pricing opaque and negotiation-heavy post-acquisition",
+      "No new features shipped since AWS acquisition"
+    ],
+    "verdict": "A dead-end product in 2025 — pick PlayFab, Nakama, or GameLift; dont start new projects on GameSparks.",
+    "best_for": "Legacy projects finishing their contract before migrating to PlayFab or GameLift",
+    "not_for": "Any new game project; the platform is no longer being actively developed"
   }
 }

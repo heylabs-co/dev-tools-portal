@@ -23,5 +23,31 @@
   },
   "community": {
     "hn_mentions_30d": 3
+  },
+  "content": {
+    "when_to_use": [
+      "Real-time blockchain event monitoring via WebSocket",
+      "GraphQL queries for DeFi protocol analytics",
+      "Cross-chain token transfer tracing for compliance",
+      "Kafka streams for high-frequency on-chain data ingestion",
+      "Smart contract event indexing for dapp dashboards"
+    ]
+  },
+  "review": {
+    "pros": [
+      "GraphQL over 40+ chains is powerful",
+      "Real-time Kafka and WebSocket streams",
+      "Rich event and balance data",
+      "Covers DEX, NFT, DeFi out-of-box"
+    ],
+    "cons": [
+      "Pricing can surprise at volume",
+      "Query cost tuning takes effort",
+      "Data consistency varies by chain",
+      "Docs can lag new features"
+    ],
+    "verdict": "The go-to GraphQL window into multichain data—just mind query costs when you scale.",
+    "best_for": "Analytics, trading, and monitoring apps needing cross-chain on-chain data",
+    "not_for": "Simple single-chain reads where Alchemy or direct RPC is cheaper"
   }
 }

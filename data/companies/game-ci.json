@@ -19,5 +19,31 @@
   "seo": {
     "title": "GameCI — Game Development Tools",
     "meta_description": "GameCI: Free CI/CD tooling for Unity projects on GitHub Actions, GitLab CI, and CircleCI. Provides Docker images and workflow templates for automated build, tes"
+  },
+  "content": {
+    "when_to_use": [
+      "Automated Unity build pipeline triggered on every GitHub push",
+      "Nightly test run catching regression in Unity project on CI",
+      "Multi-platform Unity build (Windows, Mac, WebGL) in parallel jobs",
+      "Automated deployment of Unity WebGL build to itch.io",
+      "Pull request preview build linked in GitHub PR comments"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Free, open-source CI templates for Unity projects",
+      "Docker images cover most Unity versions and targets",
+      "Cuts CI setup from days to hours for small teams",
+      "Works across GitHub Actions, GitLab, and CircleCI"
+    ],
+    "cons": [
+      "Unity-only, nothing for Unreal or Godot projects",
+      "Build times on free GitHub runners are painful",
+      "License activation on CI can be fragile",
+      "Maintained by volunteers, response times vary"
+    ],
+    "verdict": "Essential shortcut if youre automating Unity builds; accept that you own the self-hosted runner headaches.",
+    "best_for": "Indie Unity teams automating builds and tests on GitHub Actions or GitLab",
+    "not_for": "Unreal, Godot, or enterprise Unity shops needing vendor-backed CI support"
   }
 }

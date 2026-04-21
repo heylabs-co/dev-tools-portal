@@ -22,5 +22,31 @@
   },
   "community": {
     "hn_mentions_30d": 46
+  },
+  "content": {
+    "when_to_use": [
+      "Short-term Reserved Instance commitments to reduce AWS bills",
+      "Automated commitment management without upfront RI purchases",
+      "Guaranteed savings on AWS compute with short lock-in periods",
+      "FinOps automation for teams unwilling to commit to 1-year RIs",
+      "Managed RI portfolio with financial guarantees on savings"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Short-term RI guarantees reduce commitment risk",
+      "Insured commitments with buyback options",
+      "Supports AWS, Azure, and GCP",
+      "Clear savings reporting dashboard"
+    ],
+    "cons": [
+      "Insurance model adds complexity to billing",
+      "Savings share pricing eats into benefit",
+      "Overlaps with native AWS Savings Plans features",
+      "Enterprise contracts often needed for best terms"
+    ],
+    "verdict": "Insurance-backed commitment management useful when usage is volatile, overkill for stable predictable workloads.",
+    "best_for": "Teams with fluctuating cloud spend wanting insured short-term commitments",
+    "not_for": "Steady-state workloads where native 1/3-year RIs already work fine"
   }
 }

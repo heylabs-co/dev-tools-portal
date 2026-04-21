@@ -21,5 +21,30 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "Running NSFW and adult content classification on image uploads",
+      "Building content safety pipelines for user photo sharing apps",
+      "Detecting explicit content before display with low latency API",
+      "Filtering image uploads in real time for community platforms"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Affordable image moderation pricing",
+      "Custom classifier training available",
+      "Decent NSFW and categorization accuracy",
+      "Simple REST API, fast to integrate"
+    ],
+    "cons": [
+      "No video or text moderation in moderation tier",
+      "Accuracy lags specialized NSFW-first vendors",
+      "Documentation and SDK quality inconsistent",
+      "Smaller vendor, limited T&S pedigree"
+    ],
+    "verdict": "Good budget image moderation API with custom models, but not the sharpest tool for hard NSFW edge cases.",
+    "best_for": "Startups and mid-market apps needing cheap image moderation plus category tagging.",
+    "not_for": "Platforms with CSAM, deepfake, or high-stakes visual risk requirements."
   }
 }

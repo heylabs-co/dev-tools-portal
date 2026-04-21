@@ -22,5 +22,31 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "Cloud call center with hosted PBX for support teams",
+      "SMS API for transactional notification delivery",
+      "VoIP telephony for contact center as a service",
+      "Auto-dialer integration for outbound sales campaigns",
+      "Call recording and analytics for quality assurance"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Call center stack plus SMS in one vendor",
+      "Hosted PBX simpler than rolling your own",
+      "Competitive international voice termination rates",
+      "Works for outbound-heavy sales teams"
+    ],
+    "cons": [
+      "Reputation tied to aggressive outbound industries",
+      "API and docs feel bolted-on to a telco product",
+      "Compliance posture weaker than Twilio or Vonage",
+      "Dashboard UX dated compared to modern CPaaS"
+    ],
+    "verdict": "Decent telephony bundle for outbound call centers, but not a fit for brands that need clean compliance signals.",
+    "best_for": "Outbound call centers and dialer operations needing bundled SMS and PBX",
+    "not_for": "Regulated enterprises or dev teams prioritizing modern API ergonomics"
   }
 }

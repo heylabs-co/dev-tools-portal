@@ -41,5 +41,30 @@
     "forks": 462,
     "updated_at": "2026-04-21",
     "health_score": "B"
+  },
+  "content": {
+    "when_to_use": [
+      "PHP mock objects with fluent expectation DSL",
+      "Partial mocks for legacy PHP class isolation",
+      "Static method mocking with overload mocks",
+      "Hamcrest-style matchers for flexible argument assertions"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Expressive Hamcrest-style matchers",
+      "Handles partial and static mocks well",
+      "Chained expectations read naturally",
+      "Integrates cleanly with PHPUnit"
+    ],
+    "cons": [
+      "More flexible means easier to misuse",
+      "Static mocks couple tests to globals",
+      "Overlap with PHPUnit's own mocks confuses newcomers",
+      "Debugging failed expectations can be cryptic"
+    ],
+    "verdict": "The go-to PHP mocking lib when PHPUnit mocks run out of steam, used with the usual mock-overuse caveat.",
+    "best_for": "PHP teams needing expressive mocks for legacy or static-heavy code",
+    "not_for": "Projects where PHPUnit's built-in mocking is already sufficient"
   }
 }

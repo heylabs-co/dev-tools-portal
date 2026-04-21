@@ -30,5 +30,31 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "Managed MariaDB cloud with Xpand distributed SQL",
+      "Columnar analytics on ColumnStore alongside OLTP workloads",
+      "Serverless MariaDB with auto-scaling for variable traffic",
+      "Enterprise MariaDB managed service with 24/7 DBA support",
+      "Multi-cloud MariaDB with cross-region replication options"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Managed MariaDB from the source vendor",
+      "Xpand distributed SQL option",
+      "ColumnStore analytics engine included",
+      "Strong SQL compatibility"
+    ],
+    "cons": [
+      "Pricing less competitive than Aurora",
+      "Distributed SQL adoption tricky",
+      "Smaller ecosystem than Postgres managed",
+      "MariaDB mindshare has softened"
+    ],
+    "verdict": "Solid managed MariaDB with distributed SQL, but Postgres-first trends make it a harder pick now.",
+    "best_for": "MariaDB-centric teams needing managed service with distributed SQL or analytics add-ons",
+    "not_for": "Postgres shops, greenfield projects, or teams chasing the largest managed DB ecosystem"
   }
 }

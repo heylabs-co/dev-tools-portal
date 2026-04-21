@@ -22,5 +22,30 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "Running sub-second regex search across multi-million-line codebases",
+      "Building internal code search tools for large engineering orgs",
+      "Replacing slow git grep with real-time indexed code search",
+      "Indexing and searching cross-repository code patterns instantly"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Sub-second regex search across massive codebases",
+      "Browser UI responsive enough for interactive exploration",
+      "Open source with proven use at Stripe and others",
+      "No AI dependency, just reliable regex matching"
+    ],
+    "cons": [
+      "Self-hosting and indexing setup is nontrivial",
+      "Regex-only means no semantic or AST-level understanding",
+      "UI feels dated compared to Sourcegraph",
+      "Project activity has slowed in recent years"
+    ],
+    "verdict": "Still one of the fastest code search tools for regex, but Sourcegraph or Zoekt offer more modern options.",
+    "best_for": "Organizations with huge monorepos needing fast regex search without SaaS fees",
+    "not_for": "Teams wanting semantic search, AI-powered navigation, or low-ops managed tooling"
   }
 }

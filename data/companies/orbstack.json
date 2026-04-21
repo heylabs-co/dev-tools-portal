@@ -22,5 +22,31 @@
   },
   "community": {
     "hn_mentions_30d": 14
+  },
+  "content": {
+    "when_to_use": [
+      "Fast macOS Docker Desktop replacement with lower memory usage",
+      "Running Linux VMs on Apple Silicon with sub-second startup",
+      "Docker and containerd on macOS without heavy virtualization",
+      "Running x86 containers on M1/M2 Macs with Rosetta emulation",
+      "Lightweight local dev environment for container-based apps"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Dramatically faster than Docker Desktop",
+      "Lower RAM and battery footprint",
+      "Native macOS integration feels right",
+      "Simple Linux VM management"
+    ],
+    "cons": [
+      "macOS-only, leaves Windows users out",
+      "Paid for commercial use",
+      "Docker Desktop feature parity growing",
+      "Smaller community than Docker"
+    ],
+    "verdict": "Easily the best Docker replacement on macOS today, the only downside is that it's Mac-only.",
+    "best_for": "macOS developers tired of Docker Desktop's performance and memory problems",
+    "not_for": "Windows or Linux developers, or teams needing strict Docker Desktop parity"
   }
 }

@@ -23,5 +23,30 @@
   "seo": {
     "title": "Melos — Monorepo & Build Systems",
     "meta_description": "Melos: Dart and Flutter monorepo management tool inspired by Lerna. Handles multi-package versioning, changelog generation, and script execution across Flutter "
+  },
+  "content": {
+    "when_to_use": [
+      "Manage versioning and changelogs for Flutter monorepos",
+      "Run scripts across all packages in a Flutter workspace",
+      "Coordinated publishing of Flutter plugins to pub.dev",
+      "Dependency version alignment across Dart packages"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Purpose-built for Dart and Flutter monorepos",
+      "Automates versioning, changelogs, and pub publishing",
+      "Runs scripts across packages with filtering",
+      "Free, open source, actively maintained"
+    ],
+    "cons": [
+      "Only useful inside the Dart or Flutter ecosystem",
+      "Config learning curve for complex workspaces",
+      "Weaker task caching than Nx or Turbo",
+      "Docs can lag behind feature changes"
+    ],
+    "verdict": "If you ship Flutter plugins or multi-package Dart apps, this is effectively the default; irrelevant otherwise.",
+    "best_for": "Flutter plugin authors and teams with multi-package Dart monorepos",
+    "not_for": "Non-Dart monorepos or teams wanting polyglot tooling"
   }
 }

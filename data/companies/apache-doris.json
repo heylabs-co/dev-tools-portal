@@ -26,5 +26,31 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "Real-time OLAP queries on live transactional data via MySQL protocol",
+      "Replacing Hive/Presto for sub-second interactive analytics",
+      "Joining streaming and batch data in a unified analytical layer",
+      "High-concurrency BI dashboards on hundreds of TB of data",
+      "Powering product analytics at JD or Tencent-scale traffic"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Real-time OLAP with low-latency queries",
+      "MySQL protocol makes adoption painless",
+      "Battle-tested at JD, Tencent Music, ByteDance",
+      "Open source under Apache license"
+    ],
+    "cons": [
+      "Smaller Western community than ClickHouse",
+      "Docs improving but still uneven in English",
+      "Operational complexity for HA deployments",
+      "Fewer managed service options"
+    ],
+    "verdict": "Strong OLAP alternative to ClickHouse with MySQL protocol familiarity, Chinese-origin maturity outpaces global adoption.",
+    "best_for": "Real-time analytics workloads wanting MySQL-compatible OLAP at scale",
+    "not_for": "Teams wanting a managed cloud service with rich Western community support"
   }
 }

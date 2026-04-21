@@ -23,5 +23,30 @@
   },
   "community": {
     "hn_mentions_30d": 302
+  },
+  "content": {
+    "when_to_use": [
+      "Instant ACH payouts for gig economy worker earnings",
+      "FedNow and RTP rail selection for deterministic instant payouts",
+      "Same-day ACH disbursements for insurance claim settlements",
+      "Automating bank payment routing logic by amount and priority"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Deterministic rail routing across ACH/RTP/FedNow",
+      "Instant US bank payouts via single API",
+      "Strong for payroll and marketplace disbursement",
+      "Transparent rail selection logic"
+    ],
+    "cons": [
+      "US-only, no international rails",
+      "Pricing opaque without sales contact",
+      "Not a checkout gateway, payouts only",
+      "Requires bank account verification flows"
+    ],
+    "verdict": "Best-in-class for US instant payouts with deterministic routing, but US-only scope is a real ceiling.",
+    "best_for": "US marketplaces and payroll platforms needing instant ACH/RTP/FedNow routing",
+    "not_for": "Merchants needing checkout acceptance or non-US payment rails"
   }
 }

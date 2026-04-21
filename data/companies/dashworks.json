@@ -23,5 +23,31 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "Federated search across Slack, Notion, Confluence",
+      "Real-time AI answers without indexing SaaS content",
+      "Employee knowledge assistant with 100+ app connectors",
+      "Reduce ticket volume by surfacing existing answers",
+      "Privacy-preserving enterprise search with no data ingestion"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Federated search avoids duplicate indexing of sensitive data",
+      "Real-time answers reflect latest doc edits, not stale index",
+      "100+ connectors cover common SaaS stack out of the box",
+      "Permission-aware so users only see what they're entitled to"
+    ],
+    "cons": [
+      "Query latency depends on slowest upstream SaaS API",
+      "Federated model limits ranking quality vs full-text indexes",
+      "Enterprise-only pricing hides true cost until sales call",
+      "Connector reliability varies across less-common tools"
+    ],
+    "verdict": "Smart pick for companies that can't afford to re-index sensitive SaaS data, but federation has real latency trade-offs.",
+    "best_for": "Mid-size companies needing enterprise search across Slack, Notion, Drive without reindexing.",
+    "not_for": "Teams needing sub-second latency or advanced semantic ranking over a unified index."
   }
 }

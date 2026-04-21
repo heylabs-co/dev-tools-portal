@@ -22,5 +22,30 @@
   },
   "community": {
     "hn_mentions_30d": 63
+  },
+  "content": {
+    "when_to_use": [
+      "Global e-invoicing API connecting billing software to 100+ government systems",
+      "Automating e-invoice clearance and archiving per local legal requirements",
+      "Peppol, CFDI, ZATCA, and EN 16931 compliance via single API",
+      "SaaS vendor adding multi-country e-invoice compliance as a feature"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Single API across 100+ country e-invoicing regimes",
+      "Abstracts away Peppol, KSA ZATCA, Italy SDI, etc.",
+      "Modern JSON schemas, not XML everywhere",
+      "Fast to prototype vs national gateways"
+    ],
+    "cons": [
+      "Young vendor — long-term roadmap unproven",
+      "Coverage depth varies by country",
+      "Pricing not fully public for high volume",
+      "Fewer ready-made ERP connectors than incumbents"
+    ],
+    "verdict": "Promising API-first e-invoicing aggregator for devs tired of per-country integrations.",
+    "best_for": "SaaS and fintech engineering teams wanting one API for global e-invoicing compliance.",
+    "not_for": "Enterprises requiring mature, warranty-backed coverage in every exotic jurisdiction."
   }
 }

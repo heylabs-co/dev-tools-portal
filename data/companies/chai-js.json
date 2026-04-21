@@ -39,5 +39,30 @@
     "forks": 717,
     "updated_at": "2026-04-21",
     "health_score": "A"
+  },
+  "content": {
+    "when_to_use": [
+      "BDD-style expect/should assertions in Node.js test suites",
+      "Chain readable assertions for complex object comparisons",
+      "Pluggable assertion library pairable with Mocha or Jest",
+      "Custom matchers via chai plugins for domain objects"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Three styles: should, expect, assert for any taste",
+      "Pairs cleanly with Mocha, Jest or Jasmine",
+      "Rich plugin ecosystem: chai-as-promised, sinon-chai",
+      "Readable BDD-style error messages"
+    ],
+    "cons": [
+      "Historically CJS-first, ESM migration has been painful",
+      "Overlap with Jest expect leads to confusion",
+      "Multiple assertion styles hurt team consistency",
+      "Feels dated next to Vitest and native node:test"
+    ],
+    "verdict": "A capable but aging assertion library, mostly justified when sticking with Mocha-era codebases.",
+    "best_for": "Legacy Mocha projects where ripping Chai out would be expensive",
+    "not_for": "New projects where Vitest or node:test already ship with assertions"
   }
 }

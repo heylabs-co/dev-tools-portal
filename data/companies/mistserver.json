@@ -22,5 +22,33 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "Open-source streaming server supporting HLS, DASH, and WebRTC",
+      "Self-hosted video distribution without CDN vendor lock-in",
+      "Low-latency ABR streaming for enterprise video deployments",
+      "SRT ingest and HLS output for broadcast contribution pipelines",
+      "Free streaming server for small media teams and broadcasters"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Open-source under AGPL with commercial option",
+      "Very broad protocol support (HLS, DASH, WebRTC, SRT)",
+      "Low resource footprint on modest hardware",
+      "Active development and Dutch team support",
+      "Good for academic and experimentation use"
+    ],
+    "cons": [
+      "AGPL licensing complicates commercial use",
+      "Docs assume streaming-engineer background",
+      "Dashboard UI utilitarian",
+      "Smaller community than nginx-rtmp or SRS",
+      "Support paid unless you go OSS-only"
+    ],
+    "verdict": "Capable OSS media server with enviable protocol coverage — watch the AGPL if you ship closed-source.",
+    "best_for": "Streaming engineers wanting one server speaking every protocol on commodity hardware.",
+    "not_for": "Teams unwilling to navigate AGPL or run their own infra."
   }
 }

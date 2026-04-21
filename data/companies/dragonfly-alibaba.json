@@ -26,5 +26,31 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "P2P image distribution to thousands of Kubernetes nodes",
+      "Replacing container registry bottlenecks with P2P pull sharing",
+      "Large file distribution across clusters without origin overload",
+      "Accelerating Docker image pulls in CI/CD at scale",
+      "CNCF-compliant P2P content distribution for cloud-native teams"
+    ]
+  },
+  "review": {
+    "pros": [
+      "P2P distribution cuts registry bandwidth dramatically",
+      "CNCF Incubating project with active community",
+      "Works with Kubernetes and container runtimes",
+      "Open source, no vendor lock-in"
+    ],
+    "cons": [
+      "Complex to operate at production scale",
+      "Documentation uneven, partially Chinese-first",
+      "Overkill for small clusters",
+      "Steep learning curve for P2P networking"
+    ],
+    "verdict": "Valuable for large-scale image distribution in Kubernetes, unnecessary pain for clusters under hundreds of nodes.",
+    "best_for": "Large Kubernetes fleets suffering registry bandwidth bottlenecks at scale",
+    "not_for": "Small teams that can use registry mirrors or Harbor instead"
   }
 }

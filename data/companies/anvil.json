@@ -23,5 +23,33 @@
   },
   "community": {
     "hn_mentions_30d": 16
+  },
+  "content": {
+    "when_to_use": [
+      "Generating PDFs from templates via REST API at scale",
+      "Collecting e-signatures on contracts without DocuSign overhead",
+      "Automating document workflows with conditional field logic",
+      "Filling PDF forms programmatically from app data",
+      "Building contract generation pipelines for legal teams"
+    ]
+  },
+  "review": {
+    "pros": [
+      "PDF filling plus e-sign in one API",
+      "Webforms auto-generated from existing PDFs",
+      "Clean developer docs with working code samples",
+      "Workflow builder reduces glue code for approvals",
+      "Reasonable free tier for prototyping"
+    ],
+    "cons": [
+      "Pricing jumps steeply past starter tier",
+      "E-sign legal coverage weaker than DocuSign/HelloSign",
+      "Template editor limits complex layout control",
+      "No on-premise option for regulated industries",
+      "Fewer integrations than PandaDoc or DocuSign"
+    ],
+    "verdict": "Nicely focused PDF-filling and signing API — great for devs, but enterprise legal teams will still want DocuSign.",
+    "best_for": "SaaS teams automating form-heavy workflows (mortgage, HR, onboarding) with code-first control.",
+    "not_for": "Enterprises needing notarization, SOC 2 Type II, or deep Salesforce integration."
   }
 }

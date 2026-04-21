@@ -23,5 +23,31 @@
   },
   "community": {
     "hn_mentions_30d": 16
+  },
+  "content": {
+    "when_to_use": [
+      "Joining disparate POI datasets using a universal place key",
+      "Free standardized identifier linking foot traffic to address data",
+      "Cross-provider location data enrichment without custom joins",
+      "Matching location datasets across vendors with one shared key",
+      "Enabling data collaboration between partners with Placekey"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Free universal ID for joining POI datasets",
+      "Solves merge conflicts across data providers",
+      "Open specification with wide adoption",
+      "Simplifies data engineering for location joins"
+    ],
+    "cons": [
+      "Only useful if partners also use Placekey",
+      "Coverage depends on contributors",
+      "Not a replacement for geocoding or maps",
+      "Governance depends on SafeGraph commitment"
+    ],
+    "verdict": "Elegant standard for joining POI datasets; value depends on ecosystem adoption growing.",
+    "best_for": "Data teams merging location datasets from multiple vendors",
+    "not_for": "App developers just needing basic map display"
   }
 }

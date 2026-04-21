@@ -45,5 +45,28 @@
     "forks": 129,
     "updated_at": "2026-04-21",
     "health_score": "F"
+  },
+  "content": {
+    "when_to_use": [
+      "Labeling image, video, and text data for ML training pipelines",
+      "Managing annotation workflows with human review and QA",
+      "Versioning training datasets alongside model experiments",
+      "Running semi-automated labeling with model-assisted suggestions"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Open-source data store with human review",
+      "Handles schemas, blobs, predictions together",
+      "Self-hostable for private data"
+    ],
+    "cons": [
+      "Setup complexity higher than SaaS alternatives",
+      "Community smaller than Label Studio",
+      "Docs can lag feature pace"
+    ],
+    "verdict": "The OSS choice when data sovereignty matters and Label Studio feels too annotation-only.",
+    "best_for": "Regulated teams self-hosting the full ML data lifecycle",
+    "not_for": "Small teams content with Label Studio or hosted annotation tools"
   }
 }

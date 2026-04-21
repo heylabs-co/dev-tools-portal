@@ -21,5 +21,30 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "Adding social feed, chat, and moderation to apps without backend",
+      "Deploying profanity filters and image moderation in social SDK",
+      "Building community features with built-in safety controls",
+      "Launching in-app social features with moderation in days not months"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Moderation bundled with chat/social SDK saves integration work",
+      "Prebuilt UI kits for iOS, Android, and web",
+      "Profanity and image moderation work out of the box",
+      "Reasonable for teams without a T&S function"
+    ],
+    "cons": [
+      "Moderation is basic vs dedicated T&S vendors",
+      "You inherit their social stack, creates vendor lock-in",
+      "Pricing scales aggressively with MAU",
+      "Limited control over model thresholds and custom policies"
+    ],
+    "verdict": "Good shortcut if you want chat plus baseline moderation in one SDK; weak if moderation is mission-critical.",
+    "best_for": "Apps adding community features that need chat SDK with light moderation included.",
+    "not_for": "Platforms with serious abuse risk or regulatory pressure like DSA."
   }
 }

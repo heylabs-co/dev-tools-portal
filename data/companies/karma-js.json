@@ -40,5 +40,30 @@
     "forks": 1720,
     "updated_at": "2026-04-21",
     "health_score": "A"
+  },
+  "content": {
+    "when_to_use": [
+      "Run JavaScript tests in real Chrome, Firefox, Safari",
+      "Angular unit test execution with Karma test runner",
+      "Continuous test re-run on file change during development",
+      "Browser-compatible test execution with coverage reports"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Runs tests in real browsers, not just jsdom",
+      "Stable integration with Angular CLI",
+      "Works with Jasmine, Mocha and Chai",
+      "Good CI integration for cross-browser runs"
+    ],
+    "cons": [
+      "Officially in maintenance mode since 2023",
+      "Slow to boot compared to Vitest or Jest",
+      "Angular team now pushes Web Test Runner",
+      "Complex config versus modern runners"
+    ],
+    "verdict": "A legacy default for Angular that teams should actively plan to migrate off of.",
+    "best_for": "Existing Angular codebases not yet ready to switch test runners",
+    "not_for": "Any new project, Vitest or Web Test Runner are better picks"
   }
 }

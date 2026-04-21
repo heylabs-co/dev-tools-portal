@@ -44,5 +44,28 @@
     "forks": 29,
     "updated_at": "2026-04-21",
     "health_score": "B"
+  },
+  "content": {
+    "when_to_use": [
+      "Versioning ML datasets and models with Git-compatible workflow",
+      "Tracking experiments alongside code in one platform",
+      "Collaborating on open-source ML projects with data versioning",
+      "Connecting DVC pipelines to a shared remote repository"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Git/DVC workflows for data versioning",
+      "Annotation and experiment tracking unified",
+      "Open-core lowers lock-in"
+    ],
+    "cons": [
+      "Heavier setup than MLflow alone",
+      "Requires discipline on Git-LFS / DVC",
+      "UI performance suffers on huge repos"
+    ],
+    "verdict": "The Git-native MLOps hub for teams that already think in pull requests.",
+    "best_for": "ML teams who want reproducible data and model versioning via Git",
+    "not_for": "Teams preferring lightweight experiment tracking without versioning overhead"
   }
 }

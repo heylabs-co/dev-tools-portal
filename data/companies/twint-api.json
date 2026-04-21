@@ -22,5 +22,29 @@
   },
   "community": {
     "hn_mentions_30d": 495
+  },
+  "content": {
+    "when_to_use": [
+      "QR code payment integration for Swiss merchants via TWINT",
+      "In-store and online payment acceptance via TWINT partner API",
+      "Recurring payment setup for Swiss subscription services"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Effectively mandatory for Swiss consumer payments",
+      "QR flow well understood by Swiss buyers",
+      "Bank-backed — trust and adoption high",
+      "Works for in-person and online"
+    ],
+    "cons": [
+      "Switzerland-only — zero use elsewhere",
+      "Partner API access gatekept through PSPs",
+      "Integration through approved partners only",
+      "Not self-serve for developers"
+    ],
+    "verdict": "Non-negotiable for Swiss merchants, but access is through PSP partners — you won't integrate TWINT directly alone.",
+    "best_for": "Merchants selling in Switzerland needing local mobile payment acceptance",
+    "not_for": "Non-Swiss merchants or teams wanting direct self-serve API access"
   }
 }

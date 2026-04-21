@@ -23,5 +23,31 @@
   },
   "community": {
     "hn_mentions_30d": 43
+  },
+  "content": {
+    "when_to_use": [
+      "HIPAA-compliant container deployment with BAA signing",
+      "PHI encryption at rest and in transit for healthcare apps",
+      "Access logging for HIPAA audit trail requirements",
+      "SOC 2 Type II evidence generation via platform controls",
+      "Secure multi-tenant SaaS hosting for health tech startups"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Signs BAAs and inherits HIPAA controls out of the box",
+      "Heroku-like git push deployment for regulated workloads",
+      "Encrypted databases and audit logging on by default",
+      "Shifts most technical safeguard burden off your team"
+    ],
+    "cons": [
+      "Significantly pricier than raw AWS or similar PaaS",
+      "Limited region choices compared to hyperscalers",
+      "Vendor lock-in via proprietary deployment abstractions",
+      "Less flexibility for custom infrastructure configs"
+    ],
+    "verdict": "The fastest path to HIPAA production for small healthtech teams willing to pay the abstraction premium.",
+    "best_for": "Early-stage healthtech startups that need HIPAA yesterday without a DevOps hire",
+    "not_for": "Teams with deep AWS expertise or unusual infra requirements"
   }
 }

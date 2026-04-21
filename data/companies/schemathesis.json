@@ -21,5 +21,29 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "Property-based API fuzzing from OpenAPI specs",
+      "Auto-generate test cases to find edge-case API bugs",
+      "Detect 500 errors from malformed API request permutations",
+      "Integrate API fuzz testing into CI for every PR"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Auto-generates tests from OpenAPI schemas",
+      "Property-based fuzzing finds real edge cases",
+      "Catches schema-implementation drift automatically",
+      "Python, CLI, and CI-friendly"
+    ],
+    "cons": [
+      "Only as good as your OpenAPI coverage",
+      "Flaky findings require filtering work",
+      "Learning curve around hypothesis strategies"
+    ],
+    "verdict": "One of the highest ROI API testing tools if you already maintain a decent OpenAPI schema.",
+    "best_for": "Teams with OpenAPI-first APIs wanting automated fuzzing coverage",
+    "not_for": "APIs without schemas or where manual test design is preferred"
   }
 }

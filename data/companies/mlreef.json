@@ -42,5 +42,28 @@
     "forks": 306,
     "updated_at": "2026-04-21",
     "health_score": "F"
+  },
+  "content": {
+    "when_to_use": [
+      "Collaborating on ML experiments with Git-based versioning",
+      "Building reproducible data science pipelines in shared workspaces",
+      "Managing model and dataset versioning for distributed ML teams",
+      "Running ML pipelines in a GitHub-like collaborative environment"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Git-native collaboration for ML teams",
+      "Combines pipeline and data sharing",
+      "Open-source option available"
+    ],
+    "cons": [
+      "Smaller community vs MLflow/DVC",
+      "Feature set overlaps with more popular tools",
+      "Development pace uncertain"
+    ],
+    "verdict": "A niche Git-style ML collab tool; most teams will be better served by MLflow or DVC.",
+    "best_for": "Small ML groups wanting a self-hosted GitLab-like experience for models",
+    "not_for": "Teams already standardized on MLflow, DVC or Weights & Biases"
   }
 }

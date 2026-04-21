@@ -26,5 +26,30 @@
   },
   "community": {
     "hn_mentions_30d": 8
+  },
+  "content": {
+    "when_to_use": [
+      "Self-hosted container deployments simpler than Kamal",
+      "Git-push based deployment for small cloud deployments",
+      "Lightweight alternative to Coolify for solo developers",
+      "Deploy Docker containers without Kubernetes overhead"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Simple container deploys without the Kubernetes tax",
+      "Sits between Kamal's simplicity and Coolify's UI",
+      "Self-hosted, predictable costs",
+      "Lightweight enough for a single VPS"
+    ],
+    "cons": [
+      "Young project with small community",
+      "Limited multi-server and scaling story",
+      "Docs still evolving",
+      "Ecosystem of integrations small"
+    ],
+    "verdict": "A reasonable Kamal-adjacent deploy tool for solo devs, but still proving itself.",
+    "best_for": "Solo devs and small teams shipping containers to one or two VPS hosts.",
+    "not_for": "Teams needing mature multi-region, multi-tenant deployment tooling."
   }
 }

@@ -30,5 +30,31 @@
   },
   "community": {
     "hn_mentions_30d": 1
+  },
+  "content": {
+    "when_to_use": [
+      "Privacy-preserving biometric MFA using MPC computation",
+      "Passwordless facial authentication for employee login",
+      "Biometric re-authentication for high-risk transaction approval",
+      "GDPR-compliant biometrics without server-side template storage",
+      "Zero-knowledge face auth for regulated financial services"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Privacy-preserving biometrics via multi-party computation",
+      "No biometric data stored on device or server",
+      "Strong MFA story for fraud-sensitive flows",
+      "Zero-knowledge proofs for identity reuse"
+    ],
+    "cons": [
+      "Niche technology with smaller ecosystem",
+      "Integration depth requires vendor involvement",
+      "Liveness and spoofing still need device support",
+      "Pricing opaque and geared to enterprise"
+    ],
+    "verdict": "Interesting privacy-first biometric MFA for regulated fintech; evaluate against simpler passkey solutions first.",
+    "best_for": "Regulated fintechs needing biometric MFA without storing templates",
+    "not_for": "Teams that can solve their MFA problem with passkeys alone"
   }
 }

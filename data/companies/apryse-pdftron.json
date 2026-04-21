@@ -22,5 +22,33 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "Embedding PDF annotation and markup in web or mobile apps",
+      "Redacting sensitive content from PDFs programmatically",
+      "Viewing and editing PDFs offline in a React Native app",
+      "Digital signature workflows with cryptographic validation",
+      "Converting Office documents to annotatable PDFs via SDK"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Renders PDFs client-side without server round-trips",
+      "Handles CAD, MS Office, and complex forms natively",
+      "Deep annotation and redaction toolkit",
+      "Works offline in web, iOS, Android, and Electron",
+      "Battle-tested in regulated industries"
+    ],
+    "cons": [
+      "License pricing is opaque and high (quote-only)",
+      "Bundle size is heavy for web apps",
+      "Steep learning curve across multiple SDK surfaces",
+      "Forced rebranding to Apryse causes doc confusion",
+      "No real free tier for production evaluation"
+    ],
+    "verdict": "Gold-standard PDF SDK for complex viewing and editing, but only if you can stomach enterprise licensing.",
+    "best_for": "Legal, government, and CAD apps needing full-fidelity PDF rendering across all platforms.",
+    "not_for": "Indie devs or small SaaS — pricing alone disqualifies most."
   }
 }

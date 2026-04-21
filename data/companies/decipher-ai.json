@@ -23,5 +23,30 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "AI vision agent watching session replays for UX bugs",
+      "Auto-generate E2E tests from observed user interactions",
+      "Monitor live production sessions for failure patterns",
+      "Surface user friction without manual replay review"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Vision LLM watches replays so humans don't scrub timelines",
+      "Auto-generates E2E tests from real user flows",
+      "Surfaces UX bugs that passive error tracking misses",
+      "Monitors live production failures continuously"
+    ],
+    "cons": [
+      "Early-stage product with limited integrations",
+      "LLM-based analysis costs scale with session volume",
+      "Vision models still hallucinate on complex flows",
+      "Enterprise privacy review is harder with vision AI"
+    ],
+    "verdict": "Promising AI replay watcher that turns sessions into tests and bug reports, if you trust vision LLMs on prod data.",
+    "best_for": "Lean dev teams wanting AI to triage UX bugs and seed regression tests.",
+    "not_for": "Regulated enterprises with strict constraints on shipping session pixels to LLMs."
   }
 }

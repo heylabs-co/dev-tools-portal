@@ -26,5 +26,30 @@
   },
   "community": {
     "hn_mentions_30d": 52
+  },
+  "content": {
+    "when_to_use": [
+      "Capturing and generating 3D models from photos or LiDAR scan",
+      "Building spatial computing features with 3D scene capture API",
+      "Digitizing physical spaces into 3D assets for AR/VR applications",
+      "Running photogrammetry pipelines from mobile device cameras"
+    ]
+  },
+  "review": {
+    "pros": [
+      "High-quality LiDAR and photogrammetry captures",
+      "Gaussian Splat and NeRF exports supported",
+      "Strong mobile-app capture experience",
+      "Developer API for 3D-scan ingestion"
+    ],
+    "cons": [
+      "Free tier heavily restricted on exports",
+      "LiDAR quality depends on iPhone Pro hardware",
+      "API less documented than mobile app",
+      "Commercial use requires paid tier"
+    ],
+    "verdict": "Best-in-class mobile 3D capture; developers should price-check the API before betting pipelines on it.",
+    "best_for": "AR, real-estate, and 3D creators capturing real-world spaces",
+    "not_for": "Studios wanting fully-rigged CGI assets or AAA pipelines"
   }
 }

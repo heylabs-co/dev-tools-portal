@@ -23,5 +23,31 @@
   },
   "community": {
     "hn_mentions_30d": 1
+  },
+  "content": {
+    "when_to_use": [
+      "Route logs from syslog-ng to Datadog or Splunk via OTel",
+      "Enrich security telemetry with threat intelligence fields",
+      "Manage OpenTelemetry collectors fleet from one UI",
+      "Filter and sample high-volume log streams before ingestion",
+      "Bridge legacy syslog infrastructure to modern SIEM"
+    ]
+  },
+  "review": {
+    "pros": [
+      "syslog-ng heritage with modern OpenTelemetry support",
+      "Reduces SIEM ingest costs via pre-filtering",
+      "Policy-based routing to multiple destinations",
+      "Strong security data compliance tooling"
+    ],
+    "cons": [
+      "Narrower scope than Cribl or Vector",
+      "Less brand recognition in observability circles",
+      "Enterprise-focused pricing and sales motion",
+      "Smaller community than open-source alternatives"
+    ],
+    "verdict": "Competent security-focused pipeline, but Cribl dominates the category with more features and mindshare.",
+    "best_for": "Security teams trimming SIEM costs with policy-driven log routing.",
+    "not_for": "General observability teams who already use Vector or Cribl."
   }
 }

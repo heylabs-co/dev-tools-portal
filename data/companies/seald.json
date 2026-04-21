@@ -22,5 +22,31 @@
   },
   "community": {
     "hn_mentions_30d": 14
+  },
+  "content": {
+    "when_to_use": [
+      "End-to-end encryption SDK for zero-knowledge app data",
+      "Adding E2E encryption without managing key infrastructure",
+      "Client-side encryption for healthcare and legal SaaS apps",
+      "GDPR-compliant user data encryption with delegated key access",
+      "Encrypted file sharing where even the server can't read data"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Zero-knowledge E2EE SDK, no key management code",
+      "Works across web and mobile",
+      "Group encryption with key rotation",
+      "GDPR and HDS compliant"
+    ],
+    "cons": [
+      "Closed-source proprietary stack",
+      "Integration requires app architecture changes",
+      "Enterprise pricing model",
+      "Smaller community than Virgil or Matrix"
+    ],
+    "verdict": "Quick path to end-to-end encryption without cryptography expertise, lock-in trade-off against rolling your own.",
+    "best_for": "Product teams adding E2EE without hiring cryptographers, especially in healthcare or legal",
+    "not_for": "Teams preferring open-source crypto stacks they can audit and self-host"
   }
 }

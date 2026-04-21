@@ -23,5 +23,31 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "3-of-3 MPC wallet for institutional crypto treasury management",
+      "Open-source MPC protocol library for custom wallet integrations",
+      "Multi-party signing approval for DAO and fund operations",
+      "Self-custody key shard management without single point of failure",
+      "Developer API for programmable MPC signing workflows"
+    ]
+  },
+  "review": {
+    "pros": [
+      "3-of-3 MPC removes single points of custody",
+      "Open-source MPC protocol libraries",
+      "Developer APIs for wallet and signing",
+      "Strong for institutional self-custody"
+    ],
+    "cons": [
+      "Crypto-specific, not a general secrets tool",
+      "MPC setup more complex than HSM",
+      "Smaller vendor vs Fireblocks",
+      "Learning curve for shard management"
+    ],
+    "verdict": "Compelling self-custody MPC for crypto teams, but miscategorized as generic secrets management.",
+    "best_for": "Crypto institutions wanting MPC self-custody with open protocols.",
+    "not_for": "Teams that need API keys and TLS certs, not crypto wallets."
   }
 }

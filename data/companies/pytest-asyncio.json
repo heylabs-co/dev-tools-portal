@@ -39,5 +39,29 @@
     "forks": 179,
     "updated_at": "2026-04-21",
     "health_score": "B"
+  },
+  "content": {
+    "when_to_use": [
+      "Test asyncio coroutines with async def test functions",
+      "Async fixtures for database connections and HTTP clients",
+      "Event loop configuration for FastAPI and aiohttp tests",
+      "Scope-aware async fixture management in test suites"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Standard choice for async Python testing",
+      "Async fixtures with scope management",
+      "Event loop control per test or session",
+      "Maintained under pytest-dev umbrella"
+    ],
+    "cons": [
+      "Frequent breaking changes across versions",
+      "Configuration around loop scope confuses newcomers",
+      "Mode settings (auto/strict) easy to misuse"
+    ],
+    "verdict": "Essential for async Python tests, but expect to re-read the changelog every upgrade due to config churn.",
+    "best_for": "Python teams testing asyncio-based code with FastAPI, aiohttp, or httpx",
+    "not_for": "Projects avoiding async altogether or using anyio's built-in plugin"
   }
 }

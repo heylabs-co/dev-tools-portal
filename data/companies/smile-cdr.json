@@ -23,5 +23,31 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "HAPI FHIR-based clinical data repository for health systems",
+      "Health data fabric connecting clinical systems and analytics",
+      "FHIR-native server for large-scale health information exchange",
+      "Managed or on-premise FHIR server for US payer and provider",
+      "Population health data platform with FHIR-compliant APIs"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Built on HAPI FHIR by its original maintainers",
+      "Flexible deploy: cloud, on-prem, or managed",
+      "Strong HL7 v2 to FHIR translation capabilities",
+      "Proven at payer and provider scale"
+    ],
+    "cons": [
+      "Enterprise pricing prohibitive for smaller orgs",
+      "Steep learning curve beyond basic FHIR use",
+      "UI tooling less polished than API layer",
+      "Customization often requires professional services"
+    ],
+    "verdict": "The reference-grade FHIR repository for serious healthcare orgs, but priced and scoped for payer/provider scale.",
+    "best_for": "Payers, HIEs, and large providers building FHIR-native data platforms",
+    "not_for": "Small digital health startups or teams just needing a FHIR sandbox"
   }
 }

@@ -33,5 +33,28 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "Writing E2E tests in plain English without selectors or code",
+      "Auto-generating regression test suites from user story descriptions",
+      "Running AI-maintained tests that self-repair after UI updates",
+      "Scaling QA coverage for Salesforce and web apps without code"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Plain-English tests lower QA barrier",
+      "Covers web, mobile and API flows",
+      "Self-healing locators cut maintenance"
+    ],
+    "cons": [
+      "Flakiness on complex SPAs persists",
+      "Pricing steep versus Playwright",
+      "Limited control for senior SDETs"
+    ],
+    "verdict": "Effective if your QA team cannot code, but engineering-heavy shops still get more value from Playwright plus AI.",
+    "best_for": "QA teams without strong coding skills who want broad coverage fast",
+    "not_for": "Mature engineering orgs already invested in Playwright or Cypress"
   }
 }

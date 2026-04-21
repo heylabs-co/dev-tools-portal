@@ -23,5 +23,31 @@
   },
   "community": {
     "hn_mentions_30d": 61
+  },
+  "content": {
+    "when_to_use": [
+      "AI-powered PaaS automating Kubernetes setup on AWS",
+      "Deployment automation for teams without Kubernetes expertise",
+      "GitOps-based infra provisioning from app code to production",
+      "Reducing time-to-deploy for AWS-hosted containerized apps",
+      "Managed Kubernetes abstraction for small engineering teams"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Automates AWS infra setup",
+      "Simpler DX than raw CloudFormation",
+      "AI-assisted scaling decisions",
+      "Faster onboarding than vanilla AWS"
+    ],
+    "cons": [
+      "Small startup with uncertain longevity",
+      "AWS-only lock-in",
+      "AI scaling decisions can be opaque",
+      "Limited feature maturity vs Heroku or Render"
+    ],
+    "verdict": "Interesting AWS abstraction layer, but still early and risky for production-critical workloads.",
+    "best_for": "Small teams wanting AWS power without managing CloudFormation or Terraform directly",
+    "not_for": "Multi-cloud strategies, enterprises, or mission-critical production workloads"
   }
 }

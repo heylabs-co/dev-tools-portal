@@ -23,5 +23,33 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "S3-compatible geo-distributed object storage with EU residency",
+      "Multi-region redundancy without manual bucket replication",
+      "GDPR-compliant media storage for European teams",
+      "Replacing AWS S3 with sovereign Italian cloud storage",
+      "Distributed backup target with built-in multi-site durability"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Geo-distributed storage across EU by default",
+      "S3-compatible API drops into existing tools",
+      "Zero egress fees vs AWS/GCP/Azure",
+      "Italian data-residency for GDPR-strict clients",
+      "Flat per-GB pricing, no surprise line items"
+    ],
+    "cons": [
+      "Smaller network means fewer regions than AWS",
+      "Ecosystem of integrations still maturing",
+      "Throughput variable under heavy concurrent load",
+      "Limited track record for multi-PB deployments",
+      "Customer support hours skewed to CET"
+    ],
+    "verdict": "Cheaper, EU-sovereign S3 alternative with no egress — good fit if AWS egress bills sting or GDPR looms.",
+    "best_for": "European teams wanting S3-compatible storage with data sovereignty and predictable costs.",
+    "not_for": "Global enterprises needing 20+ regions and hyperscaler SLAs."
   }
 }

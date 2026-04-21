@@ -22,5 +22,31 @@
   },
   "community": {
     "hn_mentions_30d": 205
+  },
+  "content": {
+    "when_to_use": [
+      "Static code analysis discovering PII flows across microservices",
+      "Data privacy compliance scanning in CI/CD pipelines",
+      "Identifying undocumented PII usage in legacy codebases",
+      "Developer-first privacy tooling for security-conscious teams",
+      "GDPR compliance automation with code-level PII scanning"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Static analysis finds PII flows in code",
+      "Shifts privacy left into CI pipelines",
+      "Works across microservices and APIs",
+      "Open-source core available"
+    ],
+    "cons": [
+      "False positives common in complex codebases",
+      "Narrow scope, just one piece of privacy stack",
+      "Needs tuning per codebase to be useful",
+      "Smaller community than SAST rivals"
+    ],
+    "verdict": "Interesting static analysis angle on privacy, best paired with a broader data governance platform.",
+    "best_for": "Engineering teams catching PII leaks in code before merge via CI checks",
+    "not_for": "Teams needing full consent, DSR, and governance, not just code-level PII checks"
   }
 }

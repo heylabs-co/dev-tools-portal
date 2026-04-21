@@ -23,5 +23,30 @@
   },
   "community": {
     "hn_mentions_30d": 6
+  },
+  "content": {
+    "when_to_use": [
+      "End-to-end SaaS application network path monitoring",
+      "WAN performance visibility for remote worker experience",
+      "Synthetic transactions from branch offices to cloud apps",
+      "Detect ISP or CDN degradation before users report it"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Hop-by-hop network path visibility for SaaS apps",
+      "Dedicated monitoring points for WAN and last-mile",
+      "Continuous synthetic tests independent of user traffic",
+      "Strong for remote workforce experience monitoring"
+    ],
+    "cons": [
+      "Network-layer focus leaves APM gaps",
+      "Hardware/appliance footprint for best results",
+      "Pricing high relative to pure synthetic tools",
+      "Broadcom ownership raises roadmap concerns"
+    ],
+    "verdict": "Strong network experience monitoring, but narrow scope makes it a complement not a full observability stack.",
+    "best_for": "Enterprises with distributed offices monitoring SaaS and WAN path performance.",
+    "not_for": "Cloud-native teams needing code-level APM and tracing."
   }
 }

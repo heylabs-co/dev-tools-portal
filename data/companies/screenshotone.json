@@ -22,5 +22,31 @@
   },
   "community": {
     "hn_mentions_30d": 1
+  },
+  "content": {
+    "when_to_use": [
+      "REST API for capturing website screenshots at any viewport",
+      "Automated URL screenshot generation for link previews",
+      "OG image generation from live URLs for social media sharing",
+      "Browser automation screenshots without managing Puppeteer infra",
+      "Batch screenshot generation for website monitoring tools"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Simple REST API with rich rendering options",
+      "Viewport, JS execution, and delay controls",
+      "Blocks ads and cookie banners automatically",
+      "Fair pay-per-screenshot pricing"
+    ],
+    "cons": [
+      "Thin compared to Browserless for full automation",
+      "Rate limits on lower tiers are tight",
+      "Limited geographic rendering regions",
+      "No built-in visual diff tooling"
+    ],
+    "verdict": "Clean screenshot API for OG images, thumbnails, and reports, pick Browserless if you need full browser control.",
+    "best_for": "Generating OG images, PDF previews, or periodic site snapshots via API",
+    "not_for": "Complex browser automation, scraping, or end-to-end testing workflows"
   }
 }

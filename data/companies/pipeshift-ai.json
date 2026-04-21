@@ -26,5 +26,30 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "Deploying open-source LLMs with one-click managed hosting",
+      "Migrating from OpenAI to self-hosted models without code changes",
+      "Running private fine-tuned models with OpenAI-compatible endpoints",
+      "Scaling inference capacity for open LLMs without DevOps overhead"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Managed fine-tuning for open-source LLMs",
+      "You keep model weights and ownership",
+      "GPU-efficient serving with autoscaling",
+      "Simplifies LoRA and QLoRA workflows"
+    ],
+    "cons": [
+      "Smaller than Together or Fireworks",
+      "Self-hosting feels harder without their platform",
+      "Pricing less transparent than competitors",
+      "Limited public benchmarks vs alternatives"
+    ],
+    "verdict": "Reasonable if model ownership matters, but Together, Fireworks, and Modal often beat them on ecosystem depth.",
+    "best_for": "Teams fine-tuning open LLMs who need to own the weights",
+    "not_for": "Teams fine with closed-model APIs like GPT or Claude"
   }
 }

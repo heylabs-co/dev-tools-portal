@@ -25,5 +25,30 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "Deploying always-on wake word detection on embedded devices",
+      "Running offline speech recognition on Raspberry Pi or MCUs",
+      "Building voice commands that work without internet connectivity",
+      "Implementing on-device NLP for privacy-sensitive voice apps"
+    ]
+  },
+  "review": {
+    "pros": [
+      "On-device inference preserves privacy",
+      "Works offline on Raspberry Pi and mobile",
+      "Wake-word, STT, and NLU in one SDK",
+      "Deterministic pricing unlike cloud STT"
+    ],
+    "cons": [
+      "Lower accuracy than cloud STT giants",
+      "Language coverage narrower than Whisper",
+      "Requires on-device model training workflow",
+      "Commercial licenses can get expensive"
+    ],
+    "verdict": "The go-to SDK for offline voice AI on edge devices; cloud STT still wins on accuracy for connected apps.",
+    "best_for": "Edge and IoT developers needing offline voice AI with privacy",
+    "not_for": "Cloud-first apps where Whisper or Deepgram accuracy wins"
   }
 }

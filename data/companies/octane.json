@@ -22,5 +22,30 @@
   },
   "community": {
     "hn_mentions_30d": 3
+  },
+  "content": {
+    "when_to_use": [
+      "Metering API calls for usage-based SaaS billing",
+      "Managing customer credit wallets and prepaid top-ups",
+      "Building hybrid pricing (seat + usage) for AI products",
+      "Real-time usage alerts triggering automated billing events"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Purpose-built for usage-based API and SaaS billing",
+      "Real-time metering with low-latency pricing engine",
+      "Customer credit and prepaid wallet management",
+      "Clear APIs and reasonable developer experience"
+    ],
+    "cons": [
+      "Narrow focus; lacks full CPQ or quote-to-cash",
+      "Smaller customer base than Metronome or m3ter",
+      "Enterprise features still filling in",
+      "Requires engineering effort to model pricing correctly"
+    ],
+    "verdict": "Credible usage-billing engine for API-first products, competing in a crowded Metronome/Orb/m3ter space.",
+    "best_for": "API and infrastructure companies needing real-time metering and prepaid credit billing.",
+    "not_for": "Flat-rate SaaS, sales-led enterprise deals, or teams wanting full quote-to-cash in one tool."
   }
 }

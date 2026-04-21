@@ -22,5 +22,33 @@
   },
   "community": {
     "hn_mentions_30d": 9
+  },
+  "content": {
+    "when_to_use": [
+      "Self-hosted file sync with WebDAV and S3 backend support",
+      "GDPR-compliant file collaboration for European enterprises",
+      "On-premise Dropbox/Google Drive alternative for sensitive data",
+      "File sharing and versioning without public cloud dependency",
+      "Infinite Scale (OCIS) Go rewrite for high-performance deploys"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Self-hosted alternative to Dropbox/OneDrive",
+      "OCIS rewrite is Go-native and much faster",
+      "S3 backend support for object storage",
+      "WebDAV broadens client compatibility",
+      "Strong EU data-sovereignty story"
+    ],
+    "cons": [
+      "Ecosystem splintered after Nextcloud fork",
+      "Community momentum shifted to Nextcloud",
+      "Enterprise plugins behind paid tier",
+      "Setup and upgrades non-trivial",
+      "Mobile clients trail commercial rivals"
+    ],
+    "verdict": "Still a legitimate self-hosted file sync choice, but Nextcloud's momentum makes ownCloud a harder sell.",
+    "best_for": "Orgs needing on-prem file sync with S3 backend and GDPR-aligned hosting.",
+    "not_for": "Teams wanting the biggest self-hosted community — Nextcloud leads there now."
   }
 }

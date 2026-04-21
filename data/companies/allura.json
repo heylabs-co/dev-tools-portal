@@ -22,5 +22,30 @@
   },
   "community": {
     "hn_mentions_30d": 1
+  },
+  "content": {
+    "when_to_use": [
+      "Self-hosted OSS project hosting with Git and tickets",
+      "Migrate projects from SVN to Git with history intact",
+      "Collaborative wiki and mailing list for open-source teams",
+      "Webhook-triggered CI on push to hosted repositories"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Apache-licensed, truly open source forge",
+      "Handles Git, Mercurial, SVN in one place",
+      "Integrated tickets, wiki, forums, mailing lists",
+      "Battle-tested at SourceForge scale"
+    ],
+    "cons": [
+      "Python 2 legacy baggage, painful to deploy",
+      "UI feels a decade behind GitHub/GitLab",
+      "Sparse community activity and slow releases",
+      "Limited modern CI/CD integration"
+    ],
+    "verdict": "A dated but functional OSS forge if you truly need multi-VCS hosting and the Apache brand.",
+    "best_for": "OSS foundations wanting a self-hosted forge with Mercurial and SVN alongside Git.",
+    "not_for": "Teams that want a polished, modern DevOps experience."
   }
 }

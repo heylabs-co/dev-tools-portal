@@ -23,5 +23,31 @@
   },
   "community": {
     "hn_mentions_30d": 1
+  },
+  "content": {
+    "when_to_use": [
+      "Competitive smart contract audit before protocol launch",
+      "Bug bounty program for DeFi protocol vulnerability discovery",
+      "Community security review for open-source blockchain projects",
+      "Pre-audit triage using C4 scout findings",
+      "Ongoing contest-based security testing for protocol upgrades"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Competitive model finds bugs solo auditors miss",
+      "Transparent public contest reports build trust",
+      "Guaranteed bounty pool de-risks contests for researchers",
+      "Access to hundreds of wardens in parallel"
+    ],
+    "cons": [
+      "Report triage can bury real issues under duplicates",
+      "Contest format rewards speed over deep review",
+      "Protocols need clean, documented code before contest starts",
+      "No NDA means findings are eventually public"
+    ],
+    "verdict": "Crowdsourced audits unearth bugs traditional firms miss, but triage and public disclosure aren't for everyone.",
+    "best_for": "Well-prepared DeFi protocols wanting adversarial coverage before mainnet launch.",
+    "not_for": "Teams needing confidential audits or those shipping unfinished, undocumented code."
   }
 }

@@ -22,5 +22,31 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "WASI-compliant sandbox for running untrusted code safely",
+      "Multi-language serverless execution via Bytecode Alliance runtime",
+      "Secure plugin execution in applications with Wasmtime sandbox",
+      "Component model Wasm for portable cross-language APIs",
+      "Fast and secure server-side Wasm execution in production"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Reference Wasm runtime from Bytecode Alliance",
+      "Strong WASI and component-model support",
+      "Secure sandboxed execution by default",
+      "Backed by Fastly, Mozilla, Microsoft engineers"
+    ],
+    "cons": [
+      "It's a runtime, not a hosted cloud service",
+      "You still need to build your orchestration layer",
+      "Component model ecosystem still maturing",
+      "Limited prebuilt integrations vs Node/Deno"
+    ],
+    "verdict": "The most serious Wasm runtime for server-side use, but don't mistake it for a managed cloud product.",
+    "best_for": "Infrastructure teams embedding Wasm execution into their own platforms",
+    "not_for": "App developers wanting a deploy-this-URL managed Wasm platform"
   }
 }

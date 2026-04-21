@@ -22,5 +22,31 @@
   },
   "community": {
     "hn_mentions_30d": 1
+  },
+  "content": {
+    "when_to_use": [
+      "Automated cookie scan and GDPR consent banner for any site",
+      "Cookie declaration page generation with IAB TCF support",
+      "Prior consent enforcement blocking trackers until opt-in",
+      "CCPA opt-out mechanism for US California visitors",
+      "Compliance audit report export for DPA submissions"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Automatic monthly scan catalogues every cookie and tracker",
+      "Auto-blocking of non-consented cookies out of the box",
+      "Certified TCF and Google-consent-mode compatible",
+      "Detailed cookie declaration page generated for you"
+    ],
+    "cons": [
+      "Page view-based pricing punishes high-traffic sites",
+      "Auto-blocking occasionally breaks third-party scripts",
+      "Default UI customization limited on lower tiers",
+      "Scans of JavaScript-heavy SPAs can miss cookies"
+    ],
+    "verdict": "The default CMP for teams that want set-and-forget cookie compliance, if you can stomach traffic-based pricing.",
+    "best_for": "Mid-sized sites that need automated cookie discovery and TCF",
+    "not_for": "High-traffic publishers or teams needing flat-fee pricing predictability"
   }
 }

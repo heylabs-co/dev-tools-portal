@@ -22,5 +22,31 @@
   },
   "community": {
     "hn_mentions_30d": 3
+  },
+  "content": {
+    "when_to_use": [
+      "Calendar availability API for scheduling across providers",
+      "Read/write events across Google, Outlook, and Exchange",
+      "Real-time calendar sync for enterprise scheduling app",
+      "Buffer time and working hours enforcement for booking",
+      "Multi-calendar conflict detection for interview scheduling"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Unified API across Google/Outlook/Exchange/Apple",
+      "Real-time push updates",
+      "Enterprise-grade auth and security",
+      "Saves months of calendar glue"
+    ],
+    "cons": [
+      "Pricing is enterprise-oriented",
+      "Free tier is limited",
+      "Docs assume calendar-protocol familiarity",
+      "Setup complex for simple use cases"
+    ],
+    "verdict": "The best calendar-abstraction API out there—worth every cent if you'd otherwise build it yourself.",
+    "best_for": "Products embedding two-way scheduling across multiple calendar providers",
+    "not_for": "Tiny projects that only need Google Calendar and can call Google directly"
   }
 }

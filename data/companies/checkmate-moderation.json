@@ -21,5 +21,30 @@
   },
   "community": {
     "hn_mentions_30d": 2
+  },
+  "content": {
+    "when_to_use": [
+      "Running automated fact-checking and misinformation detection",
+      "Integrating claim verification into content publishing workflows",
+      "Detecting misleading content before it reaches feed distribution",
+      "Building trust signals for fact-checked content at scale"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Purpose-built for WhatsApp and SMS misinformation",
+      "Scam and fraud classification included",
+      "Useful for fact-check orgs and civic tech",
+      "Narrow scope means focused quality"
+    ],
+    "cons": [
+      "Very narrow use case, not general moderation",
+      "Limited to messaging channels",
+      "Small team, unclear long-term roadmap",
+      "Not for toxicity or NSFW detection"
+    ],
+    "verdict": "Niche but well-fit for messaging misinformation; do not expect a general-purpose moderation stack.",
+    "best_for": "Fact-checkers and NGOs fighting misinformation and scams on WhatsApp or SMS.",
+    "not_for": "General platforms needing toxicity, NSFW, or multimodal content moderation."
   }
 }

@@ -33,5 +33,28 @@
   },
   "community": {
     "hn_mentions_30d": 20
+  },
+  "content": {
+    "when_to_use": [
+      "Generating synthetic tabular data for ML training and testing",
+      "Creating privacy-safe test datasets from sensitive production data",
+      "Augmenting imbalanced training data with synthetic samples",
+      "Building GDPR-compliant data pipelines using synthetic datasets"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Strong on finance and healthcare schemas",
+      "Preserves statistical properties decently",
+      "Reduces prod-data-in-test risk"
+    ],
+    "cons": [
+      "Enterprise pricing, long sales cycle",
+      "Quality depends heavily on source data",
+      "Regulators still cautious about synthetics"
+    ],
+    "verdict": "Credible enterprise synthetic-data choice when compliance blocks real data copies, but not a weekend install.",
+    "best_for": "Regulated finance and healthcare teams needing safe test and dev datasets",
+    "not_for": "Small teams or projects where anonymized samples or fixtures would do"
   }
 }

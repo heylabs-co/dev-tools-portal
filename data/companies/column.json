@@ -23,5 +23,30 @@
   },
   "community": {
     "hn_mentions_30d": 59
+  },
+  "content": {
+    "when_to_use": [
+      "ACH, wire, and RTP APIs backed by national bank charter for fintechs",
+      "Real-time payment (FedNow, RTP) integration for US fintech products",
+      "Bank account creation and money movement infrastructure for neobanks",
+      "Programmable US banking layer for lending and payment platform builders"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Actual US national bank charter",
+      "Direct ACH, wire, RTP access",
+      "Developer-first API for rails",
+      "No middleman BIN sponsor"
+    ],
+    "cons": [
+      "US-only, no global reach",
+      "High compliance bar for customers",
+      "Not a card gateway",
+      "Limited for non-fintech use cases"
+    ],
+    "verdict": "Unique bank-as-API play — if you're serious about US rails, Column removes layers others can't.",
+    "best_for": "US fintechs needing direct bank rail access without a sponsor bank",
+    "not_for": "Non-US companies or merchants just wanting card acceptance"
   }
 }

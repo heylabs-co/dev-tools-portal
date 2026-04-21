@@ -26,5 +26,31 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "Orchestrating multi-engine big data DAGs (Spark, Flink, Hive)",
+      "Scheduling thousands of interdependent ETL tasks visually",
+      "Replacing Airflow for teams needing Chinese ecosystem support",
+      "Distributed workflow scheduling across large compute clusters",
+      "Managing data pipeline retries and SLA monitoring at scale"
+    ]
+  },
+  "review": {
+    "pros": [
+      "True distributed scheduler, not just a UI over cron",
+      "Drag-and-drop DAG editor for non-coders",
+      "Supports Spark, Flink, Hive, DataX natively",
+      "Apache TLP with active Chinese contributor base"
+    ],
+    "cons": [
+      "Docs and community skew heavily to Chinese",
+      "English support lags behind Airflow ecosystem",
+      "Fewer third-party operators than Airflow",
+      "Cloud-native deployment less polished than Dagster"
+    ],
+    "verdict": "Serious Airflow alternative for big-data shops, held back by smaller English-speaking community.",
+    "best_for": "Big-data teams running Spark/Flink who want visual DAG authoring",
+    "not_for": "Python-first data teams deeply invested in the Airflow ecosystem"
   }
 }

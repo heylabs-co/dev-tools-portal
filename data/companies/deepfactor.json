@@ -23,5 +23,30 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "Runtime security scanning for vulnerabilities in running apps",
+      "Compliance policy enforcement via runtime instrumentation",
+      "Detect insecure API calls from application behavior",
+      "Shift-left security observability in staging pipelines"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Runtime instrumentation finds real exploit paths",
+      "Combines SCA, SBOM and runtime in one tool",
+      "Reduces noise vs static SAST/SCA scanners",
+      "Good Kubernetes and container coverage"
+    ],
+    "cons": [
+      "Runtime agents add operational overhead",
+      "Overlaps heavily with Snyk, Aqua and Sysdig",
+      "Smaller vendor, uncertain long-term roadmap",
+      "Enterprise sales process for most features"
+    ],
+    "verdict": "Runtime-aware AppSec with useful signal-to-noise gains, but crowded field dominated by bigger names.",
+    "best_for": "AppSec teams prioritizing exploitable runtime vulnerabilities over static scan volume.",
+    "not_for": "Teams already invested in Snyk or Sysdig runtime security."
   }
 }

@@ -25,5 +25,28 @@
   },
   "community": {
     "hn_mentions_30d": 81
+  },
+  "content": {
+    "when_to_use": [
+      "Accessing neural machine translation with human post-editing via API",
+      "Building professional localization pipelines for enterprise content",
+      "Producing specialized technical and legal translations at scale",
+      "Combining MT with TM and glossary support for consistent output"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Hybrid MT plus human review model",
+      "Strong language coverage",
+      "Enterprise translation pedigree"
+    ],
+    "cons": [
+      "Human loop means higher latency",
+      "Pricing higher than pure-MT APIs",
+      "Overkill for informal UGC content"
+    ],
+    "verdict": "Right pick when accuracy actually matters; wrong pick when you just need cheap real-time MT.",
+    "best_for": "Enterprises localizing legal, medical or marketing content where errors are costly",
+    "not_for": "Apps translating high-volume UGC where DeepL or Google MT at API speed suffice"
   }
 }

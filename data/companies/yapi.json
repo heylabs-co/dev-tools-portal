@@ -26,5 +26,32 @@
   },
   "community": {
     "hn_mentions_30d": 78
+  },
+  "content": {
+    "when_to_use": [
+      "Open-source API management and documentation platform",
+      "Visual API workflow tool popular in Chinese enterprises",
+      "Self-hosted API collaboration for internal dev teams",
+      "Mock server generation from API spec definitions",
+      "API design documentation with Chinese enterprise support"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Self-hosted with no per-seat licensing",
+      "Visual editor for API specs, low ramp-up",
+      "Built-in mock server for frontend teams",
+      "Popular in Chinese enterprises, proven at scale"
+    ],
+    "cons": [
+      "Primary docs and community are Chinese-only",
+      "Original repo largely unmaintained since 2022",
+      "MongoDB dependency adds ops overhead",
+      "UI feels dated compared to Apifox or Postman",
+      "Limited OpenAPI 3.1 support"
+    ],
+    "verdict": "Free self-hosted API platform that works, but stagnant development and language barrier push most teams to Apifox.",
+    "best_for": "Chinese-speaking teams needing a free self-hosted API mocking and docs platform",
+    "not_for": "English-first teams or anyone needing active upstream maintenance and modern OpenAPI support"
   }
 }

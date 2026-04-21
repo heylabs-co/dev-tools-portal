@@ -37,5 +37,30 @@
     "forks": 0,
     "updated_at": "2026-04-21",
     "health_score": "F"
+  },
+  "content": {
+    "when_to_use": [
+      "Self-hosted session replay with full data ownership",
+      "rrweb-based pixel-perfect recording and playback",
+      "Custom network interceptor for API request replay",
+      "Open-source session recording for privacy-sensitive apps"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Open-source and self-hostable for full data control",
+      "Built on rrweb so replay fidelity matches commercial tools",
+      "Custom network interceptors help debug API issues",
+      "No per-session pricing when you run your own infra"
+    ],
+    "cons": [
+      "Self-hosting means you own the scaling and retention bill",
+      "Minimal product analytics, funnels or dashboards",
+      "Smaller community means less plug-and-play tooling",
+      "Requires engineering time to operationalize"
+    ],
+    "verdict": "Good privacy-first rrweb framework for engineers who want replay without sending pixels to a SaaS vendor.",
+    "best_for": "Privacy-sensitive teams with engineering capacity to self-host replay.",
+    "not_for": "Marketing or product teams expecting turnkey dashboards and support."
   }
 }

@@ -23,5 +23,31 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "eBPF-based Kubernetes networking and observability with Cilium",
+      "Zero-trust network policies for pod-to-pod traffic in K8s",
+      "Network security and microsegmentation without sidecars",
+      "Advanced Hubble visibility into Kubernetes network flows",
+      "Replacing iptables-based networking with high-performance eBPF"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Deep eBPF expertise from Cilium creators",
+      "Advanced network policy and observability",
+      "Strong multi-cluster mesh support",
+      "Hubble provides granular flow visibility"
+    ],
+    "cons": [
+      "Enterprise pricing opaque and steep",
+      "eBPF debugging has steep learning curve",
+      "Requires modern kernel versions",
+      "Overkill for small Kubernetes clusters"
+    ],
+    "verdict": "The gold standard for eBPF Kubernetes networking, but only justified at serious enterprise scale.",
+    "best_for": "Large enterprises running multi-cluster Kubernetes needing deep network security and observability",
+    "not_for": "Small teams, single-cluster setups, or shops without dedicated platform engineers"
   }
 }

@@ -21,5 +21,31 @@
   },
   "community": {
     "hn_mentions_30d": 120
+  },
+  "content": {
+    "when_to_use": [
+      "Full-stack KYC for crypto exchange regulatory onboarding",
+      "Passive liveness detection for mobile banking onboarding",
+      "Government ID document authentication for regulated sectors",
+      "AML screening integrated with identity verification workflow",
+      "Biometric re-authentication for high-value transaction approval"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Full identity stack including liveness and screening",
+      "Passive liveness reduces user friction",
+      "Proven in banking, crypto and government use",
+      "Biometric auth reusable across repeat logins"
+    ],
+    "cons": [
+      "Enterprise pricing tough for early-stage teams",
+      "Heavy vendor lock-in once biometrics stored",
+      "Coverage varies by country for document types",
+      "Dashboard can feel overwhelming on first use"
+    ],
+    "verdict": "Strong enterprise IDV platform that pays off at scale; overkill for most pre-series-A startups.",
+    "best_for": "Banks, crypto exchanges and government agencies needing full-stack IDV with biometric reuse",
+    "not_for": "Early-stage startups with low volumes who'd outgrow Onfido or Persona before needing Incode"
   }
 }

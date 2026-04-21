@@ -41,5 +41,30 @@
     "forks": 3,
     "updated_at": "2026-04-21",
     "health_score": "F"
+  },
+  "content": {
+    "when_to_use": [
+      "Paywall A/B testing for subscription app conversion optimization",
+      "Smart paywall triggers based on user behavior without server code",
+      "IAP purchase flow management for iOS and Android without backend",
+      "Remote paywall configuration and update without app store release"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Smart paywalls with A/B testing without backend code",
+      "Fast iteration on pricing and messaging",
+      "No server-side implementation reduces eng time",
+      "Targets subscription apps that live and die on paywall CVR"
+    ],
+    "cons": [
+      "Overlaps with RevenueCat, Adapty and Superwall",
+      "Another SDK in your mobile binary",
+      "Feature depth to validate vs market leaders",
+      "Pricing comparison against incumbents is unclear"
+    ],
+    "verdict": "Another no-code paywall contender in a crowded space, worth shortlisting but benchmark against Superwall and Adapty.",
+    "best_for": "Subscription app teams iterating on paywall design weekly.",
+    "not_for": "Teams already committed to RevenueCat, Adapty or Superwall."
   }
 }

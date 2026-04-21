@@ -23,5 +23,31 @@
   },
   "community": {
     "hn_mentions_30d": 24
+  },
+  "content": {
+    "when_to_use": [
+      "Unified enterprise search across 100+ SaaS apps",
+      "Low-TCO knowledge search without indexing infrastructure",
+      "AI-powered answer retrieval from internal SaaS content",
+      "Employee productivity tool replacing multiple search tabs",
+      "Federated search for knowledge management in SMB"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Federated model avoids indexing cost and data duplication",
+      "Lower TCO pitch versus indexing-heavy enterprise search",
+      "AI chat layer unifies results across SaaS tools",
+      "Faster deployment than traditional enterprise search"
+    ],
+    "cons": [
+      "Less established than Glean or Dashworks",
+      "Federation tradeoffs: latency and weaker global ranking",
+      "Connector ecosystem still maturing",
+      "Limited public case studies at large scale"
+    ],
+    "verdict": "Promising federated enterprise search if TCO is the main constraint; evaluate against more mature Glean and Dashworks.",
+    "best_for": "Mid-market teams wanting federated enterprise search without Glean-level budgets.",
+    "not_for": "Large enterprises needing proven scale and deep ranking control."
   }
 }

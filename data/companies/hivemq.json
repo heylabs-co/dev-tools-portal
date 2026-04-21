@@ -22,5 +22,29 @@
   },
   "community": {
     "hn_mentions_30d": 2
+  },
+  "content": {
+    "when_to_use": [
+      "Enterprise MQTT broker with clustering for high-availability IoT",
+      "Kafka integration bridge from MQTT devices to streaming pipeline",
+      "MQTT broker for 1M+ concurrent device connections",
+      "Persistent messaging for industrial IoT and smart metering",
+      "MQTT 5.0 compliant broker with advanced security controls"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Enterprise MQTT with clustering",
+      "Strong Kafka integration",
+      "Reliable persistence and HA"
+    ],
+    "cons": [
+      "Enterprise license is expensive",
+      "Overkill for small IoT projects",
+      "Ops complexity at scale"
+    ],
+    "verdict": "The go-to enterprise MQTT broker when uptime, Kafka bridging, and support SLAs matter.",
+    "best_for": "Enterprise IoT and connected-car fleets needing MQTT plus Kafka",
+    "not_for": "Small projects that could live on Mosquitto or a cheap managed broker"
   }
 }

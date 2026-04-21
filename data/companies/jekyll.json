@@ -22,5 +22,31 @@
   },
   "community": {
     "hn_mentions_30d": 20
+  },
+  "content": {
+    "when_to_use": [
+      "Static site generation with Markdown and Liquid templates",
+      "GitHub Pages-native blog or documentation site hosting",
+      "Developer blogs and project sites built with zero CMS cost",
+      "Fast static site builds for small personal and open-source sites",
+      "Converting Markdown content to HTML with Ruby and Jekyll"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Free hosting via GitHub Pages",
+      "Mature plugin and theme ecosystem",
+      "Simple Markdown-first authoring",
+      "Zero-cost personal blog solution"
+    ],
+    "cons": [
+      "Ruby dependency slows Windows setup",
+      "Build times balloon past 1000 posts",
+      "Plugin API frozen compared to Hugo",
+      "Liquid templating feels dated"
+    ],
+    "verdict": "Still the default for GitHub Pages blogs, but Hugo and Astro have lapped it on speed and DX.",
+    "best_for": "Developers wanting free GitHub Pages hosting for blogs or documentation sites",
+    "not_for": "Large content sites, non-Ruby teams, or anyone building modern interactive pages"
   }
 }

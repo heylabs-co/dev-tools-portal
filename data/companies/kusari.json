@@ -30,5 +30,31 @@
   },
   "community": {
     "hn_mentions_30d": 1
+  },
+  "content": {
+    "when_to_use": [
+      "SBOM generation and signing for software supply chain",
+      "SLSA provenance attestation for CI/CD pipeline artifacts",
+      "Open-source dependency integrity verification via GUAC",
+      "Supply chain risk scoring for enterprise vendor assessment",
+      "Software attestation for NIST SSDF and EO 14028 compliance"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Open-source foundation for SBOM and provenance",
+      "Verifies SLSA provenance of build artifacts",
+      "Supply chain visibility across CI/CD pipelines",
+      "Aligned with emerging US federal SBOM requirements"
+    ],
+    "cons": [
+      "Early-stage product with evolving feature set",
+      "Requires engineering effort to integrate into pipelines",
+      "Smaller team and community than OSS security incumbents",
+      "Business model and pricing still maturing"
+    ],
+    "verdict": "Interesting bet for supply-chain-security teams who like open source — not a plug-and-play GRC purchase.",
+    "best_for": "Platform teams building secure software supply chains from scratch",
+    "not_for": "Compliance buyers who want a turnkey SOC 2 or FedRAMP tool"
   }
 }

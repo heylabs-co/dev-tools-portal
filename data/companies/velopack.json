@@ -42,5 +42,30 @@
     "forks": 119,
     "updated_at": "2026-04-21",
     "health_score": "A"
+  },
+  "content": {
+    "when_to_use": [
+      "Cross-platform installer and auto-updater for desktop apps",
+      "Windows, macOS, and Linux update delivery from one tool",
+      "Delta update patches to minimize download bandwidth",
+      "In-app update check and install with user confirmation"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Fast, small installers with true cross-platform support",
+      "Built-in delta updates and rollback",
+      "Modern design compared to Squirrel and ClickOnce",
+      "Free and MIT-licensed"
+    ],
+    "cons": [
+      "Young project, smaller user base",
+      "Some edge-case signing flows still maturing",
+      "Migration from Squirrel.Windows not always trivial",
+      "Docs thinner than established tools"
+    ],
+    "verdict": "The most interesting modern installer/updater for .NET and cross-platform desktop apps right now.",
+    "best_for": "Desktop apps (especially .NET) wanting modern install + auto-update without Electron-builder complexity.",
+    "not_for": "Teams needing the battle-tested track record of Sparkle or electron-builder."
   }
 }

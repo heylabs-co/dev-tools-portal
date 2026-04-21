@@ -22,5 +22,30 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "Updating onboarding screens without App Store release",
+      "A/B testing paywall layouts without deploying a new build",
+      "Pushing promotional banners remotely for seasonal campaigns",
+      "Managing localized content for different app market regions"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Update onboarding screens without a store release",
+      "Lightweight SDK, fast integration",
+      "A/B test onboarding flows live in production",
+      "Reduces pressure on store review cycles"
+    ],
+    "cons": [
+      "Niche product, small feature surface",
+      "Overlaps with generic remote-config solutions",
+      "Docs and community are thin",
+      "Vendor stability and roadmap are opaque"
+    ],
+    "verdict": "Solves a real pain around onboarding changes, but generic remote-config often covers the same ground cheaper.",
+    "best_for": "Mobile teams iterating fast on onboarding without frequent releases",
+    "not_for": "Teams already using Firebase Remote Config or LaunchDarkly heavily"
   }
 }

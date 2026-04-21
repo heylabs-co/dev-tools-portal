@@ -20,5 +20,31 @@
   "seo": {
     "title": "CodePen — Developer Documentation / DevRel",
     "meta_description": "CodePen: CodePen — browser-based front-end code playground for HTML, CSS, and JavaScript that enables sharing, forking, and embedding live code demos."
+  },
+  "content": {
+    "when_to_use": [
+      "Live CSS animation demo embedded in blog post",
+      "Shared interactive JavaScript snippet for Stack Overflow answer",
+      "Design system component showcase with live preview",
+      "Conference talk code example runnable in the browser",
+      "Open-source library usage example forkable by community"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Zero-setup browser playground for HTML/CSS/JS demos",
+      "Huge community library of reusable UI experiments",
+      "Strong embedding support for blogs and docs",
+      "Free tier is generous for learners and sharers"
+    ],
+    "cons": [
+      "Frontend-only - no backend or build-tool support",
+      "Pro features gated behind subscription",
+      "Performance sluggish with heavy preview pens",
+      "Code organization limited versus real editors"
+    ],
+    "verdict": "Still the default frontend playground for demos and inspiration; not an IDE replacement.",
+    "best_for": "Frontend devs sharing small demos, teaching CSS, or prototyping UI ideas quickly.",
+    "not_for": "Full-stack projects, complex builds, or anything requiring backend, auth, or package management."
   }
 }

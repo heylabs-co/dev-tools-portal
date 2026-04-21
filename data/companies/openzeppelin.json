@@ -22,5 +22,31 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "Audited ERC-20 and ERC-721 contract modules for Solidity devs",
+      "Access control library for role-based smart contract permissions",
+      "Upgradeable proxy pattern for protocol governance changes",
+      "Security audit framework for DeFi protocol pre-launch review",
+      "OpenZeppelin Defender for automated contract operations"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Battle-tested contract library is the Solidity standard",
+      "Free, open source, and actively maintained",
+      "Defender toolkit adds ops, monitoring, and upgrades",
+      "Strong audit team with deep protocol experience"
+    ],
+    "cons": [
+      "Upgradeable contract patterns add their own risks",
+      "Audit queue and pricing favor larger protocols",
+      "Defender advanced features require paid plans",
+      "Heavy reliance creates homogeneous bug surface across DeFi"
+    ],
+    "verdict": "The default Solidity security stack; hard to justify rolling your own primitives against it.",
+    "best_for": "EVM protocol teams building production smart contracts who want proven primitives and tooling.",
+    "not_for": "Non-EVM chains or teams allergic to open-source licensing obligations in Defender."
   }
 }

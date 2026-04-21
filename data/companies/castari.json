@@ -30,5 +30,30 @@
   },
   "community": {
     "hn_mentions_30d": 1
+  },
+  "content": {
+    "when_to_use": [
+      "Simulating and testing agent behavior in sandbox environments",
+      "Running multi-agent workflow evaluations before production",
+      "Stress-testing autonomous agent decision paths at scale",
+      "Debugging unexpected agent actions in recorded simulations"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Focused scope on TypeScript and JavaScript refactoring",
+      "Cloud execution avoids local environment setup",
+      "Handles larger refactors than single-file AI assistants",
+      "Reasonable fit for Node and frontend monorepos"
+    ],
+    "cons": [
+      "Narrow language support limits team-wide adoption",
+      "Cloud-only model rules out air-gapped environments",
+      "Less mature than Cursor, Windsurf, or Copilot agents",
+      "Documentation and public track record are thin"
+    ],
+    "verdict": "Interesting niche tool for JS/TS teams, but too narrow and unproven to bet on today.",
+    "best_for": "TypeScript and JavaScript teams experimenting with cloud-based refactor agents",
+    "not_for": "Polyglot shops or teams requiring on-premise and offline workflows"
   }
 }

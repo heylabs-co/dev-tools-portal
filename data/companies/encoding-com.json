@@ -22,5 +22,33 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "Cloud video transcoding to multiple formats and resolutions",
+      "Media processing pipeline with subtitle embedding and packaging",
+      "VOD transcoding with per-minute billing for media companies",
+      "HLS and DASH adaptive stream packaging for delivery platforms",
+      "Replacing on-premise encoding hardware with cloud API"
+    ]
+  },
+  "review": {
+    "pros": [
+      "One of the oldest cloud transcoding services",
+      "Broad codec and format support (including legacy)",
+      "Multi-cloud output (AWS, Azure, GCS, Akamai)",
+      "Batch encoding at scale with queue priority",
+      "Predictable per-minute pricing"
+    ],
+    "cons": [
+      "UI and API feel stuck in the 2010s",
+      "Slow innovation vs Mux or AWS MediaConvert",
+      "No live streaming, VOD-only",
+      "Docs fragmented across old blog posts",
+      "Support responsiveness varies"
+    ],
+    "verdict": "Dependable old-school transcoder, fine for batch VOD jobs — modern APIs offer better DX for new projects.",
+    "best_for": "Media libraries migrating legacy video catalogs with broad format requirements.",
+    "not_for": "Greenfield apps — Mux, Bitmovin, or MediaConvert offer cleaner DX."
   }
 }

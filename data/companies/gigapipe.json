@@ -42,5 +42,30 @@
     "forks": 89,
     "updated_at": "2026-04-21",
     "health_score": "B"
+  },
+  "content": {
+    "when_to_use": [
+      "ClickHouse-backed logs storage with Loki-compatible API",
+      "Unified observability with Prometheus, Tempo, and Loki",
+      "Cost-efficient telemetry with columnar compression",
+      "Plug into existing Grafana dashboards instantly"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Single ClickHouse backend for logs, metrics, traces, profiles",
+      "Drop-in Loki, Prom, Tempo and Pyroscope compatibility",
+      "Dramatically lower storage cost at scale",
+      "Managed and self-hosted options"
+    ],
+    "cons": [
+      "ClickHouse operations expertise required for self-host",
+      "Managed service newer than Grafana Cloud",
+      "Query performance tuning can surprise teams",
+      "Smaller support org than Grafana Labs"
+    ],
+    "verdict": "Compelling unified ClickHouse observability that undercuts Grafana Cloud on cost, with less polish.",
+    "best_for": "Teams using Grafana OSS who want cheaper managed storage via ClickHouse.",
+    "not_for": "Teams wanting turnkey Datadog-style experience with heavy hand-holding."
   }
 }

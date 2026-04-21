@@ -22,5 +22,30 @@
   },
   "community": {
     "hn_mentions_30d": 1
+  },
+  "content": {
+    "when_to_use": [
+      "Full-stack APM with logs, metrics, and RUM in one SaaS",
+      "Log management with anomaly detection and alerting",
+      "Real user monitoring for web app performance tracking",
+      "Kubernetes and Docker container monitoring dashboards"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Metrics, logs, traces, and RUM in one SaaS",
+      "Pricing noticeably cheaper than Datadog",
+      "Good Kubernetes and Docker support",
+      "Straightforward setup for common stacks"
+    ],
+    "cons": [
+      "Depth per module is less than best-of-breed tools",
+      "UI and UX feel dated in places",
+      "Community and ecosystem smaller than incumbents",
+      "Advanced AIOps features are limited"
+    ],
+    "verdict": "Reasonable full-stack observability for SMBs on a budget; large orgs will outgrow it into Datadog or Grafana stacks.",
+    "best_for": "SMBs wanting metrics, logs, and traces at a fraction of Datadog cost",
+    "not_for": "Enterprises needing deep AIOps and best-in-class per module"
   }
 }

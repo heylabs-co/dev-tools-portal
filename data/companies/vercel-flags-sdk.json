@@ -41,5 +41,30 @@
     "forks": 70,
     "updated_at": "2026-04-21",
     "health_score": "C"
+  },
+  "content": {
+    "when_to_use": [
+      "Framework-native feature flags for Next.js and SvelteKit",
+      "Provider-agnostic adapters for LaunchDarkly and Statsig",
+      "Edge-compatible flag evaluation without latency penalty",
+      "A/B testing built into Vercel deployment previews"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Framework-native for Next.js and SvelteKit",
+      "Provider-agnostic with adapters for major flag SaaS",
+      "Free and open source",
+      "Handles server/edge evaluation cleanly"
+    ],
+    "cons": [
+      "Only a client/framework layer; you still need a provider",
+      "Best DX when also hosting on Vercel",
+      "Limited value outside Next/SvelteKit",
+      "Some adapters lag upstream feature parity"
+    ],
+    "verdict": "Essentially required glue for feature flags in Next.js; pair it with a real flag provider of your choice.",
+    "best_for": "Next.js/SvelteKit teams integrating existing flag SaaS cleanly",
+    "not_for": "Non-Vercel stacks or teams needing the provider itself"
   }
 }

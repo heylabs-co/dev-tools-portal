@@ -22,5 +22,31 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "BEC detection via behavioral baseline for finance teams",
+      "Account takeover prevention for M365 and Google Workspace",
+      "Phishing triage automation to reduce SOC alert fatigue",
+      "Vendor email compromise detection for AP workflows",
+      "Executive impersonation alerts for high-risk inboxes"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Behavioral AI catches BEC that signature-based gateways miss",
+      "API-based deployment skips MX record changes",
+      "Strong account takeover detection via login anomalies",
+      "Post-delivery remediation auto-claws back phishing emails"
+    ],
+    "cons": [
+      "Enterprise-only pricing with opaque per-mailbox quotes",
+      "Requires Microsoft 365 or Google Workspace, no on-prem",
+      "Baseline learning period delays full protection",
+      "Limited visibility into detection logic for tuning"
+    ],
+    "verdict": "Best-in-class AI email security for M365 shops with budget; overkill and pricey for smaller orgs.",
+    "best_for": "Mid-to-large enterprises on M365 fighting BEC, vendor fraud, and executive impersonation.",
+    "not_for": "Small teams, on-prem Exchange, or orgs wanting transparent, predictable licensing."
   }
 }

@@ -23,5 +23,29 @@
   },
   "community": {
     "hn_mentions_30d": 3
+  },
+  "content": {
+    "when_to_use": [
+      "Serverless multiplayer game servers with autoscaling and lobbies",
+      "Per-region game session allocation without managing servers",
+      "Instant multiplayer backend for Unity and Unreal game projects",
+      "Lobby and matchmaking system on managed infrastructure",
+      "Game server platform that scales from 10 to 10K concurrent games"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Real serverless model for game servers",
+      "Per-region session routing",
+      "Fast scale-up for player spikes"
+    ],
+    "cons": [
+      "Cold start latency on first session",
+      "Pricing harder to predict at scale",
+      "Tied to their orchestrator"
+    ],
+    "verdict": "The cleanest serverless multiplayer host today, with the usual serverless tradeoffs around cold starts.",
+    "best_for": "Indie and mid-size studios with spiky multiplayer traffic",
+    "not_for": "Persistent-world games needing always-on regional clusters"
   }
 }

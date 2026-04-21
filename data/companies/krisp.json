@@ -22,5 +22,31 @@
   },
   "community": {
     "hn_mentions_30d": 46
+  },
+  "content": {
+    "when_to_use": [
+      "AI noise cancellation SDK for video conferencing app",
+      "Echo suppression for call center agent audio quality",
+      "Background noise removal for remote work tools",
+      "Real-time audio enhancement for podcast recording apps",
+      "Voice SDK for clean audio in customer support platforms"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Best-in-class AI noise cancellation quality",
+      "SDK embeds into voice and meeting products easily",
+      "Works across platforms with low latency",
+      "Saves engineering effort vs training own models"
+    ],
+    "cons": [
+      "Narrow scope — noise/echo only, not a full CPaaS",
+      "SDK licensing pricing can be steep at scale",
+      "Adds package size to native mobile apps",
+      "Limited tuning exposed for niche acoustic cases"
+    ],
+    "verdict": "If you ship voice or meeting software, Krisp is often cheaper than reinventing noise suppression yourself.",
+    "best_for": "Voice/meeting apps and call centers embedding noise cancellation into their stack",
+    "not_for": "Teams looking for a full messaging or telephony platform"
   }
 }

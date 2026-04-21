@@ -36,5 +36,29 @@
     "forks": 132,
     "updated_at": "2026-04-21",
     "health_score": "C"
+  },
+  "content": {
+    "when_to_use": [
+      "Statistical performance benchmarking in pytest suites",
+      "Compare benchmark results across git commits in CI",
+      "Track performance regressions in algorithmic code",
+      "Rich histogram and timing reports for optimization work"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Statistical analysis of test runs built-in",
+      "Compares benchmarks across git commits",
+      "Rich HTML and JSON report output",
+      "Low friction, just add a fixture"
+    ],
+    "cons": [
+      "Microbenchmarks, not load testing",
+      "Python-only, no cross-language comparison",
+      "CI noise can skew results without pinning"
+    ],
+    "verdict": "The go-to Python microbenchmarking tool for catching performance regressions inside your test suite.",
+    "best_for": "Python libraries guarding hot paths against per-commit performance regressions",
+    "not_for": "Whole-system load testing where Locust or k6 are proper fits"
   }
 }

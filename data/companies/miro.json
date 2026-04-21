@@ -22,5 +22,29 @@
   },
   "community": {
     "hn_mentions_30d": 435
+  },
+  "content": {
+    "when_to_use": [
+      "Programmatic sticky note creation for retrospective bots",
+      "Board automation via REST API for sprint ceremonies",
+      "Whiteboard integration into project management workflow",
+      "Embed Miro board in documentation for visual context",
+      "Team diagram sync from Miro to knowledge base"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Mature REST API with boards and widgets",
+      "OAuth app ecosystem for marketplace",
+      "Webhooks for real-time board events"
+    ],
+    "cons": [
+      "Enterprise pricing scales aggressively",
+      "API limits can throttle automation",
+      "Not suited for text-heavy docs"
+    ],
+    "verdict": "The whiteboard API most teams already tolerate; fine for integrations, overkill for simple diagramming.",
+    "best_for": "Teams embedding whiteboards into product workflows",
+    "not_for": "Solo users or budget-sensitive design teams"
   }
 }

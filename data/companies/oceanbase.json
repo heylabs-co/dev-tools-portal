@@ -26,5 +26,31 @@
   },
   "community": {
     "hn_mentions_30d": 2
+  },
+  "content": {
+    "when_to_use": [
+      "Distributed SQL with world-record TPC-C at Ant Group scale",
+      "HTAP workloads combining OLTP and OLAP on one cluster",
+      "Open-source community edition alternative to Oracle RAC",
+      "Multi-tenant cloud database for Chinese fintech applications",
+      "MySQL-compatible distributed DB for high-concurrency apps"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Proven at Ant Group scale with TPC-C record",
+      "Distributed HTAP with MySQL compatibility",
+      "Open-source Community Edition available",
+      "Paxos-based strong consistency"
+    ],
+    "cons": [
+      "Complex to operate outside Alibaba tooling",
+      "Community adoption small outside China",
+      "Documentation still improving in English",
+      "Managed service primarily on Alibaba Cloud"
+    ],
+    "verdict": "Serious distributed SQL engine for massive workloads, adoption friction outside China still significant in 2026.",
+    "best_for": "Financial-grade workloads at huge scale, especially within Alibaba Cloud",
+    "not_for": "Teams wanting broad community support and multi-cloud managed offerings"
   }
 }

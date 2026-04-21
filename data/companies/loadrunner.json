@@ -21,5 +21,30 @@
   },
   "community": {
     "hn_mentions_30d": 1
+  },
+  "content": {
+    "when_to_use": [
+      "Enterprise-grade virtual user simulation at 100K+ VUsers",
+      "Protocol coverage: HTTP, SAP, Citrix, Oracle Forms",
+      "Transaction SLA thresholds with pass/fail CI integration",
+      "Correlate server metrics with load test results in analysis"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Massive protocol coverage beyond plain HTTP",
+      "Battle-tested at huge enterprise scale",
+      "Strong for SAP, Citrix, mainframe workloads",
+      "Mature analysis and correlation tools"
+    ],
+    "cons": [
+      "Eye-watering enterprise licensing",
+      "Heavy, Windows-centric tooling",
+      "Steep learning curve, specialist skill set",
+      "Feels dated versus k6 and Gatling"
+    ],
+    "verdict": "Still unmatched on legacy protocols and scale, wildly overkill everywhere else.",
+    "best_for": "Regulated enterprises load-testing SAP, Citrix or mainframe applications",
+    "not_for": "Modern web and API stacks where open-source tools do the job for free"
   }
 }

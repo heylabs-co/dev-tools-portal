@@ -23,5 +23,30 @@
   },
   "community": {
     "hn_mentions_30d": 1
+  },
+  "content": {
+    "when_to_use": [
+      "Always-on eBPF production profiling with zero overhead",
+      "Continuous CPU and memory profiling for Go services",
+      "Flame graph diffs between releases for regression detection",
+      "Infrastructure-wide profiling without code instrumentation"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Always-on eBPF profiling in production",
+      "Built on open Parca, avoiding pure lock-in",
+      "Finds CPU and memory wins hard to catch otherwise",
+      "Low overhead on modern Linux kernels"
+    ],
+    "cons": [
+      "Requires recent kernels and eBPF support",
+      "Profiling literacy needed to get value",
+      "Narrow product scope, not a full APM",
+      "Smaller vendor, fewer integrations"
+    ],
+    "verdict": "Excellent for performance-obsessed backend teams; adopt it as a complement to APM, not a replacement.",
+    "best_for": "Engineering teams optimizing Linux services at real scale",
+    "not_for": "Teams without eBPF-capable infra or profiling know-how"
   }
 }

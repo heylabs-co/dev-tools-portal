@@ -26,5 +26,31 @@
   },
   "community": {
     "hn_mentions_30d": 1
+  },
+  "content": {
+    "when_to_use": [
+      "Managed Apache Pulsar by the project creators with full SLA",
+      "Unified messaging and streaming replacing Kafka and RabbitMQ",
+      "Multi-tenant messaging with namespace isolation on Pulsar",
+      "Geo-replication for active-active message streaming globally",
+      "Serverless Pulsar functions for stream processing without ops"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Managed Pulsar by the creators of the project",
+      "Unified messaging and streaming in one system",
+      "Multi-tenant and geo-replication built-in",
+      "Kafka and MQTT protocol compatibility"
+    ],
+    "cons": [
+      "Pulsar ecosystem smaller than Kafkas",
+      "Higher conceptual complexity (brokers, bookies)",
+      "Pricing aimed at mid/large data teams",
+      "Fewer third-party integrations"
+    ],
+    "verdict": "Compelling if you want queues plus streams in one system; ecosystem inertia still favors Kafka for most teams.",
+    "best_for": "Data teams needing unified queueing and streaming at scale",
+    "not_for": "Small teams already well-served by managed Kafka"
   }
 }

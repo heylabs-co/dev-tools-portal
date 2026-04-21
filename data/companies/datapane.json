@@ -25,5 +25,28 @@
   },
   "community": {
     "hn_mentions_30d": 11
+  },
+  "content": {
+    "when_to_use": [
+      "Publishing Python data visualizations as shareable reports",
+      "Automating scheduled analytics reports from pandas/plotly",
+      "Embedding interactive charts in documentation or wikis",
+      "Replacing static PDF reports with interactive HTML reports"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Turn Python notebooks into shareable reports",
+      "No web stack needed for dashboards",
+      "Hosted and self-host options"
+    ],
+    "cons": [
+      "Interactivity limited vs Streamlit or Dash",
+      "Project reduced focus in recent years",
+      "Less community momentum today"
+    ],
+    "verdict": "Quick wins for static Python reports; Streamlit now owns the broader dashboard niche.",
+    "best_for": "Data scientists sharing static or lightly-interactive Python reports",
+    "not_for": "Teams needing rich interactivity — Streamlit or Dash fit better"
   }
 }

@@ -21,5 +21,31 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "WebAuthn implementation guide for FIDO2 passkey integration",
+      "Cross-platform passkey support reference for iOS, Android, web",
+      "CTAP2 device support lookup for hardware security key usage",
+      "Passkey attestation verification reference implementation",
+      "Autofill UI patterns for passkey-first authentication UX"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Authoritative community guides for WebAuthn passkeys",
+      "Platform-specific implementation notes kept current",
+      "Vendor-neutral reference maintained by FIDO/W3C people",
+      "Free and ungated"
+    ],
+    "cons": [
+      "Documentation site, not a product or service",
+      "No SDK, hosting or user management included",
+      "Requires you to glue libraries together yourself",
+      "Content assumes solid auth engineering background"
+    ],
+    "verdict": "Essential reading before you implement passkeys, but you still need a real auth stack on top.",
+    "best_for": "Engineers learning how to implement WebAuthn correctly",
+    "not_for": "Teams looking for a turnkey passkey SaaS"
   }
 }

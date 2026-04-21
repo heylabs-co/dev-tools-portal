@@ -22,5 +22,31 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "End-to-end encrypted password storage via Proton Pass",
+      "SimpleLogin email alias API for developer privacy tools",
+      "Team password sharing with zero-knowledge encryption model",
+      "Privacy-first credential management for security-conscious teams",
+      "Alias-based email authentication for account isolation"
+    ]
+  },
+  "review": {
+    "pros": [
+      "E2E-encrypted passwords with SimpleLogin aliases",
+      "Backed by Proton's privacy-focused stack",
+      "Alias API useful for automation",
+      "Strong Swiss legal jurisdiction"
+    ],
+    "cons": [
+      "Programmatic API surface still limited",
+      "Alias features assume Proton account",
+      "Fewer enterprise features than 1Password",
+      "Changes to free-tier limits over time"
+    ],
+    "verdict": "Solid privacy-first password manager; the developer API is narrow but useful for alias automation.",
+    "best_for": "Privacy-focused individuals and small teams already in Proton's ecosystem.",
+    "not_for": "Enterprises needing deep SCIM/SSO and broad programmatic access."
   }
 }

@@ -22,5 +22,31 @@
   },
   "community": {
     "hn_mentions_30d": 62
+  },
+  "content": {
+    "when_to_use": [
+      "Embeddable chat UI for marketplace messaging feature",
+      "Hosted chat backend with pre-built React components",
+      "In-app messaging for B2B SaaS collaboration tools",
+      "Buyer-seller messaging for e-commerce platforms",
+      "Multi-tenant chat with conversation history API"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Pre-built chat UI saves weeks of frontend work",
+      "Hosted backend handles scaling and storage",
+      "Clean pricing tied to MAUs and features",
+      "Good for marketplaces and multi-party chat"
+    ],
+    "cons": [
+      "UI customization bounded by their theming model",
+      "Hosted-only — no self-host for sensitive data",
+      "Costs climb fast at higher MAU tiers",
+      "Less flexible than raw chat SDKs for exotic UX"
+    ],
+    "verdict": "Fastest way to ship decent-looking in-app chat; accept the UI constraints and the hosted-only model.",
+    "best_for": "Marketplaces and SaaS products adding hosted in-app chat quickly",
+    "not_for": "Teams needing self-hosted chat or highly custom messaging UX"
   }
 }

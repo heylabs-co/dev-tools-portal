@@ -42,5 +42,30 @@
     "forks": 1070,
     "updated_at": "2026-04-21",
     "health_score": "C"
+  },
+  "content": {
+    "when_to_use": [
+      "Build deb, rpm, and pacman packages from single source",
+      "Cross-format packaging in CI without format expertise",
+      "Package NodeJS apps as system-level deb/rpm installers",
+      "Automate multi-distro package releases in one pipeline"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Builds deb, rpm, pacman, snap, and more from one CLI",
+      "Saves weeks vs learning each distro's packaging",
+      "Scriptable and CI-friendly",
+      "Widely used, stable for over a decade"
+    ],
+    "cons": [
+      "Packages are functional but not 'native-quality'",
+      "Won't pass strict distro policy for official repos",
+      "Ruby runtime is a dependency to install",
+      "Limited support for modern signing workflows"
+    ],
+    "verdict": "The pragmatic pick for shipping your own deb/rpm without becoming a packaging expert.",
+    "best_for": "Teams shipping third-party apps across distros without targeting official repos.",
+    "not_for": "Apps aiming for inclusion in Debian/Fedora/Ubuntu main archives."
   }
 }

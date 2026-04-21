@@ -23,5 +23,30 @@
   },
   "community": {
     "hn_mentions_30d": 1
+  },
+  "content": {
+    "when_to_use": [
+      "Aggregate 3,000+ cloud provider status pages in one place",
+      "Slack alerts when your tech stack dependencies degrade",
+      "Correlate your incidents with upstream service outages",
+      "Vendor status history for SLA and post-mortem analysis"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Aggregates 3,000+ vendor status pages",
+      "Slack, Teams and email notifications",
+      "Historical reliability data per vendor",
+      "Affordable vs manual dependency tracking"
+    ],
+    "cons": [
+      "Direct overlap with IsDown for same use case",
+      "Relies on vendors updating status pages honestly",
+      "Alert delay vs real outage experience",
+      "Limited RCA beyond scraped updates"
+    ],
+    "verdict": "Solid status aggregator competing directly with IsDown; pick based on specific vendor coverage and UX preference.",
+    "best_for": "Ops teams tracking dependency outages across many SaaS vendors.",
+    "not_for": "Teams wanting proactive outage detection ahead of vendor status updates."
   }
 }

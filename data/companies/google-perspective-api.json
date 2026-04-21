@@ -22,5 +22,30 @@
   },
   "community": {
     "hn_mentions_30d": 3
+  },
+  "content": {
+    "when_to_use": [
+      "Scoring text toxicity and identity attack probability via API",
+      "Adding comment quality filters to community platforms with Google's model",
+      "Building moderation assistants that flag low-quality comments",
+      "Running bulk toxicity scoring on archived comment datasets"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Free tier and simple REST API",
+      "Backed by Jigsaw/Google research",
+      "Well-documented attribute scores",
+      "Good baseline toxicity signal for English"
+    ],
+    "cons": [
+      "Rate limits and non-commercial positioning",
+      "No SLA, can change or deprecate",
+      "Non-English accuracy trails specialized vendors",
+      "Text only, no image, video, or audio"
+    ],
+    "verdict": "Great starting point and research baseline, but risky as core moderation infra without a fallback plan.",
+    "best_for": "Prototypes, research, and moderation MVPs needing free English toxicity scoring.",
+    "not_for": "Production platforms with strict SLAs or multilingual/multimodal needs."
   }
 }

@@ -25,5 +25,28 @@
   },
   "community": {
     "hn_mentions_30d": 4
+  },
+  "content": {
+    "when_to_use": [
+      "Storing image embeddings alongside raw frames in one query",
+      "Building reverse image search over millions of product photos",
+      "Running similarity search on video frames for media analysis",
+      "Combining metadata filters with vector search for ML datasets"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Native multi-modal storage for images and vectors",
+      "Query language spans metadata and similarity",
+      "Integrated with ML training workflows"
+    ],
+    "cons": [
+      "Smaller community than Pinecone or Weaviate",
+      "Opinionated schema requires learning curve",
+      "Limited managed-service regions"
+    ],
+    "verdict": "Useful when vectors, blobs, and metadata must live together; overkill for text-only RAG.",
+    "best_for": "CV and multimodal ML teams managing image, video, and embedding datasets",
+    "not_for": "Simple text-only RAG projects where Pinecone or pgvector suffice"
   }
 }

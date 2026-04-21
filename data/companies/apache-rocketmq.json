@@ -26,5 +26,31 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "High-throughput e-commerce order messaging at Alibaba scale",
+      "Exactly-once transactional messages for financial systems",
+      "Delay queues for scheduled message delivery workflows",
+      "Stream processing with RocketMQ Streams on live data",
+      "Replacing RabbitMQ with a Kafka-compatible durable broker"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Battle-tested at Alibaba-scale throughput",
+      "Low-latency ordered messaging with transactions",
+      "Strong Java ecosystem and tooling",
+      "Apache-licensed with active community"
+    ],
+    "cons": [
+      "Outside China/Java it is less common than Kafka",
+      "Operational overhead similar to running Kafka",
+      "Fewer managed offerings globally",
+      "Docs quality uneven across features"
+    ],
+    "verdict": "Credible Kafka alternative, especially if you are Java-heavy or already operate in the Alibaba stack.",
+    "best_for": "Java shops needing transactional, ordered messaging at scale",
+    "not_for": "Teams that would benefit more from managed Kafka or Pulsar"
   }
 }

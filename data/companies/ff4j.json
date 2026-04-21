@@ -42,5 +42,30 @@
     "forks": 287,
     "updated_at": "2026-04-21",
     "health_score": "B"
+  },
+  "content": {
+    "when_to_use": [
+      "Java feature toggles with 20+ database backends",
+      "Spring Boot starter with REST API and web console",
+      "Audit trail of flag changes for compliance reviews",
+      "Fine-grained RBAC for flag management in enterprise apps"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Mature Java toggle library with many backends",
+      "Spring Boot starter with web console",
+      "Audit trail and REST API included",
+      "String-based flag names, flexible rules"
+    ],
+    "cons": [
+      "Java-only ecosystem focus",
+      "UI and DX feel dated by 2026 standards",
+      "Community activity modest vs Togglz and OSS peers",
+      "Experiment/analytics features limited"
+    ],
+    "verdict": "Serviceable Java flag library with many storage options; most new Java projects should also evaluate Togglz.",
+    "best_for": "Java/Spring shops wanting in-process flags with many backends",
+    "not_for": "Polyglot teams or experimentation-focused product orgs"
   }
 }

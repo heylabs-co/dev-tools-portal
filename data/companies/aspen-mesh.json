@@ -22,5 +22,29 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "Enterprise service mesh with mTLS between Kubernetes services",
+      "Traffic management and canary deployments with Istio policies",
+      "Observability dashboards over Istio telemetry in Kubernetes",
+      "Enforcing zero-trust security policies between microservices",
+      "Replacing Linkerd with Istio-based enterprise service mesh"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Enterprise polish on top of Istio",
+      "Strong observability dashboards",
+      "mTLS enforcement baked in"
+    ],
+    "cons": [
+      "Istio complexity still leaks through",
+      "Heavy resource footprint per cluster",
+      "Project momentum has slowed"
+    ],
+    "verdict": "Useful Istio wrapper for regulated enterprises, but a heavy bet given the product's uncertain roadmap.",
+    "best_for": "Regulated enterprises needing managed Istio with audit-ready dashboards",
+    "not_for": "Small teams wanting lean service mesh without Istio overhead"
   }
 }

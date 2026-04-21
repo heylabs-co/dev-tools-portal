@@ -22,5 +22,31 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "Managed Redis as persistent message broker for job queues",
+      "BullMQ or Sidekiq queue backend on Redis Cloud",
+      "Rate-limited task queues with Redis sorted sets",
+      "Durable job queue with AOF persistence on managed Redis",
+      "Replacing RabbitMQ with Redis-backed queue infrastructure"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Redis speed for job queues with persistence",
+      "Managed by Redis, no ops overhead",
+      "AOF and RDB persistence options",
+      "Works with BullMQ, Sidekiq, RQ, and similar"
+    ],
+    "cons": [
+      "Not purpose-built like RabbitMQ or Kafka",
+      "Memory-based cost model adds up",
+      "Limited message routing features",
+      "At-least-once semantics require care"
+    ],
+    "verdict": "Fine for background jobs if you already use Redis, purpose-built brokers beat it for complex messaging patterns.",
+    "best_for": "Web apps running BullMQ or Sidekiq-style background jobs at moderate scale",
+    "not_for": "Event-driven architectures needing fan-out, routing, or Kafka-style streams"
   }
 }

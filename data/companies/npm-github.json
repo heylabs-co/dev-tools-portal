@@ -22,5 +22,30 @@
   },
   "community": {
     "hn_mentions_30d": 65
+  },
+  "content": {
+    "when_to_use": [
+      "Publish and install Node.js packages via npm CLI",
+      "Private npm registry for internal package distribution",
+      "Automated version publishing in CI release pipelines",
+      "Manage package scopes and access controls for teams"
+    ]
+  },
+  "review": {
+    "pros": [
+      "The default registry for all of JavaScript",
+      "Massive ecosystem with 3M+ packages",
+      "Free publishing and unlimited public packages",
+      "Well-integrated with GitHub for provenance"
+    ],
+    "cons": [
+      "Recurring supply-chain attacks on popular packages",
+      "Typosquatting and namespace pollution are constant",
+      "Private org pricing climbs quickly",
+      "Feature pace slowed since GitHub acquisition"
+    ],
+    "verdict": "You don't choose npm, you inherit it — secure your installs with lockfiles and auditing.",
+    "best_for": "Any JavaScript or TypeScript project, public or private.",
+    "not_for": "Teams who want stronger provenance; look at JSR or pnpm-only workflows."
   }
 }

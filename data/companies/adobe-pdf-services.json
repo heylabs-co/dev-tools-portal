@@ -22,5 +22,33 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "Generating branded PDF reports from HTML templates at scale",
+      "Extracting structured data from scanned PDFs via API",
+      "Converting Word/Excel files to PDF in document pipelines",
+      "Merging and redacting PDFs for legal document workflows",
+      "Automating PDF creation in serverless invoice generation"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Adobe-grade PDF fidelity for complex documents",
+      "Extract API returns structured JSON from PDFs",
+      "OCR and Acrobat-parity conversion quality",
+      "Enterprise SLAs, SOC 2, GDPR compliance",
+      "Generous free tier (500 transactions/month)"
+    ],
+    "cons": [
+      "Per-document pricing escalates fast at scale",
+      "API surface feels bureaucratic vs modern SaaS",
+      "Rate limits bite on bulk processing jobs",
+      "Requires Adobe ID and credential ceremony",
+      "Latency higher than lightweight HTML-to-PDF APIs"
+    ],
+    "verdict": "Best PDF quality money can buy, but Adobe tax and clunky DX make it overkill for simple rendering jobs.",
+    "best_for": "Enterprises needing Acrobat-grade fidelity, OCR, and structured extraction from messy PDFs.",
+    "not_for": "Startups generating templated invoices — cheaper, faster APIs exist."
   }
 }

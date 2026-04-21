@@ -23,5 +23,30 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "Monitor mempool transactions before on-chain confirmation",
+      "WebSocket alerts on gas price spikes for DeFi apps",
+      "Transaction-preview API for user-facing Web3 UX",
+      "Detect failed transactions and resubmit with bump logic"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Pre-chain mempool visibility unique in Web3",
+      "Transaction simulation prevents failed txs",
+      "WebSocket streams for real-time monitoring",
+      "Battle-tested on MetaMask and major wallets"
+    ],
+    "cons": [
+      "Web3-only, irrelevant for traditional stacks",
+      "Ethereum-centric with limited L1/L2 coverage outside EVM",
+      "Pricing opaque for higher-volume tiers",
+      "Mempool data reliability varies by network"
+    ],
+    "verdict": "Essential infrastructure for serious EVM dApp builders; no equivalent alternative for mempool visibility.",
+    "best_for": "Web3 teams building wallets, dApps or MEV tools on EVM chains.",
+    "not_for": "Non-Web3 projects or teams on Solana/Cosmos/non-EVM chains."
   }
 }

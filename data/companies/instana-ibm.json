@@ -22,5 +22,30 @@
   },
   "community": {
     "hn_mentions_30d": 1
+  },
+  "content": {
+    "when_to_use": [
+      "Automated APM with dependency mapping for microservices environments",
+      "Real-time performance monitoring without manual instrumentation setup",
+      "Incident detection and root cause analysis for containerized applications",
+      "IBM Cloud and on-premise observability for enterprise application monitoring"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Automatic service discovery and dependency mapping",
+      "APM with distributed tracing out of the box",
+      "Enterprise support backed by IBM",
+      "Strong Kubernetes and microservice coverage"
+    ],
+    "cons": [
+      "Enterprise pricing; opaque to smaller teams",
+      "IBM acquisition slowed some product velocity",
+      "Not specifically a crash reporting tool",
+      "Heavier agent footprint than newer APMs"
+    ],
+    "verdict": "Capable enterprise APM, but evaluate Datadog and New Relic if you want more momentum and transparent pricing.",
+    "best_for": "IBM-aligned enterprises needing full-stack APM with auto-discovery",
+    "not_for": "Startups wanting focused crash reporting or cheap APM"
   }
 }

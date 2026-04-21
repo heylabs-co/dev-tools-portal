@@ -41,5 +41,30 @@
     "forks": 696,
     "updated_at": "2026-04-21",
     "health_score": "B"
+  },
+  "content": {
+    "when_to_use": [
+      "BDD-style Go tests with Describe/It/Context DSL",
+      "Parallel spec execution for faster Go test suites",
+      "Randomized spec ordering to expose flaky tests",
+      "Hierarchical spec organization for complex Go services"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Expressive BDD DSL feels natural in Go",
+      "Built-in parallelism and spec randomization",
+      "Great focus and skip semantics for big suites",
+      "Pairs well with Gomega matcher library"
+    ],
+    "cons": [
+      "Diverges from idiomatic go test style",
+      "Heavier setup than plain testing package",
+      "Nested Describe/Context can hide shared state",
+      "Split community with stdlib testing crowd"
+    ],
+    "verdict": "A polished BDD framework for Go teams who prefer structured specs over plain testing.T.",
+    "best_for": "Go teams writing large behavior-style suites, often in Kubernetes ecosystems",
+    "not_for": "Go purists who prefer table-driven tests with stdlib testing"
   }
 }

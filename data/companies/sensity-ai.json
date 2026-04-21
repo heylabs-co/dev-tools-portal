@@ -21,5 +21,30 @@
   },
   "community": {
     "hn_mentions_30d": 2
+  },
+  "content": {
+    "when_to_use": [
+      "Detecting synthetic media and AI-generated faces in uploaded content",
+      "Verifying identity document authenticity against deepfake forgeries",
+      "Integrating deepfake detection into media verification pipelines",
+      "Monitoring platforms for AI-generated impersonation at scale"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Focused deepfake and visual-threat detection",
+      "Strong research reports on synthetic media trends",
+      "Used by KYC and fraud teams",
+      "Reasonable API for single-modality use"
+    ],
+    "cons": [
+      "Narrower scope than Reality Defender",
+      "Enterprise pricing, no self-serve",
+      "Detection accuracy drifts with new generators",
+      "Limited in audio and text modalities"
+    ],
+    "verdict": "Credible deepfake detection vendor, especially in identity and KYC; benchmark against Reality Defender.",
+    "best_for": "KYC, fraud, and identity teams screening against synthetic photos and video.",
+    "not_for": "Multimodal moderation needs or teams wanting cheap self-serve APIs."
   }
 }

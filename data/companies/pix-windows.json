@@ -19,5 +19,31 @@
   "seo": {
     "title": "PIX — Game Development Tools",
     "meta_description": "PIX: Microsofts free performance tuning and debugging tool for DirectX 12 games on Windows and Xbox. Captures GPU timings, shader debugs, and memory usage acros"
+  },
+  "content": {
+    "when_to_use": [
+      "GPU frame capture analyzed to fix overdraw in DirectX 12 game",
+      "Shader debugger used to diagnose black-screen rendering bug",
+      "Xbox build profiled with PIX for consistent 60fps target",
+      "GPU memory usage inspected to fix texture memory leak",
+      "Draw call timeline trimmed using PIX CPU/GPU timing overlay"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Free, first-party DX12 debugger from Microsoft",
+      "Xbox-grade GPU capture tooling on Windows",
+      "Shader debugging with HLSL source-level stepping",
+      "Timing captures sync CPU, GPU, and frame data"
+    ],
+    "cons": [
+      "DirectX 12 only, no Vulkan or Metal support",
+      "UI has a reputation for instability on large captures",
+      "Windows-only — zero help for Mac or Linux devs",
+      "Learning curve steep for junior graphics engineers"
+    ],
+    "verdict": "The defacto DX12 and Xbox graphics debugger; RenderDoc still wins if you need cross-API coverage.",
+    "best_for": "Windows and Xbox teams optimizing DirectX 12 renderers and shaders",
+    "not_for": "Vulkan, Metal, or cross-platform teams needing a unified graphics debugger"
   }
 }

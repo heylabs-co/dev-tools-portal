@@ -40,5 +40,30 @@
     "forks": 86,
     "updated_at": "2026-04-21",
     "health_score": "C"
+  },
+  "content": {
+    "when_to_use": [
+      "Capture live HTTP traffic and replay to staging",
+      "Shadow testing by mirroring production requests",
+      "Load testing staging with real production traffic shape",
+      "Regression detection by comparing live vs staged responses"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Replays real production HTTP traffic, very realistic",
+      "Captures at the network layer, minimal app changes",
+      "Handy for regression and soak testing staging",
+      "Open source with a pragmatic paid tier"
+    ],
+    "cons": [
+      "Requires careful PII scrubbing on captured traffic",
+      "Stateful flows with auth tokens need extra care",
+      "Network-layer capture adds ops complexity",
+      "Not a fit for synthetic load profiles"
+    ],
+    "verdict": "A powerful way to test changes with real traffic, provided you respect privacy and session state.",
+    "best_for": "Backend teams validating refactors against realistic production request patterns",
+    "not_for": "Teams needing synthetic, scripted load profiles with precise user counts"
   }
 }

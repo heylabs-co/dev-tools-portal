@@ -37,5 +37,29 @@
     "forks": 119,
     "updated_at": "2026-04-21",
     "health_score": "C"
+  },
+  "content": {
+    "when_to_use": [
+      "Browser fixtures with BrowserStack/Sauce Labs integration",
+      "Selenium WebDriver test execution across browsers in CI",
+      "Screenshot capture on test failure for debugging",
+      "Capability-based browser configuration per test session"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Browser and capabilities fixtures baked in",
+      "Sauce Labs and BrowserStack integration",
+      "Good fit for existing pytest suites"
+    ],
+    "cons": [
+      "Selenium is aging vs Playwright and Cypress",
+      "Flaky by nature of WebDriver stack",
+      "Maintenance has slowed significantly",
+      "pytest-playwright is usually a better choice today"
+    ],
+    "verdict": "Only pick this if you are stuck on Selenium; new browser tests belong in Playwright or Cypress.",
+    "best_for": "Legacy Selenium suites migrated into pytest",
+    "not_for": "Greenfield browser testing where Playwright offers far less flakiness"
   }
 }

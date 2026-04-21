@@ -33,5 +33,28 @@
   },
   "community": {
     "hn_mentions_30d": 1
+  },
+  "content": {
+    "when_to_use": [
+      "Monitoring LLM app quality with real-time guardrail checks",
+      "Detecting hallucinations and policy violations in production traces",
+      "Running automated annotation for LLM outputs at scale",
+      "Visualizing conversation quality metrics across model versions"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Clean LLM observability with cost and quality metrics",
+      "Open-source option reduces lock-in",
+      "Integrates with common LLM frameworks"
+    ],
+    "cons": [
+      "Crowded space vs Langfuse, Helicone, Arize",
+      "Evaluation depth varies by use case",
+      "Still maturing on agent-level traces"
+    ],
+    "verdict": "A credible pick for LLM observability, especially if open-source matters to you.",
+    "best_for": "Teams shipping LLM features needing cost, latency and quality dashboards",
+    "not_for": "Enterprises wanting the largest vendor with deepest integrations"
   }
 }

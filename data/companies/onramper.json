@@ -23,5 +23,30 @@
   },
   "community": {
     "hn_mentions_30d": 1
+  },
+  "content": {
+    "when_to_use": [
+      "Routing fiat-to-crypto conversions through best-rate provider",
+      "Embedding multi-provider on-ramp widget for Web3 apps",
+      "Optimizing success rates by switching providers at checkout",
+      "KYC-compliant fiat on-ramp for DeFi onboarding flows"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Routes across 30+ ramp providers automatically",
+      "Optimizes fees and success rates",
+      "Single integration for broad coverage",
+      "Useful fallback when primary providers fail"
+    ],
+    "cons": [
+      "Adds another layer in the stack",
+      "Pricing includes aggregator margin",
+      "Debugging across providers harder",
+      "Less control over branded experience"
+    ],
+    "verdict": "Smart aggregator layer for crypto ramps — adopts the complexity so your wallet or dApp doesn't have to.",
+    "best_for": "Web3 wallets and dApps wanting resilient fiat ramps without juggling providers",
+    "not_for": "Teams wanting direct provider relationships or full branding control"
   }
 }

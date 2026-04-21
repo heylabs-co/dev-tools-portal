@@ -25,5 +25,30 @@
   },
   "community": {
     "hn_mentions_30d": 55
+  },
+  "content": {
+    "when_to_use": [
+      "Orchestrating fault-tolerant AI agent workflows at production scale",
+      "Building durable pipelines that retry failed AI steps automatically",
+      "Managing complex multi-step LLM task execution with state engine",
+      "Deploying reliable agentic apps with observable workflow traces"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Durable workflows with retry and state",
+      "TypeScript-first developer ergonomics",
+      "Observability and tracing built in",
+      "Event-driven orchestration for agents"
+    ],
+    "cons": [
+      "Competes with Temporal, Inngest, LangGraph",
+      "Still-maturing community and ecosystem",
+      "Learning curve for workflow primitives",
+      "Lock-in to their runtime"
+    ],
+    "verdict": "Appealing for TypeScript teams building agent systems, but weigh Temporal and Inngest for proven durability.",
+    "best_for": "TypeScript teams building durable, event-driven AI agents",
+    "not_for": "Python-first shops or users committed to Temporal"
   }
 }

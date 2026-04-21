@@ -41,5 +41,29 @@
     "forks": 116,
     "updated_at": "2026-04-21",
     "health_score": "B"
+  },
+  "content": {
+    "when_to_use": [
+      "SpecFlow-compatible BDD for .NET with active maintenance",
+      "Gherkin feature files mapped to C# step definitions",
+      "MSTest/xUnit/NUnit runner integration for .NET BDD",
+      "Migration path for teams leaving discontinued SpecFlow"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Drop-in replacement for discontinued SpecFlow",
+      "Maintained by original SpecFlow creators",
+      "Fully compatible with existing .feature files",
+      "Open source under Apache 2.0"
+    ],
+    "cons": [
+      "Ecosystem migration still in progress",
+      "Some SpecFlow plugins not yet ported",
+      "BDD overhead only pays off with real stakeholders"
+    ],
+    "verdict": "The right destination for every SpecFlow project after Tricentis shut the original down; migration is straightforward.",
+    "best_for": "SpecFlow users needing a maintained, open-source BDD framework on .NET",
+    "not_for": "New .NET projects where BDD overhead is not justified"
   }
 }

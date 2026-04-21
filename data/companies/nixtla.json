@@ -44,5 +44,30 @@
     "forks": 323,
     "updated_at": "2026-04-21",
     "health_score": "A"
+  },
+  "content": {
+    "when_to_use": [
+      "Running zero-shot time-series forecasting with TimeGPT API",
+      "Generating demand forecasts without training a custom model",
+      "Fine-tuning TimeGPT on domain-specific time-series data",
+      "Forecasting energy, retail, or financial metrics at API scale"
+    ]
+  },
+  "review": {
+    "pros": [
+      "TimeGPT foundation model for zero-shot forecasting",
+      "Open-source StatsForecast and NeuralForecast libs",
+      "Handles millions of series efficiently",
+      "Anomaly detection built into the API"
+    ],
+    "cons": [
+      "Closed TimeGPT API separate from OSS libraries",
+      "Forecast quality varies by domain",
+      "Needs careful feature engineering for edge cases",
+      "Pricing opaque for high-volume workloads"
+    ],
+    "verdict": "Best forecasting toolkit if you have thousands of series and want zero-shot TimeGPT plus solid OSS fallbacks.",
+    "best_for": "Data science teams with large-scale time-series workloads",
+    "not_for": "Single-series forecasts solvable with Prophet or ARIMA locally"
   }
 }

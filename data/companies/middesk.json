@@ -30,5 +30,31 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "Business identity verification via EIN and Secretary of State",
+      "Beneficial ownership check for CARES Act and bank KYB",
+      "Business address and registration status validation API",
+      "Automated KYB for BaaS and embedded finance onboarding",
+      "Merchant verification for marketplace and payments platforms"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Tax ID validation, UBO and business data in one API",
+      "US-focused coverage with strong registry data",
+      "Clean developer experience, self-serve signup",
+      "Fast turnaround on EIN match and formation docs"
+    ],
+    "cons": [
+      "US-centric, weak outside North America",
+      "Per-verification pricing adds up at scale",
+      "Less depth on sanctions and adverse media",
+      "Not a full IDV stack for individuals"
+    ],
+    "verdict": "The default US KYB API for fintechs; expect to bolt on a KYC vendor and global registry source.",
+    "best_for": "US fintechs, lenders and B2B platforms verifying business customers with EIN and UBO checks",
+    "not_for": "Global KYB programs or teams needing consumer KYC and sanctions screening in one platform"
   }
 }

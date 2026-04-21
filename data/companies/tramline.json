@@ -22,5 +22,29 @@
   },
   "community": {
     "hn_mentions_30d": 69
+  },
+  "content": {
+    "when_to_use": [
+      "Coordinating iOS and Android release branches in one platform",
+      "Automating CI integration and App Store/Play Store submissions",
+      "Mobile release workflow management across squads and schedules"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Coordinates iOS and Android releases end to end",
+      "Automates branching, tagging, and store submissions",
+      "Integrates with common CI and VCS providers",
+      "Reduces release-manager toil significantly"
+    ],
+    "cons": [
+      "Early-stage tool, features still expanding",
+      "Opinionated workflow may not fit every team",
+      "Smaller user base than Fastlane ecosystem",
+      "Setup requires real investment to get value"
+    ],
+    "verdict": "Promising release orchestration for mobile, but you have to buy into its model; still less mature than Fastlane-based stacks.",
+    "best_for": "Mobile teams tired of hand-rolled Fastlane release pipelines",
+    "not_for": "Small teams with simple release flows, or very bespoke processes"
   }
 }

@@ -22,5 +22,30 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "Self-hosted Git, Mercurial, and SVN code hosting",
+      "Code review workflow with inline commenting tools",
+      "LDAP/AD integration for enterprise authentication",
+      "Fine-grained repository access controls and permissions"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Handles Git, Mercurial, and SVN in one server",
+      "Strong permissioning and access control",
+      "Self-hosted, on-prem friendly",
+      "Good choice when Mercurial matters"
+    ],
+    "cons": [
+      "Community edition is limited vs enterprise",
+      "UI and ecosystem lag GitLab",
+      "Smaller integration ecosystem",
+      "Release cadence is slow"
+    ],
+    "verdict": "A niche but solid on-prem forge for teams still running Mercurial or mixed VCS stacks.",
+    "best_for": "Regulated or legacy shops needing self-hosted Git+Mercurial+SVN in one tool.",
+    "not_for": "Greenfield Git-only teams who'd be happier on GitLab or Gitea."
   }
 }

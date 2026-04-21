@@ -26,5 +26,30 @@
   },
   "community": {
     "hn_mentions_30d": 521
+  },
+  "content": {
+    "when_to_use": [
+      "Real-time Pix payment collection with instant reconciliation",
+      "Generating Pix QR codes via REST API for Brazilian merchants",
+      "Recurring Pix billing for Brazilian subscription businesses",
+      "Webhook-driven payment confirmation for Brazil e-commerce"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Native Brazilian Pix support with SDKs",
+      "Real-time reconciliation out of the box",
+      "SDKs for PHP, Ruby, Java, React",
+      "REST API with webhooks"
+    ],
+    "cons": [
+      "Brazil-only, no cross-border value",
+      "Smaller brand than Pagar.me or Stripe BR",
+      "Pix-centric, weak for international cards",
+      "Docs occasionally lag behind API updates"
+    ],
+    "verdict": "Clean Pix-first gateway for Brazilian devs who want fast SDK integration without enterprise bloat.",
+    "best_for": "Brazilian SMBs and devs building Pix-native checkout with multi-language SDKs",
+    "not_for": "Global merchants needing unified multi-country card processing"
   }
 }

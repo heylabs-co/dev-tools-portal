@@ -25,5 +25,28 @@
   },
   "community": {
     "hn_mentions_30d": 5
+  },
+  "content": {
+    "when_to_use": [
+      "Evaluating RAG pipeline quality with automated grounding checks",
+      "Measuring context relevance and answer faithfulness in LLM apps",
+      "Running open-source LLM evals in Python CI pipelines",
+      "Debugging retrieval quality with TruLens trace visualizations"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Open source with no vendor lock-in",
+      "Feedback functions tailored to RAG",
+      "Quick to drop into existing apps"
+    ],
+    "cons": [
+      "Smaller community than Langfuse/Ragas",
+      "Dashboards feel utilitarian",
+      "Feedback functions need calibration"
+    ],
+    "verdict": "Solid OSS pick for measuring RAG and agent quality, though the wider evals space is consolidating.",
+    "best_for": "RAG and agent teams wanting free, code-first evaluation without a SaaS",
+    "not_for": "Teams that prefer a polished hosted evaluator like Braintrust or LangSmith"
   }
 }

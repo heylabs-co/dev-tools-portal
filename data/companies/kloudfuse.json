@@ -23,5 +23,30 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "Datadog-compatible observability running in your own VPC",
+      "OpenTelemetry ingestion with no data leaving your cloud",
+      "Unified metrics, logs, and traces with Datadog API parity",
+      "Cost-efficient observability at Datadog scale internally"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Runs entirely in customer VPC for data sovereignty",
+      "Datadog-compatible API eases migration",
+      "OTel ingest and unified telemetry",
+      "Predictable cost vs Datadog metered pricing"
+    ],
+    "cons": [
+      "Customer operates infrastructure and scaling",
+      "Smaller engineering team than Datadog",
+      "Dashboard library less rich than incumbents",
+      "Kubernetes expertise required to operate"
+    ],
+    "verdict": "Excellent choice for regulated teams fleeing Datadog costs, if you have the ops muscle to run it.",
+    "best_for": "Regulated or data-sovereign enterprises wanting Datadog UX without vendor hosting.",
+    "not_for": "Small teams without Kubernetes and ops capacity to operate the platform."
   }
 }

@@ -39,5 +39,30 @@
     "forks": 1469,
     "updated_at": "2026-04-21",
     "health_score": "B"
+  },
+  "content": {
+    "when_to_use": [
+      "End-to-end acceptance tests for Rails applications",
+      "Drive headless Chrome with an intuitive Ruby DSL",
+      "Simulate user journeys in feature and integration specs",
+      "Swap browser drivers without changing test code"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Expressive Ruby DSL for user-centric acceptance tests",
+      "Pluggable drivers: Selenium, Cuprite, Apparition",
+      "Deep Rails and RSpec integration out of the box",
+      "Great implicit waiting eliminates most sleep() hacks"
+    ],
+    "cons": [
+      "Ruby-only, useless outside Rack applications",
+      "Flaky when tests leak JavaScript or DB state",
+      "Driver-specific bugs force you to know internals",
+      "Slower than pure unit tests, be choosy what you cover"
+    ],
+    "verdict": "Still the gold standard for Rails end-to-end tests, if you accept the flakiness tax of real browsers.",
+    "best_for": "Rails teams writing feature specs that mirror actual user journeys",
+    "not_for": "Non-Ruby stacks or teams preferring Playwright/Cypress for E2E coverage"
   }
 }

@@ -40,5 +40,29 @@
     "forks": 358,
     "updated_at": "2026-04-21",
     "health_score": "B"
+  },
+  "content": {
+    "when_to_use": [
+      "Django ORM access in pytest with rollback-per-test",
+      "Faster Django test execution than manage.py test",
+      "Request factory and test client fixtures built-in",
+      "Transactional test isolation with database fixture scopes"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Runs Django tests faster than manage.py test",
+      "Database fixtures with transaction rollback",
+      "--reuse-db flag saves minutes per run",
+      "Clean fixtures for client and settings"
+    ],
+    "cons": [
+      "Database isolation quirks with transactions",
+      "Requires understanding Django's test DB setup",
+      "Some third-party packages assume unittest style"
+    ],
+    "verdict": "The obvious choice for Django testing, mostly because --reuse-db alone repays the switch from manage.py test.",
+    "best_for": "Django projects wanting pytest ergonomics and faster test iteration",
+    "not_for": "Tiny Django apps where manage.py test is sufficient"
   }
 }

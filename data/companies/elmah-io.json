@@ -22,5 +22,30 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "Cloud error logging and uptime monitoring for .NET web applications",
+      "ELMAH-compatible structured log management with alerting for .NET teams",
+      "Integrating application exception tracking into Azure-hosted .NET apps",
+      "Monitoring ASP.NET Core app errors with Slack and Teams alert integrations"
+    ]
+  },
+  "review": {
+    "pros": [
+      ".NET-native error logging with deep ELMAH roots",
+      "Uptime monitoring and alerting alongside logs",
+      "Good ASP.NET and Azure integration",
+      "Reasonable pricing for small .NET teams"
+    ],
+    "cons": [
+      ".NET-focused; weak for other stacks",
+      "Smaller ecosystem than Sentry or Datadog",
+      "UI less modern than newer competitors",
+      "Fewer advanced debugging features"
+    ],
+    "verdict": "Pragmatic choice for .NET shops that want ELMAH-style logging in the cloud without heavy vendor lock-in.",
+    "best_for": ".NET/ASP.NET teams needing focused error logging and uptime",
+    "not_for": "Polyglot shops or teams wanting full APM-grade tooling"
   }
 }

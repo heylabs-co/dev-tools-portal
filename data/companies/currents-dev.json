@@ -21,5 +21,30 @@
   },
   "community": {
     "hn_mentions_30d": 331
+  },
+  "content": {
+    "when_to_use": [
+      "Playwright and Cypress test orchestration across CI agents",
+      "Flaky test detection and quarantine in pipelines",
+      "Parallel test distribution to reduce CI run time",
+      "Historical test analytics and failure trend analysis"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Purpose-built orchestration for Playwright and Cypress",
+      "Smart flake detection and historical trend analytics",
+      "Handles parallelization and sharding at scale",
+      "Stores screenshots, videos and traces long-term"
+    ],
+    "cons": [
+      "Commercial SaaS with usage-based pricing",
+      "Only for Playwright and Cypress, no other runners",
+      "Yet another dashboard for CI teams to monitor",
+      "Vendor lock-in around run orchestration format"
+    ],
+    "verdict": "Essentially Cypress Cloud for grown-ups, worth paying for once flake and shard pain hits.",
+    "best_for": "Teams running thousands of Playwright or Cypress specs across many shards",
+    "not_for": "Small suites that still fit in a single CI job without orchestration"
   }
 }

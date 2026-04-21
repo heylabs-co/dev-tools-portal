@@ -22,5 +22,31 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "Machine identity lifecycle management for enterprise TLS",
+      "Certificate inventory and expiry alerting at DevOps scale",
+      "SSH key governance for privileged server access control",
+      "Code signing key management for software release pipelines",
+      "Zero-touch certificate rotation for Kubernetes workloads"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Category leader in machine identity",
+      "Broad certificate lifecycle automation",
+      "Strong integrations across clouds and CAs",
+      "Enterprise-grade reporting and compliance"
+    ],
+    "cons": [
+      "Enterprise pricing, long sales cycles",
+      "Heavy UI and admin experience",
+      "Overkill for startups",
+      "Post-CyberArk acquisition direction evolving"
+    ],
+    "verdict": "If machine identity sprawl is a real cost center, Venafi is the serious option; otherwise too heavy.",
+    "best_for": "Large enterprises managing tens of thousands of certs and keys.",
+    "not_for": "Smaller orgs where Let's Encrypt + Vault is enough."
   }
 }

@@ -22,5 +22,29 @@
   },
   "community": {
     "hn_mentions_30d": 124
+  },
+  "content": {
+    "when_to_use": [
+      "Building cross-platform desktop apps with web technologies",
+      "Distributing Node.js backend and web UI as a single desktop app",
+      "Desktop app for VS Code-like tools targeting developer audiences",
+      "Wrapping a web app into a macOS/Windows/Linux desktop binary",
+      "Cross-platform app with native OS features via Electron APIs"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Ship one codebase to Mac, Win, Linux",
+      "Huge ecosystem of modules and docs",
+      "Leverages web skills directly"
+    ],
+    "cons": [
+      "RAM and disk footprint are heavy",
+      "Security model demands discipline",
+      "Not a backend platform at all"
+    ],
+    "verdict": "Still the pragmatic default for cross-platform desktop apps, despite constant performance complaints.",
+    "best_for": "Teams shipping cross-platform desktop apps with web tech",
+    "not_for": "Apps where native performance and small binaries are critical"
   }
 }

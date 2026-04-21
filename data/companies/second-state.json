@@ -23,5 +23,31 @@
   },
   "community": {
     "hn_mentions_30d": 17
+  },
+  "content": {
+    "when_to_use": [
+      "WasmEdge runtime for serverless Rust-based edge functions",
+      "WebAssembly execution in IoT devices and edge environments",
+      "WASI-NN-powered AI inference in WebAssembly containers",
+      "Fast and secure serverless compute via lightweight Wasm VMs",
+      "Running LLVM-compiled code safely in sandboxed edge apps"
+    ]
+  },
+  "review": {
+    "pros": [
+      "WasmEdge is a serious Wasm runtime",
+      "Rust-based serverless possible",
+      "Faster startup than containers",
+      "Active open-source development"
+    ],
+    "cons": [
+      "Wasm server-side still early adoption",
+      "Ecosystem gaps vs Node or Python",
+      "Managed offerings limited",
+      "Debugging tooling immature"
+    ],
+    "verdict": "Leading-edge Wasm runtime bet that pays off only if Wasm server-side takes off widely.",
+    "best_for": "Teams exploring WebAssembly edge and serverless for performance-critical workloads",
+    "not_for": "Mainstream production apps, JavaScript-centric teams, or conservative tech choices"
   }
 }

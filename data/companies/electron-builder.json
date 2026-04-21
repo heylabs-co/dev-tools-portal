@@ -42,5 +42,30 @@
     "forks": 1845,
     "updated_at": "2026-04-21",
     "health_score": "A"
+  },
+  "content": {
+    "when_to_use": [
+      "Package Electron apps for Windows, macOS, and Linux CI",
+      "Auto-update integration with code-signed releases",
+      "Build NSIS, DMG, AppImage, and deb from one config",
+      "Publish release artifacts to GitHub Releases or S3"
+    ]
+  },
+  "review": {
+    "pros": [
+      "One tool handles Win, macOS, Linux packaging",
+      "Built-in code signing and notarization flows",
+      "Auto-updater integration with several backends",
+      "Large community and many real-world configs"
+    ],
+    "cons": [
+      "Configuration surface is huge and confusing",
+      "Maintenance pace has slowed in recent years",
+      "Error messages are famously unhelpful",
+      "Harder to debug than electron-forge"
+    ],
+    "verdict": "The default for serious Electron distribution, if you can stomach its config complexity.",
+    "best_for": "Established Electron apps needing full control over installers and signing.",
+    "not_for": "Newcomers who will be happier starting with electron-forge."
   }
 }

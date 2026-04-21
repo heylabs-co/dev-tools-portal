@@ -22,5 +22,31 @@
   },
   "community": {
     "hn_mentions_30d": 6
+  },
+  "content": {
+    "when_to_use": [
+      "Running WebAssembly HTTP handlers at the edge on any server",
+      "Lightweight edge functions without Node.js or V8 overhead",
+      "Wasm-based API handlers on CDN edge nodes",
+      "Multi-language serverless compute via WASI-compatible runtimes",
+      "VMware Labs edge runtime for privacy-focused serverless apps"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Run Wasm modules as HTTP handlers easily",
+      "Multi-language: Rust, JS, Go, Python, Ruby",
+      "Local-first dev, no vendor runtime required",
+      "CNCF sandbox project under Wasm Labs"
+    ],
+    "cons": [
+      "Not a fully managed edge platform by itself",
+      "Community smaller than Cloudflare Workers",
+      "Still hitting WASI maturity limitations",
+      "Production deployments need your own orchestration"
+    ],
+    "verdict": "Nice OSS toolkit for experimenting with Wasm HTTP handlers, but you still need a platform to host it.",
+    "best_for": "Developers prototyping Wasm-based edge handlers across multiple languages",
+    "not_for": "Teams wanting a turnkey managed Wasm edge like Cloudflare or Fastly"
   }
 }

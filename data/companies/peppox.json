@@ -22,5 +22,29 @@
   },
   "community": {
     "hn_mentions_30d": 1
+  },
+  "content": {
+    "when_to_use": [
+      "Sending Peppol e-invoices via secure REST API to EU buyers",
+      "Onboarding to Peppol network without direct AP4 registration",
+      "Automating e-invoice delivery to European government entities"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Single REST API in front of Peppol network",
+      "JSON-first, not XML-first DX",
+      "Good fit for SaaS adding e-invoicing",
+      "Clear focus on developers, not procurement"
+    ],
+    "cons": [
+      "Narrower than multi-framework aggregators",
+      "Smaller vendor — limited enterprise track record",
+      "Non-Peppol regimes need extra work",
+      "Pricing details not fully transparent"
+    ],
+    "verdict": "Clean Peppol gateway for devs — great if Peppol is the bulk of your compliance story.",
+    "best_for": "SaaS engineering teams integrating Peppol e-invoicing with minimal XML wrangling.",
+    "not_for": "Enterprises needing a single vendor for Peppol plus LATAM, India, KSA, etc."
   }
 }

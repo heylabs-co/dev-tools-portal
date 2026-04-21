@@ -25,5 +25,28 @@
   },
   "community": {
     "hn_mentions_30d": 28
+  },
+  "content": {
+    "when_to_use": [
+      "Building voice AI apps with STT/LLM/TTS pipeline in open source",
+      "Creating automated phone call agents with Python SDK",
+      "Deploying inbound and outbound voice bots on telephony platforms",
+      "Prototyping voice AI features with a modular open-source stack"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Open source with full control",
+      "Supports phone and web audio",
+      "Active community and extensions"
+    ],
+    "cons": [
+      "Assembling prod stack takes real work",
+      "Latency tuning is non-trivial",
+      "Ops burden vs managed voice SaaS"
+    ],
+    "verdict": "The hacker-friendly choice for custom voice agents; pick managed services if you value time over control.",
+    "best_for": "Engineering teams building bespoke voice agents with custom TTS, STT and logic",
+    "not_for": "Business teams who just want a working phone bot without writing Python"
   }
 }

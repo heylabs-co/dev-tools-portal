@@ -22,5 +22,31 @@
   },
   "community": {
     "hn_mentions_30d": 322
+  },
+  "content": {
+    "when_to_use": [
+      "Immutable audit log for all Postgres table changes via CDC",
+      "GDPR-compliant change history without application-layer code",
+      "Debugging data mutations in production Postgres databases",
+      "Compliance-ready tamper-proof change tracking extension",
+      "Replacing manual audit tables with automatic Postgres CDC"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Immutable audit trail via Postgres CDC",
+      "Zero ORM changes needed",
+      "Tracks who and why, not just what",
+      "Useful for SOC2 and HIPAA audits"
+    ],
+    "cons": [
+      "Postgres-only, no other databases",
+      "Adds infrastructure to CDC pipeline",
+      "Still early-stage product",
+      "Pricing can add up for busy databases"
+    ],
+    "verdict": "Neat audit logging add-on for Postgres teams, overkill unless compliance explicitly requires immutable history.",
+    "best_for": "Postgres shops needing SOC2/HIPAA-grade immutable audit trails with minimal code change",
+    "not_for": "Teams on non-Postgres databases or without formal compliance requirements"
   }
 }

@@ -21,5 +21,31 @@
   },
   "community": {
     "hn_mentions_30d": 10
+  },
+  "content": {
+    "when_to_use": [
+      "3D liveness detection for KYC identity document verification",
+      "Biometric face match for returning user re-authentication",
+      "Anti-spoofing enforcement for regulated VASP onboarding",
+      "Selfie-to-ID document matching for remote bank account opening",
+      "Embedded liveness SDK for mobile KYC app integration"
+    ]
+  },
+  "review": {
+    "pros": [
+      "3D depth liveness resists photo and mask spoofs",
+      "iBeta Level 1 and 2 PAD certifications",
+      "Embedded in 100+ identity verification platforms",
+      "Works on standard smartphone front cameras"
+    ],
+    "cons": [
+      "SDK only, not a full KYC workflow",
+      "Integration requires native mobile engineering",
+      "Licensing costs add up for high-volume apps",
+      "Uses proprietary 3D method, no open standard"
+    ],
+    "verdict": "Gold-standard 3D liveness SDK, best slotted into your own KYC flow, not used as a full platform.",
+    "best_for": "IDV vendors and apps that need certified anti-spoof liveness inside an existing onboarding flow",
+    "not_for": "Teams wanting a turnkey KYC platform with document checks, screening and case management"
   }
 }

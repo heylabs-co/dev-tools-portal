@@ -22,5 +22,30 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "Moderating marketplace listings with AI + human reviewer hybrid",
+      "Scaling trust & safety for classified ads and dating platforms",
+      "Detecting fake listings and fraud signals in user-generated content",
+      "Building content compliance workflows with transparent decision logs"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Human moderators in the loop, not just AI",
+      "Deep experience with marketplaces and dating sites",
+      "Custom policies and QA workflows out of the box",
+      "Handles scaling spikes with managed ops team"
+    ],
+    "cons": [
+      "Managed service pricing, not pure API economics",
+      "Turnaround slower than instant-API vendors",
+      "Less transparency into model decisions",
+      "Not ideal for billion-scale purely-automated pipelines"
+    ],
+    "verdict": "Solid choice when you need humans plus AI and don't want to build an in-house moderation team.",
+    "best_for": "Marketplaces, dating, and classifieds needing managed moderation with human review.",
+    "not_for": "High-volume, low-margin platforms that need pennies-per-call automated APIs."
   }
 }

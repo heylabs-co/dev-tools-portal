@@ -26,5 +26,31 @@
   },
   "community": {
     "hn_mentions_30d": 110
+  },
+  "content": {
+    "when_to_use": [
+      "Managed cloud data warehouse on Apache Doris by core team",
+      "Sub-second OLAP queries on the managed SelectDB cloud",
+      "Replacing self-managed Doris clusters with hosted SelectDB",
+      "Real-time analytics at scale for Chinese SaaS companies",
+      "Cloud-native Doris deployment for high-concurrency BI workloads"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Managed cloud Doris from the core team",
+      "Pay-per-use pricing with compute/storage split",
+      "Low-latency analytics for real-time workloads",
+      "MySQL-protocol compatibility"
+    ],
+    "cons": [
+      "Newer cloud service, less battle-tested abroad",
+      "Primarily available on Alibaba and AWS",
+      "Smaller ecosystem than Snowflake or ClickHouse Cloud",
+      "Docs still maturing in English"
+    ],
+    "verdict": "Smart pick if you're already committed to Apache Doris, less mature than Snowflake or ClickHouse Cloud alternatives.",
+    "best_for": "Teams on Apache Doris wanting a managed service from the original authors",
+    "not_for": "Greenfield analytics needing the richest ecosystem and broad regional coverage"
   }
 }

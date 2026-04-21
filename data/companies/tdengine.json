@@ -26,5 +26,31 @@
   },
   "community": {
     "hn_mentions_30d": 27
+  },
+  "content": {
+    "when_to_use": [
+      "High-performance IoT time-series database for industrial data",
+      "Storing and querying metrics from millions of sensor points",
+      "SQL interface for time-series analysis without custom query lang",
+      "Edge-to-cloud time-series pipeline with TDengine Edge",
+      "Energy and utility monitoring at massive IoT scale"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Excellent compression for time-series data",
+      "Fast ingest optimized for IoT workloads",
+      "Open source with 24k+ GitHub stars",
+      "SQL-like query language lowers learning curve"
+    ],
+    "cons": [
+      "Smaller ecosystem than InfluxDB",
+      "Cluster setup can be finicky",
+      "Enterprise features behind paid tier",
+      "Grafana integration functional but not rich"
+    ],
+    "verdict": "Compelling high-performance time-series DB for IoT, InfluxDB still wins on ecosystem breadth and integrations.",
+    "best_for": "IoT and industrial workloads with massive ingest where compression and speed matter",
+    "not_for": "Teams needing InfluxDB-scale ecosystem and tooling maturity"
   }
 }

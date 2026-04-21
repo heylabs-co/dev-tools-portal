@@ -41,5 +41,30 @@
     "forks": 205,
     "updated_at": "2026-04-21",
     "health_score": "B"
+  },
+  "content": {
+    "when_to_use": [
+      "Self-hosted feature flags with 15+ language SDKs",
+      "OpenFeature-native evaluation via relay proxy",
+      "Flag definitions stored in Git, S3, or HTTP endpoints",
+      "Zero-latency local evaluation without remote calls"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Self-hosted, 100% open source with generous features",
+      "OpenFeature-native with 15+ language SDKs",
+      "Flexible rules and rollout strategies",
+      "Relay proxy simplifies multi-language setups"
+    ],
+    "cons": [
+      "Config and ops are your responsibility",
+      "UI less slick than SaaS alternatives",
+      "Experimentation features are basic",
+      "Scaling story needs planning at high QPS"
+    ],
+    "verdict": "One of the better OSS self-hosted flag options if you want OpenFeature compatibility without SaaS lock-in.",
+    "best_for": "Engineering teams running flags in-house across many languages",
+    "not_for": "Non-engineers wanting polished SaaS flag management"
   }
 }

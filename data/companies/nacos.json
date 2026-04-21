@@ -26,5 +26,29 @@
   },
   "community": {
     "hn_mentions_30d": 292
+  },
+  "content": {
+    "when_to_use": [
+      "Service registry and discovery for Spring Cloud apps",
+      "Distributed config management for microservices fleet",
+      "Dynamic configuration updates without service restart",
+      "DNS and RPC-based service discovery for Java services",
+      "Alibaba-stack microservice orchestration with Nacos"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Battle-tested at Alibaba scale",
+      "Combined config and service discovery",
+      "Strong Spring Cloud Alibaba integration"
+    ],
+    "cons": [
+      "Documentation gaps in English",
+      "Operational complexity to self-host",
+      "Less Kubernetes-native than Consul"
+    ],
+    "verdict": "Solid OSS config and service registry if you're in the Java Spring world, rough edges outside China's ecosystem.",
+    "best_for": "Java microservices teams using Spring Cloud Alibaba",
+    "not_for": "Kubernetes-native stacks preferring Consul or etcd"
   }
 }

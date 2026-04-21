@@ -42,5 +42,30 @@
     "forks": 266,
     "updated_at": "2026-04-21",
     "health_score": "B"
+  },
+  "content": {
+    "when_to_use": [
+      "OpenTelemetry observability for LLM and GenAI stacks",
+      "Trace token usage, latency, and cost per LLM call",
+      "Monitor prompt evaluation quality in AI pipelines",
+      "Open-source alternative to Langfuse and Helicone"
+    ]
+  },
+  "review": {
+    "pros": [
+      "OTel-native tracing for LLM and GenAI apps",
+      "Open-source with Apache 2.0 license",
+      "Drop-in with OpenAI, Anthropic, and vector DBs",
+      "Avoids lock-in to proprietary LLMOps platforms"
+    ],
+    "cons": [
+      "Young project with evolving APIs",
+      "Self-hosting burden vs managed Langfuse",
+      "UI less polished than Braintrust or LangSmith",
+      "Smaller community than established LLMOps tools"
+    ],
+    "verdict": "Right approach with OTel-native GenAI observability; solid pick if you value open standards over polish.",
+    "best_for": "Teams wanting vendor-neutral LLM observability tied to existing OTel pipelines.",
+    "not_for": "Teams preferring polished managed LLMOps with evals and PM-friendly UX."
   }
 }

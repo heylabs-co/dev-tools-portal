@@ -22,5 +22,33 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "Template-based PDF generation with dynamic data and webhooks",
+      "Generating receipts, invoices, and certificates via API",
+      "HTML/CSS template editor for business document creation",
+      "Webhook-delivered PDFs triggered by Zapier or Make workflows",
+      "Replacing Word mail-merge with API-driven PDF generation"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Clean template editor, designer-friendly",
+      "Liquid templating for dynamic data",
+      "Affordable tier for small teams",
+      "Webhook delivery and async rendering",
+      "Responsive customer support"
+    ],
+    "cons": [
+      "Feature set narrower than PDFShift/DocRaptor",
+      "Rate limits bite on high-throughput workloads",
+      "Styling control less granular than raw HTML APIs",
+      "Smaller team = slower feature velocity",
+      "No on-prem or self-hosted path"
+    ],
+    "verdict": "Pleasant template-based PDF SaaS — great DX for small teams, thin at the high end.",
+    "best_for": "Small SaaS generating templated docs (invoices, reports) with Liquid data binding.",
+    "not_for": "High-volume or pixel-perfect PDF production."
   }
 }

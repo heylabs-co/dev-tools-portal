@@ -29,5 +29,30 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "Building production ML workflows with Metaflow at enterprise scale",
+      "Orchestrating GPU training jobs with dependency management",
+      "Deploying ML pipelines with reproducible artifact tracking",
+      "Managing compute resources across AWS, GCP, and Azure from one API"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Managed Metaflow with Netflix pedigree",
+      "Python-first workflows familiar to DS teams",
+      "Scales from laptop to cloud GPUs seamlessly",
+      "Good observability and lineage tracking"
+    ],
+    "cons": [
+      "Paid layer over free open-source Metaflow",
+      "Narrower community than Airflow or Prefect",
+      "Requires AWS account for most deployments",
+      "Less suited for real-time inference workloads"
+    ],
+    "verdict": "The right pick if your team already uses Metaflow and wants production scale without rebuilding infra.",
+    "best_for": "Data-science teams scaling Metaflow pipelines in production",
+    "not_for": "Teams standardized on Airflow, Kubeflow, or pure-batch ETL"
   }
 }

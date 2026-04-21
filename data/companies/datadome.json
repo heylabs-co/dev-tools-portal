@@ -21,5 +21,31 @@
   },
   "community": {
     "hn_mentions_30d": 12
+  },
+  "content": {
+    "when_to_use": [
+      "Credential stuffing protection for login endpoints",
+      "Scraping prevention for e-commerce product and pricing pages",
+      "Payment fraud bot blocking at checkout under 2ms",
+      "Account takeover mitigation for marketplace platforms",
+      "CAPTCHA-free bot detection via invisible behavioral signals"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Sub-2ms decisioning at the edge",
+      "Connectors for every major CDN and cloud",
+      "CAPTCHA replacement reduces user friction",
+      "Strong coverage for scraping and credential stuffing"
+    ],
+    "cons": [
+      "Pricing climbs fast at high request volumes",
+      "Primarily bot-focused, lighter on payment fraud",
+      "Tuning required to avoid blocking good users",
+      "Enterprise contracts, not self-serve"
+    ],
+    "verdict": "Top-tier bot management for content-heavy sites and APIs, but look elsewhere for pure payment fraud.",
+    "best_for": "Retail, classifieds and API businesses losing money to scraping and credential stuffing.",
+    "not_for": "Small sites with negligible bot traffic or teams needing transaction-level fraud scoring."
   }
 }

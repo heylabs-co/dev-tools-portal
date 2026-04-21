@@ -21,5 +21,31 @@
   },
   "community": {
     "hn_mentions_30d": 25
+  },
+  "content": {
+    "when_to_use": [
+      "Server-side bot detection without client-side JavaScript",
+      "Credential stuffing blocking for login and checkout APIs",
+      "Scalping prevention for high-demand ticketing and retail",
+      "Card cracking detection for payment processor endpoints",
+      "API abuse prevention via behavior-based ML scoring"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Server-side detection avoids client-side JS weight",
+      "Good coverage for scalping and card cracking",
+      "Works well in front of APIs and mobile",
+      "Reduces attack surface on the client"
+    ],
+    "cons": [
+      "Detection can lag client-side solutions initially",
+      "Smaller market share vs DataDome/HUMAN",
+      "Enterprise contract and procurement",
+      "Less of a turnkey SaaS self-serve path"
+    ],
+    "verdict": "A strong choice when client-side JS is off-limits, otherwise client-side bot platforms often detect faster.",
+    "best_for": "API-first and mobile-first businesses that cannot inject client-side JS for bot detection.",
+    "not_for": "Classic web retailers happy with client-side-based bot managers like DataDome or Kasada."
   }
 }

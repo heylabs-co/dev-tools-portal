@@ -26,5 +26,31 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "Distributed transaction management across microservices",
+      "Saga pattern implementation for long-running workflows",
+      "ACID guarantees for order + inventory service pair",
+      "Two-phase commit for multi-DB write consistency",
+      "Ant Financial-grade consistency for payment workflows"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Handles distributed transactions without homemade sagas",
+      "Multiple transaction modes (AT, TCC, Saga)",
+      "Proven at Alibaba and Ant scale",
+      "Active Apache TLP project"
+    ],
+    "cons": [
+      "Operational complexity is significant",
+      "Perf overhead on AT mode at volume",
+      "Debugging failed tx is painful",
+      "Docs bias toward Chinese readers"
+    ],
+    "verdict": "Seata solves real pain but adds its own operational weight—only adopt when sagas in code hurt more.",
+    "best_for": "Microservice teams with cross-service ACID needs and engineers to run Seata",
+    "not_for": "Small teams where event sourcing or saga patterns would be simpler"
   }
 }

@@ -38,5 +38,30 @@
     "forks": 177,
     "updated_at": "2026-04-21",
     "health_score": "C"
+  },
+  "content": {
+    "when_to_use": [
+      "Create Windows installers with script-driven logic",
+      "Conditional install steps based on system environment",
+      "Registry keys and shortcuts management at install time",
+      "Build and sign NSIS installers in automated CI pipelines"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Tiny installer output, often under 100KB overhead",
+      "Mature scripting language with many plugins",
+      "Highly customizable UI and behavior",
+      "Completely free and open-source"
+    ],
+    "cons": [
+      "Scripting syntax is archaic and error-prone",
+      "Default UI looks extremely dated",
+      "No modern MSIX or Store output",
+      "Debugging install scripts is painful"
+    ],
+    "verdict": "Still a top pick for small Windows installers when you value size and control over DX.",
+    "best_for": "Shipping compact Win32 installers where size and customization matter.",
+    "not_for": "Teams that want modern tooling, MSIX, or readable config."
   }
 }

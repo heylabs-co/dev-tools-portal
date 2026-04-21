@@ -42,5 +42,30 @@
     "forks": 1104,
     "updated_at": "2026-04-21",
     "health_score": "A"
+  },
+  "content": {
+    "when_to_use": [
+      "In-app auto-update for macOS desktop applications",
+      "EDDSonoma-signed update delivery for macOS apps",
+      "Delta updates reducing download size for frequent releases",
+      "Update channel management for beta and stable tracks"
+    ]
+  },
+  "review": {
+    "pros": [
+      "De facto auto-updater for Mac apps for 15+ years",
+      "Solid code-sign verification and security story",
+      "Free and open-source",
+      "Huge community of real-world configurations"
+    ],
+    "cons": [
+      "Mac-only, nothing for Windows or Linux",
+      "XPC and sandbox integration can be fiddly",
+      "SUFeedURL model shows its age",
+      "Swift/UI-side helpers still catching up"
+    ],
+    "verdict": "If you ship a Mac app, you use Sparkle — no credible alternative for direct-distribution apps.",
+    "best_for": "Direct-download macOS apps needing a rock-solid, secure auto-updater.",
+    "not_for": "Mac App Store apps or cross-platform teams wanting one updater everywhere."
   }
 }

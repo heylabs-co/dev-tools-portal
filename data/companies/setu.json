@@ -23,5 +23,31 @@
   },
   "community": {
     "hn_mentions_30d": 670
+  },
+  "content": {
+    "when_to_use": [
+      "Aadhaar-based KYC API for Indian fintech onboarding",
+      "UPI payment integration for Indian app developers",
+      "Account aggregator framework integration for open banking",
+      "BBPS bill payment API for utility service platforms",
+      "PAN verification for income tax and KYC compliance in India"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Broad Indian fintech infra: KYC, AA, UPI, BBPS, e-sign",
+      "Single vendor reduces integration surface",
+      "RBI and regulator-aligned primitives",
+      "Good for lending and wealth onboarding flows"
+    ],
+    "cons": [
+      "India-only; not relevant for global products",
+      "Heavier compliance lift than point tools",
+      "Some APIs depend on third-party regulator uptime",
+      "Pricing tuned for mid/large fintechs"
+    ],
+    "verdict": "Strong one-stop Indian fintech API layer; less useful if you only need one capability like e-sign.",
+    "best_for": "Indian fintechs bundling KYC, UPI and e-sign from one vendor",
+    "not_for": "Global apps or simple single-use e-signature needs"
   }
 }

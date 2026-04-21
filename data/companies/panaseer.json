@@ -22,5 +22,31 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "Continuous controls monitoring for security posture reporting",
+      "Security metrics API for board-level risk dashboards",
+      "Control effectiveness measurement across security tools",
+      "Asset coverage gap detection for CISO decision-making",
+      "SOC 2 and ISO 27001 control validation via telemetry data"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Unifies control data from dozens of security tools",
+      "API-first exposure of posture data into dashboards",
+      "Strong metrics and coverage reporting for CISOs",
+      "Flexible data model adapts to custom frameworks"
+    ],
+    "cons": [
+      "Long implementation cycles with heavy data engineering",
+      "Requires mature security stack to deliver value",
+      "Enterprise pricing excludes mid-market orgs",
+      "Value depends on quality of underlying tool data"
+    ],
+    "verdict": "CCM platform for mature enterprises that want measurable posture; not a quick-win tool.",
+    "best_for": "Large enterprise CISOs consolidating posture signals across fragmented security tooling.",
+    "not_for": "Smaller orgs without a mature, integrated security stack to feed the platform."
   }
 }

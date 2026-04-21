@@ -21,5 +21,29 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "Managed Pact Broker with bi-directional contract testing",
+      "OpenAPI + consumer pact comparison for API compatibility",
+      "AI-assisted contract test generation from API specs",
+      "Can-I-Deploy gate in CI preventing breaking deployments"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Managed Pact Broker removes hosting burden",
+      "Bi-directional contracts pair with OpenAPI",
+      "AI-assisted test creation for microservices",
+      "SmartBear backing with enterprise support"
+    ],
+    "cons": [
+      "Paid SaaS vs free self-hosted Pact Broker",
+      "Vendor lock-in on top of open-source Pact",
+      "Pricing scales with pacticipants, gets expensive"
+    ],
+    "verdict": "Worth paying for if contract testing is central to your microservice strategy and you hate running infra.",
+    "best_for": "Enterprises with many microservices who want managed contract testing",
+    "not_for": "Small teams content self-hosting the open-source Pact Broker"
   }
 }

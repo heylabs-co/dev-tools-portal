@@ -22,5 +22,31 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "WebRTC media server with AR and computer vision capabilities",
+      "Building video analytics into real-time communication pipelines",
+      "Group video conferencing with server-side media processing",
+      "Face detection and tracking in WebRTC video streams",
+      "Custom media pipeline composition with Kurento Media Pipeline API"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Media server with CV and AR filter pipelines",
+      "Supports transcoding, recording and compositing",
+      "Open-source with long track record",
+      "Flexible pipeline abstractions"
+    ],
+    "cons": [
+      "Core project has seen slow maintenance periods",
+      "Operationally heavy and resource-hungry",
+      "Docs lag modern WebRTC practices",
+      "Most new projects pick lighter SFUs"
+    ],
+    "verdict": "Still useful for media processing pipelines, but not the default choice for new WebRTC apps in 2026.",
+    "best_for": "Apps needing server-side media processing and filters",
+    "not_for": "New projects that just need a lean low-latency SFU"
   }
 }

@@ -22,5 +22,30 @@
   },
   "community": {
     "hn_mentions_30d": 1
+  },
+  "content": {
+    "when_to_use": [
+      "Deploy to staging/production on Git push",
+      "Code review workflow with deployment lock controls",
+      "SVN hosting with branch-based deployment pipelines",
+      "Automated FTP/SFTP deploys for small team projects"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Deployment pipelines built in, not bolted on",
+      "Supports both Git and SVN repositories",
+      "Simple flat pricing per user",
+      "Clean code review UI for small teams"
+    ],
+    "cons": [
+      "Product has stagnated for years",
+      "No modern CI runners, only FTP/SSH deploys",
+      "Weak issue tracking, forces external tools",
+      "Storage and repo limits feel tight"
+    ],
+    "verdict": "A throwback to 2012 hosted Git/SVN that still works for tiny agencies, but little reason to pick new.",
+    "best_for": "Small agencies deploying PHP/WordPress via FTP who want SVN plus Git in one place.",
+    "not_for": "Teams needing modern CI, containers, or active product development."
   }
 }

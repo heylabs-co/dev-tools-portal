@@ -26,5 +26,31 @@
   },
   "community": {
     "hn_mentions_30d": 2
+  },
+  "content": {
+    "when_to_use": [
+      "Parallel DataFrame processing for AI training data at scale",
+      "Distributed Xinference LLM serving for ML teams in China",
+      "Scaling Python data pipelines across multi-node clusters",
+      "Replacing Dask with Xorbits for distributed AI data pipelines",
+      "OSS inference server for multiple model frameworks via Xinference"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Xinference makes LLM serving genuinely simple",
+      "Open source with active Chinese OSS community",
+      "Pandas-compatible parallel DataFrame API",
+      "Good performance on distributed inference"
+    ],
+    "cons": [
+      "Documentation primarily in Chinese",
+      "Smaller ecosystem than Ray or Dask",
+      "Enterprise support path unclear outside China",
+      "Breaking changes more frequent than mature tools"
+    ],
+    "verdict": "Promising OSS for LLM serving and parallel data, but language and ecosystem gaps limit Western adoption.",
+    "best_for": "Chinese ML teams needing local LLM inference and parallel data processing",
+    "not_for": "Production Western teams needing English-first docs and long-term stability guarantees"
   }
 }

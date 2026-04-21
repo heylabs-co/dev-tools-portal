@@ -22,5 +22,31 @@
   },
   "community": {
     "hn_mentions_30d": 22
+  },
+  "content": {
+    "when_to_use": [
+      "Dynamic secrets generation for database credentials in K8s",
+      "PKI secrets engine for automated TLS certificate rotation",
+      "Kubernetes secrets injection via OpenBao agent sidecar",
+      "Transit encryption API for application-layer data encryption",
+      "Open-source HashiCorp Vault replacement under Linux Foundation"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Truly open-source fork of Vault under LF",
+      "Avoids HashiCorp BSL licensing concerns",
+      "API-compatible with Vault plugins",
+      "Community-driven governance model"
+    ],
+    "cons": [
+      "Smaller ecosystem than Vault today",
+      "Feature drift from Vault likely over time",
+      "Operationally identical burden to Vault",
+      "Enterprise parity will take years"
+    ],
+    "verdict": "The right pick if the BSL switch ruined Vault for you; expect a rougher ride than upstream for now.",
+    "best_for": "Teams that want Vault functionality under a permissive license.",
+    "not_for": "Shops that rely on Vault Enterprise features or HCP."
   }
 }

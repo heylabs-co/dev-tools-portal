@@ -23,5 +23,30 @@
   },
   "community": {
     "hn_mentions_30d": 268
+  },
+  "content": {
+    "when_to_use": [
+      "Push notifications to Chinese Android apps across OEM device fragmentation",
+      "User segmentation and behavioral push targeting for 500k+ Chinese apps",
+      "Transactional notification delivery via Getui SDK for Chinese market apps",
+      "IM and in-app messaging features using Aurora Mobile's unified SDK"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Essential for reliable delivery in mainland China",
+      "Handles Xiaomi, Huawei, OPPO vendor channels",
+      "Massive scale — 500k+ apps proven",
+      "Combines push with analytics and segmentation"
+    ],
+    "cons": [
+      "Chinese-only documentation and support",
+      "Data residency concerns for non-China apps",
+      "Dashboard and onboarding are rough for foreigners",
+      "Integrations outside China ecosystem are minimal"
+    ],
+    "verdict": "Mandatory if you ship in China — irrelevant elsewhere. Use as the China leg of a multi-provider push stack.",
+    "best_for": "Apps with meaningful mainland China install base",
+    "not_for": "Western-only apps without China distribution"
   }
 }

@@ -42,5 +42,30 @@
     "forks": 44,
     "updated_at": "2026-04-21",
     "health_score": "D"
+  },
+  "content": {
+    "when_to_use": [
+      "Self-hosted GitHub Actions runners in your AWS account",
+      "ARM64 and GPU runner support at 90% cost reduction",
+      "Ephemeral runners with per-job VPC isolation",
+      "Autoscaling runner fleet on EC2 Spot or On-Demand"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Drop-in GitHub Actions runners in your AWS account",
+      "Dramatic cost savings vs GitHub-hosted runners",
+      "Supports x64, ARM64, and GPU instances",
+      "Ephemeral EC2, so isolation is genuine"
+    ],
+    "cons": [
+      "You inherit AWS bills and account complexity",
+      "Runner warmup vs spot availability is your problem",
+      "Limited to AWS, no GCP or Azure option",
+      "Small team, commercial license"
+    ],
+    "verdict": "The right call when GitHub-hosted Actions bills are painful and you already live on AWS.",
+    "best_for": "AWS-based teams with heavy CI spend on GitHub Actions wanting cheaper, bigger runners.",
+    "not_for": "Teams not on AWS or unwilling to manage EC2 runners."
   }
 }

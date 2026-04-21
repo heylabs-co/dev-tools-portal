@@ -22,5 +22,31 @@
   },
   "community": {
     "hn_mentions_30d": 80
+  },
+  "content": {
+    "when_to_use": [
+      "GDPR cookie consent banner for WordPress sites",
+      "Auto cookie scanning and categorization on page load",
+      "Geo-targeted consent mode for EU vs non-EU visitors",
+      "Consent proof storage for GDPR audit compliance",
+      "IAB TCF 2.0 CMP integration for publisher ad stacks"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Native WordPress plugin — no account or external script",
+      "Wizard generates law-specific banners automatically",
+      "Strong documentation oriented to non-technical site owners",
+      "Free tier covers basic GDPR for small sites"
+    ],
+    "cons": [
+      "WordPress-only — useless outside that ecosystem",
+      "Cookie scan depth can miss SPA and dynamic injections",
+      "Premium tiers needed for multi-region and documents",
+      "Consent log retention limited versus dedicated CMPs"
+    ],
+    "verdict": "Best-in-class WordPress privacy plugin — pick it if your site is WP, skip it otherwise.",
+    "best_for": "WordPress site owners who need GDPR compliance without a developer",
+    "not_for": "Non-WordPress stacks or publishers needing IAB TCF support"
   }
 }

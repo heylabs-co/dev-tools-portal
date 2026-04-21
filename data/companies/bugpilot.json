@@ -23,5 +23,30 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "Auto-capture session replay on every production crash",
+      "Triage bugs faster with network logs and DOM context",
+      "Reproduce user-reported errors without back-and-forth",
+      "AI-powered root-cause suggestions from replay data"
+    ]
+  },
+  "review": {
+    "pros": [
+      "AI triage auto-correlates replays with network and crash logs",
+      "Reduces manual reproduction steps for support engineers",
+      "Surfaces affected user segments without custom queries",
+      "Lightweight SDK aimed at SaaS, not heavy enterprise setup"
+    ],
+    "cons": [
+      "Narrow focus on bugs, not full product analytics",
+      "AI summaries can miss edge-case root causes",
+      "Pricing scales quickly with session volume",
+      "Limited mobile SDK coverage vs web-first competitors"
+    ],
+    "verdict": "Solid AI-first bug triage for SaaS support teams drowning in Intercom tickets, but not a Hotjar replacement.",
+    "best_for": "SaaS support and engineering teams triaging customer-reported bugs with replay context.",
+    "not_for": "Marketing teams needing heatmaps, funnels or CRO tooling alongside replays."
   }
 }

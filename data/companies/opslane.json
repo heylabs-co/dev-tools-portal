@@ -30,5 +30,31 @@
   },
   "community": {
     "hn_mentions_30d": 8
+  },
+  "content": {
+    "when_to_use": [
+      "AI-powered alert deduplication and noise reduction for on-call",
+      "Correlating alerts from Datadog, PagerDuty, and Slack",
+      "Reducing on-call fatigue with automated incident grouping",
+      "Triaging incidents with AI-suggested runbooks and context",
+      "Improving MTTD by surfacing actionable alerts above noise"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Reduces alert fatigue with AI",
+      "Correlates across monitoring tools",
+      "Fits into existing on-call stacks",
+      "Faster incident triage potential"
+    ],
+    "cons": [
+      "Needs quality data to learn well",
+      "AI confidence hard to verify",
+      "Small player vs PagerDuty AI",
+      "ROI depends on alert volume"
+    ],
+    "verdict": "Interesting AI-native alert deduper for noisy on-call teams, but you need real volume to benefit.",
+    "best_for": "SRE teams drowning in alerts from multiple monitoring tools wanting AI-driven correlation",
+    "not_for": "Small teams with manageable alert volume or those without existing observability stack"
   }
 }

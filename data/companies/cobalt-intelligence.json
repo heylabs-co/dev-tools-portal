@@ -21,5 +21,31 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "US business entity verification via Secretary of State data",
+      "Real-time corporate identity check for fintech KYB onboarding",
+      "Beneficial ownership lookup for AML due diligence",
+      "Lender business verification before credit decisioning",
+      "Merchant onboarding validation for payment platforms"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Real-time data from all 50 US Secretary of State sites",
+      "Primary-source corporate records, not aggregated",
+      "Fast verification for US business identity checks",
+      "Useful when Middesk or LexisNexis lag on filings"
+    ],
+    "cons": [
+      "US-only, no coverage outside SoS registries",
+      "Narrower than full KYB suites like Middesk",
+      "No UBO, sanctions or PEP screening bundled",
+      "Pricing per lookup adds up at scale"
+    ],
+    "verdict": "US Secretary of State lookups done right, best as a targeted complement to broader KYB stacks.",
+    "best_for": "US lenders and fintechs needing live SoS data for business verification and underwriting",
+    "not_for": "Global KYB programs or teams needing UBO, sanctions and adverse media in one API"
   }
 }

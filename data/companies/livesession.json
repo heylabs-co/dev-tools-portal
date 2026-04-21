@@ -23,5 +23,30 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "Session replay with dev-tools error overlay for debugging",
+      "Funnel analysis correlated with individual user sessions",
+      "Quantitative analytics and qualitative replay in one tool",
+      "Heatmaps combined with rage-click and error tracking"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Merges qualitative replay with quantitative dashboards",
+      "Developer tools capture console and network errors",
+      "Funnels and heatmaps share the same session data",
+      "EU-based hosting with GDPR-friendly defaults"
+    ],
+    "cons": [
+      "Quantitative analytics lag dedicated product analytics tools",
+      "Custom event instrumentation is still required for depth",
+      "Heatmap UX is less refined than Hotjar's",
+      "Pricing jumps sharply above starter volume"
+    ],
+    "verdict": "Good middle ground between Hotjar and Mixpanel, but teams serious about product analytics still need a real warehouse.",
+    "best_for": "Product teams wanting replay plus lightweight dashboards in one GDPR-friendly tool.",
+    "not_for": "Data teams that need SQL-grade product analytics or customer data infrastructure."
   }
 }

@@ -42,5 +42,30 @@
     "forks": 265,
     "updated_at": "2026-04-21",
     "health_score": "D"
+  },
+  "content": {
+    "when_to_use": [
+      "Toggle Django features per user, group, or percentage",
+      "Database-stored flags controlled via Django admin UI",
+      "Sample-based rollout to 1% of traffic for experiments",
+      "Instant disable of problematic features without deploy"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Pragmatic flag/switch/sample library for Django",
+      "Admin-managed toggles without extra services",
+      "User, group and percentage targeting out of the box",
+      "Tiny surface area, easy to reason about"
+    ],
+    "cons": [
+      "Django-only; no multi-stack support",
+      "No native SDK ecosystem or remote config UI",
+      "Limited analytics and experimentation features",
+      "Scaling targeting rules gets clunky"
+    ],
+    "verdict": "Fine default for small/medium Django apps; outgrow it once you need multi-service or advanced targeting.",
+    "best_for": "Django monoliths that need simple, in-process flags",
+    "not_for": "Polyglot architectures or experimentation-heavy teams"
   }
 }

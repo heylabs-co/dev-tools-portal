@@ -23,5 +23,31 @@
   "seo": {
     "title": "BookStack — Developer Documentation / DevRel",
     "meta_description": "BookStack: BookStack — open-source, self-hosted knowledge management platform organized as books, chapters, and pages, popular for internal developer docs."
+  },
+  "content": {
+    "when_to_use": [
+      "Self-hosted internal docs wiki for engineering team runbooks",
+      "API documentation organized as books with versioned chapters",
+      "Onboarding knowledge base with searchable pages for new hires",
+      "Incident postmortem archive accessible to the whole team",
+      "Developer handbook maintained collaboratively without a CMS"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Fully free and self-hostable with no feature gating",
+      "Simple book/chapter/page model is easy to grok",
+      "Active open-source community and regular releases",
+      "WYSIWYG and Markdown editors both supported"
+    ],
+    "cons": [
+      "Not designed for API reference or developer-spec docs",
+      "Search is basic compared to purpose-built tools",
+      "Self-hosting requires PHP/MySQL stack expertise",
+      "Limited diagramming and code-centric features"
+    ],
+    "verdict": "Great open-source internal wiki; wrong pick if you want a polished developer docs platform.",
+    "best_for": "Internal team knowledge bases, runbooks, and general documentation on self-hosted infrastructure.",
+    "not_for": "Public developer documentation, API references, or teams without PHP hosting expertise."
   }
 }

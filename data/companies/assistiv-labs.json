@@ -19,5 +19,31 @@
   "seo": {
     "title": "Assistiv Labs — Accessibility / A11y Testing",
     "meta_description": "Assistiv Labs: Assistiv Labs — Accessibility / A11y Testing tool for developers"
+  },
+  "content": {
+    "when_to_use": [
+      "Remote screen-reader testing on NVDA, JAWS, and VoiceOver",
+      "QA session with real AT users before accessibility audit",
+      "Regression testing of new ARIA patterns with screen readers",
+      "Cloud-based AT testing without local VM setup",
+      "Accessible form validation verified across multiple AT combos"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Remote screen reader testing without local setup",
+      "Cross-platform access to NVDA, JAWS and VoiceOver",
+      "Speeds up QA for teams without assistive tech stations",
+      "Useful for distributed accessibility engineers"
+    ],
+    "cons": [
+      "Narrow use case, not a full a11y suite",
+      "Per-seat pricing can add up for larger QA teams",
+      "Performance depends on streaming latency",
+      "Doesn't replace hands-on testing with real users"
+    ],
+    "verdict": "Sharp niche tool for remote screen reader QA, worth it for distributed teams that can't ship JAWS licenses.",
+    "best_for": "Distributed QA and a11y engineers testing with screen readers remotely.",
+    "not_for": "Teams wanting automated WCAG scans or monitoring dashboards."
   }
 }

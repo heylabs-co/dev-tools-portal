@@ -22,5 +22,31 @@
   },
   "community": {
     "hn_mentions_30d": 12
+  },
+  "content": {
+    "when_to_use": [
+      "Self-hosted team password manager with REST API integration",
+      "Client-side encrypted credential sharing for DevOps teams",
+      "LDAP integration for enterprise identity-linked secret access",
+      "Audit log API for SOC 2 access control review evidence",
+      "TOTP and WebAuthn MFA for privileged account protection"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Open source with client-side encryption",
+      "REST API usable for CI and automation",
+      "Self-hostable with Docker",
+      "Granular sharing and groups"
+    ],
+    "cons": [
+      "UI is less refined than commercial tools",
+      "Docs can be sparse on edge cases",
+      "Smaller community than Bitwarden",
+      "Enterprise features gated behind EE"
+    ],
+    "verdict": "A credible self-hosted team password manager with a real API; UX is the main tradeoff.",
+    "best_for": "Teams wanting a self-hosted password vault with API-driven access.",
+    "not_for": "Teams who prioritize end-user polish over self-hosting."
   }
 }

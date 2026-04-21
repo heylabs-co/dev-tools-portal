@@ -22,5 +22,31 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "SBOM signing and attestation for software supply chain",
+      "CI/CD pipeline integrity verification via evidence collection",
+      "SLSA level compliance for build provenance attestation",
+      "Policy enforcement on SBOM evidence before deployment",
+      "EO 14028 compliance tooling for software bill of materials"
+    ]
+  },
+  "review": {
+    "pros": [
+      "SBOM generation and signing in one pipeline",
+      "Strong SLSA and supply chain attestation support",
+      "Evidence collection across multi-stage build pipelines",
+      "Helps meet Executive Order 14028 and NIST requirements"
+    ],
+    "cons": [
+      "Crowded supply-chain security category with big competitors",
+      "Setup across complex pipelines takes effort",
+      "Value less clear without compliance pressure",
+      "Pricing not transparent publicly"
+    ],
+    "verdict": "Focused supply-chain security tool for compliance-driven teams; feels niche without a regulatory driver.",
+    "best_for": "Regulated orgs or federal suppliers needing SBOMs, attestations, and pipeline integrity evidence.",
+    "not_for": "Teams without compliance mandates or already covered by broader platforms like GitHub or Snyk."
   }
 }

@@ -21,5 +21,31 @@
   },
   "community": {
     "hn_mentions_30d": 1
+  },
+  "content": {
+    "when_to_use": [
+      "AI-first invoice and PO data extraction without fixed templates",
+      "Intelligent document processing for accounts payable teams",
+      "Structured data capture from varied document layouts via API",
+      "Reducing manual document processing in logistics and finance",
+      "Webhook-triggered extraction from email-received invoices"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Template-free AI extraction adapts to new layouts",
+      "High accuracy on invoices and receipts out of the box",
+      "Validation UI speeds up human-in-the-loop review",
+      "Prebuilt ERP connectors (SAP, NetSuite, MS Dynamics)"
+    ],
+    "cons": [
+      "Pricing opaque and steep for low document volumes",
+      "Accuracy drops on non-invoice document types",
+      "Custom fields still require training data",
+      "Lock-in to Rossum's annotation UI and schema"
+    ],
+    "verdict": "Strong template-free IDP for AP automation, but priced for enterprise and overkill for occasional OCR needs.",
+    "best_for": "Mid-market to enterprise AP teams automating high-volume invoice and PO processing",
+    "not_for": "Startups needing cheap OCR or teams processing under 10k documents per year"
   }
 }

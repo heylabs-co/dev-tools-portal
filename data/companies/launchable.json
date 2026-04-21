@@ -21,5 +21,30 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "ML-based test selection running only failing-risk tests",
+      "Reduce CI pipeline time by 50%+ with smart subsetting",
+      "Train models on historical test failure data in CI",
+      "Identify flaky tests early with predictive analytics"
+    ]
+  },
+  "review": {
+    "pros": [
+      "ML-based predictive test selection, real CI savings",
+      "Language-agnostic via subset CLI",
+      "Flaky test detection and trends included",
+      "Integrates with most CI and test runners"
+    ],
+    "cons": [
+      "Requires reliable historical data to shine",
+      "Trusting ML-selected subsets needs culture change",
+      "Commercial pricing, ROI math is non-trivial",
+      "Less value for small or fast suites"
+    ],
+    "verdict": "Compelling CI optimizer once your suites are too big to run fully per change, a leap of faith otherwise.",
+    "best_for": "Teams with multi-hour CI where wall-clock time blocks deploys",
+    "not_for": "Small or already-fast suites where selection risk outweighs savings"
   }
 }

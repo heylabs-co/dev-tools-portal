@@ -23,5 +23,30 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "Managing complex SaaS subscription tiers with mid-cycle changes",
+      "Automating ASC 606 revenue recognition for enterprise SaaS",
+      "Generating consolidated invoices for multi-subsidiary orgs",
+      "Syncing billing data with NetSuite GL for close automation"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Tight integration with NetSuite GL and revenue recognition",
+      "Handles complex hybrid subscription and product billing",
+      "Good audit trails and ASC 606 compliance",
+      "Scales to enterprise transaction volumes"
+    ],
+    "cons": [
+      "Requires full NetSuite ERP license (expensive)",
+      "Implementation is slow, consultant-heavy, and rigid",
+      "UI is classic Oracle, not developer-friendly",
+      "Customizations via SuiteScript have steep learning curve"
+    ],
+    "verdict": "Logical billing choice if you already run NetSuite; painful and expensive to adopt just for subscriptions.",
+    "best_for": "Enterprises running NetSuite ERP wanting native subscription and ARM in the same ledger.",
+    "not_for": "Teams not on NetSuite or anyone wanting a modern, API-first billing experience."
   }
 }

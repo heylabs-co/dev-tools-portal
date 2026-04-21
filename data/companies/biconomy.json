@@ -23,5 +23,29 @@
   },
   "community": {
     "hn_mentions_30d": 3
+  },
+  "content": {
+    "when_to_use": [
+      "Gasless transactions for Web3 apps using account abstraction",
+      "Session keys for frictionless in-game asset interactions",
+      "Bundling multiple on-chain calls into one user transaction",
+      "ERC-4337 paymaster infrastructure for NFT minting without gas",
+      "Simplifying Web3 onboarding by eliminating crypto gas UX"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Turnkey gasless transactions",
+      "Solid paymaster and bundler infra",
+      "Session keys improve dApp UX"
+    ],
+    "cons": [
+      "Adds dependency on Biconomy relayers",
+      "Account abstraction still early on some chains",
+      "Fees stack on top of gas"
+    ],
+    "verdict": "The easiest way to ship gasless UX today, at the cost of tying your dApp to their infra.",
+    "best_for": "Consumer dApps that need smooth onboarding and gasless flows",
+    "not_for": "Protocols prioritizing fully self-hosted, trust-minimized infra"
   }
 }

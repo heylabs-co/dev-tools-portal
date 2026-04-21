@@ -22,5 +22,31 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "HSM-backed secret storage for certificate signing operations",
+      "PKCS#11 interface for application-level cryptographic operations",
+      "Code signing key protection for software release pipelines",
+      "SSH CA key storage with YubiHSM-backed signing",
+      "Compact HSM for small-team PKI without rack-mounted hardware"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Compact, USB-based HSM with real crypto",
+      "FIPS 140-2 Level 3 validated option",
+      "Much cheaper than traditional HSMs",
+      "PKCS#11 support integrates broadly"
+    ],
+    "cons": [
+      "Performance lower than network HSMs",
+      "Single USB form factor limits HA",
+      "Backup/duplication requires care",
+      "Not ideal for high-throughput workloads"
+    ],
+    "verdict": "The best small-form-factor HSM for most teams; just don't expect datacenter-grade throughput.",
+    "best_for": "Teams needing real HSM-backed keys without six-figure hardware budgets.",
+    "not_for": "High-TPS signing workloads that need network HSMs."
   }
 }

@@ -40,5 +40,31 @@
     "forks": 517,
     "updated_at": "2026-04-21",
     "health_score": "C"
+  },
+  "content": {
+    "when_to_use": [
+      "Embedding a web UI inside a Windows desktop application",
+      "Chromium-based rendering in a native .NET WinForms app",
+      "Lightweight Electron alternative for Windows-only app",
+      "In-app browser panel for a desktop productivity tool",
+      "WebView-based settings panel inside a C++ application"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Chromium engine for native Windows apps",
+      "Leaner than bundling Electron",
+      "Backed by Microsoft long-term",
+      "Integrates with .NET, Win32, WinUI"
+    ],
+    "cons": [
+      "Windows only",
+      "Requires runtime on target machines",
+      "Less flexible than Electron cross-platform",
+      "Version coupling with installed Edge"
+    ],
+    "verdict": "The right answer for Windows-native apps with web UI — if cross-platform isnt a requirement.",
+    "best_for": "Windows-first native app teams wanting web UI without Electron bloat",
+    "not_for": "Teams needing Linux or macOS parity from a single codebase"
   }
 }

@@ -40,5 +40,30 @@
     "forks": 614,
     "updated_at": "2026-04-21",
     "health_score": "F"
+  },
+  "content": {
+    "when_to_use": [
+      "Catch CSS regressions with automated screenshot diffing",
+      "Visual regression CI gate on every pull request",
+      "Multi-viewport baseline comparisons for responsive UI",
+      "Approve UI changes via visual diff review workflow"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Free, self-hosted visual regression with headless Chrome",
+      "Config-driven, easy to add to existing CI pipelines",
+      "Built-in HTML reporter with diff viewer",
+      "Supports Puppeteer and Playwright engines"
+    ],
+    "cons": [
+      "Flaky on sites with ads, animations or rolling dates",
+      "No baseline storage service, bring your own git or S3",
+      "Slower than hosted tools like Percy or Chromatic",
+      "Maintenance pace has slowed noticeably"
+    ],
+    "verdict": "Good free starting point for visual regression, but expect to babysit flakes and storage yourself.",
+    "best_for": "Small teams wanting self-hosted visual diffing without SaaS fees",
+    "not_for": "Teams needing parallel cloud runs, review workflows or cross-browser matrices"
   }
 }

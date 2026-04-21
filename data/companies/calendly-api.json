@@ -22,5 +22,31 @@
   },
   "community": {
     "hn_mentions_30d": 10
+  },
+  "content": {
+    "when_to_use": [
+      "Embed Calendly booking into SaaS onboarding flow",
+      "CRM sync: auto-create contact on Calendly booking",
+      "Programmatic scheduling link generation per sales rep",
+      "Webhook trigger for booking confirmation automation",
+      "Reporting on meeting volume across sales team"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Covers Calendly's huge user base",
+      "OAuth and webhooks in good shape",
+      "Stable API with clear docs",
+      "Event types and routing well-modeled"
+    ],
+    "cons": [
+      "Write operations limited on lower plans",
+      "Enterprise-only for deep features",
+      "Rate limits can sting",
+      "No two-way calendar control beyond Calendly"
+    ],
+    "verdict": "Essential if your users are on Calendly, restrictive if you expected a general-purpose scheduling API.",
+    "best_for": "Products integrating with users' existing Calendly accounts for meeting data",
+    "not_for": "Apps that need a full scheduling engine—use Cronofy or Cal.com instead"
   }
 }

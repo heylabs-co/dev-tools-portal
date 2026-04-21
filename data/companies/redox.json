@@ -23,5 +23,31 @@
   },
   "community": {
     "hn_mentions_30d": 18
+  },
+  "content": {
+    "when_to_use": [
+      "HL7 to FHIR translation for EHR integration without custom code",
+      "HIPAA-compliant clinical data exchange engine for health apps",
+      "Patient data routing across 300+ supported EHR systems",
+      "ADT event streaming for real-time care coordination apps",
+      "Lab order and result transmission via Redox network"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Largest EHR integration network in digital health",
+      "Translates HL7, FHIR, CCDA, and X12 uniformly",
+      "Mature developer portal and sandbox environment",
+      "HIPAA-compliant managed integration infrastructure"
+    ],
+    "cons": [
+      "Pricing scales quickly with message volume",
+      "Long implementation timelines due to EHR vendor reviews",
+      "Contractual commitments can be inflexible",
+      "Abstraction sometimes hides EHR-specific quirks"
+    ],
+    "verdict": "The default choice for large-scale EHR integration — you pay for the network, and it usually pays off.",
+    "best_for": "Digital health companies needing broad EHR connectivity at enterprise scale",
+    "not_for": "Bootstrapped startups doing one or two EHR integrations"
   }
 }

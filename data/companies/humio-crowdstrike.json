@@ -22,5 +22,30 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "High-throughput log ingestion and live query for security investigation",
+      "Streaming observability data ingestion at petabyte scale for SOC teams",
+      "Real-time log search during active incident response in enterprise environments",
+      "Compressing and streaming security telemetry for CrowdStrike-integrated workflows"
+    ]
+  },
+  "review": {
+    "pros": [
+      "High-throughput log ingestion with live query",
+      "Compressed streaming keeps costs down at scale",
+      "CrowdStrike security integration",
+      "Good for security and ops log pipelines"
+    ],
+    "cons": [
+      "Not positioned as a crash reporting product",
+      "Enterprise pricing and sales cycles",
+      "Operational learning curve for LogScale",
+      "Overlaps with SIEM budgets"
+    ],
+    "verdict": "Strong log/observability platform, but mis-slotted as crash reporting; pick Sentry-class tools for that.",
+    "best_for": "Security/ops teams needing high-volume log search and retention",
+    "not_for": "Dev teams looking specifically for crash/stack trace tooling"
   }
 }

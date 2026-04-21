@@ -22,5 +22,31 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "Crowdsourced localization for Firefox and Mozilla products",
+      "Web-based translation tool for open-source communities",
+      "OSS TMS for non-profit and community localization",
+      "Contributor translation workflow with review pipeline",
+      "Multi-locale string management for Mozilla ecosystem"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Open source, self-hostable, no vendor lock-in",
+      "Battle-tested on Firefox-scale localization",
+      "Clean web UI translators actually enjoy using",
+      "Good Git and VCS-based workflow integration"
+    ],
+    "cons": [
+      "Setup and operations require Django expertise",
+      "No commercial support or SLA behind it",
+      "UI and admin feel dated versus commercial tools",
+      "Fewer built-in MT and QA integrations"
+    ],
+    "verdict": "Great free OSS option for communities and open-source projects; most commercial teams will prefer a SaaS alternative.",
+    "best_for": "Open-source projects and orgs willing to self-host localization",
+    "not_for": "Teams without infra capacity or that need a commercial SLA"
   }
 }

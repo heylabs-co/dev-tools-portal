@@ -21,5 +21,31 @@
   },
   "community": {
     "hn_mentions_30d": 1
+  },
+  "content": {
+    "when_to_use": [
+      "TIN/EIN verification for IRS 1099 compliance",
+      "KYC identity check for marketplace seller onboarding",
+      "Sanctions screening for cross-border payment platforms",
+      "KYB business verification for banking-as-a-service fintechs",
+      "360-degree identity check for insurance underwriting"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Bundles KYB, KYC, sanctions and TIN/EIN checks",
+      "IRS TIN matching integrated, rare in compliance APIs",
+      "Single vendor for identity and tax verification",
+      "Fits marketplaces with 1099 reporting needs"
+    ],
+    "cons": [
+      "Brand less recognized in European compliance",
+      "Doc-heavy implementation for full 360-degree use",
+      "UBO and registry depth below Kyckr or Moody's",
+      "Pricing not published, sales-led motion"
+    ],
+    "verdict": "One-stop identity and tax verification for US marketplaces, weaker fit for EU-focused compliance.",
+    "best_for": "US marketplaces and enterprises needing TIN/EIN plus KYC/KYB in a single platform",
+    "not_for": "European banks needing deep registry UBO data and eIDAS-aligned identity schemes"
   }
 }

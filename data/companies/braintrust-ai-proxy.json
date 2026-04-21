@@ -25,5 +25,28 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "Proxying LLM API calls to log, cache, and rate-limit centrally",
+      "A/B testing multiple models behind a single proxy endpoint",
+      "Reducing LLM costs via semantic caching of repeated prompts",
+      "Capturing all LLM traces for observability and debugging"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Unified interface across OpenAI, Anthropic, others",
+      "Response caching cuts repeat-call cost",
+      "Logs tie into Braintrust evals"
+    ],
+    "cons": [
+      "Adds a network hop and potential failure point",
+      "Most value requires full Braintrust suite",
+      "Cache hits tricky for dynamic prompts"
+    ],
+    "verdict": "Clear win if you already use Braintrust; weaker as a standalone proxy vs Helicone or Portkey.",
+    "best_for": "Teams standardizing LLM evals and observability on Braintrust",
+    "not_for": "Teams only needing a lightweight proxy without eval tooling"
   }
 }

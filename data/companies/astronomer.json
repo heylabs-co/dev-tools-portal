@@ -22,5 +22,31 @@
   },
   "community": {
     "hn_mentions_30d": 24
+  },
+  "content": {
+    "when_to_use": [
+      "Managed Airflow with CI/CD DAG deployment pipelines",
+      "Multi-team Airflow with RBAC and environment isolation",
+      "Observability for DAG runs across 1000+ pipelines daily",
+      "Enterprise Airflow alternative to self-hosted clusters",
+      "Automated dbt and Spark orchestration in Astro workflows"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Managed Airflow saves weeks of Kubernetes ops",
+      "Astro CLI and Runtime improve local dev loop",
+      "DAG observability built in, unlike vanilla Airflow",
+      "Strong SOC 2 and enterprise security posture"
+    ],
+    "cons": [
+      "Pricing climbs quickly at scale",
+      "Still Airflow underneath, so its quirks persist",
+      "Vendor lock-in via proprietary Runtime image",
+      "Less innovation than Dagster or Prefect recently"
+    ],
+    "verdict": "Default pick for managed Airflow, though modern orchestrators now offer cleaner abstractions.",
+    "best_for": "Enterprises already on Airflow who want managed infra and observability",
+    "not_for": "Greenfield teams evaluating modern orchestrators like Dagster or Prefect"
   }
 }

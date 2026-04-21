@@ -22,5 +22,29 @@
   },
   "community": {
     "hn_mentions_30d": 8
+  },
+  "content": {
+    "when_to_use": [
+      "Capture and inspect incoming webhooks during development",
+      "Debug third-party webhook payload structure",
+      "Test webhook delivery before implementing handler logic",
+      "Ephemeral endpoint for webhook integration testing",
+      "Share webhook payload examples with team for documentation"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Free instant webhook capture URLs",
+      "Inspect raw HTTP payload headers",
+      "Zero signup required for testing"
+    ],
+    "cons": [
+      "Not suitable for production traffic",
+      "Limited retention and history",
+      "No replay or transform features"
+    ],
+    "verdict": "Handy throwaway tool for inspecting webhook payloads, but less capable than webhook.site or ngrok.",
+    "best_for": "Developers debugging third-party webhook integrations quickly",
+    "not_for": "Teams needing persistent webhook logs or replay"
   }
 }

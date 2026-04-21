@@ -26,5 +26,30 @@
   },
   "community": {
     "hn_mentions_30d": 25
+  },
+  "content": {
+    "when_to_use": [
+      "Parsing complex PDFs with tables and charts into structured data",
+      "Extracting data from financial reports and legal documents via API",
+      "Building document ingestion pipelines that preserve layout context",
+      "Processing multi-column and scanned documents for RAG indexing"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Vision-first parsing of complex PDFs",
+      "Reliable table extraction for finance docs",
+      "Outputs LLM-ready structured JSON",
+      "Handles scanned and messy inputs"
+    ],
+    "cons": [
+      "Premium pricing versus Unstructured or Llama Parse",
+      "Closed platform, no self-hosting",
+      "Latency grows with document complexity",
+      "Limited granular customization"
+    ],
+    "verdict": "Worth the premium when document-parsing accuracy materially drives product quality, especially in finance workflows.",
+    "best_for": "Finance, legal, and insurance teams parsing messy PDFs at scale",
+    "not_for": "Cost-sensitive apps where Unstructured.io already works fine"
   }
 }

@@ -19,5 +19,31 @@
   "seo": {
     "title": "A11yWatch — Accessibility / A11y Testing",
     "meta_description": "A11yWatch: A11yWatch — Accessibility / A11y Testing tool for developers"
+  },
+  "content": {
+    "when_to_use": [
+      "Automated WCAG scan across 500+ docs pages in CI",
+      "Pre-deploy accessibility regression check on staging",
+      "Scheduled weekly crawl for accessibility drift detection",
+      "API-driven a11y reports piped into GitHub PR checks",
+      "Bulk audit of redesigned design system components"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Open-source automated accessibility scanning",
+      "Self-hostable for privacy and CI pipelines",
+      "APIs and CLI support integration into dev workflows",
+      "No per-page pricing when self-hosted"
+    ],
+    "cons": [
+      "Less polished UI vs commercial a11y suites",
+      "Automated rules still miss 40-60% of a11y issues",
+      "Self-hosting means you own uptime and upgrades",
+      "Smaller community than axe-core ecosystem"
+    ],
+    "verdict": "Solid open-source pick for dev teams wiring a11y into CI, but automation alone won't pass a WCAG audit.",
+    "best_for": "Engineering teams adding automated a11y checks to CI pipelines.",
+    "not_for": "Legal or compliance teams needing certified WCAG audits."
   }
 }

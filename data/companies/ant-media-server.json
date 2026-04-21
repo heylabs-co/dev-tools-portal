@@ -22,5 +22,33 @@
   },
   "community": {
     "hn_mentions_30d": 12
+  },
+  "content": {
+    "when_to_use": [
+      "Broadcasting live events with sub-500ms WebRTC latency",
+      "Building 1:N streaming platforms with HLS/CMAF fallback",
+      "Hosting interactive live shopping streams at low latency",
+      "Self-hosted alternative to Agora for real-time video apps",
+      "Scaling WebRTC to thousands of concurrent viewers"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Sub-second WebRTC latency out of the box",
+      "Self-hostable with predictable licensing costs",
+      "Adaptive bitrate, HLS, CMAF, SRT all supported",
+      "Kubernetes-ready clustering for scale",
+      "Active community edition for experiments"
+    ],
+    "cons": [
+      "Enterprise features locked behind per-instance license",
+      "Documentation lags behind new feature releases",
+      "You manage infra, autoscaling, and CDN yourself",
+      "Community edition drops key codecs and recording",
+      "UI dashboard is functional but dated"
+    ],
+    "verdict": "Solid self-hosted WebRTC server if you want Wowza-class features without SaaS pricing — but you own the ops.",
+    "best_for": "Teams with DevOps muscle building interactive live streaming on their own infra.",
+    "not_for": "Developers who want a managed streaming API with zero ops."
   }
 }

@@ -26,5 +26,31 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "Horizontal MySQL sharding without changing application code",
+      "Distributed SQL routing across 100+ database shards",
+      "Adding read-write splitting and shadow DB to legacy Java apps",
+      "Data encryption and masking at the middleware layer",
+      "Zero-downtime migration from single MySQL to sharded cluster"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Transparent sharding for existing SQL databases",
+      "Works as JDBC driver or proxy",
+      "Strong distributed transaction support",
+      "Apache TLP, production-tested at JD"
+    ],
+    "cons": [
+      "Complexity climbs with multi-shard transactions",
+      "Smaller community in Western markets",
+      "Operational learning curve is real",
+      "Overlap with native sharding in Vitess"
+    ],
+    "verdict": "Powerful sharding middleware for MySQL and PostgreSQL, requires real DBA chops to operate confidently in production.",
+    "best_for": "Teams needing transparent sharding layer over existing MySQL or PostgreSQL",
+    "not_for": "Greenfield projects where TiDB or CockroachDB offer simpler distributed SQL"
   }
 }

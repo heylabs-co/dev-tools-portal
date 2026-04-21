@@ -22,5 +22,30 @@
   },
   "community": {
     "hn_mentions_30d": 1
+  },
+  "content": {
+    "when_to_use": [
+      "Writing natural language browser automation scripts with AI",
+      "Turning plain English instructions into reliable Playwright actions",
+      "Building accessible web scraping workflows without CSS selectors",
+      "Testing web apps by describing user journeys in plain text"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Open-source browser automation built for AI agents",
+      "Combines Playwright reliability with AI action layer",
+      "Backed by Browserbase with active development",
+      "Cleaner agent abstractions than raw Playwright"
+    ],
+    "cons": [
+      "Browser automation is inherently flaky at scale",
+      "Still requires Playwright knowledge under the hood",
+      "Hosted runtime costs can add up for heavy workloads",
+      "Competes with Browser Use and Skyvern for mindshare"
+    ],
+    "verdict": "One of the better AI-first browser automation frameworks, but browsers remain the hardest surface for agents.",
+    "best_for": "Engineers building web agents for scraping, testing, or workflow automation",
+    "not_for": "Use cases solvable by direct API calls or simple HTTP scraping"
   }
 }

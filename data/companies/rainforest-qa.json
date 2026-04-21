@@ -22,5 +22,29 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "QA-as-a-service with AI and crowd tester execution",
+      "No-code E2E test creation via UI record and describe",
+      "Parallel test execution across real QA testers",
+      "Instant test maintenance by describing UI changes"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Combines AI with crowd testers on demand",
+      "No-code E2E test creation for non-engineers",
+      "Parallel execution speeds feedback",
+      "Good for product teams without QA budget"
+    ],
+    "cons": [
+      "Pricing is enterprise-level, not transparent",
+      "Vendor-controlled test infrastructure",
+      "Less flexible than code-based Playwright tests"
+    ],
+    "verdict": "Useful when you need QA coverage without hiring, but code-based tools win on maintainability and price.",
+    "best_for": "Product teams without engineering QA capacity wanting outsourced coverage",
+    "not_for": "Engineering orgs comfortable writing Playwright or Cypress tests in-house"
   }
 }

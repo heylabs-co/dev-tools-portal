@@ -25,5 +25,28 @@
   },
   "community": {
     "hn_mentions_30d": 1
+  },
+  "content": {
+    "when_to_use": [
+      "Building billion-scale nearest neighbor search indexes in Python",
+      "Running fast GPU-accelerated vector similarity search locally",
+      "Indexing dense embeddings for RAG retrieval backends",
+      "Experimenting with HNSW, IVF, and PQ index configurations"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Industry-standard vector search library",
+      "Excellent throughput for large-scale ANN",
+      "Free, open-source, actively maintained"
+    ],
+    "cons": [
+      "Library — not a managed service",
+      "You own indexing, persistence, scaling",
+      "Python bindings can be finicky on edge cases"
+    ],
+    "verdict": "The reference baseline — use directly only if you want infra ownership.",
+    "best_for": "ML engineers embedding vector search inside their own services",
+    "not_for": "App teams that just want a managed vector DB like Pinecone"
   }
 }

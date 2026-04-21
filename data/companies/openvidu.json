@@ -22,5 +22,31 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "Open-source video conferencing platform built on Kurento/Mediasoup",
+      "Adding group video calling to web apps without cloud vendor lock",
+      "Self-hosted Zoom alternative for healthcare or education",
+      "WebRTC room management with recording and broadcasting",
+      "Low-cost video calling platform for privacy-focused orgs"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Higher-level abstraction on top of Kurento",
+      "Pre-built SDKs for video conferencing patterns",
+      "Open-source with self-hosted and Pro tiers",
+      "Faster to stand up than raw SFUs"
+    ],
+    "cons": [
+      "Inherits Kurento operational complexity",
+      "Scaling past small/medium rooms needs Pro",
+      "Smaller community than mediasoup/LiveKit",
+      "Feature pace trails big commercial vendors"
+    ],
+    "verdict": "Decent middle ground for self-hosted video conferencing; consider LiveKit or mediasoup for newer deployments.",
+    "best_for": "Teams self-hosting video conferencing with a friendly API",
+    "not_for": "Large-scale real-time products that need cutting-edge perf"
   }
 }

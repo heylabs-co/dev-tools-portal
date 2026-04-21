@@ -22,5 +22,31 @@
   },
   "community": {
     "hn_mentions_30d": 1
+  },
+  "content": {
+    "when_to_use": [
+      "Team environment variable sync without plaintext sharing",
+      "Lightweight CI/CD secret injection for small dev teams",
+      "Multi-environment config management across staging and prod",
+      "Developer onboarding automation with pre-loaded env sets",
+      "Audit trail for environment variable access and changes"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Lightweight env var manager for small teams",
+      "Low onboarding friction and CLI-first",
+      "Aims at the common CI/CD secrets pain point",
+      "Predictable pricing model"
+    ],
+    "cons": [
+      "Small vendor, limited integrations",
+      "Not a full vault with leasing or PKI",
+      "Docs and community footprint thin",
+      "Unclear long-term roadmap"
+    ],
+    "verdict": "Decent .env sync for small teams, but hard to bet your secrets stack on a niche vendor.",
+    "best_for": "Indie teams needing simple shared env vars across dev and CI.",
+    "not_for": "Enterprises needing dynamic secrets, PKI, or compliance features."
   }
 }

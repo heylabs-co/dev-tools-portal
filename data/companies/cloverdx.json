@@ -22,5 +22,31 @@
   },
   "community": {
     "hn_mentions_30d": 1
+  },
+  "content": {
+    "when_to_use": [
+      "Complex ETL transformations for large-scale file-based data flows",
+      "Migrating mainframe or legacy data into modern data warehouses",
+      "Data validation and cleansing pipelines for enterprise data ops",
+      "Batch processing and transformation of large structured datasets",
+      "Regulated industry data integration with full audit logging"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Handles complex file-based ETL well",
+      "Strong data quality and validation features",
+      "Visual designer for non-code workflows",
+      "Deployment options across cloud and on-prem"
+    ],
+    "cons": [
+      "Market position overshadowed by dbt plus ELT",
+      "Licensing cost high for mid-market teams",
+      "UI feels like early-2010s enterprise software",
+      "Smaller community than Talend or Informatica"
+    ],
+    "verdict": "Competent enterprise ETL, but the gravity of modern data stacks has moved elsewhere.",
+    "best_for": "Enterprises with heavy file-based ETL and strict data-quality requirements",
+    "not_for": "Modern data teams building cloud-native ELT on warehouses"
   }
 }

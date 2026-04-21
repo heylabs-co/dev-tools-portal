@@ -23,5 +23,29 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "HSM-backed key management for card issuance and PIN generation",
+      "Tokenization and encryption for PCI-compliant payment processing",
+      "Transaction signing and cryptographic key protection for acquirers"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Industry-standard HSM family for payments",
+      "Covers issuance, processing, and tokenization",
+      "Strong compliance and certifications",
+      "Deployable on-prem or in hosted models"
+    ],
+    "cons": [
+      "Hardware appliance, not a SaaS orchestrator",
+      "Capex and ops overhead required",
+      "Overkill for non-issuer merchants",
+      "Miscategorised under orchestration"
+    ],
+    "verdict": "Gold-standard payment HSM for banks and processors; unrelated to merchant orchestration in practice.",
+    "best_for": "Banks, issuers, and processors needing certified HSMs for card issuance and key management.",
+    "not_for": "E-commerce merchants looking for a software-based orchestration or routing product."
   }
 }

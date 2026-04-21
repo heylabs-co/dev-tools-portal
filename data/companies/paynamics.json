@@ -23,5 +23,29 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "QR Ph payment acceptance for Philippine online merchants",
+      "e-wallet and OTC collection via unified Paynamics API",
+      "Card processing integration for Philippine e-commerce checkout"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Long-established PH processor",
+      "Cards, e-wallets, OTC, QR Ph coverage",
+      "Works with legacy enterprise clients",
+      "Local compliance expertise"
+    ],
+    "cons": [
+      "Dated API patterns vs PayMongo",
+      "Docs clunky and hard to navigate",
+      "Slower merchant onboarding",
+      "Thinner SDK support"
+    ],
+    "verdict": "Safer for PH enterprise who value longevity over DX, but most new builds pick PayMongo instead.",
+    "best_for": "Philippine enterprises needing a mature processor with local compliance track record",
+    "not_for": "API-first startups prioritizing modern developer experience"
   }
 }

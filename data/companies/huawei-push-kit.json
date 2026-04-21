@@ -26,5 +26,30 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "Push notifications for Android apps targeting Huawei/HMS device users",
+      "Topic-based batch push for HarmonyOS app announcements",
+      "Transactional and marketing notifications via Huawei Push Kit SDK",
+      "Reaching Chinese Android users on Huawei devices without Google services"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Required for reliable push on Huawei/HarmonyOS",
+      "Free tier sufficient for most apps",
+      "Official vendor channel — no third-party risk",
+      "Topic-based targeting works out of the box"
+    ],
+    "cons": [
+      "Huawei-only — need FCM and others alongside",
+      "Console and docs have translation rough edges",
+      "HarmonyOS integration still evolving",
+      "Limited analytics versus commercial providers"
+    ],
+    "verdict": "A vendor channel, not a platform — wire it into your push provider for reliable Huawei delivery.",
+    "best_for": "Teams with Huawei users who lose push via FCM outages",
+    "not_for": "Anyone expecting a full marketing suite"
   }
 }

@@ -30,5 +30,29 @@
   },
   "community": {
     "hn_mentions_30d": 17
+  },
+  "content": {
+    "when_to_use": [
+      "Smart routing across PSPs with failover for e-commerce",
+      "Developer-first orchestration with retry logic for payments",
+      "Centralizing multi-PSP management via single orchestration API"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Routes transactions across multiple PSPs",
+      "Smart retry and failover logic",
+      "Reduces single-PSP risk",
+      "Developer-first positioning"
+    ],
+    "cons": [
+      "Adds abstraction layer complexity",
+      "Another vendor in payments stack",
+      "Documentation maturity unclear",
+      "Requires volume to justify"
+    ],
+    "verdict": "Orchestration layer useful at scale, but adds a dependency and only pays off with meaningful volume.",
+    "best_for": "High-volume merchants or platforms routing across multiple PSPs for redundancy",
+    "not_for": "Small merchants happy with a single primary PSP"
   }
 }

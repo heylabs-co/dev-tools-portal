@@ -41,5 +41,30 @@
     "forks": 286,
     "updated_at": "2026-04-21",
     "health_score": "A"
+  },
+  "content": {
+    "when_to_use": [
+      "eBPF-based network traffic visualization for Kubernetes",
+      "Pod-to-pod traffic flow monitoring without sidecar proxies",
+      "Detect network policy violations and connectivity issues",
+      "Open-source Kubernetes network observability from Microsoft"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Open-source from Microsoft with active development",
+      "eBPF-based, low overhead on K8s nodes",
+      "Cloud-agnostic, not tied to AKS",
+      "Traffic flow visualization for network debugging"
+    ],
+    "cons": [
+      "Still early vs Cilium Hubble maturity",
+      "Docs assume Kubernetes networking expertise",
+      "Limited enterprise support vs commercial tools",
+      "Overlaps with Cilium/Pixie/Hubble"
+    ],
+    "verdict": "Credible open alternative to Cilium Hubble, but Hubble has a head start and broader ecosystem.",
+    "best_for": "Kubernetes network engineers wanting a vendor-neutral eBPF observability tool.",
+    "not_for": "Teams already running Cilium with Hubble or needing polished commercial support."
   }
 }

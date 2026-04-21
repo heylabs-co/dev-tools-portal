@@ -22,5 +22,31 @@
   },
   "community": {
     "hn_mentions_30d": 1
+  },
+  "content": {
+    "when_to_use": [
+      "Runtime detection of actively exploited open-source CVEs",
+      "Reachability analysis to prioritize exploitable vulnerabilities",
+      "Zero-day CVE response signal for OSS dependency monitoring",
+      "Application security posture monitoring without agent overhead",
+      "SCA integration with runtime exploitability confirmation"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Runtime detection filters noise from SCA vulnerability lists",
+      "eBPF agent gives deep context without code changes",
+      "Focuses alerts on actually exploited libraries",
+      "Works across containers, VMs, and Kubernetes"
+    ],
+    "cons": [
+      "eBPF requires modern Linux kernels, limiting coverage",
+      "Young product, smaller community than incumbents",
+      "Pricing oriented toward enterprise deployments",
+      "Overlaps with broader CNAPP platforms you may already run"
+    ],
+    "verdict": "Smart runtime-first approach to OSS risk cuts alert fatigue, though still proving itself vs CNAPP suites.",
+    "best_for": "AppSec teams drowning in SCA findings who want runtime-prioritized exploitation signals.",
+    "not_for": "Shops on legacy kernels or those already covered by a CNAPP with runtime modules."
   }
 }

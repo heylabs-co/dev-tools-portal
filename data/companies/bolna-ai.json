@@ -25,5 +25,28 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "Building multilingual telephone AI assistants with open-source stack",
+      "Integrating voice agents with Twilio or SIP telephony systems",
+      "Running automated outbound call campaigns with AI voice",
+      "Prototyping conversational IVR replacements for SMBs"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Open-source — avoids vendor lock-in",
+      "Multilingual telephony out of the box",
+      "Twilio and Plivo integrations ready"
+    ],
+    "cons": [
+      "Self-hosting requires ops investment",
+      "Latency depends on underlying LLM choice",
+      "Community smaller than Vapi or Retell"
+    ],
+    "verdict": "The pragmatic OSS alternative when Vapi and Retell feel too closed or expensive.",
+    "best_for": "Teams building phone agents who want code ownership and multilingual reach",
+    "not_for": "Non-technical teams that need a turnkey hosted voice agent"
   }
 }

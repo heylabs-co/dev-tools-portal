@@ -22,5 +22,30 @@
   },
   "community": {
     "hn_mentions_30d": 25
+  },
+  "content": {
+    "when_to_use": [
+      "Sharing .ipa and .apk builds with testers via QR code or direct link",
+      "Quick iOS ad hoc distribution for client demos without MDM",
+      "Fast internal build distribution for small teams testing before store release",
+      "No-account-required .apk sharing for Android beta testing"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Dead simple drag-drop upload for .ipa and .apk",
+      "Direct links and QR codes for testers",
+      "No accounts required for basic sharing",
+      "Free tier covers casual beta sharing"
+    ],
+    "cons": [
+      "Minimal feedback or crash capture features",
+      "No proper beta management or versioning",
+      "iOS UDID provisioning still required upstream",
+      "Not suited for teams with compliance needs"
+    ],
+    "verdict": "Great for quick one-off build shares; teams doing real beta programs should move to TestFlight or Firebase.",
+    "best_for": "Freelancers and devs sharing ad-hoc builds with a few testers",
+    "not_for": "Teams running structured beta programs with feedback loops"
   }
 }

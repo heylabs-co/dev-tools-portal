@@ -41,5 +41,32 @@
     "forks": 1656,
     "updated_at": "2026-04-21",
     "health_score": "B"
+  },
+  "content": {
+    "when_to_use": [
+      "Lightweight Go desktop app without bundling a Chromium runtime",
+      "Native macOS and Windows app built with Go and JavaScript UI",
+      "Cross-platform desktop tool with Go backend and React frontend",
+      "Electron alternative for a Go-based developer utility",
+      "Native webview-based GUI for a Go CLI tool with a web UI"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Go backend with web frontend, no Chromium",
+      "Uses system WebView — tiny binaries",
+      "Cleaner developer experience than CGo alternatives",
+      "Active maintenance and honest docs",
+      "Truly cross-platform desktop from Go"
+    ],
+    "cons": [
+      "WebView differences between OSes bite you",
+      "Smaller ecosystem than Tauri or Electron",
+      "Mobile support not the primary focus",
+      "Debugging renderer issues can be cross-OS hell"
+    ],
+    "verdict": "The right pick for Go devs shipping desktop apps with web UI, if you accept OS-WebView quirks.",
+    "best_for": "Go developers building small-binary desktop tools with web-tech frontends",
+    "not_for": "Teams needing identical rendering across OSes — use Electron for uniformity"
   }
 }

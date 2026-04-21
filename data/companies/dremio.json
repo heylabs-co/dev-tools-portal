@@ -38,5 +38,31 @@
     "forks": 463,
     "updated_at": "2026-04-21",
     "health_score": "F"
+  },
+  "content": {
+    "when_to_use": [
+      "SQL analytics directly on S3/Parquet data lakes without ETL",
+      "Unified lakehouse platform with Apache Iceberg and Nessie catalog",
+      "Replacing Redshift with open-format data lake queries via SQL",
+      "Branching and versioning Iceberg tables with Nessie for data CI",
+      "Federated queries across S3, Snowflake, and Postgres in one UI"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Lakehouse SQL engine on object storage",
+      "Native Apache Iceberg plus Nessie integration",
+      "Query federation across sources in one view",
+      "Reflections drastically cut query times"
+    ],
+    "cons": [
+      "Complex to tune reflections for best performance",
+      "Competes with Snowflake on fuzzy value prop",
+      "Cloud and self-hosted UX diverge somewhat",
+      "Community smaller than Trino's"
+    ],
+    "verdict": "Strong open lakehouse play for Iceberg shops, but Snowflake still wins easy-button scenarios.",
+    "best_for": "Teams going all-in on Iceberg and wanting unified BI on S3",
+    "not_for": "Orgs wanting a single warehouse without lakehouse complexity"
   }
 }

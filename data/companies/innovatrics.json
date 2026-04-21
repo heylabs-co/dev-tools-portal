@@ -21,5 +21,31 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "Face recognition SDK for civil ID and border control systems",
+      "Fingerprint biometric matching for AFIS integration",
+      "Iris recognition API for high-security facility access",
+      "1:N biometric deduplication for national ID programs",
+      "Passive liveness SDK integration for remote KYC flows"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Mature face, fingerprint and iris SDKs",
+      "Used in civil ID and border control programs",
+      "NIST-tested algorithms with strong accuracy",
+      "Flexible licensing for embedded deployments"
+    ],
+    "cons": [
+      "SDK vendor, not a turnkey onboarding platform",
+      "Integration requires serious engineering effort",
+      "Less documentation than consumer-focused rivals",
+      "Pricing negotiated, no self-serve option"
+    ],
+    "verdict": "Heavy-duty biometric SDKs for governments and platforms, not a quick KYC solution for fintech.",
+    "best_for": "Government ID programs, AFIS deployments and IDV vendors embedding biometrics into products",
+    "not_for": "Fintech teams wanting a ready-made KYC API with document capture and screening bundled"
   }
 }

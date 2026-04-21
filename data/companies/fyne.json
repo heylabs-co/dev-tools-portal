@@ -42,5 +42,31 @@
     "forks": 1524,
     "updated_at": "2026-04-21",
     "health_score": "A"
+  },
+  "content": {
+    "when_to_use": [
+      "Cross-platform Go desktop app with a single codebase",
+      "Native macOS and Windows app built entirely in Go",
+      "Internal DevOps tool with a GUI running on all platforms",
+      "Open-source utility distributed as a native desktop binary",
+      "Mobile + desktop productivity app from one Go repository"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Pure Go, no CGo required",
+      "Cross-platform desktop, mobile, web",
+      "Material Design-inspired widgets",
+      "Active OSS community"
+    ],
+    "cons": [
+      "Widget set thinner than Qt or GTK",
+      "Native look-and-feel is approximated",
+      "Mobile support less mature than desktop",
+      "Limited advanced layout primitives"
+    ],
+    "verdict": "The friendliest Go GUI toolkit today — perfect if you want single-binary apps without C dependencies.",
+    "best_for": "Go developers shipping cross-platform desktop tools in a single binary",
+    "not_for": "Teams needing true native platform look or rich widget ecosystems"
   }
 }

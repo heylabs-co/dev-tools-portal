@@ -22,5 +22,31 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "Centralized test case management with live reporting",
+      "Track flaky tests across CI runs with analytics",
+      "Manage test launches and coverage for QA releases",
+      "Link failing tests directly to Jira issues",
+      "Merge manual and automated tests in one dashboard"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Live test reporting on top of popular Allure format",
+      "Manual and automated test cases in one workspace",
+      "Solid launch analytics, flakiness and history tracking",
+      "Integrates with JUnit, Pytest, TestNG, Cypress out of box"
+    ],
+    "cons": [
+      "Commercial pricing unclear until sales conversation",
+      "Heavier setup than self-hosted Allure Report alone",
+      "UI can feel sluggish on very large test corpora",
+      "Lock-in to Qameta ecosystem for reports and storage"
+    ],
+    "verdict": "Polished commercial layer over Allure that pays off once QA teams outgrow static HTML reports.",
+    "best_for": "Mid-to-large QA teams already using Allure who need test case management and dashboards",
+    "not_for": "Small teams happy with open-source Allure Report and a CI artifact link"
   }
 }

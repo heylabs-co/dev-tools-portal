@@ -22,5 +22,31 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "SAST scan integration in Jenkins and GitHub Actions CI/CD",
+      "DAST scanning of web APIs against OWASP Top 10",
+      "IAST runtime instrumentation for live application testing",
+      "SCA for open-source license and CVE vulnerability reporting",
+      "Mobile app security testing for iOS and Android binaries"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Full suite covers SAST, DAST, IAST, and SCA in one vendor",
+      "Mature engine with decades of enterprise deployment",
+      "Strong compliance reporting for PCI, HIPAA, and OWASP",
+      "Cloud and on-prem options support regulated industries"
+    ],
+    "cons": [
+      "UI and workflows feel dated versus modern AppSec tools",
+      "High false positive rates require tuning effort",
+      "Enterprise licensing is expensive and opaque",
+      "Slower to add support for newer frameworks"
+    ],
+    "verdict": "Comprehensive legacy AppSec suite that checks every box but lags modern, developer-friendly competitors.",
+    "best_for": "Large regulated enterprises already in the HCL or IBM ecosystem needing one-vendor AppSec.",
+    "not_for": "Modern dev teams wanting fast, developer-first SAST with low friction and clean UX."
   }
 }

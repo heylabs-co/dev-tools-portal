@@ -26,5 +26,28 @@
   },
   "community": {
     "hn_mentions_30d": 2
+  },
+  "content": {
+    "when_to_use": [
+      "Building AI applications on ByteDance's hosted LLM platform",
+      "Accessing multimodal models for image and text tasks in China",
+      "Running low-latency LLM inference for high-volume consumer apps",
+      "Prototyping Chinese-language AI features with Doubao API"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Wide modality coverage — chat, vision, video",
+      "Low per-token pricing via Volcano Engine",
+      "ByteDance-scale infra backing"
+    ],
+    "cons": [
+      "China-hosted raises residency concerns abroad",
+      "English docs lag Chinese releases",
+      "Policy changes can shift access rules"
+    ],
+    "verdict": "Top-tier model access inside China; mostly a non-starter for Western production.",
+    "best_for": "Chinese developers running multimodal apps on Volcano Engine",
+    "not_for": "Western teams with GDPR, HIPAA, or residency constraints"
   }
 }

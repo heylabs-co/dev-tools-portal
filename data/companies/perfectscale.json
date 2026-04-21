@@ -23,5 +23,31 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "Kubernetes resource right-sizing for SOC 2 availability SLA",
+      "Autonomous pod scaling to reduce over-provisioning waste",
+      "Cost and compliance optimization across EKS and GKE clusters",
+      "OPA policy enforcement for K8s security posture compliance",
+      "Cloud cost governance reporting for FinOps and security teams"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Continuous right-sizing of Kubernetes workloads",
+      "Claims cost savings without SRE tuning work",
+      "Reliability guardrails aim to prevent evictions",
+      "Works across EKS, GKE, and AKS"
+    ],
+    "cons": [
+      "Category placement as compliance-automation is a stretch",
+      "Automated changes require trust in the optimizer",
+      "Savings depend heavily on current waste levels",
+      "Competes against free VPA and well-known FinOps tools"
+    ],
+    "verdict": "A legitimate k8s cost tool — just know this is FinOps, not a compliance automation play as marketed here.",
+    "best_for": "Ops teams with large Kubernetes footprints chasing cloud savings",
+    "not_for": "Anyone expecting a SOC 2 or HIPAA compliance platform"
   }
 }

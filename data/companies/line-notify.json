@@ -23,5 +23,30 @@
   },
   "community": {
     "hn_mentions_30d": 3
+  },
+  "content": {
+    "when_to_use": [
+      "Server-to-user LINE push via simple HTTP POST for CI/CD alerts",
+      "IoT device notifications delivered to user's LINE app without SDK",
+      "Server monitoring and error alert delivery via LINE Notify webhooks",
+      "Lightweight operational notification channel for Japanese user base"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Dead-simple HTTP POST to notify users",
+      "Free for personal and small-team use",
+      "Ideal for CI, alerts, and IoT pings",
+      "No SDK or app build required"
+    ],
+    "cons": [
+      "One-way only — no interaction or buttons",
+      "LINE ecosystem only — useless outside Japan/TW/TH",
+      "Rate limits hit quickly on busy systems",
+      "LINE deprecation risk for any API component"
+    ],
+    "verdict": "Great hack for personal LINE alerts in Asia; not a product messaging tool in any serious sense.",
+    "best_for": "Developers pinging LINE users from scripts, CI, or IoT",
+    "not_for": "Consumer apps outside LINE regions or two-way messaging"
   }
 }

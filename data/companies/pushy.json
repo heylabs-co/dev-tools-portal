@@ -22,5 +22,29 @@
   },
   "community": {
     "hn_mentions_30d": 203
+  },
+  "content": {
+    "when_to_use": [
+      "Guaranteed push delivery via MQTT for critical mobile alerts",
+      "Background data sync via MQTT push for Android apps",
+      "Reliable push for apps where FCM delivery is unreliable"
+    ]
+  },
+  "review": {
+    "pros": [
+      "MQTT-based channel sidesteps FCM/APNs quirks",
+      "Reliable delivery is the explicit product focus",
+      "Works in regions where FCM is blocked",
+      "Simple SDK with transparent pricing"
+    ],
+    "cons": [
+      "Infrastructure play — no marketing features",
+      "Requires battery/bandwidth tradeoffs on mobile",
+      "Smaller community and ecosystem",
+      "Overkill for standard consumer apps"
+    ],
+    "verdict": "A delivery-reliability specialist, not a campaign tool; pick when missed pushes are unacceptable.",
+    "best_for": "Apps needing push in China or with strict delivery SLAs",
+    "not_for": "Marketing teams running segmented engagement campaigns"
   }
 }

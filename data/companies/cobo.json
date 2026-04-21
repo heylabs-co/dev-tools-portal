@@ -23,5 +23,31 @@
   },
   "community": {
     "hn_mentions_30d": 309
+  },
+  "content": {
+    "when_to_use": [
+      "MPC wallet custody API for institutional crypto asset management",
+      "Multi-sig approval workflows for treasury operations",
+      "DeFi transaction co-signing with policy-based controls",
+      "Exchange connectivity for OTC desk settlement",
+      "HSM-backed key management for crypto custodians"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Custody, MPC, and exchange APIs under one roof",
+      "SOC 2 + insurance coverage for held assets",
+      "DeFi connectivity without running nodes",
+      "Webhook and REST APIs suit dev integrations"
+    ],
+    "cons": [
+      "Crypto-specific, not a general secrets tool",
+      "Custody fees and minimums add up fast",
+      "Regulatory exposure varies by jurisdiction",
+      "Vendor lock-in on wallet infrastructure"
+    ],
+    "verdict": "A serious crypto custody and wallet stack, but miscategorized as general secrets management.",
+    "best_for": "Fintech and Web3 teams needing institutional digital-asset custody with APIs.",
+    "not_for": "Teams wanting a generic secrets vault for API keys and certs."
   }
 }

@@ -21,5 +21,31 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "Automated chargeback response for Stripe-connected merchants",
+      "Evidence assembly for Visa/Mastercard dispute submissions",
+      "Win rate analytics for chargeback recovery optimization",
+      "Dispute automation across multiple card network reason codes",
+      "API-driven dispute filing integrated with order management"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Automates evidence assembly across Visa, MC, Amex",
+      "Stripe-backed, well maintained and reliable",
+      "API-first, fits programmatic dispute workflows",
+      "Clear win-rate reporting per reason code"
+    ],
+    "cons": [
+      "Primarily useful for merchants on Stripe stack",
+      "Limited help for non-card disputes",
+      "Requires clean order data to auto-respond well",
+      "Does not prevent chargebacks, only contests them"
+    ],
+    "verdict": "Solid pick for Stripe merchants who want to stop hand-crafting dispute evidence, but it is recovery, not prevention.",
+    "best_for": "Mid-to-large Stripe merchants with recurring card chargebacks across multiple reason codes.",
+    "not_for": "Teams that need pre-dispute prevention via CDRN/Ethoca or non-Stripe ACH disputes."
   }
 }

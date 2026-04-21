@@ -40,5 +40,30 @@
     "forks": 613,
     "updated_at": "2026-04-21",
     "health_score": "A"
+  },
+  "content": {
+    "when_to_use": [
+      "BDD acceptance tests written in Gherkin for PHP apps",
+      "Business-readable feature files shared with stakeholders",
+      "API context tests for Symfony and Laravel backends",
+      "Automate user journey scenarios in headless browsers"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Gherkin features readable by non-developers",
+      "Strong Symfony integration via MinkExtension",
+      "Large catalogue of community extensions",
+      "Reuses existing PHP unit test infrastructure"
+    ],
+    "cons": [
+      "Gherkin adds indirection few BAs actually read",
+      "Step-definition maintenance costs creep over time",
+      "Browser automation via Mink is increasingly dated",
+      "Slower feedback loop than plain PHPUnit"
+    ],
+    "verdict": "Classic PHP BDD framework that pays off only when product and QA truly collaborate on feature files.",
+    "best_for": "PHP teams with real three-amigos workflow who share specs with the business",
+    "not_for": "Dev-only teams where Gherkin is just extra ceremony over plain PHPUnit tests"
   }
 }

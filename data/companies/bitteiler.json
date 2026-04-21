@@ -33,5 +33,28 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "Routing and transforming structured data streams with AI enrichment",
+      "Building low-code ETL pipelines with AI-powered field mapping",
+      "Processing webhook payloads and normalizing to target schemas",
+      "Integrating disparate data sources without custom glue code"
+    ]
+  },
+  "review": {
+    "pros": [
+      "AI-assisted stream routing configuration",
+      "Handles structured and semi-structured data",
+      "Low setup vs Kafka-based pipelines"
+    ],
+    "cons": [
+      "Obscure product with thin public docs",
+      "Limited customer references",
+      "Unclear scaling characteristics"
+    ],
+    "verdict": "Interesting idea, but too immature to bet production pipelines on today.",
+    "best_for": "Early-stage teams experimenting with AI-guided ETL",
+    "not_for": "Production data platforms where Airbyte or Fivetran are proven"
   }
 }

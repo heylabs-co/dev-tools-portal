@@ -21,5 +21,31 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "Self-hosted image resizing and format conversion via URL params",
+      "On-the-fly WebP/AVIF conversion without managed service costs",
+      "Image processing proxy in front of S3 or local storage",
+      "Secure image URLs with signed processing via imgproxy",
+      "Replacing Cloudinary with a privacy-first self-hosted option"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Blazing fast Go binary, low memory footprint",
+      "Self-hosted, no per-image fees",
+      "URL signing prevents abuse by default",
+      "Pro version adds advanced processing"
+    ],
+    "cons": [
+      "You run the ops, scaling, and monitoring",
+      "No built-in CDN, needs pairing with one",
+      "Pro features behind paid license",
+      "Fewer advanced transforms than Cloudinary"
+    ],
+    "verdict": "Best self-hosted image proxy for engineering teams willing to own infrastructure and avoid per-transform billing.",
+    "best_for": "Engineering teams at scale wanting cost control over image processing infra",
+    "not_for": "Small teams who prefer managed SaaS with zero ops responsibility"
   }
 }

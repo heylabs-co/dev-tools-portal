@@ -23,5 +23,30 @@
   },
   "community": {
     "hn_mentions_30d": 7
+  },
+  "content": {
+    "when_to_use": [
+      "Unified receipt validation across Apple, Google Play, and Stripe subscriptions",
+      "Subscription status tracking and entitlement management across all stores",
+      "Server-side receipt verification for anti-fraud in IAP-based subscription apps",
+      "Migration path for apps moving from single-store to multi-store IAP validation"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Unified receipt validation across five major stores",
+      "Simplifies subscription logic for cross-platform apps",
+      "Server-side handling avoids client trust issues",
+      "Reasonable pricing vs RevenueCat at volume"
+    ],
+    "cons": [
+      "Smaller brand vs RevenueCat and Adapty",
+      "Ecosystem of integrations is thinner",
+      "Feature depth on paywalls and analytics is limited",
+      "Docs and SDK polish vary by platform"
+    ],
+    "verdict": "Pragmatic multi-store receipt validator for teams who want cross-platform subs without RevenueCat's price tag.",
+    "best_for": "Cross-platform apps validating subs across Apple, Google, Microsoft, Stripe.",
+    "not_for": "Teams wanting full paywall, experimentation and analytics in one tool."
   }
 }

@@ -22,5 +22,31 @@
   },
   "community": {
     "hn_mentions_30d": 863
+  },
+  "content": {
+    "when_to_use": [
+      "Localization REST API for mobile app string management",
+      "Translation memory and glossary for consistent output",
+      "Multi-format file export: iOS strings, Android XML, JSON",
+      "Git-integrated localization workflow for dev teams",
+      "Collaborative translation with in-context screenshots"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Clean REST API and CLI for i18n file sync",
+      "Good range of file formats (JSON, YAML, .po, etc.)",
+      "Free tier usable for small projects",
+      "Lightweight UI translators can learn quickly"
+    ],
+    "cons": [
+      "Feature set lags newer tools like Lokalise or Crowdin",
+      "Machine translation plumbing feels dated",
+      "Collaboration features thin for larger teams",
+      "Limited integrations with modern dev stacks"
+    ],
+    "verdict": "Cheap, straightforward string manager that still works, but feels behind modern localization platforms in polish.",
+    "best_for": "Small teams syncing i18n files with translators on a budget",
+    "not_for": "Mid-size teams needing branching, QA automation, or deep CI"
   }
 }

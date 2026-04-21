@@ -40,5 +40,29 @@
     "forks": 55,
     "updated_at": "2026-04-21",
     "health_score": "F"
+  },
+  "content": {
+    "when_to_use": [
+      "Expressive Python tests with descriptive test name strings",
+      "Rich diff output for fast failure comprehension",
+      "Parallel test execution for faster Python CI pipelines",
+      "Fixture-based test composition without boilerplate"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Readable test function names",
+      "Rich diffs for failure messages",
+      "Parallel execution built-in",
+      "Modern Python-first design"
+    ],
+    "cons": [
+      "Tiny ecosystem compared to pytest",
+      "Few plugins or framework integrations",
+      "Adopting Ward means leaving pytest's gravity"
+    ],
+    "verdict": "A cleaner-feeling test framework, but pytest's ecosystem advantage is too large to justify switching.",
+    "best_for": "Solo developers or hobby projects wanting a fresh pytest alternative",
+    "not_for": "Teams relying on pytest plugins for coverage, Django, async, or BDD"
   }
 }

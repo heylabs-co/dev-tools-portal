@@ -19,5 +19,31 @@
   "seo": {
     "title": "Playroom Kit — Game Development Tools",
     "meta_description": "Playroom Kit: Multiplayer-as-a-service SDK for web and mobile games. Lets indie devs add real-time rooms, state sync, and party features with a few lines of Jav"
+  },
+  "content": {
+    "when_to_use": [
+      "Party game rooms created with 5 lines of JavaScript SDK code",
+      "Real-time state sync added to existing web game without server",
+      "Multiplayer browser game jam entry using Playroom Kit free tier",
+      "Mobile phone used as game controller via Playroom joystick API",
+      "Cross-device multiplayer lobby built for casual web game"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Multiplayer in under 20 lines of JavaScript",
+      "Free tier generous enough for most indie launches",
+      "Works across React, Phaser, Three.js, and native web",
+      "Phone-as-controller feature enables party game designs"
+    ],
+    "cons": [
+      "Pricing scales with CCU and can surprise at launch",
+      "Less control than self-hosted for latency-sensitive genres",
+      "Locked to their infrastructure, no self-hosting",
+      "Not suited for competitive FPS or physics-authoritative games"
+    ],
+    "verdict": "The fastest path to web multiplayer for party and casual games; dont try to ship competitive FPS on it.",
+    "best_for": "Web and jam developers shipping casual multiplayer and party games quickly",
+    "not_for": "Competitive real-time games needing custom netcode or self-hosting"
   }
 }

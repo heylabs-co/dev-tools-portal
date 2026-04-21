@@ -39,5 +39,30 @@
     "forks": 3068,
     "updated_at": "2026-04-21",
     "health_score": "A"
+  },
+  "content": {
+    "when_to_use": [
+      "Async test support with Promise and callback patterns",
+      "Flexible reporter plugins for CI and HTML output",
+      "Parallel test execution across multiple Node.js processes",
+      "Bring-your-own assertion library with Chai or Node assert"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Flexible, bring-your-own-assertions philosophy",
+      "Stable, long-running ecosystem and reporters",
+      "Async test support was an early strength",
+      "Runs in Node and browsers alike"
+    ],
+    "cons": [
+      "No built-in assertion or mocking libraries",
+      "Slower and clunkier than Vitest and Jest",
+      "Config sprawl across Chai, Sinon, etc.",
+      "TypeScript/ESM setup remains fiddly"
+    ],
+    "verdict": "A classic JS test runner kept alive by legacy; new projects should strongly consider Vitest instead.",
+    "best_for": "Legacy Node codebases with established Mocha+Chai+Sinon stacks",
+    "not_for": "New projects where Vitest offers the same power with far less config"
   }
 }

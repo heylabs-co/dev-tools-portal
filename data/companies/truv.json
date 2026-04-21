@@ -23,5 +23,31 @@
   },
   "community": {
     "hn_mentions_30d": 699
+  },
+  "content": {
+    "when_to_use": [
+      "Consumer-permissioned payroll data for mortgage lenders",
+      "Employment and income verification via payroll API for banks",
+      "Direct deposit switching for financial wellness apps",
+      "Replacing VOE/VOI paper processes with API-based verification",
+      "Real-time payroll data for underwriting and credit decisions"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Direct payroll connections bypass document uploads",
+      "Faster income verification than The Work Number",
+      "Consumer-permissioned, so privacy-friendly",
+      "Cheaper than Equifax for lender use cases"
+    ],
+    "cons": [
+      "Coverage depends on payroll provider support",
+      "Fallback flows still needed for gig/1099 workers",
+      "Smaller brand than Plaid or Equifax in lending",
+      "Some employer payroll systems reject automation"
+    ],
+    "verdict": "Credible challenger to The Work Number for income verification, though coverage gaps still force fallback flows.",
+    "best_for": "Lenders and banks cutting verification costs and loan approval times",
+    "not_for": "Verifying income for gig workers or self-employed borrowers at scale"
   }
 }

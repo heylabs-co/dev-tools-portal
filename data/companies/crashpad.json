@@ -38,5 +38,30 @@
     "forks": 183,
     "updated_at": "2026-04-21",
     "health_score": "B"
+  },
+  "content": {
+    "when_to_use": [
+      "Crash dump capture and minidump transmission for C++ applications",
+      "Integrating Chromium-based crash reporting into desktop or embedded apps",
+      "Out-of-process crash handler for macOS, Windows, and Linux native apps",
+      "Custom crash reporting pipeline using open-source Crashpad library"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Battle-tested in Chrome across macOS, Windows, Linux",
+      "Handles minidump capture and transmission reliably",
+      "Open source and widely integrated by Sentry, Firefox",
+      "Low-level building block you can trust"
+    ],
+    "cons": [
+      "Library, not a backend or UI",
+      "Integration complexity for non-C++ stacks",
+      "You still need a server to receive crashes",
+      "Docs aimed at systems engineers"
+    ],
+    "verdict": "Default native crash capture plumbing; pair with Sentry, Backtrace or your own backend to see the data.",
+    "best_for": "Native apps needing proven minidump capture across OSes",
+    "not_for": "Teams wanting a turnkey crash reporting product"
   }
 }

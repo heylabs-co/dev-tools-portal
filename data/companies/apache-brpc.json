@@ -26,5 +26,31 @@
   },
   "community": {
     "hn_mentions_30d": 2
+  },
+  "content": {
+    "when_to_use": [
+      "High-throughput RPC for Baidu-style microservices",
+      "Low-latency service communication in C++ backend",
+      "Load balancing and failover for internal services",
+      "Replace gRPC in performance-critical C++ systems",
+      "Protocol-agnostic RPC with HTTP/h2/protobuf support"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Battle-tested at Baidu millions-of-instances scale",
+      "Multiple protocol support in one stack",
+      "Excellent built-in debugging via /vars",
+      "C++ perf nobody else matches"
+    ],
+    "cons": [
+      "C++ only limits adoption outside systems teams",
+      "Docs heavily Chinese-leaning",
+      "Smaller global community than gRPC",
+      "Build system complexity"
+    ],
+    "verdict": "If you need C++ RPC at hyperscale, bRPC is the real deal—elsewhere gRPC is the safer default.",
+    "best_for": "C++ backend teams building high-throughput internal RPC services",
+    "not_for": "Polyglot shops or teams that want large English-speaking community"
   }
 }

@@ -26,5 +26,30 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "Push notifications for Chinese Android apps across fragmented OEM ecosystem",
+      "IM and in-app messaging SDK for Chinese market mobile products",
+      "User profile and behavioral analytics via Aurora Mobile (极光) unified SDK",
+      "Authenticated delivery of transactional push for Chinese fintech or commerce apps"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Dominant push provider in China",
+      "Bundles IM, auth, and analytics into one SDK",
+      "Broad coverage of Chinese vendor push channels",
+      "Free tier usable for most apps"
+    ],
+    "cons": [
+      "Documentation primarily in Chinese",
+      "SDK footprint large if you use the full suite",
+      "Data governance concerns for non-China data",
+      "Support outside China is effectively absent"
+    ],
+    "verdict": "Default push provider for China-first apps — low friction if you are local, painful if you are not.",
+    "best_for": "Chinese apps wanting push plus IM plus auth in one stack",
+    "not_for": "Global apps outside China or strict data sovereignty needs"
   }
 }

@@ -41,5 +41,30 @@
     "forks": 3482,
     "updated_at": "2026-04-21",
     "health_score": "A"
+  },
+  "content": {
+    "when_to_use": [
+      "Async-first unit tests for Elixir applications",
+      "Doctest execution embedded in module documentation",
+      "Tag-based test filtering for focused CI runs",
+      "Built-in property-based test support via StreamData"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Ships with Elixir, zero install friction",
+      "Async by default, exceptionally fast test suites",
+      "Doctests turn docs into executable truth",
+      "Clear, opinionated API, little to configure"
+    ],
+    "cons": [
+      "Elixir-only, obviously",
+      "Less mocking culture, Mox learning curve",
+      "Thinner ecosystem than JUnit or Jest",
+      "Async state leaks bite new Elixir devs"
+    ],
+    "verdict": "One of the best-feeling built-in test frameworks in any language, a real BEAM perk.",
+    "best_for": "Elixir and Phoenix projects, which is basically the whole audience",
+    "not_for": "Teams not writing Elixir, there is no other use"
   }
 }

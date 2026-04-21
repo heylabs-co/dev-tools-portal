@@ -19,5 +19,31 @@
   "seo": {
     "title": "LDtk — Game Development Tools",
     "meta_description": "LDtk: Modern 2D level editor by the Dead Cells developer. Open-source, cross-platform, with auto-layers, entity placement, world view, and JSON export compatibl"
+  },
+  "content": {
+    "when_to_use": [
+      "2D RPG world map built with auto-layers in LDtk editor",
+      "Platformer level designed and exported as JSON to Godot",
+      "Dead Cells-style tilemap integration in Unity 2D project",
+      "Entity placement in level tied to game data via LDtk schema",
+      "Open-source level editor used to avoid proprietary lock-in"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Modern UX runs circles around Tiled",
+      "Auto-layers rules cut manual tile placement massively",
+      "JSON export is clean and schema is stable",
+      "Free and open source with active solo maintainer"
+    ],
+    "cons": [
+      "Single maintainer means truck factor of one",
+      "Ecosystem smaller than Tileds battle-tested community",
+      "Importers for some engines lag behind Tiled coverage",
+      "No isometric or hex tile support out of the box"
+    ],
+    "verdict": "The modern choice for 2D level editing; switch from Tiled unless you specifically need hex or isometric.",
+    "best_for": "Indies making orthogonal 2D games wanting a modern level editor with auto-layers",
+    "not_for": "Hex grids, isometric projects, or teams demanding a huge contributor base"
   }
 }

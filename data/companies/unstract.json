@@ -44,5 +44,28 @@
     "forks": 623,
     "updated_at": "2026-04-21",
     "health_score": "A"
+  },
+  "content": {
+    "when_to_use": [
+      "Extracting structured data from complex PDFs and unstructured docs",
+      "Building no-code document AI pipelines with LLM extraction logic",
+      "Automating data extraction from contracts, invoices, and filings",
+      "Deploying open-source ETL pipelines for document-heavy workflows"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Open source and LLM-agnostic",
+      "Transparent modular pipelines",
+      "Good fit for document ETL workloads"
+    ],
+    "cons": [
+      "Self-hosting and ops overhead",
+      "UI less polished than commercial rivals",
+      "Needs tuning per document type"
+    ],
+    "verdict": "Refreshing open alternative to Unstructured.io and Azure DI when you want to own the pipeline.",
+    "best_for": "Engineering teams processing unstructured docs who want to avoid vendor lock-in",
+    "not_for": "Business teams wanting a turnkey SaaS that just returns JSON from PDFs"
   }
 }

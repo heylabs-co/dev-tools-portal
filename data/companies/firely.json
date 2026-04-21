@@ -41,5 +41,29 @@
     "forks": 361,
     "updated_at": "2026-04-21",
     "health_score": "B"
+  },
+  "content": {
+    "when_to_use": [
+      "FHIR-compliant .NET backend for digital health applications",
+      "Processing and validating FHIR resources in C# environments",
+      "Interoperability integration using Firely's popular .NET SDK",
+      "Building compliant health data pipelines on .NET Core stack",
+      "FHIR STU3/R4/R5 support for European healthcare systems"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Authoritative .NET FHIR tooling",
+      "Popular open-source SDK",
+      "Strong interoperability focus"
+    ],
+    "cons": [
+      "Best in .NET, less ideal elsewhere",
+      "Commercial server priced for enterprise",
+      "Smaller community than HAPI"
+    ],
+    "verdict": "The obvious FHIR choice for .NET shops, less compelling if your stack is Java or Node.",
+    "best_for": "Healthcare teams building interoperability on .NET Core",
+    "not_for": "Non-.NET shops who already use HAPI FHIR or Aidbox"
   }
 }

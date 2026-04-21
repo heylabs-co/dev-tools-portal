@@ -22,5 +22,30 @@
   },
   "community": {
     "hn_mentions_30d": 138
+  },
+  "content": {
+    "when_to_use": [
+      "Cold start duration tracking for AWS Lambda functions",
+      "Invocation trace analysis for serverless bottlenecks",
+      "Cost attribution per Lambda function and team",
+      "Alert on memory and timeout threshold breaches"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Focused on AWS Lambda cold starts and performance",
+      "Clear, actionable invocation-level traces",
+      "Faster to set up than generic APM on Lambda",
+      "Complements existing CloudWatch tooling"
+    ],
+    "cons": [
+      "AWS Lambda only, no broader serverless coverage",
+      "Very narrow scope versus Datadog or Dynatrace",
+      "Small vendor, limited enterprise references",
+      "Overlaps with newer native AWS features"
+    ],
+    "verdict": "Niche but useful if Lambda latency is your main pain; most teams will fold this into a broader observability stack instead.",
+    "best_for": "Teams running many Lambdas where cold starts hurt UX",
+    "not_for": "Organizations needing APM across containers, VMs, and SaaS"
   }
 }

@@ -22,5 +22,30 @@
   },
   "community": {
     "hn_mentions_30d": 259
+  },
+  "content": {
+    "when_to_use": [
+      "Running static analysis and code quality checks with AI context",
+      "Visualizing software architecture dependencies at codebase scale",
+      "Generating documentation from codebases with structural analysis",
+      "Performing impact analysis before large refactoring operations"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Deep static analysis and dependency visualization",
+      "Handles very large legacy codebases where LSP tools choke",
+      "Useful for architecture review and compliance",
+      "Strong metrics and reports for engineering managers"
+    ],
+    "cons": [
+      "Commercial license is expensive for small teams",
+      "UI feels 2010-era compared to modern tools",
+      "Not AI-powered, miscategorized as code assistant",
+      "Learning curve for full feature exploitation"
+    ],
+    "verdict": "Still the heavyweight for static analysis of legacy C or C++ codebases, though the UX shows its age.",
+    "best_for": "Enterprises doing architecture audits or compliance reviews of large legacy code",
+    "not_for": "Small teams on modern stacks where free LSP or IDE features are enough"
   }
 }

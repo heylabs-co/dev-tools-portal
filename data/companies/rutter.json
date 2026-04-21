@@ -23,5 +23,31 @@
   },
   "community": {
     "hn_mentions_30d": 26
+  },
+  "content": {
+    "when_to_use": [
+      "Universal API for Shopify, WooCommerce, Amazon selling channels",
+      "Accounting integrations: QuickBooks, Xero, NetSuite via one API",
+      "Commerce data normalization for lending and analytics platforms",
+      "Connecting financial data sources for embedded fintech apps",
+      "Replacing 10 separate integrations with one Rutter connection"
+    ]
+  },
+  "review": {
+    "pros": [
+      "One API covers Shopify, QuickBooks, Amazon, Stripe",
+      "Normalized data models across accounting and commerce",
+      "Good webhooks and sandbox for fast prototyping",
+      "Saves months of per-platform integration work"
+    ],
+    "cons": [
+      "Per-connection pricing adds up quickly at scale",
+      "Deep platform-specific features often abstracted away",
+      "Smaller connector catalog than Merge or Codat",
+      "Rate limits inherited from underlying platforms"
+    ],
+    "verdict": "Practical unified API for fintech and commerce apps, but the abstraction tax bites when you need deep platform features.",
+    "best_for": "B2B fintech and commerce SaaS needing fast multi-platform integrations",
+    "not_for": "Apps requiring deep platform-specific flows or tight unit economics"
   }
 }

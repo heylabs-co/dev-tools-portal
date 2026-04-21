@@ -19,5 +19,31 @@
   "seo": {
     "title": "DarkRift 2 — Game Development Tools",
     "meta_description": "DarkRift 2: Lightweight, open-source .NET multiplayer networking framework for Unity games. Provides a message-passing server architecture suitable for small-to"
+  },
+  "content": {
+    "when_to_use": [
+      "Unity authoritative multiplayer server for small online game",
+      "Custom message-passing network layer for a 2D action game",
+      "Dedicated server build for a co-op Unity prototype",
+      "Low-latency networking for 10-player competitive game",
+      "Open-source networking backend self-hosted to avoid BaaS fees"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Lightweight .NET server suited for small indie teams",
+      "Open-source Pro tier removed paywall for commercial use",
+      "Clean message-passing API easy to pick up",
+      "Lower overhead than Mirror for authoritative setups"
+    ],
+    "cons": [
+      "Development activity has slowed notably in recent years",
+      "Documentation trails behind Fish-Net and Mirror",
+      "No built-in lag compensation or client prediction",
+      "Small community means fewer sample projects online"
+    ],
+    "verdict": "Solid minimalist server framework, but Fish-Net and Mirror have better momentum in 2025 Unity networking.",
+    "best_for": "Unity indies wanting a simple authoritative server without engine lock-in",
+    "not_for": "Teams needing prediction, rollback, or a large plugin ecosystem"
   }
 }

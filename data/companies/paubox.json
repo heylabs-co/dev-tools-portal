@@ -23,5 +23,31 @@
   },
   "community": {
     "hn_mentions_30d": 1
+  },
+  "content": {
+    "when_to_use": [
+      "HIPAA-compliant transactional email for healthcare apps",
+      "Default-encrypted email API for patient communication",
+      "Secure email API replacing standard SMTP in health apps",
+      "PHI-safe email delivery for telehealth platforms",
+      "Compliance-first email for insurance and dental SaaS"
+    ]
+  },
+  "review": {
+    "pros": [
+      "HIPAA-compliant email by default, not an add-on",
+      "Drop-in SMTP/API replaces SendGrid for healthcare",
+      "BAA included in standard plans",
+      "Good focus on encryption and audit trails"
+    ],
+    "cons": [
+      "Pricier than generic transactional email providers",
+      "Narrow scope — healthcare email only",
+      "Deliverability tooling less deep than Postmark",
+      "US-centric compliance; light outside HIPAA"
+    ],
+    "verdict": "If you ship healthcare software in the US, Paubox saves the HIPAA email headache — elsewhere it is overkill.",
+    "best_for": "US healthtech apps needing HIPAA-compliant transactional and team email",
+    "not_for": "Non-healthcare products or teams already comfortable with SendGrid plus BAAs"
   }
 }

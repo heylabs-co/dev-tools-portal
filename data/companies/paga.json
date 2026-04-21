@@ -22,5 +22,29 @@
   },
   "community": {
     "hn_mentions_30d": 450
+  },
+  "content": {
+    "when_to_use": [
+      "Collecting payments via USSD for unbanked Nigerian users",
+      "P2P transfers and bill payments via Paga mobile app API",
+      "Merchant collection integration for Nigerian SMBs"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Broad Nigeria reach via USSD and app",
+      "Supports P2P, bills, and merchant flows",
+      "Works on feature phones via USSD",
+      "Agent network extends rural coverage"
+    ],
+    "cons": [
+      "Primarily Nigeria-focused",
+      "API ergonomics lag African peers",
+      "Docs are thin compared to Paystack",
+      "Less developer community activity"
+    ],
+    "verdict": "Useful for reaching Nigerian mass-market users, but Paystack/Flutterwave usually win on DX.",
+    "best_for": "Nigerian merchants needing USSD and agent-based collections beyond smartphone users",
+    "not_for": "Developers prioritizing polished REST docs or pan-African coverage"
   }
 }

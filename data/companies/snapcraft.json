@@ -41,5 +41,30 @@
     "forks": 519,
     "updated_at": "2026-04-21",
     "health_score": "A"
+  },
+  "content": {
+    "when_to_use": [
+      "Build and publish snaps with auto-update delivery",
+      "Universal Linux package with confinement sandboxing",
+      "Multi-architecture snap builds for x64 and ARM",
+      "Staged release channels (edge/beta/stable) for snaps"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Cross-distro Linux packaging with auto-updates",
+      "Confinement and interface system improves security",
+      "Strong CLI and CI tooling",
+      "Backed by Canonical with commercial support"
+    ],
+    "cons": [
+      "Store is centralized and proprietary",
+      "Snap daemon and compression cause startup latency",
+      "Controversial outside Ubuntu, some distros ban it",
+      "Forced refresh timing has angered users"
+    ],
+    "verdict": "A capable packaging system chained to a single controversial store — fine inside Ubuntu, divisive outside.",
+    "best_for": "Apps targeting Ubuntu desktop and server with auto-updates and confinement.",
+    "not_for": "Projects that value decentralized, distro-neutral distribution."
   }
 }

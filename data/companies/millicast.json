@@ -22,5 +22,33 @@
   },
   "community": {
     "hn_mentions_30d": 1
+  },
+  "content": {
+    "when_to_use": [
+      "Sub-500ms real-time WebRTC broadcast CDN at scale",
+      "Ultra-low latency streaming for sports betting and live auctions",
+      "WebRTC ingest with WHIP for broadcast-grade live streams",
+      "Replacing HLS with sub-second delivery for interactive events",
+      "Scalable real-time streaming to 1M+ concurrent viewers"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Sub-500ms WebRTC at CDN scale",
+      "Dolby audio pedigree for quality",
+      "Simulcast and ABR over WebRTC",
+      "Well-documented REST and JS SDKs",
+      "Good fit for auctions, sports betting, iGaming"
+    ],
+    "cons": [
+      "Premium pricing vs HLS-based competitors",
+      "WebRTC CDN model expensive at huge scale",
+      "Limited VOD features — live-focused",
+      "Enterprise contracts typical",
+      "Integration complexity for large player ecosystems"
+    ],
+    "verdict": "Best-in-class real-time WebRTC CDN when milliseconds matter — pay for it, but the latency is real.",
+    "best_for": "iGaming, auctions, and sports apps where sub-second latency drives revenue.",
+    "not_for": "VOD-heavy or latency-tolerant streaming — HLS is cheaper."
   }
 }

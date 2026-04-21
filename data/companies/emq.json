@@ -22,5 +22,29 @@
   },
   "community": {
     "hn_mentions_30d": 1068
+  },
+  "content": {
+    "when_to_use": [
+      "Scaling MQTT broker to 10M+ concurrent IoT connections",
+      "Rule engine routing MQTT events to Kafka or databases",
+      "EMQX cluster for industrial IoT and smart factory messaging",
+      "Managed MQTT-as-a-service for device fleet communication",
+      "Replacing HiveMQ or Mosquitto with highly scalable EMQX"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Scales to millions of MQTT clients",
+      "Powerful rule engine",
+      "Open-source core is legit"
+    ],
+    "cons": [
+      "Operating clusters needs real skill",
+      "Commercial features behind paywall",
+      "Docs dense for newcomers"
+    ],
+    "verdict": "The most scalable open-source MQTT broker, provided you have the ops muscle or pay for managed.",
+    "best_for": "Large IoT deployments needing massive MQTT fan-out and rules",
+    "not_for": "Small projects where Mosquitto or a managed broker is simpler"
   }
 }

@@ -26,5 +26,30 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "Real-time JVM diagnostic without restarting in production",
+      "Trace method calls and inspect parameters on live JVMs",
+      "Detect memory leaks and thread deadlocks in-flight",
+      "Hot-patch classes in running Java applications"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Attach to running JVM without restart",
+      "Trace method calls and inspect stack in production",
+      "Hot-reload classes for emergency patches",
+      "Free, open source, backed by Alibaba"
+    ],
+    "cons": [
+      "Java-only, no support for other JVM languages nuances",
+      "Command-line interface has steep learning curve",
+      "Risky if misused on production without guardrails",
+      "Documentation partially translated from Chinese"
+    ],
+    "verdict": "Indispensable JVM diagnostic swiss-army-knife for production debugging when APMs fall short.",
+    "best_for": "Java SREs debugging live production issues without adding instrumentation.",
+    "not_for": "Teams on non-Java stacks or wanting GUI-driven profiling."
   }
 }

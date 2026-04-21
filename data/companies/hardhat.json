@@ -22,5 +22,31 @@
   },
   "community": {
     "hn_mentions_30d": 173
+  },
+  "content": {
+    "when_to_use": [
+      "Ethereum smart contract testing with local blockchain",
+      "Solidity debugging with stack traces in development",
+      "Plugin-based compile-test-deploy pipeline for EVM dev",
+      "Fork mainnet locally for integration testing DeFi contracts",
+      "Automated contract deployment scripts with Hardhat tasks"
+    ]
+  },
+  "review": {
+    "pros": [
+      "De facto standard for Ethereum contract dev",
+      "Rich plugin ecosystem",
+      "Local node and console are excellent",
+      "Solid testing and debugging"
+    ],
+    "cons": [
+      "Node.js-heavy stack adds weight",
+      "Foundry gaining ground on speed",
+      "Config sometimes fiddly",
+      "TypeScript types for contracts imperfect"
+    ],
+    "verdict": "Still the safest default for Solidity dev, though Foundry is a compelling faster alternative today.",
+    "best_for": "Solidity dev teams wanting the most-documented, plugin-rich smart contract stack",
+    "not_for": "Teams who want Foundry's Rust-speed and prefer minimal Node tooling"
   }
 }

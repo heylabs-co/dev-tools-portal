@@ -22,5 +22,31 @@
   },
   "community": {
     "hn_mentions_30d": 24
+  },
+  "content": {
+    "when_to_use": [
+      "WireGuard-based self-hostable ngrok alternative for teams",
+      "Token-authenticated tunnel for secure localhost exposure",
+      "Webhook receiver for local development without port forwarding",
+      "Private tunnel sharing for internal demo environments",
+      "Zero-trust tunnel with access policy enforcement per share"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Open-source ngrok alternative on OpenZiti",
+      "Self-hostable control plane",
+      "WireGuard-style tunneling and token auth",
+      "Public and private share modes"
+    ],
+    "cons": [
+      "Not a secrets manager, category mismatch",
+      "Younger than ngrok, smaller ecosystem",
+      "Self-hosting adds operational overhead",
+      "Docs still catching up to features"
+    ],
+    "verdict": "A strong self-hostable ngrok alternative; categorizing it under secrets management is misleading.",
+    "best_for": "Teams wanting self-hosted, zero-trust-backed tunneling for dev and services.",
+    "not_for": "Teams looking for a secrets vault or credential store."
   }
 }

@@ -26,5 +26,30 @@
   },
   "community": {
     "hn_mentions_30d": 3
+  },
+  "content": {
+    "when_to_use": [
+      "Running parallel web scraping tasks with AI navigation at scale",
+      "Automating data collection from multiple web sources simultaneously",
+      "Building research automation agents that browse many sites at once",
+      "Scaling AI browser workflows with concurrent session management"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Deep-research API outperforms GPT-5 benchmarks",
+      "Purpose-built for autonomous agent use cases",
+      "Returns structured citations for verifiability",
+      "Handles multi-hop reasoning over web data"
+    ],
+    "cons": [
+      "Latency higher than simple search APIs",
+      "Per-query cost above Tavily or Serper",
+      "Relatively new, limited production case studies",
+      "Lock-in to their retrieval format"
+    ],
+    "verdict": "Strong choice when agent research quality matters more than speed or cost; overkill for trivial lookups.",
+    "best_for": "Agent builders needing deep multi-step web research quality",
+    "not_for": "Simple keyword lookup where Tavily or Brave suffice"
   }
 }

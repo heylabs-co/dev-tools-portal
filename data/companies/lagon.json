@@ -22,5 +22,31 @@
   },
   "community": {
     "hn_mentions_30d": 7
+  },
+  "content": {
+    "when_to_use": [
+      "Open-source serverless JavaScript functions at the edge",
+      "V8 isolate-based edge compute without cold starts",
+      "Self-hosted Cloudflare Workers alternative on your infrastructure",
+      "Edge middleware for auth and routing with JS/TypeScript",
+      "Low-latency function execution near users at 50+ PoPs"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Open-source edge runtime with V8 isolates",
+      "Self-hostable Cloudflare Workers alternative",
+      "Fast cold starts globally",
+      "Simple deployment model"
+    ],
+    "cons": [
+      "Project development appears paused",
+      "Small community and ecosystem",
+      "Limited runtime API surface",
+      "Unclear long-term maintenance"
+    ],
+    "verdict": "Promising open-source edge runtime concept, but recent stagnation makes it a risky bet.",
+    "best_for": "Teams wanting self-hosted Workers-like runtime for experimentation or edge POCs",
+    "not_for": "Production workloads needing active vendor support and feature velocity"
   }
 }

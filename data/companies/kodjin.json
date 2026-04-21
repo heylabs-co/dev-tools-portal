@@ -23,5 +23,31 @@
   },
   "community": {
     "hn_mentions_30d": 1
+  },
+  "content": {
+    "when_to_use": [
+      "Low-code FHIR server deployable on AWS, Azure, or on-prem",
+      "Healthcare data validation and storage via FHIR REST API",
+      "FHIR proxy layer in front of legacy HL7 v2 systems",
+      "Digital health product backend with built-in FHIR compliance",
+      "FHIR-native interoperability layer for European EHR vendors"
+    ]
+  },
+  "review": {
+    "pros": [
+      "FHIR-native healthcare data modeling",
+      "Low-code validation and routing",
+      "On-prem and cloud deployment options",
+      "Faster than building FHIR from scratch"
+    ],
+    "cons": [
+      "Narrow healthcare-only use case",
+      "Pricing not transparent publicly",
+      "Smaller community than Medplum or HAPI",
+      "Vendor lock-in for custom extensions"
+    ],
+    "verdict": "Pragmatic FHIR server if you need commercial support and low-code, otherwise open-source alternatives win.",
+    "best_for": "Healthcare product teams needing commercial FHIR backend with support SLAs",
+    "not_for": "Non-healthcare projects or teams comfortable self-hosting open-source FHIR servers"
   }
 }

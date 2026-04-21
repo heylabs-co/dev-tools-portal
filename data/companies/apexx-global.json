@@ -23,5 +23,30 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "Routing payments across 150+ APMs via single orchestration API",
+      "Reducing acquiring costs by intelligently switching PSP per country",
+      "Adding local payment methods (SEPA, Sofort, iDEAL) through one integration",
+      "Centralizing payment stack for enterprise with multiple acquirer relationships"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Single API exposes 150+ alternative payment methods globally",
+      "Combines acquirers, gateways, and carts in one contract",
+      "Strong dashboard for cross-PSP reconciliation",
+      "Enterprise support and managed onboarding for PSPs"
+    ],
+    "cons": [
+      "Enterprise pricing opaque without a sales call",
+      "Smaller ecosystem than Stripe or Adyen",
+      "Docs thinner than dev-first competitors",
+      "Overkill for single-region merchants on one PSP"
+    ],
+    "verdict": "Solid mid-market orchestrator if you need APM breadth; weak pick if you want self-serve developer onboarding.",
+    "best_for": "Mid-to-large merchants consolidating many acquirers and 100+ local payment methods under one contract.",
+    "not_for": "Startups on a single PSP who want self-serve docs and transparent pricing."
   }
 }

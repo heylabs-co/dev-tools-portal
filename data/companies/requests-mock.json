@@ -40,5 +40,29 @@
     "forks": 73,
     "updated_at": "2026-04-21",
     "health_score": "F"
+  },
+  "content": {
+    "when_to_use": [
+      "Stub HTTP responses at the transport adapter layer",
+      "Context manager-based mocking for Python requests tests",
+      "Complex request matching with headers and body patterns",
+      "Prevent live API calls in Python integration test suites"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Mocks Python requests at the adapter level",
+      "Granular control over URL matching",
+      "Works as pytest fixture or decorator",
+      "No network needed for deterministic tests"
+    ],
+    "cons": [
+      "Only works with requests library, not httpx",
+      "responses library is often considered simpler",
+      "Requires careful adapter scope management"
+    ],
+    "verdict": "A solid choice for requests-based tests, though httpx users need respx and many teams prefer responses instead.",
+    "best_for": "Python code using requests where you need deterministic HTTP stubs",
+    "not_for": "httpx-based codebases where respx fits natively"
   }
 }

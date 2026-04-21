@@ -39,5 +39,30 @@
     "forks": 1406,
     "updated_at": "2026-04-21",
     "health_score": "B"
+  },
+  "content": {
+    "when_to_use": [
+      "Concurrent async test execution for Node.js services",
+      "TypeScript-first unit tests with minimal configuration",
+      "Isolated test processes eliminating global state leaks",
+      "Fast test feedback with no hidden magic globals"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Runs test files concurrently by default, very fast",
+      "No globals, each file is a plain module",
+      "Excellent async/await and TypeScript ergonomics",
+      "Minimal magic, failures point to real lines quickly"
+    ],
+    "cons": [
+      "Smaller ecosystem than Jest or Vitest",
+      "Parallelism exposes hidden shared-state bugs",
+      "Limited built-in mocking, relies on third-party libs",
+      "Snapshot and coverage tooling lag competitors"
+    ],
+    "verdict": "A lean, fast Node test runner for folks who find Jest too opinionated and heavy.",
+    "best_for": "Node library authors wanting parallel, dependency-light, ESM-native tests",
+    "not_for": "Frontend apps needing jsdom, mocks and snapshots bundled in one runner"
   }
 }

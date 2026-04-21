@@ -44,5 +44,30 @@
     "forks": 1957,
     "updated_at": "2026-04-21",
     "health_score": "A"
+  },
+  "content": {
+    "when_to_use": [
+      "Building real-time voice AI pipelines with STT/LLM/TTS chaining",
+      "Deploying conversational voice agents with sub-500ms turn latency",
+      "Integrating Daily.co or WebRTC transports into voice AI apps",
+      "Orchestrating multi-modal real-time AI with an open-source framework"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Open-source Python framework for voice agents",
+      "Modular pipeline with STT, LLM, TTS nodes",
+      "Managed cloud via Daily.co for production",
+      "Large ecosystem of example agents"
+    ],
+    "cons": [
+      "Python-only, no first-class Node support",
+      "Self-hosting requires WebRTC expertise",
+      "Fast-moving API with breaking changes",
+      "Production latency needs careful tuning"
+    ],
+    "verdict": "Best-in-class OSS voice-agent framework if you are Python-comfortable and ready to tune latency yourself.",
+    "best_for": "Python teams building custom voice agents with WebRTC",
+    "not_for": "Node-first teams or anyone needing fully managed turnkey"
   }
 }

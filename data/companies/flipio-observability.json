@@ -23,5 +23,30 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "Cost-efficient OTel-compatible telemetry pipelines",
+      "On-prem observability without vendor data egress fees",
+      "Logs and metrics routing to multiple storage backends",
+      "OpenTelemetry collector management for hybrid infra"
+    ]
+  },
+  "review": {
+    "pros": [
+      "OTel-native ingest without proprietary agents",
+      "On-prem deployment for regulated environments",
+      "Cost-aware sampling and pipeline controls",
+      "Avoids Datadog-style surprise bills"
+    ],
+    "cons": [
+      "Early-stage product with limited market proof",
+      "Ecosystem smaller than Grafana or Honeycomb",
+      "Self-hosted operations burden on small teams",
+      "Limited public case studies to reference"
+    ],
+    "verdict": "Cost-conscious OTel platform worth piloting, but too young to bet the stack on without a fallback.",
+    "best_for": "Regulated or cost-sensitive teams wanting on-prem OpenTelemetry at fixed cost.",
+    "not_for": "Teams prioritizing mature ecosystem and polished managed experience."
   }
 }

@@ -41,5 +41,30 @@
     "forks": 183,
     "updated_at": "2026-04-21",
     "health_score": "C"
+  },
+  "content": {
+    "when_to_use": [
+      "Simple .NET faking API with A.FakeT() pattern",
+      "Fluent call verification without record/replay phases",
+      "Partial fakes for legacy class isolation in .NET tests",
+      "Readable test assertions with MustHaveHappened syntax"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Single A.Fake<T>() API, very approachable",
+      "Natural fluent assertions on calls made",
+      "Plays nicely with xUnit and NUnit",
+      "Less ceremony than Moq for simple cases"
+    ],
+    "cons": [
+      "Smaller community than Moq or NSubstitute",
+      "Fewer tutorials and StackOverflow answers",
+      "Advanced scenarios feel less documented",
+      "Slower releases than mainstream .NET mocks"
+    ],
+    "verdict": "Clean, underrated .NET mocking library, worth a look when Moq feels overly ceremonial.",
+    "best_for": ".NET teams wanting ergonomic mocks without Moq verbosity",
+    "not_for": "Shops already invested in Moq or NSubstitute with no pain"
   }
 }

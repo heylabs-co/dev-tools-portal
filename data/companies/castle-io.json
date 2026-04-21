@@ -21,5 +21,31 @@
   },
   "community": {
     "hn_mentions_30d": 11
+  },
+  "content": {
+    "when_to_use": [
+      "Risk scoring for new user signup abuse prevention",
+      "Account takeover detection via device fingerprint changes",
+      "SaaS platform abuse policy enforcement via webhooks",
+      "Fraud signal enrichment for Shopify checkout flows",
+      "Adaptive MFA trigger based on real-time risk score"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Developer-first API with clear docs and webhooks",
+      "Policies let you codify risk rules without retraining",
+      "Fast integration for SaaS login and signup flows",
+      "Reasonable pricing for mid-market SaaS"
+    ],
+    "cons": [
+      "Weaker on payment fraud vs PSP-native tools",
+      "Smaller data network than LexisNexis or Ekata",
+      "Requires you to tune rules and thresholds yourself",
+      "Limited out-of-box bot mitigation vs DataDome"
+    ],
+    "verdict": "The right pick for SaaS teams that want ATO and signup protection via API without an enterprise contract.",
+    "best_for": "B2B and B2C SaaS protecting logins, signups and workspace abuse with a small risk team.",
+    "not_for": "Payment-first merchants or bot-heavy retail needing dedicated WAF-layer mitigation."
   }
 }

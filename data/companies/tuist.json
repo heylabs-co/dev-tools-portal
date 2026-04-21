@@ -41,5 +41,30 @@
     "forks": 734,
     "updated_at": "2026-04-21",
     "health_score": "A"
+  },
+  "content": {
+    "when_to_use": [
+      "Xcode project generation to avoid .xcodeproj merge conflicts",
+      "Build caching for incremental Apple app CI pipelines",
+      "Modularization framework for large iOS/macOS codebases",
+      "Remote cache sharing to speed up Xcode builds in CI"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Replaces hand-edited xcodeproj with generated ones",
+      "Caching and binary targets speed up large iOS builds",
+      "Good fit for modularized Swift codebases",
+      "Active team with clear roadmap"
+    ],
+    "cons": [
+      "Only valuable if you already feel Xcode pain",
+      "Learning curve with manifests and graph model",
+      "Commercial tier needed for team-scale caching",
+      "Ecosystem narrower than plain Xcode"
+    ],
+    "verdict": "The right answer for big modular iOS apps; overkill for small single-target Xcode projects.",
+    "best_for": "iOS teams with many modules and long Xcode build times.",
+    "not_for": "Small apps with one or two targets where vanilla Xcode is fine."
   }
 }

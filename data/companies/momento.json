@@ -23,5 +23,31 @@
   },
   "community": {
     "hn_mentions_30d": 107
+  },
+  "content": {
+    "when_to_use": [
+      "Serverless cache with per-request pricing, no cluster management",
+      "Sub-millisecond cache for edge functions with global replication",
+      "Serverless pub/sub for real-time app events without brokers",
+      "Replacing Elasticache with zero-ops managed cache service",
+      "Cache layer for Lambda functions with automatic expiry"
+    ]
+  },
+  "review": {
+    "pros": [
+      "True serverless cache with zero provisioning",
+      "Sub-millisecond latency at scale",
+      "Per-request pricing aligns to usage",
+      "Simple SDK across languages"
+    ],
+    "cons": [
+      "Newer player with smaller track record",
+      "Cost can surprise at high request volumes",
+      "Feature surface smaller than Redis",
+      "Limited on-prem story"
+    ],
+    "verdict": "The cleanest serverless cache experience if you hate managing Redis, watch per-request costs.",
+    "best_for": "Serverless apps wanting cache and pub/sub without provisioning Redis clusters",
+    "not_for": "High-volume workloads where predictable reserved Redis pricing wins"
   }
 }

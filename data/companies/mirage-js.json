@@ -40,5 +40,30 @@
     "forks": 175,
     "updated_at": "2026-04-21",
     "health_score": "F"
+  },
+  "content": {
+    "when_to_use": [
+      "Frontend development with mocked backend API responses",
+      "Test React/Vue apps without any real backend running",
+      "Share complete app prototypes without backend dependency",
+      "Reproducible API states for deterministic UI tests"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Ship frontend without waiting on backend APIs",
+      "Models, factories and serializers feel like Rails",
+      "Runs entirely in the browser for fast iteration",
+      "Great for demos and offline development"
+    ],
+    "cons": [
+      "Bundled into app builds, easy to ship by mistake",
+      "Development has slowed significantly",
+      "MSW covers similar ground more flexibly",
+      "Extra abstraction some teams never use"
+    ],
+    "verdict": "Still a nice DX for frontend-only flows, but MSW has largely eaten its lunch for new projects.",
+    "best_for": "Frontend teams prototyping UIs before backend endpoints exist",
+    "not_for": "New projects that should adopt MSW for broader mocking coverage"
   }
 }

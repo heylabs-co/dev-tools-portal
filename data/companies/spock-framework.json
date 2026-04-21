@@ -41,5 +41,29 @@
     "forks": 479,
     "updated_at": "2026-04-21",
     "health_score": "A"
+  },
+  "content": {
+    "when_to_use": [
+      "Data-driven tests with where: tables in Groovy DSL",
+      "Built-in mock and stub via Mock() and Stub() blocks",
+      "BDD-style given/when/then blocks for Java services",
+      "Expressive Groovy DSL reducing Java test boilerplate"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Expressive Groovy DSL for JVM tests",
+      "Data-driven tests via where: blocks",
+      "Built-in interaction-based mocking",
+      "Readable given/when/then structure"
+    ],
+    "cons": [
+      "Requires Groovy in your build chain",
+      "Kotlin test ecosystem is stealing mindshare",
+      "Slower feedback loop than pure JUnit 5"
+    ],
+    "verdict": "Still the most expressive JVM test framework, though Kotest and JUnit 5 cover most new projects today.",
+    "best_for": "JVM teams comfortable with Groovy who value data-driven and interaction-based testing",
+    "not_for": "Pure Java or Kotlin projects avoiding the Groovy dependency"
   }
 }

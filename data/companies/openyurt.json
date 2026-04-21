@@ -26,5 +26,31 @@
   },
   "community": {
     "hn_mentions_30d": 14
+  },
+  "content": {
+    "when_to_use": [
+      "Extending Kubernetes to manage edge nodes from a cloud control plane",
+      "Cloud-edge computing with Kubernetes-native edge node lifecycle",
+      "Managing IoT gateways as Kubernetes worker nodes",
+      "Edge-native K8s extension for factory and retail edge compute",
+      "CNCF-compliant cloud-edge computing for Alibaba Cloud apps"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Extends Kubernetes to edge with minimal changes",
+      "CNCF Sandbox, backed by Alibaba",
+      "Handles unstable edge network autonomously",
+      "OTA and node pool management included"
+    ],
+    "cons": [
+      "Sandbox maturity, production risk remains",
+      "Smaller community than KubeEdge",
+      "Docs partially Chinese-first",
+      "Operational complexity on top of plain K8s"
+    ],
+    "verdict": "Promising edge Kubernetes extension for teams already deep in K8s, still earlier stage than KubeEdge in adoption.",
+    "best_for": "K8s shops extending workloads to edge devices across unstable networks",
+    "not_for": "Production-critical edge deployments needing mature, widely used tooling"
   }
 }

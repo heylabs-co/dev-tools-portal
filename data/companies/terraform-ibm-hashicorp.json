@@ -22,5 +22,30 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "Infrastructure provisioning across 300+ cloud providers",
+      "Declarative IaC with plan/apply workflow and state",
+      "Module registry for reusable infrastructure components",
+      "Drift detection and remediation for cloud resources"
+    ]
+  },
+  "review": {
+    "pros": [
+      "300+ providers, covers nearly every cloud and SaaS",
+      "Huge community and module ecosystem",
+      "Declarative, idempotent infra model",
+      "Skills transfer across companies and clouds"
+    ],
+    "cons": [
+      "BSL license move pushed community to OpenTofu",
+      "State management is still the main foot-gun",
+      "HCL gets ugly for complex logic",
+      "Slow plans on large workspaces"
+    ],
+    "verdict": "Still the default IaC tool, but evaluate OpenTofu seriously given the licensing change.",
+    "best_for": "Multi-cloud teams needing mature IaC with a massive provider and module ecosystem.",
+    "not_for": "Teams already committed to CDK, Pulumi, or fully cloud-native IaC."
   }
 }

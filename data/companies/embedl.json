@@ -33,5 +33,28 @@
   },
   "community": {
     "hn_mentions_30d": 168
+  },
+  "content": {
+    "when_to_use": [
+      "Compressing and quantizing models for edge inference deployment",
+      "Reducing model size while preserving accuracy for mobile targets",
+      "Optimizing transformer models for ONNX or TensorRT export",
+      "Benchmarking quantized model accuracy vs latency tradeoffs"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Auto quantization and compression pipeline",
+      "Meaningful speedups on edge targets",
+      "Works across common frameworks"
+    ],
+    "cons": [
+      "Value narrow once you know manual optimization",
+      "Enterprise-focused pricing",
+      "Less visibility than TensorRT or OpenVINO"
+    ],
+    "verdict": "Useful shortcut when your team lacks MCU-level optimization skill.",
+    "best_for": "Edge ML teams without dedicated model-optimization engineers",
+    "not_for": "Teams already skilled with TensorRT, ONNX Runtime, or TVM"
   }
 }

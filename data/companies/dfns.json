@@ -41,5 +41,31 @@
     "forks": 16,
     "updated_at": "2026-04-21",
     "health_score": "B"
+  },
+  "content": {
+    "when_to_use": [
+      "MPC wallet creation API for institutional custody apps",
+      "Embedded wallet provisioning for fintech user onboarding",
+      "Programmable signing policy enforcement per transaction type",
+      "Multi-party approval workflow for high-value crypto transfers",
+      "HSM-backed key management API for crypto infrastructure"
+    ]
+  },
+  "review": {
+    "pros": [
+      "MPC wallet-as-a-service with SOC 2 and policy engine",
+      "Institutional-grade key management without self-custody ops",
+      "Multi-chain support with fine-grained approvals",
+      "Clean API and webhooks suited for fintech backends"
+    ],
+    "cons": [
+      "Enterprise pricing; not friendly for small projects",
+      "Still requires compliance work on your side",
+      "Fewer UX-ready components than Privy or Dynamic",
+      "Vendor lock-in on key shares and policy model"
+    ],
+    "verdict": "Solid MPC wallet infrastructure for regulated fintechs that want policy and compliance over UX primitives.",
+    "best_for": "Institutions, exchanges and fintechs needing programmable custody APIs",
+    "not_for": "Consumer dApps prioritizing social login and embedded UX"
   }
 }

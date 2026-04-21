@@ -23,5 +23,29 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "Deploying custom ML models via API with sub-second cold starts",
+      "Serverless GPU inference for LLMs and diffusion models",
+      "Autoscaling ML model endpoints without managing GPU clusters",
+      "Deploying Python model pipelines as REST APIs in minutes",
+      "Cost-efficient inference billing per-request on shared GPUs"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Sub-second cold starts on GPUs",
+      "Autoscaling tuned for ML inference",
+      "Fast model deployment workflow"
+    ],
+    "cons": [
+      "Newer player vs Replicate and Modal",
+      "Cost predictability takes tuning",
+      "Limited non-inference use cases"
+    ],
+    "verdict": "A credible serverless GPU option for ML inference, especially when cold starts must stay tiny.",
+    "best_for": "ML teams serving models with spiky, latency-sensitive traffic",
+    "not_for": "Always-on training jobs or simple CPU-only APIs"
   }
 }

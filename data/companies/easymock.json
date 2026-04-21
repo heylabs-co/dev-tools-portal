@@ -39,5 +39,30 @@
     "forks": 310,
     "updated_at": "2026-04-21",
     "health_score": "C"
+  },
+  "content": {
+    "when_to_use": [
+      "Record/replay-style mocking for Java integration tests",
+      "Strict expectation verification in legacy JUnit codebases",
+      "Mock external service calls in enterprise Java apps",
+      "Type-safe method-call expectations with EasyMock API"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Mature, battle-tested JVM mocking library",
+      "Strict record/replay encourages explicit contracts",
+      "Lightweight, no bytecode manipulation by default",
+      "Still maintained, stable API"
+    ],
+    "cons": [
+      "Record/replay feels clunky next to Mockito",
+      "Verbose compared to modern Kotlin test libs",
+      "Mocking finals and statics needs extra modules",
+      "Team muscle memory is all Mockito now"
+    ],
+    "verdict": "Historically important mocking lib mostly justified today only in legacy enterprise codebases.",
+    "best_for": "Teams maintaining existing EasyMock suites with no budget to migrate",
+    "not_for": "Greenfield JVM projects that should simply start with Mockito"
   }
 }

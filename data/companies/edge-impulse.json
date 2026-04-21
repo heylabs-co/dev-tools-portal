@@ -33,5 +33,28 @@
   },
   "community": {
     "hn_mentions_30d": 13
+  },
+  "content": {
+    "when_to_use": [
+      "Training and deploying ML models on microcontrollers and MCUs",
+      "Building keyword spotting and audio classification on IoT devices",
+      "Running image classification on-device for embedded vision",
+      "Optimizing neural nets for ultra-low-power hardware targets"
+    ]
+  },
+  "review": {
+    "pros": [
+      "End-to-end TinyML for MCUs",
+      "Device-aware optimization and profiling",
+      "Strong partnerships with silicon vendors"
+    ],
+    "cons": [
+      "Enterprise tier required for serious deploys",
+      "Cloud-only training limits IP control",
+      "Learning curve for embedded engineers new to ML"
+    ],
+    "verdict": "The default TinyML platform when you need MCU-class models without a full ML team.",
+    "best_for": "IoT and embedded teams shipping ML on Cortex-M and similar MCUs",
+    "not_for": "Cloud-only ML use cases — overkill and mis-targeted"
   }
 }

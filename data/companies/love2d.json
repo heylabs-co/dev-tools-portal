@@ -19,5 +19,31 @@
   "seo": {
     "title": "LÖVE — Game Development Tools",
     "meta_description": "LÖVE: Free, open-source 2D Lua game framework for Windows, macOS, and Linux. Minimal API with graphics, sound, and physics bindings—favored for game jams and in"
+  },
+  "content": {
+    "when_to_use": [
+      "2D game jam entry built with Lua in a weekend",
+      "Prototype physics sandbox exploring game mechanic ideas",
+      "Cross-platform desktop game shipped on itch.io via LÖVE",
+      "Minimal game framework chosen for teaching Lua to beginners",
+      "Rapid iteration on core loop before porting to larger engine"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Minimal API — you can learn it in an afternoon",
+      "Perfect for game jams and rapid prototypes",
+      "Distributed as tiny binaries for Windows, macOS, Linux",
+      "zlib license lets you ship commercial games freely"
+    ],
+    "cons": [
+      "No built-in editor — code everything by hand",
+      "Mobile and console export requires third-party ports",
+      "No asset pipeline or visual scene editor",
+      "Small library ecosystem compared to Love2Ds heyday"
+    ],
+    "verdict": "The best hands-on Lua sandbox for jams and learning; ship-quality mobile and console games need more scaffolding.",
+    "best_for": "Solo developers and learners who want Lua, code-first, desktop-only workflows",
+    "not_for": "Teams needing editors, mobile-first targets, or console publishing"
   }
 }

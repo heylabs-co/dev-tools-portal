@@ -22,5 +22,30 @@
   },
   "community": {
     "hn_mentions_30d": 49
+  },
+  "content": {
+    "when_to_use": [
+      "Running self-hosted code search over large multi-repo collections",
+      "Navigating and cross-referencing code in legacy enterprise codebases",
+      "Building internal developer portals with indexed code search",
+      "Indexing historical codebases for compliance and audit access"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Battle-tested source search at Oracle and other enterprises",
+      "Good cross-referencing for static code navigation",
+      "Supports many languages out of the box",
+      "Fully self-hosted with no SaaS dependency"
+    ],
+    "cons": [
+      "Setup and reindexing is slow and operationally heavy",
+      "UI and UX feel aged compared to Sourcegraph",
+      "No AI features, purely lexical search and xref",
+      "Community development has slowed significantly"
+    ],
+    "verdict": "Reliable old-guard code search that still works, but newer tools offer much better developer experience.",
+    "best_for": "Enterprises with air-gapped requirements and existing OpenGrok deployments",
+    "not_for": "Teams starting fresh or expecting modern UI and AI-assisted navigation"
   }
 }

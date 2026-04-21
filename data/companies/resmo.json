@@ -22,5 +22,31 @@
   },
   "community": {
     "hn_mentions_30d": 360
+  },
+  "content": {
+    "when_to_use": [
+      "Cloud asset inventory across AWS, GCP, and Azure accounts",
+      "GitHub repository security posture scanning and query",
+      "SaaS security configuration audit for Okta and Slack",
+      "CSPM policy violation alerting for cloud compliance",
+      "SOC 2 asset coverage evidence via automated config tracking"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Query cloud and SaaS configs with SQL-style syntax",
+      "Fast setup for small security teams",
+      "Catches misconfigurations across AWS, GCP, GitHub, SaaS",
+      "Pricing friendly for startups and mid-market"
+    ],
+    "cons": [
+      "Limited depth versus full CSPM platforms",
+      "Fewer built-in controls than Wiz or Orca",
+      "Remediation workflows are thin, mostly alerting",
+      "Smaller vendor means narrower roadmap velocity"
+    ],
+    "verdict": "Lightweight asset and misconfig visibility for teams that can't afford enterprise CSPM.",
+    "best_for": "Startups and mid-market teams wanting broad SaaS and cloud config visibility cheaply.",
+    "not_for": "Enterprises needing deep CSPM, CWPP, or integrated CNAPP functionality."
   }
 }

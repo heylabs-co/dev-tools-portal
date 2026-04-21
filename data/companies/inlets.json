@@ -22,5 +22,31 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "Secure self-hosted tunnel exposing local apps over HTTPS",
+      "Token-authenticated webhook relay for local development",
+      "Kubernetes ingress tunneling for airgapped environments",
+      "IoT device management API exposure without port forwarding",
+      "Secure remote access to internal developer tools"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Self-hostable tunnel with load balancer mode",
+      "WebSocket-based, firewall-friendly",
+      "Token auth and TLS by default",
+      "Pairs well with Kubernetes and home labs"
+    ],
+    "cons": [
+      "Not really a secrets manager, miscategorized",
+      "Pro features gated behind subscription",
+      "Operational overhead vs managed ngrok/zrok",
+      "Docs assume comfort with Linux and Docker"
+    ],
+    "verdict": "Great self-hosted tunnel story; listing it under secrets management is a stretch.",
+    "best_for": "Operators wanting self-hosted ngrok alternatives with LB capabilities.",
+    "not_for": "Anyone looking for secrets storage or rotation."
   }
 }

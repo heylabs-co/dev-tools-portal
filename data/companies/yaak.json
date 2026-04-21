@@ -22,5 +22,32 @@
   },
   "community": {
     "hn_mentions_30d": 20
+  },
+  "content": {
+    "when_to_use": [
+      "OSS REST API client for offline-first development",
+      "GraphQL query testing with environment variables",
+      "Native desktop alternative to Postman without data lock-in",
+      "API collection management with local storage",
+      "Team API workspace with Git-friendly export format"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Native desktop app, faster than Electron-heavy rivals",
+      "Offline-first with local data, no cloud lock-in",
+      "Open source under MIT, self-hostable sync",
+      "Handles REST, GraphQL, and gRPC in one client",
+      "Environment variables with proper secret handling"
+    ],
+    "cons": [
+      "Small community vs Postman or Insomnia",
+      "No team collaboration features in free tier",
+      "Plugin ecosystem still thin and immature",
+      "Windows and Linux builds less polished than macOS"
+    ],
+    "verdict": "A lean, OSS Postman alternative for devs who want local-first speed over cloud collaboration features.",
+    "best_for": "Solo devs and privacy-focused teams wanting a fast offline REST and GraphQL client",
+    "not_for": "Large teams needing shared workspaces, mock servers, or CI-integrated test runners"
   }
 }

@@ -22,5 +22,31 @@
   "seo": {
     "title": "Jupyter Book — Developer Documentation / DevRel",
     "meta_description": "Jupyter Book: Jupyter Book — open-source tool for building beautiful, publication-quality books and documentation from Jupyter Notebooks and Markdown files."
+  },
+  "content": {
+    "when_to_use": [
+      "Machine learning tutorial published as interactive book",
+      "Research paper with live executable code cells and outputs",
+      "Internal data engineering handbook built from notebooks",
+      "API reference documentation with embedded runnable examples",
+      "University course materials published as open web book"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Executes Jupyter notebooks directly in published book",
+      "Excellent fit for scientific and ML documentation",
+      "Free, open source, and actively maintained",
+      "Good static output via Sphinx ecosystem"
+    ],
+    "cons": [
+      "Sphinx underpinnings expose config complexity",
+      "Build times grow with notebook count and execution",
+      "Overkill for pure-text documentation",
+      "Ecosystem is Python-centric, not general-purpose"
+    ],
+    "verdict": "The right tool for executable, notebook-driven books; overkill for non-scientific developer docs.",
+    "best_for": "Data science teams, ML researchers, and educators publishing reproducible notebook content.",
+    "not_for": "General API docs, SaaS product docs, or teams without notebook-based content."
   }
 }

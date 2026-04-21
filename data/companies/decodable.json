@@ -22,5 +22,31 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "Managed Apache Flink stream processing without cluster ops",
+      "Real-time ETL transformations on Kafka data streams",
+      "Enriching events with reference data from REST APIs in pipelines",
+      "Streaming analytics without writing Java or Scala Flink code",
+      "Low-latency data transformations with visual SQL pipeline editor"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Managed Flink without operating Kubernetes",
+      "SQL-first streaming lowers barrier to entry",
+      "CDC sources and sinks work out of the box",
+      "Serverless pricing model for sporadic workloads"
+    ],
+    "cons": [
+      "Flink semantics still leak through in edge cases",
+      "Smaller vendor than Confluent Cloud competitors",
+      "Pricing can surprise under bursty workloads",
+      "Ecosystem narrower than Confluent's"
+    ],
+    "verdict": "Best way to run Flink without DevOps pain, though Confluent remains the default for streaming.",
+    "best_for": "Data teams wanting managed Flink streaming without Kubernetes operations",
+    "not_for": "Teams standardized on Kafka Streams or ksqlDB within Confluent"
   }
 }

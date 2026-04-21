@@ -23,5 +23,33 @@
   },
   "community": {
     "hn_mentions_30d": 1
+  },
+  "content": {
+    "when_to_use": [
+      "Managing 3D asset libraries with CDN delivery for AR/VR apps",
+      "Streaming 3D models to ARKit/ARCore apps on-demand",
+      "Over-the-air content updates for deployed AR experiences",
+      "Building WebXR apps with remotely hosted 3D assets",
+      "Version-controlled 3D asset management for game and AR teams"
+    ]
+  },
+  "review": {
+    "pros": [
+      "CDN-style delivery for 3D/AR/VR assets",
+      "Automatic format conversion (GLB, USDZ, FBX)",
+      "Works with Unity, Unreal, WebXR, ARKit",
+      "Version control and rollback for assets",
+      "Free tier for developers and education"
+    ],
+    "cons": [
+      "Niche audience limits community size",
+      "Pricing tiers unclear for mid-size teams",
+      "Web viewer feature set trails Sketchfab",
+      "Analytics and collaboration tools basic",
+      "3D optimization pipeline is a black box"
+    ],
+    "verdict": "Useful if you ship AR/VR at scale — a Cloudinary for 3D — but most projects can get by with plain CDN.",
+    "best_for": "AR/VR apps and e-commerce needing optimized 3D delivery across ARKit/ARCore/WebXR.",
+    "not_for": "Simple 3D viewers — a CDN plus draco compression suffices."
   }
 }

@@ -22,5 +22,31 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "Encrypted .env file sync across dev team members",
+      "CI/CD secret injection without plaintext env vars in repos",
+      "Multi-environment secret management (dev/staging/prod)",
+      "Audit log of who accessed which environment secrets",
+      "One-command secret pull for onboarding new developers"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Dead-simple workflow for .env files",
+      "Encrypts and syncs across devs and CI",
+      "Version history for env changes",
+      "Push/pull CLI mirrors Git muscle memory"
+    ],
+    "cons": [
+      "Single-vendor; .env-centric, not dynamic secrets",
+      "Free tier is limited on environments",
+      "Not a full-fledged secrets manager",
+      "Lock-in around the .env.vault format"
+    ],
+    "verdict": "Nice upgrade over sharing .env files in Slack, but stops short of real secrets management.",
+    "best_for": "Small teams syncing Node/Next.js .env files across devs and CI safely.",
+    "not_for": "Orgs needing RBAC, dynamic creds, or audit trails."
   }
 }

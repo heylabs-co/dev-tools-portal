@@ -30,5 +30,30 @@
   },
   "community": {
     "hn_mentions_30d": 8
+  },
+  "content": {
+    "when_to_use": [
+      "Running minimal VMs for LLM agent tool execution isolation",
+      "Deploying lightweight sandboxes for AI-generated code validation",
+      "Testing AI-written scripts in resource-efficient isolated envs",
+      "Building secure code execution backends for coding agents"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Lightweight microVM isolation for untrusted code",
+      "Fast startup suits ephemeral agent workloads",
+      "Simpler than wiring up Firecracker yourself",
+      "Open-source path avoids vendor lock-in"
+    ],
+    "cons": [
+      "Still requires systems expertise to operate reliably",
+      "Competes with managed sandboxes like E2B and Runloop",
+      "Small community for a security-sensitive tool is risky",
+      "Maturity and audit coverage unclear"
+    ],
+    "verdict": "Useful building block for self-hosted agent sandboxes, but expect real ops work to productionize.",
+    "best_for": "Teams with infra expertise self-hosting sandboxes for AI code execution",
+    "not_for": "Developers who prefer managed sandbox services or lack Linux virtualization experience"
   }
 }

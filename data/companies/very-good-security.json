@@ -23,5 +23,29 @@
   },
   "community": {
     "hn_mentions_30d": 5
+  },
+  "content": {
+    "when_to_use": [
+      "PCI-compliant card tokenization without handling raw PANs",
+      "Network token provisioning for Visa and Mastercard payments",
+      "Credential vault for multi-PSP card data sharing"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Well-established PCI-compliant vault",
+      "Handles card data plus broader sensitive data",
+      "Network tokens and credential management built in",
+      "Reduces PCI scope without heavy re-architecture"
+    ],
+    "cons": [
+      "Pricing can grow fast at high volume",
+      "Tokenization only — no routing layer",
+      "UI feels older than newer competitors",
+      "Some overlap with Basis Theory and Evervault"
+    ],
+    "verdict": "Veteran choice for vaulting and network tokens; pick newer DX-first options if you prize modern developer experience.",
+    "best_for": "Mid-market and enterprise merchants needing a proven PCI vault plus network-token program.",
+    "not_for": "Teams that want a full orchestrator, or dev-first shops who prefer newer API design."
   }
 }

@@ -21,5 +21,31 @@
   },
   "community": {
     "hn_mentions_30d": 36
+  },
+  "content": {
+    "when_to_use": [
+      "Device fingerprinting for multi-account fraud detection",
+      "Bot detection signal for login abuse prevention",
+      "Account sharing detection for SaaS license enforcement",
+      "Payment fraud scoring via persistent browser identity",
+      "Smart signal API for promo abuse and coupon fraud prevention"
+    ]
+  },
+  "review": {
+    "pros": [
+      "99.5% device ID accuracy, widely benchmarked",
+      "Simple JS/SDK integration in minutes",
+      "Pricing transparent and dev-friendly",
+      "Strong Bot Detection and Smart Signals addons"
+    ],
+    "cons": [
+      "Device ID alone does not stop determined fraudsters",
+      "Privacy reviews needed in EU deployments",
+      "Not a full risk decision engine",
+      "Costs grow linearly with identification calls"
+    ],
+    "verdict": "The sharpest developer-friendly device ID on the market; pair it with a rules engine for real fraud stopping.",
+    "best_for": "Engineering teams adding a reliable device identity signal to their own risk stack.",
+    "not_for": "Teams that want turnkey approve/decline decisions without building any logic."
   }
 }

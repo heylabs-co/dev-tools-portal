@@ -23,5 +23,29 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "Self-hosting a FHIR R4/R5 server on PostgreSQL JSONB",
+      "Running bulk FHIR exports for population health analytics",
+      "Building EHR integrations with fast FHIR search queries",
+      "Supporting healthcare SaaS with a developer-first FHIR API",
+      "Migrating from HL7 v2 to FHIR with validation pipelines"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Strong FHIR STU3/R4/R5 coverage",
+      "Fast Postgres JSONB bulk operations",
+      "Developer-friendly search and queries"
+    ],
+    "cons": [
+      "FHIR expertise required to tune it",
+      "Commercial license for production workloads",
+      "Small ecosystem vs HAPI FHIR"
+    ],
+    "verdict": "One of the fastest FHIR servers around, ideal when Postgres and performance matter more than free.",
+    "best_for": "Digital health builders needing production-grade multi-version FHIR",
+    "not_for": "Teams that only need a lightweight open-source FHIR sandbox"
   }
 }

@@ -42,5 +42,31 @@
     "forks": 2664,
     "updated_at": "2026-04-21",
     "health_score": "A"
+  },
+  "content": {
+    "when_to_use": [
+      "Cross-platform desktop app from a single C# + XAML codebase",
+      "Porting a WPF app to macOS and Linux without rewrite",
+      "Internal tooling dashboard running on Windows, Mac, and Linux",
+      "Embedded UI for industrial control systems with .NET",
+      "Mobile + desktop app sharing UI components via XAML"
+    ]
+  },
+  "review": {
+    "pros": [
+      "True cross-platform .NET from one codebase",
+      "XAML syntax familiar to WPF devs",
+      "Active OSS community and commercial backing",
+      "Supports mobile, web, and embedded"
+    ],
+    "cons": [
+      "Smaller ecosystem than WPF or MAUI",
+      "Native look-and-feel requires extra work",
+      "Documentation thinner than commercial alternatives",
+      "Performance varies on mobile targets"
+    ],
+    "verdict": "The best cross-platform XAML framework for .NET devs who outgrew MAUI or WPF limitations.",
+    "best_for": ".NET teams migrating WPF apps to Linux, macOS, or mobile platforms",
+    "not_for": "Teams committed to platform-native SDKs like SwiftUI or Jetpack Compose"
   }
 }

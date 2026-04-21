@@ -22,5 +22,31 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "Managed Postgres cloud service for hobby and production apps",
+      "Postgres with automated connection pooling and follower DBs",
+      "Quick Postgres provisioning in AWS, Azure, or GCP regions",
+      "Shared Postgres tiers for cost-sensitive early-stage startups",
+      "Managed database for Heroku or Render-hosted applications"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Simple managed PostgreSQL with generous free tier",
+      "Connection pooling included",
+      "Multi-region follower databases",
+      "Fast Heroku-style provisioning"
+    ],
+    "cons": [
+      "Being sunset by CloudAMQP/14West",
+      "Limited features vs Neon, Supabase, RDS",
+      "No modern dev features like branching",
+      "Migration planning now required"
+    ],
+    "verdict": "Legacy managed Postgres being wound down, migrate to Neon, Supabase, or RDS for new projects.",
+    "best_for": "Existing ElephantSQL customers planning an orderly migration off the service",
+    "not_for": "New projects, given the announced service sunset"
   }
 }

@@ -23,5 +23,29 @@
   },
   "community": {
     "hn_mentions_30d": 1
+  },
+  "content": {
+    "when_to_use": [
+      "Simple card acceptance via REST API without merchant account",
+      "Charging saved cards for Australian recurring billing",
+      "Tokenizing card data for PCI-compliant Australian checkout"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Australian dev-focused card API",
+      "No separate merchant account needed",
+      "Simple, well-documented REST API",
+      "Quick onboarding for SMBs"
+    ],
+    "cons": [
+      "Australia-only primary focus",
+      "Card-only, no local alternatives",
+      "Smaller than Stripe in AU",
+      "Limited advanced fraud tools"
+    ],
+    "verdict": "Delightful developer experience for Australian card checkout, but card-only and single-country constrain scope.",
+    "best_for": "Australian SMBs and indie devs wanting quick, clean card acceptance",
+    "not_for": "Merchants needing BNPL, bank debit, or multi-country reach"
   }
 }

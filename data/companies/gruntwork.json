@@ -22,5 +22,30 @@
   },
   "community": {
     "hn_mentions_30d": 2
+  },
+  "content": {
+    "when_to_use": [
+      "Battle-tested Terraform modules for AWS/GCP/Azure",
+      "Reference architectures for production-ready infra",
+      "DevOps tooling accelerating infrastructure automation",
+      "Compliance-ready modules for SOC2 and HIPAA environments"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Battle-tested Terraform modules for AWS reference architectures",
+      "Saves months of infra design work",
+      "Terragrunt and tooling fill real Terraform gaps",
+      "Strong security and compliance defaults"
+    ],
+    "cons": [
+      "Pricing is enterprise-tier, not cheap",
+      "Modules can feel over-engineered for small shops",
+      "Lock-in to Gruntwork opinions and layout",
+      "Learning curve alongside Terraform itself"
+    ],
+    "verdict": "The shortcut to a production-grade AWS landing zone — expensive but cheaper than rolling your own.",
+    "best_for": "Series A and up teams standing up serious AWS infra and can afford enterprise tooling.",
+    "not_for": "Early-stage projects, hobby infra, or teams already deep in CDK/Pulumi."
   }
 }

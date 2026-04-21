@@ -42,5 +42,30 @@
     "forks": 524,
     "updated_at": "2026-04-21",
     "health_score": "A"
+  },
+  "content": {
+    "when_to_use": [
+      "Signed auto-update delivery for Tauri desktop apps",
+      "Cross-platform update distribution for Windows/macOS/Linux",
+      "Custom update server integration for enterprise deploys",
+      "Delta update support minimizing download sizes"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Official updater, kept in sync with Tauri releases",
+      "Signed release verification across all three OSes",
+      "Minimal config for the common case",
+      "Tiny runtime footprint compared to Electron"
+    ],
+    "cons": [
+      "Feature set still narrower than Sparkle on macOS",
+      "Rollout/canary story is basic",
+      "Debugging update failures is painful",
+      "Tied to Tauri's own release workflow"
+    ],
+    "verdict": "The obvious auto-updater choice for Tauri apps — not yet as mature as Sparkle for nuanced needs.",
+    "best_for": "Tauri apps wanting one updater across Windows, macOS, and Linux.",
+    "not_for": "Apps needing phased rollouts, delta updates, or Sparkle-level maturity."
   }
 }

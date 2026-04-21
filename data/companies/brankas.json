@@ -23,5 +23,30 @@
   },
   "community": {
     "hn_mentions_30d": 3
+  },
+  "content": {
+    "when_to_use": [
+      "Bank account data APIs and disbursement for APAC fintech apps",
+      "Embedding open-banking payments into lending and BNPL apps in SEA",
+      "Real-time account verification and bank transfer initiation in MENA",
+      "BaaS APIs for neobank and wallet products launching in APAC"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Strong open-banking coverage across APAC and MENA",
+      "Bank transfers, disbursements, and data in one API",
+      "Local licenses in hard-to-reach markets",
+      "Good fit for emerging-market payout flows"
+    ],
+    "cons": [
+      "Not a card-first orchestrator; rails differ by country",
+      "Uptime varies with underlying bank APIs",
+      "Onboarding can take weeks per market",
+      "Documentation inconsistent across regions"
+    ],
+    "verdict": "Go-to for bank-rail payments in APAC and MENA, but not a substitute for a card-focused orchestration layer.",
+    "best_for": "Fintechs and marketplaces needing bank transfers, disbursements, and account data across emerging APAC or MENA.",
+    "not_for": "Global card-first merchants who already have acquirer coverage in developed markets."
   }
 }

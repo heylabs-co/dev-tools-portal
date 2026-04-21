@@ -38,5 +38,30 @@
     "forks": 2,
     "updated_at": "2026-04-21",
     "health_score": "F"
+  },
+  "content": {
+    "when_to_use": [
+      "Open-source cloud-native alerting with Prometheus rules",
+      "On-call management integrated with Nightingale dashboards",
+      "Categraf agent collecting metrics from 100+ sources",
+      "Alert deduplication and silence rules for noisy infra"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Nightingale + Categraf stack with managed UI",
+      "Prometheus-compatible metrics ingest",
+      "Built-in alerting and on-call scheduling",
+      "Active Chinese open-source community"
+    ],
+    "cons": [
+      "Docs and UI primarily Chinese first",
+      "Smaller global community than Grafana stack",
+      "Enterprise support limited outside APAC",
+      "Feature parity gaps vs Grafana Cloud"
+    ],
+    "verdict": "Solid open-core stack popular in China, but language and community barriers limit global adoption.",
+    "best_for": "APAC teams wanting a managed Nightingale/Categraf platform with Chinese support.",
+    "not_for": "Global teams preferring English-first tooling or Grafana ecosystem."
   }
 }

@@ -23,5 +23,31 @@
   },
   "community": {
     "hn_mentions_30d": 17
+  },
+  "content": {
+    "when_to_use": [
+      "Longitudinal patient record API from 270M US patient network",
+      "HIPAA-compliant clinical data pull for care management apps",
+      "Real-world evidence data access for clinical research platforms",
+      "Patient history enrichment for digital health onboarding",
+      "Interoperable EHR data retrieval for value-based care programs"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Access to longitudinal records from major health networks",
+      "Single FHIR API instead of per-provider integrations",
+      "HIPAA and TEFCA-aligned data exchange",
+      "Strong fit for care coordination and prior-auth apps"
+    ],
+    "cons": [
+      "Data availability varies by patient and region",
+      "Contractual and legal onboarding is not quick",
+      "Recent litigation around Epic access raised uncertainty",
+      "Pricing opaque, oriented to enterprise deals"
+    ],
+    "verdict": "Powerful patient-record reach for digital health, but lock-in and access politics are real risks.",
+    "best_for": "Care coordination, payer, or value-based-care apps needing patient history",
+    "not_for": "Teams needing real-time clinical ordering or lab workflows"
   }
 }

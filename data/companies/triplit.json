@@ -22,5 +22,31 @@
   },
   "community": {
     "hn_mentions_30d": 54
+  },
+  "content": {
+    "when_to_use": [
+      "Full-stack database with real-time sync and offline support",
+      "Client-side cache with automatic conflict resolution on sync",
+      "Local-first app database with TypeScript schema definitions",
+      "Replacing Firebase with a type-safe relational-ish sync layer",
+      "Collaborative apps with optimistic UI and server reconciliation"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Full-stack DB with real-time sync and cache",
+      "Optimistic updates feel instant in UI",
+      "TypeScript-first schema and types",
+      "Good fit for collaborative apps"
+    ],
+    "cons": [
+      "Early stage, smaller community",
+      "Production scale story still being proven",
+      "Limited backend flexibility vs general SQL",
+      "Lock-in to Triplit data model"
+    ],
+    "verdict": "Promising local-first DB for TypeScript apps needing real-time sync, still early for heavy production commitment.",
+    "best_for": "TypeScript teams building collaborative or offline-first apps prototyping fast",
+    "not_for": "Mature products needing large-scale backend flexibility and proven ops tooling"
   }
 }

@@ -29,5 +29,28 @@
   },
   "community": {
     "hn_mentions_30d": 16
+  },
+  "content": {
+    "when_to_use": [
+      "Running state-of-the-art Chinese open-source LLMs locally",
+      "Fine-tuning InternLM models for domain-specific tasks",
+      "Building long-context reasoning chains with 1M token support",
+      "Benchmarking InternLM2 against GPT-4 on Chinese reasoning tasks"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Fully open weights including multimodal InternVL",
+      "Competitive on reasoning and code benchmarks",
+      "Backed by credible research lab"
+    ],
+    "cons": [
+      "Inference infra is your problem — not hosted API",
+      "English performance lags on some tasks",
+      "Ecosystem smaller than Qwen or Llama"
+    ],
+    "verdict": "A strong open-weight Chinese LLM family for teams that want to self-host multimodal.",
+    "best_for": "Research teams and China-based developers self-hosting open LLMs",
+    "not_for": "Product teams wanting a managed API like OpenAI or Anthropic"
   }
 }

@@ -41,5 +41,30 @@
     "forks": 616,
     "updated_at": "2026-04-21",
     "health_score": "A"
+  },
+  "content": {
+    "when_to_use": [
+      "Official Electron scaffolding and packaging pipeline",
+      "Auto-code-sign and notarize macOS apps in CI",
+      "Publish to GitHub Releases with built-in publishers",
+      "Vite/Webpack integration for modern frontend bundling"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Official Electron team tool, well-supported",
+      "Sane defaults and scaffolding for new apps",
+      "Plugin system covers packaging and publishing",
+      "Better docs and DX than electron-builder"
+    ],
+    "cons": [
+      "Less flexibility than electron-builder for edge cases",
+      "Some advanced signing workflows still rough",
+      "Historically lagged on notarization features",
+      "Switching off later can be painful"
+    ],
+    "verdict": "The recommended starting point for new Electron apps — pick this unless you have a hard reason not to.",
+    "best_for": "New Electron projects wanting official tooling with sensible defaults.",
+    "not_for": "Highly customized installer flows that exceed Forge's plugin surface."
   }
 }

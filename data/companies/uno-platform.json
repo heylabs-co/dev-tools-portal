@@ -42,5 +42,32 @@
     "forks": 854,
     "updated_at": "2026-04-21",
     "health_score": "A"
+  },
+  "content": {
+    "when_to_use": [
+      "Single .NET codebase targeting Web, iOS, Android, and Windows",
+      "Cross-platform app sharing C# and XAML with Blazor web target",
+      "Enterprise LOB app deployed to all platforms from one repo",
+      "Porting a WPF app to web and mobile via Uno Platform",
+      "Open-source app with cross-platform CI from a single codebase"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Single C# codebase for Web, Mobile, Desktop",
+      "XAML developers reuse existing skills",
+      "Real WebAssembly, not a fake port",
+      "Open-source under Apache 2.0",
+      "Strong Microsoft ecosystem fit"
+    ],
+    "cons": [
+      "Bundle size heavy on WebAssembly target",
+      "Smaller community than .NET MAUI",
+      "Build times long on multi-target projects",
+      "Edge cases between platforms need workarounds"
+    ],
+    "verdict": "The most ambitious single-codebase .NET platform, worth it if your team already lives in C# and XAML.",
+    "best_for": "Microsoft shops reusing C# and XAML skills across web, mobile, and desktop from one codebase",
+    "not_for": "Teams without .NET background — Flutter or React Native ship faster"
   }
 }

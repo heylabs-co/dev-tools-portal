@@ -39,5 +39,31 @@
     "forks": 141,
     "updated_at": "2026-04-21",
     "health_score": "A"
+  },
+  "content": {
+    "when_to_use": [
+      "Unikernel deployment running apps as isolated secure VMs",
+      "Up to 3x faster app performance vs containers on major clouds",
+      "Minimal attack surface runtime for security-sensitive services",
+      "Replacing Docker containers with lightweight unikernel VMs",
+      "Instant VM boot for serverless-like app isolation patterns"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Unikernels deliver real security isolation",
+      "Performance gains over containers cited",
+      "Smaller attack surface than full VMs",
+      "Runs on major clouds"
+    ],
+    "cons": [
+      "Niche paradigm with tiny adoption",
+      "Debugging unikernels is painful",
+      "Limited ecosystem and tooling",
+      "Migration effort is substantial"
+    ],
+    "verdict": "Genuinely fast and secure unikernel tech, but container inertia makes adoption a hard sell.",
+    "best_for": "Security-focused teams willing to invest in unikernel tooling for specific workloads",
+    "not_for": "Mainstream teams happy with containers or needing broad ecosystem compatibility"
   }
 }

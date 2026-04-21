@@ -26,5 +26,29 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "Flow control and rate limiting for Java microservices",
+      "Circuit breaker for resilient Alibaba-stack services",
+      "System protection from traffic spike for Spring Cloud",
+      "Adaptive throttling for downstream service protection",
+      "Bulkhead isolation for microservice fault tolerance"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Proven at Alibaba traffic scale",
+      "Circuit breaking and flow control",
+      "Free OSS with Apache license"
+    ],
+    "cons": [
+      "Java-centric, weak polyglot story",
+      "Documentation gaps in English",
+      "Smaller community outside China"
+    ],
+    "verdict": "Battle-tested resilience library for Java microservices, though Resilience4j is often the easier Western default.",
+    "best_for": "Java teams needing Alibaba-scale flow control libraries",
+    "not_for": "Polyglot stacks or teams preferring Resilience4j"
   }
 }

@@ -38,5 +38,31 @@
     "forks": 15,
     "updated_at": "2026-04-21",
     "health_score": "B"
+  },
+  "content": {
+    "when_to_use": [
+      "Building a modern GNOME app with HIG-compliant widgets",
+      "GTK4 app with libadwaita adaptive layout for GNOME Shell",
+      "Open-source Linux utility following GNOME design patterns",
+      "Responsive desktop app with mobile-friendly Adwaita widgets",
+      "Consistent GNOME app experience across screen sizes"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Implements GNOME HIG widgets",
+      "First-party GNOME support",
+      "Modern responsive widget patterns",
+      "Active Red Hat and GNOME backing"
+    ],
+    "cons": [
+      "GNOME-specific, poor on KDE and Windows",
+      "API still evolving rapidly",
+      "Opinionated, limits deviation from HIG",
+      "Learning curve for non-GTK devs"
+    ],
+    "verdict": "The right choice for modern GNOME apps, the wrong choice for anything cross-desktop.",
+    "best_for": "Developers targeting GNOME apps matching the HIG with modern widgets",
+    "not_for": "Cross-platform or KDE-focused developers wanting platform neutrality"
   }
 }

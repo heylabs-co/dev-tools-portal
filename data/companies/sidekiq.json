@@ -22,5 +22,29 @@
   },
   "community": {
     "hn_mentions_30d": 4
+  },
+  "content": {
+    "when_to_use": [
+      "Ruby background job processing with Redis queues",
+      "Scheduled email digests with Sidekiq cron jobs",
+      "Automatic retry logic for flaky external API calls",
+      "Web UI for monitoring background job queue health",
+      "High-concurrency job processing for Rails applications"
+    ]
+  },
+  "review": {
+    "pros": [
+      "The Ruby job queue standard",
+      "Redis-backed with proven reliability",
+      "Pro and Enterprise tiers add power"
+    ],
+    "cons": [
+      "Ruby-only, not polyglot friendly",
+      "Requires Redis operational overhead",
+      "Not an API management tool"
+    ],
+    "verdict": "The obvious choice for Ruby background jobs, though it's miscategorized — this isn't an API management product.",
+    "best_for": "Rails applications running background jobs at scale",
+    "not_for": "Non-Ruby stacks or pure API gateway needs"
   }
 }

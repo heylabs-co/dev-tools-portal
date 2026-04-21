@@ -22,5 +22,31 @@
   },
   "community": {
     "hn_mentions_30d": 5
+  },
+  "content": {
+    "when_to_use": [
+      "Zero-trust overlay network embedded directly in app code",
+      "mTLS microservice communication without VPN infrastructure",
+      "Application-layer zero-trust for cloud-native workloads",
+      "Dark network deployment hiding services from internet scanning",
+      "SD-WAN replacement with zero-trust software-defined networking"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Zero-trust overlay network, app-embedded",
+      "Kills the need for public listeners",
+      "SDKs for many languages",
+      "Self-hostable control plane"
+    ],
+    "cons": [
+      "Conceptually heavy for newcomers",
+      "Requires code changes for SDK integration",
+      "Not really a secrets manager per se",
+      "Debugging overlay issues is non-trivial"
+    ],
+    "verdict": "Powerful zero-trust networking for serious infra teams; don't expect a drop-in secrets vault.",
+    "best_for": "Teams embedding zero-trust connectivity into their own apps.",
+    "not_for": "Teams that just need a secret store or reverse proxy."
   }
 }

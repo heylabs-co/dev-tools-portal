@@ -23,5 +23,30 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "Crash reporting for Chinese Android apps distributed via local app stores",
+      "Exception monitoring for web apps deployed in Chinese market",
+      "Real-time error alerts integrated into Dingtalk or WeChat for dev teams",
+      "Stack trace collection for mobile crash triage in China-first products"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Low-cost crash/exception reporting for Chinese teams",
+      "Covers mobile and web apps",
+      "Simple dashboards and alerting",
+      "Local data residency for Chinese market"
+    ],
+    "cons": [
+      "Primarily relevant inside China",
+      "Smaller feature set than Sentry or Bugsnag",
+      "English docs and support limited",
+      "Lags on modern SDK platforms"
+    ],
+    "verdict": "Budget crash reporting for Chinese apps; use established global vendors if you operate outside China.",
+    "best_for": "Chinese mobile/web teams needing cheap basic crash reporting",
+    "not_for": "Global apps wanting rich debugging and integrations"
   }
 }

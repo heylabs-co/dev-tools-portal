@@ -25,5 +25,28 @@
   },
   "community": {
     "hn_mentions_30d": 141
+  },
+  "content": {
+    "when_to_use": [
+      "Building production RAG applications with grounded retrieval",
+      "Deploying a managed semantic search API over document corpora",
+      "Reducing hallucinations with Vectara's hallucination evaluation",
+      "Creating enterprise knowledge assistants without managing vectors"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Managed RAG with grounded generation",
+      "Strong cross-lingual retrieval",
+      "Built-in hallucination controls"
+    ],
+    "cons": [
+      "Less flexibility than custom RAG stacks",
+      "Pricing gets steep at volume",
+      "Another layer between you and the LLM"
+    ],
+    "verdict": "A grown-up managed RAG service for teams who do not want to assemble their own retrieval stack.",
+    "best_for": "Enterprises needing multilingual RAG with hallucination controls but no retrieval engineers",
+    "not_for": "Teams comfortable wiring pgvector or LanceDB plus their own chunking and rerankers"
   }
 }

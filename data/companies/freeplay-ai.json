@@ -23,5 +23,30 @@
   },
   "community": {
     "hn_mentions_30d": 39
+  },
+  "content": {
+    "when_to_use": [
+      "Prompt engineering and evaluation for LLM products",
+      "Observability dashboard tracking LLM output quality",
+      "A/B test prompt variants with production traffic",
+      "Monitor LLM cost, latency, and output regressions"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Prompt playground and evals share one dataset",
+      "Observability on production LLM calls with traces",
+      "PM-friendly UI for non-engineers",
+      "Version control for prompts and evaluators"
+    ],
+    "cons": [
+      "Crowded LLMOps space with LangSmith, Braintrust, Langfuse",
+      "Per-seat pricing hits larger teams hard",
+      "Self-hosted option limited",
+      "Newer than established alternatives"
+    ],
+    "verdict": "Product-team-friendly LLMOps, but LangSmith and Braintrust have deeper engineering traction.",
+    "best_for": "Product managers and small AI teams iterating on prompts without a data science stack.",
+    "not_for": "Engineering-heavy teams already invested in LangSmith or Langfuse."
   }
 }

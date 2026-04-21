@@ -30,5 +30,31 @@
   },
   "community": {
     "hn_mentions_30d": 3
+  },
+  "content": {
+    "when_to_use": [
+      "Developer behavior risk tracking in CI/CD pipeline",
+      "SDLC security posture scoring for dev teams",
+      "Alert on risky code patterns before production deploy",
+      "Compliance audit trail for developer access and actions",
+      "Security hygiene baseline for engineering organizations"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Novel angle: developer-behavior risk visibility",
+      "SDLC context rivals CSPM tools miss",
+      "Integrates with GitHub, GitLab, IDEs",
+      "Useful for insider-risk stories"
+    ],
+    "cons": [
+      "Early-stage, customer base small",
+      "Category itself still forming",
+      "Risk of alert fatigue if misconfigured",
+      "Pricing opaque"
+    ],
+    "verdict": "Interesting early-stage DevSecOps play, worth piloting if insider SDLC risk is on your radar.",
+    "best_for": "Security teams worried about shadow dev activity and SDLC-origin risk",
+    "not_for": "Teams who haven't yet covered basics like SAST, SCA, and secrets scanning"
   }
 }

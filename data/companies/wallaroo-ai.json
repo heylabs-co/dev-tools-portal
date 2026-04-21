@@ -26,5 +26,28 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "Deploying ML models to production across multi-cloud environments",
+      "Monitoring model drift and performance SLAs in production",
+      "Running edge AI inference on IoT and on-premise hardware",
+      "Managing full model lifecycle from staging to production rollout"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Rust runtime gives real perf wins",
+      "Deploys cloud, on-prem and edge",
+      "Unified monitoring across targets"
+    ],
+    "cons": [
+      "Overlaps heavily with KServe/Seldon/BentoML",
+      "Enterprise pricing and sales cycle",
+      "Smaller community than open rivals"
+    ],
+    "verdict": "A legitimate choice for regulated inference across edge and on-prem, but open alternatives cover most cases.",
+    "best_for": "Regulated enterprises deploying ML to edge and on-prem with central observability",
+    "not_for": "Teams happy with open-source serving like KServe, BentoML or vLLM"
   }
 }

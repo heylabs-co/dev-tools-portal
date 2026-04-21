@@ -22,5 +22,30 @@
   },
   "community": {
     "hn_mentions_30d": 6
+  },
+  "content": {
+    "when_to_use": [
+      "Deliver masked production snapshots to test environments",
+      "Virtualize multi-TB databases in minutes for testing",
+      "GDPR-compliant PII masking before dev/QA access",
+      "Self-service data provisioning for agile teams"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Near-instant virtual copies of huge production DBs",
+      "Strong masking plus delivery in one platform",
+      "Saves massive storage versus physical clones",
+      "Deep integration with Oracle, SQL Server, SAP"
+    ],
+    "cons": [
+      "Expensive enterprise licensing and infrastructure",
+      "Complex deployment, dedicated admins usually needed",
+      "Agent-based architecture adds operational surface",
+      "Less compelling for cloud-native, small datasets"
+    ],
+    "verdict": "The heavyweight standard for test data virtualization, priced and staffed accordingly.",
+    "best_for": "Large enterprises with massive relational DBs and strict data privacy rules",
+    "not_for": "Startups or SaaS teams that can reseed small Postgres DBs in seconds"
   }
 }

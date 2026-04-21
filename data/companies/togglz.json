@@ -41,5 +41,30 @@
     "forks": 260,
     "updated_at": "2026-04-21",
     "health_score": "B"
+  },
+  "content": {
+    "when_to_use": [
+      "Type-safe Java feature toggles using enum definitions",
+      "Multiple activation strategies including gradual rollout",
+      "Database-backed flag persistence with Spring Boot auto-config",
+      "Web console for runtime flag management in Java apps"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Type-safe Java enums for flag definitions",
+      "Long-standing Apache 2.0 Java toggle library",
+      "Admin console and many storage backends",
+      "Predictable, boring, dependable"
+    ],
+    "cons": [
+      "Java/JVM-only ecosystem",
+      "Less innovation recently vs new entrants",
+      "Weak built-in experimentation analytics",
+      "No first-class remote config server"
+    ],
+    "verdict": "Safe, conservative choice for Java teams; consider OpenFeature-based options if you want language portability.",
+    "best_for": "JVM monoliths wanting simple, type-safe in-process flags",
+    "not_for": "Polyglot systems or experimentation-heavy product teams"
   }
 }

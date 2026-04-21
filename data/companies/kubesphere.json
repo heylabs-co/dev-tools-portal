@@ -26,5 +26,31 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "Multi-tenant Kubernetes platform with DevOps and observability",
+      "Application lifecycle management on self-managed K8s clusters",
+      "Kubernetes GUI with built-in CI/CD and monitoring pipelines",
+      "OpenShift alternative for teams managing on-prem Kubernetes",
+      "Enterprise K8s portal with RBAC, logging, and metrics UI"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Polished UI on top of Kubernetes",
+      "Multi-tenant DevOps out of the box",
+      "Strong observability integrations",
+      "Active Chinese and global community"
+    ],
+    "cons": [
+      "Heavy install footprint on small clusters",
+      "Upgrade paths can be tricky",
+      "Some features China-market focused",
+      "Documentation gaps in English"
+    ],
+    "verdict": "The nicest open-source Kubernetes UI around, but brings real operational overhead.",
+    "best_for": "Teams wanting multi-tenant Kubernetes with a proper UI without paying Rancher prices",
+    "not_for": "Tiny clusters, bare-metal minimalists, or teams already happy with kubectl"
   }
 }

@@ -22,5 +22,30 @@
   },
   "community": {
     "hn_mentions_30d": 7
+  },
+  "content": {
+    "when_to_use": [
+      "Evaluating AI model trustworthiness across safety dimensions",
+      "Running red-team assessments on deployed LLM applications",
+      "Building AI governance workflows with trust scoring and reporting",
+      "Auditing AI systems for bias, fairness, and safety metrics"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Independent measurement, not just detection",
+      "Useful for board-level and regulator reporting",
+      "Strong methodology and research pedigree",
+      "Benchmarks across platforms and policies"
+    ],
+    "cons": [
+      "Not a real-time moderation API",
+      "Enterprise consulting blend, not pure software",
+      "Opaque pricing and long sales cycle",
+      "Value clearest to large, regulated platforms"
+    ],
+    "verdict": "Measurement and assurance layer for mature T&S programs, not a classifier you call from your backend.",
+    "best_for": "Large platforms proving platform integrity to regulators, advertisers, or boards.",
+    "not_for": "Product teams needing a low-latency classification API."
   }
 }

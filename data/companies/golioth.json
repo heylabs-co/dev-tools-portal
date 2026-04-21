@@ -22,5 +22,29 @@
   },
   "community": {
     "hn_mentions_30d": 4
+  },
+  "content": {
+    "when_to_use": [
+      "OTA firmware updates over CoAP/MQTT to embedded devices",
+      "Time-series sensor logging from IoT devices to cloud",
+      "Device shadow and remote configuration for field devices",
+      "Zephyr RTOS integration for connected product development",
+      "Cloud-managed IoT platform for hardware startups"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Zephyr-friendly OTA pipeline",
+      "CoAP and MQTT support out of the box",
+      "Good device shadow model"
+    ],
+    "cons": [
+      "Ecosystem smaller than AWS or Azure IoT",
+      "Pricing tier limits at the low end",
+      "Requires embedded team familiarity"
+    ],
+    "verdict": "A developer-centric IoT cloud especially strong for Zephyr and constrained devices.",
+    "best_for": "Firmware teams shipping constrained Zephyr-based IoT devices",
+    "not_for": "Cloud-first teams without embedded Linux or RTOS chops"
   }
 }

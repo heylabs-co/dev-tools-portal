@@ -19,5 +19,31 @@
   "seo": {
     "title": "glTF Transform — Game Development Tools",
     "meta_description": "glTF Transform: Open-source Node.js/CLI toolchain for reading, editing, and optimising glTF 3D assets. Handles compression, texture optimisation, and LOD genera"
+  },
+  "content": {
+    "when_to_use": [
+      "glTF asset compressed with Draco before shipping to WebGL",
+      "Texture optimization pipeline reducing download size by 70%",
+      "LOD generation baked into CI for 3D web product viewer",
+      "Batch glTF processing script run in Node.js build pipeline",
+      "CLI tool used to strip unused extensions before engine import"
+    ]
+  },
+  "review": {
+    "pros": [
+      "CLI and JS API both first-class for pipelines",
+      "Draco, Meshopt, and KTX2 compression supported out of the box",
+      "Cuts model sizes 60-90% without visible quality loss",
+      "MIT licensed and actively maintained by Don McCurdy"
+    ],
+    "cons": [
+      "Node.js only, no Python or C# bindings",
+      "Requires understanding glTF internals to use advanced extensions",
+      "Not a visual tool — pipeline knowledge assumed",
+      "Edge cases with rare extensions still need manual fixing"
+    ],
+    "verdict": "The essential CLI for any web or mobile 3D pipeline; if you ship glTF, install it today.",
+    "best_for": "Web and mobile teams optimizing glTF assets as part of a Node.js build pipeline",
+    "not_for": "Artists without command-line skills or non-Node build environments"
   }
 }

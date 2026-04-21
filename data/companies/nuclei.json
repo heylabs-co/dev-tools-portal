@@ -22,5 +22,31 @@
   },
   "community": {
     "hn_mentions_30d": 83
+  },
+  "content": {
+    "when_to_use": [
+      "YAML template-based DAST scanning of web applications",
+      "CVE detection scan against known vulnerability signatures",
+      "CI/CD pipeline security scan on every pull request",
+      "Network and cloud asset scanning via community templates",
+      "API security testing with OpenAPI-based Nuclei templates"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Huge community template library covers new CVEs quickly",
+      "Fast Go-based scanner handles large target sets",
+      "Free and open source with active ProjectDiscovery backing",
+      "YAML templates are readable and easy to extend"
+    ],
+    "cons": [
+      "No built-in authenticated-crawl for complex SPAs",
+      "Template quality varies, some produce false positives",
+      "Lacks enterprise features like scheduling and RBAC",
+      "Raw output needs tooling to become useful reports"
+    ],
+    "verdict": "Best free DAST scanner for recon and known-CVE hunting; expect to build pipelines around it.",
+    "best_for": "Bug bounty hunters, red teams, and DevSecOps pipelines needing CVE sweeps at scale.",
+    "not_for": "Teams wanting a turnkey web-app scanner with GUI, auth flows, and managed reporting."
   }
 }

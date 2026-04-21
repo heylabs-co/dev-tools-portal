@@ -19,5 +19,31 @@
   "seo": {
     "title": "Arm Mobile Studio — Game Development Tools",
     "meta_description": "Arm Mobile Studio: Suite of free Arm GPU performance analysis tools (Streamline, Frame Advisor, Mali Offline Compiler) for profiling and optimising Android game"
+  },
+  "content": {
+    "when_to_use": [
+      "GPU frame profiling for Android game optimization",
+      "Mali shader offline compilation to catch bottlenecks early",
+      "Memory bandwidth analysis for mobile battery efficiency",
+      "Frame Advisor workflow for reducing overdraw in 2D games",
+      "Streamline timeline tracing for Unity Arm build targets"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Free deep GPU profiling for Mali and Immortalis chips",
+      "Streamline captures CPU, GPU, and memory in one timeline",
+      "Frame Advisor flags shader and overdraw hotspots directly",
+      "Mali Offline Compiler shows cycle cost per shader"
+    ],
+    "cons": [
+      "Only useful for Arm-based Android targets",
+      "UI feels dated and occasionally unstable on macOS",
+      "Learning curve is steep for non-graphics engineers",
+      "Integration requires gatord daemon setup on device"
+    ],
+    "verdict": "The definitive free profiler if you ship to Mali GPUs; irrelevant if you target Adreno or PowerVR only.",
+    "best_for": "Mobile studios optimizing Android games for Arm Mali and Immortalis GPU hardware",
+    "not_for": "Console, desktop, or iOS developers who dont ship to Arm Mali devices"
   }
 }

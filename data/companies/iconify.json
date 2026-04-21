@@ -23,5 +23,31 @@
   "seo": {
     "title": "Iconify — Design Tools / Design-to-Code",
     "meta_description": "Iconify: Universal open-source icon framework unifying 200k+ icons from 150+ icon sets into one API. Supports React, Vue, Svelte components and a Figma plugin f"
+  },
+  "content": {
+    "when_to_use": [
+      "200k+ icons browsed and dropped into Figma via plugin",
+      "Framework-agnostic icon component switching set at build time",
+      "On-demand icon API eliminating full icon font bundle",
+      "Design token linking icon names to Iconify slugs in code",
+      "SVG icon rendered server-side as inline HTML without JS"
+    ]
+  },
+  "review": {
+    "pros": [
+      "200k+ icons across 150+ sets unified by one API",
+      "On-demand loading keeps bundles small",
+      "Official React, Vue, Svelte, and Figma components",
+      "Open-source core and transparent architecture"
+    ],
+    "cons": [
+      "Runtime lookup adds a small performance cost",
+      "License of individual icon sets varies; check per-set",
+      "Huge catalog can slow design decisions",
+      "Offline bundles need extra configuration"
+    ],
+    "verdict": "The most comprehensive icon framework available today; the right default if you want one API across any icon library.",
+    "best_for": "Projects that need access to many icon sets without bundling each library individually.",
+    "not_for": "Tiny static sites or teams that only ever use one curated icon set."
   }
 }

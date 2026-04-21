@@ -22,5 +22,33 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "HTML or URL to PDF conversion with CSS media print support",
+      "Generating server-side PDF reports from React or Vue pages",
+      "Custom header, footer, and watermark in PDF via API",
+      "Batch HTML-to-PDF for document generation pipelines",
+      "Headless browser PDF rendering without managing Puppeteer"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Handles modern CSS and JS-heavy pages well",
+      "Fast rendering, competitive pricing",
+      "Clean REST API and code samples",
+      "Supports headers/footers, watermarks, encryption",
+      "European hosting for GDPR peace of mind"
+    ],
+    "cons": [
+      "Not ideal for complex CSS Paged Media layouts",
+      "Rate limits defined per second, not per month",
+      "Dashboard analytics basic",
+      "Smaller team, lower bus factor",
+      "No bulk-pricing negotiation below big tiers"
+    ],
+    "verdict": "Excellent modern HTML-to-PDF API — hits the sweet spot for most apps, lose to PrinceXML on print layouts.",
+    "best_for": "SaaS apps converting dynamic web pages to PDF with modern CSS/JS.",
+    "not_for": "Print-shop layouts needing CSS Paged Media — use PrinceXML."
   }
 }

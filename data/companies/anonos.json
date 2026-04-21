@@ -22,5 +22,31 @@
   },
   "community": {
     "hn_mentions_30d": 2
+  },
+  "content": {
+    "when_to_use": [
+      "Pseudonymizing PII before sending data to analytics teams",
+      "Generating synthetic datasets for GDPR-compliant testing",
+      "De-identifying clinical data for research pipelines",
+      "Enabling cross-border data transfer with privacy guarantees",
+      "Replacing prod data with compliant synthetic copies for dev"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Pseudonymization aligned with GDPR standards",
+      "Patented Variant Twin synthetic data approach",
+      "Strong legal defensibility positioning",
+      "Supports data sharing across jurisdictions"
+    ],
+    "cons": [
+      "Heavy legal-compliance framing, not dev-first",
+      "Enterprise sales cycle required",
+      "Documentation sparse for engineers",
+      "Overlap with more dev-friendly synth data tools"
+    ],
+    "verdict": "Compliance-heavy pseudonymization platform for regulated enterprises, engineers may find dev-first tools easier.",
+    "best_for": "Regulated industries needing GDPR-defensible data pseudonymization with legal cover",
+    "not_for": "Developer teams just wanting fast synthetic data for testing environments"
   }
 }

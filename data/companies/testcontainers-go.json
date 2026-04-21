@@ -41,5 +41,29 @@
     "forks": 605,
     "updated_at": "2026-04-21",
     "health_score": "A"
+  },
+  "content": {
+    "when_to_use": [
+      "Spin up real Postgres/Redis containers for Go tests",
+      "Integration tests without mocks using real dependencies",
+      "Automatic container teardown after test completion",
+      "Multi-container test scenarios with Docker networking"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Real Docker services in Go integration tests",
+      "Throwaway databases, brokers, and browsers",
+      "Idiomatic Go API with generics",
+      "Massive boost over hand-rolled mocks"
+    ],
+    "cons": [
+      "Requires Docker in CI and dev machines",
+      "Test runtime is slower than unit tests",
+      "Disk and memory cost can add up"
+    ],
+    "verdict": "Essential for serious Go integration testing; it pays back its Docker overhead within the first week.",
+    "best_for": "Go teams needing realistic integration tests against real databases and queues",
+    "not_for": "CI environments without Docker access or latency-sensitive unit suites"
   }
 }

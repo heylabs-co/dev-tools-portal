@@ -42,5 +42,30 @@
     "forks": 111,
     "updated_at": "2026-04-21",
     "health_score": "B"
+  },
+  "content": {
+    "when_to_use": [
+      "OpenFeature-compliant feature flag evaluation daemon",
+      "gRPC and HTTP flag evaluation for polyglot services",
+      "Targeting rules evaluated locally without remote latency",
+      "OpenTelemetry tracing of every flag evaluation"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Reference OpenFeature backend with clean Unix design",
+      "HTTP and gRPC evaluation, flexible targeting",
+      "OpenTelemetry tracing out of the box",
+      "Easy to self-host as a daemon"
+    ],
+    "cons": [
+      "Minimal UI; configuration is file-driven",
+      "Not a product; you build dashboards yourself",
+      "Smaller feature set than mature SaaS flag tools",
+      "Operational ownership sits with you"
+    ],
+    "verdict": "Solid default flag daemon if youre already committing to OpenFeature; not a turnkey product.",
+    "best_for": "Platform teams standardizing on OpenFeature with self-hosting",
+    "not_for": "Teams that need a polished no-code flag dashboard"
   }
 }

@@ -22,5 +22,31 @@
   },
   "community": {
     "hn_mentions_30d": 198
+  },
+  "content": {
+    "when_to_use": [
+      "Client-side database with optimistic updates and real-time sync",
+      "Offline-capable collaborative apps backed by Datalog queries",
+      "Real-time multi-user state sync without custom WebSocket code",
+      "Replacing Firebase Realtime DB with a typed Datalog backend",
+      "Building local-first apps with automatic server reconciliation"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Client-side DB with optimistic updates",
+      "Real-time sync and offline support",
+      "Datalog queries give powerful relational reads",
+      "Fast to prototype real-time apps"
+    ],
+    "cons": [
+      "Early stage, small ecosystem",
+      "Lock-in to Datalog query model",
+      "Unclear scaling limits for huge datasets",
+      "Smaller community than Firebase or Supabase"
+    ],
+    "verdict": "Exciting local-first DB for real-time apps, too new for production workloads with heavy compliance or scale needs.",
+    "best_for": "Small teams building real-time collaborative apps wanting local-first DX",
+    "not_for": "Production apps needing mature ecosystem and proven horizontal scale"
   }
 }

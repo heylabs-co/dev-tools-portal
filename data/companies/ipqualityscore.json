@@ -21,5 +21,31 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "VPN and proxy detection for signup geo-restriction enforcement",
+      "Email address risk scoring for registration abuse prevention",
+      "Phone number validation and fraud scoring for verification",
+      "Device fingerprint risk signal for payment fraud scoring",
+      "Bot traffic filtering for ad fraud and click fraud reduction"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Broad toolkit: proxy, email, phone, device, txn",
+      "Self-serve signup with transparent pricing",
+      "Fast to integrate for signup abuse",
+      "Good value for small and mid-size teams"
+    ],
+    "cons": [
+      "Data quality varies across categories",
+      "Less enterprise support vs LexisNexis",
+      "Requires tuning thresholds to avoid false positives",
+      "Reputation data can lag on emerging fraud patterns"
+    ],
+    "verdict": "A high-value utility belt for signup and basic transaction risk when you do not need an enterprise vendor.",
+    "best_for": "Small to mid-market SaaS and marketplaces fighting signup abuse and low-risk payment fraud.",
+    "not_for": "Tier-1 banks or high-stakes fintech flows where data depth and SLAs are critical."
   }
 }

@@ -22,5 +22,31 @@
   "seo": {
     "title": "RapiDoc — Developer Documentation / DevRel",
     "meta_description": "RapiDoc: RapiDoc — open-source Web Component for rendering OpenAPI specs as interactive API reference documentation, embeddable in any web page."
+  },
+  "content": {
+    "when_to_use": [
+      "OpenAPI spec rendered as interactive API docs with zero build step",
+      "Web component embedded in existing developer portal HTML page",
+      "Dark-theme API reference matching product design system",
+      "Try-it-out requests executed against staging API from docs page",
+      "OpenAPI 3.1 spec auto-rendered on every docs deployment"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Single Web Component drops into any site instantly",
+      "Renders full OpenAPI specs interactively",
+      "No framework dependency - plain HTML works fine",
+      "Built-in try-it-out console for API testing"
+    ],
+    "cons": [
+      "Less polished UI than Stoplight or Redoc out of box",
+      "Customization needs deep CSS/attribute knowledge",
+      "Smaller community than established API doc tools",
+      "Single-maintainer risk for long-term reliability"
+    ],
+    "verdict": "The quickest way to render OpenAPI in any page; expect to tweak styling for production polish.",
+    "best_for": "Teams needing a quick embedded API reference without adopting a full docs platform.",
+    "not_for": "Polished public docs sites where brand consistency and UX refinement matter most."
   }
 }

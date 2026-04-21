@@ -42,5 +42,32 @@
     "forks": 865,
     "updated_at": "2026-04-21",
     "health_score": "A"
+  },
+  "content": {
+    "when_to_use": [
+      "Rust desktop GUI app with declarative Slint UI language",
+      "Embedded touchscreen UI for a microcontroller device",
+      "Cross-language UI shared between Rust and C++ backend",
+      "Lightweight GUI for a developer tool targeting WASM web",
+      "Native app UI for Python backend without Qt or GTK"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Declarative GUI that compiles to native",
+      "Rust, C++, JS, and Python bindings",
+      "Tiny runtime suits embedded targets",
+      "Live preview speeds up UI iteration",
+      "Real open-source (GPL + commercial)"
+    ],
+    "cons": [
+      "Young ecosystem — few third-party widgets",
+      "Documentation thin for complex layouts",
+      "Commercial license needed for closed source",
+      "Smaller community than Qt or Flutter"
+    ],
+    "verdict": "Promising modern alternative to Qt for embedded and desktop, though Qt still wins on ecosystem maturity.",
+    "best_for": "Embedded and desktop teams wanting a modern Rust-first declarative GUI toolkit",
+    "not_for": "Projects needing mature widgets and battle-tested mobile cross-platform support"
   }
 }

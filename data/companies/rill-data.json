@@ -22,5 +22,31 @@
   },
   "community": {
     "hn_mentions_30d": 103
+  },
+  "content": {
+    "when_to_use": [
+      "Instant pre-aggregated dashboards on DuckDB for sub-second BI",
+      "OSS BI tool replacing Looker for code-driven data modeling",
+      "Metrics exploration on Parquet or DuckDB files with SQL",
+      "Collaborative data dashboard development in version control",
+      "No-infrastructure analytics on small to medium data volumes"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Sub-second dashboards via DuckDB backend",
+      "OSS core aligns with modern data stacks",
+      "Pre-aggregated model cuts warehouse costs",
+      "Code-first configuration with YAML models"
+    ],
+    "cons": [
+      "Opinionated approach limits flexibility",
+      "Narrower than general-purpose BI tools",
+      "Cloud tier pricing still evolving",
+      "Community smaller than Metabase or Superset"
+    ],
+    "verdict": "Best-in-class for fast operational dashboards, but not a full Metabase or Looker replacement.",
+    "best_for": "Data teams needing fast operational dashboards over event streams",
+    "not_for": "Orgs wanting a general-purpose BI tool for varied ad-hoc analysis"
   }
 }

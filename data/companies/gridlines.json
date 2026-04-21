@@ -23,5 +23,31 @@
   },
   "community": {
     "hn_mentions_30d": 14
+  },
+  "content": {
+    "when_to_use": [
+      "Aadhaar OTP verification for Indian KYC onboarding",
+      "PAN card validation for financial account opening in India",
+      "Bank account penny-drop verification for payout platforms",
+      "GST number verification for B2B marketplace onboarding",
+      "Driving license and voter ID check for telecom KYC"
+    ]
+  },
+  "review": {
+    "pros": [
+      "India-specific checks: Aadhaar, PAN, GST, bank",
+      "Single integration covers the whole KYC stack",
+      "Fraud and address checks tuned for Indian data",
+      "Faster than stitching 5+ regulator APIs yourself"
+    ],
+    "cons": [
+      "India-only, useless for global expansion",
+      "Competes in crowded market with Signzy, Surepass",
+      "Regulatory changes in India force frequent updates",
+      "Public pricing not available, sales-led"
+    ],
+    "verdict": "India KYC aggregator API; worth comparing head-to-head with Signzy and Surepass on price and SLAs.",
+    "best_for": "Indian fintechs and lenders wanting one API across Aadhaar, PAN, GST and bank verification",
+    "not_for": "Teams building outside India or needing global identity verification beyond Indian regulators"
   }
 }

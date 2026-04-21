@@ -38,5 +38,31 @@
     "forks": 203,
     "updated_at": "2026-04-21",
     "health_score": "F"
+  },
+  "content": {
+    "when_to_use": [
+      "Lightweight HTML UI for a C++ desktop game or tool",
+      "GPU-accelerated WebView embedded in a native application",
+      "Electron alternative with minimal binary size for desktop apps",
+      "In-app browser panel for a high-performance native desktop app",
+      "HTML/CSS-based UI rendered inside a game engine using Ultralight"
+    ]
+  },
+  "review": {
+    "pros": [
+      "GPU-accelerated HTML rendering in C++",
+      "Tiny runtime versus Electron bundles",
+      "Good fit for games and embedded UI",
+      "Embeddable in existing C++ apps"
+    ],
+    "cons": [
+      "Commercial licensing required above small use",
+      "Web-std support partial — not full Chromium",
+      "Community much smaller than Electron",
+      "Docs assume native-dev background"
+    ],
+    "verdict": "The right call when you need HTML UI in a C++ game or tool without shipping Chromium — if licensing fits budget.",
+    "best_for": "Game studios and native C++ teams embedding HTML UIs with tight size budgets",
+    "not_for": "Web developers wanting full Chromium parity and open-source licensing"
   }
 }

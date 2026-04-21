@@ -20,5 +20,31 @@
   "seo": {
     "title": "APItoolkit — Developer Documentation / DevRel",
     "meta_description": "APItoolkit: APItoolkit — API observability and documentation platform that auto-generates API reference docs from live traffic and detects breaking changes."
+  },
+  "content": {
+    "when_to_use": [
+      "Auto-generated API reference from production traffic",
+      "Breaking change detection alert before next SDK release",
+      "API anomaly detection catching unexpected 400 spikes",
+      "Live request/response logging for developer debugging",
+      "Changelog auto-populated from observed API drift"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Auto-generates docs from real production traffic",
+      "Breaking-change detection catches silent API regressions",
+      "Combines observability and docs in one platform",
+      "Language and framework SDK coverage is broad"
+    ],
+    "cons": [
+      "Generated docs still need human polish for quality",
+      "Requires SDK instrumentation in production",
+      "Privacy implications of traffic capture need review",
+      "Newer product with smaller community than incumbents"
+    ],
+    "verdict": "Interesting hybrid of API observability and docs; valuable if accurate, current docs is your pain point.",
+    "best_for": "Teams whose API reference docs constantly drift from live behavior.",
+    "not_for": "Orgs with strict data-residency concerns or those happy with hand-authored specs."
   }
 }

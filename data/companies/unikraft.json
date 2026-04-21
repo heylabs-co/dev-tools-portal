@@ -41,5 +41,31 @@
     "forks": 1457,
     "updated_at": "2026-04-21",
     "health_score": "A"
+  },
+  "content": {
+    "when_to_use": [
+      "Custom minimal unikernel VM images with sub-millisecond boot",
+      "Security-hardened VMs with minimal attack surface for microservices",
+      "Ultra-lightweight VM images for edge and serverless deployments",
+      "Build-your-own unikernel from POSIX libraries with Unikraft",
+      "Fast-booting isolated VMs replacing containers for security"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Sub-millisecond VM boot times",
+      "Tiny images with minimal attack surface",
+      "Strong performance for microservices and FaaS",
+      "Active research community behind it"
+    ],
+    "cons": [
+      "Porting existing apps can be nontrivial",
+      "Smaller library ecosystem vs full Linux",
+      "Debugging unikernels requires new tooling",
+      "Production adoption still relatively niche"
+    ],
+    "verdict": "Serious unikernel toolkit with real boot-time wins, but you trade Linux compatibility for speed and size.",
+    "best_for": "Teams building latency-sensitive FaaS or specialized appliances from scratch",
+    "not_for": "Shops wanting to lift-and-shift generic Linux apps without porting work"
   }
 }

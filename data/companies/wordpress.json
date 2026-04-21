@@ -22,5 +22,31 @@
   },
   "community": {
     "hn_mentions_30d": 108
+  },
+  "content": {
+    "when_to_use": [
+      "Headless CMS via REST API and WPGraphQL for modern frontends",
+      "Publishing platform powering 40% of websites globally",
+      "Extensible CMS with 60K+ plugins for any site use case",
+      "WooCommerce-powered e-commerce on open-source infrastructure",
+      "Multi-site network for agencies managing many client sites"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Powers ~40% of the web; massive ecosystem",
+      "Headless mode via REST and WPGraphQL",
+      "Huge plugin and theme marketplace",
+      "Content editors already know the UX"
+    ],
+    "cons": [
+      "Performance and security depend on plugins",
+      "PHP monolith feels dated for API-first stacks",
+      "Plugin sprawl creates maintenance debt",
+      "Scaling headless WP needs real caching work"
+    ],
+    "verdict": "Still the pragmatic content backend when editors matter, but expect plugin-driven pain if you push it headless.",
+    "best_for": "Content teams needing a familiar CMS with optional headless REST/GraphQL output",
+    "not_for": "Greenfield API-first products where a Node/Go headless CMS fits better"
   }
 }

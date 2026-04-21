@@ -41,5 +41,29 @@
     "forks": 468,
     "updated_at": "2026-04-21",
     "health_score": "A"
+  },
+  "content": {
+    "when_to_use": [
+      "Elegant PHP tests with it()/test() syntax over PHPUnit",
+      "Mutation testing built into Pest for coverage quality",
+      "Architecture tests asserting PHP code structure rules",
+      "Playwright-powered browser tests from PHP test suites"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Expressive it()/test() syntax vs verbose PHPUnit",
+      "Built on PHPUnit, full compatibility kept",
+      "Architecture tests enforce code conventions",
+      "Mutation testing and Playwright browser tests included"
+    ],
+    "cons": [
+      "Pest 3 premium features require paid license",
+      "Abstraction over PHPUnit can hide underlying issues",
+      "Team must learn Pest idioms on top of PHPUnit"
+    ],
+    "verdict": "The most enjoyable PHP testing experience today, especially for Laravel shops willing to adopt its conventions.",
+    "best_for": "Laravel and modern PHP teams who want readable, expressive test syntax",
+    "not_for": "Legacy PHP codebases deeply coupled to PHPUnit's xUnit style"
   }
 }

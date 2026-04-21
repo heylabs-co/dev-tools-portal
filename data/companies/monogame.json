@@ -19,5 +19,31 @@
   "seo": {
     "title": "MonoGame — Game Development Tools",
     "meta_description": "MonoGame: Open-source reimplementation of XNA Framework for shipping 2D/3D games in C# across Windows, macOS, Linux, iOS, Android, and consoles. Used by Stardew"
+  },
+  "content": {
+    "when_to_use": [
+      "C# indie game cross-compiled to Windows, Mac, and Linux",
+      "Stardew Valley-style top-down RPG built with XNA-compatible API",
+      "Console port target added to existing PC game via MonoGame",
+      "Open-source game engine chosen to avoid Unity pricing changes",
+      "2D platformer game jam project built with full C# control"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Ships pure C# games to desktop, mobile, and consoles",
+      "Proven on hits like Stardew Valley and Celeste",
+      "Full source control, no black-box engine runtime",
+      "Active community keeping XNA spirit alive"
+    ],
+    "cons": [
+      "No editor or scene tool — pure code framework",
+      "Asset pipeline (MGCB) has rough UX edges",
+      "Console ports require paid third-party assistance",
+      "Smaller plugin ecosystem than Unity or Godot"
+    ],
+    "verdict": "Framework for C# devs who want total control; youll write your own editor and tools along the way.",
+    "best_for": "Experienced C# developers who want zero engine lock-in and total control",
+    "not_for": "Designer-led teams needing visual scene editors and asset workflows"
   }
 }

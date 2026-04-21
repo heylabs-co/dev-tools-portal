@@ -23,5 +23,29 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "Enterprise service mesh with API gateway and policy enforcement",
+      "Observability and traffic management across microservices",
+      "Federal and defense-grade service mesh with security controls",
+      "mTLS and zero-trust network policies for Kubernetes services",
+      "Unified control plane for hybrid cloud microservice deployments"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Enterprise-grade service mesh",
+      "Integrated API gateway and policy",
+      "Good observability story"
+    ],
+    "cons": [
+      "Enterprise pricing only",
+      "Heavier than Istio alternatives",
+      "Lock-in if you standardize on it"
+    ],
+    "verdict": "A heavyweight, enterprise-focused service mesh for regulated platforms, overkill for most product teams.",
+    "best_for": "Regulated enterprises and government needing integrated mesh and gateway",
+    "not_for": "Product teams that can get by with Linkerd or plain Istio"
   }
 }

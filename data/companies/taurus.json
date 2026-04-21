@@ -22,5 +22,29 @@
   },
   "community": {
     "hn_mentions_30d": 1
+  },
+  "content": {
+    "when_to_use": [
+      "YAML-configured load tests wrapping JMeter and Gatling",
+      "Continuous performance testing in CI pipelines",
+      "Unified performance test interface for multiple engines",
+      "BlazeMeter cloud integration for distributed load tests"
+    ]
+  },
+  "review": {
+    "pros": [
+      "YAML config abstracts JMeter, Gatling, Selenium",
+      "Single tool for load and functional testing",
+      "CI-friendly reporting",
+      "Open source with commercial backing"
+    ],
+    "cons": [
+      "Adds abstraction layer over capable tools",
+      "Debugging leaks through to underlying engines",
+      "k6 has become the modern default"
+    ],
+    "verdict": "Useful if you run multiple legacy load tools, but k6 is usually a cleaner starting point for new load testing.",
+    "best_for": "Teams unifying JMeter, Gatling, and Selenium under one CI pipeline",
+    "not_for": "New load testing initiatives where k6 offers better developer experience"
   }
 }

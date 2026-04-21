@@ -22,5 +22,31 @@
   },
   "community": {
     "hn_mentions_30d": 384
+  },
+  "content": {
+    "when_to_use": [
+      "Embedded wallet creation via social login for Web3 apps",
+      "Email and SMS-based wallet provisioning for non-crypto users",
+      "Multi-wallet connection management across EVM chains",
+      "OIDC-compatible auth with on-chain identity for dApps",
+      "Mobile-first wallet SDK for React Native Web3 applications"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Embedded wallets with email, social and wallet login",
+      "Strong progressive onboarding for non-crypto users",
+      "Good SDK ergonomics and React hooks",
+      "Policy engine and MPC-based key management"
+    ],
+    "cons": [
+      "Pricing climbs fast with MAU growth",
+      "Embedded wallet export model has caveats",
+      "Less chain breadth than raw WalletConnect stacks",
+      "Some features gated behind higher tiers"
+    ],
+    "verdict": "Best-in-class UX for consumer Web3 apps that want Web2-like onboarding; watch pricing as you scale.",
+    "best_for": "Consumer dApps onboarding non-crypto users with embedded wallets",
+    "not_for": "Cost-sensitive projects with millions of wallet MAUs"
   }
 }

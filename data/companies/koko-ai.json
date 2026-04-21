@@ -22,5 +22,30 @@
   },
   "community": {
     "hn_mentions_30d": 59
+  },
+  "content": {
+    "when_to_use": [
+      "Building empathy-focused mental health support tools with AI",
+      "Detecting user distress signals in text for crisis intervention",
+      "Integrating peer support features with AI-assisted response routing",
+      "Running content safety checks for mental health platform moderation"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Only major API focused on crisis intervention",
+      "Detects self-harm, suicide, and ED signals",
+      "Research-backed, used on real platforms",
+      "Offers response playbooks, not just detection"
+    ],
+    "cons": [
+      "Very narrow scope, not general moderation",
+      "Ethical concerns around past AI-experiment controversy",
+      "Limited public docs and pricing",
+      "Requires careful human escalation design"
+    ],
+    "verdict": "Specialist layer for platforms with mental-health exposure; pair with a general moderation vendor.",
+    "best_for": "Teen apps, mental health platforms, and communities needing crisis signal detection.",
+    "not_for": "General moderation use cases or teams uncomfortable with sensitive domain risk."
   }
 }

@@ -42,5 +42,29 @@
     "forks": 838,
     "updated_at": "2026-04-21",
     "health_score": "C"
+  },
+  "content": {
+    "when_to_use": [
+      "Default .NET unit testing framework for dotnet CLI projects",
+      "Theory/InlineData for parameterized .NET test cases",
+      "Parallel test collection execution by default",
+      "Clean test isolation with constructor/dispose lifecycle"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Default in new dotnet CLI templates",
+      "Clean fact/theory model without setup/teardown",
+      "Strong parallelism by default",
+      "Active community and frequent releases"
+    ],
+    "cons": [
+      "No Setup/TearDown attributes, constructor only",
+      "Smaller parameterization toolkit than NUnit",
+      "Migration from NUnit has friction"
+    ],
+    "verdict": "The right default for new .NET projects thanks to tight dotnet CLI integration and parallel-first design.",
+    "best_for": "New .NET projects picking a framework aligned with Microsoft defaults",
+    "not_for": "Teams with heavy NUnit investment in parameterized test suites"
   }
 }

@@ -22,5 +22,31 @@
   },
   "community": {
     "hn_mentions_30d": 26
+  },
+  "content": {
+    "when_to_use": [
+      "Workload-to-workload credential issuance without secrets in code",
+      "Non-human identity lifecycle management for microservices",
+      "Just-in-time API credential provisioning for CI/CD pipelines",
+      "Zero-standing-privilege access for cloud service accounts",
+      "SPIFFE-based identity federation across multi-cloud envs"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Purpose-built for workload-to-workload auth",
+      "Policy-based access without embedding creds in code",
+      "Short-lived credentials reduce leak blast radius",
+      "Integrates with AWS, GCP, Snowflake, Stripe"
+    ],
+    "cons": [
+      "Young product, small community and docs gaps",
+      "Closed source with opaque enterprise pricing",
+      "Adds a trust broker to your critical path",
+      "Learning curve for policy model and concepts"
+    ],
+    "verdict": "Solid option for non-human IAM if you have the scale to justify a managed trust broker.",
+    "best_for": "Security teams managing many service-to-SaaS credentials across cloud accounts.",
+    "not_for": "Small teams happy with vault-stored static tokens and simple rotation."
   }
 }

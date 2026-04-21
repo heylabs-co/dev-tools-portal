@@ -22,5 +22,30 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "Fast GitHub Actions runners on cloud-optimized VMs",
+      "Local SSD storage for faster Docker layer caching",
+      "Drop-in replacement for GitHub-hosted runners",
+      "Cost-efficient CI compute for large test matrix builds"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Faster than GitHub-hosted runners on most workloads",
+      "Local SSD dramatically speeds IO-heavy builds",
+      "Simple drop-in replacement via runner label",
+      "Built-in caching further cuts times"
+    ],
+    "cons": [
+      "Managed service, so limited VM control",
+      "Pricing still scales with CI usage",
+      "Smaller team and track record than GitHub",
+      "Data residency and compliance still in progress"
+    ],
+    "verdict": "A practical way to halve Actions times without self-hosting — compare carefully with Shipfox and Blacksmith.",
+    "best_for": "Teams with IO-heavy GitHub Actions builds who want a managed speed boost.",
+    "not_for": "Teams already happy with GitHub-hosted or committed to self-hosted runners."
   }
 }

@@ -25,5 +25,30 @@
   },
   "community": {
     "hn_mentions_30d": 2
+  },
+  "content": {
+    "when_to_use": [
+      "Implementing usage-based billing for AI API products",
+      "Metering and billing LLM token consumption per customer",
+      "Building tiered pricing plans for developer tools with API quotas",
+      "Automating invoice generation based on AI usage metrics"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Usage-based billing built for AI products",
+      "Token and compute metering out of the box",
+      "Handles Stripe subscriptions and invoicing",
+      "Avoids building internal metering pipelines"
+    ],
+    "cons": [
+      "Overlaps with Orb, Lago, Metronome",
+      "Adds a critical billing dependency",
+      "Enterprise features behind higher tiers",
+      "Migration cost if you already use Stripe Billing"
+    ],
+    "verdict": "Useful if you ship AI SaaS with token-based pricing, but test Orb and Lago before committing.",
+    "best_for": "AI SaaS startups launching usage-based or hybrid billing",
+    "not_for": "Flat-rate SaaS with simple Stripe Billing already working"
   }
 }

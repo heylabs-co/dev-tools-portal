@@ -22,5 +22,31 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "Real-time image resizing and format conversion via CDN URL",
+      "Serving optimized images from existing S3 or Azure storage",
+      "Automatic WebP/AVIF delivery with browser format detection",
+      "Watermarking and branding images dynamically at edge",
+      "Lazy-load optimized images for Core Web Vitals improvements"
+    ]
+  },
+  "review": {
+    "pros": [
+      "URL-based image transforms, no code changes",
+      "AVIF and WebP auto format selection",
+      "Watermarking and overlays built in",
+      "Reasonable pricing per transformed image"
+    ],
+    "cons": [
+      "Smaller feature set than Cloudinary or imgix",
+      "Video handling limited compared to rivals",
+      "CDN coverage adequate but not best-in-class",
+      "Fewer SDKs and integrations"
+    ],
+    "verdict": "Straightforward image CDN with good AVIF support, a budget alternative to Cloudinary for simpler needs.",
+    "best_for": "Ecommerce or media sites needing basic on-the-fly image resizing at fair cost",
+    "not_for": "Media-heavy platforms needing deep video transforms and advanced AI features"
   }
 }

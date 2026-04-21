@@ -22,5 +22,29 @@
   },
   "community": {
     "hn_mentions_30d": 11
+  },
+  "content": {
+    "when_to_use": [
+      "Deploying JAMstack sites on Cloudflare's edge from GitHub",
+      "Full-stack Next.js hosting with integrated Workers functions",
+      "Unlimited bandwidth static hosting with global CDN",
+      "Preview deployments for every pull request automatically",
+      "Replacing Netlify or Vercel for teams already on Cloudflare"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Unlimited bandwidth on free tier",
+      "Tight Workers integration",
+      "Fast global edge delivery"
+    ],
+    "cons": [
+      "Workers size and CPU limits bite",
+      "Build minutes capped on free tier",
+      "Some Node APIs still unsupported"
+    ],
+    "verdict": "The best free tier in static/full-stack hosting, with edge constraints you must design around.",
+    "best_for": "Static sites and edge-first full-stack apps already on Cloudflare",
+    "not_for": "Heavy Node.js monoliths that assume a full server runtime"
   }
 }

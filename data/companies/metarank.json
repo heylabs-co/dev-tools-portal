@@ -44,5 +44,28 @@
     "forks": 107,
     "updated_at": "2026-04-21",
     "health_score": "F"
+  },
+  "content": {
+    "when_to_use": [
+      "Personalizing search result rankings based on user behavior",
+      "A/B testing different ranking models without engineering overhead",
+      "Building a real-time recommendation engine from click events",
+      "Replacing manual business rules with learned ranking models"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Open-source learn-to-rank you can self-host",
+      "Low-code config reduces ML effort",
+      "Works well for search and recommendation"
+    ],
+    "cons": [
+      "Requires event data pipelines you may not have",
+      "Smaller community than commercial ranking services",
+      "Ongoing model ops still needed"
+    ],
+    "verdict": "A pragmatic open-source ranking layer when a managed rec service feels like overkill.",
+    "best_for": "Engineering teams personalizing search and lists with event data",
+    "not_for": "Teams without event tracking or willing to pay for Algolia/Typesense"
   }
 }

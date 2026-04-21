@@ -22,5 +22,31 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "Managed Netflix Conductor for enterprise workflow orchestration",
+      "Distributed microservice workflows with visual flow designer",
+      "Durable task orchestration with automatic retry and versioning",
+      "Cross-language workflows in Java, Python, Go, and TypeScript",
+      "Replacing in-house workflow engines with managed Conductor"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Netflix-origin workflow engine battle tested",
+      "Microservice orchestration built for distributed systems",
+      "Pivoting well into AI-agent orchestration",
+      "Managed cloud removes operational toil"
+    ],
+    "cons": [
+      "Smaller community than Temporal",
+      "Conductor OSS parity story evolving",
+      "Enterprise pricing not cheap",
+      "Temporal has more mindshare among devs"
+    ],
+    "verdict": "Credible Temporal alternative with Netflix roots; Temporal usually wins developer mindshare today.",
+    "best_for": "Platform teams orchestrating microservices and AI agents at scale",
+    "not_for": "Small teams wanting simple job queues or cron-style orchestration"
   }
 }

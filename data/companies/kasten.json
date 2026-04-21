@@ -23,5 +23,31 @@
   },
   "community": {
     "hn_mentions_30d": 4
+  },
+  "content": {
+    "when_to_use": [
+      "Kubernetes-native backup with application-consistent snapshots",
+      "Disaster recovery for stateful Kubernetes workloads",
+      "Cross-cluster migration of Kubernetes apps and PVCs",
+      "Policy-driven automated backups for K8s namespaces",
+      "RBAC-governed data protection for multi-tenant Kubernetes"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Application-consistent Kubernetes backups",
+      "Veeam-backed enterprise support",
+      "Strong RBAC and policy engine",
+      "Broad storage backend compatibility"
+    ],
+    "cons": [
+      "Expensive licensing at scale",
+      "Complex setup for beginners",
+      "Overhead noticeable on small clusters",
+      "UI feels enterprise-heavy"
+    ],
+    "verdict": "The mature pick for Kubernetes DR when downtime and data loss are existential risks.",
+    "best_for": "Enterprises running stateful Kubernetes workloads with strict RPO and RTO requirements",
+    "not_for": "Small teams, stateless apps, or budget-conscious startups"
   }
 }

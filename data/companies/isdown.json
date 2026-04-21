@@ -23,5 +23,30 @@
   },
   "community": {
     "hn_mentions_30d": 15
+  },
+  "content": {
+    "when_to_use": [
+      "Aggregate 3,500+ vendor status pages into one feed",
+      "Slack/email alerts when dependent services go down",
+      "Correlation of your incidents with upstream outages",
+      "SLA impact tracking during third-party downtime events"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Aggregates 3,500+ vendor status pages in one feed",
+      "Slack, Teams, email and webhook alerts",
+      "Cheaper than rolling your own status monitoring",
+      "Historical incident tracking across vendors"
+    ],
+    "cons": [
+      "Relies on vendors posting accurate status pages",
+      "Latency between real outage and status update",
+      "Alert noise on shared-dependency cascade events",
+      "Limited RCA beyond vendor-published updates"
+    ],
+    "verdict": "Smart time-saver for dependency monitoring, but only as good as vendors updating their pages honestly.",
+    "best_for": "Ops teams tracking dozens of SaaS dependencies without polling each status page manually.",
+    "not_for": "Teams needing real-time outage detection ahead of vendor announcements."
   }
 }

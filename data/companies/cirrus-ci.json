@@ -22,5 +22,30 @@
   },
   "community": {
     "hn_mentions_30d": 4
+  },
+  "content": {
+    "when_to_use": [
+      "Cloud-native CI for Linux, macOS, Windows, FreeBSD",
+      "Persistent worker support for self-hosted CI on own infra",
+      "Task parallelism with Docker containers or VMs",
+      "Free tier for open-source projects with YAML pipelines"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Real macOS, Linux, Windows, FreeBSD runners in one service",
+      "Generous free tier for OSS",
+      "Clean YAML config with powerful matrix support",
+      "Fast startup times on Google Cloud backend"
+    ],
+    "cons": [
+      "Private repo pricing changed and broke trust for some",
+      "Smaller ecosystem than GitHub Actions",
+      "Docs can be thin for advanced scenarios",
+      "Third-party integrations limited"
+    ],
+    "verdict": "The best CI for cross-OS testing, especially if you actually need FreeBSD or macOS M-series.",
+    "best_for": "OSS projects and cross-platform tools needing FreeBSD, macOS, and Linux in one pipeline.",
+    "not_for": "Teams fully inside GitHub who want the default Actions workflow."
   }
 }

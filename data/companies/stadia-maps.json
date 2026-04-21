@@ -22,5 +22,31 @@
   },
   "community": {
     "hn_mentions_30d": 0
+  },
+  "content": {
+    "when_to_use": [
+      "MapLibre-compatible map tile hosting with open data styles",
+      "Embedding custom-styled maps without self-hosting tile infra",
+      "GDPR-friendly map tiles based on OpenStreetMap data",
+      "Stamen design tiles (Watercolor, Toner) via managed API",
+      "Low-cost map tiles for startups needing MapLibre GL JS"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Developer-friendly OSM-based tile hosting",
+      "Stamen and custom styles look beautiful",
+      "Affordable alternative to Mapbox at scale",
+      "Straightforward pricing and docs"
+    ],
+    "cons": [
+      "Smaller team and infrastructure vs Mapbox",
+      "Fewer advanced features (navigation SDKs)",
+      "Community and tutorials still growing",
+      "Traffic data not included"
+    ],
+    "verdict": "Great Mapbox alternative for display-first map needs; less complete if you also need full routing stack.",
+    "best_for": "Developers needing clean styled maps without Mapbox prices",
+    "not_for": "Apps that rely on turn-by-turn navigation and traffic"
   }
 }

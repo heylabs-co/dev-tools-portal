@@ -44,5 +44,28 @@
     "forks": 547,
     "updated_at": "2026-04-21",
     "health_score": "A"
+  },
+  "content": {
+    "when_to_use": [
+      "Connecting LLM apps to external tools via managed MCP servers",
+      "Deploying production-ready tool integrations for AI agents",
+      "Reducing boilerplate for tool calling in LangChain/LlamaIndex",
+      "Managing API credential security for AI agent tool access"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Large curated catalog of 300+ MCP servers",
+      "Hosted sandboxes reduce agent setup friction",
+      "Good fit for fast-moving MCP ecosystem"
+    ],
+    "cons": [
+      "MCP standard still evolving — spec churn risk",
+      "Trust boundary when running third-party MCPs",
+      "Overlaps with Composio and Arcade"
+    ],
+    "verdict": "Handy accelerator for MCP-driven agents; choice depends on which catalog wins the standard.",
+    "best_for": "Teams shipping MCP-based AI agents that need many integrations fast",
+    "not_for": "Products needing tightly audited, minimal third-party tool surface"
   }
 }

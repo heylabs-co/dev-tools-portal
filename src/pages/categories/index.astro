@@ -5,6 +5,7 @@ import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import CategoryGrid from '../../components/CategoryGrid.astro';
 
 const allCategories = await getCollection('categories');
+const categoryCount = allCategories.length;
 
 const sorted = allCategories
   .map((entry) => ({
@@ -17,8 +18,8 @@ const sorted = allCategories
 ---
 
 <BaseLayout
-  title="All 42 Developer Tool Categories"
-  description="Browse all 42 developer tool categories. Find the best tools for CI/CD, monitoring, databases, authentication, and more."
+  title={`All ${categoryCount} Developer Tool Categories`}
+  description={`Browse all ${categoryCount} developer tool categories. Find the best tools for CI/CD, monitoring, databases, authentication, and more.`}
 >
   <div class="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
     <Breadcrumbs

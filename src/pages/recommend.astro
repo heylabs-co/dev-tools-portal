@@ -4,7 +4,12 @@ import Breadcrumbs from '../components/Breadcrumbs.astro';
 import { getCollection } from 'astro:content';
 
 const companies = await getCollection('companies');
-const totalEntries = companies.length + 377 + 660 + 356 + 229; // tools + MCP + skills + vscode + jetbrains
+const mcpServers = await getCollection('mcpServers');
+const skills = await getCollection('skills');
+const extensions = await getCollection('extensions');
+const plugins = await getCollection('jetbrainsPlugins');
+const totalEntries =
+  companies.length + mcpServers.length + skills.length + extensions.length + plugins.length;
 
 const breadcrumbs = [
   { label: 'Home', href: '/' },

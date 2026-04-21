@@ -3,6 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import CategoryGrid from '../components/CategoryGrid.astro';
 import CompanyCard from '../components/CompanyCard.astro';
 import { getCollection } from 'astro:content';
+import pairsData from '../../data/comparisons/top-pairs.json';
 
 const allCategories = await getCollection('categories');
 const categoryData = allCategories.map((entry) => ({
@@ -15,6 +16,7 @@ const categoryData = allCategories.map((entry) => ({
 const allCompanies = await getCollection('companies');
 const toolCount = allCompanies.length;
 const catCount = allCategories.length;
+const compareCount = (pairsData as any[]).length;
 const recentCompanies = allCompanies
   .filter((c) => c.data.updated_at)
   .sort((a, b) => (b.data.updated_at! > a.data.updated_at! ? 1 : -1))
@@ -106,7 +108,7 @@ const recentCompanies = allCompanies
         </div>
         <div class="h-8 w-px bg-gray-200 dark:bg-gray-800"></div>
         <div class="text-center">
-          <span class="block text-2xl sm:text-3xl font-bold text-[#0F172A] dark:text-[#EDEDEF]" style="font-family: 'JetBrains Mono', monospace;">100+</span>
+          <span class="block text-2xl sm:text-3xl font-bold text-[#0F172A] dark:text-[#EDEDEF]" style="font-family: 'JetBrains Mono', monospace;">{compareCount}+</span>
           <span class="block mt-1 text-sm text-[#64748B] dark:text-[#8A8F98]">Comparisons</span>
         </div>
       </div>
@@ -118,7 +120,7 @@ const recentCompanies = allCompanies
     <div class="max-w-2xl">
       <h2 class="text-2xl font-bold text-[#0F172A] dark:text-[#EDEDEF]">Browse by Category</h2>
       <p class="mt-2 text-[#64748B] dark:text-[#8A8F98]">
-        Explore 42 categories of developer tools, from CI/CD to observability.
+        Explore {catCount} categories of developer tools, from CI/CD to observability.
       </p>
     </div>
     <div class="mt-10">

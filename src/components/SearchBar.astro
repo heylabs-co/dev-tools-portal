@@ -7,7 +7,13 @@
  *                used on hub pages like /mcp-servers/ or /categories/payments/
  *   showFilters — whether to render the filter sidebar (default true)
  *   compact — smaller visual footprint for inline use
+ *   placeholder — overrides the input placeholder. When omitted we build a
+ *                 default of the form `Search N,NNN+ developer tools…` from
+ *                 the sum of all indexed collections so the number stays in
+ *                 sync with the catalog as it grows.
  */
+import { getCollection } from 'astro:content';
+
 interface Props {
   baseFilter?: Record<string, string[]>;
   showFilters?: boolean;
@@ -19,8 +25,22 @@ const {
   baseFilter = {},
   showFilters = true,
   compact = false,
-  placeholder = 'Search 6,000+ developer tools…',
+  placeholder,
 } = Astro.props;
+
+let resolvedPlaceholder = placeholder;
+if (!resolvedPlaceholder) {
+  const [companies, mcpServers, skills, extensions, plugins] = await Promise.all([
+    getCollection('companies'),
+    getCollection('mcpServers'),
+    getCollection('skills'),
+    getCollection('extensions'),
+    getCollection('jetbrainsPlugins'),
+  ]);
+  const total =
+    companies.length + mcpServers.length + skills.length + extensions.length + plugins.length;
+  resolvedPlaceholder = `Search ${total.toLocaleString()}+ developer tools…`;
+}
 
 const baseFilterJson = JSON.stringify(baseFilter);
 const showFiltersAttr = showFilters ? 'true' : 'false';
@@ -33,7 +53,7 @@ const compactAttr = compact ? 'true' : 'false';
     data-base-filter={baseFilterJson}
     data-show-filters={showFiltersAttr}
     data-compact={compactAttr}
-    data-placeholder={placeholder}
+    data-placeholder={resolvedPlaceholder}
   ></div>
 </div>
 

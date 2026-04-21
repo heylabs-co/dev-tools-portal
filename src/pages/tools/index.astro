@@ -5,15 +5,17 @@ import CompanyCard from '../../components/CompanyCard.astro';
 import { getCollection } from 'astro:content';
 
 const allCompanies = await getCollection('companies');
+const allCategories = await getCollection('categories');
 const sorted = allCompanies.sort((a, b) =>
   a.data.name.localeCompare(b.data.name, 'en', { sensitivity: 'base' })
 );
 const totalCount = sorted.length;
+const categoryCount = allCategories.length;
 ---
 
 <BaseLayout
   title={`All ${allCompanies.length}+ Developer Tools`}
-  description={`Browse and filter ${allCompanies.length}+ developer tools across 42 categories. Compare pricing, vendor lock-in scores, and migration difficulty. Find your next SDK, API, or SaaS tool.`}
+  description={`Browse and filter ${allCompanies.length}+ developer tools across ${categoryCount} categories. Compare pricing, vendor lock-in scores, and migration difficulty. Find your next SDK, API, or SaaS tool.`}
 >
   <section class="mx-auto max-w-7xl px-4 py-10">
     <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Tools' }]} />

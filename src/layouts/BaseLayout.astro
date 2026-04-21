@@ -9,9 +9,10 @@ interface Props {
   canonical?: string;
   jsonLd?: Record<string, unknown>;
   ogImage?: string;
+  noindex?: boolean;
 }
 
-const { title, description, canonical, jsonLd, ogImage } = Astro.props;
+const { title, description, canonical, jsonLd, ogImage, noindex } = Astro.props;
 const ogImageUrl = ogImage || 'https://tool.news/og-default.svg';
 const siteUrl = 'https://tool.news';
 const pageUrl = canonical || new URL(Astro.url.pathname, siteUrl).href;
@@ -45,7 +46,11 @@ const pageUrl = canonical || new URL(Astro.url.pathname, siteUrl).href;
 
     <title>{title} — tool.news</title>
     <meta name="description" content={description} />
-    <link rel="canonical" href={pageUrl} />
+    {noindex ? (
+      <meta name="robots" content="noindex, follow" />
+    ) : (
+      <link rel="canonical" href={pageUrl} />
+    )}
 
     <!-- Open Graph -->
     <meta property="og:title" content={title} />

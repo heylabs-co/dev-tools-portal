@@ -503,6 +503,16 @@ const pairs = (pairsData as any[]).slice(0, 12);
 
     function updateCompareBtn() {
       compareBtn.disabled = !(selected.a && selected.b);
+      // Auto-trigger comparison as soon as both tools are picked
+      if (selected.a && selected.b) {
+        buildComparison(selected.a, selected.b);
+        // Scroll the results into view after the DOM updates
+        requestAnimationFrame(function () {
+          resultsDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+      } else {
+        resultsDiv.classList.add('hidden');
+      }
     }
 
     function handleInput(e) {

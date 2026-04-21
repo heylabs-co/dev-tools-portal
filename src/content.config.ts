@@ -170,6 +170,9 @@ const categories = defineCollection({
   }),
 });
 
+// sections.json is imported directly in pages (not a collection) — no per-file docs,
+// just a static nav-taxonomy file. See data/meta/sections.json.
+
 const mcpServers = defineCollection({
   loader: glob({
     pattern: '**/*.json',

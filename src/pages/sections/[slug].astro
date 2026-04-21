@@ -1,0 +1,133 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import CompanyCard from '../../components/CompanyCard.astro';
+import SearchBar from '../../components/SearchBar.astro';
+import sectionsData from '../../../data/meta/sections.json';
+
+type Section = {
+  slug: string;
+  name: string;
+  icon: string;
+  description: string;
+  order: number;
+  categories: string[];
+};
+
+export async function getStaticPaths() {
+  return (sectionsData as Section[]).map((s) => ({
+    params: { slug: s.slug },
+    props: { section: s },
+  }));
+}
+
+const { section } = Astro.props as { section: Section };
+
+const allCategories = await getCollection('categories');
+const allCompanies = await getCollection('companies');
+
+const catBySlug = new Map(allCategories.map((c) => [c.data.slug, c.data]));
+const sectionCats = section.categories
+  .map((slug) => catBySlug.get(slug))
+  .filter((c): c is NonNullable<typeof c> => c !== undefined)
+  .sort((a, b) => (b.company_count ?? 0) - (a.company_count ?? 0));
+
+const sectionTotal = sectionCats.reduce((sum, c) => sum + (c.company_count ?? 0), 0);
+
+const topTools = allCompanies
+  .filter((c) => section.categories.includes(c.data.categories.primary.slug))
+  .filter((c) => c.data.description && !/ solution\.$| tool for developers$/i.test(c.data.description))
+  .slice(0, 12);
+
+const pageTitle = `${section.name} — ${sectionCats.length} categories, ${sectionTotal.toLocaleString()} tools`;
+const pageDescription = `${section.description} Browse ${sectionCats.length} categories and ${sectionTotal.toLocaleString()} developer tools in the ${section.name} section.`;
+---
+
+<BaseLayout title={pageTitle} description={pageDescription}>
+  <div class="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
+    <Breadcrumbs
+      items={[
+        { label: 'Home', href: '/' },
+        { label: 'Categories', href: '/categories/' },
+        { label: section.name },
+      ]}
+    />
+
+    <div class="mt-6 mb-10">
+      <div class="flex flex-wrap items-center gap-3">
+        <span class="text-5xl leading-none">{section.icon}</span>
+        <h1 class="text-4xl font-extrabold tracking-tight" style="color: var(--color-text);">
+          {section.name}
+        </h1>
+      </div>
+      <p class="mt-4 text-lg max-w-3xl" style="color: var(--color-muted);">
+        {section.description}
+      </p>
+      <p class="mt-2 text-sm" style="color: var(--color-muted);">
+        <strong style="color: var(--color-text);">{sectionCats.length}</strong> categories ·
+        <strong style="color: var(--color-text);">{sectionTotal.toLocaleString()}</strong> tools
+      </p>
+    </div>
+
+    <div class="mb-10 max-w-2xl">
+      <SearchBar
+        baseFilter={{ category: sectionCats.map((c) => c.name) }}
+        showFilters={false}
+        compact={true}
+        placeholder={`Search within ${section.name}…`}
+      />
+    </div>
+
+    <section class="mb-12">
+      <h2 class="mb-4 text-2xl font-bold" style="color: var(--color-text);">
+        Categories ({sectionCats.length})
+      </h2>
+      <div class="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        {sectionCats.map((cat) => (
+          <a
+            href={`/categories/${cat.slug}/`}
+            class="group flex items-center justify-between rounded-xl border p-5 transition-all duration-150 hover:-translate-y-0.5 hover:shadow-md"
+            style="border-color: var(--color-border); background-color: var(--color-surface);"
+          >
+            <div class="min-w-0 flex-1">
+              <h3 class="truncate text-base font-semibold transition-colors duration-150 group-hover:text-[#5E6AD2] dark:group-hover:text-[#818CF8]" style="color: var(--color-text);">
+                {cat.name}
+              </h3>
+              <p class="mt-1 text-sm" style="color: var(--color-muted);">
+                {cat.company_count ?? 0} tools
+              </p>
+            </div>
+            {cat.ai_native && (
+              <span class="ml-2 inline-flex shrink-0 items-center rounded-full bg-gradient-to-r from-purple-500 to-indigo-500 px-2 py-0.5 text-[10px] font-semibold text-white shadow-sm">
+                AI
+              </span>
+            )}
+          </a>
+        ))}
+      </div>
+    </section>
+
+    {topTools.length > 0 && (
+      <section class="mb-12">
+        <h2 class="mb-4 text-2xl font-bold" style="color: var(--color-text);">
+          Featured tools
+        </h2>
+        <div class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {topTools.map((c) => (
+            <CompanyCard
+              slug={c.data.slug}
+              name={c.data.name}
+              description={c.data.description}
+              logo={c.data.logo ?? ''}
+              category={c.data.categories.primary.name}
+              lockInLevel={c.data.scores?.lock_in?.level}
+              pricingModel={c.data.pricing?.model}
+              hasFree={c.data.pricing?.has_free_tier}
+            />
+          ))}
+        </div>
+      </section>
+    )}
+  </div>
+</BaseLayout>

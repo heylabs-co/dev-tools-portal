@@ -290,7 +290,16 @@ const moreLinks = [
     color: #fff !important;
   }
 
-  /* Live search dropdown */
+  /* Live search container — static Astro-rendered element */
+  #header-search-results {
+    max-height: 28rem;
+    overflow-y: auto;
+  }
+</style>
+
+<!-- Global because the dropdown contents are injected via innerHTML at runtime;
+     they don't carry Astro's scoped data-attribute so scoped selectors miss. -->
+<style is:global>
   .hs-result {
     display: block;
     padding: 0.625rem 0.875rem;
@@ -307,7 +316,18 @@ const moreLinks = [
   .hs-result-title {
     font-size: 0.875rem;
     font-weight: 600;
-    line-height: 1.2;
+    line-height: 1.25;
+    color: var(--color-text);
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .hs-result-title mark {
+    background: color-mix(in srgb, var(--color-accent) 22%, transparent);
+    color: inherit;
+    padding: 0 0.125rem;
+    border-radius: 2px;
   }
   .hs-result-meta {
     margin-top: 0.15rem;
@@ -316,14 +336,16 @@ const moreLinks = [
     display: flex;
     gap: 0.5rem;
     align-items: center;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
   }
   .hs-result-excerpt {
     margin-top: 0.2rem;
-    font-size: 0.75rem;
+    font-size: 0.78rem;
     color: var(--color-text-secondary);
-    line-height: 1.35;
+    line-height: 1.4;
     display: -webkit-box;
-    -webkit-line-clamp: 1;
+    -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
   }
@@ -341,12 +363,14 @@ const moreLinks = [
     background-color: var(--color-elevated);
     display: flex;
     justify-content: space-between;
+    align-items: center;
   }
   .hs-footer a {
     color: var(--color-accent);
     font-weight: 600;
     text-decoration: none;
   }
+  .hs-footer a:hover { text-decoration: underline; }
   .hs-empty {
     padding: 0.875rem;
     font-size: 0.8125rem;

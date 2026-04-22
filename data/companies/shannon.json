@@ -1,0 +1,134 @@
+{
+  "id": "shannon",
+  "slug": "shannon",
+  "name": "Shannon",
+  "description": "Autonomous white-box AI pentester by Keygraph that reads your source code, identifies attack vectors, and executes real exploits in a sandbox to prove vulnerabilities rather than just report theoretical ones.",
+  "website": "https://keygraph.io/shannon",
+  "logo": "https://github.com/KeygraphHQ.png?size=128",
+  "status": "active",
+  "founded": 2025,
+  "hq_country": "US",
+  "categories": {
+    "primary": {
+      "id": "CAT-32",
+      "slug": "security-scanning",
+      "name": "Security Scanning / Mobile App Sec"
+    },
+    "secondary": ["ci-cd", "ai-api-sdk"]
+  },
+  "github": {
+    "repo": "KeygraphHQ/shannon",
+    "stars": 39400,
+    "last_release": {
+      "version": "v1.1.0",
+      "date": "2026-04-21",
+      "summary": "Proof-by-exploitation AI pentester with multi-agent architecture across reconnaissance, vulnerability analysis, and exploitation phases"
+    }
+  },
+  "npm": {
+    "package": "@keygraph/shannon"
+  },
+  "pricing": {
+    "model": "freemium",
+    "has_free_tier": true,
+    "free_tier_limits": "Shannon Lite — AGPL-3.0, unlimited self-hosted scans for sandbox/staging environments",
+    "entry_price": "Pro: contact sales",
+    "enterprise_available": true,
+    "billing_complexity": "medium",
+    "pricing_url": "https://keygraph.io/shannon",
+    "transparency_score": 3,
+    "last_checked": "2026-04-22"
+  },
+  "health": {
+    "stars": 39400,
+    "license": "AGPL-3.0",
+    "release_frequency_days": 21,
+    "health_score": "high",
+    "updated_at": "2026-04-22"
+  },
+  "scores": {
+    "lock_in": {
+      "level": "low",
+      "score": 1,
+      "migration_complexity": "low",
+      "data_portability": "Full — all reports are local markdown + JSON; no vendor data lock.",
+      "explanation": "Open-source AGPL Lite edition, self-hosted, runs in your Docker. Pro tier adds features but Lite remains functional standalone.",
+      "reason": "OSS, self-hosted, report artifacts are plain files"
+    },
+    "transparency": {
+      "level": "high",
+      "score": 4,
+      "reason": "GitHub public, AGPL Lite tier free, but Pro pricing is 'contact sales'"
+    },
+    "developer_experience": {
+      "level": "high",
+      "score": 5,
+      "reason": "One-line npx setup, Claude Agent SDK, CI integration via GitHub Actions/GitLab/Jenkins"
+    }
+  },
+  "community": {
+    "hn_mentions_30d": 14,
+    "reddit_sentiment": "positive"
+  },
+  "content": {
+    "when_to_use": [
+      "Catching OWASP-critical bugs (SQLi, XSS, SSRF, broken auth) before prod in staging pipelines",
+      "Validating fixes by re-running exploits on patched branches",
+      "Supplementing human pentesters with continuous white-box coverage",
+      "Monorepo security coverage via Docker + Claude Agent SDK",
+      "CI/CD security gate with proof-by-exploitation rather than noisy DAST alerts"
+    ],
+    "when_not_to_use": [
+      "Production live traffic — Shannon runs real exploits that can mutate data",
+      "Black-box third-party apps where you don't own the source code",
+      "Compliance-only needs requiring certified auditors, not automated tools",
+      "Air-gapped environments without access to Anthropic API (or AWS Bedrock/Vertex)"
+    ],
+    "pricing_at_scale": [
+      {
+        "scale": "Individual developer / small repo",
+        "estimate": "Free via Shannon Lite (AGPL) — you pay Anthropic API usage only, ~$5-15 per full scan of a medium codebase"
+      },
+      {
+        "scale": "Team with CI integration, 10-20 scans/mo",
+        "estimate": "Lite: ~$100-300/mo API cost. Pro: contact sales (typically mid-four-figure annual)"
+      },
+      {
+        "scale": "Enterprise monorepo with multiple daily scans",
+        "estimate": "Pro tier with SAST/SCA/pentest bundle — enterprise annual contract"
+      }
+    ],
+    "works_well_with": [
+      "github-actions",
+      "gitlab",
+      "anthropic",
+      "docker",
+      "snyk"
+    ]
+  },
+  "review": {
+    "pros": [
+      "Proof-by-exploitation means zero false positives in the final report — every bug comes with a working PoC",
+      "96.15% on the XBOW benchmark (100 of 104 exploit challenges), substantially higher than most commercial DAST",
+      "Multi-agent architecture runs reconnaissance + parallel vuln analysis + exploitation concurrently",
+      "Full scans in 1-1.5 hours, with CI integration and 2FA/TOTP authentication support"
+    ],
+    "cons": [
+      "Only safe in sandbox/staging — exploits can mutate data, create users, trigger side effects",
+      "Requires your Anthropic API key (or AWS Bedrock / Vertex AI) — ongoing token cost per scan",
+      "White-box only: source code access required, cannot test third-party SaaS you don't own",
+      "LLM-generated findings occasionally need human validation despite the exploit verification step"
+    ],
+    "verdict": "If you ship web apps you can point Shannon at a staging copy of, the proof-by-exploitation model is a meaningful step up from noisy DAST: you get fewer, more actionable findings with reproducible PoCs. Don't run it against prod.",
+    "best_for": "Engineering teams with a staging environment who want continuous OWASP coverage without paying for human pentests every sprint",
+    "not_for": "Black-box testing scenarios, production environments, or teams with zero tolerance for AI-in-the-loop security decisions"
+  },
+  "seo": {
+    "title": "Shannon Review 2026 — AI Pentester Powered by Claude Agent SDK",
+    "meta_description": "Shannon is an autonomous white-box AI pentester by Keygraph: reads your source code, runs real exploits, and proves OWASP vulnerabilities with 96% XBOW benchmark accuracy.",
+    "keywords": ["shannon", "AI pentester", "Keygraph", "Claude Agent SDK", "white-box security", "OWASP", "XBOW"]
+  },
+  "created_at": "2026-04-22T16:10:00Z",
+  "updated_at": "2026-04-22T16:10:00Z",
+  "logo_source": "github"
+}

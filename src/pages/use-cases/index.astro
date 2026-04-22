@@ -115,13 +115,14 @@ const orderedKeys: Array<keyof typeof metaCategoryLabels> = [
                 <p class="mt-2 line-clamp-3 text-sm leading-relaxed" style="color: var(--color-muted);">
                   {uc.data.short_description}
                 </p>
-                <div class="mt-4 flex flex-wrap items-center gap-2 text-xs" style="color: var(--color-muted);">
-                  <span class="inline-flex items-center gap-1 rounded-full border px-2 py-0.5" style="border-color: var(--color-border);">
+                <div class="mt-4 flex flex-wrap items-start gap-2 text-xs" style="color: var(--color-muted);">
+                  <span class="inline-flex shrink-0 items-center gap-1 rounded-full border px-2 py-0.5 leading-5" style="border-color: var(--color-border);">
                     📦 {uc.data.tools.length} tools
                   </span>
                   {uc.data.estimated_monthly_cost && (
-                    <span class="inline-flex items-center gap-1 rounded-full border px-2 py-0.5" style="border-color: var(--color-border);">
-                      💰 {uc.data.estimated_monthly_cost}
+                    <span class="inline-flex items-start gap-1 rounded-lg border px-2 py-1 leading-snug" style="border-color: var(--color-border);">
+                      <span aria-hidden="true" class="mt-[1px]">💰</span>
+                      <span class="min-w-0">{uc.data.estimated_monthly_cost}</span>
                     </span>
                   )}
                 </div>

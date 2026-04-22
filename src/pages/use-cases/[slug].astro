@@ -91,16 +91,18 @@ const jsonLd = {
       <p class="mt-4 text-lg leading-relaxed" style="color: var(--color-muted);">
         {d.short_description}
       </p>
-      <div class="mt-5 flex flex-wrap items-center gap-3 text-sm" style="color: var(--color-muted);">
-        <span class="inline-flex items-center gap-1 rounded-full border px-3 py-1" style="border-color: var(--color-border);">
-          👥 {d.target_audience}
+      <div class="mt-5 flex flex-wrap items-start gap-3 text-sm" style="color: var(--color-muted);">
+        <span class="inline-flex items-start gap-1 rounded-lg border px-3 py-1 leading-snug" style="border-color: var(--color-border);">
+          <span aria-hidden="true" class="mt-[2px]">👥</span>
+          <span class="min-w-0">{d.target_audience}</span>
         </span>
         {d.estimated_monthly_cost && (
-          <span class="inline-flex items-center gap-1 rounded-full border px-3 py-1" style="border-color: var(--color-border);">
-            💰 {d.estimated_monthly_cost}
+          <span class="inline-flex items-start gap-1 rounded-lg border px-3 py-1 leading-snug" style="border-color: var(--color-border);">
+            <span aria-hidden="true" class="mt-[2px]">💰</span>
+            <span class="min-w-0">{d.estimated_monthly_cost}</span>
           </span>
         )}
-        <span class="inline-flex items-center gap-1 rounded-full border px-3 py-1" style="border-color: var(--color-border);">
+        <span class="inline-flex shrink-0 items-center gap-1 rounded-full border px-3 py-1" style="border-color: var(--color-border);">
           📦 {d.tools.length} tools
         </span>
       </div>

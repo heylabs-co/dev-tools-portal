@@ -110,7 +110,20 @@ async function fetchJson<T>(path: string): Promise<T> {
 }
 
 const getCompanies = () => fetchJson<Company[]>('/api/companies.json');
-const getTool = (slug: string) => fetchJson<FullTool>(`/api/tools/${slug}.json`);
+
+let toolsFullIndex: Map<string, FullTool> | null = null;
+async function loadToolsFull(): Promise<Map<string, FullTool>> {
+  if (toolsFullIndex) return toolsFullIndex;
+  const data = await fetchJson<Record<string, FullTool>>('/api/tools-full.json');
+  toolsFullIndex = new Map(Object.entries(data));
+  return toolsFullIndex;
+}
+const getTool = async (slug: string): Promise<FullTool> => {
+  const map = await loadToolsFull();
+  const tool = map.get(slug);
+  if (!tool) throw new Error(`Tool not found: ${slug}`);
+  return tool;
+};
 const getMcpServers = () => fetchJson<McpServerRow[]>('/api/mcp-servers.json');
 const getSkills = () => fetchJson<SkillRow[]>('/api/skills.json');
 const getExtensions = () => fetchJson<ExtensionRow[]>('/api/extensions.json');
@@ -120,7 +133,7 @@ const getCategories = () => fetchJson<CategoryRow[]>('/api/categories.json');
 // ---- Server setup -----------------------------------------------------
 
 const server = new McpServer(
-  { name: 'tool-news', version: '2.1.0' },
+  { name: 'tool-news', version: '2.1.1' },
   { capabilities: { tools: {} } },
 );
 

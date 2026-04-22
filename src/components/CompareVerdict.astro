@@ -1,0 +1,90 @@
+---
+interface Company {
+  name: string;
+  slug: string;
+  review?: {
+    pros?: string[];
+    cons?: string[];
+    best_for?: string;
+    not_for?: string;
+    verdict?: string;
+  };
+}
+
+interface Props {
+  companyA: Company;
+  companyB: Company;
+  /** Optional enrichment override — when DeepSeek has written a tailored verdict line. */
+  overrideA?: string;
+  overrideB?: string;
+}
+
+const { companyA, companyB, overrideA, overrideB } = Astro.props;
+
+const a = companyA.review ?? {};
+const b = companyB.review ?? {};
+---
+
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+  <article class="rounded-xl border p-6" style="border-color: var(--color-border); background-color: var(--color-surface);">
+    <header class="mb-4 flex items-center justify-between">
+      <h3 class="text-lg font-semibold" style="color: var(--color-text);">
+        Choose {companyA.name} when…
+      </h3>
+    </header>
+    {overrideA && (
+      <p class="mb-4 text-sm leading-relaxed" style="color: var(--color-text-secondary);">{overrideA}</p>
+    )}
+    {a.best_for && !overrideA && (
+      <p class="mb-4 text-sm leading-relaxed" style="color: var(--color-text-secondary);">
+        <strong style="color: var(--color-text);">Best for:</strong> {a.best_for}
+      </p>
+    )}
+    {a.pros && a.pros.length > 0 && (
+      <ul class="space-y-2 text-sm">
+        {a.pros.slice(0, 4).map((p) => (
+          <li class="flex gap-2" style="color: var(--color-text-secondary);">
+            <span aria-hidden="true" class="mt-0.5" style="color: #10B981;">✓</span>
+            <span>{p}</span>
+          </li>
+        ))}
+      </ul>
+    )}
+    {a.not_for && (
+      <p class="mt-4 border-t pt-3 text-xs" style="border-color: var(--color-border); color: var(--color-muted);">
+        <strong>Not for:</strong> {a.not_for}
+      </p>
+    )}
+  </article>
+
+  <article class="rounded-xl border p-6" style="border-color: var(--color-border); background-color: var(--color-surface);">
+    <header class="mb-4 flex items-center justify-between">
+      <h3 class="text-lg font-semibold" style="color: var(--color-text);">
+        Choose {companyB.name} when…
+      </h3>
+    </header>
+    {overrideB && (
+      <p class="mb-4 text-sm leading-relaxed" style="color: var(--color-text-secondary);">{overrideB}</p>
+    )}
+    {b.best_for && !overrideB && (
+      <p class="mb-4 text-sm leading-relaxed" style="color: var(--color-text-secondary);">
+        <strong style="color: var(--color-text);">Best for:</strong> {b.best_for}
+      </p>
+    )}
+    {b.pros && b.pros.length > 0 && (
+      <ul class="space-y-2 text-sm">
+        {b.pros.slice(0, 4).map((p) => (
+          <li class="flex gap-2" style="color: var(--color-text-secondary);">
+            <span aria-hidden="true" class="mt-0.5" style="color: #10B981;">✓</span>
+            <span>{p}</span>
+          </li>
+        ))}
+      </ul>
+    )}
+    {b.not_for && (
+      <p class="mt-4 border-t pt-3 text-xs" style="border-color: var(--color-border); color: var(--color-muted);">
+        <strong>Not for:</strong> {b.not_for}
+      </p>
+    )}
+  </article>
+</div>

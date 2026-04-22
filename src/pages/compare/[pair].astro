@@ -1,38 +1,107 @@
 ---
 import { getCollection } from 'astro:content';
+import { existsSync, readFileSync } from 'node:fs';
+import { join } from 'node:path';
 import pairsData from '../../../data/comparisons/top-pairs.json';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import ComparisonTable from '../../components/ComparisonTable.astro';
+import CompareVerdict from '../../components/CompareVerdict.astro';
+import CompareFAQ from '../../components/CompareFAQ.astro';
 import SchemaOrg from '../../components/SchemaOrg.astro';
 import GiscusComments from '../../components/GiscusComments.astro';
 
 export async function getStaticPaths() {
   const pairs = pairsData as any[];
   const companies = await getCollection('companies');
-  const companyMap = new Map(companies.map(c => [c.id, c.data]));
+  const companyMap = new Map(companies.map((c) => [c.id, c.data]));
 
-  return pairs.map((pair: any) => {
-    const pairSlug = pair.pair_slug;
-    const a = companyMap.get(pair.slug_a);
-    const b = companyMap.get(pair.slug_b);
-    return {
-      params: { pair: pairSlug },
-      props: {
-        companyA: a,
-        companyB: b,
-        seo: pair.seo,
-        slugA: pair.slug_a,
-        slugB: pair.slug_b,
-      },
-    };
-  }).filter((p: any) => p.props.companyA && p.props.companyB);
+  return pairs
+    .map((pair: any) => {
+      const a = companyMap.get(pair.slug_a);
+      const b = companyMap.get(pair.slug_b);
+      return {
+        params: { pair: pair.pair_slug },
+        props: {
+          companyA: a,
+          companyB: b,
+          seo: pair.seo,
+          slugA: pair.slug_a,
+          slugB: pair.slug_b,
+          category: pair.category,
+        },
+      };
+    })
+    .filter((p: any) => p.props.companyA && p.props.companyB);
 }
 
-const { companyA, companyB, seo, slugA, slugB } = Astro.props;
+const props = Astro.props;
+// getStaticPaths filters out pairs where either company is missing, so these
+// are never undefined at render time — but TS can't infer that.
+if (!props.companyA || !props.companyB) {
+  throw new Error('unreachable: pair filtered in getStaticPaths');
+}
+const { companyA, companyB, seo, slugA, slugB, category } = props;
 
-const nameA = companyA?.name ?? slugA;
-const nameB = companyB?.name ?? slugB;
+const nameA = companyA.name;
+const nameB = companyB.name;
+
+// Optional DeepSeek enrichment — per-pair file
+type Enrichment = {
+  intro?: string;
+  quick_take?: string;
+  verdict_a?: string;
+  verdict_b?: string;
+  faq?: Array<{ q: string; a: string }>;
+};
+const enrichPath = join(
+  process.cwd(),
+  'data/comparisons/enrichment',
+  `${slugA}-vs-${slugB}.json`,
+);
+let enrichment: Enrichment = {};
+if (existsSync(enrichPath)) {
+  try {
+    enrichment = JSON.parse(readFileSync(enrichPath, 'utf-8'));
+  } catch {
+    enrichment = {};
+  }
+}
+
+// ── Auto-generated intro fallback (used when enrichment.intro is absent) ──
+function autoIntro(): string {
+  const catName =
+    companyA?.categories?.primary?.name ??
+    companyB?.categories?.primary?.name ??
+    'developer tools';
+  const aBest = companyA?.review?.best_for;
+  const bBest = companyB?.review?.best_for;
+  const parts: string[] = [`${nameA} and ${nameB} are both ${catName}.`];
+  if (aBest) parts.push(`${nameA} is best for ${aBest.toLowerCase()}.`);
+  if (bBest) parts.push(`${nameB} is best for ${bBest.toLowerCase()}.`);
+  parts.push(
+    `This side-by-side compares pricing, lock-in, developer experience, and the real trade-offs you'll hit in production.`,
+  );
+  return parts.join(' ');
+}
+const introText = enrichment.intro ?? autoIntro();
+
+// ── Pricing at scale (render when BOTH have data) ──
+const psA = companyA?.content?.pricing_at_scale ?? [];
+const psB = companyB?.content?.pricing_at_scale ?? [];
+const showPricingAtScale = psA.length > 0 && psB.length > 0;
+
+// ── Switching / lock-in details ──
+const migA = companyA?.content?.migration_cheatsheet;
+const migB = companyB?.content?.migration_cheatsheet;
+const lockInA = companyA?.scores?.lock_in;
+const lockInB = companyB?.scores?.lock_in;
+const showSwitching = !!(lockInA?.explanation || lockInB?.explanation || migA || migB);
+
+// ── Use cases ──
+const useCasesA = companyA?.content?.when_to_use ?? [];
+const useCasesB = companyB?.content?.when_to_use ?? [];
+const showUseCases = useCasesA.length > 0 || useCasesB.length > 0;
 ---
 
 <BaseLayout
@@ -40,34 +109,207 @@ const nameB = companyB?.name ?? slugB;
   description={seo?.meta_description ?? `Side-by-side comparison of ${nameA} and ${nameB}.`}
 >
   <div class="mx-auto max-w-5xl px-4 py-10">
-    <Breadcrumbs items={[
-      { label: 'Home', href: '/' },
-      { label: 'Compare', href: '/compare/' },
-      { label: `${nameA} vs ${nameB}` },
-    ]} />
+    <Breadcrumbs
+      items={[
+        { label: 'Home', href: '/' },
+        { label: 'Compare', href: '/compare/' },
+        { label: `${nameA} vs ${nameB}` },
+      ]}
+    />
 
-    <h1 class="mt-6 text-4xl font-extrabold tracking-tight text-gray-900 dark:text-white">
-      {nameA} vs {nameB}
-    </h1>
+    <!-- Hero -->
+    <header class="mt-6">
+      <p class="text-xs font-semibold uppercase tracking-wider mb-2" style="color: var(--color-accent);">
+        {companyA?.categories?.primary?.name ?? 'Comparison'}
+      </p>
+      <h1 class="text-4xl font-extrabold tracking-tight" style="color: var(--color-text);">
+        {nameA} vs {nameB}
+      </h1>
+      <p class="mt-4 text-[17px] leading-relaxed max-w-3xl" style="color: var(--color-text-secondary);">
+        {introText}
+      </p>
 
-    <section class="mt-8">
+      {enrichment.quick_take && (
+        <div class="mt-6 rounded-xl border-l-4 p-5" style="border-left-color: var(--color-accent); background-color: var(--color-elevated);">
+          <p class="text-sm font-semibold uppercase tracking-wider mb-2" style="color: var(--color-accent);">Quick take</p>
+          <p class="text-[15px] leading-relaxed" style="color: var(--color-text-secondary);">{enrichment.quick_take}</p>
+        </div>
+      )}
+    </header>
+
+    <!-- Feature matrix -->
+    <section class="mt-10">
+      <h2 class="text-2xl font-bold mb-6" style="color: var(--color-text);">
+        Feature comparison
+      </h2>
       <ComparisonTable companyA={companyA} companyB={companyB} />
     </section>
 
-    <section class="mt-10 flex flex-wrap gap-4">
-      <a
-        href={`/tools/${slugA}/`}
-        class="inline-flex items-center rounded-lg bg-indigo-600 px-4 py-2 text-sm font-medium text-white hover:bg-indigo-700"
-      >
-        View {nameA} details &rarr;
-      </a>
-      <a
-        href={`/tools/${slugB}/`}
-        class="inline-flex items-center rounded-lg bg-indigo-600 px-4 py-2 text-sm font-medium text-white hover:bg-indigo-700"
-      >
-        View {nameB} details &rarr;
-      </a>
+    <!-- Pricing at scale -->
+    {showPricingAtScale && (
+      <section class="mt-12">
+        <h2 class="text-2xl font-bold mb-6" style="color: var(--color-text);">
+          Pricing at scale
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="rounded-xl border p-5" style="border-color: var(--color-border); background-color: var(--color-surface);">
+            <h3 class="font-semibold mb-4" style="color: var(--color-text);">{nameA}</h3>
+            <dl class="space-y-3">
+              {psA.map((row: any) => (
+                <div class="flex justify-between text-sm gap-4">
+                  <dt style="color: var(--color-muted);">{row.scale}</dt>
+                  <dd class="font-medium text-right" style="color: var(--color-text);">{row.estimate}</dd>
+                </div>
+              ))}
+            </dl>
+          </div>
+          <div class="rounded-xl border p-5" style="border-color: var(--color-border); background-color: var(--color-surface);">
+            <h3 class="font-semibold mb-4" style="color: var(--color-text);">{nameB}</h3>
+            <dl class="space-y-3">
+              {psB.map((row: any) => (
+                <div class="flex justify-between text-sm gap-4">
+                  <dt style="color: var(--color-muted);">{row.scale}</dt>
+                  <dd class="font-medium text-right" style="color: var(--color-text);">{row.estimate}</dd>
+                </div>
+              ))}
+            </dl>
+          </div>
+        </div>
+      </section>
+    )}
+
+    <!-- Switching & lock-in -->
+    {showSwitching && (
+      <section class="mt-12">
+        <h2 class="text-2xl font-bold mb-6" style="color: var(--color-text);">
+          Switching cost &amp; lock-in
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {[
+            { name: nameA, lockIn: lockInA, mig: migA },
+            { name: nameB, lockIn: lockInB, mig: migB },
+          ].map((side) => (
+            <article class="rounded-xl border p-5" style="border-color: var(--color-border); background-color: var(--color-surface);">
+              <h3 class="font-semibold mb-3" style="color: var(--color-text);">{side.name}</h3>
+              {side.lockIn?.explanation && (
+                <p class="text-sm mb-3 leading-relaxed" style="color: var(--color-text-secondary);">{side.lockIn.explanation}</p>
+              )}
+              {side.mig?.difficulty && (
+                <p class="text-xs mb-2" style="color: var(--color-muted);">
+                  <strong>Migration difficulty:</strong> {side.mig.difficulty}
+                </p>
+              )}
+              {side.mig?.data_you_keep && (
+                <p class="text-xs mb-2" style="color: var(--color-muted);">
+                  <strong>Data you keep:</strong> {side.mig.data_you_keep}
+                </p>
+              )}
+              {side.mig?.api_standard && (
+                <p class="text-xs mb-2" style="color: var(--color-muted);">
+                  <strong>API standard:</strong> {side.mig.api_standard}
+                </p>
+              )}
+              {side.mig?.risk_notes && (
+                <p class="text-xs mb-2" style="color: var(--color-muted);">
+                  <strong>Risk notes:</strong> {side.mig.risk_notes}
+                </p>
+              )}
+              {side.mig?.tip && (
+                <p class="text-xs mt-3 rounded-md p-2" style="background-color: var(--color-elevated); color: var(--color-text-secondary);">
+                  💡 {side.mig.tip}
+                </p>
+              )}
+            </article>
+          ))}
+        </div>
+      </section>
+    )}
+
+    <!-- Verdict: when to choose which -->
+    <section class="mt-12">
+      <h2 class="text-2xl font-bold mb-6" style="color: var(--color-text);">
+        When to choose which
+      </h2>
+      <CompareVerdict
+        companyA={companyA}
+        companyB={companyB}
+        overrideA={enrichment.verdict_a}
+        overrideB={enrichment.verdict_b}
+      />
     </section>
+
+    <!-- Common use cases -->
+    {showUseCases && (
+      <section class="mt-12">
+        <h2 class="text-2xl font-bold mb-6" style="color: var(--color-text);">
+          Common use cases
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="rounded-xl border p-5" style="border-color: var(--color-border); background-color: var(--color-surface);">
+            <h3 class="font-semibold mb-4" style="color: var(--color-text);">{nameA}</h3>
+            <ul class="space-y-2 text-sm">
+              {useCasesA.map((uc: string) => (
+                <li class="flex gap-2" style="color: var(--color-text-secondary);">
+                  <span aria-hidden="true" style="color: var(--color-accent);">→</span>
+                  <span>{uc}</span>
+                </li>
+              ))}
+              {useCasesA.length === 0 && <li style="color: var(--color-muted);">No public use cases listed.</li>}
+            </ul>
+          </div>
+          <div class="rounded-xl border p-5" style="border-color: var(--color-border); background-color: var(--color-surface);">
+            <h3 class="font-semibold mb-4" style="color: var(--color-text);">{nameB}</h3>
+            <ul class="space-y-2 text-sm">
+              {useCasesB.map((uc: string) => (
+                <li class="flex gap-2" style="color: var(--color-text-secondary);">
+                  <span aria-hidden="true" style="color: var(--color-accent);">→</span>
+                  <span>{uc}</span>
+                </li>
+              ))}
+              {useCasesB.length === 0 && <li style="color: var(--color-muted);">No public use cases listed.</li>}
+            </ul>
+          </div>
+        </div>
+      </section>
+    )}
+
+    <!-- CTA -->
+    <section class="mt-12 rounded-xl border p-6" style="border-color: var(--color-border); background-color: var(--color-elevated);">
+      <h2 class="text-xl font-bold mb-2" style="color: var(--color-text);">Ready to explore?</h2>
+      <p class="text-sm mb-5" style="color: var(--color-text-secondary);">
+        Check each tool's dedicated page for deeper reviews, setup notes, and pros/cons.
+      </p>
+      <div class="flex flex-wrap gap-3">
+        <a
+          href={`/tools/${slugA}/`}
+          rel="sponsored"
+          class="inline-flex items-center rounded-lg px-5 py-2.5 text-sm font-medium transition-opacity hover:opacity-90"
+          style="background-color: var(--color-accent); color: #fff;"
+        >
+          Explore {nameA} &rarr;
+        </a>
+        <a
+          href={`/tools/${slugB}/`}
+          rel="sponsored"
+          class="inline-flex items-center rounded-lg px-5 py-2.5 text-sm font-medium transition-opacity hover:opacity-90"
+          style="background-color: var(--color-accent); color: #fff;"
+        >
+          Explore {nameB} &rarr;
+        </a>
+        {category && (
+          <a
+            href={`/categories/${category}/`}
+            class="inline-flex items-center rounded-lg border px-5 py-2.5 text-sm font-medium transition-colors"
+            style="border-color: var(--color-border); color: var(--color-text);"
+          >
+            See all {companyA?.categories?.primary?.name ?? 'alternatives'}
+          </a>
+        )}
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <CompareFAQ companyA={companyA} companyB={companyB} override={enrichment.faq} />
   </div>
 
   <GiscusComments term={`${nameA} vs ${nameB}`} />

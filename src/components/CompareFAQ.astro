@@ -1,0 +1,117 @@
+---
+interface Company {
+  name: string;
+  slug: string;
+  pricing?: { model?: string; has_free_tier?: boolean; entry_price?: string };
+  scores?: {
+    lock_in?: { level?: string; migration_complexity?: string };
+    developer_experience?: { score?: number; reason?: string };
+  };
+  review?: { best_for?: string };
+}
+
+interface Props {
+  companyA: Company;
+  companyB: Company;
+  /** Optional: DeepSeek-provided FAQ list. Fallback: auto-generated below. */
+  override?: Array<{ q: string; a: string }>;
+}
+
+const { companyA, companyB, override } = Astro.props;
+const a = companyA;
+const b = companyB;
+
+// Auto-generate 4 baseline questions from the data.
+function autoFaq(): Array<{ q: string; a: string }> {
+  const items: Array<{ q: string; a: string }> = [];
+
+  // Cheaper?
+  const ap = a.pricing?.entry_price;
+  const bp = b.pricing?.entry_price;
+  const af = a.pricing?.has_free_tier;
+  const bf = b.pricing?.has_free_tier;
+  if (ap || bp || af || bf) {
+    const aDesc = af ? `has a free tier (${ap ?? 'entry price unspecified'})` : ap ? `starts at ${ap}` : 'has no public pricing';
+    const bDesc = bf ? `has a free tier (${bp ?? 'entry price unspecified'})` : bp ? `starts at ${bp}` : 'has no public pricing';
+    items.push({
+      q: `Is ${a.name} cheaper than ${b.name}?`,
+      a: `${a.name} ${aDesc}. ${b.name} ${bDesc}. Actual cost depends heavily on usage volume — check pricing at scale before deciding.`,
+    });
+  }
+
+  // Migration / lock-in
+  const aL = a.scores?.lock_in?.level;
+  const bL = b.scores?.lock_in?.level;
+  const aM = a.scores?.lock_in?.migration_complexity;
+  const bM = b.scores?.lock_in?.migration_complexity;
+  if (aL && bL) {
+    items.push({
+      q: `Can I migrate from ${a.name} to ${b.name}?`,
+      a: `${a.name} has ${aL} lock-in and ${aM ?? 'unknown'} migration complexity; ${b.name} has ${bL} lock-in and ${bM ?? 'unknown'} migration complexity. Migration is easiest when both sides support the same standards for data export and API shape.`,
+    });
+  }
+
+  // DX
+  const aDx = a.scores?.developer_experience?.score;
+  const bDx = b.scores?.developer_experience?.score;
+  if (aDx != null && bDx != null) {
+    const winner = aDx >= bDx ? a.name : b.name;
+    const loser = aDx >= bDx ? b.name : a.name;
+    const aReason = a.scores?.developer_experience?.reason;
+    const bReason = b.scores?.developer_experience?.reason;
+    items.push({
+      q: `Which has better developer experience, ${a.name} or ${b.name}?`,
+      a: `${winner} scores higher on developer experience (${a.name}: ${aDx}/5, ${b.name}: ${bDx}/5). ${aDx === bDx ? 'Both are roughly equivalent for day-to-day use.' : `${loser} trails mainly because of ${(winner === a.name ? bReason : aReason) ?? 'gaps in docs, SDKs, or setup friction'}.`}`,
+    });
+  }
+
+  // Alternative?
+  if (a.review?.best_for || b.review?.best_for) {
+    items.push({
+      q: `Is ${b.name} a good alternative to ${a.name}?`,
+      a: `${b.name} is best for ${b.review?.best_for ?? 'teams with different constraints'}. If your situation matches, yes. Otherwise ${a.name} (best for ${a.review?.best_for ?? 'its own niche'}) is the safer default.`,
+    });
+  }
+
+  return items;
+}
+
+const faq = override?.length ? override : autoFaq();
+
+const faqLd = faq.length
+  ? {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: faq.map((f) => ({
+        '@type': 'Question',
+        name: f.q,
+        acceptedAnswer: { '@type': 'Answer', text: f.a },
+      })),
+    }
+  : null;
+---
+
+{faq.length > 0 && (
+  <section class="mt-12">
+    <h2 class="text-2xl font-bold mb-6" style="color: var(--color-text);">
+      Frequently asked questions
+    </h2>
+    <div class="space-y-4">
+      {faq.map((f, i) => (
+        <details class="group rounded-xl border p-4" style="border-color: var(--color-border); background-color: var(--color-surface);">
+          <summary class="cursor-pointer list-none flex items-start justify-between gap-4">
+            <span class="text-[15px] font-semibold" style="color: var(--color-text);">{f.q}</span>
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 shrink-0 transition-transform group-open:rotate-180 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" style="color: var(--color-muted);">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+            </svg>
+          </summary>
+          <p class="mt-3 text-sm leading-relaxed" style="color: var(--color-text-secondary);">{f.a}</p>
+        </details>
+      ))}
+    </div>
+  </section>
+)}
+
+{faqLd && (
+  <script type="application/ld+json" set:html={JSON.stringify(faqLd)} />
+)}

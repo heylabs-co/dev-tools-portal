@@ -1,0 +1,24 @@
+{
+  "intro": "The biggest real split between Algolia DocSearch and Jupyter Book is lock-in posture: Algolia DocSearch carries high lock-in (free tier for oss; swap to pagefind/typesense possible), while Jupyter Book carries low lock-in (open-source, markdown/notebook content). That single fact shapes the rest of the comparison. Algolia DocSearch is built for open-source projects that need production-grade docs search without running infrastructure and is not a fit for commercial products or internal docs - docsearch free tier doesn't apply. Jupyter Book is built for data science teams, ml researchers, and educators publishing reproducible notebook content and is not a fit for general api docs, saas product docs, or teams without notebook-based content. On the scoring side, Algolia DocSearch rates 5/5 for developer experience and 5/5 for transparency; Jupyter Book rates 5/5 and 5/5 respectively. The honest trade-off: with Algolia DocSearch you accept that approval required, not all oss sites qualify, while Jupyter Book comes with the reality that sphinx underpinnings expose config complexity. Neither side is free.",
+  "quick_take": "Algolia DocSearch is for open-source projects that need production-grade docs search without running infrastructure; Jupyter Book is for data science teams, ml researchers, and educators publishing reproducible notebook content; decide.",
+  "verdict_a": "Choose Algolia DocSearch if you are open-source projects that need production-grade docs search without running infrastructure and can accept high lock-in (free tier for oss; swap to pagefind/typesense possible).",
+  "verdict_b": "Choose Jupyter Book if you are data science teams, ml researchers, and educators publishing reproducible notebook content and need low lock-in (open-source, markdown/notebook content).",
+  "faq": [
+    {
+      "q": "Is Algolia DocSearch cheaper than Jupyter Book?",
+      "a": "Both list a free pricing model in our data, and both publish a free tier. We don't have per-seat numbers in this dataset, so 'cheaper' depends on volume. Price both on your actual usage before deciding."
+    },
+    {
+      "q": "Can I migrate from Algolia DocSearch to Jupyter Book?",
+      "a": "Algolia DocSearch has high lock-in (free tier for oss; swap to pagefind/typesense possible); Jupyter Book has low lock-in (open-source, markdown/notebook content). Migration effort scales with how much state and automation you've built in Algolia DocSearch; plan for data export, config rebuild, and a parallel-run period before cutting over."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Both Algolia DocSearch and Jupyter Book score 5/5 on developer experience in our data, so DX isn't the tiebreaker here. Decide on fit, pricing, or lock-in instead."
+    },
+    {
+      "q": "Is Jupyter Book a good alternative to Algolia DocSearch?",
+      "a": "Jupyter Book is built for data science teams, ml researchers, and educators publishing reproducible notebook content and explicitly not for general api docs, saas product docs, or teams without notebook-based content, so it's a fit only if your workflow matches its stated audience. If you were using Algolia DocSearch for open-source projects that need production-grade docs search without running infrastructure, the switch is reasonable; outside that scope, look elsewhere."
+    }
+  ]
+}

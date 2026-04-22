@@ -1,0 +1,24 @@
+{
+  "intro": "The clearest difference between Crashpad and Sentry is pricing — Crashpad is free, while Sentry is freemium (has a free tier). Beyond that, lock-in — Crashpad has low lock-in (Open-source Chromium crash handler), whereas Sentry has low lock-in (Low — open-source, self-hosted option, OTel-compatible). Crashpad fits native apps needing proven minidump capture across OSes; Sentry fits error tracking and crash reporting for any platform. On the strengths side, Crashpad is cited for battle-tested in Chrome across macOS, Windows, Linux, while Sentry is cited for error tracking and crash reporting for any platform. The honest trade-off: Crashpad is the wrong call for teams wanting a turnkey crash reporting product; Sentry is the wrong call for full APM with infrastructure monitoring; Crashpad users flag library, not a backend or UI, and Sentry users flag full APM with infrastructure monitoring. Choosing between them should come down to the constraint that actually binds your workflow, not surface-level overlap.",
+  "quick_take": "Crashpad is for native apps needing proven minidump capture; Sentry is for error tracking and crash reporting; decide based on pricing model.",
+  "verdict_a": "Choose Crashpad if your use case is native apps needing proven minidump capture across OSes, and a free pricing shape fits your budget better than freemium (has a free tier).",
+  "verdict_b": "Choose Sentry if your use case is error tracking and crash reporting for any platform, and a freemium (has a free tier) pricing shape fits your budget better than free.",
+  "faq": [
+    {
+      "q": "Is Crashpad cheaper than Sentry?",
+      "a": "Crashpad is free, while Sentry uses a freemium model, so on listed pricing alone Crashpad comes out cheaper. That said, total cost depends on operational effort, hosting, and whether you need features that Sentry's paid tiers cover. Compare the pricing pages directly for current numbers."
+    },
+    {
+      "q": "Can I migrate from Crashpad to Sentry?",
+      "a": "Migrating from Crashpad to Sentry is feasible when their scopes overlap, but the work is in re-mapping configuration, data models, and integrations. Crashpad has low lock-in, so exporting state is typically straightforward. Plan for a dual-run period so you can validate parity before decommissioning."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "On our developer-experience score, Sentry is rated 5/5 and Crashpad 3/5, so Sentry edges ahead. Scores like this smooth over real differences in docs, CLI feel, and SDK quality, so treat them as a starting point. Spend an afternoon in each before relying on the number."
+    },
+    {
+      "q": "Is Sentry a good alternative to Crashpad?",
+      "a": "Sentry is a reasonable alternative to Crashpad when Sentry fits error tracking and crash reporting for any platform. If your use case matches Crashpad's sweet spot — native apps needing proven minidump capture across OSes — staying with Crashpad is probably safer. Crashpad itself is not meant for teams wanting a turnkey crash reporting product, which is often where users start shopping for alternatives."
+    }
+  ]
+}

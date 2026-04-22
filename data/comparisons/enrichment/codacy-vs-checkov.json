@@ -1,0 +1,24 @@
+{
+  "intro": "The most concrete split between Codacy and Checkov is the pricing model: Codacy runs on freemium with paid plans from $0, while Checkov uses free and open-source. That shapes how predictable your monthly spend is and how much of the cost sits in infrastructure versus per-seat or per-event fees. Beyond the headline, Codacy carries medium lock-in (code quality reports exportable) and freemium with paid plans from $0; Checkov carries low lock-in (oss iac scanner by bridgecrew) and free and open-source. Codacy is a fit when you are mobile. Checkov is a fit when you are mobile. The honest trade-off: Codacy is explicitly not for hobby projects; Checkov is explicitly not for hobby projects. On the product side, Codacy is described as Security Scanning / Mobile App Sec tool for developers. Specializes in Code Quality, and Checkov is described as CI/CD for Applications tool for developers. Specializes in IaC Scanner. Common Codacy use cases include vulnerability scanning in ci/cd. Common Checkov use cases include automated build/test/deploy pipelines.",
+  "quick_take": "Codacy is for mobile; Checkov is for mobile; decide on pricing model.",
+  "verdict_a": "Choose Codacy if its freemium pricing model fits your budget shape better than Checkov's free model, and you are mobile.",
+  "verdict_b": "Choose Checkov if you want a fully free, open-source option and can handle self-hosting or self-support.",
+  "faq": [
+    {
+      "q": "Is Codacy cheaper than Checkov?",
+      "a": "Headline yes, Checkov is free and open-source while Codacy uses freemium with paid plans from $0. But the total cost depends on self-hosting and maintenance effort for Checkov versus managed convenience from Codacy. Factor in both."
+    },
+    {
+      "q": "Can I migrate from Codacy to Checkov?",
+      "a": "Migration from Codacy to Checkov is feasible but not trivial: Codacy has medium lock-in (code quality reports exportable). Core data can move; integrations and workflow logic need rebuild. Allow for a parallel-run period."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "On our scoring Checkov rates 5/5 for developer experience versus 4/5 for Codacy. That suggests Checkov feels more polished for everyday developer tasks. We still recommend a short hands-on trial on your stack before standardising."
+    },
+    {
+      "q": "Is Checkov a good alternative to Codacy?",
+      "a": "Checkov targets the same best-fit audience as Codacy (mobile). Note that Checkov is explicitly not for hobby projects, so it only replaces Codacy if you are outside that exclusion. The lock-in profile differs (medium vs low), which is the main thing to weigh."
+    }
+  ]
+}

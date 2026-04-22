@@ -1,0 +1,24 @@
+{
+  "intro": "Primer and PortOne both show up under the payments orchestration category, but they solve slightly different jobs. Primer uses custom (sales-led) pricing, while PortOne runs on usage-based pricing. Lock-in is low for Primer and medium for PortOne. Developer experience scores 5/5 against 4/5. Primer fits teams working on Multi-PSP routing for higher conversion, while PortOne is a closer match when the job is aggregating Korean PG providers (KG Inicis, Toss, etc.) via single SDK. Worth noting: Primer is explicitly not for single-market startups; PortOne is explicitly not for EU or US merchants without meaningful Korean traffic. The honest trade-off: Primer trades off on single-market startups; PortOne trades off on core value concentrated in Korea. On the plus side, Primer highlights Multi-PSP routing for higher conversion, while PortOne points to dominant position in Korean PG integrations. Primer's documentation also calls out enterprise with multiple payment providers. PortOne similarly notes single SDK for 20+ Korean and global PGs.",
+  "quick_take": "Primer is for Multi-PSP routing for higher conversion; PortOne is for aggregating Korean PG providers (KG Inicis,; decide on pricing model.",
+  "verdict_a": "Choose Primer if your project is Multi-PSP routing for higher conversion, you want to keep future migration cheap, strong SDKs and docs (5/5) are a priority.",
+  "verdict_b": "Choose PortOne if your project is aggregating Korean PG providers (KG Inicis, Toss, etc.) via single SDK, medium lock-in is an acceptable trade-off.",
+  "faq": [
+    {
+      "q": "Is Primer cheaper than PortOne?",
+      "a": "Primer uses custom (sales-led) pricing, and PortOne uses usage-based pricing. The pricing models are different, so a direct cheaper-than comparison depends on your volume and usage pattern."
+    },
+    {
+      "q": "Can I migrate from Primer to PortOne?",
+      "a": "Our data puts Primer at low lock-in, and PortOne at medium lock-in (usage-based pg orchestration). Moving from Primer to PortOne should be manageable, though you'll still need to replay integrations and re-test flows end-to-end."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Primer scores 5/5 on developer experience in our data, while PortOne scores 4/5, so Primer has the edge on docs and SDK quality by that measure. Still, run a small integration spike on both before deciding — team familiarity with a given SDK style often matters more than a one-point score gap."
+    },
+    {
+      "q": "Is PortOne a good alternative to Primer?",
+      "a": "PortOne is a reasonable alternative to Primer when your workload leans more toward merchants and platforms selling into South Korea who need one API across KakaoPay, Toss, NaverPay, and more than enterprise. The pricing model shifts too — Primer is custom (sales-led) pricing, PortOne is usage-based pricing — so expect the cost profile to change as well. One caveat: PortOne is explicitly not for EU or US merchants without meaningful Korean traffic, so check that constraint against your use-case before switching."
+    }
+  ]
+}

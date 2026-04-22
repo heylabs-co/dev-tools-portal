@@ -1,0 +1,24 @@
+{
+  "intro": "react-native-iap and flutter_inapp_purchase overlap on pricing and lock-in, so the choice hinges on fit rather than cost. React-native-iap: Open-source React Native in-app purchase library conforming to OpenIAP spec, using Nitro Modules for native bridging. Flutter_inapp_purchase: Open-source Flutter IAP plugin aligned with OpenIAP spec, supporting StoreKit 2 and Play Billing 8 via type-safe bindings. React-native-iap fits react Native teams that want to own IAP and validation in-house. Flutter_inapp_purchase fits flutter teams wanting OpenIAP-aligned IAP without a managed backend. Both land at 4/5 for developer experience and 5/5 for transparency on our rubric. The honest trade-off: react-native-iap's main drawback — Library, not a managed subscription service; flutter_inapp_purchase's — Still a low-level library, not a paywall service. One point in react-native-iap's favour: Open-source RN IAP aligned with OpenIAP. For flutter_inapp_purchase: OpenIAP-aligned API across iOS and Android. React-native-iap is explicitly not the right pick for teams that prefer a managed subscription backend. Flutter_inapp_purchase is not aimed at teams that prefer fully managed subscription infrastructure.",
+  "quick_take": "react-native-iap is for react Native teams; flutter_inapp_purchase is for flutter teams; decide on fit with your stack.",
+  "verdict_a": "Choose react-native-iap if react Native teams that want to own IAP and validation in-house.",
+  "verdict_b": "Choose flutter_inapp_purchase if flutter teams wanting OpenIAP-aligned IAP without a managed backend.",
+  "faq": [
+    {
+      "q": "Is react-native-iap cheaper than flutter_inapp_purchase?",
+      "a": "Both tools use free pricing, so a clean list-price comparison depends on tier details that vary by usage. Check each vendor's current plan page for your expected volume. Neither is structurally cheaper on the model alone."
+    },
+    {
+      "q": "Can I migrate from react-native-iap to flutter_inapp_purchase?",
+      "a": "Both tools are rated low lock-in, so migration is mostly a matter of re-pointing integrations and re-authoring config. There's no hard data format moat on either side. Expect work proportional to how deeply react-native-iap touches your pipeline, but no vendor-imposed blockers."
+    },
+    {
+      "q": "Which has better developer experience, react-native-iap or flutter_inapp_purchase?",
+      "a": "Both score 4/5 for developer experience in our rubric, so neither has a structural edge. The practical answer depends on stack fit: react-native-iap's ergonomics suit some workflows, flutter_inapp_purchase's suit others. Try both on a throwaway project before committing."
+    },
+    {
+      "q": "Is flutter_inapp_purchase a good alternative to react-native-iap?",
+      "a": "They sit in the same category, so yes — flutter_inapp_purchase is a plausible alternative for many react-native-iap use cases. It fits best when flutter teams wanting OpenIAP-aligned IAP without a managed backend. Skip it if teams that prefer fully managed subscription infrastructure."
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "intro": "Pest and Chai both target the test automation space, and on paper their pricing, lock-in and ratings land close together. The useful split is positioning: Pest is pitched at laravel and modern php teams who want readable, expressive test syntax, while Chai is pitched at legacy mocha projects where ripping chai out would be expensive. Beyond the headline, Pest carries low lock-in (open source php testing framework) and free and open-source; Chai carries low lock-in (open-source js assertion library) and free and open-source. Pest is a fit when you are laravel and modern php teams who want readable, expressive test syntax. Chai is a fit when you are legacy mocha projects where ripping chai out would be expensive. The honest trade-off: Pest is explicitly not for legacy php codebases deeply coupled to phpunit's xunit style; Chai is explicitly not for new projects where vitest or node:test already ship with assertions.",
+  "quick_take": "Pest: laravel and modern php teams who want re; Chai: legacy mocha projects where ripping chai; decide on which best-fit use case is yours.",
+  "verdict_a": "Choose Pest if you are laravel and modern php teams who want readable, expressive test syntax and comfortable with its free and open-source.",
+  "verdict_b": "Choose Chai if you are legacy mocha projects where ripping chai out would be expensive and comfortable with its free and open-source.",
+  "faq": [
+    {
+      "q": "Is Pest cheaper than Chai?",
+      "a": "Both tools use free pricing. Pest is listed as free and open-source; Chai as free and open-source. Without specific volume and seat assumptions it is not possible to say which is cheaper in general."
+    },
+    {
+      "q": "Can I migrate from Pest to Chai?",
+      "a": "Migration from Pest to Chai is plausible because Pest has low lock-in (open source php testing framework). You would still have to map config, permissions and integrations to Chai's model. Plan for dual-run and rollback."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Both tools tie at 5/5 for developer experience on our scoring. The real difference will show up in your specific workflow, not the headline rating. A one-hour spike on both is the fastest way to decide."
+    },
+    {
+      "q": "Is Chai a good alternative to Pest?",
+      "a": "Chai is pitched at legacy mocha projects where ripping chai out would be expensive, which overlaps with Pest's fit (laravel and modern php teams who want readable, expressive test syntax) but is not identical. Note that Chai is explicitly not for new projects where vitest or node:test already ship with assertions, so it only replaces Pest if you are outside that exclusion. Feature-for-feature parity is not guaranteed, so confirm the specific capability you rely on before switching."
+    }
+  ]
+}

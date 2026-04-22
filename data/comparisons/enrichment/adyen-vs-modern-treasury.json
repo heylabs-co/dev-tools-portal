@@ -1,0 +1,24 @@
+{
+  "intro": "Adyen and Modern Treasury both show up under the payment gateway category, but they solve slightly different jobs. Adyen uses pricing that starts at EUR 0.11 + scheme fee, while Modern Treasury runs on custom (sales-led) pricing. Both sit at moderate lock-in. Transparency lands at 3/5 versus 1/5. Adyen fits teams working on enterprise with $10M+ TPV needing global coverage, while Modern Treasury is a closer match when the job is ACH, wire, and RTP payment operations with real-time ledgering API. Worth noting: Adyen is explicitly not for solo projects; Modern Treasury is explicitly not for merchants who mainly need card acceptance. The honest trade-off: Adyen trades off on startup with <$1M TPV — minimum fees are high; Modern Treasury trades off on US-bank-focused, limited globally. On the plus side, Adyen highlights enterprise with $10M+ TPV needing global coverage, while Modern Treasury points to deep ACH, wire, RTP, FedNow coverage.",
+  "quick_take": "Adyen is for enterprise with $10M+ TPV needing global; Modern Treasury is for ACH, wire, and RTP payment operations; decide on pricing model.",
+  "verdict_a": "Choose Adyen if your project is enterprise with $10M+ TPV needing global coverage, medium lock-in is an acceptable trade-off.",
+  "verdict_b": "Choose Modern Treasury if your project is ACH, wire, and RTP payment operations with real-time ledgering API, you are prepared for a sales-led custom-pricing conversation, medium lock-in is an acceptable trade-off.",
+  "faq": [
+    {
+      "q": "Is Adyen cheaper than Modern Treasury?",
+      "a": "Adyen uses pricing that starts at EUR 0.11 + scheme fee, and Modern Treasury uses custom (sales-led) pricing. The pricing models are different, so a direct cheaper-than comparison depends on your volume and usage pattern."
+    },
+    {
+      "q": "Can I migrate from Adyen to Modern Treasury?",
+      "a": "Our data puts Adyen at medium lock-in (proprietary tokens, but csv import/export under), and Modern Treasury at medium lock-in (payment ops saas, custom integrations). Migration is feasible but not trivial — budget time for re-integration, data export, and parallel running before cutover."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Both score 5/5 on developer experience in our data, so there's no clear winner on that axis. Adyen does edge ahead on pricing/docs transparency (3/5 vs 1/5), which can make evaluation faster."
+    },
+    {
+      "q": "Is Modern Treasury a good alternative to Adyen?",
+      "a": "Modern Treasury is a reasonable alternative to Adyen when your workload leans more toward platforms and fintechs running high-volume bank transfers and ledgering in the US than enterprise. The pricing model shifts too — Adyen is pricing that starts at EUR 0.11 + scheme fee, Modern Treasury is custom (sales-led) pricing — so expect the cost profile to change as well. One caveat: Modern Treasury is explicitly not for merchants who mainly need card acceptance, so check that constraint against your use-case before switching."
+    }
+  ]
+}

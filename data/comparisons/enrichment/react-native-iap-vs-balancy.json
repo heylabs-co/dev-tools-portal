@@ -1,0 +1,24 @@
+{
+  "intro": "Balancy is freemium with a free tier; react-native-iap is free and open source. React-native-iap: Open-source React Native in-app purchase library conforming to OpenIAP spec, using Nitro Modules for native bridging. Balancy: No-code LiveOps and monetization platform for mobile games with smart offers, virtual economy CMS and A/B testing. React-native-iap fits react Native teams that want to own IAP and validation in-house. Balancy fits mobile game teams whose designers ship offers and events weekly. On our rubric react-native-iap scores 4/5 for developer experience and 5/5 for transparency, while Balancy scores 4/5 and 4/5. The honest trade-off: react-native-iap's main drawback — Library, not a managed subscription service; Balancy's — Another runtime dependency in your game stack. One point in react-native-iap's favour: Open-source RN IAP aligned with OpenIAP. For Balancy: No-code LiveOps lets designers ship offers and events. React-native-iap is explicitly not the right pick for teams that prefer a managed subscription backend. Balancy is not aimed at studios already deep in PlayFab or custom backend economy tooling.",
+  "quick_take": "react-native-iap is for react Native teams; Balancy is for mobile game teams whose designers ship offers; decide on pricing model.",
+  "verdict_a": "Choose react-native-iap if react Native teams that want to own IAP and validation in-house, and if you want to avoid recurring license costs and are willing to self-host.",
+  "verdict_b": "Choose Balancy if mobile game teams whose designers ship offers and events weekly, and if you accept tighter coupling in exchange for the managed surface.",
+  "faq": [
+    {
+      "q": "Is react-native-iap cheaper than Balancy?",
+      "a": "Yes on list price: react-native-iap is free and open source, while Balancy runs on freemium pricing. Keep in mind that react-native-iap shifts costs to hosting, ops, and engineering time. Total cost of ownership can flip depending on your team's capacity."
+    },
+    {
+      "q": "Can I migrate from react-native-iap to Balancy?",
+      "a": "Migrating out of react-native-iap is straightforward — it's rated low lock-in (OSS IAP library). The harder question is how deeply you commit to Balancy afterward, since it sits at medium lock-in (LiveOps config exportable). Plan the forward cost, not just the exit."
+    },
+    {
+      "q": "Which has better developer experience, react-native-iap or Balancy?",
+      "a": "Both score 4/5 for developer experience in our rubric, so neither has a structural edge. The practical answer depends on stack fit: react-native-iap's ergonomics suit some workflows, Balancy's suit others. Try both on a throwaway project before committing."
+    },
+    {
+      "q": "Is Balancy a good alternative to react-native-iap?",
+      "a": "They sit in the same category, so yes — Balancy is a plausible alternative for many react-native-iap use cases. It fits best when mobile game teams whose designers ship offers and events weekly. Skip it if studios already deep in PlayFab or custom backend economy tooling."
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "intro": "OpenLIT and Retina both show up under the observability category, but they solve slightly different jobs. OpenLIT positions itself around teams wanting vendor-neutral LLM observability tied to existing OTel pipelines, whereas Retina leans toward kubernetes network engineers wanting a vendor-neutral eBPF observability tool. Both sit at high lock-in. OpenLIT fits teams working on OpenTelemetry observability for LLM and GenAI stacks, while Retina is a closer match when the job is eBPF-based network traffic visualization for Kubernetes. Worth noting: OpenLIT is explicitly not for teams preferring polished managed LLMOps with evals and PM-friendly UX; Retina is explicitly not for teams already running Cilium with Hubble or needing polished commercial support. The honest trade-off: OpenLIT trades off on young project with evolving APIs; Retina trades off on still early vs Cilium Hubble maturity. On the plus side, OpenLIT highlights OTel-native tracing for LLM and GenAI apps, while Retina points to open-source from Microsoft with active development.",
+  "quick_take": "OpenLIT is for OpenTelemetry observability for LLM and GenAI; Retina is for eBPF-based network traffic visualization for Kubernetes; decide on use-case fit.",
+  "verdict_a": "Choose OpenLIT if your project is OpenTelemetry observability for LLM and GenAI stacks, you are willing to accept the high lock-in called out in our data.",
+  "verdict_b": "Choose Retina if your project is eBPF-based network traffic visualization for Kubernetes, you are willing to accept the high lock-in called out in our data.",
+  "faq": [
+    {
+      "q": "Is OpenLIT cheaper than Retina?",
+      "a": "OpenLIT uses a free model, and Retina uses a free model. Without full pricing pages to compare, we can't rank them on price alone — check each vendor's current rates for your workload."
+    },
+    {
+      "q": "Can I migrate from OpenLIT to Retina?",
+      "a": "Our data puts OpenLIT at high lock-in, and Retina at high lock-in (free oss ebpf k8s observability). Expect real migration work out of OpenLIT — plan for data export, re-integration, and downtime testing before cutting over."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Both score 4/5 on developer experience in our data, so there's no clear winner on that axis. The better fit depends on which SDK matches your stack and which docs your team finds clearer during evaluation."
+    },
+    {
+      "q": "Is Retina a good alternative to OpenLIT?",
+      "a": "Retina is a reasonable alternative to OpenLIT when your workload leans more toward kubernetes network engineers wanting a vendor-neutral eBPF observability tool than teams wanting vendor-neutral LLM observability tied to existing OTel pipelines. One caveat: Retina is explicitly not for teams already running Cilium with Hubble or needing polished commercial support, so check that constraint against your use-case before switching."
+    }
+  ]
+}

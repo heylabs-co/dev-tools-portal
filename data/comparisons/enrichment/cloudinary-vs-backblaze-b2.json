@@ -1,0 +1,24 @@
+{
+  "intro": "Cloudinary and Backblaze B2 both show up under the object storage media category, but they solve slightly different jobs. Cloudinary starts at $0/month; Backblaze B2 starts at $0. Lock-in is high for Cloudinary and medium for Backblaze B2. Transparency lands at 3/5 versus 5/5. Both tools target image/video heavy applications, so the choice comes down to pricing, lock-in, and operational fit rather than scope. Worth noting: Cloudinary is explicitly not for small projects. The honest trade-off: Cloudinary trades off on text-only applications; Backblaze B2 trades off on text-only applications. On the plus side, Cloudinary highlights image/video heavy applications. Cloudinary's documentation also calls out user-generated content platforms. For teams evaluating object storage media options today, the decision usually hinges on whether Cloudinary's profile or Backblaze B2's profile maps more cleanly to the pricing model, lock-in tolerance, and scale your team can live with. Beyond the headline pitch, a documented Cloudinary use-case is \"User-generated content platforms\", and a documented Backblaze B2 use-case is \"User-generated content platforms\".",
+  "quick_take": "Cloudinary is for image/video heavy applications; Backblaze B2 is for image/video heavy applications; decide on entry price.",
+  "verdict_a": "Choose Cloudinary if your project is image/video heavy applications, a subscription starting at $0/month fits your budget, you are willing to accept the high lock-in called out in our data.",
+  "verdict_b": "Choose Backblaze B2 if your project is image/video heavy applications, a subscription starting at $0 fits your budget, medium lock-in is an acceptable trade-off.",
+  "faq": [
+    {
+      "q": "Is Cloudinary cheaper than Backblaze B2?",
+      "a": "Cloudinary uses subscription from $0/month with free tier, and Backblaze B2 uses subscription from $0 with free tier. On published entry price, Cloudinary lists $0/month while Backblaze B2 lists $0 — but the real cost at your scale will depend on actual usage, not just the starting tier."
+    },
+    {
+      "q": "Can I migrate from Cloudinary to Backblaze B2?",
+      "a": "Our data puts Cloudinary at high lock-in (transforms and urls tightly coupled), and Backblaze B2 at medium lock-in. Expect real migration work out of Cloudinary — plan for data export, re-integration, and downtime testing before cutting over."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Cloudinary scores 5/5 on developer experience in our data, while Backblaze B2 scores 4/5, so Cloudinary has the edge on docs and SDK quality by that measure. Still, run a small integration spike on both before deciding — team familiarity with a given SDK style often matters more than a one-point score gap."
+    },
+    {
+      "q": "Is Backblaze B2 a good alternative to Cloudinary?",
+      "a": "Backblaze B2 covers a similar scope to Cloudinary — our data lists \"Image/video heavy applications\" as the best-for on both. One caveat: Backblaze B2 is explicitly not for small projects, so check that constraint against your use-case before switching."
+    }
+  ]
+}

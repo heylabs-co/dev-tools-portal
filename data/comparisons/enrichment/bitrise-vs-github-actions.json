@@ -1,0 +1,24 @@
+{
+  "intro": "The pivotal question between Bitrise and GitHub Actions is how much of your setup stays portable: Bitrise carries low lock-in and GitHub Actions carries medium lock-in. Bitrise is mobile-first CI/CD for iOS, Android, Flutter, and React Native with pre-built workflow steps. GitHub Actions is GitHub-native CI/CD driven by YAML workflows inside the repo. Pick Bitrise when the job is conversion optimization and you accept low lock-in; pick GitHub Actions when it is conversion optimization and you accept medium lock-in. The data we have shows Bitrise at mostly transparent pricing and docs with a polished developer experience, and GitHub Actions at mostly transparent pricing and docs with a polished developer experience. The honest trade-off: neither is universal — Bitrise is a poor fit for internal projects, and GitHub Actions is a poor fit for internal projects. Match the pricing model and lock-in level to how your team actually works, not the feature list.",
+  "quick_take": "Bitrise is for mobile-first CI/CD; GitHub Actions is for GitHub-native CI/CD driven by YAML workflows inside; decide based on how portable the setup must stay.",
+  "verdict_a": "Choose Bitrise if a subscription at a Starter paid plan (entry price not publicly listed) and you want an entry-level free tier fits the budget and the work maps to mobile-first CI/CD for iOS, Android, Flutter, and React Native with pre-built workflow steps.",
+  "verdict_b": "Choose GitHub Actions if some ecosystem coupling is acceptable and the work lines up with GitHub-native CI/CD driven by YAML workflows inside the repo.",
+  "faq": [
+    {
+      "q": "Is Bitrise cheaper than GitHub Actions?",
+      "a": "Bitrise starts at a Starter paid plan (entry price not publicly listed) on a subscription model; GitHub Actions starts at $0.008/min (Linux) on a usage model. That makes the sticker comparison depend on usage — a low entry price can get expensive once volume ramps, so price at your actual workload."
+    },
+    {
+      "q": "Can I migrate from Bitrise to GitHub Actions?",
+      "a": "Migration is possible in either direction. Bitrise carries low lock-in and GitHub Actions carries medium lock-in, so plan for meaningful but not blocking rework. Run both in parallel before you fully cut over."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Both Bitrise and GitHub Actions rate the same on developer experience (5/5). The decision on DX then comes down to taste — which CLI, UI, or workflow matches your team's habits. A short side-by-side trial is the quickest way to tell."
+    },
+    {
+      "q": "Is GitHub Actions a good alternative to Bitrise?",
+      "a": "Yes — GitHub Actions is a reasonable alternative to Bitrise for conversion optimization. The practical differences are subscription-vs-usage billing and low-vs-medium lock-in. If those fit your constraints better, treat GitHub Actions as a credible swap."
+    }
+  ]
+}

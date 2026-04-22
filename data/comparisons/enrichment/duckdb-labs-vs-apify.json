@@ -1,0 +1,24 @@
+{
+  "intro": "The biggest real split between DuckDB Labs and Apify is lock-in posture: DuckDB Labs carries low lock-in (oss duckdb, full portability), while Apify carries medium lock-in (actors portable as docker, results exportable). That single fact shapes the rest of the comparison. DuckDB Labs is built for teams running duckdb at production scale needing core-team support and is not a fit for teams just experimenting with duckdb on laptops or small projects. Apify is built for data warehouse syncing and is not a fit for simple, small projects. On the scoring side, DuckDB Labs rates 5/5 for developer experience and 3/5 for transparency; Apify rates 5/5 and 4/5 respectively. The honest trade-off: with DuckDB Labs you accept that consultancy model, not a product you just buy, while Apify comes with the reality that simple api-to-api integrations. Neither side is free. DuckDB Labs's headline strength in the data is that creators of duckdb providing direct expertise.",
+  "quick_take": "DuckDB Labs is for teams running duckdb at production scale needing core-team support; Apify is for data warehouse syncing; decide based on lock-in tolerance.",
+  "verdict_a": "Choose DuckDB Labs if you are teams running duckdb at production scale needing core-team support and can accept low lock-in (oss duckdb, full portability).",
+  "verdict_b": "Choose Apify if you are data warehouse syncing and need medium lock-in (actors portable as docker, results exportable).",
+  "faq": [
+    {
+      "q": "Is DuckDB Labs cheaper than Apify?",
+      "a": "DuckDB Labs uses a free model, while Apify uses a freemium model, and both publish a free tier. We don't have per-seat numbers in this dataset, so 'cheaper' depends on volume. Price both on your actual usage before deciding."
+    },
+    {
+      "q": "Can I migrate from DuckDB Labs to Apify?",
+      "a": "DuckDB Labs has low lock-in (oss duckdb, full portability); Apify has medium lock-in (actors portable as docker, results exportable). Migration effort scales with how much state and automation you've built in DuckDB Labs; plan for data export, config rebuild, and a parallel-run period before cutting over."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Both DuckDB Labs and Apify score 5/5 on developer experience in our data, so DX isn't the tiebreaker here. Decide on fit, pricing, or lock-in instead."
+    },
+    {
+      "q": "Is Apify a good alternative to DuckDB Labs?",
+      "a": "Apify is built for data warehouse syncing and explicitly not for simple, small projects, so it's a fit only if your workflow matches its stated audience. If you were using DuckDB Labs for teams running duckdb at production scale needing core-team support, the switch is reasonable; outside that scope, look elsewhere."
+    }
+  ]
+}

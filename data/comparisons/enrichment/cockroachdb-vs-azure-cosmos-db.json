@@ -1,0 +1,24 @@
+{
+  "intro": "CockroachDB and Azure Cosmos DB diverge first on pricing model: CockroachDB uses hybrid pricing with a free tier, Azure Cosmos DB uses subscription pricing with a free tier. Everything else flows from that commercial choice. CockroachDB is built for apps, global and is not a fit for simple, offline projects. Azure Cosmos DB is built for apps, global and is not a fit for simple, offline projects. On the scoring side, CockroachDB rates 5/5 for developer experience and 3/5 for transparency; Azure Cosmos DB rates 4/5 and 4/5 respectively. The honest trade-off: with CockroachDB you accept that simple key-value storage needs, while Azure Cosmos DB comes with the reality that simple key-value storage needs. Neither side is free. CockroachDB's headline strength in the data is that apps needing managed database. Azure Cosmos DB's headline strength is that apps needing managed database. Read each side's best-for and not-for fields carefully before you pick; the shape of your team and workflow matters more than any single score.",
+  "quick_take": "CockroachDB is for apps, global; Azure Cosmos DB is for apps, global; decide based on pricing model.",
+  "verdict_a": "Choose CockroachDB if you are apps, global and a hybrid pricing model fits how you buy.",
+  "verdict_b": "Choose Azure Cosmos DB if you are apps, global and a subscription pricing model fits how you buy.",
+  "faq": [
+    {
+      "q": "Is CockroachDB cheaper than Azure Cosmos DB?",
+      "a": "CockroachDB uses a hybrid model, while Azure Cosmos DB uses a subscription model, and both publish a free tier. We don't have per-seat numbers in this dataset, so 'cheaper' depends on volume. Price both on your actual usage before deciding."
+    },
+    {
+      "q": "Can I migrate from CockroachDB to Azure Cosmos DB?",
+      "a": "CockroachDB has low lock-in (low — postgresql-compatible, standard sql); Azure Cosmos DB has low lock-in (multi-model but azure-bound). Migration effort scales with how much state and automation you've built in CockroachDB; plan for data export, config rebuild, and a parallel-run period before cutting over."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "In our data, CockroachDB scores 5/5 for developer experience versus 4/5 for Azure Cosmos DB. That said, DX is subjective; the Azure Cosmos DB score may still be acceptable if its feature fit is stronger for your use case."
+    },
+    {
+      "q": "Is Azure Cosmos DB a good alternative to CockroachDB?",
+      "a": "Azure Cosmos DB is built for apps, global and explicitly not for simple, offline projects, so it's a fit only if your workflow matches its stated audience. If you were using CockroachDB for apps, global, the switch is reasonable; outside that scope, look elsewhere."
+    }
+  ]
+}

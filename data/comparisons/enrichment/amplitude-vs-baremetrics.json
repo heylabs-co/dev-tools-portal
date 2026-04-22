@@ -1,0 +1,24 @@
+{
+  "intro": "Amplitude and Baremetrics both show up under the product analytics category, but they solve slightly different jobs. Amplitude uses pricing that starts at $61/mo (Plus) with free tier, while Baremetrics runs on subscription from $129/mo with free tier. Lock-in is medium for Amplitude and high for Baremetrics. Developer experience scores 5/5 against 3/5. Amplitude fits teams working on enterprise product analytics with advanced cohorts, while Baremetrics is a closer match when the job is understanding user behavior (funnels, retention). Worth noting: Amplitude is explicitly not for startup with <1K users; Baremetrics is explicitly not for simple projects. The honest trade-off: Amplitude trades off on startup with <1K users — PostHog free tier is more generous; Baremetrics trades off on pre-product stage. On the plus side, Amplitude highlights enterprise product analytics with advanced cohorts, while Baremetrics points to understanding user behavior (funnels, retention). Amplitude's documentation also calls out warehouse-native mode (Snowflake/BigQuery). Baremetrics similarly notes data-driven product decisions.",
+  "quick_take": "Amplitude is for enterprise product analytics with advanced cohorts; Baremetrics is for understanding user behavior (funnels, retention); decide on pricing model.",
+  "verdict_a": "Choose Amplitude if your project is enterprise product analytics with advanced cohorts, medium lock-in is an acceptable trade-off, strong SDKs and docs (5/5) are a priority.",
+  "verdict_b": "Choose Baremetrics if your project is understanding user behavior (funnels, retention), a subscription starting at $129/mo fits your budget, you are willing to accept the high lock-in called out in our data.",
+  "faq": [
+    {
+      "q": "Is Amplitude cheaper than Baremetrics?",
+      "a": "Amplitude uses pricing that starts at $61/mo (Plus) with free tier, and Baremetrics uses subscription from $129/mo with free tier. The pricing models are different, so a direct cheaper-than comparison depends on your volume and usage pattern."
+    },
+    {
+      "q": "Can I migrate from Amplitude to Baremetrics?",
+      "a": "Our data puts Amplitude at medium lock-in (proprietary data model, warehouse-native reduces lock-in), and Baremetrics at high lock-in (analytics derived from stripe). Migration is feasible but not trivial — budget time for re-integration, data export, and parallel running before cutover."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Amplitude scores 5/5 on developer experience in our data, while Baremetrics scores 3/5, so Amplitude has the edge on docs and SDK quality by that measure. Still, run a small integration spike on both before deciding — team familiarity with a given SDK style often matters more than a one-point score gap."
+    },
+    {
+      "q": "Is Baremetrics a good alternative to Amplitude?",
+      "a": "Baremetrics is a reasonable alternative to Amplitude when your workload leans more toward understanding user behavior (funnels, retention) than enterprise. The pricing model shifts too — Amplitude is pricing that starts at $61/mo (Plus) with free tier, Baremetrics is subscription from $129/mo with free tier — so expect the cost profile to change as well. One caveat: Baremetrics is explicitly not for simple projects, so check that constraint against your use-case before switching."
+    }
+  ]
+}

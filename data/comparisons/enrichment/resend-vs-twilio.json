@@ -1,0 +1,24 @@
+{
+  "intro": "Twilio enters at $0.0079/min, $0.0079/SMS (US) against Resend at $20/mo (Pro, 50K emails). Resend is positioned for transactional emails (receipts, alerts), while Twilio leans toward multi-channel messaging (sms + voice + whatsapp). In practice, Resend — Developer-first transactional email API with React Email support, webhooks, and domain management. Twilio — Cloud communications platform with APIs for SMS, voice, video, email, and WhatsApp messaging. Resend carries low lock-in (Low — REST API, SMTP, migration guides from competitors) while Twilio is medium (Medium — but butwithand (porting), but ecosystem (Segment, SendGrid) creates inandwithandwith). Resend rates 5/5 on transparency versus 3/5 for Twilio. Listed strengths unique to Resend include transactional emails (receipts, alerts), while Twilio lists multi-channel messaging (sms + voice + whatsapp) on its side. Reach for Resend when you need transactional emails (receipts, alerts); reach for Twilio when the job is multi-channel messaging (sms + voice + whatsapp). The honest trade-off: Resend is not built for internal projects, and Twilio is not the right call for email only, so neither is a universal default.",
+  "quick_take": "Resend is for transactional emails (receipts, alerts); Twilio is for multi-channel messaging (sms + voice + whatsapp); decide based on pricing model.",
+  "verdict_a": "Choose Resend if transactional emails (receipts, alerts) and the $20/mo (Pro, 50K emails) entry price fits your budget.",
+  "verdict_b": "Choose Twilio if multi-channel messaging (sms + voice + whatsapp) and the $0.0079/min, $0.0079/SMS (US) entry price fits your budget.",
+  "faq": [
+    {
+      "q": "Is Resend cheaper than Twilio?",
+      "a": "Based on the listed entry prices, no: Resend starts at $20/mo (Pro, 50K emails) while Twilio starts at $0.0079/min, $0.0079/SMS (US). At low volume the gap may be small, but it widens fast at scale. Always price against your own usage curve, not the headline tier."
+    },
+    {
+      "q": "Can I migrate from Resend to Twilio?",
+      "a": "Technically you can move between any two tools in the same category, but effort varies: leaving Resend is relatively light thanks to its low lock-in, and onboarding to Twilio involves medium lock-in (Medium — but butwithand (porting), but ecosystem (Segment, SendGrid) creates inandwithandwith). Plan for data export, re-integration, and a parallel-run window rather than a hard cutover."
+    },
+    {
+      "q": "Which has better developer experience, Resend or Twilio?",
+      "a": "Both Resend and Twilio score 5/5 on developer experience in our data, so there's no clear winner on that axis alone. The real differentiator usually lands in SDK fit for your language, error handling, and docs depth. A half-day integration spike tells you more than the score."
+    },
+    {
+      "q": "Is Twilio a good alternative to Resend?",
+      "a": "Twilio is an alternative in the same category, but its stated sweet spot is multi-channel messaging (sms + voice + whatsapp), while Resend's is transactional emails (receipts, alerts). If your job matches Resend's profile more closely, switching to Twilio is a compromise. Use the best-fit match, not brand familiarity, to decide. Note: Twilio is explicitly not for email only."
+    }
+  ]
+}

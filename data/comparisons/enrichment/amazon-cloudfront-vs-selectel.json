@@ -1,0 +1,24 @@
+{
+  "intro": "The biggest real distinction between Amazon CloudFront and Selectel is straightforward: Amazon CloudFront uses freemium with a paid tier from $0/month, enterprise plan available; Selectel uses usage-based pricing. Amazon CloudFront sits at freemium with a paid tier from $0/month, enterprise plan available and carries moderate lock-in, while Selectel sits at usage-based pricing and carries moderate lock-in. Amazon CloudFront is a fit when you need global — typical scenarios include global audience with low latency needs. Selectel is aimed at russian companies needing local iaas, object storage, and managed kubernetes, with workloads like russian cloud iaas with dedicated servers and object storage as the common case. The honest trade-off: Amazon CloudFront is explicitly not for internal projects; Selectel is not intended for international companies or those with sanctions compliance requirements. On cost specifically, pricing model matters more than sticker price — one workload can make Amazon CloudFront cheaper while a different shape flips the answer to Selectel.",
+  "quick_take": "Amazon CloudFront is for global; Selectel is for russian companies needing local iaas, object; decide based on cost model and budget.",
+  "verdict_a": "Choose Amazon CloudFront if your primary workload is global and the free tier plus $0/month paid tier fits your budget.",
+  "verdict_b": "Choose Selectel if your primary workload is russian companies needing local iaas, object storage, and managed kubernetes.",
+  "faq": [
+    {
+      "q": "Is Amazon CloudFront cheaper than Selectel?",
+      "a": "Amazon CloudFront publishes an entry price of $0/month; Selectel's entry price is not in our data, so a definitive comparison is not possible without a quote from Selectel."
+    },
+    {
+      "q": "Can I migrate from Amazon CloudFront to Selectel?",
+      "a": "Migrating from Amazon CloudFront to Selectel is doable but not automatic — Amazon CloudFront carries moderate lock-in. Since both tools sit in the same category (CDN / Edge / Acceleration), the conceptual mapping is closer, but you still need to validate feature parity against your specific workload. Plan migration as a project, not a script: inventory integrations, test on non-production workloads, and keep Amazon CloudFront running in parallel until Selectel is verified."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "On our 0–5 developer experience scale, Amazon CloudFront scores higher (4/5 vs 3/5 for Selectel). The gap is one point — meaningful but not decisive, since DX is workflow-dependent. Still, score your own tasks: DX is subjective and tied to stack assumptions."
+    },
+    {
+      "q": "Is Selectel a good alternative to Amazon CloudFront?",
+      "a": "Selectel is in the same category as Amazon CloudFront (CDN / Edge / Acceleration), so it's a reasonable alternative to evaluate. Selectel is aimed at russian companies needing local iaas, object storage, and managed kubernetes, while Amazon CloudFront targets global — that difference should drive the switch decision. Note that Selectel is explicitly not for international companies or those with sanctions compliance requirements — if that describes your workload, it's not a viable replacement."
+    }
+  ]
+}

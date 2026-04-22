@@ -1,0 +1,24 @@
+{
+  "intro": "2Checkout and Unit both show up under the payment gateway category, but they solve slightly different jobs. 2Checkout uses undisclosed pricing, while Unit runs on custom (sales-led) pricing. Lock-in is low for 2Checkout and high for Unit. Transparency lands at 2/5 versus 1/5. 2Checkout fits teams working on SaaS with online payments, while Unit is a closer match when the job is FDIC-insured bank accounts and ACH for US fintech startups. Worth noting: 2Checkout is explicitly not for offline, Internal projects; Unit is explicitly not for Non-US teams or companies needing a plain payment gateway. The honest trade-off: 2Checkout trades off on offline-only retail; Unit trades off on sponsor bank risk post-US BaaS turbulence. On the plus side, 2Checkout highlights SaaS with online payments, while Unit points to accounts, cards, ACH, wire, lending unified. 2Checkout's documentation also calls out e-commerce checkout. Unit similarly notes FDIC-insured accounts via partner banks. For teams evaluating payment gateway options today, the right choice usually comes down to pricing model, lock-in, and which tool's stated use-case maps to yours.",
+  "quick_take": "2Checkout is for SaaS with online payments; Unit is for FDIC-insured bank accounts and ACH for; decide on pricing model.",
+  "verdict_a": "Choose 2Checkout if your project is SaaS with online payments, you want to keep future migration cheap, you can tolerate 2Checkout's limited public transparency (2/5).",
+  "verdict_b": "Choose Unit if your project is FDIC-insured bank accounts and ACH for US fintech startups, you are prepared for a sales-led custom-pricing conversation, you are willing to accept the high lock-in called out in our data.",
+  "faq": [
+    {
+      "q": "Is 2Checkout cheaper than Unit?",
+      "a": "2Checkout uses undisclosed pricing, and Unit uses custom (sales-led) pricing. The pricing models are different, so a direct cheaper-than comparison depends on your volume and usage pattern."
+    },
+    {
+      "q": "Can I migrate from 2Checkout to Unit?",
+      "a": "Our data puts 2Checkout at low lock-in (merchant account tightly bound; customer and subscription data partially portable), and Unit at high lock-in (baas partner integrations hard to migrate). Migration is feasible but not trivial — budget time for re-integration, data export, and parallel running before cutover."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Unit scores 5/5 on developer experience in our data, while 2Checkout scores 3/5, so Unit has the edge on docs and SDK quality by that measure. Still, run a small integration spike on both before deciding — team familiarity with a given SDK style often matters more than a one-point score gap."
+    },
+    {
+      "q": "Is Unit a good alternative to 2Checkout?",
+      "a": "Unit is a reasonable alternative to 2Checkout when your workload leans more toward US fintech startups needing full-stack banking APIs with modern developer experience than SaaS, E-commerce, Marketplace. The pricing model shifts too — 2Checkout is undisclosed pricing, Unit is custom (sales-led) pricing — so expect the cost profile to change as well. One caveat: Unit is explicitly not for Non-US teams or companies needing a plain payment gateway, so check that constraint against your use-case before switching."
+    }
+  ]
+}

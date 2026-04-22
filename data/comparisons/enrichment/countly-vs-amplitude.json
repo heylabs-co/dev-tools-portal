@@ -1,0 +1,24 @@
+{
+  "intro": "Countly and Amplitude both show up under the product analytics category, but they solve slightly different jobs. Countly starts at $0/mo; Amplitude starts at $61/mo (Plus). Lock-in is low for Countly and medium for Amplitude. Transparency lands at 3/5 versus 4/5. Countly fits teams working on understanding user behavior (funnels, retention), while Amplitude is a closer match when the job is enterprise product analytics with advanced cohorts. Worth noting: Countly is explicitly not for simple projects; Amplitude is explicitly not for startup with <1K users. The honest trade-off: Countly trades off on pre-product stage; Amplitude trades off on startup with <1K users — PostHog free tier is more generous. On the plus side, Countly highlights understanding user behavior (funnels, retention), while Amplitude points to enterprise product analytics with advanced cohorts. Countly's documentation also calls out data-driven product decisions. Amplitude similarly notes warehouse-native mode (Snowflake/BigQuery). For teams evaluating product analytics options today, the decision usually hinges on whether Countly's profile or Amplitude's profile maps more cleanly to the pricing model, lock-in tolerance, and scale your team can live with.",
+  "quick_take": "Countly is for understanding user behavior (funnels, retention); Amplitude is for enterprise product analytics with advanced cohorts; decide on entry price.",
+  "verdict_a": "Choose Countly if your project is understanding user behavior (funnels, retention), you want to keep future migration cheap.",
+  "verdict_b": "Choose Amplitude if your project is enterprise product analytics with advanced cohorts, medium lock-in is an acceptable trade-off, strong SDKs and docs (5/5) are a priority.",
+  "faq": [
+    {
+      "q": "Is Countly cheaper than Amplitude?",
+      "a": "Countly uses pricing that starts at $0/mo with free tier, and Amplitude uses pricing that starts at $61/mo (Plus) with free tier. On published entry price, Countly lists $0/mo while Amplitude lists $61/mo (Plus) — but the real cost at your scale will depend on actual usage, not just the starting tier."
+    },
+    {
+      "q": "Can I migrate from Countly to Amplitude?",
+      "a": "Our data puts Countly at low lock-in (self-hostable oss product analytics), and Amplitude at medium lock-in (proprietary data model, warehouse-native reduces lock-in). Moving from Countly to Amplitude should be manageable, though you'll still need to replay integrations and re-test flows end-to-end."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Amplitude scores 5/5 on developer experience in our data, while Countly scores 4/5, so Amplitude has the edge on docs and SDK quality by that measure. That gap is reinforced by transparency scores of 4/5 versus 3/5. Still, run a small integration spike on both before deciding — team familiarity with a given SDK style often matters more than a one-point score gap."
+    },
+    {
+      "q": "Is Amplitude a good alternative to Countly?",
+      "a": "Amplitude is a reasonable alternative to Countly when your workload leans more toward enterprise than understanding user behavior (funnels, retention). One caveat: Amplitude is explicitly not for startup with <1K users, so check that constraint against your use-case before switching."
+    }
+  ]
+}

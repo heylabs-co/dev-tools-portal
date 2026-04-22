@@ -1,0 +1,24 @@
+{
+  "intro": "FingerprintJS is freemium; Kount is paid subscription. FingerprintJS: FingerprintJS (Fingerprint Pro) provides browser and mobile device identification with 99.5% accuracy using advanced fingerprinting signals. Its API detects bots, account sharing, multi-accounting and payment fraud, and exposes risk signals. Kount: Mastercard fraud and identity trust platform combining device fingerprinting, AI scoring, and a shared merchant network. FingerprintJS fits engineering teams adding a reliable device identity signal to their own risk stack. Kount fits marketplace — in practice, high-value transactions. On our rubric FingerprintJS scores 5/5 for developer experience and 4/5 for transparency, while Kount scores 4/5 and 3/5. The honest trade-off: FingerprintJS's main drawback — Device ID alone does not stop determined fraudsters; Kount's — Low transaction volume. One point in FingerprintJS's favour: 99.5% device ID accuracy, widely benchmarked. FingerprintJS is explicitly not the right pick for teams that want turnkey approve/decline decisions without building any logic. Kount is not aimed at low transaction volume. Another FingerprintJS advantage: Simple JS/SDK integration in minutes.",
+  "quick_take": "FingerprintJS is for engineering teams adding a reliable device identity signal; Kount is for marketplace; decide on pricing model.",
+  "verdict_a": "Choose FingerprintJS if engineering teams adding a reliable device identity signal to their own risk stack, and if a free tier with an optional paid path matters.",
+  "verdict_b": "Choose Kount if your work looks like high-value transactions.",
+  "faq": [
+    {
+      "q": "Is FingerprintJS cheaper than Kount?",
+      "a": "FingerprintJS uses freemium pricing; Kount uses paid subscription. Which is cheaper depends on your volume and team size — model both against your projected usage before deciding."
+    },
+    {
+      "q": "Can I migrate from FingerprintJS to Kount?",
+      "a": "Expect real effort: FingerprintJS is medium lock-in (OSS core + Pro API, portable) and Kount is high lock-in (Fraud platform integration). Migrating between them means rebuilding integrations, re-authoring config, and accepting new coupling. Scope a spike before committing."
+    },
+    {
+      "q": "Which has better developer experience, FingerprintJS or Kount?",
+      "a": "FingerprintJS scores higher in our rubric (5/5 vs 4/5 for Kount). Transparency is 4/5 for FingerprintJS and 3/5 for Kount. DX scores are rubric-based, not benchmarks, so evaluate against your own toolchain."
+    },
+    {
+      "q": "Is Kount a good alternative to FingerprintJS?",
+      "a": "They sit in the same category, so yes — Kount is a plausible alternative for many FingerprintJS use cases. It fits best when marketplace. Skip it if low transaction volume."
+    }
+  ]
+}

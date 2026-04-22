@@ -1,0 +1,24 @@
+{
+  "intro": "The biggest real distinction between Fastly and Netlify is straightforward: Fastly uses usage-based pricing starting at $50/mo (pay-as-you-go), $0.12/GB, enterprise plan available; Netlify uses freemium with a paid tier from $19/mo/member (Pro), enterprise plan available. Fastly sits at usage-based pricing starting at $50/mo (pay-as-you-go), $0.12/GB, enterprise plan available and carries moderate lock-in, while Netlify sits at freemium with a paid tier from $19/mo/member (Pro), enterprise plan available and carries moderate lock-in. Fastly is a fit when you need global — typical scenarios include global audience with low latency needs. Netlify is aimed at global, with workloads like global audience with low latency needs as the common case. The honest trade-off: Fastly is explicitly not for internal projects; Netlify is not intended for internal projects. On cost specifically, pricing model matters more than sticker price — one workload can make Fastly cheaper while a different shape flips the answer to Netlify.",
+  "quick_take": "Fastly is for global; Netlify is for global; decide based on cost model and budget.",
+  "verdict_a": "Choose Fastly if your primary workload is global and you prefer usage-based pricing (starts at $50/mo (pay-as-you-go), $0.12/GB).",
+  "verdict_b": "Choose Netlify if your primary workload is global and the free tier plus $19/mo/member (Pro) paid tier fits your budget.",
+  "faq": [
+    {
+      "q": "Is Fastly cheaper than Netlify?",
+      "a": "It depends on workload shape: Fastly lists $50/mo (pay-as-you-go), $0.12/GB, while Netlify lists $19/mo/member (Pro). With different pricing models (usage vs freemium), the cheaper option flips based on seat count, usage volume, and whether you use the free tier. Do a per-workload estimate rather than comparing headline numbers."
+    },
+    {
+      "q": "Can I migrate from Fastly to Netlify?",
+      "a": "Migrating from Fastly to Netlify is doable but not automatic — Fastly carries moderate lock-in. Since both tools sit in the same category (CDN / Edge / Acceleration), the conceptual mapping is closer, but you still need to validate feature parity against your specific workload. Plan migration as a project, not a script: inventory integrations, test on non-production workloads, and keep Fastly running in parallel until Netlify is verified."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Our data gives Fastly and Netlify the same developer experience score (5/5), so neither has a clear edge on DX by that measure. The differentiator is usually how each tool fits your workflow — things like CLI quality, docs, local dev loop, and error messages. The safest call is to pilot both on a representative task and see which one gets out of your way."
+    },
+    {
+      "q": "Is Netlify a good alternative to Fastly?",
+      "a": "Netlify is in the same category as Fastly (CDN / Edge / Acceleration), so it's a reasonable alternative to evaluate. Both tools claim similar best-fit workloads on paper, so the real test is how each behaves under your specific constraints. Note that Netlify is explicitly not for internal projects — if that describes your workload, it's not a viable replacement."
+    }
+  ]
+}

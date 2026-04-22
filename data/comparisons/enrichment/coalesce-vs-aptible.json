@@ -1,0 +1,24 @@
+{
+  "intro": "The clearest difference between Coalesce and Aptible is lock-in — Coalesce has high lock-in (Snowflake-specific transform tool), whereas Aptible has medium lock-in (PaaS for HIPAA, app code portable). Beyond that, developer experience — Coalesce scores 4/5 against Aptible's 5/5. Coalesce fits SOC 2 / ISO 27001 preparation; Aptible fits early-stage healthtech startups that need HIPAA yesterday without a DevOps hire. On the strengths side, Coalesce is cited for SOC 2 / ISO 27001 preparation, while Aptible is cited for Signs BAAs and inherits HIPAA controls out of the box. The honest trade-off: Coalesce is the wrong call for pre-revenue startups; Aptible is the wrong call for teams with deep AWS expertise or unusual infra requirements; Coalesce users flag pre-revenue startups, and Aptible users flag significantly pricier than raw AWS or similar PaaS. Choosing between them should come down to the constraint that actually binds your workflow, not surface-level overlap. On developer experience the data shows Coalesce at 4/5 and Aptible at 5/5, with transparency at 3/5 and 4/5 respectively.",
+  "quick_take": "Coalesce is for SOC 2 / ISO 27001 preparation; Aptible is for early-stage healthtech startups; decide based on lock-in tolerance.",
+  "verdict_a": "Choose Coalesce if your use case is SOC 2 / ISO 27001 preparation, and high lock-in is acceptable in exchange for its fit.",
+  "verdict_b": "Choose Aptible if your use case is early-stage healthtech startups that need HIPAA yesterday without a DevOps hire, and medium lock-in is acceptable in exchange for its fit.",
+  "faq": [
+    {
+      "q": "Is Coalesce cheaper than Aptible?",
+      "a": "Both Coalesce and Aptible use a subscription model, so raw pricing is close on paper. The real cost difference depends on volume, seats, and which paid features you actually need. Check current pricing on each vendor's page before deciding."
+    },
+    {
+      "q": "Can I migrate from Coalesce to Aptible?",
+      "a": "Migrating from Coalesce to Aptible is feasible when their scopes overlap, but the work is in re-mapping configuration, data models, and integrations. Moving off Coalesce is harder because of high lock-in (Snowflake-specific transform tool). Plan for a dual-run period so you can validate parity before decommissioning."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "On our developer-experience score, Aptible is rated 5/5 and Coalesce 4/5, so Aptible edges ahead. Scores like this smooth over real differences in docs, CLI feel, and SDK quality, so treat them as a starting point. Spend an afternoon in each before relying on the number."
+    },
+    {
+      "q": "Is Aptible a good alternative to Coalesce?",
+      "a": "Aptible is a reasonable alternative to Coalesce when Aptible fits early-stage healthtech startups that need HIPAA yesterday without a DevOps hire. If your use case matches Coalesce's sweet spot — SOC 2 / ISO 27001 preparation — staying with Coalesce is probably safer. Coalesce itself is not meant for pre-revenue startups, which is often where users start shopping for alternatives."
+    }
+  ]
+}

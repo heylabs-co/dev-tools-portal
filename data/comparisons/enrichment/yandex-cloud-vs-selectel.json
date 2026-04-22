@@ -1,0 +1,24 @@
+{
+  "intro": "The biggest real distinction between Yandex Cloud and Selectel is straightforward: Yandex Cloud is aimed at Russian and CIS-focused businesses needing local cloud with ML capabilities, whereas Selectel targets Russian companies needing local IaaS, object storage, and managed Kubernetes. Yandex Cloud sits at usage-based pricing, a free tier and carries moderate lock-in, while Selectel sits at usage-based pricing and carries moderate lock-in. Yandex Cloud is a fit when you need russian and cis-focused businesses needing local cloud with ml capabilities — typical scenarios include russian public cloud with compute, storage, and ml services. Selectel is aimed at russian companies needing local iaas, object storage, and managed kubernetes, with workloads like russian cloud iaas with dedicated servers and object storage as the common case. The honest trade-off: Yandex Cloud is explicitly not for global startups with western investors or sanctions compliance concerns; Selectel is not intended for international companies or those with sanctions compliance requirements.",
+  "quick_take": "Yandex Cloud is for russian and cis-focused businesses needing local; Selectel is for russian companies needing local iaas, object; decide based on which workload you actually run.",
+  "verdict_a": "Choose Yandex Cloud if your primary workload is russian and cis-focused businesses needing local cloud with ml capabilities.",
+  "verdict_b": "Choose Selectel if your primary workload is russian companies needing local iaas, object storage, and managed kubernetes.",
+  "faq": [
+    {
+      "q": "Is Yandex Cloud cheaper than Selectel?",
+      "a": "Neither Yandex Cloud nor Selectel publishes a straightforward entry price in our data, so a direct 'cheaper' call is not possible. Pricing models differ (usage vs usage), which usually means the answer depends on seat count and usage."
+    },
+    {
+      "q": "Can I migrate from Yandex Cloud to Selectel?",
+      "a": "Migrating from Yandex Cloud to Selectel is doable but not automatic — Yandex Cloud carries moderate lock-in. Since both tools sit in the same category (CDN / Edge / Acceleration), the conceptual mapping is closer, but you still need to validate feature parity against your specific workload. Plan migration as a project, not a script: inventory integrations, test on non-production workloads, and keep Yandex Cloud running in parallel until Selectel is verified."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "On our 0–5 developer experience scale, Yandex Cloud scores higher (4/5 vs 3/5 for Selectel). The gap is one point — meaningful but not decisive, since DX is workflow-dependent. Still, score your own tasks: DX is subjective and tied to stack assumptions."
+    },
+    {
+      "q": "Is Selectel a good alternative to Yandex Cloud?",
+      "a": "Selectel is in the same category as Yandex Cloud (CDN / Edge / Acceleration), so it's a reasonable alternative to evaluate. Selectel is aimed at russian companies needing local iaas, object storage, and managed kubernetes, while Yandex Cloud targets russian and cis-focused businesses needing local cloud with ml capabilities — that difference should drive the switch decision. Note that Selectel is explicitly not for international companies or those with sanctions compliance requirements — if that describes your workload, it's not a viable replacement."
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "intro": "flagd and Flags SDK overlap on pricing and lock-in, so the choice hinges on fit rather than cost. Flagd: Feature flag daemon with a Unix philosophy. Reference OpenFeature-compliant backend supporting HTTP/gRPC evaluation, targeting rules and OpenTelemetry tracing. Flags SDK: Free open-source Vercel library for Next.js and SvelteKit feature flags. Framework-native, provider-agnostic with adapters for LaunchDarkly, Statsig, Optimizely, Hypertune, ConfigCat, DevCycle and Flipt. Flagd fits platform teams standardizing on OpenFeature with self-hosting. Flags SDK fits Next.js/SvelteKit teams integrating existing flag SaaS cleanly. Both land at 5/5 for developer experience and 5/5 for transparency on our rubric. The honest trade-off: flagd's main drawback — Minimal UI; configuration is file-driven; Flags SDK's — Only a client/framework layer; you still need a provider. One point in flagd's favour: Reference OpenFeature backend with clean Unix design. For Flags SDK: Framework-native for Next.js and SvelteKit. Flagd is explicitly not the right pick for teams that need a polished no-code flag dashboard. Flags SDK is not aimed at Non-Vercel stacks or teams needing the provider itself.",
+  "quick_take": "flagd is for platform teams standardizing on OpenFeature with self-hosting; Flags SDK is for Next.js/SvelteKit teams integrating existing flag SaaS cleanly; decide on fit with your stack.",
+  "verdict_a": "Choose flagd if platform teams standardizing on OpenFeature with self-hosting.",
+  "verdict_b": "Choose Flags SDK if Next.js/SvelteKit teams integrating existing flag SaaS cleanly.",
+  "faq": [
+    {
+      "q": "Is flagd cheaper than Flags SDK?",
+      "a": "Both tools use free pricing, so a clean list-price comparison depends on tier details that vary by usage. Check each vendor's current plan page for your expected volume. Neither is structurally cheaper on the model alone."
+    },
+    {
+      "q": "Can I migrate from flagd to Flags SDK?",
+      "a": "Both tools are rated low lock-in, so migration is mostly a matter of re-pointing integrations and re-authoring config. There's no hard data format moat on either side. Expect work proportional to how deeply flagd touches your pipeline, but no vendor-imposed blockers."
+    },
+    {
+      "q": "Which has better developer experience, flagd or Flags SDK?",
+      "a": "Both score 5/5 for developer experience in our rubric, so neither has a structural edge. The practical answer depends on stack fit: flagd's ergonomics suit some workflows, Flags SDK's suit others. Try both on a throwaway project before committing."
+    },
+    {
+      "q": "Is Flags SDK a good alternative to flagd?",
+      "a": "They sit in the same category, so yes — Flags SDK is a plausible alternative for many flagd use cases. It fits best when Next.js/SvelteKit teams integrating existing flag SaaS cleanly. Skip it if Non-Vercel stacks or teams needing the provider itself."
+    }
+  ]
+}

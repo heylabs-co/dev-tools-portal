@@ -1,0 +1,24 @@
+{
+  "intro": "Twilio scores 5/5 on developer experience versus 4/5 for MessageBird. MessageBird is positioned for transactional emails (receipts, alerts), while Twilio leans toward multi-channel messaging (sms + voice + whatsapp). In practice, MessageBird — Cloud communications platform API for SMS, voice, and WhatsApp with global carrier coverage. Twilio — Cloud communications platform with APIs for SMS, voice, video, email, and WhatsApp messaging. MessageBird runs on unknown; Twilio runs on usage from $0.0079/min, $0.0079/SMS (US). Listed strengths unique to MessageBird include transactional emails (receipts, alerts), while Twilio lists multi-channel messaging (sms + voice + whatsapp) on its side. Reach for MessageBird when you need transactional emails (receipts, alerts); reach for Twilio when the job is multi-channel messaging (sms + voice + whatsapp). The honest trade-off: MessageBird is not built for internal projects, and Twilio is not the right call for email only, so neither is a universal default. Transparency scores land at 3/5 for MessageBird and 3/5 for Twilio, which reflects how openly each tool documents pricing, limits, and terms.",
+  "quick_take": "MessageBird is for transactional emails (receipts, alerts); Twilio is for multi-channel messaging (sms + voice + whatsapp); decide based on which use case matches.",
+  "verdict_a": "Choose MessageBird if transactional emails (receipts, alerts) and moderate platform coupling is acceptable.",
+  "verdict_b": "Choose Twilio if multi-channel messaging (sms + voice + whatsapp) and the $0.0079/min, $0.0079/SMS (US) entry price fits your budget.",
+  "faq": [
+    {
+      "q": "Is MessageBird cheaper than Twilio?",
+      "a": "The listed pricing for MessageBird is unknown and for Twilio is usage from $0.0079/min, $0.0079/SMS (US), which doesn't give a clean apples-to-apples cost. Unit economics and plan structure differ enough that only your real volume answers this. Price both against the same workload."
+    },
+    {
+      "q": "Can I migrate from MessageBird to Twilio?",
+      "a": "Technically you can move between any two tools in the same category, but effort varies: leaving MessageBird is moderate effort at medium lock-in (Medium — multi-channel (WhatsApp, WeChat) creates inandwithandwith), and onboarding to Twilio involves medium lock-in (Medium — but butwithand (porting), but ecosystem (Segment, SendGrid) creates inandwithandwith). Plan for data export, re-integration, and a parallel-run window rather than a hard cutover."
+    },
+    {
+      "q": "Which has better developer experience, MessageBird or Twilio?",
+      "a": "On the 0-5 developer experience score in our data, Twilio rates 5/5 while MessageBird rates 4/5, giving Twilio the edge. That score is a rough summary; actual day-to-day DX depends on your language, deployment target, and tolerance for edge cases. Prototype both to validate."
+    },
+    {
+      "q": "Is Twilio a good alternative to MessageBird?",
+      "a": "Twilio is an alternative in the same category, but its stated sweet spot is multi-channel messaging (sms + voice + whatsapp), while MessageBird's is transactional emails (receipts, alerts). If your job matches MessageBird's profile more closely, switching to Twilio is a compromise. Use the best-fit match, not brand familiarity, to decide. Note: Twilio is explicitly not for email only."
+    }
+  ]
+}

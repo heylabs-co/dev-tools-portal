@@ -1,0 +1,24 @@
+{
+  "intro": "GO Feature Flag and Flags SDK overlap on pricing and lock-in, so the choice hinges on fit rather than cost. GO Feature Flag: Simple, complete and lightweight self-hosted feature flag solution, 100% open source. OpenFeature-native with 15+ language SDKs via relay proxy. Flags SDK: Free open-source Vercel library for Next.js and SvelteKit feature flags. Framework-native, provider-agnostic with adapters for LaunchDarkly, Statsig, Optimizely, Hypertune, ConfigCat, DevCycle and Flipt. GO Feature Flag fits engineering teams running flags in-house across many languages. Flags SDK fits Next.js/SvelteKit teams integrating existing flag SaaS cleanly. Both land at 5/5 for developer experience and 5/5 for transparency on our rubric. The honest trade-off: GO Feature Flag's main drawback — Config and ops are your responsibility; Flags SDK's — Only a client/framework layer; you still need a provider. One point in GO Feature Flag's favour: Self-hosted, 100% open source with generous features. For Flags SDK: Framework-native for Next.js and SvelteKit. GO Feature Flag is explicitly not the right pick for non-engineers wanting polished SaaS flag management.",
+  "quick_take": "GO Feature Flag is for engineering teams running flags in-house across many languages; Flags SDK is for Next.js/SvelteKit teams integrating existing flag SaaS cleanly; decide on fit with your stack.",
+  "verdict_a": "Choose GO Feature Flag if engineering teams running flags in-house across many languages.",
+  "verdict_b": "Choose Flags SDK if Next.js/SvelteKit teams integrating existing flag SaaS cleanly.",
+  "faq": [
+    {
+      "q": "Is GO Feature Flag cheaper than Flags SDK?",
+      "a": "Both tools use free pricing, so a clean list-price comparison depends on tier details that vary by usage. Check each vendor's current plan page for your expected volume. Neither is structurally cheaper on the model alone."
+    },
+    {
+      "q": "Can I migrate from GO Feature Flag to Flags SDK?",
+      "a": "Both tools are rated low lock-in, so migration is mostly a matter of re-pointing integrations and re-authoring config. There's no hard data format moat on either side. Expect work proportional to how deeply GO Feature Flag touches your pipeline, but no vendor-imposed blockers."
+    },
+    {
+      "q": "Which has better developer experience, GO Feature Flag or Flags SDK?",
+      "a": "Both score 5/5 for developer experience in our rubric, so neither has a structural edge. The practical answer depends on stack fit: GO Feature Flag's ergonomics suit some workflows, Flags SDK's suit others. Try both on a throwaway project before committing."
+    },
+    {
+      "q": "Is Flags SDK a good alternative to GO Feature Flag?",
+      "a": "They sit in the same category, so yes — Flags SDK is a plausible alternative for many GO Feature Flag use cases. It fits best when Next.js/SvelteKit teams integrating existing flag SaaS cleanly. Skip it if Non-Vercel stacks or teams needing the provider itself."
+    }
+  ]
+}

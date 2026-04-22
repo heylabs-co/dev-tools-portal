@@ -1,0 +1,24 @@
+{
+  "intro": "FormatJS and next-intl both sit in the Localization / Translation API space, but they target slightly different scopes. FormatJS specializes in Internationalization; it fits best for Mobile. next-intl is CI/CD for Applications tool for developers. Specializes in Next.js Internationalization; it fits best for Global products launching in multiple markets. Pick FormatJS for Mobile; pick next-intl for Global products launching in multiple markets. FormatJS is not for hobby projects. next-intl is not for single-language apps or internal tools. Honest trade-offs: FormatJS is weak for manual deployment is sufficient, and next-intl is weak for machine translation quality varies by language pair — match to your real scenario. Both sit under the Localization / Translation API umbrella, so your final call depends on pricing transparency, integration effort, and which listed not-for situations you can actually tolerate. On pricing, FormatJS uses free and open source and next-intl uses free and open source, which materially changes total cost at scale.",
+  "quick_take": "FormatJS is for mobile; next-intl is for global products launching in multiple markets; decide based on scope fit.",
+  "verdict_a": "Choose FormatJS if your core need is automated build/test/deploy pipelines.",
+  "verdict_b": "Choose next-intl if your core need is automated build/test/deploy pipelines.",
+  "faq": [
+    {
+      "q": "Is FormatJS cheaper than next-intl?",
+      "a": "A direct comparison depends on your usage profile and which pricing model fits better. FormatJS is free and open source. next-intl is free and open source."
+    },
+    {
+      "q": "Can I migrate from FormatJS to next-intl?",
+      "a": "Migration between these is relatively straightforward since both are rated as low lock-in. Plan for data export, re-integration of SDKs, and re-testing flows before cutover. Verify exportable formats and feature parity against your live use cases before committing."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Both score 5/5 on developer experience in our data. Evaluate against your own stack: read their docs, run a quick SDK spike, and check error handling. Self-assessing with a small prototype beats trusting any rating at face value."
+    },
+    {
+      "q": "Is next-intl a good alternative to FormatJS?",
+      "a": "next-intl sits in the same category as FormatJS, so it can be a reasonable alternative for overlapping use cases. next-intl is best fit for global products launching in multiple markets. Note: next-intl is not for single-language apps or internal tools."
+    }
+  ]
+}

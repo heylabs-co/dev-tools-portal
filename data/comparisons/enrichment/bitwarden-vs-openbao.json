@@ -1,0 +1,24 @@
+{
+  "intro": "The most concrete split between Bitwarden and OpenBao is the pricing model: Bitwarden runs on freemium with paid plans from $1.65/Month, while OpenBao uses free and open-source. That shapes how predictable your monthly spend is and how much of the cost sits in infrastructure versus per-seat or per-event fees. Beyond the headline, Bitwarden carries low lock-in (oss with self-host and export) and freemium with paid plans from $1.65/Month; OpenBao carries high lock-in (lf fork of vault, oss) and free and open-source. Bitwarden is a fit when you are teams. OpenBao is a fit when you are teams that want vault functionality under a permissive license. The honest trade-off: Bitwarden is explicitly not for solo, static projects; OpenBao is explicitly not for shops that rely on vault enterprise features or hcp. On the product side, Bitwarden is described as Open-source password and secrets manager with end-to-end encryption, SSO support, and self-hosting options, and OpenBao is described as open source fork of HashiCorp Vault maintained by the Linux Foundation for secrets management.",
+  "quick_take": "Bitwarden is for teams; OpenBao is for teams that want vault functionality under a permissive license; decide on pricing model.",
+  "verdict_a": "Choose Bitwarden if its freemium pricing model fits your budget shape better than OpenBao's free model, and you are teams.",
+  "verdict_b": "Choose OpenBao if you want a fully free, open-source option and can handle self-hosting or self-support.",
+  "faq": [
+    {
+      "q": "Is Bitwarden cheaper than OpenBao?",
+      "a": "Headline yes, OpenBao is free and open-source while Bitwarden uses freemium with paid plans from $1.65/Month. But the total cost depends on self-hosting and maintenance effort for OpenBao versus managed convenience from Bitwarden. Factor in both."
+    },
+    {
+      "q": "Can I migrate from Bitwarden to OpenBao?",
+      "a": "Migration paths between Bitwarden and OpenBao depend on the specific data and integrations. Neither vendor publishes a ready import tool for the other. Expect a custom export-transform-import exercise."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "On our scoring Bitwarden rates 5/5 for developer experience versus 4/5 for OpenBao. That suggests day-to-day workflows (CLI, SDKs, docs) are smoother in Bitwarden. Scores are directional; run a short spike on your own stack to confirm."
+    },
+    {
+      "q": "Is OpenBao a good alternative to Bitwarden?",
+      "a": "OpenBao is pitched at teams that want vault functionality under a permissive license, which overlaps with Bitwarden's fit (teams) but is not identical. Note that OpenBao is explicitly not for shops that rely on vault enterprise features or hcp, so it only replaces Bitwarden if you are outside that exclusion. The lock-in profile differs (low vs high), which is the main thing to weigh."
+    }
+  ]
+}

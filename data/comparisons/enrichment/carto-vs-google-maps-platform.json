@@ -1,0 +1,24 @@
+{
+  "intro": "The clearest split between CARTO and Google Maps Platform is vendor lock-in: CARTO is rated low (PostGIS-backed, data portable via SQL), while Google Maps Platform is rated medium (Maps APIs, swap possible but costly). CARTO is Cloud-native spatial analytics platform with PostGIS-backed data warehouse and map visualization; it fits best for apps. Google Maps Platform is Google's mapping APIs for web and mobile with geocoding, directions, Street View, and Places; it fits best for apps. Pick CARTO for apps; pick Google Maps Platform for apps. CARTO is not for simple projects. Google Maps Platform is not for simple projects. Honest trade-offs: CARTO is weak for apps without location features, and Google Maps Platform is weak for apps without location features — match to your real scenario. Both sit under the Maps / Geolocation / Routing umbrella, so your final call depends on pricing transparency, integration effort, and which listed not-for situations you can actually tolerate.",
+  "quick_take": "CARTO is for apps; Google Maps Platform is for apps; decide based on lock-in tolerance.",
+  "verdict_a": "Choose CARTO if low lock-in (PostGIS-backed, data portable via SQL) is acceptable and you need apps.",
+  "verdict_b": "Choose Google Maps Platform if medium lock-in (Maps APIs, swap possible but costly) is acceptable and you need apps.",
+  "faq": [
+    {
+      "q": "Is CARTO cheaper than Google Maps Platform?",
+      "a": "A direct comparison depends on your usage profile and which pricing model fits better. CARTO uses subscription pricing with no free tier published. Google Maps Platform uses subscription pricing with no free tier published."
+    },
+    {
+      "q": "Can I migrate from CARTO to Google Maps Platform?",
+      "a": "Migration from CARTO (low lock-in) to Google Maps Platform (medium lock-in) is the harder direction; the reverse is easier. Plan for data export, re-integration of SDKs, and re-testing flows before cutover. Verify exportable formats and feature parity against your live use cases before committing."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Both score 5/5 on developer experience in our data. Evaluate against your own stack: read their docs, run a quick SDK spike, and check error handling. Self-assessing with a small prototype beats trusting any rating at face value."
+    },
+    {
+      "q": "Is Google Maps Platform a good alternative to CARTO?",
+      "a": "Google Maps Platform sits in the same category as CARTO, so it can be a reasonable alternative for overlapping use cases. Google Maps Platform is best fit for apps. Note: Google Maps Platform is not for simple projects."
+    }
+  ]
+}

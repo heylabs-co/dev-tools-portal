@@ -1,0 +1,24 @@
+{
+  "intro": "The biggest practical difference between Iugu and Paddle is lock-in. Iugu is rated medium lock-in (brazil billing platform), while Paddle is rated high lock-in (high — mor model = paddle handles everything, fromwith adapts under paddle). That changes how hard a future migration would be and how much strategy to put into exit planning. Beyond the headline, Iugu carries medium lock-in (brazil billing platform) and usage-based pricing; Paddle carries high lock-in (high — mor model = paddle handles everything, fromwith adapts under paddle) and usage-based pricing from 5% + $0.50/transaction. Iugu is a fit when you are brazilian saas, marketplaces, and fintechs needing pix, boleto, and nf-e compliance. Paddle is a fit when you are saas, b2b. The honest trade-off: Iugu is explicitly not for global-first saas or companies without significant brazilian revenue exposure; Paddle is explicitly not for marketplace/platform payments. On the product side, Iugu is described as Brazilian billing and payments platform for subscriptions, recurring charges, and marketplaces with REST API, and Paddle is described as Merchant of Record and subscription billing platform for B2B/B2C SaaS with global.",
+  "quick_take": "Iugu is for brazilian saas, marketplaces, and fintechs needing pix, boleto, and nf-e compliance; Paddle is for saas, b2b; decide on lock-in tolerance.",
+  "verdict_a": "Choose Iugu if its medium lock-in is acceptable for your use case and you are brazilian saas, marketplaces, and fintechs needing pix, boleto, and nf-e compliance.",
+  "verdict_b": "Choose Paddle if you accept higher lock-in in exchange for its specific capabilities and you are saas, b2b.",
+  "faq": [
+    {
+      "q": "Is Iugu cheaper than Paddle?",
+      "a": "Both tools use usage pricing. Iugu is listed as usage-based pricing; Paddle as usage-based pricing from 5% + $0.50/transaction. Without specific volume and seat assumptions it is not possible to say which is cheaper in general."
+    },
+    {
+      "q": "Can I migrate from Iugu to Paddle?",
+      "a": "Migration from Iugu to Paddle is feasible but not trivial: Iugu has medium lock-in (brazil billing platform). Core data can move; integrations and workflow logic need rebuild. Allow for a parallel-run period."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "On our scoring Paddle rates 5/5 for developer experience versus 3/5 for Iugu. That suggests Paddle feels more polished for everyday developer tasks. We still recommend a short hands-on trial on your stack before standardising."
+    },
+    {
+      "q": "Is Paddle a good alternative to Iugu?",
+      "a": "Paddle is pitched at saas, b2b, which overlaps with Iugu's fit (brazilian saas, marketplaces, and fintechs needing pix, boleto, and nf-e compliance) but is not identical. Note that Paddle is explicitly not for marketplace/platform payments, so it only replaces Iugu if you are outside that exclusion. The lock-in profile differs (medium vs high), which is the main thing to weigh."
+    }
+  ]
+}

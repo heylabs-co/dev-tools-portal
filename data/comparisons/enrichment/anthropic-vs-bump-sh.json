@@ -1,0 +1,24 @@
+{
+  "intro": "Anthropic and Bump.sh bill differently, which matters more than feature parity here — Anthropic uses a hybrid plan + pay-per-use model ($20/mo (Pro), API $3/$15 per 1M tokens (Sonnet)), while Bump.sh sells a subscription from $50 with a free tier. Anthropic is Claude LLM API and Claude.ai consumer product from Anthropic. Bump.sh is API documentation and change-tracking hub for OpenAPI/AsyncAPI schemas. Pick Anthropic when the job is need strong reasoning and long context (200k tokens) and you accept low lock-in; pick Bump.sh when it is api gateway and rate limiting and you accept low lock-in. The data we have shows Anthropic at fully public pricing and documentation with a polished developer experience, and Bump.sh at mostly transparent pricing and docs with a polished developer experience. The honest trade-off: neither is universal — Anthropic is a poor fit for need cheapest inference, and Bump.sh is a poor fit for internal, simple projects. Match the pricing model and lock-in level to how your team actually works, not the feature list.",
+  "quick_take": "Anthropic is for Claude LLM API and Claude.ai consumer product; Bump.sh is for API documentation and change-tracking hub; decide based on pricing model fit.",
+  "verdict_a": "Choose Anthropic if a hybrid plan-plus-usage structure ($20/mo (Pro), API $3/$15 per 1M tokens (Sonnet)) fits your spending pattern and the work maps to Claude LLM API and Claude.ai consumer product from Anthropic.",
+  "verdict_b": "Choose Bump.sh if you need public pricing and docs before committing and the work lines up with API documentation and change-tracking hub for OpenAPI/AsyncAPI schemas.",
+  "faq": [
+    {
+      "q": "Is Anthropic cheaper than Bump.sh?",
+      "a": "Anthropic starts at $20/mo (Pro), API $3/$15 per 1M tokens (Sonnet) on a hybrid model; Bump.sh starts at $50 on a subscription model. That makes the sticker comparison depend on usage — a low entry price can get expensive once volume ramps, so price at your actual workload."
+    },
+    {
+      "q": "Can I migrate from Anthropic to Bump.sh?",
+      "a": "Migration in either direction is relatively cheap — both Anthropic and Bump.sh are rated low lock-in, so your configuration and data should port without a rewrite. The realistic cost is team re-training and pipeline QA, not the tools themselves."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Both Anthropic and Bump.sh rate the same on developer experience (5/5). The decision on DX then comes down to taste — which CLI, UI, or workflow matches your team's habits. A short side-by-side trial is the quickest way to tell."
+    },
+    {
+      "q": "Is Bump.sh a good alternative to Anthropic?",
+      "a": "Yes — Bump.sh is a reasonable alternative to Anthropic for need strong reasoning and long context (200k tokens). The practical differences are hybrid-vs-subscription billing and low-vs-low lock-in. If those fit your constraints better, treat Bump.sh as a credible swap."
+    }
+  ]
+}

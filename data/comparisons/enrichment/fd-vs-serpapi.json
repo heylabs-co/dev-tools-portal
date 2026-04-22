@@ -1,0 +1,24 @@
+{
+  "intro": "The clearest split is that fd uses a free model and SerpApi uses a usage model. fd is CI/CD for Applications tool for developers. Specializes in Fast Find; SerpApi is Search / Recommendations API tool for developers. Specializes in search api. The data points fd at automated build/test/deploy pipelines and team collaboration on code, and SerpApi at e-commerce product search and documentation/knowledge base search. Pricing: fd is free, free tier; SerpApi is usage, free tier. Lock-in is low for fd and high for SerpApi, with DX at 5/5 vs 5/5 and transparency at 5/5 vs 5/5. On listed strengths, fd emphasises automated build/test/deploy pipelines and team collaboration on code, and SerpApi emphasises sub-50ms search with managed indexing and relevance. Neither lists an enterprise tier, so contract-level buying may require a direct conversation. Honest trade-off: fd is not for hobby projects; SerpApi is not for simple crud apps with basic filtering needs, so confirm the fit first, then weigh the pivotal factor above against your budget and lock-in tolerance.",
+  "quick_take": "fd is for mobile; SerpApi is for e-commerce and content platforms needing fast search; decide based on which pricing model fits your budget.",
+  "verdict_a": "Choose fd if a free pricing model fits your procurement and your workload matches mobile. Skip it if your context is hobby projects.",
+  "verdict_b": "Choose SerpApi if a usage pricing model fits your procurement and your workload matches e-commerce and content platforms needing fast search. Skip it if your context is simple crud apps with basic filtering needs.",
+  "faq": [
+    {
+      "q": "Is fd cheaper than SerpApi?",
+      "a": "Entry pricing is listed as unknown for fd and unknown for SerpApi. Both offer a free tier for getting started. Total cost at scale depends on usage and plan details that are not in this dataset, so confirm with each vendor."
+    },
+    {
+      "q": "Can I migrate from fd to SerpApi?",
+      "a": "fd is tagged with low lock-in (oss cli find replacement). SerpApi is tagged with high lock-in (rest api, easily switchable). At least one side is high lock-in, so budget migration time for re-implementing integrations."
+    },
+    {
+      "q": "Which has better developer experience, fd or SerpApi?",
+      "a": "Both are rated 5/5 for developer experience in this dataset. With equal scores, the choice comes down to the specific SDK surface and docs you will use day to day. Run a short spike on each before deciding."
+    },
+    {
+      "q": "Is SerpApi a good alternative to fd?",
+      "a": "SerpApi is listed as fitting e-commerce and content platforms needing fast search, which overlaps with but is not identical to fd's scope. SerpApi is flagged as not for simple crud apps with basic filtering needs, so confirm your context does not fall there."
+    }
+  ]
+}

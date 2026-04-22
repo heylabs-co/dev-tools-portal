@@ -1,0 +1,24 @@
+{
+  "intro": "The biggest practical difference between HashiCorp Vault and Doppler is lock-in. HashiCorp Vault is rated low lock-in (open-source core, secrets exportable), while Doppler is rated medium lock-in (secrets exportable via api/cli). That changes how hard a future migration would be and how much strategy to put into exit planning. Beyond the headline, HashiCorp Vault carries low lock-in (open-source core, secrets exportable) and freemium; Doppler carries medium lock-in (secrets exportable via api/cli) and freemium with paid plans from $8/mo. HashiCorp Vault is a fit when you are teams. Doppler is a fit when you are teams. The honest trade-off: HashiCorp Vault is explicitly not for solo, static projects; Doppler is explicitly not for solo, static projects. On the product side, HashiCorp Vault is described as Open-source secrets engine providing dynamic database credentials, PKI, and encryption-as-a-service APIs, and Doppler is described as Universal secrets manager syncing environment variables across clouds, CI pipelines, and local dev with team sharing.",
+  "quick_take": "HashiCorp Vault is for teams; Doppler is for teams; decide on lock-in tolerance.",
+  "verdict_a": "Choose HashiCorp Vault if minimizing lock-in matters and you accept its stated trade-offs for teams.",
+  "verdict_b": "Choose Doppler if its medium lock-in is acceptable for your use case and you are teams.",
+  "faq": [
+    {
+      "q": "Is HashiCorp Vault cheaper than Doppler?",
+      "a": "Both tools use freemium pricing. HashiCorp Vault is listed as freemium; Doppler as freemium with paid plans from $8/mo. Without specific volume and seat assumptions it is not possible to say which is cheaper in general."
+    },
+    {
+      "q": "Can I migrate from HashiCorp Vault to Doppler?",
+      "a": "Migration from HashiCorp Vault to Doppler is plausible because HashiCorp Vault has low lock-in (open-source core, secrets exportable). You would still have to map config, permissions and integrations to Doppler's model. Plan for dual-run and rollback."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Both tools tie at 5/5 for developer experience on our scoring. The real difference will show up in your specific workflow, not the headline rating. A one-hour spike on both is the fastest way to decide."
+    },
+    {
+      "q": "Is Doppler a good alternative to HashiCorp Vault?",
+      "a": "Doppler targets the same best-fit audience as HashiCorp Vault (teams). Note that Doppler is explicitly not for solo, static projects, so it only replaces HashiCorp Vault if you are outside that exclusion. The lock-in profile differs (low vs medium), which is the main thing to weigh."
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "intro": "The clearest split between Amazon Rekognition and FormatJS is how they charge: Amazon Rekognition uses subscription pricing starting around $200, while FormatJS uses free and open source. Amazon Rekognition is AWS computer vision API for image and video analysis including object detection and facial recognition; it fits best for Apps. FormatJS specializes in Internationalization; it fits best for Mobile. Pick Amazon Rekognition when the job maps to apps targeting multiple languages/markets; pick FormatJS when it maps to automated build/test/deploy pipelines. Amazon Rekognition is not for static projects. FormatJS is not for hobby projects. Honest trade-offs: Amazon Rekognition is weak for english-only products, and FormatJS is weak for manual deployment is sufficient — match to your real scenario. Both sit under the Localization / Translation API umbrella, so your final call depends on pricing transparency, integration effort, and which listed not-for situations you can actually tolerate. On pricing, Amazon Rekognition uses subscription pricing starting around $200 and FormatJS uses free and open source, which materially changes total cost at scale.",
+  "quick_take": "Amazon Rekognition is for apps; FormatJS is for mobile; decide based on pricing model.",
+  "verdict_a": "Choose Amazon Rekognition if you want subscription pricing starting around $200 and your workload matches apps.",
+  "verdict_b": "Choose FormatJS if you want free and open source and your workload matches mobile.",
+  "faq": [
+    {
+      "q": "Is Amazon Rekognition cheaper than FormatJS?",
+      "a": "FormatJS is the cheaper option on paper since it is open source, while Amazon Rekognition is paid. Amazon Rekognition uses subscription pricing starting at $200. FormatJS is free and open source."
+    },
+    {
+      "q": "Can I migrate from Amazon Rekognition to FormatJS?",
+      "a": "Migration from Amazon Rekognition (medium lock-in) to FormatJS (low lock-in) is the easier direction; the reverse would be harder. Plan for data export, re-integration of SDKs, and re-testing flows before cutover. Verify exportable formats and feature parity against your live use cases before committing."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "FormatJS scores higher on developer experience (5/5 vs 4/5 for Amazon Rekognition). Evaluate against your own stack: read their docs, run a quick SDK spike, and check error handling. Self-assessing with a small prototype beats trusting any rating at face value."
+    },
+    {
+      "q": "Is FormatJS a good alternative to Amazon Rekognition?",
+      "a": "FormatJS sits in the same category as Amazon Rekognition, so it can be a reasonable alternative for overlapping use cases. FormatJS is best fit for mobile. Note: FormatJS is not for hobby projects."
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "intro": "The clearest split between Numeral and Freee is vendor lock-in: Numeral is rated medium (Tax automation API, data portable), while Freee is rated high (JP accounting platform). Numeral is End-to-end sales tax automation API for nexus detection, registrations, filing, and remittance; it fits best for US SaaS and e-commerce engineering teams wanting programmable sales tax compliance. Freee is Japans cloud accounting, payroll and invoicing platform with open APIs for JP tax compliance (consumption tax, e-invoice); it fits best for Japanese startups and SMBs wanting unified accounting, payroll and invoicing with API access. Pick Numeral when the job maps to detecting us economic nexus automatically across 50 states; pick Freee when it maps to japan consumption tax and e-invoice (jp pint) compliance via rest api. Numeral is not for businesses needing deep multi-country vat/gst coverage outside the us. Freee is not for companies operating outside japan or needing multi-country consolidation. Honest trade-offs: Numeral is weak for primarily us — limited global vat coverage, and Freee is weak for built for japan — no international coverage — match to your real scenario.",
+  "quick_take": "Numeral is for us saas and e-commerce engineering teams wanting programmabl; Freee is for japanese startups and smbs wanting unified accounting, payro; decide based on lock-in tolerance.",
+  "verdict_a": "Choose Numeral if medium lock-in (Tax automation API, data portable) is acceptable and you need us saas and e-commerce engineering teams wanting programmable sales tax compliance.",
+  "verdict_b": "Choose Freee if high lock-in (JP accounting platform) is acceptable and you need japanese startups and smbs wanting unified accounting, payroll and invoicing with api access.",
+  "faq": [
+    {
+      "q": "Is Numeral cheaper than Freee?",
+      "a": "A direct comparison depends on your usage profile and which pricing model fits better. Numeral uses subscription pricing with no free tier published. Freee uses subscription pricing with no free tier published."
+    },
+    {
+      "q": "Can I migrate from Numeral to Freee?",
+      "a": "Migration may be non-trivial: Freee is rated high lock-in (JP accounting platform). Plan for data export, re-integration of SDKs, and re-testing flows before cutover. Verify exportable formats and feature parity against your live use cases before committing."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Numeral scores higher on developer experience (4/5 vs 3/5 for Freee). Evaluate against your own stack: read their docs, run a quick SDK spike, and check error handling. Self-assessing with a small prototype beats trusting any rating at face value."
+    },
+    {
+      "q": "Is Freee a good alternative to Numeral?",
+      "a": "Freee sits in the same category as Numeral, so it can be a reasonable alternative for overlapping use cases. Freee is best fit for japanese startups and smbs wanting unified accounting, payroll and invoicing with api access. Note: Freee is not for companies operating outside japan or needing multi-country consolidation."
+    }
+  ]
+}

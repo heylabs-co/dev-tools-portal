@@ -1,0 +1,24 @@
+{
+  "intro": "The clearest split between Amazon Rekognition and DeepL is how they charge: Amazon Rekognition uses subscription pricing starting around $200, while DeepL uses a free tier plus paid plans. Amazon Rekognition is AWS computer vision API for image and video analysis including object detection and facial recognition; it fits best for Apps. DeepL specializes in Translation API; it fits best for Mobile. Pick Amazon Rekognition when the job maps to apps targeting multiple languages/markets; pick DeepL when it maps to automated build/test/deploy pipelines. Amazon Rekognition is not for static projects. DeepL is not for hobby projects. Honest trade-offs: Amazon Rekognition is weak for english-only products, and DeepL is weak for manual deployment is sufficient — match to your real scenario. Both sit under the Localization / Translation API umbrella, so your final call depends on pricing transparency, integration effort, and which listed not-for situations you can actually tolerate. On pricing, Amazon Rekognition uses subscription pricing starting around $200 and DeepL uses a free tier plus paid plans, which materially changes total cost at scale.",
+  "quick_take": "Amazon Rekognition is for apps; DeepL is for mobile; decide based on pricing model.",
+  "verdict_a": "Choose Amazon Rekognition if you want subscription pricing starting around $200 and your workload matches apps.",
+  "verdict_b": "Choose DeepL if you want a free tier plus paid plans and your workload matches mobile.",
+  "faq": [
+    {
+      "q": "Is Amazon Rekognition cheaper than DeepL?",
+      "a": "A direct comparison depends on your usage profile and which pricing model fits better. Amazon Rekognition uses subscription pricing starting at $200. DeepL offers a free tier."
+    },
+    {
+      "q": "Can I migrate from Amazon Rekognition to DeepL?",
+      "a": "Migration from Amazon Rekognition (medium lock-in) to DeepL (low lock-in) is the easier direction; the reverse would be harder. Plan for data export, re-integration of SDKs, and re-testing flows before cutover. Verify exportable formats and feature parity against your live use cases before committing."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Both score 4/5 on developer experience in our data. Evaluate against your own stack: read their docs, run a quick SDK spike, and check error handling. Self-assessing with a small prototype beats trusting any rating at face value."
+    },
+    {
+      "q": "Is DeepL a good alternative to Amazon Rekognition?",
+      "a": "DeepL sits in the same category as Amazon Rekognition, so it can be a reasonable alternative for overlapping use cases. DeepL is best fit for mobile. Note: DeepL is not for hobby projects."
+    }
+  ]
+}

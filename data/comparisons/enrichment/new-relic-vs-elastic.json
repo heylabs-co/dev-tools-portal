@@ -1,0 +1,24 @@
+{
+  "intro": "The biggest real distinction between New Relic and Elastic is straightforward: New Relic carries moderate lock-in while Elastic has low lock-in. New Relic sits at hybrid pricing with $0.30/GB (Standard), $49/core user, a free tier, enterprise plan available and carries moderate lock-in, while Elastic sits at pricing from $95/mo (Standard Cloud), a free tier, enterprise plan available and carries low lock-in. New Relic is a fit when you need microservices performance monitoring — typical scenarios include microservices performance monitoring. Elastic is aimed at microservices performance monitoring, with workloads like microservices performance monitoring as the common case. The honest trade-off: New Relic is explicitly not for simple, static projects; Elastic is not intended for simple, static projects. Lock-in is the factor most teams underestimate: New Relic and Elastic have different exit paths, and that shapes total cost of ownership over a two-to-three year horizon. Before committing, audit where each tool stores state, which APIs you depend on, and how painful a switch would be six months in.",
+  "quick_take": "New Relic is for microservices performance monitoring; Elastic is for microservices performance monitoring; decide based on how much lock-in you can accept.",
+  "verdict_a": "Choose New Relic if your primary workload is microservices performance monitoring and hybrid pricing ($0.30/GB (Standard), $49/core user) is acceptable.",
+  "verdict_b": "Choose Elastic if your primary workload is microservices performance monitoring and low switching cost matters.",
+  "faq": [
+    {
+      "q": "Is New Relic cheaper than Elastic?",
+      "a": "It depends on workload shape: New Relic lists $0.30/GB (Standard), $49/core user, while Elastic lists $95/mo (Standard Cloud). With different pricing models (hybrid vs subscription), the cheaper option flips based on seat count, usage volume, and whether you use the free tier. Do a per-workload estimate rather than comparing headline numbers."
+    },
+    {
+      "q": "Can I migrate from New Relic to Elastic?",
+      "a": "Migrating from New Relic to Elastic is doable but not automatic — New Relic carries moderate lock-in. Since both tools sit in the same category (Performance Monitoring / APM), the conceptual mapping is closer, but you still need to validate feature parity against your specific workload. Plan migration as a project, not a script: inventory integrations, test on non-production workloads, and keep New Relic running in parallel until Elastic is verified."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Our data gives New Relic and Elastic the same developer experience score (5/5), so neither has a clear edge on DX by that measure. The differentiator is usually how each tool fits your workflow — things like CLI quality, docs, local dev loop, and error messages. The safest call is to pilot both on a representative task and see which one gets out of your way."
+    },
+    {
+      "q": "Is Elastic a good alternative to New Relic?",
+      "a": "Elastic is in the same category as New Relic (Performance Monitoring / APM), so it's a reasonable alternative to evaluate. Both tools claim similar best-fit workloads on paper, so the real test is how each behaves under your specific constraints. Note that Elastic is explicitly not for simple, static projects — if that describes your workload, it's not a viable replacement."
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "intro": "The biggest real split between MongoDB Atlas and PlanetScale is lock-in posture: MongoDB Atlas carries medium lock-in (medium — mongodb query language proprietary ( sql), but mongodump standard), while PlanetScale carries low lock-in (low-medium — standard mysql (vitess), but branching = proprietary feature). That single fact shapes the rest of the comparison. MongoDB Atlas is built for apps, global and is not a fit for simple, offline projects. PlanetScale is built for apps, global and is not a fit for simple, offline projects. On the scoring side, MongoDB Atlas rates 5/5 for developer experience and 4/5 for transparency; PlanetScale rates 5/5 and 4/5 respectively. The honest trade-off: with MongoDB Atlas you accept that simple key-value storage needs, while PlanetScale comes with the reality that simple key-value storage needs. Neither side is free. MongoDB Atlas's headline strength in the data is that apps needing managed database. PlanetScale's headline strength is that apps needing managed database.",
+  "quick_take": "MongoDB Atlas is for apps, global; PlanetScale is for apps, global; decide based on lock-in tolerance.",
+  "verdict_a": "Choose MongoDB Atlas if you are apps, global and can accept medium lock-in (medium — mongodb query language proprietary ( sql), but mongodump standard).",
+  "verdict_b": "Choose PlanetScale if you are apps, global and need low lock-in (low-medium — standard mysql (vitess), but branching = proprietary feature).",
+  "faq": [
+    {
+      "q": "Is MongoDB Atlas cheaper than PlanetScale?",
+      "a": "Both list a hybrid pricing model in our data; MongoDB Atlas has a free tier and PlanetScale does not. We don't have per-seat numbers in this dataset, so 'cheaper' depends on volume. Price both on your actual usage before deciding."
+    },
+    {
+      "q": "Can I migrate from MongoDB Atlas to PlanetScale?",
+      "a": "MongoDB Atlas has medium lock-in (medium — mongodb query language proprietary ( sql), but mongodump standard); PlanetScale has low lock-in (low-medium — standard mysql (vitess), but branching = proprietary feature). Migration effort scales with how much state and automation you've built in MongoDB Atlas; plan for data export, config rebuild, and a parallel-run period before cutting over."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Both MongoDB Atlas and PlanetScale score 5/5 on developer experience in our data, so DX isn't the tiebreaker here. Decide on fit, pricing, or lock-in instead."
+    },
+    {
+      "q": "Is PlanetScale a good alternative to MongoDB Atlas?",
+      "a": "PlanetScale is built for apps, global and explicitly not for simple, offline projects, so it's a fit only if your workflow matches its stated audience. If you were using MongoDB Atlas for apps, global, the switch is reasonable; outside that scope, look elsewhere."
+    }
+  ]
+}

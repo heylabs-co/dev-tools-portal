@@ -1,0 +1,24 @@
+{
+  "intro": "QuestDB and Neon land in similar territory on the hard numbers, so the decision comes down to fit with your workflow rather than a headline metric. QuestDB is built for teams without a dedicated dba and is not a fit for on-premise or air-gapped requirements. Neon is built for teams without a dedicated dba and is not a fit for on-premise or air-gapped requirements. On the scoring side, QuestDB rates 5/5 for developer experience and 5/5 for transparency; Neon rates 5/5 and 5/5 respectively. The honest trade-off: with QuestDB you accept that vendor-specific features increase lock-in, while Neon comes with the reality that vendor-specific features increase lock-in. Neither side is free. QuestDB's headline strength in the data is that managed database removes operational overhead. Neon's headline strength is that managed database removes operational overhead. Read each side's best-for and not-for fields carefully before you pick; the shape of your team and workflow matters more than any single score.",
+  "quick_take": "QuestDB is for teams without a dedicated dba; Neon is for teams without a dedicated dba; decide based on workflow fit.",
+  "verdict_a": "Choose QuestDB if you are teams without a dedicated dba.",
+  "verdict_b": "Choose Neon if you are teams without a dedicated dba.",
+  "faq": [
+    {
+      "q": "Is QuestDB cheaper than Neon?",
+      "a": "Both list a freemium pricing model in our data, and both publish a free tier. We don't have per-seat numbers in this dataset, so 'cheaper' depends on volume. Price both on your actual usage before deciding."
+    },
+    {
+      "q": "Can I migrate from QuestDB to Neon?",
+      "a": "QuestDB has low lock-in (oss time-series db, self-hostable); Neon has low lock-in (standard postgres, portable). Migration effort scales with how much state and automation you've built in QuestDB; plan for data export, config rebuild, and a parallel-run period before cutting over."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Both QuestDB and Neon score 5/5 on developer experience in our data, so DX isn't the tiebreaker here. Decide on fit, pricing, or lock-in instead."
+    },
+    {
+      "q": "Is Neon a good alternative to QuestDB?",
+      "a": "Neon is built for teams without a dedicated dba and explicitly not for on-premise or air-gapped requirements, so it's a fit only if your workflow matches its stated audience. If you were using QuestDB for teams without a dedicated dba, the switch is reasonable; outside that scope, look elsewhere."
+    }
+  ]
+}

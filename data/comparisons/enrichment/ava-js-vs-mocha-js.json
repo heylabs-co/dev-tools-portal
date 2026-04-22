@@ -1,0 +1,24 @@
+{
+  "intro": "AVA and Mocha both target the test automation space, and on paper their pricing, lock-in and ratings land close together. The useful split is positioning: AVA is pitched at node library authors wanting parallel, dependency-light, esm-native tests, while Mocha is pitched at legacy node codebases with established mocha+chai+sinon stacks. Beyond the headline, AVA carries high lock-in (oss node test runner) and free and open-source; Mocha carries high lock-in (free oss js test framework) and free and open-source. AVA is a fit when you are node library authors wanting parallel, dependency-light, esm-native tests. Mocha is a fit when you are legacy node codebases with established mocha+chai+sinon stacks. The honest trade-off: AVA is explicitly not for frontend apps needing jsdom, mocks and snapshots bundled in one runner; Mocha is explicitly not for new projects where vitest offers the same power with far less config. On the product side, AVA is described as Fast test runner for Node.",
+  "quick_take": "AVA is for node library authors wanting parallel, dependency-light, esm-native tests; Mocha is for legacy node codebases with established mocha+chai+sinon stacks; decide on which best-fit use case is yours.",
+  "verdict_a": "Choose AVA if you are node library authors wanting parallel, dependency-light, esm-native tests and comfortable with its free and open-source.",
+  "verdict_b": "Choose Mocha if you are legacy node codebases with established mocha+chai+sinon stacks and comfortable with its free and open-source.",
+  "faq": [
+    {
+      "q": "Is AVA cheaper than Mocha?",
+      "a": "Both tools use free pricing. AVA is listed as free and open-source; Mocha as free and open-source. Without specific volume and seat assumptions it is not possible to say which is cheaper in general."
+    },
+    {
+      "q": "Can I migrate from AVA to Mocha?",
+      "a": "Migration from AVA is harder: AVA is rated high lock-in (oss node test runner). You can still move, but expect schema-mapping, export tooling and a longer cutover window. Budget engineering time accordingly."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Both tools tie at 5/5 for developer experience on our scoring. The real difference will show up in your specific workflow, not the headline rating. A one-hour spike on both is the fastest way to decide."
+    },
+    {
+      "q": "Is Mocha a good alternative to AVA?",
+      "a": "Mocha is pitched at legacy node codebases with established mocha+chai+sinon stacks, which overlaps with AVA's fit (node library authors wanting parallel, dependency-light, esm-native tests) but is not identical. Note that Mocha is explicitly not for new projects where vitest offers the same power with far less config, so it only replaces AVA if you are outside that exclusion. Feature-for-feature parity is not guaranteed, so confirm the specific capability you rely on before switching."
+    }
+  ]
+}

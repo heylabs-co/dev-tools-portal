@@ -1,0 +1,24 @@
+{
+  "intro": "Eventual and AWS API Gateway diverge first on pricing model: Eventual uses freemium pricing with a free tier, AWS API Gateway uses subscription pricing with a free tier. Everything else flows from that commercial choice. Eventual is built for ml teams processing images, video, and audio at distributed scale in python and is not a fit for pure tabular analytics workloads where spark or duckdb suffice. AWS API Gateway is built for data warehouse syncing and is not a fit for simple, small projects. On the scoring side, Eventual rates 3/5 for developer experience and 3/5 for transparency; AWS API Gateway rates 4/5 and 4/5 respectively. The honest trade-off: with Eventual you accept that very new category with smaller community, while AWS API Gateway comes with the reality that simple api-to-api integrations. Neither side is free. Eventual's headline strength in the data is that python-native distributed engine via daft. AWS API Gateway's headline strength is that data warehouse syncing.",
+  "quick_take": "Eventual is for ml teams processing images, video, and audio at distributed scale in python; AWS API Gateway is for data warehouse syncing; decide based on pricing model.",
+  "verdict_a": "Choose Eventual if you are ml teams processing images, video, and audio at distributed scale in python and a freemium pricing model fits how you buy.",
+  "verdict_b": "Choose AWS API Gateway if you are data warehouse syncing and a subscription pricing model fits how you buy.",
+  "faq": [
+    {
+      "q": "Is Eventual cheaper than AWS API Gateway?",
+      "a": "Eventual uses a freemium model, while AWS API Gateway uses a subscription model, and both publish a free tier. We don't have per-seat numbers in this dataset, so 'cheaper' depends on volume. Price both on your actual usage before deciding."
+    },
+    {
+      "q": "Can I migrate from Eventual to AWS API Gateway?",
+      "a": "Eventual has low lock-in (oss daft engine, data portable); AWS API Gateway has low lock-in (aws-only, migration painful). Migration effort scales with how much state and automation you've built in Eventual; plan for data export, config rebuild, and a parallel-run period before cutting over."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "In our data, AWS API Gateway scores 4/5 for developer experience versus 3/5 for Eventual. That said, DX is subjective; the Eventual score may still be acceptable if its feature fit is stronger for your use case."
+    },
+    {
+      "q": "Is AWS API Gateway a good alternative to Eventual?",
+      "a": "AWS API Gateway is built for data warehouse syncing and explicitly not for simple, small projects, so it's a fit only if your workflow matches its stated audience. If you were using Eventual for ml teams processing images, video, and audio at distributed scale in python, the switch is reasonable; outside that scope, look elsewhere."
+    }
+  ]
+}

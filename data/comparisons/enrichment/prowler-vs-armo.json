@@ -1,0 +1,24 @@
+{
+  "intro": "The most concrete split between Prowler and ARMO is the pricing model: Prowler runs on free and open-source, while ARMO uses freemium. That shapes how predictable your monthly spend is and how much of the cost sits in infrastructure versus per-seat or per-event fees. Beyond the headline, Prowler carries low lock-in (free oss cloud security) and free and open-source; ARMO carries medium lock-in (kubescape oss backed) and freemium. Prowler is a fit when you are dev teams needing sast, dast, or sca in the pipeline. ARMO is a fit when you are mobile. The honest trade-off: Prowler is explicitly not for projects with no regulatory or security compliance needs; ARMO is explicitly not for hobby projects. On the product side, Prowler is described as Security Scanning / Mobile App Sec tool for developers. Specializes in Cloud Security Posture Management, and ARMO is described as Security Scanning / Mobile App Sec tool for developers. Specializes in Kubernetes Security.",
+  "quick_take": "Prowler is for dev teams needing sast, dast, or sca in the pipeline; ARMO is for mobile; decide on pricing model.",
+  "verdict_a": "Choose Prowler if you want a fully free, open-source option and can handle self-hosting or self-support.",
+  "verdict_b": "Choose ARMO if its freemium pricing model fits your budget shape better than Prowler's free model, and you are mobile.",
+  "faq": [
+    {
+      "q": "Is Prowler cheaper than ARMO?",
+      "a": "Direct comparison is hard. Prowler is free and open-source, so licence cost is zero though you pay in operational effort. ARMO uses freemium, so it costs money in exchange for managed service. Which is cheaper depends on how much engineering time you value."
+    },
+    {
+      "q": "Can I migrate from Prowler to ARMO?",
+      "a": "Migration from Prowler to ARMO is plausible because Prowler has low lock-in (free oss cloud security). You would still have to map config, permissions and integrations to ARMO's model. Plan for dual-run and rollback."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Both tools tie at 5/5 for developer experience on our scoring. The real difference will show up in your specific workflow, not the headline rating. A one-hour spike on both is the fastest way to decide."
+    },
+    {
+      "q": "Is ARMO a good alternative to Prowler?",
+      "a": "ARMO is pitched at mobile, which overlaps with Prowler's fit (dev teams needing sast, dast, or sca in the pipeline) but is not identical. Note that ARMO is explicitly not for hobby projects, so it only replaces Prowler if you are outside that exclusion. The lock-in profile differs (low vs medium), which is the main thing to weigh."
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "intro": "Balancy is freemium with a free tier; OpenIAP is free and open source. OpenIAP: Open cross-platform IAP specification unifying types, error codes and purchase flows across iOS StoreKit and Google Play Billing. Balancy: No-code LiveOps and monetization platform for mobile games with smart offers, virtual economy CMS and A/B testing. OpenIAP fits OSS library authors and engineers standardizing IAP across platforms. Balancy fits mobile game teams whose designers ship offers and events weekly. On our rubric OpenIAP scores 4/5 for developer experience and 5/5 for transparency, while Balancy scores 4/5 and 4/5. The honest trade-off: OpenIAP's main drawback — Spec still maturing, breaking changes possible; Balancy's — Another runtime dependency in your game stack. One point in OpenIAP's favour: Open spec unifying IAP types across platforms. For Balancy: No-code LiveOps lets designers ship offers and events. OpenIAP is explicitly not the right pick for product teams looking for a ready-made subscription service. Balancy is not aimed at studios already deep in PlayFab or custom backend economy tooling.",
+  "quick_take": "OpenIAP is for OSS library authors; Balancy is for mobile game teams whose designers ship offers; decide on pricing model.",
+  "verdict_a": "Choose OpenIAP if OSS library authors and engineers standardizing IAP across platforms, and if you want to avoid recurring license costs and are willing to self-host.",
+  "verdict_b": "Choose Balancy if mobile game teams whose designers ship offers and events weekly.",
+  "faq": [
+    {
+      "q": "Is OpenIAP cheaper than Balancy?",
+      "a": "Yes on list price: OpenIAP is free and open source, while Balancy runs on freemium pricing. Keep in mind that OpenIAP shifts costs to hosting, ops, and engineering time. Total cost of ownership can flip depending on your team's capacity."
+    },
+    {
+      "q": "Can I migrate from OpenIAP to Balancy?",
+      "a": "Expect real effort: OpenIAP is high lock-in (open spec for IAP) and Balancy is medium lock-in (LiveOps config exportable). Migrating between them means rebuilding integrations, re-authoring config, and accepting new coupling. Scope a spike before committing."
+    },
+    {
+      "q": "Which has better developer experience, OpenIAP or Balancy?",
+      "a": "Both score 4/5 for developer experience in our rubric, so neither has a structural edge. The practical answer depends on stack fit: OpenIAP's ergonomics suit some workflows, Balancy's suit others. Try both on a throwaway project before committing."
+    },
+    {
+      "q": "Is Balancy a good alternative to OpenIAP?",
+      "a": "They sit in the same category, so yes — Balancy is a plausible alternative for many OpenIAP use cases. It fits best when mobile game teams whose designers ship offers and events weekly. Skip it if studios already deep in PlayFab or custom backend economy tooling."
+    }
+  ]
+}

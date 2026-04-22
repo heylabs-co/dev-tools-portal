@@ -1,0 +1,24 @@
+{
+  "intro": "Wails and Hyprland both sit in the No-code / Low-code App Builders space. Wails is positioned for go developers building small-binary desktop tools with web-tech frontends, while Hyprland leans toward linux enthusiasts on wayland who want animations and heavy keyboard customization. In practice, Build desktop applications with Go and web technologies (JS/HTML/CSS). Native WebView, no Chromium bundled. Dynamic tiling Wayland compositor for Linux — smooth animations, extensive customization, plugin ecosystem. Wails runs on free with a free tier; Hyprland runs on free with a free tier. Listed strengths unique to Wails include go backend with web frontend, no chromium, while Hyprland lists smooth animations for tiling wm on its side. Reach for Wails when you need lightweight go desktop app without bundling a chromium runtime; reach for Hyprland when the job is highly customized tiling wayland setup for a developer workstation. The honest trade-off: Wails is not built for teams needing identical rendering across oses — use electron for uniformity, and Hyprland is not the right call for users who want turnkey desktops or cant tolerate config tinkering, so neither.",
+  "quick_take": "Wails is for go developers building small-binary desktop tools with web-tech frontends; Hyprland is for linux enthusiasts on wayland who want animations and heavy keyboard customization; decide based on which.",
+  "verdict_a": "Choose Wails if go developers building small-binary desktop tools with web-tech frontends and you need a free tier to validate fit.",
+  "verdict_b": "Choose Hyprland if linux enthusiasts on wayland who want animations and heavy keyboard customization and you need a free tier to validate fit.",
+  "faq": [
+    {
+      "q": "Is Wails cheaper than Hyprland?",
+      "a": "Both Wails and Hyprland expose free tiers with no headline entry price listed. The real comparison happens once you cross the free limits, and that pricing isn't captured in the summary data. Check each tool's pricing page for your volume band."
+    },
+    {
+      "q": "Can I migrate from Wails to Hyprland?",
+      "a": "Technically you can move between any two tools in the same category, but effort varies: leaving Wails is relatively light thanks to its low lock-in, and onboarding to Hyprland should be straightforward given its low lock-in. Plan for data export, re-integration, and a parallel-run window rather than a hard cutover."
+    },
+    {
+      "q": "Which has better developer experience, Wails or Hyprland?",
+      "a": "Both Wails and Hyprland score 4/5 on developer experience in our data, so there's no clear winner on that axis alone. The real differentiator usually lands in SDK fit for your language, error handling, and docs depth. A half-day integration spike tells you more than the score."
+    },
+    {
+      "q": "Is Hyprland a good alternative to Wails?",
+      "a": "Hyprland is an alternative in the same category, but its stated sweet spot is linux enthusiasts on wayland who want animations and heavy keyboard customization, while Wails's is go developers building small-binary desktop tools with web-tech frontends. If your job matches Wails's profile more closely, switching to Hyprland is a compromise. Use the best-fit match, not brand familiarity, to decide. Note: Hyprland is explicitly not for users who want turnkey desktops or cant tolerate config tinkering."
+    }
+  ]
+}

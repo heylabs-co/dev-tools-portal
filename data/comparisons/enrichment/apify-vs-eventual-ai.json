@@ -1,0 +1,24 @@
+{
+  "intro": "The biggest real split between Apify and Eventual is lock-in posture: Apify carries medium lock-in (actors portable as docker, results exportable), while Eventual carries low lock-in (oss daft engine, data portable). That single fact shapes the rest of the comparison. Apify is built for data warehouse syncing and is not a fit for simple, small projects. Eventual is built for ml teams processing images, video, and audio at distributed scale in python and is not a fit for pure tabular analytics workloads where spark or duckdb suffice. On the scoring side, Apify rates 5/5 for developer experience and 4/5 for transparency; Eventual rates 3/5 and 3/5 respectively. The honest trade-off: with Apify you accept that simple api-to-api integrations, while Eventual comes with the reality that very new category with smaller community. Neither side is free. Apify's headline strength in the data is that data warehouse syncing. Eventual's headline strength is that python-native distributed engine via daft.",
+  "quick_take": "Apify is for data warehouse syncing; Eventual is for ml teams processing images, video, and audio at distributed scale in python; decide based on lock-in tolerance.",
+  "verdict_a": "Choose Apify if you are data warehouse syncing and can accept medium lock-in (actors portable as docker, results exportable).",
+  "verdict_b": "Choose Eventual if you are ml teams processing images, video, and audio at distributed scale in python and need low lock-in (oss daft engine, data portable).",
+  "faq": [
+    {
+      "q": "Is Apify cheaper than Eventual?",
+      "a": "Both list a freemium pricing model in our data, and both publish a free tier. We don't have per-seat numbers in this dataset, so 'cheaper' depends on volume. Price both on your actual usage before deciding."
+    },
+    {
+      "q": "Can I migrate from Apify to Eventual?",
+      "a": "Apify has medium lock-in (actors portable as docker, results exportable); Eventual has low lock-in (oss daft engine, data portable). Migration effort scales with how much state and automation you've built in Apify; plan for data export, config rebuild, and a parallel-run period before cutting over."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "In our data, Apify scores 5/5 for developer experience versus 3/5 for Eventual. That said, DX is subjective; the Eventual score may still be acceptable if its feature fit is stronger for your use case."
+    },
+    {
+      "q": "Is Eventual a good alternative to Apify?",
+      "a": "Eventual is built for ml teams processing images, video, and audio at distributed scale in python and explicitly not for pure tabular analytics workloads where spark or duckdb suffice, so it's a fit only if your workflow matches its stated audience. If you were using Apify for data warehouse syncing, the switch is reasonable; outside that scope, look elsewhere."
+    }
+  ]
+}

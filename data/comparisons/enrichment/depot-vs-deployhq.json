@@ -1,0 +1,24 @@
+{
+  "intro": "On paper Depot and DeployHQ look similar, but the day-to-day ergonomics diverge: Depot scores 5/5 on developer experience against DeployHQ's 4/5. Depot is remote Docker build acceleration service for CI image builds. DeployHQ is deploy-on-push from Git repos to servers via SFTP, SSH, or cloud APIs. Pick Depot when the job is conversion optimization and you accept low lock-in; pick DeployHQ when it is conversion optimization and you accept low lock-in. The data we have shows Depot at fully public pricing and documentation with a polished developer experience, and DeployHQ at fully public pricing and documentation with solid developer experience. The honest trade-off: neither is universal — Depot is a poor fit for internal projects, and DeployHQ is a poor fit for internal projects. Match the pricing model and lock-in level to how your team actually works, not the feature list. If your team already lives inside the ecosystem one of them assumes, that default usually wins — migration is cheap to start and expensive later.",
+  "quick_take": "Depot is for remote Docker build acceleration service; DeployHQ is for deploy-on-push from Git repos to servers via; decide based on ecosystem fit.",
+  "verdict_a": "Choose Depot if day-to-day developer ergonomics are a priority and the work maps to remote Docker build acceleration service for CI image builds.",
+  "verdict_b": "Choose DeployHQ if keeping the configuration portable matters and the work lines up with deploy-on-push from Git repos to servers via SFTP, SSH, or cloud APIs.",
+  "faq": [
+    {
+      "q": "Is Depot cheaper than DeployHQ?",
+      "a": "Depot starts at $500/mo on a subscription model; DeployHQ starts at $12/yr on a subscription model. That makes the sticker comparison depend on usage — a low entry price can get expensive once volume ramps, so price at your actual workload."
+    },
+    {
+      "q": "Can I migrate from Depot to DeployHQ?",
+      "a": "Migration in either direction is relatively cheap — both Depot and DeployHQ are rated low lock-in, so your configuration and data should port without a rewrite. The realistic cost is team re-training and pipeline QA, not the tools themselves."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Depot scores higher on developer experience in our data (5/5 vs 4/5). That reflects public feedback on docs, onboarding, and day-to-day ergonomics. Still, run a spike with your own code — DX ratings don't capture every edge."
+    },
+    {
+      "q": "Is DeployHQ a good alternative to Depot?",
+      "a": "Yes — DeployHQ is a reasonable alternative to Depot for conversion optimization. The practical differences are subscription-vs-subscription billing and low-vs-low lock-in. If those fit your constraints better, treat DeployHQ as a credible swap."
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "intro": "The clearest split between Bitrise and Buildkite is where the build actually runs: Bitrise is a hosted mobile-first CI with pre-built Steps for iOS, Android, Flutter and React Native, while Buildkite runs pipelines on agents you operate on your own infrastructure, priced from $2.50 with a free tier. Bitrise fits mobile teams that want to plug in a visual workflow, wire up code signing and ship to TestFlight or Play Store without maintaining build machines. Buildkite fits teams that need control over the hardware (GPUs, M-series Macs, restricted networks) or want to keep source and artifacts inside their own VPC while Buildkite handles only orchestration. Both score 5 for developer experience and 4 for transparency, and both are low lock-in, so you are trading the convenience of a managed mobile pipeline against the flexibility and infra work that comes with running your own agents. Neither is a fit for products with fewer than 1000 daily users or purely internal tooling.",
+  "quick_take": "Bitrise is for mobile teams wanting a managed iOS/Android pipeline; Buildkite is for teams running CI on their own agents; decide on where builds must execute.",
+  "verdict_a": "Choose Bitrise if you are shipping iOS, Android, Flutter or React Native apps and want a hosted pipeline with a free tier and pre-built Steps instead of maintaining build hosts.",
+  "verdict_b": "Choose Buildkite if you need pipelines to run on self-hosted agents inside your own infrastructure, starting from $2.50 with a generous free tier.",
+  "faq": [
+    {
+      "q": "Is Bitrise cheaper than Buildkite?",
+      "a": "Both have a free tier. Buildkite's paid plan starts at $2.50, while Bitrise lists a Starter subscription with enterprise tiers available but no clear entry price in the data. On a per-build basis Buildkite can be cheaper because you bring the compute, but you absorb the cost of running agents yourself."
+    },
+    {
+      "q": "Can I migrate from Bitrise to Buildkite?",
+      "a": "Both tools are rated low lock-in. Bitrise migration complexity is noted as medium because of its visual workflow and Steps ecosystem, whereas Buildkite uses YAML pipelines that are straightforward to move. Expect to rewrite mobile signing and Step logic rather than lift and shift."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Both score 5 out of 5 for developer experience. Bitrise's strength is the pre-built mobile Steps ecosystem, while Buildkite's strength is pipeline-as-code with agent control. The better DX depends on whether you prefer curated mobile building blocks or flexible self-managed agents."
+    },
+    {
+      "q": "Is Buildkite a good alternative to Bitrise?",
+      "a": "Buildkite is a reasonable alternative if your constraint is infrastructure control, but it is not a drop-in replacement for a mobile-first CI. Bitrise's best_for is conversion optimisation style workflows per the data, and Buildkite lacks the pre-built mobile Steps. For pure iOS/Android delivery, you will rebuild a lot manually on Buildkite."
+    }
+  ]
+}

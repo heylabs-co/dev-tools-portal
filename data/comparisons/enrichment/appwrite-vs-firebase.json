@@ -1,0 +1,24 @@
+{
+  "intro": "The biggest real distinction between Appwrite and Firebase is straightforward: Appwrite carries low lock-in while Firebase has high lock-in. Appwrite sits at hybrid pricing with $25/mo/project (Pro), a free tier, enterprise plan available and carries low lock-in, while Firebase sits at hybrid pricing with Pay-as-you-go (Blaze), a free tier, enterprise plan available and carries high lock-in. Appwrite is a fit when you need mobile, teams — typical scenarios include mvp/prototyping speed. Firebase is aimed at mobile, with workloads like mobile app mvp with tight deadline as the common case. The honest trade-off: Appwrite is explicitly not for complex custom business logic; Firebase is not intended for need sql database or complex queries. Lock-in is the factor most teams underestimate: Appwrite and Firebase have different exit paths, and that shapes total cost of ownership over a two-to-three year horizon. Before committing, audit where each tool stores state, which APIs you depend on, and how painful a switch would be six months in.",
+  "quick_take": "Appwrite is for mobile, teams; Firebase is for mobile; decide based on how much lock-in you can accept.",
+  "verdict_a": "Choose Appwrite if your primary workload is mobile, teams and hybrid pricing ($25/mo/project (Pro)) is acceptable.",
+  "verdict_b": "Choose Firebase if your primary workload is mobile and hybrid pricing (Pay-as-you-go (Blaze)) is acceptable.",
+  "faq": [
+    {
+      "q": "Is Appwrite cheaper than Firebase?",
+      "a": "It depends on workload shape: Appwrite lists $25/mo/project (Pro), while Firebase lists Pay-as-you-go (Blaze). With different pricing models (hybrid vs hybrid), the cheaper option flips based on seat count, usage volume, and whether you use the free tier. Do a per-workload estimate rather than comparing headline numbers."
+    },
+    {
+      "q": "Can I migrate from Appwrite to Firebase?",
+      "a": "Migrating from Appwrite to Firebase is generally feasible because Appwrite has low lock-in, so data and configuration are usually portable. Since both tools sit in the same category (Backend-as-a-Service), the conceptual mapping is closer, but you still need to validate feature parity against your specific workload. Plan migration as a project, not a script: inventory integrations, test on non-production workloads, and keep Appwrite running in parallel until Firebase is verified."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Our data gives Appwrite and Firebase the same developer experience score (5/5), so neither has a clear edge on DX by that measure. The differentiator is usually how each tool fits your workflow — things like CLI quality, docs, local dev loop, and error messages. The safest call is to pilot both on a representative task and see which one gets out of your way."
+    },
+    {
+      "q": "Is Firebase a good alternative to Appwrite?",
+      "a": "Firebase is in the same category as Appwrite (Backend-as-a-Service), so it's a reasonable alternative to evaluate. Firebase is aimed at mobile, while Appwrite targets mobile, teams — that difference should drive the switch decision. Note that Firebase is explicitly not for need sql database or complex queries — if that describes your workload, it's not a viable replacement."
+    }
+  ]
+}

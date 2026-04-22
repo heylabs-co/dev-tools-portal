@@ -1,0 +1,24 @@
+{
+  "intro": "Branch carries medium lock-in (Deep linking, SDK tied but standard) while Airbridge is low (MMP attribution data in proprietary schema). Both tools position themselves for mobile, so the decision rarely comes down to surface features. In practice, Branch — Mobile linking and attribution platform with deep linking, deferred deep linking, web-to-app journeys, and MMP capabilities. Airbridge — Mobile attribution and incrementality platform with deep linking, web-to-app tracking, and SKAdNetwork support. Branch runs on subscription; Airbridge runs on subscription from $199/month. Both tools list mobile apps with paid acquisition as a headline strength, which is why pricing and lock-in usually decide the call. Both tools surface overlapping when-to-use scenarios, including mobile apps with paid acquisition. The honest trade-off: Branch is not built for web-only products, and Airbridge is not the right call for web-only products, so neither is a universal default. Transparency scores land at 3/5 for Branch and 3/5 for Airbridge, which reflects how openly each tool documents pricing, limits, and terms.",
+  "quick_take": "Branch is for mobile; Airbridge overlaps on the same job; decide based on lock-in tolerance.",
+  "verdict_a": "Choose Branch if mobile and moderate platform coupling is acceptable.",
+  "verdict_b": "Choose Airbridge if mobile and the $199/month entry price fits your budget.",
+  "faq": [
+    {
+      "q": "Is Branch cheaper than Airbridge?",
+      "a": "The listed pricing for Branch is subscription and for Airbridge is subscription from $199/month, which doesn't give a clean apples-to-apples cost. Unit economics and plan structure differ enough that only your real volume answers this. Price both against the same workload."
+    },
+    {
+      "q": "Can I migrate from Branch to Airbridge?",
+      "a": "Technically you can move between any two tools in the same category, but effort varies: leaving Branch is moderate effort at medium lock-in (Deep linking, SDK tied but standard), and onboarding to Airbridge should be straightforward given its low lock-in. Plan for data export, re-integration, and a parallel-run window rather than a hard cutover."
+    },
+    {
+      "q": "Which has better developer experience, Branch or Airbridge?",
+      "a": "On the 0-5 developer experience score in our data, Branch rates 5/5 while Airbridge rates 3/5, giving Branch the edge. Scores compress a lot of variance though — SDK language coverage, error messages, and docs quality matter more than the number. Run a quick integration spike on both before trusting the gap."
+    },
+    {
+      "q": "Is Airbridge a good alternative to Branch?",
+      "a": "Yes, Airbridge targets the same job Branch does — mobile — so functionally it slots in as an alternative. Pricing model (subscription from $199/month vs subscription) and lock-in (low lock-in (MMP attribution data in proprietary schema) vs medium lock-in (Deep linking, SDK tied but standard)) usually decide which is the better fit. Validate on your actual workload. Note: Airbridge is explicitly not for web-only products."
+    }
+  ]
+}

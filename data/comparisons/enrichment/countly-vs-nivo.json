@@ -1,0 +1,24 @@
+{
+  "intro": "Countly and Nivo both show up under the product analytics category, but they solve slightly different jobs. Countly uses pricing that starts at $0/mo with free tier, while Nivo runs on a free model. Both sit at low lock-in. Transparency lands at 3/5 versus 5/5. Countly fits teams working on understanding user behavior (funnels, retention), while Nivo is a closer match when the job is automated build/test/deploy pipelines. Worth noting: Countly is explicitly not for simple projects; Nivo is explicitly not for marketing-only analytics or pure content sites. The honest trade-off: Countly trades off on pre-product stage; Nivo trades off on steeper learning curve for non-technical stakeholders. On the plus side, Countly highlights understanding user behavior (funnels, retention), while Nivo points to deep funnel and cohort analysis for product decisions. Countly's documentation also calls out data-driven product decisions. For teams evaluating product analytics options today, the decision usually hinges on whether Countly's profile or Nivo's profile maps more cleanly to the pricing model, lock-in tolerance, and scale your team can live with.",
+  "quick_take": "Countly is for understanding user behavior (funnels, retention); Nivo is for automated build/test/deploy pipelines; decide on pricing model.",
+  "verdict_a": "Choose Countly if your project is understanding user behavior (funnels, retention), you want to keep future migration cheap.",
+  "verdict_b": "Choose Nivo if your project is automated build/test/deploy pipelines, you want to keep future migration cheap, strong SDKs and docs (5/5) are a priority.",
+  "faq": [
+    {
+      "q": "Is Countly cheaper than Nivo?",
+      "a": "Countly uses pricing that starts at $0/mo with free tier, and Nivo uses a free model. The pricing models are different, so a direct cheaper-than comparison depends on your volume and usage pattern."
+    },
+    {
+      "q": "Can I migrate from Countly to Nivo?",
+      "a": "Our data puts Countly at low lock-in (self-hostable oss product analytics), and Nivo at low lock-in (oss react charting library). Moving from Countly to Nivo should be manageable, though you'll still need to replay integrations and re-test flows end-to-end."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Nivo scores 5/5 on developer experience in our data, while Countly scores 4/5, so Nivo has the edge on docs and SDK quality by that measure. That gap is reinforced by transparency scores of 5/5 versus 3/5. Still, run a small integration spike on both before deciding — team familiarity with a given SDK style often matters more than a one-point score gap."
+    },
+    {
+      "q": "Is Nivo a good alternative to Countly?",
+      "a": "Nivo is a reasonable alternative to Countly when your workload leans more toward product teams tracking user behavior and retention than understanding user behavior (funnels, retention). The pricing model shifts too — Countly is pricing that starts at $0/mo with free tier, Nivo is a free model — so expect the cost profile to change as well. One caveat: Nivo is explicitly not for marketing-only analytics or pure content sites, so check that constraint against your use-case before switching."
+    }
+  ]
+}

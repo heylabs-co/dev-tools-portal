@@ -1,0 +1,24 @@
+{
+  "intro": "Primer and PaymentsOS both show up under the payments orchestration category, but they solve slightly different jobs. Primer uses custom (sales-led) pricing, while PaymentsOS runs on custom (sales-led) pricing. Lock-in is low for Primer and medium for PaymentsOS. Transparency lands at 3/5 versus 1/5. Primer fits teams working on Multi-PSP routing for higher conversion, while PaymentsOS is a closer match when the job is smart routing across multiple PSPs for enterprise merchants. Worth noting: Primer is explicitly not for single-market startups; PaymentsOS is explicitly not for dev-first teams expecting modern SDKs, open source, or fast product iteration. The honest trade-off: Primer trades off on single-market startups; PaymentsOS trades off on legacy brand (Zooz) can signal older codebase. On the plus side, Primer highlights Multi-PSP routing for higher conversion, while PaymentsOS points to established orchestrator with smart-routing track record. Primer's documentation also calls out enterprise with multiple payment providers. PaymentsOS similarly notes owned by PayU, giving scale and stability.",
+  "quick_take": "Primer is for Multi-PSP routing for higher conversion; PaymentsOS is for smart routing across multiple PSPs for; decide on pricing model.",
+  "verdict_a": "Choose Primer if your project is Multi-PSP routing for higher conversion, you want to keep future migration cheap, strong SDKs and docs (5/5) are a priority.",
+  "verdict_b": "Choose PaymentsOS if your project is smart routing across multiple PSPs for enterprise merchants, you are prepared for a sales-led custom-pricing conversation, medium lock-in is an acceptable trade-off.",
+  "faq": [
+    {
+      "q": "Is Primer cheaper than PaymentsOS?",
+      "a": "Primer uses custom (sales-led) pricing, and PaymentsOS uses custom (sales-led) pricing. The pricing models are different, so a direct cheaper-than comparison depends on your volume and usage pattern."
+    },
+    {
+      "q": "Can I migrate from Primer to PaymentsOS?",
+      "a": "Our data puts Primer at low lock-in, and PaymentsOS at medium lock-in (payment orchestration, psp switchable). Moving from Primer to PaymentsOS should be manageable, though you'll still need to replay integrations and re-test flows end-to-end."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Primer scores 5/5 on developer experience in our data, while PaymentsOS scores 4/5, so Primer has the edge on docs and SDK quality by that measure. That gap is reinforced by transparency scores of 3/5 versus 1/5. Still, run a small integration spike on both before deciding — team familiarity with a given SDK style often matters more than a one-point score gap."
+    },
+    {
+      "q": "Is PaymentsOS a good alternative to Primer?",
+      "a": "PaymentsOS is a reasonable alternative to Primer when your workload leans more toward global enterprises comfortable with PayU-backed vendors and needing stable multi-PSP routing than enterprise. The pricing model shifts too — Primer is custom (sales-led) pricing, PaymentsOS is custom (sales-led) pricing — so expect the cost profile to change as well. One caveat: PaymentsOS is explicitly not for dev-first teams expecting modern SDKs, open source, or fast product iteration, so check that constraint against your use-case before switching."
+    }
+  ]
+}

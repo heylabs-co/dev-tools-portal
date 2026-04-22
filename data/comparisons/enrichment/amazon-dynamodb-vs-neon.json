@@ -1,0 +1,24 @@
+{
+  "intro": "Amazon DynamoDB and Neon diverge first on pricing model: Amazon DynamoDB uses subscription pricing with a free tier, Neon uses freemium pricing with a free tier. Everything else flows from that commercial choice. Amazon DynamoDB is built for apps, global and is not a fit for simple, offline projects. Neon is built for teams without a dedicated dba and is not a fit for on-premise or air-gapped requirements. On the scoring side, Amazon DynamoDB rates 4/5 for developer experience and 4/5 for transparency; Neon rates 5/5 and 5/5 respectively. The honest trade-off: with Amazon DynamoDB you accept that simple key-value storage needs, while Neon comes with the reality that vendor-specific features increase lock-in. Neither side is free. Amazon DynamoDB's headline strength in the data is that apps needing managed database. Neon's headline strength is that managed database removes operational overhead. Read each side's best-for and not-for fields carefully before you pick; the shape of your team and workflow matters more than any single score.",
+  "quick_take": "Amazon DynamoDB is for apps, global; Neon is for teams without a dedicated dba; decide based on pricing model.",
+  "verdict_a": "Choose Amazon DynamoDB if you are apps, global and a subscription pricing model fits how you buy.",
+  "verdict_b": "Choose Neon if you are teams without a dedicated dba and a freemium pricing model fits how you buy.",
+  "faq": [
+    {
+      "q": "Is Amazon DynamoDB cheaper than Neon?",
+      "a": "Amazon DynamoDB uses a subscription model, while Neon uses a freemium model, and both publish a free tier. We don't have per-seat numbers in this dataset, so 'cheaper' depends on volume. Price both on your actual usage before deciding."
+    },
+    {
+      "q": "Can I migrate from Amazon DynamoDB to Neon?",
+      "a": "Amazon DynamoDB has low lock-in (proprietary nosql data model, hard to migrate off); Neon has low lock-in (standard postgres, portable). Migration effort scales with how much state and automation you've built in Amazon DynamoDB; plan for data export, config rebuild, and a parallel-run period before cutting over."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "In our data, Neon scores 5/5 for developer experience versus 4/5 for Amazon DynamoDB. That said, DX is subjective; the Amazon DynamoDB score may still be acceptable if its feature fit is stronger for your use case."
+    },
+    {
+      "q": "Is Neon a good alternative to Amazon DynamoDB?",
+      "a": "Neon is built for teams without a dedicated dba and explicitly not for on-premise or air-gapped requirements, so it's a fit only if your workflow matches its stated audience. If you were using Amazon DynamoDB for apps, global, the switch is reasonable; outside that scope, look elsewhere."
+    }
+  ]
+}

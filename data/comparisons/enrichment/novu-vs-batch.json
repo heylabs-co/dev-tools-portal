@@ -1,0 +1,24 @@
+{
+  "intro": "The clearest split is that Novu carries low lock-in and Batch carries medium lock-in. Novu is Open-source notification infrastructure with multi-channel support, in-app feed, user preferences, and self-hostable backend; Batch is Mobile push notification and in-app messaging platform with segmentation, A/B testing, and transactional message. The data points Novu at mobile app engagement and user lifecycle messaging, and Batch at transactional + marketing push with behavioral segmentation and a/b testing push notification copy and send-time. Pricing: Novu is freemium, free tier; Batch is freemium, free tier. Lock-in is low for Novu and medium for Batch, with DX at 5/5 vs 4/5 and transparency at 5/5 vs 4/5. Only Novu lists an enterprise tier in the data. Honest trade-off: Novu is not for web-only products without mobile; Batch is not for teams needing email, sms, and in-app in one mature suite, so confirm the fit first, then weigh the pivotal factor above against your budget and lock-in tolerance.",
+  "quick_take": "Novu is for mobile; Batch is for european mobile apps wanting gdpr-native push with segmentation; decide based on how much lock-in you tolerate.",
+  "verdict_a": "Choose Novu if you prefer low lock-in and easier exit and your workload matches mobile. Skip it if your context is web-only products without mobile.",
+  "verdict_b": "Choose Batch if you can accept medium lock-in in exchange for scope and your workload matches european mobile apps wanting gdpr-native push with segmentation. Skip it if your context is teams needing email, sms, and in-app in one mature suite.",
+  "faq": [
+    {
+      "q": "Is Novu cheaper than Batch?",
+      "a": "Entry pricing is listed as $0 for Novu and unknown for Batch. Both offer a free tier for getting started. Total cost at scale depends on usage and plan details that are not in this dataset, so confirm with each vendor."
+    },
+    {
+      "q": "Can I migrate from Novu to Batch?",
+      "a": "Novu is tagged with low lock-in (oss notification infrastructure, self-hostable). Batch is tagged with medium lock-in (push/messaging sdk integration). Plan for SDK replacement, data export, and a parallel-run period; the dataset does not include migration tooling details."
+    },
+    {
+      "q": "Which has better developer experience, Novu or Batch?",
+      "a": "The dataset rates Novu at 5/5 for developer experience and Batch at 4/5, so Novu scores higher. That score reflects overall polish rather than any single integration, so trial both against your stack before committing."
+    },
+    {
+      "q": "Is Batch a good alternative to Novu?",
+      "a": "Batch is listed as fitting european mobile apps wanting gdpr-native push with segmentation, which overlaps with but is not identical to Novu's scope. Batch is flagged as not for teams needing email, sms, and in-app in one mature suite, so confirm your context does not fall there."
+    }
+  ]
+}

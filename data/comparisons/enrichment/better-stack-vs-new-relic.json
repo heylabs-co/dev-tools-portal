@@ -1,0 +1,24 @@
+{
+  "intro": "The biggest real distinction between Better Stack and New Relic is straightforward: Better Stack carries low lock-in while New Relic has moderate lock-in. Better Stack sits at freemium with a paid tier from $24/mo (paid plan), enterprise plan available and carries low lock-in, while New Relic sits at hybrid pricing with $0.30/GB (Standard), $49/core user, a free tier, enterprise plan available and carries moderate lock-in. Better Stack is a fit when you need microservices performance monitoring — typical scenarios include microservices performance monitoring. New Relic is aimed at microservices performance monitoring, with workloads like microservices performance monitoring as the common case. The honest trade-off: Better Stack is explicitly not for simple, static projects; New Relic is not intended for simple, static projects. Lock-in is the factor most teams underestimate: Better Stack and New Relic have different exit paths, and that shapes total cost of ownership over a two-to-three year horizon.",
+  "quick_take": "Better Stack is for microservices performance monitoring; New Relic is for microservices performance monitoring; decide based on how much lock-in you can accept.",
+  "verdict_a": "Choose Better Stack if your primary workload is microservices performance monitoring and the free tier plus $24/mo (paid plan) paid tier fits your budget.",
+  "verdict_b": "Choose New Relic if your primary workload is microservices performance monitoring and hybrid pricing ($0.30/GB (Standard), $49/core user) is acceptable.",
+  "faq": [
+    {
+      "q": "Is Better Stack cheaper than New Relic?",
+      "a": "It depends on workload shape: Better Stack lists $24/mo (paid plan), while New Relic lists $0.30/GB (Standard), $49/core user. With different pricing models (freemium vs hybrid), the cheaper option flips based on seat count, usage volume, and whether you use the free tier. Do a per-workload estimate rather than comparing headline numbers."
+    },
+    {
+      "q": "Can I migrate from Better Stack to New Relic?",
+      "a": "Migrating from Better Stack to New Relic is generally feasible because Better Stack has low lock-in, so data and configuration are usually portable. Since both tools sit in the same category (Performance Monitoring / APM), the conceptual mapping is closer, but you still need to validate feature parity against your specific workload. Plan migration as a project, not a script: inventory integrations, test on non-production workloads, and keep Better Stack running in parallel until New Relic is verified."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "On our 0–5 developer experience scale, New Relic scores higher (5/5 vs 4/5 for Better Stack). The gap is one point — meaningful but not decisive, since DX is workflow-dependent. Still, score your own tasks: DX is subjective and tied to stack assumptions."
+    },
+    {
+      "q": "Is New Relic a good alternative to Better Stack?",
+      "a": "New Relic is in the same category as Better Stack (Performance Monitoring / APM), so it's a reasonable alternative to evaluate. Both tools claim similar best-fit workloads on paper, so the real test is how each behaves under your specific constraints. Note that New Relic is explicitly not for simple, static projects — if that describes your workload, it's not a viable replacement."
+    }
+  ]
+}

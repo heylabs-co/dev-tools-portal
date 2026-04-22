@@ -1,0 +1,24 @@
+{
+  "intro": "The biggest real distinction between Ubicloud and Kairos is straightforward: Kairos is free and open-source, while Ubicloud is a commercial product (usage-based pricing, a free tier). Ubicloud sits at usage-based pricing, a free tier and carries low lock-in, while Kairos sits at free and open-source and carries low lock-in. Ubicloud is a fit when you need teams cutting github actions bills or wanting open-source iaas on hetzner — typical scenarios include open-source aws alternative running on hetzner bare-metal. Kairos is aimed at edge computing teams running fleets of kubernetes devices needing immutable os, with workloads like immutable linux for edge kubernetes with bootable os images as the common case. The honest trade-off: Ubicloud is explicitly not for enterprises needing the full breadth of aws managed services; Kairos is not intended for traditional datacenter workloads or teams without kubernetes experience. On cost specifically, pricing model matters more than sticker price — one workload can make Ubicloud cheaper while a different shape flips the answer to Kairos.",
+  "quick_take": "Ubicloud is for teams cutting github actions bills or; Kairos is for edge computing teams running fleets of; decide based on cost model and budget.",
+  "verdict_a": "Choose Ubicloud if your primary workload is teams cutting github actions bills or wanting open-source iaas on hetzner and low switching cost matters.",
+  "verdict_b": "Choose Kairos if your primary workload is edge computing teams running fleets of kubernetes devices needing immutable os and you want a free/OSS tool with no vendor bill.",
+  "faq": [
+    {
+      "q": "Is Ubicloud cheaper than Kairos?",
+      "a": "No — Kairos is free and open-source, while Ubicloud uses usage-based pricing, a free tier. Kairos wins on sticker price, but remember that self-hosting and maintaining OSS adds engineering overhead that Ubicloud's paid plan removes."
+    },
+    {
+      "q": "Can I migrate from Ubicloud to Kairos?",
+      "a": "Migrating from Ubicloud to Kairos is generally feasible because Ubicloud has low lock-in, so data and configuration are usually portable. Since both tools sit in the same category (Backend-as-a-Service), the conceptual mapping is closer, but you still need to validate feature parity against your specific workload. Plan migration as a project, not a script: inventory integrations, test on non-production workloads, and keep Ubicloud running in parallel until Kairos is verified."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "On our 0–5 developer experience scale, Kairos scores higher (4/5 vs 3/5 for Ubicloud). The gap is one point — meaningful but not decisive, since DX is workflow-dependent. Still, score your own tasks: DX is subjective and tied to stack assumptions."
+    },
+    {
+      "q": "Is Kairos a good alternative to Ubicloud?",
+      "a": "Kairos is in the same category as Ubicloud (Backend-as-a-Service), so it's a reasonable alternative to evaluate. Kairos is aimed at edge computing teams running fleets of kubernetes devices needing immutable os, while Ubicloud targets teams cutting github actions bills or wanting open-source iaas on hetzner — that difference should drive the switch decision. Note that Kairos is explicitly not for traditional datacenter workloads or teams without kubernetes experience — if that describes your workload, it's not a viable replacement."
+    }
+  ]
+}

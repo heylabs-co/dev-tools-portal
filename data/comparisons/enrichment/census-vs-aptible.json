@@ -1,0 +1,24 @@
+{
+  "intro": "The clearest difference between Census and Aptible is pricing — Census is freemium (has a free tier), while Aptible is subscription (no free tier). Beyond that, lock-in — Census has medium lock-in (Reverse ETL, SQL-based configs portable), whereas Aptible has medium lock-in (PaaS for HIPAA, app code portable). Census fits SOC 2 / ISO 27001 preparation; Aptible fits early-stage healthtech startups that need HIPAA yesterday without a DevOps hire. On the strengths side, Census is cited for SOC 2 / ISO 27001 preparation, while Aptible is cited for Signs BAAs and inherits HIPAA controls out of the box. The honest trade-off: Census is the wrong call for pre-revenue startups; Aptible is the wrong call for teams with deep AWS expertise or unusual infra requirements; Census users flag pre-revenue startups, and Aptible users flag significantly pricier than raw AWS or similar PaaS. Choosing between them should come down to the constraint that actually binds your workflow, not surface-level overlap.",
+  "quick_take": "Census is for SOC 2 / ISO 27001 preparation; Aptible is for early-stage healthtech startups; decide based on pricing model.",
+  "verdict_a": "Choose Census if your use case is SOC 2 / ISO 27001 preparation, and a freemium (has a free tier) pricing shape fits your budget better than subscription (no free tier).",
+  "verdict_b": "Choose Aptible if your use case is early-stage healthtech startups that need HIPAA yesterday without a DevOps hire, and a subscription (no free tier) pricing shape fits your budget better than freemium (has a free tier).",
+  "faq": [
+    {
+      "q": "Is Census cheaper than Aptible?",
+      "a": "Census is freemium with a free tier, while Aptible is subscription, so the cheaper option depends on your usage shape. Listed pricing pages usually change, so check both directly before committing. For small teams, the free-tier limits often matter more than headline prices."
+    },
+    {
+      "q": "Can I migrate from Census to Aptible?",
+      "a": "Migrating from Census to Aptible is feasible when their scopes overlap, but the work is in re-mapping configuration, data models, and integrations. Moving off Census is harder because of medium lock-in (Reverse ETL, SQL-based configs portable). Plan for a dual-run period so you can validate parity before decommissioning."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "On our developer-experience score, Aptible is rated 5/5 and Census 4/5, so Aptible edges ahead. Scores like this smooth over real differences in docs, CLI feel, and SDK quality, so treat them as a starting point. Spend an afternoon in each before relying on the number."
+    },
+    {
+      "q": "Is Aptible a good alternative to Census?",
+      "a": "Aptible is a reasonable alternative to Census when Aptible fits early-stage healthtech startups that need HIPAA yesterday without a DevOps hire. If your use case matches Census's sweet spot — SOC 2 / ISO 27001 preparation — staying with Census is probably safer. Census itself is not meant for pre-revenue startups, which is often where users start shopping for alternatives."
+    }
+  ]
+}

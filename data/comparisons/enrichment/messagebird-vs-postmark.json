@@ -1,0 +1,24 @@
+{
+  "intro": "MessageBird carries medium lock-in (Medium — multi-channel (WhatsApp, WeChat) creates inandwithandwith) while Postmark is low (Low — REST API, SMTP). Both tools position themselves for transactional emails (receipts, alerts), so the decision rarely comes down to surface features. In practice, MessageBird — Cloud communications platform API for SMS, voice, and WhatsApp with global carrier coverage. Postmark — Fast transactional email delivery API focused on inbox placement with detailed bounce analytics. MessageBird runs on unknown; Postmark runs on usage from $15/mo (10K emails). Postmark rates 5/5 on transparency versus 3/5 for MessageBird. Listed strengths unique to MessageBird include multi-channel delivery (sms, email, voice) from one api, while Postmark lists low lock-in — easy to migrate away on its side. Both tools surface overlapping when-to-use scenarios, including transactional emails (receipts, alerts). The honest trade-off: MessageBird is not built for internal projects, and Postmark is not the right call for internal projects, so neither is a universal default.",
+  "quick_take": "MessageBird is for transactional emails (receipts, alerts); Postmark overlaps on the same job; decide based on lock-in tolerance.",
+  "verdict_a": "Choose MessageBird if transactional emails (receipts, alerts) and moderate platform coupling is acceptable.",
+  "verdict_b": "Choose Postmark if transactional emails (receipts, alerts) and the $15/mo (10K emails) entry price fits your budget.",
+  "faq": [
+    {
+      "q": "Is MessageBird cheaper than Postmark?",
+      "a": "The listed pricing for MessageBird is unknown and for Postmark is usage from $15/mo (10K emails), which doesn't give a clean apples-to-apples cost. Unit economics and plan structure differ enough that only your real volume answers this. Price both against the same workload."
+    },
+    {
+      "q": "Can I migrate from MessageBird to Postmark?",
+      "a": "Technically you can move between any two tools in the same category, but effort varies: leaving MessageBird is moderate effort at medium lock-in (Medium — multi-channel (WhatsApp, WeChat) creates inandwithandwith), and onboarding to Postmark should be straightforward given its low lock-in. Plan for data export, re-integration, and a parallel-run window rather than a hard cutover."
+    },
+    {
+      "q": "Which has better developer experience, MessageBird or Postmark?",
+      "a": "On the 0-5 developer experience score in our data, Postmark rates 5/5 while MessageBird rates 4/5, giving Postmark the edge. That score is a rough summary; actual day-to-day DX depends on your language, deployment target, and tolerance for edge cases. Prototype both to validate."
+    },
+    {
+      "q": "Is Postmark a good alternative to MessageBird?",
+      "a": "Yes, Postmark targets the same job MessageBird does — transactional emails (receipts, alerts) — so functionally it slots in as an alternative. Pricing model (usage from $15/mo (10K emails) vs unknown) and lock-in (low lock-in (Low — REST API, SMTP) vs medium lock-in (Medium — multi-channel (WhatsApp, WeChat) creates inandwithandwith)) usually decide which is the better fit. Validate on your actual workload. Note: Postmark is explicitly not for internal projects."
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "intro": "Primer and Basis Theory both show up under the payments orchestration category, but they solve slightly different jobs. Primer uses custom (sales-led) pricing, while Basis Theory runs on undisclosed pricing with free tier. Lock-in is low for Primer and medium for Basis Theory. Transparency lands at 3/5 versus 4/5. Primer fits teams working on Multi-PSP routing for higher conversion, while Basis Theory is a closer match when the job is tokenizing payment card data to reduce PCI DSS scope. Worth noting: Primer is explicitly not for single-market startups; Basis Theory is explicitly not for merchants wanting a full routing, reconciliation, and analytics product out of the box. The honest trade-off: Primer trades off on single-market startups; Basis Theory trades off on tokenization only — no routing or acquiring. On the plus side, Primer highlights Multi-PSP routing for higher conversion, while Basis Theory points to processor-agnostic tokens portable across any PSP.",
+  "quick_take": "Primer is for Multi-PSP routing for higher conversion; Basis Theory is for tokenizing payment card data to reduce; decide on pricing model.",
+  "verdict_a": "Choose Primer if your project is Multi-PSP routing for higher conversion, you want to keep future migration cheap, strong SDKs and docs (5/5) are a priority.",
+  "verdict_b": "Choose Basis Theory if your project is tokenizing payment card data to reduce PCI DSS scope, medium lock-in is an acceptable trade-off.",
+  "faq": [
+    {
+      "q": "Is Primer cheaper than Basis Theory?",
+      "a": "Primer uses custom (sales-led) pricing, and Basis Theory uses undisclosed pricing with free tier. The pricing models are different, so a direct cheaper-than comparison depends on your volume and usage pattern. Basis Theory offers a free tier; Primer does not."
+    },
+    {
+      "q": "Can I migrate from Primer to Basis Theory?",
+      "a": "Our data puts Primer at low lock-in, and Basis Theory at medium lock-in. Moving from Primer to Basis Theory should be manageable, though you'll still need to replay integrations and re-test flows end-to-end."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Primer scores 5/5 on developer experience in our data, while Basis Theory scores 4/5, so Primer has the edge on docs and SDK quality by that measure. Still, run a small integration spike on both before deciding — team familiarity with a given SDK style often matters more than a one-point score gap."
+    },
+    {
+      "q": "Is Basis Theory a good alternative to Primer?",
+      "a": "Basis Theory is a reasonable alternative to Primer when your workload leans more toward engineering teams that want PCI offload and PSP portability without being locked into Stripe or Adyen vaults than enterprise. The pricing model shifts too — Primer is custom (sales-led) pricing, Basis Theory is undisclosed pricing with free tier — so expect the cost profile to change as well. One caveat: Basis Theory is explicitly not for merchants wanting a full routing, reconciliation, and analytics product out of the box, so check that constraint against your use-case before switching."
+    }
+  ]
+}

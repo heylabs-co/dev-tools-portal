@@ -1,0 +1,24 @@
+{
+  "intro": "The pivotal question between Continue and MindsDB is how much of your setup stays portable: Continue carries low lock-in and MindsDB carries high lock-in. Continue is open-source IDE AI assistant for VS Code and JetBrains with swappable models. MindsDB is in-database AI — query LLMs and ML models with SQL. Pick Continue when the job is apps and you accept low lock-in; pick MindsDB when it is analysts and engineers building ai agents over many heterogeneous data sources and you accept high lock-in. The data we have shows Continue at mostly transparent pricing and docs with a polished developer experience, and MindsDB at mostly transparent pricing and docs with solid developer experience. The honest trade-off: neither is universal — Continue is a poor fit for simple projects, and MindsDB is a poor fit for teams needing hand-tuned performance on a single warehouse. Match the pricing model and lock-in level to how your team actually works, not the feature list.",
+  "quick_take": "Continue is for open-source IDE AI assistant; MindsDB is for in-database AI — query LLMs and ML; decide based on how portable the setup must stay.",
+  "verdict_a": "Choose Continue if per-seat pricing at $20 / seat / month fits your team size and the work maps to open-source IDE AI assistant for VS Code and JetBrains with swappable models.",
+  "verdict_b": "Choose MindsDB if deep integration is an acceptable price for the depth it buys and the work lines up with in-database AI — query LLMs and ML models with SQL.",
+  "faq": [
+    {
+      "q": "Is Continue cheaper than MindsDB?",
+      "a": "We can't verify it cleanly: Continue starts at $20 / seat / month (seat), while MindsDB (freemium) doesn't publish an entry price. Request a quote from MindsDB before assuming either side is cheaper."
+    },
+    {
+      "q": "Can I migrate from Continue to MindsDB?",
+      "a": "Moving from Continue to MindsDB is feasible, but MindsDB is rated high lock-in — expect your integrations and workflows to need rework to match its model. Budget for a parallel-run period rather than a hard cutover."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Continue scores higher on developer experience in our data (5/5 vs 4/5). That reflects public feedback on docs, onboarding, and day-to-day ergonomics. Still, run a spike with your own code — DX ratings don't capture every edge."
+    },
+    {
+      "q": "Is MindsDB a good alternative to Continue?",
+      "a": "Yes — MindsDB is a reasonable alternative to Continue for apps. The practical differences are seat-vs-freemium billing and low-vs-high lock-in. If those fit your constraints better, treat MindsDB as a credible swap."
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "intro": "The biggest practical difference between Bearer and ARMO is lock-in. Bearer is rated high lock-in (oss data security scanner), while ARMO is rated medium lock-in (kubescape oss backed). That changes how hard a future migration would be and how much strategy to put into exit planning. Beyond the headline, Bearer carries high lock-in (oss data security scanner) and freemium; ARMO carries medium lock-in (kubescape oss backed) and freemium. Bearer is a fit when you are mobile. ARMO is a fit when you are mobile. The honest trade-off: Bearer is explicitly not for hobby projects; ARMO is explicitly not for hobby projects. On the product side, Bearer is described as Security Scanning / Mobile App Sec tool for developers. Specializes in Data Flow Security, and ARMO is described as Security Scanning / Mobile App Sec tool for developers. Specializes in Kubernetes Security. Common Bearer use cases include vulnerability scanning in ci/cd. Common ARMO use cases include vulnerability scanning in ci/cd.",
+  "quick_take": "Bearer is for mobile; ARMO is for mobile; decide on lock-in tolerance.",
+  "verdict_a": "Choose Bearer if you accept higher lock-in in exchange for its specific capabilities and you are mobile.",
+  "verdict_b": "Choose ARMO if its medium lock-in is acceptable for your use case and you are mobile.",
+  "faq": [
+    {
+      "q": "Is Bearer cheaper than ARMO?",
+      "a": "Both tools use freemium pricing. Bearer is listed as freemium; ARMO as freemium. Without specific volume and seat assumptions it is not possible to say which is cheaper in general."
+    },
+    {
+      "q": "Can I migrate from Bearer to ARMO?",
+      "a": "Migration from Bearer is harder: Bearer is rated high lock-in (oss data security scanner). You can still move, but expect schema-mapping, export tooling and a longer cutover window. Budget engineering time accordingly."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "On our scoring ARMO rates 5/5 for developer experience versus 4/5 for Bearer. That suggests ARMO feels more polished for everyday developer tasks. We still recommend a short hands-on trial on your stack before standardising."
+    },
+    {
+      "q": "Is ARMO a good alternative to Bearer?",
+      "a": "ARMO targets the same best-fit audience as Bearer (mobile). Note that ARMO is explicitly not for hobby projects, so it only replaces Bearer if you are outside that exclusion. The lock-in profile differs (high vs medium), which is the main thing to weigh."
+    }
+  ]
+}

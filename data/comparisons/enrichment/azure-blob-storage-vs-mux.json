@@ -1,0 +1,24 @@
+{
+  "intro": "Azure Blob Storage enters at $1 against Mux at $20/mo. Both tools position themselves for image/video heavy applications, so the decision rarely comes down to surface features. In practice, Azure Blob Storage — Microsoft's object storage with hot, cool, and archive tiers, WORM policies, and geo-redundancy. Mux — Video infrastructure API for adaptive bitrate streaming, real-time data, and ML-powered quality scoring. Mux scores 5/5 on developer experience versus 4/5 for Azure Blob Storage. Both tools list image/video heavy applications as a headline strength, which is why pricing and lock-in usually decide the call. Both tools surface overlapping when-to-use scenarios, including image/video heavy applications. The honest trade-off: Azure Blob Storage is not built for small projects, and Mux is not the right call for small projects, so neither is a universal default. Transparency scores land at 4/5 for Azure Blob Storage and 4/5 for Mux, which reflects how openly each tool documents pricing, limits, and terms.",
+  "quick_take": "Azure Blob Storage is for image/video heavy applications; Mux overlaps on the same job; decide based on pricing model.",
+  "verdict_a": "Choose Azure Blob Storage if image/video heavy applications and the $1 entry price fits your budget.",
+  "verdict_b": "Choose Mux if image/video heavy applications and the $20/mo entry price fits your budget.",
+  "faq": [
+    {
+      "q": "Is Azure Blob Storage cheaper than Mux?",
+      "a": "Based on the listed entry prices, yes: Azure Blob Storage starts at $1 while Mux starts at $20/mo. Actual monthly cost depends on volume and plan tier, so model your real usage before switching. Enterprise quotes can reshuffle the comparison entirely."
+    },
+    {
+      "q": "Can I migrate from Azure Blob Storage to Mux?",
+      "a": "Technically you can move between any two tools in the same category, but effort varies: leaving Azure Blob Storage is moderate effort at medium lock-in (Object storage portable via tools), and onboarding to Mux involves medium lock-in (Subscription video infra, standard). Plan for data export, re-integration, and a parallel-run window rather than a hard cutover."
+    },
+    {
+      "q": "Which has better developer experience, Azure Blob Storage or Mux?",
+      "a": "On the 0-5 developer experience score in our data, Mux rates 5/5 while Azure Blob Storage rates 4/5, giving Mux the edge. That score is a rough summary; actual day-to-day DX depends on your language, deployment target, and tolerance for edge cases. Prototype both to validate."
+    },
+    {
+      "q": "Is Mux a good alternative to Azure Blob Storage?",
+      "a": "Yes, Mux targets the same job Azure Blob Storage does — image/video heavy applications — so functionally it slots in as an alternative. Pricing model (subscription from $20/mo vs subscription from $1) and lock-in (medium lock-in (Subscription video infra, standard) vs medium lock-in (Object storage portable via tools)) usually decide which is the better fit. Validate on your actual workload. Note: Mux is explicitly not for small projects."
+    }
+  ]
+}

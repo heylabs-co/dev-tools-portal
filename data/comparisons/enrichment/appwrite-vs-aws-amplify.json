@@ -1,0 +1,24 @@
+{
+  "intro": "Appwrite is an open-source BaaS offering REST and realtime APIs for auth, database, storage and functions, with a Pro plan at $25/mo/project and the option to self-host. AWS Amplify is a managed BaaS and hosting layer tightly coupled to the rest of AWS, with a free tier and paid plans from $15/month. The biggest real distinction is portability: Appwrite is explicitly low lock-in with low migration complexity (open-source, self-hostable, standard protocols) while Amplify is rated low lock-in in the data but with 'Tight AWS coupling' called out - meaning your configs travel, but your runtime assumes AWS. Appwrite fits MVPs, mobile apps and teams without backend engineers who want an escape hatch via self-host. Amplify fits teams already on AWS that want GraphQL APIs, Cognito auth and S3 storage wired together. Both score high on DX (5 vs 4) and transparency (5 vs 4). You trade AWS's ecosystem depth for Appwrite's freedom to leave.",
+  "quick_take": "Appwrite is for MVPs that want an OSS self-hostable BaaS; AWS Amplify is for teams already standardised on AWS; decide based on AWS commitment.",
+  "verdict_a": "Choose Appwrite if you want an OSS BaaS with auth, database, storage and functions at $25/mo/project on Pro, or free if you self-host, and need low migration complexity.",
+  "verdict_b": "Choose AWS Amplify if your stack is already on AWS and you want managed auth, storage and GraphQL APIs from $15/month with a free tier.",
+  "faq": [
+    {
+      "q": "Is Appwrite cheaper than AWS Amplify?",
+      "a": "Both have free tiers. Amplify's paid entry is $15/month; Appwrite's Pro is $25/mo/project. At small scale Amplify is cheaper on paper, but Appwrite is free when self-hosted, which can flip the comparison. Amplify's AWS usage bills also add on top of the entry price."
+    },
+    {
+      "q": "Can I migrate from Appwrite to AWS Amplify?",
+      "a": "Both are rated low lock-in. Appwrite's migration complexity is explicitly low because it is open-source and self-hostable. Amplify's data notes 'tight AWS coupling' despite the low lock-in rating, which means moving auth, storage and APIs off AWS can be painful. Appwrite-to-Amplify is easier than Amplify-to-Appwrite."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Appwrite scores 5 for DX and transparency; Amplify scores 4 and 4. Appwrite's strength is a consistent SDK across auth, DB, storage and functions. Amplify's strength is that it slots into the wider AWS toolchain. Solo developers often prefer Appwrite; AWS-native shops prefer Amplify."
+    },
+    {
+      "q": "Is AWS Amplify a good alternative to Appwrite?",
+      "a": "For AWS-committed teams, yes. Both list MVP/prototyping speed, mobile apps and teams without backend engineers as best_for. Both share a not_for of complex custom business logic and HPC workloads. The deciding factor is whether you want an escape hatch to self-host (Appwrite) or tight AWS integration (Amplify)."
+    }
+  ]
+}

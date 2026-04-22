@@ -1,0 +1,24 @@
+{
+  "intro": "Stark Bank and Unit both show up under the payment gateway category, but they solve slightly different jobs. Stark Bank uses usage-based pricing, while Unit runs on custom (sales-led) pricing. Lock-in is medium for Stark Bank and high for Unit. Transparency lands at 3/5 versus 1/5. Stark Bank fits teams working on Pix payment integration for Brazilian businesses via SDK, while Unit is a closer match when the job is FDIC-insured bank accounts and ACH for US fintech startups. Worth noting: Stark Bank is explicitly not for companies outside Brazil or needing multi-country payment rails; Unit is explicitly not for Non-US teams or companies needing a plain payment gateway. The honest trade-off: Stark Bank trades off on brazil-only — no utility outside BRL; Unit trades off on sponsor bank risk post-US BaaS turbulence. On the plus side, Stark Bank highlights SDKs in 10+ languages — real DX focus, while Unit points to accounts, cards, ACH, wire, lending unified.",
+  "quick_take": "Stark Bank is for Pix payment integration for Brazilian businesses; Unit is for FDIC-insured bank accounts and ACH for; decide on pricing model.",
+  "verdict_a": "Choose Stark Bank if your project is Pix payment integration for Brazilian businesses via SDK, medium lock-in is an acceptable trade-off.",
+  "verdict_b": "Choose Unit if your project is FDIC-insured bank accounts and ACH for US fintech startups, you are prepared for a sales-led custom-pricing conversation, you are willing to accept the high lock-in called out in our data.",
+  "faq": [
+    {
+      "q": "Is Stark Bank cheaper than Unit?",
+      "a": "Stark Bank uses usage-based pricing, and Unit uses custom (sales-led) pricing. The pricing models are different, so a direct cheaper-than comparison depends on your volume and usage pattern."
+    },
+    {
+      "q": "Can I migrate from Stark Bank to Unit?",
+      "a": "Our data puts Stark Bank at medium lock-in (brazil-focused pix, sdks help portability), and Unit at high lock-in (baas partner integrations hard to migrate). Migration is feasible but not trivial — budget time for re-integration, data export, and parallel running before cutover."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Both score 5/5 on developer experience in our data, so there's no clear winner on that axis. Stark Bank does edge ahead on pricing/docs transparency (3/5 vs 1/5), which can make evaluation faster."
+    },
+    {
+      "q": "Is Unit a good alternative to Stark Bank?",
+      "a": "Unit is a reasonable alternative to Stark Bank when your workload leans more toward US fintech startups needing full-stack banking APIs with modern developer experience than brazilian fintechs and SaaS needing Pix, TED, and boleto with clean SDKs. The pricing model shifts too — Stark Bank is usage-based pricing, Unit is custom (sales-led) pricing — so expect the cost profile to change as well. One caveat: Unit is explicitly not for Non-US teams or companies needing a plain payment gateway, so check that constraint against your use-case before switching."
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "intro": "The clearest split between Amazon Rekognition and react-intl is how they charge: Amazon Rekognition uses subscription pricing starting around $200, while react-intl uses free and open source. Amazon Rekognition is AWS computer vision API for image and video analysis including object detection and facial recognition; it fits best for Apps. react-intl specializes in Internationalization; it fits best for Global products launching in multiple markets. Pick Amazon Rekognition when the job maps to apps targeting multiple languages/markets; pick react-intl when it maps to automated build/test/deploy pipelines. Amazon Rekognition is not for static projects. react-intl is not for single-language apps or internal tools. Honest trade-offs: Amazon Rekognition is weak for english-only products, and react-intl is weak for machine translation quality varies by language pair — match to your real scenario. Both sit under the Localization / Translation API umbrella, so your final call depends on pricing transparency, integration effort, and which listed not-for situations you can actually tolerate.",
+  "quick_take": "Amazon Rekognition is for apps; react-intl is for global products launching in multiple markets; decide based on pricing model.",
+  "verdict_a": "Choose Amazon Rekognition if you want subscription pricing starting around $200 and your workload matches apps.",
+  "verdict_b": "Choose react-intl if you want free and open source and your workload matches global products launching in multiple markets.",
+  "faq": [
+    {
+      "q": "Is Amazon Rekognition cheaper than react-intl?",
+      "a": "react-intl is the cheaper option on paper since it is open source, while Amazon Rekognition is paid. Amazon Rekognition uses subscription pricing starting at $200. react-intl is free and open source."
+    },
+    {
+      "q": "Can I migrate from Amazon Rekognition to react-intl?",
+      "a": "Migration from Amazon Rekognition (medium lock-in) to react-intl (low lock-in) is the easier direction; the reverse would be harder. Plan for data export, re-integration of SDKs, and re-testing flows before cutover. Verify exportable formats and feature parity against your live use cases before committing."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "react-intl scores higher on developer experience (5/5 vs 4/5 for Amazon Rekognition). Evaluate against your own stack: read their docs, run a quick SDK spike, and check error handling. Self-assessing with a small prototype beats trusting any rating at face value."
+    },
+    {
+      "q": "Is react-intl a good alternative to Amazon Rekognition?",
+      "a": "react-intl sits in the same category as Amazon Rekognition, so it can be a reasonable alternative for overlapping use cases. react-intl is best fit for global products launching in multiple markets. Note: react-intl is not for single-language apps or internal tools."
+    }
+  ]
+}

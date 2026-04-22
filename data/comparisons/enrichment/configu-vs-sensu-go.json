@@ -1,0 +1,24 @@
+{
+  "intro": "Configu and Sensu Go both show up under the observability category, but they solve slightly different jobs. Configu carries low lock-in, while Sensu Go sits at high lock-in. Configu fits teams working on distributed systems debugging, while Sensu Go is a closer match when the job is event-driven monitoring for hybrid cloud infrastructure. Worth noting: Configu is explicitly not for non-technical projects; Sensu Go is explicitly not for cloud-native teams already standardized on Prometheus and Grafana. The honest trade-off: Configu trades off on single-server apps with basic logging; Sensu Go trades off on configuration complexity vs Prometheus. On the plus side, Configu highlights distributed systems debugging, while Sensu Go points to event-driven architecture scales horizontally. Configu's documentation also calls out log aggregation and analysis. Sensu Go similarly notes open-source core with commercial options. For teams evaluating observability options today, the decision usually hinges on whether Configu's profile or Sensu Go's profile maps more cleanly to the pricing model, lock-in tolerance, and scale your team can live with.",
+  "quick_take": "Configu is for distributed systems debugging; Sensu Go is for event-driven monitoring for hybrid cloud infrastructure; decide on lock-in tolerance.",
+  "verdict_a": "Choose Configu if your project is distributed systems debugging, you want to keep future migration cheap.",
+  "verdict_b": "Choose Sensu Go if your project is event-driven monitoring for hybrid cloud infrastructure, you are willing to accept the high lock-in called out in our data.",
+  "faq": [
+    {
+      "q": "Is Configu cheaper than Sensu Go?",
+      "a": "Configu uses undisclosed pricing with free tier, and Sensu Go uses undisclosed pricing with free tier. Without full pricing pages to compare, we can't rank them on price alone — check each vendor's current rates for your workload."
+    },
+    {
+      "q": "Can I migrate from Configu to Sensu Go?",
+      "a": "Our data puts Configu at low lock-in (oss config management), and Sensu Go at high lock-in (oss monitoring, configs portable). Migration is feasible but not trivial — budget time for re-integration, data export, and parallel running before cutover."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Both score 4/5 on developer experience in our data, so there's no clear winner on that axis. The better fit depends on which SDK matches your stack and which docs your team finds clearer during evaluation."
+    },
+    {
+      "q": "Is Sensu Go a good alternative to Configu?",
+      "a": "Sensu Go is a reasonable alternative to Configu when your workload leans more toward hybrid infrastructure teams needing event-driven monitoring across cloud and on-prem than distributed systems debugging. One caveat: Sensu Go is explicitly not for cloud-native teams already standardized on Prometheus and Grafana, so check that constraint against your use-case before switching."
+    }
+  ]
+}

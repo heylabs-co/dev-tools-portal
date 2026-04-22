@@ -1,0 +1,24 @@
+{
+  "intro": "The most concrete split between Bearer and Prowler is the pricing model: Bearer runs on freemium, while Prowler uses free and open-source. That shapes how predictable your monthly spend is and how much of the cost sits in infrastructure versus per-seat or per-event fees. Beyond the headline, Bearer carries high lock-in (oss data security scanner) and freemium; Prowler carries low lock-in (free oss cloud security) and free and open-source. Bearer is a fit when you are mobile. Prowler is a fit when you are dev teams needing sast, dast, or sca in the pipeline. The honest trade-off: Bearer is explicitly not for hobby projects; Prowler is explicitly not for projects with no regulatory or security compliance needs. On the product side, Bearer is described as Security Scanning / Mobile App Sec tool for developers. Specializes in Data Flow Security, and Prowler is described as Security Scanning / Mobile App Sec tool for developers. Specializes in Cloud Security Posture Management.",
+  "quick_take": "Bearer is for mobile; Prowler is for dev teams needing sast, dast, or sca in the pipeline; decide on pricing model.",
+  "verdict_a": "Choose Bearer if its freemium pricing model fits your budget shape better than Prowler's free model, and you are mobile.",
+  "verdict_b": "Choose Prowler if you want a fully free, open-source option and can handle self-hosting or self-support.",
+  "faq": [
+    {
+      "q": "Is Bearer cheaper than Prowler?",
+      "a": "Headline yes, Prowler is free and open-source while Bearer uses freemium. But the total cost depends on self-hosting and maintenance effort for Prowler versus managed convenience from Bearer. Factor in both."
+    },
+    {
+      "q": "Can I migrate from Bearer to Prowler?",
+      "a": "Migration from Bearer is harder: Bearer is rated high lock-in (oss data security scanner). You can still move, but expect schema-mapping, export tooling and a longer cutover window. Budget engineering time accordingly."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "On our scoring Prowler rates 5/5 for developer experience versus 4/5 for Bearer. That suggests Prowler feels more polished for everyday developer tasks. We still recommend a short hands-on trial on your stack before standardising."
+    },
+    {
+      "q": "Is Prowler a good alternative to Bearer?",
+      "a": "Prowler is pitched at dev teams needing sast, dast, or sca in the pipeline, which overlaps with Bearer's fit (mobile) but is not identical. Note that Prowler is explicitly not for projects with no regulatory or security compliance needs, so it only replaces Bearer if you are outside that exclusion. The lock-in profile differs (high vs low), which is the main thing to weigh."
+    }
+  ]
+}

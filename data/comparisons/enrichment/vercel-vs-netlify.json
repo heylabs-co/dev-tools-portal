@@ -1,0 +1,24 @@
+{
+  "intro": "The biggest real distinction between Vercel and Netlify is straightforward: Vercel is aimed at teams, whereas Netlify targets Global. Vercel sits at freemium with a paid tier from $20/mo/member (Pro), enterprise plan available and carries moderate lock-in, while Netlify sits at freemium with a paid tier from $19/mo/member (Pro), enterprise plan available and carries moderate lock-in. Vercel is a fit when you need teams — typical scenarios include next.js deployment with zero config. Netlify is aimed at global, with workloads like global audience with low latency needs as the common case. The honest trade-off: Vercel is explicitly not for non-next.js frameworks; Netlify is not intended for internal projects. Neither tool is a drop-in replacement for the other in every scenario — the choice should track your constraints on budget, lock-in, and target workload rather than general popularity. Before committing, pilot both tools on a representative task so the trade-offs show up under your actual constraints instead of a feature checklist.",
+  "quick_take": "Vercel is for teams; Netlify is for global; decide based on which workload you actually run.",
+  "verdict_a": "Choose Vercel if your primary workload is teams and the free tier plus $20/mo/member (Pro) paid tier fits your budget.",
+  "verdict_b": "Choose Netlify if your primary workload is global and the free tier plus $19/mo/member (Pro) paid tier fits your budget.",
+  "faq": [
+    {
+      "q": "Is Vercel cheaper than Netlify?",
+      "a": "It depends on workload shape: Vercel lists $20/mo/member (Pro), while Netlify lists $19/mo/member (Pro). With different pricing models (freemium vs freemium), the cheaper option flips based on seat count, usage volume, and whether you use the free tier. Do a per-workload estimate rather than comparing headline numbers."
+    },
+    {
+      "q": "Can I migrate from Vercel to Netlify?",
+      "a": "Migrating from Vercel to Netlify is doable but not automatic — Vercel carries moderate lock-in. Since both tools sit in the same category (CDN / Edge / Acceleration), the conceptual mapping is closer, but you still need to validate feature parity against your specific workload. Plan migration as a project, not a script: inventory integrations, test on non-production workloads, and keep Vercel running in parallel until Netlify is verified."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Our data gives Vercel and Netlify the same developer experience score (5/5), so neither has a clear edge on DX by that measure. The differentiator is usually how each tool fits your workflow — things like CLI quality, docs, local dev loop, and error messages. The safest call is to pilot both on a representative task and see which one gets out of your way."
+    },
+    {
+      "q": "Is Netlify a good alternative to Vercel?",
+      "a": "Netlify is in the same category as Vercel (CDN / Edge / Acceleration), so it's a reasonable alternative to evaluate. Netlify is aimed at global, while Vercel targets teams — that difference should drive the switch decision. Note that Netlify is explicitly not for internal projects — if that describes your workload, it's not a viable replacement."
+    }
+  ]
+}

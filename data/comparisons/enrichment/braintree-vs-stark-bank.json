@@ -1,0 +1,24 @@
+{
+  "intro": "Braintree and Stark Bank both show up under the payment gateway category, but they solve slightly different jobs. Braintree scores noticeably higher on pricing and docs transparency (5/5) than Stark Bank (3/5). Both sit at moderate lock-in. Braintree fits teams working on SaaS with online payments, while Stark Bank is a closer match when the job is Pix payment integration for Brazilian businesses via SDK. Worth noting: Braintree is explicitly not for offline, Internal projects; Stark Bank is explicitly not for companies outside Brazil or needing multi-country payment rails. The honest trade-off: Braintree trades off on offline-only retail; Stark Bank trades off on brazil-only — no utility outside BRL. On the plus side, Braintree highlights SaaS with online payments, while Stark Bank points to SDKs in 10+ languages — real DX focus. Braintree's documentation also calls out e-commerce checkout. Stark Bank similarly notes native Pix integration for instant BRL payments.",
+  "quick_take": "Braintree is for SaaS with online payments; Stark Bank is for Pix payment integration for Brazilian businesses; decide on pricing transparency.",
+  "verdict_a": "Choose Braintree if your project is SaaS with online payments, medium lock-in is an acceptable trade-off.",
+  "verdict_b": "Choose Stark Bank if your project is Pix payment integration for Brazilian businesses via SDK, medium lock-in is an acceptable trade-off.",
+  "faq": [
+    {
+      "q": "Is Braintree cheaper than Stark Bank?",
+      "a": "Braintree uses usage-based pricing, and Stark Bank uses usage-based pricing. Without full pricing pages to compare, we can't rank them on price alone — check each vendor's current rates for your workload."
+    },
+    {
+      "q": "Can I migrate from Braintree to Stark Bank?",
+      "a": "Our data puts Braintree at medium lock-in (paypal-owned, card data portable), and Stark Bank at medium lock-in (brazil-focused pix, sdks help portability). Migration is feasible but not trivial — budget time for re-integration, data export, and parallel running before cutover."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Both score 5/5 on developer experience in our data, so there's no clear winner on that axis. Braintree does edge ahead on pricing/docs transparency (5/5 vs 3/5), which can make evaluation faster."
+    },
+    {
+      "q": "Is Stark Bank a good alternative to Braintree?",
+      "a": "Stark Bank is a reasonable alternative to Braintree when your workload leans more toward brazilian fintechs and SaaS needing Pix, TED, and boleto with clean SDKs than SaaS, E-commerce, Marketplace. One caveat: Stark Bank is explicitly not for companies outside Brazil or needing multi-country payment rails, so check that constraint against your use-case before switching."
+    }
+  ]
+}

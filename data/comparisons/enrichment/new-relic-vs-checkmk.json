@@ -1,0 +1,24 @@
+{
+  "intro": "The biggest real distinction between New Relic and Checkmk is straightforward: New Relic carries moderate lock-in while Checkmk has low lock-in. New Relic sits at hybrid pricing with $0.30/GB (Standard), $49/core user, a free tier, enterprise plan available and carries moderate lock-in, while Checkmk sits at freemium with paid upgrades and carries low lock-in. New Relic is a fit when you need microservices performance monitoring — typical scenarios include microservices performance monitoring. Checkmk is aimed at mobile, with workloads like automated build/test/deploy pipelines as the common case. The honest trade-off: New Relic is explicitly not for simple, static projects; Checkmk is not intended for hobby projects. Lock-in is the factor most teams underestimate: New Relic and Checkmk have different exit paths, and that shapes total cost of ownership over a two-to-three year horizon. Before committing, audit where each tool stores state, which APIs you depend on, and how painful a switch would be six months in.",
+  "quick_take": "New Relic is for microservices performance monitoring; Checkmk is for mobile; decide based on how much lock-in you can accept.",
+  "verdict_a": "Choose New Relic if your primary workload is microservices performance monitoring and hybrid pricing ($0.30/GB (Standard), $49/core user) is acceptable.",
+  "verdict_b": "Choose Checkmk if your primary workload is mobile and low switching cost matters.",
+  "faq": [
+    {
+      "q": "Is New Relic cheaper than Checkmk?",
+      "a": "New Relic publishes an entry price of $0.30/GB (Standard), $49/core user; Checkmk's entry price is not in our data, so a definitive comparison is not possible without a quote from Checkmk."
+    },
+    {
+      "q": "Can I migrate from New Relic to Checkmk?",
+      "a": "Migrating from New Relic to Checkmk is doable but not automatic — New Relic carries moderate lock-in. Since both tools sit in the same category (Performance Monitoring / APM), the conceptual mapping is closer, but you still need to validate feature parity against your specific workload. Plan migration as a project, not a script: inventory integrations, test on non-production workloads, and keep New Relic running in parallel until Checkmk is verified."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "On our 0–5 developer experience scale, New Relic scores higher (5/5 vs 4/5 for Checkmk). The gap is one point — meaningful but not decisive, since DX is workflow-dependent. Still, score your own tasks: DX is subjective and tied to stack assumptions."
+    },
+    {
+      "q": "Is Checkmk a good alternative to New Relic?",
+      "a": "Checkmk is in the same category as New Relic (Performance Monitoring / APM), so it's a reasonable alternative to evaluate. Checkmk is aimed at mobile, while New Relic targets microservices performance monitoring — that difference should drive the switch decision. Note that Checkmk is explicitly not for hobby projects — if that describes your workload, it's not a viable replacement."
+    }
+  ]
+}

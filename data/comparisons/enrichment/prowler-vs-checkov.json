@@ -1,0 +1,24 @@
+{
+  "intro": "Prowler and Checkov both target the security scanning space, and on paper their pricing, lock-in and ratings land close together. The useful split is positioning: Prowler is pitched at dev teams needing sast, dast, or sca in the pipeline, while Checkov is pitched at mobile. Beyond the headline, Prowler carries low lock-in (free oss cloud security) and free and open-source; Checkov carries low lock-in (oss iac scanner by bridgecrew) and free and open-source. Prowler is a fit when you are dev teams needing sast, dast, or sca in the pipeline. Checkov is a fit when you are mobile. The honest trade-off: Prowler is explicitly not for projects with no regulatory or security compliance needs; Checkov is explicitly not for hobby projects. On the product side, Prowler is described as Security Scanning / Mobile App Sec tool for developers. Specializes in Cloud Security Posture Management, and Checkov is described as CI/CD for Applications tool for developers. Specializes in IaC Scanner.",
+  "quick_take": "Prowler is for dev teams needing sast, dast, or sca in the pipeline; Checkov is for mobile; decide on which best-fit use case is yours.",
+  "verdict_a": "Choose Prowler if you are dev teams needing sast, dast, or sca in the pipeline and comfortable with its free and open-source.",
+  "verdict_b": "Choose Checkov if you are mobile and comfortable with its free and open-source.",
+  "faq": [
+    {
+      "q": "Is Prowler cheaper than Checkov?",
+      "a": "Both tools use free pricing. Prowler is listed as free and open-source; Checkov as free and open-source. Without specific volume and seat assumptions it is not possible to say which is cheaper in general."
+    },
+    {
+      "q": "Can I migrate from Prowler to Checkov?",
+      "a": "Migration from Prowler to Checkov is plausible because Prowler has low lock-in (free oss cloud security). You would still have to map config, permissions and integrations to Checkov's model. Plan for dual-run and rollback."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Both tools tie at 5/5 for developer experience on our scoring. The real difference will show up in your specific workflow, not the headline rating. A one-hour spike on both is the fastest way to decide."
+    },
+    {
+      "q": "Is Checkov a good alternative to Prowler?",
+      "a": "Checkov is pitched at mobile, which overlaps with Prowler's fit (dev teams needing sast, dast, or sca in the pipeline) but is not identical. Note that Checkov is explicitly not for hobby projects, so it only replaces Prowler if you are outside that exclusion. Feature-for-feature parity is not guaranteed, so confirm the specific capability you rely on before switching."
+    }
+  ]
+}

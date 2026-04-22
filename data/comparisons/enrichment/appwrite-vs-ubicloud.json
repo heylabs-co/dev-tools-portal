@@ -1,0 +1,24 @@
+{
+  "intro": "The biggest real distinction between Appwrite and Ubicloud is straightforward: Appwrite uses hybrid pricing with $25/mo/project (Pro), a free tier, enterprise plan available; Ubicloud uses usage-based pricing, a free tier. Appwrite sits at hybrid pricing with $25/mo/project (Pro), a free tier, enterprise plan available and carries low lock-in, while Ubicloud sits at usage-based pricing, a free tier and carries low lock-in. Appwrite is a fit when you need mobile, teams — typical scenarios include mvp/prototyping speed. Ubicloud is aimed at teams cutting github actions bills or wanting open-source iaas on hetzner, with workloads like open-source aws alternative running on hetzner bare-metal as the common case. The honest trade-off: Appwrite is explicitly not for complex custom business logic; Ubicloud is not intended for enterprises needing the full breadth of aws managed services. On cost specifically, pricing model matters more than sticker price — one workload can make Appwrite cheaper while a different shape flips the answer to Ubicloud.",
+  "quick_take": "Appwrite is for mobile, teams; Ubicloud is for teams cutting github actions bills or; decide based on cost model and budget.",
+  "verdict_a": "Choose Appwrite if your primary workload is mobile, teams and hybrid pricing ($25/mo/project (Pro)) is acceptable.",
+  "verdict_b": "Choose Ubicloud if your primary workload is teams cutting github actions bills or wanting open-source iaas on hetzner and low switching cost matters.",
+  "faq": [
+    {
+      "q": "Is Appwrite cheaper than Ubicloud?",
+      "a": "Appwrite publishes an entry price of $25/mo/project (Pro); Ubicloud's entry price is not in our data, so a definitive comparison is not possible without a quote from Ubicloud."
+    },
+    {
+      "q": "Can I migrate from Appwrite to Ubicloud?",
+      "a": "Migrating from Appwrite to Ubicloud is generally feasible because Appwrite has low lock-in, so data and configuration are usually portable. Since both tools sit in the same category (Backend-as-a-Service), the conceptual mapping is closer, but you still need to validate feature parity against your specific workload. Plan migration as a project, not a script: inventory integrations, test on non-production workloads, and keep Appwrite running in parallel until Ubicloud is verified."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "On our 0–5 developer experience scale, Appwrite scores higher (5/5 vs 3/5 for Ubicloud). The gap is 2 points, which is a noticeable difference in day-to-day ergonomics based on the data. Still, score your own tasks: DX is subjective and tied to stack assumptions."
+    },
+    {
+      "q": "Is Ubicloud a good alternative to Appwrite?",
+      "a": "Ubicloud is in the same category as Appwrite (Backend-as-a-Service), so it's a reasonable alternative to evaluate. Ubicloud is aimed at teams cutting github actions bills or wanting open-source iaas on hetzner, while Appwrite targets mobile, teams — that difference should drive the switch decision. Note that Ubicloud is explicitly not for enterprises needing the full breadth of aws managed services — if that describes your workload, it's not a viable replacement."
+    }
+  ]
+}

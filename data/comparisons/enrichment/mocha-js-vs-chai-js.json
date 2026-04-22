@@ -1,0 +1,24 @@
+{
+  "intro": "The biggest practical difference between Mocha and Chai is lock-in. Mocha is rated high lock-in (free oss js test framework), while Chai is rated low lock-in (open-source js assertion library). That changes how hard a future migration would be and how much strategy to put into exit planning. Beyond the headline, Mocha carries high lock-in (free oss js test framework) and free and open-source; Chai carries low lock-in (open-source js assertion library) and free and open-source. Mocha is a fit when you are legacy node codebases with established mocha+chai+sinon stacks. Chai is a fit when you are legacy mocha projects where ripping chai out would be expensive. The honest trade-off: Mocha is explicitly not for new projects where vitest offers the same power with far less config; Chai is explicitly not for new projects where vitest or node:test already ship with assertions. On the product side, Mocha is described as Feature-rich JavaScript test framework running on Node.js and in the browser, supporting async tests, any assertion library and rich reporters, and Chai is described as BDD/TDD assertion library for Node.",
+  "quick_take": "Mocha is for legacy node codebases with established mocha+chai+sinon stacks; Chai is for legacy mocha projects where ripping chai out would be expensive; decide on lock-in tolerance.",
+  "verdict_a": "Choose Mocha if you accept higher lock-in in exchange for its specific capabilities and you are legacy node codebases with established mocha+chai+sinon stacks.",
+  "verdict_b": "Choose Chai if minimizing lock-in matters and you accept its stated trade-offs for legacy mocha projects where ripping chai out would be expensive.",
+  "faq": [
+    {
+      "q": "Is Mocha cheaper than Chai?",
+      "a": "Both tools use free pricing. Mocha is listed as free and open-source; Chai as free and open-source. Without specific volume and seat assumptions it is not possible to say which is cheaper in general."
+    },
+    {
+      "q": "Can I migrate from Mocha to Chai?",
+      "a": "Migration from Mocha is harder: Mocha is rated high lock-in (free oss js test framework). You can still move, but expect schema-mapping, export tooling and a longer cutover window. Budget engineering time accordingly."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Both tools tie at 5/5 for developer experience on our scoring. The real difference will show up in your specific workflow, not the headline rating. A one-hour spike on both is the fastest way to decide."
+    },
+    {
+      "q": "Is Chai a good alternative to Mocha?",
+      "a": "Chai is pitched at legacy mocha projects where ripping chai out would be expensive, which overlaps with Mocha's fit (legacy node codebases with established mocha+chai+sinon stacks) but is not identical. Note that Chai is explicitly not for new projects where vitest or node:test already ship with assertions, so it only replaces Mocha if you are outside that exclusion. The lock-in profile differs (high vs low), which is the main thing to weigh."
+    }
+  ]
+}

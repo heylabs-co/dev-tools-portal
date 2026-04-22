@@ -1,0 +1,24 @@
+{
+  "intro": "Stripe and Adyen both show up under the payment gateway category, but they solve slightly different jobs. Stripe uses usage-based from 2.9% + $0.30/transaction with free tier, while Adyen runs on pricing that starts at EUR 0.11 + scheme fee. Both sit at moderate lock-in. Transparency lands at 5/5 versus 3/5. Stripe fits teams working on SaaS with global customers needing fast integration, while Adyen is a closer match when the job is enterprise with $10M+ TPV needing global coverage. Worth noting: Stripe is explicitly not for offline projects; Adyen is explicitly not for solo projects. The honest trade-off: Stripe trades off on need Merchant of Record (MoR) for tax compliance; Adyen trades off on startup with <$1M TPV — minimum fees are high. On the plus side, Stripe highlights SaaS with global customers needing fast integration, while Adyen points to enterprise with $10M+ TPV needing global coverage. Stripe's documentation also calls out marketplaces using Stripe Connect. Adyen similarly notes unified online + in-store (POS) payments.",
+  "quick_take": "Stripe is for SaaS with global customers needing fast; Adyen is for enterprise with $10M+ TPV needing global; decide on pricing model.",
+  "verdict_a": "Choose Stripe if your project is SaaS with global customers needing fast integration, usage-based billing at 2.9% + $0.30/transaction matches your volume, medium lock-in is an acceptable trade-off.",
+  "verdict_b": "Choose Adyen if your project is enterprise with $10M+ TPV needing global coverage, medium lock-in is an acceptable trade-off.",
+  "faq": [
+    {
+      "q": "Is Stripe cheaper than Adyen?",
+      "a": "Stripe uses usage-based from 2.9% + $0.30/transaction with free tier, and Adyen uses pricing that starts at EUR 0.11 + scheme fee. The pricing models are different, so a direct cheaper-than comparison depends on your volume and usage pattern. Stripe offers a free tier; Adyen does not."
+    },
+    {
+      "q": "Can I migrate from Stripe to Adyen?",
+      "a": "Our data puts Stripe at medium lock-in (proprietary tokens in vault, but pci-to-pci export available), and Adyen at medium lock-in (proprietary tokens, but csv import/export under). Migration is feasible but not trivial — budget time for re-integration, data export, and parallel running before cutover."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Both score 5/5 on developer experience in our data, so there's no clear winner on that axis. Stripe does edge ahead on pricing/docs transparency (5/5 vs 3/5), which can make evaluation faster."
+    },
+    {
+      "q": "Is Adyen a good alternative to Stripe?",
+      "a": "Adyen is a reasonable alternative to Stripe when your workload leans more toward enterprise than SaaS, Companies. The pricing model shifts too — Stripe is usage-based from 2.9% + $0.30/transaction with free tier, Adyen is pricing that starts at EUR 0.11 + scheme fee — so expect the cost profile to change as well. One caveat: Adyen is explicitly not for solo projects, so check that constraint against your use-case before switching."
+    }
+  ]
+}

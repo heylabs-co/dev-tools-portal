@@ -1,0 +1,24 @@
+{
+  "intro": "The pivotal question between MindsDB and Iterative.ai is how much of your setup stays portable: MindsDB carries high lock-in and Iterative.ai carries low lock-in. MindsDB is in-database AI — query LLMs and ML models with SQL. Iterative.ai is open-source ML ops — DVC and CML for data/model versioning in Git workflows. Pick MindsDB when the job is analysts and engineers building ai agents over many heterogeneous data sources and you accept high lock-in; pick Iterative.ai when it is engineering-heavy ml teams that want git-based data and experiment workflows and you accept low lock-in. The data we have shows MindsDB at mostly transparent pricing and docs with solid developer experience, and Iterative.ai at mostly transparent pricing and docs with a polished developer experience. The honest trade-off: neither is universal — MindsDB is a poor fit for teams needing hand-tuned performance on a single warehouse, and Iterative.ai is a poor fit for data science teams preferring notebook-first uis over git semantics. Match the pricing model and lock-in level to how your team actually works, not the feature list.",
+  "quick_take": "MindsDB is for in-database AI — query LLMs and ML; Iterative.ai is for open-source ML ops — DVC and CML; decide based on how portable the setup must stay.",
+  "verdict_a": "Choose MindsDB if deep integration is an acceptable price for the depth it buys and the work maps to in-database AI — query LLMs and ML models with SQL.",
+  "verdict_b": "Choose Iterative.ai if day-to-day developer ergonomics are a priority and the work lines up with open-source ML ops — DVC and CML for data/model versioning in Git workflows.",
+  "faq": [
+    {
+      "q": "Is MindsDB cheaper than Iterative.ai?",
+      "a": "Neither MindsDB nor Iterative.ai publishes entry pricing that lets us compare directly — MindsDB uses a freemium model and Iterative.ai uses a freemium model. Get quotes from both before assuming one is cheaper."
+    },
+    {
+      "q": "Can I migrate from MindsDB to Iterative.ai?",
+      "a": "Leaving MindsDB for Iterative.ai is the harder direction: MindsDB is rated high lock-in, so exporting data and rebuilding integrations is the main cost. Going the other way (Iterative.ai to MindsDB) is usually easier."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Iterative.ai scores higher on developer experience in our data (5/5 vs 4/5). The gap usually shows up in setup friction and daily workflow speed. Confirm it on your own stack before treating the rating as final."
+    },
+    {
+      "q": "Is Iterative.ai a good alternative to MindsDB?",
+      "a": "Yes — Iterative.ai is a reasonable alternative to MindsDB for analysts and engineers building ai agents over many heterogeneous data sources. The practical differences are freemium-vs-freemium billing and high-vs-low lock-in. If those fit your constraints better, treat Iterative.ai as a credible swap."
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "intro": "The biggest real distinction between Elastic and Checkmk is straightforward: Elastic uses pricing from $95/mo (Standard Cloud), a free tier, enterprise plan available; Checkmk uses freemium with paid upgrades. Elastic sits at pricing from $95/mo (Standard Cloud), a free tier, enterprise plan available and carries low lock-in, while Checkmk sits at freemium with paid upgrades and carries low lock-in. Elastic is a fit when you need microservices performance monitoring — typical scenarios include microservices performance monitoring. Checkmk is aimed at mobile, with workloads like automated build/test/deploy pipelines as the common case. The honest trade-off: Elastic is explicitly not for simple, static projects; Checkmk is not intended for hobby projects. On cost specifically, pricing model matters more than sticker price — one workload can make Elastic cheaper while a different shape flips the answer to Checkmk. Before committing, model your actual usage against both pricing pages: seat counts, data volumes, and whether the free tier covers real workloads tend to dominate the total bill.",
+  "quick_take": "Elastic is for microservices performance monitoring; Checkmk is for mobile; decide based on cost model and budget.",
+  "verdict_a": "Choose Elastic if your primary workload is microservices performance monitoring and low switching cost matters.",
+  "verdict_b": "Choose Checkmk if your primary workload is mobile and low switching cost matters.",
+  "faq": [
+    {
+      "q": "Is Elastic cheaper than Checkmk?",
+      "a": "Elastic publishes an entry price of $95/mo (Standard Cloud); Checkmk's entry price is not in our data, so a definitive comparison is not possible without a quote from Checkmk."
+    },
+    {
+      "q": "Can I migrate from Elastic to Checkmk?",
+      "a": "Migrating from Elastic to Checkmk is generally feasible because Elastic has low lock-in, so data and configuration are usually portable. Since both tools sit in the same category (Performance Monitoring / APM), the conceptual mapping is closer, but you still need to validate feature parity against your specific workload. Plan migration as a project, not a script: inventory integrations, test on non-production workloads, and keep Elastic running in parallel until Checkmk is verified."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "On our 0–5 developer experience scale, Elastic scores higher (5/5 vs 4/5 for Checkmk). The gap is one point — meaningful but not decisive, since DX is workflow-dependent. Still, score your own tasks: DX is subjective and tied to stack assumptions."
+    },
+    {
+      "q": "Is Checkmk a good alternative to Elastic?",
+      "a": "Checkmk is in the same category as Elastic (Performance Monitoring / APM), so it's a reasonable alternative to evaluate. Checkmk is aimed at mobile, while Elastic targets microservices performance monitoring — that difference should drive the switch decision. Note that Checkmk is explicitly not for hobby projects — if that describes your workload, it's not a viable replacement."
+    }
+  ]
+}

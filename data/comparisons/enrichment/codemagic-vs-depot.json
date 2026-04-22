@@ -1,0 +1,24 @@
+{
+  "intro": "The pivotal question between Codemagic and Depot is how much of your setup stays portable: Codemagic carries medium lock-in and Depot carries low lock-in. Codemagic is CI/CD specialized for Flutter and mobile apps with Fastlane and code signing. Depot is remote Docker build acceleration service for CI image builds. Pick Codemagic when the job is conversion optimization and you accept medium lock-in; pick Depot when it is conversion optimization and you accept low lock-in. The data we have shows Codemagic at mostly transparent pricing and docs with a polished developer experience, and Depot at fully public pricing and documentation with a polished developer experience. The honest trade-off: neither is universal — Codemagic is a poor fit for internal projects, and Depot is a poor fit for internal projects. Match the pricing model and lock-in level to how your team actually works, not the feature list. If your team already lives inside the ecosystem one of them assumes, that default usually wins — migration is cheap to start and expensive later.",
+  "quick_take": "Codemagic is for CI/CD specialized; Depot is for remote Docker build acceleration service; decide based on how portable the setup must stay.",
+  "verdict_a": "Choose Codemagic if some ecosystem coupling is acceptable and the work maps to CI/CD specialized for Flutter and mobile apps with Fastlane and code signing.",
+  "verdict_b": "Choose Depot if you need public pricing and docs before committing and the work lines up with remote Docker build acceleration service for CI image builds.",
+  "faq": [
+    {
+      "q": "Is Codemagic cheaper than Depot?",
+      "a": "Codemagic starts at $0 / month on a subscription model; Depot starts at $500/mo on a subscription model. That makes the sticker comparison depend on usage — a low entry price can get expensive once volume ramps, so price at your actual workload."
+    },
+    {
+      "q": "Can I migrate from Codemagic to Depot?",
+      "a": "Migration is possible in either direction. Codemagic carries medium lock-in and Depot carries low lock-in, so plan for meaningful but not blocking rework. Run both in parallel before you fully cut over."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Both Codemagic and Depot rate the same on developer experience (5/5). The decision on DX then comes down to taste — which CLI, UI, or workflow matches your team's habits. A short side-by-side trial is the quickest way to tell."
+    },
+    {
+      "q": "Is Depot a good alternative to Codemagic?",
+      "a": "Yes — Depot is a reasonable alternative to Codemagic for conversion optimization. The practical differences are subscription-vs-subscription billing and medium-vs-low lock-in. If those fit your constraints better, treat Depot as a credible swap."
+    }
+  ]
+}

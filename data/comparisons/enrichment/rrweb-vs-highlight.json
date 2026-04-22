@@ -1,0 +1,24 @@
+{
+  "intro": "The most concrete split between rrweb and Highlight is the pricing model: rrweb runs on free and open-source, while Highlight uses freemium. That shapes how predictable your monthly spend is and how much of the cost sits in infrastructure versus per-seat or per-event fees. Beyond the headline, rrweb carries low lock-in (oss session replay lib) and free and open-source; Highlight carries low lock-in (open-source session replay) and freemium. rrweb is a fit when you are engineers building custom replay, qa or debugging tooling in-house. Highlight is a fit when you are ux debugging and optimization. The honest trade-off: rrweb is explicitly not for non-technical teams expecting a hosted dashboard out of the box; Highlight is explicitly not for apps with strict privacy requirements (healthcare). On the product side, rrweb is described as Open-source web session replay library. Pixel-perfect recording and playback APIs used by major platforms (PostHog, OpenReplay and many tools), and Highlight is described as Session Replay / UX Analytics tool for developers. Specializes in open source replay.",
+  "quick_take": "rrweb is for engineers building custom replay, qa or debugging tooling in-house; Highlight is for ux debugging and optimization; decide on pricing model.",
+  "verdict_a": "Choose rrweb if you want a fully free, open-source option and can handle self-hosting or self-support.",
+  "verdict_b": "Choose Highlight if its freemium pricing model fits your budget shape better than rrweb's free model, and you are ux debugging and optimization.",
+  "faq": [
+    {
+      "q": "Is rrweb cheaper than Highlight?",
+      "a": "Direct comparison is hard. rrweb is free and open-source, so licence cost is zero though you pay in operational effort. Highlight uses freemium, so it costs money in exchange for managed service. Which is cheaper depends on how much engineering time you value."
+    },
+    {
+      "q": "Can I migrate from rrweb to Highlight?",
+      "a": "Migration from rrweb to Highlight is plausible because rrweb has low lock-in (oss session replay lib). You would still have to map config, permissions and integrations to Highlight's model. Plan for dual-run and rollback."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Both tools tie at 5/5 for developer experience on our scoring. The real difference will show up in your specific workflow, not the headline rating. A one-hour spike on both is the fastest way to decide."
+    },
+    {
+      "q": "Is Highlight a good alternative to rrweb?",
+      "a": "Highlight is pitched at ux debugging and optimization, which overlaps with rrweb's fit (engineers building custom replay, qa or debugging tooling in-house) but is not identical. Note that Highlight is explicitly not for apps with strict privacy requirements (healthcare), so it only replaces rrweb if you are outside that exclusion. Pricing models differ (free vs freemium), which may shift total cost."
+    }
+  ]
+}

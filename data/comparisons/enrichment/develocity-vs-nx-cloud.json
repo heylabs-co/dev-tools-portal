@@ -1,0 +1,24 @@
+{
+  "intro": "Nx Cloud rates 4/5 on transparency versus 1/5 for Develocity. Develocity is positioned for enterprises with large gradle, maven, or bazel monorepos and slow ci, while Nx Cloud leans toward js and ts monorepos using nx with slow ci and many projects. In practice, Build acceleration and analytics platform for Gradle, Maven, Bazel, and sbt monorepos (formerly Gradle Enterprise). Provides remote build caching, build scans, and predictive test selection. Remote computation caching and distributed task execution service for Nx monorepos. Speeds up CI by sharing build artifacts across machines and eliminating redundant work. Develocity runs on custom; Nx Cloud runs on freemium with a free tier. Nx Cloud rates 4/5 on transparency versus 1/5 for Develocity. Listed strengths unique to Develocity include dramatic ci and local build speedups via caching, while Nx Cloud lists remote caching makes nx ci dramatically faster on its side. Reach for Develocity when you need remote build caching for gradle, maven, and bazel monorepos; reach for Nx Cloud when the job is remote computation caching for nx monorepo ci runs. The honest trade-off: Develocity is.",
+  "quick_take": "Develocity is for enterprises with large gradle, maven, or bazel monorepos and slow ci; Nx Cloud is for js and ts monorepos using nx with slow ci and many projects.",
+  "verdict_a": "Choose Develocity if enterprises with large gradle, maven, or bazel monorepos and slow ci and moderate platform coupling is acceptable.",
+  "verdict_b": "Choose Nx Cloud if js and ts monorepos using nx with slow ci and many projects and you need a free tier to validate fit.",
+  "faq": [
+    {
+      "q": "Is Develocity cheaper than Nx Cloud?",
+      "a": "The listed pricing for Develocity is custom and for Nx Cloud is freemium with a free tier, which doesn't give a clean apples-to-apples cost. Unit economics and plan structure differ enough that only your real volume answers this. Price both against the same workload."
+    },
+    {
+      "q": "Can I migrate from Develocity to Nx Cloud?",
+      "a": "Technically you can move between any two tools in the same category, but effort varies: leaving Develocity is moderate effort at medium lock-in (Build scans proprietary, configs portable), and onboarding to Nx Cloud involves medium lock-in (Cache service for Nx, works with OSS Nx). Plan for data export, re-integration, and a parallel-run window rather than a hard cutover."
+    },
+    {
+      "q": "Which has better developer experience, Develocity or Nx Cloud?",
+      "a": "Both Develocity and Nx Cloud score 5/5 on developer experience in our data, so there's no clear winner on that axis alone. The real differentiator usually lands in SDK fit for your language, error handling, and docs depth. A half-day integration spike tells you more than the score."
+    },
+    {
+      "q": "Is Nx Cloud a good alternative to Develocity?",
+      "a": "Nx Cloud is an alternative in the same category, but its stated sweet spot is js and ts monorepos using nx with slow ci and many projects, while Develocity's is enterprises with large gradle, maven, or bazel monorepos and slow ci. If your job matches Develocity's profile more closely, switching to Nx Cloud is a compromise. Use the best-fit match, not brand familiarity, to decide. Note: Nx Cloud is explicitly not for non-nx stacks or teams priced out at scale."
+    }
+  ]
+}

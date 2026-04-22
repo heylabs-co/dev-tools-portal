@@ -1,0 +1,24 @@
+{
+  "intro": "The clearest split between Amazon SES and Postmark is how they charge: Amazon SES uses a free tier plus paid plans starting around $50 per month, while Postmark uses usage-based pricing at $15/mo (10K emails). Amazon SES is AWS scalable transactional and bulk email sending service with SMTP and API access; it fits best for Transactional emails (receipts, alerts). Postmark is Fast transactional email delivery API focused on inbox placement with detailed bounce analytics; it fits best for Transactional emails (receipts, alerts). Pick Amazon SES for Transactional emails (receipts, alerts); pick Postmark for Transactional emails (receipts, alerts). Amazon SES is not for internal projects. Postmark is not for internal projects. Honest trade-offs: Amazon SES is weak for internal team communication, and Postmark is weak for internal team communication — match to your real scenario. Both sit under the Messaging API (Email / SMS / Voice) umbrella, so your final call depends on pricing transparency, integration effort, and which listed not-for situations you can actually tolerate.",
+  "quick_take": "Amazon SES is for transactional emails (receipts, alerts); Postmark is for transactional emails (receipts, alerts); decide based on pricing model.",
+  "verdict_a": "Choose Amazon SES if you want a free tier plus paid plans starting around $50 per month and your workload matches transactional emails (receipts, alerts).",
+  "verdict_b": "Choose Postmark if you want usage-based pricing at $15/mo (10K emails) and your workload matches transactional emails (receipts, alerts).",
+  "faq": [
+    {
+      "q": "Is Amazon SES cheaper than Postmark?",
+      "a": "A direct comparison depends on your usage profile and which pricing model fits better. Amazon SES has a free tier with paid plans starting at $50 per month. Postmark uses usage-based pricing at $15/mo (10K emails)."
+    },
+    {
+      "q": "Can I migrate from Amazon SES to Postmark?",
+      "a": "Migration may be non-trivial: Amazon SES is rated high lock-in (SMTP-compatible, portable to other email providers). Plan for data export, re-integration of SDKs, and re-testing flows before cutover. Verify exportable formats and feature parity against your live use cases before committing."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Postmark scores higher on developer experience (5/5 vs 4/5 for Amazon SES). Evaluate against your own stack: read their docs, run a quick SDK spike, and check error handling. Self-assessing with a small prototype beats trusting any rating at face value."
+    },
+    {
+      "q": "Is Postmark a good alternative to Amazon SES?",
+      "a": "Postmark sits in the same category as Amazon SES, so it can be a reasonable alternative for overlapping use cases. Postmark is best fit for transactional emails (receipts, alerts). Note: Postmark is not for internal projects."
+    }
+  ]
+}

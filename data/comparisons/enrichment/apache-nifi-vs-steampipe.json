@@ -1,0 +1,24 @@
+{
+  "intro": "The clearest difference between Apache NiFi and Steampipe is pricing — Apache NiFi is unknown (no free tier), while Steampipe is free. Beyond that, lock-in — Apache NiFi has low lock-in (Apache OSS dataflow platform), whereas Steampipe has low lock-in (Open-source SQL for cloud). Apache NiFi fits SOC 2 / ISO 27001 preparation; Steampipe fits SaaS companies pursuing SOC 2, ISO 27001, or HIPAA. On the strengths side, Apache NiFi is cited for SOC 2 / ISO 27001 preparation, while Steampipe is cited for continuous evidence collection saves audit preparation time. The honest trade-off: Apache NiFi is the wrong call for pre-revenue startups; Steampipe is the wrong call for projects not subject to compliance frameworks; Apache NiFi users flag pre-revenue startups, and Steampipe users flag initial control mapping requires significant setup effort. Choosing between them should come down to the constraint that actually binds your workflow, not surface-level overlap. On developer experience the data shows Apache NiFi at 4/5 and Steampipe at 5/5, with transparency at 5/5 and 5/5 respectively.",
+  "quick_take": "Apache NiFi is for SOC 2 / ISO 27001 preparation; Steampipe is for SaaS companies pursuing SOC 2, ISO; decide based on pricing model.",
+  "verdict_a": "Choose Apache NiFi if your use case is SOC 2 / ISO 27001 preparation, and a unknown (no free tier) pricing shape fits your budget better than free.",
+  "verdict_b": "Choose Steampipe if your use case is SaaS companies pursuing SOC 2, ISO 27001, or HIPAA, and a free pricing shape fits your budget better than unknown (no free tier).",
+  "faq": [
+    {
+      "q": "Is Apache NiFi cheaper than Steampipe?",
+      "a": "On listed pricing Steampipe is free, whereas Apache NiFi follows a unknown model, so Steampipe is cheaper on the sticker. Factor in self-hosting and maintenance time before concluding which is actually cheaper for your team. Check both pricing pages for current tiers."
+    },
+    {
+      "q": "Can I migrate from Apache NiFi to Steampipe?",
+      "a": "Migrating from Apache NiFi to Steampipe is feasible when their scopes overlap, but the work is in re-mapping configuration, data models, and integrations. Apache NiFi has low lock-in, so exporting state is typically straightforward. Plan for a dual-run period so you can validate parity before decommissioning."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "On our developer-experience score, Steampipe is rated 5/5 and Apache NiFi 4/5, so Steampipe edges ahead. Scores like this smooth over real differences in docs, CLI feel, and SDK quality, so treat them as a starting point. Spend an afternoon in each before relying on the number."
+    },
+    {
+      "q": "Is Steampipe a good alternative to Apache NiFi?",
+      "a": "Steampipe is a reasonable alternative to Apache NiFi when Steampipe fits SaaS companies pursuing SOC 2, ISO 27001, or HIPAA. If your use case matches Apache NiFi's sweet spot — SOC 2 / ISO 27001 preparation — staying with Apache NiFi is probably safer. Apache NiFi itself is not meant for pre-revenue startups, which is often where users start shopping for alternatives."
+    }
+  ]
+}

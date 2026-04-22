@@ -1,0 +1,24 @@
+{
+  "intro": "The biggest real distinction between Grafana Labs and Elastic is straightforward: Grafana Labs uses usage-based pricing starting at $15/user/mo (Cloud), $8/1K series, a free tier, enterprise plan available; Elastic uses pricing from $95/mo (Standard Cloud), a free tier, enterprise plan available. Grafana Labs sits at usage-based pricing starting at $15/user/mo (Cloud), $8/1K series, a free tier, enterprise plan available and carries low lock-in, while Elastic sits at pricing from $95/mo (Standard Cloud), a free tier, enterprise plan available and carries low lock-in. Grafana Labs is a fit when you need want open-source observability (grafana + loki + tempo + mimir) — typical scenarios include want open-source observability (grafana + loki + tempo + mimir). Elastic is aimed at microservices performance monitoring, with workloads like microservices performance monitoring as the common case. The honest trade-off: Grafana Labs is explicitly not for non-technical projects; Elastic is not intended for simple, static projects.",
+  "quick_take": "Grafana Labs is for want open-source observability (grafana + loki; Elastic is for microservices performance monitoring; decide based on cost model and budget.",
+  "verdict_a": "Choose Grafana Labs if your primary workload is want open-source observability (grafana + loki + tempo + mimir) and you prefer usage-based pricing (starts at $15/user/mo (Cloud), $8/1K series).",
+  "verdict_b": "Choose Elastic if your primary workload is microservices performance monitoring and low switching cost matters.",
+  "faq": [
+    {
+      "q": "Is Grafana Labs cheaper than Elastic?",
+      "a": "It depends on workload shape: Grafana Labs lists $15/user/mo (Cloud), $8/1K series, while Elastic lists $95/mo (Standard Cloud). With different pricing models (usage vs subscription), the cheaper option flips based on seat count, usage volume, and whether you use the free tier. Do a per-workload estimate rather than comparing headline numbers."
+    },
+    {
+      "q": "Can I migrate from Grafana Labs to Elastic?",
+      "a": "Migrating from Grafana Labs to Elastic is generally feasible because Grafana Labs has low lock-in, so data and configuration are usually portable. Since both tools sit in the same category (Performance Monitoring / APM), the conceptual mapping is closer, but you still need to validate feature parity against your specific workload. Plan migration as a project, not a script: inventory integrations, test on non-production workloads, and keep Grafana Labs running in parallel until Elastic is verified."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Our data gives Grafana Labs and Elastic the same developer experience score (5/5), so neither has a clear edge on DX by that measure. The differentiator is usually how each tool fits your workflow — things like CLI quality, docs, local dev loop, and error messages. The safest call is to pilot both on a representative task and see which one gets out of your way."
+    },
+    {
+      "q": "Is Elastic a good alternative to Grafana Labs?",
+      "a": "Elastic is in the same category as Grafana Labs (Performance Monitoring / APM), so it's a reasonable alternative to evaluate. Elastic is aimed at microservices performance monitoring, while Grafana Labs targets want open-source observability (grafana + loki + tempo + mimir) — that difference should drive the switch decision. Note that Elastic is explicitly not for simple, static projects — if that describes your workload, it's not a viable replacement."
+    }
+  ]
+}

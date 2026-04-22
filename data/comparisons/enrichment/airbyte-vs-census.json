@@ -1,0 +1,24 @@
+{
+  "intro": "The clearest difference between Airbyte and Census is pricing — Airbyte is subscription with a free tier, while Census is freemium (has a free tier). Beyond that, lock-in — Airbyte has high lock-in (OSS data integration with portable configs; many connectors), whereas Census has medium lock-in (Reverse ETL, SQL-based configs portable). The stated fit for both tools is similar on paper: Airbyte is pitched as open-source data integration platform with 300+ connectors for ELT pipelines with data governance controls, while Census is pitched as Reverse ETL platform syncing data warehouse records to CRM and SaaS tools with RBAC and audit logging. On the strengths side, Airbyte is cited for SOC 2 / ISO 27001 preparation, while Census is cited for continuous compliance monitoring. The honest trade-off: both Airbyte and Census are the wrong call for pre-revenue startups. Choosing between them should come down to the constraint that actually binds your workflow, not surface-level overlap.",
+  "quick_take": "Airbyte and Census both target Compliance Automation; their data-level fit descriptions overlap, so decide based on pricing model.",
+  "verdict_a": "Choose Airbyte if you need a Compliance Automation tool and a subscription with a free tier pricing shape fits your budget better than freemium (has a free tier).",
+  "verdict_b": "Choose Census if you need a Compliance Automation tool and a freemium (has a free tier) pricing shape fits your budget better than subscription with a free tier.",
+  "faq": [
+    {
+      "q": "Is Airbyte cheaper than Census?",
+      "a": "Airbyte is subscription with a free tier, while Census is freemium with a free tier, so the cheaper option depends on your usage shape. Listed pricing pages usually change, so check both directly before committing. For small teams, the free-tier limits often matter more than headline prices."
+    },
+    {
+      "q": "Can I migrate from Airbyte to Census?",
+      "a": "Migrating from Airbyte to Census is feasible when their scopes overlap, but the work is in re-mapping configuration, data models, and integrations. Moving off Airbyte is harder because of high lock-in (OSS data integration with portable configs; many connectors). Plan for a dual-run period so you can validate parity before decommissioning."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Airbyte and Census score the same on developer experience (4/5 each) in our data. Choose based on which workflow, docs style, and CLI ergonomics feel closer to your team's preferences. Trial both in a small project before committing."
+    },
+    {
+      "q": "Is Census a good alternative to Airbyte?",
+      "a": "Census is a reasonable alternative to Airbyte when Census fits SOC 2 / ISO 27001 preparation. If your use case matches Airbyte's sweet spot — SOC 2 / ISO 27001 preparation — staying with Airbyte is probably safer. Airbyte itself is not meant for pre-revenue startups, which is often where users start shopping for alternatives."
+    }
+  ]
+}

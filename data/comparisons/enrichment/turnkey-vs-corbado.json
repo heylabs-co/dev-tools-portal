@@ -1,0 +1,24 @@
+{
+  "intro": "The clearest split between Turnkey and Corbado is how they charge: Turnkey uses usage-based pricing, while Corbado uses pricing from $1. Turnkey is Wallet infrastructure and key management API using secure enclaves for crypto and fintech apps; it fits best for Fintech and crypto infra teams building custom wallet UX on top. Corbado specializes in Passkey Authentication; it fits best for Apps, B2B. Pick Turnkey when the job maps to secure enclave key management api for crypto fintech apps; pick Corbado when it maps to apps needing sso/mfa. Turnkey is not for product teams wanting a ready-made end-user wallet sdk. Corbado is not for internal, static projects. Honest trade-offs: Turnkey is weak for primitive-heavy; you build ux on top yourself, and Corbado is weak for internal tools with basic auth — match to your real scenario. Both sit under the Identity / Auth / User Management umbrella, so your final call depends on pricing transparency, integration effort, and which listed not-for situations you can actually tolerate.",
+  "quick_take": "Turnkey is for fintech and crypto infra teams building custom wallet ux on ; Corbado is for apps, b2b; decide based on pricing model.",
+  "verdict_a": "Choose Turnkey if you want usage-based pricing and your workload matches fintech and crypto infra teams building custom wallet ux on top.",
+  "verdict_b": "Choose Corbado if you want pricing from $1 and your workload matches apps, b2b.",
+  "faq": [
+    {
+      "q": "Is Turnkey cheaper than Corbado?",
+      "a": "A direct comparison depends on your usage profile and which pricing model fits better. Turnkey uses usage-based pricing. Corbado pricing starts at $1."
+    },
+    {
+      "q": "Can I migrate from Turnkey to Corbado?",
+      "a": "Migration is workable but not trivial, since both sit around medium lock-in. Plan for data export, re-integration of SDKs, and re-testing flows before cutover. Verify exportable formats and feature parity against your live use cases before committing."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Turnkey scores higher on developer experience (4/5 vs 3/5 for Corbado). Evaluate against your own stack: read their docs, run a quick SDK spike, and check error handling. Self-assessing with a small prototype beats trusting any rating at face value."
+    },
+    {
+      "q": "Is Corbado a good alternative to Turnkey?",
+      "a": "Corbado sits in the same category as Turnkey, so it can be a reasonable alternative for overlapping use cases. Corbado is best fit for apps, b2b. Note: Corbado is not for internal, static projects."
+    }
+  ]
+}

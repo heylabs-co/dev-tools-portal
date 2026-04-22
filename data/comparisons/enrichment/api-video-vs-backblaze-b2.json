@@ -1,0 +1,24 @@
+{
+  "intro": "Backblaze B2 enters at $0 against api.video at $12 /month. Both tools position themselves for image/video heavy applications, so the decision rarely comes down to surface features. In practice, api.video — Video API platform for uploading, encoding, and streaming with player, webhooks, and analytics. Backblaze B2 — S3-compatible object storage at $0.006/GB with free egress to Cloudflare CDN partners. api.video scores 5/5 on developer experience versus 4/5 for Backblaze B2. Backblaze B2 rates 5/5 on transparency versus 4/5 for api.video. Both tools list image/video heavy applications as a headline strength, which is why pricing and lock-in usually decide the call. Both tools surface overlapping when-to-use scenarios, including image/video heavy applications. The honest trade-off: api.video is not built for small projects, and Backblaze B2 is not the right call for small projects, so neither is a universal default. Transparency scores land at 4/5 for api.video and 5/5 for Backblaze B2, which reflects how openly each tool documents pricing, limits, and terms.",
+  "quick_take": "api.video is for image/video heavy applications; Backblaze B2 overlaps on the same job; decide based on pricing model.",
+  "verdict_a": "Choose api.video if image/video heavy applications and the $12 /month entry price fits your budget.",
+  "verdict_b": "Choose Backblaze B2 if image/video heavy applications and the $0 entry price fits your budget.",
+  "faq": [
+    {
+      "q": "Is api.video cheaper than Backblaze B2?",
+      "a": "Based on the listed entry prices, no: api.video starts at $12 /month while Backblaze B2 starts at $0. At low volume the gap may be small, but it widens fast at scale. Always price against your own usage curve, not the headline tier."
+    },
+    {
+      "q": "Can I migrate from api.video to Backblaze B2?",
+      "a": "Technically you can move between any two tools in the same category, but effort varies: leaving api.video is moderate effort at medium lock-in (Video assets exportable but player/CDN tied), and onboarding to Backblaze B2 involves medium lock-in (S3-compatible, portable). Plan for data export, re-integration, and a parallel-run window rather than a hard cutover."
+    },
+    {
+      "q": "Which has better developer experience, api.video or Backblaze B2?",
+      "a": "On the 0-5 developer experience score in our data, api.video rates 5/5 while Backblaze B2 rates 4/5, giving api.video the edge. Scores compress a lot of variance though — SDK language coverage, error messages, and docs quality matter more than the number. Run a quick integration spike on both before trusting the gap."
+    },
+    {
+      "q": "Is Backblaze B2 a good alternative to api.video?",
+      "a": "Yes, Backblaze B2 targets the same job api.video does — image/video heavy applications — so functionally it slots in as an alternative. Pricing model (subscription from $0 vs subscription from $12 /month) and lock-in (medium lock-in (S3-compatible, portable) vs medium lock-in (Video assets exportable but player/CDN tied)) usually decide which is the better fit. Validate on your actual workload. Note: Backblaze B2 is explicitly not for small projects."
+    }
+  ]
+}

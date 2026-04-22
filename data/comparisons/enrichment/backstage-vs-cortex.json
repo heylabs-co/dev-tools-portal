@@ -1,0 +1,24 @@
+{
+  "intro": "Backstage and Cortex diverge first on pricing model: Backstage uses freemium pricing with a free tier, Cortex uses seat pricing with no free tier. Everything else flows from that commercial choice. Backstage is built for data warehouse syncing and is not a fit for simple, small projects. Cortex is built for data warehouse syncing and is not a fit for simple, small projects. On the scoring side, Backstage rates 4/5 for developer experience and 4/5 for transparency; Cortex rates 3/5 and 2/5 respectively. The honest trade-off: with Backstage you accept that simple api-to-api integrations, while Cortex comes with the reality that simple api-to-api integrations. Neither side is free. Backstage's headline strength in the data is that data warehouse syncing. Cortex's headline strength is that data warehouse syncing. Read each side's best-for and not-for fields carefully before you pick; the shape of your team and workflow matters more than any single score.",
+  "quick_take": "Backstage is for data warehouse syncing; Cortex is for data warehouse syncing; decide based on pricing model.",
+  "verdict_a": "Choose Backstage if you are data warehouse syncing and a freemium pricing model fits how you buy.",
+  "verdict_b": "Choose Cortex if you are data warehouse syncing and a seat pricing model fits how you buy.",
+  "faq": [
+    {
+      "q": "Is Backstage cheaper than Cortex?",
+      "a": "Backstage uses a freemium model, while Cortex uses a seat model; Backstage has a free tier and Cortex does not. We don't have per-seat numbers in this dataset, so 'cheaper' depends on volume. Price both on your actual usage before deciding."
+    },
+    {
+      "q": "Can I migrate from Backstage to Cortex?",
+      "a": "Backstage has high lock-in (oss spotify platform); Cortex has high lock-in (proprietary idp with per-seat lock-in). Migration effort scales with how much state and automation you've built in Backstage; plan for data export, config rebuild, and a parallel-run period before cutting over."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "In our data, Backstage scores 4/5 for developer experience versus 3/5 for Cortex. That said, DX is subjective; the Cortex score may still be acceptable if its feature fit is stronger for your use case."
+    },
+    {
+      "q": "Is Cortex a good alternative to Backstage?",
+      "a": "Cortex is built for data warehouse syncing and explicitly not for simple, small projects, so it's a fit only if your workflow matches its stated audience. If you were using Backstage for data warehouse syncing, the switch is reasonable; outside that scope, look elsewhere."
+    }
+  ]
+}

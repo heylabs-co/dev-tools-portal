@@ -1,0 +1,24 @@
+{
+  "intro": "The clearest split between Corbado and Dfns is how they charge: Corbado uses pricing from $1, while Dfns uses custom enterprise pricing (no public tier). Corbado specializes in Passkey Authentication; it fits best for Apps, B2B. Dfns is MPC wallet-as-a-service API for institutions to create, embed, and manage programmable wallets; it fits best for Institutions, exchanges and fintechs needing programmable custody APIs. Pick Corbado when the job maps to apps needing sso/mfa; pick Dfns when it maps to mpc wallet creation api for institutional custody apps. Corbado is not for internal, static projects. Dfns is not for consumer dapps prioritizing social login and embedded ux. Honest trade-offs: Corbado is weak for internal tools with basic auth, and Dfns is weak for enterprise pricing; not friendly for small projects — match to your real scenario. Both sit under the Identity / Auth / User Management umbrella, so your final call depends on pricing transparency, integration effort, and which listed not-for situations you can actually tolerate.",
+  "quick_take": "Corbado is for apps, b2b; Dfns is for institutions, exchanges and fintechs needing programmable cu; decide based on pricing model.",
+  "verdict_a": "Choose Corbado if you want pricing from $1 and your workload matches apps, b2b.",
+  "verdict_b": "Choose Dfns if you want custom enterprise pricing (no public tier) and your workload matches institutions, exchanges and fintechs needing programmable custody apis.",
+  "faq": [
+    {
+      "q": "Is Corbado cheaper than Dfns?",
+      "a": "Corbado has more transparent pricing; Dfns's cost depends on a sales conversation, so a direct comparison is not possible without a quote. Corbado pricing starts at $1. Dfns uses custom enterprise pricing with no published rates."
+    },
+    {
+      "q": "Can I migrate from Corbado to Dfns?",
+      "a": "Migration may be non-trivial: Dfns is rated high lock-in (MPC wallet service, custodial lock-in). Plan for data export, re-integration of SDKs, and re-testing flows before cutover. Verify exportable formats and feature parity against your live use cases before committing."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Dfns scores higher on developer experience (4/5 vs 3/5 for Corbado). Evaluate against your own stack: read their docs, run a quick SDK spike, and check error handling. Self-assessing with a small prototype beats trusting any rating at face value."
+    },
+    {
+      "q": "Is Dfns a good alternative to Corbado?",
+      "a": "Dfns sits in the same category as Corbado, so it can be a reasonable alternative for overlapping use cases. Dfns is best fit for institutions, exchanges and fintechs needing programmable custody apis. Note: Dfns is not for consumer dapps prioritizing social login and embedded ux."
+    }
+  ]
+}

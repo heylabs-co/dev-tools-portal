@@ -1,0 +1,24 @@
+{
+  "intro": "BookStack and API Dash land in similar territory on the hard numbers, so the decision comes down to fit with your workflow rather than a headline metric. BookStack is built for internal team knowledge bases, runbooks, and general documentation on self-hosted infrastructure and is not a fit for public developer documentation, api references, or teams without php hosting expertise. API Dash is built for solo developers who want a fast, offline-first api client without postman's account bloat and is not a fit for teams needing shared workspaces, extensive scripting, or enterprise sso and governance. On the scoring side, BookStack rates 4/5 for developer experience and 5/5 for transparency; API Dash rates 4/5 and 5/5 respectively. The honest trade-off: with BookStack you accept that not designed for api reference or developer-spec docs, while API Dash comes with the reality that smaller ecosystem and plugin library than postman. Neither side is free.",
+  "quick_take": "BookStack is for internal team knowledge bases, runbooks, and general documentation on self-hosted infrastructure; API Dash is for solo developers who want a fast, offline-first api client without postman's account.",
+  "verdict_a": "Choose BookStack if you are internal team knowledge bases, runbooks, and general documentation on self-hosted infrastructure.",
+  "verdict_b": "Choose API Dash if you are solo developers who want a fast, offline-first api client without postman's account bloat.",
+  "faq": [
+    {
+      "q": "Is BookStack cheaper than API Dash?",
+      "a": "Both list a free pricing model in our data, and both publish a free tier. We don't have per-seat numbers in this dataset, so 'cheaper' depends on volume. Price both on your actual usage before deciding."
+    },
+    {
+      "q": "Can I migrate from BookStack to API Dash?",
+      "a": "BookStack has low lock-in (oss self-hosted knowledge base); API Dash has low lock-in (oss flutter api client, local). Migration effort scales with how much state and automation you've built in BookStack; plan for data export, config rebuild, and a parallel-run period before cutting over."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Both BookStack and API Dash score 4/5 on developer experience in our data, so DX isn't the tiebreaker here. Decide on fit, pricing, or lock-in instead."
+    },
+    {
+      "q": "Is API Dash a good alternative to BookStack?",
+      "a": "API Dash is built for solo developers who want a fast, offline-first api client without postman's account bloat and explicitly not for teams needing shared workspaces, extensive scripting, or enterprise sso and governance, so it's a fit only if your workflow matches its stated audience. If you were using BookStack for internal team knowledge bases, runbooks, and general documentation on self-hosted infrastructure, the switch is reasonable; outside that scope, look elsewhere."
+    }
+  ]
+}

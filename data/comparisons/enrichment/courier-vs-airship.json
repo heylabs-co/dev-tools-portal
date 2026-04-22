@@ -1,0 +1,24 @@
+{
+  "intro": "The clearest split is that Courier has a free tier while Airship does not. Courier is Multi-channel notification API routing messages across email, push, SMS, Slack, and in-app with template; Airship is Mobile engagement platform with push notifications, in-app messaging, SMS, email, and real-time data streaming. The data points Courier at mobile app engagement and user lifecycle messaging, and Airship at mobile app engagement and user lifecycle messaging. Pricing: Courier is freemium, free tier; Airship is subscription from $9. Lock-in is medium for Courier and low for Airship, with DX at 4/5 vs 4/5 and transparency at 4/5 vs 2/5. On listed strengths, Courier emphasises mobile app engagement and user lifecycle messaging, and Airship emphasises mobile app engagement and user lifecycle messaging. Only Airship lists an enterprise tier in the data. Honest trade-off: neither fits web-only products without mobile, so if that is your context, look elsewhere; otherwise pick on the pivotal factor above and the DX score that matters most to your team.",
+  "quick_take": "Courier is for mobile; Airship is for mobile; decide based on whether a free tier matters.",
+  "verdict_a": "Choose Courier if you want to start on a free tier before paying and your workload matches mobile. Skip it if your context is web-only products without mobile.",
+  "verdict_b": "Choose Airship if starting on a paid subscription upfront is acceptable and your workload matches mobile. Skip it if your context is web-only products without mobile.",
+  "faq": [
+    {
+      "q": "Is Courier cheaper than Airship?",
+      "a": "Entry pricing is listed as unknown for Courier and $9 for Airship. Courier offers a free tier while Airship does not, so initial cost favors Courier. Total cost at scale depends on usage and plan details that are not in this dataset, so confirm with each vendor."
+    },
+    {
+      "q": "Can I migrate from Courier to Airship?",
+      "a": "Courier is tagged with medium lock-in (proprietary routing, templates portable). Airship is tagged with low lock-in (audiences and channels bound to airship data model). Plan for SDK replacement, data export, and a parallel-run period; the dataset does not include migration tooling details."
+    },
+    {
+      "q": "Which has better developer experience, Courier or Airship?",
+      "a": "Both are rated 4/5 for developer experience in this dataset. With equal scores, the choice comes down to the specific SDK surface and docs you will use day to day. Run a short spike on each before deciding."
+    },
+    {
+      "q": "Is Airship a good alternative to Courier?",
+      "a": "Yes for teams whose workload matches mobile, since both list the same fit. Airship is flagged as not for web-only products without mobile, so confirm your context does not fall there. Note that moving from Courier to Airship means leaving a free tier behind."
+    }
+  ]
+}

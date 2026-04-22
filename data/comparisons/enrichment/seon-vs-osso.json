@@ -1,0 +1,24 @@
+{
+  "intro": "SEON is custom-priced; Osso is freemium. SEON: Fraud & Risk Management tool for developers. Specializes in fraud detection. Osso: Enterprise SSO integration layer handling SAML and OIDC connections for SaaS applications without custom code. SEON fits fintech, e-commerce, and marketplace platforms. Osso fits SaaS platforms adding SAML/OIDC SSO for enterprise customers without building it in-house. On our rubric SEON scores 4/5 for developer experience and 1/5 for transparency, while Osso scores 4/5 and 4/5. The honest trade-off: SEON's main drawback — Overly aggressive rules can block legitimate users; Osso's — Not actually a fraud or risk tool. One point in SEON's favour: ML-based detection catches fraud patterns in real time. For Osso: Simplifies enterprise SSO across SAML and OIDC. SEON is explicitly not the right pick for internal tools or low-risk B2B SaaS. Osso is not aimed at anyone actually looking for fraud detection, bot management or transaction risk scoring. Another Osso advantage: Abstracts the pain of IdP configuration. Another Osso friction point: Overlaps with WorkOS and Auth0 SSO.",
+  "quick_take": "SEON is for fintech, e-commerce, and marketplace platforms; Osso is for SaaS platforms adding SAML/OIDC SSO for enterprise customers; decide on pricing model.",
+  "verdict_a": "Choose SEON if fintech, e-commerce, and marketplace platforms, and if you're buying at enterprise scale where custom terms apply.",
+  "verdict_b": "Choose Osso if SaaS platforms adding SAML/OIDC SSO for enterprise customers without building it in-house, and if a free tier with an optional paid path matters.",
+  "faq": [
+    {
+      "q": "Is SEON cheaper than Osso?",
+      "a": "SEON uses custom-priced pricing; Osso uses freemium. Which is cheaper depends on your volume and team size — model both against your projected usage before deciding."
+    },
+    {
+      "q": "Can I migrate from SEON to Osso?",
+      "a": "Expect real effort: SEON is medium lock-in (API-based fraud scoring) and Osso is high lock-in (OSS SAML/OIDC). Migrating between them means rebuilding integrations, re-authoring config, and accepting new coupling. Scope a spike before committing."
+    },
+    {
+      "q": "Which has better developer experience, SEON or Osso?",
+      "a": "Both score 4/5 for developer experience in our rubric, so neither has a structural edge. The practical answer depends on stack fit: SEON's ergonomics suit some workflows, Osso's suit others. Try both on a throwaway project before committing."
+    },
+    {
+      "q": "Is Osso a good alternative to SEON?",
+      "a": "They sit in the same category, so yes — Osso is a plausible alternative for many SEON use cases. It fits best when SaaS platforms adding SAML/OIDC SSO for enterprise customers without building it in-house. Skip it if anyone actually looking for fraud detection, bot management or transaction risk scoring."
+    }
+  ]
+}

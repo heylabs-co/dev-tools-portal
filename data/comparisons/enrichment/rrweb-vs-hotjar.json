@@ -1,0 +1,24 @@
+{
+  "intro": "The most concrete split between rrweb and Hotjar is the pricing model: rrweb runs on free and open-source, while Hotjar uses subscription pricing, with a free tier. That shapes how predictable your monthly spend is and how much of the cost sits in infrastructure versus per-seat or per-event fees. Beyond the headline, rrweb carries low lock-in (oss session replay lib) and free and open-source; Hotjar carries low lock-in (low — simple snippet, easy to replace) and subscription pricing, with a free tier. rrweb is a fit when you are engineers building custom replay, qa or debugging tooling in-house. Hotjar is a fit when you are ux debugging and optimization. The honest trade-off: rrweb is explicitly not for non-technical teams expecting a hosted dashboard out of the box; Hotjar is explicitly not for apps with strict privacy requirements (healthcare). On the product side, rrweb is described as Open-source web session replay library.",
+  "quick_take": "rrweb is for engineers building custom replay, qa or debugging tooling in-house; Hotjar is for ux debugging and optimization; decide on pricing model.",
+  "verdict_a": "Choose rrweb if you want a fully free, open-source option and can handle self-hosting or self-support.",
+  "verdict_b": "Choose Hotjar if its subscription pricing model fits your budget shape better than rrweb's free model, and you are ux debugging and optimization.",
+  "faq": [
+    {
+      "q": "Is rrweb cheaper than Hotjar?",
+      "a": "Direct comparison is hard. rrweb is free and open-source, so licence cost is zero though you pay in operational effort. Hotjar uses subscription pricing, with a free tier, so it costs money in exchange for managed service. Which is cheaper depends on how much engineering time you value."
+    },
+    {
+      "q": "Can I migrate from rrweb to Hotjar?",
+      "a": "Migration from rrweb to Hotjar is plausible because rrweb has low lock-in (oss session replay lib). You would still have to map config, permissions and integrations to Hotjar's model. Plan for dual-run and rollback."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "On our scoring rrweb rates 5/5 for developer experience versus 4/5 for Hotjar. That suggests day-to-day workflows (CLI, SDKs, docs) are smoother in rrweb. Scores are directional; run a short spike on your own stack to confirm."
+    },
+    {
+      "q": "Is Hotjar a good alternative to rrweb?",
+      "a": "Hotjar is pitched at ux debugging and optimization, which overlaps with rrweb's fit (engineers building custom replay, qa or debugging tooling in-house) but is not identical. Note that Hotjar is explicitly not for apps with strict privacy requirements (healthcare), so it only replaces rrweb if you are outside that exclusion. Pricing models differ (free vs subscription), which may shift total cost."
+    }
+  ]
+}

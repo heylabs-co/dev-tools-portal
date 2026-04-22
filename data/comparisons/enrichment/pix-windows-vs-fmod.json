@@ -1,0 +1,24 @@
+{
+  "intro": "FMOD is freemium with a free tier; PIX is free and open source. PIX: Microsofts free performance tuning and debugging tool for DirectX 12 games on Windows and Xbox. Captures GPU timings, shader debugs, and memory usage across frames. FMOD: Audio engine and event-driven sound tool by Firelight Technologies. Used across thousands of games for adaptive audio, spatial sound, and cross-platform audio playback. PIX fits windows and Xbox teams optimizing DirectX 12 renderers and shaders. FMOD fits indie and mid-tier studios needing event-driven adaptive audio with sane pricing. On our rubric PIX scores 4/5 for developer experience and 5/5 for transparency, while FMOD scores 4/5 and 4/5. The honest trade-off: PIX's main drawback — DirectX 12 only, no Vulkan or Metal support; FMOD's — Pricing jumps steeply for mid-tier studios. One point in PIX's favour: Free, first-party DX12 debugger from Microsoft. For FMOD: Event-driven workflow that composers and designers love. PIX is explicitly not the right pick for vulkan, Metal, or cross-platform teams needing a unified graphics debugger.",
+  "quick_take": "PIX is for windows; FMOD is for indie; decide on pricing model.",
+  "verdict_a": "Choose PIX if windows and Xbox teams optimizing DirectX 12 renderers and shaders, and if you want to avoid recurring license costs and are willing to self-host.",
+  "verdict_b": "Choose FMOD if indie and mid-tier studios needing event-driven adaptive audio with sane pricing, and if you accept tighter coupling in exchange for the managed surface.",
+  "faq": [
+    {
+      "q": "Is PIX cheaper than FMOD?",
+      "a": "Yes on list price: PIX is free and open source, while FMOD runs on freemium pricing. Keep in mind that PIX shifts costs to hosting, ops, and engineering time. Total cost of ownership can flip depending on your team's capacity."
+    },
+    {
+      "q": "Can I migrate from PIX to FMOD?",
+      "a": "Migrating out of PIX is straightforward — it's rated low lock-in (free Microsoft DX12 profiler). The harder question is how deeply you commit to FMOD afterward, since it sits at medium lock-in (Proprietary audio engine, project files). Plan the forward cost, not just the exit."
+    },
+    {
+      "q": "Which has better developer experience, PIX or FMOD?",
+      "a": "Both score 4/5 for developer experience in our rubric, so neither has a structural edge. The practical answer depends on stack fit: PIX's ergonomics suit some workflows, FMOD's suit others. Try both on a throwaway project before committing."
+    },
+    {
+      "q": "Is FMOD a good alternative to PIX?",
+      "a": "They sit in the same category, so yes — FMOD is a plausible alternative for many PIX use cases. It fits best when indie and mid-tier studios needing event-driven adaptive audio with sane pricing. Skip it if hobby projects where Unity or Unreal built-in audio is already enough."
+    }
+  ]
+}

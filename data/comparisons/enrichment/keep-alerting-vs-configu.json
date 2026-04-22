@@ -1,0 +1,24 @@
+{
+  "intro": "Keep and Configu both show up under the observability category, but they solve slightly different jobs. Keep uses a free model, while Configu runs on undisclosed pricing with free tier. Both sit at low lock-in. Transparency lands at 5/5 versus 4/5. Keep fits teams working on aggregate and deduplicate alerts from 50+ tools, while Configu is a closer match when the job is distributed systems debugging. Worth noting: Keep is explicitly not for teams needing battle-tested AIOps with dedicated 24/7 support; Configu is explicitly not for non-technical projects. The honest trade-off: Keep trades off on early project, features still stabilizing; Configu trades off on single-server apps with basic logging. On the plus side, Keep highlights open-source AIOps with 50+ tool integrations, while Configu points to distributed systems debugging. Keep's documentation also calls out alert deduplication and correlation in one layer. Configu similarly notes log aggregation and analysis. For teams evaluating observability options today, the decision usually hinges on whether Keep's profile or Configu's profile maps more cleanly to the pricing model, lock-in tolerance, and scale your team can live with.",
+  "quick_take": "Keep is for aggregate and deduplicate alerts from 50+; Configu is for distributed systems debugging; decide on pricing model.",
+  "verdict_a": "Choose Keep if your project is aggregate and deduplicate alerts from 50+ tools, you want to keep future migration cheap.",
+  "verdict_b": "Choose Configu if your project is distributed systems debugging, you want to keep future migration cheap.",
+  "faq": [
+    {
+      "q": "Is Keep cheaper than Configu?",
+      "a": "Keep uses a free model, and Configu uses undisclosed pricing with free tier. The pricing models are different, so a direct cheaper-than comparison depends on your volume and usage pattern."
+    },
+    {
+      "q": "Can I migrate from Keep to Configu?",
+      "a": "Our data puts Keep at low lock-in, and Configu at low lock-in (oss config management). Moving from Keep to Configu should be manageable, though you'll still need to replay integrations and re-test flows end-to-end."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Both score 4/5 on developer experience in our data, so there's no clear winner on that axis. Keep does edge ahead on pricing/docs transparency (5/5 vs 4/5), which can make evaluation faster."
+    },
+    {
+      "q": "Is Configu a good alternative to Keep?",
+      "a": "Configu is a reasonable alternative to Keep when your workload leans more toward distributed systems debugging than platform teams wanting open alternative to PagerDuty AIOps or BigPanda. The pricing model shifts too — Keep is a free model, Configu is undisclosed pricing with free tier — so expect the cost profile to change as well. One caveat: Configu is explicitly not for non-technical projects, so check that constraint against your use-case before switching."
+    }
+  ]
+}

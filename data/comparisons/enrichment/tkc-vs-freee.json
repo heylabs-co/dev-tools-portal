@@ -1,0 +1,24 @@
+{
+  "intro": "The clearest split between TKC and Freee is how they charge: TKC uses custom enterprise pricing (no public tier), while Freee uses subscription pricing. TKC is TKC Corporation — accounting, tax and ERP software for Japanese CPAs and SMBs with certified e-tax filing APIs; it fits best for Japanese CPAs and SMBs wanting certified e-tax filing tied to their accounting. Freee is Japans cloud accounting, payroll and invoicing platform with open APIs for JP tax compliance (consumption tax, e-invoice); it fits best for Japanese startups and SMBs wanting unified accounting, payroll and invoicing with API access. Pick TKC when the job maps to japanese e-tax filing api for cpa accounting software; pick Freee when it maps to japan consumption tax and e-invoice (jp pint) compliance via rest api. TKC is not for international companies or modern fintechs seeking api-first tax products. Freee is not for companies operating outside japan or needing multi-country consolidation. Honest trade-offs: TKC is weak for japan-only and cpa-centric, and Freee is weak for built for japan — no international coverage — match to your real scenario.",
+  "quick_take": "TKC is for japanese cpas and smbs wanting certified e-tax filing tied t; Freee is for japanese startups and smbs wanting unified accounting, payro; decide based on pricing model.",
+  "verdict_a": "Choose TKC if you want custom enterprise pricing (no public tier) and your workload matches japanese cpas and smbs wanting certified e-tax filing tied to their accounting.",
+  "verdict_b": "Choose Freee if you want subscription pricing and your workload matches japanese startups and smbs wanting unified accounting, payroll and invoicing with api access.",
+  "faq": [
+    {
+      "q": "Is TKC cheaper than Freee?",
+      "a": "Freee has more transparent pricing; TKC's cost depends on a sales conversation, so a direct comparison is not possible without a quote. TKC uses custom enterprise pricing with no published rates. Freee uses subscription pricing with no free tier published."
+    },
+    {
+      "q": "Can I migrate from TKC to Freee?",
+      "a": "Migration can be painful since both are rated high lock-in (TKC: Japanese ERP, deeply integrated) (Freee: JP accounting platform). Plan for data export, re-integration of SDKs, and re-testing flows before cutover. Verify exportable formats and feature parity against your live use cases before committing."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Both score 3/5 on developer experience in our data. Evaluate against your own stack: read their docs, run a quick SDK spike, and check error handling. Self-assessing with a small prototype beats trusting any rating at face value."
+    },
+    {
+      "q": "Is Freee a good alternative to TKC?",
+      "a": "Freee sits in the same category as TKC, so it can be a reasonable alternative for overlapping use cases. Freee is best fit for japanese startups and smbs wanting unified accounting, payroll and invoicing with api access. Note: Freee is not for companies operating outside japan or needing multi-country consolidation."
+    }
+  ]
+}

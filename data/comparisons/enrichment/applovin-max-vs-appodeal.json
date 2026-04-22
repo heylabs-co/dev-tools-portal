@@ -1,0 +1,24 @@
+{
+  "intro": "AppLovin MAX and Appodeal are both mobile ad-mediation SDKs despite the category label of code assistants in this dataset. Each is subscription-only without a free tier and rated high lock-in, because mediation SDKs sit deep in a monetisation stack. AppLovin MAX lists a $1 entry subscription; Appodeal has no public entry price in the data. Both score 4 for DX and 3 for transparency. The real distinction is vendor scale and positioning: AppLovin MAX auctions placements across ad networks to maximise revenue and comes from a large publicly traded ad-tech company; Appodeal automatically selects top-performing networks to maximise eCPM and positions more as an independent automation layer. Both fit apps already committed to in-app advertising and willing to embed a mediation SDK. Neither fits non-coding roles or highly regulated codebases (which is simply the inherited 'not_for' from the category). You are choosing between two similar products based on contract economics and network mix more than DX.",
+  "quick_take": "AppLovin MAX is for multi-network auction mediation at $1 entry; Appodeal is for automated network selection to maximise eCPM; decide based on contract terms and network mix.",
+  "verdict_a": "Choose AppLovin MAX if you want a subscription mediation SDK from $1 that auctions placements across ad networks, and you accept high SDK lock-in deep in your monetisation stack.",
+  "verdict_b": "Choose Appodeal if you want automated top-network selection for eCPM optimisation via subscription, and Appodeal's partner network fits your app's geographies better than AppLovin MAX.",
+  "faq": [
+    {
+      "q": "Is AppLovin MAX cheaper than Appodeal?",
+      "a": "AppLovin MAX's entry price is listed at $1 on subscription with no free tier. Appodeal's entry price isn't disclosed in the data, only that it's subscription with no free tier. On the basis provided, AppLovin MAX appears cheaper to start, but mediation economics turn on revenue share and fill, not the headline subscription price."
+    },
+    {
+      "q": "Can I migrate from AppLovin MAX to Appodeal?",
+      "a": "Both are rated high lock-in because the mediation SDK is deep in the app's monetisation path. A migration means ripping out one SDK, integrating the other, reconfiguring ad units and re-validating eCPM in production. It's doable but not lightweight, and revenue usually dips during the switchover."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Both score 4 for DX and 3 for transparency. The data does not indicate a meaningful DX gap. In practice, DX with a mediation SDK comes down to dashboard clarity, waterfall tooling and integration docs, none of which are broken out here."
+    },
+    {
+      "q": "Is Appodeal a good alternative to AppLovin MAX?",
+      "a": "Yes, they are direct substitutes. Both list the same best_for of accelerating coding workflow (as inherited from the category) and the same not_for of non-coding roles and highly regulated codebases. As mediation SDKs they compete on network coverage, contract terms and dashboard UX rather than on category fit."
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "intro": "Cloudinary enters at $0/month against Amazon S3 at $5.87 per month. Both tools position themselves for image/video heavy applications, so the decision rarely comes down to surface features. In practice, Amazon S3 — Object storage service with 11 nines durability, S3 Select, versioning, and lifecycle management. Cloudinary — Media management platform with image/video upload, on-the-fly transformation, CDN delivery, and AI tagging. Amazon S3 carries medium lock-in (S3 API became de facto standard; data egress costly) while Cloudinary is high (Transforms and URLs tightly coupled). Amazon S3 rates 4/5 on transparency versus 3/5 for Cloudinary. Both tools list image/video heavy applications as a headline strength, which is why pricing and lock-in usually decide the call. Both tools surface overlapping when-to-use scenarios, including image/video heavy applications. The honest trade-off: Amazon S3 is not built for small projects, and Cloudinary is not the right call for small projects, so neither is a universal default.",
+  "quick_take": "Amazon S3 is for image/video heavy applications; Cloudinary overlaps on the same job; decide based on pricing model.",
+  "verdict_a": "Choose Amazon S3 if image/video heavy applications and the $5.87 per month entry price fits your budget.",
+  "verdict_b": "Choose Cloudinary if image/video heavy applications and the $0/month entry price fits your budget.",
+  "faq": [
+    {
+      "q": "Is Amazon S3 cheaper than Cloudinary?",
+      "a": "Based on the listed entry prices, no: Amazon S3 starts at $5.87 per month while Cloudinary starts at $0/month. At low volume the gap may be small, but it widens fast at scale. Always price against your own usage curve, not the headline tier."
+    },
+    {
+      "q": "Can I migrate from Amazon S3 to Cloudinary?",
+      "a": "Technically you can move between any two tools in the same category, but effort varies: leaving Amazon S3 is moderate effort at medium lock-in (S3 API became de facto standard; data egress costly), and onboarding to Cloudinary commits you to high lock-in (Transforms and URLs tightly coupled). Plan for data export, re-integration, and a parallel-run window rather than a hard cutover."
+    },
+    {
+      "q": "Which has better developer experience, Amazon S3 or Cloudinary?",
+      "a": "Both Amazon S3 and Cloudinary score 5/5 on developer experience in our data, so there's no clear winner on that axis alone. The real differentiator usually lands in SDK fit for your language, error handling, and docs depth. A half-day integration spike tells you more than the score."
+    },
+    {
+      "q": "Is Cloudinary a good alternative to Amazon S3?",
+      "a": "Yes, Cloudinary targets the same job Amazon S3 does — image/video heavy applications — so functionally it slots in as an alternative. Pricing model (subscription from $0/month vs subscription from $5.87 per month) and lock-in (high lock-in (Transforms and URLs tightly coupled) vs medium lock-in (S3 API became de facto standard; data egress costly)) usually decide which is the better fit. Validate on your actual workload. Note: Cloudinary is explicitly not for small projects."
+    }
+  ]
+}

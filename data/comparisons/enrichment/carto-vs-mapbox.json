@@ -1,0 +1,24 @@
+{
+  "intro": "The clearest split between CARTO and Mapbox is vendor lock-in: CARTO is rated low (PostGIS-backed, data portable via SQL), while Mapbox is rated medium (Tiles and nav proprietary). CARTO is Cloud-native spatial analytics platform with PostGIS-backed data warehouse and map visualization; it fits best for apps. Mapbox is Location platform with vector map tiles, navigation SDK, geocoding, and ML-powered maps; it fits best for apps. Pick CARTO for apps; pick Mapbox for apps. CARTO is not for simple projects. Mapbox is not for simple projects. Honest trade-offs: CARTO is weak for apps without location features, and Mapbox is weak for apps without location features — match to your real scenario. Both sit under the Maps / Geolocation / Routing umbrella, so your final call depends on pricing transparency, integration effort, and which listed not-for situations you can actually tolerate. On pricing, CARTO uses subscription pricing and Mapbox uses subscription pricing starting around $500/mo, which materially changes total cost at scale.",
+  "quick_take": "CARTO is for apps; Mapbox is for apps; decide based on lock-in tolerance.",
+  "verdict_a": "Choose CARTO if low lock-in (PostGIS-backed, data portable via SQL) is acceptable and you need apps.",
+  "verdict_b": "Choose Mapbox if medium lock-in (Tiles and nav proprietary) is acceptable and you need apps.",
+  "faq": [
+    {
+      "q": "Is CARTO cheaper than Mapbox?",
+      "a": "A direct comparison depends on your usage profile and which pricing model fits better. CARTO uses subscription pricing with no free tier published. Mapbox uses subscription pricing starting at $500/mo."
+    },
+    {
+      "q": "Can I migrate from CARTO to Mapbox?",
+      "a": "Migration from CARTO (low lock-in) to Mapbox (medium lock-in) is the harder direction; the reverse is easier. Plan for data export, re-integration of SDKs, and re-testing flows before cutover. Verify exportable formats and feature parity against your live use cases before committing."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Both score 5/5 on developer experience in our data. Evaluate against your own stack: read their docs, run a quick SDK spike, and check error handling. Self-assessing with a small prototype beats trusting any rating at face value."
+    },
+    {
+      "q": "Is Mapbox a good alternative to CARTO?",
+      "a": "Mapbox sits in the same category as CARTO, so it can be a reasonable alternative for overlapping use cases. Mapbox is best fit for apps. Note: Mapbox is not for simple projects."
+    }
+  ]
+}

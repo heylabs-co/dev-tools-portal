@@ -1,0 +1,24 @@
+{
+  "intro": "The clearest gap in the data is developer experience: Iconify sits at 5/5, Feather Icons at 4/5. Teams feel that gap day-to-day. Iconify is built for projects that need access to many icon sets without bundling each library individually and is not a fit for tiny static sites or teams that only ever use one curated icon set. Feather Icons is built for legacy projects already using feather or fans of the minimalist single-weight style and is not a fit for new projects needing active updates, more icons, or multiple weights. On the scoring side, Iconify rates 5/5 for developer experience and 5/5 for transparency; Feather Icons rates 4/5 and 5/5 respectively. The honest trade-off: with Iconify you accept that runtime lookup adds a small performance cost, while Feather Icons comes with the reality that maintenance has been slow for years. Neither side is free. Iconify's headline strength in the data is that 200k+ icons across 150+ sets unified by one api.",
+  "quick_take": "Iconify is for projects that need access to many icon sets without bundling each library individually; Feather Icons is for legacy projects already using feather or fans of the minimalist.",
+  "verdict_a": "Choose Iconify if you are projects that need access to many icon sets without bundling each library individually and developer ergonomics (5/5) matter more than niche fit.",
+  "verdict_b": "Choose Feather Icons if you are legacy projects already using feather or fans of the minimalist single-weight style and its workflow specificity outweighs a 4/5 DX rating.",
+  "faq": [
+    {
+      "q": "Is Iconify cheaper than Feather Icons?",
+      "a": "Both list a free pricing model in our data, and both publish a free tier. We don't have per-seat numbers in this dataset, so 'cheaper' depends on volume. Price both on your actual usage before deciding."
+    },
+    {
+      "q": "Can I migrate from Iconify to Feather Icons?",
+      "a": "Iconify has low lock-in (open-source icon framework); Feather Icons has low lock-in (oss svg icon set). Migration effort scales with how much state and automation you've built in Iconify; plan for data export, config rebuild, and a parallel-run period before cutting over."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "In our data, Iconify scores 5/5 for developer experience versus 4/5 for Feather Icons. That said, DX is subjective; the Feather Icons score may still be acceptable if its feature fit is stronger for your use case."
+    },
+    {
+      "q": "Is Feather Icons a good alternative to Iconify?",
+      "a": "Feather Icons is built for legacy projects already using feather or fans of the minimalist single-weight style and explicitly not for new projects needing active updates, more icons, or multiple weights, so it's a fit only if your workflow matches its stated audience. If you were using Iconify for projects that need access to many icon sets without bundling each library individually, the switch is reasonable; outside that scope, look elsewhere."
+    }
+  ]
+}

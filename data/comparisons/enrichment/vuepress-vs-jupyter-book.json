@@ -1,0 +1,24 @@
+{
+  "intro": "Jupyter Book scores higher for developer experience (5/5 vs 4/5). VuePress: Vue-powered static site generator built for writing technical documentation, with Markdown-centric authoring and built-in search. Jupyter Book: open-source tool for building beautiful, publication-quality books and documentation from Jupyter Notebooks and Markdown files. VuePress fits existing VuePress sites or teams committed to the legacy Vue 2 documentation ecosystem. Jupyter Book fits data science teams, ML researchers, and educators publishing reproducible notebook content. On our rubric VuePress scores 4/5 for developer experience and 5/5 for transparency, while Jupyter Book scores 5/5 and 5/5. The honest trade-off: VuePress's main drawback — Community has largely shifted to VitePress; Jupyter Book's — Sphinx underpinnings expose config complexity. One point in VuePress's favour: Vue-powered customization for dynamic documentation. For Jupyter Book: Executes Jupyter notebooks directly in published book. VuePress is explicitly not the right pick for new projects - choose VitePress, Starlight, or Nextra for better performance and momentum. Jupyter Book is not aimed at general API docs, SaaS product docs, or teams without notebook-based content.",
+  "quick_take": "VuePress is for existing VuePress sites or teams committed to the; Jupyter Book is for data science teams; decide on developer experience.",
+  "verdict_a": "Choose VuePress if existing VuePress sites or teams committed to the legacy Vue 2 documentation ecosystem.",
+  "verdict_b": "Choose Jupyter Book if data science teams, ML researchers, and educators publishing reproducible notebook content, and if a higher DX score (5/5 vs 4/5 in our rubric) nudges the call.",
+  "faq": [
+    {
+      "q": "Is VuePress cheaper than Jupyter Book?",
+      "a": "Both tools use free pricing, so a clean list-price comparison depends on tier details that vary by usage. Check each vendor's current plan page for your expected volume. Neither is structurally cheaper on the model alone."
+    },
+    {
+      "q": "Can I migrate from VuePress to Jupyter Book?",
+      "a": "Both tools are rated low lock-in, so migration is mostly a matter of re-pointing integrations and re-authoring config. There's no hard data format moat on either side. Expect work proportional to how deeply VuePress touches your pipeline, but no vendor-imposed blockers."
+    },
+    {
+      "q": "Which has better developer experience, VuePress or Jupyter Book?",
+      "a": "Jupyter Book scores higher in our rubric (5/5 vs 4/5 for VuePress). Transparency is 5/5 for Jupyter Book and 5/5 for VuePress. DX scores are rubric-based, not benchmarks, so evaluate against your own toolchain."
+    },
+    {
+      "q": "Is Jupyter Book a good alternative to VuePress?",
+      "a": "They sit in the same category, so yes — Jupyter Book is a plausible alternative for many VuePress use cases. It fits best when data science teams, ML researchers, and educators publishing reproducible notebook content. Skip it if general API docs, SaaS product docs, or teams without notebook-based content."
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "intro": "TelemetryDeck is freemium with a free tier; react-native-iap is free and open source. React-native-iap: Open-source React Native in-app purchase library conforming to OpenIAP spec, using Nitro Modules for native bridging. TelemetryDeck: Privacy-focused mobile app analytics with GDPR-compliant signal tracking and RevenueCat integration for subscription metrics. React-native-iap fits react Native teams that want to own IAP and validation in-house. TelemetryDeck fits indie Apple-platform developers wanting privacy-friendly product analytics. Both land at 4/5 for developer experience and 5/5 for transparency on our rubric. The honest trade-off: react-native-iap's main drawback — Library, not a managed subscription service; TelemetryDeck's — Not a full product analytics platform. One point in react-native-iap's favour: Open-source RN IAP aligned with OpenIAP. For TelemetryDeck: Privacy-first, GDPR-friendly signal tracking. React-native-iap is explicitly not the right pick for teams that prefer a managed subscription backend. TelemetryDeck is not aimed at cross-platform apps needing deep funnels and behavioral analytics. Another react-native-iap advantage: Uses Nitro Modules for modern native bridging. Another TelemetryDeck advantage: Affordable vs Mixpanel and Amplitude.",
+  "quick_take": "react-native-iap is for react Native teams; TelemetryDeck is for indie Apple-platform developers wanting privacy-friendly product analytics; decide on pricing model.",
+  "verdict_a": "Choose react-native-iap if react Native teams that want to own IAP and validation in-house, and if you want to avoid recurring license costs and are willing to self-host.",
+  "verdict_b": "Choose TelemetryDeck if indie Apple-platform developers wanting privacy-friendly product analytics.",
+  "faq": [
+    {
+      "q": "Is react-native-iap cheaper than TelemetryDeck?",
+      "a": "Yes on list price: react-native-iap is free and open source, while TelemetryDeck runs on freemium pricing. Keep in mind that react-native-iap shifts costs to hosting, ops, and engineering time. Total cost of ownership can flip depending on your team's capacity."
+    },
+    {
+      "q": "Can I migrate from react-native-iap to TelemetryDeck?",
+      "a": "Both tools are rated low lock-in, so migration is mostly a matter of re-pointing integrations and re-authoring config. There's no hard data format moat on either side. Expect work proportional to how deeply react-native-iap touches your pipeline, but no vendor-imposed blockers."
+    },
+    {
+      "q": "Which has better developer experience, react-native-iap or TelemetryDeck?",
+      "a": "Both score 4/5 for developer experience in our rubric, so neither has a structural edge. The practical answer depends on stack fit: react-native-iap's ergonomics suit some workflows, TelemetryDeck's suit others. Try both on a throwaway project before committing."
+    },
+    {
+      "q": "Is TelemetryDeck a good alternative to react-native-iap?",
+      "a": "They sit in the same category, so yes — TelemetryDeck is a plausible alternative for many react-native-iap use cases. It fits best when indie Apple-platform developers wanting privacy-friendly product analytics. Skip it if cross-platform apps needing deep funnels and behavioral analytics."
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "intro": "Adyen and Square both show up under the payment gateway category, but they solve slightly different jobs. Adyen uses pricing that starts at EUR 0.11 + scheme fee, while Square runs on subscription from $30/mo with free tier. Both sit at moderate lock-in. Transparency lands at 3/5 versus 5/5. Adyen fits teams working on enterprise with $10M+ TPV needing global coverage, while Square is a closer match when the job is SaaS with online payments. Worth noting: Adyen is explicitly not for solo projects; Square is explicitly not for offline, Internal projects. The honest trade-off: Adyen trades off on startup with <$1M TPV — minimum fees are high; Square trades off on offline-only retail. On the plus side, Adyen highlights enterprise with $10M+ TPV needing global coverage, while Square points to SaaS with online payments. Adyen's documentation also calls out unified online + in-store (POS) payments. Square similarly notes e-commerce checkout.",
+  "quick_take": "Adyen is for enterprise with $10M+ TPV needing global; Square is for SaaS with online payments; decide on pricing model.",
+  "verdict_a": "Choose Adyen if your project is enterprise with $10M+ TPV needing global coverage, medium lock-in is an acceptable trade-off.",
+  "verdict_b": "Choose Square if your project is SaaS with online payments, a subscription starting at $30/mo fits your budget, medium lock-in is an acceptable trade-off.",
+  "faq": [
+    {
+      "q": "Is Adyen cheaper than Square?",
+      "a": "Adyen uses pricing that starts at EUR 0.11 + scheme fee, and Square uses subscription from $30/mo with free tier. The pricing models are different, so a direct cheaper-than comparison depends on your volume and usage pattern. Square offers a free tier; Adyen does not."
+    },
+    {
+      "q": "Can I migrate from Adyen to Square?",
+      "a": "Our data puts Adyen at medium lock-in (proprietary tokens, but csv import/export under), and Square at medium lock-in. Migration is feasible but not trivial — budget time for re-integration, data export, and parallel running before cutover."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Both score 5/5 on developer experience in our data, so there's no clear winner on that axis. Square does edge ahead on pricing/docs transparency (5/5 vs 3/5), which can make evaluation faster."
+    },
+    {
+      "q": "Is Square a good alternative to Adyen?",
+      "a": "Square is a reasonable alternative to Adyen when your workload leans more toward SaaS, E-commerce, Marketplace than enterprise. The pricing model shifts too — Adyen is pricing that starts at EUR 0.11 + scheme fee, Square is subscription from $30/mo with free tier — so expect the cost profile to change as well. One caveat: Square is explicitly not for offline, Internal projects, so check that constraint against your use-case before switching."
+    }
+  ]
+}

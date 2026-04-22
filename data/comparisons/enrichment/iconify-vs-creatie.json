@@ -1,0 +1,24 @@
+{
+  "intro": "The biggest real split between Iconify and Creatie is lock-in posture: Iconify carries low lock-in (open-source icon framework), while Creatie carries medium lock-in (proprietary design tool, exports to figma). That single fact shapes the rest of the comparison. Iconify is built for projects that need access to many icon sets without bundling each library individually and is not a fit for tiny static sites or teams that only ever use one curated icon set. Creatie is built for solo designers and small teams starting fresh projects who want ai-native design workflows and is not a fit for established figma teams with plugins, design systems, and training investments. On the scoring side, Iconify rates 5/5 for developer experience and 5/5 for transparency; Creatie rates 3/5 and 4/5 respectively. The honest trade-off: with Iconify you accept that runtime lookup adds a small performance cost, while Creatie comes with the reality that smaller community and plugin ecosystem than figma. Neither side is free.",
+  "quick_take": "Iconify is for projects that need access to many icon sets without bundling each library individually; Creatie is for solo designers and small teams starting fresh projects who want ai-native.",
+  "verdict_a": "Choose Iconify if you are projects that need access to many icon sets without bundling each library individually and can accept low lock-in (open-source icon framework).",
+  "verdict_b": "Choose Creatie if you are solo designers and small teams starting fresh projects who want ai-native design workflows and need medium lock-in (proprietary design tool, exports to figma).",
+  "faq": [
+    {
+      "q": "Is Iconify cheaper than Creatie?",
+      "a": "Iconify uses a free model, while Creatie uses a freemium model, and both publish a free tier. We don't have per-seat numbers in this dataset, so 'cheaper' depends on volume. Price both on your actual usage before deciding."
+    },
+    {
+      "q": "Can I migrate from Iconify to Creatie?",
+      "a": "Iconify has low lock-in (open-source icon framework); Creatie has medium lock-in (proprietary design tool, exports to figma). Migration effort scales with how much state and automation you've built in Iconify; plan for data export, config rebuild, and a parallel-run period before cutting over."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "In our data, Iconify scores 5/5 for developer experience versus 3/5 for Creatie. That said, DX is subjective; the Creatie score may still be acceptable if its feature fit is stronger for your use case."
+    },
+    {
+      "q": "Is Creatie a good alternative to Iconify?",
+      "a": "Creatie is built for solo designers and small teams starting fresh projects who want ai-native design workflows and explicitly not for established figma teams with plugins, design systems, and training investments, so it's a fit only if your workflow matches its stated audience. If you were using Iconify for projects that need access to many icon sets without bundling each library individually, the switch is reasonable; outside that scope, look elsewhere."
+    }
+  ]
+}

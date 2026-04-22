@@ -1,0 +1,24 @@
+{
+  "intro": "The clearest split between Amazon SES and Plivo is vendor lock-in: Amazon SES is rated high (SMTP-compatible, portable to other email providers), while Plivo is rated medium (Freemium comms, numbers portable). Amazon SES is AWS scalable transactional and bulk email sending service with SMTP and API access; it fits best for Transactional emails (receipts, alerts). Plivo is Cloud communications API for SMS, voice calls, and WhatsApp with global carrier connectivity; it fits best for Transactional emails (receipts, alerts). Pick Amazon SES for Transactional emails (receipts, alerts); pick Plivo for Transactional emails (receipts, alerts). Amazon SES is not for internal projects. Plivo is not for internal projects. Honest trade-offs: Amazon SES is weak for internal team communication, and Plivo is weak for internal team communication — match to your real scenario. Both sit under the Messaging API (Email / SMS / Voice) umbrella, so your final call depends on pricing transparency, integration effort, and which listed not-for situations you can actually tolerate.",
+  "quick_take": "Amazon SES is for transactional emails (receipts, alerts); Plivo is for transactional emails (receipts, alerts); decide based on lock-in tolerance.",
+  "verdict_a": "Choose Amazon SES if high lock-in (SMTP-compatible, portable to other email providers) is acceptable and you need transactional emails (receipts, alerts).",
+  "verdict_b": "Choose Plivo if medium lock-in (Freemium comms, numbers portable) is acceptable and you need transactional emails (receipts, alerts).",
+  "faq": [
+    {
+      "q": "Is Amazon SES cheaper than Plivo?",
+      "a": "A direct comparison depends on your usage profile and which pricing model fits better. Amazon SES has a free tier with paid plans starting at $50 per month. Plivo has a free tier with paid plans starting at $10."
+    },
+    {
+      "q": "Can I migrate from Amazon SES to Plivo?",
+      "a": "Migration may be non-trivial: Amazon SES is rated high lock-in (SMTP-compatible, portable to other email providers). Plan for data export, re-integration of SDKs, and re-testing flows before cutover. Verify exportable formats and feature parity against your live use cases before committing."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Plivo scores higher on developer experience (5/5 vs 4/5 for Amazon SES). Evaluate against your own stack: read their docs, run a quick SDK spike, and check error handling. Self-assessing with a small prototype beats trusting any rating at face value."
+    },
+    {
+      "q": "Is Plivo a good alternative to Amazon SES?",
+      "a": "Plivo sits in the same category as Amazon SES, so it can be a reasonable alternative for overlapping use cases. Plivo is best fit for transactional emails (receipts, alerts). Note: Plivo is not for internal projects."
+    }
+  ]
+}

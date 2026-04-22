@@ -1,0 +1,24 @@
+{
+  "intro": "The clearest split is that 100ms carries low lock-in and Stream carries medium lock-in. 100ms is Real-time / WebSocket Infrastructure tool for developers; Stream is Activity feed and chat API infrastructure with scalable feed aggregation, reactions, and moderation. The data points 100ms at chat applications and live collaboration features, and Stream at chat applications and live collaboration features. Pricing: 100ms is subscription from $500 per month; Stream is subscription from $399.00/mo. Lock-in is low for 100ms and medium for Stream, with DX at 4/5 vs 5/5 and transparency at 3/5 vs 4/5. On listed strengths, 100ms emphasises chat applications and live collaboration features, and Stream emphasises chat applications and live collaboration features. Both offer an enterprise tier for larger rollouts. Honest trade-off: neither fits static projects, so if that is your context, look elsewhere; otherwise pick on the pivotal factor above and the DX score that matters most to your team.",
+  "quick_take": "100ms is for chat applications; Stream is for chat applications; decide based on how much lock-in you tolerate.",
+  "verdict_a": "Choose 100ms if you prefer low lock-in and easier exit and your workload matches chat applications. Skip it if your context is static projects.",
+  "verdict_b": "Choose Stream if you can accept medium lock-in in exchange for scope and your workload matches chat applications. Skip it if your context is static projects.",
+  "faq": [
+    {
+      "q": "Is 100ms cheaper than Stream?",
+      "a": "Listed entry pricing is $500 per month for 100ms and $399.00/mo for Stream. Both offer a free tier for getting started. Total cost at scale depends on usage and plan details that are not in this dataset, so confirm with each vendor."
+    },
+    {
+      "q": "Can I migrate from 100ms to Stream?",
+      "a": "100ms is tagged with low lock-in (proprietary real-time sdk with custom session model; migration requires rewrite). Stream is tagged with medium lock-in (feed/chat api, data exportable). Plan for SDK replacement, data export, and a parallel-run period; the dataset does not include migration tooling details."
+    },
+    {
+      "q": "Which has better developer experience, 100ms or Stream?",
+      "a": "The dataset rates Stream at 5/5 for developer experience and 100ms at 4/5, so Stream scores higher. That score reflects overall polish rather than any single integration, so trial both against your stack before committing."
+    },
+    {
+      "q": "Is Stream a good alternative to 100ms?",
+      "a": "Yes for teams whose workload matches chat applications, since both list the same fit. Stream is flagged as not for static projects, so confirm your context does not fall there."
+    }
+  ]
+}

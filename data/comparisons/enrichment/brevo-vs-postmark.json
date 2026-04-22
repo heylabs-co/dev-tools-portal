@@ -1,0 +1,24 @@
+{
+  "intro": "Brevo exposes a free tier while Postmark starts at $15/mo (10K emails). Both tools position themselves for transactional emails (receipts, alerts), so the decision rarely comes down to surface features. In practice, Brevo — Marketing and transactional email/SMS platform with automation, CRM, and a free tier API. Postmark — Fast transactional email delivery API focused on inbox placement with detailed bounce analytics. Postmark scores 5/5 on developer experience versus 4/5 for Brevo. Listed strengths unique to Brevo include multi-channel delivery (sms, email, voice) from one api, while Postmark lists low lock-in — easy to migrate away on its side. Both tools surface overlapping when-to-use scenarios, including transactional emails (receipts, alerts). The honest trade-off: Brevo is not built for internal projects, and Postmark is not the right call for internal projects, so neither is a universal default. Transparency scores land at 5/5 for Brevo and 5/5 for Postmark, which reflects how openly each tool documents pricing, limits, and terms.",
+  "quick_take": "Brevo is for transactional emails (receipts, alerts); Postmark overlaps on the same job; decide based on pricing model.",
+  "verdict_a": "Choose Brevo if transactional emails (receipts, alerts) and you need a free tier to validate fit.",
+  "verdict_b": "Choose Postmark if transactional emails (receipts, alerts) and the $15/mo (10K emails) entry price fits your budget.",
+  "faq": [
+    {
+      "q": "Is Brevo cheaper than Postmark?",
+      "a": "Brevo has a free tier and Postmark starts at $15/mo (10K emails), so at the lowest end Brevo is effectively cheaper. Once you exceed the free limits, the comparison depends on per-unit rates not published here. Price against your actual send or usage volume."
+    },
+    {
+      "q": "Can I migrate from Brevo to Postmark?",
+      "a": "Technically you can move between any two tools in the same category, but effort varies: leaving Brevo is relatively light thanks to its low lock-in, and onboarding to Postmark should be straightforward given its low lock-in. Plan for data export, re-integration, and a parallel-run window rather than a hard cutover."
+    },
+    {
+      "q": "Which has better developer experience, Brevo or Postmark?",
+      "a": "On the 0-5 developer experience score in our data, Postmark rates 5/5 while Brevo rates 4/5, giving Postmark the edge. That score is a rough summary; actual day-to-day DX depends on your language, deployment target, and tolerance for edge cases. Prototype both to validate."
+    },
+    {
+      "q": "Is Postmark a good alternative to Brevo?",
+      "a": "Yes, Postmark targets the same job Brevo does — transactional emails (receipts, alerts) — so functionally it slots in as an alternative. Pricing model (usage from $15/mo (10K emails) vs freemium with a free tier) and lock-in (low lock-in (Low — REST API, SMTP) vs low lock-in (Marketing/email, SMTP portable)) usually decide which is the better fit. Validate on your actual workload. Note: Postmark is explicitly not for internal projects."
+    }
+  ]
+}

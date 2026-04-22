@@ -1,0 +1,24 @@
+{
+  "intro": "Countly and Heap both show up under the product analytics category, but they solve slightly different jobs. Countly uses pricing that starts at $0/mo with free tier, while Heap runs on subscription from $1.7. Lock-in is low for Countly and medium for Heap. Both tools target understanding user behavior (funnels, retention), so the choice comes down to pricing, lock-in, and operational fit rather than scope. Worth noting: Countly is explicitly not for simple projects. The honest trade-off: Countly trades off on pre-product stage; Heap trades off on pre-product stage. On the plus side, Countly highlights understanding user behavior (funnels, retention). Countly's documentation also calls out data-driven product decisions. For teams evaluating product analytics options today, the decision usually hinges on whether Countly's profile or Heap's profile maps more cleanly to the pricing model, lock-in tolerance, and scale your team can live with. Beyond the headline pitch, a documented Countly use-case is \"Data-driven product decisions\", and a documented Heap use-case is \"Data-driven product decisions\".",
+  "quick_take": "Countly is for understanding user behavior (funnels, retention); Heap is for understanding user behavior (funnels, retention); decide on pricing model.",
+  "verdict_a": "Choose Countly if your project is understanding user behavior (funnels, retention), you want to keep future migration cheap.",
+  "verdict_b": "Choose Heap if your project is understanding user behavior (funnels, retention), a subscription starting at $1.7 fits your budget, medium lock-in is an acceptable trade-off.",
+  "faq": [
+    {
+      "q": "Is Countly cheaper than Heap?",
+      "a": "Countly uses pricing that starts at $0/mo with free tier, and Heap uses subscription from $1.7. The pricing models are different, so a direct cheaper-than comparison depends on your volume and usage pattern. Countly offers a free tier; Heap does not."
+    },
+    {
+      "q": "Can I migrate from Countly to Heap?",
+      "a": "Our data puts Countly at low lock-in (self-hostable oss product analytics), and Heap at medium lock-in (autocapture = proprietary format). Moving from Countly to Heap should be manageable, though you'll still need to replay integrations and re-test flows end-to-end."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Both score 4/5 on developer experience in our data, so there's no clear winner on that axis. The better fit depends on which SDK matches your stack and which docs your team finds clearer during evaluation."
+    },
+    {
+      "q": "Is Heap a good alternative to Countly?",
+      "a": "Heap covers a similar scope to Countly — our data lists \"Understanding user behavior (funnels, retention)\" as the best-for on both. The pricing model shifts too — Countly is pricing that starts at $0/mo with free tier, Heap is subscription from $1.7 — so expect the cost profile to change as well. One caveat: Heap is explicitly not for simple projects, so check that constraint against your use-case before switching."
+    }
+  ]
+}

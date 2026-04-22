@@ -1,0 +1,24 @@
+{
+  "intro": "The clearest dividing line between Paddle and RevenueCat is access: RevenueCat offers a free tier you can start on, while Paddle requires a paid plan from day one (usage-based pricing from 5% + $0.50/transaction). If you need to prototype before committing budget, that matters. Beyond the headline, Paddle carries high lock-in (high — mor model = paddle handles everything, fromwith adapts under paddle) and usage-based pricing from 5% + $0.50/transaction; RevenueCat carries medium lock-in (medium — to on storekit/google play, but subscription state + analytics andin) and usage-based pricing from 1% from MTR above $2,500, with a free tier. Paddle is a fit when you are saas, b2b. RevenueCat is a fit when you are mobile. The honest trade-off: Paddle is explicitly not for marketplace/platform payments; RevenueCat is explicitly not for web-only saas. On the product side, Paddle is described as Merchant of Record and subscription billing platform for B2B/B2C SaaS with global tax, checkout, and revenue recovery, and RevenueCat is described as Subscription infrastructure SDK for iOS, Android, and web handling purchase events, entitlements, and revenue analytics.",
+  "quick_take": "Paddle is for saas, b2b; RevenueCat is for mobile; decide on whether you need a free tier.",
+  "verdict_a": "Choose Paddle if you accept higher lock-in in exchange for its specific capabilities and you are saas, b2b.",
+  "verdict_b": "Choose RevenueCat if you need a free tier to start before committing budget, and your use case matches mobile.",
+  "faq": [
+    {
+      "q": "Is Paddle cheaper than RevenueCat?",
+      "a": "Paddle starts at 5% + $0.50/transaction; RevenueCat starts at 1% from MTR above $2,500. On entry price alone that is the comparison, but real cost scales with users, events or volume, which the entry prices do not capture. Check each vendor's full tier list before committing."
+    },
+    {
+      "q": "Can I migrate from Paddle to RevenueCat?",
+      "a": "Migration from Paddle is harder: Paddle is rated high lock-in (high — mor model = paddle handles everything, fromwith adapts under paddle). You can still move, but expect schema-mapping, export tooling and a longer cutover window. Budget engineering time accordingly."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Both tools tie at 5/5 for developer experience on our scoring. The real difference will show up in your specific workflow, not the headline rating. A one-hour spike on both is the fastest way to decide."
+    },
+    {
+      "q": "Is RevenueCat a good alternative to Paddle?",
+      "a": "RevenueCat is pitched at mobile, which overlaps with Paddle's fit (saas, b2b) but is not identical. Note that RevenueCat is explicitly not for web-only saas, so it only replaces Paddle if you are outside that exclusion. The lock-in profile differs (high vs medium), which is the main thing to weigh."
+    }
+  ]
+}

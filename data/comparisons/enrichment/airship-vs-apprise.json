@@ -1,0 +1,24 @@
+{
+  "intro": "Airship and Apprise both show up under the push in app messaging category, but they solve slightly different jobs. Airship uses subscription from $9, while Apprise runs on a free model. Both sit at low lock-in. Transparency lands at 2/5 versus 5/5. Both tools target mobile app engagement, so the choice comes down to pricing, lock-in, and operational fit rather than scope. Worth noting: Airship is explicitly not for web-only products without mobile. The honest trade-off: Airship trades off on web-only products without mobile; Apprise trades off on web-only products without mobile. On the plus side, Airship highlights mobile app engagement. Airship's documentation also calls out user lifecycle messaging. For teams evaluating push in app messaging options today, the decision usually hinges on whether Airship's profile or Apprise's profile maps more cleanly to the pricing model, lock-in tolerance, and scale your team can live with. Beyond the headline pitch, a documented Airship use-case is \"User lifecycle messaging\", and a documented Apprise use-case is \"User lifecycle messaging\".",
+  "quick_take": "Airship is for mobile app engagement; Apprise is for mobile app engagement; decide on pricing model.",
+  "verdict_a": "Choose Airship if your project is mobile app engagement, a subscription starting at $9 fits your budget, you want to keep future migration cheap.",
+  "verdict_b": "Choose Apprise if your project is mobile app engagement, you want to keep future migration cheap, strong SDKs and docs (5/5) are a priority.",
+  "faq": [
+    {
+      "q": "Is Airship cheaper than Apprise?",
+      "a": "Airship uses subscription from $9, and Apprise uses a free model. The pricing models are different, so a direct cheaper-than comparison depends on your volume and usage pattern. Apprise offers a free tier; Airship does not."
+    },
+    {
+      "q": "Can I migrate from Airship to Apprise?",
+      "a": "Our data puts Airship at low lock-in (audiences and channels bound to airship data model), and Apprise at low lock-in (oss notification library, many backends). Moving from Airship to Apprise should be manageable, though you'll still need to replay integrations and re-test flows end-to-end."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Apprise scores 5/5 on developer experience in our data, while Airship scores 4/5, so Apprise has the edge on docs and SDK quality by that measure. That gap is reinforced by transparency scores of 5/5 versus 2/5. Still, run a small integration spike on both before deciding — team familiarity with a given SDK style often matters more than a one-point score gap."
+    },
+    {
+      "q": "Is Apprise a good alternative to Airship?",
+      "a": "Apprise covers a similar scope to Airship — our data lists \"Mobile\" as the best-for on both. The pricing model shifts too — Airship is subscription from $9, Apprise is a free model — so expect the cost profile to change as well. One caveat: Apprise is explicitly not for web-only products without mobile, so check that constraint against your use-case before switching."
+    }
+  ]
+}

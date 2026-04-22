@@ -1,0 +1,24 @@
+{
+  "intro": "Apphud is a subscription and paywall SDK for iOS and Android with A/B testing and revenue analytics, starting at $0/month with a free tier. Dable is a custom-priced native content-recommendation and ad SDK aimed at Korean, Japanese and Southeast Asian publishers, with no free tier and no public price. The biggest real difference is scope and geography: Apphud is a global IAP and subscription layer usable by any mobile app, while Dable is a regional native-ad SSP that only makes sense if a meaningful share of your traffic is in APAC. Apphud suits apps monetising via subscriptions and in-app purchases, despite its not_for flag against subscription-only apps (it is framed toward free and ad-supported apps in the data). Dable suits editorial and news apps that want native recommendation widgets tuned to Korean and Japanese readers. Choosing Apphud means giving up the APAC-native inventory Dable accesses; choosing Dable means giving up global fit, video and rewarded formats.",
+  "quick_take": "Apphud is for mobile apps needing subscription and paywall tooling; Dable is for APAC publishers monetising with native content recommendations; decide based on audience geography.",
+  "verdict_a": "Choose Apphud if you need a subscription SDK with A/B testing and revenue dashboards, priced from $0/month with a free tier and developer experience rated 5.",
+  "verdict_b": "Choose Dable if a material portion of your traffic is in Korea, Japan or Southeast Asia and you want native content-recommendation ad inventory rather than video, rewarded or banner formats.",
+  "faq": [
+    {
+      "q": "Is Apphud cheaper than Dable?",
+      "a": "Apphud publishes a subscription model starting at $0/month with a free tier. Dable's pricing isn't publicly disclosed beyond 'custom' with no free tier, so a direct comparison isn't possible. For a small app just starting out, Apphud's free tier is the cheaper entry point by default."
+    },
+    {
+      "q": "Can I migrate from Apphud to Dable?",
+      "a": "These aren't interchangeable products. Apphud is rated medium lock-in because its SDK handles billing events, while Dable is rated high lock-in for deep ad-SDK integration. You wouldn't migrate between them; you might run both if you had both subscriptions and APAC native inventory."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Apphud scores 5 for DX with a generous free tier for getting started. Dable scores 3 for DX with thin English support for non-APAC teams. If you're not a Korean or Japanese publisher, Apphud will feel substantially easier to adopt."
+    },
+    {
+      "q": "Is Dable a good alternative to Apphud?",
+      "a": "No. Dable's best_for is Korean, Japanese and Southeast Asian publishers, and its not_for explicitly calls out Western publishers and apps needing video, rewarded or banner formats. Apphud's focus is subscription and paywall management, which Dable does not address at all."
+    }
+  ]
+}

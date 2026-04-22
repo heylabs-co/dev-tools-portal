@@ -1,0 +1,24 @@
+{
+  "intro": "Auth0 sits at low lock-in (Auth migration is painful but doable); Clerk sits at medium lock-in (Medium — pre-built toby creat deep integration, but by towithby  free). Auth0: Identity platform with SSO, MFA, social login, and enterprise federation supporting 30+ SDKs and 50+ integrations. Clerk: Drop-in authentication platform with prebuilt React components for sign-in, MFA, organization management, and SSO. Auth0 fits enterprise — in practice, enterprise needing SAML/SCIM with complex rules. Clerk fits apps, Startup — in practice, next.js / React apps needing drop-in auth UI. On our rubric Auth0 scores 5/5 for developer experience and 4/5 for transparency, while Clerk scores 5/5 and 5/5. The honest trade-off: Auth0's main drawback — Expensive for costs — Auth0 gets expensive fast at scale; Clerk's — Enterprise requiring SAML/SCIM on day one — Auth0/WorkOS. Auth0 is explicitly not the right pick for budget projects. Clerk is not aimed at enterprise requiring SAML/SCIM on day one. Another Auth0 advantage: Existing Okta customer extending to CIAM.",
+  "quick_take": "Auth0 is for enterprise; Clerk is for apps, Startup; decide on lock-in tolerance.",
+  "verdict_a": "Choose Auth0 if your work looks like enterprise needing SAML/SCIM with complex rules, and if portability and keeping the exit door open matter.",
+  "verdict_b": "Choose Clerk if your work looks like next.js / React apps needing drop-in auth UI, and if you accept tighter coupling in exchange for the managed surface.",
+  "faq": [
+    {
+      "q": "Is Auth0 cheaper than Clerk?",
+      "a": "Both tools use freemium pricing, so a clean list-price comparison depends on tier details that vary by usage. Check each vendor's current plan page for your expected volume. Neither is structurally cheaper on the model alone."
+    },
+    {
+      "q": "Can I migrate from Auth0 to Clerk?",
+      "a": "Migrating out of Auth0 is straightforward — it's rated low lock-in (Auth migration is painful but doable). The harder question is how deeply you commit to Clerk afterward, since it sits at medium lock-in (Medium — pre-built toby creat deep integration, but by towithby  free). Plan the forward cost, not just the exit."
+    },
+    {
+      "q": "Which has better developer experience, Auth0 or Clerk?",
+      "a": "Both score 5/5 for developer experience in our rubric, so neither has a structural edge. The practical answer depends on stack fit: Auth0's ergonomics suit some workflows, Clerk's suit others. Try both on a throwaway project before committing."
+    },
+    {
+      "q": "Is Clerk a good alternative to Auth0?",
+      "a": "They sit in the same category, so yes — Clerk is a plausible alternative for many Auth0 use cases. It fits best when apps, Startup. Skip it if enterprise requiring SAML/SCIM on day one."
+    }
+  ]
+}

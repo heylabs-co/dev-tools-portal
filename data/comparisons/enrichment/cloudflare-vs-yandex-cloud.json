@@ -1,0 +1,24 @@
+{
+  "intro": "The biggest real distinction between Cloudflare and Yandex Cloud is straightforward: Cloudflare uses freemium with a paid tier from $20/mo (Pro), enterprise plan available; Yandex Cloud uses usage-based pricing, a free tier. Cloudflare sits at freemium with a paid tier from $20/mo (Pro), enterprise plan available and carries moderate lock-in, while Yandex Cloud sits at usage-based pricing, a free tier and carries moderate lock-in. Cloudflare is a fit when you need cdn + edge compute + dns + security in one — typical scenarios include cdn + edge compute + dns + security in one. Yandex Cloud is aimed at russian and cis-focused businesses needing local cloud with ml capabilities, with workloads like russian public cloud with compute, storage, and ml services as the common case. The honest trade-off: Cloudflare is explicitly not for need full paas for backend apps; Yandex Cloud is not intended for global startups with western investors or sanctions compliance concerns.",
+  "quick_take": "Cloudflare is for cdn + edge compute + dns; Yandex Cloud is for russian and cis-focused businesses needing local; decide based on cost model and budget.",
+  "verdict_a": "Choose Cloudflare if your primary workload is cdn + edge compute + dns + security in one and the free tier plus $20/mo (Pro) paid tier fits your budget.",
+  "verdict_b": "Choose Yandex Cloud if your primary workload is russian and cis-focused businesses needing local cloud with ml capabilities.",
+  "faq": [
+    {
+      "q": "Is Cloudflare cheaper than Yandex Cloud?",
+      "a": "Cloudflare publishes an entry price of $20/mo (Pro); Yandex Cloud's entry price is not in our data, so a definitive comparison is not possible without a quote from Yandex Cloud."
+    },
+    {
+      "q": "Can I migrate from Cloudflare to Yandex Cloud?",
+      "a": "Migrating from Cloudflare to Yandex Cloud is doable but not automatic — Cloudflare carries moderate lock-in. Since both tools sit in the same category (CDN / Edge / Acceleration), the conceptual mapping is closer, but you still need to validate feature parity against your specific workload. Plan migration as a project, not a script: inventory integrations, test on non-production workloads, and keep Cloudflare running in parallel until Yandex Cloud is verified."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "On our 0–5 developer experience scale, Cloudflare scores higher (5/5 vs 4/5 for Yandex Cloud). The gap is one point — meaningful but not decisive, since DX is workflow-dependent. Still, score your own tasks: DX is subjective and tied to stack assumptions."
+    },
+    {
+      "q": "Is Yandex Cloud a good alternative to Cloudflare?",
+      "a": "Yandex Cloud is in the same category as Cloudflare (CDN / Edge / Acceleration), so it's a reasonable alternative to evaluate. Yandex Cloud is aimed at russian and cis-focused businesses needing local cloud with ml capabilities, while Cloudflare targets cdn + edge compute + dns + security in one — that difference should drive the switch decision. Note that Yandex Cloud is explicitly not for global startups with western investors or sanctions compliance concerns — if that describes your workload, it's not a viable replacement."
+    }
+  ]
+}

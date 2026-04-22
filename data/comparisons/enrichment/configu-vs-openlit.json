@@ -1,0 +1,24 @@
+{
+  "intro": "Configu and OpenLIT both show up under the observability category, but they solve slightly different jobs. Configu uses undisclosed pricing with free tier, while OpenLIT runs on a free model. Lock-in is low for Configu and high for OpenLIT. Transparency lands at 4/5 versus 5/5. Configu fits teams working on distributed systems debugging, while OpenLIT is a closer match when the job is OpenTelemetry observability for LLM and GenAI stacks. Worth noting: Configu is explicitly not for non-technical projects; OpenLIT is explicitly not for teams preferring polished managed LLMOps with evals and PM-friendly UX. The honest trade-off: Configu trades off on single-server apps with basic logging; OpenLIT trades off on young project with evolving APIs. On the plus side, Configu highlights distributed systems debugging, while OpenLIT points to OTel-native tracing for LLM and GenAI apps. Configu's documentation also calls out log aggregation and analysis. OpenLIT similarly notes open-source with Apache 2.0 license.",
+  "quick_take": "Configu is for distributed systems debugging; OpenLIT is for OpenTelemetry observability for LLM and GenAI; decide on pricing model.",
+  "verdict_a": "Choose Configu if your project is distributed systems debugging, you want to keep future migration cheap.",
+  "verdict_b": "Choose OpenLIT if your project is OpenTelemetry observability for LLM and GenAI stacks, you are willing to accept the high lock-in called out in our data.",
+  "faq": [
+    {
+      "q": "Is Configu cheaper than OpenLIT?",
+      "a": "Configu uses undisclosed pricing with free tier, and OpenLIT uses a free model. The pricing models are different, so a direct cheaper-than comparison depends on your volume and usage pattern."
+    },
+    {
+      "q": "Can I migrate from Configu to OpenLIT?",
+      "a": "Our data puts Configu at low lock-in (oss config management), and OpenLIT at high lock-in. Migration is feasible but not trivial — budget time for re-integration, data export, and parallel running before cutover."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Both score 4/5 on developer experience in our data, so there's no clear winner on that axis. OpenLIT does edge ahead on pricing/docs transparency (5/5 vs 4/5), which can make evaluation faster."
+    },
+    {
+      "q": "Is OpenLIT a good alternative to Configu?",
+      "a": "OpenLIT is a reasonable alternative to Configu when your workload leans more toward teams wanting vendor-neutral LLM observability tied to existing OTel pipelines than distributed systems debugging. The pricing model shifts too — Configu is undisclosed pricing with free tier, OpenLIT is a free model — so expect the cost profile to change as well. One caveat: OpenLIT is explicitly not for teams preferring polished managed LLMOps with evals and PM-friendly UX, so check that constraint against your use-case before switching."
+    }
+  ]
+}

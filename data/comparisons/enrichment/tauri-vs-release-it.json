@@ -1,0 +1,24 @@
+{
+  "intro": "The clearest split is that Tauri and release-it overlap on scope but take different approaches. Tauri is Release / App Store Operations tool for developers. Specializes in Cross Platform Framework; release-it is CI/CD for Applications tool for developers. Specializes in Release Tooling. The data points Tauri at mobile app release automation and over-the-air updates, and release-it at automated build/test/deploy pipelines and team collaboration on code. Pricing: Tauri is free, free tier; release-it is free, free tier. Lock-in is low for Tauri and low for release-it, with DX at 5/5 vs 5/5 and transparency at 5/5 vs 5/5. On listed strengths, Tauri emphasises automates app store submissions and release management, and release-it emphasises automates app store submissions and release management. Neither lists an enterprise tier, so contract-level buying may require a direct conversation. Honest trade-off: neither fits web-only products without native app distribution, so if that is your context, look elsewhere; otherwise pick on the pivotal factor above and the DX score that matters most to your team.",
+  "quick_take": "Tauri is for mobile teams shipping frequent app updates; release-it is for mobile teams shipping frequent app updates; decide based on which scope-fit aligns with your team.",
+  "verdict_a": "Choose Tauri if your workload matches mobile teams shipping frequent app updates and your work involves mobile app release automation. Skip it if your context is web-only products without native app distribution.",
+  "verdict_b": "Choose release-it if your workload matches mobile teams shipping frequent app updates and your work involves automated build/test/deploy pipelines. Skip it if your context is web-only products without native app distribution.",
+  "faq": [
+    {
+      "q": "Is Tauri cheaper than release-it?",
+      "a": "Entry pricing is listed as unknown for Tauri and unknown for release-it. Both offer a free tier for getting started. Total cost at scale depends on usage and plan details that are not in this dataset, so confirm with each vendor."
+    },
+    {
+      "q": "Can I migrate from Tauri to release-it?",
+      "a": "Tauri is tagged with low lock-in (open-source cross-platform). release-it is tagged with low lock-in (oss cli, no vendor lock). Both sides are low lock-in, so a migration is feasible but still needs planning around data export and SDK rewrites."
+    },
+    {
+      "q": "Which has better developer experience, Tauri or release-it?",
+      "a": "Both are rated 5/5 for developer experience in this dataset. With equal scores, the choice comes down to the specific SDK surface and docs you will use day to day. Run a short spike on each before deciding."
+    },
+    {
+      "q": "Is release-it a good alternative to Tauri?",
+      "a": "Yes for teams whose workload matches mobile teams shipping frequent app updates, since both list the same fit. release-it is flagged as not for web-only products without native app distribution, so confirm your context does not fall there."
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "intro": "The clearest split is that Elasticsearch uses a subscription model and Pinecone uses a hybrid model. Elasticsearch is Distributed full-text search and analytics engine built on Apache Lucene with a REST API; Pinecone is Managed vector database for storing and querying high-dimensional embeddings for AI applications. The data points Elasticsearch at e-commerce product search and documentation/knowledge base search, and Pinecone at e-commerce product search and documentation/knowledge base search. Pricing: Elasticsearch is subscription from $95/mo (Standard Cloud); Pinecone is hybrid from $70/mo (Standard). Lock-in is low for Elasticsearch and medium for Pinecone, with DX at 5/5 vs 5/5 and transparency at 4/5 vs 4/5. On listed strengths, Elasticsearch emphasises e-commerce product search and documentation/knowledge base search, and Pinecone emphasises e-commerce product search and documentation/knowledge base search. Both offer an enterprise tier for larger rollouts. Honest trade-off: neither fits simple projects, so if that is your context, look elsewhere; otherwise pick on the pivotal factor above and the DX score that matters most to your team.",
+  "quick_take": "Elasticsearch is for e-commerce; Pinecone is for e-commerce; decide based on which pricing model fits your budget.",
+  "verdict_a": "Choose Elasticsearch if a subscription pricing model fits your procurement and your workload matches e-commerce. Skip it if your context is simple projects.",
+  "verdict_b": "Choose Pinecone if a hybrid pricing model fits your procurement and your workload matches e-commerce. Skip it if your context is simple projects.",
+  "faq": [
+    {
+      "q": "Is Elasticsearch cheaper than Pinecone?",
+      "a": "Listed entry pricing is $95/mo (Standard Cloud) for Elasticsearch and $70/mo (Standard) for Pinecone. Both offer a free tier for getting started. Total cost at scale depends on usage and plan details that are not in this dataset, so confirm with each vendor."
+    },
+    {
+      "q": "Can I migrate from Elasticsearch to Pinecone?",
+      "a": "Elasticsearch is tagged with low lock-in (low-medium — open-source (elastic license 2.0), but complex setup). Pinecone is tagged with medium lock-in (medium — proprietary vector format, but standard embeddings). Plan for SDK replacement, data export, and a parallel-run period; the dataset does not include migration tooling details."
+    },
+    {
+      "q": "Which has better developer experience, Elasticsearch or Pinecone?",
+      "a": "Both are rated 5/5 for developer experience in this dataset. With equal scores, the choice comes down to the specific SDK surface and docs you will use day to day. Run a short spike on each before deciding."
+    },
+    {
+      "q": "Is Pinecone a good alternative to Elasticsearch?",
+      "a": "Yes for teams whose workload matches e-commerce, since both list the same fit. Pinecone is flagged as not for simple projects, so confirm your context does not fall there."
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "intro": "Twilio carries medium lock-in (Medium — but butwithand (porting), but ecosystem (Segment, SendGrid) creates inandwithandwith) while Sinch is high (CPaaS APIs, switchable). Twilio is positioned for multi-channel messaging (sms + voice + whatsapp), while Sinch leans toward transactional emails (receipts, alerts). In practice, Twilio — Cloud communications platform with APIs for SMS, voice, video, email, and WhatsApp messaging. Sinch — Global CPaaS platform with APIs for SMS, voice, video, email, and WhatsApp messaging. Twilio runs on usage from $0.0079/min, $0.0079/SMS (US); Sinch runs on seat. Listed strengths unique to Twilio include multi-channel messaging (sms + voice + whatsapp), while Sinch lists transactional emails (receipts, alerts) on its side. Reach for Twilio when you need multi-channel messaging (sms + voice + whatsapp); reach for Sinch when the job is transactional emails (receipts, alerts). The honest trade-off: Twilio is not built for email only, and Sinch is not the right call for internal projects, so neither is a universal default.",
+  "quick_take": "Twilio is for multi-channel messaging (sms + voice + whatsapp); Sinch is for transactional emails (receipts, alerts); decide based on lock-in tolerance.",
+  "verdict_a": "Choose Twilio if multi-channel messaging (sms + voice + whatsapp) and the $0.0079/min, $0.0079/SMS (US) entry price fits your budget.",
+  "verdict_b": "Choose Sinch if transactional emails (receipts, alerts) and deep integration (CPaaS APIs, switchable) is acceptable.",
+  "faq": [
+    {
+      "q": "Is Twilio cheaper than Sinch?",
+      "a": "The listed pricing for Twilio is usage from $0.0079/min, $0.0079/SMS (US) and for Sinch is seat, which doesn't give a clean apples-to-apples cost. Unit economics and plan structure differ enough that only your real volume answers this. Price both against the same workload."
+    },
+    {
+      "q": "Can I migrate from Twilio to Sinch?",
+      "a": "Technically you can move between any two tools in the same category, but effort varies: leaving Twilio is moderate effort at medium lock-in (Medium — but butwithand (porting), but ecosystem (Segment, SendGrid) creates inandwithandwith), and onboarding to Sinch commits you to high lock-in (CPaaS APIs, switchable). Plan for data export, re-integration, and a parallel-run window rather than a hard cutover."
+    },
+    {
+      "q": "Which has better developer experience, Twilio or Sinch?",
+      "a": "On the 0-5 developer experience score in our data, Twilio rates 5/5 while Sinch rates 4/5, giving Twilio the edge. Scores compress a lot of variance though — SDK language coverage, error messages, and docs quality matter more than the number. Run a quick integration spike on both before trusting the gap."
+    },
+    {
+      "q": "Is Sinch a good alternative to Twilio?",
+      "a": "Sinch is an alternative in the same category, but its stated sweet spot is transactional emails (receipts, alerts), while Twilio's is multi-channel messaging (sms + voice + whatsapp). If your job matches Twilio's profile more closely, switching to Sinch is a compromise. Use the best-fit match, not brand familiarity, to decide. Note: Sinch is explicitly not for internal projects."
+    }
+  ]
+}

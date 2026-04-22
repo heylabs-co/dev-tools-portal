@@ -1,0 +1,24 @@
+{
+  "intro": "The clearest split between Prove and Veriff is how they charge: Prove uses custom enterprise pricing (no public tier), while Veriff uses subscription pricing starting around $49/ month. Prove is Prove is a digital identity platform using phone-number intelligence, possession checks and Prove Pre-Fill to verify and authenticate users, cutting fraud and friction in onboarding for banks and fintechs; it fits best for US banks and fintechs using phone possession to reduce fraud and autofill KYC fields. Veriff is Identity verification platform with automated document authentication, selfie matching, and fraud signal detection; it fits best for Fintech, Marketplace. Pick Prove when the job maps to phone-number intelligence for frictionless kyc onboarding; pick Veriff when it maps to fintech requiring identity verification. Prove is not for global or privacy-minimal products that cannot rely on us carrier data for verification. Veriff is not for consumer apps without regulatory requirements. Honest trade-offs: Prove is weak for us-centric, weaker outside north america, and Veriff is weak for consumer apps without regulatory requirements — match to your real scenario.",
+  "quick_take": "Prove is for us banks and fintechs using phone possession to reduce fraud; Veriff is for fintech, marketplace; decide based on pricing model.",
+  "verdict_a": "Choose Prove if you want custom enterprise pricing (no public tier) and your workload matches us banks and fintechs using phone possession to reduce fraud and autofill kyc fields.",
+  "verdict_b": "Choose Veriff if you want subscription pricing starting around $49/ month and your workload matches fintech, marketplace.",
+  "faq": [
+    {
+      "q": "Is Prove cheaper than Veriff?",
+      "a": "Veriff has more transparent pricing; Prove's cost depends on a sales conversation, so a direct comparison is not possible without a quote. Prove uses custom enterprise pricing with no published rates. Veriff uses subscription pricing starting at $49/ month."
+    },
+    {
+      "q": "Can I migrate from Prove to Veriff?",
+      "a": "Migration may be non-trivial: Prove is rated high lock-in (Custom identity contracts). Plan for data export, re-integration of SDKs, and re-testing flows before cutover. Verify exportable formats and feature parity against your live use cases before committing."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Both score 4/5 on developer experience in our data. Evaluate against your own stack: read their docs, run a quick SDK spike, and check error handling. Self-assessing with a small prototype beats trusting any rating at face value."
+    },
+    {
+      "q": "Is Veriff a good alternative to Prove?",
+      "a": "Veriff sits in the same category as Prove, so it can be a reasonable alternative for overlapping use cases. Veriff is best fit for fintech, marketplace. Note: Veriff is not for consumer apps without regulatory requirements."
+    }
+  ]
+}

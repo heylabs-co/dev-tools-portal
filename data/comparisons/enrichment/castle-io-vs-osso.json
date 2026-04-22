@@ -1,0 +1,24 @@
+{
+  "intro": "Castle sits at medium lock-in (Proprietary fraud API with webhooks); Osso sits at high lock-in (OSS SAML/OIDC). Castle: Castle protects user accounts and transactions from takeover, fraudulent signups and abusive usage with a developer-first API. It offers risk scoring, device fingerprinting, webhooks and policies, and is popular with SaaS companies like Sho. Osso: Enterprise SSO integration layer handling SAML and OIDC connections for SaaS applications without custom code. Castle fits B2B and B2C SaaS protecting logins, signups and workspace abuse with a small risk team. Osso fits SaaS platforms adding SAML/OIDC SSO for enterprise customers without building it in-house. On our rubric Castle scores 5/5 for developer experience and 5/5 for transparency, while Osso scores 4/5 and 4/5. The honest trade-off: Castle's main drawback — Weaker on payment fraud vs PSP-native tools; Osso's — Not actually a fraud or risk tool. One point in Castle's favour: Developer-first API with clear docs and webhooks. For Osso: Simplifies enterprise SSO across SAML and OIDC.",
+  "quick_take": "Castle is for B2B; Osso is for SaaS platforms adding SAML/OIDC SSO for enterprise customers; decide on lock-in tolerance.",
+  "verdict_a": "Choose Castle if your work looks like risk scoring for new user signup abuse prevention, and if a higher DX score (5/5 vs 4/5 in our rubric) nudges the call.",
+  "verdict_b": "Choose Osso if SaaS platforms adding SAML/OIDC SSO for enterprise customers without building it in-house.",
+  "faq": [
+    {
+      "q": "Is Castle cheaper than Osso?",
+      "a": "Both tools use freemium pricing, so a clean list-price comparison depends on tier details that vary by usage. Check each vendor's current plan page for your expected volume. Neither is structurally cheaper on the model alone."
+    },
+    {
+      "q": "Can I migrate from Castle to Osso?",
+      "a": "Expect real effort: Castle is medium lock-in (Proprietary fraud API with webhooks) and Osso is high lock-in (OSS SAML/OIDC). Migrating between them means rebuilding integrations, re-authoring config, and accepting new coupling. Scope a spike before committing."
+    },
+    {
+      "q": "Which has better developer experience, Castle or Osso?",
+      "a": "Castle scores higher in our rubric (5/5 vs 4/5 for Osso). Transparency is 5/5 for Castle and 4/5 for Osso. DX scores are rubric-based, not benchmarks, so evaluate against your own toolchain."
+    },
+    {
+      "q": "Is Osso a good alternative to Castle?",
+      "a": "They sit in the same category, so yes — Osso is a plausible alternative for many Castle use cases. It fits best when SaaS platforms adding SAML/OIDC SSO for enterprise customers without building it in-house. Skip it if anyone actually looking for fraud detection, bot management or transaction risk scoring."
+    }
+  ]
+}

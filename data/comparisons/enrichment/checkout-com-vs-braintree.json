@@ -1,0 +1,24 @@
+{
+  "intro": "Checkout.com and Braintree both show up under the payment gateway category, but they solve slightly different jobs. Checkout.com publishes an entry price of custom pricing; Braintree does not publish one. Both sit at moderate lock-in. Transparency lands at 4/5 versus 5/5. Both tools target SaaS with online payments, so the choice comes down to pricing, lock-in, and operational fit rather than scope. Worth noting: Checkout.com is explicitly not for offline, Internal projects. The honest trade-off: Checkout.com trades off on offline-only retail; Braintree trades off on offline-only retail. On the plus side, Checkout.com highlights SaaS with online payments. Checkout.com's documentation also calls out e-commerce checkout. For teams evaluating payment gateway options today, the decision usually hinges on whether Checkout.com's profile or Braintree's profile maps more cleanly to the pricing model, lock-in tolerance, and scale your team can live with. Beyond the headline pitch, a documented Checkout.com use-case is \"E-commerce checkout\", and a documented Braintree use-case is \"E-commerce checkout\".",
+  "quick_take": "Checkout.com is for SaaS with online payments; Braintree is for SaaS with online payments; decide on entry price.",
+  "verdict_a": "Choose Checkout.com if your project is SaaS with online payments, usage-based billing at custom pricing matches your volume, medium lock-in is an acceptable trade-off.",
+  "verdict_b": "Choose Braintree if your project is SaaS with online payments, medium lock-in is an acceptable trade-off.",
+  "faq": [
+    {
+      "q": "Is Checkout.com cheaper than Braintree?",
+      "a": "Checkout.com uses usage-based from custom pricing, and Braintree uses usage-based pricing. Checkout.com publishes an entry price of custom pricing, and Braintree does not, so a side-by-side cost comparison isn't possible from public data."
+    },
+    {
+      "q": "Can I migrate from Checkout.com to Braintree?",
+      "a": "Our data puts Checkout.com at medium lock-in, and Braintree at medium lock-in (paypal-owned, card data portable). Migration is feasible but not trivial — budget time for re-integration, data export, and parallel running before cutover."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Both score 5/5 on developer experience in our data, so there's no clear winner on that axis. Braintree does edge ahead on pricing/docs transparency (5/5 vs 4/5), which can make evaluation faster."
+    },
+    {
+      "q": "Is Braintree a good alternative to Checkout.com?",
+      "a": "Braintree covers a similar scope to Checkout.com — our data lists \"SaaS, E-commerce, Marketplace\" as the best-for on both. One caveat: Braintree is explicitly not for offline, Internal projects, so check that constraint against your use-case before switching."
+    }
+  ]
+}

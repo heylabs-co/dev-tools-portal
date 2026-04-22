@@ -1,0 +1,24 @@
+{
+  "intro": "The clearest split is that Typesense has a free tier while Meilisearch does not. Meilisearch is Open-source fast search engine with typo-tolerance, filters, and a simple REST API; Typesense is Open-source typo-tolerant search engine with instant sub-50ms search and easy self-hosting. The data points Meilisearch at e-commerce product search and documentation/knowledge base search, and Typesense at e-commerce product search and documentation/knowledge base search. Pricing: Meilisearch is hybrid from $30/mo (Build, 50K searches); Typesense is unknown from $7/mo (cloud). Lock-in is low for Meilisearch and low for Typesense, with DX at 5/5 vs 5/5 and transparency at 4/5 vs 3/5. On listed strengths, Meilisearch emphasises e-commerce product search and documentation/knowledge base search, and Typesense emphasises e-commerce product search and documentation/knowledge base search. Both offer an enterprise tier for larger rollouts. Honest trade-off: neither fits simple projects, so if that is your context, look elsewhere; otherwise pick on the pivotal factor above and the DX score that matters most to your team.",
+  "quick_take": "Meilisearch is for e-commerce; Typesense is for e-commerce; decide based on whether a free tier matters.",
+  "verdict_a": "Choose Meilisearch if starting on a paid subscription upfront is acceptable and your workload matches e-commerce. Skip it if your context is simple projects.",
+  "verdict_b": "Choose Typesense if you want to start on a free tier before paying and your workload matches e-commerce. Skip it if your context is simple projects.",
+  "faq": [
+    {
+      "q": "Is Meilisearch cheaper than Typesense?",
+      "a": "Listed entry pricing is $30/mo (Build, 50K searches) for Meilisearch and $7/mo (cloud) for Typesense. Typesense offers a free tier while Meilisearch does not, so initial cost favors Typesense. Total cost at scale depends on usage and plan details that are not in this dataset, so confirm with each vendor."
+    },
+    {
+      "q": "Can I migrate from Meilisearch to Typesense?",
+      "a": "Meilisearch is tagged with low lock-in (low — open-source, self-hosted). Typesense is tagged with low lock-in (low — open-source, instantsearch-compatible adapter). Both sides are low lock-in, so a migration is feasible but still needs planning around data export and SDK rewrites."
+    },
+    {
+      "q": "Which has better developer experience, Meilisearch or Typesense?",
+      "a": "Both are rated 5/5 for developer experience in this dataset. With equal scores, the choice comes down to the specific SDK surface and docs you will use day to day. Run a short spike on each before deciding."
+    },
+    {
+      "q": "Is Typesense a good alternative to Meilisearch?",
+      "a": "Yes for teams whose workload matches e-commerce, since both list the same fit. Typesense is flagged as not for simple projects, so confirm your context does not fall there. Note that moving from Meilisearch to Typesense means gaining access to a free tier."
+    }
+  ]
+}

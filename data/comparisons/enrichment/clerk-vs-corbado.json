@@ -1,0 +1,24 @@
+{
+  "intro": "The clearest split between Clerk and Corbado is how they charge: Clerk uses a free tier plus paid plans starting around $25/mo (Pro, 10K MAU), while Corbado uses pricing from $1. Clerk is Drop-in authentication platform with prebuilt React components for sign-in, MFA, organization management, and SSO; it fits best for apps, Startup. Corbado specializes in Passkey Authentication; it fits best for Apps, B2B. Pick Clerk when the job maps to next.js / react apps needing drop-in auth ui; pick Corbado when it maps to apps needing sso/mfa. Clerk is not for enterprise requiring saml/scim on day one. Corbado is not for internal, static projects. Honest trade-offs: Clerk is weak for enterprise requiring saml/scim on day one — auth0/workos, and Corbado is weak for internal tools with basic auth — match to your real scenario. Both sit under the Identity / Auth / User Management umbrella, so your final call depends on pricing transparency, integration effort, and which listed not-for situations you can actually tolerate.",
+  "quick_take": "Clerk is for apps, startup; Corbado is for apps, b2b; decide based on pricing model.",
+  "verdict_a": "Choose Clerk if you want a free tier plus paid plans starting around $25/mo (Pro, 10K MAU) and your workload matches apps, startup.",
+  "verdict_b": "Choose Corbado if you want pricing from $1 and your workload matches apps, b2b.",
+  "faq": [
+    {
+      "q": "Is Clerk cheaper than Corbado?",
+      "a": "A direct comparison depends on your usage profile and which pricing model fits better. Clerk has a free tier with paid plans starting at $25/mo (Pro, 10K MAU). Corbado pricing starts at $1."
+    },
+    {
+      "q": "Can I migrate from Clerk to Corbado?",
+      "a": "Migration is workable but not trivial, since both sit around medium lock-in. Plan for data export, re-integration of SDKs, and re-testing flows before cutover. Verify exportable formats and feature parity against your live use cases before committing."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Clerk scores higher on developer experience (5/5 vs 3/5 for Corbado). Evaluate against your own stack: read their docs, run a quick SDK spike, and check error handling. Self-assessing with a small prototype beats trusting any rating at face value."
+    },
+    {
+      "q": "Is Corbado a good alternative to Clerk?",
+      "a": "Corbado sits in the same category as Clerk, so it can be a reasonable alternative for overlapping use cases. Corbado is best fit for apps, b2b. Note: Corbado is not for internal, static projects."
+    }
+  ]
+}

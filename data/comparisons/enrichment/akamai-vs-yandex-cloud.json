@@ -1,0 +1,24 @@
+{
+  "intro": "The biggest real distinction between Akamai and Yandex Cloud is straightforward: Akamai carries high lock-in while Yandex Cloud has moderate lock-in. Akamai sits at pricing from Custom (premium pricing), enterprise plan available and carries high lock-in, while Yandex Cloud sits at usage-based pricing, a free tier and carries moderate lock-in. Akamai is a fit when you need global — typical scenarios include global audience with low latency needs. Yandex Cloud is aimed at russian and cis-focused businesses needing local cloud with ml capabilities, with workloads like russian public cloud with compute, storage, and ml services as the common case. The honest trade-off: Akamai is explicitly not for internal projects; Yandex Cloud is not intended for global startups with western investors or sanctions compliance concerns. Lock-in is the factor most teams underestimate: Akamai and Yandex Cloud have different exit paths, and that shapes total cost of ownership over a two-to-three year horizon.",
+  "quick_take": "Akamai is for global; Yandex Cloud is for russian and cis-focused businesses needing local; decide based on how much lock-in you can accept.",
+  "verdict_a": "Choose Akamai if your primary workload is global and you accept higher lock-in for the stack.",
+  "verdict_b": "Choose Yandex Cloud if your primary workload is russian and cis-focused businesses needing local cloud with ml capabilities.",
+  "faq": [
+    {
+      "q": "Is Akamai cheaper than Yandex Cloud?",
+      "a": "Akamai publishes an entry price of Custom (premium pricing); Yandex Cloud's entry price is not in our data, so a definitive comparison is not possible without a quote from Yandex Cloud."
+    },
+    {
+      "q": "Can I migrate from Akamai to Yandex Cloud?",
+      "a": "Migrating from Akamai to Yandex Cloud is not trivial — Akamai has high lock-in, which typically means data formats, APIs, or stack assumptions that have to be rewritten. Since both tools sit in the same category (CDN / Edge / Acceleration), the conceptual mapping is closer, but you still need to validate feature parity against your specific workload. Plan migration as a project, not a script: inventory integrations, test on non-production workloads, and keep Akamai running in parallel until Yandex Cloud is verified."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "On our 0–5 developer experience scale, Yandex Cloud scores higher (4/5 vs 3/5 for Akamai). The gap is one point — meaningful but not decisive, since DX is workflow-dependent. Still, score your own tasks: DX is subjective and tied to stack assumptions."
+    },
+    {
+      "q": "Is Yandex Cloud a good alternative to Akamai?",
+      "a": "Yandex Cloud is in the same category as Akamai (CDN / Edge / Acceleration), so it's a reasonable alternative to evaluate. Yandex Cloud is aimed at russian and cis-focused businesses needing local cloud with ml capabilities, while Akamai targets global — that difference should drive the switch decision. Note that Yandex Cloud is explicitly not for global startups with western investors or sanctions compliance concerns — if that describes your workload, it's not a viable replacement."
+    }
+  ]
+}

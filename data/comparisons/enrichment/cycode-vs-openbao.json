@@ -1,0 +1,24 @@
+{
+  "intro": "The most concrete split between Cycode and OpenBao is the pricing model: Cycode runs on subscription from $1, while OpenBao uses free and open-source. That shapes how predictable your monthly spend is and how much of the cost sits in infrastructure versus per-seat or per-event fees. Beyond the headline, Cycode carries medium lock-in (supply chain saas, replaceable) and subscription from $1; OpenBao carries high lock-in (lf fork of vault, oss) and free and open-source. Cycode is a fit when you are teams. OpenBao is a fit when you are teams that want vault functionality under a permissive license. The honest trade-off: Cycode is explicitly not for solo, static projects; OpenBao is explicitly not for shops that rely on vault enterprise features or hcp. On the product side, Cycode is described as Software supply chain security platform scanning secrets, IaC, SCA, and SAST across the entire SDLC, and OpenBao is described as open source fork of HashiCorp Vault maintained by the Linux Foundation for secrets management.",
+  "quick_take": "Cycode is for teams; OpenBao is for teams that want vault functionality under a permissive license; decide on pricing model.",
+  "verdict_a": "Choose Cycode if its subscription pricing model fits your budget shape better than OpenBao's free model, and you are teams.",
+  "verdict_b": "Choose OpenBao if you need a free tier to start before committing budget, and your use case matches teams that want vault functionality under a permissive license.",
+  "faq": [
+    {
+      "q": "Is Cycode cheaper than OpenBao?",
+      "a": "Headline yes, OpenBao is free and open-source while Cycode uses subscription from $1. But the total cost depends on self-hosting and maintenance effort for OpenBao versus managed convenience from Cycode. Factor in both."
+    },
+    {
+      "q": "Can I migrate from Cycode to OpenBao?",
+      "a": "Migration from Cycode to OpenBao is feasible but not trivial: Cycode has medium lock-in (supply chain saas, replaceable). Core data can move; integrations and workflow logic need rebuild. Allow for a parallel-run period."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "On our scoring OpenBao rates 4/5 for developer experience versus 3/5 for Cycode. That suggests OpenBao feels more polished for everyday developer tasks. We still recommend a short hands-on trial on your stack before standardising."
+    },
+    {
+      "q": "Is OpenBao a good alternative to Cycode?",
+      "a": "OpenBao is pitched at teams that want vault functionality under a permissive license, which overlaps with Cycode's fit (teams) but is not identical. Note that OpenBao is explicitly not for shops that rely on vault enterprise features or hcp, so it only replaces Cycode if you are outside that exclusion. The lock-in profile differs (medium vs high), which is the main thing to weigh."
+    }
+  ]
+}

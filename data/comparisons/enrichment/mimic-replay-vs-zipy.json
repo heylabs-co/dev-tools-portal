@@ -1,0 +1,24 @@
+{
+  "intro": "The most concrete split between MIMIC Replay and Zipy is the pricing model: MIMIC Replay runs on free and open-source, while Zipy uses subscription from $0/month, with a free tier. That shapes how predictable your monthly spend is and how much of the cost sits in infrastructure versus per-seat or per-event fees. Beyond the headline, MIMIC Replay carries high lock-in (free oss session replay, self-hosted) and free and open-source; Zipy carries medium lock-in (session replay data exportable) and subscription from $0/month, with a free tier. MIMIC Replay is a fit when you are privacy-sensitive teams with engineering capacity to self-host replay. Zipy is a fit when you are ux debugging and optimization. The honest trade-off: MIMIC Replay is explicitly not for marketing or product teams expecting turnkey dashboards and support; Zipy is explicitly not for apps with strict privacy requirements (healthcare). On the product side, MIMIC Replay is described as Open-source, self-hosted session replay framework built on rrweb with custom network interceptors for debugging and UX research, and Zipy is described as AI-powered session replay and error monitoring platform correlating.",
+  "quick_take": "MIMIC Replay is for privacy-sensitive teams with engineering capacity to self-host replay; Zipy is for ux debugging and optimization; decide on pricing model.",
+  "verdict_a": "Choose MIMIC Replay if you want a fully free, open-source option and can handle self-hosting or self-support.",
+  "verdict_b": "Choose Zipy if its subscription pricing model fits your budget shape better than MIMIC Replay's free model, and you are ux debugging and optimization.",
+  "faq": [
+    {
+      "q": "Is MIMIC Replay cheaper than Zipy?",
+      "a": "Direct comparison is hard. MIMIC Replay is free and open-source, so licence cost is zero though you pay in operational effort. Zipy uses subscription from $0/month, with a free tier, so it costs money in exchange for managed service. Which is cheaper depends on how much engineering time you value."
+    },
+    {
+      "q": "Can I migrate from MIMIC Replay to Zipy?",
+      "a": "Migration from MIMIC Replay is harder: MIMIC Replay is rated high lock-in (free oss session replay, self-hosted). You can still move, but expect schema-mapping, export tooling and a longer cutover window. Budget engineering time accordingly."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Both tools tie at 4/5 for developer experience on our scoring. The real difference will show up in your specific workflow, not the headline rating. A one-hour spike on both is the fastest way to decide."
+    },
+    {
+      "q": "Is Zipy a good alternative to MIMIC Replay?",
+      "a": "Zipy is pitched at ux debugging and optimization, which overlaps with MIMIC Replay's fit (privacy-sensitive teams with engineering capacity to self-host replay) but is not identical. Note that Zipy is explicitly not for apps with strict privacy requirements (healthcare), so it only replaces MIMIC Replay if you are outside that exclusion. The lock-in profile differs (high vs medium), which is the main thing to weigh."
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "intro": "The most concrete split between Alter and ARMO is the pricing model: Alter runs on custom pricing only (no public tier), while ARMO uses freemium. That shapes how predictable your monthly spend is and how much of the cost sits in infrastructure versus per-seat or per-event fees. Beyond the headline, Alter carries low lock-in (proprietary agent identity platform with custom protocols) and custom pricing only (no public tier); ARMO carries medium lock-in (kubescape oss backed) and freemium. Alter is a fit when you are mobile. ARMO is a fit when you are mobile. The honest trade-off: Alter is explicitly not for hobby projects; ARMO is explicitly not for hobby projects. On the product side, Alter is described as Security Scanning / Mobile App Sec tool for developers. Specializes in Agent Identity, and ARMO is described as Security Scanning / Mobile App Sec tool for developers. Specializes in Kubernetes Security. Common Alter use cases include vulnerability scanning in ci/cd. Common ARMO use cases include vulnerability scanning in ci/cd.",
+  "quick_take": "Alter is for mobile; ARMO is for mobile; decide on pricing model.",
+  "verdict_a": "Choose Alter if its custom pricing model fits your budget shape better than ARMO's freemium model, and you are mobile.",
+  "verdict_b": "Choose ARMO if you need a free tier to start before committing budget, and your use case matches mobile.",
+  "faq": [
+    {
+      "q": "Is Alter cheaper than ARMO?",
+      "a": "ARMO has a free tier; Alter does not. For small-scale use ARMO will be cheaper. At paid scale the pricing models differ and the comparison depends on your volume."
+    },
+    {
+      "q": "Can I migrate from Alter to ARMO?",
+      "a": "Migration from Alter to ARMO is plausible because Alter has low lock-in (proprietary agent identity platform with custom protocols). You would still have to map config, permissions and integrations to ARMO's model. Plan for dual-run and rollback."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "On our scoring ARMO rates 5/5 for developer experience versus 3/5 for Alter. That suggests ARMO feels more polished for everyday developer tasks. We still recommend a short hands-on trial on your stack before standardising."
+    },
+    {
+      "q": "Is ARMO a good alternative to Alter?",
+      "a": "ARMO targets the same best-fit audience as Alter (mobile). Note that ARMO is explicitly not for hobby projects, so it only replaces Alter if you are outside that exclusion. The lock-in profile differs (low vs medium), which is the main thing to weigh."
+    }
+  ]
+}

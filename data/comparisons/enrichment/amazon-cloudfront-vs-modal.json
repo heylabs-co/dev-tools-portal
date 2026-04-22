@@ -1,0 +1,24 @@
+{
+  "intro": "The biggest real distinction between Amazon CloudFront and Modal is straightforward: Amazon CloudFront uses freemium with a paid tier from $0/month, enterprise plan available; Modal uses usage-based pricing starting at $30 / month, a free tier, enterprise plan available. Amazon CloudFront sits at freemium with a paid tier from $0/month, enterprise plan available and carries moderate lock-in, while Modal sits at usage-based pricing starting at $30 / month, a free tier, enterprise plan available and carries moderate lock-in. Amazon CloudFront is a fit when you need global — typical scenarios include global audience with low latency needs. Modal is aimed at global, with workloads like global audience with low latency needs as the common case. The honest trade-off: Amazon CloudFront is explicitly not for internal projects; Modal is not intended for internal projects. On cost specifically, pricing model matters more than sticker price — one workload can make Amazon CloudFront cheaper while a different shape flips the answer to Modal.",
+  "quick_take": "Amazon CloudFront is for global; Modal is for global; decide based on cost model and budget.",
+  "verdict_a": "Choose Amazon CloudFront if your primary workload is global and the free tier plus $0/month paid tier fits your budget.",
+  "verdict_b": "Choose Modal if your primary workload is global and you prefer usage-based pricing (starts at $30 / month).",
+  "faq": [
+    {
+      "q": "Is Amazon CloudFront cheaper than Modal?",
+      "a": "It depends on workload shape: Amazon CloudFront lists $0/month, while Modal lists $30 / month. With different pricing models (freemium vs usage), the cheaper option flips based on seat count, usage volume, and whether you use the free tier. Do a per-workload estimate rather than comparing headline numbers."
+    },
+    {
+      "q": "Can I migrate from Amazon CloudFront to Modal?",
+      "a": "Migrating from Amazon CloudFront to Modal is doable but not automatic — Amazon CloudFront carries moderate lock-in. Since both tools sit in the same category (CDN / Edge / Acceleration), the conceptual mapping is closer, but you still need to validate feature parity against your specific workload. Plan migration as a project, not a script: inventory integrations, test on non-production workloads, and keep Amazon CloudFront running in parallel until Modal is verified."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "On our 0–5 developer experience scale, Modal scores higher (5/5 vs 4/5 for Amazon CloudFront). The gap is one point — meaningful but not decisive, since DX is workflow-dependent. Still, score your own tasks: DX is subjective and tied to stack assumptions."
+    },
+    {
+      "q": "Is Modal a good alternative to Amazon CloudFront?",
+      "a": "Modal is in the same category as Amazon CloudFront (CDN / Edge / Acceleration), so it's a reasonable alternative to evaluate. Both tools claim similar best-fit workloads on paper, so the real test is how each behaves under your specific constraints. Note that Modal is explicitly not for internal projects — if that describes your workload, it's not a viable replacement."
+    }
+  ]
+}

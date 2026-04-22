@@ -1,0 +1,24 @@
+{
+  "intro": "Retina and Qryn both show up under the observability category, but they solve slightly different jobs. Retina carries high lock-in, while Qryn sits at low lock-in. Retina fits teams working on eBPF-based network traffic visualization for Kubernetes, while Qryn is a closer match when the job is drop-in Loki, Prometheus, and Tempo on ClickHouse. Worth noting: Retina is explicitly not for teams already running Cilium with Hubble or needing polished commercial support; Qryn is explicitly not for teams without ClickHouse expertise or wanting turnkey hosted experience. The honest trade-off: Retina trades off on still early vs Cilium Hubble maturity; Qryn trades off on ClickHouse ops skills needed for self-hosting. On the plus side, Retina highlights open-source from Microsoft with active development, while Qryn points to ClickHouse backend supports Loki, Prom, Tempo, DD APIs. Retina's documentation also calls out eBPF-based, low overhead on K8s nodes. Qryn similarly notes single storage across telemetry types cuts costs.",
+  "quick_take": "Retina is for eBPF-based network traffic visualization for Kubernetes; Qryn is for drop-in Loki, Prometheus, and Tempo on; decide on lock-in tolerance.",
+  "verdict_a": "Choose Retina if your project is eBPF-based network traffic visualization for Kubernetes, you are willing to accept the high lock-in called out in our data.",
+  "verdict_b": "Choose Qryn if your project is drop-in Loki, Prometheus, and Tempo on ClickHouse, you want to keep future migration cheap.",
+  "faq": [
+    {
+      "q": "Is Retina cheaper than Qryn?",
+      "a": "Retina uses a free model, and Qryn uses a free model. Without full pricing pages to compare, we can't rank them on price alone — check each vendor's current rates for your workload."
+    },
+    {
+      "q": "Can I migrate from Retina to Qryn?",
+      "a": "Our data puts Retina at high lock-in (free oss ebpf k8s observability), and Qryn at low lock-in (oss observability stack). Expect real migration work out of Retina — plan for data export, re-integration, and downtime testing before cutting over."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Both score 4/5 on developer experience in our data, so there's no clear winner on that axis. The better fit depends on which SDK matches your stack and which docs your team finds clearer during evaluation."
+    },
+    {
+      "q": "Is Qryn a good alternative to Retina?",
+      "a": "Qryn is a reasonable alternative to Retina when your workload leans more toward teams wanting unified ClickHouse storage for LGTM stack without Grafana Cloud bills than kubernetes network engineers wanting a vendor-neutral eBPF observability tool. One caveat: Qryn is explicitly not for teams without ClickHouse expertise or wanting turnkey hosted experience, so check that constraint against your use-case before switching."
+    }
+  ]
+}

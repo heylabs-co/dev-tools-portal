@@ -1,0 +1,24 @@
+{
+  "intro": "Airbyte is an open-source ELT platform with 300+ connectors and a subscription starting at $10/month with a free tier; Apache NiFi is an Apache OSS data-flow platform for routing and transforming data with built-in provenance tracking. The clearest real distinction is packaging and commercial support: Airbyte has a hosted cloud tier and a paid subscription with enterprise tiers available; NiFi is purely OSS with no listed pricing and no free tier in the data, and no first-party hosted service. Airbyte fits teams that want managed ELT connectors, SOC 2 and ISO 27001 prep workflows, and a vendor to call when things break. NiFi fits teams that want a flexible flow-based data router they operate themselves, with strong provenance for audit evidence. Airbyte is rated high lock-in despite being OSS (because of its connector ecosystem); NiFi is rated low lock-in as pure Apache OSS. Both score 4 for DX. You trade Airbyte's managed experience and support for NiFi's flow-based flexibility and full ownership.",
+  "quick_take": "Airbyte is for managed ELT with a rich connector catalog; Apache NiFi is for self-run flow-based data routing with provenance; decide based on managed-service preference.",
+  "verdict_a": "Choose Airbyte if you want managed ELT with 300+ connectors and a subscription from $10/month to support SOC 2 and ISO 27001 evidence collection.",
+  "verdict_b": "Choose Apache NiFi if you want a purely OSS Apache data-flow platform with provenance tracking and are willing to operate it yourself without a vendor contract.",
+  "faq": [
+    {
+      "q": "Is Airbyte cheaper than Apache NiFi?",
+      "a": "Airbyte is subscription from $10/month with a free tier. Apache NiFi's pricing isn't publicly disclosed beyond being OSS with no free tier listed in the data. The NiFi software itself is free under Apache, but you pay for the infrastructure and operators. Below a certain scale Airbyte's cloud tier is cheaper total; at larger scale NiFi on owned infra can be cheaper if you already have the ops team."
+    },
+    {
+      "q": "Can I migrate from Airbyte to Apache NiFi?",
+      "a": "Airbyte is rated high lock-in because of its OSS connector ecosystem, while NiFi is rated low lock-in as an Apache OSS platform. Both are OSS, but their models differ: Airbyte thinks in connectors and ELT jobs; NiFi thinks in flow files and processors. A migration is a rebuild, not a config export."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Both score 4 for DX. Airbyte's DX shines when a connector already exists and you want ELT quickly; NiFi scores higher on transparency (5 vs 4) and shines when you need fine-grained flow control and provenance. Neither is objectively better - they optimise for different data patterns."
+    },
+    {
+      "q": "Is Apache NiFi a good alternative to Airbyte?",
+      "a": "For teams with ops capacity, yes. Both list SOC 2 and ISO 27001 preparation and continuous compliance monitoring as best_for, and both share a not_for of pre-revenue startups without enterprise compliance needs. NiFi lacks Airbyte's managed cloud and paid support, so the trade is ownership for convenience."
+    }
+  ]
+}

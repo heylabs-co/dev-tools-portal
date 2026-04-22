@@ -1,0 +1,24 @@
+{
+  "intro": "The pivotal question between MindsDB and Bolt.new is how much of your setup stays portable: MindsDB carries high lock-in and Bolt.new carries low lock-in. MindsDB is in-database AI — query LLMs and ML models with SQL. Bolt.new is browser-based full-stack AI app builder from StackBlitz with WebContainers. Pick MindsDB when the job is analysts and engineers building ai agents over many heterogeneous data sources and you accept high lock-in; pick Bolt.new when it is apps and you accept low lock-in. The data we have shows MindsDB at mostly transparent pricing and docs with solid developer experience, and Bolt.new at mostly transparent pricing and docs with a polished developer experience. The honest trade-off: neither is universal — MindsDB is a poor fit for teams needing hand-tuned performance on a single warehouse, and Bolt.new is a poor fit for simple projects. Match the pricing model and lock-in level to how your team actually works, not the feature list.",
+  "quick_take": "MindsDB is for in-database AI — query LLMs and ML; Bolt.new is for browser-based full-stack AI app builder from StackBlitz; decide based on how portable the setup must stay.",
+  "verdict_a": "Choose MindsDB if deep integration is an acceptable price for the depth it buys and the work maps to in-database AI — query LLMs and ML models with SQL.",
+  "verdict_b": "Choose Bolt.new if day-to-day developer ergonomics are a priority and the work lines up with browser-based full-stack AI app builder from StackBlitz with WebContainers.",
+  "faq": [
+    {
+      "q": "Is MindsDB cheaper than Bolt.new?",
+      "a": "We can't verify the comparison: MindsDB doesn't publish an entry price (freemium model), while Bolt.new starts at $0 (freemium). Ask MindsDB sales for a quote that matches your scale."
+    },
+    {
+      "q": "Can I migrate from MindsDB to Bolt.new?",
+      "a": "Leaving MindsDB for Bolt.new is the harder direction: MindsDB is rated high lock-in, so exporting data and rebuilding integrations is the main cost. Going the other way (Bolt.new to MindsDB) is usually easier."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Bolt.new scores higher on developer experience in our data (5/5 vs 4/5). The gap usually shows up in setup friction and daily workflow speed. Confirm it on your own stack before treating the rating as final."
+    },
+    {
+      "q": "Is Bolt.new a good alternative to MindsDB?",
+      "a": "Yes — Bolt.new is a reasonable alternative to MindsDB for analysts and engineers building ai agents over many heterogeneous data sources. The practical differences are freemium-vs-freemium billing and high-vs-low lock-in. If those fit your constraints better, treat Bolt.new as a credible swap."
+    }
+  ]
+}

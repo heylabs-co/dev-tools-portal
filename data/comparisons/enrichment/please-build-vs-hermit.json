@@ -1,0 +1,24 @@
+{
+  "intro": "Please Build and Hermit both sit in the Monorepo & Build Systems space. Please Build is positioned for mid-size polyglot teams wanting bazel ideas with less ceremony, while Hermit leans toward monorepos wanting pinned cli toolchains without adopting nix. In practice, High-performance polyglot build system inspired by Bazel and Buck, written in Go. Supports hermetic builds, remote caching, and incremental compilation for Go, Python, Java, and more. Hermetic tool management system for monorepos that installs per-project development tools without polluting the system PATH. Ensures all developers and CI use identical toolchain versions. Please Build runs on free with a free tier; Hermit runs on free with a free tier. Listed strengths unique to Please Build include bazel-like hermetic builds with simpler setup, while Hermit lists per-project tool installs without polluting path on its side. Reach for Please Build when you need hermetic incremental builds for go, python, and java; reach for Hermit when the job is lock toolchain versions per project without system path pollution. The honest trade-off: Please Build is not built for large orgs needing the deepest rule.",
+  "quick_take": "Please Build is for mid-size polyglot teams wanting bazel ideas with less ceremony; Hermit is for monorepos wanting pinned cli toolchains without adopting nix; decide based on which use case.",
+  "verdict_a": "Choose Please Build if mid-size polyglot teams wanting bazel ideas with less ceremony and you need a free tier to validate fit.",
+  "verdict_b": "Choose Hermit if monorepos wanting pinned cli toolchains without adopting nix and you need a free tier to validate fit.",
+  "faq": [
+    {
+      "q": "Is Please Build cheaper than Hermit?",
+      "a": "Both Please Build and Hermit expose free tiers with no headline entry price listed. The real comparison happens once you cross the free limits, and that pricing isn't captured in the summary data. Check each tool's pricing page for your volume band."
+    },
+    {
+      "q": "Can I migrate from Please Build to Hermit?",
+      "a": "Technically you can move between any two tools in the same category, but effort varies: leaving Please Build is relatively light thanks to its low lock-in, and onboarding to Hermit should be straightforward given its low lock-in. Plan for data export, re-integration, and a parallel-run window rather than a hard cutover."
+    },
+    {
+      "q": "Which has better developer experience, Please Build or Hermit?",
+      "a": "Both Please Build and Hermit score 4/5 on developer experience in our data, so there's no clear winner on that axis alone. The real differentiator usually lands in SDK fit for your language, error handling, and docs depth. A half-day integration spike tells you more than the score."
+    },
+    {
+      "q": "Is Hermit a good alternative to Please Build?",
+      "a": "Hermit is an alternative in the same category, but its stated sweet spot is monorepos wanting pinned cli toolchains without adopting nix, while Please Build's is mid-size polyglot teams wanting bazel ideas with less ceremony. If your job matches Please Build's profile more closely, switching to Hermit is a compromise. Use the best-fit match, not brand familiarity, to decide. Note: Hermit is explicitly not for teams needing reproducible services, databases, or full sandboxes."
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "intro": "OpenLIT and Sensu Go both show up under the observability category, but they solve slightly different jobs. OpenLIT uses a free model, while Sensu Go runs on undisclosed pricing with free tier. Both sit at high lock-in. Transparency lands at 5/5 versus 4/5. OpenLIT fits teams working on OpenTelemetry observability for LLM and GenAI stacks, while Sensu Go is a closer match when the job is event-driven monitoring for hybrid cloud infrastructure. Worth noting: OpenLIT is explicitly not for teams preferring polished managed LLMOps with evals and PM-friendly UX; Sensu Go is explicitly not for cloud-native teams already standardized on Prometheus and Grafana. The honest trade-off: OpenLIT trades off on young project with evolving APIs; Sensu Go trades off on configuration complexity vs Prometheus. On the plus side, OpenLIT highlights OTel-native tracing for LLM and GenAI apps, while Sensu Go points to event-driven architecture scales horizontally. OpenLIT's documentation also calls out open-source with Apache 2.0 license. Sensu Go similarly notes open-source core with commercial options.",
+  "quick_take": "OpenLIT is for OpenTelemetry observability for LLM and GenAI; Sensu Go is for event-driven monitoring for hybrid cloud infrastructure; decide on pricing model.",
+  "verdict_a": "Choose OpenLIT if your project is OpenTelemetry observability for LLM and GenAI stacks, you are willing to accept the high lock-in called out in our data.",
+  "verdict_b": "Choose Sensu Go if your project is event-driven monitoring for hybrid cloud infrastructure, you are willing to accept the high lock-in called out in our data.",
+  "faq": [
+    {
+      "q": "Is OpenLIT cheaper than Sensu Go?",
+      "a": "OpenLIT uses a free model, and Sensu Go uses undisclosed pricing with free tier. The pricing models are different, so a direct cheaper-than comparison depends on your volume and usage pattern."
+    },
+    {
+      "q": "Can I migrate from OpenLIT to Sensu Go?",
+      "a": "Our data puts OpenLIT at high lock-in, and Sensu Go at high lock-in (oss monitoring, configs portable). Expect real migration work out of OpenLIT — plan for data export, re-integration, and downtime testing before cutting over."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Both score 4/5 on developer experience in our data, so there's no clear winner on that axis. OpenLIT does edge ahead on pricing/docs transparency (5/5 vs 4/5), which can make evaluation faster."
+    },
+    {
+      "q": "Is Sensu Go a good alternative to OpenLIT?",
+      "a": "Sensu Go is a reasonable alternative to OpenLIT when your workload leans more toward hybrid infrastructure teams needing event-driven monitoring across cloud and on-prem than teams wanting vendor-neutral LLM observability tied to existing OTel pipelines. The pricing model shifts too — OpenLIT is a free model, Sensu Go is undisclosed pricing with free tier — so expect the cost profile to change as well. One caveat: Sensu Go is explicitly not for cloud-native teams already standardized on Prometheus and Grafana, so check that constraint against your use-case before switching."
+    }
+  ]
+}

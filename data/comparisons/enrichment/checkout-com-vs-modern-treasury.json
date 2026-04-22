@@ -1,0 +1,24 @@
+{
+  "intro": "Checkout.com and Modern Treasury both show up under the payment gateway category, but they solve slightly different jobs. Checkout.com uses usage-based from custom pricing, while Modern Treasury runs on custom (sales-led) pricing. Both sit at moderate lock-in. Transparency lands at 4/5 versus 1/5. Checkout.com fits teams working on SaaS with online payments, while Modern Treasury is a closer match when the job is ACH, wire, and RTP payment operations with real-time ledgering API. Worth noting: Checkout.com is explicitly not for offline, Internal projects; Modern Treasury is explicitly not for merchants who mainly need card acceptance. The honest trade-off: Checkout.com trades off on offline-only retail; Modern Treasury trades off on US-bank-focused, limited globally. On the plus side, Checkout.com highlights SaaS with online payments, while Modern Treasury points to deep ACH, wire, RTP, FedNow coverage. Checkout.com's documentation also calls out e-commerce checkout. Modern Treasury similarly notes real-time ledgering built in. For teams evaluating payment gateway options today, the right choice usually comes down to pricing model, lock-in, and which tool's stated use-case maps to yours.",
+  "quick_take": "Checkout.com is for SaaS with online payments; Modern Treasury is for ACH, wire, and RTP payment operations; decide on pricing model.",
+  "verdict_a": "Choose Checkout.com if your project is SaaS with online payments, usage-based billing at custom pricing matches your volume, medium lock-in is an acceptable trade-off.",
+  "verdict_b": "Choose Modern Treasury if your project is ACH, wire, and RTP payment operations with real-time ledgering API, you are prepared for a sales-led custom-pricing conversation, medium lock-in is an acceptable trade-off.",
+  "faq": [
+    {
+      "q": "Is Checkout.com cheaper than Modern Treasury?",
+      "a": "Checkout.com uses usage-based from custom pricing, and Modern Treasury uses custom (sales-led) pricing. The pricing models are different, so a direct cheaper-than comparison depends on your volume and usage pattern."
+    },
+    {
+      "q": "Can I migrate from Checkout.com to Modern Treasury?",
+      "a": "Our data puts Checkout.com at medium lock-in, and Modern Treasury at medium lock-in (payment ops saas, custom integrations). Migration is feasible but not trivial — budget time for re-integration, data export, and parallel running before cutover."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Both score 5/5 on developer experience in our data, so there's no clear winner on that axis. Checkout.com does edge ahead on pricing/docs transparency (4/5 vs 1/5), which can make evaluation faster."
+    },
+    {
+      "q": "Is Modern Treasury a good alternative to Checkout.com?",
+      "a": "Modern Treasury is a reasonable alternative to Checkout.com when your workload leans more toward platforms and fintechs running high-volume bank transfers and ledgering in the US than SaaS, E-commerce, Marketplace. The pricing model shifts too — Checkout.com is usage-based from custom pricing, Modern Treasury is custom (sales-led) pricing — so expect the cost profile to change as well. One caveat: Modern Treasury is explicitly not for merchants who mainly need card acceptance, so check that constraint against your use-case before switching."
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "intro": "The biggest real split between Backstage and AWS API Gateway is lock-in posture: Backstage carries high lock-in (oss spotify platform), while AWS API Gateway carries low lock-in (aws-only, migration painful). That single fact shapes the rest of the comparison. Backstage is built for data warehouse syncing and is not a fit for simple, small projects. AWS API Gateway is built for data warehouse syncing and is not a fit for simple, small projects. On the scoring side, Backstage rates 4/5 for developer experience and 4/5 for transparency; AWS API Gateway rates 4/5 and 4/5 respectively. The honest trade-off: with Backstage you accept that simple api-to-api integrations, while AWS API Gateway comes with the reality that simple api-to-api integrations. Neither side is free. Backstage's headline strength in the data is that data warehouse syncing. AWS API Gateway's headline strength is that data warehouse syncing. Read each side's best-for and not-for fields carefully before you pick; the shape of your team and workflow matters more than any single score.",
+  "quick_take": "Backstage is for data warehouse syncing; AWS API Gateway is for data warehouse syncing; decide based on lock-in tolerance.",
+  "verdict_a": "Choose Backstage if you are data warehouse syncing and can accept high lock-in (oss spotify platform).",
+  "verdict_b": "Choose AWS API Gateway if you are data warehouse syncing and need low lock-in (aws-only, migration painful).",
+  "faq": [
+    {
+      "q": "Is Backstage cheaper than AWS API Gateway?",
+      "a": "Backstage uses a freemium model, while AWS API Gateway uses a subscription model, and both publish a free tier. We don't have per-seat numbers in this dataset, so 'cheaper' depends on volume. Price both on your actual usage before deciding."
+    },
+    {
+      "q": "Can I migrate from Backstage to AWS API Gateway?",
+      "a": "Backstage has high lock-in (oss spotify platform); AWS API Gateway has low lock-in (aws-only, migration painful). Migration effort scales with how much state and automation you've built in Backstage; plan for data export, config rebuild, and a parallel-run period before cutting over."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Both Backstage and AWS API Gateway score 4/5 on developer experience in our data, so DX isn't the tiebreaker here. Decide on fit, pricing, or lock-in instead."
+    },
+    {
+      "q": "Is AWS API Gateway a good alternative to Backstage?",
+      "a": "AWS API Gateway is built for data warehouse syncing and explicitly not for simple, small projects, so it's a fit only if your workflow matches its stated audience. If you were using Backstage for data warehouse syncing, the switch is reasonable; outside that scope, look elsewhere."
+    }
+  ]
+}

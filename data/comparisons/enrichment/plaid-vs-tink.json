@@ -1,0 +1,24 @@
+{
+  "intro": "The most visible split between Plaid and Tink in our data is developer experience: Plaid scores 5/5, Tink scores 4/5. Plaid is Financial data network connecting apps to 12,000+ banks for account verification, income data, and identity checks; it fits best for Fintech, Marketplace. Tink is European open banking platform providing bank account aggregation, payment initiation, and income verification APIs; it fits best for Fintech, Marketplace. Pick Plaid for Fintech, Marketplace; pick Tink for Fintech, Marketplace. Plaid is not for consumer apps without regulatory requirements. Tink is not for consumer apps without regulatory requirements. Honest trade-offs: Plaid is weak for consumer apps without regulatory requirements, and Tink is weak for consumer apps without regulatory requirements — match to your real scenario. Both sit under the KYC / KYB / AML API umbrella, so your final call depends on pricing transparency, integration effort, and which listed not-for situations you can actually tolerate.",
+  "quick_take": "Plaid is for fintech, marketplace; Tink is for fintech, marketplace; decide based on developer experience.",
+  "verdict_a": "Choose Plaid if developer experience rated 5/5 is good enough and your fit is fintech, marketplace.",
+  "verdict_b": "Choose Tink if developer experience rated 4/5 matches your team's needs and your fit is fintech, marketplace.",
+  "faq": [
+    {
+      "q": "Is Plaid cheaper than Tink?",
+      "a": "A direct comparison depends on your usage profile and which pricing model fits better. Plaid uses subscription pricing with no free tier published. Tink uses subscription pricing with no free tier published."
+    },
+    {
+      "q": "Can I migrate from Plaid to Tink?",
+      "a": "Migration is workable but not trivial, since both sit around medium lock-in. Plan for data export, re-integration of SDKs, and re-testing flows before cutover. Verify exportable formats and feature parity against your live use cases before committing."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Plaid scores higher on developer experience (5/5 vs 4/5 for Tink). Evaluate against your own stack: read their docs, run a quick SDK spike, and check error handling. Self-assessing with a small prototype beats trusting any rating at face value."
+    },
+    {
+      "q": "Is Tink a good alternative to Plaid?",
+      "a": "Tink sits in the same category as Plaid, so it can be a reasonable alternative for overlapping use cases. Tink is best fit for fintech, marketplace. Note: Tink is not for consumer apps without regulatory requirements."
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "intro": "The pivotal question between Bump.sh and Azure OpenAI Service is how much of your setup stays portable: Bump.sh carries low lock-in and Azure OpenAI Service carries medium lock-in. Bump.sh is API documentation and change-tracking hub for OpenAPI/AsyncAPI schemas. Azure OpenAI Service is Azure-hosted OpenAI models with enterprise compliance and regional endpoints. Pick Bump.sh when the job is api gateway and rate limiting and you accept low lock-in; pick Azure OpenAI Service when it is api gateway and rate limiting and you accept medium lock-in. The data we have shows Bump.sh at mostly transparent pricing and docs with a polished developer experience, and Azure OpenAI Service at mostly transparent pricing and docs with solid developer experience. The honest trade-off: neither is universal — Bump.sh is a poor fit for internal, simple projects, and Azure OpenAI Service is a poor fit for internal, simple projects. Match the pricing model and lock-in level to how your team actually works, not the feature list.",
+  "quick_take": "Bump.sh is for API documentation and change-tracking hub; Azure OpenAI Service is for Azure-hosted OpenAI models; decide based on how portable the setup must stay.",
+  "verdict_a": "Choose Bump.sh if keeping the configuration portable matters and the work maps to API documentation and change-tracking hub for OpenAPI/AsyncAPI schemas.",
+  "verdict_b": "Choose Azure OpenAI Service if solid but not perfect DX is acceptable and the work lines up with Azure-hosted OpenAI models with enterprise compliance and regional endpoints.",
+  "faq": [
+    {
+      "q": "Is Bump.sh cheaper than Azure OpenAI Service?",
+      "a": "Bump.sh starts at $50 on a subscription model; Azure OpenAI Service starts at $1 on a subscription model. That makes the sticker comparison depend on usage — a low entry price can get expensive once volume ramps, so price at your actual workload."
+    },
+    {
+      "q": "Can I migrate from Bump.sh to Azure OpenAI Service?",
+      "a": "Migration is possible in either direction. Bump.sh carries low lock-in and Azure OpenAI Service carries medium lock-in, so plan for meaningful but not blocking rework. Run both in parallel before you fully cut over."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Bump.sh scores higher on developer experience in our data (5/5 vs 4/5). That reflects public feedback on docs, onboarding, and day-to-day ergonomics. Still, run a spike with your own code — DX ratings don't capture every edge."
+    },
+    {
+      "q": "Is Azure OpenAI Service a good alternative to Bump.sh?",
+      "a": "Yes — Azure OpenAI Service is a reasonable alternative to Bump.sh for api gateway and rate limiting. The practical differences are subscription-vs-subscription billing and low-vs-medium lock-in. If those fit your constraints better, treat Azure OpenAI Service as a credible swap."
+    }
+  ]
+}

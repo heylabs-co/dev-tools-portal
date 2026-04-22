@@ -1,0 +1,24 @@
+{
+  "intro": "Apache SkyWalking and Elastic bill differently, which matters more than feature parity here — Apache SkyWalking is priced per seat with no public entry tier, while Elastic sells a subscription from $95/mo (Standard Cloud) with a free tier. Apache SkyWalking is open-source APM with distributed tracing and service-mesh observability. Elastic is Elasticsearch-based observability and search (APM, logs, SIEM). Pick Apache SkyWalking when the job is microservices performance monitoring and you accept low lock-in; pick Elastic when it is microservices performance monitoring and you accept low lock-in. The data we have shows Apache SkyWalking at some public pricing / roadmap detail with solid developer experience, and Elastic at mostly transparent pricing and docs with a polished developer experience. The honest trade-off: neither is universal — Apache SkyWalking is a poor fit for simple, static projects, and Elastic is a poor fit for simple, static projects. Match the pricing model and lock-in level to how your team actually works, not the feature list.",
+  "quick_take": "Apache SkyWalking is for open-source APM; Elastic is for Elasticsearch-based observability and search (APM; decide based on pricing model fit.",
+  "verdict_a": "Choose Apache SkyWalking if you're comfortable without published pricing and the work maps to open-source APM with distributed tracing and service-mesh observability.",
+  "verdict_b": "Choose Elastic if you need public pricing and docs before committing and the work lines up with Elasticsearch-based observability and search (APM, logs, SIEM).",
+  "faq": [
+    {
+      "q": "Is Apache SkyWalking cheaper than Elastic?",
+      "a": "We can't verify the comparison: Apache SkyWalking doesn't publish an entry price (seat model), while Elastic starts at $95/mo (Standard Cloud) (subscription). Ask Apache SkyWalking sales for a quote that matches your scale."
+    },
+    {
+      "q": "Can I migrate from Apache SkyWalking to Elastic?",
+      "a": "Migration in either direction is relatively cheap — both Apache SkyWalking and Elastic are rated low lock-in, so your configuration and data should port without a rewrite. The realistic cost is team re-training and pipeline QA, not the tools themselves."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Elastic scores higher on developer experience in our data (5/5 vs 4/5). The gap usually shows up in setup friction and daily workflow speed. Confirm it on your own stack before treating the rating as final."
+    },
+    {
+      "q": "Is Elastic a good alternative to Apache SkyWalking?",
+      "a": "Yes — Elastic is a reasonable alternative to Apache SkyWalking for microservices performance monitoring. The practical differences are seat-vs-subscription billing and low-vs-low lock-in. If those fit your constraints better, treat Elastic as a credible swap."
+    }
+  ]
+}

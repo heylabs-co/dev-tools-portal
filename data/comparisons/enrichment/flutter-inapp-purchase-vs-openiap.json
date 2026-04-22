@@ -1,0 +1,24 @@
+{
+  "intro": "flutter_inapp_purchase sits at low lock-in (OSS Flutter IAP plugin); OpenIAP sits at high lock-in (open spec for IAP). Flutter_inapp_purchase: Open-source Flutter IAP plugin aligned with OpenIAP spec, supporting StoreKit 2 and Play Billing 8 via type-safe bindings. OpenIAP: Open cross-platform IAP specification unifying types, error codes and purchase flows across iOS StoreKit and Google Play Billing. Flutter_inapp_purchase fits flutter teams wanting OpenIAP-aligned IAP without a managed backend. OpenIAP fits OSS library authors and engineers standardizing IAP across platforms. Both land at 4/5 for developer experience and 5/5 for transparency on our rubric. The honest trade-off: flutter_inapp_purchase's main drawback — Still a low-level library, not a paywall service; OpenIAP's — Spec still maturing, breaking changes possible. One point in flutter_inapp_purchase's favour: OpenIAP-aligned API across iOS and Android. For OpenIAP: Open spec unifying IAP types across platforms. Flutter_inapp_purchase is explicitly not the right pick for teams that prefer fully managed subscription infrastructure. OpenIAP is not aimed at product teams looking for a ready-made subscription service.",
+  "quick_take": "flutter_inapp_purchase is for flutter teams; OpenIAP is for OSS library authors; decide on lock-in tolerance.",
+  "verdict_a": "Choose flutter_inapp_purchase if flutter teams wanting OpenIAP-aligned IAP without a managed backend, and if portability and keeping the exit door open matter.",
+  "verdict_b": "Choose OpenIAP if OSS library authors and engineers standardizing IAP across platforms, and if you accept tighter coupling in exchange for the managed surface.",
+  "faq": [
+    {
+      "q": "Is flutter_inapp_purchase cheaper than OpenIAP?",
+      "a": "Both tools use free pricing, so a clean list-price comparison depends on tier details that vary by usage. Check each vendor's current plan page for your expected volume. Neither is structurally cheaper on the model alone."
+    },
+    {
+      "q": "Can I migrate from flutter_inapp_purchase to OpenIAP?",
+      "a": "Migrating out of flutter_inapp_purchase is straightforward — it's rated low lock-in (OSS Flutter IAP plugin). The harder question is how deeply you commit to OpenIAP afterward, since it sits at high lock-in (open spec for IAP). Plan the forward cost, not just the exit."
+    },
+    {
+      "q": "Which has better developer experience, flutter_inapp_purchase or OpenIAP?",
+      "a": "Both score 4/5 for developer experience in our rubric, so neither has a structural edge. The practical answer depends on stack fit: flutter_inapp_purchase's ergonomics suit some workflows, OpenIAP's suit others. Try both on a throwaway project before committing."
+    },
+    {
+      "q": "Is OpenIAP a good alternative to flutter_inapp_purchase?",
+      "a": "They sit in the same category, so yes — OpenIAP is a plausible alternative for many flutter_inapp_purchase use cases. It fits best when OSS library authors and engineers standardizing IAP across platforms. Skip it if product teams looking for a ready-made subscription service."
+    }
+  ]
+}

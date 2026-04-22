@@ -1,0 +1,24 @@
+{
+  "intro": "The clearest split between FormatJS and Weblate is how they charge: FormatJS uses free and open source, while Weblate uses a free tier plus paid plans. FormatJS specializes in Internationalization; it fits best for Mobile. Weblate specializes in Translation Management; it fits best for Global products launching in multiple markets. Pick FormatJS for Mobile; pick Weblate for Global products launching in multiple markets. FormatJS is not for hobby projects. Weblate is not for single-language apps or internal tools. Honest trade-offs: FormatJS is weak for manual deployment is sufficient, and Weblate is weak for machine translation quality varies by language pair — match to your real scenario. Both sit under the Localization / Translation API umbrella, so your final call depends on pricing transparency, integration effort, and which listed not-for situations you can actually tolerate. On pricing, FormatJS uses free and open source and Weblate uses a free tier plus paid plans, which materially changes total cost at scale.",
+  "quick_take": "FormatJS is for mobile; Weblate is for global products launching in multiple markets; decide based on pricing model.",
+  "verdict_a": "Choose FormatJS if you want free and open source and your workload matches mobile.",
+  "verdict_b": "Choose Weblate if you want a free tier plus paid plans and your workload matches global products launching in multiple markets.",
+  "faq": [
+    {
+      "q": "Is FormatJS cheaper than Weblate?",
+      "a": "FormatJS is the cheaper option on paper since it is open source, while Weblate is paid. FormatJS is free and open source. Weblate offers a free tier."
+    },
+    {
+      "q": "Can I migrate from FormatJS to Weblate?",
+      "a": "Migration between these is relatively straightforward since both are rated as low lock-in. Plan for data export, re-integration of SDKs, and re-testing flows before cutover. Verify exportable formats and feature parity against your live use cases before committing."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "FormatJS scores higher on developer experience (5/5 vs 4/5 for Weblate). Evaluate against your own stack: read their docs, run a quick SDK spike, and check error handling. Self-assessing with a small prototype beats trusting any rating at face value."
+    },
+    {
+      "q": "Is Weblate a good alternative to FormatJS?",
+      "a": "Weblate sits in the same category as FormatJS, so it can be a reasonable alternative for overlapping use cases. Weblate is best fit for global products launching in multiple markets. Note: Weblate is not for single-language apps or internal tools."
+    }
+  ]
+}

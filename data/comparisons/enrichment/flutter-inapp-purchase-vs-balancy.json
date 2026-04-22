@@ -1,0 +1,24 @@
+{
+  "intro": "Balancy is freemium with a free tier; flutter_inapp_purchase is free and open source. Flutter_inapp_purchase: Open-source Flutter IAP plugin aligned with OpenIAP spec, supporting StoreKit 2 and Play Billing 8 via type-safe bindings. Balancy: No-code LiveOps and monetization platform for mobile games with smart offers, virtual economy CMS and A/B testing. Flutter_inapp_purchase fits flutter teams wanting OpenIAP-aligned IAP without a managed backend. Balancy fits mobile game teams whose designers ship offers and events weekly. On our rubric flutter_inapp_purchase scores 4/5 for developer experience and 5/5 for transparency, while Balancy scores 4/5 and 4/5. The honest trade-off: flutter_inapp_purchase's main drawback — Still a low-level library, not a paywall service; Balancy's — Another runtime dependency in your game stack. One point in flutter_inapp_purchase's favour: OpenIAP-aligned API across iOS and Android. For Balancy: No-code LiveOps lets designers ship offers and events. Flutter_inapp_purchase is explicitly not the right pick for teams that prefer fully managed subscription infrastructure. Balancy is not aimed at studios already deep in PlayFab or custom backend economy tooling.",
+  "quick_take": "flutter_inapp_purchase is for flutter teams; Balancy is for mobile game teams whose designers ship offers; decide on pricing model.",
+  "verdict_a": "Choose flutter_inapp_purchase if flutter teams wanting OpenIAP-aligned IAP without a managed backend, and if you want to avoid recurring license costs and are willing to self-host.",
+  "verdict_b": "Choose Balancy if mobile game teams whose designers ship offers and events weekly, and if you accept tighter coupling in exchange for the managed surface.",
+  "faq": [
+    {
+      "q": "Is flutter_inapp_purchase cheaper than Balancy?",
+      "a": "Yes on list price: flutter_inapp_purchase is free and open source, while Balancy runs on freemium pricing. Keep in mind that flutter_inapp_purchase shifts costs to hosting, ops, and engineering time. Total cost of ownership can flip depending on your team's capacity."
+    },
+    {
+      "q": "Can I migrate from flutter_inapp_purchase to Balancy?",
+      "a": "Migrating out of flutter_inapp_purchase is straightforward — it's rated low lock-in (OSS Flutter IAP plugin). The harder question is how deeply you commit to Balancy afterward, since it sits at medium lock-in (LiveOps config exportable). Plan the forward cost, not just the exit."
+    },
+    {
+      "q": "Which has better developer experience, flutter_inapp_purchase or Balancy?",
+      "a": "Both score 4/5 for developer experience in our rubric, so neither has a structural edge. The practical answer depends on stack fit: flutter_inapp_purchase's ergonomics suit some workflows, Balancy's suit others. Try both on a throwaway project before committing."
+    },
+    {
+      "q": "Is Balancy a good alternative to flutter_inapp_purchase?",
+      "a": "They sit in the same category, so yes — Balancy is a plausible alternative for many flutter_inapp_purchase use cases. It fits best when mobile game teams whose designers ship offers and events weekly. Skip it if studios already deep in PlayFab or custom backend economy tooling."
+    }
+  ]
+}

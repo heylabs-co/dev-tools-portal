@@ -1,0 +1,24 @@
+{
+  "intro": "OpenLIT and Qryn both show up under the observability category, but they solve slightly different jobs. OpenLIT carries high lock-in, while Qryn sits at low lock-in. OpenLIT fits teams working on OpenTelemetry observability for LLM and GenAI stacks, while Qryn is a closer match when the job is drop-in Loki, Prometheus, and Tempo on ClickHouse. Worth noting: OpenLIT is explicitly not for teams preferring polished managed LLMOps with evals and PM-friendly UX; Qryn is explicitly not for teams without ClickHouse expertise or wanting turnkey hosted experience. The honest trade-off: OpenLIT trades off on young project with evolving APIs; Qryn trades off on ClickHouse ops skills needed for self-hosting. On the plus side, OpenLIT highlights OTel-native tracing for LLM and GenAI apps, while Qryn points to ClickHouse backend supports Loki, Prom, Tempo, DD APIs. OpenLIT's documentation also calls out open-source with Apache 2.0 license. Qryn similarly notes single storage across telemetry types cuts costs.",
+  "quick_take": "OpenLIT is for OpenTelemetry observability for LLM and GenAI; Qryn is for drop-in Loki, Prometheus, and Tempo on; decide on lock-in tolerance.",
+  "verdict_a": "Choose OpenLIT if your project is OpenTelemetry observability for LLM and GenAI stacks, you are willing to accept the high lock-in called out in our data.",
+  "verdict_b": "Choose Qryn if your project is drop-in Loki, Prometheus, and Tempo on ClickHouse, you want to keep future migration cheap.",
+  "faq": [
+    {
+      "q": "Is OpenLIT cheaper than Qryn?",
+      "a": "OpenLIT uses a free model, and Qryn uses a free model. Without full pricing pages to compare, we can't rank them on price alone — check each vendor's current rates for your workload."
+    },
+    {
+      "q": "Can I migrate from OpenLIT to Qryn?",
+      "a": "Our data puts OpenLIT at high lock-in, and Qryn at low lock-in (oss observability stack). Expect real migration work out of OpenLIT — plan for data export, re-integration, and downtime testing before cutting over."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Both score 4/5 on developer experience in our data, so there's no clear winner on that axis. The better fit depends on which SDK matches your stack and which docs your team finds clearer during evaluation."
+    },
+    {
+      "q": "Is Qryn a good alternative to OpenLIT?",
+      "a": "Qryn is a reasonable alternative to OpenLIT when your workload leans more toward teams wanting unified ClickHouse storage for LGTM stack without Grafana Cloud bills than teams wanting vendor-neutral LLM observability tied to existing OTel pipelines. One caveat: Qryn is explicitly not for teams without ClickHouse expertise or wanting turnkey hosted experience, so check that constraint against your use-case before switching."
+    }
+  ]
+}

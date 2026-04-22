@@ -1,0 +1,24 @@
+{
+  "intro": "The biggest real split between MongoDB Atlas and CockroachDB is lock-in posture: MongoDB Atlas carries medium lock-in (medium — mongodb query language proprietary ( sql), but mongodump standard), while CockroachDB carries low lock-in (low — postgresql-compatible, standard sql). That single fact shapes the rest of the comparison. MongoDB Atlas is built for apps, global and is not a fit for simple, offline projects. CockroachDB is built for apps, global and is not a fit for simple, offline projects. On the scoring side, MongoDB Atlas rates 5/5 for developer experience and 4/5 for transparency; CockroachDB rates 5/5 and 3/5 respectively. The honest trade-off: with MongoDB Atlas you accept that simple key-value storage needs, while CockroachDB comes with the reality that simple key-value storage needs. Neither side is free. MongoDB Atlas's headline strength in the data is that apps needing managed database. CockroachDB's headline strength is that apps needing managed database. Read each side's best-for and not-for fields carefully before you pick; the shape of your team and workflow matters more than any single score.",
+  "quick_take": "MongoDB Atlas is for apps, global; CockroachDB is for apps, global; decide based on lock-in tolerance.",
+  "verdict_a": "Choose MongoDB Atlas if you are apps, global and can accept medium lock-in (medium — mongodb query language proprietary ( sql), but mongodump standard).",
+  "verdict_b": "Choose CockroachDB if you are apps, global and need low lock-in (low — postgresql-compatible, standard sql).",
+  "faq": [
+    {
+      "q": "Is MongoDB Atlas cheaper than CockroachDB?",
+      "a": "Both list a hybrid pricing model in our data, and both publish a free tier. We don't have per-seat numbers in this dataset, so 'cheaper' depends on volume. Price both on your actual usage before deciding."
+    },
+    {
+      "q": "Can I migrate from MongoDB Atlas to CockroachDB?",
+      "a": "MongoDB Atlas has medium lock-in (medium — mongodb query language proprietary ( sql), but mongodump standard); CockroachDB has low lock-in (low — postgresql-compatible, standard sql). Migration effort scales with how much state and automation you've built in MongoDB Atlas; plan for data export, config rebuild, and a parallel-run period before cutting over."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Both MongoDB Atlas and CockroachDB score 5/5 on developer experience in our data, so DX isn't the tiebreaker here. Decide on fit, pricing, or lock-in instead."
+    },
+    {
+      "q": "Is CockroachDB a good alternative to MongoDB Atlas?",
+      "a": "CockroachDB is built for apps, global and explicitly not for simple, offline projects, so it's a fit only if your workflow matches its stated audience. If you were using MongoDB Atlas for apps, global, the switch is reasonable; outside that scope, look elsewhere."
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "intro": "Yuno and PaymentsOS both show up under the payments orchestration category, but they solve slightly different jobs. Yuno uses pricing that starts at $79, while PaymentsOS runs on custom (sales-led) pricing. Lock-in is low for Yuno and medium for PaymentsOS. Transparency lands at 2/5 versus 1/5. Yuno fits teams working on Multi-PSP routing for higher conversion, while PaymentsOS is a closer match when the job is smart routing across multiple PSPs for enterprise merchants. Worth noting: Yuno is explicitly not for single-market startups; PaymentsOS is explicitly not for dev-first teams expecting modern SDKs, open source, or fast product iteration. The honest trade-off: Yuno trades off on single-market startups; PaymentsOS trades off on legacy brand (Zooz) can signal older codebase. On the plus side, Yuno highlights Multi-PSP routing for higher conversion, while PaymentsOS points to established orchestrator with smart-routing track record. Yuno's documentation also calls out enterprise with multiple payment providers. PaymentsOS similarly notes owned by PayU, giving scale and stability.",
+  "quick_take": "Yuno is for Multi-PSP routing for higher conversion; PaymentsOS is for smart routing across multiple PSPs for; decide on pricing model.",
+  "verdict_a": "Choose Yuno if your project is Multi-PSP routing for higher conversion, you want to keep future migration cheap, you can tolerate Yuno's limited public transparency (2/5).",
+  "verdict_b": "Choose PaymentsOS if your project is smart routing across multiple PSPs for enterprise merchants, you are prepared for a sales-led custom-pricing conversation, medium lock-in is an acceptable trade-off.",
+  "faq": [
+    {
+      "q": "Is Yuno cheaper than PaymentsOS?",
+      "a": "Yuno uses pricing that starts at $79, and PaymentsOS uses custom (sales-led) pricing. The pricing models are different, so a direct cheaper-than comparison depends on your volume and usage pattern."
+    },
+    {
+      "q": "Can I migrate from Yuno to PaymentsOS?",
+      "a": "Our data puts Yuno at low lock-in (orchestration abstraction helps migration), and PaymentsOS at medium lock-in (payment orchestration, psp switchable). Moving from Yuno to PaymentsOS should be manageable, though you'll still need to replay integrations and re-test flows end-to-end."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Both score 4/5 on developer experience in our data, so there's no clear winner on that axis. Yuno does edge ahead on pricing/docs transparency (2/5 vs 1/5), which can make evaluation faster."
+    },
+    {
+      "q": "Is PaymentsOS a good alternative to Yuno?",
+      "a": "PaymentsOS is a reasonable alternative to Yuno when your workload leans more toward global enterprises comfortable with PayU-backed vendors and needing stable multi-PSP routing than enterprise. The pricing model shifts too — Yuno is pricing that starts at $79, PaymentsOS is custom (sales-led) pricing — so expect the cost profile to change as well. One caveat: PaymentsOS is explicitly not for dev-first teams expecting modern SDKs, open source, or fast product iteration, so check that constraint against your use-case before switching."
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "intro": "The clearest split is that 100ms uses a subscription model and Yjs uses a free model. 100ms is Real-time / WebSocket Infrastructure tool for developers; Yjs is CI/CD for Applications tool for developers. Specializes in Collaborative Editing (CRDT). The data points 100ms at chat applications and live collaboration features, and Yjs at automated build/test/deploy pipelines and team collaboration on code. Pricing: 100ms is subscription from $500 per month; Yjs is free, free tier. Lock-in is low for 100ms and low for Yjs, with DX at 4/5 vs 5/5 and transparency at 3/5 vs 5/5. On listed strengths, 100ms emphasises chat applications and live collaboration features, and Yjs emphasises managed pub/sub infrastructure removes server ops burden. Only 100ms lists an enterprise tier in the data. Honest trade-off: 100ms is not for static projects; Yjs is not for purely request-response apps with no real-time needs, so confirm the fit first, then weigh the pivotal factor above against your budget and lock-in tolerance.",
+  "quick_take": "100ms is for chat applications; Yjs is for apps with live features: chat, collaboration, gaming; decide based on which pricing model fits your budget.",
+  "verdict_a": "Choose 100ms if a subscription pricing model fits your procurement and your workload matches chat applications. Skip it if your context is static projects.",
+  "verdict_b": "Choose Yjs if a free pricing model fits your procurement and your workload matches apps with live features: chat, collaboration, gaming. Skip it if your context is purely request-response apps with no real-time needs.",
+  "faq": [
+    {
+      "q": "Is 100ms cheaper than Yjs?",
+      "a": "Entry pricing is listed as $500 per month for 100ms and unknown for Yjs. Both offer a free tier for getting started. Total cost at scale depends on usage and plan details that are not in this dataset, so confirm with each vendor."
+    },
+    {
+      "q": "Can I migrate from 100ms to Yjs?",
+      "a": "100ms is tagged with low lock-in (proprietary real-time sdk with custom session model; migration requires rewrite). Yjs is tagged with low lock-in (oss crdt library). Both sides are low lock-in, so a migration is feasible but still needs planning around data export and SDK rewrites."
+    },
+    {
+      "q": "Which has better developer experience, 100ms or Yjs?",
+      "a": "The dataset rates Yjs at 5/5 for developer experience and 100ms at 4/5, so Yjs scores higher. That score reflects overall polish rather than any single integration, so trial both against your stack before committing."
+    },
+    {
+      "q": "Is Yjs a good alternative to 100ms?",
+      "a": "Yjs is listed as fitting apps with live features: chat, collaboration, gaming, which overlaps with but is not identical to 100ms's scope. Yjs is flagged as not for purely request-response apps with no real-time needs, so confirm your context does not fall there."
+    }
+  ]
+}

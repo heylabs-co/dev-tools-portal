@@ -1,0 +1,24 @@
+{
+  "intro": "The biggest real distinction between Convex and AWS Amplify is straightforward: Convex carries high lock-in while AWS Amplify has low lock-in. Convex sits at hybrid pricing with $25/member/mo (Pro), a free tier, enterprise plan available and carries high lock-in, while AWS Amplify sits at freemium with a paid tier from $15/month, enterprise plan available and carries low lock-in. Convex is a fit when you need mobile, teams — typical scenarios include mvp/prototyping speed. AWS Amplify is aimed at mobile, teams, with workloads like mvp/prototyping speed as the common case. The honest trade-off: Convex is explicitly not for complex custom business logic; AWS Amplify is not intended for complex custom business logic. Lock-in is the factor most teams underestimate: Convex and AWS Amplify have different exit paths, and that shapes total cost of ownership over a two-to-three year horizon. Before committing, audit where each tool stores state, which APIs you depend on, and how painful a switch would be six months in.",
+  "quick_take": "Convex is for mobile, teams; AWS Amplify is for mobile, teams; decide based on how much lock-in you can accept.",
+  "verdict_a": "Choose Convex if your primary workload is mobile, teams and hybrid pricing ($25/member/mo (Pro)) is acceptable.",
+  "verdict_b": "Choose AWS Amplify if your primary workload is mobile, teams and the free tier plus $15/month paid tier fits your budget.",
+  "faq": [
+    {
+      "q": "Is Convex cheaper than AWS Amplify?",
+      "a": "It depends on workload shape: Convex lists $25/member/mo (Pro), while AWS Amplify lists $15/month. With different pricing models (hybrid vs freemium), the cheaper option flips based on seat count, usage volume, and whether you use the free tier. Do a per-workload estimate rather than comparing headline numbers."
+    },
+    {
+      "q": "Can I migrate from Convex to AWS Amplify?",
+      "a": "Migrating from Convex to AWS Amplify is not trivial — Convex has high lock-in, which typically means data formats, APIs, or stack assumptions that have to be rewritten. Since both tools sit in the same category (Backend-as-a-Service), the conceptual mapping is closer, but you still need to validate feature parity against your specific workload. Plan migration as a project, not a script: inventory integrations, test on non-production workloads, and keep Convex running in parallel until AWS Amplify is verified."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "On our 0–5 developer experience scale, Convex scores higher (5/5 vs 4/5 for AWS Amplify). The gap is one point — meaningful but not decisive, since DX is workflow-dependent. Still, score your own tasks: DX is subjective and tied to stack assumptions."
+    },
+    {
+      "q": "Is AWS Amplify a good alternative to Convex?",
+      "a": "AWS Amplify is in the same category as Convex (Backend-as-a-Service), so it's a reasonable alternative to evaluate. Both tools claim similar best-fit workloads on paper, so the real test is how each behaves under your specific constraints. Note that AWS Amplify is explicitly not for complex custom business logic — if that describes your workload, it's not a viable replacement."
+    }
+  ]
+}

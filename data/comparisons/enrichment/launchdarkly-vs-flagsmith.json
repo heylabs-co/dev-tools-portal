@@ -1,0 +1,24 @@
+{
+  "intro": "LaunchDarkly and Flagsmith both show up under the observability category, but they solve slightly different jobs. LaunchDarkly starts at $10/user/mo (Starter); Flagsmith starts at $99/mo (Start-Up, 500 users). Lock-in is high for LaunchDarkly and low for Flagsmith. Transparency lands at 3/5 versus 4/5. LaunchDarkly fits teams working on enterprise feature management at scale, while Flagsmith is a closer match when the job is distributed systems debugging. Worth noting: LaunchDarkly is explicitly not for budget projects; Flagsmith is explicitly not for non-technical projects. The honest trade-off: LaunchDarkly trades off on budget-sensitive — starts at $10/seat/month; Flagsmith trades off on single-server apps with basic logging. On the plus side, LaunchDarkly highlights enterprise feature management at scale, while Flagsmith points to distributed systems debugging. LaunchDarkly's documentation also calls out targeting by user context (plan, region, etc.). Flagsmith similarly notes log aggregation and analysis. For teams evaluating observability options today, the decision usually hinges on whether LaunchDarkly's profile or Flagsmith's profile maps more cleanly to the pricing model, lock-in tolerance, and scale your team can live with.",
+  "quick_take": "LaunchDarkly is for enterprise feature management at scale; Flagsmith is for distributed systems debugging; decide on entry price.",
+  "verdict_a": "Choose LaunchDarkly if your project is enterprise feature management at scale, you are willing to accept the high lock-in called out in our data, strong SDKs and docs (5/5) are a priority.",
+  "verdict_b": "Choose Flagsmith if your project is distributed systems debugging, you want to keep future migration cheap.",
+  "faq": [
+    {
+      "q": "Is LaunchDarkly cheaper than Flagsmith?",
+      "a": "LaunchDarkly uses pricing that starts at $10/user/mo (Starter), and Flagsmith uses pricing that starts at $99/mo (Start-Up, 500 users) with free tier. On published entry price, LaunchDarkly lists $10/user/mo (Starter) while Flagsmith lists $99/mo (Start-Up, 500 users) — but the real cost at your scale will depend on actual usage, not just the starting tier. Flagsmith offers a free tier; LaunchDarkly does not."
+    },
+    {
+      "q": "Can I migrate from LaunchDarkly to Flagsmith?",
+      "a": "Our data puts LaunchDarkly at high lock-in, and Flagsmith at low lock-in (open-source, self-hosted, audit codebase). Expect real migration work out of LaunchDarkly — plan for data export, re-integration, and downtime testing before cutting over."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "LaunchDarkly scores 5/5 on developer experience in our data, while Flagsmith scores 4/5, so LaunchDarkly has the edge on docs and SDK quality by that measure. Still, run a small integration spike on both before deciding — team familiarity with a given SDK style often matters more than a one-point score gap."
+    },
+    {
+      "q": "Is Flagsmith a good alternative to LaunchDarkly?",
+      "a": "Flagsmith is a reasonable alternative to LaunchDarkly when your workload leans more toward distributed systems debugging than enterprise. One caveat: Flagsmith is explicitly not for non-technical projects, so check that constraint against your use-case before switching."
+    }
+  ]
+}

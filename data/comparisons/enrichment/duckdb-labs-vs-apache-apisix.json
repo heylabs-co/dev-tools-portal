@@ -1,0 +1,24 @@
+{
+  "intro": "DuckDB Labs and Apache APISIX diverge first on pricing model: DuckDB Labs uses free pricing with a free tier, Apache APISIX uses freemium pricing with a free tier. Everything else flows from that commercial choice. DuckDB Labs is built for teams running duckdb at production scale needing core-team support and is not a fit for teams just experimenting with duckdb on laptops or small projects. Apache APISIX is built for data warehouse syncing and is not a fit for simple, small projects. On the scoring side, DuckDB Labs rates 5/5 for developer experience and 3/5 for transparency; Apache APISIX rates 5/5 and 4/5 respectively. The honest trade-off: with DuckDB Labs you accept that consultancy model, not a product you just buy, while Apache APISIX comes with the reality that simple api-to-api integrations. Neither side is free. DuckDB Labs's headline strength in the data is that creators of duckdb providing direct expertise.",
+  "quick_take": "DuckDB Labs is for teams running duckdb at production scale needing core-team support; Apache APISIX is for data warehouse syncing; decide based on pricing model.",
+  "verdict_a": "Choose DuckDB Labs if you are teams running duckdb at production scale needing core-team support and a free pricing model fits how you buy.",
+  "verdict_b": "Choose Apache APISIX if you are data warehouse syncing and a freemium pricing model fits how you buy.",
+  "faq": [
+    {
+      "q": "Is DuckDB Labs cheaper than Apache APISIX?",
+      "a": "DuckDB Labs uses a free model, while Apache APISIX uses a freemium model, and both publish a free tier. We don't have per-seat numbers in this dataset, so 'cheaper' depends on volume. Price both on your actual usage before deciding."
+    },
+    {
+      "q": "Can I migrate from DuckDB Labs to Apache APISIX?",
+      "a": "DuckDB Labs has low lock-in (oss duckdb, full portability); Apache APISIX has low lock-in (apache oss api gateway). Migration effort scales with how much state and automation you've built in DuckDB Labs; plan for data export, config rebuild, and a parallel-run period before cutting over."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Both DuckDB Labs and Apache APISIX score 5/5 on developer experience in our data, so DX isn't the tiebreaker here. Decide on fit, pricing, or lock-in instead."
+    },
+    {
+      "q": "Is Apache APISIX a good alternative to DuckDB Labs?",
+      "a": "Apache APISIX is built for data warehouse syncing and explicitly not for simple, small projects, so it's a fit only if your workflow matches its stated audience. If you were using DuckDB Labs for teams running duckdb at production scale needing core-team support, the switch is reasonable; outside that scope, look elsewhere."
+    }
+  ]
+}

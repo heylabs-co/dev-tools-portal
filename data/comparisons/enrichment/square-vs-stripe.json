@@ -1,0 +1,24 @@
+{
+  "intro": "Square and Stripe both show up under the payment gateway category, but they solve slightly different jobs. Square uses subscription from $30/mo with free tier, while Stripe runs on usage-based from 2.9% + $0.30/transaction with free tier. Both sit at moderate lock-in. Square fits teams working on SaaS with online payments, while Stripe is a closer match when the job is SaaS with global customers needing fast integration. Worth noting: Square is explicitly not for offline, Internal projects; Stripe is explicitly not for offline projects. The honest trade-off: Square trades off on offline-only retail; Stripe trades off on need Merchant of Record (MoR) for tax compliance. On the plus side, Square highlights SaaS with online payments, while Stripe points to SaaS with global customers needing fast integration. Square's documentation also calls out e-commerce checkout. Stripe similarly notes marketplaces using Stripe Connect. For teams evaluating payment gateway options today, the decision usually hinges on whether Square's profile or Stripe's profile maps more cleanly to the pricing model, lock-in tolerance, and scale your team can live with.",
+  "quick_take": "Square is for SaaS with online payments; Stripe is for SaaS with global customers needing fast; decide on pricing model.",
+  "verdict_a": "Choose Square if your project is SaaS with online payments, a subscription starting at $30/mo fits your budget, medium lock-in is an acceptable trade-off.",
+  "verdict_b": "Choose Stripe if your project is SaaS with global customers needing fast integration, usage-based billing at 2.9% + $0.30/transaction matches your volume, medium lock-in is an acceptable trade-off.",
+  "faq": [
+    {
+      "q": "Is Square cheaper than Stripe?",
+      "a": "Square uses subscription from $30/mo with free tier, and Stripe uses usage-based from 2.9% + $0.30/transaction with free tier. The pricing models are different, so a direct cheaper-than comparison depends on your volume and usage pattern."
+    },
+    {
+      "q": "Can I migrate from Square to Stripe?",
+      "a": "Our data puts Square at medium lock-in, and Stripe at medium lock-in (proprietary tokens in vault, but pci-to-pci export available). Migration is feasible but not trivial — budget time for re-integration, data export, and parallel running before cutover."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Both score 5/5 on developer experience in our data, so there's no clear winner on that axis. The better fit depends on which SDK matches your stack and which docs your team finds clearer during evaluation."
+    },
+    {
+      "q": "Is Stripe a good alternative to Square?",
+      "a": "Stripe is a reasonable alternative to Square when your workload leans more toward SaaS, Companies than SaaS, E-commerce, Marketplace. The pricing model shifts too — Square is subscription from $30/mo with free tier, Stripe is usage-based from 2.9% + $0.30/transaction with free tier — so expect the cost profile to change as well. One caveat: Stripe is explicitly not for offline projects, so check that constraint against your use-case before switching."
+    }
+  ]
+}

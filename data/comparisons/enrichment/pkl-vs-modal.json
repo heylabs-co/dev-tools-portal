@@ -1,0 +1,24 @@
+{
+  "intro": "The biggest real distinction between Pkl and Modal is straightforward: Pkl is free and open-source, while Modal is a commercial product (usage-based pricing starting at $30 / month, a free tier, enterprise plan available). Pkl sits at free and open-source and carries low lock-in, while Modal sits at usage-based pricing starting at $30 / month, a free tier, enterprise plan available and carries moderate lock-in. Pkl is a fit when you need high-traffic websites and media-heavy apps — typical scenarios include automated build/test/deploy pipelines. Modal is aimed at global, with workloads like global audience with low latency needs as the common case. The honest trade-off: Pkl is explicitly not for apps serving a single geographic region; Modal is not intended for internal projects. On cost specifically, pricing model matters more than sticker price — one workload can make Pkl cheaper while a different shape flips the answer to Modal. Before committing, model your actual usage against both pricing pages: seat counts, data volumes, and whether the free tier covers real workloads tend to dominate the total bill.",
+  "quick_take": "Pkl is for high-traffic websites and media-heavy apps; Modal is for global; decide based on cost model and budget.",
+  "verdict_a": "Choose Pkl if your primary workload is high-traffic websites and media-heavy apps and you want a free/OSS tool with no vendor bill.",
+  "verdict_b": "Choose Modal if your primary workload is global and you prefer usage-based pricing (starts at $30 / month).",
+  "faq": [
+    {
+      "q": "Is Pkl cheaper than Modal?",
+      "a": "Yes — Pkl is free and open-source, while Modal uses usage-based pricing starting at $30 / month, a free tier, enterprise plan available. That makes Pkl unambiguously cheaper on license cost; however, the true cost comparison depends on the ops effort required to run an OSS tool versus paying for Modal's managed service."
+    },
+    {
+      "q": "Can I migrate from Pkl to Modal?",
+      "a": "Migrating from Pkl to Modal is generally feasible because Pkl has low lock-in, so data and configuration are usually portable. Since both tools sit in the same category (CDN / Edge / Acceleration), the conceptual mapping is closer, but you still need to validate feature parity against your specific workload. Plan migration as a project, not a script: inventory integrations, test on non-production workloads, and keep Pkl running in parallel until Modal is verified."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Our data gives Pkl and Modal the same developer experience score (5/5), so neither has a clear edge on DX by that measure. The differentiator is usually how each tool fits your workflow — things like CLI quality, docs, local dev loop, and error messages. The safest call is to pilot both on a representative task and see which one gets out of your way."
+    },
+    {
+      "q": "Is Modal a good alternative to Pkl?",
+      "a": "Modal is in the same category as Pkl (CDN / Edge / Acceleration), so it's a reasonable alternative to evaluate. Modal is aimed at global, while Pkl targets high-traffic websites and media-heavy apps — that difference should drive the switch decision. Note that Modal is explicitly not for internal projects — if that describes your workload, it's not a viable replacement."
+    }
+  ]
+}

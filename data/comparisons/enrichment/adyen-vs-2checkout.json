@@ -1,0 +1,24 @@
+{
+  "intro": "Adyen and 2Checkout both show up under the payment gateway category, but they solve slightly different jobs. Adyen uses pricing that starts at EUR 0.11 + scheme fee, while 2Checkout runs on undisclosed pricing. Lock-in is medium for Adyen and low for 2Checkout. Transparency lands at 3/5 versus 2/5. Adyen fits teams working on enterprise with $10M+ TPV needing global coverage, while 2Checkout is a closer match when the job is SaaS with online payments. Worth noting: Adyen is explicitly not for solo projects; 2Checkout is explicitly not for offline, Internal projects. The honest trade-off: Adyen trades off on startup with <$1M TPV — minimum fees are high; 2Checkout trades off on offline-only retail. On the plus side, Adyen highlights enterprise with $10M+ TPV needing global coverage, while 2Checkout points to SaaS with online payments. Adyen's documentation also calls out unified online + in-store (POS) payments. 2Checkout similarly notes e-commerce checkout.",
+  "quick_take": "Adyen is for enterprise with $10M+ TPV needing global; 2Checkout is for SaaS with online payments; decide on pricing model.",
+  "verdict_a": "Choose Adyen if your project is enterprise with $10M+ TPV needing global coverage, medium lock-in is an acceptable trade-off, strong SDKs and docs (5/5) are a priority.",
+  "verdict_b": "Choose 2Checkout if your project is SaaS with online payments, you want to keep future migration cheap, you can tolerate 2Checkout's limited public transparency (2/5).",
+  "faq": [
+    {
+      "q": "Is Adyen cheaper than 2Checkout?",
+      "a": "Adyen uses pricing that starts at EUR 0.11 + scheme fee, and 2Checkout uses undisclosed pricing. The pricing models are different, so a direct cheaper-than comparison depends on your volume and usage pattern."
+    },
+    {
+      "q": "Can I migrate from Adyen to 2Checkout?",
+      "a": "Our data puts Adyen at medium lock-in (proprietary tokens, but csv import/export under), and 2Checkout at low lock-in (merchant account tightly bound; customer and subscription data partially portable). Migration is feasible but not trivial — budget time for re-integration, data export, and parallel running before cutover."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Adyen scores 5/5 on developer experience in our data, while 2Checkout scores 3/5, so Adyen has the edge on docs and SDK quality by that measure. That gap is reinforced by transparency scores of 3/5 versus 2/5. Still, run a small integration spike on both before deciding — team familiarity with a given SDK style often matters more than a one-point score gap."
+    },
+    {
+      "q": "Is 2Checkout a good alternative to Adyen?",
+      "a": "2Checkout is a reasonable alternative to Adyen when your workload leans more toward SaaS, E-commerce, Marketplace than enterprise. The pricing model shifts too — Adyen is pricing that starts at EUR 0.11 + scheme fee, 2Checkout is undisclosed pricing — so expect the cost profile to change as well. One caveat: 2Checkout is explicitly not for offline, Internal projects, so check that constraint against your use-case before switching."
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "intro": "The clearest split is that Courier carries medium lock-in and Novu carries low lock-in. Courier is Multi-channel notification API routing messages across email, push, SMS, Slack, and in-app with template; Novu is Open-source notification infrastructure with multi-channel support, in-app feed, user preferences, and self-hostable backend. The data points Courier at mobile app engagement and user lifecycle messaging, and Novu at mobile app engagement and user lifecycle messaging. Pricing: Courier is freemium, free tier; Novu is freemium, free tier. Lock-in is medium for Courier and low for Novu, with DX at 4/5 vs 5/5 and transparency at 4/5 vs 5/5. On listed strengths, Courier emphasises mobile app engagement and user lifecycle messaging, and Novu emphasises mobile app engagement and user lifecycle messaging. Only Novu lists an enterprise tier in the data. Honest trade-off: neither fits web-only products without mobile, so if that is your context, look elsewhere; otherwise pick on the pivotal factor above and the DX score that matters most to your team.",
+  "quick_take": "Courier is for mobile; Novu is for mobile; decide based on how much lock-in you tolerate.",
+  "verdict_a": "Choose Courier if you can accept medium lock-in in exchange for scope and your workload matches mobile. Skip it if your context is web-only products without mobile.",
+  "verdict_b": "Choose Novu if you prefer low lock-in and easier exit and your workload matches mobile. Skip it if your context is web-only products without mobile.",
+  "faq": [
+    {
+      "q": "Is Courier cheaper than Novu?",
+      "a": "Entry pricing is listed as unknown for Courier and $0 for Novu. Both offer a free tier for getting started. Total cost at scale depends on usage and plan details that are not in this dataset, so confirm with each vendor."
+    },
+    {
+      "q": "Can I migrate from Courier to Novu?",
+      "a": "Courier is tagged with medium lock-in (proprietary routing, templates portable). Novu is tagged with low lock-in (oss notification infrastructure, self-hostable). Plan for SDK replacement, data export, and a parallel-run period; the dataset does not include migration tooling details."
+    },
+    {
+      "q": "Which has better developer experience, Courier or Novu?",
+      "a": "The dataset rates Novu at 5/5 for developer experience and Courier at 4/5, so Novu scores higher. That score reflects overall polish rather than any single integration, so trial both against your stack before committing."
+    },
+    {
+      "q": "Is Novu a good alternative to Courier?",
+      "a": "Yes for teams whose workload matches mobile, since both list the same fit. Novu is flagged as not for web-only products without mobile, so confirm your context does not fall there."
+    }
+  ]
+}

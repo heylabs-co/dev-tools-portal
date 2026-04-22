@@ -1,0 +1,24 @@
+{
+  "intro": "Unreal Engine is usage-based; FMOD is freemium. Unreal Engine: Epic Games AAA-grade game engine powering blockbuster titles and film VFX. Features Nanite geometry, Lumen GI, MetaHuman, Blueprint visual scripting, and a free-to-use royalty model. FMOD: Audio engine and event-driven sound tool by Firelight Technologies. Used across thousands of games for adaptive audio, spatial sound, and cross-platform audio playback. Unreal Engine fits studios making 3D games where cinematic fidelity is central to the pitch. FMOD fits indie and mid-tier studios needing event-driven adaptive audio with sane pricing. On our rubric Unreal Engine scores 5/5 for developer experience and 3/5 for transparency, while FMOD scores 4/5 and 4/5. The honest trade-off: Unreal Engine's main drawback — 5% royalty kicks in past $1M and grows fast; FMOD's — Pricing jumps steeply for mid-tier studios. One point in Unreal Engine's favour: Nanite and Lumen deliver film-grade visuals at runtime. For FMOD: Event-driven workflow that composers and designers love. Unreal Engine is explicitly not the right pick for 2D, small-scope, or low-spec mobile games where Unity and Godot excel.",
+  "quick_take": "Unreal Engine is for studios making 3D games; FMOD is for indie; decide on pricing model.",
+  "verdict_a": "Choose Unreal Engine if studios making 3D games where cinematic fidelity is central to the pitch, and if a higher DX score (5/5 vs 4/5 in our rubric) nudges the call.",
+  "verdict_b": "Choose FMOD if indie and mid-tier studios needing event-driven adaptive audio with sane pricing, and if a free tier with an optional paid path matters.",
+  "faq": [
+    {
+      "q": "Is Unreal Engine cheaper than FMOD?",
+      "a": "Unreal Engine uses usage-based pricing; FMOD uses freemium. Which is cheaper depends on your volume and team size — model both against your projected usage before deciding."
+    },
+    {
+      "q": "Can I migrate from Unreal Engine to FMOD?",
+      "a": "Expect real effort: Unreal Engine is medium lock-in (Content tightly tied to engine) and FMOD is medium lock-in (Proprietary audio engine, project files). Migrating between them means rebuilding integrations, re-authoring config, and accepting new coupling. Scope a spike before committing."
+    },
+    {
+      "q": "Which has better developer experience, Unreal Engine or FMOD?",
+      "a": "Unreal Engine scores higher in our rubric (5/5 vs 4/5 for FMOD). Transparency is 3/5 for Unreal Engine and 4/5 for FMOD. DX scores are rubric-based, not benchmarks, so evaluate against your own toolchain."
+    },
+    {
+      "q": "Is FMOD a good alternative to Unreal Engine?",
+      "a": "They sit in the same category, so yes — FMOD is a plausible alternative for many Unreal Engine use cases. It fits best when indie and mid-tier studios needing event-driven adaptive audio with sane pricing. Skip it if hobby projects where Unity or Unreal built-in audio is already enough."
+    }
+  ]
+}

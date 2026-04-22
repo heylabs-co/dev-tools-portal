@@ -1,0 +1,24 @@
+{
+  "intro": "Flox carries low lock-in (OSS Nix-based env mgr) while Develocity is medium (Build scans proprietary, configs portable). Flox is positioned for teams wanting nix guarantees with a friendlier cli and workflow, while Develocity leans toward enterprises with large gradle, maven, or bazel monorepos and slow ci. In practice, Developer environment manager built on Nix providing reproducible, shareable dev environments as code. Lets monorepo teams pin exact toolchain versions without deep Nix expertise. Build acceleration and analytics platform for Gradle, Maven, Bazel, and sbt monorepos (formerly Gradle Enterprise). Provides remote build caching, build scans, and predictive test selection. Flox runs on freemium with a free tier; Develocity runs on custom. Flox rates 4/5 on transparency versus 1/5 for Develocity. Listed strengths unique to Flox include nix-based reproducibility without writing nix code, while Develocity lists dramatic ci and local build speedups via caching on its side. Reach for Flox when you need pin exact toolchain versions across all dev environments; reach for Develocity when the job is remote build caching for gradle, maven, and bazel monorepos. The honest trade-off: Flox is not.",
+  "quick_take": "Flox is for teams wanting nix guarantees with a friendlier cli and workflow; Develocity is for enterprises with large gradle, maven, or bazel monorepos and slow ci; decide based on.",
+  "verdict_a": "Choose Flox if teams wanting nix guarantees with a friendlier cli and workflow and you need a free tier to validate fit.",
+  "verdict_b": "Choose Develocity if enterprises with large gradle, maven, or bazel monorepos and slow ci and moderate platform coupling is acceptable.",
+  "faq": [
+    {
+      "q": "Is Flox cheaper than Develocity?",
+      "a": "The listed pricing for Flox is freemium with a free tier and for Develocity is custom, which doesn't give a clean apples-to-apples cost. Unit economics and plan structure differ enough that only your real volume answers this. Price both against the same workload."
+    },
+    {
+      "q": "Can I migrate from Flox to Develocity?",
+      "a": "Technically you can move between any two tools in the same category, but effort varies: leaving Flox is relatively light thanks to its low lock-in, and onboarding to Develocity involves medium lock-in (Build scans proprietary, configs portable). Plan for data export, re-integration, and a parallel-run window rather than a hard cutover."
+    },
+    {
+      "q": "Which has better developer experience, Flox or Develocity?",
+      "a": "On the 0-5 developer experience score in our data, Develocity rates 5/5 while Flox rates 4/5, giving Develocity the edge. That score is a rough summary; actual day-to-day DX depends on your language, deployment target, and tolerance for edge cases. Prototype both to validate."
+    },
+    {
+      "q": "Is Develocity a good alternative to Flox?",
+      "a": "Develocity is an alternative in the same category, but its stated sweet spot is enterprises with large gradle, maven, or bazel monorepos and slow ci, while Flox's is teams wanting nix guarantees with a friendlier cli and workflow. If your job matches Flox's profile more closely, switching to Develocity is a compromise. Use the best-fit match, not brand familiarity, to decide. Note: Develocity is explicitly not for small teams, non-jvm stacks, or budget-constrained startups."
+    }
+  ]
+}

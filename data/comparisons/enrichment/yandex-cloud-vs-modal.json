@@ -1,0 +1,24 @@
+{
+  "intro": "The biggest real distinction between Yandex Cloud and Modal is straightforward: Yandex Cloud is aimed at Russian and CIS-focused businesses needing local cloud with ML capabilities, whereas Modal targets Global. Yandex Cloud sits at usage-based pricing, a free tier and carries moderate lock-in, while Modal sits at usage-based pricing starting at $30 / month, a free tier, enterprise plan available and carries moderate lock-in. Yandex Cloud is a fit when you need russian and cis-focused businesses needing local cloud with ml capabilities — typical scenarios include russian public cloud with compute, storage, and ml services. Modal is aimed at global, with workloads like global audience with low latency needs as the common case. The honest trade-off: Yandex Cloud is explicitly not for global startups with western investors or sanctions compliance concerns; Modal is not intended for internal projects. Neither tool is a drop-in replacement for the other in every scenario — the choice should track your constraints on budget, lock-in, and target workload rather than general popularity.",
+  "quick_take": "Yandex Cloud is for russian and cis-focused businesses needing local; Modal is for global; decide based on which workload you actually run.",
+  "verdict_a": "Choose Yandex Cloud if your primary workload is russian and cis-focused businesses needing local cloud with ml capabilities.",
+  "verdict_b": "Choose Modal if your primary workload is global and you prefer usage-based pricing (starts at $30 / month).",
+  "faq": [
+    {
+      "q": "Is Yandex Cloud cheaper than Modal?",
+      "a": "Modal publishes an entry price of $30 / month; Yandex Cloud's entry price is not in our data, so a definitive comparison is not possible without a quote from Yandex Cloud."
+    },
+    {
+      "q": "Can I migrate from Yandex Cloud to Modal?",
+      "a": "Migrating from Yandex Cloud to Modal is doable but not automatic — Yandex Cloud carries moderate lock-in. Since both tools sit in the same category (CDN / Edge / Acceleration), the conceptual mapping is closer, but you still need to validate feature parity against your specific workload. Plan migration as a project, not a script: inventory integrations, test on non-production workloads, and keep Yandex Cloud running in parallel until Modal is verified."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "On our 0–5 developer experience scale, Modal scores higher (5/5 vs 4/5 for Yandex Cloud). The gap is one point — meaningful but not decisive, since DX is workflow-dependent. Still, score your own tasks: DX is subjective and tied to stack assumptions."
+    },
+    {
+      "q": "Is Modal a good alternative to Yandex Cloud?",
+      "a": "Modal is in the same category as Yandex Cloud (CDN / Edge / Acceleration), so it's a reasonable alternative to evaluate. Modal is aimed at global, while Yandex Cloud targets russian and cis-focused businesses needing local cloud with ml capabilities — that difference should drive the switch decision. Note that Modal is explicitly not for internal projects — if that describes your workload, it's not a viable replacement."
+    }
+  ]
+}

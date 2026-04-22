@@ -1,0 +1,24 @@
+{
+  "intro": "FF4J is free and open source while Convert runs on paid subscription pricing. Convert: A/B testing and personalization platform with no-cookie tracking and privacy-first architecture. FF4J: Open-source Java feature toggle library with string-based flag names, 20+ database backends, audit trail and Spring Boot starter with web console and REST API. Convert fits gradual rollouts to reduce risk. FF4J fits Java/Spring shops wanting in-process flags with many backends. On our rubric Convert scores 3/5 for developer experience and 4/5 for transparency, while FF4J scores 4/5 and 5/5. The honest trade-off: Convert's main drawback — Solo developer shipping to production; FF4J's — Java-only ecosystem focus. For FF4J: Mature Java toggle library with many backends. Convert is explicitly not the right pick for solo projects. FF4J is not aimed at polyglot teams or experimentation-focused product orgs. Another Convert advantage: Kill switches for features. Another Convert friction point: Products with no users yet. Another FF4J friction point: UI and DX feel dated by 2026 standards.",
+  "quick_take": "Convert is for gradual rollouts to reduce risk; FF4J is for Java/Spring shops wanting in-process flags with many backends; decide on pricing model.",
+  "verdict_a": "Choose Convert if gradual rollouts to reduce risk, and if you'd rather pay for a managed service than run infrastructure yourself.",
+  "verdict_b": "Choose FF4J if Java/Spring shops wanting in-process flags with many backends, and if you want to avoid recurring license costs and are willing to self-host.",
+  "faq": [
+    {
+      "q": "Is Convert cheaper than FF4J?",
+      "a": "No: FF4J is free and open source, while Convert runs on paid subscription pricing. Convert may still be cheaper in total cost once you factor in hosting, maintenance, and engineering time to run FF4J yourself."
+    },
+    {
+      "q": "Can I migrate from Convert to FF4J?",
+      "a": "Moving to FF4J is reasonable on its side — it's low lock-in (OSS Java library, many backends). The friction is on the way out of Convert, which is medium lock-in (A/B test data exportable). Budget time for data export and integration rework."
+    },
+    {
+      "q": "Which has better developer experience, Convert or FF4J?",
+      "a": "FF4J scores higher in our rubric (4/5 vs 3/5 for Convert). Transparency is 5/5 for FF4J and 4/5 for Convert. DX scores are rubric-based, not benchmarks, so evaluate against your own toolchain."
+    },
+    {
+      "q": "Is FF4J a good alternative to Convert?",
+      "a": "They sit in the same category, so yes — FF4J is a plausible alternative for many Convert use cases. It fits best when Java/Spring shops wanting in-process flags with many backends. Skip it if polyglot teams or experimentation-focused product orgs."
+    }
+  ]
+}

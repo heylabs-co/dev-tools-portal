@@ -1,0 +1,24 @@
+{
+  "intro": "The clearest difference between Tuist and Inno Setup is pricing — Tuist is freemium (has a free tier), while Inno Setup is free. Beyond that, lock-in — Tuist has low lock-in (OSS Xcode tooling, configs portable), whereas Inno Setup has low lock-in (Free Windows installer). Tuist fits iOS teams with many modules and long Xcode build times; Inno Setup fits shipping classic Win32 desktop apps with a traditional installer wizard. On the strengths side, Tuist is cited for replaces hand-edited xcodeproj with generated ones, while Inno Setup is cited for Battle-tested Windows installer used by thousands of apps. The honest trade-off: Tuist is the wrong call for small apps with one or two targets where vanilla Xcode is fine; Inno Setup is the wrong call for teams that need MSIX, Store submission, or modern cross-platform tooling; Tuist users flag only valuable if you already feel Xcode pain, and Inno Setup users flag pascal scripting is niche and off-putting. Choosing between them should come down to the constraint that actually binds your workflow, not surface-level overlap.",
+  "quick_take": "Tuist is for iOS teams with many modules; Inno Setup is for shipping classic Win32 desktop apps; decide based on pricing model.",
+  "verdict_a": "Choose Tuist if your use case is iOS teams with many modules and long Xcode build times, and a freemium (has a free tier) pricing shape fits your budget better than free.",
+  "verdict_b": "Choose Inno Setup if your use case is shipping classic Win32 desktop apps with a traditional installer wizard, and a free pricing shape fits your budget better than freemium (has a free tier).",
+  "faq": [
+    {
+      "q": "Is Tuist cheaper than Inno Setup?",
+      "a": "On listed pricing Inno Setup is free, whereas Tuist follows a freemium model, so Inno Setup is cheaper on the sticker. Factor in self-hosting and maintenance time before concluding which is actually cheaper for your team. Check both pricing pages for current tiers."
+    },
+    {
+      "q": "Can I migrate from Tuist to Inno Setup?",
+      "a": "Migrating from Tuist to Inno Setup is feasible when their scopes overlap, but the work is in re-mapping configuration, data models, and integrations. Tuist has low lock-in, so exporting state is typically straightforward. Plan for a dual-run period so you can validate parity before decommissioning."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "On our developer-experience score, Tuist is rated 5/5 and Inno Setup 4/5, so Tuist edges ahead. Scores like this smooth over real differences in docs, CLI feel, and SDK quality, so treat them as a starting point. Spend an afternoon in each before relying on the number."
+    },
+    {
+      "q": "Is Inno Setup a good alternative to Tuist?",
+      "a": "Inno Setup is a reasonable alternative to Tuist when Inno Setup fits shipping classic Win32 desktop apps with a traditional installer wizard. If your use case matches Tuist's sweet spot — iOS teams with many modules and long Xcode build times — staying with Tuist is probably safer. Tuist itself is not meant for small apps with one or two targets where vanilla Xcode is fine, which is often where users start shopping for alternatives."
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "intro": "Bitrise and Depot overlap on scores and pricing posture, so the decision comes down to which problem each was actually built for. Bitrise is mobile-first CI/CD for iOS, Android, Flutter, and React Native with pre-built workflow steps. Depot is remote Docker build acceleration service for CI image builds. Pick Bitrise when the job is conversion optimization and you accept low lock-in; pick Depot when it is conversion optimization and you accept low lock-in. The data we have shows Bitrise at mostly transparent pricing and docs with a polished developer experience, and Depot at fully public pricing and documentation with a polished developer experience. The honest trade-off: neither is universal — Bitrise is a poor fit for internal projects, and Depot is a poor fit for internal projects. Match the pricing model and lock-in level to how your team actually works, not the feature list. If your team already lives inside the ecosystem one of them assumes, that default usually wins — migration is cheap to start and expensive later.",
+  "quick_take": "Bitrise is for mobile-first CI/CD; Depot is for remote Docker build acceleration service; decide based on how much public info you need.",
+  "verdict_a": "Choose Bitrise if you need public pricing and docs before committing and the work maps to mobile-first CI/CD for iOS, Android, Flutter, and React Native with pre-built workflow steps.",
+  "verdict_b": "Choose Depot if day-to-day developer ergonomics are a priority and the work lines up with remote Docker build acceleration service for CI image builds.",
+  "faq": [
+    {
+      "q": "Is Bitrise cheaper than Depot?",
+      "a": "Bitrise starts at a Starter paid plan (entry price not publicly listed) on a subscription model; Depot starts at $500/mo on a subscription model. That makes the sticker comparison depend on usage — a low entry price can get expensive once volume ramps, so price at your actual workload."
+    },
+    {
+      "q": "Can I migrate from Bitrise to Depot?",
+      "a": "Migration in either direction is relatively cheap — both Bitrise and Depot are rated low lock-in, so your configuration and data should port without a rewrite. The realistic cost is team re-training and pipeline QA, not the tools themselves."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Both Bitrise and Depot rate the same on developer experience (5/5). The decision on DX then comes down to taste — which CLI, UI, or workflow matches your team's habits. A short side-by-side trial is the quickest way to tell."
+    },
+    {
+      "q": "Is Depot a good alternative to Bitrise?",
+      "a": "Yes — Depot is a reasonable alternative to Bitrise for conversion optimization. The practical differences are subscription-vs-subscription billing and low-vs-low lock-in. If those fit your constraints better, treat Depot as a credible swap."
+    }
+  ]
+}

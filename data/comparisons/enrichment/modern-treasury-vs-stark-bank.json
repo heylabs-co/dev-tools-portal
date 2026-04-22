@@ -1,0 +1,24 @@
+{
+  "intro": "Modern Treasury and Stark Bank both show up under the payment gateway category, but they solve slightly different jobs. Modern Treasury uses custom (sales-led) pricing, while Stark Bank runs on usage-based pricing. Both sit at moderate lock-in. Transparency lands at 1/5 versus 3/5. Modern Treasury fits teams working on ACH, wire, and RTP payment operations with real-time ledgering API, while Stark Bank is a closer match when the job is Pix payment integration for Brazilian businesses via SDK. Worth noting: Modern Treasury is explicitly not for merchants who mainly need card acceptance; Stark Bank is explicitly not for companies outside Brazil or needing multi-country payment rails. The honest trade-off: Modern Treasury trades off on US-bank-focused, limited globally; Stark Bank trades off on brazil-only — no utility outside BRL. On the plus side, Modern Treasury highlights deep ACH, wire, RTP, FedNow coverage, while Stark Bank points to SDKs in 10+ languages — real DX focus.",
+  "quick_take": "Modern Treasury is for ACH, wire, and RTP payment operations; Stark Bank is for Pix payment integration for Brazilian businesses; decide on pricing model.",
+  "verdict_a": "Choose Modern Treasury if your project is ACH, wire, and RTP payment operations with real-time ledgering API, you are prepared for a sales-led custom-pricing conversation, medium lock-in is an acceptable trade-off.",
+  "verdict_b": "Choose Stark Bank if your project is Pix payment integration for Brazilian businesses via SDK, medium lock-in is an acceptable trade-off.",
+  "faq": [
+    {
+      "q": "Is Modern Treasury cheaper than Stark Bank?",
+      "a": "Modern Treasury uses custom (sales-led) pricing, and Stark Bank uses usage-based pricing. The pricing models are different, so a direct cheaper-than comparison depends on your volume and usage pattern."
+    },
+    {
+      "q": "Can I migrate from Modern Treasury to Stark Bank?",
+      "a": "Our data puts Modern Treasury at medium lock-in (payment ops saas, custom integrations), and Stark Bank at medium lock-in (brazil-focused pix, sdks help portability). Migration is feasible but not trivial — budget time for re-integration, data export, and parallel running before cutover."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Both score 5/5 on developer experience in our data, so there's no clear winner on that axis. Stark Bank does edge ahead on pricing/docs transparency (3/5 vs 1/5), which can make evaluation faster."
+    },
+    {
+      "q": "Is Stark Bank a good alternative to Modern Treasury?",
+      "a": "Stark Bank is a reasonable alternative to Modern Treasury when your workload leans more toward brazilian fintechs and SaaS needing Pix, TED, and boleto with clean SDKs than platforms and fintechs running high-volume bank transfers and ledgering in the US. The pricing model shifts too — Modern Treasury is custom (sales-led) pricing, Stark Bank is usage-based pricing — so expect the cost profile to change as well. One caveat: Stark Bank is explicitly not for companies outside Brazil or needing multi-country payment rails, so check that constraint against your use-case before switching."
+    }
+  ]
+}

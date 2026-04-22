@@ -1,0 +1,24 @@
+{
+  "intro": "The biggest practical difference between AVA and Pest is lock-in. AVA is rated high lock-in (oss node test runner), while Pest is rated low lock-in (open source php testing framework). That changes how hard a future migration would be and how much strategy to put into exit planning. Beyond the headline, AVA carries high lock-in (oss node test runner) and free and open-source; Pest carries low lock-in (open source php testing framework) and free and open-source. AVA is a fit when you are node library authors wanting parallel, dependency-light, esm-native tests. Pest is a fit when you are laravel and modern php teams who want readable, expressive test syntax. The honest trade-off: AVA is explicitly not for frontend apps needing jsdom, mocks and snapshots bundled in one runner; Pest is explicitly not for legacy php codebases deeply coupled to phpunit's xunit style. On the product side, AVA is described as Fast test runner for Node.",
+  "quick_take": "AVA is for node library authors wanting parallel, dependency-light, esm-native tests; Pest is for laravel and modern php teams who want readable, expressive test syntax; decide on lock-in tolerance.",
+  "verdict_a": "Choose AVA if you accept higher lock-in in exchange for its specific capabilities and you are node library authors wanting parallel, dependency-light, esm-native tests.",
+  "verdict_b": "Choose Pest if minimizing lock-in matters and you accept its stated trade-offs for laravel and modern php teams who want readable, expressive test syntax.",
+  "faq": [
+    {
+      "q": "Is AVA cheaper than Pest?",
+      "a": "Both tools use free pricing. AVA is listed as free and open-source; Pest as free and open-source. Without specific volume and seat assumptions it is not possible to say which is cheaper in general."
+    },
+    {
+      "q": "Can I migrate from AVA to Pest?",
+      "a": "Migration from AVA is harder: AVA is rated high lock-in (oss node test runner). You can still move, but expect schema-mapping, export tooling and a longer cutover window. Budget engineering time accordingly."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Both tools tie at 5/5 for developer experience on our scoring. The real difference will show up in your specific workflow, not the headline rating. A one-hour spike on both is the fastest way to decide."
+    },
+    {
+      "q": "Is Pest a good alternative to AVA?",
+      "a": "Pest is pitched at laravel and modern php teams who want readable, expressive test syntax, which overlaps with AVA's fit (node library authors wanting parallel, dependency-light, esm-native tests) but is not identical. Note that Pest is explicitly not for legacy php codebases deeply coupled to phpunit's xunit style, so it only replaces AVA if you are outside that exclusion. The lock-in profile differs (high vs low), which is the main thing to weigh."
+    }
+  ]
+}

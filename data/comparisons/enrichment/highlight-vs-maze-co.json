@@ -1,0 +1,24 @@
+{
+  "intro": "The biggest practical difference between Highlight and Maze is lock-in. Highlight is rated low lock-in (open-source session replay), while Maze is rated medium lock-in (research data exportable). That changes how hard a future migration would be and how much strategy to put into exit planning. Beyond the headline, Highlight carries low lock-in (open-source session replay) and freemium; Maze carries medium lock-in (research data exportable) and freemium. Highlight is a fit when you are ux debugging and optimization. Maze is a fit when you are ux and design teams validating prototypes and usability pre-launch. The honest trade-off: Highlight is explicitly not for apps with strict privacy requirements (healthcare); Maze is explicitly not for engineering teams looking for production session replay and error triage. On the product side, Highlight is described as Session Replay / UX Analytics tool for developers. Specializes in open source replay, and Maze is described as User research and testing platform for rapid prototype testing, card sorting, tree testing, surveys and usability analytics with session recordings.",
+  "quick_take": "Highlight is for ux debugging and optimization; Maze is for ux and design teams validating prototypes and usability pre-launch; decide on lock-in tolerance.",
+  "verdict_a": "Choose Highlight if minimizing lock-in matters and you accept its stated trade-offs for ux debugging and optimization.",
+  "verdict_b": "Choose Maze if its medium lock-in is acceptable for your use case and you are ux and design teams validating prototypes and usability pre-launch.",
+  "faq": [
+    {
+      "q": "Is Highlight cheaper than Maze?",
+      "a": "Both tools use freemium pricing. Highlight is listed as freemium; Maze as freemium. Without specific volume and seat assumptions it is not possible to say which is cheaper in general."
+    },
+    {
+      "q": "Can I migrate from Highlight to Maze?",
+      "a": "Migration from Highlight to Maze is plausible because Highlight has low lock-in (open-source session replay). You would still have to map config, permissions and integrations to Maze's model. Plan for dual-run and rollback."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "On our scoring Highlight rates 5/5 for developer experience versus 3/5 for Maze. That suggests day-to-day workflows (CLI, SDKs, docs) are smoother in Highlight. Scores are directional; run a short spike on your own stack to confirm."
+    },
+    {
+      "q": "Is Maze a good alternative to Highlight?",
+      "a": "Maze is pitched at ux and design teams validating prototypes and usability pre-launch, which overlaps with Highlight's fit (ux debugging and optimization) but is not identical. Note that Maze is explicitly not for engineering teams looking for production session replay and error triage, so it only replaces Highlight if you are outside that exclusion. The lock-in profile differs (low vs medium), which is the main thing to weigh."
+    }
+  ]
+}

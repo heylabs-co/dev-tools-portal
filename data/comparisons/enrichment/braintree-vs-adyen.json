@@ -1,0 +1,24 @@
+{
+  "intro": "Braintree and Adyen both show up under the payment gateway category, but they solve slightly different jobs. Braintree uses usage-based pricing, while Adyen runs on pricing that starts at EUR 0.11 + scheme fee. Both sit at moderate lock-in. Transparency lands at 5/5 versus 3/5. Braintree fits teams working on SaaS with online payments, while Adyen is a closer match when the job is enterprise with $10M+ TPV needing global coverage. Worth noting: Braintree is explicitly not for offline, Internal projects; Adyen is explicitly not for solo projects. The honest trade-off: Braintree trades off on offline-only retail; Adyen trades off on startup with <$1M TPV — minimum fees are high. On the plus side, Braintree highlights SaaS with online payments, while Adyen points to enterprise with $10M+ TPV needing global coverage. Braintree's documentation also calls out e-commerce checkout. Adyen similarly notes unified online + in-store (POS) payments. For teams evaluating payment gateway options today, the right choice usually comes down to pricing model, lock-in, and which tool's stated use-case maps to yours.",
+  "quick_take": "Braintree is for SaaS with online payments; Adyen is for enterprise with $10M+ TPV needing global; decide on pricing model.",
+  "verdict_a": "Choose Braintree if your project is SaaS with online payments, medium lock-in is an acceptable trade-off.",
+  "verdict_b": "Choose Adyen if your project is enterprise with $10M+ TPV needing global coverage, medium lock-in is an acceptable trade-off.",
+  "faq": [
+    {
+      "q": "Is Braintree cheaper than Adyen?",
+      "a": "Braintree uses usage-based pricing, and Adyen uses pricing that starts at EUR 0.11 + scheme fee. The pricing models are different, so a direct cheaper-than comparison depends on your volume and usage pattern."
+    },
+    {
+      "q": "Can I migrate from Braintree to Adyen?",
+      "a": "Our data puts Braintree at medium lock-in (paypal-owned, card data portable), and Adyen at medium lock-in (proprietary tokens, but csv import/export under). Migration is feasible but not trivial — budget time for re-integration, data export, and parallel running before cutover."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Both score 5/5 on developer experience in our data, so there's no clear winner on that axis. Braintree does edge ahead on pricing/docs transparency (5/5 vs 3/5), which can make evaluation faster."
+    },
+    {
+      "q": "Is Adyen a good alternative to Braintree?",
+      "a": "Adyen is a reasonable alternative to Braintree when your workload leans more toward enterprise than SaaS, E-commerce, Marketplace. The pricing model shifts too — Braintree is usage-based pricing, Adyen is pricing that starts at EUR 0.11 + scheme fee — so expect the cost profile to change as well. One caveat: Adyen is explicitly not for solo projects, so check that constraint against your use-case before switching."
+    }
+  ]
+}

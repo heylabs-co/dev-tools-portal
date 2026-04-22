@@ -1,0 +1,24 @@
+{
+  "intro": "Adjust scores 4/5 on developer experience versus 3/5 for Airbridge. Both tools position themselves for mobile, so the decision rarely comes down to surface features. In practice, Adjust — Mobile measurement and analytics platform with deterministic and probabilistic attribution, fraud prevention, and audience segmentation. Airbridge — Mobile attribution and incrementality platform with deep linking, web-to-app tracking, and SKAdNetwork support. Adjust runs on custom; Airbridge runs on subscription from $199/month. Airbridge rates 3/5 on transparency versus 1/5 for Adjust. Both tools list mobile apps with paid acquisition as a headline strength, which is why pricing and lock-in usually decide the call. Both tools surface overlapping when-to-use scenarios, including mobile apps with paid acquisition. The honest trade-off: Adjust is not built for web-only products, and Airbridge is not the right call for web-only products, so neither is a universal default. Transparency scores land at 1/5 for Adjust and 3/5 for Airbridge, which reflects how openly each tool documents pricing, limits, and terms.",
+  "quick_take": "Adjust is for mobile; Airbridge overlaps on the same job; decide based on which use case matches.",
+  "verdict_a": "Choose Adjust if mobile and you want low switching cost.",
+  "verdict_b": "Choose Airbridge if mobile and the $199/month entry price fits your budget.",
+  "faq": [
+    {
+      "q": "Is Adjust cheaper than Airbridge?",
+      "a": "The listed pricing for Adjust is custom and for Airbridge is subscription from $199/month, which doesn't give a clean apples-to-apples cost. Unit economics and plan structure differ enough that only your real volume answers this. Price both against the same workload."
+    },
+    {
+      "q": "Can I migrate from Adjust to Airbridge?",
+      "a": "Technically you can move between any two tools in the same category, but effort varies: leaving Adjust is relatively light thanks to its low lock-in, and onboarding to Airbridge should be straightforward given its low lock-in. Plan for data export, re-integration, and a parallel-run window rather than a hard cutover."
+    },
+    {
+      "q": "Which has better developer experience, Adjust or Airbridge?",
+      "a": "On the 0-5 developer experience score in our data, Adjust rates 4/5 while Airbridge rates 3/5, giving Adjust the edge. Scores compress a lot of variance though — SDK language coverage, error messages, and docs quality matter more than the number. Run a quick integration spike on both before trusting the gap."
+    },
+    {
+      "q": "Is Airbridge a good alternative to Adjust?",
+      "a": "Yes, Airbridge targets the same job Adjust does — mobile — so functionally it slots in as an alternative. Pricing model (subscription from $199/month vs custom) and lock-in (low lock-in (MMP attribution data in proprietary schema) vs low lock-in (Attribution history in proprietary schema; painful to migrate MMPs)) usually decide which is the better fit. Validate on your actual workload. Note: Airbridge is explicitly not for web-only products."
+    }
+  ]
+}

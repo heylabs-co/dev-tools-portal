@@ -1,0 +1,24 @@
+{
+  "intro": "flagd scores higher for developer experience (5/5 vs 4/5). Flagd: Feature flag daemon with a Unix philosophy. Reference OpenFeature-compliant backend supporting HTTP/gRPC evaluation, targeting rules and OpenTelemetry tracing. FF4J: Open-source Java feature toggle library with string-based flag names, 20+ database backends, audit trail and Spring Boot starter with web console and REST API. Flagd fits platform teams standardizing on OpenFeature with self-hosting. FF4J fits Java/Spring shops wanting in-process flags with many backends. On our rubric flagd scores 5/5 for developer experience and 5/5 for transparency, while FF4J scores 4/5 and 5/5. The honest trade-off: flagd's main drawback — Minimal UI; configuration is file-driven; FF4J's — Java-only ecosystem focus. One point in flagd's favour: Reference OpenFeature backend with clean Unix design. For FF4J: Mature Java toggle library with many backends. Flagd is explicitly not the right pick for teams that need a polished no-code flag dashboard. FF4J is not aimed at polyglot teams or experimentation-focused product orgs. Another flagd advantage: HTTP and gRPC evaluation, flexible targeting.",
+  "quick_take": "flagd is for platform teams standardizing on OpenFeature with self-hosting; FF4J is for Java/Spring shops wanting in-process flags with many backends; decide on developer experience.",
+  "verdict_a": "Choose flagd if platform teams standardizing on OpenFeature with self-hosting, and if a higher DX score (5/5 vs 4/5 in our rubric) nudges the call.",
+  "verdict_b": "Choose FF4J if Java/Spring shops wanting in-process flags with many backends.",
+  "faq": [
+    {
+      "q": "Is flagd cheaper than FF4J?",
+      "a": "Both tools use free pricing, so a clean list-price comparison depends on tier details that vary by usage. Check each vendor's current plan page for your expected volume. Neither is structurally cheaper on the model alone."
+    },
+    {
+      "q": "Can I migrate from flagd to FF4J?",
+      "a": "Both tools are rated low lock-in, so migration is mostly a matter of re-pointing integrations and re-authoring config. There's no hard data format moat on either side. Expect work proportional to how deeply flagd touches your pipeline, but no vendor-imposed blockers."
+    },
+    {
+      "q": "Which has better developer experience, flagd or FF4J?",
+      "a": "flagd scores higher in our rubric (5/5 vs 4/5 for FF4J). Transparency is 5/5 for flagd and 5/5 for FF4J. DX scores are rubric-based, not benchmarks, so evaluate against your own toolchain."
+    },
+    {
+      "q": "Is FF4J a good alternative to flagd?",
+      "a": "They sit in the same category, so yes — FF4J is a plausible alternative for many flagd use cases. It fits best when Java/Spring shops wanting in-process flags with many backends. Skip it if polyglot teams or experimentation-focused product orgs."
+    }
+  ]
+}

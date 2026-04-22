@@ -1,0 +1,24 @@
+{
+  "intro": "Cloudinary and Mux both show up under the object storage media category, but they solve slightly different jobs. Cloudinary starts at $0/month; Mux starts at $20/mo. Lock-in is high for Cloudinary and medium for Mux. Transparency lands at 3/5 versus 4/5. Both tools target image/video heavy applications, so the choice comes down to pricing, lock-in, and operational fit rather than scope. Worth noting: Cloudinary is explicitly not for small projects. The honest trade-off: Cloudinary trades off on text-only applications; Mux trades off on text-only applications. On the plus side, Cloudinary highlights image/video heavy applications. Cloudinary's documentation also calls out user-generated content platforms. For teams evaluating object storage media options today, the decision usually hinges on whether Cloudinary's profile or Mux's profile maps more cleanly to the pricing model, lock-in tolerance, and scale your team can live with. Beyond the headline pitch, a documented Cloudinary use-case is \"User-generated content platforms\", and a documented Mux use-case is \"User-generated content platforms\".",
+  "quick_take": "Cloudinary is for image/video heavy applications; Mux is for image/video heavy applications; decide on entry price.",
+  "verdict_a": "Choose Cloudinary if your project is image/video heavy applications, a subscription starting at $0/month fits your budget, you are willing to accept the high lock-in called out in our data.",
+  "verdict_b": "Choose Mux if your project is image/video heavy applications, a subscription starting at $20/mo fits your budget, medium lock-in is an acceptable trade-off.",
+  "faq": [
+    {
+      "q": "Is Cloudinary cheaper than Mux?",
+      "a": "Cloudinary uses subscription from $0/month with free tier, and Mux uses subscription from $20/mo with free tier. On published entry price, Cloudinary lists $0/month while Mux lists $20/mo — but the real cost at your scale will depend on actual usage, not just the starting tier."
+    },
+    {
+      "q": "Can I migrate from Cloudinary to Mux?",
+      "a": "Our data puts Cloudinary at high lock-in (transforms and urls tightly coupled), and Mux at medium lock-in (subscription video infra, standard). Expect real migration work out of Cloudinary — plan for data export, re-integration, and downtime testing before cutting over."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Both score 5/5 on developer experience in our data, so there's no clear winner on that axis. Mux does edge ahead on pricing/docs transparency (4/5 vs 3/5), which can make evaluation faster."
+    },
+    {
+      "q": "Is Mux a good alternative to Cloudinary?",
+      "a": "Mux covers a similar scope to Cloudinary — our data lists \"Image/video heavy applications\" as the best-for on both. One caveat: Mux is explicitly not for small projects, so check that constraint against your use-case before switching."
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "intro": "PortOne and Yuno both show up under the payments orchestration category, but they solve slightly different jobs. PortOne uses usage-based pricing, while Yuno runs on pricing that starts at $79. Lock-in is medium for PortOne and low for Yuno. Transparency lands at 3/5 versus 2/5. PortOne fits teams working on aggregating Korean PG providers (KG Inicis, Toss, etc.) via single SDK, while Yuno is a closer match when the job is Multi-PSP routing for higher conversion. Worth noting: PortOne is explicitly not for EU or US merchants without meaningful Korean traffic; Yuno is explicitly not for single-market startups. The honest trade-off: PortOne trades off on core value concentrated in Korea; Yuno trades off on single-market startups. On the plus side, PortOne highlights dominant position in Korean PG integrations, while Yuno points to Multi-PSP routing for higher conversion. PortOne's documentation also calls out single SDK for 20+ Korean and global PGs. Yuno similarly notes enterprise with multiple payment providers.",
+  "quick_take": "PortOne is for aggregating Korean PG providers (KG Inicis,; Yuno is for Multi-PSP routing for higher conversion; decide on pricing model.",
+  "verdict_a": "Choose PortOne if your project is aggregating Korean PG providers (KG Inicis, Toss, etc.) via single SDK, medium lock-in is an acceptable trade-off.",
+  "verdict_b": "Choose Yuno if your project is Multi-PSP routing for higher conversion, you want to keep future migration cheap, you can tolerate Yuno's limited public transparency (2/5).",
+  "faq": [
+    {
+      "q": "Is PortOne cheaper than Yuno?",
+      "a": "PortOne uses usage-based pricing, and Yuno uses pricing that starts at $79. The pricing models are different, so a direct cheaper-than comparison depends on your volume and usage pattern."
+    },
+    {
+      "q": "Can I migrate from PortOne to Yuno?",
+      "a": "Our data puts PortOne at medium lock-in (usage-based pg orchestration), and Yuno at low lock-in (orchestration abstraction helps migration). Migration is feasible but not trivial — budget time for re-integration, data export, and parallel running before cutover."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Both score 4/5 on developer experience in our data, so there's no clear winner on that axis. PortOne does edge ahead on pricing/docs transparency (3/5 vs 2/5), which can make evaluation faster."
+    },
+    {
+      "q": "Is Yuno a good alternative to PortOne?",
+      "a": "Yuno is a reasonable alternative to PortOne when your workload leans more toward enterprise than merchants and platforms selling into South Korea who need one API across KakaoPay, Toss, NaverPay, and more. The pricing model shifts too — PortOne is usage-based pricing, Yuno is pricing that starts at $79 — so expect the cost profile to change as well. One caveat: Yuno is explicitly not for single-market startups, so check that constraint against your use-case before switching."
+    }
+  ]
+}

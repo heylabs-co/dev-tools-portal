@@ -1,0 +1,24 @@
+{
+  "intro": "The clearest split between Amazon Rekognition and Eden AI is vendor lock-in: Amazon Rekognition is rated medium (Image analysis API standard; migration to Google/Azure feasible), while Eden AI is rated low (Aggregator API, swap providers easily). Amazon Rekognition is AWS computer vision API for image and video analysis including object detection and facial recognition; it fits best for Apps. Eden AI is Unified AI API aggregating translation, OCR, NLP, and vision models from multiple providers; it fits best for Apps. Pick Amazon Rekognition for Apps; pick Eden AI for Apps. Amazon Rekognition is not for static projects. Eden AI is not for static projects. Honest trade-offs: Amazon Rekognition is weak for english-only products, and Eden AI is weak for english-only products — match to your real scenario. Both sit under the Localization / Translation API umbrella, so your final call depends on pricing transparency, integration effort, and which listed not-for situations you can actually tolerate.",
+  "quick_take": "Amazon Rekognition is for apps; Eden AI is for apps; decide based on lock-in tolerance.",
+  "verdict_a": "Choose Amazon Rekognition if medium lock-in (Image analysis API standard; migration to Google/Azure feasible) is acceptable and you need apps.",
+  "verdict_b": "Choose Eden AI if low lock-in (Aggregator API, swap providers easily) is acceptable and you need apps.",
+  "faq": [
+    {
+      "q": "Is Amazon Rekognition cheaper than Eden AI?",
+      "a": "A direct comparison depends on your usage profile and which pricing model fits better. Amazon Rekognition uses subscription pricing starting at $200. Eden AI uses subscription pricing starting at $10."
+    },
+    {
+      "q": "Can I migrate from Amazon Rekognition to Eden AI?",
+      "a": "Migration from Amazon Rekognition (medium lock-in) to Eden AI (low lock-in) is the easier direction; the reverse would be harder. Plan for data export, re-integration of SDKs, and re-testing flows before cutover. Verify exportable formats and feature parity against your live use cases before committing."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Both score 4/5 on developer experience in our data. Evaluate against your own stack: read their docs, run a quick SDK spike, and check error handling. Self-assessing with a small prototype beats trusting any rating at face value."
+    },
+    {
+      "q": "Is Eden AI a good alternative to Amazon Rekognition?",
+      "a": "Eden AI sits in the same category as Amazon Rekognition, so it can be a reasonable alternative for overlapping use cases. Eden AI is best fit for apps. Note: Eden AI is not for static projects."
+    }
+  ]
+}

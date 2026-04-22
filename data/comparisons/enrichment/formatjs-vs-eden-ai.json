@@ -1,0 +1,24 @@
+{
+  "intro": "The clearest split between FormatJS and Eden AI is how they charge: FormatJS uses free and open source, while Eden AI uses subscription pricing starting around $10. FormatJS specializes in Internationalization; it fits best for Mobile. Eden AI is Unified AI API aggregating translation, OCR, NLP, and vision models from multiple providers; it fits best for Apps. Pick FormatJS when the job maps to automated build/test/deploy pipelines; pick Eden AI when it maps to apps targeting multiple languages/markets. FormatJS is not for hobby projects. Eden AI is not for static projects. Honest trade-offs: FormatJS is weak for manual deployment is sufficient, and Eden AI is weak for english-only products — match to your real scenario. Both sit under the Localization / Translation API umbrella, so your final call depends on pricing transparency, integration effort, and which listed not-for situations you can actually tolerate. On pricing, FormatJS uses free and open source and Eden AI uses subscription pricing starting around $10, which materially changes total cost at scale.",
+  "quick_take": "FormatJS is for mobile; Eden AI is for apps; decide based on pricing model.",
+  "verdict_a": "Choose FormatJS if you want free and open source and your workload matches mobile.",
+  "verdict_b": "Choose Eden AI if you want subscription pricing starting around $10 and your workload matches apps.",
+  "faq": [
+    {
+      "q": "Is FormatJS cheaper than Eden AI?",
+      "a": "FormatJS is the cheaper option on paper since it is open source, while Eden AI is paid. FormatJS is free and open source. Eden AI uses subscription pricing starting at $10."
+    },
+    {
+      "q": "Can I migrate from FormatJS to Eden AI?",
+      "a": "Migration between these is relatively straightforward since both are rated as low lock-in. Plan for data export, re-integration of SDKs, and re-testing flows before cutover. Verify exportable formats and feature parity against your live use cases before committing."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "FormatJS scores higher on developer experience (5/5 vs 4/5 for Eden AI). Evaluate against your own stack: read their docs, run a quick SDK spike, and check error handling. Self-assessing with a small prototype beats trusting any rating at face value."
+    },
+    {
+      "q": "Is Eden AI a good alternative to FormatJS?",
+      "a": "Eden AI sits in the same category as FormatJS, so it can be a reasonable alternative for overlapping use cases. Eden AI is best fit for apps. Note: Eden AI is not for static projects."
+    }
+  ]
+}

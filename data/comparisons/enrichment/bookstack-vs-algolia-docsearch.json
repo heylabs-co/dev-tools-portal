@@ -1,0 +1,24 @@
+{
+  "intro": "The biggest real split between BookStack and Algolia DocSearch is lock-in posture: BookStack carries low lock-in (oss self-hosted knowledge base), while Algolia DocSearch carries high lock-in (free tier for oss; swap to pagefind/typesense possible). That single fact shapes the rest of the comparison. BookStack is built for internal team knowledge bases, runbooks, and general documentation on self-hosted infrastructure and is not a fit for public developer documentation, api references, or teams without php hosting expertise. Algolia DocSearch is built for open-source projects that need production-grade docs search without running infrastructure and is not a fit for commercial products or internal docs - docsearch free tier doesn't apply. On the scoring side, BookStack rates 4/5 for developer experience and 5/5 for transparency; Algolia DocSearch rates 5/5 and 5/5 respectively. The honest trade-off: with BookStack you accept that not designed for api reference or developer-spec docs, while Algolia DocSearch comes with the reality that approval required, not all oss sites qualify. Neither side is free.",
+  "quick_take": "BookStack is for internal team knowledge bases, runbooks, and general documentation on self-hosted infrastructure; Algolia DocSearch is for open-source projects that need production-grade docs search without running infrastructure; decide based.",
+  "verdict_a": "Choose BookStack if you are internal team knowledge bases, runbooks, and general documentation on self-hosted infrastructure and can accept low lock-in (oss self-hosted knowledge base).",
+  "verdict_b": "Choose Algolia DocSearch if you are open-source projects that need production-grade docs search without running infrastructure and need high lock-in (free tier for oss; swap to pagefind/typesense possible).",
+  "faq": [
+    {
+      "q": "Is BookStack cheaper than Algolia DocSearch?",
+      "a": "Both list a free pricing model in our data, and both publish a free tier. We don't have per-seat numbers in this dataset, so 'cheaper' depends on volume. Price both on your actual usage before deciding."
+    },
+    {
+      "q": "Can I migrate from BookStack to Algolia DocSearch?",
+      "a": "BookStack has low lock-in (oss self-hosted knowledge base); Algolia DocSearch has high lock-in (free tier for oss; swap to pagefind/typesense possible). Migration effort scales with how much state and automation you've built in BookStack; plan for data export, config rebuild, and a parallel-run period before cutting over."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "In our data, Algolia DocSearch scores 5/5 for developer experience versus 4/5 for BookStack. That said, DX is subjective; the BookStack score may still be acceptable if its feature fit is stronger for your use case."
+    },
+    {
+      "q": "Is Algolia DocSearch a good alternative to BookStack?",
+      "a": "Algolia DocSearch is built for open-source projects that need production-grade docs search without running infrastructure and explicitly not for commercial products or internal docs - docsearch free tier doesn't apply, so it's a fit only if your workflow matches its stated audience. If you were using BookStack for internal team knowledge bases, runbooks, and general documentation on self-hosted infrastructure, the switch is reasonable; outside that scope, look elsewhere."
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "intro": "The clearest split between Fable and Assistiv Labs is cost: Fable is free to use, while Assistiv Labs sells a subscription with a free tier (entry price not public). Fable is human-led accessibility testing with disabled testers and user research. Assistiv Labs is remote assistive-technology testing platform (screen readers, voice control, switches). Pick Fable when the job is enterprises running inclusive research with disabled users alongside audits and you accept low lock-in; pick Assistiv Labs when it is distributed qa and a11y engineers testing with screen readers remotely and you accept medium lock-in. The data we have shows Fable at mostly transparent pricing and docs with average developer experience, and Assistiv Labs at some public pricing / roadmap detail with average developer experience. The honest trade-off: neither is universal — Fable is a poor fit for dev teams just wanting automated axe-style scans in ci, and Assistiv Labs is a poor fit for teams wanting automated wcag scans or monitoring dashboards. Match the pricing model and lock-in level to how your team actually works, not the feature list.",
+  "quick_take": "Fable is for human-led accessibility testing; Assistiv Labs is for remote assistive-technology testing platform (screen readers; decide based on budget vs. support.",
+  "verdict_a": "Choose Fable if cost is the binding constraint and the work maps to human-led accessibility testing with disabled testers and user research.",
+  "verdict_b": "Choose Assistiv Labs if some ecosystem coupling is acceptable and the work lines up with remote assistive-technology testing platform (screen readers, voice control, switches).",
+  "faq": [
+    {
+      "q": "Is Fable cheaper than Assistiv Labs?",
+      "a": "Neither Fable nor Assistiv Labs publishes entry pricing that lets us compare directly — Fable uses a free model and Assistiv Labs uses a subscription model. Get quotes from both before assuming one is cheaper."
+    },
+    {
+      "q": "Can I migrate from Fable to Assistiv Labs?",
+      "a": "Migration is possible in either direction. Fable carries low lock-in and Assistiv Labs carries medium lock-in, so plan for meaningful but not blocking rework. Run both in parallel before you fully cut over."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Both Fable and Assistiv Labs rate the same on developer experience (3/5). The decision on DX then comes down to taste — which CLI, UI, or workflow matches your team's habits. A short side-by-side trial is the quickest way to tell."
+    },
+    {
+      "q": "Is Assistiv Labs a good alternative to Fable?",
+      "a": "Yes — Assistiv Labs is a reasonable alternative to Fable for enterprises running inclusive research with disabled users alongside audits.. The practical differences are free-vs-subscription billing and low-vs-medium lock-in. If those fit your constraints better, treat Assistiv Labs as a credible swap."
+    }
+  ]
+}

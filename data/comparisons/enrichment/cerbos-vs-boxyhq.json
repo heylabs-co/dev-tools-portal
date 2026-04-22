@@ -1,0 +1,24 @@
+{
+  "intro": "The clearest split between Cerbos and BoxyHQ is how they charge: Cerbos uses a free tier plus paid plans starting around $0/month, while BoxyHQ uses subscription pricing starting around $770. Cerbos is Open-source authorization service with human-readable YAML policies, RBAC/ABAC, and REST/gRPC evaluation endpoints; it fits best for Apps, B2B. BoxyHQ specializes in Enterprise SSO; it fits best for Apps, B2B. Pick Cerbos for Apps, B2B; pick BoxyHQ for Apps, B2B. Cerbos is not for internal, static projects. BoxyHQ is not for internal, static projects. Honest trade-offs: Cerbos is weak for internal tools with basic auth, and BoxyHQ is weak for internal tools with basic auth — match to your real scenario. Both sit under the Identity / Auth / User Management umbrella, so your final call depends on pricing transparency, integration effort, and which listed not-for situations you can actually tolerate. On pricing, Cerbos uses a free tier plus paid plans starting around $0/month and BoxyHQ uses subscription pricing starting around $770, which materially changes total cost at scale.",
+  "quick_take": "Cerbos is for apps, b2b; BoxyHQ is for apps, b2b; decide based on pricing model.",
+  "verdict_a": "Choose Cerbos if you want a free tier plus paid plans starting around $0/month and your workload matches apps, b2b.",
+  "verdict_b": "Choose BoxyHQ if you want subscription pricing starting around $770 and your workload matches apps, b2b.",
+  "faq": [
+    {
+      "q": "Is Cerbos cheaper than BoxyHQ?",
+      "a": "A direct comparison depends on your usage profile and which pricing model fits better. Cerbos has a free tier with paid plans starting at $0/month. BoxyHQ uses subscription pricing starting at $770."
+    },
+    {
+      "q": "Can I migrate from Cerbos to BoxyHQ?",
+      "a": "Migration between these is relatively straightforward since both are rated as low lock-in. Plan for data export, re-integration of SDKs, and re-testing flows before cutover. Verify exportable formats and feature parity against your live use cases before committing."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Both score 5/5 on developer experience in our data. Evaluate against your own stack: read their docs, run a quick SDK spike, and check error handling. Self-assessing with a small prototype beats trusting any rating at face value."
+    },
+    {
+      "q": "Is BoxyHQ a good alternative to Cerbos?",
+      "a": "BoxyHQ sits in the same category as Cerbos, so it can be a reasonable alternative for overlapping use cases. BoxyHQ is best fit for apps, b2b. Note: BoxyHQ is not for internal, static projects."
+    }
+  ]
+}

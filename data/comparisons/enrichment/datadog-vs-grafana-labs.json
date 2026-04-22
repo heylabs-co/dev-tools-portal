@@ -1,0 +1,24 @@
+{
+  "intro": "The biggest real distinction between Datadog and Grafana Labs is straightforward: Datadog carries high lock-in while Grafana Labs has low lock-in. Datadog sits at usage-based pricing starting at $15/host/mo (Infra Pro), a free tier, enterprise plan available and carries high lock-in, while Grafana Labs sits at usage-based pricing starting at $15/user/mo (Cloud), $8/1K series, a free tier, enterprise plan available and carries low lock-in. Datadog is a fit when you need enterprise — typical scenarios include enterprise needing unified apm + logs + metrics. Grafana Labs is aimed at want open-source observability (grafana + loki + tempo + mimir), with workloads like want open-source observability (grafana + loki + tempo + mimir) as the common case. The honest trade-off: Datadog is explicitly not for cost-sensitive; Grafana Labs is not intended for non-technical projects. Lock-in is the factor most teams underestimate: Datadog and Grafana Labs have different exit paths, and that shapes total cost of ownership over a two-to-three year horizon.",
+  "quick_take": "Datadog is for enterprise; Grafana Labs is for want open-source observability (grafana + loki; decide based on how much lock-in you can accept.",
+  "verdict_a": "Choose Datadog if your primary workload is enterprise and you prefer usage-based pricing (starts at $15/host/mo (Infra Pro)).",
+  "verdict_b": "Choose Grafana Labs if your primary workload is want open-source observability (grafana + loki + tempo + mimir) and you prefer usage-based pricing (starts at $15/user/mo (Cloud), $8/1K series).",
+  "faq": [
+    {
+      "q": "Is Datadog cheaper than Grafana Labs?",
+      "a": "It depends on workload shape: Datadog lists $15/host/mo (Infra Pro), while Grafana Labs lists $15/user/mo (Cloud), $8/1K series. With different pricing models (usage vs usage), the cheaper option flips based on seat count, usage volume, and whether you use the free tier. Do a per-workload estimate rather than comparing headline numbers."
+    },
+    {
+      "q": "Can I migrate from Datadog to Grafana Labs?",
+      "a": "Migrating from Datadog to Grafana Labs is not trivial — Datadog has high lock-in, which typically means data formats, APIs, or stack assumptions that have to be rewritten. Since both tools sit in the same category (Performance Monitoring / APM), the conceptual mapping is closer, but you still need to validate feature parity against your specific workload. Plan migration as a project, not a script: inventory integrations, test on non-production workloads, and keep Datadog running in parallel until Grafana Labs is verified."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Our data gives Datadog and Grafana Labs the same developer experience score (5/5), so neither has a clear edge on DX by that measure. The differentiator is usually how each tool fits your workflow — things like CLI quality, docs, local dev loop, and error messages. The safest call is to pilot both on a representative task and see which one gets out of your way."
+    },
+    {
+      "q": "Is Grafana Labs a good alternative to Datadog?",
+      "a": "Grafana Labs is in the same category as Datadog (Performance Monitoring / APM), so it's a reasonable alternative to evaluate. Grafana Labs is aimed at want open-source observability (grafana + loki + tempo + mimir), while Datadog targets enterprise — that difference should drive the switch decision. Note that Grafana Labs is explicitly not for non-technical projects — if that describes your workload, it's not a viable replacement."
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "intro": "Adyen and Stark Bank both show up under the payment gateway category, but they solve slightly different jobs. Adyen uses pricing that starts at EUR 0.11 + scheme fee, while Stark Bank runs on usage-based pricing. Both sit at moderate lock-in. Adyen fits teams working on enterprise with $10M+ TPV needing global coverage, while Stark Bank is a closer match when the job is Pix payment integration for Brazilian businesses via SDK. Worth noting: Adyen is explicitly not for solo projects; Stark Bank is explicitly not for companies outside Brazil or needing multi-country payment rails. The honest trade-off: Adyen trades off on startup with <$1M TPV — minimum fees are high; Stark Bank trades off on brazil-only — no utility outside BRL. On the plus side, Adyen highlights enterprise with $10M+ TPV needing global coverage, while Stark Bank points to SDKs in 10+ languages — real DX focus. Adyen's documentation also calls out unified online + in-store (POS) payments. Stark Bank similarly notes native Pix integration for instant BRL payments.",
+  "quick_take": "Adyen is for enterprise with $10M+ TPV needing global; Stark Bank is for Pix payment integration for Brazilian businesses; decide on pricing model.",
+  "verdict_a": "Choose Adyen if your project is enterprise with $10M+ TPV needing global coverage, medium lock-in is an acceptable trade-off.",
+  "verdict_b": "Choose Stark Bank if your project is Pix payment integration for Brazilian businesses via SDK, medium lock-in is an acceptable trade-off.",
+  "faq": [
+    {
+      "q": "Is Adyen cheaper than Stark Bank?",
+      "a": "Adyen uses pricing that starts at EUR 0.11 + scheme fee, and Stark Bank uses usage-based pricing. The pricing models are different, so a direct cheaper-than comparison depends on your volume and usage pattern."
+    },
+    {
+      "q": "Can I migrate from Adyen to Stark Bank?",
+      "a": "Our data puts Adyen at medium lock-in (proprietary tokens, but csv import/export under), and Stark Bank at medium lock-in (brazil-focused pix, sdks help portability). Migration is feasible but not trivial — budget time for re-integration, data export, and parallel running before cutover."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Both score 5/5 on developer experience in our data, so there's no clear winner on that axis. The better fit depends on which SDK matches your stack and which docs your team finds clearer during evaluation."
+    },
+    {
+      "q": "Is Stark Bank a good alternative to Adyen?",
+      "a": "Stark Bank is a reasonable alternative to Adyen when your workload leans more toward brazilian fintechs and SaaS needing Pix, TED, and boleto with clean SDKs than enterprise. The pricing model shifts too — Adyen is pricing that starts at EUR 0.11 + scheme fee, Stark Bank is usage-based pricing — so expect the cost profile to change as well. One caveat: Stark Bank is explicitly not for companies outside Brazil or needing multi-country payment rails, so check that constraint against your use-case before switching."
+    }
+  ]
+}

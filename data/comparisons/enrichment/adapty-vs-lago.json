@@ -1,0 +1,24 @@
+{
+  "intro": "The most concrete split between Adapty and Lago is the pricing model: Adapty runs on subscription from $0/mo, with a free tier, while Lago uses freemium with paid plans from $1. That shapes how predictable your monthly spend is and how much of the cost sits in infrastructure versus per-seat or per-event fees. Beyond the headline, Adapty carries medium lock-in (subscription sdk wraps app store/play; purchase data exportable) and subscription from $0/mo, with a free tier; Lago carries low lock-in (open-source billing, self-hostable) and freemium with paid plans from $1. Adapty is a fit when you are saas. Lago is a fit when you are saas. The honest trade-off: Adapty is explicitly not for simple projects; Lago is explicitly not for simple projects. On the product side, Adapty is described as In-app subscription SDK for iOS and Android with paywall A/B testing, revenue analytics, and purchase validation, and Lago is described as Open-source metering and usage-based billing API supporting flat, tiered, volume, and percentage pricing models.",
+  "quick_take": "Adapty is for saas; Lago is for saas; decide on pricing model.",
+  "verdict_a": "Choose Adapty if its subscription pricing model fits your budget shape better than Lago's freemium model, and you are saas.",
+  "verdict_b": "Choose Lago if its freemium pricing model fits your budget shape better than Adapty's subscription model, and you are saas.",
+  "faq": [
+    {
+      "q": "Is Adapty cheaper than Lago?",
+      "a": "Adapty starts at $0/mo; Lago starts at $1. On entry price alone that is the comparison, but real cost scales with users, events or volume, which the entry prices do not capture. Check each vendor's full tier list before committing."
+    },
+    {
+      "q": "Can I migrate from Adapty to Lago?",
+      "a": "Migration from Adapty to Lago is feasible but not trivial: Adapty has medium lock-in (subscription sdk wraps app store/play; purchase data exportable). Core data can move; integrations and workflow logic need rebuild. Allow for a parallel-run period."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Both tools tie at 4/5 for developer experience on our scoring. The real difference will show up in your specific workflow, not the headline rating. A one-hour spike on both is the fastest way to decide."
+    },
+    {
+      "q": "Is Lago a good alternative to Adapty?",
+      "a": "Lago targets the same best-fit audience as Adapty (saas). Note that Lago is explicitly not for simple projects, so it only replaces Adapty if you are outside that exclusion. The lock-in profile differs (medium vs low), which is the main thing to weigh."
+    }
+  ]
+}

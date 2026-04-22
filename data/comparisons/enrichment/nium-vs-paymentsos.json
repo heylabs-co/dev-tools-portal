@@ -1,0 +1,24 @@
+{
+  "intro": "Nium and PaymentsOS both show up under the payments orchestration category, but they solve slightly different jobs. Nium carries high lock-in, while PaymentsOS sits at moderate lock-in. Nium fits teams working on cross-border payouts to 190+ countries for gig platforms, while PaymentsOS is a closer match when the job is smart routing across multiple PSPs for enterprise merchants. Worth noting: Nium is explicitly not for consumer merchants looking primarily for smart card-routing across PSPs; PaymentsOS is explicitly not for dev-first teams expecting modern SDKs, open source, or fast product iteration. The honest trade-off: Nium trades off on positioned as infra, not merchant orchestration; PaymentsOS trades off on legacy brand (Zooz) can signal older codebase. On the plus side, Nium highlights global payouts to 190+ countries and 100+ currencies, while PaymentsOS points to established orchestrator with smart-routing track record. Nium's documentation also calls out card issuing and collections on one platform. PaymentsOS similarly notes owned by PayU, giving scale and stability.",
+  "quick_take": "Nium is for cross-border payouts to 190+ countries for; PaymentsOS is for smart routing across multiple PSPs for; decide on lock-in tolerance.",
+  "verdict_a": "Choose Nium if your project is cross-border payouts to 190+ countries for gig platforms, you are prepared for a sales-led custom-pricing conversation, you are willing to accept the high lock-in called out in our data.",
+  "verdict_b": "Choose PaymentsOS if your project is smart routing across multiple PSPs for enterprise merchants, you are prepared for a sales-led custom-pricing conversation, medium lock-in is an acceptable trade-off.",
+  "faq": [
+    {
+      "q": "Is Nium cheaper than PaymentsOS?",
+      "a": "Nium uses custom (sales-led) pricing, and PaymentsOS uses custom (sales-led) pricing. Without full pricing pages to compare, we can't rank them on price alone — check each vendor's current rates for your workload."
+    },
+    {
+      "q": "Can I migrate from Nium to PaymentsOS?",
+      "a": "Our data puts Nium at high lock-in (global payments infra, deep integration), and PaymentsOS at medium lock-in (payment orchestration, psp switchable). Expect real migration work out of Nium — plan for data export, re-integration, and downtime testing before cutting over."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Both score 4/5 on developer experience in our data, so there's no clear winner on that axis. The better fit depends on which SDK matches your stack and which docs your team finds clearer during evaluation."
+    },
+    {
+      "q": "Is PaymentsOS a good alternative to Nium?",
+      "a": "PaymentsOS is a reasonable alternative to Nium when your workload leans more toward global enterprises comfortable with PayU-backed vendors and needing stable multi-PSP routing than platforms, marketplaces, and fintechs needing cross-border payouts, cards, and FX via one licensed provider. One caveat: PaymentsOS is explicitly not for dev-first teams expecting modern SDKs, open source, or fast product iteration, so check that constraint against your use-case before switching."
+    }
+  ]
+}

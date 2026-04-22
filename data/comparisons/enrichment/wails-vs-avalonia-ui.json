@@ -1,0 +1,24 @@
+{
+  "intro": "Wails carries low lock-in (OSS Go desktop framework) while Avalonia UI is high (OSS.NET UI framework). Wails is positioned for go developers building small-binary desktop tools with web-tech frontends, while Avalonia UI leans toward.net teams migrating wpf apps to linux, macos, or mobile platforms. In practice, Build desktop applications with Go and web technologies (JS/HTML/CSS). Native WebView, no Chromium bundled. Cross-platform.NET UI framework for building desktop, mobile, web, and embedded apps using XAML and C#. Wails runs on free with a free tier; Avalonia UI runs on free with a free tier. Listed strengths unique to Wails include go backend with web frontend, no chromium, while Avalonia UI lists true cross-platform.net from one codebase on its side. Reach for Wails when you need lightweight go desktop app without bundling a chromium runtime; reach for Avalonia UI when the job is cross-platform desktop app from a single c# + xaml codebase. The honest trade-off: Wails is not built for teams needing identical rendering across oses — use electron for uniformity, and Avalonia UI is not the right.",
+  "quick_take": "Wails is for go developers building small-binary desktop tools with web-tech frontends; Avalonia UI is for.net teams migrating wpf apps to linux, macos, or mobile platforms; decide based on.",
+  "verdict_a": "Choose Wails if go developers building small-binary desktop tools with web-tech frontends and you need a free tier to validate fit.",
+  "verdict_b": "Choose Avalonia UI if.net teams migrating wpf apps to linux, macos, or mobile platforms and you need a free tier to validate fit.",
+  "faq": [
+    {
+      "q": "Is Wails cheaper than Avalonia UI?",
+      "a": "Both Wails and Avalonia UI expose free tiers with no headline entry price listed. The real comparison happens once you cross the free limits, and that pricing isn't captured in the summary data. Check each tool's pricing page for your volume band."
+    },
+    {
+      "q": "Can I migrate from Wails to Avalonia UI?",
+      "a": "Technically you can move between any two tools in the same category, but effort varies: leaving Wails is relatively light thanks to its low lock-in, and onboarding to Avalonia UI commits you to high lock-in (OSS.NET UI framework). Plan for data export, re-integration, and a parallel-run window rather than a hard cutover."
+    },
+    {
+      "q": "Which has better developer experience, Wails or Avalonia UI?",
+      "a": "Both Wails and Avalonia UI score 4/5 on developer experience in our data, so there's no clear winner on that axis alone. The real differentiator usually lands in SDK fit for your language, error handling, and docs depth. A half-day integration spike tells you more than the score."
+    },
+    {
+      "q": "Is Avalonia UI a good alternative to Wails?",
+      "a": "Avalonia UI is an alternative in the same category, but its stated sweet spot is.net teams migrating wpf apps to linux, macos, or mobile platforms, while Wails's is go developers building small-binary desktop tools with web-tech frontends. If your job matches Wails's profile more closely, switching to Avalonia UI is a compromise. Use the best-fit match, not brand familiarity, to decide. Note: Avalonia UI is explicitly not for teams committed to platform-native sdks like swiftui or jetpack compose."
+    }
+  ]
+}

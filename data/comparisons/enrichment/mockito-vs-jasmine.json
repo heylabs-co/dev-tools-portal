@@ -1,0 +1,24 @@
+{
+  "intro": "The biggest practical difference between Mockito and Jasmine is lock-in. Mockito is rated high lock-in (free oss java mocking), while Jasmine is rated low lock-in (free js testing framework). That changes how hard a future migration would be and how much strategy to put into exit planning. Beyond the headline, Mockito carries high lock-in (free oss java mocking) and free and open-source; Jasmine carries low lock-in (free js testing framework) and free and open-source. Mockito is a fit when you are java teams doing any real unit testing on non-trivial codebases. Jasmine is a fit when you are existing angular or angularjs projects with sizeable jasmine suites. The honest trade-off: Mockito is explicitly not for kotlin-first teams who will be happier with mockk; Jasmine is explicitly not for new javascript projects where vitest or native runners are better defaults. On the product side, Mockito is described as Most popular mocking framework for Java/Kotlin, providing readable stub/verify syntax and an inline byte-code-manipulating mock-maker for final classes, and Jasmine is described as Behavior-driven JavaScript testing framework with no external dependencies, historically used.",
+  "quick_take": "Mockito is for java teams doing any real unit testing on non-trivial codebases; Jasmine is for existing angular or angularjs projects with sizeable jasmine suites; decide on lock-in tolerance.",
+  "verdict_a": "Choose Mockito if you accept higher lock-in in exchange for its specific capabilities and you are java teams doing any real unit testing on non-trivial codebases.",
+  "verdict_b": "Choose Jasmine if minimizing lock-in matters and you accept its stated trade-offs for existing angular or angularjs projects with sizeable jasmine suites.",
+  "faq": [
+    {
+      "q": "Is Mockito cheaper than Jasmine?",
+      "a": "Both tools use free pricing. Mockito is listed as free and open-source; Jasmine as free and open-source. Without specific volume and seat assumptions it is not possible to say which is cheaper in general."
+    },
+    {
+      "q": "Can I migrate from Mockito to Jasmine?",
+      "a": "Migration from Mockito is harder: Mockito is rated high lock-in (free oss java mocking). You can still move, but expect schema-mapping, export tooling and a longer cutover window. Budget engineering time accordingly."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Both tools tie at 5/5 for developer experience on our scoring. The real difference will show up in your specific workflow, not the headline rating. A one-hour spike on both is the fastest way to decide."
+    },
+    {
+      "q": "Is Jasmine a good alternative to Mockito?",
+      "a": "Jasmine is pitched at existing angular or angularjs projects with sizeable jasmine suites, which overlaps with Mockito's fit (java teams doing any real unit testing on non-trivial codebases) but is not identical. Note that Jasmine is explicitly not for new javascript projects where vitest or native runners are better defaults, so it only replaces Mockito if you are outside that exclusion. The lock-in profile differs (high vs low), which is the main thing to weigh."
+    }
+  ]
+}

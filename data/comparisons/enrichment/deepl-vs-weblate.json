@@ -1,0 +1,24 @@
+{
+  "intro": "DeepL and Weblate both sit in the Localization / Translation API space, but they target slightly different scopes. DeepL specializes in Translation API; it fits best for Mobile. Weblate specializes in Translation Management; it fits best for Global products launching in multiple markets. Pick DeepL for Mobile; pick Weblate for Global products launching in multiple markets. DeepL is not for hobby projects. Weblate is not for single-language apps or internal tools. Honest trade-offs: DeepL is weak for manual deployment is sufficient, and Weblate is weak for machine translation quality varies by language pair — match to your real scenario. Both sit under the Localization / Translation API umbrella, so your final call depends on pricing transparency, integration effort, and which listed not-for situations you can actually tolerate. On pricing, DeepL uses a free tier plus paid plans and Weblate uses a free tier plus paid plans, which materially changes total cost at scale.",
+  "quick_take": "DeepL is for mobile; Weblate is for global products launching in multiple markets; decide based on scope fit.",
+  "verdict_a": "Choose DeepL if your core need is automated build/test/deploy pipelines.",
+  "verdict_b": "Choose Weblate if your core need is automated build/test/deploy pipelines.",
+  "faq": [
+    {
+      "q": "Is DeepL cheaper than Weblate?",
+      "a": "A direct comparison depends on your usage profile and which pricing model fits better. DeepL offers a free tier. Weblate offers a free tier."
+    },
+    {
+      "q": "Can I migrate from DeepL to Weblate?",
+      "a": "Migration between these is relatively straightforward since both are rated as low lock-in. Plan for data export, re-integration of SDKs, and re-testing flows before cutover. Verify exportable formats and feature parity against your live use cases before committing."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Both score 4/5 on developer experience in our data. Evaluate against your own stack: read their docs, run a quick SDK spike, and check error handling. Self-assessing with a small prototype beats trusting any rating at face value."
+    },
+    {
+      "q": "Is Weblate a good alternative to DeepL?",
+      "a": "Weblate sits in the same category as DeepL, so it can be a reasonable alternative for overlapping use cases. Weblate is best fit for global products launching in multiple markets. Note: Weblate is not for single-language apps or internal tools."
+    }
+  ]
+}

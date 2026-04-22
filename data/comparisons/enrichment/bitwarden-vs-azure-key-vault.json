@@ -1,0 +1,24 @@
+{
+  "intro": "The most concrete split between Bitwarden and Azure Key Vault is the pricing model: Bitwarden runs on freemium with paid plans from $1.65/Month, while Azure Key Vault uses subscription from $1, with a free tier. That shapes how predictable your monthly spend is and how much of the cost sits in infrastructure versus per-seat or per-event fees. Beyond the headline, Bitwarden carries low lock-in (oss with self-host and export) and freemium with paid plans from $1.65/Month; Azure Key Vault carries low lock-in (azure-bound secrets) and subscription from $1, with a free tier. Bitwarden is a fit when you are teams. Azure Key Vault is a fit when you are teams. The honest trade-off: Bitwarden is explicitly not for solo, static projects; Azure Key Vault is explicitly not for solo, static projects. On the product side, Bitwarden is described as Open-source password and secrets manager with end-to-end encryption, SSO support, and self-hosting options, and Azure Key Vault is described as Managed HSM and secrets service storing keys, certificates, and connection strings with Azure AD access control.",
+  "quick_take": "Bitwarden is for teams; Azure Key Vault is for teams; decide on pricing model.",
+  "verdict_a": "Choose Bitwarden if its freemium pricing model fits your budget shape better than Azure Key Vault's subscription model, and you are teams.",
+  "verdict_b": "Choose Azure Key Vault if its subscription pricing model fits your budget shape better than Bitwarden's freemium model, and you are teams.",
+  "faq": [
+    {
+      "q": "Is Bitwarden cheaper than Azure Key Vault?",
+      "a": "Bitwarden starts at $1.65/Month; Azure Key Vault starts at $1. On entry price alone that is the comparison, but real cost scales with users, events or volume, which the entry prices do not capture. Check each vendor's full tier list before committing."
+    },
+    {
+      "q": "Can I migrate from Bitwarden to Azure Key Vault?",
+      "a": "Migration from Bitwarden to Azure Key Vault is plausible because Bitwarden has low lock-in (oss with self-host and export). You would still have to map config, permissions and integrations to Azure Key Vault's model. Plan for dual-run and rollback."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "On our scoring Bitwarden rates 5/5 for developer experience versus 4/5 for Azure Key Vault. That suggests day-to-day workflows (CLI, SDKs, docs) are smoother in Bitwarden. Scores are directional; run a short spike on your own stack to confirm."
+    },
+    {
+      "q": "Is Azure Key Vault a good alternative to Bitwarden?",
+      "a": "Azure Key Vault targets the same best-fit audience as Bitwarden (teams). Note that Azure Key Vault is explicitly not for solo, static projects, so it only replaces Bitwarden if you are outside that exclusion. Pricing models differ (freemium vs subscription), which may shift total cost."
+    }
+  ]
+}

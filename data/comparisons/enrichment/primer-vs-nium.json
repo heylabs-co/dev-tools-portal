@@ -1,0 +1,24 @@
+{
+  "intro": "Primer and Nium both show up under the payments orchestration category, but they solve slightly different jobs. Primer uses custom (sales-led) pricing, while Nium runs on custom (sales-led) pricing. Lock-in is low for Primer and high for Nium. Transparency lands at 3/5 versus 1/5. Primer fits teams working on Multi-PSP routing for higher conversion, while Nium is a closer match when the job is cross-border payouts to 190+ countries for gig platforms. Worth noting: Primer is explicitly not for single-market startups; Nium is explicitly not for consumer merchants looking primarily for smart card-routing across PSPs. The honest trade-off: Primer trades off on single-market startups; Nium trades off on positioned as infra, not merchant orchestration. On the plus side, Primer highlights Multi-PSP routing for higher conversion, while Nium points to global payouts to 190+ countries and 100+ currencies. Primer's documentation also calls out enterprise with multiple payment providers. Nium similarly notes card issuing and collections on one platform.",
+  "quick_take": "Primer is for Multi-PSP routing for higher conversion; Nium is for cross-border payouts to 190+ countries for; decide on pricing model.",
+  "verdict_a": "Choose Primer if your project is Multi-PSP routing for higher conversion, you want to keep future migration cheap, strong SDKs and docs (5/5) are a priority.",
+  "verdict_b": "Choose Nium if your project is cross-border payouts to 190+ countries for gig platforms, you are prepared for a sales-led custom-pricing conversation, you are willing to accept the high lock-in called out in our data.",
+  "faq": [
+    {
+      "q": "Is Primer cheaper than Nium?",
+      "a": "Primer uses custom (sales-led) pricing, and Nium uses custom (sales-led) pricing. The pricing models are different, so a direct cheaper-than comparison depends on your volume and usage pattern."
+    },
+    {
+      "q": "Can I migrate from Primer to Nium?",
+      "a": "Our data puts Primer at low lock-in, and Nium at high lock-in (global payments infra, deep integration). Migration is feasible but not trivial — budget time for re-integration, data export, and parallel running before cutover."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Primer scores 5/5 on developer experience in our data, while Nium scores 4/5, so Primer has the edge on docs and SDK quality by that measure. That gap is reinforced by transparency scores of 3/5 versus 1/5. Still, run a small integration spike on both before deciding — team familiarity with a given SDK style often matters more than a one-point score gap."
+    },
+    {
+      "q": "Is Nium a good alternative to Primer?",
+      "a": "Nium is a reasonable alternative to Primer when your workload leans more toward platforms, marketplaces, and fintechs needing cross-border payouts, cards, and FX via one licensed provider than enterprise. The pricing model shifts too — Primer is custom (sales-led) pricing, Nium is custom (sales-led) pricing — so expect the cost profile to change as well. One caveat: Nium is explicitly not for consumer merchants looking primarily for smart card-routing across PSPs, so check that constraint against your use-case before switching."
+    }
+  ]
+}

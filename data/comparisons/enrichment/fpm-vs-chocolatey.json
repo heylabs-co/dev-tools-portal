@@ -1,0 +1,24 @@
+{
+  "intro": "The biggest real distinction between fpm and Chocolatey is straightforward: fpm is free and open-source, while Chocolatey is a commercial product (freemium with paid upgrades). fpm sits at free and open-source and carries low lock-in, while Chocolatey sits at freemium with paid upgrades and carries low lock-in. fpm is a fit when you need teams shipping third-party apps across distros without targeting official repos — typical scenarios include build deb, rpm, and pacman packages from single source. Chocolatey is aimed at windows admins and ci pipelines installing third-party tooling at scale, with workloads like automated windows dev environment setup via scripts as the common case. The honest trade-off: fpm is explicitly not for apps aiming for inclusion in debian/fedora/ubuntu main archives; Chocolatey is not intended for developers who prefer the leaner, no-admin scoop or msix flows. On cost specifically, pricing model matters more than sticker price — one workload can make fpm cheaper while a different shape flips the answer to Chocolatey.",
+  "quick_take": "fpm is for teams shipping third-party apps across distros; Chocolatey is for windows admins and ci pipelines installing; decide based on cost model and budget.",
+  "verdict_a": "Choose fpm if your primary workload is teams shipping third-party apps across distros without targeting official repos and you want a free/OSS tool with no vendor bill.",
+  "verdict_b": "Choose Chocolatey if your primary workload is windows admins and ci pipelines installing third-party tooling at scale and low switching cost matters.",
+  "faq": [
+    {
+      "q": "Is fpm cheaper than Chocolatey?",
+      "a": "Yes — fpm is free and open-source, while Chocolatey uses freemium with paid upgrades. That makes fpm unambiguously cheaper on license cost; however, the true cost comparison depends on the ops effort required to run an OSS tool versus paying for Chocolatey's managed service."
+    },
+    {
+      "q": "Can I migrate from fpm to Chocolatey?",
+      "a": "Migrating from fpm to Chocolatey is generally feasible because fpm has low lock-in, so data and configuration are usually portable. Since both tools sit in the same category (CI/CD for Applications), the conceptual mapping is closer, but you still need to validate feature parity against your specific workload. Plan migration as a project, not a script: inventory integrations, test on non-production workloads, and keep fpm running in parallel until Chocolatey is verified."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Our data gives fpm and Chocolatey the same developer experience score (4/5), so neither has a clear edge on DX by that measure. The differentiator is usually how each tool fits your workflow — things like CLI quality, docs, local dev loop, and error messages. The safest call is to pilot both on a representative task and see which one gets out of your way."
+    },
+    {
+      "q": "Is Chocolatey a good alternative to fpm?",
+      "a": "Chocolatey is in the same category as fpm (CI/CD for Applications), so it's a reasonable alternative to evaluate. Chocolatey is aimed at windows admins and ci pipelines installing third-party tooling at scale, while fpm targets teams shipping third-party apps across distros without targeting official repos — that difference should drive the switch decision. Note that Chocolatey is explicitly not for developers who prefer the leaner, no-admin scoop or msix flows — if that describes your workload, it's not a viable replacement."
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "intro": "The clearest gap in the data is developer experience: BookStack sits at 4/5, Jupyter Book at 5/5. Teams feel that gap day-to-day. BookStack is built for internal team knowledge bases, runbooks, and general documentation on self-hosted infrastructure and is not a fit for public developer documentation, api references, or teams without php hosting expertise. Jupyter Book is built for data science teams, ml researchers, and educators publishing reproducible notebook content and is not a fit for general api docs, saas product docs, or teams without notebook-based content. On the scoring side, BookStack rates 4/5 for developer experience and 5/5 for transparency; Jupyter Book rates 5/5 and 5/5 respectively. The honest trade-off: with BookStack you accept that not designed for api reference or developer-spec docs, while Jupyter Book comes with the reality that sphinx underpinnings expose config complexity. Neither side is free. BookStack's headline strength in the data is that fully free and self-hostable with no feature gating.",
+  "quick_take": "BookStack is for internal team knowledge bases, runbooks, and general documentation on self-hosted infrastructure; Jupyter Book is for data science teams, ml researchers, and educators publishing reproducible notebook content; decide.",
+  "verdict_a": "Choose BookStack if you are internal team knowledge bases, runbooks, and general documentation on self-hosted infrastructure and its workflow specificity outweighs a 4/5 DX rating.",
+  "verdict_b": "Choose Jupyter Book if you are data science teams, ml researchers, and educators publishing reproducible notebook content and developer ergonomics (5/5) matter more than niche fit.",
+  "faq": [
+    {
+      "q": "Is BookStack cheaper than Jupyter Book?",
+      "a": "Both list a free pricing model in our data, and both publish a free tier. We don't have per-seat numbers in this dataset, so 'cheaper' depends on volume. Price both on your actual usage before deciding."
+    },
+    {
+      "q": "Can I migrate from BookStack to Jupyter Book?",
+      "a": "BookStack has low lock-in (oss self-hosted knowledge base); Jupyter Book has low lock-in (open-source, markdown/notebook content). Migration effort scales with how much state and automation you've built in BookStack; plan for data export, config rebuild, and a parallel-run period before cutting over."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "In our data, Jupyter Book scores 5/5 for developer experience versus 4/5 for BookStack. That said, DX is subjective; the BookStack score may still be acceptable if its feature fit is stronger for your use case."
+    },
+    {
+      "q": "Is Jupyter Book a good alternative to BookStack?",
+      "a": "Jupyter Book is built for data science teams, ml researchers, and educators publishing reproducible notebook content and explicitly not for general api docs, saas product docs, or teams without notebook-based content, so it's a fit only if your workflow matches its stated audience. If you were using BookStack for internal team knowledge bases, runbooks, and general documentation on self-hosted infrastructure, the switch is reasonable; outside that scope, look elsewhere."
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "intro": "The pivotal question between Apache SkyWalking and Datadog is how much of your setup stays portable: Apache SkyWalking carries low lock-in and Datadog carries high lock-in. Apache SkyWalking is open-source APM with distributed tracing and service-mesh observability. Datadog is SaaS observability platform for metrics, logs, traces, and security. Pick Apache SkyWalking when the job is microservices performance monitoring and you accept low lock-in; pick Datadog when it is enterprise and you accept high lock-in. The data we have shows Apache SkyWalking at some public pricing / roadmap detail with solid developer experience, and Datadog at some public pricing / roadmap detail with a polished developer experience. The honest trade-off: neither is universal — Apache SkyWalking is a poor fit for simple, static projects, and Datadog is a poor fit for cost-sensitive. Match the pricing model and lock-in level to how your team actually works, not the feature list. If your team already lives inside the ecosystem one of them assumes, that default usually wins — migration is cheap to start and expensive later.",
+  "quick_take": "Apache SkyWalking is for open-source APM; Datadog is for SaaS observability platform; decide based on how portable the setup must stay.",
+  "verdict_a": "Choose Apache SkyWalking if you're comfortable without published pricing and the work maps to open-source APM with distributed tracing and service-mesh observability.",
+  "verdict_b": "Choose Datadog if deep integration is an acceptable price for the depth it buys and the work lines up with SaaS observability platform for metrics, logs, traces, and security.",
+  "faq": [
+    {
+      "q": "Is Apache SkyWalking cheaper than Datadog?",
+      "a": "We can't verify the comparison: Apache SkyWalking doesn't publish an entry price (seat model), while Datadog starts at $15/host/mo (Infra Pro) (usage). Ask Apache SkyWalking sales for a quote that matches your scale."
+    },
+    {
+      "q": "Can I migrate from Apache SkyWalking to Datadog?",
+      "a": "Moving from Apache SkyWalking to Datadog is feasible, but Datadog is rated high lock-in — expect your integrations and workflows to need rework to match its model. Budget for a parallel-run period rather than a hard cutover."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Datadog scores higher on developer experience in our data (5/5 vs 4/5). The gap usually shows up in setup friction and daily workflow speed. Confirm it on your own stack before treating the rating as final."
+    },
+    {
+      "q": "Is Datadog a good alternative to Apache SkyWalking?",
+      "a": "Yes — Datadog is a reasonable alternative to Apache SkyWalking for microservices performance monitoring. The practical differences are seat-vs-usage billing and low-vs-high lock-in. If those fit your constraints better, treat Datadog as a credible swap."
+    }
+  ]
+}

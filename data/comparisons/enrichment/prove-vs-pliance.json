@@ -1,0 +1,24 @@
+{
+  "intro": "Prove and Pliance both sit in the KYC / KYB / AML API space, but they target slightly different scopes. Prove is Prove is a digital identity platform using phone-number intelligence, possession checks and Prove Pre-Fill to verify and authenticate users, cutting fraud and friction in onboarding for banks and fintechs; it fits best for US banks and fintechs using phone possession to reduce fraud and autofill KYC fields. Pliance is Pliance is a Swedish compliance platform offering APIs for customer due diligence, sanctions and PEP screening, transaction monitoring and ongoing monitoring designed for developers and compliance teams; it fits best for Nordic and EU fintechs wanting modern AML APIs with GDPR-aligned hosting and clear docs. Pick Prove when the job maps to phone-number intelligence for frictionless kyc onboarding; pick Pliance when it maps to customer due diligence api for swedish fintech onboarding. Prove is not for global or privacy-minimal products that cannot rely on us carrier data for verification. Pliance is not for us-heavy teams or enterprises needing tier-1 data providers and full case-management workflows.",
+  "quick_take": "Prove is for us banks and fintechs using phone posses; Pliance is for nordic and eu fintechs wanting modern am; decide based on scope fit.",
+  "verdict_a": "Choose Prove if your core need is phone-number intelligence for frictionless kyc onboarding.",
+  "verdict_b": "Choose Pliance if your core need is customer due diligence api for swedish fintech onboarding.",
+  "faq": [
+    {
+      "q": "Is Prove cheaper than Pliance?",
+      "a": "Both use custom pricing, so a direct comparison is not possible without quotes from each vendor. Prove uses custom enterprise pricing with no published rates. Pliance uses custom enterprise pricing with no published rates."
+    },
+    {
+      "q": "Can I migrate from Prove to Pliance?",
+      "a": "Migration can be painful since both are rated high lock-in (Prove: Custom identity contracts) (Pliance: Custom KYC contracts). Plan for data export, re-integration of SDKs, and re-testing flows before cutover. Verify exportable formats and feature parity against your live use cases before committing."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Both score 4/5 on developer experience in our data. Evaluate against your own stack: read their docs, run a quick SDK spike, and check error handling. Self-assessing with a small prototype beats trusting any rating at face value."
+    },
+    {
+      "q": "Is Pliance a good alternative to Prove?",
+      "a": "Pliance sits in the same category as Prove, so it can be a reasonable alternative for overlapping use cases. Pliance is best fit for nordic and eu fintechs wanting modern aml apis with gdpr-aligned hosting and clear docs. Note: Pliance is not for us-heavy teams or enterprises needing tier-1 data providers and full case-management workflows."
+    }
+  ]
+}

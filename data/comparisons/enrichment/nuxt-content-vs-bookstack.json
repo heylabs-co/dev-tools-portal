@@ -1,0 +1,24 @@
+{
+  "intro": "The clearest gap in the data is developer experience: Nuxt Content sits at 5/5, BookStack at 4/5. Teams feel that gap day-to-day. Nuxt Content is built for teams already on nuxt who want integrated content and docs alongside their app and is not a fit for non-vue teams or projects where docs are the sole reason to adopt a framework. BookStack is built for internal team knowledge bases, runbooks, and general documentation on self-hosted infrastructure and is not a fit for public developer documentation, api references, or teams without php hosting expertise. On the scoring side, Nuxt Content rates 5/5 for developer experience and 5/5 for transparency; BookStack rates 4/5 and 5/5 respectively. The honest trade-off: with Nuxt Content you accept that locked into the nuxt ecosystem by design, while BookStack comes with the reality that not designed for api reference or developer-spec docs. Neither side is free. Nuxt Content's headline strength in the data is that deep nuxt integration makes docs a first-class route.",
+  "quick_take": "Nuxt Content is for teams already on nuxt who want integrated content and docs alongside their app; BookStack is for internal team knowledge bases, runbooks, and general documentation on self-hosted.",
+  "verdict_a": "Choose Nuxt Content if you are teams already on nuxt who want integrated content and docs alongside their app and developer ergonomics (5/5) matter more than niche fit.",
+  "verdict_b": "Choose BookStack if you are internal team knowledge bases, runbooks, and general documentation on self-hosted infrastructure and its workflow specificity outweighs a 4/5 DX rating.",
+  "faq": [
+    {
+      "q": "Is Nuxt Content cheaper than BookStack?",
+      "a": "Both list a free pricing model in our data, and both publish a free tier. We don't have per-seat numbers in this dataset, so 'cheaper' depends on volume. Price both on your actual usage before deciding."
+    },
+    {
+      "q": "Can I migrate from Nuxt Content to BookStack?",
+      "a": "Nuxt Content has low lock-in (oss nuxt module, markdown-based); BookStack has low lock-in (oss self-hosted knowledge base). Migration effort scales with how much state and automation you've built in Nuxt Content; plan for data export, config rebuild, and a parallel-run period before cutting over."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "In our data, Nuxt Content scores 5/5 for developer experience versus 4/5 for BookStack. That said, DX is subjective; the BookStack score may still be acceptable if its feature fit is stronger for your use case."
+    },
+    {
+      "q": "Is BookStack a good alternative to Nuxt Content?",
+      "a": "BookStack is built for internal team knowledge bases, runbooks, and general documentation on self-hosted infrastructure and explicitly not for public developer documentation, api references, or teams without php hosting expertise, so it's a fit only if your workflow matches its stated audience. If you were using Nuxt Content for teams already on nuxt who want integrated content and docs alongside their app, the switch is reasonable; outside that scope, look elsewhere."
+    }
+  ]
+}

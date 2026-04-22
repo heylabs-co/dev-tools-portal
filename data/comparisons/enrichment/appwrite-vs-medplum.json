@@ -1,0 +1,24 @@
+{
+  "intro": "The biggest real distinction between Appwrite and Medplum is straightforward: Appwrite uses hybrid pricing with $25/mo/project (Pro), a free tier, enterprise plan available; Medplum uses freemium with paid upgrades. Appwrite sits at hybrid pricing with $25/mo/project (Pro), a free tier, enterprise plan available and carries low lock-in, while Medplum sits at freemium with paid upgrades and carries low lock-in. Appwrite is a fit when you need mobile, teams — typical scenarios include mvp/prototyping speed. Medplum is aimed at healthcare startups building ehr or patient-facing apps on fhir with modern tooling, with workloads like open-source fhir-native ehr backend for digital health teams as the common case. The honest trade-off: Appwrite is explicitly not for complex custom business logic; Medplum is not intended for non-healthcare projects or teams that can't invest in learning fhir. On cost specifically, pricing model matters more than sticker price — one workload can make Appwrite cheaper while a different shape flips the answer to Medplum.",
+  "quick_take": "Appwrite is for mobile, teams; Medplum is for healthcare startups building ehr or patient-facing; decide based on cost model and budget.",
+  "verdict_a": "Choose Appwrite if your primary workload is mobile, teams and hybrid pricing ($25/mo/project (Pro)) is acceptable.",
+  "verdict_b": "Choose Medplum if your primary workload is healthcare startups building ehr or patient-facing apps on fhir with modern tooling and low switching cost matters.",
+  "faq": [
+    {
+      "q": "Is Appwrite cheaper than Medplum?",
+      "a": "Appwrite publishes an entry price of $25/mo/project (Pro); Medplum's entry price is not in our data, so a definitive comparison is not possible without a quote from Medplum."
+    },
+    {
+      "q": "Can I migrate from Appwrite to Medplum?",
+      "a": "Migrating from Appwrite to Medplum is generally feasible because Appwrite has low lock-in, so data and configuration are usually portable. Since both tools sit in the same category (Backend-as-a-Service), the conceptual mapping is closer, but you still need to validate feature parity against your specific workload. Plan migration as a project, not a script: inventory integrations, test on non-production workloads, and keep Appwrite running in parallel until Medplum is verified."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "On our 0–5 developer experience scale, Appwrite scores higher (5/5 vs 4/5 for Medplum). The gap is one point — meaningful but not decisive, since DX is workflow-dependent. Still, score your own tasks: DX is subjective and tied to stack assumptions."
+    },
+    {
+      "q": "Is Medplum a good alternative to Appwrite?",
+      "a": "Medplum is in the same category as Appwrite (Backend-as-a-Service), so it's a reasonable alternative to evaluate. Medplum is aimed at healthcare startups building ehr or patient-facing apps on fhir with modern tooling, while Appwrite targets mobile, teams — that difference should drive the switch decision. Note that Medplum is explicitly not for non-healthcare projects or teams that can't invest in learning fhir — if that describes your workload, it's not a viable replacement."
+    }
+  ]
+}

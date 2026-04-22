@@ -1,0 +1,24 @@
+{
+  "intro": "The clearest split between Plaid and Pliance is how they charge: Plaid uses subscription pricing, while Pliance uses custom enterprise pricing (no public tier). Plaid is Financial data network connecting apps to 12,000+ banks for account verification, income data, and identity checks; it fits best for Fintech, Marketplace. Pliance is Pliance is a Swedish compliance platform offering APIs for customer due diligence, sanctions and PEP screening, transaction monitoring and ongoing monitoring designed for developers and compliance teams; it fits best for Nordic and EU fintechs wanting modern AML APIs with GDPR-aligned hosting and clear docs. Pick Plaid when the job maps to fintech requiring identity verification; pick Pliance when it maps to customer due diligence api for swedish fintech onboarding. Plaid is not for consumer apps without regulatory requirements. Pliance is not for us-heavy teams or enterprises needing tier-1 data providers and full case-management workflows. Honest trade-offs: Plaid is weak for consumer apps without regulatory requirements, and Pliance is weak for eu-focused, us coverage less competitive — match to your real scenario.",
+  "quick_take": "Plaid is for fintech, marketplace; Pliance is for nordic and eu fintechs wanting modern aml apis with gdpr-ali; decide based on pricing model.",
+  "verdict_a": "Choose Plaid if you want subscription pricing and your workload matches fintech, marketplace.",
+  "verdict_b": "Choose Pliance if you want custom enterprise pricing (no public tier) and your workload matches nordic and eu fintechs wanting modern aml apis with gdpr-aligned hosting and clear docs.",
+  "faq": [
+    {
+      "q": "Is Plaid cheaper than Pliance?",
+      "a": "Plaid has more transparent pricing; Pliance's cost depends on a sales conversation, so a direct comparison is not possible without a quote. Plaid uses subscription pricing with no free tier published. Pliance uses custom enterprise pricing with no published rates."
+    },
+    {
+      "q": "Can I migrate from Plaid to Pliance?",
+      "a": "Migration may be non-trivial: Pliance is rated high lock-in (Custom KYC contracts). Plan for data export, re-integration of SDKs, and re-testing flows before cutover. Verify exportable formats and feature parity against your live use cases before committing."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Plaid scores higher on developer experience (5/5 vs 4/5 for Pliance). Evaluate against your own stack: read their docs, run a quick SDK spike, and check error handling. Self-assessing with a small prototype beats trusting any rating at face value."
+    },
+    {
+      "q": "Is Pliance a good alternative to Plaid?",
+      "a": "Pliance sits in the same category as Plaid, so it can be a reasonable alternative for overlapping use cases. Pliance is best fit for nordic and eu fintechs wanting modern aml apis with gdpr-aligned hosting and clear docs. Note: Pliance is not for us-heavy teams or enterprises needing tier-1 data providers and full case-management workflows."
+    }
+  ]
+}

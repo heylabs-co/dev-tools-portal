@@ -1,0 +1,24 @@
+{
+  "intro": "The clearest split is that Algolia uses a hybrid model and Bonsai uses a freemium model. Algolia is Hosted search API with typo-tolerance, faceting, and relevance tuning for e-commerce and SaaS; Bonsai is Managed Elasticsearch and OpenSearch hosting with automated backups and monitoring. The data points Algolia at e-commerce needing sub-50ms search and documentation sites with instant search, and Bonsai at e-commerce product search and documentation/knowledge base search. Pricing: Algolia is hybrid from $0.50/1K searches (Grow); Bonsai is freemium from $0/mo. Lock-in is medium for Algolia and low for Bonsai, with DX at 5/5 vs 4/5 and transparency at 4/5 vs 4/5. On listed strengths, Algolia emphasises e-commerce needing sub-50ms search and documentation sites with instant search, and Bonsai emphasises e-commerce product search and documentation/knowledge base search. Both offer an enterprise tier for larger rollouts. Honest trade-off: Algolia is not for budget, simple projects; Bonsai is not for simple projects, so confirm the fit first, then weigh the pivotal factor above against your budget and lock-in tolerance.",
+  "quick_take": "Algolia is for e-commerce; Bonsai is for e-commerce; decide based on which pricing model fits your budget.",
+  "verdict_a": "Choose Algolia if a hybrid pricing model fits your procurement and your workload matches e-commerce. Skip it if your context is budget, simple projects.",
+  "verdict_b": "Choose Bonsai if a freemium pricing model fits your procurement and your workload matches e-commerce. Skip it if your context is simple projects.",
+  "faq": [
+    {
+      "q": "Is Algolia cheaper than Bonsai?",
+      "a": "Listed entry pricing is $0.50/1K searches (Grow) for Algolia and $0/mo for Bonsai. Both offer a free tier for getting started. Total cost at scale depends on usage and plan details that are not in this dataset, so confirm with each vendor."
+    },
+    {
+      "q": "Can I migrate from Algolia to Bonsai?",
+      "a": "Algolia is tagged with medium lock-in (medium — proprietary api, but instantsearch ui = open-source). Bonsai is tagged with low lock-in (managed elasticsearch, standard index). Plan for SDK replacement, data export, and a parallel-run period; the dataset does not include migration tooling details."
+    },
+    {
+      "q": "Which has better developer experience, Algolia or Bonsai?",
+      "a": "The dataset rates Algolia at 5/5 for developer experience and Bonsai at 4/5, so Algolia scores higher. That score reflects overall polish rather than any single integration, so trial both against your stack before committing."
+    },
+    {
+      "q": "Is Bonsai a good alternative to Algolia?",
+      "a": "Yes for teams whose workload matches e-commerce, since both list the same fit. Bonsai is flagged as not for simple projects, so confirm your context does not fall there."
+    }
+  ]
+}

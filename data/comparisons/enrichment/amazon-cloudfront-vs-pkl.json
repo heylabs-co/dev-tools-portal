@@ -1,0 +1,24 @@
+{
+  "intro": "The biggest real distinction between Amazon CloudFront and Pkl is straightforward: Pkl is free and open-source, while Amazon CloudFront is a commercial product (freemium with a paid tier from $0/month, enterprise plan available). Amazon CloudFront sits at freemium with a paid tier from $0/month, enterprise plan available and carries moderate lock-in, while Pkl sits at free and open-source and carries low lock-in. Amazon CloudFront is a fit when you need global — typical scenarios include global audience with low latency needs. Pkl is aimed at high-traffic websites and media-heavy apps, with workloads like automated build/test/deploy pipelines as the common case. The honest trade-off: Amazon CloudFront is explicitly not for internal projects; Pkl is not intended for apps serving a single geographic region. On cost specifically, pricing model matters more than sticker price — one workload can make Amazon CloudFront cheaper while a different shape flips the answer to Pkl. Before committing, model your actual usage against both pricing pages: seat counts, data volumes, and whether the free tier covers real workloads tend to dominate the total bill.",
+  "quick_take": "Amazon CloudFront is for global; Pkl is for high-traffic websites and media-heavy apps; decide based on cost model and budget.",
+  "verdict_a": "Choose Amazon CloudFront if your primary workload is global and the free tier plus $0/month paid tier fits your budget.",
+  "verdict_b": "Choose Pkl if your primary workload is high-traffic websites and media-heavy apps and you want a free/OSS tool with no vendor bill.",
+  "faq": [
+    {
+      "q": "Is Amazon CloudFront cheaper than Pkl?",
+      "a": "No — Pkl is free and open-source, while Amazon CloudFront uses freemium with a paid tier from $0/month, enterprise plan available. Pkl wins on sticker price, but remember that self-hosting and maintaining OSS adds engineering overhead that Amazon CloudFront's paid plan removes."
+    },
+    {
+      "q": "Can I migrate from Amazon CloudFront to Pkl?",
+      "a": "Migrating from Amazon CloudFront to Pkl is doable but not automatic — Amazon CloudFront carries moderate lock-in. Since both tools sit in the same category (CDN / Edge / Acceleration), the conceptual mapping is closer, but you still need to validate feature parity against your specific workload. Plan migration as a project, not a script: inventory integrations, test on non-production workloads, and keep Amazon CloudFront running in parallel until Pkl is verified."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "On our 0–5 developer experience scale, Pkl scores higher (5/5 vs 4/5 for Amazon CloudFront). The gap is one point — meaningful but not decisive, since DX is workflow-dependent. Still, score your own tasks: DX is subjective and tied to stack assumptions."
+    },
+    {
+      "q": "Is Pkl a good alternative to Amazon CloudFront?",
+      "a": "Pkl is in the same category as Amazon CloudFront (CDN / Edge / Acceleration), so it's a reasonable alternative to evaluate. Pkl is aimed at high-traffic websites and media-heavy apps, while Amazon CloudFront targets global — that difference should drive the switch decision. Note that Pkl is explicitly not for apps serving a single geographic region — if that describes your workload, it's not a viable replacement."
+    }
+  ]
+}

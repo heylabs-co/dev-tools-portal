@@ -1,0 +1,24 @@
+{
+  "intro": "The most concrete split between rrweb and Contentsquare is the pricing model: rrweb runs on free and open-source, while Contentsquare uses subscription pricing, with a free tier. That shapes how predictable your monthly spend is and how much of the cost sits in infrastructure versus per-seat or per-event fees. Beyond the headline, rrweb carries low lock-in (oss session replay lib) and free and open-source; Contentsquare carries high lock-in (session data in platform) and subscription pricing, with a free tier. rrweb is a fit when you are engineers building custom replay, qa or debugging tooling in-house. Contentsquare is a fit when you are ux debugging and optimization. The honest trade-off: rrweb is explicitly not for non-technical teams expecting a hosted dashboard out of the box; Contentsquare is explicitly not for apps with strict privacy requirements (healthcare). On the product side, rrweb is described as Open-source web session replay library. Pixel-perfect recording and playback APIs used by major platforms (PostHog, OpenReplay and many tools), and Contentsquare is described as Digital experience analytics platform with zone-based heatmaps, session replay, and funnel analysis.",
+  "quick_take": "rrweb is for engineers building custom replay, qa or debugging tooling in-house; Contentsquare is for ux debugging and optimization; decide on pricing model.",
+  "verdict_a": "Choose rrweb if you want a fully free, open-source option and can handle self-hosting or self-support.",
+  "verdict_b": "Choose Contentsquare if its subscription pricing model fits your budget shape better than rrweb's free model, and you are ux debugging and optimization.",
+  "faq": [
+    {
+      "q": "Is rrweb cheaper than Contentsquare?",
+      "a": "Direct comparison is hard. rrweb is free and open-source, so licence cost is zero though you pay in operational effort. Contentsquare uses subscription pricing, with a free tier, so it costs money in exchange for managed service. Which is cheaper depends on how much engineering time you value."
+    },
+    {
+      "q": "Can I migrate from rrweb to Contentsquare?",
+      "a": "Migration paths between rrweb and Contentsquare depend on the specific data and integrations. Neither vendor publishes a ready import tool for the other. Expect a custom export-transform-import exercise."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "On our scoring rrweb rates 5/5 for developer experience versus 3/5 for Contentsquare. That suggests day-to-day workflows (CLI, SDKs, docs) are smoother in rrweb. Scores are directional; run a short spike on your own stack to confirm."
+    },
+    {
+      "q": "Is Contentsquare a good alternative to rrweb?",
+      "a": "Contentsquare is pitched at ux debugging and optimization, which overlaps with rrweb's fit (engineers building custom replay, qa or debugging tooling in-house) but is not identical. Note that Contentsquare is explicitly not for apps with strict privacy requirements (healthcare), so it only replaces rrweb if you are outside that exclusion. The lock-in profile differs (low vs high), which is the main thing to weigh."
+    }
+  ]
+}

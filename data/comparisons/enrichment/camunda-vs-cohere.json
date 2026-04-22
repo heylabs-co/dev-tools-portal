@@ -1,0 +1,24 @@
+{
+  "intro": "The pivotal question between Camunda and Cohere is how much of your setup stays portable: Camunda carries low lock-in and Cohere carries medium lock-in. Camunda is BPMN workflow and decision automation engine for orchestrating APIs and services. Cohere is LLM API focused on enterprise text, embeddings, and RAG. Pick Camunda when the job is api gateway and rate limiting and you accept low lock-in; pick Cohere when it is api gateway and rate limiting and you accept medium lock-in. The data we have shows Camunda at some public pricing / roadmap detail with a polished developer experience, and Cohere at mostly transparent pricing and docs with a polished developer experience. The honest trade-off: neither is universal — Camunda is a poor fit for internal, simple projects, and Cohere is a poor fit for internal, simple projects. Match the pricing model and lock-in level to how your team actually works, not the feature list.",
+  "quick_take": "Camunda is for BPMN workflow and decision automation engine; Cohere is for LLM API focused on enterprise text; decide based on how portable the setup must stay.",
+  "verdict_a": "Choose Camunda if keeping the configuration portable matters and the work maps to BPMN workflow and decision automation engine for orchestrating APIs and services.",
+  "verdict_b": "Choose Cohere if you need public pricing and docs before committing and the work lines up with LLM API focused on enterprise text, embeddings, and RAG.",
+  "faq": [
+    {
+      "q": "Is Camunda cheaper than Cohere?",
+      "a": "Camunda starts at $100 on a subscription model; Cohere starts at $4.00 on a subscription model. That makes the sticker comparison depend on usage — a low entry price can get expensive once volume ramps, so price at your actual workload."
+    },
+    {
+      "q": "Can I migrate from Camunda to Cohere?",
+      "a": "Migration is possible in either direction. Camunda carries low lock-in and Cohere carries medium lock-in, so plan for meaningful but not blocking rework. Run both in parallel before you fully cut over."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Both Camunda and Cohere rate the same on developer experience (5/5). The decision on DX then comes down to taste — which CLI, UI, or workflow matches your team's habits. A short side-by-side trial is the quickest way to tell."
+    },
+    {
+      "q": "Is Cohere a good alternative to Camunda?",
+      "a": "Yes — Cohere is a reasonable alternative to Camunda for api gateway and rate limiting. The practical differences are subscription-vs-subscription billing and low-vs-medium lock-in. If those fit your constraints better, treat Cohere as a credible swap."
+    }
+  ]
+}

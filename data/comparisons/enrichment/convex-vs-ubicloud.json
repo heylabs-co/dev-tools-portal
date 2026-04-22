@@ -1,0 +1,24 @@
+{
+  "intro": "The biggest real distinction between Convex and Ubicloud is straightforward: Convex carries high lock-in while Ubicloud has low lock-in. Convex sits at hybrid pricing with $25/member/mo (Pro), a free tier, enterprise plan available and carries high lock-in, while Ubicloud sits at usage-based pricing, a free tier and carries low lock-in. Convex is a fit when you need mobile, teams — typical scenarios include mvp/prototyping speed. Ubicloud is aimed at teams cutting github actions bills or wanting open-source iaas on hetzner, with workloads like open-source aws alternative running on hetzner bare-metal as the common case. The honest trade-off: Convex is explicitly not for complex custom business logic; Ubicloud is not intended for enterprises needing the full breadth of aws managed services. Lock-in is the factor most teams underestimate: Convex and Ubicloud have different exit paths, and that shapes total cost of ownership over a two-to-three year horizon. Before committing, audit where each tool stores state, which APIs you depend on, and how painful a switch would be six months in.",
+  "quick_take": "Convex is for mobile, teams; Ubicloud is for teams cutting github actions bills or; decide based on how much lock-in you can accept.",
+  "verdict_a": "Choose Convex if your primary workload is mobile, teams and hybrid pricing ($25/member/mo (Pro)) is acceptable.",
+  "verdict_b": "Choose Ubicloud if your primary workload is teams cutting github actions bills or wanting open-source iaas on hetzner and low switching cost matters.",
+  "faq": [
+    {
+      "q": "Is Convex cheaper than Ubicloud?",
+      "a": "Convex publishes an entry price of $25/member/mo (Pro); Ubicloud's entry price is not in our data, so a definitive comparison is not possible without a quote from Ubicloud."
+    },
+    {
+      "q": "Can I migrate from Convex to Ubicloud?",
+      "a": "Migrating from Convex to Ubicloud is not trivial — Convex has high lock-in, which typically means data formats, APIs, or stack assumptions that have to be rewritten. Since both tools sit in the same category (Backend-as-a-Service), the conceptual mapping is closer, but you still need to validate feature parity against your specific workload. Plan migration as a project, not a script: inventory integrations, test on non-production workloads, and keep Convex running in parallel until Ubicloud is verified."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "On our 0–5 developer experience scale, Convex scores higher (5/5 vs 3/5 for Ubicloud). The gap is 2 points, which is a noticeable difference in day-to-day ergonomics based on the data. Still, score your own tasks: DX is subjective and tied to stack assumptions."
+    },
+    {
+      "q": "Is Ubicloud a good alternative to Convex?",
+      "a": "Ubicloud is in the same category as Convex (Backend-as-a-Service), so it's a reasonable alternative to evaluate. Ubicloud is aimed at teams cutting github actions bills or wanting open-source iaas on hetzner, while Convex targets mobile, teams — that difference should drive the switch decision. Note that Ubicloud is explicitly not for enterprises needing the full breadth of aws managed services — if that describes your workload, it's not a viable replacement."
+    }
+  ]
+}

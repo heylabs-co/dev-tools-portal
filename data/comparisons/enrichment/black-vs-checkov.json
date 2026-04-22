@@ -1,0 +1,24 @@
+{
+  "intro": "Black and Checkov both target the security scanning space, and on paper their pricing, lock-in and ratings land close together. The useful split is positioning: Black is pitched at mobile, while Checkov is pitched at mobile. Beyond the headline, Black carries low lock-in (oss python formatter) and free and open-source; Checkov carries low lock-in (oss iac scanner by bridgecrew) and free and open-source. Black is a fit when you are mobile. Checkov is a fit when you are mobile. The honest trade-off: Black is explicitly not for hobby projects; Checkov is explicitly not for hobby projects. On the product side, Black is described as Security Scanning / Mobile App Sec tool for developers. Specializes in Python Formatter, and Checkov is described as CI/CD for Applications tool for developers. Specializes in IaC Scanner. Common Black use cases include vulnerability scanning in ci/cd. Common Checkov use cases include automated build/test/deploy pipelines. Black also fits dependency audit for compliance. Checkov also fits team collaboration on code.",
+  "quick_take": "Black is for mobile; Checkov is for mobile; decide on which best-fit use case is yours.",
+  "verdict_a": "Choose Black if you are mobile and comfortable with its free and open-source.",
+  "verdict_b": "Choose Checkov if you are mobile and comfortable with its free and open-source.",
+  "faq": [
+    {
+      "q": "Is Black cheaper than Checkov?",
+      "a": "Both tools use free pricing. Black is listed as free and open-source; Checkov as free and open-source. Without specific volume and seat assumptions it is not possible to say which is cheaper in general."
+    },
+    {
+      "q": "Can I migrate from Black to Checkov?",
+      "a": "Migration from Black to Checkov is plausible because Black has low lock-in (oss python formatter). You would still have to map config, permissions and integrations to Checkov's model. Plan for dual-run and rollback."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Both tools tie at 5/5 for developer experience on our scoring. The real difference will show up in your specific workflow, not the headline rating. A one-hour spike on both is the fastest way to decide."
+    },
+    {
+      "q": "Is Checkov a good alternative to Black?",
+      "a": "Checkov targets the same best-fit audience as Black (mobile). Note that Checkov is explicitly not for hobby projects, so it only replaces Black if you are outside that exclusion. Feature-for-feature parity is not guaranteed, so confirm the specific capability you rely on before switching."
+    }
+  ]
+}

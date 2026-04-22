@@ -1,0 +1,24 @@
+{
+  "intro": "Release Please and Cal.com diverge first on pricing model: Release Please uses free pricing with a free tier, Cal.com uses freemium pricing with a free tier. Everything else flows from that commercial choice. Release Please is built for saas and e-commerce teams managing user journeys and is not a fit for single-product apps with no ongoing user engagement. Cal.com is built for mobile and is not a fit for hobby projects. On the scoring side, Release Please rates 5/5 for developer experience and 5/5 for transparency; Cal.com rates 5/5 and 5/5 respectively. The honest trade-off: with Release Please you accept that contact-based pricing scales steeply with list growth, while Cal.com comes with the reality that manual deployment is sufficient. Neither side is free. Release Please's headline strength in the data is that centralizes customer data and automates lifecycle messaging. Cal.com's headline strength is that automated build/test/deploy pipelines. Read each side's best-for and not-for fields carefully before you pick; the shape of your team and workflow matters more than any single score.",
+  "quick_take": "Release Please is for saas and e-commerce teams managing user journeys; Cal.com is for mobile; decide based on pricing model.",
+  "verdict_a": "Choose Release Please if you are saas and e-commerce teams managing user journeys and a free pricing model fits how you buy.",
+  "verdict_b": "Choose Cal.com if you are mobile and a freemium pricing model fits how you buy.",
+  "faq": [
+    {
+      "q": "Is Release Please cheaper than Cal.com?",
+      "a": "Release Please uses a free model, while Cal.com uses a freemium model, and both publish a free tier. We don't have per-seat numbers in this dataset, so 'cheaper' depends on volume. Price both on your actual usage before deciding."
+    },
+    {
+      "q": "Can I migrate from Release Please to Cal.com?",
+      "a": "Release Please has low lock-in (google oss github action); Cal.com has low lock-in (open-source, self-hostable, fully portable data). Migration effort scales with how much state and automation you've built in Release Please; plan for data export, config rebuild, and a parallel-run period before cutting over."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Both Release Please and Cal.com score 5/5 on developer experience in our data, so DX isn't the tiebreaker here. Decide on fit, pricing, or lock-in instead."
+    },
+    {
+      "q": "Is Cal.com a good alternative to Release Please?",
+      "a": "Cal.com is built for mobile and explicitly not for hobby projects, so it's a fit only if your workflow matches its stated audience. If you were using Release Please for saas and e-commerce teams managing user journeys, the switch is reasonable; outside that scope, look elsewhere."
+    }
+  ]
+}

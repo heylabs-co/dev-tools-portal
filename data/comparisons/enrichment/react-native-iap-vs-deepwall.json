@@ -1,0 +1,24 @@
+{
+  "intro": "react-native-iap is free and open source while Deepwall runs on paid subscription pricing. React-native-iap: Open-source React Native in-app purchase library conforming to OpenIAP spec, using Nitro Modules for native bridging. Deepwall: Complete in-app purchase management solution with smart paywalls, A/B testing and no server-side code needed. React-native-iap fits react Native teams that want to own IAP and validation in-house. Deepwall fits subscription app teams iterating on paywall design weekly. On our rubric react-native-iap scores 4/5 for developer experience and 5/5 for transparency, while Deepwall scores 3/5 and 3/5. The honest trade-off: react-native-iap's main drawback — Library, not a managed subscription service; Deepwall's — Overlaps with RevenueCat, Adapty and Superwall. One point in react-native-iap's favour: Open-source RN IAP aligned with OpenIAP. For Deepwall: Smart paywalls with A/B testing without backend code. React-native-iap is explicitly not the right pick for teams that prefer a managed subscription backend. Deepwall is not aimed at teams already committed to RevenueCat, Adapty or Superwall. Another react-native-iap advantage: Uses Nitro Modules for modern native bridging.",
+  "quick_take": "react-native-iap is for react Native teams; Deepwall is for subscription app teams iterating on paywall design weekly; decide on pricing model.",
+  "verdict_a": "Choose react-native-iap if react Native teams that want to own IAP and validation in-house, and if you want to avoid recurring license costs and are willing to self-host.",
+  "verdict_b": "Choose Deepwall if subscription app teams iterating on paywall design weekly, and if you'd rather pay for a managed service than run infrastructure yourself.",
+  "faq": [
+    {
+      "q": "Is react-native-iap cheaper than Deepwall?",
+      "a": "Yes on list price: react-native-iap is free and open source, while Deepwall runs on paid subscription pricing. Keep in mind that react-native-iap shifts costs to hosting, ops, and engineering time. Total cost of ownership can flip depending on your team's capacity."
+    },
+    {
+      "q": "Can I migrate from react-native-iap to Deepwall?",
+      "a": "Migrating out of react-native-iap is straightforward — it's rated low lock-in (OSS IAP library). The harder question is how deeply you commit to Deepwall afterward, since it sits at high lock-in (Proprietary paywall SDK, hard to migrate). Plan the forward cost, not just the exit."
+    },
+    {
+      "q": "Which has better developer experience, react-native-iap or Deepwall?",
+      "a": "react-native-iap scores higher in our rubric (4/5 vs 3/5 for Deepwall). Transparency is 5/5 for react-native-iap and 3/5 for Deepwall. DX scores are rubric-based, not benchmarks, so evaluate against your own toolchain."
+    },
+    {
+      "q": "Is Deepwall a good alternative to react-native-iap?",
+      "a": "They sit in the same category, so yes — Deepwall is a plausible alternative for many react-native-iap use cases. It fits best when subscription app teams iterating on paywall design weekly. Skip it if teams already committed to RevenueCat, Adapty or Superwall."
+    }
+  ]
+}

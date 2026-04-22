@@ -1,0 +1,24 @@
+{
+  "intro": "Checkout.com and Stripe both show up under the payment gateway category, but they solve slightly different jobs. Checkout.com starts at custom pricing; Stripe starts at 2.9% + $0.30/transaction. Both sit at moderate lock-in. Transparency lands at 4/5 versus 5/5. Checkout.com fits teams working on SaaS with online payments, while Stripe is a closer match when the job is SaaS with global customers needing fast integration. Worth noting: Checkout.com is explicitly not for offline, Internal projects; Stripe is explicitly not for offline projects. The honest trade-off: Checkout.com trades off on offline-only retail; Stripe trades off on need Merchant of Record (MoR) for tax compliance. On the plus side, Checkout.com highlights SaaS with online payments, while Stripe points to SaaS with global customers needing fast integration. Checkout.com's documentation also calls out e-commerce checkout. Stripe similarly notes marketplaces using Stripe Connect. For teams evaluating payment gateway options today, the decision usually hinges on whether Checkout.com's profile or Stripe's profile maps more cleanly to the pricing model, lock-in tolerance, and scale your team can live with.",
+  "quick_take": "Checkout.com is for SaaS with online payments; Stripe is for SaaS with global customers needing fast; decide on entry price.",
+  "verdict_a": "Choose Checkout.com if your project is SaaS with online payments, usage-based billing at custom pricing matches your volume, medium lock-in is an acceptable trade-off.",
+  "verdict_b": "Choose Stripe if your project is SaaS with global customers needing fast integration, usage-based billing at 2.9% + $0.30/transaction matches your volume, medium lock-in is an acceptable trade-off.",
+  "faq": [
+    {
+      "q": "Is Checkout.com cheaper than Stripe?",
+      "a": "Checkout.com uses usage-based from custom pricing, and Stripe uses usage-based from 2.9% + $0.30/transaction with free tier. On published entry price, Checkout.com lists custom pricing while Stripe lists 2.9% + $0.30/transaction — but the real cost at your scale will depend on actual usage, not just the starting tier. Stripe offers a free tier; Checkout.com does not."
+    },
+    {
+      "q": "Can I migrate from Checkout.com to Stripe?",
+      "a": "Our data puts Checkout.com at medium lock-in, and Stripe at medium lock-in (proprietary tokens in vault, but pci-to-pci export available). Migration is feasible but not trivial — budget time for re-integration, data export, and parallel running before cutover."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Both score 5/5 on developer experience in our data, so there's no clear winner on that axis. Stripe does edge ahead on pricing/docs transparency (5/5 vs 4/5), which can make evaluation faster."
+    },
+    {
+      "q": "Is Stripe a good alternative to Checkout.com?",
+      "a": "Stripe is a reasonable alternative to Checkout.com when your workload leans more toward SaaS, Companies than SaaS, E-commerce, Marketplace. One caveat: Stripe is explicitly not for offline projects, so check that constraint against your use-case before switching."
+    }
+  ]
+}

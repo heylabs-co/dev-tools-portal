@@ -1,0 +1,24 @@
+{
+  "intro": "GO Feature Flag and flagd overlap on pricing and lock-in, so the choice hinges on fit rather than cost. GO Feature Flag: Simple, complete and lightweight self-hosted feature flag solution, 100% open source. OpenFeature-native with 15+ language SDKs via relay proxy. Flagd: Feature flag daemon with a Unix philosophy. Reference OpenFeature-compliant backend supporting HTTP/gRPC evaluation, targeting rules and OpenTelemetry tracing. GO Feature Flag fits engineering teams running flags in-house across many languages. Flagd fits platform teams standardizing on OpenFeature with self-hosting. Both land at 5/5 for developer experience and 5/5 for transparency on our rubric. The honest trade-off: GO Feature Flag's main drawback — Config and ops are your responsibility; flagd's — Minimal UI; configuration is file-driven. One point in GO Feature Flag's favour: Self-hosted, 100% open source with generous features. For flagd: Reference OpenFeature backend with clean Unix design. GO Feature Flag is explicitly not the right pick for non-engineers wanting polished SaaS flag management. Flagd is not aimed at teams that need a polished no-code flag dashboard.",
+  "quick_take": "GO Feature Flag is for engineering teams running flags in-house across many languages; flagd is for platform teams standardizing on OpenFeature with self-hosting; decide on fit with your stack.",
+  "verdict_a": "Choose GO Feature Flag if engineering teams running flags in-house across many languages.",
+  "verdict_b": "Choose flagd if platform teams standardizing on OpenFeature with self-hosting.",
+  "faq": [
+    {
+      "q": "Is GO Feature Flag cheaper than flagd?",
+      "a": "Both tools use free pricing, so a clean list-price comparison depends on tier details that vary by usage. Check each vendor's current plan page for your expected volume. Neither is structurally cheaper on the model alone."
+    },
+    {
+      "q": "Can I migrate from GO Feature Flag to flagd?",
+      "a": "Both tools are rated low lock-in, so migration is mostly a matter of re-pointing integrations and re-authoring config. There's no hard data format moat on either side. Expect work proportional to how deeply GO Feature Flag touches your pipeline, but no vendor-imposed blockers."
+    },
+    {
+      "q": "Which has better developer experience, GO Feature Flag or flagd?",
+      "a": "Both score 5/5 for developer experience in our rubric, so neither has a structural edge. The practical answer depends on stack fit: GO Feature Flag's ergonomics suit some workflows, flagd's suit others. Try both on a throwaway project before committing."
+    },
+    {
+      "q": "Is flagd a good alternative to GO Feature Flag?",
+      "a": "They sit in the same category, so yes — flagd is a plausible alternative for many GO Feature Flag use cases. It fits best when platform teams standardizing on OpenFeature with self-hosting. Skip it if teams that need a polished no-code flag dashboard."
+    }
+  ]
+}

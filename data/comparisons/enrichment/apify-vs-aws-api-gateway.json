@@ -1,0 +1,24 @@
+{
+  "intro": "The biggest real split between Apify and AWS API Gateway is lock-in posture: Apify carries medium lock-in (actors portable as docker, results exportable), while AWS API Gateway carries low lock-in (aws-only, migration painful). That single fact shapes the rest of the comparison. Apify is built for data warehouse syncing and is not a fit for simple, small projects. AWS API Gateway is built for data warehouse syncing and is not a fit for simple, small projects. On the scoring side, Apify rates 5/5 for developer experience and 4/5 for transparency; AWS API Gateway rates 4/5 and 4/5 respectively. The honest trade-off: with Apify you accept that simple api-to-api integrations, while AWS API Gateway comes with the reality that simple api-to-api integrations. Neither side is free. Apify's headline strength in the data is that data warehouse syncing. AWS API Gateway's headline strength is that data warehouse syncing. Read each side's best-for and not-for fields carefully before you pick; the shape of your team and workflow matters more than any single score.",
+  "quick_take": "Apify is for data warehouse syncing; AWS API Gateway is for data warehouse syncing; decide based on lock-in tolerance.",
+  "verdict_a": "Choose Apify if you are data warehouse syncing and can accept medium lock-in (actors portable as docker, results exportable).",
+  "verdict_b": "Choose AWS API Gateway if you are data warehouse syncing and need low lock-in (aws-only, migration painful).",
+  "faq": [
+    {
+      "q": "Is Apify cheaper than AWS API Gateway?",
+      "a": "Apify uses a freemium model, while AWS API Gateway uses a subscription model, and both publish a free tier. We don't have per-seat numbers in this dataset, so 'cheaper' depends on volume. Price both on your actual usage before deciding."
+    },
+    {
+      "q": "Can I migrate from Apify to AWS API Gateway?",
+      "a": "Apify has medium lock-in (actors portable as docker, results exportable); AWS API Gateway has low lock-in (aws-only, migration painful). Migration effort scales with how much state and automation you've built in Apify; plan for data export, config rebuild, and a parallel-run period before cutting over."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "In our data, Apify scores 5/5 for developer experience versus 4/5 for AWS API Gateway. That said, DX is subjective; the AWS API Gateway score may still be acceptable if its feature fit is stronger for your use case."
+    },
+    {
+      "q": "Is AWS API Gateway a good alternative to Apify?",
+      "a": "AWS API Gateway is built for data warehouse syncing and explicitly not for simple, small projects, so it's a fit only if your workflow matches its stated audience. If you were using Apify for data warehouse syncing, the switch is reasonable; outside that scope, look elsewhere."
+    }
+  ]
+}

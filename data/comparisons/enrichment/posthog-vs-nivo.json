@@ -1,0 +1,24 @@
+{
+  "intro": "PostHog and Nivo both show up under the product analytics category, but they solve slightly different jobs. PostHog uses usage-based pricing with free tier, while Nivo runs on a free model. Both sit at low lock-in. PostHog fits teams working on want analytics + feature flags + session replay in one, while Nivo is a closer match when the job is automated build/test/deploy pipelines. Worth noting: PostHog is explicitly not for enterprise needing dedicated support; Nivo is explicitly not for marketing-only analytics or pure content sites. The honest trade-off: PostHog trades off on enterprise needing dedicated support — Amplitude is more enterprise; Nivo trades off on steeper learning curve for non-technical stakeholders. On the plus side, PostHog highlights analytics + feature flags + session replay in one, while Nivo points to deep funnel and cohort analysis for product decisions. PostHog's documentation also calls out open-source with self-hosted option. For teams evaluating product analytics options today, the right choice usually comes down to pricing model, lock-in, and which tool's stated use-case maps to yours.",
+  "quick_take": "PostHog is for want analytics + feature flags +; Nivo is for automated build/test/deploy pipelines; decide on pricing model.",
+  "verdict_a": "Choose PostHog if your project is want analytics + feature flags + session replay in one, usage-based billing at Usage-based, price decreases at scale matches your volume, you want to keep future migration cheap.",
+  "verdict_b": "Choose Nivo if your project is automated build/test/deploy pipelines, you want to keep future migration cheap.",
+  "faq": [
+    {
+      "q": "Is PostHog cheaper than Nivo?",
+      "a": "PostHog uses usage-based pricing with free tier, and Nivo uses a free model. The pricing models are different, so a direct cheaper-than comparison depends on your volume and usage pattern."
+    },
+    {
+      "q": "Can I migrate from PostHog to Nivo?",
+      "a": "Our data puts PostHog at low lock-in (open-source, self-hosted, raw data access via data warehouse), and Nivo at low lock-in (oss react charting library). Moving from PostHog to Nivo should be manageable, though you'll still need to replay integrations and re-test flows end-to-end."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Both score 5/5 on developer experience in our data, so there's no clear winner on that axis. The better fit depends on which SDK matches your stack and which docs your team finds clearer during evaluation."
+    },
+    {
+      "q": "Is Nivo a good alternative to PostHog?",
+      "a": "Nivo is a reasonable alternative to PostHog when your workload leans more toward product teams tracking user behavior and retention than want analytics + feature flags + session replay in one. The pricing model shifts too — PostHog is usage-based pricing with free tier, Nivo is a free model — so expect the cost profile to change as well. One caveat: Nivo is explicitly not for marketing-only analytics or pure content sites, so check that constraint against your use-case before switching."
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "intro": "Nivo and Heap both show up under the product analytics category, but they solve slightly different jobs. Nivo uses a free model, while Heap runs on subscription from $1.7. Lock-in is low for Nivo and medium for Heap. Transparency lands at 5/5 versus 3/5. Nivo fits teams working on automated build/test/deploy pipelines, while Heap is a closer match when the job is understanding user behavior (funnels, retention). Worth noting: Nivo is explicitly not for marketing-only analytics or pure content sites; Heap is explicitly not for simple projects. The honest trade-off: Nivo trades off on steeper learning curve for non-technical stakeholders; Heap trades off on pre-product stage. On the plus side, Nivo highlights deep funnel and cohort analysis for product decisions, while Heap points to understanding user behavior (funnels, retention). Heap similarly notes data-driven product decisions. For teams evaluating product analytics options today, the decision usually hinges on whether Nivo's profile or Heap's profile maps more cleanly to the pricing model, lock-in tolerance, and scale your team can live with.",
+  "quick_take": "Nivo is for automated build/test/deploy pipelines; Heap is for understanding user behavior (funnels, retention); decide on pricing model.",
+  "verdict_a": "Choose Nivo if your project is automated build/test/deploy pipelines, you want to keep future migration cheap, strong SDKs and docs (5/5) are a priority.",
+  "verdict_b": "Choose Heap if your project is understanding user behavior (funnels, retention), a subscription starting at $1.7 fits your budget, medium lock-in is an acceptable trade-off.",
+  "faq": [
+    {
+      "q": "Is Nivo cheaper than Heap?",
+      "a": "Nivo uses a free model, and Heap uses subscription from $1.7. The pricing models are different, so a direct cheaper-than comparison depends on your volume and usage pattern. Nivo offers a free tier; Heap does not."
+    },
+    {
+      "q": "Can I migrate from Nivo to Heap?",
+      "a": "Our data puts Nivo at low lock-in (oss react charting library), and Heap at medium lock-in (autocapture = proprietary format). Moving from Nivo to Heap should be manageable, though you'll still need to replay integrations and re-test flows end-to-end."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Nivo scores 5/5 on developer experience in our data, while Heap scores 4/5, so Nivo has the edge on docs and SDK quality by that measure. That gap is reinforced by transparency scores of 5/5 versus 3/5. Still, run a small integration spike on both before deciding — team familiarity with a given SDK style often matters more than a one-point score gap."
+    },
+    {
+      "q": "Is Heap a good alternative to Nivo?",
+      "a": "Heap is a reasonable alternative to Nivo when your workload leans more toward understanding user behavior (funnels, retention) than product teams tracking user behavior and retention. The pricing model shifts too — Nivo is a free model, Heap is subscription from $1.7 — so expect the cost profile to change as well. One caveat: Heap is explicitly not for simple projects, so check that constraint against your use-case before switching."
+    }
+  ]
+}

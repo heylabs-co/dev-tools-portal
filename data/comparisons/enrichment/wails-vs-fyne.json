@@ -1,0 +1,24 @@
+{
+  "intro": "Wails and Fyne both sit in the No-code / Low-code App Builders space. Wails is positioned for go developers building small-binary desktop tools with web-tech frontends, while Fyne leans toward go developers shipping cross-platform desktop tools in a single binary. In practice, Build desktop applications with Go and web technologies (JS/HTML/CSS). Native WebView, no Chromium bundled. Cross-platform GUI toolkit for Go that builds beautiful native apps for desktop, mobile, and web from one codebase. Wails runs on free with a free tier; Fyne runs on free with a free tier. Listed strengths unique to Wails include go backend with web frontend, no chromium, while Fyne lists pure go, no cgo required on its side. Reach for Wails when you need lightweight go desktop app without bundling a chromium runtime; reach for Fyne when the job is cross-platform go desktop app with a single codebase. The honest trade-off: Wails is not built for teams needing identical rendering across oses — use electron for uniformity, and Fyne is not the right call for teams needing true native platform look or rich widget.",
+  "quick_take": "Wails is for go developers building small-binary desktop tools with web-tech frontends; Fyne is for go developers shipping cross-platform desktop tools in a single binary; decide based on which use.",
+  "verdict_a": "Choose Wails if go developers building small-binary desktop tools with web-tech frontends and you need a free tier to validate fit.",
+  "verdict_b": "Choose Fyne if go developers shipping cross-platform desktop tools in a single binary and you need a free tier to validate fit.",
+  "faq": [
+    {
+      "q": "Is Wails cheaper than Fyne?",
+      "a": "Both Wails and Fyne expose free tiers with no headline entry price listed. The real comparison happens once you cross the free limits, and that pricing isn't captured in the summary data. Check each tool's pricing page for your volume band."
+    },
+    {
+      "q": "Can I migrate from Wails to Fyne?",
+      "a": "Technically you can move between any two tools in the same category, but effort varies: leaving Wails is relatively light thanks to its low lock-in, and onboarding to Fyne should be straightforward given its low lock-in. Plan for data export, re-integration, and a parallel-run window rather than a hard cutover."
+    },
+    {
+      "q": "Which has better developer experience, Wails or Fyne?",
+      "a": "Both Wails and Fyne score 4/5 on developer experience in our data, so there's no clear winner on that axis alone. The real differentiator usually lands in SDK fit for your language, error handling, and docs depth. A half-day integration spike tells you more than the score."
+    },
+    {
+      "q": "Is Fyne a good alternative to Wails?",
+      "a": "Fyne is an alternative in the same category, but its stated sweet spot is go developers shipping cross-platform desktop tools in a single binary, while Wails's is go developers building small-binary desktop tools with web-tech frontends. If your job matches Wails's profile more closely, switching to Fyne is a compromise. Use the best-fit match, not brand familiarity, to decide. Note: Fyne is explicitly not for teams needing true native platform look or rich widget ecosystems."
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "intro": "The biggest real distinction between Convex and Firebase is straightforward: Convex is aimed at Mobile, Teams, whereas Firebase targets Mobile. Convex sits at hybrid pricing with $25/member/mo (Pro), a free tier, enterprise plan available and carries high lock-in, while Firebase sits at hybrid pricing with Pay-as-you-go (Blaze), a free tier, enterprise plan available and carries high lock-in. Convex is a fit when you need mobile, teams — typical scenarios include mvp/prototyping speed. Firebase is aimed at mobile, with workloads like mobile app mvp with tight deadline as the common case. The honest trade-off: Convex is explicitly not for complex custom business logic; Firebase is not intended for need sql database or complex queries. Neither tool is a drop-in replacement for the other in every scenario — the choice should track your constraints on budget, lock-in, and target workload rather than general popularity. Before committing, pilot both tools on a representative task so the trade-offs show up under your actual constraints instead of a feature checklist.",
+  "quick_take": "Convex is for mobile, teams; Firebase is for mobile; decide based on which workload you actually run.",
+  "verdict_a": "Choose Convex if your primary workload is mobile, teams and hybrid pricing ($25/member/mo (Pro)) is acceptable.",
+  "verdict_b": "Choose Firebase if your primary workload is mobile and hybrid pricing (Pay-as-you-go (Blaze)) is acceptable.",
+  "faq": [
+    {
+      "q": "Is Convex cheaper than Firebase?",
+      "a": "It depends on workload shape: Convex lists $25/member/mo (Pro), while Firebase lists Pay-as-you-go (Blaze). With different pricing models (hybrid vs hybrid), the cheaper option flips based on seat count, usage volume, and whether you use the free tier. Do a per-workload estimate rather than comparing headline numbers."
+    },
+    {
+      "q": "Can I migrate from Convex to Firebase?",
+      "a": "Migrating from Convex to Firebase is not trivial — Convex has high lock-in, which typically means data formats, APIs, or stack assumptions that have to be rewritten. Since both tools sit in the same category (Backend-as-a-Service), the conceptual mapping is closer, but you still need to validate feature parity against your specific workload. Plan migration as a project, not a script: inventory integrations, test on non-production workloads, and keep Convex running in parallel until Firebase is verified."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Our data gives Convex and Firebase the same developer experience score (5/5), so neither has a clear edge on DX by that measure. The differentiator is usually how each tool fits your workflow — things like CLI quality, docs, local dev loop, and error messages. The safest call is to pilot both on a representative task and see which one gets out of your way."
+    },
+    {
+      "q": "Is Firebase a good alternative to Convex?",
+      "a": "Firebase is in the same category as Convex (Backend-as-a-Service), so it's a reasonable alternative to evaluate. Firebase is aimed at mobile, while Convex targets mobile, teams — that difference should drive the switch decision. Note that Firebase is explicitly not for need sql database or complex queries — if that describes your workload, it's not a viable replacement."
+    }
+  ]
+}

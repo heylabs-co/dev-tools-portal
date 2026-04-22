@@ -1,0 +1,24 @@
+{
+  "intro": "The clearest difference between Scoop and Tuist is pricing — Scoop is free, while Tuist is freemium (has a free tier). Beyond that, lock-in — Scoop has high lock-in (OSS installer, manifests portable), whereas Tuist has low lock-in (OSS Xcode tooling, configs portable). Scoop fits Windows developers installing CLI dev tools without admin or IT involvement; Tuist fits iOS teams with many modules and long Xcode build times. On the strengths side, Scoop is cited for installs to user dir, no admin rights needed, while Tuist is cited for replaces hand-edited xcodeproj with generated ones. The honest trade-off: Scoop is the wrong call for IT departments doing enterprise-wide deployments — stick with Chocolatey or WinGet; Tuist is the wrong call for small apps with one or two targets where vanilla Xcode is fine; Scoop users flag catalog much smaller than Chocolatey, and Tuist users flag only valuable if you already feel Xcode pain. Choosing between them should come down to the constraint that actually binds your workflow, not surface-level overlap.",
+  "quick_take": "Scoop is for Windows developers installing CLI dev tools; Tuist is for iOS teams with many modules; decide based on pricing model.",
+  "verdict_a": "Choose Scoop if your use case is Windows developers installing CLI dev tools without admin or IT involvement, and a free pricing shape fits your budget better than freemium (has a free tier).",
+  "verdict_b": "Choose Tuist if your use case is iOS teams with many modules and long Xcode build times, and a freemium (has a free tier) pricing shape fits your budget better than free.",
+  "faq": [
+    {
+      "q": "Is Scoop cheaper than Tuist?",
+      "a": "Scoop is free, while Tuist uses a freemium model, so on listed pricing alone Scoop comes out cheaper. That said, total cost depends on operational effort, hosting, and whether you need features that Tuist's paid tiers cover. Compare the pricing pages directly for current numbers."
+    },
+    {
+      "q": "Can I migrate from Scoop to Tuist?",
+      "a": "Migrating from Scoop to Tuist is feasible when their scopes overlap, but the work is in re-mapping configuration, data models, and integrations. Moving off Scoop is harder because of high lock-in (OSS installer, manifests portable). Plan for a dual-run period so you can validate parity before decommissioning."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "On our developer-experience score, Tuist is rated 5/5 and Scoop 4/5, so Tuist edges ahead. Scores like this smooth over real differences in docs, CLI feel, and SDK quality, so treat them as a starting point. Spend an afternoon in each before relying on the number."
+    },
+    {
+      "q": "Is Tuist a good alternative to Scoop?",
+      "a": "Tuist is a reasonable alternative to Scoop when Tuist fits iOS teams with many modules and long Xcode build times. If your use case matches Scoop's sweet spot — Windows developers installing CLI dev tools without admin or IT involvement — staying with Scoop is probably safer. Scoop itself is not meant for IT departments doing enterprise-wide deployments — stick with Chocolatey or WinGet, which is often where users start shopping for alternatives."
+    }
+  ]
+}

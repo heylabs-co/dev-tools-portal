@@ -1,0 +1,24 @@
+{
+  "intro": "AVA and Mockito both target the test automation space, and on paper their pricing, lock-in and ratings land close together. The useful split is positioning: AVA is pitched at node library authors wanting parallel, dependency-light, esm-native tests, while Mockito is pitched at java teams doing any real unit testing on non-trivial codebases. Beyond the headline, AVA carries high lock-in (oss node test runner) and free and open-source; Mockito carries high lock-in (free oss java mocking) and free and open-source. AVA is a fit when you are node library authors wanting parallel, dependency-light, esm-native tests. Mockito is a fit when you are java teams doing any real unit testing on non-trivial codebases. The honest trade-off: AVA is explicitly not for frontend apps needing jsdom, mocks and snapshots bundled in one runner; Mockito is explicitly not for kotlin-first teams who will be happier with mockk. On the product side, AVA is described as Fast test runner for Node.",
+  "quick_take": "AVA: node library authors wanting parallel, d; Mockito: java teams doing any real unit testing o; decide on which best-fit use case is yours.",
+  "verdict_a": "Choose AVA if you are node library authors wanting parallel, dependency-light, esm-native tests and comfortable with its free and open-source.",
+  "verdict_b": "Choose Mockito if you are java teams doing any real unit testing on non-trivial codebases and comfortable with its free and open-source.",
+  "faq": [
+    {
+      "q": "Is AVA cheaper than Mockito?",
+      "a": "Both tools use free pricing. AVA is listed as free and open-source; Mockito as free and open-source. Without specific volume and seat assumptions it is not possible to say which is cheaper in general."
+    },
+    {
+      "q": "Can I migrate from AVA to Mockito?",
+      "a": "Migration from AVA is harder: AVA is rated high lock-in (oss node test runner). You can still move, but expect schema-mapping, export tooling and a longer cutover window. Budget engineering time accordingly."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Both tools tie at 5/5 for developer experience on our scoring. The real difference will show up in your specific workflow, not the headline rating. A one-hour spike on both is the fastest way to decide."
+    },
+    {
+      "q": "Is Mockito a good alternative to AVA?",
+      "a": "Mockito is pitched at java teams doing any real unit testing on non-trivial codebases, which overlaps with AVA's fit (node library authors wanting parallel, dependency-light, esm-native tests) but is not identical. Note that Mockito is explicitly not for kotlin-first teams who will be happier with mockk, so it only replaces AVA if you are outside that exclusion. Feature-for-feature parity is not guaranteed, so confirm the specific capability you rely on before switching."
+    }
+  ]
+}

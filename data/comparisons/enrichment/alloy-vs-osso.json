@@ -1,0 +1,24 @@
+{
+  "intro": "Alloy is priced on request; Osso is freemium. Alloy: Identity decisioning platform for fintech and banking automating KYC, fraud, and credit underwriting workflows via API. Osso: Enterprise SSO integration layer handling SAML and OIDC connections for SaaS applications without custom code. Alloy fits marketplace — in practice, high-value transactions. Osso fits SaaS platforms adding SAML/OIDC SSO for enterprise customers without building it in-house. On our rubric Alloy scores 3/5 for developer experience and 2/5 for transparency, while Osso scores 4/5 and 4/5. The honest trade-off: Alloy's main drawback — Low transaction volume; Osso's — Not actually a fraud or risk tool. For Osso: Simplifies enterprise SSO across SAML and OIDC. Alloy is explicitly not the right pick for low transaction volume. Osso is not aimed at anyone actually looking for fraud detection, bot management or transaction risk scoring. Another Alloy advantage: Marketplace with seller risk. Another Osso advantage: Abstracts the pain of IdP configuration. Another Alloy friction point: B2B with trusted counterparties.",
+  "quick_take": "Alloy is for marketplace; Osso is for SaaS platforms adding SAML/OIDC SSO for enterprise customers; decide on pricing model.",
+  "verdict_a": "Choose Alloy if your work looks like high-value transactions, and if you're comfortable requesting a quote before committing.",
+  "verdict_b": "Choose Osso if SaaS platforms adding SAML/OIDC SSO for enterprise customers without building it in-house, and if you accept tighter coupling in exchange for the managed surface.",
+  "faq": [
+    {
+      "q": "Is Alloy cheaper than Osso?",
+      "a": "Alloy's pricing isn't published in our data, so we can't give a definitive comparison. Osso uses freemium pricing. You'll need to request a Alloy quote to compare directly."
+    },
+    {
+      "q": "Can I migrate from Alloy to Osso?",
+      "a": "Migrating out of Alloy is straightforward — it's rated low lock-in (KYC/fraud rules and data sources proprietary to Alloy platform). The harder question is how deeply you commit to Osso afterward, since it sits at high lock-in (OSS SAML/OIDC). Plan the forward cost, not just the exit."
+    },
+    {
+      "q": "Which has better developer experience, Alloy or Osso?",
+      "a": "Osso scores higher in our rubric (4/5 vs 3/5 for Alloy). Transparency is 4/5 for Osso and 2/5 for Alloy. DX scores are rubric-based, not benchmarks, so evaluate against your own toolchain."
+    },
+    {
+      "q": "Is Osso a good alternative to Alloy?",
+      "a": "They sit in the same category, so yes — Osso is a plausible alternative for many Alloy use cases. It fits best when SaaS platforms adding SAML/OIDC SSO for enterprise customers without building it in-house. Skip it if anyone actually looking for fraud detection, bot management or transaction risk scoring."
+    }
+  ]
+}

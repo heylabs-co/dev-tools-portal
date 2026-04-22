@@ -1,0 +1,24 @@
+{
+  "intro": "The biggest real distinction between Datadog and Checkmk is straightforward: Datadog carries high lock-in while Checkmk has low lock-in. Datadog sits at usage-based pricing starting at $15/host/mo (Infra Pro), a free tier, enterprise plan available and carries high lock-in, while Checkmk sits at freemium with paid upgrades and carries low lock-in. Datadog is a fit when you need enterprise — typical scenarios include enterprise needing unified apm + logs + metrics. Checkmk is aimed at mobile, with workloads like automated build/test/deploy pipelines as the common case. The honest trade-off: Datadog is explicitly not for cost-sensitive; Checkmk is not intended for hobby projects. Lock-in is the factor most teams underestimate: Datadog and Checkmk have different exit paths, and that shapes total cost of ownership over a two-to-three year horizon. Before committing, audit where each tool stores state, which APIs you depend on, and how painful a switch would be six months in.",
+  "quick_take": "Datadog is for enterprise; Checkmk is for mobile; decide based on how much lock-in you can accept.",
+  "verdict_a": "Choose Datadog if your primary workload is enterprise and you prefer usage-based pricing (starts at $15/host/mo (Infra Pro)).",
+  "verdict_b": "Choose Checkmk if your primary workload is mobile and low switching cost matters.",
+  "faq": [
+    {
+      "q": "Is Datadog cheaper than Checkmk?",
+      "a": "Datadog publishes an entry price of $15/host/mo (Infra Pro); Checkmk's entry price is not in our data, so a definitive comparison is not possible without a quote from Checkmk."
+    },
+    {
+      "q": "Can I migrate from Datadog to Checkmk?",
+      "a": "Migrating from Datadog to Checkmk is not trivial — Datadog has high lock-in, which typically means data formats, APIs, or stack assumptions that have to be rewritten. Since both tools sit in the same category (Performance Monitoring / APM), the conceptual mapping is closer, but you still need to validate feature parity against your specific workload. Plan migration as a project, not a script: inventory integrations, test on non-production workloads, and keep Datadog running in parallel until Checkmk is verified."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "On our 0–5 developer experience scale, Datadog scores higher (5/5 vs 4/5 for Checkmk). The gap is one point — meaningful but not decisive, since DX is workflow-dependent. Still, score your own tasks: DX is subjective and tied to stack assumptions."
+    },
+    {
+      "q": "Is Checkmk a good alternative to Datadog?",
+      "a": "Checkmk is in the same category as Datadog (Performance Monitoring / APM), so it's a reasonable alternative to evaluate. Checkmk is aimed at mobile, while Datadog targets enterprise — that difference should drive the switch decision. Note that Checkmk is explicitly not for hobby projects — if that describes your workload, it's not a viable replacement."
+    }
+  ]
+}

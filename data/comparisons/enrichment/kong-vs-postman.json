@@ -1,0 +1,24 @@
+{
+  "intro": "The biggest real split between Kong and Postman is lock-in posture: Kong carries low lock-in (oss core, plugins portable), while Postman carries medium lock-in (subscription, collections exportable). That single fact shapes the rest of the comparison. Kong is built for data warehouse syncing and is not a fit for simple, small projects. Postman is built for data warehouse syncing and is not a fit for simple, small projects. On the scoring side, Kong rates 5/5 for developer experience and 3/5 for transparency; Postman rates 5/5 and 4/5 respectively. The honest trade-off: with Kong you accept that simple api-to-api integrations, while Postman comes with the reality that simple api-to-api integrations. Neither side is free. Kong's headline strength in the data is that data warehouse syncing. Postman's headline strength is that data warehouse syncing. Read each side's best-for and not-for fields carefully before you pick; the shape of your team and workflow matters more than any single score.",
+  "quick_take": "Kong is for data warehouse syncing; Postman is for data warehouse syncing; decide based on lock-in tolerance.",
+  "verdict_a": "Choose Kong if you are data warehouse syncing and can accept low lock-in (oss core, plugins portable).",
+  "verdict_b": "Choose Postman if you are data warehouse syncing and need medium lock-in (subscription, collections exportable).",
+  "faq": [
+    {
+      "q": "Is Kong cheaper than Postman?",
+      "a": "Both list a subscription pricing model in our data, and both publish a free tier. We don't have per-seat numbers in this dataset, so 'cheaper' depends on volume. Price both on your actual usage before deciding."
+    },
+    {
+      "q": "Can I migrate from Kong to Postman?",
+      "a": "Kong has low lock-in (oss core, plugins portable); Postman has medium lock-in (subscription, collections exportable). Migration effort scales with how much state and automation you've built in Kong; plan for data export, config rebuild, and a parallel-run period before cutting over."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Both Kong and Postman score 5/5 on developer experience in our data, so DX isn't the tiebreaker here. Decide on fit, pricing, or lock-in instead."
+    },
+    {
+      "q": "Is Postman a good alternative to Kong?",
+      "a": "Postman is built for data warehouse syncing and explicitly not for simple, small projects, so it's a fit only if your workflow matches its stated audience. If you were using Kong for data warehouse syncing, the switch is reasonable; outside that scope, look elsewhere."
+    }
+  ]
+}

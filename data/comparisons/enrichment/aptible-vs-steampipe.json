@@ -1,0 +1,24 @@
+{
+  "intro": "The clearest difference between Aptible and Steampipe is pricing — Aptible is subscription (no free tier), while Steampipe is free. Beyond that, lock-in — Aptible has medium lock-in (PaaS for HIPAA, app code portable), whereas Steampipe has low lock-in (Open-source SQL for cloud). Aptible fits early-stage healthtech startups that need HIPAA yesterday without a DevOps hire; Steampipe fits SaaS companies pursuing SOC 2, ISO 27001, or HIPAA. On the strengths side, Aptible is cited for Signs BAAs and inherits HIPAA controls out of the box, while Steampipe is cited for continuous evidence collection saves audit preparation time. The honest trade-off: Aptible is the wrong call for teams with deep AWS expertise or unusual infra requirements; Steampipe is the wrong call for projects not subject to compliance frameworks; Aptible users flag significantly pricier than raw AWS or similar PaaS, and Steampipe users flag initial control mapping requires significant setup effort. Choosing between them should come down to the constraint that actually binds your workflow, not surface-level overlap.",
+  "quick_take": "Aptible is for early-stage healthtech startups; Steampipe is for SaaS companies pursuing SOC 2, ISO; decide based on pricing model.",
+  "verdict_a": "Choose Aptible if your use case is early-stage healthtech startups that need HIPAA yesterday without a DevOps hire, and a subscription (no free tier) pricing shape fits your budget better than free.",
+  "verdict_b": "Choose Steampipe if your use case is SaaS companies pursuing SOC 2, ISO 27001, or HIPAA, and a free pricing shape fits your budget better than subscription (no free tier).",
+  "faq": [
+    {
+      "q": "Is Aptible cheaper than Steampipe?",
+      "a": "On listed pricing Steampipe is free, whereas Aptible follows a subscription model, so Steampipe is cheaper on the sticker. Factor in self-hosting and maintenance time before concluding which is actually cheaper for your team. Check both pricing pages for current tiers."
+    },
+    {
+      "q": "Can I migrate from Aptible to Steampipe?",
+      "a": "Migrating from Aptible to Steampipe is feasible when their scopes overlap, but the work is in re-mapping configuration, data models, and integrations. Moving off Aptible is harder because of medium lock-in (PaaS for HIPAA, app code portable). Plan for a dual-run period so you can validate parity before decommissioning."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Aptible and Steampipe score the same on developer experience (5/5 each) in our data. Choose based on which workflow, docs style, and CLI ergonomics feel closer to your team's preferences. Trial both in a small project before committing."
+    },
+    {
+      "q": "Is Steampipe a good alternative to Aptible?",
+      "a": "Steampipe is a reasonable alternative to Aptible when Steampipe fits SaaS companies pursuing SOC 2, ISO 27001, or HIPAA. If your use case matches Aptible's sweet spot — early-stage healthtech startups that need HIPAA yesterday without a DevOps hire — staying with Aptible is probably safer. Aptible itself is not meant for teams with deep AWS expertise or unusual infra requirements, which is often where users start shopping for alternatives."
+    }
+  ]
+}

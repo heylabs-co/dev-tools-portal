@@ -1,0 +1,24 @@
+{
+  "intro": "Primer and Yuno both show up under the payments orchestration category, but they solve slightly different jobs. Primer uses custom (sales-led) pricing, while Yuno runs on pricing that starts at $79. Both sit at low lock-in. Transparency lands at 3/5 versus 2/5. Both tools target Multi-PSP routing for higher conversion, so the choice comes down to pricing, lock-in, and operational fit rather than scope. Worth noting: Primer is explicitly not for single-market startups. The honest trade-off: Primer trades off on single-market startups; Yuno trades off on single-market startups. On the plus side, Primer highlights Multi-PSP routing for higher conversion. Primer's documentation also calls out enterprise with multiple payment providers. For teams evaluating payments orchestration options today, the decision usually hinges on whether Primer's profile or Yuno's profile maps more cleanly to the pricing model, lock-in tolerance, and scale your team can live with. Beyond the headline pitch, a documented Primer use-case is \"Enterprise with multiple payment providers\", and a documented Yuno use-case is \"Enterprise with multiple payment providers\".",
+  "quick_take": "Primer is for Multi-PSP routing for higher conversion; Yuno is for Multi-PSP routing for higher conversion; decide on pricing model.",
+  "verdict_a": "Choose Primer if your project is Multi-PSP routing for higher conversion, you want to keep future migration cheap, strong SDKs and docs (5/5) are a priority.",
+  "verdict_b": "Choose Yuno if your project is Multi-PSP routing for higher conversion, you want to keep future migration cheap, you can tolerate Yuno's limited public transparency (2/5).",
+  "faq": [
+    {
+      "q": "Is Primer cheaper than Yuno?",
+      "a": "Primer uses custom (sales-led) pricing, and Yuno uses pricing that starts at $79. The pricing models are different, so a direct cheaper-than comparison depends on your volume and usage pattern."
+    },
+    {
+      "q": "Can I migrate from Primer to Yuno?",
+      "a": "Our data puts Primer at low lock-in, and Yuno at low lock-in (orchestration abstraction helps migration). Moving from Primer to Yuno should be manageable, though you'll still need to replay integrations and re-test flows end-to-end."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Primer scores 5/5 on developer experience in our data, while Yuno scores 4/5, so Primer has the edge on docs and SDK quality by that measure. That gap is reinforced by transparency scores of 3/5 versus 2/5. Still, run a small integration spike on both before deciding — team familiarity with a given SDK style often matters more than a one-point score gap."
+    },
+    {
+      "q": "Is Yuno a good alternative to Primer?",
+      "a": "Yuno covers a similar scope to Primer — our data lists \"Enterprise\" as the best-for on both. The pricing model shifts too — Primer is custom (sales-led) pricing, Yuno is pricing that starts at $79 — so expect the cost profile to change as well. One caveat: Yuno is explicitly not for single-market startups, so check that constraint against your use-case before switching."
+    }
+  ]
+}

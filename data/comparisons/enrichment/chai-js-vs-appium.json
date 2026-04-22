@@ -1,0 +1,24 @@
+{
+  "intro": "Chai and Appium both target the test automation space, and on paper their pricing, lock-in and ratings land close together. The useful split is positioning: Chai is pitched at legacy mocha projects where ripping chai out would be expensive, while Appium is pitched at mobile. Beyond the headline, Chai carries low lock-in (open-source js assertion library) and free and open-source; Appium carries low lock-in (oss webdriver-based mobile testing) and free and open-source. Chai is a fit when you are legacy mocha projects where ripping chai out would be expensive. Appium is a fit when you are mobile. The honest trade-off: Chai is explicitly not for new projects where vitest or node:test already ship with assertions; Appium is explicitly not for hobby projects. On the product side, Chai is described as BDD/TDD assertion library for Node.js and browsers, pairable with Mocha, Jest or Jasmine through should, expect and assert interfaces, and Appium is described as OSS cross-platform mobile test automation framework for iOS and Android using WebDriver protocol.",
+  "quick_take": "Chai is for legacy mocha projects where ripping chai out would be expensive; Appium is for mobile; decide on which best-fit use case is yours.",
+  "verdict_a": "Choose Chai if you are legacy mocha projects where ripping chai out would be expensive and comfortable with its free and open-source.",
+  "verdict_b": "Choose Appium if you are mobile and comfortable with its free and open-source.",
+  "faq": [
+    {
+      "q": "Is Chai cheaper than Appium?",
+      "a": "Both tools use free pricing. Chai is listed as free and open-source; Appium as free and open-source. Without specific volume and seat assumptions it is not possible to say which is cheaper in general."
+    },
+    {
+      "q": "Can I migrate from Chai to Appium?",
+      "a": "Migration from Chai to Appium is plausible because Chai has low lock-in (open-source js assertion library). You would still have to map config, permissions and integrations to Appium's model. Plan for dual-run and rollback."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Both tools tie at 5/5 for developer experience on our scoring. The real difference will show up in your specific workflow, not the headline rating. A one-hour spike on both is the fastest way to decide."
+    },
+    {
+      "q": "Is Appium a good alternative to Chai?",
+      "a": "Appium is pitched at mobile, which overlaps with Chai's fit (legacy mocha projects where ripping chai out would be expensive) but is not identical. Note that Appium is explicitly not for hobby projects, so it only replaces Chai if you are outside that exclusion. Feature-for-feature parity is not guaranteed, so confirm the specific capability you rely on before switching."
+    }
+  ]
+}

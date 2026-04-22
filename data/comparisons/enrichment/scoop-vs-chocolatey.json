@@ -1,0 +1,24 @@
+{
+  "intro": "The clearest difference between Scoop and Chocolatey is pricing — Scoop is free, while Chocolatey is freemium (has a free tier). Beyond that, lock-in — Scoop has high lock-in (OSS installer, manifests portable), whereas Chocolatey has low lock-in (OSS Windows package manager). Scoop fits Windows developers installing CLI dev tools without admin or IT involvement; Chocolatey fits Windows admins and CI pipelines installing third-party tooling at scale. On the strengths side, Scoop is cited for installs to user dir, no admin rights needed, while Chocolatey is cited for Largest Windows package catalog by far. The honest trade-off: Scoop is the wrong call for IT departments doing enterprise-wide deployments — stick with Chocolatey or WinGet; Chocolatey is the wrong call for developers who prefer the leaner, no-admin Scoop or MSIX flows; Scoop users flag catalog much smaller than Chocolatey, and Chocolatey users flag free tier has rate limits that catch CI by surprise. Choosing between them should come down to the constraint that actually binds your workflow, not surface-level overlap.",
+  "quick_take": "Scoop is for Windows developers installing CLI dev tools; Chocolatey is for Windows admins and CI pipelines installing; decide based on pricing model.",
+  "verdict_a": "Choose Scoop if your use case is Windows developers installing CLI dev tools without admin or IT involvement, and a free pricing shape fits your budget better than freemium (has a free tier).",
+  "verdict_b": "Choose Chocolatey if your use case is Windows admins and CI pipelines installing third-party tooling at scale, and a freemium (has a free tier) pricing shape fits your budget better than free.",
+  "faq": [
+    {
+      "q": "Is Scoop cheaper than Chocolatey?",
+      "a": "Scoop is free, while Chocolatey uses a freemium model, so on listed pricing alone Scoop comes out cheaper. That said, total cost depends on operational effort, hosting, and whether you need features that Chocolatey's paid tiers cover. Compare the pricing pages directly for current numbers."
+    },
+    {
+      "q": "Can I migrate from Scoop to Chocolatey?",
+      "a": "Migrating from Scoop to Chocolatey is feasible when their scopes overlap, but the work is in re-mapping configuration, data models, and integrations. Moving off Scoop is harder because of high lock-in (OSS installer, manifests portable). Plan for a dual-run period so you can validate parity before decommissioning."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Scoop and Chocolatey score the same on developer experience (4/5 each) in our data. Choose based on which workflow, docs style, and CLI ergonomics feel closer to your team's preferences. Trial both in a small project before committing."
+    },
+    {
+      "q": "Is Chocolatey a good alternative to Scoop?",
+      "a": "Chocolatey is a reasonable alternative to Scoop when Chocolatey fits Windows admins and CI pipelines installing third-party tooling at scale. If your use case matches Scoop's sweet spot — Windows developers installing CLI dev tools without admin or IT involvement — staying with Scoop is probably safer. Scoop itself is not meant for IT departments doing enterprise-wide deployments — stick with Chocolatey or WinGet, which is often where users start shopping for alternatives."
+    }
+  ]
+}

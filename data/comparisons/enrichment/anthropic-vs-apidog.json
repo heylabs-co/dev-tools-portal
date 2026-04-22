@@ -1,0 +1,24 @@
+{
+  "intro": "Anthropic and Apidog solve different problems that happen to share a category label. Anthropic is the Claude API provider with a hybrid pricing model ($20/mo Pro, API at $3/$15 per 1M tokens for Sonnet) focused on reasoning, long context (200K tokens) and coding tasks. Apidog is an API design and testing tool with an entry paid price of $672/year and a free tier, aimed at API gateway, rate-limiting and developer-portal workflows. Anthropic fits teams that need a capable LLM with a generous context window and are comfortable paying per-token. Apidog fits teams designing, documenting and testing their own REST APIs. The honest trade-off is that these are complements, not substitutes: picking Anthropic gives you model capability and safety posture but does nothing for API design; picking Apidog gives you OpenAPI-driven tooling but no inference. Both score 5 for DX; Anthropic scores 5 for transparency and is low lock-in, Apidog scores 4 and is medium lock-in.",
+  "quick_take": "Anthropic is for apps calling the Claude API; Apidog is for designing and testing your own REST APIs; decide on consuming versus producing APIs.",
+  "verdict_a": "Choose Anthropic if you need strong reasoning and a 200K-token context window via Claude, priced at $3/$15 per 1M Sonnet tokens or $20/mo Pro, with low lock-in.",
+  "verdict_b": "Choose Apidog if you are designing and documenting your own REST APIs and want OpenAPI-exportable specs, starting from $672/year with a free tier.",
+  "faq": [
+    {
+      "q": "Is Anthropic cheaper than Apidog?",
+      "a": "They are priced on different axes. Anthropic has a $20/mo Pro plan and API billing at $3/$15 per 1M input/output tokens for Sonnet, plus a free tier. Apidog's paid plan starts at $672/year with a free tier. For light inference workloads Anthropic is cheaper; for a fixed annual API-tooling spend Apidog is a predictable line item."
+    },
+    {
+      "q": "Can I migrate from Anthropic to Apidog?",
+      "a": "You cannot, because they do different jobs. Anthropic is rated low lock-in (low migration complexity, Messages API with growing ecosystem compatibility) and Apidog is medium lock-in (specs exportable via OpenAPI, some project lock). Each migrates to a peer in its own category, not to the other."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Both score 5 for DX. Anthropic's strength is the API itself plus strong reasoning and long context. Apidog's strength is its design surface and gateway features. Pick by which part of your stack you are building: model consumption or API production."
+    },
+    {
+      "q": "Is Apidog a good alternative to Anthropic?",
+      "a": "No. Anthropic's best_for is strong reasoning and long context; Apidog's best_for is API gateway and rate limiting. Apidog's not_for calls out internal APIs with few consumers and simple REST endpoints. Nothing in Apidog's scope substitutes for an LLM."
+    }
+  ]
+}

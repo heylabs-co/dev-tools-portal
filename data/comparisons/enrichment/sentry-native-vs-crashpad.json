@@ -1,0 +1,24 @@
+{
+  "intro": "The clearest difference between Sentry Native SDK and Crashpad is pricing — Sentry Native SDK is freemium (has a free tier), while Crashpad is free. Beyond that, lock-in — Sentry Native SDK has high lock-in (OSS SDK, self-hostable Sentry), whereas Crashpad has low lock-in (Open-source Chromium crash handler). Sentry Native SDK fits Native/C++ teams already using Sentry for their other stacks; Crashpad fits native apps needing proven minidump capture across OSes. On the strengths side, Sentry Native SDK is cited for First-class Sentry SDK for C/C++ and native apps, while Crashpad is cited for battle-tested in Chrome across macOS, Windows, Linux. The honest trade-off: Sentry Native SDK is the wrong call for teams committed to a different error-tracking vendor; Crashpad is the wrong call for teams wanting a turnkey crash reporting product; Sentry Native SDK users flag tied to Sentry pricing and ecosystem, and Crashpad users flag library, not a backend or UI. Choosing between them should come down to the constraint that actually binds your workflow, not surface-level overlap.",
+  "quick_take": "Sentry Native SDK is for Native/C++ teams already; Crashpad is for native apps needing proven minidump capture; decide based on pricing model.",
+  "verdict_a": "Choose Sentry Native SDK if your use case is Native/C++ teams already using Sentry for their other stacks, and a freemium (has a free tier) pricing shape fits your budget better than free.",
+  "verdict_b": "Choose Crashpad if your use case is native apps needing proven minidump capture across OSes, and a free pricing shape fits your budget better than freemium (has a free tier).",
+  "faq": [
+    {
+      "q": "Is Sentry Native SDK cheaper than Crashpad?",
+      "a": "On listed pricing Crashpad is free, whereas Sentry Native SDK follows a freemium model, so Crashpad is cheaper on the sticker. Factor in self-hosting and maintenance time before concluding which is actually cheaper for your team. Check both pricing pages for current tiers."
+    },
+    {
+      "q": "Can I migrate from Sentry Native SDK to Crashpad?",
+      "a": "Migrating from Sentry Native SDK to Crashpad is feasible when their scopes overlap, but the work is in re-mapping configuration, data models, and integrations. Moving off Sentry Native SDK is harder because of high lock-in (OSS SDK, self-hostable Sentry). Plan for a dual-run period so you can validate parity before decommissioning."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "On our developer-experience score, Sentry Native SDK is rated 4/5 and Crashpad 3/5, so Sentry Native SDK edges ahead. Scores like this smooth over real differences in docs, CLI feel, and SDK quality, so treat them as a starting point. Spend an afternoon in each before relying on the number."
+    },
+    {
+      "q": "Is Crashpad a good alternative to Sentry Native SDK?",
+      "a": "Crashpad is a reasonable alternative to Sentry Native SDK when Crashpad fits native apps needing proven minidump capture across OSes. If your use case matches Sentry Native SDK's sweet spot — Native/C++ teams already using Sentry for their other stacks — staying with Sentry Native SDK is probably safer. Sentry Native SDK itself is not meant for teams committed to a different error-tracking vendor, which is often where users start shopping for alternatives."
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "intro": "Hyperswitch and PaymentsOS both show up under the payments orchestration category, but they solve slightly different jobs. Hyperswitch uses a free model, while PaymentsOS runs on custom (sales-led) pricing. Lock-in is low for Hyperswitch and medium for PaymentsOS. Transparency lands at 5/5 versus 1/5. Hyperswitch fits teams working on open-source payments switch routing to multiple processors via unified API, while PaymentsOS is a closer match when the job is smart routing across multiple PSPs for enterprise merchants. Worth noting: Hyperswitch is explicitly not for small teams without DevOps capacity or those needing a fully managed, SaaS-only product; PaymentsOS is explicitly not for dev-first teams expecting modern SDKs, open source, or fast product iteration. The honest trade-off: Hyperswitch trades off on self-hosting demands serious infra maturity; PaymentsOS trades off on legacy brand (Zooz) can signal older codebase. On the plus side, Hyperswitch highlights open source under Apache 2.0 — fully self-hostable, while PaymentsOS points to established orchestrator with smart-routing track record.",
+  "quick_take": "Hyperswitch is for open-source payments switch routing to multiple; PaymentsOS is for smart routing across multiple PSPs for; decide on pricing model.",
+  "verdict_a": "Choose Hyperswitch if your project is open-source payments switch routing to multiple processors via unified API, you want to keep future migration cheap, strong SDKs and docs (5/5) are a priority.",
+  "verdict_b": "Choose PaymentsOS if your project is smart routing across multiple PSPs for enterprise merchants, you are prepared for a sales-led custom-pricing conversation, medium lock-in is an acceptable trade-off.",
+  "faq": [
+    {
+      "q": "Is Hyperswitch cheaper than PaymentsOS?",
+      "a": "Hyperswitch uses a free model, and PaymentsOS uses custom (sales-led) pricing. The pricing models are different, so a direct cheaper-than comparison depends on your volume and usage pattern. Hyperswitch offers a free tier; PaymentsOS does not."
+    },
+    {
+      "q": "Can I migrate from Hyperswitch to PaymentsOS?",
+      "a": "Our data puts Hyperswitch at low lock-in (open-source payments switch), and PaymentsOS at medium lock-in (payment orchestration, psp switchable). Moving from Hyperswitch to PaymentsOS should be manageable, though you'll still need to replay integrations and re-test flows end-to-end."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Hyperswitch scores 5/5 on developer experience in our data, while PaymentsOS scores 4/5, so Hyperswitch has the edge on docs and SDK quality by that measure. That gap is reinforced by transparency scores of 5/5 versus 1/5. Still, run a small integration spike on both before deciding — team familiarity with a given SDK style often matters more than a one-point score gap."
+    },
+    {
+      "q": "Is PaymentsOS a good alternative to Hyperswitch?",
+      "a": "PaymentsOS is a reasonable alternative to Hyperswitch when your workload leans more toward global enterprises comfortable with PayU-backed vendors and needing stable multi-PSP routing than engineering-led teams wanting full control of an orchestrator without paying per-transaction SaaS fees. The pricing model shifts too — Hyperswitch is a free model, PaymentsOS is custom (sales-led) pricing — so expect the cost profile to change as well. One caveat: PaymentsOS is explicitly not for dev-first teams expecting modern SDKs, open source, or fast product iteration, so check that constraint against your use-case before switching."
+    }
+  ]
+}

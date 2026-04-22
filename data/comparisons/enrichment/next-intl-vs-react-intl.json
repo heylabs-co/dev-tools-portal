@@ -1,0 +1,24 @@
+{
+  "intro": "next-intl and react-intl both sit in the Localization / Translation API space, but they target slightly different scopes. next-intl is CI/CD for Applications tool for developers. Specializes in Next.js Internationalization; it fits best for Global products launching in multiple markets. react-intl specializes in Internationalization; it fits best for Global products launching in multiple markets. Pick next-intl for Global products launching in multiple markets; pick react-intl for Global products launching in multiple markets. next-intl is not for single-language apps or internal tools. react-intl is not for single-language apps or internal tools. Honest trade-offs: next-intl is weak for machine translation quality varies by language pair, and react-intl is weak for machine translation quality varies by language pair — match to your real scenario. Both sit under the Localization / Translation API umbrella, so your final call depends on pricing transparency, integration effort, and which listed not-for situations you can actually tolerate. On pricing, next-intl uses free and open source and react-intl uses free and open source, which materially changes total cost at scale.",
+  "quick_take": "next-intl is for global products launching in multiple markets; react-intl is for global products launching in multiple markets; decide based on scope fit.",
+  "verdict_a": "Choose next-intl if your core need is automated build/test/deploy pipelines.",
+  "verdict_b": "Choose react-intl if your core need is automated build/test/deploy pipelines.",
+  "faq": [
+    {
+      "q": "Is next-intl cheaper than react-intl?",
+      "a": "A direct comparison depends on your usage profile and which pricing model fits better. next-intl is free and open source. react-intl is free and open source."
+    },
+    {
+      "q": "Can I migrate from next-intl to react-intl?",
+      "a": "Migration between these is relatively straightforward since both are rated as low lock-in. Plan for data export, re-integration of SDKs, and re-testing flows before cutover. Verify exportable formats and feature parity against your live use cases before committing."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Both score 5/5 on developer experience in our data. Evaluate against your own stack: read their docs, run a quick SDK spike, and check error handling. Self-assessing with a small prototype beats trusting any rating at face value."
+    },
+    {
+      "q": "Is react-intl a good alternative to next-intl?",
+      "a": "react-intl sits in the same category as next-intl, so it can be a reasonable alternative for overlapping use cases. react-intl is best fit for global products launching in multiple markets. Note: react-intl is not for single-language apps or internal tools."
+    }
+  ]
+}

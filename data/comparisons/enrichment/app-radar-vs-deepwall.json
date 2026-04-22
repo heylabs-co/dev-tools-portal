@@ -1,0 +1,24 @@
+{
+  "intro": "App Radar sits at medium lock-in (ASO data exportable); Deepwall sits at high lock-in (Proprietary paywall SDK, hard to migrate). App Radar: ASO and App Store management platform with keyword tracking, metadata editor, review management, and competitor analysis. Deepwall: Complete in-app purchase management solution with smart paywalls, A/B testing and no server-side code needed. App Radar fits mobile — in practice, mobile apps with subscriptions. Deepwall fits subscription app teams iterating on paywall design weekly. Both land at 3/5 for developer experience and 3/5 for transparency on our rubric. The honest trade-off: App Radar's main drawback — Free apps without monetization; Deepwall's — Overlaps with RevenueCat, Adapty and Superwall. For Deepwall: Smart paywalls with A/B testing without backend code. App Radar is explicitly not the right pick for free apps without monetization. Deepwall is not aimed at teams already committed to RevenueCat, Adapty or Superwall. Another App Radar advantage: Paywall A/B testing. Another Deepwall advantage: Fast iteration on pricing and messaging.",
+  "quick_take": "App Radar is for mobile; Deepwall is for subscription app teams iterating on paywall design weekly; decide on lock-in tolerance.",
+  "verdict_a": "Choose App Radar if your work looks like mobile apps with subscriptions.",
+  "verdict_b": "Choose Deepwall if subscription app teams iterating on paywall design weekly.",
+  "faq": [
+    {
+      "q": "Is App Radar cheaper than Deepwall?",
+      "a": "Both tools use paid subscription pricing, so a clean list-price comparison depends on tier details that vary by usage. Check each vendor's current plan page for your expected volume. Neither is structurally cheaper on the model alone."
+    },
+    {
+      "q": "Can I migrate from App Radar to Deepwall?",
+      "a": "Expect real effort: App Radar is medium lock-in (ASO data exportable) and Deepwall is high lock-in (Proprietary paywall SDK, hard to migrate). Migrating between them means rebuilding integrations, re-authoring config, and accepting new coupling. Scope a spike before committing."
+    },
+    {
+      "q": "Which has better developer experience, App Radar or Deepwall?",
+      "a": "Both score 3/5 for developer experience in our rubric, so neither has a structural edge. The practical answer depends on stack fit: App Radar's ergonomics suit some workflows, Deepwall's suit others. Try both on a throwaway project before committing."
+    },
+    {
+      "q": "Is Deepwall a good alternative to App Radar?",
+      "a": "They sit in the same category, so yes — Deepwall is a plausible alternative for many App Radar use cases. It fits best when subscription app teams iterating on paywall design weekly. Skip it if teams already committed to RevenueCat, Adapty or Superwall."
+    }
+  ]
+}

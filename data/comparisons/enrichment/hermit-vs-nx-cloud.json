@@ -1,0 +1,24 @@
+{
+  "intro": "Hermit carries low lock-in (Open-source hermetic tool manager) while Nx Cloud is medium (Cache service for Nx, works with OSS Nx). Hermit is positioned for monorepos wanting pinned cli toolchains without adopting nix, while Nx Cloud leans toward js and ts monorepos using nx with slow ci and many projects. In practice, Hermetic tool management system for monorepos that installs per-project development tools without polluting the system PATH. Ensures all developers and CI use identical toolchain versions. Remote computation caching and distributed task execution service for Nx monorepos. Speeds up CI by sharing build artifacts across machines and eliminating redundant work. Hermit runs on free with a free tier; Nx Cloud runs on freemium with a free tier. Hermit rates 5/5 on transparency versus 4/5 for Nx Cloud. Listed strengths unique to Hermit include per-project tool installs without polluting path, while Nx Cloud lists remote caching makes nx ci dramatically faster on its side. Reach for Hermit when you need lock toolchain versions per project without system path pollution; reach for Nx Cloud when the job is remote computation caching.",
+  "quick_take": "Hermit is for monorepos wanting pinned cli toolchains without adopting nix; Nx Cloud is for js and ts monorepos using nx with slow ci and many projects; decide based on.",
+  "verdict_a": "Choose Hermit if monorepos wanting pinned cli toolchains without adopting nix and you need a free tier to validate fit.",
+  "verdict_b": "Choose Nx Cloud if js and ts monorepos using nx with slow ci and many projects and you need a free tier to validate fit.",
+  "faq": [
+    {
+      "q": "Is Hermit cheaper than Nx Cloud?",
+      "a": "Both Hermit and Nx Cloud expose free tiers with no headline entry price listed. The real comparison happens once you cross the free limits, and that pricing isn't captured in the summary data. Check each tool's pricing page for your volume band."
+    },
+    {
+      "q": "Can I migrate from Hermit to Nx Cloud?",
+      "a": "Technically you can move between any two tools in the same category, but effort varies: leaving Hermit is relatively light thanks to its low lock-in, and onboarding to Nx Cloud involves medium lock-in (Cache service for Nx, works with OSS Nx). Plan for data export, re-integration, and a parallel-run window rather than a hard cutover."
+    },
+    {
+      "q": "Which has better developer experience, Hermit or Nx Cloud?",
+      "a": "On the 0-5 developer experience score in our data, Nx Cloud rates 5/5 while Hermit rates 4/5, giving Nx Cloud the edge. That score is a rough summary; actual day-to-day DX depends on your language, deployment target, and tolerance for edge cases. Prototype both to validate."
+    },
+    {
+      "q": "Is Nx Cloud a good alternative to Hermit?",
+      "a": "Nx Cloud is an alternative in the same category, but its stated sweet spot is js and ts monorepos using nx with slow ci and many projects, while Hermit's is monorepos wanting pinned cli toolchains without adopting nix. If your job matches Hermit's profile more closely, switching to Nx Cloud is a compromise. Use the best-fit match, not brand familiarity, to decide. Note: Nx Cloud is explicitly not for non-nx stacks or teams priced out at scale."
+    }
+  ]
+}

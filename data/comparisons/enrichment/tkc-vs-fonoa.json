@@ -1,0 +1,24 @@
+{
+  "intro": "The clearest split between TKC and Fonoa is how they charge: TKC uses custom enterprise pricing (no public tier), while Fonoa uses subscription pricing starting around $5. TKC is TKC Corporation — accounting, tax and ERP software for Japanese CPAs and SMBs with certified e-tax filing APIs; it fits best for Japanese CPAs and SMBs wanting certified e-tax filing tied to their accounting. Fonoa is Global tax automation API for real-time VAT/GST calculation, invoice validation, and e-invoicing compliance in 40+ countries; it fits best for Global. Pick TKC when the job maps to japanese e-tax filing api for cpa accounting software; pick Fonoa when it maps to global saas selling to multiple countries. TKC is not for international companies or modern fintechs seeking api-first tax products. Fonoa is not for single-country business. Honest trade-offs: TKC is weak for japan-only and cpa-centric, and Fonoa is weak for single-country business — match to your real scenario.",
+  "quick_take": "TKC is for japanese cpas and smbs wanting certified e-tax filing tied t; Fonoa is for global; decide based on pricing model.",
+  "verdict_a": "Choose TKC if you want custom enterprise pricing (no public tier) and your workload matches japanese cpas and smbs wanting certified e-tax filing tied to their accounting.",
+  "verdict_b": "Choose Fonoa if you want subscription pricing starting around $5 and your workload matches global.",
+  "faq": [
+    {
+      "q": "Is TKC cheaper than Fonoa?",
+      "a": "Fonoa has more transparent pricing; TKC's cost depends on a sales conversation, so a direct comparison is not possible without a quote. TKC uses custom enterprise pricing with no published rates. Fonoa uses subscription pricing starting at $5."
+    },
+    {
+      "q": "Can I migrate from TKC to Fonoa?",
+      "a": "Migration may be non-trivial: TKC is rated high lock-in (Japanese ERP, deeply integrated). Plan for data export, re-integration of SDKs, and re-testing flows before cutover. Verify exportable formats and feature parity against your live use cases before committing."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Fonoa scores higher on developer experience (4/5 vs 3/5 for TKC). Evaluate against your own stack: read their docs, run a quick SDK spike, and check error handling. Self-assessing with a small prototype beats trusting any rating at face value."
+    },
+    {
+      "q": "Is Fonoa a good alternative to TKC?",
+      "a": "Fonoa sits in the same category as TKC, so it can be a reasonable alternative for overlapping use cases. Fonoa is best fit for global. Note: Fonoa is not for single-country business."
+    }
+  ]
+}

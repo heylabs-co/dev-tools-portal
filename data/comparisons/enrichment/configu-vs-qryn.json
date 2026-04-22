@@ -1,0 +1,24 @@
+{
+  "intro": "Configu and Qryn both show up under the observability category, but they solve slightly different jobs. Configu uses undisclosed pricing with free tier, while Qryn runs on a free model. Both sit at low lock-in. Transparency lands at 4/5 versus 5/5. Configu fits teams working on distributed systems debugging, while Qryn is a closer match when the job is drop-in Loki, Prometheus, and Tempo on ClickHouse. Worth noting: Configu is explicitly not for non-technical projects; Qryn is explicitly not for teams without ClickHouse expertise or wanting turnkey hosted experience. The honest trade-off: Configu trades off on single-server apps with basic logging; Qryn trades off on ClickHouse ops skills needed for self-hosting. On the plus side, Configu highlights distributed systems debugging, while Qryn points to ClickHouse backend supports Loki, Prom, Tempo, DD APIs. Configu's documentation also calls out log aggregation and analysis. Qryn similarly notes single storage across telemetry types cuts costs.",
+  "quick_take": "Configu is for distributed systems debugging; Qryn is for drop-in Loki, Prometheus, and Tempo on; decide on pricing model.",
+  "verdict_a": "Choose Configu if your project is distributed systems debugging, you want to keep future migration cheap.",
+  "verdict_b": "Choose Qryn if your project is drop-in Loki, Prometheus, and Tempo on ClickHouse, you want to keep future migration cheap.",
+  "faq": [
+    {
+      "q": "Is Configu cheaper than Qryn?",
+      "a": "Configu uses undisclosed pricing with free tier, and Qryn uses a free model. The pricing models are different, so a direct cheaper-than comparison depends on your volume and usage pattern."
+    },
+    {
+      "q": "Can I migrate from Configu to Qryn?",
+      "a": "Our data puts Configu at low lock-in (oss config management), and Qryn at low lock-in (oss observability stack). Moving from Configu to Qryn should be manageable, though you'll still need to replay integrations and re-test flows end-to-end."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Both score 4/5 on developer experience in our data, so there's no clear winner on that axis. Qryn does edge ahead on pricing/docs transparency (5/5 vs 4/5), which can make evaluation faster."
+    },
+    {
+      "q": "Is Qryn a good alternative to Configu?",
+      "a": "Qryn is a reasonable alternative to Configu when your workload leans more toward teams wanting unified ClickHouse storage for LGTM stack without Grafana Cloud bills than distributed systems debugging. The pricing model shifts too — Configu is undisclosed pricing with free tier, Qryn is a free model — so expect the cost profile to change as well. One caveat: Qryn is explicitly not for teams without ClickHouse expertise or wanting turnkey hosted experience, so check that constraint against your use-case before switching."
+    }
+  ]
+}

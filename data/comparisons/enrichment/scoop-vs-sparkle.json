@@ -1,0 +1,24 @@
+{
+  "intro": "The clearest difference between Scoop and Sparkle is lock-in — Scoop has high lock-in (OSS installer, manifests portable), whereas Sparkle has low lock-in (Open source macOS updater). Beyond that, developer experience — Scoop scores 4/5 against Sparkle's 5/5. Scoop fits Windows developers installing CLI dev tools without admin or IT involvement; Sparkle fits Direct-download macOS apps needing a rock-solid, secure auto-updater. On the strengths side, Scoop is cited for installs to user dir, no admin rights needed, while Sparkle is cited for de facto auto-updater for Mac apps for 15+ years. The honest trade-off: Scoop is the wrong call for IT departments doing enterprise-wide deployments — stick with Chocolatey or WinGet; Sparkle is the wrong call for Mac App Store apps or cross-platform teams wanting one updater everywhere; Scoop users flag catalog much smaller than Chocolatey, and Sparkle users flag mac-only, nothing for Windows or Linux. Choosing between them should come down to the constraint that actually binds your workflow, not surface-level overlap.",
+  "quick_take": "Scoop is for Windows developers installing CLI dev tools; Sparkle is for Direct-download macOS apps needing a rock-solid; decide based on lock-in tolerance.",
+  "verdict_a": "Choose Scoop if your use case is Windows developers installing CLI dev tools without admin or IT involvement, and high lock-in is acceptable in exchange for its fit.",
+  "verdict_b": "Choose Sparkle if your use case is Direct-download macOS apps needing a rock-solid, secure auto-updater, and low lock-in is acceptable in exchange for its fit.",
+  "faq": [
+    {
+      "q": "Is Scoop cheaper than Sparkle?",
+      "a": "Both Scoop and Sparkle use a free model with a free tier, so raw pricing is close on paper. The real cost difference depends on volume, seats, and which paid features you actually need. Check current pricing on each vendor's page before deciding."
+    },
+    {
+      "q": "Can I migrate from Scoop to Sparkle?",
+      "a": "Migrating from Scoop to Sparkle is feasible when their scopes overlap, but the work is in re-mapping configuration, data models, and integrations. Moving off Scoop is harder because of high lock-in (OSS installer, manifests portable). Plan for a dual-run period so you can validate parity before decommissioning."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "On our developer-experience score, Sparkle is rated 5/5 and Scoop 4/5, so Sparkle edges ahead. Scores like this smooth over real differences in docs, CLI feel, and SDK quality, so treat them as a starting point. Spend an afternoon in each before relying on the number."
+    },
+    {
+      "q": "Is Sparkle a good alternative to Scoop?",
+      "a": "Sparkle is a reasonable alternative to Scoop when Sparkle fits Direct-download macOS apps needing a rock-solid, secure auto-updater. If your use case matches Scoop's sweet spot — Windows developers installing CLI dev tools without admin or IT involvement — staying with Scoop is probably safer. Scoop itself is not meant for IT departments doing enterprise-wide deployments — stick with Chocolatey or WinGet, which is often where users start shopping for alternatives."
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "intro": "The biggest real split between Nuxt Content and Algolia DocSearch is lock-in posture: Nuxt Content carries low lock-in (oss nuxt module, markdown-based), while Algolia DocSearch carries high lock-in (free tier for oss; swap to pagefind/typesense possible). That single fact shapes the rest of the comparison. Nuxt Content is built for teams already on nuxt who want integrated content and docs alongside their app and is not a fit for non-vue teams or projects where docs are the sole reason to adopt a framework. Algolia DocSearch is built for open-source projects that need production-grade docs search without running infrastructure and is not a fit for commercial products or internal docs - docsearch free tier doesn't apply. On the scoring side, Nuxt Content rates 5/5 for developer experience and 5/5 for transparency; Algolia DocSearch rates 5/5 and 5/5 respectively. The honest trade-off: with Nuxt Content you accept that locked into the nuxt ecosystem by design, while Algolia DocSearch comes with the reality that approval required, not all oss sites qualify. Neither side is free.",
+  "quick_take": "Nuxt Content is for teams already on nuxt who want integrated content and docs alongside their app; Algolia DocSearch is for open-source projects that need production-grade docs search without running.",
+  "verdict_a": "Choose Nuxt Content if you are teams already on nuxt who want integrated content and docs alongside their app and can accept low lock-in (oss nuxt module, markdown-based).",
+  "verdict_b": "Choose Algolia DocSearch if you are open-source projects that need production-grade docs search without running infrastructure and need high lock-in (free tier for oss; swap to pagefind/typesense possible).",
+  "faq": [
+    {
+      "q": "Is Nuxt Content cheaper than Algolia DocSearch?",
+      "a": "Both list a free pricing model in our data, and both publish a free tier. We don't have per-seat numbers in this dataset, so 'cheaper' depends on volume. Price both on your actual usage before deciding."
+    },
+    {
+      "q": "Can I migrate from Nuxt Content to Algolia DocSearch?",
+      "a": "Nuxt Content has low lock-in (oss nuxt module, markdown-based); Algolia DocSearch has high lock-in (free tier for oss; swap to pagefind/typesense possible). Migration effort scales with how much state and automation you've built in Nuxt Content; plan for data export, config rebuild, and a parallel-run period before cutting over."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Both Nuxt Content and Algolia DocSearch score 5/5 on developer experience in our data, so DX isn't the tiebreaker here. Decide on fit, pricing, or lock-in instead."
+    },
+    {
+      "q": "Is Algolia DocSearch a good alternative to Nuxt Content?",
+      "a": "Algolia DocSearch is built for open-source projects that need production-grade docs search without running infrastructure and explicitly not for commercial products or internal docs - docsearch free tier doesn't apply, so it's a fit only if your workflow matches its stated audience. If you were using Nuxt Content for teams already on nuxt who want integrated content and docs alongside their app, the switch is reasonable; outside that scope, look elsewhere."
+    }
+  ]
+}

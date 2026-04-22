@@ -1,0 +1,24 @@
+{
+  "intro": "The most concrete split between Adapty and Iugu is the pricing model: Adapty runs on subscription from $0/mo, with a free tier, while Iugu uses usage-based pricing. That shapes how predictable your monthly spend is and how much of the cost sits in infrastructure versus per-seat or per-event fees. Beyond the headline, Adapty carries medium lock-in (subscription sdk wraps app store/play; purchase data exportable) and subscription from $0/mo, with a free tier; Iugu carries medium lock-in (brazil billing platform) and usage-based pricing. Adapty is a fit when you are saas. Iugu is a fit when you are brazilian saas, marketplaces, and fintechs needing pix, boleto, and nf-e compliance. The honest trade-off: Adapty is explicitly not for simple projects; Iugu is explicitly not for global-first saas or companies without significant brazilian revenue exposure. On the product side, Adapty is described as In-app subscription SDK for iOS and Android with paywall A/B testing, revenue analytics, and purchase validation, and Iugu is described as Brazilian billing and payments platform for subscriptions, recurring charges, and marketplaces with REST API.",
+  "quick_take": "Adapty is for saas; Iugu is for brazilian saas, marketplaces, and fintechs needing pix, boleto, and nf-e compliance; decide on pricing model.",
+  "verdict_a": "Choose Adapty if you need a free tier to start before committing budget, and your use case matches saas.",
+  "verdict_b": "Choose Iugu if its usage pricing model fits your budget shape better than Adapty's subscription model, and you are brazilian saas, marketplaces, and fintechs needing pix, boleto, and nf-e compliance.",
+  "faq": [
+    {
+      "q": "Is Adapty cheaper than Iugu?",
+      "a": "Adapty has a free tier; Iugu does not. For small-scale use Adapty will be cheaper by definition. At paid scale you need to model your usage against each vendor's plans."
+    },
+    {
+      "q": "Can I migrate from Adapty to Iugu?",
+      "a": "Migration from Adapty to Iugu is feasible but not trivial: Adapty has medium lock-in (subscription sdk wraps app store/play; purchase data exportable). Core data can move; integrations and workflow logic need rebuild. Allow for a parallel-run period."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "On our scoring Adapty rates 4/5 for developer experience versus 3/5 for Iugu. That suggests day-to-day workflows (CLI, SDKs, docs) are smoother in Adapty. Scores are directional; run a short spike on your own stack to confirm."
+    },
+    {
+      "q": "Is Iugu a good alternative to Adapty?",
+      "a": "Iugu is pitched at brazilian saas, marketplaces, and fintechs needing pix, boleto, and nf-e compliance, which overlaps with Adapty's fit (saas) but is not identical. Note that Iugu is explicitly not for global-first saas or companies without significant brazilian revenue exposure, so it only replaces Adapty if you are outside that exclusion. Pricing models differ (subscription vs usage), which may shift total cost."
+    }
+  ]
+}

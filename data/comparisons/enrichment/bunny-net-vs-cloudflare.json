@@ -1,0 +1,24 @@
+{
+  "intro": "The biggest real distinction between Bunny.net and Cloudflare is straightforward: Bunny.net carries low lock-in while Cloudflare has moderate lock-in. Bunny.net sits at usage-based pricing starting at $0.002/GB (from $1/mo), enterprise plan available and carries low lock-in, while Cloudflare sits at freemium with a paid tier from $20/mo (Pro), enterprise plan available and carries moderate lock-in. Bunny.net is a fit when you need global — typical scenarios include global audience with low latency needs. Cloudflare is aimed at cdn + edge compute + dns + security in one, with workloads like cdn + edge compute + dns + security in one as the common case. The honest trade-off: Bunny.net is explicitly not for internal projects; Cloudflare is not intended for need full paas for backend apps. Lock-in is the factor most teams underestimate: Bunny.net and Cloudflare have different exit paths, and that shapes total cost of ownership over a two-to-three year horizon.",
+  "quick_take": "Bunny.net is for global; Cloudflare is for cdn + edge compute + dns; decide based on how much lock-in you can accept.",
+  "verdict_a": "Choose Bunny.net if your primary workload is global and you prefer usage-based pricing (starts at $0.002/GB (from $1/mo)).",
+  "verdict_b": "Choose Cloudflare if your primary workload is cdn + edge compute + dns + security in one and the free tier plus $20/mo (Pro) paid tier fits your budget.",
+  "faq": [
+    {
+      "q": "Is Bunny.net cheaper than Cloudflare?",
+      "a": "It depends on workload shape: Bunny.net lists $0.002/GB (from $1/mo), while Cloudflare lists $20/mo (Pro). With different pricing models (usage vs freemium), the cheaper option flips based on seat count, usage volume, and whether you use the free tier. Do a per-workload estimate rather than comparing headline numbers."
+    },
+    {
+      "q": "Can I migrate from Bunny.net to Cloudflare?",
+      "a": "Migrating from Bunny.net to Cloudflare is generally feasible because Bunny.net has low lock-in, so data and configuration are usually portable. Since both tools sit in the same category (CDN / Edge / Acceleration), the conceptual mapping is closer, but you still need to validate feature parity against your specific workload. Plan migration as a project, not a script: inventory integrations, test on non-production workloads, and keep Bunny.net running in parallel until Cloudflare is verified."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Our data gives Bunny.net and Cloudflare the same developer experience score (5/5), so neither has a clear edge on DX by that measure. The differentiator is usually how each tool fits your workflow — things like CLI quality, docs, local dev loop, and error messages. The safest call is to pilot both on a representative task and see which one gets out of your way."
+    },
+    {
+      "q": "Is Cloudflare a good alternative to Bunny.net?",
+      "a": "Cloudflare is in the same category as Bunny.net (CDN / Edge / Acceleration), so it's a reasonable alternative to evaluate. Cloudflare is aimed at cdn + edge compute + dns + security in one, while Bunny.net targets global — that difference should drive the switch decision. Note that Cloudflare is explicitly not for need full paas for backend apps — if that describes your workload, it's not a viable replacement."
+    }
+  ]
+}

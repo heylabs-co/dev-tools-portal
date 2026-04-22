@@ -1,0 +1,24 @@
+{
+  "intro": "Primer and Spreedly both show up under the payments orchestration category, but they solve slightly different jobs. Primer starts at Custom (enterprise); Spreedly starts at Custom (~$16K+/mo for large volumes). Both sit at low lock-in. Developer experience scores 5/5 against 4/5. Both tools target Multi-PSP routing for higher conversion, so the choice comes down to pricing, lock-in, and operational fit rather than scope. Worth noting: Primer is explicitly not for single-market startups. The honest trade-off: Primer trades off on single-market startups; Spreedly trades off on single-market startups. On the plus side, Primer highlights Multi-PSP routing for higher conversion. Primer's documentation also calls out enterprise with multiple payment providers. For teams evaluating payments orchestration options today, the decision usually hinges on whether Primer's profile or Spreedly's profile maps more cleanly to the pricing model, lock-in tolerance, and scale your team can live with. Beyond the headline pitch, a documented Primer use-case is \"Enterprise with multiple payment providers\", and a documented Spreedly use-case is \"Enterprise with multiple payment providers\".",
+  "quick_take": "Primer is for Multi-PSP routing for higher conversion; Spreedly is for Multi-PSP routing for higher conversion; decide on entry price.",
+  "verdict_a": "Choose Primer if your project is Multi-PSP routing for higher conversion, you want to keep future migration cheap, strong SDKs and docs (5/5) are a priority.",
+  "verdict_b": "Choose Spreedly if your project is Multi-PSP routing for higher conversion, you want to keep future migration cheap.",
+  "faq": [
+    {
+      "q": "Is Primer cheaper than Spreedly?",
+      "a": "Primer uses custom (sales-led) pricing, and Spreedly uses custom (sales-led) pricing. On published entry price, Primer lists Custom (enterprise) while Spreedly lists Custom (~$16K+/mo for large volumes) — but the real cost at your scale will depend on actual usage, not just the starting tier."
+    },
+    {
+      "q": "Can I migrate from Primer to Spreedly?",
+      "a": "Our data puts Primer at low lock-in, and Spreedly at low lock-in (agnostic vault = core product, fromin lock-in to processors). Moving from Primer to Spreedly should be manageable, though you'll still need to replay integrations and re-test flows end-to-end."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Primer scores 5/5 on developer experience in our data, while Spreedly scores 4/5, so Primer has the edge on docs and SDK quality by that measure. Still, run a small integration spike on both before deciding — team familiarity with a given SDK style often matters more than a one-point score gap."
+    },
+    {
+      "q": "Is Spreedly a good alternative to Primer?",
+      "a": "Spreedly covers a similar scope to Primer — our data lists \"Enterprise\" as the best-for on both. One caveat: Spreedly is explicitly not for single-market startups, so check that constraint against your use-case before switching."
+    }
+  ]
+}

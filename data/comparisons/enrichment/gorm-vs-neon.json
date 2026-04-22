@@ -1,0 +1,24 @@
+{
+  "intro": "GORM and Neon diverge first on pricing model: GORM uses free pricing with a free tier, Neon uses freemium pricing with a free tier. Everything else flows from that commercial choice. GORM is built for mobile and is not a fit for hobby projects. Neon is built for teams without a dedicated dba and is not a fit for on-premise or air-gapped requirements. On the scoring side, GORM rates 5/5 for developer experience and 5/5 for transparency; Neon rates 5/5 and 5/5 respectively. The honest trade-off: with GORM you accept that manual deployment is sufficient, while Neon comes with the reality that vendor-specific features increase lock-in. Neither side is free. GORM's headline strength in the data is that automated build/test/deploy pipelines. Neon's headline strength is that managed database removes operational overhead. Read each side's best-for and not-for fields carefully before you pick; the shape of your team and workflow matters more than any single score.",
+  "quick_take": "GORM is for mobile; Neon is for teams without a dedicated dba; decide based on pricing model.",
+  "verdict_a": "Choose GORM if you are mobile and a free pricing model fits how you buy.",
+  "verdict_b": "Choose Neon if you are teams without a dedicated dba and a freemium pricing model fits how you buy.",
+  "faq": [
+    {
+      "q": "Is GORM cheaper than Neon?",
+      "a": "GORM uses a free model, while Neon uses a freemium model, and both publish a free tier. We don't have per-seat numbers in this dataset, so 'cheaper' depends on volume. Price both on your actual usage before deciding."
+    },
+    {
+      "q": "Can I migrate from GORM to Neon?",
+      "a": "GORM has low lock-in (oss go orm); Neon has low lock-in (standard postgres, portable). Migration effort scales with how much state and automation you've built in GORM; plan for data export, config rebuild, and a parallel-run period before cutting over."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Both GORM and Neon score 5/5 on developer experience in our data, so DX isn't the tiebreaker here. Decide on fit, pricing, or lock-in instead."
+    },
+    {
+      "q": "Is Neon a good alternative to GORM?",
+      "a": "Neon is built for teams without a dedicated dba and explicitly not for on-premise or air-gapped requirements, so it's a fit only if your workflow matches its stated audience. If you were using GORM for mobile, the switch is reasonable; outside that scope, look elsewhere."
+    }
+  ]
+}

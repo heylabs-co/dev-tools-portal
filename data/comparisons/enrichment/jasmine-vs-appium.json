@@ -1,0 +1,24 @@
+{
+  "intro": "Jasmine and Appium both target the test automation space, and on paper their pricing, lock-in and ratings land close together. The useful split is positioning: Jasmine is pitched at existing angular or angularjs projects with sizeable jasmine suites, while Appium is pitched at mobile. Beyond the headline, Jasmine carries low lock-in (free js testing framework) and free and open-source; Appium carries low lock-in (oss webdriver-based mobile testing) and free and open-source. Jasmine is a fit when you are existing angular or angularjs projects with sizeable jasmine suites. Appium is a fit when you are mobile. The honest trade-off: Jasmine is explicitly not for new javascript projects where vitest or native runners are better defaults; Appium is explicitly not for hobby projects. On the product side, Jasmine is described as Behavior-driven JavaScript testing framework with no external dependencies, historically used with Angular and popular for specs-style tests, and Appium is described as OSS cross-platform mobile test automation framework for iOS and Android using WebDriver protocol.",
+  "quick_take": "Jasmine is for existing angular or angularjs projects with sizeable jasmine suites; Appium is for mobile; decide on which best-fit use case is yours.",
+  "verdict_a": "Choose Jasmine if you are existing angular or angularjs projects with sizeable jasmine suites and comfortable with its free and open-source.",
+  "verdict_b": "Choose Appium if you are mobile and comfortable with its free and open-source.",
+  "faq": [
+    {
+      "q": "Is Jasmine cheaper than Appium?",
+      "a": "Both tools use free pricing. Jasmine is listed as free and open-source; Appium as free and open-source. Without specific volume and seat assumptions it is not possible to say which is cheaper in general."
+    },
+    {
+      "q": "Can I migrate from Jasmine to Appium?",
+      "a": "Migration from Jasmine to Appium is plausible because Jasmine has low lock-in (free js testing framework). You would still have to map config, permissions and integrations to Appium's model. Plan for dual-run and rollback."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Both tools tie at 5/5 for developer experience on our scoring. The real difference will show up in your specific workflow, not the headline rating. A one-hour spike on both is the fastest way to decide."
+    },
+    {
+      "q": "Is Appium a good alternative to Jasmine?",
+      "a": "Appium is pitched at mobile, which overlaps with Jasmine's fit (existing angular or angularjs projects with sizeable jasmine suites) but is not identical. Note that Appium is explicitly not for hobby projects, so it only replaces Jasmine if you are outside that exclusion. Feature-for-feature parity is not guaranteed, so confirm the specific capability you rely on before switching."
+    }
+  ]
+}

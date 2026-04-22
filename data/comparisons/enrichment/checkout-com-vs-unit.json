@@ -1,0 +1,24 @@
+{
+  "intro": "Checkout.com and Unit both show up under the payment gateway category, but they solve slightly different jobs. Checkout.com uses usage-based from custom pricing, while Unit runs on custom (sales-led) pricing. Lock-in is medium for Checkout.com and high for Unit. Transparency lands at 4/5 versus 1/5. Checkout.com fits teams working on SaaS with online payments, while Unit is a closer match when the job is FDIC-insured bank accounts and ACH for US fintech startups. Worth noting: Checkout.com is explicitly not for offline, Internal projects; Unit is explicitly not for Non-US teams or companies needing a plain payment gateway. The honest trade-off: Checkout.com trades off on offline-only retail; Unit trades off on sponsor bank risk post-US BaaS turbulence. On the plus side, Checkout.com highlights SaaS with online payments, while Unit points to accounts, cards, ACH, wire, lending unified. Checkout.com's documentation also calls out e-commerce checkout. Unit similarly notes FDIC-insured accounts via partner banks.",
+  "quick_take": "Checkout.com is for SaaS with online payments; Unit is for FDIC-insured bank accounts and ACH for; decide on pricing model.",
+  "verdict_a": "Choose Checkout.com if your project is SaaS with online payments, usage-based billing at custom pricing matches your volume, medium lock-in is an acceptable trade-off.",
+  "verdict_b": "Choose Unit if your project is FDIC-insured bank accounts and ACH for US fintech startups, you are prepared for a sales-led custom-pricing conversation, you are willing to accept the high lock-in called out in our data.",
+  "faq": [
+    {
+      "q": "Is Checkout.com cheaper than Unit?",
+      "a": "Checkout.com uses usage-based from custom pricing, and Unit uses custom (sales-led) pricing. The pricing models are different, so a direct cheaper-than comparison depends on your volume and usage pattern."
+    },
+    {
+      "q": "Can I migrate from Checkout.com to Unit?",
+      "a": "Our data puts Checkout.com at medium lock-in, and Unit at high lock-in (baas partner integrations hard to migrate). Migration is feasible but not trivial — budget time for re-integration, data export, and parallel running before cutover."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Both score 5/5 on developer experience in our data, so there's no clear winner on that axis. Checkout.com does edge ahead on pricing/docs transparency (4/5 vs 1/5), which can make evaluation faster."
+    },
+    {
+      "q": "Is Unit a good alternative to Checkout.com?",
+      "a": "Unit is a reasonable alternative to Checkout.com when your workload leans more toward US fintech startups needing full-stack banking APIs with modern developer experience than SaaS, E-commerce, Marketplace. The pricing model shifts too — Checkout.com is usage-based from custom pricing, Unit is custom (sales-led) pricing — so expect the cost profile to change as well. One caveat: Unit is explicitly not for Non-US teams or companies needing a plain payment gateway, so check that constraint against your use-case before switching."
+    }
+  ]
+}

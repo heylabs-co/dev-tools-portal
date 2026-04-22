@@ -1,0 +1,24 @@
+{
+  "intro": "Keep and Sensu Go both show up under the observability category, but they solve slightly different jobs. Keep uses a free model, while Sensu Go runs on undisclosed pricing with free tier. Lock-in is low for Keep and high for Sensu Go. Transparency lands at 5/5 versus 4/5. Keep fits teams working on aggregate and deduplicate alerts from 50+ tools, while Sensu Go is a closer match when the job is event-driven monitoring for hybrid cloud infrastructure. Worth noting: Keep is explicitly not for teams needing battle-tested AIOps with dedicated 24/7 support; Sensu Go is explicitly not for cloud-native teams already standardized on Prometheus and Grafana. The honest trade-off: Keep trades off on early project, features still stabilizing; Sensu Go trades off on configuration complexity vs Prometheus. On the plus side, Keep highlights open-source AIOps with 50+ tool integrations, while Sensu Go points to event-driven architecture scales horizontally. Keep's documentation also calls out alert deduplication and correlation in one layer. Sensu Go similarly notes open-source core with commercial options.",
+  "quick_take": "Keep is for aggregate and deduplicate alerts from 50+; Sensu Go is for event-driven monitoring for hybrid cloud infrastructure; decide on pricing model.",
+  "verdict_a": "Choose Keep if your project is aggregate and deduplicate alerts from 50+ tools, you want to keep future migration cheap.",
+  "verdict_b": "Choose Sensu Go if your project is event-driven monitoring for hybrid cloud infrastructure, you are willing to accept the high lock-in called out in our data.",
+  "faq": [
+    {
+      "q": "Is Keep cheaper than Sensu Go?",
+      "a": "Keep uses a free model, and Sensu Go uses undisclosed pricing with free tier. The pricing models are different, so a direct cheaper-than comparison depends on your volume and usage pattern."
+    },
+    {
+      "q": "Can I migrate from Keep to Sensu Go?",
+      "a": "Our data puts Keep at low lock-in, and Sensu Go at high lock-in (oss monitoring, configs portable). Migration is feasible but not trivial — budget time for re-integration, data export, and parallel running before cutover."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Both score 4/5 on developer experience in our data, so there's no clear winner on that axis. Keep does edge ahead on pricing/docs transparency (5/5 vs 4/5), which can make evaluation faster."
+    },
+    {
+      "q": "Is Sensu Go a good alternative to Keep?",
+      "a": "Sensu Go is a reasonable alternative to Keep when your workload leans more toward hybrid infrastructure teams needing event-driven monitoring across cloud and on-prem than platform teams wanting open alternative to PagerDuty AIOps or BigPanda. The pricing model shifts too — Keep is a free model, Sensu Go is undisclosed pricing with free tier — so expect the cost profile to change as well. One caveat: Sensu Go is explicitly not for cloud-native teams already standardized on Prometheus and Grafana, so check that constraint against your use-case before switching."
+    }
+  ]
+}

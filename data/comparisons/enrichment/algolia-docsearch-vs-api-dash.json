@@ -1,0 +1,24 @@
+{
+  "intro": "Algolia DocSearch and API Dash belong to the same loose DevRel tooling category but solve very different problems. DocSearch is a free hosted search-as-a-service for qualifying open-source documentation sites, powering search for React, Vue, MDN and thousands of other docs. API Dash is a free, open-source, Flutter-based cross-platform API client for exploring, testing and generating code from API requests. The clearest real distinction is the product type: DocSearch is a hosted service bolted onto your docs site; API Dash is a local desktop client you install. DocSearch fits OSS projects that want production-grade docs search with a drop-in crawler and widget. API Dash fits solo developers who want an offline-first lightweight Postman alternative without account bloat. DocSearch scores 5 for DX and 5 for transparency but is rated high lock-in for the hosted setup; API Dash scores 4 for DX and 5 for transparency and is low lock-in. You trade hosted polish for local ownership.",
+  "quick_take": "Algolia DocSearch is for free hosted search on OSS docs sites; API Dash is for offline-first API testing on your desktop; they solve different problems.",
+  "verdict_a": "Choose Algolia DocSearch if you run a qualifying open-source docs site and want free hosted typo-tolerant search with a drop-in crawler and widget.",
+  "verdict_b": "Choose API Dash if you want a free, open-source, offline-first API client that runs cross-platform via Flutter, with no account required and code generation in multiple languages.",
+  "faq": [
+    {
+      "q": "Is Algolia DocSearch cheaper than API Dash?",
+      "a": "Both are listed as free with free tiers. DocSearch's free tier is conditional on qualifying OSS approval; if your project doesn't qualify, you have to price against Algolia's paid tiers instead, which isn't shown here. API Dash is unconditionally free and open-source. For commercial or internal docs, API Dash's price stays at zero while DocSearch's does not apply."
+    },
+    {
+      "q": "Can I migrate from Algolia DocSearch to API Dash?",
+      "a": "They aren't replacements. DocSearch is rated high lock-in because you depend on Algolia's hosted infra, though Pagefind and Typesense are called out as possible swaps. API Dash is low lock-in as an OSS local client. Migration only makes sense peer-to-peer (DocSearch to Pagefind, API Dash to Postman or Insomnia), not between these two."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "DocSearch scores 5 for DX; API Dash scores 4. DocSearch's DX benefit is that integration is one script tag plus a config file, with Algolia's infra invisible. API Dash's DX is that of a local cross-platform desktop client - solid, but Flutter desktop UX is flagged as slightly off on some platforms."
+    },
+    {
+      "q": "Is API Dash a good alternative to Algolia DocSearch?",
+      "a": "No. DocSearch's best_for is OSS projects needing production-grade docs search; its not_for is commercial or internal docs. API Dash's best_for is solo developers wanting a fast offline-first API client. They address different stages of the DevRel pipeline - search on published docs versus API exploration during development."
+    }
+  ]
+}

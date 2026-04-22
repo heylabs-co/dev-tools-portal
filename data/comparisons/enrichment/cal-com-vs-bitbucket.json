@@ -1,0 +1,24 @@
+{
+  "intro": "Cal.com and Bitbucket are unrelated products sharing a category label here. Cal.com is an open-source scheduling platform; Bitbucket is Atlassian's Git hosting and CI service. Both are freemium with free tiers, both score 5 for DX and 5 for transparency, and both are rated low lock-in - Cal.com because it is self-hostable with fully portable data, Bitbucket because Git repositories are portable via clone. The real distinction is simply what each does: Cal.com handles meeting scheduling flows with APIs and embeds; Bitbucket hosts Git repos and pipelines. Cal.com fits teams that want to own their scheduling layer, self-host if they choose, and avoid Calendly lock-in. Bitbucket fits teams already on Atlassian (Jira, Confluence) who want tight integration between issues, code and CI. Neither substitutes for the other; any 'trade-off' here is really 'pick the one that matches the problem'. The dataset's best_for and not_for fields about CI pipelines don't fit Cal.com cleanly.",
+  "quick_take": "Cal.com is for open-source self-hostable scheduling; Bitbucket is for Atlassian-integrated Git hosting and CI; they solve different problems.",
+  "verdict_a": "Choose Cal.com if you need a scheduling platform you can self-host, with fully portable data and a free tier, scoring 5 for DX and 5 for transparency.",
+  "verdict_b": "Choose Bitbucket if you want Git hosting integrated with Jira and Confluence, with freemium pricing and pipelines portable via standard clone.",
+  "faq": [
+    {
+      "q": "Is Cal.com cheaper than Bitbucket?",
+      "a": "Both are freemium with free tiers, and neither publishes a headline entry price in the data (both listed as custom pricing). Cal.com is also free when self-hosted. In practice, for small teams both have workable free tiers and the cost question only matters at scale, where pricing isn't disclosed here."
+    },
+    {
+      "q": "Can I migrate from Cal.com to Bitbucket?",
+      "a": "You can't meaningfully - they do different things. Cal.com is rated low lock-in because it is open-source and self-hostable with fully portable data. Bitbucket is low lock-in because Git history is portable via clone. Each migrates to a peer (Calendly, GitHub, GitLab) in its own category, not to the other."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Both score 5 for DX. The scores are tied because they are serving different needs. Cal.com's DX shines in booking APIs and embeds; Bitbucket's DX shines in PR reviews and pipeline YAML. There isn't a meaningful head-to-head here."
+    },
+    {
+      "q": "Is Bitbucket a good alternative to Cal.com?",
+      "a": "No. The data lists the same generic CI-flavoured best_for and not_for for both due to the shared category label, but in reality they don't overlap. Bitbucket does not provide scheduling; Cal.com does not host Git. Treat them as non-substitutable."
+    }
+  ]
+}

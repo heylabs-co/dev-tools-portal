@@ -1,0 +1,24 @@
+{
+  "intro": "react-native-iap sits at low lock-in (OSS IAP library); OpenIAP sits at high lock-in (open spec for IAP). React-native-iap: Open-source React Native in-app purchase library conforming to OpenIAP spec, using Nitro Modules for native bridging. OpenIAP: Open cross-platform IAP specification unifying types, error codes and purchase flows across iOS StoreKit and Google Play Billing. React-native-iap fits react Native teams that want to own IAP and validation in-house. OpenIAP fits OSS library authors and engineers standardizing IAP across platforms. Both land at 4/5 for developer experience and 5/5 for transparency on our rubric. The honest trade-off: react-native-iap's main drawback — Library, not a managed subscription service; OpenIAP's — Spec still maturing, breaking changes possible. One point in react-native-iap's favour: Open-source RN IAP aligned with OpenIAP. For OpenIAP: Open spec unifying IAP types across platforms. React-native-iap is explicitly not the right pick for teams that prefer a managed subscription backend. OpenIAP is not aimed at product teams looking for a ready-made subscription service.",
+  "quick_take": "react-native-iap is for react Native teams; OpenIAP is for OSS library authors; decide on lock-in tolerance.",
+  "verdict_a": "Choose react-native-iap if react Native teams that want to own IAP and validation in-house, and if portability and keeping the exit door open matter.",
+  "verdict_b": "Choose OpenIAP if OSS library authors and engineers standardizing IAP across platforms, and if you accept tighter coupling in exchange for the managed surface.",
+  "faq": [
+    {
+      "q": "Is react-native-iap cheaper than OpenIAP?",
+      "a": "Both tools use free pricing, so a clean list-price comparison depends on tier details that vary by usage. Check each vendor's current plan page for your expected volume. Neither is structurally cheaper on the model alone."
+    },
+    {
+      "q": "Can I migrate from react-native-iap to OpenIAP?",
+      "a": "Migrating out of react-native-iap is straightforward — it's rated low lock-in (OSS IAP library). The harder question is how deeply you commit to OpenIAP afterward, since it sits at high lock-in (open spec for IAP). Plan the forward cost, not just the exit."
+    },
+    {
+      "q": "Which has better developer experience, react-native-iap or OpenIAP?",
+      "a": "Both score 4/5 for developer experience in our rubric, so neither has a structural edge. The practical answer depends on stack fit: react-native-iap's ergonomics suit some workflows, OpenIAP's suit others. Try both on a throwaway project before committing."
+    },
+    {
+      "q": "Is OpenIAP a good alternative to react-native-iap?",
+      "a": "They sit in the same category, so yes — OpenIAP is a plausible alternative for many react-native-iap use cases. It fits best when OSS library authors and engineers standardizing IAP across platforms. Skip it if product teams looking for a ready-made subscription service."
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "intro": "The visible split is transparency: PlanetScale scores 4/5, CockroachDB scores 3/5. That changes how predictable each one feels at renewal time. PlanetScale is built for apps, global and is not a fit for simple, offline projects. CockroachDB is built for apps, global and is not a fit for simple, offline projects. On the scoring side, PlanetScale rates 5/5 for developer experience and 4/5 for transparency; CockroachDB rates 5/5 and 3/5 respectively. The honest trade-off: with PlanetScale you accept that simple key-value storage needs, while CockroachDB comes with the reality that simple key-value storage needs. Neither side is free. PlanetScale's headline strength in the data is that apps needing managed database. CockroachDB's headline strength is that apps needing managed database. Read each side's best-for and not-for fields carefully before you pick; the shape of your team and workflow matters more than any single score. The right pick depends on which tool's stated fit matches your constraints; use the verdicts below to shortcut the decision.",
+  "quick_take": "PlanetScale is for apps, global; CockroachDB is for apps, global; decide based on workflow fit.",
+  "verdict_a": "Choose PlanetScale if you are apps, global.",
+  "verdict_b": "Choose CockroachDB if you are apps, global.",
+  "faq": [
+    {
+      "q": "Is PlanetScale cheaper than CockroachDB?",
+      "a": "Both list a hybrid pricing model in our data; CockroachDB has a free tier and PlanetScale does not. We don't have per-seat numbers in this dataset, so 'cheaper' depends on volume. Price both on your actual usage before deciding."
+    },
+    {
+      "q": "Can I migrate from PlanetScale to CockroachDB?",
+      "a": "PlanetScale has low lock-in (low-medium — standard mysql (vitess), but branching = proprietary feature); CockroachDB has low lock-in (low — postgresql-compatible, standard sql). Migration effort scales with how much state and automation you've built in PlanetScale; plan for data export, config rebuild, and a parallel-run period before cutting over."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Both PlanetScale and CockroachDB score 5/5 on developer experience in our data, so DX isn't the tiebreaker here. Decide on fit, pricing, or lock-in instead."
+    },
+    {
+      "q": "Is CockroachDB a good alternative to PlanetScale?",
+      "a": "CockroachDB is built for apps, global and explicitly not for simple, offline projects, so it's a fit only if your workflow matches its stated audience. If you were using PlanetScale for apps, global, the switch is reasonable; outside that scope, look elsewhere."
+    }
+  ]
+}

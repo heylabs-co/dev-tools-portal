@@ -1,0 +1,24 @@
+{
+  "intro": "The clearest difference between Jit and StackHawk is lock-in — Jit has medium lock-in (Security platform orchestrates OSS), whereas StackHawk has low lock-in (Based on OSS ZAP scanner). Beyond that, developer experience — Jit scores 4/5 against StackHawk's 5/5. The stated fit for both tools is similar on paper: Jit is pitched as developer security platform orchestrating SAST, SCA, secrets detection, and IaC scanning as a product security plan, while StackHawk is pitched as Developer-centric DAST tool running application security tests in CI/CD using OpenAPI and GraphQL specs. On the strengths side, Jit is cited for UGC platforms (social, marketplace), while StackHawk is cited for Chat/messaging apps. The honest trade-off: both Jit and StackHawk are the wrong call for internal projects. Choosing between them should come down to the constraint that actually binds your workflow, not surface-level overlap. On developer experience the data shows Jit at 4/5 and StackHawk at 5/5, with transparency at 3/5 and 4/5 respectively.",
+  "quick_take": "Jit and StackHawk both target Content Moderation API; their data-level fit descriptions overlap, so decide based on lock-in tolerance.",
+  "verdict_a": "Choose Jit if you need a Content Moderation API tool and medium lock-in is acceptable in exchange for its fit.",
+  "verdict_b": "Choose StackHawk if you need a Content Moderation API tool and low lock-in is acceptable in exchange for its fit.",
+  "faq": [
+    {
+      "q": "Is Jit cheaper than StackHawk?",
+      "a": "Both Jit and StackHawk use a subscription model, so raw pricing is close on paper. The real cost difference depends on volume, seats, and which paid features you actually need. Check current pricing on each vendor's page before deciding."
+    },
+    {
+      "q": "Can I migrate from Jit to StackHawk?",
+      "a": "Migrating from Jit to StackHawk is feasible when their scopes overlap, but the work is in re-mapping configuration, data models, and integrations. Moving off Jit is harder because of medium lock-in (Security platform orchestrates OSS). Plan for a dual-run period so you can validate parity before decommissioning."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "On our developer-experience score, StackHawk is rated 5/5 and Jit 4/5, so StackHawk edges ahead. Scores like this smooth over real differences in docs, CLI feel, and SDK quality, so treat them as a starting point. Spend an afternoon in each before relying on the number."
+    },
+    {
+      "q": "Is StackHawk a good alternative to Jit?",
+      "a": "StackHawk is a reasonable alternative to Jit when StackHawk fits marketplace, apps. If your use case matches Jit's sweet spot — marketplace, apps — staying with Jit is probably safer. Jit itself is not meant for internal projects, which is often where users start shopping for alternatives."
+    }
+  ]
+}

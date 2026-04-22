@@ -1,0 +1,24 @@
+{
+  "intro": "The pivotal question between Codemagic and DeployHQ is how much of your setup stays portable: Codemagic carries medium lock-in and DeployHQ carries low lock-in. Codemagic is CI/CD specialized for Flutter and mobile apps with Fastlane and code signing. DeployHQ is deploy-on-push from Git repos to servers via SFTP, SSH, or cloud APIs. Pick Codemagic when the job is conversion optimization and you accept medium lock-in; pick DeployHQ when it is conversion optimization and you accept low lock-in. The data we have shows Codemagic at mostly transparent pricing and docs with a polished developer experience, and DeployHQ at fully public pricing and documentation with solid developer experience. The honest trade-off: neither is universal — Codemagic is a poor fit for internal projects, and DeployHQ is a poor fit for internal projects. Match the pricing model and lock-in level to how your team actually works, not the feature list. If your team already lives inside the ecosystem one of them assumes, that default usually wins — migration is cheap to start and expensive later.",
+  "quick_take": "Codemagic is for CI/CD specialized; DeployHQ is for deploy-on-push from Git repos to servers via; decide based on how portable the setup must stay.",
+  "verdict_a": "Choose Codemagic if some ecosystem coupling is acceptable and the work maps to CI/CD specialized for Flutter and mobile apps with Fastlane and code signing.",
+  "verdict_b": "Choose DeployHQ if you need public pricing and docs before committing and the work lines up with deploy-on-push from Git repos to servers via SFTP, SSH, or cloud APIs.",
+  "faq": [
+    {
+      "q": "Is Codemagic cheaper than DeployHQ?",
+      "a": "Codemagic starts at $0 / month on a subscription model; DeployHQ starts at $12/yr on a subscription model. That makes the sticker comparison depend on usage — a low entry price can get expensive once volume ramps, so price at your actual workload."
+    },
+    {
+      "q": "Can I migrate from Codemagic to DeployHQ?",
+      "a": "Migration is possible in either direction. Codemagic carries medium lock-in and DeployHQ carries low lock-in, so plan for meaningful but not blocking rework. Run both in parallel before you fully cut over."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Codemagic scores higher on developer experience in our data (5/5 vs 4/5). That reflects public feedback on docs, onboarding, and day-to-day ergonomics. Still, run a spike with your own code — DX ratings don't capture every edge."
+    },
+    {
+      "q": "Is DeployHQ a good alternative to Codemagic?",
+      "a": "Yes — DeployHQ is a reasonable alternative to Codemagic for conversion optimization. The practical differences are subscription-vs-subscription billing and medium-vs-low lock-in. If those fit your constraints better, treat DeployHQ as a credible swap."
+    }
+  ]
+}

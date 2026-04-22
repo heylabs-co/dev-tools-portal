@@ -1,0 +1,24 @@
+{
+  "intro": "FingerprintJS sits at medium lock-in (OSS core + Pro API, portable); Osso sits at high lock-in (OSS SAML/OIDC). FingerprintJS: FingerprintJS (Fingerprint Pro) provides browser and mobile device identification with 99.5% accuracy using advanced fingerprinting signals. Its API detects bots, account sharing, multi-accounting and payment fraud, and exposes risk signals. Osso: Enterprise SSO integration layer handling SAML and OIDC connections for SaaS applications without custom code. FingerprintJS fits engineering teams adding a reliable device identity signal to their own risk stack. Osso fits SaaS platforms adding SAML/OIDC SSO for enterprise customers without building it in-house. On our rubric FingerprintJS scores 5/5 for developer experience and 4/5 for transparency, while Osso scores 4/5 and 4/5. The honest trade-off: FingerprintJS's main drawback — Device ID alone does not stop determined fraudsters; Osso's — Not actually a fraud or risk tool. One point in FingerprintJS's favour: 99.5% device ID accuracy, widely benchmarked. For Osso: Simplifies enterprise SSO across SAML and OIDC. FingerprintJS is explicitly not the right pick for teams that want turnkey approve/decline decisions without building any logic.",
+  "quick_take": "FingerprintJS is for engineering teams adding a reliable device identity signal; Osso is for SaaS platforms adding SAML/OIDC SSO for enterprise customers; decide on lock-in tolerance.",
+  "verdict_a": "Choose FingerprintJS if engineering teams adding a reliable device identity signal to their own risk stack, and if a higher DX score (5/5 vs 4/5 in our rubric) nudges the call.",
+  "verdict_b": "Choose Osso if SaaS platforms adding SAML/OIDC SSO for enterprise customers without building it in-house.",
+  "faq": [
+    {
+      "q": "Is FingerprintJS cheaper than Osso?",
+      "a": "Both tools use freemium pricing, so a clean list-price comparison depends on tier details that vary by usage. Check each vendor's current plan page for your expected volume. Neither is structurally cheaper on the model alone."
+    },
+    {
+      "q": "Can I migrate from FingerprintJS to Osso?",
+      "a": "Expect real effort: FingerprintJS is medium lock-in (OSS core + Pro API, portable) and Osso is high lock-in (OSS SAML/OIDC). Migrating between them means rebuilding integrations, re-authoring config, and accepting new coupling. Scope a spike before committing."
+    },
+    {
+      "q": "Which has better developer experience, FingerprintJS or Osso?",
+      "a": "FingerprintJS scores higher in our rubric (5/5 vs 4/5 for Osso). Transparency is 4/5 for FingerprintJS and 4/5 for Osso. DX scores are rubric-based, not benchmarks, so evaluate against your own toolchain."
+    },
+    {
+      "q": "Is Osso a good alternative to FingerprintJS?",
+      "a": "They sit in the same category, so yes — Osso is a plausible alternative for many FingerprintJS use cases. It fits best when SaaS platforms adding SAML/OIDC SSO for enterprise customers without building it in-house. Skip it if anyone actually looking for fraud detection, bot management or transaction risk scoring."
+    }
+  ]
+}

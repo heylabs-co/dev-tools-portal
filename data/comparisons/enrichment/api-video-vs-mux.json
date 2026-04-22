@@ -1,0 +1,24 @@
+{
+  "intro": "api.video enters at $12 /month against Mux at $20/mo. Both tools position themselves for image/video heavy applications, so the decision rarely comes down to surface features. In practice, api.video — Video API platform for uploading, encoding, and streaming with player, webhooks, and analytics. Mux — Video infrastructure API for adaptive bitrate streaming, real-time data, and ML-powered quality scoring. Both tools list image/video heavy applications as a headline strength, which is why pricing and lock-in usually decide the call. Both tools surface overlapping when-to-use scenarios, including image/video heavy applications. The honest trade-off: api.video is not built for small projects, and Mux is not the right call for small projects, so neither is a universal default. Transparency scores land at 4/5 for api.video and 4/5 for Mux, which reflects how openly each tool documents pricing, limits, and terms. Known gaps: api.video flags text-only applications, and Mux flags text-only applications in its own summary.",
+  "quick_take": "api.video is for image/video heavy applications; Mux overlaps on the same job; decide based on pricing model.",
+  "verdict_a": "Choose api.video if image/video heavy applications and the $12 /month entry price fits your budget.",
+  "verdict_b": "Choose Mux if image/video heavy applications and the $20/mo entry price fits your budget.",
+  "faq": [
+    {
+      "q": "Is api.video cheaper than Mux?",
+      "a": "Based on the listed entry prices, yes: api.video starts at $12 /month while Mux starts at $20/mo. Actual monthly cost depends on volume and plan tier, so model your real usage before switching. Enterprise quotes can reshuffle the comparison entirely."
+    },
+    {
+      "q": "Can I migrate from api.video to Mux?",
+      "a": "Technically you can move between any two tools in the same category, but effort varies: leaving api.video is moderate effort at medium lock-in (Video assets exportable but player/CDN tied), and onboarding to Mux involves medium lock-in (Subscription video infra, standard). Plan for data export, re-integration, and a parallel-run window rather than a hard cutover."
+    },
+    {
+      "q": "Which has better developer experience, api.video or Mux?",
+      "a": "Both api.video and Mux score 5/5 on developer experience in our data, so there's no clear winner on that axis alone. The real differentiator usually lands in SDK fit for your language, error handling, and docs depth. A half-day integration spike tells you more than the score."
+    },
+    {
+      "q": "Is Mux a good alternative to api.video?",
+      "a": "Yes, Mux targets the same job api.video does — image/video heavy applications — so functionally it slots in as an alternative. Pricing model (subscription from $20/mo vs subscription from $12 /month) and lock-in (medium lock-in (Subscription video infra, standard) vs medium lock-in (Video assets exportable but player/CDN tied)) usually decide which is the better fit. Validate on your actual workload. Note: Mux is explicitly not for small projects."
+    }
+  ]
+}

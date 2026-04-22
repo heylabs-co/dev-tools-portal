@@ -1,0 +1,24 @@
+{
+  "intro": "The clearest split between Radar and zoxide is how they charge: Radar uses subscription pricing, while zoxide uses free and open source. Radar is Location infrastructure platform with geofencing, geocoding, trip tracking, and fraud detection APIs; it fits best for apps. zoxide specializes in Smart Directory Navigation; it fits best for Apps with location search, routing, or delivery features. Pick Radar when the job maps to location-based services; pick zoxide when it maps to automated build/test/deploy pipelines. Radar is not for simple projects. zoxide is not for apps with no geographic or location requirements. Honest trade-offs: Radar is weak for apps without location features, and zoxide is weak for api call costs grow quickly with high map usage — match to your real scenario. Both sit under the Maps / Geolocation / Routing umbrella, so your final call depends on pricing transparency, integration effort, and which listed not-for situations you can actually tolerate.",
+  "quick_take": "Radar is for apps; zoxide is for apps with location search, routing, or delivery features; decide based on pricing model.",
+  "verdict_a": "Choose Radar if you want subscription pricing and your workload matches apps.",
+  "verdict_b": "Choose zoxide if you want free and open source and your workload matches apps with location search, routing, or delivery features.",
+  "faq": [
+    {
+      "q": "Is Radar cheaper than zoxide?",
+      "a": "zoxide is the cheaper option on paper since it is open source, while Radar is paid. Radar uses subscription pricing with no free tier published. zoxide is free and open source."
+    },
+    {
+      "q": "Can I migrate from Radar to zoxide?",
+      "a": "Migration from Radar (medium lock-in) to zoxide (low lock-in) is the easier direction; the reverse would be harder. Plan for data export, re-integration of SDKs, and re-testing flows before cutover. Verify exportable formats and feature parity against your live use cases before committing."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Both score 5/5 on developer experience in our data. Evaluate against your own stack: read their docs, run a quick SDK spike, and check error handling. Self-assessing with a small prototype beats trusting any rating at face value."
+    },
+    {
+      "q": "Is zoxide a good alternative to Radar?",
+      "a": "zoxide sits in the same category as Radar, so it can be a reasonable alternative for overlapping use cases. zoxide is best fit for apps with location search, routing, or delivery features. Note: zoxide is not for apps with no geographic or location requirements."
+    }
+  ]
+}

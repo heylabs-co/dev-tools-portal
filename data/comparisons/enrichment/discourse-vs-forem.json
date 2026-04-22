@@ -1,0 +1,24 @@
+{
+  "intro": "Discourse and Forem diverge first on pricing model: Discourse uses freemium pricing with a free tier, Forem uses free pricing with a free tier. Everything else flows from that commercial choice. Discourse is built for open-source projects and brands wanting indexable, long-form community discussions and is not a fit for teams needing real-time chat or a zero-ops managed experience. Forem is built for engineering-led teams wanting a self-hosted dev.to-style community with full control and is not a fit for non-technical teams or anyone wanting a managed, zero-ops community platform. On the scoring side, Discourse rates 5/5 for developer experience and 5/5 for transparency; Forem rates 4/5 and 5/5 respectively. The honest trade-off: with Discourse you accept that self-hosting ruby stack is operational work, while Forem comes with the reality that self-host requires real rails ops. Neither side is free. Discourse's headline strength in the data is that open-source with mature plugin ecosystem.",
+  "quick_take": "Discourse is for open-source projects and brands wanting indexable, long-form community discussions; Forem is for engineering-led teams wanting a self-hosted dev.to-style community with full control; decide based on pricing model.",
+  "verdict_a": "Choose Discourse if you are open-source projects and brands wanting indexable, long-form community discussions and a freemium pricing model fits how you buy.",
+  "verdict_b": "Choose Forem if you are engineering-led teams wanting a self-hosted dev.to-style community with full control and a free pricing model fits how you buy.",
+  "faq": [
+    {
+      "q": "Is Discourse cheaper than Forem?",
+      "a": "Discourse uses a freemium model, while Forem uses a free model, and both publish a free tier. We don't have per-seat numbers in this dataset, so 'cheaper' depends on volume. Price both on your actual usage before deciding."
+    },
+    {
+      "q": "Can I migrate from Discourse to Forem?",
+      "a": "Discourse has low lock-in (oss forum, self-hostable); Forem has low lock-in (oss community platform). Migration effort scales with how much state and automation you've built in Discourse; plan for data export, config rebuild, and a parallel-run period before cutting over."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "In our data, Discourse scores 5/5 for developer experience versus 4/5 for Forem. That said, DX is subjective; the Forem score may still be acceptable if its feature fit is stronger for your use case."
+    },
+    {
+      "q": "Is Forem a good alternative to Discourse?",
+      "a": "Forem is built for engineering-led teams wanting a self-hosted dev.to-style community with full control and explicitly not for non-technical teams or anyone wanting a managed, zero-ops community platform, so it's a fit only if your workflow matches its stated audience. If you were using Discourse for open-source projects and brands wanting indexable, long-form community discussions, the switch is reasonable; outside that scope, look elsewhere."
+    }
+  ]
+}

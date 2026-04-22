@@ -1,0 +1,24 @@
+{
+  "intro": "The biggest real distinction between Apache SkyWalking and New Relic is straightforward: Apache SkyWalking carries low lock-in while New Relic has moderate lock-in. Apache SkyWalking sits at seat-based pricing and carries low lock-in, while New Relic sits at hybrid pricing with $0.30/GB (Standard), $49/core user, a free tier, enterprise plan available and carries moderate lock-in. Apache SkyWalking is a fit when you need microservices performance monitoring — typical scenarios include microservices performance monitoring. New Relic is aimed at microservices performance monitoring, with workloads like microservices performance monitoring as the common case. The honest trade-off: Apache SkyWalking is explicitly not for simple, static projects; New Relic is not intended for simple, static projects. Lock-in is the factor most teams underestimate: Apache SkyWalking and New Relic have different exit paths, and that shapes total cost of ownership over a two-to-three year horizon. Before committing, audit where each tool stores state, which APIs you depend on, and how painful a switch would be six months in.",
+  "quick_take": "Apache SkyWalking is for microservices performance monitoring; New Relic is for microservices performance monitoring; decide based on how much lock-in you can accept.",
+  "verdict_a": "Choose Apache SkyWalking if your primary workload is microservices performance monitoring and low switching cost matters.",
+  "verdict_b": "Choose New Relic if your primary workload is microservices performance monitoring and hybrid pricing ($0.30/GB (Standard), $49/core user) is acceptable.",
+  "faq": [
+    {
+      "q": "Is Apache SkyWalking cheaper than New Relic?",
+      "a": "New Relic publishes an entry price of $0.30/GB (Standard), $49/core user; Apache SkyWalking's entry price is not in our data, so a definitive comparison is not possible without a quote from Apache SkyWalking."
+    },
+    {
+      "q": "Can I migrate from Apache SkyWalking to New Relic?",
+      "a": "Migrating from Apache SkyWalking to New Relic is generally feasible because Apache SkyWalking has low lock-in, so data and configuration are usually portable. Since both tools sit in the same category (Performance Monitoring / APM), the conceptual mapping is closer, but you still need to validate feature parity against your specific workload. Plan migration as a project, not a script: inventory integrations, test on non-production workloads, and keep Apache SkyWalking running in parallel until New Relic is verified."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "On our 0–5 developer experience scale, New Relic scores higher (5/5 vs 4/5 for Apache SkyWalking). The gap is one point — meaningful but not decisive, since DX is workflow-dependent. Still, score your own tasks: DX is subjective and tied to stack assumptions."
+    },
+    {
+      "q": "Is New Relic a good alternative to Apache SkyWalking?",
+      "a": "New Relic is in the same category as Apache SkyWalking (Performance Monitoring / APM), so it's a reasonable alternative to evaluate. Both tools claim similar best-fit workloads on paper, so the real test is how each behaves under your specific constraints. Note that New Relic is explicitly not for simple, static projects — if that describes your workload, it's not a viable replacement."
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "intro": "Sonner exposes a free tier while Postmark starts at $15/mo (10K emails). Postmark is positioned for transactional emails (receipts, alerts), while Sonner leans toward apps sending transactional notifications at scale. In practice, Postmark — Fast transactional email delivery API focused on inbox placement with detailed bounce analytics. Sonner — CI/CD for Applications tool for developers. Specializes in Toast Notifications. Listed strengths unique to Postmark include transactional emails (receipts, alerts), while Sonner lists multi-channel delivery (email, sms, voice) from one api on its side. Reach for Postmark when you need transactional emails (receipts, alerts); reach for Sonner when the job is automated build/test/deploy pipelines. The honest trade-off: Postmark is not built for internal projects, and Sonner is not the right call for small projects with minimal communication needs, so neither is a universal default. Transparency scores land at 5/5 for Postmark and 5/5 for Sonner, which reflects how openly each tool documents pricing, limits, and terms.",
+  "quick_take": "Postmark is for transactional emails (receipts, alerts); Sonner is for apps sending transactional notifications at scale; decide based on pricing model.",
+  "verdict_a": "Choose Postmark if transactional emails (receipts, alerts) and the $15/mo (10K emails) entry price fits your budget.",
+  "verdict_b": "Choose Sonner if apps sending transactional notifications at scale and you need a free tier to validate fit.",
+  "faq": [
+    {
+      "q": "Is Postmark cheaper than Sonner?",
+      "a": "Sonner has a free tier while Postmark starts at $15/mo (10K emails), so at the lowest end Sonner costs less. Above the free limits, per-unit rates decide the winner, and those aren't in the summary data here. Run the numbers on your expected volume."
+    },
+    {
+      "q": "Can I migrate from Postmark to Sonner?",
+      "a": "Technically you can move between any two tools in the same category, but effort varies: leaving Postmark is relatively light thanks to its low lock-in, and onboarding to Sonner should be straightforward given its low lock-in. Plan for data export, re-integration, and a parallel-run window rather than a hard cutover."
+    },
+    {
+      "q": "Which has better developer experience, Postmark or Sonner?",
+      "a": "Both Postmark and Sonner score 5/5 on developer experience in our data, so there's no clear winner on that axis alone. The real differentiator usually lands in SDK fit for your language, error handling, and docs depth. A half-day integration spike tells you more than the score."
+    },
+    {
+      "q": "Is Sonner a good alternative to Postmark?",
+      "a": "Sonner is an alternative in the same category, but its stated sweet spot is apps sending transactional notifications at scale, while Postmark's is transactional emails (receipts, alerts). If your job matches Postmark's profile more closely, switching to Sonner is a compromise. Use the best-fit match, not brand familiarity, to decide. Note: Sonner is explicitly not for small projects with minimal communication needs."
+    }
+  ]
+}

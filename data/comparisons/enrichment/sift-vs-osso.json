@@ -1,0 +1,24 @@
+{
+  "intro": "Sift is paid subscription; Osso is freemium. Sift: Digital trust and safety platform using ML to score account, payment, and content abuse across the customer lifecycle. Osso: Enterprise SSO integration layer handling SAML and OIDC connections for SaaS applications without custom code. Sift fits marketplace — in practice, high-value transactions. Osso fits SaaS platforms adding SAML/OIDC SSO for enterprise customers without building it in-house. On our rubric Sift scores 4/5 for developer experience and 3/5 for transparency, while Osso scores 4/5 and 4/5. The honest trade-off: Sift's main drawback — Low transaction volume; Osso's — Not actually a fraud or risk tool. For Osso: Simplifies enterprise SSO across SAML and OIDC. Sift is explicitly not the right pick for low transaction volume. Osso is not aimed at anyone actually looking for fraud detection, bot management or transaction risk scoring. Another Sift advantage: Marketplace with seller risk. Another Osso advantage: Abstracts the pain of IdP configuration. Another Sift friction point: B2B with trusted counterparties.",
+  "quick_take": "Sift is for marketplace; Osso is for SaaS platforms adding SAML/OIDC SSO for enterprise customers; decide on pricing model.",
+  "verdict_a": "Choose Sift if your work looks like high-value transactions.",
+  "verdict_b": "Choose Osso if SaaS platforms adding SAML/OIDC SSO for enterprise customers without building it in-house, and if a free tier with an optional paid path matters.",
+  "faq": [
+    {
+      "q": "Is Sift cheaper than Osso?",
+      "a": "Sift uses paid subscription pricing; Osso uses freemium. Which is cheaper depends on your volume and team size — model both against your projected usage before deciding."
+    },
+    {
+      "q": "Can I migrate from Sift to Osso?",
+      "a": "Expect real effort: Sift is medium lock-in (ML scoring API, integration moderate) and Osso is high lock-in (OSS SAML/OIDC). Migrating between them means rebuilding integrations, re-authoring config, and accepting new coupling. Scope a spike before committing."
+    },
+    {
+      "q": "Which has better developer experience, Sift or Osso?",
+      "a": "Both score 4/5 for developer experience in our rubric, so neither has a structural edge. The practical answer depends on stack fit: Sift's ergonomics suit some workflows, Osso's suit others. Try both on a throwaway project before committing."
+    },
+    {
+      "q": "Is Osso a good alternative to Sift?",
+      "a": "They sit in the same category, so yes — Osso is a plausible alternative for many Sift use cases. It fits best when SaaS platforms adding SAML/OIDC SSO for enterprise customers without building it in-house. Skip it if anyone actually looking for fraud detection, bot management or transaction risk scoring."
+    }
+  ]
+}

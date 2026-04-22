@@ -1,0 +1,24 @@
+{
+  "intro": "Wails scores 4/5 on developer experience versus 3/5 for Ice. Wails is positioned for go developers building small-binary desktop tools with web-tech frontends, while Ice leans toward macos users wanting free menu bar management after distrusting bartenders ownership change. In practice, Build desktop applications with Go and web technologies (JS/HTML/CSS). Native WebView, no Chromium bundled. Free open-source macOS menu bar manager — hide, show, and organize menu bar items (Bartender alternative). Wails runs on free with a free tier; Ice runs on free with a free tier. Listed strengths unique to Wails include go backend with web frontend, no chromium, while Ice lists free and open-source on its side. Reach for Wails when you need lightweight go desktop app without bundling a chromium runtime; reach for Ice when the job is hiding unused macos menu bar icons to reduce clutter. The honest trade-off: Wails is not built for teams needing identical rendering across oses — use electron for uniformity, and Ice is not the right call for power users dependent on bartenders deepest customization options, so neither is a universal.",
+  "quick_take": "Wails is for go developers building small-binary desktop tools with web-tech frontends; Ice is for macos users wanting free menu bar management after distrusting bartenders ownership change; decide based on.",
+  "verdict_a": "Choose Wails if go developers building small-binary desktop tools with web-tech frontends and you need a free tier to validate fit.",
+  "verdict_b": "Choose Ice if macos users wanting free menu bar management after distrusting bartenders ownership change and you need a free tier to validate fit.",
+  "faq": [
+    {
+      "q": "Is Wails cheaper than Ice?",
+      "a": "Both Wails and Ice expose free tiers with no headline entry price listed. The real comparison happens once you cross the free limits, and that pricing isn't captured in the summary data. Check each tool's pricing page for your volume band."
+    },
+    {
+      "q": "Can I migrate from Wails to Ice?",
+      "a": "Technically you can move between any two tools in the same category, but effort varies: leaving Wails is relatively light thanks to its low lock-in, and onboarding to Ice should be straightforward given its low lock-in. Plan for data export, re-integration, and a parallel-run window rather than a hard cutover."
+    },
+    {
+      "q": "Which has better developer experience, Wails or Ice?",
+      "a": "On the 0-5 developer experience score in our data, Wails rates 4/5 while Ice rates 3/5, giving Wails the edge. Scores compress a lot of variance though — SDK language coverage, error messages, and docs quality matter more than the number. Run a quick integration spike on both before trusting the gap."
+    },
+    {
+      "q": "Is Ice a good alternative to Wails?",
+      "a": "Ice is an alternative in the same category, but its stated sweet spot is macos users wanting free menu bar management after distrusting bartenders ownership change, while Wails's is go developers building small-binary desktop tools with web-tech frontends. If your job matches Wails's profile more closely, switching to Ice is a compromise. Use the best-fit match, not brand familiarity, to decide. Note: Ice is explicitly not for power users dependent on bartenders deepest customization options."
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "intro": "Alloy is priced on request; FingerprintJS is freemium. Alloy: Identity decisioning platform for fintech and banking automating KYC, fraud, and credit underwriting workflows via API. FingerprintJS: FingerprintJS (Fingerprint Pro) provides browser and mobile device identification with 99.5% accuracy using advanced fingerprinting signals. Its API detects bots, account sharing, multi-accounting and payment fraud, and exposes risk signals. Alloy fits marketplace — in practice, high-value transactions. FingerprintJS fits engineering teams adding a reliable device identity signal to their own risk stack. On our rubric Alloy scores 3/5 for developer experience and 2/5 for transparency, while FingerprintJS scores 5/5 and 4/5. The honest trade-off: Alloy's main drawback — Low transaction volume; FingerprintJS's — Device ID alone does not stop determined fraudsters. For FingerprintJS: 99.5% device ID accuracy, widely benchmarked. Alloy is explicitly not the right pick for low transaction volume. FingerprintJS is not aimed at teams that want turnkey approve/decline decisions without building any logic. Another Alloy advantage: Marketplace with seller risk. Another FingerprintJS advantage: Simple JS/SDK integration in minutes.",
+  "quick_take": "Alloy is for marketplace; FingerprintJS is for engineering teams adding a reliable device identity signal; decide on pricing model.",
+  "verdict_a": "Choose Alloy if your work looks like high-value transactions, and if you're comfortable requesting a quote before committing.",
+  "verdict_b": "Choose FingerprintJS if engineering teams adding a reliable device identity signal to their own risk stack, and if you accept tighter coupling in exchange for the managed surface.",
+  "faq": [
+    {
+      "q": "Is Alloy cheaper than FingerprintJS?",
+      "a": "Alloy's pricing isn't published in our data, so we can't give a definitive comparison. FingerprintJS uses freemium pricing. You'll need to request a Alloy quote to compare directly."
+    },
+    {
+      "q": "Can I migrate from Alloy to FingerprintJS?",
+      "a": "Migrating out of Alloy is straightforward — it's rated low lock-in (KYC/fraud rules and data sources proprietary to Alloy platform). The harder question is how deeply you commit to FingerprintJS afterward, since it sits at medium lock-in (OSS core + Pro API, portable). Plan the forward cost, not just the exit."
+    },
+    {
+      "q": "Which has better developer experience, Alloy or FingerprintJS?",
+      "a": "FingerprintJS scores higher in our rubric (5/5 vs 3/5 for Alloy). Transparency is 4/5 for FingerprintJS and 2/5 for Alloy. DX scores are rubric-based, not benchmarks, so evaluate against your own toolchain."
+    },
+    {
+      "q": "Is FingerprintJS a good alternative to Alloy?",
+      "a": "They sit in the same category, so yes — FingerprintJS is a plausible alternative for many Alloy use cases. It fits best when engineering teams adding a reliable device identity signal to their own risk stack. Skip it if teams that want turnkey approve/decline decisions without building any logic."
+    }
+  ]
+}

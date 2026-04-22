@@ -1,0 +1,24 @@
+{
+  "intro": "On our ratings Codacy scores 4/5 for developer experience and 4/5 for transparency, against 5/5 and 4/5 for ARMO. Both are in the security scanning space, but the day-to-day feel and how openly each vendor shares pricing and behavior differ. Beyond the headline, Codacy carries medium lock-in (code quality reports exportable) and freemium with paid plans from $0; ARMO carries medium lock-in (kubescape oss backed) and freemium. Codacy is a fit when you are mobile. ARMO is a fit when you are mobile. The honest trade-off: Codacy is explicitly not for hobby projects; ARMO is explicitly not for hobby projects. On the product side, Codacy is described as Security Scanning / Mobile App Sec tool for developers. Specializes in Code Quality, and ARMO is described as Security Scanning / Mobile App Sec tool for developers. Specializes in Kubernetes Security. Common Codacy use cases include vulnerability scanning in ci/cd. Common ARMO use cases include vulnerability scanning in ci/cd.",
+  "quick_take": "Codacy is for mobile; ARMO is for mobile; decide on developer-experience weighting.",
+  "verdict_a": "Choose Codacy if you are mobile and comfortable with its freemium with paid plans from $0.",
+  "verdict_b": "Choose ARMO if day-to-day developer experience matters more than the alternative (5/5 vs 4/5) and you are mobile.",
+  "faq": [
+    {
+      "q": "Is Codacy cheaper than ARMO?",
+      "a": "Both tools use freemium pricing. Codacy is listed as freemium with paid plans from $0; ARMO as freemium. Without specific volume and seat assumptions it is not possible to say which is cheaper in general."
+    },
+    {
+      "q": "Can I migrate from Codacy to ARMO?",
+      "a": "Migration from Codacy to ARMO is feasible but not trivial: Codacy has medium lock-in (code quality reports exportable). Core data can move; integrations and workflow logic need rebuild. Allow for a parallel-run period."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "On our scoring ARMO rates 5/5 for developer experience versus 4/5 for Codacy. That suggests ARMO feels more polished for everyday developer tasks. We still recommend a short hands-on trial on your stack before standardising."
+    },
+    {
+      "q": "Is ARMO a good alternative to Codacy?",
+      "a": "ARMO targets the same best-fit audience as Codacy (mobile). Note that ARMO is explicitly not for hobby projects, so it only replaces Codacy if you are outside that exclusion. Feature-for-feature parity is not guaranteed, so confirm the specific capability you rely on before switching."
+    }
+  ]
+}

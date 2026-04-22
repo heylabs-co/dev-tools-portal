@@ -1,0 +1,24 @@
+{
+  "intro": "Modern Treasury and Unit both show up under the payment gateway category, but they solve slightly different jobs. Modern Treasury carries moderate lock-in, while Unit sits at high lock-in. Modern Treasury fits teams working on ACH, wire, and RTP payment operations with real-time ledgering API, while Unit is a closer match when the job is FDIC-insured bank accounts and ACH for US fintech startups. Worth noting: Modern Treasury is explicitly not for merchants who mainly need card acceptance; Unit is explicitly not for Non-US teams or companies needing a plain payment gateway. The honest trade-off: Modern Treasury trades off on US-bank-focused, limited globally; Unit trades off on sponsor bank risk post-US BaaS turbulence. On the plus side, Modern Treasury highlights deep ACH, wire, RTP, FedNow coverage, while Unit points to accounts, cards, ACH, wire, lending unified. Modern Treasury's documentation also calls out real-time ledgering built in. Unit similarly notes FDIC-insured accounts via partner banks.",
+  "quick_take": "Modern Treasury is for ACH, wire, and RTP payment operations; Unit is for FDIC-insured bank accounts and ACH for; decide on lock-in tolerance.",
+  "verdict_a": "Choose Modern Treasury if your project is ACH, wire, and RTP payment operations with real-time ledgering API, you are prepared for a sales-led custom-pricing conversation, medium lock-in is an acceptable trade-off.",
+  "verdict_b": "Choose Unit if your project is FDIC-insured bank accounts and ACH for US fintech startups, you are prepared for a sales-led custom-pricing conversation, you are willing to accept the high lock-in called out in our data.",
+  "faq": [
+    {
+      "q": "Is Modern Treasury cheaper than Unit?",
+      "a": "Modern Treasury uses custom (sales-led) pricing, and Unit uses custom (sales-led) pricing. Without full pricing pages to compare, we can't rank them on price alone — check each vendor's current rates for your workload."
+    },
+    {
+      "q": "Can I migrate from Modern Treasury to Unit?",
+      "a": "Our data puts Modern Treasury at medium lock-in (payment ops saas, custom integrations), and Unit at high lock-in (baas partner integrations hard to migrate). Migration is feasible but not trivial — budget time for re-integration, data export, and parallel running before cutover."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Both score 5/5 on developer experience in our data, so there's no clear winner on that axis. The better fit depends on which SDK matches your stack and which docs your team finds clearer during evaluation."
+    },
+    {
+      "q": "Is Unit a good alternative to Modern Treasury?",
+      "a": "Unit is a reasonable alternative to Modern Treasury when your workload leans more toward US fintech startups needing full-stack banking APIs with modern developer experience than platforms and fintechs running high-volume bank transfers and ledgering in the US. One caveat: Unit is explicitly not for Non-US teams or companies needing a plain payment gateway, so check that constraint against your use-case before switching."
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "intro": "The pivotal question between CircleCI and Codemagic is how much of your setup stays portable: CircleCI carries low lock-in and Codemagic carries medium lock-in. CircleCI is cloud CI/CD with parallelized builds and extensive language support. Codemagic is CI/CD specialized for Flutter and mobile apps with Fastlane and code signing. Pick CircleCI when the job is conversion optimization and you accept low lock-in; pick Codemagic when it is conversion optimization and you accept medium lock-in. The data we have shows CircleCI at fully public pricing and documentation with a polished developer experience, and Codemagic at mostly transparent pricing and docs with a polished developer experience. The honest trade-off: neither is universal — CircleCI is a poor fit for internal projects, and Codemagic is a poor fit for internal projects. Match the pricing model and lock-in level to how your team actually works, not the feature list. If your team already lives inside the ecosystem one of them assumes, that default usually wins — migration is cheap to start and expensive later.",
+  "quick_take": "CircleCI is for cloud CI/CD; Codemagic is for CI/CD specialized; decide based on how portable the setup must stay.",
+  "verdict_a": "Choose CircleCI if a free tier with paid upgrade from $0.0006/credit (Performance) is the right shape and the work maps to cloud CI/CD with parallelized builds and extensive language support.",
+  "verdict_b": "Choose Codemagic if some ecosystem coupling is acceptable and the work lines up with CI/CD specialized for Flutter and mobile apps with Fastlane and code signing.",
+  "faq": [
+    {
+      "q": "Is CircleCI cheaper than Codemagic?",
+      "a": "CircleCI starts at $0.0006/credit (Performance) on a freemium model; Codemagic starts at $0 / month on a subscription model. That makes the sticker comparison depend on usage — a low entry price can get expensive once volume ramps, so price at your actual workload."
+    },
+    {
+      "q": "Can I migrate from CircleCI to Codemagic?",
+      "a": "Migration is possible in either direction. CircleCI carries low lock-in and Codemagic carries medium lock-in, so plan for meaningful but not blocking rework. Run both in parallel before you fully cut over."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Both CircleCI and Codemagic rate the same on developer experience (5/5). The decision on DX then comes down to taste — which CLI, UI, or workflow matches your team's habits. A short side-by-side trial is the quickest way to tell."
+    },
+    {
+      "q": "Is Codemagic a good alternative to CircleCI?",
+      "a": "Yes — Codemagic is a reasonable alternative to CircleCI for conversion optimization. The practical differences are freemium-vs-subscription billing and low-vs-medium lock-in. If those fit your constraints better, treat Codemagic as a credible swap."
+    }
+  ]
+}

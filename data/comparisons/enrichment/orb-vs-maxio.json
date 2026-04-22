@@ -1,0 +1,24 @@
+{
+  "intro": "The most concrete split between Orb and Maxio is the pricing model: Orb runs on usage-based pricing from $1, while Maxio uses subscription from $100. That shapes how predictable your monthly spend is and how much of the cost sits in infrastructure versus per-seat or per-event fees. Beyond the headline, Orb carries medium lock-in (billing data exportable) and usage-based pricing from $1; Maxio carries medium lock-in (billing data exportable) and subscription from $100. Orb is a fit when you are saas. Maxio is a fit when you are saas. The honest trade-off: Orb is explicitly not for simple projects; Maxio is explicitly not for simple projects. On the product side, Orb is described as Developer-first subscription and usage billing platform with a flexible pricing model API and Stripe-compatible webhooks, and Maxio is described as Subscription and revenue management platform for B2B SaaS combining billing, revenue recognition, and financial metrics. Common Orb use cases include saas with recurring revenue. Common Maxio use cases include saas with recurring revenue.",
+  "quick_take": "Orb is for saas; Maxio is for saas; decide on pricing model.",
+  "verdict_a": "Choose Orb if its usage pricing model fits your budget shape better than Maxio's subscription model, and you are saas.",
+  "verdict_b": "Choose Maxio if its subscription pricing model fits your budget shape better than Orb's usage model, and you are saas.",
+  "faq": [
+    {
+      "q": "Is Orb cheaper than Maxio?",
+      "a": "Orb starts at $1; Maxio starts at $100. On entry price alone that is the comparison, but real cost scales with users, events or volume, which the entry prices do not capture. Check each vendor's full tier list before committing."
+    },
+    {
+      "q": "Can I migrate from Orb to Maxio?",
+      "a": "Migration from Orb to Maxio is feasible but not trivial: Orb has medium lock-in (billing data exportable). Core data can move; integrations and workflow logic need rebuild. Allow for a parallel-run period."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "On our scoring Orb rates 5/5 for developer experience versus 4/5 for Maxio. That suggests day-to-day workflows (CLI, SDKs, docs) are smoother in Orb. Scores are directional; run a short spike on your own stack to confirm."
+    },
+    {
+      "q": "Is Maxio a good alternative to Orb?",
+      "a": "Maxio targets the same best-fit audience as Orb (saas). Note that Maxio is explicitly not for simple projects, so it only replaces Orb if you are outside that exclusion. Pricing models differ (usage vs subscription), which may shift total cost."
+    }
+  ]
+}

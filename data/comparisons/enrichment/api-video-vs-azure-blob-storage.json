@@ -1,0 +1,24 @@
+{
+  "intro": "Azure Blob Storage enters at $1 against api.video at $12 /month. Both tools position themselves for image/video heavy applications, so the decision rarely comes down to surface features. In practice, api.video — Video API platform for uploading, encoding, and streaming with player, webhooks, and analytics. Azure Blob Storage — Microsoft's object storage with hot, cool, and archive tiers, WORM policies, and geo-redundancy. api.video scores 5/5 on developer experience versus 4/5 for Azure Blob Storage. Both tools list image/video heavy applications as a headline strength, which is why pricing and lock-in usually decide the call. Both tools surface overlapping when-to-use scenarios, including image/video heavy applications. The honest trade-off: api.video is not built for small projects, and Azure Blob Storage is not the right call for small projects, so neither is a universal default. Transparency scores land at 4/5 for api.video and 4/5 for Azure Blob Storage, which reflects how openly each tool documents pricing, limits, and terms.",
+  "quick_take": "api.video is for image/video heavy applications; Azure Blob Storage overlaps on the same job; decide based on pricing model.",
+  "verdict_a": "Choose api.video if image/video heavy applications and the $12 /month entry price fits your budget.",
+  "verdict_b": "Choose Azure Blob Storage if image/video heavy applications and the $1 entry price fits your budget.",
+  "faq": [
+    {
+      "q": "Is api.video cheaper than Azure Blob Storage?",
+      "a": "Based on the listed entry prices, no: api.video starts at $12 /month while Azure Blob Storage starts at $1. At low volume the gap may be small, but it widens fast at scale. Always price against your own usage curve, not the headline tier."
+    },
+    {
+      "q": "Can I migrate from api.video to Azure Blob Storage?",
+      "a": "Technically you can move between any two tools in the same category, but effort varies: leaving api.video is moderate effort at medium lock-in (Video assets exportable but player/CDN tied), and onboarding to Azure Blob Storage involves medium lock-in (Object storage portable via tools). Plan for data export, re-integration, and a parallel-run window rather than a hard cutover."
+    },
+    {
+      "q": "Which has better developer experience, api.video or Azure Blob Storage?",
+      "a": "On the 0-5 developer experience score in our data, api.video rates 5/5 while Azure Blob Storage rates 4/5, giving api.video the edge. Scores compress a lot of variance though — SDK language coverage, error messages, and docs quality matter more than the number. Run a quick integration spike on both before trusting the gap."
+    },
+    {
+      "q": "Is Azure Blob Storage a good alternative to api.video?",
+      "a": "Yes, Azure Blob Storage targets the same job api.video does — image/video heavy applications — so functionally it slots in as an alternative. Pricing model (subscription from $1 vs subscription from $12 /month) and lock-in (medium lock-in (Object storage portable via tools) vs medium lock-in (Video assets exportable but player/CDN tied)) usually decide which is the better fit. Validate on your actual workload. Note: Azure Blob Storage is explicitly not for small projects."
+    }
+  ]
+}

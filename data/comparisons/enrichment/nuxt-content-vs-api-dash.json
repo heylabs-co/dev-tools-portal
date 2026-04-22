@@ -1,0 +1,24 @@
+{
+  "intro": "The clearest gap in the data is developer experience: Nuxt Content sits at 5/5, API Dash at 4/5. Teams feel that gap day-to-day. Nuxt Content is built for teams already on nuxt who want integrated content and docs alongside their app and is not a fit for non-vue teams or projects where docs are the sole reason to adopt a framework. API Dash is built for solo developers who want a fast, offline-first api client without postman's account bloat and is not a fit for teams needing shared workspaces, extensive scripting, or enterprise sso and governance. On the scoring side, Nuxt Content rates 5/5 for developer experience and 5/5 for transparency; API Dash rates 4/5 and 5/5 respectively. The honest trade-off: with Nuxt Content you accept that locked into the nuxt ecosystem by design, while API Dash comes with the reality that smaller ecosystem and plugin library than postman. Neither side is free.",
+  "quick_take": "Nuxt Content is for teams already on nuxt who want integrated content and docs alongside their app; API Dash is for solo developers who want a fast, offline-first api client.",
+  "verdict_a": "Choose Nuxt Content if you are teams already on nuxt who want integrated content and docs alongside their app and developer ergonomics (5/5) matter more than niche fit.",
+  "verdict_b": "Choose API Dash if you are solo developers who want a fast, offline-first api client without postman's account bloat and its workflow specificity outweighs a 4/5 DX rating.",
+  "faq": [
+    {
+      "q": "Is Nuxt Content cheaper than API Dash?",
+      "a": "Both list a free pricing model in our data, and both publish a free tier. We don't have per-seat numbers in this dataset, so 'cheaper' depends on volume. Price both on your actual usage before deciding."
+    },
+    {
+      "q": "Can I migrate from Nuxt Content to API Dash?",
+      "a": "Nuxt Content has low lock-in (oss nuxt module, markdown-based); API Dash has low lock-in (oss flutter api client, local). Migration effort scales with how much state and automation you've built in Nuxt Content; plan for data export, config rebuild, and a parallel-run period before cutting over."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "In our data, Nuxt Content scores 5/5 for developer experience versus 4/5 for API Dash. That said, DX is subjective; the API Dash score may still be acceptable if its feature fit is stronger for your use case."
+    },
+    {
+      "q": "Is API Dash a good alternative to Nuxt Content?",
+      "a": "API Dash is built for solo developers who want a fast, offline-first api client without postman's account bloat and explicitly not for teams needing shared workspaces, extensive scripting, or enterprise sso and governance, so it's a fit only if your workflow matches its stated audience. If you were using Nuxt Content for teams already on nuxt who want integrated content and docs alongside their app, the switch is reasonable; outside that scope, look elsewhere."
+    }
+  ]
+}

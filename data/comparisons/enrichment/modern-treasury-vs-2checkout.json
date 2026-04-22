@@ -1,0 +1,24 @@
+{
+  "intro": "Modern Treasury and 2Checkout both show up under the payment gateway category, but they solve slightly different jobs. Modern Treasury uses custom (sales-led) pricing, while 2Checkout runs on undisclosed pricing. Lock-in is medium for Modern Treasury and low for 2Checkout. Transparency lands at 1/5 versus 2/5. Modern Treasury fits teams working on ACH, wire, and RTP payment operations with real-time ledgering API, while 2Checkout is a closer match when the job is SaaS with online payments. Worth noting: Modern Treasury is explicitly not for merchants who mainly need card acceptance; 2Checkout is explicitly not for offline, Internal projects. The honest trade-off: Modern Treasury trades off on US-bank-focused, limited globally; 2Checkout trades off on offline-only retail. On the plus side, Modern Treasury highlights deep ACH, wire, RTP, FedNow coverage, while 2Checkout points to SaaS with online payments. Modern Treasury's documentation also calls out real-time ledgering built in. 2Checkout similarly notes e-commerce checkout.",
+  "quick_take": "Modern Treasury is for ACH, wire, and RTP payment operations; 2Checkout is for SaaS with online payments; decide on pricing model.",
+  "verdict_a": "Choose Modern Treasury if your project is ACH, wire, and RTP payment operations with real-time ledgering API, you are prepared for a sales-led custom-pricing conversation, medium lock-in is an acceptable trade-off.",
+  "verdict_b": "Choose 2Checkout if your project is SaaS with online payments, you want to keep future migration cheap, you can tolerate 2Checkout's limited public transparency (2/5).",
+  "faq": [
+    {
+      "q": "Is Modern Treasury cheaper than 2Checkout?",
+      "a": "Modern Treasury uses custom (sales-led) pricing, and 2Checkout uses undisclosed pricing. The pricing models are different, so a direct cheaper-than comparison depends on your volume and usage pattern."
+    },
+    {
+      "q": "Can I migrate from Modern Treasury to 2Checkout?",
+      "a": "Our data puts Modern Treasury at medium lock-in (payment ops saas, custom integrations), and 2Checkout at low lock-in (merchant account tightly bound; customer and subscription data partially portable). Migration is feasible but not trivial — budget time for re-integration, data export, and parallel running before cutover."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Modern Treasury scores 5/5 on developer experience in our data, while 2Checkout scores 3/5, so Modern Treasury has the edge on docs and SDK quality by that measure. Still, run a small integration spike on both before deciding — team familiarity with a given SDK style often matters more than a one-point score gap."
+    },
+    {
+      "q": "Is 2Checkout a good alternative to Modern Treasury?",
+      "a": "2Checkout is a reasonable alternative to Modern Treasury when your workload leans more toward SaaS, E-commerce, Marketplace than platforms and fintechs running high-volume bank transfers and ledgering in the US. The pricing model shifts too — Modern Treasury is custom (sales-led) pricing, 2Checkout is undisclosed pricing — so expect the cost profile to change as well. One caveat: 2Checkout is explicitly not for offline, Internal projects, so check that constraint against your use-case before switching."
+    }
+  ]
+}

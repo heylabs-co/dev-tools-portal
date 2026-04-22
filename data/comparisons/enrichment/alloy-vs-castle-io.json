@@ -1,0 +1,24 @@
+{
+  "intro": "Alloy is priced on request; Castle is freemium. Alloy: Identity decisioning platform for fintech and banking automating KYC, fraud, and credit underwriting workflows via API. Castle: Castle protects user accounts and transactions from takeover, fraudulent signups and abusive usage with a developer-first API. It offers risk scoring, device fingerprinting, webhooks and policies, and is popular with SaaS companies like Sho. Alloy fits marketplace — in practice, high-value transactions. Castle fits B2B and B2C SaaS protecting logins, signups and workspace abuse with a small risk team. On our rubric Alloy scores 3/5 for developer experience and 2/5 for transparency, while Castle scores 5/5 and 5/5. The honest trade-off: Alloy's main drawback — Low transaction volume; Castle's — Weaker on payment fraud vs PSP-native tools. For Castle: Developer-first API with clear docs and webhooks. Alloy is explicitly not the right pick for low transaction volume. Castle is not aimed at payment-first merchants or bot-heavy retail needing dedicated WAF-layer mitigation. Another Alloy advantage: Marketplace with seller risk.",
+  "quick_take": "Alloy is for marketplace; Castle is for B2B; decide on pricing model.",
+  "verdict_a": "Choose Alloy if your work looks like high-value transactions, and if you're comfortable requesting a quote before committing.",
+  "verdict_b": "Choose Castle if your work looks like risk scoring for new user signup abuse prevention, and if you accept tighter coupling in exchange for the managed surface.",
+  "faq": [
+    {
+      "q": "Is Alloy cheaper than Castle?",
+      "a": "Alloy's pricing isn't published in our data, so we can't give a definitive comparison. Castle uses freemium pricing. You'll need to request a Alloy quote to compare directly."
+    },
+    {
+      "q": "Can I migrate from Alloy to Castle?",
+      "a": "Migrating out of Alloy is straightforward — it's rated low lock-in (KYC/fraud rules and data sources proprietary to Alloy platform). The harder question is how deeply you commit to Castle afterward, since it sits at medium lock-in (Proprietary fraud API with webhooks). Plan the forward cost, not just the exit."
+    },
+    {
+      "q": "Which has better developer experience, Alloy or Castle?",
+      "a": "Castle scores higher in our rubric (5/5 vs 3/5 for Alloy). Transparency is 5/5 for Castle and 2/5 for Alloy. DX scores are rubric-based, not benchmarks, so evaluate against your own toolchain."
+    },
+    {
+      "q": "Is Castle a good alternative to Alloy?",
+      "a": "They sit in the same category, so yes — Castle is a plausible alternative for many Alloy use cases. It fits best when B2B and B2C SaaS protecting logins, signups and workspace abuse with a small risk team. Skip it if payment-first merchants or bot-heavy retail needing dedicated WAF-layer mitigation."
+    }
+  ]
+}

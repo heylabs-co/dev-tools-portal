@@ -1,0 +1,24 @@
+{
+  "intro": "The biggest real distinction between Amazon CloudFront and Akamai is straightforward: Amazon CloudFront carries moderate lock-in while Akamai has high lock-in. Amazon CloudFront sits at freemium with a paid tier from $0/month, enterprise plan available and carries moderate lock-in, while Akamai sits at pricing from Custom (premium pricing), enterprise plan available and carries high lock-in. Amazon CloudFront is a fit when you need global — typical scenarios include global audience with low latency needs. Akamai is aimed at global, with workloads like global audience with low latency needs as the common case. The honest trade-off: Amazon CloudFront is explicitly not for internal projects; Akamai is not intended for internal projects. Lock-in is the factor most teams underestimate: Amazon CloudFront and Akamai have different exit paths, and that shapes total cost of ownership over a two-to-three year horizon. Before committing, audit where each tool stores state, which APIs you depend on, and how painful a switch would be six months in.",
+  "quick_take": "Amazon CloudFront is for global; Akamai is for global; decide based on how much lock-in you can accept.",
+  "verdict_a": "Choose Amazon CloudFront if your primary workload is global and the free tier plus $0/month paid tier fits your budget.",
+  "verdict_b": "Choose Akamai if your primary workload is global and you accept higher lock-in for the stack.",
+  "faq": [
+    {
+      "q": "Is Amazon CloudFront cheaper than Akamai?",
+      "a": "It depends on workload shape: Amazon CloudFront lists $0/month, while Akamai lists Custom (premium pricing). With different pricing models (freemium vs unknown), the cheaper option flips based on seat count, usage volume, and whether you use the free tier. Do a per-workload estimate rather than comparing headline numbers."
+    },
+    {
+      "q": "Can I migrate from Amazon CloudFront to Akamai?",
+      "a": "Migrating from Amazon CloudFront to Akamai is doable but not automatic — Amazon CloudFront carries moderate lock-in. Since both tools sit in the same category (CDN / Edge / Acceleration), the conceptual mapping is closer, but you still need to validate feature parity against your specific workload. Plan migration as a project, not a script: inventory integrations, test on non-production workloads, and keep Amazon CloudFront running in parallel until Akamai is verified."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "On our 0–5 developer experience scale, Amazon CloudFront scores higher (4/5 vs 3/5 for Akamai). The gap is one point — meaningful but not decisive, since DX is workflow-dependent. Still, score your own tasks: DX is subjective and tied to stack assumptions."
+    },
+    {
+      "q": "Is Akamai a good alternative to Amazon CloudFront?",
+      "a": "Akamai is in the same category as Amazon CloudFront (CDN / Edge / Acceleration), so it's a reasonable alternative to evaluate. Both tools claim similar best-fit workloads on paper, so the real test is how each behaves under your specific constraints. Note that Akamai is explicitly not for internal projects — if that describes your workload, it's not a viable replacement."
+    }
+  ]
+}

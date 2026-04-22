@@ -1,0 +1,24 @@
+{
+  "intro": "Auth0 and Cerbos overlap on pricing and lock-in, so the choice hinges on fit rather than cost. Auth0: Identity platform with SSO, MFA, social login, and enterprise federation supporting 30+ SDKs and 50+ integrations. Cerbos: Open-source authorization service with human-readable YAML policies, RBAC/ABAC, and REST/gRPC evaluation endpoints. Auth0 fits enterprise — in practice, enterprise needing SAML/SCIM with complex rules. Cerbos fits apps, B2B — in practice, apps needing SSO/MFA. On our rubric Auth0 scores 5/5 for developer experience and 4/5 for transparency, while Cerbos scores 5/5 and 5/5. The honest trade-off: Auth0's main drawback — Expensive for costs — Auth0 gets expensive fast at scale; Cerbos's — Internal tools with basic auth. Auth0 is explicitly not the right pick for budget projects. Cerbos is not aimed at internal, Static projects. Another Auth0 advantage: Existing Okta customer extending to CIAM. Another Cerbos advantage: B2B requiring SAML/SCIM. Another Auth0 friction point: Need pre-built UI components — Clerk is better. Another Cerbos friction point: Static sites without user accounts.",
+  "quick_take": "Auth0 is for enterprise; Cerbos is for apps, B2B; decide on fit with your stack.",
+  "verdict_a": "Choose Auth0 if your work looks like enterprise needing SAML/SCIM with complex rules.",
+  "verdict_b": "Choose Cerbos if your work looks like apps needing SSO/MFA, and if transparency (5/5 vs 4/5 in our rubric) matters to your selection.",
+  "faq": [
+    {
+      "q": "Is Auth0 cheaper than Cerbos?",
+      "a": "Both tools use freemium pricing, so a clean list-price comparison depends on tier details that vary by usage. Check each vendor's current plan page for your expected volume. Neither is structurally cheaper on the model alone."
+    },
+    {
+      "q": "Can I migrate from Auth0 to Cerbos?",
+      "a": "Both tools are rated low lock-in, so migration is mostly a matter of re-pointing integrations and re-authoring config. There's no hard data format moat on either side. Expect work proportional to how deeply Auth0 touches your pipeline, but no vendor-imposed blockers."
+    },
+    {
+      "q": "Which has better developer experience, Auth0 or Cerbos?",
+      "a": "Both score 5/5 for developer experience in our rubric, so neither has a structural edge. The practical answer depends on stack fit: Auth0's ergonomics suit some workflows, Cerbos's suit others. Try both on a throwaway project before committing."
+    },
+    {
+      "q": "Is Cerbos a good alternative to Auth0?",
+      "a": "They sit in the same category, so yes — Cerbos is a plausible alternative for many Auth0 use cases. It fits best when apps, B2B. Skip it if internal, Static projects."
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "intro": "The most concrete split between Adapty and Chargebee is the pricing model: Adapty runs on subscription from $0/mo, with a free tier, while Chargebee uses hybrid pricing from $599/mo (Performance), with a free tier. That shapes how predictable your monthly spend is and how much of the cost sits in infrastructure versus per-seat or per-event fees. Beyond the headline, Adapty carries medium lock-in (subscription sdk wraps app store/play; purchase data exportable) and subscription from $0/mo, with a free tier; Chargebee carries medium lock-in (medium — deep integrations, underandwithon logic) and hybrid pricing from $599/mo (Performance), with a free tier. Adapty is a fit when you are saas. Chargebee is a fit when you are saas. The honest trade-off: Adapty is explicitly not for simple projects; Chargebee is explicitly not for simple projects. On the product side, Adapty is described as In-app subscription SDK for iOS and Android with paywall A/B testing, revenue analytics, and purchase validation, and Chargebee is described as Subscription and revenue management platform supporting SaaS, e-commerce, and box subscriptions with Stripe and Braintree.",
+  "quick_take": "Adapty is for saas; Chargebee is for saas; decide on pricing model.",
+  "verdict_a": "Choose Adapty if its subscription pricing model fits your budget shape better than Chargebee's hybrid model, and you are saas.",
+  "verdict_b": "Choose Chargebee if its hybrid pricing model fits your budget shape better than Adapty's subscription model, and you are saas.",
+  "faq": [
+    {
+      "q": "Is Adapty cheaper than Chargebee?",
+      "a": "Adapty starts at $0/mo; Chargebee starts at $599/mo (Performance). On entry price alone that is the comparison, but real cost scales with users, events or volume, which the entry prices do not capture. Check each vendor's full tier list before committing."
+    },
+    {
+      "q": "Can I migrate from Adapty to Chargebee?",
+      "a": "Migration from Adapty to Chargebee is feasible but not trivial: Adapty has medium lock-in (subscription sdk wraps app store/play; purchase data exportable). Core data can move; integrations and workflow logic need rebuild. Allow for a parallel-run period."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "On our scoring Chargebee rates 5/5 for developer experience versus 4/5 for Adapty. That suggests Chargebee feels more polished for everyday developer tasks. We still recommend a short hands-on trial on your stack before standardising."
+    },
+    {
+      "q": "Is Chargebee a good alternative to Adapty?",
+      "a": "Chargebee targets the same best-fit audience as Adapty (saas). Note that Chargebee is explicitly not for simple projects, so it only replaces Adapty if you are outside that exclusion. Pricing models differ (subscription vs hybrid), which may shift total cost."
+    }
+  ]
+}

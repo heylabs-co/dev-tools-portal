@@ -1,0 +1,24 @@
+{
+  "intro": "The biggest real split between Apify and Cortex is lock-in posture: Apify carries medium lock-in (actors portable as docker, results exportable), while Cortex carries high lock-in (proprietary idp with per-seat lock-in). That single fact shapes the rest of the comparison. Apify is built for data warehouse syncing and is not a fit for simple, small projects. Cortex is built for data warehouse syncing and is not a fit for simple, small projects. On the scoring side, Apify rates 5/5 for developer experience and 4/5 for transparency; Cortex rates 3/5 and 2/5 respectively. The honest trade-off: with Apify you accept that simple api-to-api integrations, while Cortex comes with the reality that simple api-to-api integrations. Neither side is free. Apify's headline strength in the data is that data warehouse syncing. Cortex's headline strength is that data warehouse syncing. Read each side's best-for and not-for fields carefully before you pick; the shape of your team and workflow matters more than any single score.",
+  "quick_take": "Apify is for data warehouse syncing; Cortex is for data warehouse syncing; decide based on lock-in tolerance.",
+  "verdict_a": "Choose Apify if you are data warehouse syncing and can accept medium lock-in (actors portable as docker, results exportable).",
+  "verdict_b": "Choose Cortex if you are data warehouse syncing and need high lock-in (proprietary idp with per-seat lock-in).",
+  "faq": [
+    {
+      "q": "Is Apify cheaper than Cortex?",
+      "a": "Apify uses a freemium model, while Cortex uses a seat model; Apify has a free tier and Cortex does not. We don't have per-seat numbers in this dataset, so 'cheaper' depends on volume. Price both on your actual usage before deciding."
+    },
+    {
+      "q": "Can I migrate from Apify to Cortex?",
+      "a": "Apify has medium lock-in (actors portable as docker, results exportable); Cortex has high lock-in (proprietary idp with per-seat lock-in). Migration effort scales with how much state and automation you've built in Apify; plan for data export, config rebuild, and a parallel-run period before cutting over."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "In our data, Apify scores 5/5 for developer experience versus 3/5 for Cortex. That said, DX is subjective; the Cortex score may still be acceptable if its feature fit is stronger for your use case."
+    },
+    {
+      "q": "Is Cortex a good alternative to Apify?",
+      "a": "Cortex is built for data warehouse syncing and explicitly not for simple, small projects, so it's a fit only if your workflow matches its stated audience. If you were using Apify for data warehouse syncing, the switch is reasonable; outside that scope, look elsewhere."
+    }
+  ]
+}

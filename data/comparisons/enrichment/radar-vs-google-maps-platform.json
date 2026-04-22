@@ -1,0 +1,24 @@
+{
+  "intro": "Radar and Google Maps Platform both sit in the Maps / Geolocation / Routing space, but they target slightly different scopes. Radar is Location infrastructure platform with geofencing, geocoding, trip tracking, and fraud detection APIs; it fits best for apps. Google Maps Platform is Google's mapping APIs for web and mobile with geocoding, directions, Street View, and Places; it fits best for apps. Pick Radar for apps; pick Google Maps Platform for apps. Radar is not for simple projects. Google Maps Platform is not for simple projects. Honest trade-offs: Radar is weak for apps without location features, and Google Maps Platform is weak for apps without location features — match to your real scenario. Both sit under the Maps / Geolocation / Routing umbrella, so your final call depends on pricing transparency, integration effort, and which listed not-for situations you can actually tolerate. On pricing, Radar uses subscription pricing and Google Maps Platform uses subscription pricing, which materially changes total cost at scale.",
+  "quick_take": "Radar is for apps; Google Maps Platform is for apps; decide based on scope fit.",
+  "verdict_a": "Choose Radar if your core need is location-based services.",
+  "verdict_b": "Choose Google Maps Platform if your core need is location-based services.",
+  "faq": [
+    {
+      "q": "Is Radar cheaper than Google Maps Platform?",
+      "a": "A direct comparison depends on your usage profile and which pricing model fits better. Radar uses subscription pricing with no free tier published. Google Maps Platform uses subscription pricing with no free tier published."
+    },
+    {
+      "q": "Can I migrate from Radar to Google Maps Platform?",
+      "a": "Migration is workable but not trivial, since both sit around medium lock-in. Plan for data export, re-integration of SDKs, and re-testing flows before cutover. Verify exportable formats and feature parity against your live use cases before committing."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Both score 5/5 on developer experience in our data. Evaluate against your own stack: read their docs, run a quick SDK spike, and check error handling. Self-assessing with a small prototype beats trusting any rating at face value."
+    },
+    {
+      "q": "Is Google Maps Platform a good alternative to Radar?",
+      "a": "Google Maps Platform sits in the same category as Radar, so it can be a reasonable alternative for overlapping use cases. Google Maps Platform is best fit for apps. Note: Google Maps Platform is not for simple projects."
+    }
+  ]
+}

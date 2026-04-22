@@ -1,0 +1,24 @@
+{
+  "intro": "The biggest real distinction between Akamai and Modal is straightforward: Akamai carries high lock-in while Modal has moderate lock-in. Akamai sits at pricing from Custom (premium pricing), enterprise plan available and carries high lock-in, while Modal sits at usage-based pricing starting at $30 / month, a free tier, enterprise plan available and carries moderate lock-in. Akamai is a fit when you need global — typical scenarios include global audience with low latency needs. Modal is aimed at global, with workloads like global audience with low latency needs as the common case. The honest trade-off: Akamai is explicitly not for internal projects; Modal is not intended for internal projects. Lock-in is the factor most teams underestimate: Akamai and Modal have different exit paths, and that shapes total cost of ownership over a two-to-three year horizon. Before committing, audit where each tool stores state, which APIs you depend on, and how painful a switch would be six months in.",
+  "quick_take": "Akamai is for global; Modal is for global; decide based on how much lock-in you can accept.",
+  "verdict_a": "Choose Akamai if your primary workload is global and you accept higher lock-in for the stack.",
+  "verdict_b": "Choose Modal if your primary workload is global and you prefer usage-based pricing (starts at $30 / month).",
+  "faq": [
+    {
+      "q": "Is Akamai cheaper than Modal?",
+      "a": "It depends on workload shape: Akamai lists Custom (premium pricing), while Modal lists $30 / month. With different pricing models (unknown vs usage), the cheaper option flips based on seat count, usage volume, and whether you use the free tier. Do a per-workload estimate rather than comparing headline numbers."
+    },
+    {
+      "q": "Can I migrate from Akamai to Modal?",
+      "a": "Migrating from Akamai to Modal is not trivial — Akamai has high lock-in, which typically means data formats, APIs, or stack assumptions that have to be rewritten. Since both tools sit in the same category (CDN / Edge / Acceleration), the conceptual mapping is closer, but you still need to validate feature parity against your specific workload. Plan migration as a project, not a script: inventory integrations, test on non-production workloads, and keep Akamai running in parallel until Modal is verified."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "On our 0–5 developer experience scale, Modal scores higher (5/5 vs 3/5 for Akamai). The gap is 2 points, which is a noticeable difference in day-to-day ergonomics based on the data. Still, score your own tasks: DX is subjective and tied to stack assumptions."
+    },
+    {
+      "q": "Is Modal a good alternative to Akamai?",
+      "a": "Modal is in the same category as Akamai (CDN / Edge / Acceleration), so it's a reasonable alternative to evaluate. Both tools claim similar best-fit workloads on paper, so the real test is how each behaves under your specific constraints. Note that Modal is explicitly not for internal projects — if that describes your workload, it's not a viable replacement."
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "intro": "Stark Bank and 2Checkout both show up under the payment gateway category, but they solve slightly different jobs. Stark Bank uses usage-based pricing, while 2Checkout runs on undisclosed pricing. Lock-in is medium for Stark Bank and low for 2Checkout. Transparency lands at 3/5 versus 2/5. Stark Bank fits teams working on Pix payment integration for Brazilian businesses via SDK, while 2Checkout is a closer match when the job is SaaS with online payments. Worth noting: Stark Bank is explicitly not for companies outside Brazil or needing multi-country payment rails; 2Checkout is explicitly not for offline, Internal projects. The honest trade-off: Stark Bank trades off on brazil-only — no utility outside BRL; 2Checkout trades off on offline-only retail. On the plus side, Stark Bank highlights SDKs in 10+ languages — real DX focus, while 2Checkout points to SaaS with online payments. Stark Bank's documentation also calls out native Pix integration for instant BRL payments. 2Checkout similarly notes e-commerce checkout.",
+  "quick_take": "Stark Bank is for Pix payment integration for Brazilian businesses; 2Checkout is for SaaS with online payments; decide on pricing model.",
+  "verdict_a": "Choose Stark Bank if your project is Pix payment integration for Brazilian businesses via SDK, medium lock-in is an acceptable trade-off, strong SDKs and docs (5/5) are a priority.",
+  "verdict_b": "Choose 2Checkout if your project is SaaS with online payments, you want to keep future migration cheap, you can tolerate 2Checkout's limited public transparency (2/5).",
+  "faq": [
+    {
+      "q": "Is Stark Bank cheaper than 2Checkout?",
+      "a": "Stark Bank uses usage-based pricing, and 2Checkout uses undisclosed pricing. The pricing models are different, so a direct cheaper-than comparison depends on your volume and usage pattern."
+    },
+    {
+      "q": "Can I migrate from Stark Bank to 2Checkout?",
+      "a": "Our data puts Stark Bank at medium lock-in (brazil-focused pix, sdks help portability), and 2Checkout at low lock-in (merchant account tightly bound; customer and subscription data partially portable). Migration is feasible but not trivial — budget time for re-integration, data export, and parallel running before cutover."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Stark Bank scores 5/5 on developer experience in our data, while 2Checkout scores 3/5, so Stark Bank has the edge on docs and SDK quality by that measure. That gap is reinforced by transparency scores of 3/5 versus 2/5. Still, run a small integration spike on both before deciding — team familiarity with a given SDK style often matters more than a one-point score gap."
+    },
+    {
+      "q": "Is 2Checkout a good alternative to Stark Bank?",
+      "a": "2Checkout is a reasonable alternative to Stark Bank when your workload leans more toward SaaS, E-commerce, Marketplace than brazilian fintechs and SaaS needing Pix, TED, and boleto with clean SDKs. The pricing model shifts too — Stark Bank is usage-based pricing, 2Checkout is undisclosed pricing — so expect the cost profile to change as well. One caveat: 2Checkout is explicitly not for offline, Internal projects, so check that constraint against your use-case before switching."
+    }
+  ]
+}

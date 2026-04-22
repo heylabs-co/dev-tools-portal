@@ -1,0 +1,24 @@
+{
+  "intro": "Hermit rates 5/5 on transparency versus 4/5 for Flox. Flox is positioned for teams wanting nix guarantees with a friendlier cli and workflow, while Hermit leans toward monorepos wanting pinned cli toolchains without adopting nix. In practice, Developer environment manager built on Nix providing reproducible, shareable dev environments as code. Lets monorepo teams pin exact toolchain versions without deep Nix expertise. Hermetic tool management system for monorepos that installs per-project development tools without polluting the system PATH. Ensures all developers and CI use identical toolchain versions. Flox runs on freemium with a free tier; Hermit runs on free with a free tier. Hermit rates 5/5 on transparency versus 4/5 for Flox. Listed strengths unique to Flox include nix-based reproducibility without writing nix code, while Hermit lists per-project tool installs without polluting path on its side. Reach for Flox when you need pin exact toolchain versions across all dev environments; reach for Hermit when the job is lock toolchain versions per project without system path pollution. The honest trade-off: Flox is not built for orgs that need mature tooling and a.",
+  "quick_take": "Flox is for teams wanting nix guarantees with a friendlier cli and workflow; Hermit is for monorepos wanting pinned cli toolchains without adopting nix; decide based on which use case.",
+  "verdict_a": "Choose Flox if teams wanting nix guarantees with a friendlier cli and workflow and you need a free tier to validate fit.",
+  "verdict_b": "Choose Hermit if monorepos wanting pinned cli toolchains without adopting nix and you need a free tier to validate fit.",
+  "faq": [
+    {
+      "q": "Is Flox cheaper than Hermit?",
+      "a": "Both Flox and Hermit expose free tiers with no headline entry price listed. The real comparison happens once you cross the free limits, and that pricing isn't captured in the summary data. Check each tool's pricing page for your volume band."
+    },
+    {
+      "q": "Can I migrate from Flox to Hermit?",
+      "a": "Technically you can move between any two tools in the same category, but effort varies: leaving Flox is relatively light thanks to its low lock-in, and onboarding to Hermit should be straightforward given its low lock-in. Plan for data export, re-integration, and a parallel-run window rather than a hard cutover."
+    },
+    {
+      "q": "Which has better developer experience, Flox or Hermit?",
+      "a": "Both Flox and Hermit score 4/5 on developer experience in our data, so there's no clear winner on that axis alone. The real differentiator usually lands in SDK fit for your language, error handling, and docs depth. A half-day integration spike tells you more than the score."
+    },
+    {
+      "q": "Is Hermit a good alternative to Flox?",
+      "a": "Hermit is an alternative in the same category, but its stated sweet spot is monorepos wanting pinned cli toolchains without adopting nix, while Flox's is teams wanting nix guarantees with a friendlier cli and workflow. If your job matches Flox's profile more closely, switching to Hermit is a compromise. Use the best-fit match, not brand familiarity, to decide. Note: Hermit is explicitly not for teams needing reproducible services, databases, or full sandboxes."
+    }
+  ]
+}

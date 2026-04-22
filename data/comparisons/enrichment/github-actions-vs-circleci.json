@@ -1,0 +1,24 @@
+{
+  "intro": "The pivotal question between GitHub Actions and CircleCI is how much of your setup stays portable: GitHub Actions carries medium lock-in and CircleCI carries low lock-in. GitHub Actions is GitHub-native CI/CD driven by YAML workflows inside the repo. CircleCI is cloud CI/CD with parallelized builds and extensive language support. Pick GitHub Actions when the job is conversion optimization and you accept medium lock-in; pick CircleCI when it is conversion optimization and you accept low lock-in. The data we have shows GitHub Actions at mostly transparent pricing and docs with a polished developer experience, and CircleCI at fully public pricing and documentation with a polished developer experience. The honest trade-off: neither is universal — GitHub Actions is a poor fit for internal projects, and CircleCI is a poor fit for internal projects. Match the pricing model and lock-in level to how your team actually works, not the feature list. If your team already lives inside the ecosystem one of them assumes, that default usually wins — migration is cheap to start and expensive later.",
+  "quick_take": "GitHub Actions is for GitHub-native CI/CD driven by YAML workflows inside; CircleCI is for cloud CI/CD; decide based on how portable the setup must stay.",
+  "verdict_a": "Choose GitHub Actions if usage-based billing from $0.008/min (Linux) matches your workload and the work maps to GitHub-native CI/CD driven by YAML workflows inside the repo.",
+  "verdict_b": "Choose CircleCI if keeping the configuration portable matters and the work lines up with cloud CI/CD with parallelized builds and extensive language support.",
+  "faq": [
+    {
+      "q": "Is GitHub Actions cheaper than CircleCI?",
+      "a": "GitHub Actions starts at $0.008/min (Linux) on a usage model; CircleCI starts at $0.0006/credit (Performance) on a freemium model. That makes the sticker comparison depend on usage — a low entry price can get expensive once volume ramps, so price at your actual workload."
+    },
+    {
+      "q": "Can I migrate from GitHub Actions to CircleCI?",
+      "a": "Migration is possible in either direction. GitHub Actions carries medium lock-in and CircleCI carries low lock-in, so plan for meaningful but not blocking rework. Run both in parallel before you fully cut over."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Both GitHub Actions and CircleCI rate the same on developer experience (5/5). The decision on DX then comes down to taste — which CLI, UI, or workflow matches your team's habits. A short side-by-side trial is the quickest way to tell."
+    },
+    {
+      "q": "Is CircleCI a good alternative to GitHub Actions?",
+      "a": "Yes — CircleCI is a reasonable alternative to GitHub Actions for conversion optimization. The practical differences are usage-vs-freemium billing and medium-vs-low lock-in. If those fit your constraints better, treat CircleCI as a credible swap."
+    }
+  ]
+}

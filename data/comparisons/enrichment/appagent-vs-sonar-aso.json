@@ -1,0 +1,24 @@
+{
+  "intro": "The biggest real distinction between AppAgent and Sonar (ASO) is straightforward: AppAgent is free and open-source, while Sonar (ASO) is a commercial product (freemium with paid upgrades). AppAgent sits at free and open-source and carries low lock-in, while Sonar (ASO) sits at freemium with paid upgrades and carries low lock-in. AppAgent is a fit when you need dev-heavy teams who want to own their aso tooling and data — typical scenarios include automating app store metadata updates via oss ci/cd pipeline. Sonar (ASO) is aimed at dev teams integrating aso data into custom tools or ai agents, with workloads like api-first keyword research for app store and google play as the common case. The honest trade-off: AppAgent is explicitly not for marketers without engineering support or self-hosting appetite; Sonar (ASO) is not intended for marketers who want a polished gui and no api work. On cost specifically, pricing model matters more than sticker price — one workload can make AppAgent cheaper while a different shape flips the answer to Sonar (ASO).",
+  "quick_take": "AppAgent is for dev-heavy teams who want to own; Sonar (ASO) is for dev teams integrating aso data into; decide based on cost model and budget.",
+  "verdict_a": "Choose AppAgent if your primary workload is dev-heavy teams who want to own their aso tooling and data and you want a free/OSS tool with no vendor bill.",
+  "verdict_b": "Choose Sonar (ASO) if your primary workload is dev teams integrating aso data into custom tools or ai agents and low switching cost matters.",
+  "faq": [
+    {
+      "q": "Is AppAgent cheaper than Sonar (ASO)?",
+      "a": "Yes — AppAgent is free and open-source, while Sonar (ASO) uses freemium with paid upgrades. That makes AppAgent unambiguously cheaper on license cost; however, the true cost comparison depends on the ops effort required to run an OSS tool versus paying for Sonar (ASO)'s managed service."
+    },
+    {
+      "q": "Can I migrate from AppAgent to Sonar (ASO)?",
+      "a": "Migrating from AppAgent to Sonar (ASO) is generally feasible because AppAgent has low lock-in, so data and configuration are usually portable. Since both tools sit in the same category (App Growth Tooling (ASO)), the conceptual mapping is closer, but you still need to validate feature parity against your specific workload. Plan migration as a project, not a script: inventory integrations, test on non-production workloads, and keep AppAgent running in parallel until Sonar (ASO) is verified."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "On our 0–5 developer experience scale, Sonar (ASO) scores higher (4/5 vs 3/5 for AppAgent). The gap is one point — meaningful but not decisive, since DX is workflow-dependent. Still, score your own tasks: DX is subjective and tied to stack assumptions."
+    },
+    {
+      "q": "Is Sonar (ASO) a good alternative to AppAgent?",
+      "a": "Sonar (ASO) is in the same category as AppAgent (App Growth Tooling (ASO)), so it's a reasonable alternative to evaluate. Sonar (ASO) is aimed at dev teams integrating aso data into custom tools or ai agents, while AppAgent targets dev-heavy teams who want to own their aso tooling and data — that difference should drive the switch decision. Note that Sonar (ASO) is explicitly not for marketers who want a polished gui and no api work — if that describes your workload, it's not a viable replacement."
+    }
+  ]
+}

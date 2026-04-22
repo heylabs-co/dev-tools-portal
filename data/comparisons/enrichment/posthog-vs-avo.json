@@ -1,0 +1,24 @@
+{
+  "intro": "PostHog and Avo both show up under the product analytics category, but they solve slightly different jobs. PostHog uses usage-based pricing with free tier, while Avo runs on undisclosed pricing with free tier. Lock-in is low for PostHog and medium for Avo. Transparency lands at 5/5 versus 4/5. PostHog fits teams working on want analytics + feature flags + session replay in one, while Avo is a closer match when the job is understanding user behavior (funnels, retention). Worth noting: PostHog is explicitly not for enterprise needing dedicated support; Avo is explicitly not for simple projects. The honest trade-off: PostHog trades off on enterprise needing dedicated support — Amplitude is more enterprise; Avo trades off on pre-product stage. On the plus side, PostHog highlights analytics + feature flags + session replay in one, while Avo points to understanding user behavior (funnels, retention). PostHog's documentation also calls out open-source with self-hosted option. Avo similarly notes data-driven product decisions.",
+  "quick_take": "PostHog is for want analytics + feature flags +; Avo is for understanding user behavior (funnels, retention); decide on pricing model.",
+  "verdict_a": "Choose PostHog if your project is want analytics + feature flags + session replay in one, usage-based billing at Usage-based, price decreases at scale matches your volume, you want to keep future migration cheap.",
+  "verdict_b": "Choose Avo if your project is understanding user behavior (funnels, retention), medium lock-in is an acceptable trade-off.",
+  "faq": [
+    {
+      "q": "Is PostHog cheaper than Avo?",
+      "a": "PostHog uses usage-based pricing with free tier, and Avo uses undisclosed pricing with free tier. The pricing models are different, so a direct cheaper-than comparison depends on your volume and usage pattern."
+    },
+    {
+      "q": "Can I migrate from PostHog to Avo?",
+      "a": "Our data puts PostHog at low lock-in (open-source, self-hosted, raw data access via data warehouse), and Avo at medium lock-in (analytics schema exportable). Moving from PostHog to Avo should be manageable, though you'll still need to replay integrations and re-test flows end-to-end."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "PostHog scores 5/5 on developer experience in our data, while Avo scores 4/5, so PostHog has the edge on docs and SDK quality by that measure. That gap is reinforced by transparency scores of 5/5 versus 4/5. Still, run a small integration spike on both before deciding — team familiarity with a given SDK style often matters more than a one-point score gap."
+    },
+    {
+      "q": "Is Avo a good alternative to PostHog?",
+      "a": "Avo is a reasonable alternative to PostHog when your workload leans more toward understanding user behavior (funnels, retention) than want analytics + feature flags + session replay in one. The pricing model shifts too — PostHog is usage-based pricing with free tier, Avo is undisclosed pricing with free tier — so expect the cost profile to change as well. One caveat: Avo is explicitly not for simple projects, so check that constraint against your use-case before switching."
+    }
+  ]
+}

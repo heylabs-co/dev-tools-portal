@@ -1,0 +1,24 @@
+{
+  "intro": "NATS and Sonner both sit in the Messaging API (Email / SMS / Voice) space. Both tools position themselves for apps sending transactional notifications at scale, so the decision rarely comes down to surface features. In practice, NATS — Messaging API (Email / SMS / Voice) tool for developers. Specializes in message queue. Sonner — CI/CD for Applications tool for developers. Specializes in Toast Notifications. NATS runs on free with a free tier; Sonner runs on free with a free tier. Both tools list multi-channel delivery (email, sms, voice) from one api as a headline strength, which is why pricing and lock-in usually decide the call. Reach for NATS when you need transactional emails (receipts, alerts); reach for Sonner when the job is automated build/test/deploy pipelines. The honest trade-off: NATS is not built for small projects with minimal communication needs, and Sonner is not the right call for small projects with minimal communication needs, so neither is a universal default.",
+  "quick_take": "NATS is for apps sending transactional notifications at scale; Sonner overlaps on the same job; decide based on which use case matches.",
+  "verdict_a": "Choose NATS if its pricing model (free with a free tier) matches how you want to pay.",
+  "verdict_b": "Choose Sonner if its pricing model (free with a free tier) matches how you want to pay.",
+  "faq": [
+    {
+      "q": "Is NATS cheaper than Sonner?",
+      "a": "Both NATS and Sonner expose free tiers with no headline entry price listed. The real comparison happens once you cross the free limits, and that pricing isn't captured in the summary data. Check each tool's pricing page for your volume band."
+    },
+    {
+      "q": "Can I migrate from NATS to Sonner?",
+      "a": "Technically you can move between any two tools in the same category, but effort varies: leaving NATS is relatively light thanks to its low lock-in, and onboarding to Sonner should be straightforward given its low lock-in. Plan for data export, re-integration, and a parallel-run window rather than a hard cutover."
+    },
+    {
+      "q": "Which has better developer experience, NATS or Sonner?",
+      "a": "Both NATS and Sonner score 5/5 on developer experience in our data, so there's no clear winner on that axis alone. The real differentiator usually lands in SDK fit for your language, error handling, and docs depth. A half-day integration spike tells you more than the score."
+    },
+    {
+      "q": "Is Sonner a good alternative to NATS?",
+      "a": "Yes, Sonner targets the same job NATS does — apps sending transactional notifications at scale — so functionally it slots in as an alternative. Pricing model (free with a free tier vs free with a free tier) and lock-in (low lock-in (Open source React toast) vs low lock-in (CNCF open source messaging, portable)) usually decide which is the better fit. Validate on your actual workload. Note: Sonner is explicitly not for small projects with minimal communication needs."
+    }
+  ]
+}

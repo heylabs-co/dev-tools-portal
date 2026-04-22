@@ -1,0 +1,24 @@
+{
+  "intro": "Ink and PIX overlap on pricing and lock-in, so the choice hinges on fit rather than cost. Ink: Open-source narrative scripting language by Inkle Studios powering 80 Days, Heavens Vault, and Disco Elysium. Has a JSON runtime and Unity/Godot plugins for interactive fiction. PIX: Microsofts free performance tuning and debugging tool for DirectX 12 games on Windows and Xbox. Captures GPU timings, shader debugs, and memory usage across frames. Ink fits narrative-heavy games where writers own script files and version control. PIX fits windows and Xbox teams optimizing DirectX 12 renderers and shaders. Both land at 4/5 for developer experience and 5/5 for transparency on our rubric. The honest trade-off: Ink's main drawback — Syntax takes getting used to for non-writers; PIX's — DirectX 12 only, no Vulkan or Metal support. One point in Ink's favour: Proven on shipped hits like Disco Elysium and 80 Days. For PIX: Free, first-party DX12 debugger from Microsoft. Ink is explicitly not the right pick for teams whose designers prefer visual dialogue graph editors.",
+  "quick_take": "Ink is for narrative-heavy games; PIX is for windows; decide on fit with your stack.",
+  "verdict_a": "Choose Ink if narrative-heavy games where writers own script files and version control.",
+  "verdict_b": "Choose PIX if windows and Xbox teams optimizing DirectX 12 renderers and shaders.",
+  "faq": [
+    {
+      "q": "Is Ink cheaper than PIX?",
+      "a": "Both tools use free pricing, so a clean list-price comparison depends on tier details that vary by usage. Check each vendor's current plan page for your expected volume. Neither is structurally cheaper on the model alone."
+    },
+    {
+      "q": "Can I migrate from Ink to PIX?",
+      "a": "Both tools are rated low lock-in, so migration is mostly a matter of re-pointing integrations and re-authoring config. There's no hard data format moat on either side. Expect work proportional to how deeply Ink touches your pipeline, but no vendor-imposed blockers."
+    },
+    {
+      "q": "Which has better developer experience, Ink or PIX?",
+      "a": "Both score 4/5 for developer experience in our rubric, so neither has a structural edge. The practical answer depends on stack fit: Ink's ergonomics suit some workflows, PIX's suit others. Try both on a throwaway project before committing."
+    },
+    {
+      "q": "Is PIX a good alternative to Ink?",
+      "a": "They sit in the same category, so yes — PIX is a plausible alternative for many Ink use cases. It fits best when windows and Xbox teams optimizing DirectX 12 renderers and shaders. Skip it if vulkan, Metal, or cross-platform teams needing a unified graphics debugger."
+    }
+  ]
+}

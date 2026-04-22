@@ -1,0 +1,24 @@
+{
+  "intro": "Amazon DynamoDB is a fully managed serverless NoSQL database with single-digit millisecond latency and auto-scaling, starting at $0.02 with a free tier; Azure Cosmos DB is a multi-model globally distributed database with tunable consistency and multi-region writes, starting at $1 with a free tier. Both are subscription with free tiers, both score 4 for DX and 4 for transparency, and both are rated low lock-in with the caveats that DynamoDB's proprietary NoSQL model is hard to migrate off and Cosmos DB is multi-model but Azure-bound. The clearest real distinction is cloud alignment: DynamoDB is AWS-native and Cosmos DB is Azure-native. DynamoDB fits AWS teams who need key-value or document workloads at scale and are comfortable with its partition-key model. Cosmos DB fits Azure teams who need multi-region writes, tunable consistency or multi-model data (document, graph, key-value) under one service. You trade AWS's surrounding ecosystem depth for Azure's richer consistency controls and multi-model flexibility, or vice versa.",
+  "quick_take": "DynamoDB is for AWS-native serverless NoSQL; Cosmos DB is for Azure-native multi-model globally distributed data; decide based on cloud commitment.",
+  "verdict_a": "Choose Amazon DynamoDB if your stack is on AWS and you want single-digit-millisecond serverless NoSQL from $0.02 with a free tier.",
+  "verdict_b": "Choose Azure Cosmos DB if your stack is on Azure and you need multi-model data, tunable consistency or multi-region writes, priced from $1 with a free tier.",
+  "faq": [
+    {
+      "q": "Is DynamoDB cheaper than Cosmos DB?",
+      "a": "On the entry prices given, DynamoDB starts at $0.02 and Cosmos DB at $1, both with free tiers. That comparison is unit-for-unit misleading because each has different billing dimensions (on-demand vs request units). For small workloads DynamoDB's free tier is often sufficient; at scale the answer depends on read/write patterns and region count."
+    },
+    {
+      "q": "Can I migrate from DynamoDB to Cosmos DB?",
+      "a": "Both are rated low lock-in, but DynamoDB's proprietary NoSQL model is called out as hard to migrate off and Cosmos DB is multi-model yet Azure-bound. A real migration means rewriting data-access patterns around each service's partition/consistency model. Expect tooling help, not a one-click move."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Both score 4 for DX. Neither pulls ahead in the data. DynamoDB's DX is best when you fit its partition-key model; Cosmos DB's DX benefits from multi-model APIs (SQL, MongoDB, Cassandra, Gremlin). The tie reflects parity, not weakness."
+    },
+    {
+      "q": "Is Cosmos DB a good alternative to DynamoDB?",
+      "a": "For Azure teams, yes. Both list apps needing a managed database, serverless architectures and global distribution as best_for, and both share a not_for of simple key-value storage and offline-first embedded apps. The determining factor is usually your chosen cloud rather than a database feature."
+    }
+  ]
+}

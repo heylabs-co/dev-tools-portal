@@ -1,0 +1,24 @@
+{
+  "intro": "The most concrete split between RevenueCat and Qonversion is the pricing model: RevenueCat runs on usage-based pricing from 1% from MTR above $2,500, with a free tier, while Qonversion uses freemium with paid plans from $10. That shapes how predictable your monthly spend is and how much of the cost sits in infrastructure versus per-seat or per-event fees. Beyond the headline, RevenueCat carries medium lock-in (medium — to on storekit/google play, but subscription state + analytics andin) and usage-based pricing from 1% from MTR above $2,500, with a free tier; Qonversion carries medium lock-in (subscription sdk, data exportable) and freemium with paid plans from $10. RevenueCat is a fit when you are mobile. Qonversion is a fit when you are saas. The honest trade-off: RevenueCat is explicitly not for web-only saas; Qonversion is explicitly not for simple projects. On the product side, RevenueCat is described as Subscription infrastructure SDK for iOS, Android, and web handling purchase events, entitlements, and revenue analytics, and Qonversion is described as Mobile subscription analytics and attribution SDK linking App Store and Play Store purchases to.",
+  "quick_take": "RevenueCat is for mobile; Qonversion is for saas; decide on pricing model.",
+  "verdict_a": "Choose RevenueCat if its usage pricing model fits your budget shape better than Qonversion's freemium model, and you are mobile.",
+  "verdict_b": "Choose Qonversion if its freemium pricing model fits your budget shape better than RevenueCat's usage model, and you are saas.",
+  "faq": [
+    {
+      "q": "Is RevenueCat cheaper than Qonversion?",
+      "a": "RevenueCat starts at 1% from MTR above $2,500; Qonversion starts at $10. On entry price alone that is the comparison, but real cost scales with users, events or volume, which the entry prices do not capture. Check each vendor's full tier list before committing."
+    },
+    {
+      "q": "Can I migrate from RevenueCat to Qonversion?",
+      "a": "Migration from RevenueCat to Qonversion is feasible but not trivial: RevenueCat has medium lock-in (medium — to on storekit/google play, but subscription state + analytics andin). Core data can move; integrations and workflow logic need rebuild. Allow for a parallel-run period."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "On our scoring RevenueCat rates 5/5 for developer experience versus 4/5 for Qonversion. That suggests day-to-day workflows (CLI, SDKs, docs) are smoother in RevenueCat. Scores are directional; run a short spike on your own stack to confirm."
+    },
+    {
+      "q": "Is Qonversion a good alternative to RevenueCat?",
+      "a": "Qonversion is pitched at saas, which overlaps with RevenueCat's fit (mobile) but is not identical. Note that Qonversion is explicitly not for simple projects, so it only replaces RevenueCat if you are outside that exclusion. Pricing models differ (usage vs freemium), which may shift total cost."
+    }
+  ]
+}

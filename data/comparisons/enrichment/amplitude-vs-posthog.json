@@ -1,0 +1,24 @@
+{
+  "intro": "Amplitude and PostHog both show up under the product analytics category, but they solve slightly different jobs. Amplitude uses pricing that starts at $61/mo (Plus) with free tier, while PostHog runs on usage-based pricing with free tier. Lock-in is medium for Amplitude and low for PostHog. Transparency lands at 4/5 versus 5/5. Amplitude fits teams working on enterprise product analytics with advanced cohorts, while PostHog is a closer match when the job is want analytics + feature flags + session replay in one. Worth noting: Amplitude is explicitly not for startup with <1K users; PostHog is explicitly not for enterprise needing dedicated support. The honest trade-off: Amplitude trades off on startup with <1K users — PostHog free tier is more generous; PostHog trades off on enterprise needing dedicated support — Amplitude is more enterprise. On the plus side, Amplitude highlights enterprise product analytics with advanced cohorts, while PostHog points to analytics + feature flags + session replay in one.",
+  "quick_take": "Amplitude is for enterprise product analytics with advanced cohorts; PostHog is for want analytics + feature flags +; decide on pricing model.",
+  "verdict_a": "Choose Amplitude if your project is enterprise product analytics with advanced cohorts, medium lock-in is an acceptable trade-off.",
+  "verdict_b": "Choose PostHog if your project is want analytics + feature flags + session replay in one, usage-based billing at Usage-based, price decreases at scale matches your volume, you want to keep future migration cheap.",
+  "faq": [
+    {
+      "q": "Is Amplitude cheaper than PostHog?",
+      "a": "Amplitude uses pricing that starts at $61/mo (Plus) with free tier, and PostHog uses usage-based pricing with free tier. The pricing models are different, so a direct cheaper-than comparison depends on your volume and usage pattern."
+    },
+    {
+      "q": "Can I migrate from Amplitude to PostHog?",
+      "a": "Our data puts Amplitude at medium lock-in (proprietary data model, warehouse-native reduces lock-in), and PostHog at low lock-in (open-source, self-hosted, raw data access via data warehouse). Migration is feasible but not trivial — budget time for re-integration, data export, and parallel running before cutover."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Both score 5/5 on developer experience in our data, so there's no clear winner on that axis. PostHog does edge ahead on pricing/docs transparency (5/5 vs 4/5), which can make evaluation faster."
+    },
+    {
+      "q": "Is PostHog a good alternative to Amplitude?",
+      "a": "PostHog is a reasonable alternative to Amplitude when your workload leans more toward want analytics + feature flags + session replay in one than enterprise. The pricing model shifts too — Amplitude is pricing that starts at $61/mo (Plus) with free tier, PostHog is usage-based pricing with free tier — so expect the cost profile to change as well. One caveat: PostHog is explicitly not for enterprise needing dedicated support, so check that constraint against your use-case before switching."
+    }
+  ]
+}

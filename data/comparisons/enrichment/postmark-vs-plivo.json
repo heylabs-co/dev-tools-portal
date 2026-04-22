@@ -1,0 +1,24 @@
+{
+  "intro": "Plivo enters at $10 against Postmark at $15/mo (10K emails). Both tools position themselves for transactional emails (receipts, alerts), so the decision rarely comes down to surface features. In practice, Postmark — Fast transactional email delivery API focused on inbox placement with detailed bounce analytics. Plivo — Cloud communications API for SMS, voice calls, and WhatsApp with global carrier connectivity. Postmark carries low lock-in (Low — REST API, SMTP) while Plivo is medium (Freemium comms, numbers portable). Postmark rates 5/5 on transparency versus 4/5 for Plivo. Listed strengths unique to Postmark include low lock-in — easy to migrate away, while Plivo lists multi-channel delivery (sms, email, voice) from one api on its side. Both tools surface overlapping when-to-use scenarios, including transactional emails (receipts, alerts). The honest trade-off: Postmark is not built for internal projects, and Plivo is not the right call for internal projects, so neither is a universal default.",
+  "quick_take": "Postmark is for transactional emails (receipts, alerts); Plivo overlaps on the same job; decide based on pricing model.",
+  "verdict_a": "Choose Postmark if transactional emails (receipts, alerts) and the $15/mo (10K emails) entry price fits your budget.",
+  "verdict_b": "Choose Plivo if transactional emails (receipts, alerts) and the $10 entry price fits your budget.",
+  "faq": [
+    {
+      "q": "Is Postmark cheaper than Plivo?",
+      "a": "Based on the listed entry prices, no: Postmark starts at $15/mo (10K emails) while Plivo starts at $10. At low volume the gap may be small, but it widens fast at scale. Always price against your own usage curve, not the headline tier."
+    },
+    {
+      "q": "Can I migrate from Postmark to Plivo?",
+      "a": "Technically you can move between any two tools in the same category, but effort varies: leaving Postmark is relatively light thanks to its low lock-in, and onboarding to Plivo involves medium lock-in (Freemium comms, numbers portable). Plan for data export, re-integration, and a parallel-run window rather than a hard cutover."
+    },
+    {
+      "q": "Which has better developer experience, Postmark or Plivo?",
+      "a": "Both Postmark and Plivo score 5/5 on developer experience in our data, so there's no clear winner on that axis alone. The real differentiator usually lands in SDK fit for your language, error handling, and docs depth. A half-day integration spike tells you more than the score."
+    },
+    {
+      "q": "Is Plivo a good alternative to Postmark?",
+      "a": "Yes, Plivo targets the same job Postmark does — transactional emails (receipts, alerts) — so functionally it slots in as an alternative. Pricing model (freemium from $10 vs usage from $15/mo (10K emails)) and lock-in (medium lock-in (Freemium comms, numbers portable) vs low lock-in (Low — REST API, SMTP)) usually decide which is the better fit. Validate on your actual workload. Note: Plivo is explicitly not for internal projects."
+    }
+  ]
+}

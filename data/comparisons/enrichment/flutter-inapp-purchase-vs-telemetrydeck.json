@@ -1,0 +1,24 @@
+{
+  "intro": "TelemetryDeck is freemium with a free tier; flutter_inapp_purchase is free and open source. Flutter_inapp_purchase: Open-source Flutter IAP plugin aligned with OpenIAP spec, supporting StoreKit 2 and Play Billing 8 via type-safe bindings. TelemetryDeck: Privacy-focused mobile app analytics with GDPR-compliant signal tracking and RevenueCat integration for subscription metrics. Flutter_inapp_purchase fits flutter teams wanting OpenIAP-aligned IAP without a managed backend. TelemetryDeck fits indie Apple-platform developers wanting privacy-friendly product analytics. Both land at 4/5 for developer experience and 5/5 for transparency on our rubric. The honest trade-off: flutter_inapp_purchase's main drawback — Still a low-level library, not a paywall service; TelemetryDeck's — Not a full product analytics platform. One point in flutter_inapp_purchase's favour: OpenIAP-aligned API across iOS and Android. For TelemetryDeck: Privacy-first, GDPR-friendly signal tracking. Flutter_inapp_purchase is explicitly not the right pick for teams that prefer fully managed subscription infrastructure. TelemetryDeck is not aimed at cross-platform apps needing deep funnels and behavioral analytics. Another flutter_inapp_purchase advantage: Supports StoreKit 2 and Play Billing 8. Another TelemetryDeck advantage: Affordable vs Mixpanel and Amplitude.",
+  "quick_take": "flutter_inapp_purchase is for flutter teams; TelemetryDeck is for indie Apple-platform developers wanting privacy-friendly product analytics; decide on pricing model.",
+  "verdict_a": "Choose flutter_inapp_purchase if flutter teams wanting OpenIAP-aligned IAP without a managed backend, and if you want to avoid recurring license costs and are willing to self-host.",
+  "verdict_b": "Choose TelemetryDeck if indie Apple-platform developers wanting privacy-friendly product analytics.",
+  "faq": [
+    {
+      "q": "Is flutter_inapp_purchase cheaper than TelemetryDeck?",
+      "a": "Yes on list price: flutter_inapp_purchase is free and open source, while TelemetryDeck runs on freemium pricing. Keep in mind that flutter_inapp_purchase shifts costs to hosting, ops, and engineering time. Total cost of ownership can flip depending on your team's capacity."
+    },
+    {
+      "q": "Can I migrate from flutter_inapp_purchase to TelemetryDeck?",
+      "a": "Both tools are rated low lock-in, so migration is mostly a matter of re-pointing integrations and re-authoring config. There's no hard data format moat on either side. Expect work proportional to how deeply flutter_inapp_purchase touches your pipeline, but no vendor-imposed blockers."
+    },
+    {
+      "q": "Which has better developer experience, flutter_inapp_purchase or TelemetryDeck?",
+      "a": "Both score 4/5 for developer experience in our rubric, so neither has a structural edge. The practical answer depends on stack fit: flutter_inapp_purchase's ergonomics suit some workflows, TelemetryDeck's suit others. Try both on a throwaway project before committing."
+    },
+    {
+      "q": "Is TelemetryDeck a good alternative to flutter_inapp_purchase?",
+      "a": "They sit in the same category, so yes — TelemetryDeck is a plausible alternative for many flutter_inapp_purchase use cases. It fits best when indie Apple-platform developers wanting privacy-friendly product analytics. Skip it if cross-platform apps needing deep funnels and behavioral analytics."
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "intro": "The biggest real distinction between Medplum and Kairos is straightforward: Kairos is free and open-source, while Medplum is a commercial product (freemium with paid upgrades). Medplum sits at freemium with paid upgrades and carries low lock-in, while Kairos sits at free and open-source and carries low lock-in. Medplum is a fit when you need healthcare startups building ehr or patient-facing apps on fhir with modern tooling — typical scenarios include open-source fhir-native ehr backend for digital health teams. Kairos is aimed at edge computing teams running fleets of kubernetes devices needing immutable os, with workloads like immutable linux for edge kubernetes with bootable os images as the common case. The honest trade-off: Medplum is explicitly not for non-healthcare projects or teams that can't invest in learning fhir; Kairos is not intended for traditional datacenter workloads or teams without kubernetes experience. On cost specifically, pricing model matters more than sticker price — one workload can make Medplum cheaper while a different shape flips the answer to Kairos.",
+  "quick_take": "Medplum is for healthcare startups building ehr or patient-facing; Kairos is for edge computing teams running fleets of; decide based on cost model and budget.",
+  "verdict_a": "Choose Medplum if your primary workload is healthcare startups building ehr or patient-facing apps on fhir with modern tooling and low switching cost matters.",
+  "verdict_b": "Choose Kairos if your primary workload is edge computing teams running fleets of kubernetes devices needing immutable os and you want a free/OSS tool with no vendor bill.",
+  "faq": [
+    {
+      "q": "Is Medplum cheaper than Kairos?",
+      "a": "No — Kairos is free and open-source, while Medplum uses freemium with paid upgrades. Kairos wins on sticker price, but remember that self-hosting and maintaining OSS adds engineering overhead that Medplum's paid plan removes."
+    },
+    {
+      "q": "Can I migrate from Medplum to Kairos?",
+      "a": "Migrating from Medplum to Kairos is generally feasible because Medplum has low lock-in, so data and configuration are usually portable. Since both tools sit in the same category (Backend-as-a-Service), the conceptual mapping is closer, but you still need to validate feature parity against your specific workload. Plan migration as a project, not a script: inventory integrations, test on non-production workloads, and keep Medplum running in parallel until Kairos is verified."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Our data gives Medplum and Kairos the same developer experience score (4/5), so neither has a clear edge on DX by that measure. The differentiator is usually how each tool fits your workflow — things like CLI quality, docs, local dev loop, and error messages. The safest call is to pilot both on a representative task and see which one gets out of your way."
+    },
+    {
+      "q": "Is Kairos a good alternative to Medplum?",
+      "a": "Kairos is in the same category as Medplum (Backend-as-a-Service), so it's a reasonable alternative to evaluate. Kairos is aimed at edge computing teams running fleets of kubernetes devices needing immutable os, while Medplum targets healthcare startups building ehr or patient-facing apps on fhir with modern tooling — that difference should drive the switch decision. Note that Kairos is explicitly not for traditional datacenter workloads or teams without kubernetes experience — if that describes your workload, it's not a viable replacement."
+    }
+  ]
+}

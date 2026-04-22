@@ -1,0 +1,24 @@
+{
+  "intro": "The clearest split between TKC and Quaderno is how they charge: TKC uses custom enterprise pricing (no public tier), while Quaderno uses subscription pricing. TKC is TKC Corporation — accounting, tax and ERP software for Japanese CPAs and SMBs with certified e-tax filing APIs; it fits best for Japanese CPAs and SMBs wanting certified e-tax filing tied to their accounting. Quaderno is Global tax compliance API for calculation, invoicing, and cross-border VAT/GST; it fits best for Indie SaaS and digital product sellers needing compliant VAT/GST invoices via an API. Pick TKC when the job maps to japanese e-tax filing api for cpa accounting software; pick Quaderno when it maps to calculating vat/gst on digital goods across 60+ countries. TKC is not for international companies or modern fintechs seeking api-first tax products. Quaderno is not for larger saas with heavy us sales tax exposure or enterprise audit requirements. Honest trade-offs: TKC is weak for japan-only and cpa-centric, and Quaderno is weak for product pace slowed in recent years — match to your real scenario.",
+  "quick_take": "TKC is for japanese cpas and smbs wanting certified e-tax filing tied t; Quaderno is for indie saas and digital product sellers needing compliant vat; decide based on pricing model.",
+  "verdict_a": "Choose TKC if you want custom enterprise pricing (no public tier) and your workload matches japanese cpas and smbs wanting certified e-tax filing tied to their accounting.",
+  "verdict_b": "Choose Quaderno if you want subscription pricing and your workload matches indie saas and digital product sellers needing compliant vat/gst invoices via an api.",
+  "faq": [
+    {
+      "q": "Is TKC cheaper than Quaderno?",
+      "a": "Quaderno has more transparent pricing; TKC's cost depends on a sales conversation, so a direct comparison is not possible without a quote. TKC uses custom enterprise pricing with no published rates. Quaderno uses subscription pricing with no free tier published."
+    },
+    {
+      "q": "Can I migrate from TKC to Quaderno?",
+      "a": "Migration may be non-trivial: TKC is rated high lock-in (Japanese ERP, deeply integrated). Plan for data export, re-integration of SDKs, and re-testing flows before cutover. Verify exportable formats and feature parity against your live use cases before committing."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Quaderno scores higher on developer experience (4/5 vs 3/5 for TKC). Evaluate against your own stack: read their docs, run a quick SDK spike, and check error handling. Self-assessing with a small prototype beats trusting any rating at face value."
+    },
+    {
+      "q": "Is Quaderno a good alternative to TKC?",
+      "a": "Quaderno sits in the same category as TKC, so it can be a reasonable alternative for overlapping use cases. Quaderno is best fit for indie saas and digital product sellers needing compliant vat/gst invoices via an api. Note: Quaderno is not for larger saas with heavy us sales tax exposure or enterprise audit requirements."
+    }
+  ]
+}

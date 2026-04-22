@@ -1,0 +1,24 @@
+{
+  "intro": "Melos carries low lock-in (OSS monorepo tool) while Develocity is medium (Build scans proprietary, configs portable). Melos is positioned for flutter plugin authors and teams with multi-package dart monorepos, while Develocity leans toward enterprises with large gradle, maven, or bazel monorepos and slow ci. In practice, Dart and Flutter monorepo management tool inspired by Lerna. Handles multi-package versioning, changelog generation, and script execution across Flutter plugin and app workspaces. Build acceleration and analytics platform for Gradle, Maven, Bazel, and sbt monorepos (formerly Gradle Enterprise). Provides remote build caching, build scans, and predictive test selection. Melos runs on free with a free tier; Develocity runs on custom. Melos rates 5/5 on transparency versus 1/5 for Develocity. Listed strengths unique to Melos include purpose-built for dart and flutter monorepos, while Develocity lists dramatic ci and local build speedups via caching on its side. Reach for Melos when you need manage versioning and changelogs for flutter monorepos; reach for Develocity when the job is remote build caching for gradle, maven, and bazel monorepos. The honest trade-off: Melos is not built for non-dart monorepos.",
+  "quick_take": "Melos is for flutter plugin authors and teams with multi-package dart monorepos; Develocity is for enterprises with large gradle, maven, or bazel monorepos and slow ci; decide based on lock-in.",
+  "verdict_a": "Choose Melos if flutter plugin authors and teams with multi-package dart monorepos and you need a free tier to validate fit.",
+  "verdict_b": "Choose Develocity if enterprises with large gradle, maven, or bazel monorepos and slow ci and moderate platform coupling is acceptable.",
+  "faq": [
+    {
+      "q": "Is Melos cheaper than Develocity?",
+      "a": "The listed pricing for Melos is free with a free tier and for Develocity is custom, which doesn't give a clean apples-to-apples cost. Unit economics and plan structure differ enough that only your real volume answers this. Price both against the same workload."
+    },
+    {
+      "q": "Can I migrate from Melos to Develocity?",
+      "a": "Technically you can move between any two tools in the same category, but effort varies: leaving Melos is relatively light thanks to its low lock-in, and onboarding to Develocity involves medium lock-in (Build scans proprietary, configs portable). Plan for data export, re-integration, and a parallel-run window rather than a hard cutover."
+    },
+    {
+      "q": "Which has better developer experience, Melos or Develocity?",
+      "a": "On the 0-5 developer experience score in our data, Develocity rates 5/5 while Melos rates 4/5, giving Develocity the edge. That score is a rough summary; actual day-to-day DX depends on your language, deployment target, and tolerance for edge cases. Prototype both to validate."
+    },
+    {
+      "q": "Is Develocity a good alternative to Melos?",
+      "a": "Develocity is an alternative in the same category, but its stated sweet spot is enterprises with large gradle, maven, or bazel monorepos and slow ci, while Melos's is flutter plugin authors and teams with multi-package dart monorepos. If your job matches Melos's profile more closely, switching to Develocity is a compromise. Use the best-fit match, not brand familiarity, to decide. Note: Develocity is explicitly not for small teams, non-jvm stacks, or budget-constrained startups."
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "intro": "The biggest practical difference between Bearer and Codacy is lock-in. Bearer is rated high lock-in (oss data security scanner), while Codacy is rated medium lock-in (code quality reports exportable). That changes how hard a future migration would be and how much strategy to put into exit planning. Beyond the headline, Bearer carries high lock-in (oss data security scanner) and freemium; Codacy carries medium lock-in (code quality reports exportable) and freemium with paid plans from $0. Bearer is a fit when you are mobile. Codacy is a fit when you are mobile. The honest trade-off: Bearer is explicitly not for hobby projects; Codacy is explicitly not for hobby projects. On the product side, Bearer is described as Security Scanning / Mobile App Sec tool for developers. Specializes in Data Flow Security, and Codacy is described as Security Scanning / Mobile App Sec tool for developers. Specializes in Code Quality. Common Bearer use cases include vulnerability scanning in ci/cd. Common Codacy use cases include vulnerability scanning in ci/cd.",
+  "quick_take": "Bearer is for mobile; Codacy is for mobile; decide on lock-in tolerance.",
+  "verdict_a": "Choose Bearer if you accept higher lock-in in exchange for its specific capabilities and you are mobile.",
+  "verdict_b": "Choose Codacy if its medium lock-in is acceptable for your use case and you are mobile.",
+  "faq": [
+    {
+      "q": "Is Bearer cheaper than Codacy?",
+      "a": "Both tools use freemium pricing. Bearer is listed as freemium; Codacy as freemium with paid plans from $0. Without specific volume and seat assumptions it is not possible to say which is cheaper in general."
+    },
+    {
+      "q": "Can I migrate from Bearer to Codacy?",
+      "a": "Migration from Bearer is harder: Bearer is rated high lock-in (oss data security scanner). You can still move, but expect schema-mapping, export tooling and a longer cutover window. Budget engineering time accordingly."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Both tools tie at 4/5 for developer experience on our scoring. The real difference will show up in your specific workflow, not the headline rating. A one-hour spike on both is the fastest way to decide."
+    },
+    {
+      "q": "Is Codacy a good alternative to Bearer?",
+      "a": "Codacy targets the same best-fit audience as Bearer (mobile). Note that Codacy is explicitly not for hobby projects, so it only replaces Bearer if you are outside that exclusion. The lock-in profile differs (high vs medium), which is the main thing to weigh."
+    }
+  ]
+}

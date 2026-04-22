@@ -1,0 +1,24 @@
+{
+  "intro": "The most concrete split between Adapty and Paddle is the pricing model: Adapty runs on subscription from $0/mo, with a free tier, while Paddle uses usage-based pricing from 5% + $0.50/transaction. That shapes how predictable your monthly spend is and how much of the cost sits in infrastructure versus per-seat or per-event fees. Beyond the headline, Adapty carries medium lock-in (subscription sdk wraps app store/play; purchase data exportable) and subscription from $0/mo, with a free tier; Paddle carries high lock-in (high — mor model = paddle handles everything, fromwith adapts under paddle) and usage-based pricing from 5% + $0.50/transaction. Adapty is a fit when you are saas. Paddle is a fit when you are saas, b2b. The honest trade-off: Adapty is explicitly not for simple projects; Paddle is explicitly not for marketplace/platform payments. On the product side, Adapty is described as In-app subscription SDK for iOS and Android with paywall A/B testing, revenue analytics, and purchase validation, and Paddle is described as Merchant of Record and subscription billing platform for B2B/B2C SaaS with global tax, checkout, and revenue recovery.",
+  "quick_take": "Adapty is for saas; Paddle is for saas, b2b; decide on pricing model.",
+  "verdict_a": "Choose Adapty if you need a free tier to start before committing budget, and your use case matches saas.",
+  "verdict_b": "Choose Paddle if its usage pricing model fits your budget shape better than Adapty's subscription model, and you are saas, b2b.",
+  "faq": [
+    {
+      "q": "Is Adapty cheaper than Paddle?",
+      "a": "Adapty starts at $0/mo; Paddle starts at 5% + $0.50/transaction. On entry price alone that is the comparison, but real cost scales with users, events or volume, which the entry prices do not capture. Check each vendor's full tier list before committing."
+    },
+    {
+      "q": "Can I migrate from Adapty to Paddle?",
+      "a": "Migration from Adapty to Paddle is feasible but not trivial: Adapty has medium lock-in (subscription sdk wraps app store/play; purchase data exportable). Core data can move; integrations and workflow logic need rebuild. Allow for a parallel-run period."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "On our scoring Paddle rates 5/5 for developer experience versus 4/5 for Adapty. That suggests Paddle feels more polished for everyday developer tasks. We still recommend a short hands-on trial on your stack before standardising."
+    },
+    {
+      "q": "Is Paddle a good alternative to Adapty?",
+      "a": "Paddle is pitched at saas, b2b, which overlaps with Adapty's fit (saas) but is not identical. Note that Paddle is explicitly not for marketplace/platform payments, so it only replaces Adapty if you are outside that exclusion. The lock-in profile differs (medium vs high), which is the main thing to weigh."
+    }
+  ]
+}

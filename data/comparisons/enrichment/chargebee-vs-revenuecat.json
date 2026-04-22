@@ -1,0 +1,24 @@
+{
+  "intro": "The most concrete split between Chargebee and RevenueCat is the pricing model: Chargebee runs on hybrid pricing from $599/mo (Performance), with a free tier, while RevenueCat uses usage-based pricing from 1% from MTR above $2,500, with a free tier. That shapes how predictable your monthly spend is and how much of the cost sits in infrastructure versus per-seat or per-event fees. Beyond the headline, Chargebee carries medium lock-in (medium — deep integrations, underandwithon logic) and hybrid pricing from $599/mo (Performance), with a free tier; RevenueCat carries medium lock-in (medium — to on storekit/google play, but subscription state + analytics andin) and usage-based pricing from 1% from MTR above $2,500, with a free tier. Chargebee is a fit when you are saas. RevenueCat is a fit when you are mobile. The honest trade-off: Chargebee is explicitly not for simple projects; RevenueCat is explicitly not for web-only saas. On the product side, Chargebee is described as Subscription and revenue management platform supporting SaaS, e-commerce, and box subscriptions with Stripe and Braintree, and RevenueCat is described as Subscription infrastructure SDK for iOS, Android.",
+  "quick_take": "Chargebee is for saas; RevenueCat is for mobile; decide on pricing model.",
+  "verdict_a": "Choose Chargebee if its hybrid pricing model fits your budget shape better than RevenueCat's usage model, and you are saas.",
+  "verdict_b": "Choose RevenueCat if its usage pricing model fits your budget shape better than Chargebee's hybrid model, and you are mobile.",
+  "faq": [
+    {
+      "q": "Is Chargebee cheaper than RevenueCat?",
+      "a": "Chargebee starts at $599/mo (Performance); RevenueCat starts at 1% from MTR above $2,500. On entry price alone that is the comparison, but real cost scales with users, events or volume, which the entry prices do not capture. Check each vendor's full tier list before committing."
+    },
+    {
+      "q": "Can I migrate from Chargebee to RevenueCat?",
+      "a": "Migration from Chargebee to RevenueCat is feasible but not trivial: Chargebee has medium lock-in (medium — deep integrations, underandwithon logic). Core data can move; integrations and workflow logic need rebuild. Allow for a parallel-run period."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Both tools tie at 5/5 for developer experience on our scoring. The real difference will show up in your specific workflow, not the headline rating. A one-hour spike on both is the fastest way to decide."
+    },
+    {
+      "q": "Is RevenueCat a good alternative to Chargebee?",
+      "a": "RevenueCat is pitched at mobile, which overlaps with Chargebee's fit (saas) but is not identical. Note that RevenueCat is explicitly not for web-only saas, so it only replaces Chargebee if you are outside that exclusion. Pricing models differ (hybrid vs usage), which may shift total cost."
+    }
+  ]
+}

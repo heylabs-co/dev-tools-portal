@@ -1,0 +1,24 @@
+{
+  "intro": "Blender scores higher for developer experience (5/5 vs 4/5). Blender: Free and open-source 3D content creation suite covering modeling, sculpting, rigging, animation, rendering, compositing, and video editing. Widely used for game asset production. PIX: Microsofts free performance tuning and debugging tool for DirectX 12 games on Windows and Xbox. Captures GPU timings, shader debugs, and memory usage across frames. Blender fits indie and small studios needing a complete free 3D pipeline. PIX fits windows and Xbox teams optimizing DirectX 12 renderers and shaders. On our rubric Blender scores 5/5 for developer experience and 5/5 for transparency, while PIX scores 4/5 and 5/5. The honest trade-off: Blender's main drawback — UI still intimidates artists coming from Maya or Max; PIX's — DirectX 12 only, no Vulkan or Metal support. One point in Blender's favour: Free and GPL covers full 3D pipeline end-to-end. For PIX: Free, first-party DX12 debugger from Microsoft. Blender is explicitly not the right pick for AAA studios locked into Maya or Max pipelines with proprietary tools.",
+  "quick_take": "Blender is for indie; PIX is for windows; decide on developer experience.",
+  "verdict_a": "Choose Blender if indie and small studios needing a complete free 3D pipeline, and if a higher DX score (5/5 vs 4/5 in our rubric) nudges the call.",
+  "verdict_b": "Choose PIX if windows and Xbox teams optimizing DirectX 12 renderers and shaders.",
+  "faq": [
+    {
+      "q": "Is Blender cheaper than PIX?",
+      "a": "Both tools use free pricing, so a clean list-price comparison depends on tier details that vary by usage. Check each vendor's current plan page for your expected volume. Neither is structurally cheaper on the model alone."
+    },
+    {
+      "q": "Can I migrate from Blender to PIX?",
+      "a": "Both tools are rated low lock-in, so migration is mostly a matter of re-pointing integrations and re-authoring config. There's no hard data format moat on either side. Expect work proportional to how deeply Blender touches your pipeline, but no vendor-imposed blockers."
+    },
+    {
+      "q": "Which has better developer experience, Blender or PIX?",
+      "a": "Blender scores higher in our rubric (5/5 vs 4/5 for PIX). Transparency is 5/5 for Blender and 5/5 for PIX. DX scores are rubric-based, not benchmarks, so evaluate against your own toolchain."
+    },
+    {
+      "q": "Is PIX a good alternative to Blender?",
+      "a": "They sit in the same category, so yes — PIX is a plausible alternative for many Blender use cases. It fits best when windows and Xbox teams optimizing DirectX 12 renderers and shaders. Skip it if vulkan, Metal, or cross-platform teams needing a unified graphics debugger."
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "intro": "The clearest difference between Backtrace and Airbrake is lock-in — Backtrace has medium lock-in (Crash reports exportable), whereas Airbrake has medium lock-in (Error data exportable; integrations portable to Sentry). Backtrace is described as crash and error management platform for games and native apps with fingerprinting, Minidump support, and Jira integration, and Airbrake is error monitoring and performance tracking for web and backend apps with real-time alerts, backtrace grouping, and deploy tracking. The stated fit for both tools is similar on paper: Backtrace is pitched as crash and error management platform for games and native apps with fingerprinting, Minidump support, and Jira integration, while Airbrake is pitched as error monitoring and performance tracking for web and backend apps with real-time alerts, backtrace grouping, and deploy tracking. On the strengths side, Backtrace is cited for mobile and web apps in production, while Airbrake is cited for prioritizing bug fixes by impact. The honest trade-off: both Backtrace and Airbrake are the wrong call for pre-launch, Simple projects.",
+  "quick_take": "Backtrace and Airbrake both target Crash Reporting; their data-level fit descriptions overlap, so decide based on which fit statement matches your team.",
+  "verdict_a": "Choose Backtrace if you need a Crash Reporting tool and its scope maps to your actual workload.",
+  "verdict_b": "Choose Airbrake if you need a Crash Reporting tool and its scope maps to your actual workload.",
+  "faq": [
+    {
+      "q": "Is Backtrace cheaper than Airbrake?",
+      "a": "Both Backtrace and Airbrake use a freemium model with a free tier, so raw pricing is close on paper. The real cost difference depends on volume, seats, and which paid features you actually need. Check current pricing on each vendor's page before deciding."
+    },
+    {
+      "q": "Can I migrate from Backtrace to Airbrake?",
+      "a": "Migrating from Backtrace to Airbrake is feasible when their scopes overlap, but the work is in re-mapping configuration, data models, and integrations. Moving off Backtrace is harder because of medium lock-in (Crash reports exportable). Plan for a dual-run period so you can validate parity before decommissioning."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Backtrace and Airbrake score the same on developer experience (4/5 each) in our data. Choose based on which workflow, docs style, and CLI ergonomics feel closer to your team's preferences. Trial both in a small project before committing."
+    },
+    {
+      "q": "Is Airbrake a good alternative to Backtrace?",
+      "a": "Airbrake is a reasonable alternative to Backtrace when Airbrake fits mobile. If your use case matches Backtrace's sweet spot — mobile — staying with Backtrace is probably safer. Backtrace itself is not meant for pre-launch, Simple projects, which is often where users start shopping for alternatives."
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "intro": "CircleCI and Buildkite overlap on scores and pricing posture, so the decision comes down to which problem each was actually built for. CircleCI is cloud CI/CD with parallelized builds and extensive language support. Buildkite is self-hosted CI/CD runner with agent-based pipelines on your own infrastructure. Pick CircleCI when the job is conversion optimization and you accept low lock-in; pick Buildkite when it is conversion optimization and you accept low lock-in. The data we have shows CircleCI at fully public pricing and documentation with a polished developer experience, and Buildkite at mostly transparent pricing and docs with a polished developer experience. The honest trade-off: neither is universal — CircleCI is a poor fit for internal projects, and Buildkite is a poor fit for internal projects. Match the pricing model and lock-in level to how your team actually works, not the feature list. If your team already lives inside the ecosystem one of them assumes, that default usually wins — migration is cheap to start and expensive later.",
+  "quick_take": "CircleCI is for cloud CI/CD; Buildkite is for self-hosted CI/CD runner; decide based on how much public info you need.",
+  "verdict_a": "Choose CircleCI if you need public pricing and docs before committing and the work maps to cloud CI/CD with parallelized builds and extensive language support.",
+  "verdict_b": "Choose Buildkite if day-to-day developer ergonomics are a priority and the work lines up with self-hosted CI/CD runner with agent-based pipelines on your own infrastructure.",
+  "faq": [
+    {
+      "q": "Is CircleCI cheaper than Buildkite?",
+      "a": "CircleCI starts at $0.0006/credit (Performance) on a freemium model; Buildkite starts at $2.50 on a freemium model. That makes the sticker comparison depend on usage — a low entry price can get expensive once volume ramps, so price at your actual workload."
+    },
+    {
+      "q": "Can I migrate from CircleCI to Buildkite?",
+      "a": "Migration in either direction is relatively cheap — both CircleCI and Buildkite are rated low lock-in, so your configuration and data should port without a rewrite. The realistic cost is team re-training and pipeline QA, not the tools themselves."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Both CircleCI and Buildkite rate the same on developer experience (5/5). The decision on DX then comes down to taste — which CLI, UI, or workflow matches your team's habits. A short side-by-side trial is the quickest way to tell."
+    },
+    {
+      "q": "Is Buildkite a good alternative to CircleCI?",
+      "a": "Yes — Buildkite is a reasonable alternative to CircleCI for conversion optimization. The practical differences are freemium-vs-freemium billing and low-vs-low lock-in. If those fit your constraints better, treat Buildkite as a credible swap."
+    }
+  ]
+}

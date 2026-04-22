@@ -1,0 +1,24 @@
+{
+  "intro": "The biggest real distinction between Appwrite and ThingsBoard is straightforward: Appwrite uses hybrid pricing with $25/mo/project (Pro), a free tier, enterprise plan available; ThingsBoard uses freemium with paid upgrades. Appwrite sits at hybrid pricing with $25/mo/project (Pro), a free tier, enterprise plan available and carries low lock-in, while ThingsBoard sits at freemium with paid upgrades and carries low lock-in. Appwrite is a fit when you need mobile, teams — typical scenarios include mvp/prototyping speed. ThingsBoard is aimed at teams that need self-hosted iot with device mgmt, telemetry and rule chains, with workloads like open-source iot platform with device management and dashboards as the common case. The honest trade-off: Appwrite is explicitly not for complex custom business logic; ThingsBoard is not intended for small teams wanting a polished managed iot saas with zero ops. On cost specifically, pricing model matters more than sticker price — one workload can make Appwrite cheaper while a different shape flips the answer to ThingsBoard.",
+  "quick_take": "Appwrite is for mobile, teams; ThingsBoard is for teams that need self-hosted iot with; decide based on cost model and budget.",
+  "verdict_a": "Choose Appwrite if your primary workload is mobile, teams and hybrid pricing ($25/mo/project (Pro)) is acceptable.",
+  "verdict_b": "Choose ThingsBoard if your primary workload is teams that need self-hosted iot with device mgmt, telemetry and rule chains and low switching cost matters.",
+  "faq": [
+    {
+      "q": "Is Appwrite cheaper than ThingsBoard?",
+      "a": "Appwrite publishes an entry price of $25/mo/project (Pro); ThingsBoard's entry price is not in our data, so a definitive comparison is not possible without a quote from ThingsBoard."
+    },
+    {
+      "q": "Can I migrate from Appwrite to ThingsBoard?",
+      "a": "Migrating from Appwrite to ThingsBoard is generally feasible because Appwrite has low lock-in, so data and configuration are usually portable. Since both tools sit in the same category (Backend-as-a-Service), the conceptual mapping is closer, but you still need to validate feature parity against your specific workload. Plan migration as a project, not a script: inventory integrations, test on non-production workloads, and keep Appwrite running in parallel until ThingsBoard is verified."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "On our 0–5 developer experience scale, Appwrite scores higher (5/5 vs 4/5 for ThingsBoard). The gap is one point — meaningful but not decisive, since DX is workflow-dependent. Still, score your own tasks: DX is subjective and tied to stack assumptions."
+    },
+    {
+      "q": "Is ThingsBoard a good alternative to Appwrite?",
+      "a": "ThingsBoard is in the same category as Appwrite (Backend-as-a-Service), so it's a reasonable alternative to evaluate. ThingsBoard is aimed at teams that need self-hosted iot with device mgmt, telemetry and rule chains, while Appwrite targets mobile, teams — that difference should drive the switch decision. Note that ThingsBoard is explicitly not for small teams wanting a polished managed iot saas with zero ops — if that describes your workload, it's not a viable replacement."
+    }
+  ]
+}

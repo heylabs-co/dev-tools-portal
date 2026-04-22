@@ -1,0 +1,24 @@
+{
+  "intro": "The biggest real distinction between AppAgent and Faros AI is straightforward: AppAgent is free and open-source, while Faros AI is a commercial product (freemium with a paid tier from $29, enterprise plan available). AppAgent sits at free and open-source and carries low lock-in, while Faros AI sits at freemium with a paid tier from $29, enterprise plan available and carries low lock-in. AppAgent is a fit when you need dev-heavy teams who want to own their aso tooling and data — typical scenarios include automating app store metadata updates via oss ci/cd pipeline. Faros AI is aimed at app store optimization, with workloads like app store optimization as the common case. The honest trade-off: AppAgent is explicitly not for marketers without engineering support or self-hosting appetite; Faros AI is not intended for web-only products. On cost specifically, pricing model matters more than sticker price — one workload can make AppAgent cheaper while a different shape flips the answer to Faros AI.",
+  "quick_take": "AppAgent is for dev-heavy teams who want to own; Faros AI is for app store optimization; decide based on cost model and budget.",
+  "verdict_a": "Choose AppAgent if your primary workload is dev-heavy teams who want to own their aso tooling and data and you want a free/OSS tool with no vendor bill.",
+  "verdict_b": "Choose Faros AI if your primary workload is app store optimization and the free tier plus $29 paid tier fits your budget.",
+  "faq": [
+    {
+      "q": "Is AppAgent cheaper than Faros AI?",
+      "a": "Yes — AppAgent is free and open-source, while Faros AI uses freemium with a paid tier from $29, enterprise plan available. That makes AppAgent unambiguously cheaper on license cost; however, the true cost comparison depends on the ops effort required to run an OSS tool versus paying for Faros AI's managed service."
+    },
+    {
+      "q": "Can I migrate from AppAgent to Faros AI?",
+      "a": "Migrating from AppAgent to Faros AI is generally feasible because AppAgent has low lock-in, so data and configuration are usually portable. Since both tools sit in the same category (App Growth Tooling (ASO)), the conceptual mapping is closer, but you still need to validate feature parity against your specific workload. Plan migration as a project, not a script: inventory integrations, test on non-production workloads, and keep AppAgent running in parallel until Faros AI is verified."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "On our 0–5 developer experience scale, Faros AI scores higher (4/5 vs 3/5 for AppAgent). The gap is one point — meaningful but not decisive, since DX is workflow-dependent. Still, score your own tasks: DX is subjective and tied to stack assumptions."
+    },
+    {
+      "q": "Is Faros AI a good alternative to AppAgent?",
+      "a": "Faros AI is in the same category as AppAgent (App Growth Tooling (ASO)), so it's a reasonable alternative to evaluate. Faros AI is aimed at app store optimization, while AppAgent targets dev-heavy teams who want to own their aso tooling and data — that difference should drive the switch decision. Note that Faros AI is explicitly not for web-only products — if that describes your workload, it's not a viable replacement."
+    }
+  ]
+}

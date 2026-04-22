@@ -1,0 +1,24 @@
+{
+  "intro": "Nium and PortOne both show up under the payments orchestration category, but they solve slightly different jobs. Nium uses custom (sales-led) pricing, while PortOne runs on usage-based pricing. Lock-in is high for Nium and medium for PortOne. Transparency lands at 1/5 versus 3/5. Nium fits teams working on cross-border payouts to 190+ countries for gig platforms, while PortOne is a closer match when the job is aggregating Korean PG providers (KG Inicis, Toss, etc.) via single SDK. Worth noting: Nium is explicitly not for consumer merchants looking primarily for smart card-routing across PSPs; PortOne is explicitly not for EU or US merchants without meaningful Korean traffic. The honest trade-off: Nium trades off on positioned as infra, not merchant orchestration; PortOne trades off on core value concentrated in Korea. On the plus side, Nium highlights global payouts to 190+ countries and 100+ currencies, while PortOne points to dominant position in Korean PG integrations.",
+  "quick_take": "Nium is for cross-border payouts to 190+ countries for; PortOne is for aggregating Korean PG providers (KG Inicis,; decide on pricing model.",
+  "verdict_a": "Choose Nium if your project is cross-border payouts to 190+ countries for gig platforms, you are prepared for a sales-led custom-pricing conversation, you are willing to accept the high lock-in called out in our data.",
+  "verdict_b": "Choose PortOne if your project is aggregating Korean PG providers (KG Inicis, Toss, etc.) via single SDK, medium lock-in is an acceptable trade-off.",
+  "faq": [
+    {
+      "q": "Is Nium cheaper than PortOne?",
+      "a": "Nium uses custom (sales-led) pricing, and PortOne uses usage-based pricing. The pricing models are different, so a direct cheaper-than comparison depends on your volume and usage pattern."
+    },
+    {
+      "q": "Can I migrate from Nium to PortOne?",
+      "a": "Our data puts Nium at high lock-in (global payments infra, deep integration), and PortOne at medium lock-in (usage-based pg orchestration). Expect real migration work out of Nium — plan for data export, re-integration, and downtime testing before cutting over."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Both score 4/5 on developer experience in our data, so there's no clear winner on that axis. PortOne does edge ahead on pricing/docs transparency (3/5 vs 1/5), which can make evaluation faster."
+    },
+    {
+      "q": "Is PortOne a good alternative to Nium?",
+      "a": "PortOne is a reasonable alternative to Nium when your workload leans more toward merchants and platforms selling into South Korea who need one API across KakaoPay, Toss, NaverPay, and more than platforms, marketplaces, and fintechs needing cross-border payouts, cards, and FX via one licensed provider. The pricing model shifts too — Nium is custom (sales-led) pricing, PortOne is usage-based pricing — so expect the cost profile to change as well. One caveat: PortOne is explicitly not for EU or US merchants without meaningful Korean traffic, so check that constraint against your use-case before switching."
+    }
+  ]
+}

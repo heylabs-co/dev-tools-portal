@@ -1,0 +1,24 @@
+{
+  "intro": "The biggest real distinction between Cloudflare and Pkl is straightforward: Pkl is free and open-source, while Cloudflare is a commercial product (freemium with a paid tier from $20/mo (Pro), enterprise plan available). Cloudflare sits at freemium with a paid tier from $20/mo (Pro), enterprise plan available and carries moderate lock-in, while Pkl sits at free and open-source and carries low lock-in. Cloudflare is a fit when you need cdn + edge compute + dns + security in one — typical scenarios include cdn + edge compute + dns + security in one. Pkl is aimed at high-traffic websites and media-heavy apps, with workloads like automated build/test/deploy pipelines as the common case. The honest trade-off: Cloudflare is explicitly not for need full paas for backend apps; Pkl is not intended for apps serving a single geographic region. On cost specifically, pricing model matters more than sticker price — one workload can make Cloudflare cheaper while a different shape flips the answer to Pkl.",
+  "quick_take": "Cloudflare is for cdn + edge compute + dns; Pkl is for high-traffic websites and media-heavy apps; decide based on cost model and budget.",
+  "verdict_a": "Choose Cloudflare if your primary workload is cdn + edge compute + dns + security in one and the free tier plus $20/mo (Pro) paid tier fits your budget.",
+  "verdict_b": "Choose Pkl if your primary workload is high-traffic websites and media-heavy apps and you want a free/OSS tool with no vendor bill.",
+  "faq": [
+    {
+      "q": "Is Cloudflare cheaper than Pkl?",
+      "a": "No — Pkl is free and open-source, while Cloudflare uses freemium with a paid tier from $20/mo (Pro), enterprise plan available. Pkl wins on sticker price, but remember that self-hosting and maintaining OSS adds engineering overhead that Cloudflare's paid plan removes."
+    },
+    {
+      "q": "Can I migrate from Cloudflare to Pkl?",
+      "a": "Migrating from Cloudflare to Pkl is doable but not automatic — Cloudflare carries moderate lock-in. Since both tools sit in the same category (CDN / Edge / Acceleration), the conceptual mapping is closer, but you still need to validate feature parity against your specific workload. Plan migration as a project, not a script: inventory integrations, test on non-production workloads, and keep Cloudflare running in parallel until Pkl is verified."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Our data gives Cloudflare and Pkl the same developer experience score (5/5), so neither has a clear edge on DX by that measure. The differentiator is usually how each tool fits your workflow — things like CLI quality, docs, local dev loop, and error messages. The safest call is to pilot both on a representative task and see which one gets out of your way."
+    },
+    {
+      "q": "Is Pkl a good alternative to Cloudflare?",
+      "a": "Pkl is in the same category as Cloudflare (CDN / Edge / Acceleration), so it's a reasonable alternative to evaluate. Pkl is aimed at high-traffic websites and media-heavy apps, while Cloudflare targets cdn + edge compute + dns + security in one — that difference should drive the switch decision. Note that Pkl is explicitly not for apps serving a single geographic region — if that describes your workload, it's not a viable replacement."
+    }
+  ]
+}

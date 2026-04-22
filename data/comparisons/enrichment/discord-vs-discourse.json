@@ -1,0 +1,24 @@
+{
+  "intro": "Discord and Discourse solve adjacent community problems in opposite ways. Discord is a freemium real-time voice, video and text platform optimised for chat, with a powerful roles and permissions model and a rich bot and REST API ecosystem; Discourse is an open-source, self-hostable forum platform optimised for long-form, SEO-indexed discussion with trust levels. The clearest real distinction is content visibility and structure: Discord content lives behind a login and is weak for SEO, while Discourse is built around public, indexable threads and plays well with search engines. Discord fits dev, gaming and creator communities that live on real-time chat and want bots routing support. Discourse fits open-source projects and brands that want a searchable knowledge base and formal customer forum. Both score 5 for DX and 5 for transparency. Discord is medium lock-in (partial data export via API); Discourse is low lock-in (OSS, self-hostable). You trade real-time energy for durable indexable threads - and vice versa.",
+  "quick_take": "Discord is for real-time chat-first communities; Discourse is for SEO-indexed long-form forums; decide based on whether you want chat energy or searchable knowledge.",
+  "verdict_a": "Choose Discord if your community is chat- and voice-first, you need bot-driven routing, and you can accept that content is login-gated and not SEO-indexed.",
+  "verdict_b": "Choose Discourse if you want SEO-friendly long-form discussion threads with trust levels, an open-source self-hostable stack, and webhook and REST API hooks.",
+  "faq": [
+    {
+      "q": "Is Discord cheaper than Discourse?",
+      "a": "Both are freemium with generous free tiers. Discord's free tier scales remarkably well for chat. Discourse is free to self-host (you pay for infrastructure and maintenance) and has hosted plans whose pricing is flagged as creeping up fast. For pure server cost, Discord is close to free; for an owned hosted forum, self-hosted Discourse is cheapest once you absorb ops."
+    },
+    {
+      "q": "Can I migrate from Discord to Discourse?",
+      "a": "Discord is rated medium lock-in with partial data exportable via API; Discourse is rated low lock-in as an OSS self-hostable forum. You can pull message history from Discord via its API, but rethreading real-time chat into forum topics is a redesign more than a migration. Moving Discourse content out is straightforward via its own exports."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Both score 5 for DX. Discord's strength is the bot and REST API ecosystem plus a powerful permission model. Discourse's strength is a solid REST API, webhooks and a mature plugin ecosystem. The DX tie reflects that each is best-in-class for its own modality."
+    },
+    {
+      "q": "Is Discourse a good alternative to Discord?",
+      "a": "Only partially. Discord's best_for is dev, gaming and creator communities prioritising real-time voice and chat; its not_for is teams wanting searchable SEO-indexed knowledge - which is exactly Discourse's best_for. Discourse's own not_for is teams needing real-time chat or zero-ops managed setups. They complement more than substitute; many communities run both."
+    }
+  ]
+}

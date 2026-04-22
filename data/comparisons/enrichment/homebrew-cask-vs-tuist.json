@@ -1,0 +1,24 @@
+{
+  "intro": "The biggest real distinction between Homebrew Cask and Tuist is straightforward: Homebrew Cask is free and open-source, while Tuist is a commercial product (freemium with paid upgrades). Homebrew Cask sits at free and open-source and carries low lock-in, while Tuist sits at freemium with paid upgrades and carries low lock-in. Homebrew Cask is a fit when you need mac developers bootstrapping machines or keeping dev tools consistent across team — typical scenarios include install macos gui apps via brew install --cask in ci. Tuist is aimed at ios teams with many modules and long xcode build times, with workloads like xcode project generation to avoid .xcodeproj merge conflicts as the common case. The honest trade-off: Homebrew Cask is explicitly not for end-users wanting signed, sandboxed app store updates; Tuist is not intended for small apps with one or two targets where vanilla xcode is fine. On cost specifically, pricing model matters more than sticker price — one workload can make Homebrew Cask cheaper while a different shape flips the answer to Tuist.",
+  "quick_take": "Homebrew Cask is for mac developers bootstrapping machines or keeping; Tuist is for ios teams with many modules and; decide based on cost model and budget.",
+  "verdict_a": "Choose Homebrew Cask if your primary workload is mac developers bootstrapping machines or keeping dev tools consistent across team and you want a free/OSS tool with no vendor bill.",
+  "verdict_b": "Choose Tuist if your primary workload is ios teams with many modules and long xcode build times and low switching cost matters.",
+  "faq": [
+    {
+      "q": "Is Homebrew Cask cheaper than Tuist?",
+      "a": "Yes — Homebrew Cask is free and open-source, while Tuist uses freemium with paid upgrades. That makes Homebrew Cask unambiguously cheaper on license cost; however, the true cost comparison depends on the ops effort required to run an OSS tool versus paying for Tuist's managed service."
+    },
+    {
+      "q": "Can I migrate from Homebrew Cask to Tuist?",
+      "a": "Migrating from Homebrew Cask to Tuist is generally feasible because Homebrew Cask has low lock-in, so data and configuration are usually portable. Since both tools sit in the same category (CI/CD for Applications), the conceptual mapping is closer, but you still need to validate feature parity against your specific workload. Plan migration as a project, not a script: inventory integrations, test on non-production workloads, and keep Homebrew Cask running in parallel until Tuist is verified."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Our data gives Homebrew Cask and Tuist the same developer experience score (5/5), so neither has a clear edge on DX by that measure. The differentiator is usually how each tool fits your workflow — things like CLI quality, docs, local dev loop, and error messages. The safest call is to pilot both on a representative task and see which one gets out of your way."
+    },
+    {
+      "q": "Is Tuist a good alternative to Homebrew Cask?",
+      "a": "Tuist is in the same category as Homebrew Cask (CI/CD for Applications), so it's a reasonable alternative to evaluate. Tuist is aimed at ios teams with many modules and long xcode build times, while Homebrew Cask targets mac developers bootstrapping machines or keeping dev tools consistent across team — that difference should drive the switch decision. Note that Tuist is explicitly not for small apps with one or two targets where vanilla xcode is fine — if that describes your workload, it's not a viable replacement."
+    }
+  ]
+}

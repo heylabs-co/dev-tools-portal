@@ -1,0 +1,24 @@
+{
+  "intro": "The biggest practical difference between Pest and Mockito is lock-in. Pest is rated low lock-in (open source php testing framework), while Mockito is rated high lock-in (free oss java mocking). That changes how hard a future migration would be and how much strategy to put into exit planning. Beyond the headline, Pest carries low lock-in (open source php testing framework) and free and open-source; Mockito carries high lock-in (free oss java mocking) and free and open-source. Pest is a fit when you are laravel and modern php teams who want readable, expressive test syntax. Mockito is a fit when you are java teams doing any real unit testing on non-trivial codebases. The honest trade-off: Pest is explicitly not for legacy php codebases deeply coupled to phpunit's xunit style; Mockito is explicitly not for kotlin-first teams who will be happier with mockk. On the product side, Pest is described as Elegant PHP testing framework with expressive it()/test() syntax built on top of PHPUnit, adding architecture tests, mutation testing and browser testing via Playwright, and Mockito is described as Most popular mocking.",
+  "quick_take": "Pest: laravel and modern php teams who want re; Mockito: java teams doing any real unit testing o; decide on lock-in tolerance.",
+  "verdict_a": "Choose Pest if minimizing lock-in matters and you accept its stated trade-offs for laravel and modern php teams who want readable, expressive test syntax.",
+  "verdict_b": "Choose Mockito if you accept higher lock-in in exchange for its specific capabilities and you are java teams doing any real unit testing on non-trivial codebases.",
+  "faq": [
+    {
+      "q": "Is Pest cheaper than Mockito?",
+      "a": "Both tools use free pricing. Pest is listed as free and open-source; Mockito as free and open-source. Without specific volume and seat assumptions it is not possible to say which is cheaper in general."
+    },
+    {
+      "q": "Can I migrate from Pest to Mockito?",
+      "a": "Migration paths between Pest and Mockito depend on the specific data and integrations. Neither vendor publishes a ready import tool for the other. Expect a custom export-transform-import exercise."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Both tools tie at 5/5 for developer experience on our scoring. The real difference will show up in your specific workflow, not the headline rating. A one-hour spike on both is the fastest way to decide."
+    },
+    {
+      "q": "Is Mockito a good alternative to Pest?",
+      "a": "Mockito is pitched at java teams doing any real unit testing on non-trivial codebases, which overlaps with Pest's fit (laravel and modern php teams who want readable, expressive test syntax) but is not identical. Note that Mockito is explicitly not for kotlin-first teams who will be happier with mockk, so it only replaces Pest if you are outside that exclusion. The lock-in profile differs (low vs high), which is the main thing to weigh."
+    }
+  ]
+}

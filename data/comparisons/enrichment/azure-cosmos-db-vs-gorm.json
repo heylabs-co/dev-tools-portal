@@ -1,0 +1,24 @@
+{
+  "intro": "Azure Cosmos DB and GORM diverge first on pricing model: Azure Cosmos DB uses subscription pricing with a free tier, GORM uses free pricing with a free tier. Everything else flows from that commercial choice. Azure Cosmos DB is built for apps, global and is not a fit for simple, offline projects. GORM is built for mobile and is not a fit for hobby projects. On the scoring side, Azure Cosmos DB rates 4/5 for developer experience and 4/5 for transparency; GORM rates 5/5 and 5/5 respectively. The honest trade-off: with Azure Cosmos DB you accept that simple key-value storage needs, while GORM comes with the reality that manual deployment is sufficient. Neither side is free. Azure Cosmos DB's headline strength in the data is that apps needing managed database. GORM's headline strength is that automated build/test/deploy pipelines. Read each side's best-for and not-for fields carefully before you pick; the shape of your team and workflow matters more than any single score.",
+  "quick_take": "Azure Cosmos DB is for apps, global; GORM is for mobile; decide based on pricing model.",
+  "verdict_a": "Choose Azure Cosmos DB if you are apps, global and a subscription pricing model fits how you buy.",
+  "verdict_b": "Choose GORM if you are mobile and a free pricing model fits how you buy.",
+  "faq": [
+    {
+      "q": "Is Azure Cosmos DB cheaper than GORM?",
+      "a": "Azure Cosmos DB uses a subscription model, while GORM uses a free model, and both publish a free tier. We don't have per-seat numbers in this dataset, so 'cheaper' depends on volume. Price both on your actual usage before deciding."
+    },
+    {
+      "q": "Can I migrate from Azure Cosmos DB to GORM?",
+      "a": "Azure Cosmos DB has low lock-in (multi-model but azure-bound); GORM has low lock-in (oss go orm). Migration effort scales with how much state and automation you've built in Azure Cosmos DB; plan for data export, config rebuild, and a parallel-run period before cutting over."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "In our data, GORM scores 5/5 for developer experience versus 4/5 for Azure Cosmos DB. That said, DX is subjective; the Azure Cosmos DB score may still be acceptable if its feature fit is stronger for your use case."
+    },
+    {
+      "q": "Is GORM a good alternative to Azure Cosmos DB?",
+      "a": "GORM is built for mobile and explicitly not for hobby projects, so it's a fit only if your workflow matches its stated audience. If you were using Azure Cosmos DB for apps, global, the switch is reasonable; outside that scope, look elsewhere."
+    }
+  ]
+}

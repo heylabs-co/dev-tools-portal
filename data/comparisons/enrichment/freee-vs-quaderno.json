@@ -1,0 +1,24 @@
+{
+  "intro": "The clearest split between Freee and Quaderno is vendor lock-in: Freee is rated high (JP accounting platform), while Quaderno is rated medium (Tax API, data exportable). Freee is Japans cloud accounting, payroll and invoicing platform with open APIs for JP tax compliance (consumption tax, e-invoice); it fits best for Japanese startups and SMBs wanting unified accounting, payroll and invoicing with API access. Quaderno is Global tax compliance API for calculation, invoicing, and cross-border VAT/GST; it fits best for Indie SaaS and digital product sellers needing compliant VAT/GST invoices via an API. Pick Freee when the job maps to japan consumption tax and e-invoice (jp pint) compliance via rest api; pick Quaderno when it maps to calculating vat/gst on digital goods across 60+ countries. Freee is not for companies operating outside japan or needing multi-country consolidation. Quaderno is not for larger saas with heavy us sales tax exposure or enterprise audit requirements.",
+  "quick_take": "Freee is for japanese startups and smbs wanting unified accounting, payro; Quaderno is for indie saas and digital product sellers needing compliant vat; decide based on lock-in tolerance.",
+  "verdict_a": "Choose Freee if high lock-in (JP accounting platform) is acceptable and you need japanese startups and smbs wanting unified accounting, payroll and invoicing with api access.",
+  "verdict_b": "Choose Quaderno if medium lock-in (Tax API, data exportable) is acceptable and you need indie saas and digital product sellers needing compliant vat/gst invoices via an api.",
+  "faq": [
+    {
+      "q": "Is Freee cheaper than Quaderno?",
+      "a": "A direct comparison depends on your usage profile and which pricing model fits better. Freee uses subscription pricing with no free tier published. Quaderno uses subscription pricing with no free tier published."
+    },
+    {
+      "q": "Can I migrate from Freee to Quaderno?",
+      "a": "Migration may be non-trivial: Freee is rated high lock-in (JP accounting platform). Plan for data export, re-integration of SDKs, and re-testing flows before cutover. Verify exportable formats and feature parity against your live use cases before committing."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Quaderno scores higher on developer experience (4/5 vs 3/5 for Freee). Evaluate against your own stack: read their docs, run a quick SDK spike, and check error handling. Self-assessing with a small prototype beats trusting any rating at face value."
+    },
+    {
+      "q": "Is Quaderno a good alternative to Freee?",
+      "a": "Quaderno sits in the same category as Freee, so it can be a reasonable alternative for overlapping use cases. Quaderno is best fit for indie saas and digital product sellers needing compliant vat/gst invoices via an api. Note: Quaderno is not for larger saas with heavy us sales tax exposure or enterprise audit requirements."
+    }
+  ]
+}

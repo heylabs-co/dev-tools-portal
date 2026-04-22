@@ -1,0 +1,24 @@
+{
+  "intro": "NATS exposes a free tier while Postmark starts at $15/mo (10K emails). NATS is positioned for apps sending transactional notifications at scale, while Postmark leans toward transactional emails (receipts, alerts). In practice, NATS — Messaging API (Email / SMS / Voice) tool for developers. Specializes in message queue. Postmark — Fast transactional email delivery API focused on inbox placement with detailed bounce analytics. Listed strengths unique to NATS include multi-channel delivery (email, sms, voice) from one api, while Postmark lists transactional emails (receipts, alerts) on its side. Both tools surface overlapping when-to-use scenarios, including transactional emails (receipts, alerts). The honest trade-off: NATS is not built for small projects with minimal communication needs, and Postmark is not the right call for internal projects, so neither is a universal default. Transparency scores land at 5/5 for NATS and 5/5 for Postmark, which reflects how openly each tool documents pricing, limits, and terms.",
+  "quick_take": "NATS is for apps sending transactional notifications at scale; Postmark is for transactional emails (receipts, alerts); decide based on pricing model.",
+  "verdict_a": "Choose NATS if apps sending transactional notifications at scale and you need a free tier to validate fit.",
+  "verdict_b": "Choose Postmark if transactional emails (receipts, alerts) and the $15/mo (10K emails) entry price fits your budget.",
+  "faq": [
+    {
+      "q": "Is NATS cheaper than Postmark?",
+      "a": "NATS has a free tier and Postmark starts at $15/mo (10K emails), so at the lowest end NATS is effectively cheaper. Once you exceed the free limits, the comparison depends on per-unit rates not published here. Price against your actual send or usage volume."
+    },
+    {
+      "q": "Can I migrate from NATS to Postmark?",
+      "a": "Technically you can move between any two tools in the same category, but effort varies: leaving NATS is relatively light thanks to its low lock-in, and onboarding to Postmark should be straightforward given its low lock-in. Plan for data export, re-integration, and a parallel-run window rather than a hard cutover."
+    },
+    {
+      "q": "Which has better developer experience, NATS or Postmark?",
+      "a": "Both NATS and Postmark score 5/5 on developer experience in our data, so there's no clear winner on that axis alone. The real differentiator usually lands in SDK fit for your language, error handling, and docs depth. A half-day integration spike tells you more than the score."
+    },
+    {
+      "q": "Is Postmark a good alternative to NATS?",
+      "a": "Postmark is an alternative in the same category, but its stated sweet spot is transactional emails (receipts, alerts), while NATS's is apps sending transactional notifications at scale. If your job matches NATS's profile more closely, switching to Postmark is a compromise. Use the best-fit match, not brand familiarity, to decide. Note: Postmark is explicitly not for internal projects."
+    }
+  ]
+}

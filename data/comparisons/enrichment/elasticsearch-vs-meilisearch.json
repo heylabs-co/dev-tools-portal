@@ -1,0 +1,24 @@
+{
+  "intro": "The clearest split is that Elasticsearch has a free tier while Meilisearch does not. Elasticsearch is Distributed full-text search and analytics engine built on Apache Lucene with a REST API; Meilisearch is Open-source fast search engine with typo-tolerance, filters, and a simple REST API. The data points Elasticsearch at e-commerce product search and documentation/knowledge base search, and Meilisearch at e-commerce product search and documentation/knowledge base search. Pricing: Elasticsearch is subscription from $95/mo (Standard Cloud); Meilisearch is hybrid from $30/mo (Build, 50K searches). Lock-in is low for Elasticsearch and low for Meilisearch, with DX at 5/5 vs 5/5 and transparency at 4/5 vs 4/5. On listed strengths, Elasticsearch emphasises e-commerce product search and documentation/knowledge base search, and Meilisearch emphasises e-commerce product search and documentation/knowledge base search. Both offer an enterprise tier for larger rollouts. Honest trade-off: neither fits simple projects, so if that is your context, look elsewhere; otherwise pick on the pivotal factor above and the DX score that matters most to your team.",
+  "quick_take": "Elasticsearch is for e-commerce; Meilisearch is for e-commerce; decide based on whether a free tier matters.",
+  "verdict_a": "Choose Elasticsearch if you want to start on a free tier before paying and your workload matches e-commerce. Skip it if your context is simple projects.",
+  "verdict_b": "Choose Meilisearch if starting on a paid subscription upfront is acceptable and your workload matches e-commerce. Skip it if your context is simple projects.",
+  "faq": [
+    {
+      "q": "Is Elasticsearch cheaper than Meilisearch?",
+      "a": "Listed entry pricing is $95/mo (Standard Cloud) for Elasticsearch and $30/mo (Build, 50K searches) for Meilisearch. Elasticsearch offers a free tier while Meilisearch does not, so initial cost favors Elasticsearch. Total cost at scale depends on usage and plan details that are not in this dataset, so confirm with each vendor."
+    },
+    {
+      "q": "Can I migrate from Elasticsearch to Meilisearch?",
+      "a": "Elasticsearch is tagged with low lock-in (low-medium — open-source (elastic license 2.0), but complex setup). Meilisearch is tagged with low lock-in (low — open-source, self-hosted). Both sides are low lock-in, so a migration is feasible but still needs planning around data export and SDK rewrites."
+    },
+    {
+      "q": "Which has better developer experience, Elasticsearch or Meilisearch?",
+      "a": "Both are rated 5/5 for developer experience in this dataset. With equal scores, the choice comes down to the specific SDK surface and docs you will use day to day. Run a short spike on each before deciding."
+    },
+    {
+      "q": "Is Meilisearch a good alternative to Elasticsearch?",
+      "a": "Yes for teams whose workload matches e-commerce, since both list the same fit. Meilisearch is flagged as not for simple projects, so confirm your context does not fall there. Note that moving from Elasticsearch to Meilisearch means leaving a free tier behind."
+    }
+  ]
+}

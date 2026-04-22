@@ -1,0 +1,24 @@
+{
+  "intro": "Backblaze B2 enters at $0 against Azure Blob Storage at $1. Both tools position themselves for image/video heavy applications, so the decision rarely comes down to surface features. In practice, Backblaze B2 — S3-compatible object storage at $0.006/GB with free egress to Cloudflare CDN partners. Azure Blob Storage — Microsoft's object storage with hot, cool, and archive tiers, WORM policies, and geo-redundancy. Backblaze B2 rates 5/5 on transparency versus 4/5 for Azure Blob Storage. Both tools list image/video heavy applications as a headline strength, which is why pricing and lock-in usually decide the call. Both tools surface overlapping when-to-use scenarios, including image/video heavy applications. The honest trade-off: Backblaze B2 is not built for small projects, and Azure Blob Storage is not the right call for small projects, so neither is a universal default. Transparency scores land at 5/5 for Backblaze B2 and 4/5 for Azure Blob Storage, which reflects how openly each tool documents pricing, limits, and terms.",
+  "quick_take": "Backblaze B2 is for image/video heavy applications; Azure Blob Storage overlaps on the same job; decide based on pricing model.",
+  "verdict_a": "Choose Backblaze B2 if image/video heavy applications and the $0 entry price fits your budget.",
+  "verdict_b": "Choose Azure Blob Storage if image/video heavy applications and the $1 entry price fits your budget.",
+  "faq": [
+    {
+      "q": "Is Backblaze B2 cheaper than Azure Blob Storage?",
+      "a": "Based on the listed entry prices, yes: Backblaze B2 starts at $0 while Azure Blob Storage starts at $1. Actual monthly cost depends on volume and plan tier, so model your real usage before switching. Enterprise quotes can reshuffle the comparison entirely."
+    },
+    {
+      "q": "Can I migrate from Backblaze B2 to Azure Blob Storage?",
+      "a": "Technically you can move between any two tools in the same category, but effort varies: leaving Backblaze B2 is moderate effort at medium lock-in (S3-compatible, portable), and onboarding to Azure Blob Storage involves medium lock-in (Object storage portable via tools). Plan for data export, re-integration, and a parallel-run window rather than a hard cutover."
+    },
+    {
+      "q": "Which has better developer experience, Backblaze B2 or Azure Blob Storage?",
+      "a": "Both Backblaze B2 and Azure Blob Storage score 4/5 on developer experience in our data, so there's no clear winner on that axis alone. The real differentiator usually lands in SDK fit for your language, error handling, and docs depth. A half-day integration spike tells you more than the score."
+    },
+    {
+      "q": "Is Azure Blob Storage a good alternative to Backblaze B2?",
+      "a": "Yes, Azure Blob Storage targets the same job Backblaze B2 does — image/video heavy applications — so functionally it slots in as an alternative. Pricing model (subscription from $1 vs subscription from $0) and lock-in (medium lock-in (Object storage portable via tools) vs medium lock-in (S3-compatible, portable)) usually decide which is the better fit. Validate on your actual workload. Note: Azure Blob Storage is explicitly not for small projects."
+    }
+  ]
+}

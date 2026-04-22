@@ -1,0 +1,24 @@
+{
+  "intro": "The clearest difference between Fork and Bitbucket is pricing — Fork is subscription (no free tier), while Bitbucket is freemium (has a free tier). Beyond that, lock-in — Fork has low lock-in (Git GUI, no data lock-in), whereas Bitbucket has low lock-in (Git hosting, fully portable via clone). The stated fit for both tools is similar on paper: Fork is pitched as CI/CD for Applications tool for developers. Specializes in Git GUI Client, while Bitbucket is pitched as CI/CD for Applications tool for developers. Specializes in Git Hosting. On the strengths side, Fork is cited for Automated build/test/deploy pipelines, while Bitbucket is cited for team collaboration on code. The honest trade-off: both Fork and Bitbucket are the wrong call for hobby projects. Choosing between them should come down to the constraint that actually binds your workflow, not surface-level overlap. On developer experience the data shows Fork at 4/5 and Bitbucket at 5/5, with transparency at 4/5 and 5/5 respectively.",
+  "quick_take": "Fork and Bitbucket both target CRM / Lifecycle Automation; their data-level fit descriptions overlap, so decide based on pricing model.",
+  "verdict_a": "Choose Fork if you need a CRM / Lifecycle Automation tool and a subscription (no free tier) pricing shape fits your budget better than freemium (has a free tier).",
+  "verdict_b": "Choose Bitbucket if you need a CRM / Lifecycle Automation tool and a freemium (has a free tier) pricing shape fits your budget better than subscription (no free tier).",
+  "faq": [
+    {
+      "q": "Is Fork cheaper than Bitbucket?",
+      "a": "Fork is subscription, while Bitbucket is freemium with a free tier, so the cheaper option depends on your usage shape. Listed pricing pages usually change, so check both directly before committing. For small teams, the free-tier limits often matter more than headline prices."
+    },
+    {
+      "q": "Can I migrate from Fork to Bitbucket?",
+      "a": "Migrating from Fork to Bitbucket is feasible when their scopes overlap, but the work is in re-mapping configuration, data models, and integrations. Fork has low lock-in, so exporting state is typically straightforward. Plan for a dual-run period so you can validate parity before decommissioning."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "On our developer-experience score, Bitbucket is rated 5/5 and Fork 4/5, so Bitbucket edges ahead. Scores like this smooth over real differences in docs, CLI feel, and SDK quality, so treat them as a starting point. Spend an afternoon in each before relying on the number."
+    },
+    {
+      "q": "Is Bitbucket a good alternative to Fork?",
+      "a": "Bitbucket is a reasonable alternative to Fork when Bitbucket fits mobile. If your use case matches Fork's sweet spot — mobile — staying with Fork is probably safer. Fork itself is not meant for hobby projects, which is often where users start shopping for alternatives."
+    }
+  ]
+}

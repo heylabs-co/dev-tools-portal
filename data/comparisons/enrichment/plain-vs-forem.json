@@ -1,0 +1,24 @@
+{
+  "intro": "The biggest real split between Plain and Forem is lock-in posture: Plain carries medium lock-in (seat-based, data exportable via api), while Forem carries low lock-in (oss community platform). That single fact shapes the rest of the comparison. Plain is built for apps and is not a fit for products without customer support. Forem is built for engineering-led teams wanting a self-hosted dev.to-style community with full control and is not a fit for non-technical teams or anyone wanting a managed, zero-ops community platform. On the scoring side, Plain rates 4/5 for developer experience and 4/5 for transparency; Forem rates 4/5 and 5/5 respectively. The honest trade-off: with Plain you accept that products without customer support, while Forem comes with the reality that self-host requires real rails ops. Neither side is free. Plain's headline strength in the data is that in-app customer support chat. Forem's headline strength is that powers dev.to, proven at scale.",
+  "quick_take": "Plain is for apps; Forem is for engineering-led teams wanting a self-hosted dev.to-style community with full control; decide based on lock-in tolerance.",
+  "verdict_a": "Choose Plain if you are apps and can accept medium lock-in (seat-based, data exportable via api).",
+  "verdict_b": "Choose Forem if you are engineering-led teams wanting a self-hosted dev.to-style community with full control and need low lock-in (oss community platform).",
+  "faq": [
+    {
+      "q": "Is Plain cheaper than Forem?",
+      "a": "Plain uses a seat model, while Forem uses a free model; Forem has a free tier and Plain does not. We don't have per-seat numbers in this dataset, so 'cheaper' depends on volume. Price both on your actual usage before deciding."
+    },
+    {
+      "q": "Can I migrate from Plain to Forem?",
+      "a": "Plain has medium lock-in (seat-based, data exportable via api); Forem has low lock-in (oss community platform). Migration effort scales with how much state and automation you've built in Plain; plan for data export, config rebuild, and a parallel-run period before cutting over."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Both Plain and Forem score 4/5 on developer experience in our data, so DX isn't the tiebreaker here. Decide on fit, pricing, or lock-in instead."
+    },
+    {
+      "q": "Is Forem a good alternative to Plain?",
+      "a": "Forem is built for engineering-led teams wanting a self-hosted dev.to-style community with full control and explicitly not for non-technical teams or anyone wanting a managed, zero-ops community platform, so it's a fit only if your workflow matches its stated audience. If you were using Plain for apps, the switch is reasonable; outside that scope, look elsewhere."
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "intro": "SendGrid enters at $19.95/mo (Essentials, 50K emails) against Resend at $20/mo (Pro, 50K emails). Both tools position themselves for transactional emails (receipts, alerts), so the decision rarely comes down to surface features. In practice, SendGrid — High-volume transactional and marketing email API with deliverability tools and an email editor. Resend — Developer-first transactional email API with React Email support, webhooks, and domain management. Resend rates 5/5 on transparency versus 4/5 for SendGrid. Both tools list transactional emails (receipts, alerts) as a headline strength, which is why pricing and lock-in usually decide the call. Both tools surface overlapping when-to-use scenarios, including transactional emails (receipts, alerts). The honest trade-off: SendGrid is not built for internal projects, and Resend is not the right call for internal projects, so neither is a universal default. Transparency scores land at 4/5 for SendGrid and 5/5 for Resend, which reflects how openly each tool documents pricing, limits, and terms.",
+  "quick_take": "SendGrid is for transactional emails (receipts, alerts); Resend overlaps on the same job; decide based on pricing model.",
+  "verdict_a": "Choose SendGrid if transactional emails (receipts, alerts) and the $19.95/mo (Essentials, 50K emails) entry price fits your budget.",
+  "verdict_b": "Choose Resend if transactional emails (receipts, alerts) and the $20/mo (Pro, 50K emails) entry price fits your budget.",
+  "faq": [
+    {
+      "q": "Is SendGrid cheaper than Resend?",
+      "a": "Based on the listed entry prices, yes: SendGrid starts at $19.95/mo (Essentials, 50K emails) while Resend starts at $20/mo (Pro, 50K emails). Actual monthly cost depends on volume and plan tier, so model your real usage before switching. Enterprise quotes can reshuffle the comparison entirely."
+    },
+    {
+      "q": "Can I migrate from SendGrid to Resend?",
+      "a": "Technically you can move between any two tools in the same category, but effort varies: leaving SendGrid is relatively light thanks to its low lock-in, and onboarding to Resend should be straightforward given its low lock-in. Plan for data export, re-integration, and a parallel-run window rather than a hard cutover."
+    },
+    {
+      "q": "Which has better developer experience, SendGrid or Resend?",
+      "a": "Both SendGrid and Resend score 5/5 on developer experience in our data, so there's no clear winner on that axis alone. The real differentiator usually lands in SDK fit for your language, error handling, and docs depth. A half-day integration spike tells you more than the score."
+    },
+    {
+      "q": "Is Resend a good alternative to SendGrid?",
+      "a": "Yes, Resend targets the same job SendGrid does — transactional emails (receipts, alerts) — so functionally it slots in as an alternative. Pricing model (hybrid from $20/mo (Pro, 50K emails) vs hybrid from $19.95/mo (Essentials, 50K emails)) and lock-in (low lock-in (Low — REST API, SMTP, migration guides from competitors) vs low lock-in (Low-Medium — email API standard, SMTP fallback)) usually decide which is the better fit. Validate on your actual workload. Note: Resend is explicitly not for internal projects."
+    }
+  ]
+}

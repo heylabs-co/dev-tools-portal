@@ -1,0 +1,24 @@
+{
+  "intro": "The biggest practical difference between Mocha and Appium is lock-in. Mocha is rated high lock-in (free oss js test framework), while Appium is rated low lock-in (oss webdriver-based mobile testing). That changes how hard a future migration would be and how much strategy to put into exit planning. Beyond the headline, Mocha carries high lock-in (free oss js test framework) and free and open-source; Appium carries low lock-in (oss webdriver-based mobile testing) and free and open-source. Mocha is a fit when you are legacy node codebases with established mocha+chai+sinon stacks. Appium is a fit when you are mobile. The honest trade-off: Mocha is explicitly not for new projects where vitest offers the same power with far less config; Appium is explicitly not for hobby projects. On the product side, Mocha is described as Feature-rich JavaScript test framework running on Node.js and in the browser, supporting async tests, any assertion library and rich reporters, and Appium is described as OSS cross-platform mobile test automation framework for iOS and Android using WebDriver protocol.",
+  "quick_take": "Mocha is for legacy node codebases with established mocha+chai+sinon stacks; Appium is for mobile; decide on lock-in tolerance.",
+  "verdict_a": "Choose Mocha if you accept higher lock-in in exchange for its specific capabilities and you are legacy node codebases with established mocha+chai+sinon stacks.",
+  "verdict_b": "Choose Appium if minimizing lock-in matters and you accept its stated trade-offs for mobile.",
+  "faq": [
+    {
+      "q": "Is Mocha cheaper than Appium?",
+      "a": "Both tools use free pricing. Mocha is listed as free and open-source; Appium as free and open-source. Without specific volume and seat assumptions it is not possible to say which is cheaper in general."
+    },
+    {
+      "q": "Can I migrate from Mocha to Appium?",
+      "a": "Migration from Mocha is harder: Mocha is rated high lock-in (free oss js test framework). You can still move, but expect schema-mapping, export tooling and a longer cutover window. Budget engineering time accordingly."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Both tools tie at 5/5 for developer experience on our scoring. The real difference will show up in your specific workflow, not the headline rating. A one-hour spike on both is the fastest way to decide."
+    },
+    {
+      "q": "Is Appium a good alternative to Mocha?",
+      "a": "Appium is pitched at mobile, which overlaps with Mocha's fit (legacy node codebases with established mocha+chai+sinon stacks) but is not identical. Note that Appium is explicitly not for hobby projects, so it only replaces Mocha if you are outside that exclusion. The lock-in profile differs (high vs low), which is the main thing to weigh."
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "intro": "PortOne and PaymentsOS both show up under the payments orchestration category, but they solve slightly different jobs. PortOne uses usage-based pricing, while PaymentsOS runs on custom (sales-led) pricing. Both sit at moderate lock-in. Transparency lands at 3/5 versus 1/5. PortOne fits teams working on aggregating Korean PG providers (KG Inicis, Toss, etc.) via single SDK, while PaymentsOS is a closer match when the job is smart routing across multiple PSPs for enterprise merchants. Worth noting: PortOne is explicitly not for EU or US merchants without meaningful Korean traffic; PaymentsOS is explicitly not for dev-first teams expecting modern SDKs, open source, or fast product iteration. The honest trade-off: PortOne trades off on core value concentrated in Korea; PaymentsOS trades off on legacy brand (Zooz) can signal older codebase. On the plus side, PortOne highlights dominant position in Korean PG integrations, while PaymentsOS points to established orchestrator with smart-routing track record. PortOne's documentation also calls out single SDK for 20+ Korean and global PGs. PaymentsOS similarly notes owned by PayU, giving scale and stability.",
+  "quick_take": "PortOne is for aggregating Korean PG providers (KG Inicis,; PaymentsOS is for smart routing across multiple PSPs for; decide on pricing model.",
+  "verdict_a": "Choose PortOne if your project is aggregating Korean PG providers (KG Inicis, Toss, etc.) via single SDK, medium lock-in is an acceptable trade-off.",
+  "verdict_b": "Choose PaymentsOS if your project is smart routing across multiple PSPs for enterprise merchants, you are prepared for a sales-led custom-pricing conversation, medium lock-in is an acceptable trade-off.",
+  "faq": [
+    {
+      "q": "Is PortOne cheaper than PaymentsOS?",
+      "a": "PortOne uses usage-based pricing, and PaymentsOS uses custom (sales-led) pricing. The pricing models are different, so a direct cheaper-than comparison depends on your volume and usage pattern."
+    },
+    {
+      "q": "Can I migrate from PortOne to PaymentsOS?",
+      "a": "Our data puts PortOne at medium lock-in (usage-based pg orchestration), and PaymentsOS at medium lock-in (payment orchestration, psp switchable). Migration is feasible but not trivial — budget time for re-integration, data export, and parallel running before cutover."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Both score 4/5 on developer experience in our data, so there's no clear winner on that axis. PortOne does edge ahead on pricing/docs transparency (3/5 vs 1/5), which can make evaluation faster."
+    },
+    {
+      "q": "Is PaymentsOS a good alternative to PortOne?",
+      "a": "PaymentsOS is a reasonable alternative to PortOne when your workload leans more toward global enterprises comfortable with PayU-backed vendors and needing stable multi-PSP routing than merchants and platforms selling into South Korea who need one API across KakaoPay, Toss, NaverPay, and more. The pricing model shifts too — PortOne is usage-based pricing, PaymentsOS is custom (sales-led) pricing — so expect the cost profile to change as well. One caveat: PaymentsOS is explicitly not for dev-first teams expecting modern SDKs, open source, or fast product iteration, so check that constraint against your use-case before switching."
+    }
+  ]
+}

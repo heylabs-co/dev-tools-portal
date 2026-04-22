@@ -1,0 +1,24 @@
+{
+  "intro": "The clearest difference between Sentry Native SDK and Rollbar is pricing — Sentry Native SDK is freemium (has a free tier), while Rollbar is subscription with a free tier. Beyond that, lock-in — Sentry Native SDK has high lock-in (OSS SDK, self-hostable Sentry), whereas Rollbar has low lock-in (Error data exportable). Sentry Native SDK fits Native/C++ teams already using Sentry for their other stacks; Rollbar fits mobile. On the strengths side, Sentry Native SDK is cited for First-class Sentry SDK for C/C++ and native apps, while Rollbar is cited for mobile and web apps in production. The honest trade-off: Sentry Native SDK is the wrong call for teams committed to a different error-tracking vendor; Rollbar is the wrong call for pre-launch, Simple projects; Sentry Native SDK users flag tied to Sentry pricing and ecosystem, and Rollbar users flag Pre-launch/beta apps. Choosing between them should come down to the constraint that actually binds your workflow, not surface-level overlap.",
+  "quick_take": "Sentry Native SDK is for Native/C++ teams already; Rollbar is for mobile; decide based on pricing model.",
+  "verdict_a": "Choose Sentry Native SDK if your use case is Native/C++ teams already using Sentry for their other stacks, and a freemium (has a free tier) pricing shape fits your budget better than subscription with a free tier.",
+  "verdict_b": "Choose Rollbar if your use case is mobile, and a subscription with a free tier pricing shape fits your budget better than freemium (has a free tier).",
+  "faq": [
+    {
+      "q": "Is Sentry Native SDK cheaper than Rollbar?",
+      "a": "Sentry Native SDK is freemium with a free tier, while Rollbar is subscription with a free tier, so the cheaper option depends on your usage shape. Listed pricing pages usually change, so check both directly before committing. For small teams, the free-tier limits often matter more than headline prices."
+    },
+    {
+      "q": "Can I migrate from Sentry Native SDK to Rollbar?",
+      "a": "Migrating from Sentry Native SDK to Rollbar is feasible when their scopes overlap, but the work is in re-mapping configuration, data models, and integrations. Moving off Sentry Native SDK is harder because of high lock-in (OSS SDK, self-hostable Sentry). Plan for a dual-run period so you can validate parity before decommissioning."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "On our developer-experience score, Rollbar is rated 5/5 and Sentry Native SDK 4/5, so Rollbar edges ahead. Scores like this smooth over real differences in docs, CLI feel, and SDK quality, so treat them as a starting point. Spend an afternoon in each before relying on the number."
+    },
+    {
+      "q": "Is Rollbar a good alternative to Sentry Native SDK?",
+      "a": "Rollbar is a reasonable alternative to Sentry Native SDK when Rollbar fits mobile. If your use case matches Sentry Native SDK's sweet spot — Native/C++ teams already using Sentry for their other stacks — staying with Sentry Native SDK is probably safer. Sentry Native SDK itself is not meant for teams committed to a different error-tracking vendor, which is often where users start shopping for alternatives."
+    }
+  ]
+}

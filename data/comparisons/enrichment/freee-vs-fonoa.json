@@ -1,0 +1,24 @@
+{
+  "intro": "The clearest split between Freee and Fonoa is vendor lock-in: Freee is rated high (JP accounting platform), while Fonoa is rated medium (Tax API, standard integration). Freee is Japans cloud accounting, payroll and invoicing platform with open APIs for JP tax compliance (consumption tax, e-invoice); it fits best for Japanese startups and SMBs wanting unified accounting, payroll and invoicing with API access. Fonoa is Global tax automation API for real-time VAT/GST calculation, invoice validation, and e-invoicing compliance in 40+ countries; it fits best for Global. Pick Freee when the job maps to japan consumption tax and e-invoice (jp pint) compliance via rest api; pick Fonoa when it maps to global saas selling to multiple countries. Freee is not for companies operating outside japan or needing multi-country consolidation. Fonoa is not for single-country business. Honest trade-offs: Freee is weak for built for japan — no international coverage, and Fonoa is weak for single-country business — match to your real scenario.",
+  "quick_take": "Freee is for japanese startups and smbs wanting unified accounting, payro; Fonoa is for global; decide based on lock-in tolerance.",
+  "verdict_a": "Choose Freee if high lock-in (JP accounting platform) is acceptable and you need japanese startups and smbs wanting unified accounting, payroll and invoicing with api access.",
+  "verdict_b": "Choose Fonoa if medium lock-in (Tax API, standard integration) is acceptable and you need global.",
+  "faq": [
+    {
+      "q": "Is Freee cheaper than Fonoa?",
+      "a": "A direct comparison depends on your usage profile and which pricing model fits better. Freee uses subscription pricing with no free tier published. Fonoa uses subscription pricing starting at $5."
+    },
+    {
+      "q": "Can I migrate from Freee to Fonoa?",
+      "a": "Migration may be non-trivial: Freee is rated high lock-in (JP accounting platform). Plan for data export, re-integration of SDKs, and re-testing flows before cutover. Verify exportable formats and feature parity against your live use cases before committing."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Fonoa scores higher on developer experience (4/5 vs 3/5 for Freee). Evaluate against your own stack: read their docs, run a quick SDK spike, and check error handling. Self-assessing with a small prototype beats trusting any rating at face value."
+    },
+    {
+      "q": "Is Fonoa a good alternative to Freee?",
+      "a": "Fonoa sits in the same category as Freee, so it can be a reasonable alternative for overlapping use cases. Fonoa is best fit for global. Note: Fonoa is not for single-country business."
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "intro": "The clearest difference between Scoop and fpm is lock-in — Scoop has high lock-in (OSS installer, manifests portable), whereas fpm has low lock-in (OSS package builder CLI). Scoop is described as command-line installer for Windows focused on open-source developer tools — installs to user directory, no admin, and fpm is effing package management — CLI that builds deb, rpm, pacman, snap, pkg, and more from multiple sources. Scoop fits Windows developers installing CLI dev tools without admin or IT involvement; fpm fits teams shipping third-party apps across distros without targeting official repos. On the strengths side, Scoop is cited for installs to user dir, no admin rights needed, while fpm is cited for builds deb, rpm, pacman, snap, and more from one CLI. The honest trade-off: Scoop is the wrong call for IT departments doing enterprise-wide deployments — stick with Chocolatey or WinGet; fpm is the wrong call for apps aiming for inclusion in Debian/Fedora/Ubuntu main archives; Scoop users flag catalog much smaller than Chocolatey, and fpm users flag packages are functional but not 'native-quality'.",
+  "quick_take": "Scoop is for Windows developers installing CLI dev tools; fpm is for teams shipping third-party apps across distros; decide based on lock-in tolerance.",
+  "verdict_a": "Choose Scoop if your use case is Windows developers installing CLI dev tools without admin or IT involvement, and high lock-in is acceptable in exchange for its fit.",
+  "verdict_b": "Choose fpm if your use case is teams shipping third-party apps across distros without targeting official repos, and low lock-in is acceptable in exchange for its fit.",
+  "faq": [
+    {
+      "q": "Is Scoop cheaper than fpm?",
+      "a": "Both Scoop and fpm use a free model with a free tier, so raw pricing is close on paper. The real cost difference depends on volume, seats, and which paid features you actually need. Check current pricing on each vendor's page before deciding."
+    },
+    {
+      "q": "Can I migrate from Scoop to fpm?",
+      "a": "Migrating from Scoop to fpm is feasible when their scopes overlap, but the work is in re-mapping configuration, data models, and integrations. Moving off Scoop is harder because of high lock-in (OSS installer, manifests portable). Plan for a dual-run period so you can validate parity before decommissioning."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Scoop and fpm score the same on developer experience (4/5 each) in our data. Choose based on which workflow, docs style, and CLI ergonomics feel closer to your team's preferences. Trial both in a small project before committing."
+    },
+    {
+      "q": "Is fpm a good alternative to Scoop?",
+      "a": "fpm is a reasonable alternative to Scoop when fpm fits teams shipping third-party apps across distros without targeting official repos. If your use case matches Scoop's sweet spot — Windows developers installing CLI dev tools without admin or IT involvement — staying with Scoop is probably safer. Scoop itself is not meant for IT departments doing enterprise-wide deployments — stick with Chocolatey or WinGet, which is often where users start shopping for alternatives."
+    }
+  ]
+}

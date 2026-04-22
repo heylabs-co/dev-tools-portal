@@ -1,0 +1,24 @@
+{
+  "intro": "Baremetrics and Heap both show up under the product analytics category, but they solve slightly different jobs. Baremetrics starts at $129/mo; Heap starts at $1.7. Lock-in is high for Baremetrics and medium for Heap. Transparency lands at 4/5 versus 3/5. Both tools target understanding user behavior (funnels, retention), so the choice comes down to pricing, lock-in, and operational fit rather than scope. Worth noting: Baremetrics is explicitly not for simple projects. The honest trade-off: Baremetrics trades off on pre-product stage; Heap trades off on pre-product stage. On the plus side, Baremetrics highlights understanding user behavior (funnels, retention). Baremetrics's documentation also calls out data-driven product decisions. For teams evaluating product analytics options today, the decision usually hinges on whether Baremetrics's profile or Heap's profile maps more cleanly to the pricing model, lock-in tolerance, and scale your team can live with. Beyond the headline pitch, a documented Baremetrics use-case is \"Data-driven product decisions\", and a documented Heap use-case is \"Data-driven product decisions\".",
+  "quick_take": "Baremetrics is for understanding user behavior (funnels, retention); Heap is for understanding user behavior (funnels, retention); decide on entry price.",
+  "verdict_a": "Choose Baremetrics if your project is understanding user behavior (funnels, retention), a subscription starting at $129/mo fits your budget, you are willing to accept the high lock-in called out in our data.",
+  "verdict_b": "Choose Heap if your project is understanding user behavior (funnels, retention), a subscription starting at $1.7 fits your budget, medium lock-in is an acceptable trade-off.",
+  "faq": [
+    {
+      "q": "Is Baremetrics cheaper than Heap?",
+      "a": "Baremetrics uses subscription from $129/mo with free tier, and Heap uses subscription from $1.7. On published entry price, Baremetrics lists $129/mo while Heap lists $1.7 — but the real cost at your scale will depend on actual usage, not just the starting tier. Baremetrics offers a free tier; Heap does not."
+    },
+    {
+      "q": "Can I migrate from Baremetrics to Heap?",
+      "a": "Our data puts Baremetrics at high lock-in (analytics derived from stripe), and Heap at medium lock-in (autocapture = proprietary format). Expect real migration work out of Baremetrics — plan for data export, re-integration, and downtime testing before cutting over."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Heap scores 4/5 on developer experience in our data, while Baremetrics scores 3/5, so Heap has the edge on docs and SDK quality by that measure. Still, run a small integration spike on both before deciding — team familiarity with a given SDK style often matters more than a one-point score gap."
+    },
+    {
+      "q": "Is Heap a good alternative to Baremetrics?",
+      "a": "Heap covers a similar scope to Baremetrics — our data lists \"Understanding user behavior (funnels, retention)\" as the best-for on both. One caveat: Heap is explicitly not for simple projects, so check that constraint against your use-case before switching."
+    }
+  ]
+}

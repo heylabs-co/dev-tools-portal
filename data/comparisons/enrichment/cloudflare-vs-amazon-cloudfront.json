@@ -1,0 +1,24 @@
+{
+  "intro": "The biggest real distinction between Cloudflare and Amazon CloudFront is straightforward: Cloudflare is aimed at CDN + edge compute + DNS + security in one, whereas Amazon CloudFront targets Global. Cloudflare sits at freemium with a paid tier from $20/mo (Pro), enterprise plan available and carries moderate lock-in, while Amazon CloudFront sits at freemium with a paid tier from $0/month, enterprise plan available and carries moderate lock-in. Cloudflare is a fit when you need cdn + edge compute + dns + security in one — typical scenarios include cdn + edge compute + dns + security in one. Amazon CloudFront is aimed at global, with workloads like global audience with low latency needs as the common case. The honest trade-off: Cloudflare is explicitly not for need full paas for backend apps; Amazon CloudFront is not intended for internal projects. Neither tool is a drop-in replacement for the other in every scenario — the choice should track your constraints on budget, lock-in, and target workload rather than general popularity.",
+  "quick_take": "Cloudflare is for cdn + edge compute + dns; Amazon CloudFront is for global; decide based on which workload you actually run.",
+  "verdict_a": "Choose Cloudflare if your primary workload is cdn + edge compute + dns + security in one and the free tier plus $20/mo (Pro) paid tier fits your budget.",
+  "verdict_b": "Choose Amazon CloudFront if your primary workload is global and the free tier plus $0/month paid tier fits your budget.",
+  "faq": [
+    {
+      "q": "Is Cloudflare cheaper than Amazon CloudFront?",
+      "a": "It depends on workload shape: Cloudflare lists $20/mo (Pro), while Amazon CloudFront lists $0/month. With different pricing models (freemium vs freemium), the cheaper option flips based on seat count, usage volume, and whether you use the free tier. Do a per-workload estimate rather than comparing headline numbers."
+    },
+    {
+      "q": "Can I migrate from Cloudflare to Amazon CloudFront?",
+      "a": "Migrating from Cloudflare to Amazon CloudFront is doable but not automatic — Cloudflare carries moderate lock-in. Since both tools sit in the same category (CDN / Edge / Acceleration), the conceptual mapping is closer, but you still need to validate feature parity against your specific workload. Plan migration as a project, not a script: inventory integrations, test on non-production workloads, and keep Cloudflare running in parallel until Amazon CloudFront is verified."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "On our 0–5 developer experience scale, Cloudflare scores higher (5/5 vs 4/5 for Amazon CloudFront). The gap is one point — meaningful but not decisive, since DX is workflow-dependent. Still, score your own tasks: DX is subjective and tied to stack assumptions."
+    },
+    {
+      "q": "Is Amazon CloudFront a good alternative to Cloudflare?",
+      "a": "Amazon CloudFront is in the same category as Cloudflare (CDN / Edge / Acceleration), so it's a reasonable alternative to evaluate. Amazon CloudFront is aimed at global, while Cloudflare targets cdn + edge compute + dns + security in one — that difference should drive the switch decision. Note that Amazon CloudFront is explicitly not for internal projects — if that describes your workload, it's not a viable replacement."
+    }
+  ]
+}

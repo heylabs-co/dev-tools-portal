@@ -1,0 +1,24 @@
+{
+  "intro": "The clearest split between Turnkey and Dfns is how they charge: Turnkey uses usage-based pricing, while Dfns uses custom enterprise pricing (no public tier). Turnkey is Wallet infrastructure and key management API using secure enclaves for crypto and fintech apps; it fits best for Fintech and crypto infra teams building custom wallet UX on top. Dfns is MPC wallet-as-a-service API for institutions to create, embed, and manage programmable wallets; it fits best for Institutions, exchanges and fintechs needing programmable custody APIs. Pick Turnkey when the job maps to secure enclave key management api for crypto fintech apps; pick Dfns when it maps to mpc wallet creation api for institutional custody apps. Turnkey is not for product teams wanting a ready-made end-user wallet sdk. Dfns is not for consumer dapps prioritizing social login and embedded ux. Honest trade-offs: Turnkey is weak for primitive-heavy; you build ux on top yourself, and Dfns is weak for enterprise pricing; not friendly for small projects — match to your real scenario.",
+  "quick_take": "Turnkey is for fintech and crypto infra teams building custom wallet ux on ; Dfns is for institutions, exchanges and fintechs needing programmable cu; decide based on pricing model.",
+  "verdict_a": "Choose Turnkey if you want usage-based pricing and your workload matches fintech and crypto infra teams building custom wallet ux on top.",
+  "verdict_b": "Choose Dfns if you want custom enterprise pricing (no public tier) and your workload matches institutions, exchanges and fintechs needing programmable custody apis.",
+  "faq": [
+    {
+      "q": "Is Turnkey cheaper than Dfns?",
+      "a": "Turnkey has more transparent pricing; Dfns's cost depends on a sales conversation, so a direct comparison is not possible without a quote. Turnkey uses usage-based pricing. Dfns uses custom enterprise pricing with no published rates."
+    },
+    {
+      "q": "Can I migrate from Turnkey to Dfns?",
+      "a": "Migration may be non-trivial: Dfns is rated high lock-in (MPC wallet service, custodial lock-in). Plan for data export, re-integration of SDKs, and re-testing flows before cutover. Verify exportable formats and feature parity against your live use cases before committing."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Both score 4/5 on developer experience in our data. Evaluate against your own stack: read their docs, run a quick SDK spike, and check error handling. Self-assessing with a small prototype beats trusting any rating at face value."
+    },
+    {
+      "q": "Is Dfns a good alternative to Turnkey?",
+      "a": "Dfns sits in the same category as Turnkey, so it can be a reasonable alternative for overlapping use cases. Dfns is best fit for institutions, exchanges and fintechs needing programmable custody apis. Note: Dfns is not for consumer dapps prioritizing social login and embedded ux."
+    }
+  ]
+}

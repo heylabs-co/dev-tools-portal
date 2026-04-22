@@ -1,0 +1,24 @@
+{
+  "intro": "The biggest real distinction between Homebrew Cask and Inno Setup is straightforward: Homebrew Cask is aimed at Mac developers bootstrapping machines or keeping dev tools consistent across team., whereas Inno Setup targets Shipping classic Win32 desktop apps with a traditional installer wizard. Homebrew Cask sits at free and open-source and carries low lock-in, while Inno Setup sits at free and open-source and carries low lock-in. Homebrew Cask is a fit when you need mac developers bootstrapping machines or keeping dev tools consistent across team — typical scenarios include install macos gui apps via brew install --cask in ci. Inno Setup is aimed at shipping classic win32 desktop apps with a traditional installer wizard, with workloads like script-driven windows installer creation for desktop apps as the common case. The honest trade-off: Homebrew Cask is explicitly not for end-users wanting signed, sandboxed app store updates; Inno Setup is not intended for teams that need msix, store submission, or modern cross-platform tooling.",
+  "quick_take": "Homebrew Cask is for mac developers bootstrapping machines or keeping; Inno Setup is for shipping classic win32 desktop apps with; decide based on which workload you actually run.",
+  "verdict_a": "Choose Homebrew Cask if your primary workload is mac developers bootstrapping machines or keeping dev tools consistent across team and you want a free/OSS tool with no vendor bill.",
+  "verdict_b": "Choose Inno Setup if your primary workload is shipping classic win32 desktop apps with a traditional installer wizard and you want a free/OSS tool with no vendor bill.",
+  "faq": [
+    {
+      "q": "Is Homebrew Cask cheaper than Inno Setup?",
+      "a": "Both Homebrew Cask and Inno Setup are free and open-source in our data, so direct price comparison does not apply. The cost difference, if any, shows up in operations and infrastructure — not licensing."
+    },
+    {
+      "q": "Can I migrate from Homebrew Cask to Inno Setup?",
+      "a": "Migrating from Homebrew Cask to Inno Setup is generally feasible because Homebrew Cask has low lock-in, so data and configuration are usually portable. Since both tools sit in the same category (CI/CD for Applications), the conceptual mapping is closer, but you still need to validate feature parity against your specific workload. Plan migration as a project, not a script: inventory integrations, test on non-production workloads, and keep Homebrew Cask running in parallel until Inno Setup is verified."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "On our 0–5 developer experience scale, Homebrew Cask scores higher (5/5 vs 4/5 for Inno Setup). The gap is one point — meaningful but not decisive, since DX is workflow-dependent. Still, score your own tasks: DX is subjective and tied to stack assumptions."
+    },
+    {
+      "q": "Is Inno Setup a good alternative to Homebrew Cask?",
+      "a": "Inno Setup is in the same category as Homebrew Cask (CI/CD for Applications), so it's a reasonable alternative to evaluate. Inno Setup is aimed at shipping classic win32 desktop apps with a traditional installer wizard, while Homebrew Cask targets mac developers bootstrapping machines or keeping dev tools consistent across team — that difference should drive the switch decision. Note that Inno Setup is explicitly not for teams that need msix, store submission, or modern cross-platform tooling — if that describes your workload, it's not a viable replacement."
+    }
+  ]
+}

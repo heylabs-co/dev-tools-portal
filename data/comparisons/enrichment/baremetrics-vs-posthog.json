@@ -1,0 +1,24 @@
+{
+  "intro": "Baremetrics and PostHog both show up under the product analytics category, but they solve slightly different jobs. Baremetrics uses subscription from $129/mo with free tier, while PostHog runs on usage-based pricing with free tier. Lock-in is high for Baremetrics and low for PostHog. Transparency lands at 4/5 versus 5/5. Baremetrics fits teams working on understanding user behavior (funnels, retention), while PostHog is a closer match when the job is want analytics + feature flags + session replay in one. Worth noting: Baremetrics is explicitly not for simple projects; PostHog is explicitly not for enterprise needing dedicated support. The honest trade-off: Baremetrics trades off on pre-product stage; PostHog trades off on enterprise needing dedicated support — Amplitude is more enterprise. On the plus side, Baremetrics highlights understanding user behavior (funnels, retention), while PostHog points to analytics + feature flags + session replay in one. Baremetrics's documentation also calls out data-driven product decisions. PostHog similarly notes open-source with self-hosted option.",
+  "quick_take": "Baremetrics is for understanding user behavior (funnels, retention); PostHog is for want analytics + feature flags +; decide on pricing model.",
+  "verdict_a": "Choose Baremetrics if your project is understanding user behavior (funnels, retention), a subscription starting at $129/mo fits your budget, you are willing to accept the high lock-in called out in our data.",
+  "verdict_b": "Choose PostHog if your project is want analytics + feature flags + session replay in one, usage-based billing at Usage-based, price decreases at scale matches your volume, you want to keep future migration cheap.",
+  "faq": [
+    {
+      "q": "Is Baremetrics cheaper than PostHog?",
+      "a": "Baremetrics uses subscription from $129/mo with free tier, and PostHog uses usage-based pricing with free tier. The pricing models are different, so a direct cheaper-than comparison depends on your volume and usage pattern."
+    },
+    {
+      "q": "Can I migrate from Baremetrics to PostHog?",
+      "a": "Our data puts Baremetrics at high lock-in (analytics derived from stripe), and PostHog at low lock-in (open-source, self-hosted, raw data access via data warehouse). Expect real migration work out of Baremetrics — plan for data export, re-integration, and downtime testing before cutting over."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "PostHog scores 5/5 on developer experience in our data, while Baremetrics scores 3/5, so PostHog has the edge on docs and SDK quality by that measure. That gap is reinforced by transparency scores of 5/5 versus 4/5. Still, run a small integration spike on both before deciding — team familiarity with a given SDK style often matters more than a one-point score gap."
+    },
+    {
+      "q": "Is PostHog a good alternative to Baremetrics?",
+      "a": "PostHog is a reasonable alternative to Baremetrics when your workload leans more toward want analytics + feature flags + session replay in one than understanding user behavior (funnels, retention). The pricing model shifts too — Baremetrics is subscription from $129/mo with free tier, PostHog is usage-based pricing with free tier — so expect the cost profile to change as well. One caveat: PostHog is explicitly not for enterprise needing dedicated support, so check that constraint against your use-case before switching."
+    }
+  ]
+}

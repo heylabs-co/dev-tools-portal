@@ -1,0 +1,24 @@
+{
+  "intro": "Countly and Baremetrics both show up under the product analytics category, but they solve slightly different jobs. Countly uses pricing that starts at $0/mo with free tier, while Baremetrics runs on subscription from $129/mo with free tier. Lock-in is low for Countly and high for Baremetrics. Transparency lands at 3/5 versus 4/5. Both tools target understanding user behavior (funnels, retention), so the choice comes down to pricing, lock-in, and operational fit rather than scope. Worth noting: Countly is explicitly not for simple projects. The honest trade-off: Countly trades off on pre-product stage; Baremetrics trades off on pre-product stage. On the plus side, Countly highlights understanding user behavior (funnels, retention). Countly's documentation also calls out data-driven product decisions. For teams evaluating product analytics options today, the decision usually hinges on whether Countly's profile or Baremetrics's profile maps more cleanly to the pricing model, lock-in tolerance, and scale your team can live with.",
+  "quick_take": "Countly is for understanding user behavior (funnels, retention); Baremetrics is for understanding user behavior (funnels, retention); decide on pricing model.",
+  "verdict_a": "Choose Countly if your project is understanding user behavior (funnels, retention), you want to keep future migration cheap, strong SDKs and docs (4/5) are a priority.",
+  "verdict_b": "Choose Baremetrics if your project is understanding user behavior (funnels, retention), a subscription starting at $129/mo fits your budget, you are willing to accept the high lock-in called out in our data.",
+  "faq": [
+    {
+      "q": "Is Countly cheaper than Baremetrics?",
+      "a": "Countly uses pricing that starts at $0/mo with free tier, and Baremetrics uses subscription from $129/mo with free tier. The pricing models are different, so a direct cheaper-than comparison depends on your volume and usage pattern."
+    },
+    {
+      "q": "Can I migrate from Countly to Baremetrics?",
+      "a": "Our data puts Countly at low lock-in (self-hostable oss product analytics), and Baremetrics at high lock-in (analytics derived from stripe). Migration is feasible but not trivial — budget time for re-integration, data export, and parallel running before cutover."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Countly scores 4/5 on developer experience in our data, while Baremetrics scores 3/5, so Countly has the edge on docs and SDK quality by that measure. Still, run a small integration spike on both before deciding — team familiarity with a given SDK style often matters more than a one-point score gap."
+    },
+    {
+      "q": "Is Baremetrics a good alternative to Countly?",
+      "a": "Baremetrics covers a similar scope to Countly — our data lists \"Understanding user behavior (funnels, retention)\" as the best-for on both. The pricing model shifts too — Countly is pricing that starts at $0/mo with free tier, Baremetrics is subscription from $129/mo with free tier — so expect the cost profile to change as well. One caveat: Baremetrics is explicitly not for simple projects, so check that constraint against your use-case before switching."
+    }
+  ]
+}

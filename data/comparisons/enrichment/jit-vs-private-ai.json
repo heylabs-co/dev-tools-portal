@@ -1,0 +1,24 @@
+{
+  "intro": "The clearest difference between Jit and Private AI is pricing — Jit is subscription (no free tier), while Private AI is usage-based. Beyond that, lock-in — Jit has medium lock-in (Security platform orchestrates OSS), whereas Private AI has medium lock-in (Usage-based PII redaction API). Jit fits marketplace, apps; Private AI fits regulated industries and LLM apps needing PII redaction before storage, training, or inference. On the strengths side, Jit is cited for UGC platforms (social, marketplace), while Private AI is cited for PII detection across modalities. The honest trade-off: Jit is the wrong call for internal projects; Private AI is the wrong call for teams that just need toxicity, NSFW, or general UGC moderation; Jit users flag B2B products without user content, and Private AI users flag not a general content moderation tool. Choosing between them should come down to the constraint that actually binds your workflow, not surface-level overlap.",
+  "quick_take": "Jit is for marketplace, apps; Private AI is for regulated industries and LLM apps needing; decide based on pricing model.",
+  "verdict_a": "Choose Jit if your use case is marketplace, apps, and a subscription (no free tier) pricing shape fits your budget better than usage-based.",
+  "verdict_b": "Choose Private AI if your use case is regulated industries and LLM apps needing PII redaction before storage, training, or inference, and a usage-based pricing shape fits your budget better than subscription (no free tier).",
+  "faq": [
+    {
+      "q": "Is Jit cheaper than Private AI?",
+      "a": "Jit is subscription, while Private AI is usage, so the cheaper option depends on your usage shape. Listed pricing pages usually change, so check both directly before committing. For small teams, the free-tier limits often matter more than headline prices."
+    },
+    {
+      "q": "Can I migrate from Jit to Private AI?",
+      "a": "Migrating from Jit to Private AI is feasible when their scopes overlap, but the work is in re-mapping configuration, data models, and integrations. Moving off Jit is harder because of medium lock-in (Security platform orchestrates OSS). Plan for a dual-run period so you can validate parity before decommissioning."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Jit and Private AI score the same on developer experience (4/5 each) in our data. Choose based on which workflow, docs style, and CLI ergonomics feel closer to your team's preferences. Trial both in a small project before committing."
+    },
+    {
+      "q": "Is Private AI a good alternative to Jit?",
+      "a": "Private AI is a reasonable alternative to Jit when Private AI fits regulated industries and LLM apps needing PII redaction before storage, training, or inference. If your use case matches Jit's sweet spot — marketplace, apps — staying with Jit is probably safer. Jit itself is not meant for internal projects, which is often where users start shopping for alternatives."
+    }
+  ]
+}

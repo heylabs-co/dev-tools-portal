@@ -1,0 +1,24 @@
+{
+  "intro": "The clearest gap in the data is developer experience: Jupyter Book sits at 5/5, API Dash at 4/5. Teams feel that gap day-to-day. Jupyter Book is built for data science teams, ml researchers, and educators publishing reproducible notebook content and is not a fit for general api docs, saas product docs, or teams without notebook-based content. API Dash is built for solo developers who want a fast, offline-first api client without postman's account bloat and is not a fit for teams needing shared workspaces, extensive scripting, or enterprise sso and governance. On the scoring side, Jupyter Book rates 5/5 for developer experience and 5/5 for transparency; API Dash rates 4/5 and 5/5 respectively. The honest trade-off: with Jupyter Book you accept that sphinx underpinnings expose config complexity, while API Dash comes with the reality that smaller ecosystem and plugin library than postman. Neither side is free. Jupyter Book's headline strength in the data is that executes jupyter notebooks directly in published book.",
+  "quick_take": "Jupyter Book is for data science teams, ml researchers, and educators publishing reproducible notebook content; API Dash is for solo developers who want a fast, offline-first api client without postman's.",
+  "verdict_a": "Choose Jupyter Book if you are data science teams, ml researchers, and educators publishing reproducible notebook content and developer ergonomics (5/5) matter more than niche fit.",
+  "verdict_b": "Choose API Dash if you are solo developers who want a fast, offline-first api client without postman's account bloat and its workflow specificity outweighs a 4/5 DX rating.",
+  "faq": [
+    {
+      "q": "Is Jupyter Book cheaper than API Dash?",
+      "a": "Both list a free pricing model in our data, and both publish a free tier. We don't have per-seat numbers in this dataset, so 'cheaper' depends on volume. Price both on your actual usage before deciding."
+    },
+    {
+      "q": "Can I migrate from Jupyter Book to API Dash?",
+      "a": "Jupyter Book has low lock-in (open-source, markdown/notebook content); API Dash has low lock-in (oss flutter api client, local). Migration effort scales with how much state and automation you've built in Jupyter Book; plan for data export, config rebuild, and a parallel-run period before cutting over."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "In our data, Jupyter Book scores 5/5 for developer experience versus 4/5 for API Dash. That said, DX is subjective; the API Dash score may still be acceptable if its feature fit is stronger for your use case."
+    },
+    {
+      "q": "Is API Dash a good alternative to Jupyter Book?",
+      "a": "API Dash is built for solo developers who want a fast, offline-first api client without postman's account bloat and explicitly not for teams needing shared workspaces, extensive scripting, or enterprise sso and governance, so it's a fit only if your workflow matches its stated audience. If you were using Jupyter Book for data science teams, ml researchers, and educators publishing reproducible notebook content, the switch is reasonable; outside that scope, look elsewhere."
+    }
+  ]
+}

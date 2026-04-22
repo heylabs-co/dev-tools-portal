@@ -1,0 +1,24 @@
+{
+  "intro": "The biggest real distinction between Akamai and Pkl is straightforward: Pkl is free and open-source, while Akamai is a commercial product (pricing from Custom (premium pricing), enterprise plan available). Akamai sits at pricing from Custom (premium pricing), enterprise plan available and carries high lock-in, while Pkl sits at free and open-source and carries low lock-in. Akamai is a fit when you need global — typical scenarios include global audience with low latency needs. Pkl is aimed at high-traffic websites and media-heavy apps, with workloads like automated build/test/deploy pipelines as the common case. The honest trade-off: Akamai is explicitly not for internal projects; Pkl is not intended for apps serving a single geographic region. On cost specifically, pricing model matters more than sticker price — one workload can make Akamai cheaper while a different shape flips the answer to Pkl. Before committing, model your actual usage against both pricing pages: seat counts, data volumes, and whether the free tier covers real workloads tend to dominate the total bill.",
+  "quick_take": "Akamai is for global; Pkl is for high-traffic websites and media-heavy apps; decide based on cost model and budget.",
+  "verdict_a": "Choose Akamai if your primary workload is global and you accept higher lock-in for the stack.",
+  "verdict_b": "Choose Pkl if your primary workload is high-traffic websites and media-heavy apps and you want a free/OSS tool with no vendor bill.",
+  "faq": [
+    {
+      "q": "Is Akamai cheaper than Pkl?",
+      "a": "No — Pkl is free and open-source, while Akamai uses pricing from Custom (premium pricing), enterprise plan available. Pkl wins on sticker price, but remember that self-hosting and maintaining OSS adds engineering overhead that Akamai's paid plan removes."
+    },
+    {
+      "q": "Can I migrate from Akamai to Pkl?",
+      "a": "Migrating from Akamai to Pkl is not trivial — Akamai has high lock-in, which typically means data formats, APIs, or stack assumptions that have to be rewritten. Since both tools sit in the same category (CDN / Edge / Acceleration), the conceptual mapping is closer, but you still need to validate feature parity against your specific workload. Plan migration as a project, not a script: inventory integrations, test on non-production workloads, and keep Akamai running in parallel until Pkl is verified."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "On our 0–5 developer experience scale, Pkl scores higher (5/5 vs 3/5 for Akamai). The gap is 2 points, which is a noticeable difference in day-to-day ergonomics based on the data. Still, score your own tasks: DX is subjective and tied to stack assumptions."
+    },
+    {
+      "q": "Is Pkl a good alternative to Akamai?",
+      "a": "Pkl is in the same category as Akamai (CDN / Edge / Acceleration), so it's a reasonable alternative to evaluate. Pkl is aimed at high-traffic websites and media-heavy apps, while Akamai targets global — that difference should drive the switch decision. Note that Pkl is explicitly not for apps serving a single geographic region — if that describes your workload, it's not a viable replacement."
+    }
+  ]
+}

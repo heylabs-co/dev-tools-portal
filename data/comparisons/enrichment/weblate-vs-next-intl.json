@@ -1,0 +1,24 @@
+{
+  "intro": "The clearest split between Weblate and next-intl is how they charge: Weblate uses a free tier plus paid plans, while next-intl uses free and open source. Weblate specializes in Translation Management; it fits best for Global products launching in multiple markets. next-intl is CI/CD for Applications tool for developers. Specializes in Next.js Internationalization; it fits best for Global products launching in multiple markets. Pick Weblate for Global products launching in multiple markets; pick next-intl for Global products launching in multiple markets. Weblate is not for single-language apps or internal tools. next-intl is not for single-language apps or internal tools. Honest trade-offs: Weblate is weak for machine translation quality varies by language pair, and next-intl is weak for machine translation quality varies by language pair — match to your real scenario. Both sit under the Localization / Translation API umbrella, so your final call depends on pricing transparency, integration effort, and which listed not-for situations you can actually tolerate.",
+  "quick_take": "Weblate is for global products launching in multiple markets; next-intl is for global products launching in multiple markets; decide based on pricing model.",
+  "verdict_a": "Choose Weblate if you want a free tier plus paid plans and your workload matches global products launching in multiple markets.",
+  "verdict_b": "Choose next-intl if you want free and open source and your workload matches global products launching in multiple markets.",
+  "faq": [
+    {
+      "q": "Is Weblate cheaper than next-intl?",
+      "a": "next-intl is the cheaper option on paper since it is open source, while Weblate is paid. Weblate offers a free tier. next-intl is free and open source."
+    },
+    {
+      "q": "Can I migrate from Weblate to next-intl?",
+      "a": "Migration between these is relatively straightforward since both are rated as low lock-in. Plan for data export, re-integration of SDKs, and re-testing flows before cutover. Verify exportable formats and feature parity against your live use cases before committing."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "next-intl scores higher on developer experience (5/5 vs 4/5 for Weblate). Evaluate against your own stack: read their docs, run a quick SDK spike, and check error handling. Self-assessing with a small prototype beats trusting any rating at face value."
+    },
+    {
+      "q": "Is next-intl a good alternative to Weblate?",
+      "a": "next-intl sits in the same category as Weblate, so it can be a reasonable alternative for overlapping use cases. next-intl is best fit for global products launching in multiple markets. Note: next-intl is not for single-language apps or internal tools."
+    }
+  ]
+}

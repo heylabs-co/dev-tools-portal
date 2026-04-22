@@ -1,0 +1,24 @@
+{
+  "intro": "The biggest real distinction between ThingsBoard and AWS Amplify is straightforward: ThingsBoard is aimed at Teams that need self-hosted IoT with device mgmt, telemetry and rule chains, whereas AWS Amplify targets Mobile, Teams. ThingsBoard sits at freemium with paid upgrades and carries low lock-in, while AWS Amplify sits at freemium with a paid tier from $15/month, enterprise plan available and carries low lock-in. ThingsBoard is a fit when you need teams that need self-hosted iot with device mgmt, telemetry and rule chains — typical scenarios include open-source iot platform with device management and dashboards. AWS Amplify is aimed at mobile, teams, with workloads like mvp/prototyping speed as the common case. The honest trade-off: ThingsBoard is explicitly not for small teams wanting a polished managed iot saas with zero ops; AWS Amplify is not intended for complex custom business logic. Neither tool is a drop-in replacement for the other in every scenario — the choice should track your constraints on budget, lock-in, and target workload rather than general popularity.",
+  "quick_take": "ThingsBoard is for teams that need self-hosted iot with; AWS Amplify is for mobile, teams; decide based on which workload you actually run.",
+  "verdict_a": "Choose ThingsBoard if your primary workload is teams that need self-hosted iot with device mgmt, telemetry and rule chains and low switching cost matters.",
+  "verdict_b": "Choose AWS Amplify if your primary workload is mobile, teams and the free tier plus $15/month paid tier fits your budget.",
+  "faq": [
+    {
+      "q": "Is ThingsBoard cheaper than AWS Amplify?",
+      "a": "AWS Amplify publishes an entry price of $15/month; ThingsBoard's entry price is not in our data, so a definitive comparison is not possible without a quote from ThingsBoard."
+    },
+    {
+      "q": "Can I migrate from ThingsBoard to AWS Amplify?",
+      "a": "Migrating from ThingsBoard to AWS Amplify is generally feasible because ThingsBoard has low lock-in, so data and configuration are usually portable. Since both tools sit in the same category (Backend-as-a-Service), the conceptual mapping is closer, but you still need to validate feature parity against your specific workload. Plan migration as a project, not a script: inventory integrations, test on non-production workloads, and keep ThingsBoard running in parallel until AWS Amplify is verified."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Our data gives ThingsBoard and AWS Amplify the same developer experience score (4/5), so neither has a clear edge on DX by that measure. The differentiator is usually how each tool fits your workflow — things like CLI quality, docs, local dev loop, and error messages. The safest call is to pilot both on a representative task and see which one gets out of your way."
+    },
+    {
+      "q": "Is AWS Amplify a good alternative to ThingsBoard?",
+      "a": "AWS Amplify is in the same category as ThingsBoard (Backend-as-a-Service), so it's a reasonable alternative to evaluate. AWS Amplify is aimed at mobile, teams, while ThingsBoard targets teams that need self-hosted iot with device mgmt, telemetry and rule chains — that difference should drive the switch decision. Note that AWS Amplify is explicitly not for complex custom business logic — if that describes your workload, it's not a viable replacement."
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "intro": "Akamai and Bunny.net sit at opposite ends of the CDN market. Akamai is an enterprise global edge platform with 4,000+ PoPs and custom premium pricing, with no free tier and rated high lock-in and high migration complexity because of proprietary Property Manager configurations. Bunny.net is a usage-based edge platform priced from $0.002/GB (starting at $1/mo) with no free tier but very low entry cost, and it is rated low lock-in with low migration complexity. The biggest real distinction is posture and target buyer: Akamai is bought by enterprises that need DDoS protection, media delivery and deep edge compute under a vendor contract; Bunny.net is bought by developers and mid-market teams who want a transparent CDN they can leave at any time. Akamai scores 3 for DX and 2 for transparency; Bunny.net scores 5 on both, including Edge Rules and an edge scripting story. You trade Akamai's enterprise scale and compliance posture for Bunny.net's pricing clarity, migration flexibility and developer-facing tooling.",
+  "quick_take": "Akamai is for enterprise global edge with DDoS, media and custom contracts; Bunny.net is for developer-friendly CDN priced by the GB; decide based on enterprise versus self-serve.",
+  "verdict_a": "Choose Akamai if you need a 4,000+ PoP global edge with enterprise contracts and DDoS protection, and you accept high lock-in via proprietary Property Manager configurations.",
+  "verdict_b": "Choose Bunny.net if you want transparent usage-based pricing from $0.002/GB and low migration complexity, with DX and transparency both rated 5.",
+  "faq": [
+    {
+      "q": "Is Akamai cheaper than Bunny.net?",
+      "a": "Almost certainly not for small and mid-sized workloads. Akamai's pricing is custom and described as premium, with no free tier. Bunny.net is $0.002/GB from $1/mo with no free tier but a tiny floor. Akamai's economics start to make sense at enterprise scale with negotiated rates; below that, Bunny.net is far cheaper."
+    },
+    {
+      "q": "Can I migrate from Akamai to Bunny.net?",
+      "a": "Akamai is rated high lock-in with high migration complexity because Property Manager configurations are proprietary. Bunny.net is low lock-in with low migration complexity. Moving from Akamai to Bunny.net means rewriting edge logic, not lifting configs; the reverse direction is easier."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Bunny.net scores 5 for DX and transparency; Akamai scores 3 and 2. Akamai's con of 'high lock-in - proprietary APIs make migration difficult' underlines the gap. For developers self-serving a CDN, Bunny.net is the smoother experience; Akamai's DX is geared toward enterprise operators."
+    },
+    {
+      "q": "Is Bunny.net a good alternative to Akamai?",
+      "a": "For most workloads, yes. Both list global audience with low-latency needs, static site hosting and edge computing as best_for, and both share a not_for of single-region internal apps and low-traffic internal tools. The gap is enterprise features: if you need Akamai's specific DDoS, media and compliance posture, Bunny.net is not a substitute."
+    }
+  ]
+}

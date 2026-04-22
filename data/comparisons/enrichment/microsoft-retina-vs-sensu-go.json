@@ -1,0 +1,24 @@
+{
+  "intro": "Retina and Sensu Go both show up under the observability category, but they solve slightly different jobs. Retina uses a free model, while Sensu Go runs on undisclosed pricing with free tier. Both sit at high lock-in. Transparency lands at 5/5 versus 4/5. Retina fits teams working on eBPF-based network traffic visualization for Kubernetes, while Sensu Go is a closer match when the job is event-driven monitoring for hybrid cloud infrastructure. Worth noting: Retina is explicitly not for teams already running Cilium with Hubble or needing polished commercial support; Sensu Go is explicitly not for cloud-native teams already standardized on Prometheus and Grafana. The honest trade-off: Retina trades off on still early vs Cilium Hubble maturity; Sensu Go trades off on configuration complexity vs Prometheus. On the plus side, Retina highlights open-source from Microsoft with active development, while Sensu Go points to event-driven architecture scales horizontally. Retina's documentation also calls out eBPF-based, low overhead on K8s nodes. Sensu Go similarly notes open-source core with commercial options.",
+  "quick_take": "Retina is for eBPF-based network traffic visualization for Kubernetes; Sensu Go is for event-driven monitoring for hybrid cloud infrastructure; decide on pricing model.",
+  "verdict_a": "Choose Retina if your project is eBPF-based network traffic visualization for Kubernetes, you are willing to accept the high lock-in called out in our data.",
+  "verdict_b": "Choose Sensu Go if your project is event-driven monitoring for hybrid cloud infrastructure, you are willing to accept the high lock-in called out in our data.",
+  "faq": [
+    {
+      "q": "Is Retina cheaper than Sensu Go?",
+      "a": "Retina uses a free model, and Sensu Go uses undisclosed pricing with free tier. The pricing models are different, so a direct cheaper-than comparison depends on your volume and usage pattern."
+    },
+    {
+      "q": "Can I migrate from Retina to Sensu Go?",
+      "a": "Our data puts Retina at high lock-in (free oss ebpf k8s observability), and Sensu Go at high lock-in (oss monitoring, configs portable). Expect real migration work out of Retina — plan for data export, re-integration, and downtime testing before cutting over."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Both score 4/5 on developer experience in our data, so there's no clear winner on that axis. Retina does edge ahead on pricing/docs transparency (5/5 vs 4/5), which can make evaluation faster."
+    },
+    {
+      "q": "Is Sensu Go a good alternative to Retina?",
+      "a": "Sensu Go is a reasonable alternative to Retina when your workload leans more toward hybrid infrastructure teams needing event-driven monitoring across cloud and on-prem than kubernetes network engineers wanting a vendor-neutral eBPF observability tool. The pricing model shifts too — Retina is a free model, Sensu Go is undisclosed pricing with free tier — so expect the cost profile to change as well. One caveat: Sensu Go is explicitly not for cloud-native teams already standardized on Prometheus and Grafana, so check that constraint against your use-case before switching."
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "intro": "Nium and Yuno both show up under the payments orchestration category, but they solve slightly different jobs. Nium uses custom (sales-led) pricing, while Yuno runs on pricing that starts at $79. Lock-in is high for Nium and low for Yuno. Transparency lands at 1/5 versus 2/5. Nium fits teams working on cross-border payouts to 190+ countries for gig platforms, while Yuno is a closer match when the job is Multi-PSP routing for higher conversion. Worth noting: Nium is explicitly not for consumer merchants looking primarily for smart card-routing across PSPs; Yuno is explicitly not for single-market startups. The honest trade-off: Nium trades off on positioned as infra, not merchant orchestration; Yuno trades off on single-market startups. On the plus side, Nium highlights global payouts to 190+ countries and 100+ currencies, while Yuno points to Multi-PSP routing for higher conversion. Nium's documentation also calls out card issuing and collections on one platform. Yuno similarly notes enterprise with multiple payment providers.",
+  "quick_take": "Nium is for cross-border payouts to 190+ countries for; Yuno is for Multi-PSP routing for higher conversion; decide on pricing model.",
+  "verdict_a": "Choose Nium if your project is cross-border payouts to 190+ countries for gig platforms, you are prepared for a sales-led custom-pricing conversation, you are willing to accept the high lock-in called out in our data.",
+  "verdict_b": "Choose Yuno if your project is Multi-PSP routing for higher conversion, you want to keep future migration cheap, you can tolerate Yuno's limited public transparency (2/5).",
+  "faq": [
+    {
+      "q": "Is Nium cheaper than Yuno?",
+      "a": "Nium uses custom (sales-led) pricing, and Yuno uses pricing that starts at $79. The pricing models are different, so a direct cheaper-than comparison depends on your volume and usage pattern."
+    },
+    {
+      "q": "Can I migrate from Nium to Yuno?",
+      "a": "Our data puts Nium at high lock-in (global payments infra, deep integration), and Yuno at low lock-in (orchestration abstraction helps migration). Expect real migration work out of Nium — plan for data export, re-integration, and downtime testing before cutting over."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Both score 4/5 on developer experience in our data, so there's no clear winner on that axis. Yuno does edge ahead on pricing/docs transparency (2/5 vs 1/5), which can make evaluation faster."
+    },
+    {
+      "q": "Is Yuno a good alternative to Nium?",
+      "a": "Yuno is a reasonable alternative to Nium when your workload leans more toward enterprise than platforms, marketplaces, and fintechs needing cross-border payouts, cards, and FX via one licensed provider. The pricing model shifts too — Nium is custom (sales-led) pricing, Yuno is pricing that starts at $79 — so expect the cost profile to change as well. One caveat: Yuno is explicitly not for single-market startups, so check that constraint against your use-case before switching."
+    }
+  ]
+}

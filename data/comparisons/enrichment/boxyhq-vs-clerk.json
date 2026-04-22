@@ -1,0 +1,24 @@
+{
+  "intro": "BoxyHQ is paid subscription; Clerk is freemium. BoxyHQ: Identity / Auth / User Management tool for developers. Specializes in Enterprise SSO. Clerk: Drop-in authentication platform with prebuilt React components for sign-in, MFA, organization management, and SSO. BoxyHQ fits apps, B2B — in practice, apps needing SSO/MFA. Clerk fits apps, Startup — in practice, next.js / React apps needing drop-in auth UI. On our rubric BoxyHQ scores 5/5 for developer experience and 4/5 for transparency, while Clerk scores 5/5 and 5/5. The honest trade-off: BoxyHQ's main drawback — Internal tools with basic auth; Clerk's — Enterprise requiring SAML/SCIM on day one — Auth0/WorkOS. BoxyHQ is explicitly not the right pick for internal, Static projects. Clerk is not aimed at enterprise requiring SAML/SCIM on day one. Another BoxyHQ advantage: B2B requiring SAML/SCIM. Another Clerk advantage: Startup wanting generous free tier (50K MAU). Another BoxyHQ friction point: Static sites without user accounts. Another Clerk friction point: Need self-hosted auth — FusionAuth or Keycloak.",
+  "quick_take": "BoxyHQ is for apps, B2B; Clerk is for apps, Startup; decide on pricing model.",
+  "verdict_a": "Choose BoxyHQ if your work looks like apps needing SSO/MFA, and if portability and keeping the exit door open matter.",
+  "verdict_b": "Choose Clerk if your work looks like next.js / React apps needing drop-in auth UI, and if a free tier with an optional paid path matters.",
+  "faq": [
+    {
+      "q": "Is BoxyHQ cheaper than Clerk?",
+      "a": "BoxyHQ uses paid subscription pricing; Clerk uses freemium. Which is cheaper depends on your volume and team size — model both against your projected usage before deciding."
+    },
+    {
+      "q": "Can I migrate from BoxyHQ to Clerk?",
+      "a": "Migrating out of BoxyHQ is straightforward — it's rated low lock-in (OSS enterprise SSO). The harder question is how deeply you commit to Clerk afterward, since it sits at medium lock-in (Medium — pre-built toby creat deep integration, but by towithby  free). Plan the forward cost, not just the exit."
+    },
+    {
+      "q": "Which has better developer experience, BoxyHQ or Clerk?",
+      "a": "Both score 5/5 for developer experience in our rubric, so neither has a structural edge. The practical answer depends on stack fit: BoxyHQ's ergonomics suit some workflows, Clerk's suit others. Try both on a throwaway project before committing."
+    },
+    {
+      "q": "Is Clerk a good alternative to BoxyHQ?",
+      "a": "They sit in the same category, so yes — Clerk is a plausible alternative for many BoxyHQ use cases. It fits best when apps, Startup. Skip it if enterprise requiring SAML/SCIM on day one."
+    }
+  ]
+}

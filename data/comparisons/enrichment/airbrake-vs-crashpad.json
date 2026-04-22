@@ -1,0 +1,24 @@
+{
+  "intro": "Airbrake is a managed error monitoring and performance-tracking service starting at $59/month with a free tier; Crashpad is Chromium's open-source native crash-capture library used by Chrome, Firefox and Sentry. The biggest real distinction is product scope. Airbrake is a full product: capture, grouping, real-time alerting, dashboards, deploy tracking. Crashpad is only the plumbing: a library for capturing and transmitting minidumps on macOS, Windows and Linux, with documentation aimed at systems engineers. You still need a backend to receive and display the data. Airbrake fits teams who want end-to-end error tracking out of the box for web and backend apps in production. Crashpad fits teams shipping native C++ apps who need battle-tested minidump capture and are willing to pair it with a backend like Sentry or Backtrace. Airbrake scores 4 for DX and is rated medium lock-in; Crashpad scores 3 for DX but 5 for transparency and low lock-in. You trade turnkey integration for proven low-level reliability.",
+  "quick_take": "Airbrake is for turnkey web and backend error monitoring; Crashpad is for native minidump capture as a library; decide based on product versus plumbing.",
+  "verdict_a": "Choose Airbrake if you want a managed error-monitoring product for web and backend apps with real-time alerts and stack traces, priced from $59/month with a free tier.",
+  "verdict_b": "Choose Crashpad if you are shipping native C++ apps on macOS, Windows or Linux and need proven out-of-process crash capture, knowing you will pair it with your own backend.",
+  "faq": [
+    {
+      "q": "Is Airbrake cheaper than Crashpad?",
+      "a": "Crashpad itself is free and open source. Airbrake is freemium with paid plans from $59/month. On pure software cost, Crashpad is cheaper, but remember you must bring your own crash-receiving backend, which is where the actual spend lands (Sentry, Backtrace or a self-built service)."
+    },
+    {
+      "q": "Can I migrate from Airbrake to Crashpad?",
+      "a": "They are not replacements for each other. Airbrake is rated medium lock-in with error data exportable and integrations portable toward Sentry. Crashpad is rated low lock-in as the OSS Chromium handler. You don't migrate between them; you migrate from Airbrake to another service, and you swap Crashpad for a different capture library independently."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Airbrake scores 4 for DX; Crashpad scores 3. Airbrake's DX is product-level (dashboards, alerts, deploy tracking). Crashpad's DX is library-level and its docs are aimed at systems engineers, per the data. For a turnkey feel, Airbrake wins; for embedded native-app work, Crashpad's lower DX score reflects its lower abstraction, not weaker engineering."
+    },
+    {
+      "q": "Is Crashpad a good alternative to Airbrake?",
+      "a": "Only if you are building a native app and want to assemble your own pipeline. Crashpad's best_for is native apps needing proven minidump capture, and its not_for explicitly calls out teams wanting a turnkey crash-reporting product - which is exactly Airbrake's pitch. They are complementary in practice, not substitutes."
+    }
+  ]
+}

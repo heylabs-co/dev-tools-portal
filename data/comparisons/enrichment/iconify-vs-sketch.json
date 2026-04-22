@@ -1,0 +1,24 @@
+{
+  "intro": "The biggest real split between Iconify and Sketch is lock-in posture: Iconify carries low lock-in (open-source icon framework), while Sketch carries medium lock-in (mac-only, proprietary but export supported). That single fact shapes the rest of the comparison. Iconify is built for projects that need access to many icon sets without bundling each library individually and is not a fit for tiny static sites or teams that only ever use one curated icon set. Sketch is built for solo designers and small mac-only teams who prefer native apps over browser tools and is not a fit for distributed teams, windows/linux users, or orgs standardizing on figma. On the scoring side, Iconify rates 5/5 for developer experience and 5/5 for transparency; Sketch rates 4/5 and 5/5 respectively. The honest trade-off: with Iconify you accept that runtime lookup adds a small performance cost, while Sketch comes with the reality that mac-only limits distributed team adoption. Neither side is free.",
+  "quick_take": "Iconify is for projects that need access to many icon sets without bundling each library individually; Sketch is for solo designers and small mac-only teams who prefer native apps over.",
+  "verdict_a": "Choose Iconify if you are projects that need access to many icon sets without bundling each library individually and can accept low lock-in (open-source icon framework).",
+  "verdict_b": "Choose Sketch if you are solo designers and small mac-only teams who prefer native apps over browser tools and need medium lock-in (mac-only, proprietary but export supported).",
+  "faq": [
+    {
+      "q": "Is Iconify cheaper than Sketch?",
+      "a": "Iconify uses a free model, while Sketch uses a subscription model; Iconify has a free tier and Sketch does not. We don't have per-seat numbers in this dataset, so 'cheaper' depends on volume. Price both on your actual usage before deciding."
+    },
+    {
+      "q": "Can I migrate from Iconify to Sketch?",
+      "a": "Iconify has low lock-in (open-source icon framework); Sketch has medium lock-in (mac-only, proprietary but export supported). Migration effort scales with how much state and automation you've built in Iconify; plan for data export, config rebuild, and a parallel-run period before cutting over."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "In our data, Iconify scores 5/5 for developer experience versus 4/5 for Sketch. That said, DX is subjective; the Sketch score may still be acceptable if its feature fit is stronger for your use case."
+    },
+    {
+      "q": "Is Sketch a good alternative to Iconify?",
+      "a": "Sketch is built for solo designers and small mac-only teams who prefer native apps over browser tools and explicitly not for distributed teams, windows/linux users, or orgs standardizing on figma, so it's a fit only if your workflow matches its stated audience. If you were using Iconify for projects that need access to many icon sets without bundling each library individually, the switch is reasonable; outside that scope, look elsewhere."
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "intro": "The most concrete split between Alter and Prowler is the pricing model: Alter runs on custom pricing only (no public tier), while Prowler uses free and open-source. That shapes how predictable your monthly spend is and how much of the cost sits in infrastructure versus per-seat or per-event fees. Beyond the headline, Alter carries low lock-in (proprietary agent identity platform with custom protocols) and custom pricing only (no public tier); Prowler carries low lock-in (free oss cloud security) and free and open-source. Alter is a fit when you are mobile. Prowler is a fit when you are dev teams needing sast, dast, or sca in the pipeline. The honest trade-off: Alter is explicitly not for hobby projects; Prowler is explicitly not for projects with no regulatory or security compliance needs. On the product side, Alter is described as Security Scanning / Mobile App Sec tool for developers. Specializes in Agent Identity, and Prowler is described as Security Scanning / Mobile App Sec tool for developers. Specializes in Cloud Security Posture Management.",
+  "quick_take": "Alter is for mobile; Prowler is for dev teams needing sast, dast, or sca in the pipeline; decide on pricing model.",
+  "verdict_a": "Choose Alter if its custom pricing model fits your budget shape better than Prowler's free model, and you are mobile.",
+  "verdict_b": "Choose Prowler if you need a free tier to start before committing budget, and your use case matches dev teams needing sast, dast, or sca in the pipeline.",
+  "faq": [
+    {
+      "q": "Is Alter cheaper than Prowler?",
+      "a": "Headline yes, Prowler is free and open-source while Alter uses custom pricing only (no public tier). But the total cost depends on self-hosting and maintenance effort for Prowler versus managed convenience from Alter. Factor in both."
+    },
+    {
+      "q": "Can I migrate from Alter to Prowler?",
+      "a": "Migration from Alter to Prowler is plausible because Alter has low lock-in (proprietary agent identity platform with custom protocols). You would still have to map config, permissions and integrations to Prowler's model. Plan for dual-run and rollback."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "On our scoring Prowler rates 5/5 for developer experience versus 3/5 for Alter. That suggests Prowler feels more polished for everyday developer tasks. We still recommend a short hands-on trial on your stack before standardising."
+    },
+    {
+      "q": "Is Prowler a good alternative to Alter?",
+      "a": "Prowler is pitched at dev teams needing sast, dast, or sca in the pipeline, which overlaps with Alter's fit (mobile) but is not identical. Note that Prowler is explicitly not for projects with no regulatory or security compliance needs, so it only replaces Alter if you are outside that exclusion. Pricing models differ (custom vs free), which may shift total cost."
+    }
+  ]
+}

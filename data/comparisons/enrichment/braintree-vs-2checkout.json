@@ -1,0 +1,24 @@
+{
+  "intro": "Braintree and 2Checkout both show up under the payment gateway category, but they solve slightly different jobs. Braintree uses usage-based pricing, while 2Checkout runs on undisclosed pricing. Lock-in is medium for Braintree and low for 2Checkout. Transparency lands at 5/5 versus 2/5. Both tools target SaaS with online payments, so the choice comes down to pricing, lock-in, and operational fit rather than scope. Worth noting: Braintree is explicitly not for offline, Internal projects. The honest trade-off: Braintree trades off on offline-only retail; 2Checkout trades off on offline-only retail. On the plus side, Braintree highlights SaaS with online payments. Braintree's documentation also calls out e-commerce checkout. For teams evaluating payment gateway options today, the decision usually hinges on whether Braintree's profile or 2Checkout's profile maps more cleanly to the pricing model, lock-in tolerance, and scale your team can live with. Beyond the headline pitch, a documented Braintree use-case is \"E-commerce checkout\", and a documented 2Checkout use-case is \"E-commerce checkout\".",
+  "quick_take": "Braintree is for SaaS with online payments; 2Checkout is for SaaS with online payments; decide on pricing model.",
+  "verdict_a": "Choose Braintree if your project is SaaS with online payments, medium lock-in is an acceptable trade-off, strong SDKs and docs (5/5) are a priority.",
+  "verdict_b": "Choose 2Checkout if your project is SaaS with online payments, you want to keep future migration cheap, you can tolerate 2Checkout's limited public transparency (2/5).",
+  "faq": [
+    {
+      "q": "Is Braintree cheaper than 2Checkout?",
+      "a": "Braintree uses usage-based pricing, and 2Checkout uses undisclosed pricing. The pricing models are different, so a direct cheaper-than comparison depends on your volume and usage pattern."
+    },
+    {
+      "q": "Can I migrate from Braintree to 2Checkout?",
+      "a": "Our data puts Braintree at medium lock-in (paypal-owned, card data portable), and 2Checkout at low lock-in (merchant account tightly bound; customer and subscription data partially portable). Migration is feasible but not trivial — budget time for re-integration, data export, and parallel running before cutover."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Braintree scores 5/5 on developer experience in our data, while 2Checkout scores 3/5, so Braintree has the edge on docs and SDK quality by that measure. That gap is reinforced by transparency scores of 5/5 versus 2/5. Still, run a small integration spike on both before deciding — team familiarity with a given SDK style often matters more than a one-point score gap."
+    },
+    {
+      "q": "Is 2Checkout a good alternative to Braintree?",
+      "a": "2Checkout covers a similar scope to Braintree — our data lists \"SaaS, E-commerce, Marketplace\" as the best-for on both. The pricing model shifts too — Braintree is usage-based pricing, 2Checkout is undisclosed pricing — so expect the cost profile to change as well. One caveat: 2Checkout is explicitly not for offline, Internal projects, so check that constraint against your use-case before switching."
+    }
+  ]
+}

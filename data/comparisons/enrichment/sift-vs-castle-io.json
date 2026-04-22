@@ -1,0 +1,24 @@
+{
+  "intro": "Sift is paid subscription; Castle is freemium. Sift: Digital trust and safety platform using ML to score account, payment, and content abuse across the customer lifecycle. Castle: Castle protects user accounts and transactions from takeover, fraudulent signups and abusive usage with a developer-first API. It offers risk scoring, device fingerprinting, webhooks and policies, and is popular with SaaS companies like Sho. Sift fits marketplace — in practice, high-value transactions. Castle fits B2B and B2C SaaS protecting logins, signups and workspace abuse with a small risk team. On our rubric Sift scores 4/5 for developer experience and 3/5 for transparency, while Castle scores 5/5 and 5/5. The honest trade-off: Sift's main drawback — Low transaction volume; Castle's — Weaker on payment fraud vs PSP-native tools. For Castle: Developer-first API with clear docs and webhooks. Sift is explicitly not the right pick for low transaction volume. Castle is not aimed at payment-first merchants or bot-heavy retail needing dedicated WAF-layer mitigation. Another Sift advantage: Marketplace with seller risk.",
+  "quick_take": "Sift is for marketplace; Castle is for B2B; decide on pricing model.",
+  "verdict_a": "Choose Sift if your work looks like high-value transactions.",
+  "verdict_b": "Choose Castle if your work looks like risk scoring for new user signup abuse prevention, and if a free tier with an optional paid path matters.",
+  "faq": [
+    {
+      "q": "Is Sift cheaper than Castle?",
+      "a": "Sift uses paid subscription pricing; Castle uses freemium. Which is cheaper depends on your volume and team size — model both against your projected usage before deciding."
+    },
+    {
+      "q": "Can I migrate from Sift to Castle?",
+      "a": "Expect real effort: Sift is medium lock-in (ML scoring API, integration moderate) and Castle is medium lock-in (Proprietary fraud API with webhooks). Migrating between them means rebuilding integrations, re-authoring config, and accepting new coupling. Scope a spike before committing."
+    },
+    {
+      "q": "Which has better developer experience, Sift or Castle?",
+      "a": "Castle scores higher in our rubric (5/5 vs 4/5 for Sift). Transparency is 5/5 for Castle and 3/5 for Sift. DX scores are rubric-based, not benchmarks, so evaluate against your own toolchain."
+    },
+    {
+      "q": "Is Castle a good alternative to Sift?",
+      "a": "They sit in the same category, so yes — Castle is a plausible alternative for many Sift use cases. It fits best when B2B and B2C SaaS protecting logins, signups and workspace abuse with a small risk team. Skip it if payment-first merchants or bot-heavy retail needing dedicated WAF-layer mitigation."
+    }
+  ]
+}

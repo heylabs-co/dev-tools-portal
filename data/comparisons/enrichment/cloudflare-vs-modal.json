@@ -1,0 +1,24 @@
+{
+  "intro": "The biggest real distinction between Cloudflare and Modal is straightforward: Cloudflare uses freemium with a paid tier from $20/mo (Pro), enterprise plan available; Modal uses usage-based pricing starting at $30 / month, a free tier, enterprise plan available. Cloudflare sits at freemium with a paid tier from $20/mo (Pro), enterprise plan available and carries moderate lock-in, while Modal sits at usage-based pricing starting at $30 / month, a free tier, enterprise plan available and carries moderate lock-in. Cloudflare is a fit when you need cdn + edge compute + dns + security in one — typical scenarios include cdn + edge compute + dns + security in one. Modal is aimed at global, with workloads like global audience with low latency needs as the common case. The honest trade-off: Cloudflare is explicitly not for need full paas for backend apps; Modal is not intended for internal projects. On cost specifically, pricing model matters more than sticker price — one workload can make Cloudflare cheaper while a different shape flips the answer to Modal.",
+  "quick_take": "Cloudflare is for cdn + edge compute + dns; Modal is for global; decide based on cost model and budget.",
+  "verdict_a": "Choose Cloudflare if your primary workload is cdn + edge compute + dns + security in one and the free tier plus $20/mo (Pro) paid tier fits your budget.",
+  "verdict_b": "Choose Modal if your primary workload is global and you prefer usage-based pricing (starts at $30 / month).",
+  "faq": [
+    {
+      "q": "Is Cloudflare cheaper than Modal?",
+      "a": "It depends on workload shape: Cloudflare lists $20/mo (Pro), while Modal lists $30 / month. With different pricing models (freemium vs usage), the cheaper option flips based on seat count, usage volume, and whether you use the free tier. Do a per-workload estimate rather than comparing headline numbers."
+    },
+    {
+      "q": "Can I migrate from Cloudflare to Modal?",
+      "a": "Migrating from Cloudflare to Modal is doable but not automatic — Cloudflare carries moderate lock-in. Since both tools sit in the same category (CDN / Edge / Acceleration), the conceptual mapping is closer, but you still need to validate feature parity against your specific workload. Plan migration as a project, not a script: inventory integrations, test on non-production workloads, and keep Cloudflare running in parallel until Modal is verified."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Our data gives Cloudflare and Modal the same developer experience score (5/5), so neither has a clear edge on DX by that measure. The differentiator is usually how each tool fits your workflow — things like CLI quality, docs, local dev loop, and error messages. The safest call is to pilot both on a representative task and see which one gets out of your way."
+    },
+    {
+      "q": "Is Modal a good alternative to Cloudflare?",
+      "a": "Modal is in the same category as Cloudflare (CDN / Edge / Acceleration), so it's a reasonable alternative to evaluate. Modal is aimed at global, while Cloudflare targets cdn + edge compute + dns + security in one — that difference should drive the switch decision. Note that Modal is explicitly not for internal projects — if that describes your workload, it's not a viable replacement."
+    }
+  ]
+}

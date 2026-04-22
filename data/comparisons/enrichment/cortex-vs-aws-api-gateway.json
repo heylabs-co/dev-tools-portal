@@ -1,0 +1,24 @@
+{
+  "intro": "The biggest real split between Cortex and AWS API Gateway is lock-in posture: Cortex carries high lock-in (proprietary idp with per-seat lock-in), while AWS API Gateway carries low lock-in (aws-only, migration painful). That single fact shapes the rest of the comparison. Cortex is built for data warehouse syncing and is not a fit for simple, small projects. AWS API Gateway is built for data warehouse syncing and is not a fit for simple, small projects. On the scoring side, Cortex rates 3/5 for developer experience and 2/5 for transparency; AWS API Gateway rates 4/5 and 4/5 respectively. The honest trade-off: with Cortex you accept that simple api-to-api integrations, while AWS API Gateway comes with the reality that simple api-to-api integrations. Neither side is free. Cortex's headline strength in the data is that data warehouse syncing. AWS API Gateway's headline strength is that data warehouse syncing. Read each side's best-for and not-for fields carefully before you pick; the shape of your team and workflow matters more than any single score.",
+  "quick_take": "Cortex is for data warehouse syncing; AWS API Gateway is for data warehouse syncing; decide based on lock-in tolerance.",
+  "verdict_a": "Choose Cortex if you are data warehouse syncing and can accept high lock-in (proprietary idp with per-seat lock-in).",
+  "verdict_b": "Choose AWS API Gateway if you are data warehouse syncing and need low lock-in (aws-only, migration painful).",
+  "faq": [
+    {
+      "q": "Is Cortex cheaper than AWS API Gateway?",
+      "a": "Cortex uses a seat model, while AWS API Gateway uses a subscription model; AWS API Gateway has a free tier and Cortex does not. We don't have per-seat numbers in this dataset, so 'cheaper' depends on volume. Price both on your actual usage before deciding."
+    },
+    {
+      "q": "Can I migrate from Cortex to AWS API Gateway?",
+      "a": "Cortex has high lock-in (proprietary idp with per-seat lock-in); AWS API Gateway has low lock-in (aws-only, migration painful). Migration effort scales with how much state and automation you've built in Cortex; plan for data export, config rebuild, and a parallel-run period before cutting over."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "In our data, AWS API Gateway scores 4/5 for developer experience versus 3/5 for Cortex. That said, DX is subjective; the Cortex score may still be acceptable if its feature fit is stronger for your use case."
+    },
+    {
+      "q": "Is AWS API Gateway a good alternative to Cortex?",
+      "a": "AWS API Gateway is built for data warehouse syncing and explicitly not for simple, small projects, so it's a fit only if your workflow matches its stated audience. If you were using Cortex for data warehouse syncing, the switch is reasonable; outside that scope, look elsewhere."
+    }
+  ]
+}

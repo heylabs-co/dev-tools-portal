@@ -1,0 +1,24 @@
+{
+  "intro": "The biggest real split between Cortex and Eventual is lock-in posture: Cortex carries high lock-in (proprietary idp with per-seat lock-in), while Eventual carries low lock-in (oss daft engine, data portable). That single fact shapes the rest of the comparison. Cortex is built for data warehouse syncing and is not a fit for simple, small projects. Eventual is built for ml teams processing images, video, and audio at distributed scale in python and is not a fit for pure tabular analytics workloads where spark or duckdb suffice. On the scoring side, Cortex rates 3/5 for developer experience and 2/5 for transparency; Eventual rates 3/5 and 3/5 respectively. The honest trade-off: with Cortex you accept that simple api-to-api integrations, while Eventual comes with the reality that very new category with smaller community. Neither side is free. Cortex's headline strength in the data is that data warehouse syncing. Eventual's headline strength is that python-native distributed engine via daft.",
+  "quick_take": "Cortex is for data warehouse syncing; Eventual is for ml teams processing images, video, and audio at distributed scale in python; decide based on lock-in tolerance.",
+  "verdict_a": "Choose Cortex if you are data warehouse syncing and can accept high lock-in (proprietary idp with per-seat lock-in).",
+  "verdict_b": "Choose Eventual if you are ml teams processing images, video, and audio at distributed scale in python and need low lock-in (oss daft engine, data portable).",
+  "faq": [
+    {
+      "q": "Is Cortex cheaper than Eventual?",
+      "a": "Cortex uses a seat model, while Eventual uses a freemium model; Eventual has a free tier and Cortex does not. We don't have per-seat numbers in this dataset, so 'cheaper' depends on volume. Price both on your actual usage before deciding."
+    },
+    {
+      "q": "Can I migrate from Cortex to Eventual?",
+      "a": "Cortex has high lock-in (proprietary idp with per-seat lock-in); Eventual has low lock-in (oss daft engine, data portable). Migration effort scales with how much state and automation you've built in Cortex; plan for data export, config rebuild, and a parallel-run period before cutting over."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Both Cortex and Eventual score 3/5 on developer experience in our data, so DX isn't the tiebreaker here. Decide on fit, pricing, or lock-in instead."
+    },
+    {
+      "q": "Is Eventual a good alternative to Cortex?",
+      "a": "Eventual is built for ml teams processing images, video, and audio at distributed scale in python and explicitly not for pure tabular analytics workloads where spark or duckdb suffice, so it's a fit only if your workflow matches its stated audience. If you were using Cortex for data warehouse syncing, the switch is reasonable; outside that scope, look elsewhere."
+    }
+  ]
+}

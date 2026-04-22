@@ -1,0 +1,24 @@
+{
+  "intro": "Buildkite and Depot bill differently, which matters more than feature parity here — Buildkite offers a free tier, paid from $2.50, while Depot sells a subscription from $500/mo with a free tier. Buildkite is self-hosted CI/CD runner with agent-based pipelines on your own infrastructure. Depot is remote Docker build acceleration service for CI image builds. Pick Buildkite when the job is conversion optimization and you accept low lock-in; pick Depot when it is conversion optimization and you accept low lock-in. The data we have shows Buildkite at mostly transparent pricing and docs with a polished developer experience, and Depot at fully public pricing and documentation with a polished developer experience. The honest trade-off: neither is universal — Buildkite is a poor fit for internal projects, and Depot is a poor fit for internal projects. Match the pricing model and lock-in level to how your team actually works, not the feature list.",
+  "quick_take": "Buildkite is for self-hosted CI/CD runner; Depot is for remote Docker build acceleration service; decide based on pricing model fit.",
+  "verdict_a": "Choose Buildkite if a free tier with paid upgrade from $2.50 is the right shape and the work maps to self-hosted CI/CD runner with agent-based pipelines on your own infrastructure.",
+  "verdict_b": "Choose Depot if you need public pricing and docs before committing and the work lines up with remote Docker build acceleration service for CI image builds.",
+  "faq": [
+    {
+      "q": "Is Buildkite cheaper than Depot?",
+      "a": "Buildkite starts at $2.50 on a freemium model; Depot starts at $500/mo on a subscription model. That makes the sticker comparison depend on usage — a low entry price can get expensive once volume ramps, so price at your actual workload."
+    },
+    {
+      "q": "Can I migrate from Buildkite to Depot?",
+      "a": "Migration in either direction is relatively cheap — both Buildkite and Depot are rated low lock-in, so your configuration and data should port without a rewrite. The realistic cost is team re-training and pipeline QA, not the tools themselves."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Both Buildkite and Depot rate the same on developer experience (5/5). The decision on DX then comes down to taste — which CLI, UI, or workflow matches your team's habits. A short side-by-side trial is the quickest way to tell."
+    },
+    {
+      "q": "Is Depot a good alternative to Buildkite?",
+      "a": "Yes — Depot is a reasonable alternative to Buildkite for conversion optimization. The practical differences are freemium-vs-subscription billing and low-vs-low lock-in. If those fit your constraints better, treat Depot as a credible swap."
+    }
+  ]
+}

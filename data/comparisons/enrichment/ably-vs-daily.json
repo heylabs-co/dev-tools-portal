@@ -1,0 +1,24 @@
+{
+  "intro": "The clearest split is that Ably carries low lock-in and Daily carries medium lock-in. Ably is Real-time messaging infrastructure with pub/sub, presence, and 99.999% uptime SLA across global PoPs; Daily is Real-time video and audio API infrastructure for embedding calls in web and mobile applications. The data points Ably at chat applications and live collaboration features, and Daily at chat applications and live collaboration features. Pricing: Ably is subscription from $29 / month; Daily is subscription from $10. Lock-in is low for Ably and medium for Daily, with DX at 5/5 vs 5/5 and transparency at 4/5 vs 4/5. On listed strengths, Ably emphasises chat applications and live collaboration features, and Daily emphasises chat applications and live collaboration features. Both offer an enterprise tier for larger rollouts. Honest trade-off: neither fits static projects, so if that is your context, look elsewhere; otherwise pick on the pivotal factor above and the DX score that matters most to your team.",
+  "quick_take": "Ably is for chat applications; Daily is for chat applications; decide based on how much lock-in you tolerate.",
+  "verdict_a": "Choose Ably if you prefer low lock-in and easier exit and your workload matches chat applications. Skip it if your context is static projects.",
+  "verdict_b": "Choose Daily if you can accept medium lock-in in exchange for scope and your workload matches chat applications. Skip it if your context is static projects.",
+  "faq": [
+    {
+      "q": "Is Ably cheaper than Daily?",
+      "a": "Listed entry pricing is $29 / month for Ably and $10 for Daily. Both offer a free tier for getting started. Total cost at scale depends on usage and plan details that are not in this dataset, so confirm with each vendor."
+    },
+    {
+      "q": "Can I migrate from Ably to Daily?",
+      "a": "Ably is tagged with low lock-in (proprietary pub/sub protocol and presence model). Daily is tagged with medium lock-in (video/audio sdk platform). Plan for SDK replacement, data export, and a parallel-run period; the dataset does not include migration tooling details."
+    },
+    {
+      "q": "Which has better developer experience, Ably or Daily?",
+      "a": "Both are rated 5/5 for developer experience in this dataset. With equal scores, the choice comes down to the specific SDK surface and docs you will use day to day. Run a short spike on each before deciding."
+    },
+    {
+      "q": "Is Daily a good alternative to Ably?",
+      "a": "Yes for teams whose workload matches chat applications, since both list the same fit. Daily is flagged as not for static projects, so confirm your context does not fall there."
+    }
+  ]
+}

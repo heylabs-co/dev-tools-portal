@@ -1,0 +1,24 @@
+{
+  "intro": "The biggest real split between Discord and Forem is lock-in posture: Discord carries medium lock-in (data partially exportable via api), while Forem carries low lock-in (oss community platform). That single fact shapes the rest of the comparison. Discord is built for dev, gaming, and creator communities prioritizing real-time voice and chat engagement and is not a fit for teams wanting searchable, seo-indexed knowledge or formal customer support. Forem is built for engineering-led teams wanting a self-hosted dev.to-style community with full control and is not a fit for non-technical teams or anyone wanting a managed, zero-ops community platform. On the scoring side, Discord rates 5/5 for developer experience and 5/5 for transparency; Forem rates 4/5 and 5/5 respectively. The honest trade-off: with Discord you accept that seo invisible, content locked behind login, while Forem comes with the reality that self-host requires real rails ops. Neither side is free. Discord's headline strength in the data is that massive free scale with voice, video, chat.",
+  "quick_take": "Discord is for dev, gaming, and creator communities prioritizing real-time voice and chat engagement; Forem is for engineering-led teams wanting a self-hosted dev.to-style community with full control; decide based on.",
+  "verdict_a": "Choose Discord if you are dev, gaming, and creator communities prioritizing real-time voice and chat engagement and can accept medium lock-in (data partially exportable via api).",
+  "verdict_b": "Choose Forem if you are engineering-led teams wanting a self-hosted dev.to-style community with full control and need low lock-in (oss community platform).",
+  "faq": [
+    {
+      "q": "Is Discord cheaper than Forem?",
+      "a": "Discord uses a freemium model, while Forem uses a free model, and both publish a free tier. We don't have per-seat numbers in this dataset, so 'cheaper' depends on volume. Price both on your actual usage before deciding."
+    },
+    {
+      "q": "Can I migrate from Discord to Forem?",
+      "a": "Discord has medium lock-in (data partially exportable via api); Forem has low lock-in (oss community platform). Migration effort scales with how much state and automation you've built in Discord; plan for data export, config rebuild, and a parallel-run period before cutting over."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "In our data, Discord scores 5/5 for developer experience versus 4/5 for Forem. That said, DX is subjective; the Forem score may still be acceptable if its feature fit is stronger for your use case."
+    },
+    {
+      "q": "Is Forem a good alternative to Discord?",
+      "a": "Forem is built for engineering-led teams wanting a self-hosted dev.to-style community with full control and explicitly not for non-technical teams or anyone wanting a managed, zero-ops community platform, so it's a fit only if your workflow matches its stated audience. If you were using Discord for dev, gaming, and creator communities prioritizing real-time voice and chat engagement, the switch is reasonable; outside that scope, look elsewhere."
+    }
+  ]
+}

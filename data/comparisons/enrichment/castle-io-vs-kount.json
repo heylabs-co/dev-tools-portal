@@ -1,0 +1,24 @@
+{
+  "intro": "Castle is freemium; Kount is paid subscription. Castle: Castle protects user accounts and transactions from takeover, fraudulent signups and abusive usage with a developer-first API. It offers risk scoring, device fingerprinting, webhooks and policies, and is popular with SaaS companies like Sho. Kount: Mastercard fraud and identity trust platform combining device fingerprinting, AI scoring, and a shared merchant network. Castle fits B2B and B2C SaaS protecting logins, signups and workspace abuse with a small risk team. Kount fits marketplace — in practice, high-value transactions. On our rubric Castle scores 5/5 for developer experience and 5/5 for transparency, while Kount scores 4/5 and 3/5. The honest trade-off: Castle's main drawback — Weaker on payment fraud vs PSP-native tools; Kount's — Low transaction volume. One point in Castle's favour: Developer-first API with clear docs and webhooks. Castle is explicitly not the right pick for payment-first merchants or bot-heavy retail needing dedicated WAF-layer mitigation. Kount is not aimed at low transaction volume. Another Castle advantage: Policies let you codify risk rules without retraining.",
+  "quick_take": "Castle is for B2B; Kount is for marketplace; decide on pricing model.",
+  "verdict_a": "Choose Castle if your work looks like risk scoring for new user signup abuse prevention, and if a free tier with an optional paid path matters.",
+  "verdict_b": "Choose Kount if your work looks like high-value transactions.",
+  "faq": [
+    {
+      "q": "Is Castle cheaper than Kount?",
+      "a": "Castle uses freemium pricing; Kount uses paid subscription. Which is cheaper depends on your volume and team size — model both against your projected usage before deciding."
+    },
+    {
+      "q": "Can I migrate from Castle to Kount?",
+      "a": "Expect real effort: Castle is medium lock-in (Proprietary fraud API with webhooks) and Kount is high lock-in (Fraud platform integration). Migrating between them means rebuilding integrations, re-authoring config, and accepting new coupling. Scope a spike before committing."
+    },
+    {
+      "q": "Which has better developer experience, Castle or Kount?",
+      "a": "Castle scores higher in our rubric (5/5 vs 4/5 for Kount). Transparency is 5/5 for Castle and 3/5 for Kount. DX scores are rubric-based, not benchmarks, so evaluate against your own toolchain."
+    },
+    {
+      "q": "Is Kount a good alternative to Castle?",
+      "a": "They sit in the same category, so yes — Kount is a plausible alternative for many Castle use cases. It fits best when marketplace. Skip it if low transaction volume."
+    }
+  ]
+}

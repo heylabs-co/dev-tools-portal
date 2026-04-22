@@ -1,0 +1,24 @@
+{
+  "intro": "Accessibility Insights is a free Microsoft-maintained tool for guided per-page WCAG reviews, while A11yWatch is an open-source, self-hostable scanner designed to run automated accessibility checks inside CI pipelines. Accessibility Insights shines when a developer or QA sits down with a single page or feature and runs FastPass plus the assisted Assessment flow, including on Windows desktop apps. A11yWatch shines when you need to scan hundreds of pages on a schedule, wire reports into GitHub PR checks via its API and CLI, and keep data inside your own infrastructure. The trade-off is real: Accessibility Insights gives you guided WCAG coverage but no dashboards, no multi-site reporting and no continuous monitoring at scale, while A11yWatch gives you continuous scanning but its automated rules still miss 40 to 60 percent of issues and its UI is less polished than commercial suites. Accessibility Insights scores 4 for DX and 5 for transparency; A11yWatch scores 3 and 4 respectively.",
+  "quick_take": "Accessibility Insights is for per-page guided WCAG reviews; A11yWatch is for automated CI-pipeline scans across many pages; decide on manual depth versus scan breadth.",
+  "verdict_a": "Choose Accessibility Insights if your team does per-page or per-feature reviews, including Windows desktop apps, and wants Microsoft-guided manual WCAG workflows rather than a monitoring platform.",
+  "verdict_b": "Choose A11yWatch if you need self-hosted automated scanning across 500+ pages in CI with API and CLI integration, and you accept that automation alone will not pass a certified WCAG audit.",
+  "faq": [
+    {
+      "q": "Is Accessibility Insights cheaper than A11yWatch?",
+      "a": "Accessibility Insights is fully free and MIT licensed. A11yWatch is freemium with a free tier and is free when self-hosted, though you absorb the cost of hosting and uptime. For a single reviewer on a workstation, Accessibility Insights has no operational cost; for CI-wide scanning, A11yWatch's self-host path is cheapest at scale."
+    },
+    {
+      "q": "Can I migrate from Accessibility Insights to A11yWatch?",
+      "a": "Both are rated high lock-in in the data, but only in the sense that each is tightly tied to its own workflow. There is no shared report format, so you cannot carry over audit artefacts. In practice you would reimplement checks: manual Assessment runs on one side, automated rule scans on the other."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Accessibility Insights scores 4 and A11yWatch scores 3 on DX. Accessibility Insights offers guided FastPass and Assessment flows; A11yWatch gives you API, CLI and CI hooks but a less polished UI. For interactive auditing, Insights is smoother; for pipeline automation, A11yWatch's APIs win despite the rougher UX."
+    },
+    {
+      "q": "Is A11yWatch a good alternative to Accessibility Insights?",
+      "a": "Only partially. A11yWatch's best_for is engineering teams adding automated checks to CI, and its not_for explicitly calls out legal or compliance teams needing certified WCAG audits. Accessibility Insights's not_for is continuous monitoring across hundreds of pages, which is exactly A11yWatch's strength, so the two are complementary more than substitutable."
+    }
+  ]
+}

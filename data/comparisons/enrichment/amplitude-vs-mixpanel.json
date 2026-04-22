@@ -1,0 +1,24 @@
+{
+  "intro": "Amplitude and Mixpanel both show up under the product analytics category, but they solve slightly different jobs. Amplitude uses pricing that starts at $61/mo (Plus) with free tier, while Mixpanel runs on pricing that starts at $20/mo (Growth, 10K MTUs) with free tier. Both sit at moderate lock-in. Amplitude fits teams working on enterprise product analytics with advanced cohorts, while Mixpanel is a closer match when the job is understanding user behavior (funnels, retention). Worth noting: Amplitude is explicitly not for startup with <1K users; Mixpanel is explicitly not for simple projects. The honest trade-off: Amplitude trades off on startup with <1K users — PostHog free tier is more generous; Mixpanel trades off on pre-product stage. On the plus side, Amplitude highlights enterprise product analytics with advanced cohorts, while Mixpanel points to understanding user behavior (funnels, retention). Amplitude's documentation also calls out warehouse-native mode (Snowflake/BigQuery). Mixpanel similarly notes data-driven product decisions.",
+  "quick_take": "Amplitude is for enterprise product analytics with advanced cohorts; Mixpanel is for understanding user behavior (funnels, retention); decide on pricing model.",
+  "verdict_a": "Choose Amplitude if your project is enterprise product analytics with advanced cohorts, medium lock-in is an acceptable trade-off.",
+  "verdict_b": "Choose Mixpanel if your project is understanding user behavior (funnels, retention), medium lock-in is an acceptable trade-off.",
+  "faq": [
+    {
+      "q": "Is Amplitude cheaper than Mixpanel?",
+      "a": "Amplitude uses pricing that starts at $61/mo (Plus) with free tier, and Mixpanel uses pricing that starts at $20/mo (Growth, 10K MTUs) with free tier. The pricing models are different, so a direct cheaper-than comparison depends on your volume and usage pattern."
+    },
+    {
+      "q": "Can I migrate from Amplitude to Mixpanel?",
+      "a": "Our data puts Amplitude at medium lock-in (proprietary data model, warehouse-native reduces lock-in), and Mixpanel at medium lock-in. Migration is feasible but not trivial — budget time for re-integration, data export, and parallel running before cutover."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Both score 5/5 on developer experience in our data, so there's no clear winner on that axis. The better fit depends on which SDK matches your stack and which docs your team finds clearer during evaluation."
+    },
+    {
+      "q": "Is Mixpanel a good alternative to Amplitude?",
+      "a": "Mixpanel is a reasonable alternative to Amplitude when your workload leans more toward understanding user behavior (funnels, retention) than enterprise. The pricing model shifts too — Amplitude is pricing that starts at $61/mo (Plus) with free tier, Mixpanel is pricing that starts at $20/mo (Growth, 10K MTUs) with free tier — so expect the cost profile to change as well. One caveat: Mixpanel is explicitly not for simple projects, so check that constraint against your use-case before switching."
+    }
+  ]
+}

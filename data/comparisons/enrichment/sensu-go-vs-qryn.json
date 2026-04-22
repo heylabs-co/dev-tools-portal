@@ -1,0 +1,24 @@
+{
+  "intro": "Sensu Go and Qryn both show up under the observability category, but they solve slightly different jobs. Sensu Go uses undisclosed pricing with free tier, while Qryn runs on a free model. Lock-in is high for Sensu Go and low for Qryn. Transparency lands at 4/5 versus 5/5. Sensu Go fits teams working on event-driven monitoring for hybrid cloud infrastructure, while Qryn is a closer match when the job is drop-in Loki, Prometheus, and Tempo on ClickHouse. Worth noting: Sensu Go is explicitly not for cloud-native teams already standardized on Prometheus and Grafana; Qryn is explicitly not for teams without ClickHouse expertise or wanting turnkey hosted experience. The honest trade-off: Sensu Go trades off on configuration complexity vs Prometheus; Qryn trades off on ClickHouse ops skills needed for self-hosting. On the plus side, Sensu Go highlights event-driven architecture scales horizontally, while Qryn points to ClickHouse backend supports Loki, Prom, Tempo, DD APIs.",
+  "quick_take": "Sensu Go is for event-driven monitoring for hybrid cloud infrastructure; Qryn is for drop-in Loki, Prometheus, and Tempo on; decide on pricing model.",
+  "verdict_a": "Choose Sensu Go if your project is event-driven monitoring for hybrid cloud infrastructure, you are willing to accept the high lock-in called out in our data.",
+  "verdict_b": "Choose Qryn if your project is drop-in Loki, Prometheus, and Tempo on ClickHouse, you want to keep future migration cheap.",
+  "faq": [
+    {
+      "q": "Is Sensu Go cheaper than Qryn?",
+      "a": "Sensu Go uses undisclosed pricing with free tier, and Qryn uses a free model. The pricing models are different, so a direct cheaper-than comparison depends on your volume and usage pattern."
+    },
+    {
+      "q": "Can I migrate from Sensu Go to Qryn?",
+      "a": "Our data puts Sensu Go at high lock-in (oss monitoring, configs portable), and Qryn at low lock-in (oss observability stack). Expect real migration work out of Sensu Go — plan for data export, re-integration, and downtime testing before cutting over."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Both score 4/5 on developer experience in our data, so there's no clear winner on that axis. Qryn does edge ahead on pricing/docs transparency (5/5 vs 4/5), which can make evaluation faster."
+    },
+    {
+      "q": "Is Qryn a good alternative to Sensu Go?",
+      "a": "Qryn is a reasonable alternative to Sensu Go when your workload leans more toward teams wanting unified ClickHouse storage for LGTM stack without Grafana Cloud bills than hybrid infrastructure teams needing event-driven monitoring across cloud and on-prem. The pricing model shifts too — Sensu Go is undisclosed pricing with free tier, Qryn is a free model — so expect the cost profile to change as well. One caveat: Qryn is explicitly not for teams without ClickHouse expertise or wanting turnkey hosted experience, so check that constraint against your use-case before switching."
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "intro": "Castle and FingerprintJS overlap on pricing and lock-in, so the choice hinges on fit rather than cost. Castle: Castle protects user accounts and transactions from takeover, fraudulent signups and abusive usage with a developer-first API. It offers risk scoring, device fingerprinting, webhooks and policies, and is popular with SaaS companies like Sho. FingerprintJS: FingerprintJS (Fingerprint Pro) provides browser and mobile device identification with 99.5% accuracy using advanced fingerprinting signals. Its API detects bots, account sharing, multi-accounting and payment fraud, and exposes risk signals. Castle fits B2B and B2C SaaS protecting logins, signups and workspace abuse with a small risk team. FingerprintJS fits engineering teams adding a reliable device identity signal to their own risk stack. On our rubric Castle scores 5/5 for developer experience and 5/5 for transparency, while FingerprintJS scores 5/5 and 4/5. The honest trade-off: Castle's main drawback — Weaker on payment fraud vs PSP-native tools; FingerprintJS's — Device ID alone does not stop determined fraudsters.",
+  "quick_take": "Castle is for B2B; FingerprintJS is for engineering teams adding a reliable device identity signal; decide on fit with your stack.",
+  "verdict_a": "Choose Castle if your work looks like risk scoring for new user signup abuse prevention, and if transparency (5/5 vs 4/5 in our rubric) matters to your selection.",
+  "verdict_b": "Choose FingerprintJS if engineering teams adding a reliable device identity signal to their own risk stack.",
+  "faq": [
+    {
+      "q": "Is Castle cheaper than FingerprintJS?",
+      "a": "Both tools use freemium pricing, so a clean list-price comparison depends on tier details that vary by usage. Check each vendor's current plan page for your expected volume. Neither is structurally cheaper on the model alone."
+    },
+    {
+      "q": "Can I migrate from Castle to FingerprintJS?",
+      "a": "Expect real effort: Castle is medium lock-in (Proprietary fraud API with webhooks) and FingerprintJS is medium lock-in (OSS core + Pro API, portable). Migrating between them means rebuilding integrations, re-authoring config, and accepting new coupling. Scope a spike before committing."
+    },
+    {
+      "q": "Which has better developer experience, Castle or FingerprintJS?",
+      "a": "Both score 5/5 for developer experience in our rubric, so neither has a structural edge. The practical answer depends on stack fit: Castle's ergonomics suit some workflows, FingerprintJS's suit others. Try both on a throwaway project before committing."
+    },
+    {
+      "q": "Is FingerprintJS a good alternative to Castle?",
+      "a": "They sit in the same category, so yes — FingerprintJS is a plausible alternative for many Castle use cases. It fits best when engineering teams adding a reliable device identity signal to their own risk stack. Skip it if teams that want turnkey approve/decline decisions without building any logic."
+    }
+  ]
+}

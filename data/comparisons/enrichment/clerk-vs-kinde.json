@@ -1,0 +1,24 @@
+{
+  "intro": "The clearest split between Clerk and Kinde is how they charge: Clerk uses a free tier plus paid plans starting around $25/mo (Pro, 10K MAU), while Kinde uses hybrid pricing, Paid features as you scale. Clerk is Drop-in authentication platform with prebuilt React components for sign-in, MFA, organization management, and SSO; it fits best for apps, Startup. Kinde is Modern authentication and user management platform with pre-built SSO, MFA, feature flags, and billing integration; it fits best for Apps, B2B. Pick Clerk when the job maps to next.js / react apps needing drop-in auth ui; pick Kinde when it maps to apps needing sso/mfa. Clerk is not for enterprise requiring saml/scim on day one. Kinde is not for internal, static projects. Honest trade-offs: Clerk is weak for enterprise requiring saml/scim on day one — auth0/workos, and Kinde is weak for internal tools with basic auth — match to your real scenario.",
+  "quick_take": "Clerk is for apps, startup; Kinde is for apps, b2b; decide based on pricing model.",
+  "verdict_a": "Choose Clerk if you want a free tier plus paid plans starting around $25/mo (Pro, 10K MAU) and your workload matches apps, startup.",
+  "verdict_b": "Choose Kinde if you want hybrid pricing, Paid features as you scale and your workload matches apps, b2b.",
+  "faq": [
+    {
+      "q": "Is Clerk cheaper than Kinde?",
+      "a": "A direct comparison depends on your usage profile and which pricing model fits better. Clerk has a free tier with paid plans starting at $25/mo (Pro, 10K MAU). Kinde uses hybrid pricing, Paid features as you scale."
+    },
+    {
+      "q": "Can I migrate from Clerk to Kinde?",
+      "a": "Migration is workable but not trivial, since both sit around medium lock-in. Plan for data export, re-integration of SDKs, and re-testing flows before cutover. Verify exportable formats and feature parity against your live use cases before committing."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Both score 5/5 on developer experience in our data. Evaluate against your own stack: read their docs, run a quick SDK spike, and check error handling. Self-assessing with a small prototype beats trusting any rating at face value."
+    },
+    {
+      "q": "Is Kinde a good alternative to Clerk?",
+      "a": "Kinde sits in the same category as Clerk, so it can be a reasonable alternative for overlapping use cases. Kinde is best fit for apps, b2b. Note: Kinde is not for internal, static projects."
+    }
+  ]
+}

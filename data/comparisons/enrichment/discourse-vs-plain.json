@@ -1,0 +1,24 @@
+{
+  "intro": "The biggest real split between Discourse and Plain is lock-in posture: Discourse carries low lock-in (oss forum, self-hostable), while Plain carries medium lock-in (seat-based, data exportable via api). That single fact shapes the rest of the comparison. Discourse is built for open-source projects and brands wanting indexable, long-form community discussions and is not a fit for teams needing real-time chat or a zero-ops managed experience. Plain is built for apps and is not a fit for products without customer support. On the scoring side, Discourse rates 5/5 for developer experience and 5/5 for transparency; Plain rates 4/5 and 4/5 respectively. The honest trade-off: with Discourse you accept that self-hosting ruby stack is operational work, while Plain comes with the reality that products without customer support. Neither side is free. Discourse's headline strength in the data is that open-source with mature plugin ecosystem. Plain's headline strength is that in-app customer support chat.",
+  "quick_take": "Discourse is for open-source projects and brands wanting indexable, long-form community discussions; Plain is for apps; decide based on lock-in tolerance.",
+  "verdict_a": "Choose Discourse if you are open-source projects and brands wanting indexable, long-form community discussions and can accept low lock-in (oss forum, self-hostable).",
+  "verdict_b": "Choose Plain if you are apps and need medium lock-in (seat-based, data exportable via api).",
+  "faq": [
+    {
+      "q": "Is Discourse cheaper than Plain?",
+      "a": "Discourse uses a freemium model, while Plain uses a seat model; Discourse has a free tier and Plain does not. We don't have per-seat numbers in this dataset, so 'cheaper' depends on volume. Price both on your actual usage before deciding."
+    },
+    {
+      "q": "Can I migrate from Discourse to Plain?",
+      "a": "Discourse has low lock-in (oss forum, self-hostable); Plain has medium lock-in (seat-based, data exportable via api). Migration effort scales with how much state and automation you've built in Discourse; plan for data export, config rebuild, and a parallel-run period before cutting over."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "In our data, Discourse scores 5/5 for developer experience versus 4/5 for Plain. That said, DX is subjective; the Plain score may still be acceptable if its feature fit is stronger for your use case."
+    },
+    {
+      "q": "Is Plain a good alternative to Discourse?",
+      "a": "Plain is built for apps and explicitly not for products without customer support, so it's a fit only if your workflow matches its stated audience. If you were using Discourse for open-source projects and brands wanting indexable, long-form community discussions, the switch is reasonable; outside that scope, look elsewhere."
+    }
+  ]
+}

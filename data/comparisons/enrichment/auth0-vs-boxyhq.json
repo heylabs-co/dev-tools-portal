@@ -1,0 +1,24 @@
+{
+  "intro": "Auth0 is freemium; BoxyHQ is paid subscription. Auth0: Identity platform with SSO, MFA, social login, and enterprise federation supporting 30+ SDKs and 50+ integrations. BoxyHQ: Identity / Auth / User Management tool for developers. Specializes in Enterprise SSO. Auth0 fits enterprise — in practice, enterprise needing SAML/SCIM with complex rules. BoxyHQ fits apps, B2B — in practice, apps needing SSO/MFA. Both land at 5/5 for developer experience and 4/5 for transparency on our rubric. The honest trade-off: Auth0's main drawback — Expensive for costs — Auth0 gets expensive fast at scale; BoxyHQ's — Internal tools with basic auth. Auth0 is explicitly not the right pick for budget projects. BoxyHQ is not aimed at internal, Static projects. Another Auth0 advantage: Existing Okta customer extending to CIAM. Another BoxyHQ advantage: B2B requiring SAML/SCIM. Another Auth0 friction point: Need pre-built UI components — Clerk is better. Another BoxyHQ friction point: Static sites without user accounts. Our read on Auth0: best for enterprise needing saml/scim with complex rules. Auth0 offers freemium, paid from $5.",
+  "quick_take": "Auth0 is for enterprise; BoxyHQ is for apps, B2B; decide on pricing model.",
+  "verdict_a": "Choose Auth0 if your work looks like enterprise needing SAML/SCIM with complex rules, and if a free tier with an optional paid path matters.",
+  "verdict_b": "Choose BoxyHQ if your work looks like apps needing SSO/MFA.",
+  "faq": [
+    {
+      "q": "Is Auth0 cheaper than BoxyHQ?",
+      "a": "Auth0 uses freemium pricing; BoxyHQ uses paid subscription. Which is cheaper depends on your volume and team size — model both against your projected usage before deciding."
+    },
+    {
+      "q": "Can I migrate from Auth0 to BoxyHQ?",
+      "a": "Both tools are rated low lock-in, so migration is mostly a matter of re-pointing integrations and re-authoring config. There's no hard data format moat on either side. Expect work proportional to how deeply Auth0 touches your pipeline, but no vendor-imposed blockers."
+    },
+    {
+      "q": "Which has better developer experience, Auth0 or BoxyHQ?",
+      "a": "Both score 5/5 for developer experience in our rubric, so neither has a structural edge. The practical answer depends on stack fit: Auth0's ergonomics suit some workflows, BoxyHQ's suit others. Try both on a throwaway project before committing."
+    },
+    {
+      "q": "Is BoxyHQ a good alternative to Auth0?",
+      "a": "They sit in the same category, so yes — BoxyHQ is a plausible alternative for many Auth0 use cases. It fits best when apps, B2B. Skip it if internal, Static projects."
+    }
+  ]
+}

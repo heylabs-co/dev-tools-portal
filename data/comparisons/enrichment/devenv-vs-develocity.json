@@ -1,0 +1,24 @@
+{
+  "intro": "Devenv carries low lock-in (OSS Nix-based, fully portable) while Develocity is medium (Build scans proprietary, configs portable). Devenv is positioned for teams on macos and linux wanting reproducible, scriptable dev envs, while Develocity leans toward enterprises with large gradle, maven, or bazel monorepos and slow ci. In practice, Fast, declarative developer environments powered by Nix. Teams define services, toolchains, and scripts in a devenv.nix file that works identically across machines and CI in monorepo projects. Build acceleration and analytics platform for Gradle, Maven, Bazel, and sbt monorepos (formerly Gradle Enterprise). Provides remote build caching, build scans, and predictive test selection. Devenv runs on free with a free tier; Develocity runs on custom. Devenv rates 5/5 on transparency versus 1/5 for Develocity. Listed strengths unique to Devenv include reproducible dev environments via nix, without full nix pain, while Develocity lists dramatic ci and local build speedups via caching on its side. Reach for Devenv when you need declarative nix-powered dev environments for monorepos; reach for Develocity when the job is remote build caching for gradle, maven, and bazel monorepos. The honest.",
+  "quick_take": "Devenv is for teams on macos and linux wanting reproducible, scriptable dev envs; Develocity is for enterprises with large gradle, maven, or bazel monorepos and slow ci; decide based on.",
+  "verdict_a": "Choose Devenv if teams on macos and linux wanting reproducible, scriptable dev envs and you need a free tier to validate fit.",
+  "verdict_b": "Choose Develocity if enterprises with large gradle, maven, or bazel monorepos and slow ci and moderate platform coupling is acceptable.",
+  "faq": [
+    {
+      "q": "Is Devenv cheaper than Develocity?",
+      "a": "The listed pricing for Devenv is free with a free tier and for Develocity is custom, which doesn't give a clean apples-to-apples cost. Unit economics and plan structure differ enough that only your real volume answers this. Price both against the same workload."
+    },
+    {
+      "q": "Can I migrate from Devenv to Develocity?",
+      "a": "Technically you can move between any two tools in the same category, but effort varies: leaving Devenv is relatively light thanks to its low lock-in, and onboarding to Develocity involves medium lock-in (Build scans proprietary, configs portable). Plan for data export, re-integration, and a parallel-run window rather than a hard cutover."
+    },
+    {
+      "q": "Which has better developer experience, Devenv or Develocity?",
+      "a": "On the 0-5 developer experience score in our data, Develocity rates 5/5 while Devenv rates 4/5, giving Develocity the edge. That score is a rough summary; actual day-to-day DX depends on your language, deployment target, and tolerance for edge cases. Prototype both to validate."
+    },
+    {
+      "q": "Is Develocity a good alternative to Devenv?",
+      "a": "Develocity is an alternative in the same category, but its stated sweet spot is enterprises with large gradle, maven, or bazel monorepos and slow ci, while Devenv's is teams on macos and linux wanting reproducible, scriptable dev envs. If your job matches Devenv's profile more closely, switching to Develocity is a compromise. Use the best-fit match, not brand familiarity, to decide. Note: Develocity is explicitly not for small teams, non-jvm stacks, or budget-constrained startups."
+    }
+  ]
+}

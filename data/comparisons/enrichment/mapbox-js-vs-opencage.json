@@ -1,0 +1,24 @@
+{
+  "intro": "The clearest split between Mapbox JS and OpenCage is how they charge: Mapbox JS uses a free tier plus paid plans, while OpenCage uses subscription pricing starting around 0.15. Mapbox JS specializes in Maps & Geolocation SDK; it fits best for Apps with location search, routing, or delivery features. OpenCage is Geocoding API aggregating OpenStreetMap and other sources with batch geocoding and GDPR compliance; it fits best for apps. Pick Mapbox JS when the job maps to automated build/test/deploy pipelines; pick OpenCage when it maps to location-based services. Mapbox JS is not for apps with no geographic or location requirements. OpenCage is not for simple projects. Honest trade-offs: Mapbox JS is weak for api call costs grow quickly with high map usage, and OpenCage is weak for apps without location features — match to your real scenario. Both sit under the Maps / Geolocation / Routing umbrella, so your final call depends on pricing transparency, integration effort, and which listed not-for situations you can actually tolerate.",
+  "quick_take": "Mapbox JS is for apps with location search, routing, or delivery features; OpenCage is for apps; decide based on pricing model.",
+  "verdict_a": "Choose Mapbox JS if you want a free tier plus paid plans and your workload matches apps with location search, routing, or delivery features.",
+  "verdict_b": "Choose OpenCage if you want subscription pricing starting around 0.15 and your workload matches apps.",
+  "faq": [
+    {
+      "q": "Is Mapbox JS cheaper than OpenCage?",
+      "a": "A direct comparison depends on your usage profile and which pricing model fits better. Mapbox JS offers a free tier. OpenCage uses subscription pricing starting at 0.15."
+    },
+    {
+      "q": "Can I migrate from Mapbox JS to OpenCage?",
+      "a": "Migration may be non-trivial: OpenCage is rated high lock-in (OSM-based, easy to swap). Plan for data export, re-integration of SDKs, and re-testing flows before cutover. Verify exportable formats and feature parity against your live use cases before committing."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Mapbox JS scores higher on developer experience (5/5 vs 4/5 for OpenCage). Evaluate against your own stack: read their docs, run a quick SDK spike, and check error handling. Self-assessing with a small prototype beats trusting any rating at face value."
+    },
+    {
+      "q": "Is OpenCage a good alternative to Mapbox JS?",
+      "a": "OpenCage sits in the same category as Mapbox JS, so it can be a reasonable alternative for overlapping use cases. OpenCage is best fit for apps. Note: OpenCage is not for simple projects."
+    }
+  ]
+}

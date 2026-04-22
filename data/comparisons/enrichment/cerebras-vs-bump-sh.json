@@ -1,0 +1,24 @@
+{
+  "intro": "Cerebras and Bump.sh bill differently, which matters more than feature parity here — Cerebras offers a free tier, paid from $50/month, while Bump.sh sells a subscription from $50 with a free tier. Cerebras is hosted inference on Cerebras hardware for very fast LLM token throughput. Bump.sh is API documentation and change-tracking hub for OpenAPI/AsyncAPI schemas. Pick Cerebras when the job is api gateway and rate limiting and you accept low lock-in; pick Bump.sh when it is api gateway and rate limiting and you accept low lock-in. The data we have shows Cerebras at mostly transparent pricing and docs with solid developer experience, and Bump.sh at mostly transparent pricing and docs with a polished developer experience. The honest trade-off: neither is universal — Cerebras is a poor fit for internal, simple projects, and Bump.sh is a poor fit for internal, simple projects. Match the pricing model and lock-in level to how your team actually works, not the feature list.",
+  "quick_take": "Cerebras is for hosted inference on Cerebras hardware; Bump.sh is for API documentation and change-tracking hub; decide based on pricing model fit.",
+  "verdict_a": "Choose Cerebras if a free tier with paid upgrade from $50/month is the right shape and the work maps to hosted inference on Cerebras hardware for very fast LLM token throughput.",
+  "verdict_b": "Choose Bump.sh if day-to-day developer ergonomics are a priority and the work lines up with API documentation and change-tracking hub for OpenAPI/AsyncAPI schemas.",
+  "faq": [
+    {
+      "q": "Is Cerebras cheaper than Bump.sh?",
+      "a": "Cerebras starts at $50/month on a freemium model; Bump.sh starts at $50 on a subscription model. That makes the sticker comparison depend on usage — a low entry price can get expensive once volume ramps, so price at your actual workload."
+    },
+    {
+      "q": "Can I migrate from Cerebras to Bump.sh?",
+      "a": "Migration in either direction is relatively cheap — both Cerebras and Bump.sh are rated low lock-in, so your configuration and data should port without a rewrite. The realistic cost is team re-training and pipeline QA, not the tools themselves."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Bump.sh scores higher on developer experience in our data (5/5 vs 4/5). The gap usually shows up in setup friction and daily workflow speed. Confirm it on your own stack before treating the rating as final."
+    },
+    {
+      "q": "Is Bump.sh a good alternative to Cerebras?",
+      "a": "Yes — Bump.sh is a reasonable alternative to Cerebras for api gateway and rate limiting. The practical differences are freemium-vs-subscription billing and low-vs-low lock-in. If those fit your constraints better, treat Bump.sh as a credible swap."
+    }
+  ]
+}

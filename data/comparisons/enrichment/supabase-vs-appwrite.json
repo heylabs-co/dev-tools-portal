@@ -1,0 +1,24 @@
+{
+  "intro": "The biggest real distinction between Supabase and Appwrite is straightforward: Supabase uses freemium with a paid tier from $25/mo (Pro), enterprise plan available; Appwrite uses hybrid pricing with $25/mo/project (Pro), a free tier, enterprise plan available. Supabase sits at freemium with a paid tier from $25/mo (Pro), enterprise plan available and carries low lock-in, while Appwrite sits at hybrid pricing with $25/mo/project (Pro), a free tier, enterprise plan available and carries low lock-in. Supabase is a fit when you need need postgresql with auth + storage + realtime — typical scenarios include need postgresql with auth + storage + realtime. Appwrite is aimed at mobile, teams, with workloads like mvp/prototyping speed as the common case. The honest trade-off: Supabase is explicitly not for offline projects; Appwrite is not intended for complex custom business logic. On cost specifically, pricing model matters more than sticker price — one workload can make Supabase cheaper while a different shape flips the answer to Appwrite.",
+  "quick_take": "Supabase is for need postgresql with auth + storage; Appwrite is for mobile, teams; decide based on cost model and budget.",
+  "verdict_a": "Choose Supabase if your primary workload is need postgresql with auth + storage + realtime and the free tier plus $25/mo (Pro) paid tier fits your budget.",
+  "verdict_b": "Choose Appwrite if your primary workload is mobile, teams and hybrid pricing ($25/mo/project (Pro)) is acceptable.",
+  "faq": [
+    {
+      "q": "Is Supabase cheaper than Appwrite?",
+      "a": "It depends on workload shape: Supabase lists $25/mo (Pro), while Appwrite lists $25/mo/project (Pro). With different pricing models (freemium vs hybrid), the cheaper option flips based on seat count, usage volume, and whether you use the free tier. Do a per-workload estimate rather than comparing headline numbers."
+    },
+    {
+      "q": "Can I migrate from Supabase to Appwrite?",
+      "a": "Migrating from Supabase to Appwrite is generally feasible because Supabase has low lock-in, so data and configuration are usually portable. Since both tools sit in the same category (Backend-as-a-Service), the conceptual mapping is closer, but you still need to validate feature parity against your specific workload. Plan migration as a project, not a script: inventory integrations, test on non-production workloads, and keep Supabase running in parallel until Appwrite is verified."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Our data gives Supabase and Appwrite the same developer experience score (5/5), so neither has a clear edge on DX by that measure. The differentiator is usually how each tool fits your workflow — things like CLI quality, docs, local dev loop, and error messages. The safest call is to pilot both on a representative task and see which one gets out of your way."
+    },
+    {
+      "q": "Is Appwrite a good alternative to Supabase?",
+      "a": "Appwrite is in the same category as Supabase (Backend-as-a-Service), so it's a reasonable alternative to evaluate. Appwrite is aimed at mobile, teams, while Supabase targets need postgresql with auth + storage + realtime — that difference should drive the switch decision. Note that Appwrite is explicitly not for complex custom business logic — if that describes your workload, it's not a viable replacement."
+    }
+  ]
+}

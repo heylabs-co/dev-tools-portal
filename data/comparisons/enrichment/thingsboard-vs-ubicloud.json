@@ -1,0 +1,24 @@
+{
+  "intro": "The biggest real distinction between ThingsBoard and Ubicloud is straightforward: ThingsBoard uses freemium with paid upgrades; Ubicloud uses usage-based pricing, a free tier. ThingsBoard sits at freemium with paid upgrades and carries low lock-in, while Ubicloud sits at usage-based pricing, a free tier and carries low lock-in. ThingsBoard is a fit when you need teams that need self-hosted iot with device mgmt, telemetry and rule chains — typical scenarios include open-source iot platform with device management and dashboards. Ubicloud is aimed at teams cutting github actions bills or wanting open-source iaas on hetzner, with workloads like open-source aws alternative running on hetzner bare-metal as the common case. The honest trade-off: ThingsBoard is explicitly not for small teams wanting a polished managed iot saas with zero ops; Ubicloud is not intended for enterprises needing the full breadth of aws managed services. On cost specifically, pricing model matters more than sticker price — one workload can make ThingsBoard cheaper while a different shape flips the answer to Ubicloud.",
+  "quick_take": "ThingsBoard is for teams that need self-hosted iot with; Ubicloud is for teams cutting github actions bills or; decide based on cost model and budget.",
+  "verdict_a": "Choose ThingsBoard if your primary workload is teams that need self-hosted iot with device mgmt, telemetry and rule chains and low switching cost matters.",
+  "verdict_b": "Choose Ubicloud if your primary workload is teams cutting github actions bills or wanting open-source iaas on hetzner and low switching cost matters.",
+  "faq": [
+    {
+      "q": "Is ThingsBoard cheaper than Ubicloud?",
+      "a": "Neither ThingsBoard nor Ubicloud publishes a straightforward entry price in our data, so a direct 'cheaper' call is not possible. Pricing models differ (freemium vs usage), which usually means the answer depends on seat count and usage."
+    },
+    {
+      "q": "Can I migrate from ThingsBoard to Ubicloud?",
+      "a": "Migrating from ThingsBoard to Ubicloud is generally feasible because ThingsBoard has low lock-in, so data and configuration are usually portable. Since both tools sit in the same category (Backend-as-a-Service), the conceptual mapping is closer, but you still need to validate feature parity against your specific workload. Plan migration as a project, not a script: inventory integrations, test on non-production workloads, and keep ThingsBoard running in parallel until Ubicloud is verified."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "On our 0–5 developer experience scale, ThingsBoard scores higher (4/5 vs 3/5 for Ubicloud). The gap is one point — meaningful but not decisive, since DX is workflow-dependent. Still, score your own tasks: DX is subjective and tied to stack assumptions."
+    },
+    {
+      "q": "Is Ubicloud a good alternative to ThingsBoard?",
+      "a": "Ubicloud is in the same category as ThingsBoard (Backend-as-a-Service), so it's a reasonable alternative to evaluate. Ubicloud is aimed at teams cutting github actions bills or wanting open-source iaas on hetzner, while ThingsBoard targets teams that need self-hosted iot with device mgmt, telemetry and rule chains — that difference should drive the switch decision. Note that Ubicloud is explicitly not for enterprises needing the full breadth of aws managed services — if that describes your workload, it's not a viable replacement."
+    }
+  ]
+}

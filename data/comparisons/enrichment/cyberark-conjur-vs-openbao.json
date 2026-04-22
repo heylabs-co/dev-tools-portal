@@ -1,0 +1,24 @@
+{
+  "intro": "The most concrete split between CyberArk Conjur and OpenBao is the pricing model: CyberArk Conjur runs on subscription from 60, with a free tier, while OpenBao uses free and open-source. That shapes how predictable your monthly spend is and how much of the cost sits in infrastructure versus per-seat or per-event fees. Beyond the headline, CyberArk Conjur carries high lock-in (enterprise secrets lock-in) and subscription from 60, with a free tier; OpenBao carries high lock-in (lf fork of vault, oss) and free and open-source. CyberArk Conjur is a fit when you are teams. OpenBao is a fit when you are teams that want vault functionality under a permissive license. The honest trade-off: CyberArk Conjur is explicitly not for solo, static projects; OpenBao is explicitly not for shops that rely on vault enterprise features or hcp. On the product side, CyberArk Conjur is described as Enterprise secrets management platform with dynamic secrets, RBAC, and audit trails for DevOps pipelines, and OpenBao is described as open source fork of HashiCorp Vault maintained by the Linux Foundation for secrets management.",
+  "quick_take": "CyberArk Conjur is for teams; OpenBao is for teams that want vault functionality under a permissive license; decide on pricing model.",
+  "verdict_a": "Choose CyberArk Conjur if its subscription pricing model fits your budget shape better than OpenBao's free model, and you are teams.",
+  "verdict_b": "Choose OpenBao if you want a fully free, open-source option and can handle self-hosting or self-support.",
+  "faq": [
+    {
+      "q": "Is CyberArk Conjur cheaper than OpenBao?",
+      "a": "Headline yes, OpenBao is free and open-source while CyberArk Conjur uses subscription from 60, with a free tier. But the total cost depends on self-hosting and maintenance effort for OpenBao versus managed convenience from CyberArk Conjur. Factor in both."
+    },
+    {
+      "q": "Can I migrate from CyberArk Conjur to OpenBao?",
+      "a": "Migration from CyberArk Conjur is harder: CyberArk Conjur is rated high lock-in (enterprise secrets lock-in). You can still move, but expect schema-mapping, export tooling and a longer cutover window. Budget engineering time accordingly."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "On our scoring OpenBao rates 4/5 for developer experience versus 3/5 for CyberArk Conjur. That suggests OpenBao feels more polished for everyday developer tasks. We still recommend a short hands-on trial on your stack before standardising."
+    },
+    {
+      "q": "Is OpenBao a good alternative to CyberArk Conjur?",
+      "a": "OpenBao is pitched at teams that want vault functionality under a permissive license, which overlaps with CyberArk Conjur's fit (teams) but is not identical. Note that OpenBao is explicitly not for shops that rely on vault enterprise features or hcp, so it only replaces CyberArk Conjur if you are outside that exclusion. Pricing models differ (subscription vs free), which may shift total cost."
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "intro": "The clearest split between Brevo and Amazon SES is vendor lock-in: Brevo is rated low (Marketing/email, SMTP portable), while Amazon SES is rated high (SMTP-compatible, portable to other email providers). Brevo is Marketing and transactional email/SMS platform with automation, CRM, and a free tier API; it fits best for Transactional emails (receipts, alerts). Amazon SES is AWS scalable transactional and bulk email sending service with SMTP and API access; it fits best for Transactional emails (receipts, alerts). Pick Brevo for Transactional emails (receipts, alerts); pick Amazon SES for Transactional emails (receipts, alerts). Brevo is not for internal projects. Amazon SES is not for internal projects. Honest trade-offs: Brevo is weak for internal team communication, and Amazon SES is weak for internal team communication — match to your real scenario. Both sit under the Messaging API (Email / SMS / Voice) umbrella, so your final call depends on pricing transparency, integration effort, and which listed not-for situations you can actually tolerate.",
+  "quick_take": "Brevo is for transactional emails (receipts, alerts); Amazon SES is for transactional emails (receipts, alerts); decide based on lock-in tolerance.",
+  "verdict_a": "Choose Brevo if low lock-in (Marketing/email, SMTP portable) is acceptable and you need transactional emails (receipts, alerts).",
+  "verdict_b": "Choose Amazon SES if high lock-in (SMTP-compatible, portable to other email providers) is acceptable and you need transactional emails (receipts, alerts).",
+  "faq": [
+    {
+      "q": "Is Brevo cheaper than Amazon SES?",
+      "a": "A direct comparison depends on your usage profile and which pricing model fits better. Brevo offers a free tier. Amazon SES has a free tier with paid plans starting at $50 per month."
+    },
+    {
+      "q": "Can I migrate from Brevo to Amazon SES?",
+      "a": "Migration may be non-trivial: Amazon SES is rated high lock-in (SMTP-compatible, portable to other email providers). Plan for data export, re-integration of SDKs, and re-testing flows before cutover. Verify exportable formats and feature parity against your live use cases before committing."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Both score 4/5 on developer experience in our data. Evaluate against your own stack: read their docs, run a quick SDK spike, and check error handling. Self-assessing with a small prototype beats trusting any rating at face value."
+    },
+    {
+      "q": "Is Amazon SES a good alternative to Brevo?",
+      "a": "Amazon SES sits in the same category as Brevo, so it can be a reasonable alternative for overlapping use cases. Amazon SES is best fit for transactional emails (receipts, alerts). Note: Amazon SES is not for internal projects."
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "intro": "Auth0 is freemium; Dfns is custom-priced. Auth0: Identity platform with SSO, MFA, social login, and enterprise federation supporting 30+ SDKs and 50+ integrations. Dfns: MPC wallet-as-a-service API for institutions to create, embed, and manage programmable wallets. Auth0 fits enterprise — in practice, enterprise needing SAML/SCIM with complex rules. Dfns fits institutions, exchanges and fintechs needing programmable custody APIs. On our rubric Auth0 scores 5/5 for developer experience and 4/5 for transparency, while Dfns scores 4/5 and 1/5. The honest trade-off: Auth0's main drawback — Expensive for costs — Auth0 gets expensive fast at scale; Dfns's — Enterprise pricing; not friendly for small projects. For Dfns: MPC wallet-as-a-service with SOC 2 and policy engine. Auth0 is explicitly not the right pick for budget projects. Dfns is not aimed at consumer dApps prioritizing social login and embedded UX. Another Auth0 advantage: Existing Okta customer extending to CIAM. Another Dfns advantage: Institutional-grade key management without self-custody ops. Another Auth0 friction point: Need pre-built UI components — Clerk is better.",
+  "quick_take": "Auth0 is for enterprise; Dfns is for institutions, exchanges and fintechs needing programmable custody APIs; decide on pricing model.",
+  "verdict_a": "Choose Auth0 if your work looks like enterprise needing SAML/SCIM with complex rules, and if a free tier with an optional paid path matters.",
+  "verdict_b": "Choose Dfns if institutions, exchanges and fintechs needing programmable custody APIs, and if you're buying at enterprise scale where custom terms apply.",
+  "faq": [
+    {
+      "q": "Is Auth0 cheaper than Dfns?",
+      "a": "Auth0 uses freemium pricing; Dfns uses custom-priced. Which is cheaper depends on your volume and team size — model both against your projected usage before deciding."
+    },
+    {
+      "q": "Can I migrate from Auth0 to Dfns?",
+      "a": "Migrating out of Auth0 is straightforward — it's rated low lock-in (Auth migration is painful but doable). The harder question is how deeply you commit to Dfns afterward, since it sits at high lock-in (MPC wallet service, custodial lock-in). Plan the forward cost, not just the exit."
+    },
+    {
+      "q": "Which has better developer experience, Auth0 or Dfns?",
+      "a": "Auth0 scores higher in our rubric (5/5 vs 4/5 for Dfns). Transparency is 4/5 for Auth0 and 1/5 for Dfns. DX scores are rubric-based, not benchmarks, so evaluate against your own toolchain."
+    },
+    {
+      "q": "Is Dfns a good alternative to Auth0?",
+      "a": "They sit in the same category, so yes — Dfns is a plausible alternative for many Auth0 use cases. It fits best when institutions, exchanges and fintechs needing programmable custody APIs. Skip it if consumer dApps prioritizing social login and embedded UX."
+    }
+  ]
+}

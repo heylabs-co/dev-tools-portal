@@ -1,0 +1,24 @@
+{
+  "intro": "Basis Theory and PaymentsOS both show up under the payments orchestration category, but they solve slightly different jobs. Basis Theory uses undisclosed pricing with free tier, while PaymentsOS runs on custom (sales-led) pricing. Both sit at moderate lock-in. Transparency lands at 4/5 versus 1/5. Basis Theory fits teams working on tokenizing payment card data to reduce PCI DSS scope, while PaymentsOS is a closer match when the job is smart routing across multiple PSPs for enterprise merchants. Worth noting: Basis Theory is explicitly not for merchants wanting a full routing, reconciliation, and analytics product out of the box; PaymentsOS is explicitly not for dev-first teams expecting modern SDKs, open source, or fast product iteration. The honest trade-off: Basis Theory trades off on tokenization only — no routing or acquiring; PaymentsOS trades off on legacy brand (Zooz) can signal older codebase. On the plus side, Basis Theory highlights processor-agnostic tokens portable across any PSP, while PaymentsOS points to established orchestrator with smart-routing track record.",
+  "quick_take": "Basis Theory is for tokenizing payment card data to reduce; PaymentsOS is for smart routing across multiple PSPs for; decide on pricing model.",
+  "verdict_a": "Choose Basis Theory if your project is tokenizing payment card data to reduce PCI DSS scope, medium lock-in is an acceptable trade-off.",
+  "verdict_b": "Choose PaymentsOS if your project is smart routing across multiple PSPs for enterprise merchants, you are prepared for a sales-led custom-pricing conversation, medium lock-in is an acceptable trade-off.",
+  "faq": [
+    {
+      "q": "Is Basis Theory cheaper than PaymentsOS?",
+      "a": "Basis Theory uses undisclosed pricing with free tier, and PaymentsOS uses custom (sales-led) pricing. The pricing models are different, so a direct cheaper-than comparison depends on your volume and usage pattern. Basis Theory offers a free tier; PaymentsOS does not."
+    },
+    {
+      "q": "Can I migrate from Basis Theory to PaymentsOS?",
+      "a": "Our data puts Basis Theory at medium lock-in, and PaymentsOS at medium lock-in (payment orchestration, psp switchable). Migration is feasible but not trivial — budget time for re-integration, data export, and parallel running before cutover."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Both score 4/5 on developer experience in our data, so there's no clear winner on that axis. Basis Theory does edge ahead on pricing/docs transparency (4/5 vs 1/5), which can make evaluation faster."
+    },
+    {
+      "q": "Is PaymentsOS a good alternative to Basis Theory?",
+      "a": "PaymentsOS is a reasonable alternative to Basis Theory when your workload leans more toward global enterprises comfortable with PayU-backed vendors and needing stable multi-PSP routing than engineering teams that want PCI offload and PSP portability without being locked into Stripe or Adyen vaults. The pricing model shifts too — Basis Theory is undisclosed pricing with free tier, PaymentsOS is custom (sales-led) pricing — so expect the cost profile to change as well. One caveat: PaymentsOS is explicitly not for dev-first teams expecting modern SDKs, open source, or fast product iteration, so check that constraint against your use-case before switching."
+    }
+  ]
+}

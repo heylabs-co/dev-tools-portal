@@ -1,0 +1,24 @@
+{
+  "intro": "The clearest split between Weblate and Eden AI is how they charge: Weblate uses a free tier plus paid plans, while Eden AI uses subscription pricing starting around $10. Weblate specializes in Translation Management; it fits best for Global products launching in multiple markets. Eden AI is Unified AI API aggregating translation, OCR, NLP, and vision models from multiple providers; it fits best for Apps. Pick Weblate when the job maps to automated build/test/deploy pipelines; pick Eden AI when it maps to apps targeting multiple languages/markets. Weblate is not for single-language apps or internal tools. Eden AI is not for static projects. Honest trade-offs: Weblate is weak for machine translation quality varies by language pair, and Eden AI is weak for english-only products — match to your real scenario. Both sit under the Localization / Translation API umbrella, so your final call depends on pricing transparency, integration effort, and which listed not-for situations you can actually tolerate.",
+  "quick_take": "Weblate is for global products launching in multiple markets; Eden AI is for apps; decide based on pricing model.",
+  "verdict_a": "Choose Weblate if you want a free tier plus paid plans and your workload matches global products launching in multiple markets.",
+  "verdict_b": "Choose Eden AI if you want subscription pricing starting around $10 and your workload matches apps.",
+  "faq": [
+    {
+      "q": "Is Weblate cheaper than Eden AI?",
+      "a": "A direct comparison depends on your usage profile and which pricing model fits better. Weblate offers a free tier. Eden AI uses subscription pricing starting at $10."
+    },
+    {
+      "q": "Can I migrate from Weblate to Eden AI?",
+      "a": "Migration between these is relatively straightforward since both are rated as low lock-in. Plan for data export, re-integration of SDKs, and re-testing flows before cutover. Verify exportable formats and feature parity against your live use cases before committing."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Both score 4/5 on developer experience in our data. Evaluate against your own stack: read their docs, run a quick SDK spike, and check error handling. Self-assessing with a small prototype beats trusting any rating at face value."
+    },
+    {
+      "q": "Is Eden AI a good alternative to Weblate?",
+      "a": "Eden AI sits in the same category as Weblate, so it can be a reasonable alternative for overlapping use cases. Eden AI is best fit for apps. Note: Eden AI is not for static projects."
+    }
+  ]
+}

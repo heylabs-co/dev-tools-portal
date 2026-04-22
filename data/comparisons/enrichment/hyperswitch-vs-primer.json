@@ -1,0 +1,24 @@
+{
+  "intro": "Hyperswitch and Primer both show up under the payments orchestration category, but they solve slightly different jobs. Hyperswitch uses a free model, while Primer runs on custom (sales-led) pricing. Both sit at low lock-in. Transparency lands at 5/5 versus 3/5. Hyperswitch fits teams working on open-source payments switch routing to multiple processors via unified API, while Primer is a closer match when the job is Multi-PSP routing for higher conversion. Worth noting: Hyperswitch is explicitly not for small teams without DevOps capacity or those needing a fully managed, SaaS-only product; Primer is explicitly not for single-market startups. The honest trade-off: Hyperswitch trades off on self-hosting demands serious infra maturity; Primer trades off on single-market startups. On the plus side, Hyperswitch highlights open source under Apache 2.0 — fully self-hostable, while Primer points to Multi-PSP routing for higher conversion. Hyperswitch's documentation also calls out written in Rust for throughput and low latency. Primer similarly notes enterprise with multiple payment providers.",
+  "quick_take": "Hyperswitch is for open-source payments switch routing to multiple; Primer is for Multi-PSP routing for higher conversion; decide on pricing model.",
+  "verdict_a": "Choose Hyperswitch if your project is open-source payments switch routing to multiple processors via unified API, you want to keep future migration cheap.",
+  "verdict_b": "Choose Primer if your project is Multi-PSP routing for higher conversion, you want to keep future migration cheap.",
+  "faq": [
+    {
+      "q": "Is Hyperswitch cheaper than Primer?",
+      "a": "Hyperswitch uses a free model, and Primer uses custom (sales-led) pricing. The pricing models are different, so a direct cheaper-than comparison depends on your volume and usage pattern. Hyperswitch offers a free tier; Primer does not."
+    },
+    {
+      "q": "Can I migrate from Hyperswitch to Primer?",
+      "a": "Our data puts Hyperswitch at low lock-in (open-source payments switch), and Primer at low lock-in. Moving from Hyperswitch to Primer should be manageable, though you'll still need to replay integrations and re-test flows end-to-end."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Both score 5/5 on developer experience in our data, so there's no clear winner on that axis. Hyperswitch does edge ahead on pricing/docs transparency (5/5 vs 3/5), which can make evaluation faster."
+    },
+    {
+      "q": "Is Primer a good alternative to Hyperswitch?",
+      "a": "Primer is a reasonable alternative to Hyperswitch when your workload leans more toward enterprise than engineering-led teams wanting full control of an orchestrator without paying per-transaction SaaS fees. The pricing model shifts too — Hyperswitch is a free model, Primer is custom (sales-led) pricing — so expect the cost profile to change as well. One caveat: Primer is explicitly not for single-market startups, so check that constraint against your use-case before switching."
+    }
+  ]
+}

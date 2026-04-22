@@ -1,0 +1,24 @@
+{
+  "intro": "The most concrete split between Contentsquare and MIMIC Replay is the pricing model: Contentsquare runs on subscription pricing, with a free tier, while MIMIC Replay uses free and open-source. That shapes how predictable your monthly spend is and how much of the cost sits in infrastructure versus per-seat or per-event fees. Beyond the headline, Contentsquare carries high lock-in (session data in platform) and subscription pricing, with a free tier; MIMIC Replay carries high lock-in (free oss session replay, self-hosted) and free and open-source. Contentsquare is a fit when you are ux debugging and optimization. MIMIC Replay is a fit when you are privacy-sensitive teams with engineering capacity to self-host replay. The honest trade-off: Contentsquare is explicitly not for apps with strict privacy requirements (healthcare); MIMIC Replay is explicitly not for marketing or product teams expecting turnkey dashboards and support. On the product side, Contentsquare is described as Digital experience analytics platform with zone-based heatmaps, session replay, and funnel analysis, and MIMIC Replay is described as Open-source, self-hosted session replay framework built on rrweb with custom network interceptors for debugging and.",
+  "quick_take": "Contentsquare is for ux debugging and optimization; MIMIC Replay is for privacy-sensitive teams with engineering capacity to self-host replay; decide on pricing model.",
+  "verdict_a": "Choose Contentsquare if its subscription pricing model fits your budget shape better than MIMIC Replay's free model, and you are ux debugging and optimization.",
+  "verdict_b": "Choose MIMIC Replay if you want a fully free, open-source option and can handle self-hosting or self-support.",
+  "faq": [
+    {
+      "q": "Is Contentsquare cheaper than MIMIC Replay?",
+      "a": "Headline yes, MIMIC Replay is free and open-source while Contentsquare uses subscription pricing, with a free tier. But the total cost depends on self-hosting and maintenance effort for MIMIC Replay versus managed convenience from Contentsquare. Factor in both."
+    },
+    {
+      "q": "Can I migrate from Contentsquare to MIMIC Replay?",
+      "a": "Migration from Contentsquare is harder: Contentsquare is rated high lock-in (session data in platform). You can still move, but expect schema-mapping, export tooling and a longer cutover window. Budget engineering time accordingly."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "On our scoring MIMIC Replay rates 4/5 for developer experience versus 3/5 for Contentsquare. That suggests MIMIC Replay feels more polished for everyday developer tasks. We still recommend a short hands-on trial on your stack before standardising."
+    },
+    {
+      "q": "Is MIMIC Replay a good alternative to Contentsquare?",
+      "a": "MIMIC Replay is pitched at privacy-sensitive teams with engineering capacity to self-host replay, which overlaps with Contentsquare's fit (ux debugging and optimization) but is not identical. Note that MIMIC Replay is explicitly not for marketing or product teams expecting turnkey dashboards and support, so it only replaces Contentsquare if you are outside that exclusion. Pricing models differ (subscription vs free), which may shift total cost."
+    }
+  ]
+}

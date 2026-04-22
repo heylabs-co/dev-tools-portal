@@ -1,0 +1,24 @@
+{
+  "intro": "Flags SDK is free and open source while Bucket runs on paid subscription pricing. Bucket: Feature Flags / Remote Config tool for developers. Specializes in Feature Management. Flags SDK: Free open-source Vercel library for Next.js and SvelteKit feature flags. Framework-native, provider-agnostic with adapters for LaunchDarkly, Statsig, Optimizely, Hypertune, ConfigCat, DevCycle and Flipt. Bucket fits gradual rollouts to reduce risk. Flags SDK fits Next.js/SvelteKit teams integrating existing flag SaaS cleanly. On our rubric Bucket scores 4/5 for developer experience and 4/5 for transparency, while Flags SDK scores 5/5 and 5/5. The honest trade-off: Bucket's main drawback — Solo developer shipping to production; Flags SDK's — Only a client/framework layer; you still need a provider. For Flags SDK: Framework-native for Next.js and SvelteKit. Bucket is explicitly not the right pick for solo projects. Flags SDK is not aimed at Non-Vercel stacks or teams needing the provider itself. Another Bucket advantage: Kill switches for features. Another Flags SDK advantage: Provider-agnostic with adapters for major flag SaaS.",
+  "quick_take": "Bucket is for gradual rollouts to reduce risk; Flags SDK is for Next.js/SvelteKit teams integrating existing flag SaaS cleanly; decide on pricing model.",
+  "verdict_a": "Choose Bucket if gradual rollouts to reduce risk, and if you'd rather pay for a managed service than run infrastructure yourself.",
+  "verdict_b": "Choose Flags SDK if Next.js/SvelteKit teams integrating existing flag SaaS cleanly, and if you want to avoid recurring license costs and are willing to self-host.",
+  "faq": [
+    {
+      "q": "Is Bucket cheaper than Flags SDK?",
+      "a": "No: Flags SDK is free and open source, while Bucket runs on paid subscription pricing. Bucket may still be cheaper in total cost once you factor in hosting, maintenance, and engineering time to run Flags SDK yourself."
+    },
+    {
+      "q": "Can I migrate from Bucket to Flags SDK?",
+      "a": "Moving to Flags SDK is reasonable on its side — it's low lock-in (OSS provider-agnostic flags SDK). The friction is on the way out of Bucket, which is medium lock-in (Feature flag platform). Budget time for data export and integration rework."
+    },
+    {
+      "q": "Which has better developer experience, Bucket or Flags SDK?",
+      "a": "Flags SDK scores higher in our rubric (5/5 vs 4/5 for Bucket). Transparency is 5/5 for Flags SDK and 4/5 for Bucket. DX scores are rubric-based, not benchmarks, so evaluate against your own toolchain."
+    },
+    {
+      "q": "Is Flags SDK a good alternative to Bucket?",
+      "a": "They sit in the same category, so yes — Flags SDK is a plausible alternative for many Bucket use cases. It fits best when Next.js/SvelteKit teams integrating existing flag SaaS cleanly. Skip it if Non-Vercel stacks or teams needing the provider itself."
+    }
+  ]
+}

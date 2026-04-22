@@ -1,0 +1,24 @@
+{
+  "intro": "The clearest difference between Crowdin and Bitbucket is lock-in — Crowdin has medium lock-in (SaaS localization, translations exportable), whereas Bitbucket has low lock-in (Git hosting, fully portable via clone). Beyond that, developer experience — Crowdin scores 4/5 against Bitbucket's 5/5. Crowdin fits user onboarding automation; Bitbucket fits mobile. On the strengths side, Crowdin is cited for user onboarding automation, while Bitbucket is cited for Automated build/test/deploy pipelines. The honest trade-off: Crowdin is the wrong call for pre-launch projects; Bitbucket is the wrong call for hobby projects; Crowdin users flag pre-launch products, and Bitbucket users flag manual deployment is sufficient. Choosing between them should come down to the constraint that actually binds your workflow, not surface-level overlap. On developer experience the data shows Crowdin at 4/5 and Bitbucket at 5/5, with transparency at 4/5 and 5/5 respectively. Reported weaknesses for Crowdin include B2B with <100 customers (manual is fine). Reported weaknesses for Bitbucket include single-person hobby projects.",
+  "quick_take": "Crowdin is for user onboarding automation; Bitbucket is for mobile; decide based on lock-in tolerance.",
+  "verdict_a": "Choose Crowdin if your use case is user onboarding automation, and medium lock-in is acceptable in exchange for its fit.",
+  "verdict_b": "Choose Bitbucket if your use case is mobile, and low lock-in is acceptable in exchange for its fit.",
+  "faq": [
+    {
+      "q": "Is Crowdin cheaper than Bitbucket?",
+      "a": "Both Crowdin and Bitbucket use a freemium model with a free tier, so raw pricing is close on paper. The real cost difference depends on volume, seats, and which paid features you actually need. Check current pricing on each vendor's page before deciding."
+    },
+    {
+      "q": "Can I migrate from Crowdin to Bitbucket?",
+      "a": "Migrating from Crowdin to Bitbucket is feasible when their scopes overlap, but the work is in re-mapping configuration, data models, and integrations. Moving off Crowdin is harder because of medium lock-in (SaaS localization, translations exportable). Plan for a dual-run period so you can validate parity before decommissioning."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "On our developer-experience score, Bitbucket is rated 5/5 and Crowdin 4/5, so Bitbucket edges ahead. Scores like this smooth over real differences in docs, CLI feel, and SDK quality, so treat them as a starting point. Spend an afternoon in each before relying on the number."
+    },
+    {
+      "q": "Is Bitbucket a good alternative to Crowdin?",
+      "a": "Bitbucket is a reasonable alternative to Crowdin when Bitbucket fits mobile. If your use case matches Crowdin's sweet spot — user onboarding automation — staying with Crowdin is probably safer. Crowdin itself is not meant for pre-launch projects, which is often where users start shopping for alternatives."
+    }
+  ]
+}

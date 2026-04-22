@@ -1,0 +1,24 @@
+{
+  "intro": "Apache APISIX is an OSS cloud-native API gateway with dynamic routing, plugins and Kubernetes ingress controller support; AWS API Gateway is a managed service for REST, HTTP and WebSocket APIs priced from $0.02 with a free tier. The clearest real distinction is operating model: APISIX is freemium OSS you run yourself, with no listed enterprise tier in the data, while API Gateway is fully managed and billed per request inside AWS. APISIX fits platform teams on Kubernetes who want plugin flexibility, multi-cloud portability and no per-request vendor bill. API Gateway fits teams already committed to AWS who want a managed entry point for Lambdas and other AWS services without running gateway software themselves. Both are rated low lock-in, but API Gateway's data explicitly notes 'AWS-only, migration painful' - portable in theory, bound in practice. APISIX scores 5 for DX; API Gateway scores 4. You trade AWS's managed convenience for APISIX's control and cloud-neutrality.",
+  "quick_take": "Apache APISIX is for self-run OSS API gateway on Kubernetes; AWS API Gateway is for managed AWS-native APIs; decide based on AWS commitment.",
+  "verdict_a": "Choose Apache APISIX if you want an OSS Apache-licensed gateway on Kubernetes with dynamic routing and plugins, and a free tier without AWS entanglement.",
+  "verdict_b": "Choose AWS API Gateway if your backend is already on AWS and you want managed REST, HTTP and WebSocket APIs from $0.02 per call with a free tier.",
+  "faq": [
+    {
+      "q": "Is Apache APISIX cheaper than AWS API Gateway?",
+      "a": "APISIX is freemium OSS - free software plus your infra. AWS API Gateway is subscription from $0.02 per request with a free tier. For high request volumes on your own hardware, APISIX is cheaper; for low-volume or bursty workloads, API Gateway's free tier and per-request billing can be cheaper once you factor in ops."
+    },
+    {
+      "q": "Can I migrate from Apache APISIX to AWS API Gateway?",
+      "a": "Both are rated low lock-in, but API Gateway's reason explicitly notes 'AWS-only, migration painful'. APISIX configs are portable across clouds and Kubernetes. Moving from APISIX to API Gateway means rewriting routes and plugins into AWS-specific constructs; the reverse direction is typically harder because of AWS-specific integrations."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "APISIX scores 5 for DX; API Gateway scores 4. APISIX's plugin ecosystem and Kubernetes ingress controller are highlighted, and both share a generous free tier. For AWS-native teams, API Gateway's tight integration with Lambda and IAM may offset the raw DX score; for platform teams, APISIX feels more open."
+    },
+    {
+      "q": "Is AWS API Gateway a good alternative to Apache APISIX?",
+      "a": "For AWS-centric architectures, yes. Both share best_for of data warehouse syncing, multi-source pipelines and generous free tiers, and both share a not_for of simple API-to-API integrations and small datasets. The deciding factor is whether your workloads live inside AWS or are cloud-neutral."
+    }
+  ]
+}

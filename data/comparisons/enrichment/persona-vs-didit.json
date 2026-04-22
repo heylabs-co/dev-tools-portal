@@ -1,0 +1,24 @@
+{
+  "intro": "The clearest split between Persona and Didit is how they charge: Persona uses usage-based pricing at Pay per successful verification, while Didit uses subscription pricing starting around $666/mo. Persona is Modular identity verification platform combining KYC, KYB, document checks, and custom rule-based decisioning; it fits best for Fintech, Marketplace. Didit is Free KYC verification API with document scanning, NFC chip reading, and facial biometric matching for identity checks; it fits best for Fintech, Marketplace. Pick Persona for Fintech, Marketplace; pick Didit for Fintech, Marketplace. Persona is not for consumer apps without regulatory requirements. Didit is not for consumer apps without regulatory requirements. Honest trade-offs: Persona is weak for consumer apps without regulatory requirements, and Didit is weak for consumer apps without regulatory requirements — match to your real scenario. Both sit under the KYC / KYB / AML API umbrella, so your final call depends on pricing transparency, integration effort, and which listed not-for situations you can actually tolerate.",
+  "quick_take": "Persona is for fintech, marketplace; Didit is for fintech, marketplace; decide based on pricing model.",
+  "verdict_a": "Choose Persona if you want usage-based pricing at Pay per successful verification and your workload matches fintech, marketplace.",
+  "verdict_b": "Choose Didit if you want subscription pricing starting around $666/mo and your workload matches fintech, marketplace.",
+  "faq": [
+    {
+      "q": "Is Persona cheaper than Didit?",
+      "a": "A direct comparison depends on your usage profile and which pricing model fits better. Persona uses usage-based pricing at Pay per successful verification. Didit uses subscription pricing starting at $666/mo."
+    },
+    {
+      "q": "Can I migrate from Persona to Didit?",
+      "a": "Migration is workable but not trivial, since both sit around medium lock-in. Plan for data export, re-integration of SDKs, and re-testing flows before cutover. Verify exportable formats and feature parity against your live use cases before committing."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Both score 4/5 on developer experience in our data. Evaluate against your own stack: read their docs, run a quick SDK spike, and check error handling. Self-assessing with a small prototype beats trusting any rating at face value."
+    },
+    {
+      "q": "Is Didit a good alternative to Persona?",
+      "a": "Didit sits in the same category as Persona, so it can be a reasonable alternative for overlapping use cases. Didit is best fit for fintech, marketplace. Note: Didit is not for consumer apps without regulatory requirements."
+    }
+  ]
+}

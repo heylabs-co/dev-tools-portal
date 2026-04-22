@@ -1,0 +1,24 @@
+{
+  "intro": "The biggest real split between Xero and Fork is lock-in posture: Xero carries medium lock-in (accounting data exportable), while Fork carries low lock-in (git gui, no data lock-in). That single fact shapes the rest of the comparison. Xero is built for saas and e-commerce teams managing user journeys and is not a fit for single-product apps with no ongoing user engagement. Fork is built for mobile and is not a fit for hobby projects. On the scoring side, Xero rates 5/5 for developer experience and 5/5 for transparency; Fork rates 4/5 and 4/5 respectively. The honest trade-off: with Xero you accept that contact-based pricing scales steeply with list growth, while Fork comes with the reality that manual deployment is sufficient. Neither side is free. Xero's headline strength in the data is that centralizes customer data and automates lifecycle messaging. Fork's headline strength is that automated build/test/deploy pipelines. Read each side's best-for and not-for fields carefully before you pick; the shape of your team and workflow matters more than any single score.",
+  "quick_take": "Xero is for saas and e-commerce teams managing user journeys; Fork is for mobile; decide based on lock-in tolerance.",
+  "verdict_a": "Choose Xero if you are saas and e-commerce teams managing user journeys and can accept medium lock-in (accounting data exportable).",
+  "verdict_b": "Choose Fork if you are mobile and need low lock-in (git gui, no data lock-in).",
+  "faq": [
+    {
+      "q": "Is Xero cheaper than Fork?",
+      "a": "Both list a subscription pricing model in our data. We don't have per-seat numbers in this dataset, so 'cheaper' depends on volume. Price both on your actual usage before deciding."
+    },
+    {
+      "q": "Can I migrate from Xero to Fork?",
+      "a": "Xero has medium lock-in (accounting data exportable); Fork has low lock-in (git gui, no data lock-in). Migration effort scales with how much state and automation you've built in Xero; plan for data export, config rebuild, and a parallel-run period before cutting over."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "In our data, Xero scores 5/5 for developer experience versus 4/5 for Fork. That said, DX is subjective; the Fork score may still be acceptable if its feature fit is stronger for your use case."
+    },
+    {
+      "q": "Is Fork a good alternative to Xero?",
+      "a": "Fork is built for mobile and explicitly not for hobby projects, so it's a fit only if your workflow matches its stated audience. If you were using Xero for saas and e-commerce teams managing user journeys, the switch is reasonable; outside that scope, look elsewhere."
+    }
+  ]
+}

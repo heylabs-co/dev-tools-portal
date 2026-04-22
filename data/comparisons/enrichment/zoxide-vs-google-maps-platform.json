@@ -1,0 +1,24 @@
+{
+  "intro": "The clearest split between zoxide and Google Maps Platform is how they charge: zoxide uses free and open source, while Google Maps Platform uses subscription pricing. zoxide specializes in Smart Directory Navigation; it fits best for Apps with location search, routing, or delivery features. Google Maps Platform is Google's mapping APIs for web and mobile with geocoding, directions, Street View, and Places; it fits best for apps. Pick zoxide when the job maps to automated build/test/deploy pipelines; pick Google Maps Platform when it maps to location-based services. zoxide is not for apps with no geographic or location requirements. Google Maps Platform is not for simple projects. Honest trade-offs: zoxide is weak for api call costs grow quickly with high map usage, and Google Maps Platform is weak for apps without location features — match to your real scenario. Both sit under the Maps / Geolocation / Routing umbrella, so your final call depends on pricing transparency, integration effort, and which listed not-for situations you can actually tolerate.",
+  "quick_take": "zoxide is for apps with location search, routing, or delivery features; Google Maps Platform is for apps; decide based on pricing model.",
+  "verdict_a": "Choose zoxide if you want free and open source and your workload matches apps with location search, routing, or delivery features.",
+  "verdict_b": "Choose Google Maps Platform if you want subscription pricing and your workload matches apps.",
+  "faq": [
+    {
+      "q": "Is zoxide cheaper than Google Maps Platform?",
+      "a": "zoxide is the cheaper option on paper since it is open source, while Google Maps Platform is paid. zoxide is free and open source. Google Maps Platform uses subscription pricing with no free tier published."
+    },
+    {
+      "q": "Can I migrate from zoxide to Google Maps Platform?",
+      "a": "Migration from zoxide (low lock-in) to Google Maps Platform (medium lock-in) is the harder direction; the reverse is easier. Plan for data export, re-integration of SDKs, and re-testing flows before cutover. Verify exportable formats and feature parity against your live use cases before committing."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Both score 5/5 on developer experience in our data. Evaluate against your own stack: read their docs, run a quick SDK spike, and check error handling. Self-assessing with a small prototype beats trusting any rating at face value."
+    },
+    {
+      "q": "Is Google Maps Platform a good alternative to zoxide?",
+      "a": "Google Maps Platform sits in the same category as zoxide, so it can be a reasonable alternative for overlapping use cases. Google Maps Platform is best fit for apps. Note: Google Maps Platform is not for simple projects."
+    }
+  ]
+}

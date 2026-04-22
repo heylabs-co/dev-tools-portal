@@ -1,0 +1,24 @@
+{
+  "intro": "OpenIAP is free and open source while Deepwall runs on paid subscription pricing. Deepwall: Complete in-app purchase management solution with smart paywalls, A/B testing and no server-side code needed. OpenIAP: Open cross-platform IAP specification unifying types, error codes and purchase flows across iOS StoreKit and Google Play Billing. Deepwall fits subscription app teams iterating on paywall design weekly. OpenIAP fits OSS library authors and engineers standardizing IAP across platforms. On our rubric Deepwall scores 3/5 for developer experience and 3/5 for transparency, while OpenIAP scores 4/5 and 5/5. The honest trade-off: Deepwall's main drawback — Overlaps with RevenueCat, Adapty and Superwall; OpenIAP's — Spec still maturing, breaking changes possible. One point in Deepwall's favour: Smart paywalls with A/B testing without backend code. For OpenIAP: Open spec unifying IAP types across platforms. Deepwall is explicitly not the right pick for teams already committed to RevenueCat, Adapty or Superwall. OpenIAP is not aimed at product teams looking for a ready-made subscription service.",
+  "quick_take": "Deepwall is for subscription app teams iterating on paywall design weekly; OpenIAP is for OSS library authors; decide on pricing model.",
+  "verdict_a": "Choose Deepwall if subscription app teams iterating on paywall design weekly, and if you'd rather pay for a managed service than run infrastructure yourself.",
+  "verdict_b": "Choose OpenIAP if OSS library authors and engineers standardizing IAP across platforms, and if you want to avoid recurring license costs and are willing to self-host.",
+  "faq": [
+    {
+      "q": "Is Deepwall cheaper than OpenIAP?",
+      "a": "No: OpenIAP is free and open source, while Deepwall runs on paid subscription pricing. Deepwall may still be cheaper in total cost once you factor in hosting, maintenance, and engineering time to run OpenIAP yourself."
+    },
+    {
+      "q": "Can I migrate from Deepwall to OpenIAP?",
+      "a": "Expect real effort: Deepwall is high lock-in (Proprietary paywall SDK, hard to migrate) and OpenIAP is high lock-in (open spec for IAP). Migrating between them means rebuilding integrations, re-authoring config, and accepting new coupling. Scope a spike before committing."
+    },
+    {
+      "q": "Which has better developer experience, Deepwall or OpenIAP?",
+      "a": "OpenIAP scores higher in our rubric (4/5 vs 3/5 for Deepwall). Transparency is 5/5 for OpenIAP and 3/5 for Deepwall. DX scores are rubric-based, not benchmarks, so evaluate against your own toolchain."
+    },
+    {
+      "q": "Is OpenIAP a good alternative to Deepwall?",
+      "a": "They sit in the same category, so yes — OpenIAP is a plausible alternative for many Deepwall use cases. It fits best when OSS library authors and engineers standardizing IAP across platforms. Skip it if product teams looking for a ready-made subscription service."
+    }
+  ]
+}

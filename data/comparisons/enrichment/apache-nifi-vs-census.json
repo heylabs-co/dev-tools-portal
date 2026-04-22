@@ -1,0 +1,24 @@
+{
+  "intro": "The clearest difference between Apache NiFi and Census is pricing — Apache NiFi is unknown (no free tier), while Census is freemium (has a free tier). Beyond that, lock-in — Apache NiFi has low lock-in (Apache OSS dataflow platform), whereas Census has medium lock-in (Reverse ETL, SQL-based configs portable). The stated fit for both tools is similar on paper: Apache NiFi is pitched as open-source data flow platform for routing and transforming data with provenance tracking and access controls, while Census is pitched as Reverse ETL platform syncing data warehouse records to CRM and SaaS tools with RBAC and audit logging. On the strengths side, Apache NiFi is cited for SOC 2 / ISO 27001 preparation, while Census is cited for continuous compliance monitoring. The honest trade-off: both Apache NiFi and Census are the wrong call for pre-revenue startups. Choosing between them should come down to the constraint that actually binds your workflow, not surface-level overlap.",
+  "quick_take": "Apache NiFi and Census both target Compliance Automation; their data-level fit descriptions overlap, so decide based on pricing model.",
+  "verdict_a": "Choose Apache NiFi if you need a Compliance Automation tool and a unknown (no free tier) pricing shape fits your budget better than freemium (has a free tier).",
+  "verdict_b": "Choose Census if you need a Compliance Automation tool and a freemium (has a free tier) pricing shape fits your budget better than unknown (no free tier).",
+  "faq": [
+    {
+      "q": "Is Apache NiFi cheaper than Census?",
+      "a": "Apache NiFi is unknown, while Census is freemium with a free tier, so the cheaper option depends on your usage shape. Listed pricing pages usually change, so check both directly before committing. For small teams, the free-tier limits often matter more than headline prices."
+    },
+    {
+      "q": "Can I migrate from Apache NiFi to Census?",
+      "a": "Migrating from Apache NiFi to Census is feasible when their scopes overlap, but the work is in re-mapping configuration, data models, and integrations. Apache NiFi has low lock-in, so exporting state is typically straightforward. Plan for a dual-run period so you can validate parity before decommissioning."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Apache NiFi and Census score the same on developer experience (4/5 each) in our data. Choose based on which workflow, docs style, and CLI ergonomics feel closer to your team's preferences. Trial both in a small project before committing."
+    },
+    {
+      "q": "Is Census a good alternative to Apache NiFi?",
+      "a": "Census is a reasonable alternative to Apache NiFi when Census fits SOC 2 / ISO 27001 preparation. If your use case matches Apache NiFi's sweet spot — SOC 2 / ISO 27001 preparation — staying with Apache NiFi is probably safer. Apache NiFi itself is not meant for pre-revenue startups, which is often where users start shopping for alternatives."
+    }
+  ]
+}

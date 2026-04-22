@@ -1,0 +1,24 @@
+{
+  "intro": "Hyperswitch and Basis Theory both show up under the payments orchestration category, but they solve slightly different jobs. Hyperswitch uses a free model, while Basis Theory runs on undisclosed pricing with free tier. Lock-in is low for Hyperswitch and medium for Basis Theory. Transparency lands at 5/5 versus 4/5. Hyperswitch fits teams working on open-source payments switch routing to multiple processors via unified API, while Basis Theory is a closer match when the job is tokenizing payment card data to reduce PCI DSS scope. Worth noting: Hyperswitch is explicitly not for small teams without DevOps capacity or those needing a fully managed, SaaS-only product; Basis Theory is explicitly not for merchants wanting a full routing, reconciliation, and analytics product out of the box. The honest trade-off: Hyperswitch trades off on self-hosting demands serious infra maturity; Basis Theory trades off on tokenization only — no routing or acquiring. On the plus side, Hyperswitch highlights open source under Apache 2.0 — fully self-hostable, while Basis Theory points to processor-agnostic tokens portable across any PSP.",
+  "quick_take": "Hyperswitch is for open-source payments switch routing to multiple; Basis Theory is for tokenizing payment card data to reduce; decide on pricing model.",
+  "verdict_a": "Choose Hyperswitch if your project is open-source payments switch routing to multiple processors via unified API, you want to keep future migration cheap, strong SDKs and docs (5/5) are a priority.",
+  "verdict_b": "Choose Basis Theory if your project is tokenizing payment card data to reduce PCI DSS scope, medium lock-in is an acceptable trade-off.",
+  "faq": [
+    {
+      "q": "Is Hyperswitch cheaper than Basis Theory?",
+      "a": "Hyperswitch uses a free model, and Basis Theory uses undisclosed pricing with free tier. The pricing models are different, so a direct cheaper-than comparison depends on your volume and usage pattern."
+    },
+    {
+      "q": "Can I migrate from Hyperswitch to Basis Theory?",
+      "a": "Our data puts Hyperswitch at low lock-in (open-source payments switch), and Basis Theory at medium lock-in. Moving from Hyperswitch to Basis Theory should be manageable, though you'll still need to replay integrations and re-test flows end-to-end."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Hyperswitch scores 5/5 on developer experience in our data, while Basis Theory scores 4/5, so Hyperswitch has the edge on docs and SDK quality by that measure. That gap is reinforced by transparency scores of 5/5 versus 4/5. Still, run a small integration spike on both before deciding — team familiarity with a given SDK style often matters more than a one-point score gap."
+    },
+    {
+      "q": "Is Basis Theory a good alternative to Hyperswitch?",
+      "a": "Basis Theory is a reasonable alternative to Hyperswitch when your workload leans more toward engineering teams that want PCI offload and PSP portability without being locked into Stripe or Adyen vaults than engineering-led teams wanting full control of an orchestrator without paying per-transaction SaaS fees. The pricing model shifts too — Hyperswitch is a free model, Basis Theory is undisclosed pricing with free tier — so expect the cost profile to change as well. One caveat: Basis Theory is explicitly not for merchants wanting a full routing, reconciliation, and analytics product out of the box, so check that constraint against your use-case before switching."
+    }
+  ]
+}

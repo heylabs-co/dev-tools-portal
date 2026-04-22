@@ -1,0 +1,24 @@
+{
+  "intro": "Stripe and Paddle both show up under the payment gateway category, but they solve slightly different jobs. Stripe starts at 2.9% + $0.30/transaction; Paddle starts at 5% + $0.50/transaction. Lock-in is medium for Stripe and high for Paddle. Transparency lands at 5/5 versus 4/5. Stripe fits teams working on SaaS with global customers needing fast integration, while Paddle is a closer match when the job is SaaS needing Merchant of Record for global tax compliance. Worth noting: Stripe is explicitly not for offline projects; Paddle is explicitly not for marketplace/platform payments. The honest trade-off: Stripe trades off on need Merchant of Record (MoR) for tax compliance; Paddle trades off on marketplace/platform payments — Paddle is seller-focused. On the plus side, Stripe highlights SaaS with global customers needing fast integration, while Paddle points to SaaS needing Merchant of Record for global tax compliance. Stripe's documentation also calls out marketplaces using Stripe Connect.",
+  "quick_take": "Stripe is for SaaS with global customers needing fast; Paddle is for SaaS needing Merchant of Record for; decide on entry price.",
+  "verdict_a": "Choose Stripe if your project is SaaS with global customers needing fast integration, usage-based billing at 2.9% + $0.30/transaction matches your volume, medium lock-in is an acceptable trade-off.",
+  "verdict_b": "Choose Paddle if your project is SaaS needing Merchant of Record for global tax compliance, usage-based billing at 5% + $0.50/transaction matches your volume, you are willing to accept the high lock-in called out in our data.",
+  "faq": [
+    {
+      "q": "Is Stripe cheaper than Paddle?",
+      "a": "Stripe uses usage-based from 2.9% + $0.30/transaction with free tier, and Paddle uses usage-based from 5% + $0.50/transaction. On published entry price, Stripe lists 2.9% + $0.30/transaction while Paddle lists 5% + $0.50/transaction — but the real cost at your scale will depend on actual usage, not just the starting tier. Stripe offers a free tier; Paddle does not."
+    },
+    {
+      "q": "Can I migrate from Stripe to Paddle?",
+      "a": "Our data puts Stripe at medium lock-in (proprietary tokens in vault, but pci-to-pci export available), and Paddle at high lock-in. Migration is feasible but not trivial — budget time for re-integration, data export, and parallel running before cutover."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Both score 5/5 on developer experience in our data, so there's no clear winner on that axis. Stripe does edge ahead on pricing/docs transparency (5/5 vs 4/5), which can make evaluation faster."
+    },
+    {
+      "q": "Is Paddle a good alternative to Stripe?",
+      "a": "Paddle is a reasonable alternative to Stripe when your workload leans more toward SaaS, B2B than SaaS, Companies. One caveat: Paddle is explicitly not for marketplace/platform payments, so check that constraint against your use-case before switching."
+    }
+  ]
+}

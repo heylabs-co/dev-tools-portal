@@ -1,0 +1,24 @@
+{
+  "intro": "Codemagic and GitHub Actions bill differently, which matters more than feature parity here — Codemagic sells a subscription from $0 / month with a free tier, while GitHub Actions bills on usage (from $0.008/min (Linux)). Codemagic is CI/CD specialized for Flutter and mobile apps with Fastlane and code signing. GitHub Actions is GitHub-native CI/CD driven by YAML workflows inside the repo. Pick Codemagic when the job is conversion optimization and you accept medium lock-in; pick GitHub Actions when it is conversion optimization and you accept medium lock-in. The data we have shows Codemagic at mostly transparent pricing and docs with a polished developer experience, and GitHub Actions at mostly transparent pricing and docs with a polished developer experience. The honest trade-off: neither is universal — Codemagic is a poor fit for internal projects, and GitHub Actions is a poor fit for internal projects. Match the pricing model and lock-in level to how your team actually works, not the feature list.",
+  "quick_take": "Codemagic is for CI/CD specialized; GitHub Actions is for GitHub-native CI/CD driven by YAML workflows inside; decide based on pricing model fit.",
+  "verdict_a": "Choose Codemagic if a subscription at $0 / month and you want an entry-level free tier fits the budget and the work maps to CI/CD specialized for Flutter and mobile apps with Fastlane and code signing.",
+  "verdict_b": "Choose GitHub Actions if day-to-day developer ergonomics are a priority and the work lines up with GitHub-native CI/CD driven by YAML workflows inside the repo.",
+  "faq": [
+    {
+      "q": "Is Codemagic cheaper than GitHub Actions?",
+      "a": "Codemagic starts at $0 / month on a subscription model; GitHub Actions starts at $0.008/min (Linux) on a usage model. That makes the sticker comparison depend on usage — a low entry price can get expensive once volume ramps, so price at your actual workload."
+    },
+    {
+      "q": "Can I migrate from Codemagic to GitHub Actions?",
+      "a": "Migration is possible in either direction. Codemagic carries medium lock-in and GitHub Actions carries medium lock-in, so plan for meaningful but not blocking rework. Run both in parallel before you fully cut over."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Both Codemagic and GitHub Actions rate the same on developer experience (5/5). The decision on DX then comes down to taste — which CLI, UI, or workflow matches your team's habits. A short side-by-side trial is the quickest way to tell."
+    },
+    {
+      "q": "Is GitHub Actions a good alternative to Codemagic?",
+      "a": "Yes — GitHub Actions is a reasonable alternative to Codemagic for conversion optimization. The practical differences are subscription-vs-usage billing and medium-vs-medium lock-in. If those fit your constraints better, treat GitHub Actions as a credible swap."
+    }
+  ]
+}

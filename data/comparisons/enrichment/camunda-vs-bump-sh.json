@@ -1,0 +1,24 @@
+{
+  "intro": "Camunda and Bump.sh overlap on scores and pricing posture, so the decision comes down to which problem each was actually built for. Camunda is BPMN workflow and decision automation engine for orchestrating APIs and services. Bump.sh is API documentation and change-tracking hub for OpenAPI/AsyncAPI schemas. Pick Camunda when the job is api gateway and rate limiting and you accept low lock-in; pick Bump.sh when it is api gateway and rate limiting and you accept low lock-in. The data we have shows Camunda at some public pricing / roadmap detail with a polished developer experience, and Bump.sh at mostly transparent pricing and docs with a polished developer experience. The honest trade-off: neither is universal — Camunda is a poor fit for internal, simple projects, and Bump.sh is a poor fit for internal, simple projects. Match the pricing model and lock-in level to how your team actually works, not the feature list.",
+  "quick_take": "Camunda is for BPMN workflow and decision automation engine; Bump.sh is for API documentation and change-tracking hub; decide based on how much public info you need.",
+  "verdict_a": "Choose Camunda if partial public pricing is enough to start and the work maps to BPMN workflow and decision automation engine for orchestrating APIs and services.",
+  "verdict_b": "Choose Bump.sh if day-to-day developer ergonomics are a priority and the work lines up with API documentation and change-tracking hub for OpenAPI/AsyncAPI schemas.",
+  "faq": [
+    {
+      "q": "Is Camunda cheaper than Bump.sh?",
+      "a": "Camunda starts at $100 on a subscription model; Bump.sh starts at $50 on a subscription model. That makes the sticker comparison depend on usage — a low entry price can get expensive once volume ramps, so price at your actual workload."
+    },
+    {
+      "q": "Can I migrate from Camunda to Bump.sh?",
+      "a": "Migration in either direction is relatively cheap — both Camunda and Bump.sh are rated low lock-in, so your configuration and data should port without a rewrite. The realistic cost is team re-training and pipeline QA, not the tools themselves."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Both Camunda and Bump.sh rate the same on developer experience (5/5). The decision on DX then comes down to taste — which CLI, UI, or workflow matches your team's habits. A short side-by-side trial is the quickest way to tell."
+    },
+    {
+      "q": "Is Bump.sh a good alternative to Camunda?",
+      "a": "Yes — Bump.sh is a reasonable alternative to Camunda for api gateway and rate limiting. The practical differences are subscription-vs-subscription billing and low-vs-low lock-in. If those fit your constraints better, treat Bump.sh as a credible swap."
+    }
+  ]
+}

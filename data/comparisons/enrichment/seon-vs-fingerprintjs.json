@@ -1,0 +1,24 @@
+{
+  "intro": "SEON is custom-priced; FingerprintJS is freemium. SEON: Fraud & Risk Management tool for developers. Specializes in fraud detection. FingerprintJS: FingerprintJS (Fingerprint Pro) provides browser and mobile device identification with 99.5% accuracy using advanced fingerprinting signals. Its API detects bots, account sharing, multi-accounting and payment fraud, and exposes risk signals. SEON fits fintech, e-commerce, and marketplace platforms. FingerprintJS fits engineering teams adding a reliable device identity signal to their own risk stack. On our rubric SEON scores 4/5 for developer experience and 1/5 for transparency, while FingerprintJS scores 5/5 and 4/5. The honest trade-off: SEON's main drawback — Overly aggressive rules can block legitimate users; FingerprintJS's — Device ID alone does not stop determined fraudsters. One point in SEON's favour: ML-based detection catches fraud patterns in real time. For FingerprintJS: 99.5% device ID accuracy, widely benchmarked. SEON is explicitly not the right pick for internal tools or low-risk B2B SaaS. FingerprintJS is not aimed at teams that want turnkey approve/decline decisions without building any logic.",
+  "quick_take": "SEON is for fintech, e-commerce, and marketplace platforms; FingerprintJS is for engineering teams adding a reliable device identity signal; decide on pricing model.",
+  "verdict_a": "Choose SEON if fintech, e-commerce, and marketplace platforms, and if you're buying at enterprise scale where custom terms apply.",
+  "verdict_b": "Choose FingerprintJS if engineering teams adding a reliable device identity signal to their own risk stack, and if a free tier with an optional paid path matters.",
+  "faq": [
+    {
+      "q": "Is SEON cheaper than FingerprintJS?",
+      "a": "SEON uses custom-priced pricing; FingerprintJS uses freemium. Which is cheaper depends on your volume and team size — model both against your projected usage before deciding."
+    },
+    {
+      "q": "Can I migrate from SEON to FingerprintJS?",
+      "a": "Expect real effort: SEON is medium lock-in (API-based fraud scoring) and FingerprintJS is medium lock-in (OSS core + Pro API, portable). Migrating between them means rebuilding integrations, re-authoring config, and accepting new coupling. Scope a spike before committing."
+    },
+    {
+      "q": "Which has better developer experience, SEON or FingerprintJS?",
+      "a": "FingerprintJS scores higher in our rubric (5/5 vs 4/5 for SEON). Transparency is 4/5 for FingerprintJS and 1/5 for SEON. DX scores are rubric-based, not benchmarks, so evaluate against your own toolchain."
+    },
+    {
+      "q": "Is FingerprintJS a good alternative to SEON?",
+      "a": "They sit in the same category, so yes — FingerprintJS is a plausible alternative for many SEON use cases. It fits best when engineering teams adding a reliable device identity signal to their own risk stack. Skip it if teams that want turnkey approve/decline decisions without building any logic."
+    }
+  ]
+}

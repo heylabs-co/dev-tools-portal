@@ -1,0 +1,24 @@
+{
+  "intro": "Keep and OpenLIT both show up under the observability category, but they solve slightly different jobs. Keep carries low lock-in, while OpenLIT sits at high lock-in. Keep fits teams working on aggregate and deduplicate alerts from 50+ tools, while OpenLIT is a closer match when the job is OpenTelemetry observability for LLM and GenAI stacks. Worth noting: Keep is explicitly not for teams needing battle-tested AIOps with dedicated 24/7 support; OpenLIT is explicitly not for teams preferring polished managed LLMOps with evals and PM-friendly UX. The honest trade-off: Keep trades off on early project, features still stabilizing; OpenLIT trades off on young project with evolving APIs. On the plus side, Keep highlights open-source AIOps with 50+ tool integrations, while OpenLIT points to OTel-native tracing for LLM and GenAI apps. Keep's documentation also calls out alert deduplication and correlation in one layer. OpenLIT similarly notes open-source with Apache 2.0 license. For teams evaluating observability options today, the right choice usually comes down to pricing model, lock-in, and which tool's stated use-case maps to yours.",
+  "quick_take": "Keep is for aggregate and deduplicate alerts from 50+; OpenLIT is for OpenTelemetry observability for LLM and GenAI; decide on lock-in tolerance.",
+  "verdict_a": "Choose Keep if your project is aggregate and deduplicate alerts from 50+ tools, you want to keep future migration cheap.",
+  "verdict_b": "Choose OpenLIT if your project is OpenTelemetry observability for LLM and GenAI stacks, you are willing to accept the high lock-in called out in our data.",
+  "faq": [
+    {
+      "q": "Is Keep cheaper than OpenLIT?",
+      "a": "Keep uses a free model, and OpenLIT uses a free model. Without full pricing pages to compare, we can't rank them on price alone — check each vendor's current rates for your workload."
+    },
+    {
+      "q": "Can I migrate from Keep to OpenLIT?",
+      "a": "Our data puts Keep at low lock-in, and OpenLIT at high lock-in. Migration is feasible but not trivial — budget time for re-integration, data export, and parallel running before cutover."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Both score 4/5 on developer experience in our data, so there's no clear winner on that axis. The better fit depends on which SDK matches your stack and which docs your team finds clearer during evaluation."
+    },
+    {
+      "q": "Is OpenLIT a good alternative to Keep?",
+      "a": "OpenLIT is a reasonable alternative to Keep when your workload leans more toward teams wanting vendor-neutral LLM observability tied to existing OTel pipelines than platform teams wanting open alternative to PagerDuty AIOps or BigPanda. One caveat: OpenLIT is explicitly not for teams preferring polished managed LLMOps with evals and PM-friendly UX, so check that constraint against your use-case before switching."
+    }
+  ]
+}

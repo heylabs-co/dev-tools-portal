@@ -1,0 +1,24 @@
+{
+  "intro": "Appknox is a mobile application security testing platform with automated SAST, DAST and API scans for Android and iOS; Jit is a developer security platform that orchestrates SAST, SCA, secrets detection and IaC scanning into a single product security plan. Despite sitting under 'Content Moderation API' in this dataset, both are subscription tools without free tiers and both are rated medium lock-in on security outputs. The real distinction is scope: Appknox is focused specifically on mobile app binaries and their APIs, while Jit is a broader AppSec orchestration layer spanning code, dependencies, secrets and infrastructure-as-code. Appknox fits mobile-heavy organisations that need app store compliance, OWASP Mobile checks and automated binary scanning on every release. Jit fits engineering teams building web or multi-platform products who want one place to wire together SAST, SCA, secrets and IaC checks. Both score 4 for DX and 3 for transparency. You trade Appknox's mobile depth for Jit's breadth across the software development lifecycle.",
+  "quick_take": "Appknox is for mobile app SAST/DAST/API scanning; Jit is for orchestrated SAST/SCA/secrets/IaC across a codebase; decide based on mobile depth versus AppSec breadth.",
+  "verdict_a": "Choose Appknox if your product is primarily mobile and you need automated SAST, DAST and API security checks for Android and iOS with subscription pricing.",
+  "verdict_b": "Choose Jit if you need a single developer security platform orchestrating SAST, SCA, secrets detection and IaC scanning across a wider codebase, on subscription pricing.",
+  "faq": [
+    {
+      "q": "Is Appknox cheaper than Jit?",
+      "a": "Neither publishes an entry price in the data; both are subscription without a free tier. A direct price comparison isn't possible here. The practical answer depends on scope: Appknox priced for mobile binaries versus Jit priced as an AppSec orchestration platform."
+    },
+    {
+      "q": "Can I migrate from Appknox to Jit?",
+      "a": "Both are rated medium lock-in. Appknox's outputs are portable per the data; Jit orchestrates OSS scanners, which can be run standalone if you leave. Migration means reconfiguring pipelines and re-tuning rules, not transferring findings history, which typically stays with the original vendor."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Both score 4 for DX and 3 for transparency. The data does not show a clear gap. In practice, Jit's DX benefit is a unified AppSec plan across scanners; Appknox's is mobile-specific workflow depth. Choose by where you need DX smoothness: across AppSec or within mobile."
+    },
+    {
+      "q": "Is Jit a good alternative to Appknox?",
+      "a": "Only if your needs extend beyond mobile. Both share the same inherited best_for and not_for in this dataset. In reality, Jit typically orchestrates mobile scanners less deeply than a specialist like Appknox; for a pure mobile org, Appknox is more targeted. For a general engineering team, Jit covers more surface area."
+    }
+  ]
+}

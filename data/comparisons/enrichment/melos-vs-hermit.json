@@ -1,0 +1,24 @@
+{
+  "intro": "Melos and Hermit both sit in the Monorepo & Build Systems space. Melos is positioned for flutter plugin authors and teams with multi-package dart monorepos, while Hermit leans toward monorepos wanting pinned cli toolchains without adopting nix. In practice, Dart and Flutter monorepo management tool inspired by Lerna. Handles multi-package versioning, changelog generation, and script execution across Flutter plugin and app workspaces. Hermetic tool management system for monorepos that installs per-project development tools without polluting the system PATH. Ensures all developers and CI use identical toolchain versions. Melos runs on free with a free tier; Hermit runs on free with a free tier. Listed strengths unique to Melos include purpose-built for dart and flutter monorepos, while Hermit lists per-project tool installs without polluting path on its side. Reach for Melos when you need manage versioning and changelogs for flutter monorepos; reach for Hermit when the job is lock toolchain versions per project without system path pollution. The honest trade-off: Melos is not built for non-dart monorepos or teams wanting polyglot tooling, and Hermit is not the right call for teams.",
+  "quick_take": "Melos is for flutter plugin authors and teams with multi-package dart monorepos; Hermit is for monorepos wanting pinned cli toolchains without adopting nix; decide based on which use case matches.",
+  "verdict_a": "Choose Melos if flutter plugin authors and teams with multi-package dart monorepos and you need a free tier to validate fit.",
+  "verdict_b": "Choose Hermit if monorepos wanting pinned cli toolchains without adopting nix and you need a free tier to validate fit.",
+  "faq": [
+    {
+      "q": "Is Melos cheaper than Hermit?",
+      "a": "Both Melos and Hermit expose free tiers with no headline entry price listed. The real comparison happens once you cross the free limits, and that pricing isn't captured in the summary data. Check each tool's pricing page for your volume band."
+    },
+    {
+      "q": "Can I migrate from Melos to Hermit?",
+      "a": "Technically you can move between any two tools in the same category, but effort varies: leaving Melos is relatively light thanks to its low lock-in, and onboarding to Hermit should be straightforward given its low lock-in. Plan for data export, re-integration, and a parallel-run window rather than a hard cutover."
+    },
+    {
+      "q": "Which has better developer experience, Melos or Hermit?",
+      "a": "Both Melos and Hermit score 4/5 on developer experience in our data, so there's no clear winner on that axis alone. The real differentiator usually lands in SDK fit for your language, error handling, and docs depth. A half-day integration spike tells you more than the score."
+    },
+    {
+      "q": "Is Hermit a good alternative to Melos?",
+      "a": "Hermit is an alternative in the same category, but its stated sweet spot is monorepos wanting pinned cli toolchains without adopting nix, while Melos's is flutter plugin authors and teams with multi-package dart monorepos. If your job matches Melos's profile more closely, switching to Hermit is a compromise. Use the best-fit match, not brand familiarity, to decide. Note: Hermit is explicitly not for teams needing reproducible services, databases, or full sandboxes."
+    }
+  ]
+}

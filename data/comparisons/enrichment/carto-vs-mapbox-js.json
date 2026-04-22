@@ -1,0 +1,24 @@
+{
+  "intro": "The clearest split between CARTO and Mapbox JS is how they charge: CARTO uses subscription pricing, while Mapbox JS uses a free tier plus paid plans. CARTO is Cloud-native spatial analytics platform with PostGIS-backed data warehouse and map visualization; it fits best for apps. Mapbox JS specializes in Maps & Geolocation SDK; it fits best for Apps with location search, routing, or delivery features. Pick CARTO when the job maps to location-based services; pick Mapbox JS when it maps to automated build/test/deploy pipelines. CARTO is not for simple projects. Mapbox JS is not for apps with no geographic or location requirements. Honest trade-offs: CARTO is weak for apps without location features, and Mapbox JS is weak for api call costs grow quickly with high map usage — match to your real scenario. Both sit under the Maps / Geolocation / Routing umbrella, so your final call depends on pricing transparency, integration effort, and which listed not-for situations you can actually tolerate.",
+  "quick_take": "CARTO is for apps; Mapbox JS is for apps with location search, routing, or delivery features; decide based on pricing model.",
+  "verdict_a": "Choose CARTO if you want subscription pricing and your workload matches apps.",
+  "verdict_b": "Choose Mapbox JS if you want a free tier plus paid plans and your workload matches apps with location search, routing, or delivery features.",
+  "faq": [
+    {
+      "q": "Is CARTO cheaper than Mapbox JS?",
+      "a": "A direct comparison depends on your usage profile and which pricing model fits better. CARTO uses subscription pricing with no free tier published. Mapbox JS offers a free tier."
+    },
+    {
+      "q": "Can I migrate from CARTO to Mapbox JS?",
+      "a": "Migration from CARTO (low lock-in) to Mapbox JS (medium lock-in) is the harder direction; the reverse is easier. Plan for data export, re-integration of SDKs, and re-testing flows before cutover. Verify exportable formats and feature parity against your live use cases before committing."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Both score 5/5 on developer experience in our data. Evaluate against your own stack: read their docs, run a quick SDK spike, and check error handling. Self-assessing with a small prototype beats trusting any rating at face value."
+    },
+    {
+      "q": "Is Mapbox JS a good alternative to CARTO?",
+      "a": "Mapbox JS sits in the same category as CARTO, so it can be a reasonable alternative for overlapping use cases. Mapbox JS is best fit for apps with location search, routing, or delivery features. Note: Mapbox JS is not for apps with no geographic or location requirements."
+    }
+  ]
+}

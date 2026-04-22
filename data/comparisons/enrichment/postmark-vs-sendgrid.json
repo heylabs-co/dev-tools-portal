@@ -1,0 +1,24 @@
+{
+  "intro": "Postmark enters at $15/mo (10K emails) against SendGrid at $19.95/mo (Essentials, 50K emails). Both tools position themselves for transactional emails (receipts, alerts), so the decision rarely comes down to surface features. In practice, Postmark — Fast transactional email delivery API focused on inbox placement with detailed bounce analytics. SendGrid — High-volume transactional and marketing email API with deliverability tools and an email editor. Postmark rates 5/5 on transparency versus 4/5 for SendGrid. Both tools list transactional emails (receipts, alerts) as a headline strength, which is why pricing and lock-in usually decide the call. Both tools surface overlapping when-to-use scenarios, including transactional emails (receipts, alerts). The honest trade-off: Postmark is not built for internal projects, and SendGrid is not the right call for internal projects, so neither is a universal default. Transparency scores land at 5/5 for Postmark and 4/5 for SendGrid, which reflects how openly each tool documents pricing, limits, and terms.",
+  "quick_take": "Postmark is for transactional emails (receipts, alerts); SendGrid overlaps on the same job; decide based on pricing model.",
+  "verdict_a": "Choose Postmark if transactional emails (receipts, alerts) and the $15/mo (10K emails) entry price fits your budget.",
+  "verdict_b": "Choose SendGrid if transactional emails (receipts, alerts) and the $19.95/mo (Essentials, 50K emails) entry price fits your budget.",
+  "faq": [
+    {
+      "q": "Is Postmark cheaper than SendGrid?",
+      "a": "Based on the listed entry prices, yes: Postmark starts at $15/mo (10K emails) while SendGrid starts at $19.95/mo (Essentials, 50K emails). Actual monthly cost depends on volume and plan tier, so model your real usage before switching. Enterprise quotes can reshuffle the comparison entirely."
+    },
+    {
+      "q": "Can I migrate from Postmark to SendGrid?",
+      "a": "Technically you can move between any two tools in the same category, but effort varies: leaving Postmark is relatively light thanks to its low lock-in, and onboarding to SendGrid should be straightforward given its low lock-in. Plan for data export, re-integration, and a parallel-run window rather than a hard cutover."
+    },
+    {
+      "q": "Which has better developer experience, Postmark or SendGrid?",
+      "a": "Both Postmark and SendGrid score 5/5 on developer experience in our data, so there's no clear winner on that axis alone. The real differentiator usually lands in SDK fit for your language, error handling, and docs depth. A half-day integration spike tells you more than the score."
+    },
+    {
+      "q": "Is SendGrid a good alternative to Postmark?",
+      "a": "Yes, SendGrid targets the same job Postmark does — transactional emails (receipts, alerts) — so functionally it slots in as an alternative. Pricing model (hybrid from $19.95/mo (Essentials, 50K emails) vs usage from $15/mo (10K emails)) and lock-in (low lock-in (Low-Medium — email API standard, SMTP fallback) vs low lock-in (Low — REST API, SMTP)) usually decide which is the better fit. Validate on your actual workload. Note: SendGrid is explicitly not for internal projects."
+    }
+  ]
+}

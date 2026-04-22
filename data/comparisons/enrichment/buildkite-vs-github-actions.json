@@ -1,0 +1,24 @@
+{
+  "intro": "The pivotal question between Buildkite and GitHub Actions is how much of your setup stays portable: Buildkite carries low lock-in and GitHub Actions carries medium lock-in. Buildkite is self-hosted CI/CD runner with agent-based pipelines on your own infrastructure. GitHub Actions is GitHub-native CI/CD driven by YAML workflows inside the repo. Pick Buildkite when the job is conversion optimization and you accept low lock-in; pick GitHub Actions when it is conversion optimization and you accept medium lock-in. The data we have shows Buildkite at mostly transparent pricing and docs with a polished developer experience, and GitHub Actions at mostly transparent pricing and docs with a polished developer experience. The honest trade-off: neither is universal — Buildkite is a poor fit for internal projects, and GitHub Actions is a poor fit for internal projects. Match the pricing model and lock-in level to how your team actually works, not the feature list. If your team already lives inside the ecosystem one of them assumes, that default usually wins — migration is cheap to start and expensive later.",
+  "quick_take": "Buildkite is for self-hosted CI/CD runner; GitHub Actions is for GitHub-native CI/CD driven by YAML workflows inside; decide based on how portable the setup must stay.",
+  "verdict_a": "Choose Buildkite if a free tier with paid upgrade from $2.50 is the right shape and the work maps to self-hosted CI/CD runner with agent-based pipelines on your own infrastructure.",
+  "verdict_b": "Choose GitHub Actions if some ecosystem coupling is acceptable and the work lines up with GitHub-native CI/CD driven by YAML workflows inside the repo.",
+  "faq": [
+    {
+      "q": "Is Buildkite cheaper than GitHub Actions?",
+      "a": "Buildkite starts at $2.50 on a freemium model; GitHub Actions starts at $0.008/min (Linux) on a usage model. That makes the sticker comparison depend on usage — a low entry price can get expensive once volume ramps, so price at your actual workload."
+    },
+    {
+      "q": "Can I migrate from Buildkite to GitHub Actions?",
+      "a": "Migration is possible in either direction. Buildkite carries low lock-in and GitHub Actions carries medium lock-in, so plan for meaningful but not blocking rework. Run both in parallel before you fully cut over."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Both Buildkite and GitHub Actions rate the same on developer experience (5/5). The decision on DX then comes down to taste — which CLI, UI, or workflow matches your team's habits. A short side-by-side trial is the quickest way to tell."
+    },
+    {
+      "q": "Is GitHub Actions a good alternative to Buildkite?",
+      "a": "Yes — GitHub Actions is a reasonable alternative to Buildkite for conversion optimization. The practical differences are freemium-vs-usage billing and low-vs-medium lock-in. If those fit your constraints better, treat GitHub Actions as a credible swap."
+    }
+  ]
+}

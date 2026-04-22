@@ -1,0 +1,24 @@
+{
+  "intro": "The pivotal question between GitHub Actions and DeployHQ is how much of your setup stays portable: GitHub Actions carries medium lock-in and DeployHQ carries low lock-in. GitHub Actions is GitHub-native CI/CD driven by YAML workflows inside the repo. DeployHQ is deploy-on-push from Git repos to servers via SFTP, SSH, or cloud APIs. Pick GitHub Actions when the job is conversion optimization and you accept medium lock-in; pick DeployHQ when it is conversion optimization and you accept low lock-in. The data we have shows GitHub Actions at mostly transparent pricing and docs with a polished developer experience, and DeployHQ at fully public pricing and documentation with solid developer experience. The honest trade-off: neither is universal — GitHub Actions is a poor fit for internal projects, and DeployHQ is a poor fit for internal projects. Match the pricing model and lock-in level to how your team actually works, not the feature list.",
+  "quick_take": "GitHub Actions is for GitHub-native CI/CD driven by YAML workflows inside; DeployHQ is for deploy-on-push from Git repos to servers via; decide based on how portable the setup must stay.",
+  "verdict_a": "Choose GitHub Actions if usage-based billing from $0.008/min (Linux) matches your workload and the work maps to GitHub-native CI/CD driven by YAML workflows inside the repo.",
+  "verdict_b": "Choose DeployHQ if keeping the configuration portable matters and the work lines up with deploy-on-push from Git repos to servers via SFTP, SSH, or cloud APIs.",
+  "faq": [
+    {
+      "q": "Is GitHub Actions cheaper than DeployHQ?",
+      "a": "GitHub Actions starts at $0.008/min (Linux) on a usage model; DeployHQ starts at $12/yr on a subscription model. That makes the sticker comparison depend on usage — a low entry price can get expensive once volume ramps, so price at your actual workload."
+    },
+    {
+      "q": "Can I migrate from GitHub Actions to DeployHQ?",
+      "a": "Migration is possible in either direction. GitHub Actions carries medium lock-in and DeployHQ carries low lock-in, so plan for meaningful but not blocking rework. Run both in parallel before you fully cut over."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "GitHub Actions scores higher on developer experience in our data (5/5 vs 4/5). That reflects public feedback on docs, onboarding, and day-to-day ergonomics. Still, run a spike with your own code — DX ratings don't capture every edge."
+    },
+    {
+      "q": "Is DeployHQ a good alternative to GitHub Actions?",
+      "a": "Yes — DeployHQ is a reasonable alternative to GitHub Actions for conversion optimization. The practical differences are usage-vs-subscription billing and medium-vs-low lock-in. If those fit your constraints better, treat DeployHQ as a credible swap."
+    }
+  ]
+}

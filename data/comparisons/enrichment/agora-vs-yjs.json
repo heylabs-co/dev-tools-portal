@@ -1,0 +1,24 @@
+{
+  "intro": "The clearest split is that Agora uses a freemium model and Yjs uses a free model. Agora is Real-time audio, video, and interactive live streaming SDK with global SD-RTN network infrastructure; Yjs is CI/CD for Applications tool for developers. Specializes in Collaborative Editing (CRDT). The data points Agora at chat applications and live collaboration features, and Yjs at automated build/test/deploy pipelines and team collaboration on code. Pricing: Agora is freemium, free tier; Yjs is free, free tier. Lock-in is low for Agora and low for Yjs, with DX at 5/5 vs 5/5 and transparency at 4/5 vs 5/5. On listed strengths, Agora emphasises chat applications and live collaboration features, and Yjs emphasises managed pub/sub infrastructure removes server ops burden. Only Agora lists an enterprise tier in the data. Honest trade-off: Agora is not for static projects; Yjs is not for purely request-response apps with no real-time needs, so confirm the fit first, then weigh the pivotal factor above against your budget and lock-in tolerance.",
+  "quick_take": "Agora is for chat applications; Yjs is for apps with live features: chat, collaboration, gaming; decide based on which pricing model fits your budget.",
+  "verdict_a": "Choose Agora if a freemium pricing model fits your procurement and your workload matches chat applications. Skip it if your context is static projects.",
+  "verdict_b": "Choose Yjs if a free pricing model fits your procurement and your workload matches apps with live features: chat, collaboration, gaming. Skip it if your context is purely request-response apps with no real-time needs.",
+  "faq": [
+    {
+      "q": "Is Agora cheaper than Yjs?",
+      "a": "Entry pricing is listed as unknown for Agora and unknown for Yjs. Both offer a free tier for getting started. Total cost at scale depends on usage and plan details that are not in this dataset, so confirm with each vendor."
+    },
+    {
+      "q": "Can I migrate from Agora to Yjs?",
+      "a": "Agora is tagged with low lock-in (proprietary sd-rtn network and signaling; switching requires rewrite). Yjs is tagged with low lock-in (oss crdt library). Both sides are low lock-in, so a migration is feasible but still needs planning around data export and SDK rewrites."
+    },
+    {
+      "q": "Which has better developer experience, Agora or Yjs?",
+      "a": "Both are rated 5/5 for developer experience in this dataset. With equal scores, the choice comes down to the specific SDK surface and docs you will use day to day. Run a short spike on each before deciding."
+    },
+    {
+      "q": "Is Yjs a good alternative to Agora?",
+      "a": "Yjs is listed as fitting apps with live features: chat, collaboration, gaming, which overlaps with but is not identical to Agora's scope. Yjs is flagged as not for purely request-response apps with no real-time needs, so confirm your context does not fall there."
+    }
+  ]
+}

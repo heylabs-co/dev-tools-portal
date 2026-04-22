@@ -1,0 +1,24 @@
+{
+  "intro": "The clearest split is that Algolia uses a hybrid model and Typesense uses a unknown model. Algolia is Hosted search API with typo-tolerance, faceting, and relevance tuning for e-commerce and SaaS; Typesense is Open-source typo-tolerant search engine with instant sub-50ms search and easy self-hosting. The data points Algolia at e-commerce needing sub-50ms search and documentation sites with instant search, and Typesense at e-commerce product search and documentation/knowledge base search. Pricing: Algolia is hybrid from $0.50/1K searches (Grow); Typesense is unknown from $7/mo (cloud). Lock-in is medium for Algolia and low for Typesense, with DX at 5/5 vs 5/5 and transparency at 4/5 vs 3/5. On listed strengths, Algolia emphasises e-commerce needing sub-50ms search and documentation sites with instant search, and Typesense emphasises e-commerce product search and documentation/knowledge base search. Both offer an enterprise tier for larger rollouts. Honest trade-off: Algolia is not for budget, simple projects; Typesense is not for simple projects, so confirm the fit first, then weigh the pivotal factor above against your budget and lock-in tolerance.",
+  "quick_take": "Algolia is for e-commerce; Typesense is for e-commerce; decide based on which pricing model fits your budget.",
+  "verdict_a": "Choose Algolia if a hybrid pricing model fits your procurement and your workload matches e-commerce. Skip it if your context is budget, simple projects.",
+  "verdict_b": "Choose Typesense if a unknown pricing model fits your procurement and your workload matches e-commerce. Skip it if your context is simple projects.",
+  "faq": [
+    {
+      "q": "Is Algolia cheaper than Typesense?",
+      "a": "Listed entry pricing is $0.50/1K searches (Grow) for Algolia and $7/mo (cloud) for Typesense. Both offer a free tier for getting started. Total cost at scale depends on usage and plan details that are not in this dataset, so confirm with each vendor."
+    },
+    {
+      "q": "Can I migrate from Algolia to Typesense?",
+      "a": "Algolia is tagged with medium lock-in (medium — proprietary api, but instantsearch ui = open-source). Typesense is tagged with low lock-in (low — open-source, instantsearch-compatible adapter). Plan for SDK replacement, data export, and a parallel-run period; the dataset does not include migration tooling details."
+    },
+    {
+      "q": "Which has better developer experience, Algolia or Typesense?",
+      "a": "Both are rated 5/5 for developer experience in this dataset. With equal scores, the choice comes down to the specific SDK surface and docs you will use day to day. Run a short spike on each before deciding."
+    },
+    {
+      "q": "Is Typesense a good alternative to Algolia?",
+      "a": "Yes for teams whose workload matches e-commerce, since both list the same fit. Typesense is flagged as not for simple projects, so confirm your context does not fall there."
+    }
+  ]
+}

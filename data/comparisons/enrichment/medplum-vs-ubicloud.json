@@ -1,0 +1,24 @@
+{
+  "intro": "The biggest real distinction between Medplum and Ubicloud is straightforward: Medplum uses freemium with paid upgrades; Ubicloud uses usage-based pricing, a free tier. Medplum sits at freemium with paid upgrades and carries low lock-in, while Ubicloud sits at usage-based pricing, a free tier and carries low lock-in. Medplum is a fit when you need healthcare startups building ehr or patient-facing apps on fhir with modern tooling — typical scenarios include open-source fhir-native ehr backend for digital health teams. Ubicloud is aimed at teams cutting github actions bills or wanting open-source iaas on hetzner, with workloads like open-source aws alternative running on hetzner bare-metal as the common case. The honest trade-off: Medplum is explicitly not for non-healthcare projects or teams that can't invest in learning fhir; Ubicloud is not intended for enterprises needing the full breadth of aws managed services. On cost specifically, pricing model matters more than sticker price — one workload can make Medplum cheaper while a different shape flips the answer to Ubicloud.",
+  "quick_take": "Medplum is for healthcare startups building ehr or patient-facing; Ubicloud is for teams cutting github actions bills or; decide based on cost model and budget.",
+  "verdict_a": "Choose Medplum if your primary workload is healthcare startups building ehr or patient-facing apps on fhir with modern tooling and low switching cost matters.",
+  "verdict_b": "Choose Ubicloud if your primary workload is teams cutting github actions bills or wanting open-source iaas on hetzner and low switching cost matters.",
+  "faq": [
+    {
+      "q": "Is Medplum cheaper than Ubicloud?",
+      "a": "Neither Medplum nor Ubicloud publishes a straightforward entry price in our data, so a direct 'cheaper' call is not possible. Pricing models differ (freemium vs usage), which usually means the answer depends on seat count and usage."
+    },
+    {
+      "q": "Can I migrate from Medplum to Ubicloud?",
+      "a": "Migrating from Medplum to Ubicloud is generally feasible because Medplum has low lock-in, so data and configuration are usually portable. Since both tools sit in the same category (Backend-as-a-Service), the conceptual mapping is closer, but you still need to validate feature parity against your specific workload. Plan migration as a project, not a script: inventory integrations, test on non-production workloads, and keep Medplum running in parallel until Ubicloud is verified."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "On our 0–5 developer experience scale, Medplum scores higher (4/5 vs 3/5 for Ubicloud). The gap is one point — meaningful but not decisive, since DX is workflow-dependent. Still, score your own tasks: DX is subjective and tied to stack assumptions."
+    },
+    {
+      "q": "Is Ubicloud a good alternative to Medplum?",
+      "a": "Ubicloud is in the same category as Medplum (Backend-as-a-Service), so it's a reasonable alternative to evaluate. Ubicloud is aimed at teams cutting github actions bills or wanting open-source iaas on hetzner, while Medplum targets healthcare startups building ehr or patient-facing apps on fhir with modern tooling — that difference should drive the switch decision. Note that Ubicloud is explicitly not for enterprises needing the full breadth of aws managed services — if that describes your workload, it's not a viable replacement."
+    }
+  ]
+}

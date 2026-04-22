@@ -1,0 +1,24 @@
+{
+  "intro": "The biggest real distinction between Better Stack and Datadog is straightforward: Better Stack carries low lock-in while Datadog has high lock-in. Better Stack sits at freemium with a paid tier from $24/mo (paid plan), enterprise plan available and carries low lock-in, while Datadog sits at usage-based pricing starting at $15/host/mo (Infra Pro), a free tier, enterprise plan available and carries high lock-in. Better Stack is a fit when you need microservices performance monitoring — typical scenarios include microservices performance monitoring. Datadog is aimed at enterprise, with workloads like enterprise needing unified apm + logs + metrics as the common case. The honest trade-off: Better Stack is explicitly not for simple, static projects; Datadog is not intended for cost-sensitive. Lock-in is the factor most teams underestimate: Better Stack and Datadog have different exit paths, and that shapes total cost of ownership over a two-to-three year horizon. Before committing, audit where each tool stores state, which APIs you depend on, and how painful a switch would be six months in.",
+  "quick_take": "Better Stack is for microservices performance monitoring; Datadog is for enterprise; decide based on how much lock-in you can accept.",
+  "verdict_a": "Choose Better Stack if your primary workload is microservices performance monitoring and the free tier plus $24/mo (paid plan) paid tier fits your budget.",
+  "verdict_b": "Choose Datadog if your primary workload is enterprise and you prefer usage-based pricing (starts at $15/host/mo (Infra Pro)).",
+  "faq": [
+    {
+      "q": "Is Better Stack cheaper than Datadog?",
+      "a": "It depends on workload shape: Better Stack lists $24/mo (paid plan), while Datadog lists $15/host/mo (Infra Pro). With different pricing models (freemium vs usage), the cheaper option flips based on seat count, usage volume, and whether you use the free tier. Do a per-workload estimate rather than comparing headline numbers."
+    },
+    {
+      "q": "Can I migrate from Better Stack to Datadog?",
+      "a": "Migrating from Better Stack to Datadog is generally feasible because Better Stack has low lock-in, so data and configuration are usually portable. Since both tools sit in the same category (Performance Monitoring / APM), the conceptual mapping is closer, but you still need to validate feature parity against your specific workload. Plan migration as a project, not a script: inventory integrations, test on non-production workloads, and keep Better Stack running in parallel until Datadog is verified."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "On our 0–5 developer experience scale, Datadog scores higher (5/5 vs 4/5 for Better Stack). The gap is one point — meaningful but not decisive, since DX is workflow-dependent. Still, score your own tasks: DX is subjective and tied to stack assumptions."
+    },
+    {
+      "q": "Is Datadog a good alternative to Better Stack?",
+      "a": "Datadog is in the same category as Better Stack (Performance Monitoring / APM), so it's a reasonable alternative to evaluate. Datadog is aimed at enterprise, while Better Stack targets microservices performance monitoring — that difference should drive the switch decision. Note that Datadog is explicitly not for cost-sensitive — if that describes your workload, it's not a viable replacement."
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "intro": "Aider is an Apache-2.0 terminal CLI that edits your local codebase using whichever LLM backend you plug in, while Bolt.new is a browser-based AI environment that builds, runs and deploys full-stack web apps from prompts. The biggest real distinction is the workflow surface: Aider lives in your terminal and git history on your machine, and Bolt.new runs in a hosted web IDE, with code exportable from it. Aider fits experienced developers who already have a repo, want pair-programming with diff control, and care about model choice. Bolt.new fits people spinning up new web apps from scratch who want the environment, runtime and deploy pipeline handled for them. Both are freemium with free tiers; Aider is rated high lock-in (OSS, but your workflow is CLI-coupled) and Bolt.new is rated low lock-in because you can export the code. Aider scores 4 for DX and Bolt.new scores 5; you trade terminal-level control for a smoother zero-to-app experience.",
+  "quick_take": "Aider is for CLI pair-programming on existing repos with any LLM; Bolt.new is for prompting full-stack web apps from a browser IDE; decide based on existing-code versus greenfield.",
+  "verdict_a": "Choose Aider if you work in an existing codebase from the terminal, want git-diff-style edits, and need flexibility to swap LLM backends under an Apache-2.0 CLI.",
+  "verdict_b": "Choose Bolt.new if you are starting a web app from scratch and want a browser IDE that builds, runs and deploys from prompts, with exportable code and DX rated 5.",
+  "faq": [
+    {
+      "q": "Is Aider cheaper than Bolt.new?",
+      "a": "Both are freemium with free tiers. Aider itself is free Apache-2.0 software but you pay for whichever LLM API it calls, which can be unpredictable at scale. Bolt.new lists an entry price of $0 with freemium paid tiers. For light use, both are near-free; for heavy LLM calls, Aider's cost follows your token spend with the underlying provider."
+    },
+    {
+      "q": "Can I migrate from Aider to Bolt.new?",
+      "a": "Aider is rated high lock-in in the data because its workflow is CLI-coupled, while Bolt.new is rated low lock-in with code exportable from the IDE. Your actual code is portable in both cases, but the AI-assisted workflow itself doesn't transfer: you either keep using a CLI against a local repo or move to a browser IDE."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Bolt.new scores 5 for DX against Aider's 4. Bolt.new gives you a hosted IDE, runtime and deploy path; Aider gives you a terminal-native diff-driven workflow. If you prefer the terminal and git, Aider feels better even at a lower numeric score."
+    },
+    {
+      "q": "Is Bolt.new a good alternative to Aider?",
+      "a": "Only for greenfield work. Both share similar best_for of adding AI capabilities to apps and the same not_for of simple rule-based logic. But Aider is aimed at editing existing code, while Bolt.new is aimed at generating new apps. If your workflow is editing a mature repo, Bolt.new is not a substitute."
+    }
+  ]
+}

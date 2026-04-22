@@ -1,0 +1,24 @@
+{
+  "intro": "The clearest split between Mapbox and OpenCage is vendor lock-in: Mapbox is rated medium (Tiles and nav proprietary), while OpenCage is rated high (OSM-based, easy to swap). Mapbox is Location platform with vector map tiles, navigation SDK, geocoding, and ML-powered maps; it fits best for apps. OpenCage is Geocoding API aggregating OpenStreetMap and other sources with batch geocoding and GDPR compliance; it fits best for apps. Pick Mapbox for apps; pick OpenCage for apps. Mapbox is not for simple projects. OpenCage is not for simple projects. Honest trade-offs: Mapbox is weak for apps without location features, and OpenCage is weak for apps without location features — match to your real scenario. Both sit under the Maps / Geolocation / Routing umbrella, so your final call depends on pricing transparency, integration effort, and which listed not-for situations you can actually tolerate. On pricing, Mapbox uses subscription pricing starting around $500/mo and OpenCage uses subscription pricing starting around 0.15, which materially changes total cost at scale.",
+  "quick_take": "Mapbox is for apps; OpenCage is for apps; decide based on lock-in tolerance.",
+  "verdict_a": "Choose Mapbox if medium lock-in (Tiles and nav proprietary) is acceptable and you need apps.",
+  "verdict_b": "Choose OpenCage if high lock-in (OSM-based, easy to swap) is acceptable and you need apps.",
+  "faq": [
+    {
+      "q": "Is Mapbox cheaper than OpenCage?",
+      "a": "A direct comparison depends on your usage profile and which pricing model fits better. Mapbox uses subscription pricing starting at $500/mo. OpenCage uses subscription pricing starting at 0.15."
+    },
+    {
+      "q": "Can I migrate from Mapbox to OpenCage?",
+      "a": "Migration may be non-trivial: OpenCage is rated high lock-in (OSM-based, easy to swap). Plan for data export, re-integration of SDKs, and re-testing flows before cutover. Verify exportable formats and feature parity against your live use cases before committing."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Mapbox scores higher on developer experience (5/5 vs 4/5 for OpenCage). Evaluate against your own stack: read their docs, run a quick SDK spike, and check error handling. Self-assessing with a small prototype beats trusting any rating at face value."
+    },
+    {
+      "q": "Is OpenCage a good alternative to Mapbox?",
+      "a": "OpenCage sits in the same category as Mapbox, so it can be a reasonable alternative for overlapping use cases. OpenCage is best fit for apps. Note: OpenCage is not for simple projects."
+    }
+  ]
+}

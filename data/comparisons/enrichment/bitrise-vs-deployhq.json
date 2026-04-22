@@ -1,0 +1,24 @@
+{
+  "intro": "On paper Bitrise and DeployHQ look similar, but the day-to-day ergonomics diverge: Bitrise scores 5/5 on developer experience against DeployHQ's 4/5. Bitrise is mobile-first CI/CD for iOS, Android, Flutter, and React Native with pre-built workflow steps. DeployHQ is deploy-on-push from Git repos to servers via SFTP, SSH, or cloud APIs. Pick Bitrise when the job is conversion optimization and you accept low lock-in; pick DeployHQ when it is conversion optimization and you accept low lock-in. The data we have shows Bitrise at mostly transparent pricing and docs with a polished developer experience, and DeployHQ at fully public pricing and documentation with solid developer experience. The honest trade-off: neither is universal — Bitrise is a poor fit for internal projects, and DeployHQ is a poor fit for internal projects. Match the pricing model and lock-in level to how your team actually works, not the feature list. If your team already lives inside the ecosystem one of them assumes, that default usually wins — migration is cheap to start and expensive later.",
+  "quick_take": "Bitrise is for mobile-first CI/CD; DeployHQ is for deploy-on-push from Git repos to servers via; decide based on how much public info you need.",
+  "verdict_a": "Choose Bitrise if you need public pricing and docs before committing and the work maps to mobile-first CI/CD for iOS, Android, Flutter, and React Native with pre-built workflow steps.",
+  "verdict_b": "Choose DeployHQ if solid but not perfect DX is acceptable and the work lines up with deploy-on-push from Git repos to servers via SFTP, SSH, or cloud APIs.",
+  "faq": [
+    {
+      "q": "Is Bitrise cheaper than DeployHQ?",
+      "a": "Bitrise starts at a Starter paid plan (entry price not publicly listed) on a subscription model; DeployHQ starts at $12/yr on a subscription model. That makes the sticker comparison depend on usage — a low entry price can get expensive once volume ramps, so price at your actual workload."
+    },
+    {
+      "q": "Can I migrate from Bitrise to DeployHQ?",
+      "a": "Migration in either direction is relatively cheap — both Bitrise and DeployHQ are rated low lock-in, so your configuration and data should port without a rewrite. The realistic cost is team re-training and pipeline QA, not the tools themselves."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Bitrise scores higher on developer experience in our data (5/5 vs 4/5). That reflects public feedback on docs, onboarding, and day-to-day ergonomics. Still, run a spike with your own code — DX ratings don't capture every edge."
+    },
+    {
+      "q": "Is DeployHQ a good alternative to Bitrise?",
+      "a": "Yes — DeployHQ is a reasonable alternative to Bitrise for conversion optimization. The practical differences are subscription-vs-subscription billing and low-vs-low lock-in. If those fit your constraints better, treat DeployHQ as a credible swap."
+    }
+  ]
+}

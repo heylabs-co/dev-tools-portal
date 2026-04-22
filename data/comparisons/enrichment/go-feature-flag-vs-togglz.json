@@ -1,0 +1,24 @@
+{
+  "intro": "GO Feature Flag scores higher for developer experience (5/5 vs 4/5). GO Feature Flag: Simple, complete and lightweight self-hosted feature flag solution, 100% open source. OpenFeature-native with 15+ language SDKs via relay proxy. Togglz: Open-source Java feature toggle library implementing the Feature Toggles pattern, using Java enums for type-safe flag definitions. Apache 2.0 licensed. GO Feature Flag fits engineering teams running flags in-house across many languages. Togglz fits JVM monoliths wanting simple, type-safe in-process flags. On our rubric GO Feature Flag scores 5/5 for developer experience and 5/5 for transparency, while Togglz scores 4/5 and 5/5. The honest trade-off: GO Feature Flag's main drawback — Config and ops are your responsibility; Togglz's — Java/JVM-only ecosystem. One point in GO Feature Flag's favour: Self-hosted, 100% open source with generous features. For Togglz: Type-safe Java enums for flag definitions. GO Feature Flag is explicitly not the right pick for non-engineers wanting polished SaaS flag management. Togglz is not aimed at polyglot systems or experimentation-heavy product teams.",
+  "quick_take": "GO Feature Flag is for engineering teams running flags in-house across many languages; Togglz is for JVM monoliths wanting simple, type-safe in-process flags; decide on developer experience.",
+  "verdict_a": "Choose GO Feature Flag if engineering teams running flags in-house across many languages, and if a higher DX score (5/5 vs 4/5 in our rubric) nudges the call.",
+  "verdict_b": "Choose Togglz if JVM monoliths wanting simple, type-safe in-process flags.",
+  "faq": [
+    {
+      "q": "Is GO Feature Flag cheaper than Togglz?",
+      "a": "Both tools use free pricing, so a clean list-price comparison depends on tier details that vary by usage. Check each vendor's current plan page for your expected volume. Neither is structurally cheaper on the model alone."
+    },
+    {
+      "q": "Can I migrate from GO Feature Flag to Togglz?",
+      "a": "Both tools are rated low lock-in, so migration is mostly a matter of re-pointing integrations and re-authoring config. There's no hard data format moat on either side. Expect work proportional to how deeply GO Feature Flag touches your pipeline, but no vendor-imposed blockers."
+    },
+    {
+      "q": "Which has better developer experience, GO Feature Flag or Togglz?",
+      "a": "GO Feature Flag scores higher in our rubric (5/5 vs 4/5 for Togglz). Transparency is 5/5 for GO Feature Flag and 5/5 for Togglz. DX scores are rubric-based, not benchmarks, so evaluate against your own toolchain."
+    },
+    {
+      "q": "Is Togglz a good alternative to GO Feature Flag?",
+      "a": "They sit in the same category, so yes — Togglz is a plausible alternative for many GO Feature Flag use cases. It fits best when JVM monoliths wanting simple, type-safe in-process flags. Skip it if polyglot systems or experimentation-heavy product teams."
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "intro": "SEON is custom-priced; Castle is freemium. SEON: Fraud & Risk Management tool for developers. Specializes in fraud detection. Castle: Castle protects user accounts and transactions from takeover, fraudulent signups and abusive usage with a developer-first API. It offers risk scoring, device fingerprinting, webhooks and policies, and is popular with SaaS companies like Sho. SEON fits fintech, e-commerce, and marketplace platforms. Castle fits B2B and B2C SaaS protecting logins, signups and workspace abuse with a small risk team. On our rubric SEON scores 4/5 for developer experience and 1/5 for transparency, while Castle scores 5/5 and 5/5. The honest trade-off: SEON's main drawback — Overly aggressive rules can block legitimate users; Castle's — Weaker on payment fraud vs PSP-native tools. One point in SEON's favour: ML-based detection catches fraud patterns in real time. For Castle: Developer-first API with clear docs and webhooks. SEON is explicitly not the right pick for internal tools or low-risk B2B SaaS. Castle is not aimed at payment-first merchants or bot-heavy retail needing dedicated WAF-layer mitigation.",
+  "quick_take": "SEON is for fintech, e-commerce, and marketplace platforms; Castle is for B2B; decide on pricing model.",
+  "verdict_a": "Choose SEON if fintech, e-commerce, and marketplace platforms, and if you're buying at enterprise scale where custom terms apply.",
+  "verdict_b": "Choose Castle if your work looks like risk scoring for new user signup abuse prevention, and if a free tier with an optional paid path matters.",
+  "faq": [
+    {
+      "q": "Is SEON cheaper than Castle?",
+      "a": "SEON uses custom-priced pricing; Castle uses freemium. Which is cheaper depends on your volume and team size — model both against your projected usage before deciding."
+    },
+    {
+      "q": "Can I migrate from SEON to Castle?",
+      "a": "Expect real effort: SEON is medium lock-in (API-based fraud scoring) and Castle is medium lock-in (Proprietary fraud API with webhooks). Migrating between them means rebuilding integrations, re-authoring config, and accepting new coupling. Scope a spike before committing."
+    },
+    {
+      "q": "Which has better developer experience, SEON or Castle?",
+      "a": "Castle scores higher in our rubric (5/5 vs 4/5 for SEON). Transparency is 5/5 for Castle and 1/5 for SEON. DX scores are rubric-based, not benchmarks, so evaluate against your own toolchain."
+    },
+    {
+      "q": "Is Castle a good alternative to SEON?",
+      "a": "They sit in the same category, so yes — Castle is a plausible alternative for many SEON use cases. It fits best when B2B and B2C SaaS protecting logins, signups and workspace abuse with a small risk team. Skip it if payment-first merchants or bot-heavy retail needing dedicated WAF-layer mitigation."
+    }
+  ]
+}

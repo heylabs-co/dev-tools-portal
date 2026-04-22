@@ -1,0 +1,24 @@
+{
+  "intro": "flagd scores higher for developer experience (5/5 vs 4/5). Flagd: Feature flag daemon with a Unix philosophy. Reference OpenFeature-compliant backend supporting HTTP/gRPC evaluation, targeting rules and OpenTelemetry tracing. Togglz: Open-source Java feature toggle library implementing the Feature Toggles pattern, using Java enums for type-safe flag definitions. Apache 2.0 licensed. Flagd fits platform teams standardizing on OpenFeature with self-hosting. Togglz fits JVM monoliths wanting simple, type-safe in-process flags. On our rubric flagd scores 5/5 for developer experience and 5/5 for transparency, while Togglz scores 4/5 and 5/5. The honest trade-off: flagd's main drawback — Minimal UI; configuration is file-driven; Togglz's — Java/JVM-only ecosystem. One point in flagd's favour: Reference OpenFeature backend with clean Unix design. For Togglz: Type-safe Java enums for flag definitions. Flagd is explicitly not the right pick for teams that need a polished no-code flag dashboard. Togglz is not aimed at polyglot systems or experimentation-heavy product teams. Another flagd advantage: HTTP and gRPC evaluation, flexible targeting. Another Togglz advantage: Long-standing Apache 2.0 Java toggle library.",
+  "quick_take": "flagd is for platform teams standardizing on OpenFeature with self-hosting; Togglz is for JVM monoliths wanting simple, type-safe in-process flags; decide on developer experience.",
+  "verdict_a": "Choose flagd if platform teams standardizing on OpenFeature with self-hosting, and if a higher DX score (5/5 vs 4/5 in our rubric) nudges the call.",
+  "verdict_b": "Choose Togglz if JVM monoliths wanting simple, type-safe in-process flags.",
+  "faq": [
+    {
+      "q": "Is flagd cheaper than Togglz?",
+      "a": "Both tools use free pricing, so a clean list-price comparison depends on tier details that vary by usage. Check each vendor's current plan page for your expected volume. Neither is structurally cheaper on the model alone."
+    },
+    {
+      "q": "Can I migrate from flagd to Togglz?",
+      "a": "Both tools are rated low lock-in, so migration is mostly a matter of re-pointing integrations and re-authoring config. There's no hard data format moat on either side. Expect work proportional to how deeply flagd touches your pipeline, but no vendor-imposed blockers."
+    },
+    {
+      "q": "Which has better developer experience, flagd or Togglz?",
+      "a": "flagd scores higher in our rubric (5/5 vs 4/5 for Togglz). Transparency is 5/5 for flagd and 5/5 for Togglz. DX scores are rubric-based, not benchmarks, so evaluate against your own toolchain."
+    },
+    {
+      "q": "Is Togglz a good alternative to flagd?",
+      "a": "They sit in the same category, so yes — Togglz is a plausible alternative for many flagd use cases. It fits best when JVM monoliths wanting simple, type-safe in-process flags. Skip it if polyglot systems or experimentation-heavy product teams."
+    }
+  ]
+}

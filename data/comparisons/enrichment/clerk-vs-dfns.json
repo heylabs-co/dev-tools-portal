@@ -1,0 +1,24 @@
+{
+  "intro": "The clearest split between Clerk and Dfns is how they charge: Clerk uses a free tier plus paid plans starting around $25/mo (Pro, 10K MAU), while Dfns uses custom enterprise pricing (no public tier). Clerk is Drop-in authentication platform with prebuilt React components for sign-in, MFA, organization management, and SSO; it fits best for apps, Startup. Dfns is MPC wallet-as-a-service API for institutions to create, embed, and manage programmable wallets; it fits best for Institutions, exchanges and fintechs needing programmable custody APIs. Pick Clerk when the job maps to next.js / react apps needing drop-in auth ui; pick Dfns when it maps to mpc wallet creation api for institutional custody apps. Clerk is not for enterprise requiring saml/scim on day one. Dfns is not for consumer dapps prioritizing social login and embedded ux. Honest trade-offs: Clerk is weak for enterprise requiring saml/scim on day one — auth0/workos, and Dfns is weak for enterprise pricing; not friendly for small projects — match to your real scenario.",
+  "quick_take": "Clerk is for apps, startup; Dfns is for institutions, exchanges and fintechs needing programmable cu; decide based on pricing model.",
+  "verdict_a": "Choose Clerk if you want a free tier plus paid plans starting around $25/mo (Pro, 10K MAU) and your workload matches apps, startup.",
+  "verdict_b": "Choose Dfns if you want custom enterprise pricing (no public tier) and your workload matches institutions, exchanges and fintechs needing programmable custody apis.",
+  "faq": [
+    {
+      "q": "Is Clerk cheaper than Dfns?",
+      "a": "Clerk has more transparent pricing; Dfns's cost depends on a sales conversation, so a direct comparison is not possible without a quote. Clerk has a free tier with paid plans starting at $25/mo (Pro, 10K MAU). Dfns uses custom enterprise pricing with no published rates."
+    },
+    {
+      "q": "Can I migrate from Clerk to Dfns?",
+      "a": "Migration may be non-trivial: Dfns is rated high lock-in (MPC wallet service, custodial lock-in). Plan for data export, re-integration of SDKs, and re-testing flows before cutover. Verify exportable formats and feature parity against your live use cases before committing."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Clerk scores higher on developer experience (5/5 vs 4/5 for Dfns). Evaluate against your own stack: read their docs, run a quick SDK spike, and check error handling. Self-assessing with a small prototype beats trusting any rating at face value."
+    },
+    {
+      "q": "Is Dfns a good alternative to Clerk?",
+      "a": "Dfns sits in the same category as Clerk, so it can be a reasonable alternative for overlapping use cases. Dfns is best fit for institutions, exchanges and fintechs needing programmable custody apis. Note: Dfns is not for consumer dapps prioritizing social login and embedded ux."
+    }
+  ]
+}

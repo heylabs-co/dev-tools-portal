@@ -1,0 +1,24 @@
+{
+  "intro": "VuePress and BookStack overlap on pricing and lock-in, so the choice hinges on fit rather than cost. VuePress: Vue-powered static site generator built for writing technical documentation, with Markdown-centric authoring and built-in search. BookStack: open-source, self-hosted knowledge management platform organized as books, chapters, and pages, popular for internal developer docs. VuePress fits existing VuePress sites or teams committed to the legacy Vue 2 documentation ecosystem. BookStack fits internal team knowledge bases, runbooks, and general documentation on self-hosted infrastructure. Both land at 4/5 for developer experience and 5/5 for transparency on our rubric. The honest trade-off: VuePress's main drawback — Community has largely shifted to VitePress; BookStack's — Not designed for API reference or developer-spec docs. One point in VuePress's favour: Vue-powered customization for dynamic documentation. For BookStack: Fully free and self-hostable with no feature gating. VuePress is explicitly not the right pick for new projects - choose VitePress, Starlight, or Nextra for better performance and momentum. BookStack is not aimed at public developer documentation, API references, or teams without PHP hosting expertise.",
+  "quick_take": "VuePress is for existing VuePress sites or teams committed to the; BookStack is for internal team knowledge bases; decide on fit with your stack.",
+  "verdict_a": "Choose VuePress if existing VuePress sites or teams committed to the legacy Vue 2 documentation ecosystem.",
+  "verdict_b": "Choose BookStack if internal team knowledge bases, runbooks, and general documentation on self-hosted infrastructure.",
+  "faq": [
+    {
+      "q": "Is VuePress cheaper than BookStack?",
+      "a": "Both tools use free pricing, so a clean list-price comparison depends on tier details that vary by usage. Check each vendor's current plan page for your expected volume. Neither is structurally cheaper on the model alone."
+    },
+    {
+      "q": "Can I migrate from VuePress to BookStack?",
+      "a": "Both tools are rated low lock-in, so migration is mostly a matter of re-pointing integrations and re-authoring config. There's no hard data format moat on either side. Expect work proportional to how deeply VuePress touches your pipeline, but no vendor-imposed blockers."
+    },
+    {
+      "q": "Which has better developer experience, VuePress or BookStack?",
+      "a": "Both score 4/5 for developer experience in our rubric, so neither has a structural edge. The practical answer depends on stack fit: VuePress's ergonomics suit some workflows, BookStack's suit others. Try both on a throwaway project before committing."
+    },
+    {
+      "q": "Is BookStack a good alternative to VuePress?",
+      "a": "They sit in the same category, so yes — BookStack is a plausible alternative for many VuePress use cases. It fits best when internal team knowledge bases, runbooks, and general documentation on self-hosted infrastructure. Skip it if public developer documentation, API references, or teams without PHP hosting expertise."
+    }
+  ]
+}

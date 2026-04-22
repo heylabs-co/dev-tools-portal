@@ -1,0 +1,24 @@
+{
+  "intro": "On our ratings Iugu scores 3/5 for developer experience and 4/5 for transparency, against 5/5 and 3/5 for Orb. Both are in the subscription billing space, but the day-to-day feel and how openly each vendor shares pricing and behavior differ. Beyond the headline, Iugu carries medium lock-in (brazil billing platform) and usage-based pricing; Orb carries medium lock-in (billing data exportable) and usage-based pricing from $1. Iugu is a fit when you are brazilian saas, marketplaces, and fintechs needing pix, boleto, and nf-e compliance. Orb is a fit when you are saas. The honest trade-off: Iugu is explicitly not for global-first saas or companies without significant brazilian revenue exposure; Orb is explicitly not for simple projects. On the product side, Iugu is described as Brazilian billing and payments platform for subscriptions, recurring charges, and marketplaces with REST API, and Orb is described as Developer-first subscription and usage billing platform with a flexible pricing model API and Stripe-compatible webhooks.",
+  "quick_take": "Iugu is for brazilian saas, marketplaces, and fintechs needing pix, boleto, and nf-e compliance; Orb is for saas; decide on developer-experience weighting.",
+  "verdict_a": "Choose Iugu if open pricing and transparent behavior matter (4/5 vs 3/5 transparency) and you are brazilian saas, marketplaces, and fintechs needing pix, boleto, and nf-e compliance.",
+  "verdict_b": "Choose Orb if day-to-day developer experience matters more than the alternative (5/5 vs 3/5) and you are saas.",
+  "faq": [
+    {
+      "q": "Is Iugu cheaper than Orb?",
+      "a": "Both tools use usage pricing. Iugu is listed as usage-based pricing; Orb as usage-based pricing from $1. Without specific volume and seat assumptions it is not possible to say which is cheaper in general."
+    },
+    {
+      "q": "Can I migrate from Iugu to Orb?",
+      "a": "Migration from Iugu to Orb is feasible but not trivial: Iugu has medium lock-in (brazil billing platform). Core data can move; integrations and workflow logic need rebuild. Allow for a parallel-run period."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "On our scoring Orb rates 5/5 for developer experience versus 3/5 for Iugu. That suggests Orb feels more polished for everyday developer tasks. We still recommend a short hands-on trial on your stack before standardising."
+    },
+    {
+      "q": "Is Orb a good alternative to Iugu?",
+      "a": "Orb is pitched at saas, which overlaps with Iugu's fit (brazilian saas, marketplaces, and fintechs needing pix, boleto, and nf-e compliance) but is not identical. Note that Orb is explicitly not for simple projects, so it only replaces Iugu if you are outside that exclusion. Feature-for-feature parity is not guaranteed, so confirm the specific capability you rely on before switching."
+    }
+  ]
+}

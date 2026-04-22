@@ -1,0 +1,24 @@
+{
+  "intro": "The clearest split between Cerbos and Clerk is vendor lock-in: Cerbos is rated low (OSS core with YAML policies), while Clerk is rated medium. Cerbos is Open-source authorization service with human-readable YAML policies, RBAC/ABAC, and REST/gRPC evaluation endpoints; it fits best for Apps, B2B. Clerk is Drop-in authentication platform with prebuilt React components for sign-in, MFA, organization management, and SSO; it fits best for apps, Startup. Pick Cerbos when the job maps to apps needing sso/mfa; pick Clerk when it maps to next.js / react apps needing drop-in auth ui. Cerbos is not for internal, static projects. Clerk is not for enterprise requiring saml/scim on day one. Honest trade-offs: Cerbos is weak for internal tools with basic auth, and Clerk is weak for enterprise requiring saml/scim on day one — auth0/workos — match to your real scenario. Both sit under the Identity / Auth / User Management umbrella, so your final call depends on pricing transparency, integration effort, and which listed not-for situations you can actually tolerate.",
+  "quick_take": "Cerbos is for apps, b2b; Clerk is for apps, startup; decide based on lock-in tolerance.",
+  "verdict_a": "Choose Cerbos if low lock-in (OSS core with YAML policies) is acceptable and you need apps, b2b.",
+  "verdict_b": "Choose Clerk if medium lock-in is acceptable and you need apps, startup.",
+  "faq": [
+    {
+      "q": "Is Cerbos cheaper than Clerk?",
+      "a": "A direct comparison depends on your usage profile and which pricing model fits better. Cerbos has a free tier with paid plans starting at $0/month. Clerk has a free tier with paid plans starting at $25/mo (Pro, 10K MAU)."
+    },
+    {
+      "q": "Can I migrate from Cerbos to Clerk?",
+      "a": "Migration from Cerbos (low lock-in) to Clerk (medium lock-in) is the harder direction; the reverse is easier. Plan for data export, re-integration of SDKs, and re-testing flows before cutover. Verify exportable formats and feature parity against your live use cases before committing."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Both score 5/5 on developer experience in our data. Evaluate against your own stack: read their docs, run a quick SDK spike, and check error handling. Self-assessing with a small prototype beats trusting any rating at face value."
+    },
+    {
+      "q": "Is Clerk a good alternative to Cerbos?",
+      "a": "Clerk sits in the same category as Cerbos, so it can be a reasonable alternative for overlapping use cases. Clerk is best fit for apps, startup. Note: Clerk is not for enterprise requiring saml/scim on day one."
+    }
+  ]
+}

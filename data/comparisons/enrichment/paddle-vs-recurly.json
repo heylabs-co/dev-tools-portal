@@ -1,0 +1,24 @@
+{
+  "intro": "The most concrete split between Paddle and Recurly is the pricing model: Paddle runs on usage-based pricing from 5% + $0.50/transaction, while Recurly uses hybrid pricing from $249/mo (Core). That shapes how predictable your monthly spend is and how much of the cost sits in infrastructure versus per-seat or per-event fees. Beyond the headline, Paddle carries high lock-in (high — mor model = paddle handles everything, fromwith adapts under paddle) and usage-based pricing from 5% + $0.50/transaction; Recurly carries medium lock-in (medium — underandwithon logic, 20+ gateways) and hybrid pricing from $249/mo (Core). Paddle is a fit when you are saas, b2b. Recurly is a fit when you are saas. The honest trade-off: Paddle is explicitly not for marketplace/platform payments; Recurly is explicitly not for simple projects. On the product side, Paddle is described as Merchant of Record and subscription billing platform for B2B/B2C SaaS with global tax, checkout, and revenue recovery, and Recurly is described as Enterprise subscription management platform with dunning, multi-gateway support, proration, and revenue recognition.",
+  "quick_take": "Paddle is for saas, b2b; Recurly is for saas; decide on pricing model.",
+  "verdict_a": "Choose Paddle if its usage pricing model fits your budget shape better than Recurly's hybrid model, and you are saas, b2b.",
+  "verdict_b": "Choose Recurly if its hybrid pricing model fits your budget shape better than Paddle's usage model, and you are saas.",
+  "faq": [
+    {
+      "q": "Is Paddle cheaper than Recurly?",
+      "a": "Paddle starts at 5% + $0.50/transaction; Recurly starts at $249/mo (Core). On entry price alone that is the comparison, but real cost scales with users, events or volume, which the entry prices do not capture. Check each vendor's full tier list before committing."
+    },
+    {
+      "q": "Can I migrate from Paddle to Recurly?",
+      "a": "Migration from Paddle is harder: Paddle is rated high lock-in (high — mor model = paddle handles everything, fromwith adapts under paddle). You can still move, but expect schema-mapping, export tooling and a longer cutover window. Budget engineering time accordingly."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "On our scoring Paddle rates 5/5 for developer experience versus 4/5 for Recurly. That suggests day-to-day workflows (CLI, SDKs, docs) are smoother in Paddle. Scores are directional; run a short spike on your own stack to confirm."
+    },
+    {
+      "q": "Is Recurly a good alternative to Paddle?",
+      "a": "Recurly is pitched at saas, which overlaps with Paddle's fit (saas, b2b) but is not identical. Note that Recurly is explicitly not for simple projects, so it only replaces Paddle if you are outside that exclusion. The lock-in profile differs (high vs medium), which is the main thing to weigh."
+    }
+  ]
+}

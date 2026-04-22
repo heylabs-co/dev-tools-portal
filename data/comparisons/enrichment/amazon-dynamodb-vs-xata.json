@@ -1,0 +1,24 @@
+{
+  "intro": "The biggest real split between Amazon DynamoDB and Xata is lock-in posture: Amazon DynamoDB carries low lock-in (proprietary nosql data model, hard to migrate off), while Xata carries medium lock-in (postgres under hood, exportable). That single fact shapes the rest of the comparison. Amazon DynamoDB is built for apps, global and is not a fit for simple, offline projects. Xata is built for apps, global and is not a fit for simple, offline projects. On the scoring side, Amazon DynamoDB rates 4/5 for developer experience and 4/5 for transparency; Xata rates 5/5 and 4/5 respectively. The honest trade-off: with Amazon DynamoDB you accept that simple key-value storage needs, while Xata comes with the reality that simple key-value storage needs. Neither side is free. Amazon DynamoDB's headline strength in the data is that apps needing managed database. Xata's headline strength is that apps needing managed database. Read each side's best-for and not-for fields carefully before you pick; the shape of your team and workflow matters more than any single score.",
+  "quick_take": "Amazon DynamoDB is for apps, global; Xata is for apps, global; decide based on lock-in tolerance.",
+  "verdict_a": "Choose Amazon DynamoDB if you are apps, global and can accept low lock-in (proprietary nosql data model, hard to migrate off).",
+  "verdict_b": "Choose Xata if you are apps, global and need medium lock-in (postgres under hood, exportable).",
+  "faq": [
+    {
+      "q": "Is Amazon DynamoDB cheaper than Xata?",
+      "a": "Amazon DynamoDB uses a subscription model, while Xata uses a freemium model, and both publish a free tier. We don't have per-seat numbers in this dataset, so 'cheaper' depends on volume. Price both on your actual usage before deciding."
+    },
+    {
+      "q": "Can I migrate from Amazon DynamoDB to Xata?",
+      "a": "Amazon DynamoDB has low lock-in (proprietary nosql data model, hard to migrate off); Xata has medium lock-in (postgres under hood, exportable). Migration effort scales with how much state and automation you've built in Amazon DynamoDB; plan for data export, config rebuild, and a parallel-run period before cutting over."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "In our data, Xata scores 5/5 for developer experience versus 4/5 for Amazon DynamoDB. That said, DX is subjective; the Amazon DynamoDB score may still be acceptable if its feature fit is stronger for your use case."
+    },
+    {
+      "q": "Is Xata a good alternative to Amazon DynamoDB?",
+      "a": "Xata is built for apps, global and explicitly not for simple, offline projects, so it's a fit only if your workflow matches its stated audience. If you were using Amazon DynamoDB for apps, global, the switch is reasonable; outside that scope, look elsewhere."
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "intro": "Keep and Qryn both show up under the observability category, but they solve slightly different jobs. Keep positions itself around platform teams wanting open alternative to PagerDuty AIOps or BigPanda, whereas Qryn leans toward teams wanting unified ClickHouse storage for LGTM stack without Grafana Cloud bills. Both sit at low lock-in. Keep fits teams working on aggregate and deduplicate alerts from 50+ tools, while Qryn is a closer match when the job is drop-in Loki, Prometheus, and Tempo on ClickHouse. Worth noting: Keep is explicitly not for teams needing battle-tested AIOps with dedicated 24/7 support; Qryn is explicitly not for teams without ClickHouse expertise or wanting turnkey hosted experience. The honest trade-off: Keep trades off on early project, features still stabilizing; Qryn trades off on ClickHouse ops skills needed for self-hosting. On the plus side, Keep highlights open-source AIOps with 50+ tool integrations, while Qryn points to ClickHouse backend supports Loki, Prom, Tempo, DD APIs.",
+  "quick_take": "Keep is for aggregate and deduplicate alerts from 50+; Qryn is for drop-in Loki, Prometheus, and Tempo on; decide on use-case fit.",
+  "verdict_a": "Choose Keep if your project is aggregate and deduplicate alerts from 50+ tools, you want to keep future migration cheap.",
+  "verdict_b": "Choose Qryn if your project is drop-in Loki, Prometheus, and Tempo on ClickHouse, you want to keep future migration cheap.",
+  "faq": [
+    {
+      "q": "Is Keep cheaper than Qryn?",
+      "a": "Keep uses a free model, and Qryn uses a free model. Without full pricing pages to compare, we can't rank them on price alone — check each vendor's current rates for your workload."
+    },
+    {
+      "q": "Can I migrate from Keep to Qryn?",
+      "a": "Our data puts Keep at low lock-in, and Qryn at low lock-in (oss observability stack). Moving from Keep to Qryn should be manageable, though you'll still need to replay integrations and re-test flows end-to-end."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Both score 4/5 on developer experience in our data, so there's no clear winner on that axis. The better fit depends on which SDK matches your stack and which docs your team finds clearer during evaluation."
+    },
+    {
+      "q": "Is Qryn a good alternative to Keep?",
+      "a": "Qryn is a reasonable alternative to Keep when your workload leans more toward teams wanting unified ClickHouse storage for LGTM stack without Grafana Cloud bills than platform teams wanting open alternative to PagerDuty AIOps or BigPanda. One caveat: Qryn is explicitly not for teams without ClickHouse expertise or wanting turnkey hosted experience, so check that constraint against your use-case before switching."
+    }
+  ]
+}

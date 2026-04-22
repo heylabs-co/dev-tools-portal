@@ -1,0 +1,24 @@
+{
+  "intro": "GO Feature Flag is free and open source while Convert runs on paid subscription pricing. Convert: A/B testing and personalization platform with no-cookie tracking and privacy-first architecture. GO Feature Flag: Simple, complete and lightweight self-hosted feature flag solution, 100% open source. OpenFeature-native with 15+ language SDKs via relay proxy. Convert fits gradual rollouts to reduce risk. GO Feature Flag fits engineering teams running flags in-house across many languages. On our rubric Convert scores 3/5 for developer experience and 4/5 for transparency, while GO Feature Flag scores 5/5 and 5/5. The honest trade-off: Convert's main drawback — Solo developer shipping to production; GO Feature Flag's — Config and ops are your responsibility. For GO Feature Flag: Self-hosted, 100% open source with generous features. Convert is explicitly not the right pick for solo projects. GO Feature Flag is not aimed at non-engineers wanting polished SaaS flag management. Another Convert advantage: Kill switches for features. Another Convert friction point: Products with no users yet.",
+  "quick_take": "Convert is for gradual rollouts to reduce risk; GO Feature Flag is for engineering teams running flags in-house across many languages; decide on pricing model.",
+  "verdict_a": "Choose Convert if gradual rollouts to reduce risk, and if you'd rather pay for a managed service than run infrastructure yourself.",
+  "verdict_b": "Choose GO Feature Flag if engineering teams running flags in-house across many languages, and if you want to avoid recurring license costs and are willing to self-host.",
+  "faq": [
+    {
+      "q": "Is Convert cheaper than GO Feature Flag?",
+      "a": "No: GO Feature Flag is free and open source, while Convert runs on paid subscription pricing. Convert may still be cheaper in total cost once you factor in hosting, maintenance, and engineering time to run GO Feature Flag yourself."
+    },
+    {
+      "q": "Can I migrate from Convert to GO Feature Flag?",
+      "a": "Moving to GO Feature Flag is reasonable on its side — it's low lock-in (OSS OpenFeature-native). The friction is on the way out of Convert, which is medium lock-in (A/B test data exportable). Budget time for data export and integration rework."
+    },
+    {
+      "q": "Which has better developer experience, Convert or GO Feature Flag?",
+      "a": "GO Feature Flag scores higher in our rubric (5/5 vs 3/5 for Convert). Transparency is 5/5 for GO Feature Flag and 4/5 for Convert. DX scores are rubric-based, not benchmarks, so evaluate against your own toolchain."
+    },
+    {
+      "q": "Is GO Feature Flag a good alternative to Convert?",
+      "a": "They sit in the same category, so yes — GO Feature Flag is a plausible alternative for many Convert use cases. It fits best when engineering teams running flags in-house across many languages. Skip it if non-engineers wanting polished SaaS flag management."
+    }
+  ]
+}

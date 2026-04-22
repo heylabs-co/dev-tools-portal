@@ -1,0 +1,24 @@
+{
+  "intro": "The biggest real distinction between Cloudflare and Selectel is straightforward: Cloudflare uses freemium with a paid tier from $20/mo (Pro), enterprise plan available; Selectel uses usage-based pricing. Cloudflare sits at freemium with a paid tier from $20/mo (Pro), enterprise plan available and carries moderate lock-in, while Selectel sits at usage-based pricing and carries moderate lock-in. Cloudflare is a fit when you need cdn + edge compute + dns + security in one — typical scenarios include cdn + edge compute + dns + security in one. Selectel is aimed at russian companies needing local iaas, object storage, and managed kubernetes, with workloads like russian cloud iaas with dedicated servers and object storage as the common case. The honest trade-off: Cloudflare is explicitly not for need full paas for backend apps; Selectel is not intended for international companies or those with sanctions compliance requirements. On cost specifically, pricing model matters more than sticker price — one workload can make Cloudflare cheaper while a different shape flips the answer to Selectel.",
+  "quick_take": "Cloudflare is for cdn + edge compute + dns; Selectel is for russian companies needing local iaas, object; decide based on cost model and budget.",
+  "verdict_a": "Choose Cloudflare if your primary workload is cdn + edge compute + dns + security in one and the free tier plus $20/mo (Pro) paid tier fits your budget.",
+  "verdict_b": "Choose Selectel if your primary workload is russian companies needing local iaas, object storage, and managed kubernetes.",
+  "faq": [
+    {
+      "q": "Is Cloudflare cheaper than Selectel?",
+      "a": "Cloudflare publishes an entry price of $20/mo (Pro); Selectel's entry price is not in our data, so a definitive comparison is not possible without a quote from Selectel."
+    },
+    {
+      "q": "Can I migrate from Cloudflare to Selectel?",
+      "a": "Migrating from Cloudflare to Selectel is doable but not automatic — Cloudflare carries moderate lock-in. Since both tools sit in the same category (CDN / Edge / Acceleration), the conceptual mapping is closer, but you still need to validate feature parity against your specific workload. Plan migration as a project, not a script: inventory integrations, test on non-production workloads, and keep Cloudflare running in parallel until Selectel is verified."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "On our 0–5 developer experience scale, Cloudflare scores higher (5/5 vs 3/5 for Selectel). The gap is 2 points, which is a noticeable difference in day-to-day ergonomics based on the data. Still, score your own tasks: DX is subjective and tied to stack assumptions."
+    },
+    {
+      "q": "Is Selectel a good alternative to Cloudflare?",
+      "a": "Selectel is in the same category as Cloudflare (CDN / Edge / Acceleration), so it's a reasonable alternative to evaluate. Selectel is aimed at russian companies needing local iaas, object storage, and managed kubernetes, while Cloudflare targets cdn + edge compute + dns + security in one — that difference should drive the switch decision. Note that Selectel is explicitly not for international companies or those with sanctions compliance requirements — if that describes your workload, it's not a viable replacement."
+    }
+  ]
+}

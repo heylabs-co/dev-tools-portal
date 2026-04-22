@@ -1,0 +1,24 @@
+{
+  "intro": "Devenv carries low lock-in (OSS Nix-based, fully portable) while Nx Cloud is medium (Cache service for Nx, works with OSS Nx). Devenv is positioned for teams on macos and linux wanting reproducible, scriptable dev envs, while Nx Cloud leans toward js and ts monorepos using nx with slow ci and many projects. In practice, Fast, declarative developer environments powered by Nix. Teams define services, toolchains, and scripts in a devenv.nix file that works identically across machines and CI in monorepo projects. Remote computation caching and distributed task execution service for Nx monorepos. Speeds up CI by sharing build artifacts across machines and eliminating redundant work. Devenv runs on free with a free tier; Nx Cloud runs on freemium with a free tier. Devenv rates 5/5 on transparency versus 4/5 for Nx Cloud. Listed strengths unique to Devenv include reproducible dev environments via nix, without full nix pain, while Nx Cloud lists remote caching makes nx ci dramatically faster on its side. Reach for Devenv when you need declarative nix-powered dev environments for monorepos; reach for Nx Cloud when the job.",
+  "quick_take": "Devenv is for teams on macos and linux wanting reproducible, scriptable dev envs; Nx Cloud is for js and ts monorepos using nx with slow ci and many projects; decide.",
+  "verdict_a": "Choose Devenv if teams on macos and linux wanting reproducible, scriptable dev envs and you need a free tier to validate fit.",
+  "verdict_b": "Choose Nx Cloud if js and ts monorepos using nx with slow ci and many projects and you need a free tier to validate fit.",
+  "faq": [
+    {
+      "q": "Is Devenv cheaper than Nx Cloud?",
+      "a": "Both Devenv and Nx Cloud expose free tiers with no headline entry price listed. The real comparison happens once you cross the free limits, and that pricing isn't captured in the summary data. Check each tool's pricing page for your volume band."
+    },
+    {
+      "q": "Can I migrate from Devenv to Nx Cloud?",
+      "a": "Technically you can move between any two tools in the same category, but effort varies: leaving Devenv is relatively light thanks to its low lock-in, and onboarding to Nx Cloud involves medium lock-in (Cache service for Nx, works with OSS Nx). Plan for data export, re-integration, and a parallel-run window rather than a hard cutover."
+    },
+    {
+      "q": "Which has better developer experience, Devenv or Nx Cloud?",
+      "a": "On the 0-5 developer experience score in our data, Nx Cloud rates 5/5 while Devenv rates 4/5, giving Nx Cloud the edge. That score is a rough summary; actual day-to-day DX depends on your language, deployment target, and tolerance for edge cases. Prototype both to validate."
+    },
+    {
+      "q": "Is Nx Cloud a good alternative to Devenv?",
+      "a": "Nx Cloud is an alternative in the same category, but its stated sweet spot is js and ts monorepos using nx with slow ci and many projects, while Devenv's is teams on macos and linux wanting reproducible, scriptable dev envs. If your job matches Devenv's profile more closely, switching to Nx Cloud is a compromise. Use the best-fit match, not brand familiarity, to decide. Note: Nx Cloud is explicitly not for non-nx stacks or teams priced out at scale."
+    }
+  ]
+}

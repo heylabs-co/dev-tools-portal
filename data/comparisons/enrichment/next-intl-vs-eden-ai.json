@@ -1,0 +1,24 @@
+{
+  "intro": "The clearest split between next-intl and Eden AI is how they charge: next-intl uses free and open source, while Eden AI uses subscription pricing starting around $10. next-intl is CI/CD for Applications tool for developers. Specializes in Next.js Internationalization; it fits best for Global products launching in multiple markets. Eden AI is Unified AI API aggregating translation, OCR, NLP, and vision models from multiple providers; it fits best for Apps. Pick next-intl when the job maps to automated build/test/deploy pipelines; pick Eden AI when it maps to apps targeting multiple languages/markets. next-intl is not for single-language apps or internal tools. Eden AI is not for static projects. Honest trade-offs: next-intl is weak for machine translation quality varies by language pair, and Eden AI is weak for english-only products — match to your real scenario. Both sit under the Localization / Translation API umbrella, so your final call depends on pricing transparency, integration effort, and which listed not-for situations you can actually tolerate.",
+  "quick_take": "next-intl is for global products launching in multiple markets; Eden AI is for apps; decide based on pricing model.",
+  "verdict_a": "Choose next-intl if you want free and open source and your workload matches global products launching in multiple markets.",
+  "verdict_b": "Choose Eden AI if you want subscription pricing starting around $10 and your workload matches apps.",
+  "faq": [
+    {
+      "q": "Is next-intl cheaper than Eden AI?",
+      "a": "next-intl is the cheaper option on paper since it is open source, while Eden AI is paid. next-intl is free and open source. Eden AI uses subscription pricing starting at $10."
+    },
+    {
+      "q": "Can I migrate from next-intl to Eden AI?",
+      "a": "Migration between these is relatively straightforward since both are rated as low lock-in. Plan for data export, re-integration of SDKs, and re-testing flows before cutover. Verify exportable formats and feature parity against your live use cases before committing."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "next-intl scores higher on developer experience (5/5 vs 4/5 for Eden AI). Evaluate against your own stack: read their docs, run a quick SDK spike, and check error handling. Self-assessing with a small prototype beats trusting any rating at face value."
+    },
+    {
+      "q": "Is Eden AI a good alternative to next-intl?",
+      "a": "Eden AI sits in the same category as next-intl, so it can be a reasonable alternative for overlapping use cases. Eden AI is best fit for apps. Note: Eden AI is not for static projects."
+    }
+  ]
+}

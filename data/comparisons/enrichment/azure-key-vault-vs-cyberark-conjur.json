@@ -1,0 +1,24 @@
+{
+  "intro": "The clearest split is that Azure Key Vault carries low lock-in and CyberArk Conjur carries high lock-in. Azure Key Vault is Managed HSM and secrets service storing keys, certificates, and connection strings with Azure AD; CyberArk Conjur is Enterprise secrets management platform with dynamic secrets, RBAC, and audit trails for DevOps pipelines. The data points Azure Key Vault at teams with many api keys/tokens and ci/cd pipelines needing secure env vars, and CyberArk Conjur at teams with many api keys/tokens and ci/cd pipelines needing secure env vars. Pricing: Azure Key Vault is subscription from $1; CyberArk Conjur is subscription from 60. Lock-in is low for Azure Key Vault and high for CyberArk Conjur, with DX at 4/5 vs 3/5 and transparency at 4/5 vs 2/5. Both offer an enterprise tier for larger rollouts. Honest trade-off: neither fits solo, static projects, so if that is your context, look elsewhere; otherwise pick on the pivotal factor above and the DX score that matters most to your team.",
+  "quick_take": "Azure Key Vault is for teams; CyberArk Conjur is for teams; decide based on how much lock-in you tolerate.",
+  "verdict_a": "Choose Azure Key Vault if you prefer low lock-in and easier exit and your workload matches teams. Skip it if your context is solo, static projects.",
+  "verdict_b": "Choose CyberArk Conjur if deeper lock-in is acceptable for the feature depth and your workload matches teams. Skip it if your context is solo, static projects.",
+  "faq": [
+    {
+      "q": "Is Azure Key Vault cheaper than CyberArk Conjur?",
+      "a": "Listed entry pricing is $1 for Azure Key Vault and 60 for CyberArk Conjur. Both offer a free tier for getting started. Total cost at scale depends on usage and plan details that are not in this dataset, so confirm with each vendor."
+    },
+    {
+      "q": "Can I migrate from Azure Key Vault to CyberArk Conjur?",
+      "a": "Azure Key Vault is tagged with low lock-in (azure-bound secrets). CyberArk Conjur is tagged with high lock-in (enterprise secrets lock-in). At least one side is high lock-in, so budget migration time for re-implementing integrations."
+    },
+    {
+      "q": "Which has better developer experience, Azure Key Vault or CyberArk Conjur?",
+      "a": "The dataset rates Azure Key Vault at 4/5 for developer experience and CyberArk Conjur at 3/5, so Azure Key Vault scores higher. That score reflects overall polish rather than any single integration, so trial both against your stack before committing."
+    },
+    {
+      "q": "Is CyberArk Conjur a good alternative to Azure Key Vault?",
+      "a": "Yes for teams whose workload matches teams, since both list the same fit. CyberArk Conjur is flagged as not for solo, static projects, so confirm your context does not fall there."
+    }
+  ]
+}

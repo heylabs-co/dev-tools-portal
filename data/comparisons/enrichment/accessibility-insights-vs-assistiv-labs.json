@@ -1,0 +1,24 @@
+{
+  "intro": "The clearest split between Accessibility Insights and Assistiv Labs is cost: Accessibility Insights is free to use, while Assistiv Labs sells a subscription with a free tier (entry price not public). Accessibility Insights is Microsoft's free automated and guided accessibility checks for web and Windows. Assistiv Labs is remote assistive-technology testing platform (screen readers, voice control, switches). Pick Accessibility Insights when the job is developers and qa doing per-page or per-feature accessibility reviews and you accept high lock-in; pick Assistiv Labs when it is distributed qa and a11y engineers testing with screen readers remotely and you accept medium lock-in. The data we have shows Accessibility Insights at fully public pricing and documentation with solid developer experience, and Assistiv Labs at some public pricing / roadmap detail with average developer experience. The honest trade-off: neither is universal — Accessibility Insights is a poor fit for teams needing continuous monitoring across hundreds of pages, and Assistiv Labs is a poor fit for teams wanting automated wcag scans or monitoring dashboards. Match the pricing model and lock-in level to how your team actually.",
+  "quick_take": "Accessibility Insights is for Microsoft's free automated and guided accessibility checks; Assistiv Labs is for remote assistive-technology testing platform (screen readers; decide based on budget vs. support.",
+  "verdict_a": "Choose Accessibility Insights if cost is the binding constraint and the work maps to Microsoft's free automated and guided accessibility checks for web and Windows.",
+  "verdict_b": "Choose Assistiv Labs if some ecosystem coupling is acceptable and the work lines up with remote assistive-technology testing platform (screen readers, voice control, switches).",
+  "faq": [
+    {
+      "q": "Is Accessibility Insights cheaper than Assistiv Labs?",
+      "a": "Neither Accessibility Insights nor Assistiv Labs publishes entry pricing that lets us compare directly — Accessibility Insights uses a free model and Assistiv Labs uses a subscription model. Get quotes from both before assuming one is cheaper."
+    },
+    {
+      "q": "Can I migrate from Accessibility Insights to Assistiv Labs?",
+      "a": "Leaving Accessibility Insights for Assistiv Labs is the harder direction: Accessibility Insights is rated high lock-in, so exporting data and rebuilding integrations is the main cost. Going the other way (Assistiv Labs to Accessibility Insights) is usually easier."
+    },
+    {
+      "q": "Which has better developer experience?",
+      "a": "Accessibility Insights scores higher on developer experience in our data (4/5 vs 3/5). That reflects public feedback on docs, onboarding, and day-to-day ergonomics. Still, run a spike with your own code — DX ratings don't capture every edge."
+    },
+    {
+      "q": "Is Assistiv Labs a good alternative to Accessibility Insights?",
+      "a": "Yes — Assistiv Labs is a reasonable alternative to Accessibility Insights for developers and qa doing per-page or per-feature accessibility reviews.. The practical differences are free-vs-subscription billing and high-vs-medium lock-in. If those fit your constraints better, treat Assistiv Labs as a credible swap."
+    }
+  ]
+}

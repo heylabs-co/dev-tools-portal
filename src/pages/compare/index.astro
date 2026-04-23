@@ -56,6 +56,12 @@ const pairs = (pairsData as any[]).slice(0, 12);
         </div>
       </div>
 
+      <!-- Suggested competitors (shown after one slot is filled) -->
+      <div class="alternatives-panel hidden mt-6" id="alternativesPanel">
+        <h4 class="alternatives-title" id="alternativesTitle"></h4>
+        <div class="alternatives-row" id="alternativesRow"></div>
+      </div>
+
       <!-- Compare button -->
       <div class="mt-6 flex justify-center">
         <button class="compare-btn" disabled id="compareBtn">
@@ -360,33 +366,87 @@ const pairs = (pairsData as any[]).slice(0, 12);
       font-weight: 500;
       color: var(--color-muted);
     }
+
+    /* Suggested competitors */
+    .alternatives-panel.hidden { display: none; }
+    .alternatives-title {
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--color-muted);
+      margin-bottom: 0.75rem;
+    }
+    .alternatives-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 0.5rem;
+    }
+    @media (max-width: 640px) {
+      .alternatives-row {
+        grid-template-columns: 1fr;
+      }
+    }
+    .alt-card {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.6rem 0.75rem;
+      border-radius: 0.65rem;
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      cursor: pointer;
+      text-decoration: none;
+      transition: border-color 0.15s, background 0.15s, transform 0.15s;
+      min-width: 0;
+    }
+    .alt-card:hover {
+      border-color: var(--color-accent);
+      background: var(--color-elevated);
+      transform: translateY(-1px);
+    }
+    .alt-card img {
+      width: 24px;
+      height: 24px;
+      border-radius: 5px;
+      object-fit: contain;
+      background: var(--color-elevated);
+      flex-shrink: 0;
+    }
+    .alt-card-name {
+      font-weight: 600;
+      font-size: 0.86rem;
+      color: var(--color-text);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
   </style>
 
   <script is:inline>
   (function() {
     var companies = [];
+    var companiesBySlug = {};
+    var alternativesMap = {};
     var selected = { a: null, b: null };
 
-    fetch('/api/companies.json')
-      .then(function(r) { return r.json(); })
-      .then(function(data) {
-        companies = data;
-        // Honor ?a=<slug>&b=<slug> query params so external links
-        // like /compare/?a=stripe&b=adyen pre-fill the form.
-        try {
-          var params = new URLSearchParams(window.location.search);
-          var aSlug = params.get('a');
-          var bSlug = params.get('b');
-          if (aSlug) {
-            var aMatch = companies.find(function (c) { return c.s === aSlug; });
-            if (aMatch) selectTool('a', aMatch);
-          }
-          if (bSlug) {
-            var bMatch = companies.find(function (c) { return c.s === bSlug; });
-            if (bMatch) selectTool('b', bMatch);
-          }
-        } catch (_e) { /* ignore */ }
-      });
+    Promise.all([
+      fetch('/api/companies.json').then(function(r) { return r.json(); }),
+      fetch('/api/alternatives.json').then(function(r) { return r.json(); }).catch(function() { return {}; }),
+    ]).then(function(results) {
+      companies = results[0];
+      alternativesMap = results[1] || {};
+      for (var i = 0; i < companies.length; i++) {
+        companiesBySlug[companies[i].s] = companies[i];
+      }
+      try {
+        var params = new URLSearchParams(window.location.search);
+        var aSlug = params.get('a');
+        var bSlug = params.get('b');
+        if (aSlug && companiesBySlug[aSlug]) selectTool('a', companiesBySlug[aSlug]);
+        if (bSlug && companiesBySlug[bSlug]) selectTool('b', companiesBySlug[bSlug]);
+      } catch (_e) { /* ignore */ }
+    });
 
     var inputA = document.querySelector('.tool-input[data-slot="a"]');
     var inputB = document.querySelector('.tool-input[data-slot="b"]');
@@ -396,6 +456,9 @@ const pairs = (pairsData as any[]).slice(0, 12);
     var chipB = document.querySelector('[data-chip="b"]');
     var compareBtn = document.getElementById('compareBtn');
     var resultsDiv = document.getElementById('compareResults');
+    var altsPanel = document.getElementById('alternativesPanel');
+    var altsTitle = document.getElementById('alternativesTitle');
+    var altsRow = document.getElementById('alternativesRow');
 
     function filterCompanies(query, slot) {
       if (!query || query.length < 1) return { same: [], other: [] };
@@ -523,12 +586,62 @@ const pairs = (pairsData as any[]).slice(0, 12);
       // Auto-trigger comparison as soon as both tools are picked
       if (selected.a && selected.b) {
         buildComparison(selected.a, selected.b);
+        hideAlternatives();
         // Scroll the results into view after the DOM updates
         requestAnimationFrame(function () {
           resultsDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
         });
       } else {
         resultsDiv.classList.add('hidden');
+        // Show competitor suggestions for the empty slot.
+        if (selected.a && !selected.b) {
+          renderAlternatives(selected.a, 'b');
+        } else if (selected.b && !selected.a) {
+          renderAlternatives(selected.b, 'a');
+        } else {
+          hideAlternatives();
+        }
+      }
+    }
+
+    function hideAlternatives() {
+      altsPanel.classList.add('hidden');
+      altsRow.innerHTML = '';
+    }
+
+    function renderAlternatives(sourceTool, targetSlot) {
+      var slugs = alternativesMap[sourceTool.s] || [];
+      if (slugs.length === 0) { hideAlternatives(); return; }
+
+      var items = [];
+      for (var i = 0; i < slugs.length && items.length < 5; i++) {
+        var c = companiesBySlug[slugs[i]];
+        if (c) items.push(c);
+      }
+      if (items.length === 0) { hideAlternatives(); return; }
+
+      altsTitle.textContent = 'Real competitors to ' + sourceTool.n + ' — click to pick';
+
+      var html = '';
+      for (var j = 0; j < items.length; j++) {
+        var c = items[j];
+        var logo = c.l || '';
+        html +=
+          '<button type="button" class="alt-card" data-slug="' + c.s + '">' +
+            '<img src="' + logo + '" alt="" loading="lazy" onerror="this.style.display=\'none\'" />' +
+            '<span class="alt-card-name">' + escHtml(c.n) + '</span>' +
+          '</button>';
+      }
+      altsRow.innerHTML = html;
+      altsPanel.classList.remove('hidden');
+
+      var cards = altsRow.querySelectorAll('.alt-card');
+      for (var k = 0; k < cards.length; k++) {
+        (function (idx) {
+          cards[idx].addEventListener('click', function () {
+            selectTool(targetSlot, items[idx]);
+          });
+        })(k);
       }
     }
 

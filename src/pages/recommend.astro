@@ -380,6 +380,34 @@ const breadcrumbs = [
         html += '</div></div>';
       }
 
+      // Trending GitHub Repos (new open-source picks)
+      if (data.trending_repos && data.trending_repos.length > 0) {
+        html += '<div class="mt-8">';
+        html += '<h3 class="flex items-center gap-2 text-lg font-semibold text-[color:var(--color-text)] mb-1">' +
+          '<span>&#x1F525;</span>' +
+          'Fresh from GitHub Trending' +
+          '</h3>';
+        html += '<p class="text-xs text-[color:var(--color-muted)] mb-3">' +
+          'Newer open-source projects not yet in the main catalog — worth a look.' +
+          '</p>';
+        html += '<div class="grid grid-cols-1 sm:grid-cols-2 gap-3">';
+        data.trending_repos.forEach(function (r) {
+          var href = r.url || (r.full_name ? 'https://github.com/' + r.full_name : '#');
+          html +=
+            '<a href="' + escapeHtml(href) + '" target="_blank" rel="noopener" class="result-card block rounded-lg border border-orange-200/60 dark:border-orange-900/30 bg-orange-50/40 dark:bg-orange-950/20 p-4 shadow-sm transition-all duration-150 hover:-translate-y-0.5 hover:shadow-md hover:border-orange-400/60">' +
+            '<div class="flex items-center gap-2 mb-1 flex-wrap">' +
+            '<span class="text-sm font-semibold text-[color:var(--color-text)]">' + escapeHtml(r.full_name || r.name) + '</span>' +
+            (r.language
+              ? '<span class="inline-flex items-center rounded-full bg-white/70 dark:bg-white/5 px-2 py-0.5 text-[10px] font-medium text-[#64748B] dark:text-[#8A8F98]">' + escapeHtml(r.language) + '</span>'
+              : '') +
+            '<span class="inline-flex items-center rounded-full bg-orange-500/15 px-2 py-0.5 text-[10px] font-bold text-orange-700 dark:text-orange-300">trending</span>' +
+            '</div>' +
+            (r.reason ? '<p class="text-xs text-[color:var(--color-muted)] leading-relaxed">' + escapeHtml(r.reason) + '</p>' : '') +
+            '</a>';
+        });
+        html += '</div></div>';
+      }
+
       // Recommended VS Code Extensions
       if (data.extensions && data.extensions.length > 0) {
         html += '<div class="mt-8">';

@@ -17,11 +17,14 @@ const aiEcosystemLinks = [
 ];
 
 const moreLinks = [
+  { label: 'GitHub Trending', href: '/trending/' },
   { label: 'Use Cases', href: '/use-cases/' },
-  { label: 'Compare', href: '/compare/' },
+  { label: 'Compare Tools', href: '/compare/' },
   { label: 'VS Code Extensions', href: '/extensions/' },
   { label: 'JetBrains Plugins', href: '/plugins/' },
 ];
+
+const ADD_TOOL_HREF = 'https://github.com/heylabs-co/dev-tools-portal/issues/new?template=add-tool.yml';
 ---
 
 <header
@@ -92,13 +95,6 @@ const moreLinks = [
           </div>
         </li>
 
-        <li>
-          <a href="/trending/" class="nav-link relative px-3 py-2 text-sm font-medium transition-colors duration-150" style="color: var(--color-muted);">
-            GitHub Trending
-            <span class="nav-underline absolute bottom-0.5 left-3 right-3 h-px origin-left scale-x-0 transition-transform duration-200 ease-out" style="background-color: var(--color-accent);"></span>
-          </a>
-        </li>
-
         <!-- More dropdown -->
         <li class="dropdown-parent relative">
           <button
@@ -114,7 +110,7 @@ const moreLinks = [
             <span class="nav-underline absolute bottom-0.5 left-3 right-3 h-px origin-left scale-x-0 transition-transform duration-200 ease-out" style="background-color: var(--color-accent);"></span>
           </button>
           <div class="dropdown-menu absolute left-0 top-full pt-1 hidden">
-            <ul class="min-w-[200px] rounded-xl shadow-lg py-1.5" style="background-color: var(--color-surface); border: 1px solid var(--color-border);">
+            <ul class="min-w-[220px] rounded-xl shadow-lg py-1.5" style="background-color: var(--color-surface); border: 1px solid var(--color-border);">
               {moreLinks.map((link) => (
                 <li>
                   <a href={link.href} class="dropdown-item flex items-center gap-2 px-4 py-2.5 text-sm font-medium transition-colors duration-150" style="color: var(--color-text-secondary);">
@@ -122,24 +118,23 @@ const moreLinks = [
                   </a>
                 </li>
               ))}
+              <li class="my-1 border-t" style="border-color: var(--color-border);"></li>
+              <li>
+                <a
+                  href={ADD_TOOL_HREF}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="dropdown-item flex items-center gap-2 px-4 py-2.5 text-sm font-semibold transition-colors duration-150"
+                  style="color: var(--color-accent);"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
+                  </svg>
+                  Add a tool
+                </a>
+              </li>
             </ul>
           </div>
-        </li>
-
-        <!-- Add Tool button -->
-        <li class="ml-3">
-          <a
-            href="https://github.com/heylabs-co/dev-tools-portal/issues/new?template=add-tool.yml"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="add-tool-btn inline-flex items-center gap-1.5 rounded-lg px-3.5 py-1.5 text-sm font-medium transition-all duration-200"
-            style="border: 1px solid var(--color-accent); color: var(--color-accent);"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
-            </svg>
-            Add Tool
-          </a>
         </li>
       </ul>
 

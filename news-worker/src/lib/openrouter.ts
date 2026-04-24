@@ -91,9 +91,27 @@ export async function callOpenRouter(params: CallOpenRouterParams): Promise<stri
     throw new Error(`OpenRouter returned non-JSON response: ${String(e)}`);
   }
 
+  // OpenRouter sometimes returns HTTP 200 with an error body when a provider
+  // throttles (especially DeepSeek). Treat these as rate limits so the caller
+  // can skip the row and retry on the next cron.
+  const errObj = (data as { error?: { message?: unknown; code?: unknown } })?.error;
+  if (errObj) {
+    const msg = typeof errObj.message === 'string' ? errObj.message : JSON.stringify(errObj);
+    if (/rate|quota|too many|429|throttl/i.test(msg)) {
+      throw new RateLimitError(`OpenRouter provider rate-limited: ${msg}`);
+    }
+    throw new Error(`OpenRouter error body: ${msg.slice(0, 200)}`);
+  }
+
   const content: unknown =
     (data as { choices?: { message?: { content?: unknown } }[] })?.choices?.[0]?.message
       ?.content;
 
-  return typeof content === 'string' ? content : '';
+  // Empty content on a "successful" 200 almost always means the provider hit
+  // a limit and returned an empty completion. Treat as rate-limited too.
+  if (typeof content !== 'string' || content.trim().length === 0) {
+    throw new RateLimitError('OpenRouter returned empty content');
+  }
+
+  return content;
 }

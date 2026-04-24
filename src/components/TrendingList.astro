@@ -1,0 +1,368 @@
+---
+interface Repo {
+  full_name: string;
+  description: string;
+  url: string;
+  stars: number;
+  language: string | null;
+  topics?: string[];
+  company_slug?: string | null;
+  stars_today?: number;
+  stars_week?: number;
+}
+
+interface Props {
+  repos: Repo[];
+  deltaField?: 'stars_today' | 'stars_week' | null;
+  deltaSuffix?: string;
+  badgeBg?: string;
+  badgeFg?: string;
+  /** Sort key for the default ordering (falls back to 'total'). */
+  defaultSort?: 'today' | 'week' | 'total' | 'name';
+}
+
+const {
+  repos,
+  deltaField = null,
+  deltaSuffix = '',
+  badgeBg = '',
+  badgeFg = '',
+  defaultSort = 'total',
+} = Astro.props;
+
+const langColors: Record<string, string> = {
+  TypeScript: '#3178c6', JavaScript: '#f1e05a', Python: '#3572A5', Go: '#00ADD8',
+  Rust: '#dea584', Java: '#b07219', Ruby: '#701516', 'C#': '#178600',
+  'C++': '#f34b7d', C: '#555555', Swift: '#F05138', Kotlin: '#A97BFF',
+  PHP: '#4F5D95', Shell: '#89e051', Dart: '#00B4AB', Elixir: '#6e4a7e',
+  Scala: '#c22d40', Zig: '#ec915c', Lua: '#000080', Vue: '#41b883',
+  Cuda: '#3A4E3A', HTML: '#e34c26', Markdown: '#083fa1',
+};
+
+function formatStars(n: number | null | undefined): string {
+  if (!n || n <= 0) return '0';
+  if (n >= 1000) return `${(n / 1000).toFixed(1).replace(/\.0$/, '')}k`;
+  return String(n);
+}
+
+function formatDelta(n: number | null | undefined): string {
+  if (!n || n <= 0) return '';
+  if (n >= 1000) return `+${(n / 1000).toFixed(1).replace(/\.0$/, '')}k`;
+  return `+${n.toLocaleString()}`;
+}
+
+// Extract languages (unique, sorted by count desc) + top topics for filter pills.
+const languageCounts = new Map<string, number>();
+const topicCounts = new Map<string, number>();
+for (const r of repos) {
+  if (r.language) {
+    languageCounts.set(r.language, (languageCounts.get(r.language) ?? 0) + 1);
+  }
+  for (const t of r.topics ?? []) {
+    if (!t) continue;
+    topicCounts.set(t, (topicCounts.get(t) ?? 0) + 1);
+  }
+}
+const languages = Array.from(languageCounts.entries())
+  .sort((a, b) => b[1] - a[1])
+  .map(([lang]) => lang);
+const topics = Array.from(topicCounts.entries())
+  .sort((a, b) => b[1] - a[1])
+  .slice(0, 12)
+  .map(([t]) => t);
+---
+
+<div>
+  <!-- Filter bar -->
+  <div
+    id="tr-filter-bar"
+    class="sticky top-[57px] z-10 -mx-4 mb-6 border-b border-gray-200 bg-[#FAFBFC]/90 px-4 py-3 backdrop-blur-md dark:border-gray-800 dark:bg-[#0A0A0F]/90"
+    data-default-sort={defaultSort}
+  >
+    <div class="flex flex-wrap items-center gap-2">
+      <span class="text-[11px] font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400">Sort</span>
+      <select
+        id="tr-sort"
+        class="rounded-md border bg-transparent px-2 py-1 text-xs font-medium focus:outline-none"
+        style="border-color: var(--color-border); color: var(--color-text);"
+      >
+        <option value="today">Stars today</option>
+        <option value="week">Stars this week</option>
+        <option value="total">Total stars</option>
+        <option value="name">Name A–Z</option>
+      </select>
+
+      <input
+        id="tr-search"
+        type="search"
+        placeholder="Search repos…"
+        class="ml-auto w-40 rounded-md border bg-transparent px-2 py-1 text-xs font-medium focus:outline-none md:w-56"
+        style="border-color: var(--color-border); color: var(--color-text);"
+      />
+    </div>
+
+    {languages.length > 0 && (
+      <div class="mt-2 flex flex-wrap items-center gap-1.5">
+        <span class="mr-1 text-[11px] font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400">Language</span>
+        {languages.map((lang) => (
+          <button
+            type="button"
+            data-lang={lang}
+            class="tr-lang-chip rounded-full border px-2.5 py-0.5 text-xs font-medium transition-colors"
+            style="border-color: var(--color-border); color: var(--color-muted);"
+          >
+            <span class="mr-1 inline-block h-2 w-2 rounded-full align-middle" style={`background-color: ${langColors[lang] || '#888'};`}></span>
+            {lang}
+          </button>
+        ))}
+      </div>
+    )}
+
+    {topics.length > 0 && (
+      <div class="mt-2 flex flex-wrap items-center gap-1.5">
+        <span class="mr-1 text-[11px] font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400">Topic</span>
+        {topics.map((t) => (
+          <button
+            type="button"
+            data-topic={t}
+            class="tr-topic-chip rounded-full border px-2.5 py-0.5 text-xs font-medium transition-colors"
+            style="border-color: var(--color-border); color: var(--color-muted);"
+          >{t}</button>
+        ))}
+      </div>
+    )}
+  </div>
+
+  <!-- Grid -->
+  <div id="tr-grid" class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+    {repos.map((repo) => {
+      const delta = deltaField ? repo[deltaField] : undefined;
+      const langSlug = (repo.language ?? '').toLowerCase();
+      const topicStr = (repo.topics ?? []).join(' ').toLowerCase();
+      const searchBlob = `${repo.full_name} ${repo.description ?? ''} ${topicStr}`.toLowerCase();
+      return (
+        <article
+          class="tr-card group rounded-xl border p-5 transition-all duration-200 hover:shadow-md"
+          style="background-color: var(--color-surface); border-color: var(--color-border);"
+          data-lang={langSlug}
+          data-topics={topicStr}
+          data-blob={searchBlob}
+          data-stars={repo.stars}
+          data-today={repo.stars_today ?? 0}
+          data-week={repo.stars_week ?? 0}
+          data-name={repo.full_name.toLowerCase()}
+        >
+          <div class="flex items-start justify-between gap-3">
+            <h3 class="text-base font-semibold leading-tight" style="color: var(--color-text);">
+              <a href={repo.url} target="_blank" rel="noopener noreferrer" class="hover:underline">
+                {repo.full_name}
+              </a>
+            </h3>
+            {delta && delta > 0 ? (
+              <span
+                class={`inline-flex shrink-0 items-center gap-1 rounded-full px-2 py-0.5 text-xs font-bold ${badgeBg} ${badgeFg}`}
+                title={`${delta.toLocaleString()} stars ${deltaSuffix}`}
+              >
+                {formatDelta(delta)} ⭐ {deltaSuffix}
+              </span>
+            ) : (
+              <span
+                class="inline-flex shrink-0 items-center gap-1 text-sm font-medium"
+                style="color: var(--color-muted);"
+                title={`${repo.stars.toLocaleString()} stars`}
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                </svg>
+                {formatStars(repo.stars)}
+              </span>
+            )}
+          </div>
+
+          <p class="mt-2 line-clamp-2 text-sm leading-relaxed" style="color: var(--color-text-secondary);">
+            {repo.description || 'No description'}
+          </p>
+
+          <div class="mt-3 flex flex-wrap items-center gap-3 text-xs" style="color: var(--color-muted);">
+            {repo.language && (
+              <span class="inline-flex items-center gap-1.5">
+                <span class="inline-block h-2.5 w-2.5 rounded-full" style={`background-color: ${langColors[repo.language] || '#888'};`} />
+                {repo.language}
+              </span>
+            )}
+            {deltaField && (
+              <span class="inline-flex items-center gap-1" title={`${repo.stars.toLocaleString()} total stars`}>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                </svg>
+                {formatStars(repo.stars)}
+              </span>
+            )}
+            {repo.company_slug && (
+              <a href={`/tools/${repo.company_slug}/`} class="font-medium hover:underline" style="color: var(--color-accent);">
+                on tool.news →
+              </a>
+            )}
+          </div>
+        </article>
+      );
+    })}
+  </div>
+
+  <div
+    id="tr-empty"
+    class="hidden py-12 text-center text-sm"
+    style="color: var(--color-muted);"
+  >
+    No repos match the current filters. Clear some filters above.
+  </div>
+
+  <div
+    id="tr-count"
+    class="mt-6 text-center text-xs"
+    style="color: var(--color-muted);"
+  ></div>
+</div>
+
+<style>
+  .tr-lang-chip.active,
+  .tr-topic-chip.active {
+    background-color: #5E6AD2;
+    color: #fff !important;
+    border-color: #5E6AD2 !important;
+  }
+  .dark .tr-lang-chip.active,
+  .dark .tr-topic-chip.active {
+    background-color: #818CF8;
+    border-color: #818CF8 !important;
+  }
+  .tr-lang-chip:hover:not(.active),
+  .tr-topic-chip:hover:not(.active) {
+    color: var(--color-text) !important;
+    border-color: var(--color-accent) !important;
+  }
+</style>
+
+<script is:inline>
+  (function () {
+    const bar = document.getElementById('tr-filter-bar');
+    const grid = document.getElementById('tr-grid');
+    const emptyEl = document.getElementById('tr-empty');
+    const countEl = document.getElementById('tr-count');
+    const sortSelect = document.getElementById('tr-sort');
+    const searchInput = document.getElementById('tr-search');
+    if (!bar || !grid || !emptyEl || !countEl || !sortSelect || !searchInput) return;
+
+    const cards = Array.from(grid.querySelectorAll('.tr-card'));
+    const total = cards.length;
+    const defaultSort = bar.getAttribute('data-default-sort') || 'total';
+
+    // ── URL state ────────────────────────────────────────────────────────
+    function readState() {
+      const u = new URL(window.location.href);
+      return {
+        langs: new Set((u.searchParams.get('lang') || '').split(',').filter(Boolean)),
+        topics: new Set((u.searchParams.get('topic') || '').split(',').filter(Boolean)),
+        q: u.searchParams.get('q') || '',
+        sort: u.searchParams.get('sort') || defaultSort,
+      };
+    }
+    function writeState(s) {
+      const u = new URL(window.location.href);
+      if (s.langs.size) u.searchParams.set('lang', Array.from(s.langs).join(','));
+      else u.searchParams.delete('lang');
+      if (s.topics.size) u.searchParams.set('topic', Array.from(s.topics).join(','));
+      else u.searchParams.delete('topic');
+      if (s.q) u.searchParams.set('q', s.q); else u.searchParams.delete('q');
+      if (s.sort !== defaultSort) u.searchParams.set('sort', s.sort); else u.searchParams.delete('sort');
+      history.replaceState(null, '', u.toString());
+    }
+    const state = readState();
+
+    // ── apply ────────────────────────────────────────────────────────────
+    function apply() {
+      const q = state.q.trim().toLowerCase();
+      let visible = 0;
+      for (const card of cards) {
+        const lang = (card.getAttribute('data-lang') || '').toLowerCase();
+        const topicStr = card.getAttribute('data-topics') || '';
+        const blob = card.getAttribute('data-blob') || '';
+
+        let show = true;
+        if (state.langs.size > 0 && !state.langs.has(lang)) show = false;
+        if (show && state.topics.size > 0) {
+          let hit = false;
+          for (const t of state.topics) {
+            if (topicStr.split(' ').includes(t)) { hit = true; break; }
+          }
+          if (!hit) show = false;
+        }
+        if (show && q && !blob.includes(q)) show = false;
+
+        card.classList.toggle('hidden', !show);
+        if (show) visible++;
+      }
+
+      // Sort visible cards by re-appending in order
+      const num = (el, attr) => Number(el.getAttribute(attr) || 0);
+      const sorters = {
+        today: (a, b) => num(b, 'data-today') - num(a, 'data-today'),
+        week: (a, b) => num(b, 'data-week') - num(a, 'data-week'),
+        total: (a, b) => num(b, 'data-stars') - num(a, 'data-stars'),
+        name: (a, b) => (a.getAttribute('data-name') || '').localeCompare(b.getAttribute('data-name') || ''),
+      };
+      const cmp = sorters[state.sort] || sorters.total;
+      const sorted = cards.slice().sort(cmp);
+      for (const c of sorted) grid.appendChild(c);
+
+      emptyEl.classList.toggle('hidden', visible > 0);
+      countEl.textContent = visible === total
+        ? total.toLocaleString() + ' repos'
+        : visible.toLocaleString() + ' of ' + total.toLocaleString() + ' repos shown';
+    }
+
+    function syncUI() {
+      bar.querySelectorAll('.tr-lang-chip').forEach((btn) => {
+        const v = (btn.getAttribute('data-lang') || '').toLowerCase();
+        btn.classList.toggle('active', state.langs.has(v));
+      });
+      bar.querySelectorAll('.tr-topic-chip').forEach((btn) => {
+        const v = btn.getAttribute('data-topic') || '';
+        btn.classList.toggle('active', state.topics.has(v));
+      });
+      sortSelect.value = state.sort;
+      searchInput.value = state.q;
+    }
+
+    // ── bind ─────────────────────────────────────────────────────────────
+    bar.querySelectorAll('.tr-lang-chip').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const v = (btn.getAttribute('data-lang') || '').toLowerCase();
+        if (state.langs.has(v)) state.langs.delete(v); else state.langs.add(v);
+        writeState(state); syncUI(); apply();
+      });
+    });
+    bar.querySelectorAll('.tr-topic-chip').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const v = btn.getAttribute('data-topic') || '';
+        if (state.topics.has(v)) state.topics.delete(v); else state.topics.add(v);
+        writeState(state); syncUI(); apply();
+      });
+    });
+    sortSelect.addEventListener('change', () => {
+      state.sort = sortSelect.value;
+      writeState(state); apply();
+    });
+    let searchTimer = null;
+    searchInput.addEventListener('input', () => {
+      if (searchTimer) clearTimeout(searchTimer);
+      searchTimer = setTimeout(() => {
+        state.q = searchInput.value;
+        writeState(state); apply();
+      }, 150);
+    });
+
+    syncUI();
+    apply();
+  })();
+</script>

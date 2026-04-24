@@ -36,6 +36,9 @@ interface RepoEntry {
   created_at: string;
   pushed_at: string;
   company_slug: string | null;
+  /** Delta stars captured from the trending page HTML (absent for Search API results). */
+  stars_today?: number;
+  stars_week?: number;
 }
 
 // ---------------------------------------------------------------------------
@@ -160,16 +163,20 @@ async function searchRepos(companyDomains: Map<string, string>): Promise<RepoEnt
 }
 
 // ---------------------------------------------------------------------------
-// GitHub Trending (HTML scrape)
+// GitHub Trending (HTML scrape) — captures the "N stars today|this week" delta
+// shown on the trending page; the GitHub API doesn't expose this.
 // ---------------------------------------------------------------------------
 
-async function scrapeTrending(companyDomains: Map<string, string>): Promise<RepoEntry[]> {
-  console.log('Scraping GitHub Trending (weekly)...');
+async function scrapeTrending(
+  since: 'daily' | 'weekly',
+  companyDomains: Map<string, string>,
+): Promise<RepoEntry[]> {
+  console.log(`Scraping GitHub Trending (${since})...`);
   const repos: RepoEntry[] = [];
   const seen = new Set<string>();
 
   try {
-    const res = await fetch('https://github.com/trending?since=weekly', {
+    const res = await fetch(`https://github.com/trending?since=${since}`, {
       headers: { 'User-Agent': 'devtools-indexer/1.0' },
     });
     if (!res.ok) {
@@ -178,32 +185,36 @@ async function scrapeTrending(companyDomains: Map<string, string>): Promise<Repo
     }
     const html = await res.text();
 
-    // Extract repo slugs from article[class*=Box-row] h2 a href="/org/repo"
-    const repoPattern = /href="\/([^/]+\/[^/"]+)"[^>]*class="[^"]*"/g;
-    // Simpler: match the h2 > a patterns specifically
-    const articlePattern = /<article[^>]*>[\s\S]*?<\/article>/g;
-    let article: RegExpExecArray | null;
+    const articlePattern = /<article[^>]*class="Box-row"[^>]*>([\s\S]*?)<\/article>/g;
+    let match: RegExpExecArray | null;
 
-    while ((article = articlePattern.exec(html)) !== null) {
-      const block = article[0];
-      // Find repo link: <h2 ...><a href="/org/repo" ...>
+    while ((match = articlePattern.exec(html)) !== null) {
+      const block = match[1];
       const linkMatch = block.match(/href="\/([^/]+\/[^/"]+)"/);
       if (!linkMatch) continue;
       const fullName = linkMatch[1].trim();
       if (seen.has(fullName)) continue;
       seen.add(fullName);
 
-      // We need full details from API
+      // Parse: "2,640 stars today" or "12,345 stars this week"
+      const deltaMatch = block.match(/([\d,]+)\s+stars\s+(today|this week)/i);
+      const starsDelta = deltaMatch
+        ? parseInt(deltaMatch[1].replace(/,/g, ''), 10)
+        : 0;
+
       try {
         const data = await fetchJSON(`https://api.github.com/repos/${fullName}`);
-        repos.push(toRepoEntry(data, companyDomains));
+        const entry = toRepoEntry(data, companyDomains);
+        if (since === 'daily') entry.stars_today = starsDelta;
+        else entry.stars_week = starsDelta;
+        repos.push(entry);
         await sleep(RATE_LIMIT_MS);
       } catch (err: any) {
         console.error(`  Error fetching ${fullName}: ${err.message}`);
       }
     }
   } catch (err: any) {
-    console.error(`  Error scraping trending: ${err.message}`);
+    console.error(`  Error scraping ${since} trending: ${err.message}`);
   }
 
   return repos;
@@ -220,47 +231,73 @@ async function main() {
   const companyDomains = loadCompanySlugs();
   console.log(`Loaded ${companyDomains.size} company domains for matching\n`);
 
-  // Fetch from both sources
+  // Fetch from three sources: topic search (popular), and trending pages (daily + weekly).
   const searchResults = await searchRepos(companyDomains);
   console.log(`\nSearch API: ${searchResults.length} repos`);
 
-  const trendingResults = await scrapeTrending(companyDomains);
-  console.log(`Trending scrape: ${trendingResults.length} repos\n`);
+  const dailyResults = await scrapeTrending('daily', companyDomains);
+  console.log(`Trending (daily): ${dailyResults.length} repos`);
 
-  // Merge & deduplicate
+  const weeklyResults = await scrapeTrending('weekly', companyDomains);
+  console.log(`Trending (weekly): ${weeklyResults.length} repos\n`);
+
+  // Merge & deduplicate — preserve stars_today and stars_week fields per repo.
   const allMap = new Map<string, RepoEntry>();
-  for (const r of [...searchResults, ...trendingResults]) {
-    // Keep the one with more stars (or trending version if duplicate)
+  const merge = (r: RepoEntry) => {
     const existing = allMap.get(r.full_name);
-    if (!existing || r.stars > existing.stars) {
-      allMap.set(r.full_name, r);
+    if (!existing) {
+      allMap.set(r.full_name, { ...r });
+      return;
     }
-  }
-
+    allMap.set(r.full_name, {
+      ...existing,
+      stars: Math.max(existing.stars, r.stars),
+      stars_today: r.stars_today ?? existing.stars_today,
+      stars_week: r.stars_week ?? existing.stars_week,
+    });
+  };
+  for (const r of [...searchResults, ...dailyResults, ...weeklyResults]) merge(r);
   const all = Array.from(allMap.values());
 
-  // Weekly: top 30 by stars
-  const weekly = [...all].sort((a, b) => b.stars - a.stars).slice(0, 30);
+  // Hot: scraped from daily trending, sorted by stars gained today.
+  const hot = all
+    .filter((r) => (r.stars_today ?? 0) > 0)
+    .sort((a, b) => (b.stars_today ?? 0) - (a.stars_today ?? 0))
+    .slice(0, 15);
 
-  // Rising: created after 2026-01-01, sorted by stars, top 20
-  const rising = [...all]
+  // Weekly trend: scraped from weekly page, sorted by stars gained this week.
+  const weekly_trend = all
+    .filter((r) => (r.stars_week ?? 0) > 0)
+    .sort((a, b) => (b.stars_week ?? 0) - (a.stars_week ?? 0))
+    .slice(0, 20);
+
+  // Popular: all-time top 20 by total stars (old "weekly" behaviour renamed).
+  const popular = [...all].sort((a, b) => b.stars - a.stars).slice(0, 20);
+
+  // Rising: recently-created repos only, sorted by stars.
+  const rising = all
     .filter((r) => r.created_at >= '2026-01-01')
     .sort((a, b) => b.stars - a.stars)
     .slice(0, 20);
 
   const output = {
     updated_at: new Date().toISOString().slice(0, 10),
-    weekly,
+    hot,
+    weekly_trend,
+    popular,
     rising,
+    // Back-compat: keep `weekly` as the popular list so older callers don't break.
+    weekly: popular,
   };
 
-  // Ensure dir exists
   fs.mkdirSync(DATA_DIR, { recursive: true });
   const outPath = path.join(DATA_DIR, 'trending.json');
   fs.writeFileSync(outPath, JSON.stringify(output, null, 2), 'utf-8');
 
   console.log(`Saved ${outPath}`);
-  console.log(`  weekly: ${weekly.length} repos`);
+  console.log(`  hot (today): ${hot.length} repos`);
+  console.log(`  weekly_trend: ${weekly_trend.length} repos`);
+  console.log(`  popular: ${popular.length} repos`);
   console.log(`  rising: ${rising.length} repos`);
 }
 

@@ -80,16 +80,17 @@ export default {
       budget === 'under100' ? 'Under $100/month' :
       'Any budget';
 
-    const systemPrompt = `You are a developer tools advisor for tool.news. You have access to a catalog of 800+ developer tools.
+    const systemPrompt = `You are a developer tools advisor for tool.news. You have access to a curated catalog of 5,900+ developer tools plus a fresh list of trending GitHub repos updated daily.
 
 Given a project description, recommend 3-5 specific tools that best fit the project needs.
 
-In addition to developer tools, you can also recommend:
+Secondary recommendations:
 - MCP Servers: tools that connect AI assistants to external services
 - AI Skills: cursor rules and coding instructions for AI assistants
 - VS Code Extensions: editor extensions for the recommended stack
+- Trending Repos: recent GitHub projects that may be relevant (optional)
 
-When recommending a stack, include relevant MCP servers, skills, and extensions.
+Trending repos are open-source projects that may not yet be in the main catalog. Their slugs are PREFIXED with "trending:" (e.g. "trending:anthropic/claude-code"). Include 1-2 when a fresh open-source option genuinely fits the user's need — prefer them over catalog entries only if they're the best fit.
 
 Return ONLY valid JSON (no markdown, no code fences) in this exact format:
 {
@@ -106,16 +107,18 @@ Return ONLY valid JSON (no markdown, no code fences) in this exact format:
   "mcp_servers": [{"name": "Server Name", "slug": "server-slug", "reason": "Why this MCP server is useful"}],
   "skills": [{"name": "Skill Name", "slug": "skill-slug", "reason": "Why this skill helps"}],
   "extensions": [{"name": "Extension Name", "slug": "extension-slug", "reason": "Why this extension is useful"}],
+  "trending_repos": [{"slug": "trending:owner/repo", "name": "owner/repo", "reason": "Why this trending repo is worth considering", "language": "TypeScript or null"}],
   "stack_summary": "Brief summary of the recommended stack (1 sentence)"
 }
 
 RULES:
-- ONLY recommend tools from the catalog below. Do not invent tools.
-- Match the exact slug from the catalog.
+- ONLY recommend items from the catalog below. Do not invent entries.
+- Match the exact slug from the catalog (including the "trending:" prefix when applicable).
 - Be specific about WHY each tool fits.
 - Consider budget and lock-in preferences.
 - Include 1-3 relevant MCP servers, skills, and extensions when applicable.
-- MCP servers, skills, and extensions are optional — only include if relevant.
+- Include 0-2 trending repos ONLY when genuinely helpful; leave the array empty otherwise.
+- MCP servers, skills, extensions and trending repos are optional — only include if relevant.
 
 Budget preference: ${budgetLabel}
 Prefer low vendor lock-in: ${prefer_low_lockin ? 'Yes' : 'No'}
@@ -135,13 +138,15 @@ ${TOOL_LIST}`;
           'X-Title': 'tool.news Recommender',
         },
         body: JSON.stringify({
-          model: 'deepseek/deepseek-chat-v3-0324',
+          // Gemini 2.0 Flash — 1M context handles our 670KB catalog cleanly,
+          // ~$0.10/1M input tokens. DeepSeek V3 was maxing out context.
+          model: 'google/gemini-2.0-flash-001',
           messages: [
             { role: 'system', content: systemPrompt },
             { role: 'user', content: description },
           ],
           temperature: 0.3,
-          max_tokens: 1000,
+          max_tokens: 1200,
           response_format: { type: 'json_object' },
         }),
       });
@@ -172,8 +177,20 @@ ${TOOL_LIST}`;
         return json({ error: 'Invalid AI response format' }, 502);
       }
 
-      // Enrich with logos from our known pattern
-      parsed.recommendations = parsed.recommendations.slice(0, 5).map((rec) => ({
+      // Trending entries may leak into `recommendations` if the model isn't
+      // strict; move them to `trending_repos` so the UI renders them as
+      // GitHub cards instead of looking up a missing tool slug.
+      const rawRecs = Array.isArray(parsed.recommendations) ? parsed.recommendations : [];
+      const rawTrending = Array.isArray(parsed.trending_repos) ? parsed.trending_repos : [];
+      const catalogRecs = [];
+      const trendingFromRecs = [];
+      for (const r of rawRecs) {
+        const slug = String(r?.slug ?? '');
+        if (slug.startsWith('trending:')) trendingFromRecs.push(r);
+        else catalogRecs.push(r);
+      }
+
+      const recommendations = catalogRecs.slice(0, 5).map((rec) => ({
         slug: rec.slug || '',
         name: rec.name || '',
         category: rec.category || '',
@@ -183,8 +200,24 @@ ${TOOL_LIST}`;
         logo: `https://www.google.com/s2/favicons?domain=${encodeURIComponent(rec.slug)}.com&sz=128`,
       }));
 
+      const trending_repos = [...trendingFromRecs, ...rawTrending]
+        .slice(0, 3)
+        .map((r) => {
+          const slug = String(r?.slug ?? '');
+          const fullName = slug.replace(/^trending:/, '');
+          return {
+            slug,                        // "trending:owner/repo"
+            full_name: fullName,         // "owner/repo" — used to build GitHub URL
+            name: r?.name || fullName,
+            reason: r?.reason || '',
+            language: r?.language || null,
+            url: fullName.includes('/') ? `https://github.com/${fullName}` : '',
+          };
+        })
+        .filter((r) => r.full_name);
+
       return json({
-        recommendations: parsed.recommendations,
+        recommendations,
         mcp_servers: Array.isArray(parsed.mcp_servers) ? parsed.mcp_servers.slice(0, 5).map((s) => ({
           name: s.name || '',
           slug: s.slug || '',
@@ -200,6 +233,7 @@ ${TOOL_LIST}`;
           slug: e.slug || '',
           reason: e.reason || '',
         })) : [],
+        trending_repos,
         stack_summary: parsed.stack_summary || '',
       });
     } catch (e) {

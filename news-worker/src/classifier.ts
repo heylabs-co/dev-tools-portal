@@ -14,13 +14,14 @@
 
 import type { Env } from './env';
 import { getUnscoredEvents, setEventScore, type EventRow } from './db/client';
-import { callOpenRouter } from './lib/openrouter';
+import { callOpenRouter, RateLimitError } from './lib/openrouter';
 
 const MODEL = 'deepseek/deepseek-chat';
-const BATCH_SIZE = 10;
-const INTER_BATCH_SLEEP_MS = 500;
-// Workers Paid: 1000 subrequests/invocation. Each event = 2 (LLM + D1 write).
-// 200 events = 401 subrequests — well under the cap.
+// DeepSeek via OpenRouter throttles concurrent requests harder than raw
+// Workers subrequest cap. Keep batch small + sleep between batches so we stay
+// under the per-minute limit; runtime is ~2 min per 200 events, fine for cron.
+const BATCH_SIZE = 5;
+const INTER_BATCH_SLEEP_MS = 1500;
 const MAX_EVENTS_PER_RUN = 200;
 
 // Virality is weighted heavier than raw newsworthiness — see header comment.
@@ -137,7 +138,7 @@ function combinedScore(news: number, virality: number): number {
 async function classifyOne(
   apiKey: string,
   row: EventRow,
-): Promise<ParsedScore> {
+): Promise<ParsedScore | null> {
   const title = row.title ? `title: ${row.title}\n` : '';
   const userPayload = `source: ${row.source}\nhandle: @${row.source_handle ?? 'unknown'}\n${title}text: ${row.text ?? ''}`;
 
@@ -153,6 +154,12 @@ async function classifyOne(
     });
     return parseScoreContent(content);
   } catch (e) {
+    // Rate-limited or a transient HTTP error — don't poison the row with a
+    // fake score=5. Return null so the caller leaves it for the next tick.
+    if (e instanceof RateLimitError) {
+      console.warn(`[classifier] rate-limited on ${row.id}, will retry later`);
+      return null;
+    }
     console.warn(
       `[classifier] event ${row.id} failed:`,
       (e as Error)?.message ?? e,
@@ -194,10 +201,12 @@ export async function runClassifier(env: Env): Promise<{
     if (i > 0) await new Promise((r) => setTimeout(r, INTER_BATCH_SLEEP_MS));
     await Promise.all(
       batch.map(async (ev) => {
-        const { news_score, virality_score, reason } = await classifyOne(
-          env.OPENROUTER_API_KEY,
-          ev,
-        );
+        const result = await classifyOne(env.OPENROUTER_API_KEY, ev);
+        if (result === null) {
+          // Rate-limited — leave the row for the next cron run.
+          return;
+        }
+        const { news_score, virality_score, reason } = result;
         const combined = combinedScore(news_score, virality_score);
         try {
           await setEventScore(

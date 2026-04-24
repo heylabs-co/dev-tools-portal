@@ -1,0 +1,51 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import TrendingList from '../../components/TrendingList.astro';
+import fs from 'node:fs';
+import path from 'node:path';
+
+const dataPath = path.resolve('data/repos/trending.json');
+const data = fs.existsSync(dataPath)
+  ? JSON.parse(fs.readFileSync(dataPath, 'utf-8'))
+  : { updated_at: '', popular: [], weekly: [] };
+
+const repos = (data.popular && data.popular.length) ? data.popular : (data.weekly ?? []);
+const updated_at = data.updated_at;
+---
+
+<BaseLayout
+  title="GitHub Trending — All-time popular"
+  description="The most-starred dev-tool repositories on GitHub."
+>
+  <section class="mx-auto max-w-6xl px-4 py-10">
+    <Breadcrumbs items={[
+      { label: 'Home', href: '/' },
+      { label: 'GitHub Trending', href: '/trending/' },
+      { label: 'All-time popular' },
+    ]} />
+
+    <div class="mt-6 flex items-end justify-between gap-4 flex-wrap">
+      <div>
+        <h1 class="flex items-center gap-2 text-4xl font-extrabold tracking-tight" style="color: var(--color-text);">
+          🏆 All-time popular
+        </h1>
+        <p class="mt-2 text-lg" style="color: var(--color-muted);">
+          Most-starred dev-tool repos overall
+          {updated_at && <span class="text-sm ml-2">· Updated {updated_at}</span>}
+        </p>
+      </div>
+      <a href="/trending/" class="text-sm font-medium" style="color: var(--color-accent);">← All categories</a>
+    </div>
+
+    {repos.length === 0 ? (
+      <p class="mt-12 text-sm" style="color: var(--color-muted);">
+        No data yet.
+      </p>
+    ) : (
+      <div class="mt-8">
+        <TrendingList repos={repos} defaultSort="total" />
+      </div>
+    )}
+  </section>
+</BaseLayout>

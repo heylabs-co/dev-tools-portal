@@ -7,7 +7,7 @@
   },
   "scripts": {
     "dev": "astro dev",
-    "build": "npx tsx scripts/generate-compare-json.ts && npx tsx scripts/build-use-case-reverse-index.ts && npx tsx scripts/generate-alternatives.ts && astro build && npx pagefind --site dist",
+    "build": "npx tsx scripts/generate-compare-json.ts && npx tsx scripts/build-use-case-reverse-index.ts && npx tsx scripts/generate-alternatives.ts && npx tsx scripts/generate-llms-txt.ts && astro build && npx pagefind --site dist",
     "generate:compare": "npx tsx scripts/generate-compare-json.ts",
     "preview": "astro preview",
     "astro": "astro",
@@ -23,7 +23,10 @@
     "tailwindcss": "^4.2.2"
   },
   "devDependencies": {
+    "@types/better-sqlite3": "^7.6.13",
     "@types/node": "^22.0.0",
+    "better-sqlite3": "^12.9.0",
+    "dotenv": "^17.4.2",
     "pagefind": "^1.3.0",
     "tsx": "^4.19.0",
     "typescript": "^5.8.0"

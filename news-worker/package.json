@@ -1,0 +1,24 @@
+{
+  "name": "toolnews-news-worker",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "d1:migrate": "wrangler d1 execute toolnews-news --file=migrations/0001_init.sql",
+    "d1:seed": "tsx migrations/seed-from-local.ts",
+    "typecheck": "tsc --noEmit",
+    "logs": "wrangler tail"
+  },
+  "dependencies": {
+    "hono": "^4.6.0"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20250101.0",
+    "better-sqlite3": "^12.9.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.8.0",
+    "wrangler": "^4.0.0"
+  }
+}

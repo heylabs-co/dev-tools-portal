@@ -133,14 +133,17 @@ const getCategories = () => fetchJson<CategoryRow[]>('/api/categories.json');
 // ---- Server setup -----------------------------------------------------
 
 const server = new McpServer(
-  { name: 'tool-news', version: '2.1.1' },
+  { name: 'tool-news', version: '2.1.2' },
   { capabilities: { tools: {} } },
 );
 
-// Utility: case-insensitive substring contains
-function matches(value: string | undefined, query: string): boolean {
-  if (!value) return false;
-  return value.toLowerCase().includes(query.toLowerCase());
+/** Tokenized case-insensitive AND match across the given field values joined. */
+function matchesFields(query: string | undefined, ...fields: Array<string | undefined>): boolean {
+  if (!query) return true; // no query = no filter
+  const tokens = query.toLowerCase().split(/\s+/).filter(Boolean);
+  if (tokens.length === 0) return true;
+  const haystack = fields.filter((f): f is string => !!f).join(' ').toLowerCase();
+  return tokens.every((t) => haystack.includes(t));
 }
 
 // ---- Tools ------------------------------------------------------------
@@ -159,8 +162,8 @@ server.tool(
   async ({ query, category, pricing_model, has_free_tier, lock_in_level, limit }) => {
     const companies = await getCompanies();
     const results = companies.filter((c) => {
-      if (query && !(matches(c.name, query) || matches(c.description, query) || matches(c.categories?.primary?.name, query))) return false;
-      if (category && !(matches(c.categories?.primary?.slug, category) || matches(c.categories?.primary?.name, category))) return false;
+      if (!matchesFields(query, c.name, c.description, c.categories?.primary?.name)) return false;
+      if (!matchesFields(category, c.categories?.primary?.slug, c.categories?.primary?.name)) return false;
       if (pricing_model && c.pricing?.model !== pricing_model) return false;
       if (has_free_tier !== undefined && c.pricing?.has_free_tier !== has_free_tier) return false;
       if (lock_in_level && c.scores?.lock_in?.level !== lock_in_level) return false;
@@ -300,8 +303,8 @@ server.tool(
   async ({ query, category, official_only, limit }) => {
     const servers = await getMcpServers();
     const results = servers.filter((s) => {
-      if (query && !(matches(s.name, query) || matches(s.description, query))) return false;
-      if (category && !matches(s.category, category)) return false;
+      if (!matchesFields(query, s.name, s.description, s.category)) return false;
+      if (!matchesFields(category, s.category)) return false;
       if (official_only && !s.official) return false;
       return true;
     }).slice(0, limit);
@@ -352,9 +355,9 @@ server.tool(
   async ({ query, category, framework, format, limit }) => {
     const skills = await getSkills();
     const results = skills.filter((s) => {
-      if (query && !(matches(s.name, query) || matches(s.description, query))) return false;
-      if (category && !matches(s.category, category)) return false;
-      if (framework && !matches(s.framework, framework)) return false;
+      if (!matchesFields(query, s.name, s.description, s.category, s.framework)) return false;
+      if (!matchesFields(category, s.category)) return false;
+      if (!matchesFields(framework, s.framework)) return false;
       if (format && s.format !== format) return false;
       return true;
     })
@@ -378,8 +381,8 @@ server.tool(
   async ({ query, category, limit }) => {
     const exts = await getExtensions();
     const results = exts.filter((e) => {
-      if (query && !(matches(e.name, query) || matches(e.description, query))) return false;
-      if (category && !matches(e.category, category)) return false;
+      if (!matchesFields(query, e.name, e.description, e.category)) return false;
+      if (!matchesFields(category, e.category)) return false;
       return true;
     }).slice(0, limit);
     const text = results.length === 0
@@ -404,9 +407,9 @@ server.tool(
   async ({ query, category, ide, limit }) => {
     const plugins = await getPlugins();
     const results = plugins.filter((p) => {
-      if (query && !(matches(p.name, query) || matches(p.description, query))) return false;
-      if (category && !matches(p.category, category)) return false;
-      if (ide && !matches(p.ide, ide)) return false;
+      if (!matchesFields(query, p.name, p.description, p.category, p.ide)) return false;
+      if (!matchesFields(category, p.category)) return false;
+      if (!matchesFields(ide, p.ide)) return false;
       return true;
     }).slice(0, limit);
     const text = results.length === 0

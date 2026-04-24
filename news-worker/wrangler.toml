@@ -1,0 +1,45 @@
+name = "toolnews-news"
+main = "src/index.ts"
+compatibility_date = "2026-04-01"
+compatibility_flags = ["nodejs_compat"]
+workers_dev = true
+
+# ── D1 database (events, handles, poll_runs) ─────────────────────────────
+# Run once:   wrangler d1 create toolnews-news
+# Then paste the database_id below.
+[[d1_databases]]
+binding = "DB"
+database_name = "toolnews-news"
+database_id = "f02f6280-fc1f-477c-b8d9-5d35e0cbe68f"
+
+# ── KV namespace (tg-offset, cache) ──────────────────────────────────────
+# Run once:   wrangler kv namespace create TOOLNEWS_KV
+# Then paste the id below.
+[[kv_namespaces]]
+binding = "KV"
+id = "0a9ddfe21e744266bd0609131e1f576a"
+
+# ── Cron Triggers ────────────────────────────────────────────────────────
+# Poller every 15 min (dev test: "*/5 * * * *" to speed up).
+# Drafter daily at 06:00 UTC (= 08:00 Warsaw, 09:00 Moscow).
+[triggers]
+crons = [
+  "*/15 * * * *",   # every 15 min — Twitter poll + classifier
+  "30 */3 * * *",   # every 3h at :30 — free sources (HN, Reddit, GH, Lobsters, PH)
+  "0 6 * * *",      # daily 06:00 UTC — drafter + push to Telegram
+]
+
+# ── Routes ───────────────────────────────────────────────────────────────
+# Workers.dev subdomain is auto. For production add a custom domain.
+# [[routes]]
+# pattern = "news.tool.news/*"
+# zone_name = "tool.news"
+
+# ── Secrets (populated via `wrangler secret put <NAME>`) ─────────────────
+# TWITTERAPI_KEY
+# OPENROUTER_API_KEY
+# TELEGRAM_BOT_TOKEN
+# TELEGRAM_REVIEW_CHAT_ID
+
+[observability]
+enabled = true

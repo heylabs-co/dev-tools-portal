@@ -1,0 +1,66 @@
+---
+interface Props {
+  /** Compact form for sidebars / narrow slots. */
+  compact?: boolean;
+  /** Override the headline — usually context-specific like "Not sure which X?" */
+  headline?: string;
+  /** Override the sub-copy. */
+  subline?: string;
+  /** Extra query params to pre-seed /recommend. e.g. seed slug or category. */
+  seed?: string;
+}
+
+const {
+  compact = false,
+  headline = 'Not sure which tool to pick?',
+  subline = 'Answer 4 quick questions — get an AI-ranked shortlist from 5,978+ dev tools.',
+  seed,
+} = Astro.props;
+
+const href = seed ? `/recommend/?seed=${encodeURIComponent(seed)}` : '/recommend/';
+---
+
+{compact ? (
+  <a
+    href={href}
+    class="group flex items-center gap-3 rounded-lg border border-[#5E6AD2]/20 bg-gradient-to-r from-[#5E6AD2]/5 to-[#818CF8]/5 p-3 transition hover:border-[#5E6AD2]/50 dark:border-[#818CF8]/20 dark:from-[#5E6AD2]/10 dark:to-[#818CF8]/10"
+  >
+    <span class="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-md bg-gradient-to-br from-[#5E6AD2] to-[#818CF8] text-white">
+      <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12 2l2.4 7.4L22 12l-7.6 2.6L12 22l-2.4-7.4L2 12l7.6-2.6L12 2z" />
+      </svg>
+    </span>
+    <div class="min-w-0 flex-1">
+      <div class="truncate text-sm font-semibold text-[#0F172A] dark:text-[#EDEDEF]">{headline}</div>
+      <div class="truncate text-xs text-[#64748B] dark:text-[#8A8F98]">Open AI Tool Finder →</div>
+    </div>
+  </a>
+) : (
+  <section
+    class="my-8 overflow-hidden rounded-2xl border border-[#5E6AD2]/20 bg-gradient-to-br from-[#5E6AD2]/5 via-transparent to-[#818CF8]/5 p-6 dark:border-[#818CF8]/20 dark:from-[#5E6AD2]/10 dark:to-[#818CF8]/10"
+    aria-labelledby="recommend-cta-title"
+  >
+    <div class="flex items-start gap-4">
+      <span class="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-[#5E6AD2] to-[#818CF8] text-white shadow-sm">
+        <svg class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 2l2.4 7.4L22 12l-7.6 2.6L12 22l-2.4-7.4L2 12l7.6-2.6L12 2z" />
+        </svg>
+      </span>
+      <div class="min-w-0 flex-1">
+        <h3 id="recommend-cta-title" class="text-base font-bold text-[#0F172A] dark:text-[#EDEDEF]">
+          {headline}
+        </h3>
+        <p class="mt-1 text-sm text-[#64748B] dark:text-[#8A8F98]">{subline}</p>
+        <a
+          href={href}
+          class="mt-3 inline-flex items-center gap-1.5 rounded-lg bg-gradient-to-r from-[#5E6AD2] to-[#818CF8] px-4 py-2 text-sm font-semibold text-white shadow-sm transition-opacity hover:opacity-90"
+        >
+          Open AI Tool Finder
+          <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+)}

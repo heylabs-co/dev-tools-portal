@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import ExtensionInstallButtons from '../../components/ExtensionInstallButtons.astro';
+import RecommendCTA from '../../components/RecommendCTA.astro';
 import { getCollection } from 'astro:content';
 
 export async function getStaticPaths() {
@@ -226,6 +227,11 @@ const schemaOrg = {
       </div>
     </section>
   </article>
+
+  <RecommendCTA
+    headline="Want a better VS Code extension for your flow?"
+    subline="Get AI-ranked extension picks based on your language and workflow."
+  />
 
   <!-- Schema.org -->
   <script type="application/ld+json" set:html={JSON.stringify(schemaOrg)} />

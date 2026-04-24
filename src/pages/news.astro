@@ -2,33 +2,48 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 
 const feedUrl = 'https://toolnews-news.sssands.workers.dev/whats-new';
+
+const sourceOptions = [
+  { key: 'twitter', label: 'X' },
+  { key: 'hackernews', label: 'HN' },
+  { key: 'reddit', label: 'Reddit' },
+  { key: 'github', label: 'GitHub' },
+  { key: 'lobsters', label: 'Lobsters' },
+  { key: 'producthunt', label: 'PH' },
+];
+
+const timeOptions = [
+  { key: 'today', label: 'Today' },
+  { key: '3d', label: '3 days' },
+  { key: 'week', label: 'Week' },
+  { key: 'all', label: 'All' },
+];
 ---
 
 <BaseLayout
-  title="Dev Tools News — AI-curated feed from Twitter, HN, Reddit, GitHub"
+  title="Dev News — live dev-tool news from Twitter, HN, Reddit, GitHub"
   description="Live feed of dev-tool launches, AI-lab announcements, and industry moves. Auto-curated hourly from Twitter, Hacker News, Reddit, GitHub Trending, Lobsters, Product Hunt."
   jsonLd={{
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
     name: 'tool.news — live news feed',
-    description: 'Live dev-tools and AI news, AI-scored for newsworthiness and virality.',
+    description: 'Live dev-tools and AI news, curated hourly from 6 sources.',
     url: 'https://tool.news/news',
   }}
 >
   <section class="mx-auto max-w-3xl px-4 py-12">
     <div class="mb-8">
       <h1 class="text-4xl font-extrabold tracking-tight text-gray-900 dark:text-white">
-        What's new
+        Dev News
       </h1>
       <p class="mt-3 text-gray-600 dark:text-gray-400">
         Dev-tool and AI-lab news, auto-curated hourly from Twitter, Hacker News, Reddit,
-        GitHub Trending, Lobsters, and Product Hunt. AI-scored for newsworthiness + virality,
-        human-reviewed before it lands here.
+        GitHub Trending, Lobsters, and Product Hunt. Human-reviewed before it lands here.
       </p>
 
       <div class="mt-4 flex flex-wrap gap-3 text-xs">
         <a
-          href="https://t.me/toolnews"
+          href="https://t.me/toolnewshq"
           target="_blank"
           rel="noopener"
           class="inline-flex items-center gap-1.5 rounded-full bg-[#2AABEE]/10 px-3 py-1.5 font-medium text-[#2AABEE] hover:bg-[#2AABEE]/20"
@@ -40,10 +55,69 @@ const feedUrl = 'https://toolnews-news.sssands.workers.dev/whats-new';
           href="https://x.com/toolnewsHQ"
           target="_blank"
           rel="noopener"
-          class="inline-flex items-center gap-1.5 rounded-full bg-gray-100 px-3 py-1.5 font-medium text-gray-700 hover:bg-gray-200 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700"
+          class="inline-flex items-center gap-1.5 rounded-full bg-black/90 px-3 py-1.5 font-medium text-white hover:bg-black dark:bg-white/10 dark:text-white dark:hover:bg-white/20"
         >
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
           Follow @toolnewsHQ
         </a>
+      </div>
+    </div>
+
+    <!-- ── FILTER BAR ─────────────────────────────────────────────────── -->
+    <div
+      id="news-filters"
+      class="sticky top-[57px] z-10 -mx-4 mb-6 border-b border-gray-200 bg-[#FAFBFC]/90 px-4 pb-3 pt-3 backdrop-blur-md dark:border-gray-800 dark:bg-[#0A0A0F]/90"
+    >
+      <!-- Active handle chip (hidden by default) -->
+      <div id="handle-chip-wrap" class="mb-2 hidden">
+        <span class="inline-flex items-center gap-1.5 rounded-full bg-[#5E6AD2]/10 px-3 py-1 text-xs font-medium text-[#5E6AD2] dark:text-[#818CF8]">
+          <span>Filter:</span>
+          <span id="handle-chip-label"></span>
+          <button
+            id="handle-chip-clear"
+            type="button"
+            aria-label="Clear handle filter"
+            class="-mr-1 rounded-full px-1 hover:bg-[#5E6AD2]/20"
+          >×</button>
+        </span>
+      </div>
+
+      <!-- Time pills (radio-style) -->
+      <div class="flex flex-wrap items-center gap-1.5">
+        <span class="mr-1 text-[11px] font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400">When</span>
+        {timeOptions.map((t) => (
+          <button
+            type="button"
+            data-time={t.key}
+            class="time-pill rounded-full border px-3 py-1 text-xs font-medium transition-colors"
+            style="border-color: var(--color-border); color: var(--color-muted);"
+          >{t.label}</button>
+        ))}
+      </div>
+
+      <!-- Source chips (multi-select) + sort -->
+      <div class="mt-2 flex flex-wrap items-center gap-1.5">
+        <span class="mr-1 text-[11px] font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400">Source</span>
+        {sourceOptions.map((s) => (
+          <button
+            type="button"
+            data-source={s.key}
+            class="source-chip rounded-full border px-3 py-1 text-xs font-medium transition-colors"
+            style="border-color: var(--color-border); color: var(--color-muted);"
+          >{s.label}</button>
+        ))}
+
+        <div class="ml-auto flex items-center gap-2">
+          <label for="news-sort" class="text-[11px] font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400">Sort</label>
+          <select
+            id="news-sort"
+            class="rounded-md border bg-transparent px-2 py-1 text-xs font-medium focus:outline-none"
+            style="border-color: var(--color-border); color: var(--color-text);"
+          >
+            <option value="newest">Newest</option>
+            <option value="discussed">Most discussed</option>
+          </select>
+        </div>
       </div>
     </div>
 
@@ -67,11 +141,32 @@ const feedUrl = 'https://toolnews-news.sssands.workers.dev/whats-new';
 
     <div id="news-empty" class="hidden py-16 text-center">
       <p class="text-sm text-gray-500 dark:text-gray-400">
-        No approved news yet. Check back soon — the bot pushes drafts daily at 06:00 UTC.
+        No matching news. Try widening the filters above.
       </p>
     </div>
+
+    <div id="news-count" class="mt-6 hidden text-center text-xs text-gray-400 dark:text-gray-500"></div>
   </section>
 </BaseLayout>
+
+<style>
+  .time-pill.active,
+  .source-chip.active {
+    background-color: #5E6AD2;
+    color: #fff !important;
+    border-color: #5E6AD2 !important;
+  }
+  .dark .time-pill.active,
+  .dark .source-chip.active {
+    background-color: #818CF8;
+    border-color: #818CF8 !important;
+  }
+  .time-pill:hover:not(.active),
+  .source-chip:hover:not(.active) {
+    color: var(--color-text) !important;
+    border-color: var(--color-accent) !important;
+  }
+</style>
 
 <script is:inline define:vars={{ feedUrl }}>
   (function () {
@@ -79,8 +174,43 @@ const feedUrl = 'https://toolnews-news.sssands.workers.dev/whats-new';
     const errorEl = document.getElementById('news-error');
     const listEl = document.getElementById('news-list');
     const emptyEl = document.getElementById('news-empty');
+    const countEl = document.getElementById('news-count');
     const retryBtn = document.getElementById('news-retry');
 
+    const timeButtons = document.querySelectorAll('.time-pill');
+    const sourceButtons = document.querySelectorAll('.source-chip');
+    const sortSelect = document.getElementById('news-sort');
+    const handleChipWrap = document.getElementById('handle-chip-wrap');
+    const handleChipLabel = document.getElementById('handle-chip-label');
+    const handleChipClear = document.getElementById('handle-chip-clear');
+
+    /** @type {Array} */
+    let allItems = [];
+
+    // ── state from URL ──────────────────────────────────────────────────
+    function readState() {
+      const u = new URL(window.location.href);
+      const time = u.searchParams.get('time') || 'all';
+      const srcParam = u.searchParams.get('src') || '';
+      const sources = new Set(srcParam ? srcParam.split(',').filter(Boolean) : []);
+      const handle = (u.searchParams.get('handle') || '').toLowerCase();
+      const sort = u.searchParams.get('sort') || 'newest';
+      return { time, sources, handle, sort };
+    }
+
+    function writeState(s) {
+      const u = new URL(window.location.href);
+      if (s.time !== 'all') u.searchParams.set('time', s.time); else u.searchParams.delete('time');
+      if (s.sources.size) u.searchParams.set('src', Array.from(s.sources).join(','));
+      else u.searchParams.delete('src');
+      if (s.handle) u.searchParams.set('handle', s.handle); else u.searchParams.delete('handle');
+      if (s.sort !== 'newest') u.searchParams.set('sort', s.sort); else u.searchParams.delete('sort');
+      history.replaceState(null, '', u.toString());
+    }
+
+    const state = readState();
+
+    // ── rendering helpers ──────────────────────────────────────────────
     function esc(s) {
       return String(s ?? '')
         .replace(/&/g, '&amp;')
@@ -91,7 +221,8 @@ const feedUrl = 'https://toolnews-news.sssands.workers.dev/whats-new';
 
     function formatTime(iso) {
       if (!iso) return '';
-      const d = new Date(iso.includes('T') ? iso : iso.replace(' ', 'T') + 'Z');
+      const s = iso.includes('T') ? iso : iso.replace(' ', 'T') + 'Z';
+      const d = new Date(s);
       if (Number.isNaN(d.getTime())) return '';
       const diff = Date.now() - d.getTime();
       const mins = Math.round(diff / 60000);
@@ -104,111 +235,192 @@ const feedUrl = 'https://toolnews-news.sssands.workers.dev/whats-new';
       return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
     }
 
-    function sourceBadge(src) {
-      const map = {
-        twitter: { label: 'X', bg: 'bg-black', fg: 'text-white' },
-        hackernews: { label: 'HN', bg: 'bg-orange-500', fg: 'text-white' },
-        reddit: { label: 'Reddit', bg: 'bg-[#FF4500]', fg: 'text-white' },
-        github: { label: 'GitHub', bg: 'bg-gray-900', fg: 'text-white' },
-        lobsters: { label: 'Lobsters', bg: 'bg-red-800', fg: 'text-white' },
-        producthunt: { label: 'PH', bg: 'bg-[#DA552F]', fg: 'text-white' },
-      };
-      const cfg = map[src] || { label: src || '?', bg: 'bg-gray-500', fg: 'text-white' };
-      return (
-        '<span class="inline-flex items-center rounded px-1.5 py-0.5 text-[10px] font-bold ' +
-        cfg.bg +
-        ' ' +
-        cfg.fg +
-        '">' +
-        esc(cfg.label) +
-        '</span>'
-      );
+    function toDate(iso) {
+      if (!iso) return 0;
+      const s = iso.includes('T') ? iso : iso.replace(' ', 'T') + 'Z';
+      const d = new Date(s);
+      return Number.isNaN(d.getTime()) ? 0 : d.getTime();
     }
 
-    function pickVariantText(item) {
-      if (!item.drafts_json) return item.text || item.title || '';
-      try {
-        const d = JSON.parse(item.drafts_json);
-        const v = item.approved_variant;
-        const drafts = d && d.drafts;
-        if (v && drafts && drafts[v]) return drafts[v];
-        if (d && d.quick_take) return d.quick_take;
-      } catch (_) {}
+    const SOURCE_META = {
+      twitter: { label: 'X', discuss: 'X', classes: 'bg-black text-white dark:bg-gray-100 dark:text-gray-900' },
+      hackernews: { label: 'HN', discuss: 'Hacker News', classes: 'bg-orange-500 text-white' },
+      reddit: { label: 'Reddit', discuss: 'Reddit', classes: 'bg-[#FF4500] text-white' },
+      github: { label: 'GitHub', discuss: 'GitHub', classes: 'bg-gray-900 text-white dark:bg-gray-700' },
+      lobsters: { label: 'Lobsters', discuss: 'Lobsters', classes: 'bg-red-800 text-white' },
+      producthunt: { label: 'PH', discuss: 'Product Hunt', classes: 'bg-[#DA552F] text-white' },
+    };
+    function sourceBadge(src) {
+      const cfg = SOURCE_META[src] || { label: src || '?', classes: 'bg-gray-500 text-white' };
+      return '<span class="inline-flex items-center rounded px-1.5 py-0.5 text-[10px] font-bold ' + cfg.classes + '">' + esc(cfg.label) + '</span>';
+    }
+
+    function pickBody(item) {
+      if (item.drafts_json) {
+        try {
+          const d = JSON.parse(item.drafts_json);
+          const v = item.approved_variant;
+          if (v && d && d.drafts && d.drafts[v]) return d.drafts[v];
+          if (d && d.quick_take) return d.quick_take;
+        } catch (_) {}
+      }
       return item.text || item.title || '';
     }
 
-    function render(items) {
+    // ── filter + sort ──────────────────────────────────────────────────
+    function timeCutoffMs(key) {
+      const day = 24 * 60 * 60 * 1000;
+      if (key === 'today') return Date.now() - day;
+      if (key === '3d') return Date.now() - 3 * day;
+      if (key === 'week') return Date.now() - 7 * day;
+      return 0;
+    }
+
+    function applyFilters(items) {
+      const cutoff = timeCutoffMs(state.time);
+      let out = items.filter(function (it) {
+        const when = toDate(it.pushed_at || it.created_at);
+        if (when && cutoff && when < cutoff) return false;
+        if (state.sources.size > 0 && !state.sources.has(it.source)) return false;
+        if (state.handle) {
+          const h = String(it.source_handle || '').toLowerCase();
+          if (h !== state.handle) return false;
+        }
+        return true;
+      });
+      if (state.sort === 'discussed') {
+        out = out.slice().sort(function (a, b) {
+          return (b.reply_count || 0) - (a.reply_count || 0);
+        });
+      } else {
+        out = out.slice().sort(function (a, b) {
+          return toDate(b.pushed_at || b.created_at) - toDate(a.pushed_at || a.created_at);
+        });
+      }
+      return out;
+    }
+
+    function render() {
+      const filtered = applyFilters(allItems);
       loadingEl.classList.add('hidden');
       errorEl.classList.add('hidden');
 
-      if (!items.length) {
+      if (!filtered.length) {
+        listEl.classList.add('hidden');
         emptyEl.classList.remove('hidden');
+        countEl.classList.add('hidden');
         return;
       }
+      emptyEl.classList.add('hidden');
 
-      const html = items
-        .map(function (item) {
-          const body = pickVariantText(item);
-          const handle = item.source_handle ? '@' + item.source_handle : '';
-          const time = formatTime(item.pushed_at || item.created_at);
-          const url = item.url || '';
-          const hasUrl = url && /^https?:\/\//i.test(url);
-          const score = item.score != null ? item.score : '';
-          const viral = item.virality_score != null ? item.virality_score : null;
+      const html = filtered.map(function (item) {
+        const body = pickBody(item);
+        const handle = item.source_handle || '';
+        const handleText = handle ? '@' + handle : '';
+        const time = formatTime(item.pushed_at || item.created_at);
+        const url = item.url || '';
+        const hasUrl = url && /^https?:\/\//i.test(url);
+        const srcMeta = SOURCE_META[item.source] || { discuss: item.source || 'source' };
+        const replies = Number(item.reply_count);
+        const discussLabel = Number.isFinite(replies) && replies > 0
+          ? '💬 ' + replies.toLocaleString() + ' on ' + srcMeta.discuss + ' →'
+          : 'Discuss on ' + srcMeta.discuss + ' →';
 
-          return (
-            '<li class="rounded-lg border border-gray-200 bg-white p-4 shadow-sm transition hover:shadow-md dark:border-gray-800 dark:bg-gray-900">' +
-            '<div class="mb-2 flex items-center gap-2 text-xs text-gray-500 dark:text-gray-400">' +
-            sourceBadge(item.source) +
-            (handle
-              ? '<span class="truncate font-medium text-gray-700 dark:text-gray-300">' +
-                esc(handle) +
-                '</span>'
-              : '') +
-            '<span>·</span>' +
-            '<span>' +
-            esc(time) +
-            '</span>' +
-            (score !== ''
-              ? '<span class="ml-auto inline-flex items-center gap-1 rounded bg-gray-100 px-1.5 py-0.5 text-[10px] font-semibold text-gray-700 dark:bg-gray-800 dark:text-gray-300" title="score ' +
-                score +
-                (viral != null ? ' · virality ' + viral : '') +
-                '">⚡ ' +
-                score +
-                '</span>'
-              : '') +
-            '</div>' +
-            '<p class="whitespace-pre-wrap text-[15px] leading-relaxed text-gray-900 dark:text-gray-100">' +
-            esc(body) +
-            '</p>' +
-            (hasUrl
-              ? '<a href="' +
-                esc(url) +
-                '" target="_blank" rel="noopener" class="mt-2 inline-block text-xs text-[#5E6AD2] hover:underline dark:text-[#818CF8]">' +
-                'Open source ↗</a>'
-              : '') +
-            '</li>'
-          );
-        })
-        .join('');
+        return (
+          '<li class="rounded-lg border border-gray-200 bg-white p-4 shadow-sm transition hover:shadow-md dark:border-gray-800 dark:bg-gray-900">' +
+          '<div class="mb-2 flex items-center gap-2 text-xs text-gray-500 dark:text-gray-400">' +
+          sourceBadge(item.source) +
+          (handle ?
+            '<button type="button" data-handle="' + esc(handle) + '" class="handle-link truncate font-medium text-gray-700 hover:text-[#5E6AD2] hover:underline dark:text-gray-300 dark:hover:text-[#818CF8]">' + esc(handleText) + '</button>' : '') +
+          '<span>·</span>' +
+          '<span>' + esc(time) + '</span>' +
+          '</div>' +
+          '<p class="whitespace-pre-wrap text-[15px] leading-relaxed text-gray-900 dark:text-gray-100">' + esc(body) + '</p>' +
+          (hasUrl ?
+            '<a href="' + esc(url) + '" target="_blank" rel="noopener" class="mt-2 inline-block text-xs font-medium text-[#5E6AD2] hover:underline dark:text-[#818CF8]">' + esc(discussLabel) + '</a>' : '') +
+          '</li>'
+        );
+      }).join('');
 
       listEl.innerHTML = html;
       listEl.classList.remove('hidden');
+
+      countEl.textContent = filtered.length + ' of ' + allItems.length + ' shown';
+      countEl.classList.remove('hidden');
+
+      // Bind handle chips
+      listEl.querySelectorAll('.handle-link').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          state.handle = (btn.getAttribute('data-handle') || '').toLowerCase();
+          writeState(state);
+          syncUI();
+          render();
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+      });
     }
 
+    // ── UI sync ────────────────────────────────────────────────────────
+    function syncUI() {
+      timeButtons.forEach(function (btn) {
+        btn.classList.toggle('active', btn.getAttribute('data-time') === state.time);
+      });
+      sourceButtons.forEach(function (btn) {
+        btn.classList.toggle('active', state.sources.has(btn.getAttribute('data-source') || ''));
+      });
+      sortSelect.value = state.sort;
+      if (state.handle) {
+        handleChipWrap.classList.remove('hidden');
+        handleChipLabel.textContent = '@' + state.handle;
+      } else {
+        handleChipWrap.classList.add('hidden');
+      }
+    }
+
+    // ── bindings ───────────────────────────────────────────────────────
+    timeButtons.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        state.time = btn.getAttribute('data-time') || 'all';
+        writeState(state);
+        syncUI();
+        render();
+      });
+    });
+    sourceButtons.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        const key = btn.getAttribute('data-source') || '';
+        if (state.sources.has(key)) state.sources.delete(key);
+        else state.sources.add(key);
+        writeState(state);
+        syncUI();
+        render();
+      });
+    });
+    sortSelect.addEventListener('change', function () {
+      state.sort = sortSelect.value;
+      writeState(state);
+      render();
+    });
+    handleChipClear.addEventListener('click', function () {
+      state.handle = '';
+      writeState(state);
+      syncUI();
+      render();
+    });
+
+    // ── initial load ───────────────────────────────────────────────────
     function load() {
       loadingEl.classList.remove('hidden');
       errorEl.classList.add('hidden');
       listEl.classList.add('hidden');
       emptyEl.classList.add('hidden');
+      countEl.classList.add('hidden');
 
       fetch(feedUrl, { cache: 'no-store' })
-        .then(function (r) {
-          if (!r.ok) throw new Error('HTTP ' + r.status);
-          return r.json();
-        })
+        .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
         .then(function (data) {
-          render(Array.isArray(data.items) ? data.items : []);
+          allItems = Array.isArray(data.items) ? data.items : [];
+          render();
         })
         .catch(function (e) {
           console.warn('whats-new fetch failed:', e);
@@ -218,6 +430,7 @@ const feedUrl = 'https://toolnews-news.sssands.workers.dev/whats-new';
     }
 
     retryBtn && retryBtn.addEventListener('click', load);
+    syncUI();
     load();
   })();
 </script>

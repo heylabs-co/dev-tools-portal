@@ -5,6 +5,7 @@ import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import CompanyCard from '../../components/CompanyCard.astro';
 import SchemaOrg from '../../components/SchemaOrg.astro';
 import SearchBar from '../../components/SearchBar.astro';
+import RecommendCTA from '../../components/RecommendCTA.astro';
 
 export async function getStaticPaths() {
   const categories = await getCollection('categories');
@@ -165,4 +166,11 @@ const heading = data.seo?.h1 ?? data.name;
       })),
     }}
   />
+
+  <div class="mx-auto max-w-6xl px-4 pb-8">
+    <RecommendCTA
+      headline={`Not sure which ${data.name} tool fits?`}
+      subline="Answer 4 quick questions — get an AI-ranked shortlist from this category tailored to your stack."
+    />
+  </div>
 </BaseLayout>

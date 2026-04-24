@@ -18,6 +18,7 @@ import { runPoller } from './poller';
 import { runFreeSourcesPoller } from './poller';
 import { runDrafter } from './drafter';
 import { runClassifier } from './classifier';
+import { runAutoPublisher } from './auto-publisher';
 
 const PUSH_LIMIT = 15;
 
@@ -56,6 +57,11 @@ app.post('/cron/poll-free', async (c) => {
 
 app.post('/cron/classify', async (c) => {
   const stats = await runClassifier(c.env);
+  return c.json({ ok: true, stats });
+});
+
+app.post('/cron/auto-publish', async (c) => {
+  const stats = await runAutoPublisher(c.env);
   return c.json({ ok: true, stats });
 });
 
@@ -168,6 +174,7 @@ app.get('/whats-new', async (c) => {
   const rows = await c.env.DB.prepare(
     `SELECT id, source, source_handle, url, text, title, score,
             news_score, virality_score, approved_variant, drafts_json,
+            like_count, reply_count,
             created_at, pushed_at
        FROM events
       WHERE posted = 1 AND approved_variant IS NOT NULL
@@ -213,11 +220,12 @@ export default {
       console.log('[cron] free sources poll');
       ctx.waitUntil(runFreeSourcesPoller(env));
     } else {
-      console.log('[cron] twitter poll + classify');
+      console.log('[cron] twitter poll + classify + auto-publish');
       ctx.waitUntil(
         (async () => {
           await runPoller(env);
           await runClassifier(env);
+          await runAutoPublisher(env);
         })(),
       );
     }

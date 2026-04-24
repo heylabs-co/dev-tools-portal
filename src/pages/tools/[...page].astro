@@ -3,6 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import CompanyCard from '../../components/CompanyCard.astro';
 import SearchBar from '../../components/SearchBar.astro';
+import RecommendCTA from '../../components/RecommendCTA.astro';
 import { getCollection } from 'astro:content';
 import type { GetStaticPaths } from 'astro';
 
@@ -38,13 +39,17 @@ const categoryCount = allCategories.length;
     </div>
 
     <!-- Scoped search — Tools only -->
-    <div class="mb-8 max-w-2xl">
+    <div class="mb-6 max-w-2xl">
       <SearchBar
         baseFilter={{ type: ['Tool'] }}
         showFilters={false}
         compact={true}
         placeholder={`Search ${page.total.toLocaleString()} tools…`}
       />
+    </div>
+
+    <div class="mb-8 max-w-2xl">
+      <RecommendCTA compact={true} />
     </div>
 
     <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">

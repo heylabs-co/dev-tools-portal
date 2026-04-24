@@ -1,10 +1,10 @@
 ---
 const mobileLinks = [
+  { label: 'Dev News 🟢', href: '/news/' },
   { label: 'Tools', href: '/tools/' },
-  { label: 'Recommend ✨', href: '/recommend/' },
   { label: 'MCP Servers', href: '/mcp-servers/' },
   { label: 'AI Skills', href: '/skills/' },
-  { label: 'Trending', href: '/trending/' },
+  { label: 'GitHub Trending', href: '/trending/' },
   { label: 'Use Cases', href: '/use-cases/' },
   { label: 'Compare', href: '/compare/' },
   { label: 'VS Code Extensions', href: '/extensions/' },
@@ -49,18 +49,18 @@ const moreLinks = [
       <!-- Desktop nav -->
       <ul class="hidden items-center gap-1 md:flex">
         <li>
-          <a href="/tools/" class="nav-link relative px-3 py-2 text-sm font-medium transition-colors duration-150" style="color: var(--color-muted);">
-            Tools
+          <a href="/news/" class="nav-link relative flex items-center gap-1.5 px-3 py-2 text-sm font-medium transition-colors duration-150" style="color: var(--color-muted);">
+            <span class="relative inline-flex h-1.5 w-1.5">
+              <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-500 opacity-75"></span>
+              <span class="relative inline-flex h-1.5 w-1.5 rounded-full bg-green-500"></span>
+            </span>
+            Dev News
             <span class="nav-underline absolute bottom-0.5 left-3 right-3 h-px origin-left scale-x-0 transition-transform duration-200 ease-out" style="background-color: var(--color-accent);"></span>
           </a>
         </li>
-
         <li>
-          <a href="/recommend/" class="nav-link recommend-link relative flex items-center gap-1.5 px-3 py-2 text-sm font-medium transition-colors duration-150" style="color: var(--color-accent);">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M12 2l2.4 7.4L22 12l-7.6 2.6L12 22l-2.4-7.4L2 12l7.6-2.6L12 2z" />
-            </svg>
-            Recommend
+          <a href="/tools/" class="nav-link relative px-3 py-2 text-sm font-medium transition-colors duration-150" style="color: var(--color-muted);">
+            Tools
             <span class="nav-underline absolute bottom-0.5 left-3 right-3 h-px origin-left scale-x-0 transition-transform duration-200 ease-out" style="background-color: var(--color-accent);"></span>
           </a>
         </li>
@@ -94,7 +94,7 @@ const moreLinks = [
 
         <li>
           <a href="/trending/" class="nav-link relative px-3 py-2 text-sm font-medium transition-colors duration-150" style="color: var(--color-muted);">
-            Trending
+            GitHub Trending
             <span class="nav-underline absolute bottom-0.5 left-3 right-3 h-px origin-left scale-x-0 transition-transform duration-200 ease-out" style="background-color: var(--color-accent);"></span>
           </a>
         </li>

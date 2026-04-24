@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import RecommendCTA from '../../components/RecommendCTA.astro';
 import { getCollection } from 'astro:content';
 
 export async function getStaticPaths() {
@@ -342,6 +343,11 @@ const jsonLd = {
         </div>
       </section>
     )}
+
+    <RecommendCTA
+      headline="Need a different skill for your flow?"
+      subline="Get AI-ranked skill recommendations based on your tooling and use case."
+    />
 
     <!-- Schema.org -->
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />

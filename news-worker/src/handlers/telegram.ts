@@ -141,6 +141,116 @@ export async function pushDraftedEvents(
   return { pushed, failed };
 }
 
+// ── Auto-post approved variant to the public channel ──────────────────
+
+const CHANNEL_MAX_CHARS = 900;
+
+function truncate(s: string, n: number): string {
+  const one = (s ?? '').trim().replace(/\s+\n/g, '\n');
+  if (one.length <= n) return one;
+  return one.slice(0, n - 1).trimEnd() + '…';
+}
+
+/**
+ * Reddit often posts with markdown backslash-escapes (e.g. `\*foo\*`, `\-item`)
+ * because of the API's default rendering mode. Telegram does not render these
+ * — they appear literally. Strip the backslash before the common punctuation.
+ */
+function stripMarkdownEscapes(s: string): string {
+  return s.replace(/\\([\\*_`~\-.!#>(){}[\]+=|])/g, '$1');
+}
+
+/**
+ * Per-source body formatting for the channel. Returns the post body WITHOUT the
+ * trailing URL — the caller appends `\n\n{url}`.
+ */
+function formatBodyForSource(ev: EventRow, rawText: string): string {
+  const text = stripMarkdownEscapes(rawText).trim();
+  const source = (ev.source ?? '').toLowerCase();
+  const handle = ev.source_handle ? ev.source_handle.replace(/^@/, '') : '';
+  const title = ev.title?.trim();
+
+  if (source === 'twitter') {
+    // "@rauchg on X: <tweet>"
+    return handle ? `@${handle} on X:\n\n${text}` : text;
+  }
+
+  if (source === 'reddit') {
+    // "[r/programming] Title\n\nSelftext" — dedupe if text echoes title
+    const subMatch = handle.match(/^reddit\/r\/(.+)$/i);
+    const prefix = subMatch ? `[r/${subMatch[1]}] ` : '';
+    if (title && text && !text.toLowerCase().startsWith(title.toLowerCase())) {
+      return `${prefix}${title}\n\n${text}`;
+    }
+    return title ? `${prefix}${title}` : text;
+  }
+
+  if (source === 'hackernews') {
+    // HN title is the story; text may be story_text for Ask/Show HN. Prefer title.
+    if (title && text && !text.toLowerCase().startsWith(title.toLowerCase())) {
+      return `${title}\n\n${text}`;
+    }
+    return title || text;
+  }
+
+  if (source === 'lobsters' || source === 'producthunt' || source === 'github') {
+    // Title is the headline, text is a short description — join only if both add value.
+    if (title && text && text.length > 10 && text.toLowerCase() !== title.toLowerCase()) {
+      return `${title}\n\n${text}`;
+    }
+    return title || text;
+  }
+
+  // Fallback: whatever we have.
+  return title ? `${title}\n\n${text}` : text;
+}
+
+function buildChannelPost(ev: EventRow, rawText: string): string {
+  const body = truncate(formatBodyForSource(ev, rawText), CHANNEL_MAX_CHARS);
+  if (!ev.url) return body;
+  return `${body}\n\n${ev.url}`;
+}
+
+/**
+ * Publish an event to the public channel. `variantKey` controls which body is
+ * used:
+ *   - straight|hot_take|thread → human-drafted variant (from drafter output)
+ *   - auto                     → source text (title/text), used by auto-publisher
+ */
+export async function postApprovedToChannel(
+  env: Env,
+  ev: EventRow,
+  variantKey: 'straight' | 'hot_take' | 'thread' | 'auto',
+): Promise<void> {
+  const chatId = env.TELEGRAM_CHANNEL_ID;
+  if (!chatId) return;
+
+  let body: string | null = null;
+  if (variantKey === 'auto') {
+    // Prefer a drafter-generated quick_take if we somehow have one; otherwise
+    // fall back to the raw source text / title.
+    const drafts = parseDrafts(ev.drafts_json);
+    body = drafts?.quick_take ?? ev.text ?? ev.title ?? null;
+  } else {
+    const drafts = parseDrafts(ev.drafts_json);
+    body = drafts?.drafts?.[variantKey] ?? null;
+  }
+  if (!body) return;
+
+  const tg = new TelegramClient(env.TELEGRAM_BOT_TOKEN);
+  try {
+    await tg.sendMessage(chatId, buildChannelPost(ev, body), {
+      // Source text may contain raw < > & — skip HTML parse to avoid errors.
+      disableWebPagePreview: false,
+    });
+  } catch (e) {
+    console.warn(
+      `[tg channel] post failed for ${ev.id}:`,
+      e instanceof Error ? e.message : e,
+    );
+  }
+}
+
 // ── Webhook routing ─────────────────────────────────────────────────────
 
 const LABELS: Record<string, string> = {
@@ -213,10 +323,12 @@ async function handleCallback(
     const variantKey = VARIANT_KEYS[action];
     const label = LABELS[action];
     await approveEventVariant(env.DB, eventId, variantKey);
+    // Fire-and-forget publish to the public channel. Don't block the ack.
+    await postApprovedToChannel(env, ev, variantKey);
     const drafts = parseDrafts(ev.drafts_json);
     const chosen = drafts?.drafts?.[variantKey] ?? '(draft missing)';
-    replyText = `✅ Approved ${label}. Copy this to X:\n\n<code>${escHtml(chosen)}</code>`;
-    toast = `✅ Approved ${label}`;
+    replyText = `✅ Approved ${label}. Posted to channel.\n\nCopy for X:\n<code>${escHtml(chosen)}</code>`;
+    toast = `✅ Approved ${label} → channel`;
   } else if (action === 'skip') {
     await skipEvent(env.DB, eventId);
     replyText = '⏭ Skipped';

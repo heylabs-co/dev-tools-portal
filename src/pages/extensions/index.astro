@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import SearchBar from '../../components/SearchBar.astro';
+import RecommendCTA from '../../components/RecommendCTA.astro';
 import { getCollection } from 'astro:content';
 
 const allExtensions = await getCollection('extensions');
@@ -78,6 +79,13 @@ const categoryLabels: Record<string, string> = {
         showFilters={false}
         compact={true}
         placeholder={`Search ${totalCount} VS Code extensions…`}
+      />
+    </div>
+
+    <div class="mt-4 max-w-2xl">
+      <RecommendCTA
+        compact={true}
+        headline="Looking for the right VS Code extension?"
       />
     </div>
 

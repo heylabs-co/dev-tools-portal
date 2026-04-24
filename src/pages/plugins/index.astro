@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import SearchBar from '../../components/SearchBar.astro';
+import RecommendCTA from '../../components/RecommendCTA.astro';
 import { getCollection } from 'astro:content';
 
 const allPlugins = await getCollection('jetbrainsPlugins');
@@ -63,6 +64,13 @@ const ideLabels: Record<string, string> = {
         showFilters={false}
         compact={true}
         placeholder={`Search ${totalCount} JetBrains plugins…`}
+      />
+    </div>
+
+    <div class="mt-4 max-w-2xl">
+      <RecommendCTA
+        compact={true}
+        headline="Which JetBrains plugin fits your stack?"
       />
     </div>
 

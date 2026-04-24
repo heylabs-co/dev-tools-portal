@@ -10,6 +10,7 @@ import GiscusComments from '../../components/GiscusComments.astro';
 import VoteButtons from '../../components/VoteButtons.astro';
 import TcoCalculator from '../../components/TcoCalculator.astro';
 import ReviewCard from '../../components/ReviewCard.astro';
+import RecommendCTA from '../../components/RecommendCTA.astro';
 import { getCollection } from 'astro:content';
 import { readFileSync, existsSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
@@ -449,6 +450,12 @@ const scaleItems = [
         </div>
       </section>
     )}
+
+    <RecommendCTA
+      seed={d.slug}
+      headline={`Looking for alternatives to ${d.name}?`}
+      subline="Answer 4 quick questions — get an AI-ranked shortlist of tools that match your stack and requirements."
+    />
 
     <!-- Comments -->
     <GiscusComments term={d.name} />

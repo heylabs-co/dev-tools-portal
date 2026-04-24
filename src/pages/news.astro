@@ -1,0 +1,223 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const feedUrl = 'https://toolnews-news.sssands.workers.dev/whats-new';
+---
+
+<BaseLayout
+  title="Dev Tools News — AI-curated feed from Twitter, HN, Reddit, GitHub"
+  description="Live feed of dev-tool launches, AI-lab announcements, and industry moves. Auto-curated hourly from Twitter, Hacker News, Reddit, GitHub Trending, Lobsters, Product Hunt."
+  jsonLd={{
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: 'tool.news — live news feed',
+    description: 'Live dev-tools and AI news, AI-scored for newsworthiness and virality.',
+    url: 'https://tool.news/news',
+  }}
+>
+  <section class="mx-auto max-w-3xl px-4 py-12">
+    <div class="mb-8">
+      <h1 class="text-4xl font-extrabold tracking-tight text-gray-900 dark:text-white">
+        What's new
+      </h1>
+      <p class="mt-3 text-gray-600 dark:text-gray-400">
+        Dev-tool and AI-lab news, auto-curated hourly from Twitter, Hacker News, Reddit,
+        GitHub Trending, Lobsters, and Product Hunt. AI-scored for newsworthiness + virality,
+        human-reviewed before it lands here.
+      </p>
+
+      <div class="mt-4 flex flex-wrap gap-3 text-xs">
+        <a
+          href="https://t.me/toolnews"
+          target="_blank"
+          rel="noopener"
+          class="inline-flex items-center gap-1.5 rounded-full bg-[#2AABEE]/10 px-3 py-1.5 font-medium text-[#2AABEE] hover:bg-[#2AABEE]/20"
+        >
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/></svg>
+          Subscribe on Telegram
+        </a>
+        <a
+          href="https://x.com/toolnewsHQ"
+          target="_blank"
+          rel="noopener"
+          class="inline-flex items-center gap-1.5 rounded-full bg-gray-100 px-3 py-1.5 font-medium text-gray-700 hover:bg-gray-200 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700"
+        >
+          Follow @toolnewsHQ
+        </a>
+      </div>
+    </div>
+
+    <div
+      id="news-loading"
+      class="py-16 text-center text-sm text-gray-500 dark:text-gray-400"
+    >
+      Loading feed…
+    </div>
+
+    <div id="news-error" class="hidden py-8 text-center">
+      <p class="text-sm text-red-600 dark:text-red-400">
+        Couldn't load the feed. <button
+          id="news-retry"
+          class="font-medium underline underline-offset-2"
+        >Retry</button>
+      </p>
+    </div>
+
+    <ol id="news-list" class="hidden space-y-4"></ol>
+
+    <div id="news-empty" class="hidden py-16 text-center">
+      <p class="text-sm text-gray-500 dark:text-gray-400">
+        No approved news yet. Check back soon — the bot pushes drafts daily at 06:00 UTC.
+      </p>
+    </div>
+  </section>
+</BaseLayout>
+
+<script is:inline define:vars={{ feedUrl }}>
+  (function () {
+    const loadingEl = document.getElementById('news-loading');
+    const errorEl = document.getElementById('news-error');
+    const listEl = document.getElementById('news-list');
+    const emptyEl = document.getElementById('news-empty');
+    const retryBtn = document.getElementById('news-retry');
+
+    function esc(s) {
+      return String(s ?? '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+    }
+
+    function formatTime(iso) {
+      if (!iso) return '';
+      const d = new Date(iso.includes('T') ? iso : iso.replace(' ', 'T') + 'Z');
+      if (Number.isNaN(d.getTime())) return '';
+      const diff = Date.now() - d.getTime();
+      const mins = Math.round(diff / 60000);
+      if (mins < 1) return 'just now';
+      if (mins < 60) return mins + 'm ago';
+      const hrs = Math.round(mins / 60);
+      if (hrs < 24) return hrs + 'h ago';
+      const days = Math.round(hrs / 24);
+      if (days < 7) return days + 'd ago';
+      return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+    }
+
+    function sourceBadge(src) {
+      const map = {
+        twitter: { label: 'X', bg: 'bg-black', fg: 'text-white' },
+        hackernews: { label: 'HN', bg: 'bg-orange-500', fg: 'text-white' },
+        reddit: { label: 'Reddit', bg: 'bg-[#FF4500]', fg: 'text-white' },
+        github: { label: 'GitHub', bg: 'bg-gray-900', fg: 'text-white' },
+        lobsters: { label: 'Lobsters', bg: 'bg-red-800', fg: 'text-white' },
+        producthunt: { label: 'PH', bg: 'bg-[#DA552F]', fg: 'text-white' },
+      };
+      const cfg = map[src] || { label: src || '?', bg: 'bg-gray-500', fg: 'text-white' };
+      return (
+        '<span class="inline-flex items-center rounded px-1.5 py-0.5 text-[10px] font-bold ' +
+        cfg.bg +
+        ' ' +
+        cfg.fg +
+        '">' +
+        esc(cfg.label) +
+        '</span>'
+      );
+    }
+
+    function pickVariantText(item) {
+      if (!item.drafts_json) return item.text || item.title || '';
+      try {
+        const d = JSON.parse(item.drafts_json);
+        const v = item.approved_variant;
+        const drafts = d && d.drafts;
+        if (v && drafts && drafts[v]) return drafts[v];
+        if (d && d.quick_take) return d.quick_take;
+      } catch (_) {}
+      return item.text || item.title || '';
+    }
+
+    function render(items) {
+      loadingEl.classList.add('hidden');
+      errorEl.classList.add('hidden');
+
+      if (!items.length) {
+        emptyEl.classList.remove('hidden');
+        return;
+      }
+
+      const html = items
+        .map(function (item) {
+          const body = pickVariantText(item);
+          const handle = item.source_handle ? '@' + item.source_handle : '';
+          const time = formatTime(item.pushed_at || item.created_at);
+          const url = item.url || '';
+          const hasUrl = url && /^https?:\/\//i.test(url);
+          const score = item.score != null ? item.score : '';
+          const viral = item.virality_score != null ? item.virality_score : null;
+
+          return (
+            '<li class="rounded-lg border border-gray-200 bg-white p-4 shadow-sm transition hover:shadow-md dark:border-gray-800 dark:bg-gray-900">' +
+            '<div class="mb-2 flex items-center gap-2 text-xs text-gray-500 dark:text-gray-400">' +
+            sourceBadge(item.source) +
+            (handle
+              ? '<span class="truncate font-medium text-gray-700 dark:text-gray-300">' +
+                esc(handle) +
+                '</span>'
+              : '') +
+            '<span>·</span>' +
+            '<span>' +
+            esc(time) +
+            '</span>' +
+            (score !== ''
+              ? '<span class="ml-auto inline-flex items-center gap-1 rounded bg-gray-100 px-1.5 py-0.5 text-[10px] font-semibold text-gray-700 dark:bg-gray-800 dark:text-gray-300" title="score ' +
+                score +
+                (viral != null ? ' · virality ' + viral : '') +
+                '">⚡ ' +
+                score +
+                '</span>'
+              : '') +
+            '</div>' +
+            '<p class="whitespace-pre-wrap text-[15px] leading-relaxed text-gray-900 dark:text-gray-100">' +
+            esc(body) +
+            '</p>' +
+            (hasUrl
+              ? '<a href="' +
+                esc(url) +
+                '" target="_blank" rel="noopener" class="mt-2 inline-block text-xs text-[#5E6AD2] hover:underline dark:text-[#818CF8]">' +
+                'Open source ↗</a>'
+              : '') +
+            '</li>'
+          );
+        })
+        .join('');
+
+      listEl.innerHTML = html;
+      listEl.classList.remove('hidden');
+    }
+
+    function load() {
+      loadingEl.classList.remove('hidden');
+      errorEl.classList.add('hidden');
+      listEl.classList.add('hidden');
+      emptyEl.classList.add('hidden');
+
+      fetch(feedUrl, { cache: 'no-store' })
+        .then(function (r) {
+          if (!r.ok) throw new Error('HTTP ' + r.status);
+          return r.json();
+        })
+        .then(function (data) {
+          render(Array.isArray(data.items) ? data.items : []);
+        })
+        .catch(function (e) {
+          console.warn('whats-new fetch failed:', e);
+          loadingEl.classList.add('hidden');
+          errorEl.classList.remove('hidden');
+        });
+    }
+
+    retryBtn && retryBtn.addEventListener('click', load);
+    load();
+  })();
+</script>

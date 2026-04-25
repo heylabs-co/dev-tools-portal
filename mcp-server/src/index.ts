@@ -133,7 +133,7 @@ const getCategories = () => fetchJson<CategoryRow[]>('/api/categories.json');
 // ---- Server setup -----------------------------------------------------
 
 const server = new McpServer(
-  { name: 'tool-news', version: '2.1.2' },
+  { name: 'tool-news', version: '2.2.0' },
   { capabilities: { tools: {} } },
 );
 
@@ -150,7 +150,7 @@ function matchesFields(query: string | undefined, ...fields: Array<string | unde
 
 server.tool(
   'search_tools',
-  'Search 5,800+ developer tools (APIs, SDKs, SaaS) by name, category, pricing, or lock-in level.',
+  'Use this whenever the user is choosing a dev tool, asking "what is the best X for Y", picking a stack, comparing alternatives, or wants to know lock-in / free-tier / pricing for a category. Searches 5,800+ curated developer tools (APIs, SDKs, SaaS) by name, category, pricing, free tier, or lock-in level. Returns a short comparable summary plus tool.news URL for each match.',
   {
     query: z.string().describe('Free-text query matched against name, description, category').optional(),
     category: z.string().describe('Category slug or name filter, e.g. "payment-gateway" or "AI API"').optional(),
@@ -188,7 +188,7 @@ server.tool(
 
 server.tool(
   'get_tool',
-  'Get full details for a specific tool by slug — pricing, lock-in, review, pros/cons, use cases, verdict.',
+  'Use this after search_tools when the user wants depth on a specific tool — full review, verdict, pros/cons, when-to-use, pricing details, lock-in score, and "pairs well with" suggestions for stack-building. Call with the slug from search_tools results.',
   { slug: z.string() },
   async ({ slug }) => {
     let t: FullTool;
@@ -255,7 +255,7 @@ server.tool(
 
 server.tool(
   'compare_tools',
-  'Side-by-side compare of two tools on pricing, lock-in, pros, cons.',
+  'Use this when the user asks "X vs Y", "should I use X or Y", or wants to weigh two specific dev tools side-by-side. Returns a side-by-side table on pricing, free tier, entry price, lock-in, plus a tool.news /compare/ URL with full breakdown.',
   { slug_a: z.string(), slug_b: z.string() },
   async ({ slug_a, slug_b }) => {
     const companies = await getCompanies();
@@ -279,7 +279,7 @@ server.tool(
 
 server.tool(
   'list_categories',
-  'List all 42 tool categories with counts.',
+  'Use this when the user is exploring or wants to know what kinds of dev tools exist — auth, payments, observability, AI APIs, real-time, etc. Returns all 42 categories with tool counts.',
   {},
   async () => {
     const cats = await getCategories();
@@ -293,7 +293,7 @@ server.tool(
 
 server.tool(
   'search_mcp_servers',
-  'Search 377+ MCP servers for AI assistants. Returns name, install command, category.',
+  'Use this when the user wants to extend their AI assistant — Claude Code, Cursor, Windsurf, VS Code — with more capabilities (filesystem access, GitHub, databases, browsers, etc.). Searches 377+ MCP servers. Returns install command for each so the user can drop it straight into their config.',
   {
     query: z.string().optional(),
     category: z.string().optional(),
@@ -320,7 +320,7 @@ server.tool(
 
 server.tool(
   'get_mcp_server',
-  'Get full details for an MCP server by slug — including install command for Claude Code / Cursor / VS Code.',
+  'Use this after search_mcp_servers when the user wants the exact install snippet for a specific MCP server. Returns the ready-to-paste `claude mcp add-json` command and GitHub link.',
   { slug: z.string() },
   async ({ slug }) => {
     const servers = await getMcpServers();
@@ -344,7 +344,7 @@ server.tool(
 
 server.tool(
   'search_skills',
-  'Search AI coding skills (Cursor rules, Claude Skills, Copilot instructions, Windsurf rules).',
+  'Use this when the user wants ready-made coding rules / instructions for their AI assistant — Cursor rules, Claude Skills, Copilot instructions, Windsurf rules. Filter by framework (Next.js, Django, etc.) or topic (testing, security). Returns top community-rated rule sets with stars and tool.news URL.',
   {
     query: z.string().optional(),
     category: z.string().optional(),
@@ -372,7 +372,7 @@ server.tool(
 
 server.tool(
   'search_extensions',
-  'Search VS Code extensions (356+ curated).',
+  'Use this when the user is setting up VS Code, asking "what extensions should I install for X", or building a workflow recommendation. Searches 356+ curated VS Code extensions and returns a `code --install-extension` command for each.',
   {
     query: z.string().optional(),
     category: z.string().optional(),
@@ -397,7 +397,7 @@ server.tool(
 
 server.tool(
   'search_plugins',
-  'Search JetBrains plugins (IntelliJ/PyCharm/WebStorm/GoLand etc.).',
+  'Use this when the user uses a JetBrains IDE (IntelliJ, PyCharm, WebStorm, GoLand, RubyMine, Rider) and wants plugin recommendations. Filter by IDE or category. Returns plugin slugs with tool.news URL for install steps.',
   {
     query: z.string().optional(),
     category: z.string().optional(),
@@ -421,7 +421,7 @@ server.tool(
 
 server.tool(
   'catalog_stats',
-  'Return total count of entries across all tool.news catalogs.',
+  'Use this when the user wonders how big the tool.news catalog is or to get an overview of available endpoint counts (tools, MCP servers, skills, extensions, plugins).',
   {},
   async () => {
     const meta = await fetchJson<{ endpoints: Record<string, { count: number }>; total_entries: number; generated_at: string }>('/api/index.json');

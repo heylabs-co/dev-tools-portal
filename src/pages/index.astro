@@ -57,7 +57,7 @@ try {
   clearTimeout(t);
   if (res.ok) {
     const data = (await res.json()) as { items?: NewsItem[] };
-    initialNews = (data.items ?? []).slice(0, 12);
+    initialNews = (data.items ?? []).slice(0, 10);
   } else {
     console.warn(`whats-new build fetch: HTTP ${res.status}`);
   }
@@ -160,27 +160,27 @@ function relTime(iso: string | null): string {
   }}
 >
   <!-- Hero -->
-  <section class="relative overflow-hidden py-20 sm:py-28">
+  <section class="relative overflow-hidden py-10 sm:py-14">
     <div class="absolute inset-0 bg-[#FAFBFC] dark:bg-[#0A0A0F]"></div>
     <div
       class="absolute inset-0 opacity-[0.4] dark:opacity-[0.15]"
       style="background-image: radial-gradient(circle at 1px 1px, #5E6AD2 1px, transparent 0); background-size: 32px 32px;"
     ></div>
     <div
-      class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[600px] rounded-full opacity-20 dark:opacity-10 blur-3xl"
+      class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[320px] rounded-full opacity-25 dark:opacity-12 blur-3xl"
       style="background: radial-gradient(ellipse, #818CF8 0%, #5E6AD2 40%, transparent 70%);"
     ></div>
 
     <div class="relative mx-auto max-w-3xl px-6 text-center">
-      <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-[#0F172A] dark:text-[#EDEDEF] leading-[1.1]">
-        The Developer Tool<br />Intelligence Platform
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-[#0F172A] dark:text-[#EDEDEF] leading-[1.05]">
+        The Developer Tool Intelligence Platform
       </h1>
-      <p class="mt-6 text-lg sm:text-xl text-[#64748B] dark:text-[#8A8F98] max-w-2xl mx-auto leading-relaxed">
+      <p class="mt-3 text-base sm:text-lg text-[#64748B] dark:text-[#8A8F98] max-w-2xl mx-auto leading-relaxed">
         Live news + {toolCount}+ tools compared — pricing, lock-in scores, migration guides.
         Make informed decisions, faster.
       </p>
 
-      <div class="mt-10 flex items-center justify-center gap-3 flex-wrap">
+      <div class="mt-5 flex items-center justify-center gap-3 flex-wrap">
         <a
           href="#news"
           class="inline-flex items-center gap-2 rounded-lg bg-gradient-to-r from-[#5E6AD2] to-[#818CF8] px-6 py-3 text-sm font-semibold text-white shadow-sm hover:opacity-90 transition-opacity"
@@ -214,7 +214,7 @@ function relTime(iso: string | null): string {
   </section>
 
   <!-- ── NEWS ─────────────────────────────────────────────────────────── -->
-  <section id="news" class="mx-auto max-w-5xl px-6 py-16 scroll-mt-16">
+  <section id="news" class="mx-auto max-w-5xl px-6 py-10 scroll-mt-16">
     <div class="flex items-end justify-between gap-4 flex-wrap">
       <div class="max-w-2xl">
         <div class="flex items-center gap-2">
@@ -257,6 +257,7 @@ function relTime(iso: string | null): string {
     </div>
 
     <!-- News list — hydrated at build, refreshed client-side -->
+    <!-- 10 items render: full 10 on sm+, first 5 only on mobile (CSS hides rest) -->
     <ol id="home-news" class="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-2">
       {initialNews.length === 0 && (
         <li class="col-span-full rounded-lg border border-dashed border-gray-200 bg-white p-8 text-center text-sm text-gray-500 dark:border-gray-800 dark:bg-gray-900 dark:text-gray-400">
@@ -264,14 +265,15 @@ function relTime(iso: string | null): string {
           <a href="https://t.me/toolnewshq" target="_blank" rel="noopener" class="underline underline-offset-2">subscribe on Telegram</a>.
         </li>
       )}
-      {initialNews.map((item) => {
+      {initialNews.map((item, idx) => {
         const body = pickBody(item);
         const handle = item.source_handle ? `@${item.source_handle}` : '';
         const time = relTime(item.pushed_at ?? item.created_at);
         const href = item.url ?? '/news/';
         const hasUrl = item.url && /^https?:\/\//i.test(item.url);
+        const hideOnMobile = idx >= 5; // mobile shows 5, desktop shows 10
         return (
-          <li class="rounded-lg border border-gray-200 bg-white p-4 transition hover:border-[#5E6AD2]/50 hover:shadow-md dark:border-gray-800 dark:bg-gray-900 dark:hover:border-[#818CF8]/50">
+          <li class={`home-news-card ${hideOnMobile ? 'hidden sm:block' : ''} rounded-lg border border-gray-200 bg-white p-4 transition hover:border-[#5E6AD2]/50 hover:shadow-md dark:border-gray-800 dark:bg-gray-900 dark:hover:border-[#818CF8]/50`}>
             <div class="flex items-center gap-2 text-xs text-gray-500 dark:text-gray-400">
               <span class="inline-flex items-center rounded bg-gray-900 px-1.5 py-0.5 text-[10px] font-bold text-white dark:bg-gray-100 dark:text-gray-900">{sourceLabel(item.source)}</span>
               {handle && <span class="truncate text-gray-700 dark:text-gray-300">{handle}</span>}
@@ -290,10 +292,25 @@ function relTime(iso: string | null): string {
         );
       })}
     </ol>
+
+    {/* Prominent see-all CTA */}
+    {initialNews.length > 0 && (
+      <div class="mt-8 flex justify-center">
+        <a
+          href="/news/"
+          class="group inline-flex items-center gap-2 rounded-xl border-2 border-[#5E6AD2]/20 bg-gradient-to-r from-[#5E6AD2]/5 to-[#818CF8]/5 px-6 py-3 text-base font-semibold text-[#5E6AD2] transition hover:border-[#5E6AD2]/50 hover:from-[#5E6AD2]/10 hover:to-[#818CF8]/10 dark:border-[#818CF8]/20 dark:text-[#818CF8] dark:hover:border-[#818CF8]/50"
+        >
+          See all Dev News
+          <svg class="h-4 w-4 transition-transform group-hover:translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+          </svg>
+        </a>
+      </div>
+    )}
   </section>
 
   <!-- ── CATALOG (compact) ────────────────────────────────────────────── -->
-  <section class="mx-auto max-w-5xl px-6 py-16 border-t border-gray-100 dark:border-gray-900">
+  <section class="mx-auto max-w-5xl px-6 py-12 border-t border-gray-100 dark:border-gray-900">
     <div class="max-w-2xl">
       <h2 class="text-2xl font-bold text-[#0F172A] dark:text-[#EDEDEF]">Or browse the catalog</h2>
       <p class="mt-2 text-[#64748B] dark:text-[#8A8F98]">
@@ -412,15 +429,16 @@ function relTime(iso: string | null): string {
     function render(items) {
       if (!items.length) return;
       listEl.innerHTML = items
-        .slice(0, 12)
-        .map(function (item) {
+        .slice(0, 10)
+        .map(function (item, idx) {
           const body = pickBody(item);
           const handle = item.source_handle ? '@' + item.source_handle : '';
           const time = relTime(item.pushed_at || item.created_at);
           const url = item.url || '';
           const hasUrl = url && /^https?:\/\//i.test(url);
+          const hideOnMobile = idx >= 5 ? ' hidden sm:block' : '';
           return (
-            '<li class="rounded-lg border border-gray-200 bg-white p-4 transition hover:border-[#5E6AD2]/50 hover:shadow-md dark:border-gray-800 dark:bg-gray-900 dark:hover:border-[#818CF8]/50">' +
+            '<li class="home-news-card' + hideOnMobile + ' rounded-lg border border-gray-200 bg-white p-4 transition hover:border-[#5E6AD2]/50 hover:shadow-md dark:border-gray-800 dark:bg-gray-900 dark:hover:border-[#818CF8]/50">' +
             '<div class="flex items-center gap-2 text-xs text-gray-500 dark:text-gray-400">' +
             '<span class="inline-flex items-center rounded bg-gray-900 px-1.5 py-0.5 text-[10px] font-bold text-white dark:bg-gray-100 dark:text-gray-900">' + esc(sourceLabel(item.source)) + '</span>' +
             (handle ? '<span class="truncate text-gray-700 dark:text-gray-300">' + esc(handle) + '</span>' : '') +

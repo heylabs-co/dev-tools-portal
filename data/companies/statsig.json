@@ -59,7 +59,9 @@
   },
   "pricing": {
     "model": "freemium",
-    "has_free_tier": true
+    "has_free_tier": true,
+    "high_water_mark": true,
+    "high_water_mark_reason": "Annual event-volume commits on paid plans — do not scale down mid-cycle."
   },
   "scores": {
     "lock_in": {

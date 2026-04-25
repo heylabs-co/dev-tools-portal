@@ -31,6 +31,11 @@ const pricingSchema = z.object({
   pricing_url: z.string().optional(),
   transparency_score: z.number().min(1).max(5).optional(),
   last_checked: z.string().optional(),
+  // High water mark pricing = bill locks at peak usage / reserved capacity
+  // and can't scale down mid-cycle. Surfaced as a warning on the tool page
+  // with alternatives from the same category.
+  high_water_mark: z.boolean().optional(),
+  high_water_mark_reason: z.string().max(160).optional(),
 }).optional();
 
 const scaleSchema = z.object({

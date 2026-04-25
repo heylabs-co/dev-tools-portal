@@ -57,7 +57,9 @@
   },
   "pricing": {
     "model": "usage",
-    "has_free_tier": true
+    "has_free_tier": true,
+    "high_water_mark": true,
+    "high_water_mark_reason": "Reserved compute credits — pre-paid capacity tiers do not scale down within the billing period."
   },
   "scores": {
     "lock_in": {

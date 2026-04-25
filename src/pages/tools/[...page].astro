@@ -48,24 +48,60 @@ const categoryCount = allCategories.length;
       />
     </div>
 
-    <div class="mb-8 max-w-2xl">
+    <div class="mb-6 max-w-2xl">
       <RecommendCTA compact={true} />
     </div>
 
-    <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-      {page.data.map((entry) => (
-        <CompanyCard
-          slug={entry.data.slug}
-          name={entry.data.name}
-          description={entry.data.description}
-          logo={entry.data.logo ?? ''}
-          category={entry.data.categories.primary.name}
-          lockInLevel={entry.data.scores?.lock_in?.level}
-          pricingModel={entry.data.pricing?.model}
-          hasFree={entry.data.pricing?.has_free_tier}
-        />
-      ))}
+    <!-- HWM filter toggle -->
+    <div class="mb-4">
+      <label class="inline-flex items-center gap-2 text-sm text-gray-700 dark:text-gray-300 cursor-pointer select-none">
+        <input type="checkbox" id="hwm-filter" class="h-4 w-4 rounded border-gray-300 text-[#5E6AD2] focus:ring-[#5E6AD2] dark:border-gray-600" />
+        <span>Exclude high water mark pricing <span class="text-xs text-gray-500 dark:text-gray-400">(peak-usage / reserved commits)</span></span>
+      </label>
     </div>
+
+    <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      {page.data.map((entry) => {
+        const isHwm = (entry.data.pricing as { high_water_mark?: boolean } | undefined)?.high_water_mark === true;
+        return (
+          <div class="tool-card-wrap" data-hwm={isHwm ? '1' : '0'}>
+            <CompanyCard
+              slug={entry.data.slug}
+              name={entry.data.name}
+              description={entry.data.description}
+              logo={entry.data.logo ?? ''}
+              category={entry.data.categories.primary.name}
+              lockInLevel={entry.data.scores?.lock_in?.level}
+              pricingModel={entry.data.pricing?.model}
+              hasFree={entry.data.pricing?.has_free_tier}
+            />
+          </div>
+        );
+      })}
+    </div>
+
+    <script is:inline>
+      (function () {
+        var cb = document.getElementById('hwm-filter');
+        if (!cb) return;
+        var url = new URL(window.location.href);
+        if (url.searchParams.get('hide_hwm') === '1') cb.checked = true;
+
+        function apply() {
+          var hide = cb.checked;
+          document.querySelectorAll('.tool-card-wrap').forEach(function (el) {
+            var isHwm = el.getAttribute('data-hwm') === '1';
+            el.style.display = hide && isHwm ? 'none' : '';
+          });
+          var u = new URL(window.location.href);
+          if (hide) u.searchParams.set('hide_hwm', '1');
+          else u.searchParams.delete('hide_hwm');
+          history.replaceState(null, '', u.toString());
+        }
+        cb.addEventListener('change', apply);
+        apply();
+      })();
+    </script>
 
     <!-- Pagination nav -->
     <nav class="mt-12 flex flex-wrap items-center justify-between gap-3" aria-label="Pagination">

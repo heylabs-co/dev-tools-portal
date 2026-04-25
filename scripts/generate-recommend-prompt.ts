@@ -28,6 +28,7 @@ interface CompanyJSON {
     model?: string;
     has_free_tier?: boolean;
     entry_price?: string;
+    high_water_mark?: boolean;
   };
   scores?: {
     lock_in?: {
@@ -57,9 +58,10 @@ for (const file of files) {
     const entryPrice = data.pricing?.entry_price || '';
     const lockIn = data.scores?.lock_in?.level || 'unknown';
 
-    // Keep compact: slug | name | category | pricing | free | entry price | lock-in
+    // Keep compact: slug | name | category | pricing | free | entry price | lock-in [| HWM]
     const pricePart = entryPrice ? `${pricingModel}, ${entryPrice}` : pricingModel;
-    lines.push(`${slug} | ${name} | ${category} | ${pricePart} | ${hasFree} | ${lockIn} lock-in`);
+    const hwm = data.pricing?.high_water_mark ? ' | HWM' : '';
+    lines.push(`${slug} | ${name} | ${category} | ${pricePart} | ${hasFree} | ${lockIn} lock-in${hwm}`);
   } catch (e) {
     console.warn(`Skipping ${file}: ${(e as Error).message}`);
   }

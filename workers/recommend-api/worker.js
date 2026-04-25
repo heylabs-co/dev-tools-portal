@@ -119,6 +119,7 @@ RULES:
 - Include 1-3 relevant MCP servers, skills, and extensions when applicable.
 - Include 0-2 trending repos ONLY when genuinely helpful; leave the array empty otherwise.
 - MCP servers, skills, extensions and trending repos are optional — only include if relevant.
+- Tools marked with " | HWM" at the end of their catalog line have HIGH WATER MARK pricing — the bill locks to peak usage or reserved capacity and does NOT scale down within a billing cycle (e.g. Datadog, Snowflake, annual seat commits). When the user mentions "budget", "flexible", "hobby", "side project", "scale down", "no commits", or signals cost-consciousness, PREFER non-HWM alternatives from the same category. If you recommend a HWM tool anyway, ALWAYS flag this in the reason field (e.g. "Note: uses peak-usage pricing — bill locks at the highest host count for the month").
 
 Budget preference: ${budgetLabel}
 Prefer low vendor lock-in: ${prefer_low_lockin ? 'Yes' : 'No'}

@@ -59,6 +59,35 @@ const scaleItems = [
   { label: 'Employees', value: d.scale?.employees },
   { label: 'Valuation', value: d.scale?.valuation },
 ].filter((item) => item.value);
+
+// High-water-mark pricing flag. If this tool is flagged, compute 3-5
+// alternatives from the same primary category that do NOT have the flag.
+const hwm = d.pricing?.high_water_mark === true;
+const hwmReason: string | undefined = (d.pricing as any)?.high_water_mark_reason;
+let hwmAlternatives: Array<{ slug: string; name: string; lockInLevel?: string }> = [];
+if (hwm) {
+  const primarySlug = d.categories?.primary?.slug;
+  if (primarySlug) {
+    const all = await getCollection('companies');
+    hwmAlternatives = all
+      .filter((c) => c.data.slug !== d.slug)
+      .filter((c) => c.data.categories?.primary?.slug === primarySlug)
+      .filter((c) => (c.data.pricing as any)?.high_water_mark !== true)
+      .filter((c) => c.data.status !== 'inactive')
+      .map((c) => ({
+        slug: c.data.slug,
+        name: c.data.name,
+        lockInLevel: c.data.scores?.lock_in?.level,
+      }))
+      .sort((a, b) => {
+        // low lock-in first
+        const rank = (l?: string) => (l === 'low' ? 0 : l === 'medium' ? 1 : l === 'high' ? 2 : 3);
+        const r = rank(a.lockInLevel) - rank(b.lockInLevel);
+        return r !== 0 ? r : a.name.localeCompare(b.name);
+      })
+      .slice(0, 5);
+  }
+}
 ---
 
 <BaseLayout title={pageTitle} description={pageDescription}>
@@ -182,6 +211,16 @@ const scaleItems = [
       >
         {d.categories.primary.name}
       </a>
+      {hwm && (
+        <a
+          href="#pricing-warning"
+          title={hwmReason}
+          class="inline-flex items-center gap-1.5 rounded-full border border-red-500/30 bg-red-500/10 px-3 py-1 text-xs font-semibold text-red-700 dark:text-red-300 hover:bg-red-500/15 transition-colors"
+        >
+          <span class="h-1.5 w-1.5 rounded-full bg-red-500"></span>
+          High water mark pricing
+        </a>
+      )}
     </div>
 
     <!-- Review Card -->
@@ -336,6 +375,43 @@ const scaleItems = [
           </a>
         </div>
         <PricingTable company={{ name: d.name, pricing: d.pricing }} />
+
+        {hwm && (
+          <aside
+            id="pricing-warning"
+            class="mt-6 rounded-xl border border-red-300 dark:border-red-800/60 bg-red-50/70 dark:bg-red-950/30 p-5"
+          >
+            <h3 class="flex items-center gap-2 text-sm font-bold text-red-800 dark:text-red-300">
+              <span class="inline-flex h-5 w-5 items-center justify-center rounded-full bg-red-500 text-xs text-white">!</span>
+              Heads up: high water mark pricing
+            </h3>
+            <p class="mt-2 text-sm text-red-700 dark:text-red-200">
+              {hwmReason ?? 'Bill stays at peak usage or reserved capacity — does not scale down within the billing cycle.'}
+            </p>
+            {hwmAlternatives.length > 0 && (
+              <>
+                <p class="mt-4 text-xs font-semibold uppercase tracking-wider text-red-800 dark:text-red-300">
+                  Alternatives without this pricing pattern
+                </p>
+                <ul class="mt-2 space-y-1.5">
+                  {hwmAlternatives.map((alt) => (
+                    <li class="flex items-center gap-2 text-sm">
+                      <a
+                        href={`/tools/${alt.slug}/`}
+                        class="font-medium text-red-900 dark:text-red-100 hover:underline"
+                      >
+                        {alt.name}
+                      </a>
+                      {alt.lockInLevel && (
+                        <span class="text-xs text-red-700 dark:text-red-300">· {alt.lockInLevel} lock-in</span>
+                      )}
+                    </li>
+                  ))}
+                </ul>
+              </>
+            )}
+          </aside>
+        )}
       </section>
     )}
 

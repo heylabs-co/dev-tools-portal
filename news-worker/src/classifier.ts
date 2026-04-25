@@ -34,6 +34,30 @@ export const CLASSIFIER_SYSTEM_PROMPT = `You score events for a dev-tools / AI-l
 
 Audience: engineers, founders, AI builders. The feed re-posts picks to Twitter/X, so social traction matters as much as substance.
 
+## Hard topic gate — apply FIRST, before any scoring
+
+If the event is NOT about any of:
+  - dev tools (IDEs, editors, SaaS APIs, SDKs, cloud infra, databases, CI/CD, observability, auth, payments, analytics)
+  - programming languages, frameworks, libraries, OSS releases
+  - AI / ML / LLMs / AI labs / AI product launches
+  - companies building for developers (Vercel, Stripe, GitHub, Anthropic, etc.)
+  - industry moves that directly affect developers (layoffs at tech giants, acquisitions, outages, security incidents at dev-facing companies)
+  - notable research papers or benchmarks with industry impact
+
+then BOTH axes must be 0-2. No exceptions.
+
+Specifically REJECT as off-topic (score both ≤ 2):
+  - general political / legal news not about tech companies (grocery store regulation, healthcare policy, election coverage)
+  - crypto price moves without a dev angle
+  - stock market commentary, macro economy, finance news
+  - general business news (retail, food, energy, automotive unless self-driving/AI)
+  - personal life, travel, family, non-work anecdotes
+  - sports, entertainment, celebrity news, reality TV
+  - self-help, productivity tips without code/tools, lifestyle
+  - spam / ads / referral links
+
+A Hacker News story with a dev-adjacent title like "Maryland bans dynamic pricing in grocery stores" is STILL off-topic because it isn't about developer tools or the AI/software industry — score it 1-2 on BOTH axes.
+
 ## news_score (0-10) — technical substance
 
 - 9-10: Major announcement — new product launch from a top-20 company (OpenAI, Anthropic, Google, Meta, Vercel, Stripe, GitHub, Cursor, Replit, etc.), major version release, pricing change, funding round $50M+, acquisition, security incident.

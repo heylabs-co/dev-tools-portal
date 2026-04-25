@@ -55,7 +55,9 @@
   },
   "pricing": {
     "model": "usage",
-    "has_free_tier": true
+    "has_free_tier": true,
+    "high_water_mark": false,
+    "high_water_mark_reason": "Usage-based metered billing scales up and down"
   },
   "scores": {
     "lock_in": {

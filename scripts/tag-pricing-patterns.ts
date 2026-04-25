@@ -27,7 +27,7 @@ if (!API_KEY) {
 }
 
 const COMPANIES_DIR = join(import.meta.dirname, '..', 'data', 'companies');
-const MODEL = 'google/gemini-2.0-flash-001';
+const MODEL = 'anthropic/claude-sonnet-4-5';
 const ENDPOINT = 'https://openrouter.ai/api/v1/chat/completions';
 
 const args = process.argv.slice(2);
@@ -40,18 +40,42 @@ const FORCE = args.includes('--force');
 const LIMIT = Number(arg('--limit')) || 0;
 const CONCURRENCY = Number(arg('--concurrency')) || 10;
 
-const SYSTEM_PROMPT = `You label a developer tool's pricing model with a single boolean: is it "high water mark pricing"?
+const SYSTEM_PROMPT = `You label a developer tool's pricing model with a strict boolean: does it charge HIGH WATER MARK pricing?
 
-"High water mark pricing" = the bill locks to peak usage / reserved capacity during a billing period and does NOT scale DOWN within the cycle. Examples: Datadog (peak host count per month), Snowflake reserved capacity, Splunk commit tiers, annual seat commits, reserved throughput you pay for even if unused.
+## Definition (narrow — do not generalize)
 
-NOT high water mark:
-- Pure usage-based metered billing that scales up AND down (AWS Lambda, Stripe, Twilio per-SMS)
-- Monthly subscriptions that you can downgrade on the next cycle
-- Free tier with overage charges only on actual usage
-- Hobby/indie tiers with soft limits
+"High water mark pricing" = the bill is LOCKED to peak usage or pre-paid reserved capacity during a billing period and does NOT scale down within the cycle, EVEN IF the customer reduces usage. The customer is penalized for temporary spikes.
 
-Return STRICT JSON only:
-{"high_water_mark": true|false, "reason": "<=120 chars explaining the mechanism or 'standard metered' if false"}`;
+Known confirmed examples (seed list — answer TRUE for):
+- Datadog: bills on peak host count per month
+- Snowflake: reserved compute credits don't release mid-term
+- Splunk: annual ingest commitment regardless of actual volume
+- Elastic Cloud / reserved tiers
+- MongoDB Atlas dedicated clusters (fixed price)
+- Auth0: MAU tiers bill on peak monthly active users
+- Okta / Salesforce / HubSpot / GitLab: annual seat commits that can't be reduced mid-contract
+- Mixpanel / Amplitude / Heap / FullStory: annual event-volume commits on paid plans
+
+## Anti-examples — answer FALSE
+
+- AWS Lambda / Stripe / Twilio: metered per-unit, no peak lock
+- Vercel / Netlify hobby & pro tiers: scale with usage, downgradable monthly
+- Cloudflare Workers / KV: metered, scale up AND down
+- Any hobby / indie / self-serve tier you can downgrade next cycle
+- GitHub / GitLab Free / open-source tools with optional donations
+- Any tool whose pricing is ONLY described as "contact sales" without explicit evidence of peak-lock — we DO NOT assume enterprise contracts are HWM
+- Any tool where the catalog text only says "subscription" or "per-seat" without mentioning annual commit, reservation, or peak-based billing
+
+## Critical rule: be a skeptic
+
+Without EXPLICIT evidence of peak-lock or non-scalable reservation in the pricing description, default to FALSE. Do not infer HWM from "enterprise" or "custom pricing" alone. Do not infer HWM from "annual plans available" alone. Do not fabricate pricing details that aren't in the input.
+
+When unsure → FALSE.
+
+## Output
+
+Return STRICT JSON only, no prose, no markdown fences:
+{"high_water_mark": true|false, "reason": "<=120 chars — evidence-backed. 'standard metered' / 'downgradable monthly' / 'insufficient pricing evidence' if false"}`;
 
 interface Result {
   high_water_mark: boolean;

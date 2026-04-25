@@ -49,7 +49,9 @@
   },
   "pricing": {
     "model": "subscription",
-    "has_free_tier": false
+    "has_free_tier": false,
+    "high_water_mark": false,
+    "high_water_mark_reason": "Monthly subscription, no evidence of peak-lock"
   },
   "scores": {
     "lock_in": {

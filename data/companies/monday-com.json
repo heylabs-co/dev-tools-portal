@@ -51,7 +51,9 @@
   },
   "pricing": {
     "model": "seat",
-    "has_free_tier": true
+    "has_free_tier": true,
+    "high_water_mark": false,
+    "high_water_mark_reason": "Per-seat pricing, no explicit annual non-reducible commit"
   },
   "scores": {
     "lock_in": {

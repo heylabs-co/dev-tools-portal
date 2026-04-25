@@ -49,7 +49,9 @@
   },
   "pricing": {
     "model": "usage",
-    "has_free_tier": true
+    "has_free_tier": true,
+    "high_water_mark": false,
+    "high_water_mark_reason": "usage/metered — scales with actual usage"
   },
   "scores": {
     "lock_in": {

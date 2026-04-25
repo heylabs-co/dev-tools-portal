@@ -54,7 +54,9 @@
   },
   "pricing": {
     "model": "usage",
-    "has_free_tier": false
+    "has_free_tier": false,
+    "high_water_mark": false,
+    "high_water_mark_reason": "Usage-based pricing, scales with consumption"
   },
   "scores": {
     "lock_in": {

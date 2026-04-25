@@ -43,6 +43,35 @@ interface AlgoliaResponse {
   hits?: AlgoliaHit[];
 }
 
+/**
+ * Strip HTML tags + decode common entities. HN's Algolia `story_text` keeps
+ * the original Hacker News HTML (`<a href="...">`, `&#x2F;` for URL slashes,
+ * `&#x27;` for apostrophes, etc). If we pass that through our rendering
+ * pipeline (which HTML-escapes defensively), it shows up as literal
+ * `&#x2F;` / `<a href=…>` in the card body. So we normalize to plain text
+ * at the source.
+ */
+function htmlToText(input: string | null | undefined): string | null {
+  if (!input) return null;
+  let s = String(input);
+  // Preserve line breaks where HN uses them.
+  s = s.replace(/<br\s*\/?>/gi, '\n').replace(/<\/p>\s*<p>/gi, '\n\n');
+  // Drop every remaining tag.
+  s = s.replace(/<[^>]+>/g, '');
+  // Decode numeric + hex entities + the handful of named ones HN emits.
+  s = s.replace(/&#x([0-9a-fA-F]+);/g, (_, hex) => String.fromCharCode(parseInt(hex, 16)));
+  s = s.replace(/&#(\d+);/g, (_, dec) => String.fromCharCode(parseInt(dec, 10)));
+  s = s
+    .replace(/&amp;/g, '&')
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>')
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;/g, "'")
+    .replace(/&apos;/g, "'")
+    .replace(/&nbsp;/g, ' ');
+  return s.trim() || null;
+}
+
 async function fetchJson<T>(url: string, timeoutMs = DEFAULT_TIMEOUT_MS): Promise<T> {
   const ctrl = new AbortController();
   const timer = setTimeout(() => ctrl.abort(), timeoutMs);
@@ -69,7 +98,7 @@ function hitToEvent(h: AlgoliaHit): EventLike | null {
     url: `https://news.ycombinator.com/item?id=${h.objectID}`,
     created_at: new Date(h.created_at_i * 1000).toISOString(),
     title: h.title ?? null,
-    text: h.story_text ?? null,
+    text: htmlToText(h.story_text),
     lang: 'en',
     like_count: h.points ?? null,
     reply_count: h.num_comments ?? null,

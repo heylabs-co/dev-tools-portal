@@ -14,9 +14,12 @@ import type { Env } from './env';
 import { type EventRow } from './db/client';
 import { postApprovedToChannel } from './handlers/telegram';
 
-const SITE_SCORE_THRESHOLD = 6;
-const CHANNEL_SCORE_THRESHOLD = 8;
-const CHANNEL_VIRALITY_THRESHOLD = 7;
+// score >= 5 lets "useful but narrow" events onto the site (Bun release,
+// benchmark threads, OSS launches). Previously 6 was too strict — only ~1%
+// of classified events hit it, so the feed stalled for hours between approvals.
+const SITE_SCORE_THRESHOLD = 5;
+const CHANNEL_SCORE_THRESHOLD = 7;
+const CHANNEL_VIRALITY_THRESHOLD = 6;
 const MAX_AUTO_PUBLISH_PER_RUN = 50;
 const MAX_CHANNEL_POSTS_PER_RUN = 5;
 const CHANNEL_FRESH_HOURS = 24;

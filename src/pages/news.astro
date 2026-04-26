@@ -367,10 +367,13 @@ const timeOptions = [
       listEl.innerHTML = html;
       listEl.classList.remove('hidden');
 
-      // Counter and show-more button
+      // Counter and show-more button.
+      // We don't expose the absolute feed cap here — just where the user
+      // is in the current filtered slice.
       const remaining = filtered.length - sliceCount;
-      countEl.textContent = sliceCount + ' of ' + filtered.length + ' shown'
-        + (filtered.length < allItems.length ? ' (' + allItems.length + ' total in feed)' : '');
+      countEl.textContent = remaining > 0
+        ? 'Showing ' + sliceCount + ' of ' + filtered.length
+        : 'Showing all ' + filtered.length;
       countEl.classList.remove('hidden');
       if (remaining > 0) {
         showMoreWrap.classList.remove('hidden');

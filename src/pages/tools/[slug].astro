@@ -60,6 +60,49 @@ const scaleItems = [
   { label: 'Valuation', value: d.scale?.valuation },
 ].filter((item) => item.value);
 
+// Family detection — group tools by website root domain so siblings
+// (e.g. Stripe + Stripe API + Stripe Atlas + Stripe Connect) link to
+// each other. We strip "www.", well-known subdomains, and skip generic
+// hosts that aren't brand-specific (github.com, gitlab.com, etc).
+function rootDomain(url: string | undefined | null): string | null {
+  if (!url) return null;
+  try {
+    const u = new URL(url);
+    let host = u.hostname.toLowerCase().replace(/^www\./, '');
+    // Skip generic hosts so we don't group every OSS tool that uses a github URL.
+    const generic = new Set([
+      'github.com', 'github.io', 'gitlab.com', 'bitbucket.org',
+      'docs.google.com', 'sites.google.com', 'medium.com',
+      'gitbook.io', 'notion.site', 'notion.so', 'pages.dev',
+      'vercel.app', 'netlify.app', 'fly.dev', 'workers.dev',
+      'readme.io', 'gitiles.com', 'sourceforge.net',
+    ]);
+    if (generic.has(host)) return null;
+    return host;
+  } catch { return null; }
+}
+const myFamilyDomain = rootDomain(d.website);
+let familyMembers: Array<{ slug: string; name: string; category: string }> = [];
+if (myFamilyDomain) {
+  const all = await getCollection('companies');
+  familyMembers = all
+    .filter((c) => c.data.slug !== d.slug)
+    .filter((c) => rootDomain(c.data.website) === myFamilyDomain)
+    .filter((c) => c.data.status !== 'inactive')
+    .map((c) => ({
+      slug: c.data.slug,
+      name: c.data.name,
+      category: c.data.categories?.primary?.name ?? '—',
+    }))
+    .sort((a, b) => a.name.localeCompare(b.name))
+    .slice(0, 12);
+}
+// Family display name: shortest sibling name is usually the parent brand
+// (e.g. "Stripe" comes before "Stripe API"). Fall back to current tool name.
+const familyName = familyMembers.length > 0
+  ? [d.name, ...familyMembers.map((m) => m.name)].sort((a, b) => a.length - b.length)[0]
+  : d.name;
+
 // High-water-mark pricing flag. If this tool is flagged, compute 3-5
 // alternatives from the same primary category that do NOT have the flag.
 const hwm = d.pricing?.high_water_mark === true;
@@ -497,6 +540,296 @@ if (hwm) {
         Report incorrect data
       </a>
     </div>
+
+    <!-- Family / sibling products from same brand -->
+    {familyMembers.length > 0 && (
+      <section class="mt-12" data-pagefind-ignore>
+        <h2 class="flex items-center gap-3 text-lg font-semibold" style="color: var(--color-text);">
+          <span class="block w-1 h-6 rounded-full bg-gradient-to-b from-[#5E6AD2] to-[#818CF8]"></span>
+          More from {familyName}
+        </h2>
+        <p class="mt-2 text-sm" style="color: var(--color-muted);">
+          Other {familyName} products in the catalog — same brand, different category.
+        </p>
+        <div class="mt-5 grid grid-cols-1 gap-3 sm:grid-cols-2">
+          {familyMembers.map((m) => (
+            <a
+              href={`/tools/${m.slug}/`}
+              class="group flex items-center justify-between rounded-xl border p-4 transition-all duration-150 hover:-translate-y-0.5 hover:shadow-md"
+              style="border-color: var(--color-border); background-color: var(--color-surface);"
+            >
+              <div class="min-w-0">
+                <div class="text-sm font-semibold transition-colors duration-150 group-hover:text-[#5E6AD2] dark:group-hover:text-[#818CF8]" style="color: var(--color-text);">
+                  {m.name}
+                </div>
+                <div class="mt-0.5 truncate text-xs" style="color: var(--color-muted);">
+                  {m.category}
+                </div>
+              </div>
+              <svg class="h-4 w-4 shrink-0 opacity-40 transition-opacity duration-150 group-hover:opacity-100" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" style="color: var(--color-muted);">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+              </svg>
+            </a>
+          ))}
+        </div>
+      </section>
+    )}
+
+    <!-- Migrate CTA — opens modal to draft an export-request email -->
+    <section class="mt-12" data-pagefind-ignore>
+      <div class="rounded-2xl border border-orange-200/60 dark:border-orange-900/40 bg-orange-50/40 dark:bg-orange-950/20 p-6">
+        <h3 class="flex items-center gap-2 text-base font-bold" style="color: var(--color-text);">
+          <span>🔄</span>
+          Thinking about migrating off {d.name}?
+        </h3>
+        <p class="mt-2 text-sm" style="color: var(--color-muted);">
+          Get an AI-drafted migration plan + a copy-paste email to {d.name} support
+          requesting a data export. Pick where you're moving to and tell us your context.
+        </p>
+        <button
+          id="migrate-open-btn"
+          type="button"
+          data-source-slug={d.slug}
+          data-source-name={d.name}
+          data-source-category={d.categories.primary.slug}
+          class="mt-4 inline-flex items-center gap-2 rounded-lg bg-gradient-to-r from-orange-500 to-amber-500 px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:opacity-90"
+        >
+          Help me migrate from {d.name}
+          <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+          </svg>
+        </button>
+      </div>
+    </section>
+
+    <!-- Migrate Modal — hidden until button click -->
+    <div
+      id="migrate-modal"
+      class="fixed inset-0 z-50 hidden items-center justify-center bg-black/60 p-4 backdrop-blur-sm"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="migrate-modal-title"
+    >
+      <div class="relative w-full max-w-2xl rounded-2xl bg-white p-6 shadow-xl dark:bg-gray-900 max-h-[90vh] overflow-y-auto">
+        <button
+          id="migrate-close-btn"
+          type="button"
+          aria-label="Close"
+          class="absolute top-3 right-3 rounded-full p-1.5 text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-800"
+        >
+          <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
+        </button>
+        <h3 id="migrate-modal-title" class="text-lg font-bold text-gray-900 dark:text-white">
+          Migrate from {d.name}
+        </h3>
+        <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
+          We'll draft an export-request email and a step-by-step plan.
+        </p>
+
+        <div id="migrate-form" class="mt-5 space-y-4">
+          <div>
+            <label for="migrate-target" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+              Migrate to
+            </label>
+            <select
+              id="migrate-target"
+              class="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm focus:border-orange-500 focus:outline-none focus:ring-2 focus:ring-orange-500/30 dark:border-gray-700 dark:bg-gray-800 dark:text-white"
+            >
+              <option value="">Loading alternatives…</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="migrate-context" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+              Your context <span class="text-xs text-gray-500">(stack, data volume, what matters)</span>
+            </label>
+            <textarea
+              id="migrate-context"
+              rows="3"
+              placeholder="e.g. Next.js + Postgres app, ~5k MAU, need to keep webhook subscriptions and historical events"
+              class="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm focus:border-orange-500 focus:outline-none focus:ring-2 focus:ring-orange-500/30 dark:border-gray-700 dark:bg-gray-800 dark:text-white"
+            ></textarea>
+          </div>
+
+          <button
+            id="migrate-submit-btn"
+            type="button"
+            class="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-orange-500 to-amber-500 px-4 py-2.5 text-sm font-semibold text-white transition hover:opacity-90"
+          >
+            Draft my migration plan
+          </button>
+          <p class="text-[11px] text-gray-500 dark:text-gray-400">
+            ⚠ AI-generated — verify every step against the official docs before executing.
+          </p>
+        </div>
+
+        <div id="migrate-loading" class="mt-6 hidden text-center">
+          <div class="inline-block h-6 w-6 animate-spin rounded-full border-2 border-orange-500 border-t-transparent"></div>
+          <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">Drafting your migration plan…</p>
+        </div>
+        <div id="migrate-error" class="mt-6 hidden rounded-lg bg-red-50 dark:bg-red-950/30 p-4 text-sm text-red-700 dark:text-red-300"></div>
+        <div id="migrate-results" class="mt-6 hidden space-y-5"></div>
+      </div>
+    </div>
+
+    <script is:inline define:vars={{ sourceSlug: d.slug, sourceName: d.name, primaryCategorySlug: d.categories.primary.slug }}>
+      (function () {
+        const openBtn = document.getElementById('migrate-open-btn');
+        const closeBtn = document.getElementById('migrate-close-btn');
+        const modal = document.getElementById('migrate-modal');
+        const form = document.getElementById('migrate-form');
+        const targetSel = document.getElementById('migrate-target');
+        const ctxTa = document.getElementById('migrate-context');
+        const submitBtn = document.getElementById('migrate-submit-btn');
+        const loadingEl = document.getElementById('migrate-loading');
+        const errorEl = document.getElementById('migrate-error');
+        const resultsEl = document.getElementById('migrate-results');
+        if (!openBtn || !modal) return;
+
+        function open() {
+          modal.classList.remove('hidden');
+          modal.classList.add('flex');
+          if (!targetSel.dataset.loaded) loadAlternatives();
+        }
+        function close() {
+          modal.classList.add('hidden');
+          modal.classList.remove('flex');
+        }
+        openBtn.addEventListener('click', open);
+        closeBtn.addEventListener('click', close);
+        modal.addEventListener('click', function (e) { if (e.target === modal) close(); });
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape' && !modal.classList.contains('hidden')) close();
+        });
+
+        function esc(s) { return String(s ?? '').replace(/[&<>"']/g, function (c) {
+          return ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'})[c];
+        }); }
+
+        // Pull same-category tools from a static endpoint we already publish.
+        async function loadAlternatives() {
+          try {
+            const r = await fetch('/api/tools-by-category.json', { cache: 'force-cache' });
+            const data = await r.json();
+            const alts = (data[primaryCategorySlug] || []).filter(function (t) {
+              return t.slug !== sourceSlug;
+            }).slice(0, 50);
+            if (alts.length === 0) {
+              targetSel.innerHTML = '<option value="">(no alternatives in this category)</option>';
+              return;
+            }
+            targetSel.innerHTML =
+              '<option value="">— choose a target —</option>' +
+              alts.map(function (t) {
+                return '<option value="' + esc(t.slug) + '">' + esc(t.name) + '</option>';
+              }).join('');
+            targetSel.dataset.loaded = '1';
+          } catch (e) {
+            targetSel.innerHTML = '<option value="">Couldn\'t load alternatives</option>';
+            console.warn('migrate alts load failed', e);
+          }
+        }
+
+        submitBtn.addEventListener('click', async function () {
+          const target = targetSel.value;
+          if (!target) {
+            errorEl.textContent = 'Please pick a target tool first.';
+            errorEl.classList.remove('hidden');
+            return;
+          }
+          errorEl.classList.add('hidden');
+          form.classList.add('hidden');
+          loadingEl.classList.remove('hidden');
+          resultsEl.classList.add('hidden');
+          resultsEl.innerHTML = '';
+
+          try {
+            const res = await fetch('https://devtools-recommend-api.sssands.workers.dev/migrate', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                source_slug: sourceSlug,
+                target_slug: target,
+                context: ctxTa.value.trim().slice(0, 1500),
+              }),
+            });
+            if (!res.ok) {
+              const txt = await res.text().catch(function () { return ''; });
+              throw new Error('HTTP ' + res.status + ' — ' + txt.slice(0, 120));
+            }
+            const data = await res.json();
+            renderResults(data);
+          } catch (e) {
+            errorEl.textContent = 'Couldn\'t generate the plan: ' + (e && e.message ? e.message : e);
+            errorEl.classList.remove('hidden');
+            form.classList.remove('hidden');
+          } finally {
+            loadingEl.classList.add('hidden');
+          }
+        });
+
+        function renderResults(data) {
+          const subject = (data.email && data.email.subject) || 'Data export request';
+          const body = (data.email && data.email.body) || '';
+          const steps = Array.isArray(data.steps) ? data.steps : [];
+          const effort = data.effort || '';
+          const gotchas = Array.isArray(data.gotchas) ? data.gotchas : [];
+
+          resultsEl.innerHTML =
+            '<div class="rounded-lg border border-orange-200/80 dark:border-orange-900/40 bg-orange-50/40 dark:bg-orange-950/20 p-4">' +
+            '<div class="flex items-center justify-between mb-2">' +
+            '<h4 class="text-sm font-bold text-gray-900 dark:text-white">📧 Draft email to ' + esc(sourceName) + ' support</h4>' +
+            '<button type="button" id="migrate-copy-email" class="rounded-md border border-gray-300 dark:border-gray-700 px-2 py-1 text-xs font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800">Copy</button>' +
+            '</div>' +
+            '<div class="text-xs text-gray-500 dark:text-gray-400 mb-1">Subject: <span class="font-mono">' + esc(subject) + '</span></div>' +
+            '<pre class="whitespace-pre-wrap text-xs text-gray-800 dark:text-gray-200 font-mono leading-relaxed">' + esc(body) + '</pre>' +
+            '</div>' +
+
+            (steps.length ? (
+              '<div>' +
+              '<h4 class="text-sm font-bold text-gray-900 dark:text-white mb-2">🛠 Migration steps</h4>' +
+              '<ol class="list-decimal space-y-2 pl-5 text-sm text-gray-700 dark:text-gray-300">' +
+              steps.map(function (s) { return '<li>' + esc(s) + '</li>'; }).join('') +
+              '</ol>' +
+              (effort ? '<p class="mt-2 text-xs text-gray-500 dark:text-gray-400">Estimated effort: <strong>' + esc(effort) + '</strong></p>' : '') +
+              '</div>'
+            ) : '') +
+
+            (gotchas.length ? (
+              '<div class="rounded-lg border border-yellow-200 dark:border-yellow-900/50 bg-yellow-50/60 dark:bg-yellow-950/30 p-4">' +
+              '<h4 class="text-sm font-bold text-yellow-800 dark:text-yellow-300 mb-2">⚠ Watch out for</h4>' +
+              '<ul class="list-disc space-y-1 pl-5 text-sm text-yellow-700 dark:text-yellow-200">' +
+              gotchas.map(function (g) { return '<li>' + esc(g) + '</li>'; }).join('') +
+              '</ul>' +
+              '</div>'
+            ) : '') +
+
+            '<div class="text-center pt-2">' +
+            '<button type="button" id="migrate-restart-btn" class="text-xs text-gray-500 dark:text-gray-400 hover:underline">← Try a different target</button>' +
+            '</div>';
+
+          resultsEl.classList.remove('hidden');
+
+          const copyBtn = document.getElementById('migrate-copy-email');
+          if (copyBtn) {
+            copyBtn.addEventListener('click', function () {
+              const txt = 'Subject: ' + subject + '\n\n' + body;
+              navigator.clipboard.writeText(txt).then(function () {
+                copyBtn.textContent = 'Copied ✓';
+                setTimeout(function () { copyBtn.textContent = 'Copy'; }, 1500);
+              });
+            });
+          }
+          const restartBtn = document.getElementById('migrate-restart-btn');
+          if (restartBtn) {
+            restartBtn.addEventListener('click', function () {
+              resultsEl.classList.add('hidden');
+              form.classList.remove('hidden');
+            });
+          }
+        }
+      })();
+    </script>
 
     <!-- Used in stacks (use cases referencing this tool) -->
     {usedInStacks.length > 0 && (

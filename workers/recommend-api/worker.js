@@ -41,6 +41,142 @@ function checkRateLimit(ip) {
   return true;
 }
 
+async function handleMigrate(request, env) {
+  let body;
+  try {
+    body = await request.json();
+  } catch {
+    return json({ error: 'Invalid JSON' }, 400);
+  }
+
+  const { source_slug, target_slug, context } = body || {};
+  if (!source_slug || !target_slug || typeof source_slug !== 'string' || typeof target_slug !== 'string') {
+    return json({ error: 'source_slug + target_slug required' }, 400);
+  }
+  if (source_slug === target_slug) {
+    return json({ error: 'source and target must be different tools' }, 400);
+  }
+
+  // Find source + target lines in TOOL_LIST so the model has the same
+  // context the recommender already trusts. Avoids sending the whole
+  // catalog for a 2-tool query.
+  const find = (slug) => {
+    const re = new RegExp('^' + slug.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ' \\|', 'm');
+    const m = TOOL_LIST.match(re);
+    return m ? m[0] : null;
+  };
+  const sourceLine = find(source_slug);
+  const targetLine = find(target_slug);
+  if (!sourceLine || !targetLine) {
+    return json({ error: 'tool slug not found in catalog' }, 404);
+  }
+
+  const userContext = (typeof context === 'string' ? context : '').slice(0, 1500).trim();
+
+  const systemPrompt = `You draft a concise migration plan from one developer tool to another.
+
+You will be given a source tool, a target tool, and optionally the user's context (their stack, data volume, what matters). Return STRICT JSON with this exact shape:
+
+{
+  "email": {
+    "subject": "<short subject for the data export request to source vendor>",
+    "body": "<plain-text email body, ≤ 200 words, polite + specific. Asks for: full data export in machine-readable format (JSON/CSV), specifies the data types likely needed (users, transactions, configurations — match the source tool category), gives a reasonable timeline (14 days), and asks about sunset/billing implications. Sign as 'Your customer'.>"
+  },
+  "steps": [
+    "<step 1 — typically: request export from source>",
+    "<step 2 — set up target tool account/project>",
+    "<step 3 — concrete export action with the actual API or feature name when known>",
+    "<step 4 — concrete import or transformation step>",
+    "<step 5 — verification step (compare counts, smoke test)>",
+    "<step 6 — cutover/dual-write or DNS swap>",
+    "<step 7 — decommission source>"
+  ],
+  "effort": "<rough estimate, e.g. '2-4 days', '1-2 weeks', '1 day'>",
+  "gotchas": [
+    "<concrete pitfall #1 — webhook URLs to update, ID format mismatches, missing features at target, billing overlap, data format differences. ONLY list things you have real evidence for; do not invent.>",
+    "<concrete pitfall #2>",
+    "<concrete pitfall #3>"
+  ]
+}
+
+RULES:
+- Keep email body under 200 words.
+- Each step is a single sentence — concrete and verifiable.
+- ONLY include gotchas you can back up with concrete API/feature knowledge. Better 1 real gotcha than 3 invented ones. If you have nothing solid, return an empty array.
+- Effort is a range, not a guarantee.
+- Output ONLY the JSON. No markdown fences, no preamble, no commentary.`;
+
+  const userPrompt = `Source tool: ${sourceLine}
+Target tool: ${targetLine}
+${userContext ? `\nUser context: ${userContext}` : ''}
+
+Draft the migration plan now. JSON only.`;
+
+  let aiResponse;
+  try {
+    const orRes = await fetch('https://openrouter.ai/api/v1/chat/completions', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${env.OPENROUTER_API_KEY}`,
+        'Content-Type': 'application/json',
+        'HTTP-Referer': 'https://tool.news',
+        'X-Title': 'tool.news Migrate',
+      },
+      body: JSON.stringify({
+        model: 'deepseek/deepseek-chat-v3-0324',
+        messages: [
+          { role: 'system', content: systemPrompt },
+          { role: 'user', content: userPrompt },
+        ],
+        temperature: 0.3,
+        max_tokens: 1500,
+        response_format: { type: 'json_object' },
+      }),
+    });
+    if (!orRes.ok) {
+      const txt = await orRes.text().catch(() => '');
+      console.error('migrate openrouter', orRes.status, txt);
+      return json({ error: 'AI service unavailable' }, 502);
+    }
+    aiResponse = await orRes.json();
+  } catch (e) {
+    console.error('migrate fetch failed', e);
+    return json({ error: 'AI service unavailable' }, 502);
+  }
+
+  const content = aiResponse?.choices?.[0]?.message?.content;
+  if (typeof content !== 'string' || !content.trim()) {
+    return json({ error: 'Empty AI response' }, 502);
+  }
+
+  let parsed;
+  try {
+    parsed = JSON.parse(content);
+  } catch {
+    // Try to recover a JSON block if the model wrapped it.
+    const m = content.match(/\{[\s\S]*\}/);
+    if (!m) return json({ error: 'Could not parse AI response' }, 502);
+    try { parsed = JSON.parse(m[0]); } catch { return json({ error: 'Could not parse AI response' }, 502); }
+  }
+
+  // Sanitize shape
+  const email = parsed && parsed.email && typeof parsed.email === 'object' ? parsed.email : {};
+  const steps = Array.isArray(parsed?.steps) ? parsed.steps.slice(0, 10).map((s) => String(s).slice(0, 280)) : [];
+  const gotchas = Array.isArray(parsed?.gotchas) ? parsed.gotchas.slice(0, 6).map((g) => String(g).slice(0, 240)) : [];
+
+  return json({
+    source_slug,
+    target_slug,
+    email: {
+      subject: String(email.subject || `Data export request — preparing migration off ${source_slug}`).slice(0, 140),
+      body: String(email.body || '').slice(0, 2000),
+    },
+    steps,
+    effort: typeof parsed?.effort === 'string' ? parsed.effort.slice(0, 60) : '',
+    gotchas,
+  });
+}
+
 export default {
   async fetch(request, env) {
     // CORS preflight
@@ -56,6 +192,12 @@ export default {
     const ip = request.headers.get('CF-Connecting-IP') || 'unknown';
     if (!checkRateLimit(ip)) {
       return json({ error: 'Rate limit exceeded. Try again tomorrow.' }, 429);
+    }
+
+    // Route by path: /migrate dispatches to the migration drafter.
+    const path = new URL(request.url).pathname;
+    if (path === '/migrate') {
+      return handleMigrate(request, env);
     }
 
     // Parse body

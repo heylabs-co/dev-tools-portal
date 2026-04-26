@@ -171,6 +171,12 @@ app.post('/cron/push', async (c) => {
 // Public JSON feed — consumed by the Astro /news page client-side.
 // CORS open: it's approved-only content, safe to read from any origin.
 app.get('/whats-new', async (c) => {
+  // Sort by source-creation time so a 2-day-old reddit post that just
+  // got auto-approved doesn't jump to the top of the feed. The visible
+  // time on the card also comes from created_at, so users see the real
+  // age of the source post — pushed_at gets clobbered with the same
+  // CURRENT_TIMESTAMP for every event in an auto-publish batch (~50
+  // events in a few seconds), which made every card read "just now".
   const rows = await c.env.DB.prepare(
     `SELECT id, source, source_handle, url, text, title, score,
             news_score, virality_score, approved_variant, drafts_json,
@@ -178,8 +184,8 @@ app.get('/whats-new', async (c) => {
             created_at, pushed_at
        FROM events
       WHERE posted = 1 AND approved_variant IS NOT NULL
-      ORDER BY pushed_at DESC
-      LIMIT 100`,
+      ORDER BY created_at DESC
+      LIMIT 500`,
   ).all();
 
   return new Response(JSON.stringify({ items: rows.results ?? [] }), {

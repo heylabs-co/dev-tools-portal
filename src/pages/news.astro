@@ -145,6 +145,19 @@ const timeOptions = [
       </p>
     </div>
 
+    <div id="news-show-more-wrap" class="mt-8 hidden text-center">
+      <button
+        id="news-show-more"
+        type="button"
+        class="inline-flex items-center gap-2 rounded-xl border-2 border-[#5E6AD2]/20 bg-gradient-to-r from-[#5E6AD2]/5 to-[#818CF8]/5 px-6 py-3 text-sm font-semibold text-[#5E6AD2] transition hover:border-[#5E6AD2]/50 hover:from-[#5E6AD2]/10 hover:to-[#818CF8]/10 dark:border-[#818CF8]/20 dark:text-[#818CF8] dark:hover:border-[#818CF8]/50"
+      >
+        Show 50 more
+        <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+        </svg>
+      </button>
+    </div>
+
     <div id="news-count" class="mt-6 hidden text-center text-xs text-gray-400 dark:text-gray-500"></div>
   </section>
 </BaseLayout>
@@ -176,6 +189,8 @@ const timeOptions = [
     const emptyEl = document.getElementById('news-empty');
     const countEl = document.getElementById('news-count');
     const retryBtn = document.getElementById('news-retry');
+    const showMoreWrap = document.getElementById('news-show-more-wrap');
+    const showMoreBtn = document.getElementById('news-show-more');
 
     const timeButtons = document.querySelectorAll('.time-pill');
     const sourceButtons = document.querySelectorAll('.source-chip');
@@ -186,6 +201,9 @@ const timeOptions = [
 
     /** @type {Array} */
     let allItems = [];
+
+    const PAGE_SIZE = 50;
+    let visibleCount = PAGE_SIZE;
 
     // ── state from URL ──────────────────────────────────────────────────
     function readState() {
@@ -279,7 +297,7 @@ const timeOptions = [
     function applyFilters(items) {
       const cutoff = timeCutoffMs(state.time);
       let out = items.filter(function (it) {
-        const when = toDate(it.pushed_at || it.created_at);
+        const when = toDate(it.created_at);
         if (when && cutoff && when < cutoff) return false;
         if (state.sources.size > 0 && !state.sources.has(it.source)) return false;
         if (state.handle) {
@@ -294,7 +312,7 @@ const timeOptions = [
         });
       } else {
         out = out.slice().sort(function (a, b) {
-          return toDate(b.pushed_at || b.created_at) - toDate(a.pushed_at || a.created_at);
+          return toDate(b.created_at) - toDate(a.created_at);
         });
       }
       return out;
@@ -309,15 +327,19 @@ const timeOptions = [
         listEl.classList.add('hidden');
         emptyEl.classList.remove('hidden');
         countEl.classList.add('hidden');
+        showMoreWrap.classList.add('hidden');
         return;
       }
       emptyEl.classList.add('hidden');
 
-      const html = filtered.map(function (item) {
+      const sliceCount = Math.min(visibleCount, filtered.length);
+      const sliced = filtered.slice(0, sliceCount);
+
+      const html = sliced.map(function (item) {
         const body = pickBody(item);
         const handle = item.source_handle || '';
         const handleText = handle ? '@' + handle : '';
-        const time = formatTime(item.pushed_at || item.created_at);
+        const time = formatTime(item.created_at);
         const url = item.url || '';
         const hasUrl = url && /^https?:\/\//i.test(url);
         const srcMeta = SOURCE_META[item.source] || { discuss: item.source || 'source' };
@@ -345,13 +367,25 @@ const timeOptions = [
       listEl.innerHTML = html;
       listEl.classList.remove('hidden');
 
-      countEl.textContent = filtered.length + ' of ' + allItems.length + ' shown';
+      // Counter and show-more button
+      const remaining = filtered.length - sliceCount;
+      countEl.textContent = sliceCount + ' of ' + filtered.length + ' shown'
+        + (filtered.length < allItems.length ? ' (' + allItems.length + ' total in feed)' : '');
       countEl.classList.remove('hidden');
+      if (remaining > 0) {
+        showMoreWrap.classList.remove('hidden');
+        showMoreBtn.textContent = 'Show ' + Math.min(PAGE_SIZE, remaining) + ' more';
+        // restore the icon span we wiped on textContent assignment? Use innerHTML instead.
+        showMoreBtn.innerHTML = 'Show ' + Math.min(PAGE_SIZE, remaining) + ' more <svg class="ml-1 inline h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3" /></svg>';
+      } else {
+        showMoreWrap.classList.add('hidden');
+      }
 
       // Bind handle chips
       listEl.querySelectorAll('.handle-link').forEach(function (btn) {
         btn.addEventListener('click', function () {
           state.handle = (btn.getAttribute('data-handle') || '').toLowerCase();
+          visibleCount = PAGE_SIZE;
           writeState(state);
           syncUI();
           render();
@@ -381,6 +415,7 @@ const timeOptions = [
     timeButtons.forEach(function (btn) {
       btn.addEventListener('click', function () {
         state.time = btn.getAttribute('data-time') || 'all';
+        visibleCount = PAGE_SIZE;
         writeState(state);
         syncUI();
         render();
@@ -391,6 +426,7 @@ const timeOptions = [
         const key = btn.getAttribute('data-source') || '';
         if (state.sources.has(key)) state.sources.delete(key);
         else state.sources.add(key);
+        visibleCount = PAGE_SIZE;
         writeState(state);
         syncUI();
         render();
@@ -398,14 +434,24 @@ const timeOptions = [
     });
     sortSelect.addEventListener('change', function () {
       state.sort = sortSelect.value;
+      visibleCount = PAGE_SIZE;
       writeState(state);
       render();
     });
     handleChipClear.addEventListener('click', function () {
       state.handle = '';
+      visibleCount = PAGE_SIZE;
       writeState(state);
       syncUI();
       render();
+    });
+
+    // Show more — extend the visible window without re-fetching
+    showMoreBtn.addEventListener('click', function () {
+      visibleCount += PAGE_SIZE;
+      render();
+      // scroll the new batch into view
+      showMoreBtn.scrollIntoView({ block: 'center', behavior: 'smooth' });
     });
 
     // ── initial load ───────────────────────────────────────────────────

@@ -268,7 +268,7 @@ function relTime(iso: string | null): string {
       {initialNews.map((item, idx) => {
         const body = pickBody(item);
         const handle = item.source_handle ? `@${item.source_handle}` : '';
-        const time = relTime(item.pushed_at ?? item.created_at);
+        const time = relTime(item.created_at);
         const href = item.url ?? '/news/';
         const hasUrl = item.url && /^https?:\/\//i.test(item.url);
         const hideOnMobile = idx >= 5; // mobile shows 5, desktop shows 10
@@ -433,7 +433,7 @@ function relTime(iso: string | null): string {
         .map(function (item, idx) {
           const body = pickBody(item);
           const handle = item.source_handle ? '@' + item.source_handle : '';
-          const time = relTime(item.pushed_at || item.created_at);
+          const time = relTime(item.created_at);
           const url = item.url || '';
           const hasUrl = url && /^https?:\/\//i.test(url);
           const hideOnMobile = idx >= 5 ? ' hidden sm:block' : '';

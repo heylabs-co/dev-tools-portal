@@ -1,0 +1,55 @@
+{
+  "source": {
+    "slug": "cody",
+    "name": "cody"
+  },
+  "target": {
+    "slug": "applovin-max",
+    "name": "applovin-max"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Cody is an AI coding assistant from Sourcegraph and AppLovin MAX is a mobile ad mediation SDK; they are not substitutes. The right plan is to decommission Cody across IDEs and Sourcegraph, and separately adopt AppLovin MAX inside your mobile apps.",
+  "why_switch": [
+    "Removing an in-IDE AI coding assistant from the workflow",
+    "Reallocating tooling spend toward mobile monetisation",
+    "Adopting AppLovin MAX as part of a mediation strategy",
+    "Reducing AI provider footprint in the developer workflow",
+    "Internal policy change disallowing AI coding assistants"
+  ],
+  "what_to_export": [
+    "Cody workspace and IDE extension settings",
+    "Sourcegraph workspace and Cody account configuration",
+    "Custom prompts, commands and rules used by the team",
+    "Conversation history valuable for audit or knowledge transfer",
+    "List of users with Cody enabled in each IDE",
+    "Any tenant-level settings or admin policies",
+    "Per-repo or per-workspace context configuration"
+  ],
+  "export_method": "Inventory every IDE where Cody is installed (VS Code, JetBrains, web, etc.) and every user with access in your Sourcegraph workspace. From the Sourcegraph admin area, export tenant-level configuration including any Cody policies and connected code hosts. Ask developers to back up their custom prompts, commands and any local Cody settings to a shared location. Capture conversation history that is useful for audit. Once configuration is archived, plan to disable Cody at the workspace level and uninstall the IDE extensions. There is no application data to move; treat this as a controlled offboarding rather than a migration.",
+  "import_method": "AppLovin MAX is integrated inside iOS, Android, Unity or React Native apps. Create an AppLovin account, register each app, and create ad units for the formats you intend to use. Integrate the AppLovin MAX SDK in each app following the official MAX integration guide, initialise it at app start and place ads at the chosen surfaces. Configure mediation networks in the MAX dashboard and update app-ads.txt with the required entries. Wire IAB TCF / GPP consent so ad requests carry the right privacy signals. Validate on real devices using MAX test mode, then release through standard app store updates.",
+  "concept_mapping": [
+    {
+      "source": "Cody IDE extension and Sourcegraph workspace",
+      "target": "AppLovin MAX mobile SDK and dashboard",
+      "note": "different product categories, no direct mapping"
+    },
+    {
+      "source": "Cody custom prompts and rules",
+      "target": "AppLovin MAX dashboard configuration",
+      "note": "unrelated configuration domains"
+    }
+  ],
+  "effort": "1-2 weeks to retire Cody; 3-8 weeks per platform to adopt AppLovin MAX",
+  "gotchas": [
+    "Do not present this as a one-for-one migration; the products solve unrelated problems.",
+    "Disable Cody at the Sourcegraph workspace level, not only in IDEs, to fully revoke access.",
+    "Cancel the Cody subscription per the contract terms; uninstalling the extension does not stop billing.",
+    "AppLovin MAX integration changes the binary and triggers iOS and Android store reviews.",
+    "Ads introduce compliance obligations (privacy policy, consent prompts) that did not exist with Cody.",
+    "Missing or wrong app-ads.txt or consent setup silently reduces MAX revenue."
+  ],
+  "email": {
+    "subject": "Internal: retiring Cody, adopting AppLovin MAX",
+    "body": "Hi,\n\nIn the next 14 days we are retiring Cody as our in-IDE AI coding assistant and, in parallel, integrating AppLovin MAX into our mobile apps for ad monetisation. These two changes are independent.\n\nIf you use Cody today, you will be asked to uninstall it from your IDEs; access will also be revoked at the Sourcegraph workspace level. The AppLovin MAX integration ships through normal app store updates.\n\nReply with any questions about how this affects your work.\n\nThanks,\nYour customer"
+  }
+}

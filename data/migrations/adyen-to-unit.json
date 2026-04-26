@@ -1,0 +1,64 @@
+{
+  "source": {
+    "slug": "adyen",
+    "name": "Adyen"
+  },
+  "target": {
+    "slug": "unit",
+    "name": "Unit"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Adyen is a global payment gateway and acquirer; Unit is a US banking-as-a-service platform offering FDIC-insured accounts, ACH, wire, card issuing, and lending. These are different product categories, so a migration only makes sense if you are pivoting from accepting payments toward operating banking and money-movement features in the US.",
+  "why_switch": [
+    "Pivoting toward embedded US banking features",
+    "Need FDIC-insured accounts for end users",
+    "ACH, wire, and card issuing under one API",
+    "Lending or money-movement product roadmap",
+    "Modern BaaS developer experience"
+  ],
+  "what_to_export": [
+    "Card and customer tokens (vault data)",
+    "Recurring payment / subscription mandates",
+    "Payout and settlement history",
+    "Refund and dispute records",
+    "Customer billing addresses and tax data",
+    "Webhook configuration and event subscriptions",
+    "API credentials and HMAC keys",
+    "Reconciliation and settlement reports"
+  ],
+  "export_method": "Use Adyen's customer area exports and APIs to pull recurring payment details, card tokens, and customer records as CSV. Adyen supports customer-token migration to other PSPs under PCI-compliant processes; coordinate with Adyen support and your acquirer to start a vault migration if you also need to keep accepting card payments elsewhere. Export refund, dispute, and payout history for accounting continuity. Document all webhook subscriptions and HMAC signing keys. If your move to Unit is a category change rather than a like-for-like swap, accept that most card-acceptance state in Adyen has no analogue in a BaaS platform and budget for parallel operation during the transition.",
+  "import_method": "Onboard with Unit and your assigned sponsor bank — expect a sales-led process and KYC/compliance review before going live. Integrate Unit's REST API to create customers, open FDIC-insured deposit accounts, and provision cards or money-movement endpoints (ACH, wire) as your product requires. Build the application logic that sits between your end users and Unit's primitives, including disclosures and customer agreements required by the sponsor bank. Configure Unit webhooks for account, card, and transaction events. Run a sandbox build end-to-end before opening accounts in production. If you still need card acceptance in parallel, plan to keep Adyen or another PSP for that surface.",
+  "concept_mapping": [
+    {
+      "source": "Merchant account",
+      "target": "Sponsor bank relationship",
+      "note": "Different regulatory model"
+    },
+    {
+      "source": "Card vault token",
+      "target": "Customer / account record",
+      "note": "Not a like-for-like — Unit issues accounts and cards rather than vaulting external cards"
+    },
+    {
+      "source": "Webhook",
+      "target": "Webhook"
+    },
+    {
+      "source": "Payout",
+      "target": "ACH / wire / book transfer"
+    }
+  ],
+  "effort": "8-16 weeks (regulatory onboarding plus integration)",
+  "gotchas": [
+    "Different product categories — Adyen accepts payments, Unit issues banking primitives; you may need both",
+    "Unit requires sponsor-bank onboarding, KYC/AML review, and compliance work before launch",
+    "US-only scope; non-US customers cannot be served on Unit",
+    "Card vault data does not move into a BaaS platform; plan separate handling if you keep card acceptance",
+    "Recent US BaaS turbulence has raised sponsor-bank risk — vet your assigned bank carefully",
+    "Compliance responsibility (BSA, OFAC, disclosures) remains partly on your team"
+  ],
+  "email": {
+    "subject": "Adding embedded US banking via Unit",
+    "body": "Hi team,\n\nOver the next 14 days we're starting onboarding with Unit so we can add FDIC-insured accounts, ACH, wires, and card issuing to our product. This is not a like-for-like swap from Adyen — Adyen accepts payments while Unit provides banking primitives — so depending on the final scope we may keep Adyen for card acceptance in parallel.\n\nDays 1-4: complete Unit application, sponsor-bank introductions, and KYC/compliance review. Days 5-9: integrate the Unit sandbox API for customer creation, account opening, and card issuing, and build the disclosure and agreement flows the sponsor bank requires. Days 10-14: run end-to-end sandbox tests, configure webhooks, and prepare the production go-live checklist.\n\nProduction launch will follow once compliance sign-off lands; that timeline depends on the sponsor bank, not just our integration. I'll share weekly status updates with the regulatory and engineering milestones.\n\nThanks,\nYour customer"
+  }
+}

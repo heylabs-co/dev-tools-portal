@@ -1,0 +1,62 @@
+{
+  "source": {
+    "slug": "elastic",
+    "name": "elastic"
+  },
+  "target": {
+    "slug": "checkmk",
+    "name": "checkmk"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Elastic APM and Checkmk overlap in infrastructure monitoring but diverge in tracing — Checkmk is strongest at host and service availability, less so at distributed traces. Plan to keep distributed tracing on a separate tool if your apps depend on it.",
+  "why_switch": [
+    "You want a tool focused on infrastructure health and availability checks.",
+    "Your team prefers Checkmk's agent-based check model over Elastic APM agents.",
+    "You're consolidating onto an on-premise stack with predictable licensing.",
+    "You need extensive ready-made checks for network devices and operating systems."
+  ],
+  "what_to_export": [
+    "Service inventory and host / agent assignments",
+    "Kibana dashboards and saved searches",
+    "Alerting rules and on-call routing",
+    "Custom metrics and threshold definitions",
+    "Notification channel configuration",
+    "Maintenance window and downtime schedules",
+    "Tag / label conventions used to scope queries",
+    "User and role mappings for the observability UI"
+  ],
+  "export_method": "Catalogue every host, container, and service currently sending data to Elastic APM and Beats. For each, note the metrics that drive existing dashboards and alerts. Export Kibana saved objects (dashboards, searches, alerts) as NDJSON via the Saved Objects API. List all alerting rules with their thresholds, evaluation windows, and notification destinations. Document maintenance windows, escalation policies, and any tagging conventions used to scope queries. Capture custom Beats or APM configuration from your infrastructure-as-code repository. Historical Elasticsearch data isn't directly importable into Checkmk — plan to keep the old cluster read-only if you need long-term retention.",
+  "import_method": "Install a Checkmk site on a dedicated host or container and roll out Checkmk agents to your servers. For services, use the appropriate special agents or HTTP / TCP active checks. Map your existing Elastic alerts to Checkmk service rules and notification rules. Configure notification channels (email, Slack, PagerDuty) and re-create on-call routing. Rebuild dashboards using Checkmk's views and the integrated graphing system — dashboards do not migrate from Kibana. If your applications need distributed tracing, keep an OpenTelemetry-compatible tracing backend alongside Checkmk because Checkmk focuses on availability and metric checks rather than traces. Run both systems in parallel for at least one full alerting cycle before decommissioning Elastic.",
+  "concept_mapping": [
+    {
+      "source": "Beats / Elastic Agent",
+      "target": "Checkmk agent"
+    },
+    {
+      "source": "Kibana dashboard",
+      "target": "Checkmk view / dashboard",
+      "note": "Rebuilt manually."
+    },
+    {
+      "source": "Kibana alerting rule",
+      "target": "Checkmk service rule + notification rule"
+    },
+    {
+      "source": "APM distributed trace",
+      "target": "Out-of-scope — pair Checkmk with a tracing tool"
+    }
+  ],
+  "effort": "2-4 weeks",
+  "gotchas": [
+    "Checkmk's strength is availability and infrastructure checks, not distributed tracing — verify your trace requirements before committing.",
+    "Historical APM data in Elasticsearch cannot be replayed into Checkmk; keep the old cluster read-only if needed.",
+    "Dashboards and saved searches do not migrate; expect to rebuild visualisations.",
+    "Alerting model is different — service states and thresholds map differently than Kibana rules.",
+    "Agent rollout requires changes to host configuration; coordinate with infra owners.",
+    "Some Elastic-specific metrics (APM transaction breakdown) may not have a direct equivalent and need different queries."
+  ],
+  "email": {
+    "subject": "Monitoring change: moving from Elastic to Checkmk",
+    "body": "Hi,\n\nWe're transitioning our infrastructure and service monitoring from Elastic to Checkmk over the next two weeks. The signals stay the same; only the dashboards and alert formats will change.\n\nWe'll run both systems in parallel during the cutover. If you rely on a specific Kibana view, let us know so we can rebuild it in Checkmk first. On-call rotations will keep firing through the same channels.\n\nQuestions welcome.\n\nThanks,\nYour customer"
+  }
+}

@@ -1,0 +1,64 @@
+{
+  "source": {
+    "slug": "cody",
+    "name": "cody"
+  },
+  "target": {
+    "slug": "coderabbit",
+    "name": "coderabbit"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Cody (Sourcegraph) focuses on AI code search and in-IDE assistance, while CodeRabbit specializes in AI-driven pull request review. The migration is mostly a workflow shift — from chat-style coding help to automated PR review comments — rather than a data export.",
+  "why_switch": [
+    "You want automated AI review comments directly on every pull request",
+    "Your team's bottleneck is review throughput, not in-IDE code generation",
+    "You prefer a tool that integrates at the Git host level instead of the IDE",
+    "You want a subscription with public per-seat pricing instead of custom quotes",
+    "Your reviewers want summarized diffs and walkthroughs on large PRs"
+  ],
+  "what_to_export": [
+    "List of repositories Cody is connected to",
+    "Custom prompts, commands, or context configurations saved in Cody",
+    "Team and seat membership list",
+    "Any indexed private code or context settings",
+    "Saved chats or notable answers worth keeping as documentation",
+    "IDE-side configuration (model selection, endpoints) if using BYOK",
+    "Billing and admin contact info",
+    "SSO and access policy settings"
+  ],
+  "export_method": "Cody is primarily an IDE assistant; there is no large user-data export comparable to a database. Treat the migration as a configuration capture rather than a data dump. Within the Cody admin/console, list the connected repositories, organization members, and any custom commands or prompt templates and copy them into a document. If you use BYOK or self-hosted Sourcegraph, record the model providers and endpoints in use. For chats or generated snippets you want to retain, copy them into your own notes or wiki manually — do not assume a structured export exists. Cancel or downgrade billing only after CodeRabbit has been validated on at least a few repositories.",
+  "import_method": "CodeRabbit is installed as a GitHub or GitLab app at the organization or repository level. Install the app from the marketplace listing, grant it access to the repositories you exported from Cody, and complete the onboarding to choose plan and seats. Configuration is typically committed as a YAML file at the repo root that controls review behavior, language hints, and path filters; create one per repository or use organization-level defaults. Invite team members via your Git host's organization, then map them to CodeRabbit seats. Open a small test PR to confirm review comments and summaries appear before rolling out to production repos.",
+  "concept_mapping": [
+    {
+      "source": "Cody chat in IDE",
+      "target": "CodeRabbit PR review comments",
+      "note": "Different surface — IDE vs PR"
+    },
+    {
+      "source": "Custom Cody commands/prompts",
+      "target": "CodeRabbit per-repo config (YAML)",
+      "note": "Reauthor as review rules"
+    },
+    {
+      "source": "Repo connections in Sourcegraph",
+      "target": "GitHub/GitLab app installation scope"
+    },
+    {
+      "source": "Team seats",
+      "target": "CodeRabbit subscription seats"
+    }
+  ],
+  "effort": "1-3 days",
+  "gotchas": [
+    "CodeRabbit reviews PRs; it does not replace in-IDE code generation, so developers may still want a separate IDE assistant",
+    "Repositories must be hosted on a supported Git provider for the app to work; self-hosted or unusual providers may not be covered",
+    "Per-repo YAML config drift can cause inconsistent review behavior across the org — standardize early",
+    "Noisy initial reviews on legacy code are common; tune path filters and severity before wide rollout",
+    "Seat counting differs from Cody — verify how active contributors are billed before committing to a plan",
+    "If you relied on Cody for codebase-wide search, CodeRabbit will not fill that gap"
+  ],
+  "email": {
+    "subject": "Canceling our Cody subscription in 14 days",
+    "body": "Hi team,\n\nAfter evaluating our needs, we are moving our AI-assisted workflow from Cody to CodeRabbit, which fits our pull request review process better. Please treat this as 14 days notice to cancel our Cody subscription. Kindly confirm the effective end date and any final invoice. We appreciate the work your team has put in.\n\nThanks,\nYour customer"
+  }
+}

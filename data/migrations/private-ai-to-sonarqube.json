@@ -1,0 +1,65 @@
+{
+  "source": {
+    "slug": "private-ai",
+    "name": "Private AI"
+  },
+  "target": {
+    "slug": "sonarqube",
+    "name": "SonarQube"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Private AI and SonarQube solve different problems: Private AI is a PII redaction API, SonarQube is a SAST/code-quality platform. Treat this as a category change, not a like-for-like migration, and confirm that SonarQube is actually the right replacement for your use case before proceeding.",
+  "why_switch": [
+    "SonarQube has an OSS Community edition with low vendor lock-in",
+    "Public freemium pricing instead of usage-based PII pricing",
+    "Strong fit if the real need is code scanning, not PII redaction",
+    "Self-hostable for data-residency requirements",
+    "Mature 30+ language SAST and code-smell coverage"
+  ],
+  "what_to_export": [
+    "Inventory of services and pipelines currently calling Private AI",
+    "Redaction policy configuration (entity types, locales, thresholds)",
+    "Custom regex/entity definitions you maintained",
+    "Audit logs and processed-volume reports for compliance",
+    "API keys and credentials in use",
+    "Integration code and SDK versions used in your apps",
+    "Sample input/output pairs used for QA",
+    "List of downstream systems that consumed redacted output"
+  ],
+  "export_method": "Private AI's documented export surface is not something we can confirm here in detail, so plan generically. From the Private AI dashboard or your account, export anything available: redaction policies, entity configurations, usage and audit reports. For self-hosted Private AI deployments, capture the configuration files and any custom entity definitions from disk and commit them to your config repo. For cloud usage, copy policy JSON/YAML out of the UI if exposed, otherwise screenshot and transcribe. From your own codebase, grep for Private AI SDK calls and API endpoints to build an authoritative inventory of integration points; this is more reliable than asking the vendor. Pull audit logs covering the period you need for compliance and store them in cold storage before any contract end date, since vendor data retention after cancellation is rarely guaranteed. Crucially, before exporting anything, confirm that SonarQube is actually the correct replacement: SonarQube does not perform PII redaction on text, audio, images or documents. If your real requirement is PII redaction, you should be evaluating other PII tools (Microsoft Presidio, AWS Comprehend PII, Google DLP), not SonarQube. If the requirement is code scanning, then Private AI was likely a poor fit to begin with and migration is straightforward because there is little to carry over.",
+  "import_method": "If, after re-validating the requirement, SonarQube is the right destination, set up a SonarQube Cloud or self-hosted instance and create projects for each repository you want scanned. Add the SonarScanner to each repo's CI pipeline (via GitHub Action, GitLab CI, Maven/Gradle plugin, .NET task, or generic CLI) with a project key and token. Pick or clone a quality profile per language and define a quality gate that matches your tolerance for new issues. Connect SonarQube to your Git provider for PR decoration. Note that none of Private AI's PII redaction logic carries over: there are no entity types, locales or redaction thresholds in SonarQube. If you still need PII redaction in your data pipelines, deploy a dedicated PII tool in parallel and keep that as a separate workstream from the SonarQube rollout. For compliance documentation, archive the Private AI audit logs you exported and update your data-flow diagrams to reflect the new architecture (no more Private AI calls, plus SonarQube as a code-scanning step). Validate end-to-end by re-processing a representative sample through your pipeline without Private AI and confirming downstream systems behave correctly.",
+  "concept_mapping": [
+    {
+      "source": "Private AI redaction policy",
+      "target": "(no direct equivalent)",
+      "note": "SonarQube does not redact PII; if you need redaction, choose a dedicated PII tool instead."
+    },
+    {
+      "source": "Private AI entity types",
+      "target": "(no direct equivalent)"
+    },
+    {
+      "source": "Private AI audit logs",
+      "target": "SonarQube audit log + your existing log pipeline",
+      "note": "SonarQube logs scan activity, not PII processing."
+    },
+    {
+      "source": "Private AI self-hosted deployment",
+      "target": "SonarQube self-hosted Server",
+      "note": "Operationally similar pattern (own database, own upgrades), different domain."
+    }
+  ],
+  "effort": "varies; typically 1-4 weeks if SonarQube is the right replacement",
+  "gotchas": [
+    "These tools are in different categories. Confirm with stakeholders that SonarQube actually meets the original requirement before migrating.",
+    "SonarQube will not redact PII. If any compliance control depends on Private AI's redaction, you must keep a redaction tool in the stack.",
+    "Self-hosted SonarQube requires a database and lifecycle management; budget for ops time, not just license cost.",
+    "Quality gates default to 'new code' thresholds; copying strict rules without tuning will block PRs until the baseline is cleaned up.",
+    "Private AI audit logs may be needed for compliance after cancellation; export and archive before the contract ends.",
+    "Edition matters: branch analysis, PR decoration, and some language rules have historically been paid features, not Community."
+  ],
+  "email": {
+    "subject": "Heads up: replacing Private AI with SonarQube (please confirm scope)",
+    "body": "Hi team,\n\nWe're planning to retire our Private AI subscription and stand up SonarQube in its place. Before we move, I want to flag that these tools serve different purposes: Private AI does PII redaction, SonarQube does code scanning. If you depend on PII redaction anywhere downstream, please reply within 14 days so we can scope a separate redaction solution.\n\nIf no concerns surface, we'll proceed with SonarQube rollout, archive Private AI audit logs, and decommission the Private AI integration at the end of the 14-day window.\n\nThanks,\nYour customer"
+  }
+}

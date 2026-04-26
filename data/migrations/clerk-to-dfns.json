@@ -1,0 +1,66 @@
+{
+  "source": {
+    "slug": "clerk",
+    "name": "Clerk"
+  },
+  "target": {
+    "slug": "dfns",
+    "name": "Dfns"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Clerk and Dfns serve different problems: Clerk is a user identity and authentication platform, while Dfns is an MPC wallet-as-a-service for crypto custody. A direct migration only makes sense if you are pivoting to a wallet-centric product where wallet ownership replaces traditional accounts.",
+  "why_switch": [
+    "Building a custodial or programmable wallet product",
+    "Need MPC key management with policy controls",
+    "Institutional crypto custody requirements",
+    "Replacing user accounts with wallet-based identity",
+    "SOC 2 and HSM-backed key infrastructure"
+  ],
+  "what_to_export": [
+    "User profiles and primary email addresses",
+    "User IDs and any external identifiers",
+    "Email/password credentials (hashes, if portable)",
+    "Social login provider links (Google, GitHub, etc.)",
+    "MFA enrollment status and factors",
+    "Organization/team membership data",
+    "Roles and permissions",
+    "Session and audit logs",
+    "Webhook and metadata fields",
+    "API keys and integration secrets"
+  ],
+  "export_method": "Use Clerk's user export or Backend API to retrieve users, organizations, memberships, and metadata as JSON. Clerk supports exporting user records with email, social IDs, and custom metadata; password hashes may be available on request for self-serve migrations. Run paginated requests against the users list endpoint and persist results locally before any cancellation. Export organization structures separately if your app uses Clerk Organizations. Capture webhook configuration so you can replay any in-flight events. Because Dfns does not provide a drop-in replacement for traditional username/password auth, treat this export as a snapshot of identity data that you will store in your own user table going forward, while Dfns handles wallet provisioning per user.",
+  "import_method": "Dfns does not import a Clerk user database directly. The typical pattern is: stand up your own user/identity store (or pair Dfns with another auth provider), then for each migrated user, call the Dfns API to create an end-user wallet using their SDK. Map your internal user ID to the Dfns wallet ID and persist that mapping. Configure signing policies and approval workflows in Dfns for the actions your product needs. Set up webhooks to receive transaction and policy events. Plan a phased rollout where new users provision wallets first, then backfill existing users in batches.",
+  "concept_mapping": [
+    {
+      "source": "User",
+      "target": "End user with assigned wallet",
+      "note": "Dfns wallets are bound to your application users, not Dfns-managed identities"
+    },
+    {
+      "source": "Session",
+      "target": "Application session (handled outside Dfns)"
+    },
+    {
+      "source": "Webhook",
+      "target": "Webhook"
+    },
+    {
+      "source": "Roles/Permissions",
+      "target": "Signing policies",
+      "note": "Different model: Dfns enforces per-action policies, not RBAC over a UI"
+    }
+  ],
+  "effort": "4-12 weeks (architectural change, not a like-for-like swap)",
+  "gotchas": [
+    "Clerk and Dfns solve different problems — you almost certainly still need an auth provider alongside Dfns",
+    "Dfns pricing is custom/enterprise; expect a sales cycle before integration",
+    "MPC key shares and policy models are vendor-specific and not portable to other wallet providers",
+    "Compliance responsibility (KYC, AML, sanctions) remains on your side",
+    "Pre-built UI components from Clerk have no Dfns equivalent — you build wallet UX yourself",
+    "Webhook payloads, event names, and error semantics are completely different"
+  ],
+  "email": {
+    "subject": "Heads up: we're rebuilding our identity layer around wallets",
+    "body": "Hi team,\n\nOver the next 14 days we're moving our product toward a wallet-centric model and rolling out Dfns for programmable custody. Clerk has served us well for traditional auth, but our roadmap now centers on per-user wallets, signing policies, and institutional-grade key management — capabilities that sit outside Clerk's scope.\n\nWeek 1: export user records and metadata from Clerk, stand up our own identity store, and complete Dfns onboarding and policy design. Week 2: provision wallets for active users in batches, wire up webhooks, and run a parallel-run for sign-in and wallet flows before flipping the switch.\n\nWe expect minimal disruption for end users; sessions stay active and email-based account recovery continues to work. We'll share a status update midway through and a final go-live note. Please flag any integrations that depend on Clerk webhooks so we can mirror them.\n\nThanks,\nYour customer"
+  }
+}

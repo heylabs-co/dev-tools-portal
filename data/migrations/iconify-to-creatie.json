@@ -1,0 +1,64 @@
+{
+  "source": {
+    "slug": "iconify",
+    "name": "Iconify"
+  },
+  "target": {
+    "slug": "creatie",
+    "name": "Creatie"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Iconify is an icon framework, Creatie is an AI-native design tool, so this is a tooling shift, not a like-for-like swap. Most teams keep Iconify in code and just bring the icons they use into Creatie for design.",
+  "why_switch": [
+    "Adopt AI-native design and prototyping",
+    "Combine design, prototyping, and handoff",
+    "Use AI icon generation alongside Iconify sets",
+    "Move icon decisions into the design canvas",
+    "Reduce reliance on per-tool icon plugins"
+  ],
+  "what_to_export": [
+    "Iconify sets and icons currently used",
+    "Icon names / slugs referenced in code",
+    "Per-set licenses you rely on",
+    "Custom icons added on top of Iconify",
+    "Icon size, color, and weight conventions",
+    "Framework wrappers (React, Vue, Svelte)",
+    "Server-side rendering or CDN config",
+    "On-demand vs bundled loading strategy",
+    "Accessibility metadata (aria-label, titles)",
+    "Build pipeline integration points"
+  ],
+  "export_method": "Iconify is open source and serves icons via its public API, npm packages, and on-demand bundles, so 'export' usually means listing the icon names you use and the sets they come from. Run a code audit to extract all Iconify references (e.g., 'mdi:home', 'lucide:check') and group them by set. Note per-set licenses, since not all Iconify sets share the same terms. Capture how you load icons today (API, prefetched JSON, bundled) and any framework wrappers, since that part stays in your code. There is no commercial account to cancel.",
+  "import_method": "In Creatie, set up a shared icon library and pull in the icons you actually use from Iconify by exporting them as SVGs (Iconify's tools and websites can render any icon as SVG). Keep icon names aligned with the Iconify slugs your code uses to prevent design/dev drift. Use Creatie's AI icon generation to fill specific gaps, but tag them clearly so they do not get confused with Iconify-sourced icons. In code, you can keep using the Iconify framework component as-is; Creatie is purely the design surface. If you decide to shrink to a single curated set later, do that as a separate refactor.",
+  "concept_mapping": [
+    {
+      "source": "Iconify icon (set:name)",
+      "target": "Creatie icon component"
+    },
+    {
+      "source": "Iconify set",
+      "target": "Creatie library section"
+    },
+    {
+      "source": "Iconify Figma plugin",
+      "target": "Creatie shared library import"
+    },
+    {
+      "source": "On-demand API",
+      "target": "Static SVG asset"
+    }
+  ],
+  "effort": "1-2 weeks",
+  "gotchas": [
+    "Creatie does not provide a runtime icon API; on-demand loading still belongs to your code",
+    "Per-set licenses vary inside Iconify; verify rights before bulk re-distributing in design files",
+    "Naming drift between Iconify slugs and Creatie components causes silent breakage",
+    "AI-generated icons rarely match the visual weight of curated sets; enforce review",
+    "Creatie's plugin/ecosystem maturity is lower than Figma; some workflows may not exist yet",
+    "Bulk SVG export can be tedious for large icon footprints; script it where possible"
+  ],
+  "email": {
+    "subject": "FYI: moving design tooling to Creatie",
+    "body": "Hi team,\n\nFor visibility: over the next 14 days we're standardizing our design workflow on Creatie. We're keeping Iconify in our code as the runtime icon source and only bringing the icons we actively use into Creatie as a shared design library. Per-set Iconify licenses still apply and we'll preserve naming so design and code stay in sync.\n\nThere's no contract to wind down on the icon side. If you maintain shared files or wrappers around Iconify, please flag them so we can keep slugs consistent across the new tool and code.\n\nThanks,\nYour customer"
+  }
+}

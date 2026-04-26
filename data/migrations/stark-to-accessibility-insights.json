@@ -1,0 +1,62 @@
+{
+  "source": {
+    "slug": "stark",
+    "name": "Stark"
+  },
+  "target": {
+    "slug": "accessibility-insights",
+    "name": "Accessibility Insights"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Stark embeds accessibility checks inside design tools like Figma, while Accessibility Insights is a free Microsoft-maintained guided WCAG checker for web and Windows. Switching means moving from design-time plugin checks to runtime guided audits performed by developers and QA.",
+  "why_switch": [
+    "Need WCAG checks on shipped pages, not just designs",
+    "Free, Microsoft-maintained alternative",
+    "Guided WCAG assessments cover web and Windows",
+    "Reduce per-seat design-tool plugin spend",
+    "Bring accessibility checks closer to engineering"
+  ],
+  "what_to_export": [
+    "Stark annotations and audit reports",
+    "Contrast and focus-order findings per design",
+    "Custom checklists used in Figma",
+    "Tickets filed from Stark into your tracker",
+    "Workspace and seat records",
+    "Color tokens and palettes",
+    "Design files referenced by Stark",
+    "Internal summaries from Stark sessions"
+  ],
+  "export_method": "Stark's findings live in your Figma files and Stark workspace. Open each design file and capture the annotations, contrast results and focus-order notes; document them in your shared drive or design system. Use any export options the Stark dashboard offers to save audit summaries. Designs themselves stay in Figma. Tickets filed elsewhere remain in your tracker. Treat the exported summaries plus the design files as the migration baseline.",
+  "import_method": "Accessibility Insights does not require a data import; it is a free local browser extension and Windows tool. Install it on every developer and QA machine. Re-run FastPass and Assessment on the same pages, components and flows you previously analysed in Stark. Use the in-app export to save Assessment HTML or JSON per page, and file issues directly into GitHub or Azure DevOps from the tool. Use your archived Stark findings as a checklist to confirm the same issues are caught at runtime.",
+  "concept_mapping": [
+    {
+      "source": "Figma contrast plugin check",
+      "target": "Manual contrast check in Assessment"
+    },
+    {
+      "source": "Focus order annotation in Figma",
+      "target": "Tab stop visualizer in browser"
+    },
+    {
+      "source": "Design-time audit",
+      "target": "Runtime guided assessment",
+      "note": "Different stage"
+    },
+    {
+      "source": "Stark workspace",
+      "target": "Local extension/desktop tool, no workspace"
+    }
+  ],
+  "effort": "1-2 weeks",
+  "gotchas": [
+    "Accessibility Insights is runtime-focused; you lose Stark's design-time coverage if designers stop using a plugin",
+    "No central dashboard or multi-site monitoring",
+    "Manual effort is needed for full Assessment coverage",
+    "FastPass is quick and not a persisted database; archiving exports is your responsibility",
+    "Consider keeping minimal Stark seats for designers"
+  ],
+  "email": {
+    "subject": "Switching from Stark to Accessibility Insights",
+    "body": "Hi team,\n\nOver the next 14 days we will be moving our default accessibility checks from Stark to Accessibility Insights. Stark has been great for designers in Figma, but we need stronger runtime WCAG coverage on shipped pages, and Accessibility Insights is a free Microsoft-maintained tool that gives us that.\n\nPlan:\n- Days 1-3: archive Stark annotations and audit summaries from key Figma files.\n- Days 4-7: install Accessibility Insights for developers and QA and run FastPass on top flows.\n- Days 8-12: standardize on Assessment-mode runs for major releases and export reports.\n- Days 13-14: finish the cutover and reduce Stark seats to design-only usage.\n\nWe may keep a small number of Stark seats so designers can still catch issues early in Figma.\n\nThanks,\nYour customer"
+  }
+}

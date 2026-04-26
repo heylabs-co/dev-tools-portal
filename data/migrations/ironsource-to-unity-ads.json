@@ -1,0 +1,63 @@
+{
+  "source": {
+    "slug": "ironsource",
+    "name": "ironsource"
+  },
+  "target": {
+    "slug": "unity-ads",
+    "name": "unity-ads"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "IronSource (LevelPlay) and Unity Ads are both part of Unity, but they remain separate SDKs and dashboards with proprietary mediation logic. The migration is primarily an SDK replacement and dashboard reconfiguration rather than a data import.",
+  "why_switch": [
+    "You want to consolidate on Unity's first-party ad stack inside a Unity project",
+    "Your team prefers a single Unity-centric dashboard and contract",
+    "You want closer alignment with Unity Editor tooling and reporting",
+    "You are simplifying mediation by reducing the number of vendor dashboards",
+    "You want to align ad reporting with Unity's existing analytics setup"
+  ],
+  "what_to_export": [
+    "List of apps and platforms (iOS, Android) configured in IronSource",
+    "Ad unit definitions and placement IDs",
+    "Mediation waterfall or bidding configuration",
+    "Reporting history (revenue, eCPM, fill rate) for benchmarking",
+    "Network connections and credentials used in mediation",
+    "User segmentation or A/B test groups",
+    "API keys used for server-to-server reporting",
+    "Postback / S2S callback URLs"
+  ],
+  "export_method": "Use the IronSource dashboard to capture each app's configuration before changing anything. Document app keys, ad unit names and types (rewarded, interstitial, banner), and the mediation waterfall or bidding setup per placement. Export historical revenue and performance reports as CSV from the reporting section so you can benchmark against Unity Ads after switching. Record any S2S callback URLs and reporting API tokens in a secure store. Do not delete the IronSource configuration until the new SDK is validated in production. If you use LevelPlay's mediation across multiple networks, treat each network's credentials as separately exported items.",
+  "import_method": "In the Unity Dashboard, create or select the project and enable Unity Ads / monetization for each platform. Recreate the placements you captured from IronSource (rewarded, interstitial, banner) using equivalent ad unit types. Replace the IronSource SDK in your app with the Unity Ads / Unity LevelPlay SDK following Unity's documentation, and update initialization code to use the new game IDs. Wire up reporting API or S2S callbacks to your existing analytics endpoints. Test on staging builds first, then roll out gradually using a phased release to monitor fill rate and revenue against your IronSource baseline.",
+  "concept_mapping": [
+    {
+      "source": "App key",
+      "target": "Unity Game ID"
+    },
+    {
+      "source": "Placement / ad unit",
+      "target": "Unity Ads placement"
+    },
+    {
+      "source": "LevelPlay mediation waterfall",
+      "target": "Unity LevelPlay / Unity mediation",
+      "note": "Same brand family; reconfigure per project"
+    },
+    {
+      "source": "S2S callback URL",
+      "target": "Unity Ads server-to-server callback"
+    }
+  ],
+  "effort": "2-4 weeks",
+  "gotchas": [
+    "Even within Unity, IronSource and Unity Ads dashboards and SDKs are not automatically merged — assume manual reconfiguration",
+    "Revenue can fluctuate during the switch as the new mediation stack learns; budget a benchmarking period",
+    "Some third-party networks behave differently under different mediation engines; confirm each network is supported",
+    "App store review may be required if SDK changes affect privacy disclosures (ATT, IDFA, GDPR)",
+    "Server-to-server callback formats differ between vendors; validate your attribution partner",
+    "Removing the old SDK fully is important — leftover IronSource code can cause duplicate init or conflicts"
+  ],
+  "email": {
+    "subject": "Canceling IronSource in 14 days",
+    "body": "Hi team,\n\nWe are consolidating our mobile ad stack and moving from IronSource to Unity Ads. Please treat this email as 14 days notice to terminate our agreement. Kindly confirm the cancellation date, any remaining payouts, and steps to close access cleanly. Thanks for the partnership during the transition.\n\nBest,\nYour customer"
+  }
+}

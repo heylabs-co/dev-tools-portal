@@ -1,0 +1,64 @@
+{
+  "source": {
+    "slug": "lottiefiles",
+    "name": "LottieFiles"
+  },
+  "target": {
+    "slug": "sketch",
+    "name": "Sketch"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "LottieFiles is a Lottie hosting and editing platform; Sketch is a Mac-native UI design tool. The move is about where you store and present animations, not about replacing the Lottie format itself.",
+  "why_switch": [
+    "Centralize design files in Sketch",
+    "Native Mac performance for design work",
+    "Reduce vendor surface for animations",
+    "Avoid LottieFiles team plan price creep",
+    "Lottie JSON stays portable across tools"
+  ],
+  "what_to_export": [
+    "All hosted Lottie JSON files",
+    "Project / folder structure",
+    "Marketplace assets (per license)",
+    "After Effects source projects",
+    "Versions and revisions",
+    "Animation usage map per screen",
+    "Playback configs (loop, speed, autoplay)",
+    "Web/mobile player SDK references in code",
+    "Team members and permissions",
+    "Comments and review state"
+  ],
+  "export_method": "From your LottieFiles workspace, download each Lottie JSON file you depend on; for many files, script through projects via the in-app file list. Keep After Effects .aep sources alongside exported JSON so you retain an editable origin. For purchased marketplace assets, re-download per license terms before the account lapses. Capture playback configs and the SDK call sites in your code, since runtime behavior is determined there. Document folder structure and ownership so you can recreate the right organization in your new asset store.",
+  "import_method": "Sketch is not a Lottie hosting or playback platform, so import means embedding animations as references rather than playable assets. Store the JSON files in your own asset hosting (CDN, S3, repo) and add static preview frames or recorded clips to Sketch design files for context. Use Sketch symbols to represent each animation slot in the UI, with metadata noting the JSON path and playback config so engineering knows what to wire up. Lottie playback in your apps continues via lottie-web, lottie-react, or lottie-native pointing at the new asset URLs. Continue authoring in After Effects.",
+  "concept_mapping": [
+    {
+      "source": "LottieFiles project",
+      "target": "Sketch library or page"
+    },
+    {
+      "source": "Hosted Lottie JSON",
+      "target": "Asset in your CDN / repo"
+    },
+    {
+      "source": "LottieFiles preview",
+      "target": "Static preview in Sketch"
+    },
+    {
+      "source": "Marketplace asset",
+      "target": "Imported asset (per license)"
+    }
+  ],
+  "effort": "1-3 weeks",
+  "gotchas": [
+    "Sketch does not play Lottie animations; previews in design files are static",
+    "Mac-only access blocks any non-Mac designers",
+    "Marketplace assets often have per-use licensing; re-verify rights",
+    "Playback configs live in code; design tool change does not affect them",
+    "Web player performance varies on low-end devices; retest if you change asset hosts",
+    "After Effects sources are not stored on LottieFiles by default; back them up"
+  ],
+  "email": {
+    "subject": "Plan to close our LottieFiles workspace at renewal",
+    "body": "Hi team,\n\nWe're standardizing our design workflow on Sketch over the next 14 days and will not renew our LottieFiles team plan. Lottie stays in our stack as an open JSON format; we're moving the files into our own asset hosting and referencing them from Sketch design frames as static previews.\n\nPlease keep the workspace active through the end of the current term so we can finish downloading our Lottie JSON, After Effects sources, and any purchased marketplace assets per their licenses. Could you confirm auto-renewal is off and share a contact for any final invoicing questions?\n\nThanks,\nYour customer"
+  }
+}

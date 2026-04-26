@@ -1,0 +1,80 @@
+{
+  "source": {
+    "slug": "square",
+    "name": "Square"
+  },
+  "target": {
+    "slug": "stripe",
+    "name": "Stripe"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Moving from Square to Stripe makes sense when you outgrow Square's SMB/POS focus and need a richer developer platform for global online payments, subscriptions, and marketplaces. Expect a PCI vault transfer plus full SDK rewrite.",
+  "why_switch": [
+    "Better fit for online-first SaaS, marketplaces, global businesses",
+    "Stronger SDKs, integrations, and Billing/Connect/Tax suite",
+    "More flexible subscription, proration, and metering features",
+    "Wider international coverage and currencies",
+    "Larger third-party ecosystem (analytics, tax, fraud)"
+  ],
+  "what_to_export": [
+    "Customer directory and contact details",
+    "Cards on file (PCI vault transfer)",
+    "Subscription plans and active subscribers",
+    "Historical transactions and refunds",
+    "Disputes and chargeback evidence",
+    "Invoices and payment links",
+    "Product/item catalog and inventory",
+    "Webhook subscription configuration",
+    "Payout and settlement reports"
+  ],
+  "export_method": "Use Square's Dashboard and APIs to export non-card data: customers, transactions, refunds, disputes, invoices, item catalog, and payout reports. CSV export is generally available from the Dashboard for finance reports. For card-on-file data, request a PCI-to-PCI bulk migration: Square transmits encrypted card data directly to Stripe under a signed data transfer agreement. Do not handle raw PANs yourself unless you are PCI DSS Level 1 certified. Snapshot subscription plans, billing intervals, next-charge dates, trials, and any custom dunning rules. Document every webhook URL, signing secret, and integration touching Square so they can be reproduced or replaced. Build a customer-to-token mapping so you can verify migrated cards land on the correct Stripe customer after import.",
+  "import_method": "Create a Stripe account, complete activation, and provision keys for test and live modes. Recreate your catalog as Stripe products and prices, matching SKUs and amounts. Install the Stripe SDK for your stack and replicate webhook handling with signature verification. Once Stripe confirms the card import, validate the migration by running zero-amount auths or small test charges on a sample of migrated cards. Recreate subscriptions with original billing anchors so renewals continue on the same date. Cut traffic over progressively: route new customers to Stripe first, leave existing renewals on Square until validated, then flip the rest. Reconcile payouts daily for at least one full billing cycle, then close the Square account once all chargebacks have settled.",
+  "concept_mapping": [
+    {
+      "source": "Customer",
+      "target": "Customer"
+    },
+    {
+      "source": "Payment",
+      "target": "PaymentIntent / Charge"
+    },
+    {
+      "source": "Card on file",
+      "target": "PaymentMethod",
+      "note": "Migrated via PCI vault transfer"
+    },
+    {
+      "source": "Refund",
+      "target": "Refund"
+    },
+    {
+      "source": "Dispute",
+      "target": "Dispute"
+    },
+    {
+      "source": "Subscription plan",
+      "target": "Product + Price + Subscription"
+    },
+    {
+      "source": "Invoice",
+      "target": "Invoice"
+    },
+    {
+      "source": "Webhook",
+      "target": "Webhook endpoint"
+    }
+  ],
+  "effort": "4-8 weeks for an online business; longer if you also rely on Square POS hardware",
+  "gotchas": [
+    "If you use Square POS hardware, Stripe Terminal is a separate product with its own readers and certifications",
+    "PCI-to-PCI vault transfers require signed agreements and lead time on both sides",
+    "Subscription plans, trials, and proration rules need careful reconstruction; do not assume parity",
+    "Webhook event names and payload shapes are completely different — rewrite handlers",
+    "Tax handling differs (Square Tax vs Stripe Tax) — re-verify rates and jurisdictions",
+    "Dual-run for at least one full billing cycle to catch silent failures"
+  ],
+  "email": {
+    "subject": "Card data migration request: Square to Stripe",
+    "body": "Hi team,\n\nWe are planning to move our payment processing from Square to Stripe over the next 14 days and would like to coordinate a PCI-compliant transfer of our stored card data and customer records.\n\nSpecifically, we would like to:\n\n- Initiate a PCI-to-PCI bulk export of cards on file from Square directly to Stripe's vault under your standard data transfer process.\n- Export our customers, historical transactions, refunds, disputes, invoices, item catalog, and payout reports.\n- Confirm any active subscriptions, scheduled renewals, and pending disputes so nothing is lost at cutover.\n\nWe will keep the Square account active during a parallel-run period to handle refunds and chargebacks on legacy transactions, then close it once reconciliation is complete.\n\nCould you share the required forms, expected timelines, and a technical contact on your side? We aim to start the export within the next few business days.\n\nThanks,\nYour customer"
+  }
+}

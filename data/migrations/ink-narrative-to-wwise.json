@@ -1,0 +1,66 @@
+{
+  "source": {
+    "slug": "ink-narrative",
+    "name": "ink-narrative"
+  },
+  "target": {
+    "slug": "wwise",
+    "name": "wwise"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Ink is a narrative scripting language and Wwise is interactive audio middleware. They do not solve the same problem, so this is not a real swap — it only makes sense if you are dropping scripted narrative entirely and rebuilding the experience around adaptive audio, or if you want clean inventory before integrating Wwise alongside Ink.",
+  "why_switch": [
+    "You decided your project is now driven by adaptive audio rather than branching prose",
+    "You want event-based audio with deep DSP and spatial tooling",
+    "You no longer need an external narrative scripting layer",
+    "You are consolidating audio onto Wwise and removing other content tooling",
+    "You want production-grade Unity or Unreal audio integration"
+  ],
+  "what_to_export": [
+    "All .ink source files and includes",
+    "Compiled story.json outputs",
+    "Variables, LIST definitions and EXTERNAL function declarations",
+    "Tags used to trigger audio or gameplay actions",
+    "Save and state schemas tied to Ink runtime",
+    "Localization tables keyed by Ink identifiers",
+    "Engine-side bindings between narrative events and audio cues",
+    "Notes on which beats matter audibly versus narratively"
+  ],
+  "export_method": "Ink content already lives as text in your repo. Inventory rather than export. Collect every .ink file and INCLUDE chain, then compile to JSON with inklecate so you have ready-to-run artifacts. Enumerate variables, LISTs and EXTERNAL functions. Record every Ink tag your runtime hands off to other systems, especially audio tags such as #sfx, #music or #vo. Export how your engine currently routes those tags — for example, a Unity script that reads tags and plays AudioSources, or an Unreal Blueprint that fires sound cues. Save localization sheets and tag-keyed asset lists. The most important artifact is a list of audio-relevant beats: for each one, capture which narrative state triggers it, which audio asset plays, and any parameter such as intensity. That list is the input for your Wwise authoring work.",
+  "import_method": "Set up a new Wwise project in the Wwise authoring tool. Create events for each audio cue your Ink content used to trigger. Define RTPCs (real-time parameter controls) and Switches for the variables and emotional or intensity states that Ink previously expressed — for example a 'combat_intensity' RTPC or a 'biome' Switch. Build SoundBanks and integrate the Wwise SDK with your engine using the official Unity or Unreal integration. In game code, replace Ink tag handlers with calls that post Wwise events and update RTPCs or Switches. There is no automated import from Ink to Wwise. The migration is a rebuild, where each audio-relevant narrative beat becomes a Wwise event with parameters. Anything that was purely text or branching choice in Ink does not have a Wwise representation and must be redesigned or dropped.",
+  "concept_mapping": [
+    {
+      "source": "Ink tag (audio)",
+      "target": "Wwise event",
+      "note": "Tags that triggered sound translate into named events."
+    },
+    {
+      "source": "Ink variable (intensity, mood)",
+      "target": "Wwise RTPC",
+      "note": "Continuous values that shape audio behavior."
+    },
+    {
+      "source": "Ink LIST (state set)",
+      "target": "Wwise Switch",
+      "note": "Discrete states such as biome or weapon type."
+    },
+    {
+      "source": "Knot / stitch",
+      "target": "No equivalent",
+      "note": "Wwise has no narrative branching; omit."
+    }
+  ],
+  "effort": "weeks to months",
+  "gotchas": [
+    "Wwise is not a narrative tool. Branching prose, choices and gates have no Wwise equivalent and must be solved elsewhere or removed.",
+    "Wwise licensing depends on revenue and platform. Confirm your tier and per-platform fees before committing.",
+    "Authoring tooling differs sharply. Writers who lived in Ink will not author in Wwise; expect to involve audio designers or composers instead.",
+    "Save data tied to Ink state will not carry over. Plan a clean cutover or migration script for player progress.",
+    "Localization workflows shift from text files to per-language audio assets. Update your translation and recording pipeline.",
+    "If you only need adaptive audio but want to keep narrative, this is integration, not migration. Run Wwise alongside Ink rather than replacing it."
+  ],
+  "email": {
+    "subject": "Update to our narrative and audio systems",
+    "body": "Hi,\n\nWe are moving the experience toward adaptive, event-driven audio. Over the next 14 days, scripted branching narrative will be replaced or reduced, and the audio layer will be rebuilt on industry-standard middleware.\n\nIf you have feedback on specific story beats or audio cues, please share it within the next week so we can carry it into the new system. Existing save data may not survive the change.\n\nWe will confirm the cutover date once integration testing is done.\n\nYour customer"
+  }
+}

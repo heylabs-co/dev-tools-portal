@@ -1,0 +1,61 @@
+{
+  "source": {
+    "slug": "hyperswitch",
+    "name": "Hyperswitch"
+  },
+  "target": {
+    "slug": "nium",
+    "name": "Nium"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Hyperswitch is an open-source payments switch for routing card transactions across PSPs, while Nium is a licensed global payouts, issuing, and FX platform. Most teams do not replace one with the other — they either pick the right tool for the job or run both for different flows.",
+  "why_switch": [
+    "Need cross-border payouts and FX, not card routing",
+    "Want a licensed money movement provider",
+    "Add card issuing alongside acceptance",
+    "Stop operating Rust-based payments infra in-house"
+  ],
+  "what_to_export": [
+    "Connector and processor credentials",
+    "Routing rules and fallback logic",
+    "Stored payment methods and customers",
+    "Merchant accounts and API keys",
+    "Webhook endpoints and secrets",
+    "Transaction, refund, and dispute history",
+    "Reporting exports for finance reconciliation",
+    "Compliance and audit records"
+  ],
+  "export_method": "Hyperswitch is self-hosted, so you control the data. Snapshot the Postgres database for stored payment methods, customers, connectors, and routing rules, and pull transaction history through the API or directly from your tables for reporting. Document connector credentials and routing logic so you can reproduce or replace them. Plan a vault-to-vault flow for any cards that need to move to a managed vault, since dumping raw PANs expands PCI scope. Keep the Hyperswitch instance live during cutover so in-flight transactions and refunds can settle.",
+  "import_method": "Onboard with Nium by completing their KYB, licensing, and compliance review for the markets you operate in. Map your use case to Nium's product surface — payouts, collections, issuing, FX — rather than expecting a one-to-one orchestrator replacement. Build integrations against the Nium API for the flows you are moving, and keep Hyperswitch (or another orchestrator) in front of card acceptance if you still need PSP routing. Recreate webhook subscriptions, reconcile balances, and run a parallel period before fully cutting over.",
+  "concept_mapping": [
+    {
+      "source": "Connector",
+      "target": "Nium API integration",
+      "note": "Different scope — payouts vs PSP routing"
+    },
+    {
+      "source": "Merchant account",
+      "target": "Nium client account"
+    },
+    {
+      "source": "Webhook",
+      "target": "Webhook"
+    },
+    {
+      "source": "API key",
+      "target": "API credentials"
+    }
+  ],
+  "effort": "8-16 weeks",
+  "gotchas": [
+    "Nium does not replace a card-acceptance orchestrator; verify scope before planning a swap.",
+    "KYB and licensing onboarding at Nium can take weeks before you can transact.",
+    "Card data should move vault-to-vault if you also change vault providers.",
+    "FX corridors and fees vary; reconcile pricing carefully before switching live volume.",
+    "Open-source and self-hosted go away — operational model changes from infra ownership to vendor management."
+  ],
+  "email": {
+    "subject": "Winding down Hyperswitch — 14-day cutover plan",
+    "body": "Hi team,\n\nWe are decommissioning our self-hosted Hyperswitch deployment over the next 14 days as part of a broader change in our payments architecture.\n\nFor a clean exit we are working through:\n\n- Database snapshot of stored payment methods, customers, connectors, and routing rules.\n- A documented map of routing logic we may need to reimplement on another platform.\n- Coordinated vault-to-vault transfer for live cards where applicable.\n- Decommissioning of API keys and webhooks by day 14, with the instance kept read-only first.\n\nIf the Hyperswitch community or commercial team can advise on best practices for a clean shutdown and any gotchas with in-flight transactions, that would be very helpful.\n\nThanks for everything,\nYour customer"
+  }
+}

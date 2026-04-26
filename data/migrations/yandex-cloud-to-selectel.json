@@ -1,0 +1,78 @@
+{
+  "source": {
+    "slug": "yandex-cloud",
+    "name": "yandex-cloud"
+  },
+  "target": {
+    "slug": "selectel",
+    "name": "selectel"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Move Russian-region cloud workloads from Yandex Cloud to Selectel by exporting compute, storage and Kubernetes assets to standard formats and re-creating them on Selectel's OpenStack-based cloud. Both providers stay inside RU jurisdiction, so the main work is replatforming infra-as-code and data, not changing residency.",
+  "why_switch": [
+    "Different pricing structure for compute, dedicated servers and object storage",
+    "Selectel emphasises dedicated servers alongside virtual cloud capacity",
+    "Diversify away from a single Yandex ecosystem dependency",
+    "Selectel exposes an OpenStack-compatible API, easing portability later",
+    "Procurement, billing or compliance reasons specific to your organisation"
+  ],
+  "what_to_export": [
+    "Virtual machine images and disk snapshots",
+    "Object Storage buckets and their contents",
+    "Managed Kubernetes cluster manifests and persistent volumes",
+    "Managed database dumps (Postgres, MySQL, ClickHouse, etc.)",
+    "VPC, subnet and security group definitions",
+    "DNS zones and records",
+    "IAM users, service accounts and roles",
+    "Terraform state and provider configuration",
+    "Secrets, certificates and KMS-protected keys",
+    "Monitoring dashboards and alert rules"
+  ],
+  "export_method": "Use the Yandex Cloud CLI (yc) and console to inventory every resource, then export per service: snapshot Compute Cloud disks and download images via the Compute API; mirror Object Storage buckets with an S3-compatible client (rclone, aws s3 sync) since the API is S3-compatible; dump managed databases with their native tools (pg_dump, mysqldump) from a VM in the same network; export Kubernetes resources with kubectl get -o yaml --all-namespaces and back up persistent volumes via Velero or volume snapshots; export DNS zones in standard zone-file format; record VPC and IAM topology from the console or yc CLI. If you already use the Yandex Terraform provider (yandex-cloud/terraform-provider-yandex), keep the .tf files and state as the canonical inventory. Treat exports as untrusted until you re-checksum them on the new side.",
+  "import_method": "On Selectel, create a project and configure the Selectel Terraform provider (selectel/terraform-provider-selectel) plus the OpenStack provider for resources Selectel exposes via OpenStack APIs. Re-create networks, subnets and security groups first, then upload VM images through the image service and boot equivalent flavors. Push Object Storage data to Selectel's S3-compatible storage with rclone or aws s3 sync, validating object counts and ETags. Provision managed Kubernetes, then re-apply your exported manifests with kubectl and restore PVs from snapshots or Velero. Restore database dumps into Selectel managed database instances or self-hosted equivalents. Recreate IAM users and service accounts manually, regenerate API keys and rotate any embedded secrets. Cut DNS over only after smoke tests pass on the new environment.",
+  "concept_mapping": [
+    {
+      "source": "Compute Cloud VM",
+      "target": "Selectel Cloud Server / dedicated server"
+    },
+    {
+      "source": "Object Storage (S3-compatible)",
+      "target": "Selectel Object Storage (S3-compatible)"
+    },
+    {
+      "source": "Managed Kubernetes",
+      "target": "Selectel Managed Kubernetes"
+    },
+    {
+      "source": "Managed PostgreSQL/MySQL/ClickHouse",
+      "target": "Selectel managed database equivalents",
+      "note": "verify exact engine versions per service"
+    },
+    {
+      "source": "VPC / subnets / security groups",
+      "target": "Selectel networks / subnets / security groups (OpenStack Neutron)"
+    },
+    {
+      "source": "IAM users and service accounts",
+      "target": "Selectel users and service users",
+      "note": "model differs, recreate roles manually"
+    },
+    {
+      "source": "Terraform provider yandex-cloud/terraform-provider-yandex",
+      "target": "Terraform providers selectel/terraform-provider-selectel and OpenStack"
+    }
+  ],
+  "effort": "2-6 weeks for a small environment, longer for many services or large datasets",
+  "gotchas": [
+    "Egress traffic from Yandex Cloud during data copy can become a significant cost line; budget bandwidth or use offline transfer where available.",
+    "YandexGPT and other Yandex-specific ML APIs have no direct Selectel equivalent; you must replatform AI workloads onto another provider or self-hosted models.",
+    "IAM models differ: do not assume policies map 1:1, re-derive least-privilege roles on Selectel.",
+    "Managed database engine versions and extensions may differ; test schema and extension compatibility before cutover.",
+    "DNS TTLs should be lowered well before cutover, otherwise stale records will route users to the old environment.",
+    "Both providers are RU-jurisdiction; sanctions exposure does not change by switching, plan billing and access accordingly."
+  ],
+  "email": {
+    "subject": "Heads up: we are migrating from Yandex Cloud to Selectel",
+    "body": "Hi,\n\nOver the next 14 days we are moving our cloud infrastructure from Yandex Cloud to Selectel. Both providers operate in Russia, so data residency does not change.\n\nYou may see brief maintenance windows as we move VMs, object storage and Kubernetes workloads. We will email a final cutover schedule before any user-visible change. No action is required from you.\n\nIf you have questions or specific compliance requirements, just reply to this email.\n\nThanks,\nYour customer"
+  }
+}

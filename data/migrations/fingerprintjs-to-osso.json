@@ -1,0 +1,56 @@
+{
+  "source": {
+    "slug": "fingerprintjs",
+    "name": "fingerprintjs"
+  },
+  "target": {
+    "slug": "osso",
+    "name": "osso"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "FingerprintJS and Osso solve very different problems: FingerprintJS is a device-identification and fraud-signal API, while Osso is an enterprise SSO (SAML/OIDC) integration layer. Treat this as a category change, not a like-for-like swap, and only migrate if you have decided fraud risk is now better handled by stronger authentication.",
+  "why_switch": [
+    "You decided enterprise SSO and trusted identity replace device-fingerprint risk signals for your use case",
+    "You want SAML and OIDC connections per customer instead of an opaque device ID",
+    "You prefer an open-source-friendly auth layer over a proprietary fraud SDK",
+    "You no longer need bot, multi-account or payment-fraud signals from FingerprintJS",
+    "You are consolidating on identity-based access control instead of risk scoring"
+  ],
+  "what_to_export": [
+    "List of FingerprintJS API keys and the apps or domains they are installed on",
+    "Any stored visitorId or requestId values your backend persists per user",
+    "Webhook endpoints and event subscriptions configured in FingerprintJS",
+    "Custom rules, allow lists or block lists tied to visitorId",
+    "Subscription, region and pricing settings in your FingerprintJS account",
+    "List of frontend integrations (web SDK, iOS, Android) and where they are loaded",
+    "Mapping between visitorId and your internal user records",
+    "Active integrations with downstream tools (e.g. analytics, fraud rules engine)"
+  ],
+  "export_method": "FingerprintJS does not provide a one-click export of all configuration. Treat the migration as a manual audit. In the FingerprintJS dashboard, document each application, its API keys, regions and subscription settings. Export any visitor data your application stored in your own database — FingerprintJS itself is mostly stateless on your side, so the durable artifact is the visitorId values you saved alongside user records. Pull recent identification logs via the FingerprintJS Server API if you need a sample for analysis, then store them as JSON for reference. List every place the JS or mobile SDK is loaded (HTML templates, mobile app initializers) so you can remove them later. Capture any webhook subscriptions and integrations in screenshots or notes. If you have fraud rules built on top of visitorId in your own backend, export those rules from your code or rules engine. Do not attempt to migrate visitorId values into Osso — they are not meaningful in an SSO product.",
+  "import_method": "Osso is configured per SaaS application and per enterprise customer, not by importing fingerprint data. Sign up for Osso, create an application that represents your SaaS product, then add an enterprise customer (often called a tenant or organization). For each customer, configure either a SAML or OIDC connection using the IdP details they provide (entity ID, ACS URL, certificate for SAML; client ID, secret, issuer for OIDC). Wire your application's login flow to start an Osso authorization request and handle the callback to receive the authenticated user's profile. If you need provisioning, configure SCIM per customer where your IdP supports it. Use Osso's documentation for the exact endpoints and SDK calls. There is no data import step from FingerprintJS — you are replacing a risk-scoring product with an authentication broker, so the work is integration, not migration.",
+  "concept_mapping": [
+    {
+      "source": "FingerprintJS application",
+      "target": "Osso application",
+      "note": "Both are the unit of configuration for your product, but they store completely different data."
+    },
+    {
+      "source": "API key",
+      "target": "Osso application credentials",
+      "note": "Used to authenticate your backend to the service."
+    }
+  ],
+  "effort": "1-3 weeks",
+  "gotchas": [
+    "These products do not overlap. FingerprintJS scores risk, Osso authenticates users. Migrating from one to the other only makes sense as part of a larger architecture change, not as a feature swap.",
+    "visitorId values from FingerprintJS have no equivalent in Osso. Do not try to map them to user IDs — Osso identifies users by their IdP-asserted identity.",
+    "If you relied on FingerprintJS for bot detection, multi-account detection or payment fraud, switching to Osso will leave those gaps open. Plan a separate fraud control or remove the dependency before cutover.",
+    "Enterprise SSO requires per-customer onboarding. Each tenant needs IdP metadata exchanged, which is a coordination cost FingerprintJS never had.",
+    "Privacy and compliance posture changes. Document the reasons for removing fingerprinting and update your privacy notice and DPA accordingly.",
+    "Do not run both in parallel as a fraud measure unless you understand that Osso is not a fraud product and adds no risk signal."
+  ],
+  "email": {
+    "subject": "We are changing how we secure your account",
+    "body": "Hi there,\n\nIn 14 days we will retire our current device-identification layer and move account security to enterprise single sign-on. If your team uses SAML or OIDC, we will work with you to connect your identity provider so your users sign in with their existing corporate credentials.\n\nIf you do not yet use SSO, your current login still works. Please reply to this email if you would like to schedule the SSO setup or have questions about what changes for your users.\n\nThanks for your patience as we make this change.\n\nYour customer"
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "source": {
+    "slug": "love2d",
+    "name": "LÖVE"
+  },
+  "target": {
+    "slug": "wwise",
+    "name": "Wwise"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "LÖVE ships its own basic audio API; Wwise is a separate authoring tool plus runtime SDK that sits next to your engine. This migration is really about adding Wwise alongside or replacing LÖVE's audio layer rather than swapping engines.",
+  "why_switch": [
+    "Need adaptive music and dynamic mixing",
+    "Want a dedicated audio authoring tool",
+    "Add spatial 3D audio with DSP effects",
+    "Centralize sound design outside code",
+    "Reach AAA-style audio quality bar"
+  ],
+  "what_to_export": [
+    "Source audio files (WAV, OGG, FLAC)",
+    "Audio cue lists and metadata",
+    "Volume and mix settings per source",
+    "Loop points and fade timings",
+    "Music stems and layered tracks",
+    "SFX trigger logic in Lua",
+    "Spatial position and falloff settings",
+    "Localized voice-over assets"
+  ],
+  "export_method": "LÖVE stores audio as plain files (WAV, OGG, MP3) loaded through love.audio.newSource. There is no audio project file to export — gather the raw assets from your project folders. Document each source's role in code: which Lua function plays it, what volume and pitch are applied, whether it loops, and any fade-in/fade-out logic. Note 3D audio usage (setPosition, setAttenuationDistances) for sources that need spatialization. If you generate audio at runtime via love.sound.newSoundData, treat that as custom DSP that must be reimplemented or recorded out as static assets. Wwise's authoring tool prefers uncompressed source masters, so prefer WAV originals over compressed versions where possible.",
+  "import_method": "Install the Wwise authoring tool and create a Wwise Project for your game. Import source audio into the Project Hierarchy as Sound SFX or Music objects. Build Events for each gameplay trigger (e.g. Play_Footstep, Stop_Music). Use the SoundBank system to package audio for runtime. Wwise's runtime SDK is C/C++; LÖVE does not have an official Wwise integration, so expect to write a Lua-to-C binding via FFI or a custom native module that wraps the Wwise SDK calls. An alternative is to keep LÖVE's audio for development and only switch to Wwise during a port to another engine. Replace love.audio.play calls with PostEvent calls into the Wwise binding.",
+  "concept_mapping": [
+    {
+      "source": "love.audio.newSource",
+      "target": "Sound SFX / Music object"
+    },
+    {
+      "source": "source:play()",
+      "target": "AK::SoundEngine::PostEvent"
+    },
+    {
+      "source": "source:setVolume",
+      "target": "RTPC or Bus volume"
+    },
+    {
+      "source": "source:setPosition (3D)",
+      "target": "Game Object position + Spatializer"
+    },
+    {
+      "source": "Looped sources",
+      "target": "Looping Sound or Music Segment"
+    }
+  ],
+  "effort": "2-6 weeks depending on audio complexity and binding work",
+  "gotchas": [
+    "There is no official Wwise integration for LÖVE — you must write or commission a native binding.",
+    "Wwise's free indie tier has revenue thresholds; review licensing before committing.",
+    "Authoring requires a separate desktop tool and learning curve for sound designers.",
+    "SoundBank generation must be wired into your build pipeline; LÖVE has no precedent for this.",
+    "Spatial audio behaves differently than LÖVE's basic 3D — expect retuning.",
+    "Switching mid-project means audio cues fired by Lua may need code refactor across many files."
+  ],
+  "email": {
+    "subject": "Wwise integration plan over the next 14 days",
+    "body": "Hi team,\n\nWe're moving our audio layer from LÖVE's built-in love.audio to Wwise over the next 14 days to gain adaptive music, proper authoring, and richer spatial audio.\n\nProposed timeline:\nDays 1-2: Inventory current audio — every newSource call, every play/stop site in Lua, and per-asset settings.\nDays 3-5: Stand up the Wwise authoring project, import masters, and build initial Events and SoundBanks for the most-used cues.\nDays 6-9: Write or wire up the Wwise SDK binding so Lua can post events. Replace love.audio calls in code, starting with music and ambient loops.\nDays 10-12: Migrate SFX and 3D positional sounds; tune mix and spatial settings.\nDays 13-14: QA pass across scenes, fix lingering double-play or volume issues, sign off.\n\nNote: there is no official LÖVE+Wwise integration, so the binding work is the riskiest piece. Please flag any custom DSP in our Lua code so we can plan replacements.\n\nThanks,\nYour customer"
+  }
+}

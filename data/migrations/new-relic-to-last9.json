@@ -1,0 +1,68 @@
+{
+  "source": {
+    "slug": "new-relic",
+    "name": "New Relic"
+  },
+  "target": {
+    "slug": "last9",
+    "name": "Last9"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Move from New Relic's hosted APM/observability platform to Last9's Prometheus-compatible, high-cardinality metrics backend. Re-instrument with OpenTelemetry or Prometheus and rebuild dashboards and alerts during a parallel-run period.",
+  "why_switch": [
+    "Avoid New Relic's commit-tier minimum spend",
+    "Last9 is Prometheus-compatible, keeping metric data portable",
+    "First-class support for high-cardinality metrics",
+    "Lower lock-in by standardising on OTel/Prom",
+    "Predictable subscription pricing on Last9"
+  ],
+  "what_to_export": [
+    "APM service inventory and active language agents",
+    "Dashboards and saved queries",
+    "Alert policies, conditions, and channels",
+    "SLO and error-budget definitions",
+    "Synthetic monitor definitions (if used)",
+    "Infrastructure host and integration list",
+    "Log pipelines and parsing rules (if used)",
+    "Users, teams, and roles",
+    "Entity metadata and tags"
+  ],
+  "export_method": "Use the New Relic NerdGraph API to export dashboards, alert policies, conditions, synthetics, and entity metadata as JSON. Commit the exports to a Git repo for audit. For metric and event history, run NRQL queries for the windows you need to keep and persist results in object storage; complete historical backfill is usually limited by retention and rate limits, so most teams keep New Relic read-only during a transition rather than backfilling everything. Export users, teams, and roles. Document NRQL queries behind critical dashboards and alerts because they need to be reformulated against the new backend. List the active language agents, infra integrations, and Kubernetes integrations so you can plan their replacements with OpenTelemetry SDKs or Prometheus exporters. Capture log pipeline configuration if logs are part of scope. Keep New Relic agents reporting during the parallel period to avoid coverage gaps.",
+  "import_method": "Deploy an OpenTelemetry Collector or Prometheus remote_write pipeline pointing at Last9 ingestion endpoints, in parallel with the existing New Relic agents. Re-instrument applications with OpenTelemetry SDKs or keep Prometheus exporters where they already exist, so metrics flow to both backends during cutover. Recreate dashboards in Last9 using PromQL; treat the New Relic export as a reference, not a direct import, since query languages differ. Rebuild alerting in Last9 (or Alertmanager if you front it that way) and reconnect notification channels (Slack, PagerDuty, email) to the same destinations you used before. Validate parity by running side-by-side dashboards and alerts for at least one business cycle and confirming on-call behaviour. Once parity is confirmed, remove New Relic agents and cancel the contract at the next renewal point. Recreate users, teams, and SSO against your IdP in Last9.",
+  "concept_mapping": [
+    {
+      "source": "New Relic agent",
+      "target": "OpenTelemetry SDK or Prometheus exporter"
+    },
+    {
+      "source": "NRQL",
+      "target": "PromQL",
+      "note": "Rewrite required; semantics differ"
+    },
+    {
+      "source": "Dashboards",
+      "target": "Last9 dashboards"
+    },
+    {
+      "source": "Alert policies",
+      "target": "Last9 alert rules"
+    },
+    {
+      "source": "Entities and tags",
+      "target": "Prometheus labels"
+    }
+  ],
+  "effort": "2-6 weeks",
+  "gotchas": [
+    "NRQL does not map directly to PromQL; expect to rewrite queries",
+    "Distributed tracing parity may need additional OTel pipeline work",
+    "Log handling may require a separate tool if logs were part of New Relic usage",
+    "Cardinality and retention defaults differ; review before cutover",
+    "Commit-tier billing on New Relic may persist until contract end",
+    "Run both backends in parallel until dashboards and alerts are verified"
+  ],
+  "email": {
+    "subject": "Notice: ending our New Relic subscription within 14 days",
+    "body": "Hi team,\n\nWe are migrating our observability to a Prometheus-compatible backend and will not be renewing New Relic. Please treat this email as our 14-day notice to end the subscription at the next available term and to disable auto-renewal.\n\nKindly confirm the effective end date, the final invoice, and any export options still available. We will keep agents reporting until cutover is complete.\n\nThanks for the support during the contract.\n\nBest regards,\nYour customer"
+  }
+}

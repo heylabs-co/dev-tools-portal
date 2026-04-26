@@ -1,0 +1,77 @@
+{
+  "source": {
+    "slug": "stripe",
+    "name": "Stripe"
+  },
+  "target": {
+    "slug": "paddle",
+    "name": "Paddle"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Stripe is a payment gateway where you are the merchant of record, while Paddle acts as the merchant of record and handles global sales tax and VAT for you. The migration replaces both your payments and your tax compliance setup.",
+  "why_switch": [
+    "Want Paddle as merchant of record for global tax",
+    "Tired of managing VAT, sales tax and filings",
+    "Sell mostly digital goods or B2B SaaS globally",
+    "Prefer fewer compliance vendors over deepest customization",
+    "Acceptable to trade some flexibility for simplicity"
+  ],
+  "what_to_export": [
+    "Customer records and contact details",
+    "Subscription plans, prices and active subs",
+    "Payment method tokens (via PCI export)",
+    "Invoice and transaction history",
+    "Coupon, discount and trial configuration",
+    "Tax registration and historical tax reports",
+    "Webhook endpoints and event subscriptions",
+    "Dispute and refund history"
+  ],
+  "export_method": "From the Stripe Dashboard and API, export customers, subscriptions, invoices, charges, refunds, disputes and product/price catalogs to CSV or JSON. For saved cards, request Stripe's PCI-compliant data export to move tokens to a new vault or processor — this is a manual process initiated through Stripe support and is subject to PCI rules. Pull webhook configs, API keys and Radar rules for reference. Keep at least 24 months of history for accounting and dispute defense. Document any Connect, Tax or Billing-specific logic separately, since these often have no clean equivalent on the other side.",
+  "import_method": "In Paddle, recreate your product catalog and prices first, since plan structures rarely map 1:1. Import customers either via Paddle's import tools or by recreating subscriptions on first charge. For ongoing card-on-file subscriptions, coordinate a PCI export from Stripe directly to Paddle's processor — Paddle support can scope this. Re-create webhook endpoints against Paddle's events, and rebuild any tax logic understanding that Paddle now collects and remits as MoR. Run Paddle alongside Stripe, route new signups to Paddle, and let existing Stripe subscriptions either renew through Stripe until churn or be reissued on Paddle.",
+  "concept_mapping": [
+    {
+      "source": "Customer",
+      "target": "Customer"
+    },
+    {
+      "source": "Product / Price",
+      "target": "Product / Price"
+    },
+    {
+      "source": "Subscription",
+      "target": "Subscription"
+    },
+    {
+      "source": "Invoice",
+      "target": "Transaction / invoice"
+    },
+    {
+      "source": "PaymentMethod",
+      "target": "Payment method",
+      "note": "Tokens not directly portable"
+    },
+    {
+      "source": "Stripe Tax",
+      "target": "Built-in MoR tax",
+      "note": "Paddle handles tax as MoR"
+    },
+    {
+      "source": "Webhook event",
+      "target": "Webhook event",
+      "note": "Different event names and payloads"
+    }
+  ],
+  "effort": "3-8 weeks depending on subscription complexity and tax footprint",
+  "gotchas": [
+    "Paddle is merchant of record; statement descriptors and refund policies will change visibly to customers",
+    "Stripe Connect, Issuing and Terminal have no direct Paddle equivalent",
+    "PCI token transfer is a manual, regulated process with weeks of lead time",
+    "Tax history and filings stay your responsibility for the Stripe period",
+    "Webhook payloads differ — every consumer needs review",
+    "Running both during cutover means double reconciliation work"
+  ],
+  "email": {
+    "subject": "Switching billing from Stripe to Paddle over the next 14 days",
+    "body": "Hi team,\n\nOver the next 14 days we are migrating our billing stack from Stripe to Paddle. The main reason is that Paddle acts as merchant of record and handles global sales tax and VAT, which removes a class of compliance work we no longer want to own.\n\nThe plan is to recreate our product catalog and prices in Paddle, route new signups there starting next week, and keep existing Stripe subscriptions running until they renew or churn. For customers we want to move actively, we are coordinating a PCI-compliant token transfer between processors. Webhook consumers will be updated as endpoints flip over, and we will reconcile both sides daily.\n\nA few things to note. Statement descriptors will change because Paddle is now the seller of record. Refund and dispute flows will run through Paddle for new orders. Stripe-specific features like Connect or Issuing are not in scope.\n\nIf anything you own touches Stripe directly, please flag it this week.\n\nThanks,\nYour customer"
+  }
+}

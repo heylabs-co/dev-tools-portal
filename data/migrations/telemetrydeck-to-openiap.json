@@ -1,0 +1,60 @@
+{
+  "source": {
+    "slug": "telemetrydeck",
+    "name": "TelemetryDeck"
+  },
+  "target": {
+    "slug": "openiap",
+    "name": "OpenIAP"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "TelemetryDeck is a hosted privacy-first analytics service; OpenIAP is an open cross-platform IAP specification, not a product. Adopting OpenIAP means restructuring how you implement IAP code, not swapping an analytics vendor.",
+  "why_switch": [
+    "Want unified IAP types across iOS and Android",
+    "Reduce per-platform conditional code",
+    "Adopt vendor-neutral, OSS-governed spec",
+    "Standardize purchase restore flows",
+    "Decouple from any specific paywall SDK"
+  ],
+  "what_to_export": [
+    "Signal names and schemas",
+    "Aggregated dashboard metrics",
+    "App and platform identifiers",
+    "IAP product IDs and types",
+    "RevenueCat integration mapping",
+    "Subscription event payloads",
+    "Historical CSV exports",
+    "Custom payload fields"
+  ],
+  "export_method": "Export signals and dashboard views from TelemetryDeck. Where bulk export is unavailable, save CSVs and screenshots of the dashboards you rely on. Document your IAP product catalog (product ID, type, price tier, platform) in a spreadsheet, since this is what OpenIAP-aligned libraries will need to model. Keep an archive of subscription metric data because OpenIAP itself does not provide analytics or storage; it is a specification adopted by client libraries.",
+  "import_method": "Pick an OpenIAP-aligned client library that targets your stack (for example, an OSS IAP library that follows the OpenIAP spec) and add it to your iOS and Android codebases. Replace your current IAP integration with calls to the library, mapping your products to OpenIAP types and using its standardized error codes and restore flows. For analytics and revenue dashboards, plan a separate tool, since OpenIAP is purely a spec and does not collect telemetry. Test purchase, cancel, and restore against StoreKit 2 sandbox and Google Play Billing sandbox before release.",
+  "concept_mapping": [
+    {
+      "source": "TelemetryDeck signal",
+      "target": "Client-side IAP event",
+      "note": "OpenIAP defines structure, not transport"
+    },
+    {
+      "source": "Subscription metric",
+      "target": "OpenIAP purchase type",
+      "note": "Standardized across platforms"
+    },
+    {
+      "source": "Custom payload",
+      "target": "Library-specific extension",
+      "note": "Depends on chosen implementing library"
+    }
+  ],
+  "effort": "1-3 weeks",
+  "gotchas": [
+    "OpenIAP is a spec, not a hosted service; you still need analytics elsewhere.",
+    "Spec is still maturing and breaking changes may occur between versions.",
+    "Apple and Google API changes may outpace spec updates.",
+    "You depend on the implementing library's release cadence, not the spec itself.",
+    "No dashboard or storage is included; budget for separate tooling."
+  ],
+  "email": {
+    "subject": "Moving off TelemetryDeck to an OpenIAP-based stack in 14 days",
+    "body": "Hi TelemetryDeck team,\n\nThanks for the analytics support over the past months. We are restructuring our IAP layer around the OpenIAP specification to unify iOS and Android purchase flows. Since OpenIAP is a spec rather than a service, we will also be reducing our reliance on TelemetryDeck and will complete the transition within 14 days.\n\nPlanned timeline:\n- Days 1-3: export signals and document IAP product catalog.\n- Days 4-9: integrate an OpenIAP-aligned library across iOS and Android.\n- Days 10-12: sandbox-test purchase, cancel, and restore flows.\n- Days 13-14: ship and stop sending new signals to TelemetryDeck.\n\nPlease confirm how to download our remaining data and the proper way to close the account at the end of the current cycle, with confirmation that no further charges will apply.\n\nThanks again,\nYour customer"
+  }
+}

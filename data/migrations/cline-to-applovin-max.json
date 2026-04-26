@@ -1,0 +1,55 @@
+{
+  "source": {
+    "slug": "cline",
+    "name": "cline"
+  },
+  "target": {
+    "slug": "applovin-max",
+    "name": "applovin-max"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Cline is an AI coding agent and AppLovin MAX is a mobile ad mediation SDK, so this is not a like-for-like migration but a removal plus separate adoption. Stop using Cline inside your IDEs and adopt AppLovin MAX inside your mobile apps as an unrelated monetisation layer.",
+  "why_switch": [
+    "You no longer need an in-IDE AI coding agent",
+    "Your priority is monetising a mobile app, not assisting developers",
+    "Consolidating budget toward revenue-generating tooling",
+    "Adopting AppLovin MAX as part of a wider mobile ad strategy",
+    "Internal policy change that disallows AI coding agents"
+  ],
+  "what_to_export": [
+    "Cline workspace settings and rules / instructions files",
+    "MCP server configurations used by Cline",
+    "BYOK API key list (provider, model, scope) for rotation",
+    "Custom prompts, slash commands or saved sessions",
+    "Conversation history you want to keep for reference",
+    "List of repositories and machines where Cline is installed",
+    "Any team-level governance rules around Cline usage"
+  ],
+  "export_method": "Cline runs as an open-source VS Code extension, so its state lives mostly on developer machines. Have each developer copy their Cline configuration files, rules and any project-level instruction files (for example .clinerules) out of their workspace into a shared repository or backup before uninstalling. Inventory the BYOK provider keys configured in Cline so they can be rotated and revoked at the provider side. Export any conversation history that is valuable for audit or knowledge transfer. There is no central tenant to drain; offboarding is essentially uninstalling the extension and cleaning up keys. Treat this step as a security review, not a data migration.",
+  "import_method": "AppLovin MAX is a mobile ad mediation product and is integrated inside iOS, Android, Unity or React Native apps, not in an IDE. Create an AppLovin account, register each app, and create ad units (banner / interstitial / rewarded / native) for the formats you want to monetise. Integrate the AppLovin MAX SDK into each app following the official MAX integration guide, initialise it on app start, and place ads at the chosen surfaces. Configure mediation networks inside the MAX dashboard and update your app-ads.txt with the required entries. Wire IAB TCF / GPP consent so ad requests carry correct signals. Test with MAX's test mode on real devices, then release through the normal app store update flow.",
+  "concept_mapping": [
+    {
+      "source": "Cline VS Code extension",
+      "target": "AppLovin MAX mobile SDK",
+      "note": "different product categories, no direct mapping"
+    },
+    {
+      "source": "Cline BYOK model keys",
+      "target": "AppLovin account API keys",
+      "note": "unrelated systems, both must be managed as secrets"
+    }
+  ],
+  "effort": "1-2 days to fully decommission Cline; 3-8 weeks per platform to adopt AppLovin MAX",
+  "gotchas": [
+    "These tools solve different problems; treat the move as one project to retire Cline and a separate project to add MAX, not as a single migration.",
+    "Cline BYOK keys must be revoked at each model provider, not just removed from the extension, otherwise they remain valid.",
+    "MCP servers wired into Cline may also be used by other tools; verify before disabling them.",
+    "AppLovin MAX integration affects the binary and triggers app store review on both platforms.",
+    "Ad mediation introduces compliance obligations (privacy policy updates, consent prompts) that did not apply to Cline.",
+    "Skipping consent or app-ads.txt configuration in MAX causes silent revenue loss without obvious errors."
+  ],
+  "email": {
+    "subject": "Internal: changes to our developer and monetisation tooling",
+    "body": "Hi,\n\nIn the next 14 days we are retiring Cline as our in-IDE AI coding agent and, separately, adopting AppLovin MAX inside our mobile apps for ad monetisation. These are independent changes.\n\nIf you use Cline today, you will be asked to uninstall it and rotate any model API keys. If you build the mobile app, you will see new AppLovin MAX integration steps in the repo.\n\nReply with any questions about your specific workflow or app.\n\nThanks,\nYour customer"
+  }
+}

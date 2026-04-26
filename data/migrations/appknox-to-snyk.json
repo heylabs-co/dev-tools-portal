@@ -1,0 +1,64 @@
+{
+  "source": {
+    "slug": "appknox",
+    "name": "appknox"
+  },
+  "target": {
+    "slug": "snyk",
+    "name": "snyk"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Appknox focuses on mobile application security testing for Android and iOS binaries, while Snyk is a developer-first platform covering SCA, SAST, container, and IaC scanning integrated into IDEs and CI. The two overlap on app-layer vulnerabilities but Snyk shifts the emphasis from binary scans to source and dependency scanning in pipelines.",
+  "why_switch": [
+    "Bring security checks into the IDE and CI pipeline rather than post-build binaries",
+    "Cover dependencies, containers, and IaC alongside code",
+    "Standardise on SARIF output for downstream tooling",
+    "Reduce friction for developers fixing issues at PR time"
+  ],
+  "what_to_export": [
+    "List of mobile apps and their package identifiers under scan",
+    "Open and historical vulnerability findings with severity",
+    "Risk acceptance and false-positive notes",
+    "Compliance reports already issued",
+    "User and team roles",
+    "CI/CD integration configuration",
+    "SLA and remediation policies"
+  ],
+  "export_method": "Pull each Appknox project's findings as a report — typically PDF or JSON — and store the artifacts in a dated archive that can be referenced for audit purposes. Capture the list of scanned apps with their identifiers, plus any risk acceptance or suppression decisions, since these decisions must be re-applied in the new tool to avoid alert fatigue. Treat user/role data as documentation only and recreate accounts in Snyk via SSO. Do not attempt to migrate raw scan engines or binary artifacts — they are tool-specific.",
+  "import_method": "Connect Snyk to the source repositories and CI pipelines that build the same mobile apps. Snyk's scanners run primarily on source code, manifests, and containers, so the operational pattern shifts from scanning a built APK/IPA to scanning the project at PR time. Onboard one repository, import the vulnerability list, then port your suppressions and risk-acceptance decisions as Snyk ignore policies. Wire Snyk into IDE plugins and CI checks so developers see findings before merge. Validate that severity gating and reporting cover the same compliance asks Appknox handled.",
+  "concept_mapping": [
+    {
+      "source": "App project (binary scan)",
+      "target": "Repository / project (source scan)"
+    },
+    {
+      "source": "Finding",
+      "target": "Issue"
+    },
+    {
+      "source": "Risk acceptance",
+      "target": "Ignore policy"
+    },
+    {
+      "source": "Compliance report",
+      "target": "Snyk report / SARIF export"
+    },
+    {
+      "source": "User/team",
+      "target": "Org / group membership"
+    }
+  ],
+  "effort": "2-4 weeks",
+  "gotchas": [
+    "Snyk's primary signal is source/dependency-based; binary-only mobile checks may not have a 1:1 replacement",
+    "Recreate every suppression manually or you will see a flood of old findings",
+    "Confirm coverage for mobile-specific issues (e.g. cleartext traffic, deep links) before retiring Appknox",
+    "CI gating thresholds differ; tune severity rules to avoid breaking builds on day one",
+    "Historical reports remain in Appknox unless explicitly exported",
+    "Check license terms before exporting bulk finding data"
+  ],
+  "email": {
+    "subject": "Mobile security scanning is moving to Snyk",
+    "body": "Hi team,\n\nWe are moving our mobile application security checks from Appknox to Snyk over the next 14 days. The new setup will run in IDEs and CI rather than against built binaries, so most of you will see findings at PR time instead of post-build. We will keep both tools running in parallel until each app is validated. Please reply if you have an in-flight Appknox finding you want migrated.\n\nThanks for bearing with us.\n\nYour customer"
+  }
+}

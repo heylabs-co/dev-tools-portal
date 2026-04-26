@@ -1,0 +1,76 @@
+{
+  "source": {
+    "slug": "buildkite",
+    "name": "Buildkite"
+  },
+  "target": {
+    "slug": "github-actions",
+    "name": "GitHub Actions"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Move CI/CD from Buildkite's agent-based pipelines to GitHub Actions hosted runners or self-hosted runners. Both use YAML, so the bulk of work is translating pipeline syntax and rewiring secrets, agents, and integrations.",
+  "why_switch": [
+    "Native GitHub repo + PR + Actions integration",
+    "2,000 free minutes/month on private repos",
+    "Large public marketplace of reusable actions",
+    "No separate agent fleet to operate by default",
+    "Public repos run free at usage-based pricing"
+  ],
+  "what_to_export": [
+    "Pipeline YAML definitions",
+    "Agent configuration and queue tags",
+    "Build environment variables",
+    "Secrets and SSH keys",
+    "Build artifacts and caches",
+    "Webhook and notification configs",
+    "Custom plugins or hooks",
+    "Build history/logs (for archive)",
+    "Branch and tag rules",
+    "User and team permissions"
+  ],
+  "export_method": "Pipeline definitions in Buildkite typically live in your repository (pipeline.yml) or can be exported from the Buildkite UI/API per pipeline. Use the Buildkite REST API to enumerate pipelines, builds, and agents and to download stored configuration. Secrets configured in Buildkite environment hooks or via your secrets backend cannot be read back; collect canonical values from your password manager or original source. Capture queue/agent tags so you can map jobs to runner labels later. Build logs and artifacts can be downloaded per build via the API if you want a historical archive, but this is optional for migration. Document any agent bootstrap scripts, custom hooks, and plugins because these need to be reimplemented as actions or composite scripts in GitHub Actions.",
+  "import_method": "Create .github/workflows/*.yml files in each repository. Translate Buildkite steps to GitHub Actions jobs and steps: command steps become run: blocks, plugins become actions or composite actions, and queue tags map to runs-on labels (ubuntu-latest, self-hosted, plus custom labels). Add secrets in repo or org settings under Actions secrets. For self-hosted compute, install GitHub Actions self-hosted runners on your existing Buildkite hardware and label them to match the work that previously targeted those agents. Wire matrix builds, caching (actions/cache), and artifacts (actions/upload-artifact). Run both systems in parallel on a sample repo to compare green builds before cutting over.",
+  "concept_mapping": [
+    {
+      "source": "Pipeline",
+      "target": "Workflow (.yml file)"
+    },
+    {
+      "source": "Step",
+      "target": "Job or step"
+    },
+    {
+      "source": "Agent",
+      "target": "Runner (hosted or self-hosted)"
+    },
+    {
+      "source": "Queue/agent tags",
+      "target": "runs-on labels"
+    },
+    {
+      "source": "Plugin",
+      "target": "Action (uses:)"
+    },
+    {
+      "source": "Environment hook",
+      "target": "env: block or composite action"
+    },
+    {
+      "source": "Build artifacts",
+      "target": "actions/upload-artifact"
+    }
+  ],
+  "effort": "1-3 weeks for a typical multi-pipeline repo set, longer if many custom plugins.",
+  "gotchas": [
+    "Buildkite plugins have no 1:1 GitHub Action equivalents; expect to rewrite or wrap them",
+    "Self-hosted runner security model differs (GitHub recommends ephemeral runners for public repos)",
+    "Concurrency, matrix, and conditional syntax differ; review every step",
+    "Secrets cannot be exported from Buildkite, recollect from source of truth",
+    "Build minute pricing on hosted GitHub runners can exceed cheap self-hosted Buildkite agents at scale",
+    "Cache semantics differ; rebuild caching strategy rather than copying"
+  ],
+  "email": {
+    "subject": "Cancelling our Buildkite subscription, moving CI to GitHub Actions",
+    "body": "Hi Buildkite team,\n\nAfter several years on Buildkite, we have decided to consolidate our CI/CD onto GitHub Actions to keep tooling closer to our source of truth and reduce the number of systems our developers context-switch between.\n\nOur plan is to migrate pipelines over the next 14 days, run both systems in parallel for one week to validate parity, then cut over and stop sending new builds to Buildkite. After cutover we will keep the account read-only for one billing cycle so we can pull historical logs, then close it.\n\nCould you confirm:\n- The exact date our subscription will stop billing once we close the account\n- Whether build history and artifacts remain accessible for the read-only window\n- Any data export tools you recommend before account closure\n\nThanks for the years of solid service. The product worked well; this move is purely about platform consolidation.\n\nYour customer"
+  }
+}

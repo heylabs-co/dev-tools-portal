@@ -1,0 +1,71 @@
+{
+  "source": {
+    "slug": "camunda",
+    "name": "Camunda"
+  },
+  "target": {
+    "slug": "cohere",
+    "name": "Cohere"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Camunda is a BPMN process orchestrator; Cohere is an NLP API for embeddings, classification, generation and search. They are not direct replacements — moving makes sense only when workflow logic is being replaced by AI inference plus a separate orchestrator.",
+  "why_switch": [
+    "Replace BPMN/DMN decisions with LLM and embedding-based logic",
+    "Reduce the operational burden of running a workflow engine",
+    "Adopt provider-portable NLP APIs to keep AI choices flexible",
+    "Move classification and routing to embedding similarity instead of rules",
+    "Simplify stack if remaining workflows are short-lived and stateless"
+  ],
+  "what_to_export": [
+    "BPMN and DMN model files",
+    "Process variable and message schemas",
+    "Worker code and integration contracts",
+    "Historical process instance and audit data",
+    "Form definitions and routing rules",
+    "Identity and access mappings",
+    "Connector credentials and secrets",
+    "Dashboards, alerts and SLOs"
+  ],
+  "export_method": "BPMN and DMN are open-standard XML files; pull them from source control or Camunda Modeler as the canonical export. Generic steps: 1) gather every BPMN/DMN and form file by project; 2) document process variables, message names and worker contracts so they can be expressed as API inputs/outputs; 3) export historical process instances via the history API for audit retention; 4) inventory connectors, Tasklist UI usage and any engine-specific extensions; 5) capture identity mappings and operational dashboards. Camunda's lock-in is low at the model layer thanks to BPMN, but anything tied to Camunda connectors or Tasklist UI will not transfer. Verify the exact export tooling in the current Camunda documentation before relying on it.",
+  "import_method": "Cohere does not run workflows — it serves NLP endpoints (embed, classify, generate, rerank, search). Plan: 1) identify Camunda steps that become NLP calls (intent classification, drafting, extraction, semantic routing) versus steps that still need an orchestrator (Temporal, Airflow, a queue + worker pattern); 2) sign up for Cohere, generate an API key, and install the appropriate SDK or use the REST API directly; 3) prototype prompts and embeddings that replace BPMN/DMN logic, with evaluation datasets to confirm parity; 4) re-implement orchestration in your chosen engine and call Cohere from worker steps; 5) handle rate limits, retries and PII considerations explicitly; 6) plan an evaluation gate before rolling each migrated process into production. Confirm current Cohere endpoints, model names and pricing in the official documentation.",
+  "concept_mapping": [
+    {
+      "source": "BPMN process",
+      "target": "Separate orchestrator + Cohere API calls",
+      "note": "Cohere does not execute workflows"
+    },
+    {
+      "source": "DMN decision table",
+      "target": "Cohere classify or embedding-based router"
+    },
+    {
+      "source": "External task worker",
+      "target": "Worker that calls Cohere endpoints"
+    },
+    {
+      "source": "Process variables",
+      "target": "Prompt or request payload fields"
+    },
+    {
+      "source": "Tasklist UI",
+      "target": "Custom human-in-the-loop UI"
+    },
+    {
+      "source": "Camunda credentials",
+      "target": "Cohere API key in your secret store"
+    }
+  ],
+  "effort": "6-14 weeks",
+  "gotchas": [
+    "Cohere is an inference provider, not an orchestrator — retries, timers and compensation need a separate runtime.",
+    "LLM and classifier outputs are non-deterministic; build evaluations before replacing deterministic DMN tables.",
+    "Sending process data to a hosted NLP API has compliance implications — check data residency and PII handling.",
+    "Rate limits and token costs scale with traffic; forecast usage and add backoff before going live.",
+    "Camunda-specific features (timers, compensation, Tasklist) have no Cohere equivalent and must be re-engineered.",
+    "Audit logging shifts away from a single workflow store; instrument the new pipeline for traceability."
+  ],
+  "email": {
+    "subject": "Camunda to Cohere migration: 14-day rollout plan",
+    "body": "Hi team,\n\nWe're starting a 14-day migration where Cohere takes over selected NLP decisions previously handled by Camunda BPMN/DMN. Cohere is an NLP API, not a workflow engine, so we'll pair it with a lighter orchestrator (decision pending) for any remaining stateful logic. Plan:\n\n1) Days 1-4: export every BPMN/DMN model, form and worker contract; archive historical process data for audit.\n2) Days 5-9: provision Cohere access, prototype embedding/classification flows that replace selected DMN tables and routing logic, and build evaluation datasets to validate parity.\n3) Days 10-13: re-implement orchestration for the workflow logic that remains and wire workers to call Cohere with retries, rate-limit handling and observability.\n4) Day 14: dual-run on a small slice of traffic, then promote once metrics match Camunda baselines.\n\nFlag any process that depends on Camunda-specific features (timers, compensation, Tasklist UI) — those need explicit redesign before cutover. Concerns or questions, reply on this thread.\n\nThanks,\nYour customer"
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "source": {
+    "slug": "segment",
+    "name": "segment"
+  },
+  "target": {
+    "slug": "aptible",
+    "name": "aptible"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Segment is a customer data platform that routes events to analytics and marketing tools, while Aptible is a HIPAA-focused deployment PaaS — they solve completely different problems. There is no real data migration between them; if you are switching, you are likely changing what your stack does, not just the vendor.",
+  "why_switch": [
+    "Your real need is HIPAA-compliant app hosting, not event routing",
+    "You are simplifying by removing tools you do not use",
+    "You want a platform that signs a BAA out of the box",
+    "You are stepping away from a CDP because of cost or scope",
+    "You are consolidating onto a healthcare-focused stack"
+  ],
+  "what_to_export": [
+    "List of Segment sources (web, mobile, server-side libraries)",
+    "List of destinations and their configurations",
+    "Tracking plan / event schema",
+    "User and workspace configuration",
+    "Consent and privacy settings",
+    "API write keys and credentials (rotate during migration)",
+    "Historical event volumes for reference",
+    "Billing and admin contacts"
+  ],
+  "export_method": "In Segment, document each source's write key location in your code, the destinations they fan out to, and the tracking plan if you maintain one. Export historical reports of event volumes so you can plan future tooling. Securely record credentials for downstream destinations because you will need them again wherever you decide to send events next — Aptible will not be that destination. If your migration plan involves keeping event collection, choose a separate replacement; if it does not, confirm that no downstream system silently depends on Segment events before disabling. This is decommissioning, not data import.",
+  "import_method": "Aptible is for deploying applications, not collecting events. Create an Aptible account, a stack appropriate for your compliance needs, and follow Aptible's documentation to deploy your applications via git push. Sign a BAA if HIPAA coverage is required. Configure databases, environment variables, and logging through Aptible's standard mechanisms. None of your Segment configuration translates into Aptible — if you still need event collection or a CDP, plan a separate tool that runs alongside Aptible. Validate that your application functions on Aptible before fully cutting Segment off.",
+  "concept_mapping": [],
+  "effort": "1-4 weeks",
+  "gotchas": [
+    "Segment is a CDP and Aptible is a hosting PaaS — verify this switch matches your real goal",
+    "Segment has annual MTU commitments on some plans, so cancellation timing affects billing",
+    "Aptible does not replace event collection — choose a separate tool if you still need it",
+    "HIPAA coverage on Aptible requires a signed BAA and correct stack configuration",
+    "Removing Segment may silently break downstream marketing or analytics pipelines",
+    "Rotate any credentials previously stored in Segment after cutover"
+  ],
+  "email": {
+    "subject": "Canceling our Segment subscription in 14 days",
+    "body": "Hi team,\n\nOur stack is changing and we will be stepping away from Segment. Please treat this email as 14 days notice to cancel our Segment subscription. Given the annual MTU commitment on some plans, kindly confirm the effective end date, any final invoice, and any contractual considerations. Thanks for your support.\n\nBest,\nYour customer"
+  }
+}

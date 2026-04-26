@@ -1,0 +1,43 @@
+{
+  "source": {
+    "slug": "void-editor",
+    "name": "void-editor"
+  },
+  "target": {
+    "slug": "applovin-max",
+    "name": "applovin-max"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Void is an open-source VS Code fork for AI-assisted coding, while AppLovin MAX is a mobile ad mediation platform — the two solve completely different problems. There is no meaningful one-to-one migration; this guide is provided only because the categories overlap in the source data, and most teams should treat them as unrelated tools.",
+  "why_switch": [
+    "You realized your actual need is mobile ad monetization, not an AI editor",
+    "You are standardizing your mobile app on AppLovin MAX mediation",
+    "You no longer need a local AI coding tool for the affected workflow",
+    "You want a managed monetization platform instead of a developer tool",
+    "You are reducing the number of unrelated tools your team maintains"
+  ],
+  "what_to_export": [
+    "Local Void editor settings, keybindings, and extensions list",
+    "Any custom LLM provider configuration or API keys stored in Void",
+    "Workspace and project settings tied to Void",
+    "List of repositories or projects opened in Void",
+    "Any AI prompt history or notes saved locally",
+    "Snippets or macros customized in Void"
+  ],
+  "export_method": "Void is a local VS Code fork, so most of its state lives in your user profile and workspace folders. Capture your settings JSON, keybindings, and the list of installed extensions using the editor's standard configuration files. Record any LLM provider endpoints or API keys you configured (these belong to the underlying provider, not to Void itself). Because Void does not host your code, there is nothing to migrate from a SaaS account. If you used a local model or self-hosted endpoint, document its address and credentials separately. Treat this as decommissioning a local tool rather than a data migration.",
+  "import_method": "AppLovin MAX is a mobile ad mediation SDK and dashboard, so the import is unrelated to Void's data. In the AppLovin dashboard, create your application entries for iOS and Android, then define ad unit types you need (rewarded, interstitial, banner). Integrate the AppLovin MAX SDK into your mobile project per the official integration docs. Configure the mediation waterfall or bidding setup with the ad networks you want to include. Test ads in staging builds before publishing to production. Because there is no overlap with Void, do not attempt to map Void configuration onto AppLovin settings — they share no concepts.",
+  "concept_mapping": [],
+  "effort": "1-3 weeks",
+  "gotchas": [
+    "These tools serve different purposes; verify your actual goal before treating this as a real migration",
+    "Removing Void does not remove the LLM provider account — cancel that separately if needed",
+    "AppLovin MAX integration requires changes to your mobile build, not to your editor",
+    "Privacy disclosures (ATT, IDFA, GDPR consent) must be updated when adding AppLovin's SDK",
+    "Ad mediation revenue takes time to stabilize after a new SDK rollout",
+    "Do not expect any data, prompts, or settings to transfer between the two products"
+  ],
+  "email": {
+    "subject": "Discontinuing use of Void editor",
+    "body": "Hi team,\n\nWe are stepping away from Void in our workflow. As Void is open source there is typically no subscription to cancel, but please treat this as a 14-day heads-up that we will stop using the tool and any related accounts. If anything on your side requires action, let me know.\n\nThanks,\nYour customer"
+  }
+}

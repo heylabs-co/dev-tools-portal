@@ -1,0 +1,72 @@
+{
+  "source": {
+    "slug": "fastly",
+    "name": "Fastly"
+  },
+  "target": {
+    "slug": "netlify",
+    "name": "Netlify"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Replace Fastly delivery with Netlify when the workload is a Git-managed site, porting VCL to redirects/headers/edge functions and Compute@Edge to Netlify Edge Functions. Expect significant rework if your Fastly setup is heavy on VCL or proxies arbitrary origins.",
+  "why_switch": [
+    "Git-based deploys with previews and rollbacks",
+    "Built-in CDN, redirects, and headers",
+    "Edge Functions and Functions in one platform",
+    "Generous free tier for static sites",
+    "Lower operational overhead than VCL services"
+  ],
+  "what_to_export": [
+    "Service configurations and active versions",
+    "VCL snippets and custom VCL",
+    "Compute@Edge source code",
+    "Backends/origins and shielding settings",
+    "ACLs and edge dictionaries",
+    "TLS certificates and custom domains",
+    "Logging endpoints",
+    "WAF/Next-Gen WAF rules",
+    "Image optimization settings",
+    "DNS records pointing at Fastly"
+  ],
+  "export_method": "Use the Fastly API or CLI to export each service version as JSON, including backends, request/response conditions, headers, and any custom VCL. Download Compute@Edge source from your repository. Export ACLs and dictionaries via API. Document logging endpoints and TLS configuration. Pull recent access logs to baseline traffic patterns, top URLs, and cache-hit ratios. Note: managed TLS private keys may not be exportable from Fastly; plan to re-issue at cutover. Capture WAF rules and rate-limiting policies separately so they can be reproduced in the destination platform.",
+  "import_method": "Create a Netlify site connected to your Git repository (or upload a build artifact). Translate Fastly VCL behavior into Netlifys netlify.toml redirects, rewrites, and headers; cases that VCL handled with logic typically become Netlify Edge Functions. Port Compute@Edge code to Edge Functions, noting that the runtime is Deno-based with web standard APIs and quotas. Configure custom domains and let Netlify provision TLS, or upload your own. Set up Functions for back-end logic that previously lived in your origin or Compute@Edge. Update DNS to delegate to Netlify DNS or add the Netlify load-balancer records. Use the Netlify CLI to test locally and stage previews before promoting to production.",
+  "concept_mapping": [
+    {
+      "source": "Fastly service",
+      "target": "Netlify site"
+    },
+    {
+      "source": "VCL",
+      "target": "_redirects / _headers / Edge Functions"
+    },
+    {
+      "source": "Compute@Edge",
+      "target": "Netlify Edge Functions"
+    },
+    {
+      "source": "Edge dictionaries / ACLs",
+      "target": "Edge Function logic + env vars"
+    },
+    {
+      "source": "Next-Gen WAF",
+      "target": "Edge Functions / external WAF"
+    },
+    {
+      "source": "Custom domain + cert",
+      "target": "Domain + Lets Encrypt"
+    }
+  ],
+  "effort": "3-8 weeks depending on VCL complexity and origin model",
+  "gotchas": [
+    "Fastly annual commits and minimums must be reviewed before terminating; budget notice time",
+    "Netlify is Git-deploy oriented; pure proxy CDN use cases fit less naturally",
+    "VCL has no direct mapping; treat the migration as a redesign of edge logic",
+    "Compute@Edge (WASI/Rust/Go) and Edge Functions (Deno) are very different runtimes",
+    "WAF coverage may need an external provider if your security posture requires Next-Gen WAF features",
+    "Bandwidth-heavy or media-heavy workloads may be more expensive on Netlify; model the cost"
+  ],
+  "email": {
+    "subject": "Migrating from Fastly to Netlify over the next 14 days",
+    "body": "Hello Fastly team,\n\nQuick courtesy note: we plan to move our delivery from Fastly to Netlify over the next 14 days. The driver is consolidation of Git-based deploys, CDN, and edge functions onto one platform; this is a fit-of-tooling decision rather than a complaint about Fastly.\n\nPlan: days 1-3 export service configs, VCL, Compute@Edge code, ACLs, dictionaries, and logging configs; days 4-9 build the Netlify site with redirects/headers and port edge logic to Edge Functions; days 10-12 cut DNS with low TTLs and keep Fastly warm as rollback; days 13-14 drain traffic and start contract wind-down.\n\nCould you confirm our remaining commit, the notice period for non-renewal, and the recommended steps to deactivate services and TLS without disrupting anything in flight. Guidance on exporting any reusable TLS material would also help.\n\nThanks for the partnership.\n\nYour customer"
+  }
+}

@@ -1,0 +1,61 @@
+{
+  "source": {
+    "slug": "amplitude",
+    "name": "Amplitude"
+  },
+  "target": {
+    "slug": "baremetrics",
+    "name": "Baremetrics"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Baremetrics is SaaS / subscription metrics derived primarily from Stripe — not a like-for-like Amplitude replacement. Use it if your real need is MRR, churn and revenue analytics, not behavioural product analytics.",
+  "why_switch": [
+    "Focused SaaS revenue, MRR, churn dashboards",
+    "Drop Amplitude annual event-volume commit",
+    "Simpler monthly subscription, downgradable",
+    "Less engineering overhead — no event instrumentation"
+  ],
+  "what_to_export": [
+    "Stripe (or other billing) connection details",
+    "Customer list with subscription status",
+    "Event taxonomy (for archival, not import)",
+    "Saved charts / dashboards (screenshots)",
+    "User cohorts (as CSV)",
+    "Annotations / release markers",
+    "API keys and integration tokens",
+    "Team members and roles"
+  ],
+  "export_method": "Use Amplitude's account settings to download chart configurations and cohorts as CSV. Raw event data can be pulled through the Export API or via the warehouse-native connection if you set one up (Snowflake/BigQuery sync). Treat the event archive as cold storage — Baremetrics will not ingest it. Document your event schema, identify-call shape, and any computed properties for future reference. Export user cohorts to CSV so you can re-create equivalent customer segments in Baremetrics manually if needed. Save chart screenshots for institutional knowledge.",
+  "import_method": "In Baremetrics, the primary onboarding step is connecting your billing provider (Stripe, Braintree, Recurly, Chargebee, etc.) via the dashboard. Once connected, MRR, churn, LTV, ARR and cohort revenue charts populate automatically — no SDK install or event tagging needed. If you also want simple page or signup tracking, you'll need a separate tool; Baremetrics is revenue-centric. Recreate any customer segments using the customers/properties available from your billing source. Invite teammates and configure Slack / email digests. Plan a one-month overlap with Amplitude so finance can reconcile metrics before cancelling.",
+  "concept_mapping": [
+    {
+      "source": "Event",
+      "target": "(no equivalent — revenue-only)"
+    },
+    {
+      "source": "Cohort",
+      "target": "Customer segment",
+      "note": "Driven by billing attributes"
+    },
+    {
+      "source": "Chart",
+      "target": "Metric / dashboard"
+    },
+    {
+      "source": "User Property",
+      "target": "Customer attribute (from Stripe)"
+    }
+  ],
+  "effort": "1-2 weeks",
+  "gotchas": [
+    "Not a 1:1 replacement — behavioural analytics are lost, only revenue remains",
+    "Amplitude annual event commit does not pro-rate mid-cycle",
+    "Baremetrics depends on a clean billing source — messy Stripe data = messy charts",
+    "Funnels, retention, and product event analysis must move to a different tool",
+    "Historical raw events are not importable into Baremetrics"
+  ],
+  "email": {
+    "subject": "Account export and wind-down — Amplitude",
+    "body": "Hi Amplitude team,\n\nWe are restructuring our analytics stack and will wind down our Amplitude account over the next 14 days. To do this cleanly, could you help with:\n1. Confirming the best path to export raw events, cohorts, and chart definitions via the API or warehouse sync.\n2. Sharing the end date of our current annual event-volume commitment so we can avoid overlap charges.\n3. Letting us know if any data is purged immediately on cancellation versus retained for a grace period.\n\nWe plan to run a short parallel period for reconciliation before final cancellation. Please let me know if anything needs to be initiated from your side.\n\nThanks,\nYour customer"
+  }
+}

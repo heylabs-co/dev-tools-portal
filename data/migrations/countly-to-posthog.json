@@ -1,0 +1,71 @@
+{
+  "source": {
+    "slug": "countly",
+    "name": "Countly"
+  },
+  "target": {
+    "slug": "posthog",
+    "name": "PostHog"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Moving from Countly to PostHog gives you product analytics plus session replay, feature flags, and experimentation in one platform with a strong open-source core. The main work is event schema mapping and SDK swaps across your apps.",
+  "why_switch": [
+    "Analytics + session replay + flags + experiments in one tool",
+    "Open-source with self-host or cloud option",
+    "SQL/data-warehouse access to raw events",
+    "Active community and frequent releases",
+    "Public usage-based pricing with free tier"
+  ],
+  "what_to_export": [
+    "Raw event data and properties",
+    "User profiles and identifiers",
+    "Funnel, retention, and dashboard definitions",
+    "Custom segments and cohorts",
+    "Feature flag configurations (if used)",
+    "SDK initialization and tracking plan",
+    "Push notification / messaging configs",
+    "Crash and error reports"
+  ],
+  "export_method": "Countly is self-hostable, so if you operate it yourself you can extract events directly from the underlying database (typically MongoDB). Otherwise, use Countly's Dashboard and API to export events, users, sessions, and segments as JSON or CSV. Capture your tracking plan: every event name, property schema, and where each event is fired in your apps. Export dashboard, funnel, and retention definitions as documentation so they can be rebuilt. If you use crash reporting or push, snapshot those configurations separately. Decide whether you want to backfill historical events into PostHog or only forward events from cutover; backfill is straightforward via PostHog's batch capture endpoint but requires schema mapping first.",
+  "import_method": "Create a PostHog project (cloud or self-hosted) and define your tracking plan in PostHog's data management UI. Install the appropriate PostHog SDK in each app (web, iOS, Android, server) and align event names and properties to the new plan. For backfill, transform exported Countly events to PostHog's capture payload shape and send them through the batch capture API. Recreate funnels, retention reports, and dashboards using the imported data. Configure feature flags and experiments if you plan to use them. Run both systems in parallel for one to two weeks, compare event counts and key funnels, and only remove the Countly SDK after PostHog data is verified to match.",
+  "concept_mapping": [
+    {
+      "source": "Event",
+      "target": "Event"
+    },
+    {
+      "source": "User / Device",
+      "target": "Person",
+      "note": "PostHog identifies via distinct_id"
+    },
+    {
+      "source": "Segment",
+      "target": "Cohort"
+    },
+    {
+      "source": "Funnel",
+      "target": "Funnel insight"
+    },
+    {
+      "source": "Dashboard",
+      "target": "Dashboard"
+    },
+    {
+      "source": "Crash report",
+      "target": "Error tracking / external tool"
+    }
+  ],
+  "effort": "2-6 weeks depending on app count and whether you backfill history",
+  "gotchas": [
+    "Event schemas rarely line up 1:1 — map names and properties before backfill",
+    "User identity stitching differs; align device IDs to distinct_id carefully to avoid duplicate persons",
+    "If you self-hosted Countly, also plan for PostHog hosting (cloud vs self-hosted) cost and ops",
+    "Session replay and feature flags add value but also add SDK weight — measure mobile bundle impact",
+    "Historical data backfill can be expensive at high event volumes",
+    "Run both SDKs in parallel until counts and funnels reconcile"
+  ],
+  "email": {
+    "subject": "Migration plan: Countly to PostHog analytics",
+    "body": "Hi team,\n\nWe are planning to move our product analytics from Countly to PostHog over the next 14 days and would like your help scoping the work.\n\nSpecifically, we would like to:\n\n- Export raw events, user profiles, and dashboard/funnel definitions from Countly.\n- Define a tracking plan in PostHog and align event names and properties.\n- Install the PostHog SDKs in our apps and run both systems in parallel during validation.\n- Optionally backfill historical events into PostHog via the batch capture API.\n\nCould you confirm onboarding steps, recommended SDK versions for our stack, expected ingestion volumes/pricing, and a technical contact? We aim to begin within the next few business days.\n\nThanks,\nYour customer"
+  }
+}

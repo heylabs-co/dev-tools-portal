@@ -1,0 +1,58 @@
+{
+  "source": {
+    "slug": "flutter-inapp-purchase",
+    "name": "flutter_inapp_purchase"
+  },
+  "target": {
+    "slug": "openiap",
+    "name": "OpenIAP"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "flutter_inapp_purchase already advertises alignment with the OpenIAP spec, so the migration is mostly about adopting OpenIAP terminology and any newer spec types rather than swapping libraries. There is no separate OpenIAP runtime — it's a specification.",
+  "why_switch": [
+    "Adopt cross-platform IAP terminology",
+    "Standardize types and error codes",
+    "Reduce per-platform conditional code",
+    "Future-proof against vendor API drift",
+    "Align with other OpenIAP libraries"
+  ],
+  "what_to_export": [
+    "Current product IDs and SKUs",
+    "Purchase flow code",
+    "Error handling branches",
+    "Receipt validation logic",
+    "Subscription state mapping",
+    "Localized product metadata",
+    "Restore purchase handling",
+    "Analytics events around IAP"
+  ],
+  "export_method": "There is nothing to export from a third-party service since OpenIAP is a spec, not a backend. Audit your flutter_inapp_purchase usage against the current OpenIAP spec at openiap.dev to identify divergences: type names, error code constants, and event semantics. List call sites that touch IAP types and group them by spec area (products, purchases, subscriptions, errors). Document any custom types or wrapper classes built on top of the plugin — these are the most likely places where OpenIAP alignment changes naming or shape. Pull product IDs from store consoles for reference; they don't change. Capture your error handling matrix so you can re-map error codes to the OpenIAP names.",
+  "import_method": "Read the OpenIAP spec on openiap.dev and check that your flutter_inapp_purchase version targets the spec version you want. Upgrade the plugin to a recent release if needed. Adjust your app code to use OpenIAP-aligned type names and error codes where the plugin exposes them. Refactor any custom wrappers to mirror OpenIAP's product, purchase, and error shapes so future swaps to other OpenIAP-compliant libraries are trivial. There is no separate OpenIAP SDK to install — adoption is a code-style and naming exercise, plus staying current with plugin releases. Keep server-side receipt validation untouched; the spec governs client-side shapes.",
+  "concept_mapping": [
+    {
+      "source": "Plugin-specific types",
+      "target": "OpenIAP types"
+    },
+    {
+      "source": "Plugin error codes",
+      "target": "OpenIAP error codes"
+    },
+    {
+      "source": "Custom wrapper classes",
+      "target": "Spec-aligned wrappers"
+    }
+  ],
+  "effort": "1-2 weeks for a typical app",
+  "gotchas": [
+    "OpenIAP is a spec; you still need an implementing library — flutter_inapp_purchase remains the runtime.",
+    "Spec is still maturing; breaking changes between versions are possible.",
+    "Plugin version must match the spec version you target — check the changelog.",
+    "Receipt validation is out of scope for OpenIAP; keep server-side checks intact.",
+    "Custom wrapper classes are the highest-friction refactor point.",
+    "Apple and Google may ship platform changes faster than the spec adapts."
+  ],
+  "email": {
+    "subject": "Aligning flutter_inapp_purchase usage with the OpenIAP spec",
+    "body": "Hi team,\n\nWe plan to align our flutter_inapp_purchase integration with the OpenIAP spec over the next 14 days. flutter_inapp_purchase already targets OpenIAP, so this is mostly a naming and type-cleanup exercise rather than a library swap.\n\nProposed timeline:\nDays 1-2: Audit current IAP code for divergences from OpenIAP — types, error codes, custom wrappers.\nDays 3-5: Upgrade the plugin to a release that targets the spec version we want.\nDays 6-9: Refactor wrappers and call sites to use OpenIAP-aligned names and shapes.\nDays 10-12: Update tests and analytics to match the new type names; verify all platforms still work.\nDays 13-14: QA pass on iOS and Android, regression-test purchases and restores, ship.\n\nServer-side receipt validation stays as is. Please flag any custom IAP wrappers that may need redesign for spec alignment.\n\nThanks,\nYour customer"
+  }
+}

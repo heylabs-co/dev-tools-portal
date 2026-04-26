@@ -1,0 +1,70 @@
+{
+  "source": {
+    "slug": "apify",
+    "name": "Apify"
+  },
+  "target": {
+    "slug": "backstage",
+    "name": "Backstage"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Apify is a scraping platform; Backstage is an OSS developer portal. They serve different jobs - the realistic move is to register your scrapers as services in Backstage for discoverability while keeping (or replatforming) the runtime separately.",
+  "why_switch": [
+    "Centralize service ownership and documentation",
+    "Improve discoverability of scrapers across teams",
+    "Use TechDocs to publish actor docs alongside other services",
+    "Add scorecards and standards across the engineering org",
+    "Avoid lock-in with an OSS, plugin-driven platform"
+  ],
+  "what_to_export": [
+    "Actor metadata: name, owner, description, tags",
+    "Actor source repos and Dockerfiles",
+    "Input schemas (for documentation)",
+    "Schedules and trigger definitions",
+    "Dataset and key-value store inventories",
+    "Webhook endpoints",
+    "Run dashboards and observability links",
+    "On-call and team ownership info"
+  ],
+  "export_method": "Use the Apify API or CLI to list actors, schedules, and storage stores, then export each actor's metadata (name, description, source repo link, owner) as JSON. Pull input schemas so they can be rendered in TechDocs. Datasets and run history do not need to migrate - they live in Apify or wherever you replatform the runtime. Capture team and ownership data from your HR/IDP system rather than from Apify, since the platform itself does not own that authoritatively. Re-run the export after any churn so the Backstage import reflects the current state.",
+  "import_method": "Backstage models everything as Entities defined in YAML (catalog-info.yaml) checked into each repo. For each actor, create a Component or Service entity with owner, lifecycle, type, and tags, plus links to the source repo and runtime dashboard. Use the catalog import flow to bulk-register entities from a Git location, or generate YAML files programmatically from your export and open a PR per actor's repo. Install relevant plugins (TechDocs, Kubernetes, GitHub Actions, PagerDuty) to enrich the entries. Configure scaffolder templates so new scrapers land in the catalog by default. Validate by browsing the catalog and confirming ownership for a sample.",
+  "concept_mapping": [
+    {
+      "source": "Actor",
+      "target": "Component entity (type: service)"
+    },
+    {
+      "source": "Actor source repo",
+      "target": "Source location annotation"
+    },
+    {
+      "source": "Schedule",
+      "target": "Out of scope - documented as link only"
+    },
+    {
+      "source": "Dataset",
+      "target": "Resource entity, optional"
+    },
+    {
+      "source": "Apify team",
+      "target": "Group entity in Backstage"
+    },
+    {
+      "source": "Documentation",
+      "target": "TechDocs (Markdown in repo)"
+    }
+  ],
+  "effort": "2-6 weeks",
+  "gotchas": [
+    "Backstage does not run scrapers - the runtime question is separate",
+    "Self-hosting Backstage requires a real engineering investment",
+    "Plugin ecosystem is wide but quality varies; pin versions you depend on",
+    "Catalog rot is real - automate ingestion from source rather than manual entry",
+    "TechDocs requires a build pipeline to publish Markdown",
+    "Initial setup, auth, and identity provider integration can take days to weeks"
+  ],
+  "email": {
+    "subject": "Registering our scrapers in Backstage over the next 14 days",
+    "body": "Hi,\n\nWe are adding our Apify actors to Backstage as catalog entries so they show up next to the rest of our services. Apify continues to run them for now - this is purely about discoverability, ownership, and docs.\n\nYou will see a catalog-info.yaml PR land in each actor repo with team, lifecycle, and links to the runtime dashboard. We will use TechDocs for actor documentation and add scorecards once the catalog stabilizes.\n\nNo action required unless you spot wrong ownership in the validation list we will share. After 14 days, every active actor should be visible and assigned in Backstage.\n\nThanks,\nYour customer"
+  }
+}

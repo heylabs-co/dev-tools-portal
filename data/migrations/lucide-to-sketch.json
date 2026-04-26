@@ -1,0 +1,63 @@
+{
+  "source": {
+    "slug": "lucide",
+    "name": "Lucide"
+  },
+  "target": {
+    "slug": "sketch",
+    "name": "Sketch"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Lucide is an open-source SVG icon set delivered as code packages, and Sketch is a Mac-native vector design tool. The practical task is bringing your Lucide icon set into Sketch as a reusable symbol library that designers can drop into screens.",
+  "why_switch": [
+    "You need a full Mac-native design environment, not just an icon library",
+    "Your team prefers Sketch's symbols, libraries, and plugin ecosystem",
+    "You want design tokens and CSS values exported via Sketch handoff",
+    "Designers want offline, native performance on macOS",
+    "You already have a Sketch-based design system and want icons to live there"
+  ],
+  "what_to_export": [
+    "Inventory of Lucide icons used in your product",
+    "SVG files for each used icon at the chosen size",
+    "Stroke width and color conventions applied to icons",
+    "Icon naming convention used in code",
+    "Any Figma or other design source that mirrors current icon usage",
+    "Categorization or tags you use to group icons",
+    "License and attribution notes for Lucide ISC",
+    "Current sizes used in components such as 16, 20, 24"
+  ],
+  "export_method": "Build an icon inventory by searching your codebase for Lucide imports and listing the unique icon names. From the official Lucide gallery on lucide.dev, download SVGs for every icon on your list, keeping the original kebab-case names. If you already vendor SVGs locally inside your repo, prefer those so you keep any internal modifications. Record the default stroke width and viewBox so you can match the visual language inside Sketch. Group icons in folders by category if your code already organizes them this way; this makes Sketch symbol naming easier later. Keep a CSV or simple text file mapping icon name to category and intended size; this becomes the spec when you build symbols in Sketch. Avoid hand-editing SVGs during export to keep parity with the live Lucide version.",
+  "import_method": "Open a fresh Sketch document for the icon library, create an artboard per icon at your standard size such as 24 by 24, and import each SVG. Convert each artboard or its contents into a Sketch symbol named after the original Lucide icon, for example 'icon/arrow-right'. Save the document as a Library so other Sketch files can subscribe and stay in sync. In product files, insert symbols from the library, override color via shared color styles, and rely on Sketch's developer handoff to expose CSS values. If you rely on a specific Lucide version, note it in the library description so designers know which release the symbols mirror. Periodically refresh the library when you upgrade the Lucide package in code.",
+  "concept_mapping": [
+    {
+      "source": "Icon component in npm package",
+      "target": "Sketch symbol",
+      "note": "Symbol name should match icon name"
+    },
+    {
+      "source": "Icon SVG asset",
+      "target": "SVG imported into Sketch artboard"
+    },
+    {
+      "source": "Color via prop or class",
+      "target": "Sketch shared color style"
+    },
+    {
+      "source": "Icon set folder",
+      "target": "Sketch library document"
+    }
+  ],
+  "effort": "2-5 days for a few hundred icons, longer if you also rebuild components",
+  "gotchas": [
+    "Sketch is Mac-only, so non-Mac designers will be blocked from editing the library",
+    "Symbol naming drift between Sketch and code breaks handoff when icons are renamed",
+    "Stroke width on imported SVGs can render differently if you scale instead of resizing",
+    "Lucide releases new icons regularly; without a refresh process the library goes stale",
+    "Bulk import without a plugin is tedious; budget time or script it where possible",
+    "Color overrides only work cleanly if every icon SVG uses currentColor or a single fill"
+  ],
+  "email": {
+    "subject": "Bringing our Lucide icons into a Sketch library",
+    "body": "Hi team,\n\nWe are moving the icon library into Sketch as a shared symbol library so design files stay aligned with code. Over the next 14 days we will inventory Lucide usage, import SVGs, build symbols, and publish a Sketch Library. Code will keep using Lucide packages. Please send any custom icon variants you maintain so they are included. We will share the library URL once it is published.\n\nThanks,\nYour customer"
+  }
+}

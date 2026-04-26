@@ -1,0 +1,64 @@
+{
+  "source": {
+    "slug": "heap",
+    "name": "Heap"
+  },
+  "target": {
+    "slug": "posthog",
+    "name": "PostHog"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "PostHog also supports autocapture, which makes it the closest functional swap for Heap. You gain open-source plus session replay, flags and SQL access, but identity stitching needs verification.",
+  "why_switch": [
+    "Autocapture parity — minimal re-instrumentation",
+    "Open-source, self-hostable option",
+    "Replay, flags, A/B tests bundled in",
+    "SQL access to your own event data"
+  ],
+  "what_to_export": [
+    "Defined events and event taxonomy",
+    "Raw event archive",
+    "User profiles and identify properties",
+    "Cohorts and segments",
+    "Saved dashboards / reports",
+    "API keys and source tokens",
+    "Team members and roles",
+    "Annotations / release markers"
+  ],
+  "export_method": "Use Heap's dashboard or public API to export defined events, cohorts, and dashboards. Raw events can be pulled through the data pipeline or warehouse sync depending on plan. Capture the autocapture selectors that drive each defined event — you will use them to recreate equivalent definitions in PostHog. Confirm the end date of your annual event-volume commitment via your account settings.",
+  "import_method": "Spin up PostHog Cloud or self-host. Replace Heap's snippet with PostHog's autocapture snippet — most page-view, click, and form events flow without code changes. For each Heap defined event, build a matching PostHog event definition or use PostHog's element-based filters. Use PostHog's historical import endpoint to backfill exported raw events with original timestamps so retention and funnel charts remain correct. Map Heap user identity to PostHog `distinct_id` carefully; mismatches cause apparent DAU drops. Recreate cohorts and dashboards, run both in parallel for a week, then disable Heap.",
+  "concept_mapping": [
+    {
+      "source": "Autocapture event",
+      "target": "Autocapture event"
+    },
+    {
+      "source": "Defined event",
+      "target": "Event definition"
+    },
+    {
+      "source": "User property",
+      "target": "Person property"
+    },
+    {
+      "source": "Cohort",
+      "target": "Cohort"
+    },
+    {
+      "source": "Source / Project key",
+      "target": "Project API key"
+    }
+  ],
+  "effort": "2-4 weeks",
+  "gotchas": [
+    "Heap annual event commit does not pro-rate mid-cycle",
+    "Autocapture selectors differ — verify defined events match",
+    "Identity model differs — confirm distinct_id stitching produces same DAU",
+    "Historical timestamps MUST be preserved on bulk import",
+    "Self-hosted PostHog has infra cost; benchmark before committing"
+  ],
+  "email": {
+    "subject": "Data export and wind-down — Heap",
+    "body": "Hi Heap team,\n\nWe are migrating to a different product analytics platform over the next 14 days. Could you help with:\n1. Confirming the best way to export defined events, raw events, cohorts, and dashboards via the dashboard or API.\n2. Sharing our current annual commitment end date so we don't double-pay.\n3. Confirming the post-cancellation data retention window.\n\nWe will run both systems in parallel during the transition and notify you before final cancellation. Please flag anything that requires your team to action.\n\nThanks,\nYour customer"
+  }
+}

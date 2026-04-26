@@ -1,0 +1,66 @@
+{
+  "source": {
+    "slug": "checkmarx",
+    "name": "checkmarx"
+  },
+  "target": {
+    "slug": "stackhawk",
+    "name": "stackhawk"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Checkmarx is a static-analysis-led enterprise security suite (SAST, SCA, IaC, API), while StackHawk is a developer-centric DAST tool that runs application-security tests in CI using OpenAPI and GraphQL specs. They are complementary in the abstract, so migrating from one to the other is a fundamental shift from static to dynamic testing.",
+  "why_switch": [
+    "Move from static code analysis to runtime/dynamic application testing in CI",
+    "Use OpenAPI/GraphQL specs to drive targeted security tests",
+    "Reduce reliance on enterprise SAST when runtime coverage matters more",
+    "Adopt a more developer-friendly DAST workflow"
+  ],
+  "what_to_export": [
+    "List of Checkmarx projects and the applications they cover",
+    "Open and historical findings as SARIF",
+    "Risk acceptance and suppression decisions",
+    "Compliance reports already issued",
+    "Custom queries or rule overrides (reference only)",
+    "User and team roles",
+    "CI integration configuration",
+    "Severity gating thresholds"
+  ],
+  "export_method": "Export current Checkmarx findings as SARIF where supported and archive issued reports for audit retention. Document custom queries for reference — they will not transfer because StackHawk operates on running applications, not on source. Capture suppression decisions in a structured list so they can be re-applied as StackHawk findings are triaged. Treat user/role data as documentation and recreate accounts in StackHawk via SSO. The most important artifacts to carry forward are the application inventory and the severity policy.",
+  "import_method": "For each application that Checkmarx covered, register it in StackHawk and provide an OpenAPI or GraphQL specification plus a test environment URL. Wire StackHawk into CI so a scan runs on every PR or nightly build against an ephemeral or staging environment. Tune severity thresholds before enabling PR blocking, and re-apply suppressions as StackHawk findings appear. Because StackHawk is DAST, it will not flag the same classes of issues as a SAST tool — code-level vulnerabilities that never manifest at runtime may not appear, and you must decide whether to accept that gap or pair StackHawk with a separate SAST.",
+  "concept_mapping": [
+    {
+      "source": "SAST project",
+      "target": "StackHawk application"
+    },
+    {
+      "source": "Static finding",
+      "target": "Dynamic finding",
+      "note": "Different detection class — not 1:1"
+    },
+    {
+      "source": "Risk acceptance",
+      "target": "StackHawk finding suppression"
+    },
+    {
+      "source": "SARIF export",
+      "target": "Report archive (reference only)"
+    },
+    {
+      "source": "Severity gate",
+      "target": "CI failure policy"
+    }
+  ],
+  "effort": "3-6 weeks",
+  "gotchas": [
+    "DAST and SAST detect different issues — expect coverage shifts, not parity",
+    "StackHawk needs a runnable environment and a spec; provision both before cutover",
+    "Source-only vulnerabilities (e.g. dead code paths) may not be detected at runtime",
+    "Custom Checkmarx queries do not transfer",
+    "Enterprise contract notice periods may delay full cutover",
+    "Plan to keep a separate SAST/SCA tool if those categories matter for compliance"
+  ],
+  "email": {
+    "subject": "Switching application security testing from Checkmarx to StackHawk",
+    "body": "Hi team,\n\nOver the next 14 days we are moving application security testing from Checkmarx to StackHawk. StackHawk runs dynamic tests against staging environments using our API specs, so the kinds of findings will shift. Both tools will run in parallel while we tune CI gates and compare coverage per service. Please flag any open Checkmarx item you want triaged before we wind it down.\n\nThanks for your patience.\n\nYour customer"
+  }
+}

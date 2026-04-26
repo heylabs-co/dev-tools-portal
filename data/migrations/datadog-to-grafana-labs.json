@@ -1,0 +1,78 @@
+{
+  "source": {
+    "slug": "datadog",
+    "name": "Datadog"
+  },
+  "target": {
+    "slug": "grafana-labs",
+    "name": "Grafana Labs"
+  },
+  "generated_at": "2026-04-25T12:00:00Z",
+  "tldr": "Datadog → Grafana is the canonical 'cut the bill, embrace OSS' move. Expect more configuration up front in exchange for OpenTelemetry-native ingest and full data portability across Loki, Tempo, Mimir, and Grafana.",
+  "why_switch": [
+    "Open-source core: Grafana, Loki, Tempo, Mimir",
+    "OpenTelemetry and Prometheus native",
+    "Avoid Datadog peak-host pricing model",
+    "Self-host option for data sovereignty",
+    "Lower lock-in: dashboards and alerts portable as code"
+  ],
+  "what_to_export": [
+    "Logs from applications and infra",
+    "Custom and host-level metrics",
+    "Dashboards and saved views",
+    "Monitor and alert definitions",
+    "Synthetic and uptime tests",
+    "APM traces within retention",
+    "Users, teams, RBAC",
+    "Tag taxonomy and metadata",
+    "Notebooks and runbooks",
+    "Notification channels and webhooks"
+  ],
+  "export_method": "Use the Datadog API plus the official Terraform provider to pull dashboards, monitors, SLOs, synthetics, and notification config into code. Use the logs query API to paginate historical logs into NDJSON. Use the metrics query API to extract time series into Prometheus-style or CSV format. Export users/teams via the accounts API. APM traces can be exported only within the active retention window. Stage all exports to object storage so you have an immutable archive that doesn't depend on a live Datadog account.",
+  "import_method": "Stand up Grafana plus the LGTM stack (Loki for logs, Tempo for traces, Mimir for metrics) — either self-hosted or via Grafana Cloud. Switch instrumentation to OpenTelemetry collectors with exporters configured for Loki/Tempo/Mimir, or use Prometheus remote_write for metrics and Promtail/Vector for logs. Recreate dashboards in Grafana — many community dashboards exist for common stacks, but Datadog-specific dashboards must be rebuilt because query languages differ (PromQL/LogQL/TraceQL). Set up Grafana Alerting rules to mirror Datadog monitors, and configure contact points for notifications. Run parallel for 1-2 weeks to validate alert parity before cutting Datadog agents.",
+  "concept_mapping": [
+    {
+      "source": "Datadog Agent",
+      "target": "OpenTelemetry Collector + Promtail/Vector",
+      "note": "Standardize on OTel where possible"
+    },
+    {
+      "source": "Metrics + tags",
+      "target": "Mimir + PromQL labels",
+      "note": "Watch label cardinality"
+    },
+    {
+      "source": "Logs + facets",
+      "target": "Loki + LogQL",
+      "note": "Rewrite queries"
+    },
+    {
+      "source": "APM traces",
+      "target": "Tempo",
+      "note": "OTel SDKs are the bridge"
+    },
+    {
+      "source": "Monitors",
+      "target": "Grafana Alerting rules",
+      "note": "Rewrite expressions"
+    },
+    {
+      "source": "Dashboards",
+      "target": "Grafana dashboards",
+      "note": "Manual rebuild"
+    }
+  ],
+  "effort": "3-6 weeks",
+  "gotchas": [
+    "Self-hosting Loki/Tempo/Mimir adds real ops load — costs surface as engineer time, not invoice line items",
+    "PromQL/LogQL/TraceQL semantics differ from Datadog query language; expect a learning curve",
+    "Label cardinality that worked in Datadog can blow up Mimir/Loki memory — audit high-cardinality tags",
+    "Dashboards rebuild is the longest task; prioritize top 10 used dashboards first",
+    "Datadog billing keeps charging at peak host count even after you scale down — cancel only post-cutover",
+    "Alert noise differs initially; budget a 1-2 week tuning window after switchover"
+  ],
+  "email": {
+    "subject": "Data export request and account sunset — 14-day timeline",
+    "body": "Hi Datadog team,\n\nWe are migrating to Grafana Labs (LGTM stack) and need a full export of our account data in machine-readable formats (JSON, NDJSON, CSV, Prometheus exposition where possible). Specifically: monitors and alerts, dashboards, synthetic configs, logs within current retention, custom metric series, APM traces within retention, users/teams/roles, and tag metadata.\n\nWe are aiming for a 14-day export and validation window. Please confirm:\n\n1. Which exports are self-serve via API vs. require a ticket.\n2. Options for archiving log/metric/trace history to our own object storage before cancellation.\n3. Billing implications of scaling hosts down during dual-run and the contract sunset date.\n\nThanks,\nYour customer"
+  }
+}

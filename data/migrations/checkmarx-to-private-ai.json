@@ -1,0 +1,71 @@
+{
+  "source": {
+    "slug": "checkmarx",
+    "name": "Checkmarx"
+  },
+  "target": {
+    "slug": "private-ai",
+    "name": "Private AI"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "These tools solve different problems: Checkmarx is application security (SAST/SCA/IaC) while Private AI is PII redaction for text, audio, images, and documents. A switch only makes sense if your real need is PII redaction in data and LLM pipelines, not code scanning.",
+  "why_switch": [
+    "Need PII redaction across text, audio, images, docs",
+    "Want HIPAA/GDPR compliance for LLM pipelines",
+    "Self-hosted deployment for data residency",
+    "Lighter footprint than enterprise SAST",
+    "Usage-based pricing instead of enterprise contract"
+  ],
+  "what_to_export": [
+    "SAST/SCA project list and configurations",
+    "Scan history and SARIF reports",
+    "Custom rules and queries",
+    "User accounts, roles, and SSO config",
+    "Integrations (IDE, CI, ticketing)",
+    "Triage state (false-positive labels, suppressions)",
+    "Policy and severity thresholds",
+    "API tokens and webhooks",
+    "Audit logs and compliance evidence",
+    "Vulnerability remediation history"
+  ],
+  "export_method": "Use the Checkmarx UI or APIs to export project lists, scan history as SARIF, custom queries, and triage state. Pull user/role exports and SSO metadata for offboarding. Capture CI/IDE integration configs so they can be removed cleanly. Note: SAST output (vulnerabilities in source) is not the same data shape as PII detections (sensitive entities in content), so most of this export is for archival rather than direct import. Snapshot policy thresholds and suppression rules. Export audit logs as required by your compliance retention policy.",
+  "import_method": "Plan separately for the two needs. For PII redaction, sign up for Private AI (cloud or self-hosted) and integrate the redaction API into the data path that needs it: ingestion pipelines, LLM pre-processing, customer support tooling, log scrubbing. Configure entity types (names, addresses, IDs, health terms) and tune confidence thresholds. For application security, choose a successor (open source like Semgrep, or another SAST/SCA vendor) and import SARIF where possible. Do not assume Private AI replaces Checkmarx; it is complementary, focused on data leaving your apps rather than code defects inside them.",
+  "concept_mapping": [
+    {
+      "source": "SAST scan",
+      "target": "(no equivalent)",
+      "note": "Different problem domain"
+    },
+    {
+      "source": "SCA dependency scan",
+      "target": "(no equivalent)",
+      "note": "Different problem domain"
+    },
+    {
+      "source": "SARIF report",
+      "target": "Redaction API response",
+      "note": "Different schema and meaning"
+    },
+    {
+      "source": "Custom queries",
+      "target": "Entity/regex configuration"
+    },
+    {
+      "source": "CI integration",
+      "target": "API call in data pipeline"
+    }
+  ],
+  "effort": "Re-evaluate fit before committing; if proceeding, 1-3 weeks for PII redaction integration plus separate effort to choose a SAST replacement",
+  "gotchas": [
+    "Checkmarx and Private AI solve different problems; verify you actually need PII redaction, not code scanning",
+    "Switching off SAST without a replacement creates a security gap; do not leave a window uncovered",
+    "Enterprise Checkmarx contracts often have notice periods and minimums; check before terminating",
+    "Private AI redaction tuning is iterative; budget time for false-positive/false-negative review",
+    "Self-hosted Private AI requires infrastructure planning (GPU/CPU sizing, networking, monitoring)",
+    "Compliance evidence trails must be preserved through any cutover for audit continuity"
+  ],
+  "email": {
+    "subject": "Reassessing our use of Checkmarx; planning changes over the next 14 days",
+    "body": "Hello Checkmarx team,\n\nThis is a heads-up that we are reassessing our use of Checkmarx and intend to make changes over the next 14 days. We are introducing Private AI for PII redaction in our LLM and data pipelines, and we are separately reviewing whether to keep Checkmarx for code-side scanning or move that workload to a different tool.\n\nPlan: days 1-4 export project lists, SARIF reports, triage state, and user/SSO configs; days 5-9 stand up Private AI for the PII workflow and scope a SAST decision; days 10-12 either keep Checkmarx in place or wind it down with a successor in parallel; days 13-14 finalize.\n\nCould you confirm our remaining contract term, notice clauses for non-renewal, and the cleanest way to export historical scan data and audit evidence. We want to leave nothing behind that we might need for compliance.\n\nThanks,\nYour customer"
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "source": {
+    "slug": "fullstory",
+    "name": "FullStory"
+  },
+  "target": {
+    "slug": "hotjar",
+    "name": "Hotjar"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Both are UX analytics tools with session replay and behavioral insights, but FullStory is enterprise-tier and pricier while Hotjar is a simpler, lower-cost subscription product. Migration is a clean swap of script tags and a restart on session and feedback data.",
+  "why_switch": [
+    "Cut annual session commitment cost",
+    "Simpler tool for smaller teams",
+    "Public, lower subscription pricing",
+    "Lower lock-in and easier offboarding"
+  ],
+  "what_to_export": [
+    "Session replay metadata and reports",
+    "Funnel and segment definitions",
+    "Heatmap and click data",
+    "User and event properties",
+    "Saved searches and dashboards",
+    "Project and team configuration",
+    "API keys and SDK configuration",
+    "Privacy and masking rules"
+  ],
+  "export_method": "Use FullStory's API export and dashboard exports to pull session metadata, event properties, and any saved searches or reports. Document funnel definitions, heatmap configurations, and privacy/masking rules as a written spec, since proprietary replay data does not transfer between vendors. Keep the FullStory snippet live until the new tool is collecting cleanly so you do not lose recent sessions. Confirm contractual rights to extract data and any retention windows that apply after termination.",
+  "import_method": "Install the Hotjar tracking snippet on your site or app and configure projects, masking rules, and team access. Recreate funnels, heatmap targets, and surveys based on your documented spec. Hotjar will start collecting fresh sessions and feedback from install time — past FullStory replays do not import because the formats are proprietary on both sides. Run both tools in parallel for a short period so you can validate parity on coverage and friction signals before removing FullStory.",
+  "concept_mapping": [
+    {
+      "source": "Session replay",
+      "target": "Session recording"
+    },
+    {
+      "source": "Funnel",
+      "target": "Funnel"
+    },
+    {
+      "source": "Heatmap",
+      "target": "Heatmap"
+    },
+    {
+      "source": "Privacy masking rule",
+      "target": "Privacy / suppression rule"
+    }
+  ],
+  "effort": "2-4 weeks",
+  "gotchas": [
+    "Past session replays do not migrate; both vendors store them in proprietary formats.",
+    "Hotjar's feature set is narrower than FullStory at the high end — confirm parity.",
+    "Annual session commit at FullStory does not scale down mid-cycle.",
+    "Privacy and masking rules must be re-implemented carefully to avoid PII leaks.",
+    "Sampling and session limits differ; expect different coverage at the same plan tier."
+  ],
+  "email": {
+    "subject": "Not renewing FullStory — 14-day offboarding plan",
+    "body": "Hi FullStory team,\n\nWe have decided not to renew our contract and will be winding down our usage over the next 14 days as we move to a simpler tool that fits our current scale.\n\nTo make this clean, could you help us with:\n\n- A confirmed path to export session metadata, saved reports, and event properties.\n- Confirmation of post-termination data retention and access windows.\n- A point of contact for billing and contract closeout.\n- Steps to deactivate our SDK keys at the end of the period.\n\nWe plan to keep the snippet live through day 10 to avoid coverage gaps, then fully decommission by day 14.\n\nThanks for everything.\n\nYour customer"
+  }
+}

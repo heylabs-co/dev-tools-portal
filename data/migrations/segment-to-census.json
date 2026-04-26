@@ -1,0 +1,67 @@
+{
+  "source": {
+    "slug": "segment",
+    "name": "segment"
+  },
+  "target": {
+    "slug": "census",
+    "name": "census"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Segment is an event-based customer data platform that ingests SDK/server events and fans them out to destinations, while Census is a reverse-ETL tool that syncs warehouse rows to SaaS apps. Switching means moving from event streaming to warehouse-driven syncs, which is a model change, not a like-for-like swap.",
+  "why_switch": [
+    "Make the data warehouse the single source of truth instead of a CDP",
+    "Avoid annual MTU commitments that do not scale down within the period",
+    "Prefer SQL-defined audiences over event tracking plans",
+    "Reduce duplication between CDP and warehouse models"
+  ],
+  "what_to_export": [
+    "List of Segment sources (websites, apps, server libraries)",
+    "List of destinations and their settings",
+    "Tracking plan / event schema",
+    "Connection-level transformations and filters",
+    "Historical event data warehoused via Segment if it must be retained",
+    "Personas / audience definitions if used",
+    "User and workspace access roles",
+    "Consent and privacy configuration"
+  ],
+  "export_method": "Segment provides workspace settings and a tracking plan that you should export or document for each source and destination. The most durable artifact is the tracking plan (event names, properties, types) plus the list of destinations and their mapping settings. If Segment is already loading events into your warehouse, that warehouse becomes the foundation for Census, so confirm the schema and freshness of those tables before unplugging Segment. Treat destination credentials as items to re-create in Census, not to migrate. Audience definitions in Personas should be captured as SQL queries against the warehouse, since that is the form Census needs.",
+  "import_method": "Census operates on rows in your data warehouse, so the prerequisite is that the data Segment used to fan out is available as queryable tables. Recreate each Segment destination as a Census sync: pick the warehouse table or SQL model, choose the destination connector, and map columns to destination fields. Schedules in Census run on intervals or triggers rather than streaming, so latency-sensitive event flows that relied on Segment's near-real-time delivery will not match exactly. Validate one destination end-to-end before cutting traffic, and keep Segment running in parallel until each destination is confirmed.",
+  "concept_mapping": [
+    {
+      "source": "Source (SDK/server)",
+      "target": "Warehouse table",
+      "note": "You need an ingestion path into the warehouse first"
+    },
+    {
+      "source": "Destination",
+      "target": "Sync"
+    },
+    {
+      "source": "Tracking plan",
+      "target": "SQL model / schema definition"
+    },
+    {
+      "source": "Personas audience",
+      "target": "SQL-defined audience model"
+    },
+    {
+      "source": "Event stream",
+      "target": "Scheduled batch sync",
+      "note": "Real-time semantics are not preserved"
+    }
+  ],
+  "effort": "3-8 weeks",
+  "gotchas": [
+    "Segment annual MTU commitments do not refund mid-term — time the cancellation to the renewal date",
+    "Census is reverse-ETL only; it does not replace event collection SDKs",
+    "You still need an ingestion pipeline (e.g. ELT tool) to land data in the warehouse",
+    "Real-time destinations relying on event streams will become batch on Census schedules",
+    "Audience logic in Personas must be re-implemented as SQL in the warehouse",
+    "Consent and privacy filters that Segment applied need to be reproduced before any sync runs"
+  ],
+  "email": {
+    "subject": "Switching our data routing from Segment to a warehouse-first setup",
+    "body": "Hi team,\n\nOver the next 14 days we are moving event routing off Segment and onto a warehouse-first stack with Census handling syncs to our SaaS tools. We will keep Segment live in parallel for each destination until the new sync is validated, so day-to-day flows should not break. Please flag any real-time destination you rely on so we can confirm the latency change is acceptable before we cut over.\n\nThanks for bearing with us.\n\nYour customer"
+  }
+}

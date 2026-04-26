@@ -1,0 +1,66 @@
+{
+  "source": {
+    "slug": "ink-narrative",
+    "name": "ink-narrative"
+  },
+  "target": {
+    "slug": "unreal-engine",
+    "name": "unreal-engine"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Ink is a scripting language for branching narrative; Unreal Engine is a full game engine. You do not 'migrate' from one to the other in the usual sense — you stop authoring narrative in Ink and rebuild it using Unreal-native systems such as Blueprints, data tables or a third-party narrative plugin. Plan it as a rewrite, not a port.",
+  "why_switch": [
+    "You moved your project to Unreal Engine and want narrative authored in engine-native tools",
+    "You prefer Blueprint or C++ flow control over an external scripting language",
+    "You want tight coupling between narrative state and Unreal gameplay systems",
+    "You no longer want a separate Ink runtime in your build",
+    "You are standardizing the team on a single Unreal-native authoring workflow"
+  ],
+  "what_to_export": [
+    "All .ink source files including includes",
+    "Compiled story.json artifacts",
+    "Variable, LIST and EXTERNAL function declarations",
+    "Tags used to bridge narrative to engine actions",
+    "Save and state schemas if Ink state was persisted",
+    "Localization tables keyed to Ink knots or stitches",
+    "Mapping of narrative events to gameplay triggers",
+    "Author notes on intended branching logic and gating conditions"
+  ],
+  "export_method": "There is no migration tool from Ink to Unreal-native systems. Start by inventorying your Ink content: list every .ink file, the knots and stitches in each, and the variables and LISTs they touch. Compile stories with inklecate so you have JSON copies as a reference. Document which Ink tags your existing runtime turns into engine actions. If you used a community plugin to load Ink in Unreal, decide whether you want to keep that runtime as-is or replace it. Export your localization tables and label them by knot or stitch identifier. The most useful artifact for the rebuild is a flat list of beats — for each branching point, write down condition, choices, outcomes and side effects. That document, not the Ink files, is what you will reimplement.",
+  "import_method": "In Unreal, choose how you want to author narrative. Common approaches are Blueprint or C++ state machines for short branching, Data Tables or DataAssets for dialogue lines and conditions, or a third-party narrative plugin from the Unreal Marketplace if you want richer authoring. Recreate your Ink variables as game state on a GameInstance, save object, or dedicated subsystem. Recreate Ink tags as Blueprint events or interface calls. Move dialogue text into Data Tables or string tables for localization. Where you previously called EXTERNAL functions from Ink, expose equivalent Blueprint or C++ functions and call them from the chosen narrative system. Test each migrated branch against the original beat document to confirm semantics are preserved. If you cannot afford a full rewrite, you can also keep an Ink runtime plugin in Unreal and continue authoring in Ink — that is integration, not migration.",
+  "concept_mapping": [
+    {
+      "source": "Ink variable",
+      "target": "Unreal save/game state variable",
+      "note": "Place on a GameInstance, subsystem or save object."
+    },
+    {
+      "source": "Knot / stitch",
+      "target": "Blueprint state, Data Table row or plugin node",
+      "note": "No single canonical mapping — depends on the authoring system you choose."
+    },
+    {
+      "source": "EXTERNAL function",
+      "target": "Blueprint function or C++ UFUNCTION",
+      "note": "Same role: gameplay code called from narrative flow."
+    },
+    {
+      "source": "Tag",
+      "target": "Blueprint event or gameplay tag",
+      "note": "Used to trigger non-narrative side effects."
+    }
+  ],
+  "effort": "weeks to months",
+  "gotchas": [
+    "There is no automated converter from Ink to Unreal. Treat the move as a rewrite of narrative content into the chosen Unreal authoring system.",
+    "Branching logic that relies on Ink-specific features such as weave, gather and diverts can be hard to express in Blueprints and may require a dedicated narrative plugin.",
+    "Localization changes shape. Ink files are easy to diff in Git; Unreal string tables and Data Tables are binary or specialized assets. Update your translation pipeline accordingly.",
+    "Save game compatibility breaks. Existing Ink-based saves will not load against the new narrative system, so plan a clean cutover or a save migration script.",
+    "Performance is rarely an issue, but large narrative graphs in Blueprints become unmaintainable. Consider a marketplace narrative plugin before hand-rolling everything.",
+    "If your writers loved authoring in plain text, removing Ink may slow them down. Keeping an Ink-in-Unreal runtime is often a better answer than full migration."
+  ],
+  "email": {
+    "subject": "Narrative engine change in our upcoming build",
+    "body": "Hi,\n\nWe are moving the narrative system inside our game engine for tighter integration with gameplay. Over the next 14 days, branching dialogue will be rebuilt using engine-native tools, and the previous external scripting setup will be retired.\n\nIf you have outstanding feedback on specific story branches, please send it within the next week so we can incorporate it before cutover. Existing saves may not carry over after the change because narrative state is being restructured.\n\nWe will confirm the exact cutover date once testing wraps up.\n\nYour customer"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "source": {
+    "slug": "resend",
+    "name": "Resend"
+  },
+  "target": {
+    "slug": "postmark",
+    "name": "Postmark"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Resend and Postmark are both transactional email providers that expose REST APIs and SMTP, so swapping between them is mostly a credentials and template rewrite. Domain authentication (SPF, DKIM, DMARC) needs to be re-issued on the new provider before you cut traffic.",
+  "why_switch": [
+    "Strong reputation for inbox placement",
+    "Detailed bounce and delivery analytics",
+    "Mature transactional-only focus",
+    "SMTP and REST options for easy switching",
+    "Per-email pricing is predictable"
+  ],
+  "what_to_export": [
+    "Sending domains and DNS records (SPF, DKIM, DMARC)",
+    "API keys and per-key permissions",
+    "Email templates and variables",
+    "Suppression lists (bounces, complaints, unsubscribes)",
+    "Webhook endpoints (delivered, bounced, opened, clicked)",
+    "Recent send history and analytics for benchmarking",
+    "Tags and metadata used for routing"
+  ],
+  "export_method": "List every sending domain and dump its DNS authentication records so you know exactly what needs to be reissued. Export email templates by pulling them through Resend's API; if the template engine differs, store both raw HTML and the variable schema. Export the suppression list — bounces, complaints, and unsubscribes — so you do not silently re-mail addresses that previously hard-bounced. Pull webhook configuration (URLs, event types, signing secrets) and capture a recent payload sample for each event. Keep API keys and their scopes documented. None of this requires a vendor-specific tool: a small script using the standard REST API plus DNS lookups is sufficient.",
+  "import_method": "Create a Postmark server (or one server per environment), add your sending domains, and publish the new DKIM and Return-Path DNS records. Wait for verification before sending. Recreate templates using Postmark's template format; if you used React Email or another component framework, render to HTML and import. Upload the suppression list so previously bounced addresses stay suppressed. Re-implement webhook handlers against Postmark's payload format and signature scheme. Move a single low-volume stream (for example password resets) first and watch delivery, bounce, and complaint rates. Once stable, migrate the rest of your streams. Keep DNS records for the old provider until you have stopped sending through it for at least a few days.",
+  "concept_mapping": [
+    {
+      "source": "Domains",
+      "target": "Sender Signatures / Domains"
+    },
+    {
+      "source": "API key",
+      "target": "Server API Token (per-server)"
+    },
+    {
+      "source": "Audiences / contacts",
+      "target": "Use external CRM; Postmark is transactional-focused"
+    },
+    {
+      "source": "Webhooks",
+      "target": "Webhooks with Postmark signature scheme"
+    },
+    {
+      "source": "React Email templates",
+      "target": "Postmark templates (HTML/Mustachio)"
+    }
+  ],
+  "effort": "3-10 days for typical transactional volume",
+  "gotchas": [
+    "DKIM/SPF/DMARC must be re-issued and verified before any production sending",
+    "Suppression lists do not transfer automatically; importing them prevents re-sending to hard bounces",
+    "Postmark separates transactional and broadcast streams; mixing them on one server can hurt deliverability",
+    "Template syntax differs between providers; re-test rendering with real data",
+    "Webhook signature verification is provider-specific and must be reimplemented",
+    "Warm up new IPs/domain reputation gradually if your volume is high"
+  ],
+  "email": {
+    "subject": "Switching transactional email from Resend to Postmark in 14 days",
+    "body": "Hi team,\n\nWe are moving our transactional email from Resend to Postmark over the next 14 days. The APIs are similar but DNS authentication and templates need rework.\n\nDays 1-3: export templates, suppression lists, and DNS records from Resend.\nDays 4-6: set up Postmark servers, add domains, publish new DKIM/Return-Path records.\nDays 7-9: rewrite SDK calls and webhook handlers, run staging tests.\nDays 10-12: migrate password resets first, monitor delivery and bounce rates.\nDays 13-14: cut over the rest of the streams once metrics look healthy.\n\nWe will keep Resend configured until we have several stable days on Postmark.\n\nThanks,\nYour customer"
+  }
+}

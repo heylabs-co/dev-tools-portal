@@ -1,0 +1,72 @@
+{
+  "source": {
+    "slug": "algolia",
+    "name": "Algolia"
+  },
+  "target": {
+    "slug": "elasticsearch",
+    "name": "Elasticsearch"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Move from Algolia's hosted, opinionated search to Elasticsearch — open-source (Elastic License 2.0), more flexible, cheaper at high scale, but more operational work to match Algolia's relevance and latency.",
+  "why_switch": [
+    "Self-hostable — control costs at scale",
+    "Avoid Algolia peak-records commit",
+    "Richer query DSL and aggregations",
+    "Larger ecosystem and tooling"
+  ],
+  "what_to_export": [
+    "Index records (objects)",
+    "Index settings (ranking, custom ranking)",
+    "Searchable / faceted attribute config",
+    "Synonyms",
+    "Rules (query rules, redirects, merchandising)",
+    "API keys (admin + search)",
+    "Analytics / search insights events",
+    "InstantSearch UI configuration"
+  ],
+  "export_method": "Use Algolia's public API or the official CLI to dump every index's objects, settings, synonyms, and rules to JSON. The browse endpoint paginates through full record sets without hitting search quotas. Capture per-index settings: searchableAttributes, attributesForFaceting, customRanking, ranking, typoTolerance, distinct. Export synonyms and query rules separately — they are stored alongside but in their own endpoints. Pull analytics/search insights for the period you want to retain. Confirm the cycle end date of your peak-records commitment in the dashboard.",
+  "import_method": "Provision Elasticsearch via Elastic Cloud or self-host (Docker, Kubernetes, packaged installer). Create indices with explicit mappings — Algolia is schemaless but Elasticsearch performs much better with deliberate types and analyzers. Translate Algolia settings: `searchableAttributes` → fields with `type: text` plus weighted multi_match queries; `attributesForFaceting` → keyword sub-fields with aggregations; `customRanking` → function_score or rank_feature; `synonyms` → synonym token filter; `query rules` → application-side or scripted rewrites. Bulk-load records with the _bulk API. On the client, replace InstantSearch with a thin search service or use Searchkit / instantsearch.js Elasticsearch adapter. Tune relevance with a held-out query set before cutover; run both backends in parallel and shadow traffic to compare.",
+  "concept_mapping": [
+    {
+      "source": "Index",
+      "target": "Index"
+    },
+    {
+      "source": "Object / Record",
+      "target": "Document"
+    },
+    {
+      "source": "searchableAttributes",
+      "target": "Text fields + multi_match"
+    },
+    {
+      "source": "attributesForFaceting",
+      "target": "Keyword fields + aggregations"
+    },
+    {
+      "source": "customRanking",
+      "target": "function_score / rank_feature"
+    },
+    {
+      "source": "Synonyms",
+      "target": "Synonym token filter"
+    },
+    {
+      "source": "Query Rule",
+      "target": "Application-side rewrite"
+    }
+  ],
+  "effort": "4-8 weeks",
+  "gotchas": [
+    "Relevance is NOT 1:1 — expect tuning work to match Algolia quality",
+    "Algolia peak-records commit doesn't pro-rate mid-cycle",
+    "Elasticsearch latency depends on infra — sub-50ms requires careful sizing",
+    "Elastic License 2.0 has restrictions on managed-service resale",
+    "InstantSearch widgets need replacement or an adapter — UI work is non-trivial"
+  ],
+  "email": {
+    "subject": "Data export and wind-down — Algolia",
+    "body": "Hi Algolia team,\n\nWe are migrating our search stack to a self-hosted alternative over the next 14 days and need to wind down cleanly. Could you help with:\n1. Confirming the recommended path to export every index's records, settings, synonyms, and rules via the public API or CLI.\n2. Sharing the end date of our current peak-records commitment so we can plan cutover and avoid double billing.\n3. Confirming search analytics retention so we know how long we have to extract historical data.\n\nWe plan to run both backends in parallel during the transition and will notify you before final cancellation. Please let me know if any step requires action on your side.\n\nThanks,\nYour customer"
+  }
+}

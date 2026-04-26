@@ -1,0 +1,62 @@
+{
+  "source": {
+    "slug": "stark",
+    "name": "Stark"
+  },
+  "target": {
+    "slug": "a11ywatch",
+    "name": "A11yWatch"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Stark embeds accessibility checks inside design tools like Figma, while A11yWatch is an open-source automated WCAG scanner for shipped code. Switching means moving accessibility checks from design-time to runtime CI scans.",
+  "why_switch": [
+    "Need automated runtime WCAG checks on production",
+    "Want self-hosted, open-source tooling",
+    "Integrate a11y into CI and PR pipelines",
+    "Catch issues introduced in code, not just design",
+    "Avoid per-seat design-tool plugin pricing"
+  ],
+  "what_to_export": [
+    "Stark project annotations and notes",
+    "Contrast and focus-order reports per design",
+    "Custom checklists embedded in Figma",
+    "Tickets filed from Stark into your tracker",
+    "Workspace and seat records",
+    "Saved color tokens and palettes",
+    "Design files referenced by Stark",
+    "Any exported audit summaries"
+  ],
+  "export_method": "Stark's findings live alongside Figma designs and inside the Stark workspace. Open each design file and document any annotations, contrast reports or focus-order notes Stark added; copy them into your shared drive or design system documentation. Use the Stark dashboard's export options where available to save audit summaries. Designs themselves stay in Figma. Tickets you filed into Jira, Linear or GitHub remain in your tracker. Treat the design files plus exported reports as the migration baseline.",
+  "import_method": "A11yWatch is a runtime scanner, so the import step is configuration rather than data load. Self-host A11yWatch or use the hosted tier and point scans at your staging and production URLs. Configure scans via the CLI, API or GitHub Action and integrate with PR checks. Use your archived Stark contrast and focus-order findings as a baseline to confirm the issues are caught at runtime. Keep design-time checks separately if your designers still want them; A11yWatch does not replace Figma plugins.",
+  "concept_mapping": [
+    {
+      "source": "Figma contrast check",
+      "target": "Runtime WCAG color contrast rule"
+    },
+    {
+      "source": "Focus order annotation",
+      "target": "Runtime focus order check"
+    },
+    {
+      "source": "Design-time audit",
+      "target": "Runtime CI scan",
+      "note": "Different layer of the pipeline"
+    },
+    {
+      "source": "Stark workspace",
+      "target": "Self-hosted instance / API token"
+    }
+  ],
+  "effort": "2-4 weeks",
+  "gotchas": [
+    "Stark and A11yWatch sit at different stages: design-time vs runtime; you may want both in parallel",
+    "Automated rules typically miss a meaningful share of real a11y issues",
+    "Self-hosting A11yWatch means owning uptime and upgrades",
+    "Designers may still need Figma-native checks; consider keeping a small Stark seat count",
+    "Reporting formats and severity scales will differ"
+  ],
+  "email": {
+    "subject": "Moving accessibility checks from Stark to A11yWatch",
+    "body": "Hi team,\n\nOver the next 14 days we will be shifting our accessibility tooling from Stark to A11yWatch. Stark has helped designers catch issues in Figma, but we now need automated WCAG checks on shipped code, integrated into CI, which is what A11yWatch provides.\n\nPlan:\n- Days 1-3: archive Stark annotations and audit reports into our design system documentation.\n- Days 4-7: stand up A11yWatch and run a baseline scan on staging and production.\n- Days 8-12: wire A11yWatch into PR checks and scheduled crawls.\n- Days 13-14: finalize the cutover and reduce Stark seats to design-only usage.\n\nWe may keep a small number of Stark seats for designers since the two tools cover different stages of the pipeline.\n\nThanks,\nYour customer"
+  }
+}

@@ -1,0 +1,67 @@
+{
+  "source": {
+    "slug": "apphud",
+    "name": "Apphud"
+  },
+  "target": {
+    "slug": "fyber",
+    "name": "Fyber"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Apphud manages in-app subscriptions and paywalls, while Fyber (Digital Turbine) is an ad monetization and mediation platform. Migrating means swapping a subscription revenue model for an ad-based one, which is a strategic pivot rather than a like-for-like SDK replacement.",
+  "why_switch": [
+    "Pivot from subscription to ad-based monetization",
+    "Add rewarded video and offerwall for free-tier users",
+    "Tap FairBid mediation across multiple ad networks",
+    "Reduce reliance on a single subscription billing SDK",
+    "Diversify revenue with eCPM-driven inventory"
+  ],
+  "what_to_export": [
+    "List of paywall placements and their app contexts",
+    "Active subscription products and price tiers",
+    "A/B test variants and their results",
+    "User cohorts and segmentation rules",
+    "Conversion and churn analytics history",
+    "Webhook and server-side notification configs",
+    "App Store Connect / Play Console product references",
+    "Any custom paywall designs or assets"
+  ],
+  "export_method": "Apphud exposes subscription, user, and event data through its dashboard and API. Use the dashboard to export subscriber lists and revenue reports as CSV, and pull historical events via the documented API where available. Capture screenshots or notes of A/B test configurations, paywall variants, and segmentation rules — these are usually not exportable as a single archive. Save webhook URLs and any server-side integration code for reference. Because the migration to Fyber is a model change rather than a data port, treat this export as documentation for your future ad-driven product spec rather than an import package. Keep the Apphud account active during the transition so historical subscriber data stays accessible for refunds, support, and accounting.",
+  "import_method": "Fyber onboarding is sales-led: contact Digital Turbine to set up a publisher account, then integrate the Fyber SDK in your iOS or Android app following the official integration docs. Configure ad placements (rewarded video, interstitial, banner, offerwall) in the Fyber dashboard and map them to the screens that previously hosted Apphud paywalls. If you keep subscriptions alongside ads, leave the Apphud SDK in place and add Fyber as a parallel monetization layer. Use Fyber's mediation tools to add other demand sources, set floor prices, and run waterfall or in-app bidding. Validate fill rate and eCPM in a staging build before rolling out to production. Coordinate with your finance team on revenue reporting changes from MRR to ad revenue.",
+  "concept_mapping": [
+    {
+      "source": "Paywall placement",
+      "target": "Ad placement",
+      "note": "Conceptual swap — UX and monetization model differ"
+    },
+    {
+      "source": "Subscription product",
+      "target": "Ad unit (rewarded/interstitial/offerwall)"
+    },
+    {
+      "source": "A/B test (paywall)",
+      "target": "Mediation waterfall / placement test"
+    },
+    {
+      "source": "Subscriber cohort",
+      "target": "Audience segment (where supported)"
+    },
+    {
+      "source": "Revenue dashboard",
+      "target": "Fyber publisher dashboard"
+    }
+  ],
+  "effort": "3-6 weeks",
+  "gotchas": [
+    "This is a business-model change, not a tool swap — validate ad ARPU vs. subscription ARPU before committing",
+    "Existing paying subscribers must be honored; do not remove the subscription path until contractually safe",
+    "App Store and Play Store policies treat ads and subscriptions differently — review compliance",
+    "Ad SDKs add binary size and may require ATT prompts and consent flows",
+    "Fyber pricing is custom; revshare details only emerge during sales conversations",
+    "Post-acquisition product roadmap under Digital Turbine may shift features"
+  ],
+  "email": {
+    "subject": "Switching monetization from Apphud to Fyber over the next 14 days",
+    "body": "Hi team,\n\nWe are changing our monetization approach from subscriptions powered by Apphud to ad-based revenue using Fyber (Digital Turbine). Over the next 14 days we will integrate the Fyber SDK alongside our existing app, configure rewarded video, interstitial, and offerwall placements, and validate fill rate and eCPM in staging.\n\nExisting Apphud subscribers will continue to be served on their current terms. We are not migrating subscription data into Fyber — the two platforms solve different problems. Instead, we are layering ad monetization on top, with the option to phase out paywalls later based on performance data.\n\nPlease let me know if you have questions about reporting, support, or contractual implications during the transition.\n\nThanks,\nYour customer"
+  }
+}

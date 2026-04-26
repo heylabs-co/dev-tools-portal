@@ -1,0 +1,55 @@
+{
+  "source": {
+    "slug": "algolia",
+    "name": "Algolia"
+  },
+  "target": {
+    "slug": "serpapi",
+    "name": "SerpApi"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Algolia indexes your own content; SerpApi is a real-time search engine results API for Google and other engines. This is a use-case shift, not a 1:1 migration; only switch if you actually need SERP scraping rather than your own index.",
+  "why_switch": [
+    "Public usage-based pricing on SerpApi",
+    "REST API, easy to switch off later",
+    "Right tool when you need live SERP data",
+    "Avoid Algolia high-water-mark commits",
+    "Removes need to maintain your own index"
+  ],
+  "what_to_export": [
+    "Algolia index records and document JSON",
+    "Searchable attributes and ranking settings",
+    "Synonyms and query rules",
+    "Click and conversion analytics",
+    "API keys and ACL inventory",
+    "Frontend search UI configuration"
+  ],
+  "export_method": "Export every Algolia index via an official client's browse method or the Algolia CLI into newline-delimited JSON. Capture index settings (searchableAttributes, customRanking, faceting), synonyms and rules through their dedicated endpoints. Snapshot analytics you still need before cancellation. If your use case relied on indexing your own content, plan a separate replacement; SerpApi will not host that content.",
+  "import_method": "There is no bulk import for SerpApi because it returns live search-engine results rather than indexing your data. Sign up for a SerpApi plan that matches your expected query volume. Replace each Algolia search call with a SerpApi REST request using a search engine, query and any locale or device parameters. Parse the structured JSON response (organic results, ads, knowledge graph, etc.) into your application's existing result shape. Cache results where appropriate to control usage cost.",
+  "concept_mapping": [
+    {
+      "source": "Index",
+      "target": "Search engine selection (google, bing, etc.)"
+    },
+    {
+      "source": "Search query",
+      "target": "SerpApi q parameter"
+    },
+    {
+      "source": "Filters / facets",
+      "target": "Engine-specific parameters"
+    }
+  ],
+  "effort": "1-3 weeks if SerpApi truly fits the use case",
+  "gotchas": [
+    "SerpApi does not store or index your private content.",
+    "Cost scales per query; cache aggressively or budget for traffic spikes.",
+    "Result shape differs per search engine and changes over time.",
+    "Personalization, Recommend and synonyms have no SerpApi equivalent.",
+    "Compliance and TOS of upstream search engines apply to results usage."
+  ],
+  "email": {
+    "subject": "Cancelling Algolia in 14 days — moving to SerpApi",
+    "body": "Hi Algolia team,\n\nWe are decommissioning our Algolia account over the next 14 days. Our remaining search workflow has shifted to live search-engine results via SerpApi, so a hosted index is no longer required.\n\nPlease confirm the billing end date, the export window for our indices, and the data deletion timeline once the account is closed. We will export indices, synonyms and rules in week one, validate the new SerpApi flow during week two, and disable all Algolia API keys before the cutover date.\n\nThanks for the years of service.\n\nYour customer"
+  }
+}

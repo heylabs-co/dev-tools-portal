@@ -1,0 +1,62 @@
+{
+  "source": {
+    "slug": "airbyte",
+    "name": "airbyte"
+  },
+  "target": {
+    "slug": "steampipe",
+    "name": "steampipe"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Airbyte moves data from sources into your warehouse, while Steampipe is an open-source SQL engine that queries cloud and SaaS APIs live without storing data. The 'migration' is really a rethink: you stop loading data and instead query it on demand with SQL.",
+  "why_switch": [
+    "You want live SQL queries against cloud APIs instead of stored copies",
+    "Your use case is governance, audit, or compliance reporting",
+    "You do not need historical retention of every record",
+    "You prefer an open-source, self-hosted CLI-based tool",
+    "You are reducing storage and pipeline maintenance overhead"
+  ],
+  "what_to_export": [
+    "List of Airbyte connectors and the questions they were answering",
+    "Schemas and tables most frequently queried downstream",
+    "Credentials for the source APIs (rotate during migration)",
+    "Custom connectors that may need replacement plugins in Steampipe",
+    "Existing dashboards or reports that depend on Airbyte data",
+    "Sync schedules to understand freshness expectations"
+  ],
+  "export_method": "Inventory which Airbyte connections feed which downstream queries, dashboards, or reports. For each one, decide whether the use case truly needs persisted historical data (where Airbyte fits) or whether a live query against the API would suffice (where Steampipe fits). Securely capture source API credentials so they can be reused with Steampipe plugins. Document the schemas your downstream tools rely on, because Steampipe plugins expose their own schemas that may not match Airbyte's. Treat reports needing time-series history separately — those should stay on a warehouse-backed pipeline.",
+  "import_method": "Install Steampipe locally or on a server following the official documentation. For each source you previously had in Airbyte, install the matching Steampipe plugin (for example AWS, GCP, GitHub, Slack) and configure it with credentials. Run SQL queries directly against the plugin tables; there is no warehouse loading step. For recurring reports, schedule queries via cron or Steampipe Mod files and export results to wherever you need them. Where you need persistence, write query results into a warehouse separately. Validate each query against expected results before retiring the corresponding Airbyte connection.",
+  "concept_mapping": [
+    {
+      "source": "Airbyte source connector",
+      "target": "Steampipe plugin",
+      "note": "Live API access, not persistent load"
+    },
+    {
+      "source": "Warehouse table",
+      "target": "Steampipe plugin table",
+      "note": "Schemas usually differ"
+    },
+    {
+      "source": "Sync schedule",
+      "target": "Cron job running SQL queries"
+    },
+    {
+      "source": "Custom CDK connector",
+      "target": "Custom Steampipe plugin (Go)"
+    }
+  ],
+  "effort": "2-6 weeks",
+  "gotchas": [
+    "Steampipe queries APIs live, so it does not retain historical state — keep a warehouse for time-series needs",
+    "API rate limits can throttle Steampipe queries; cache results where possible",
+    "Plugin coverage may not match Airbyte's connector catalog exactly",
+    "Schemas exposed by plugins differ from Airbyte's normalized output, breaking existing SQL",
+    "Operational ownership shifts from a managed service to your team running Steampipe",
+    "Authentication for plugins varies; plan a secure secrets strategy from day one"
+  ],
+  "email": {
+    "subject": "Canceling our Airbyte subscription in 14 days",
+    "body": "Hi team,\n\nWe are moving parts of our reporting workflow to Steampipe and reducing our use of Airbyte. Please treat this email as 14 days notice to cancel our Airbyte subscription. Kindly confirm the end date and any final invoice. Thanks for the support so far.\n\nBest,\nYour customer"
+  }
+}

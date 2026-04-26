@@ -1,0 +1,67 @@
+{
+  "source": {
+    "slug": "plain",
+    "name": "Plain"
+  },
+  "target": {
+    "slug": "forem",
+    "name": "Forem"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Moving from Plain to Forem is a workflow shift, not a like-for-like migration: Plain handles one-to-one in-app support while Forem powers a public, peer-to-peer community. Plan to run both in parallel during the transition rather than treating Forem as a drop-in replacement.",
+  "why_switch": [
+    "Shifting from private support tickets to public community Q&A",
+    "Building a developer-facing community with posts, follows, and reactions",
+    "Reducing per-seat support spend by routing repeat questions to a community",
+    "Owning the platform end-to-end via open-source self-hosting"
+  ],
+  "what_to_export": [
+    "Customer list with email and identifying metadata (for Forem invites)",
+    "Conversation history from Plain for archival reference",
+    "Internal notes and tags applied to conversations",
+    "Team member list and roles",
+    "Integration configuration (Slack, email routing, in-app SDK)",
+    "Knowledge base articles or canned responses you've built up",
+    "FAQ patterns — recurring question themes worth seeding the community with",
+    "Customer attributes you want to preserve as Forem profile fields"
+  ],
+  "export_method": "Plain exposes a documented support API that you can use to pull conversations, customers, internal notes, and team member data. Use the API to export conversation history as JSON for archival; this is read-only reference data, not something to import wholesale into a community platform. From the export, identify the top recurring question themes — these are the seed posts for your Forem community. Pull your customer list and decide who you want to invite to the community (this is opt-in, not an automatic migration). Document team members and their roles for re-invitation on Forem. Capture in-app SDK initialization config so you can plan the cutover or parallel run. Save canned responses and any knowledge base content as portable Markdown for re-publishing as Forem posts.",
+  "import_method": "Forem is open-source software you self-host (it powers dev.to). Spin up a Forem instance — this requires real Rails ops work, including a Postgres database, Redis, image storage, and SMTP for invites. Configure your community's branding, tags, and moderation rules in the Forem admin. Seed the community with 10-20 posts derived from the recurring themes in your Plain conversation history; these give early visitors something to engage with. Invite your team as moderators and a curated set of customers as initial members. Wire up SSO if you want to use your existing identity provider. Decide on the relationship with Plain: most teams keep Plain running for in-app one-to-one support and use Forem for public Q&A — they complement each other rather than replace each other. If you do retire Plain entirely, plan for the customer expectation shift from private ticket to public post.",
+  "concept_mapping": [
+    {
+      "source": "Conversation",
+      "target": "Post / thread",
+      "note": "Private one-to-one becomes public many-to-many — workflow shift, not a data mapping"
+    },
+    {
+      "source": "Customer",
+      "target": "Member"
+    },
+    {
+      "source": "Team member",
+      "target": "Moderator / admin"
+    },
+    {
+      "source": "Internal note",
+      "target": "—",
+      "note": "No public equivalent; archive only"
+    },
+    {
+      "source": "Tag / label",
+      "target": "Tag"
+    }
+  ],
+  "effort": "3-6 weeks",
+  "gotchas": [
+    "Plain and Forem solve different problems. Treat this as a workflow change, not a data migration; most teams run both in parallel rather than swap one for the other.",
+    "Forem is self-hosted Rails software. Budget real ops time for setup, upgrades, backups, and monitoring before assuming the migration is cheap.",
+    "Private support history cannot become public community posts without explicit customer consent. Use Plain conversations to identify themes, not to bulk-import content.",
+    "Customers expect different response SLAs in a public community vs a private support queue. Communicate the change before redirecting traffic.",
+    "Forem theming and customization beyond the basics requires code changes; budget design time if you need a branded experience.",
+    "Identity and SSO need to be set up fresh on Forem; do not assume Plain identities map over."
+  ],
+  "email": {
+    "subject": "Heads up: we're launching a community alongside support",
+    "body": "Hi team,\n\nWe're standing up a Forem-based community over the next 14 days. This is not a replacement for Plain — Plain stays for in-app one-to-one support, and Forem will host public Q&A and discussion. The goal is to let recurring questions get answered once, publicly, instead of repeatedly in tickets.\n\nAction items: support team will get moderator invites this week. Please help seed the first posts from common ticket themes. Engineering is handling the Forem deploy and SSO wiring.\n\nReply with questions.\n\nThanks,\nYour customer"
+  }
+}

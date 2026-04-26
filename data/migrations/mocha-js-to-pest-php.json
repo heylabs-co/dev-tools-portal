@@ -1,0 +1,63 @@
+{
+  "source": {
+    "slug": "mocha-js",
+    "name": "Mocha"
+  },
+  "target": {
+    "slug": "pest-php",
+    "name": "Pest"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Mocha is a JavaScript test framework; Pest is a PHP testing framework built on PHPUnit. There is no in-place migration of test files between languages. Use this only when the underlying codebase is being rewritten or split between JS and PHP.",
+  "why_switch": [
+    "Pest is the right runner for PHP code",
+    "Expressive it()/test() syntax over PHPUnit",
+    "Architecture and mutation testing built in",
+    "Both are MIT-licensed and free",
+    "Strong fit for Laravel and modern PHP teams"
+  ],
+  "what_to_export": [
+    "List of Mocha test specs (file paths, names)",
+    "Assertions used (Chai, Node assert)",
+    "Mocking and spy setup (Sinon)",
+    "Custom reporters and CI configuration",
+    "Test fixtures and seed data",
+    "Coverage thresholds and reporting tooling"
+  ],
+  "export_method": "There is nothing to export from Mocha as a service; it is a local test runner. Instead, inventory the test suite. Walk the test directories and produce a list of describe/it blocks, the assertion library used and any mocks or fixtures involved. Capture the mocharc config, reporter setup and CI commands. This becomes a translation spec rather than a data export, since the tests cannot run in PHP without being rewritten by hand.",
+  "import_method": "There is no bulk import. Install Pest (`composer require pestphp/pest --dev`) inside the PHP codebase that will own the tests. For each Mocha spec, write an equivalent Pest test using its `it()` / `test()` syntax. Translate Chai expectations to Pest's `expect()` API and replace Sinon-style mocks with PHPUnit/Mockery doubles where appropriate. Use Pest's architecture tests for structural rules and consider mutation testing once the suite is green. Wire Pest into CI by replacing the previous `mocha` command with `vendor/bin/pest`.",
+  "concept_mapping": [
+    {
+      "source": "describe / it",
+      "target": "describe / it (Pest)"
+    },
+    {
+      "source": "Chai expect",
+      "target": "Pest expect()"
+    },
+    {
+      "source": "Sinon spy / mock",
+      "target": "PHPUnit / Mockery double"
+    },
+    {
+      "source": "mocharc config",
+      "target": "phpunit.xml + Pest.php"
+    },
+    {
+      "source": "Reporter plugin",
+      "target": "PHPUnit / Pest reporter"
+    }
+  ],
+  "effort": "Proportional to test count; weeks to months for non-trivial suites",
+  "gotchas": [
+    "Tests cannot be auto-translated; this is hand rewriting in another language.",
+    "Async patterns differ between Node and PHP runtimes.",
+    "Coverage and mutation tooling differ; thresholds must be re-set.",
+    "Some Pest 3 premium features require a paid license.",
+    "Fixtures tied to JS modules must be reproduced in PHP form."
+  ],
+  "email": {
+    "subject": "Switching the test stack from Mocha to Pest in 14 days",
+    "body": "Hi team,\n\nAs part of moving the relevant code into PHP, we will be retiring Mocha as our test runner and adopting Pest over the next 14 days.\n\nWeek one: inventory current Mocha specs, agree on Pest conventions, scaffold the PHP test layout and translate the highest-value suites first. Week two: finish translating the remaining specs, swap the CI command from Mocha to Pest and turn the Mocha job off.\n\nIf you have specs that must remain in JavaScript, flag them so we can keep a small Mocha or Vitest island instead of forcing them into PHP.\n\nThanks,\nYour customer"
+  }
+}

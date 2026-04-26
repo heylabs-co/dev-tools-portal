@@ -1,0 +1,67 @@
+{
+  "source": {
+    "slug": "bump-sh",
+    "name": "Bump.sh"
+  },
+  "target": {
+    "slug": "azure-openai-service",
+    "name": "Azure OpenAI Service"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Bump.sh is a developer-portal and API documentation tool, while Azure OpenAI Service is a hosted LLM inference platform — they solve different problems. Treat this as a re-platforming exercise: keep your OpenAPI specs portable and rebuild only the workflows that genuinely need an AI provider.",
+  "why_switch": [
+    "Consolidate vendors if your team is standardizing on Microsoft Azure",
+    "Need enterprise SLAs, VNet integration and identity controls Azure provides",
+    "Move from documentation tooling to AI-backed API features (drafting, search)",
+    "Reduce surface area when API docs can be hosted via OpenAPI elsewhere",
+    "Align billing with an existing Azure enterprise agreement"
+  ],
+  "what_to_export": [
+    "OpenAPI / AsyncAPI specifications",
+    "Custom branding and theme assets for the portal",
+    "Documentation content and changelogs",
+    "API version history and deprecation notices",
+    "Hub / project structure metadata",
+    "User and team access lists",
+    "Webhook and CI integration configs",
+    "Custom domain settings"
+  ],
+  "export_method": "Bump.sh treats OpenAPI/AsyncAPI specs as the source of truth, so the safest export is to retrieve the raw spec files you originally uploaded — typically from your own source control or via the Bump.sh CLI/API. Generic steps: 1) gather the latest spec files for each documentation hub, 2) export changelog and any custom Markdown content shown alongside the specs, 3) capture branding assets (logo, colors) and the custom domain configuration, 4) record team membership and access roles, and 5) snapshot any CI workflows that publish updates to Bump.sh. Because Bump.sh's lock-in is low and OpenAPI is a portable open standard, you can usually recreate documentation anywhere without vendor-specific rework. Verify exact export endpoints and self-serve options in the current Bump.sh documentation before cutover.",
+  "import_method": "Azure OpenAI Service does not host API documentation portals — it provides access to OpenAI-family models. Plan accordingly: if you still need a developer portal, host the OpenAPI spec via Azure API Management's developer portal, GitHub Pages, or another docs tool. To onboard to Azure OpenAI itself: 1) request access in the Azure portal and create a resource in your subscription, 2) deploy the model(s) you need, 3) collect the endpoint URL and API key (or configure Microsoft Entra ID auth), 4) install the official SDK (e.g. @azure/openai or openai with the Azure base URL), and 5) wire up any new AI-driven docs/search workflows. Map quotas, region availability and content-filter settings before going live. Confirm current model SKUs, regions and pricing tiers in the Azure documentation.",
+  "concept_mapping": [
+    {
+      "source": "OpenAPI spec hub",
+      "target": "External docs tool or Azure APIM portal",
+      "note": "Azure OpenAI does not replace docs hosting"
+    },
+    {
+      "source": "Bump.sh changelog",
+      "target": "Self-managed changelog (repo or docs site)"
+    },
+    {
+      "source": "API token",
+      "target": "Azure resource API key or Entra ID credential"
+    },
+    {
+      "source": "Hub / project",
+      "target": "Azure OpenAI resource + model deployment"
+    },
+    {
+      "source": "Custom domain",
+      "target": "Configured on your replacement docs host"
+    }
+  ],
+  "effort": "1-3 weeks",
+  "gotchas": [
+    "These products solve different problems — do not assume feature parity. You will likely keep a separate docs platform.",
+    "Azure OpenAI access can require approval and has regional model availability that varies; plan capacity and region early.",
+    "OpenAPI spec quirks (vendor extensions, code samples) may not survive a host change without manual adjustments.",
+    "Authentication shifts from a documentation token to Azure RBAC / API keys, which changes how CI pipelines push updates.",
+    "Content filtering and abuse policies in Azure OpenAI can block prompts that worked elsewhere — test critical flows.",
+    "Cost models differ: doc subscription versus per-token inference. Forecast usage before committing."
+  ],
+  "email": {
+    "subject": "Heads up: we're sunsetting Bump.sh — here's our 14-day plan",
+    "body": "Hi team,\n\nWe're winding down our Bump.sh subscription over the next 14 days as we consolidate tooling around Azure. Bump.sh and Azure OpenAI Service are not direct replacements — Bump.sh hosts API docs while Azure OpenAI provides AI inference — so we're splitting the work:\n\n1) Days 1-4: export every OpenAPI/AsyncAPI spec from Bump.sh, plus branding, changelog content and access lists.\n2) Days 5-9: stand up replacement documentation hosting (likely Azure API Management's developer portal or our existing docs site) using the exported specs, and provision the Azure OpenAI resource for AI-backed features.\n3) Days 10-14: redirect custom domains, validate links, run a final diff against the Bump.sh hubs, and freeze the old account.\n\nIf any of your specs include vendor-specific extensions or custom themes, please flag them by end of week so we can confirm they render correctly in the new home. Questions or concerns, reply to this thread.\n\nThanks,\nYour customer"
+  }
+}

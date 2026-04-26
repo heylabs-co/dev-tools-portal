@@ -1,0 +1,61 @@
+{
+  "source": {
+    "slug": "fable",
+    "name": "Fable"
+  },
+  "target": {
+    "slug": "accessibility-insights",
+    "name": "Accessibility Insights"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Fable provides human research sessions with disabled testers, while Accessibility Insights is a free Microsoft-maintained guided WCAG checker for web and Windows. Switching means trading paid qualitative research for free, hands-on automated and assisted checks performed by your own team.",
+  "why_switch": [
+    "Reduce recurring research engagement costs",
+    "Bring accessibility checks in-house",
+    "Free Microsoft-maintained tool with WCAG guidance",
+    "Faster per-page checks during development",
+    "Works for web and Windows desktop apps"
+  ],
+  "what_to_export": [
+    "Fable research reports and recordings",
+    "Tester feedback transcripts",
+    "Findings logged in your issue tracker",
+    "Test plans and discussion guides",
+    "Custom rubrics or scorecards",
+    "Account, project and billing records",
+    "Screenshots and assistive tech notes",
+    "Internal summaries of past sessions"
+  ],
+  "export_method": "Pull all relevant research artefacts out of Fable before any plan change. From the Fable web app's project area, download reports, recordings and transcripts you have access to and store them in a shared drive. Tickets filed into Jira, Linear or GitHub will remain in your tracker. Make a written summary of recurring issues and the personas Fable helped you cover; this institutional knowledge is the most valuable thing to preserve. There is no automated WCAG report to export, since Fable's outputs are qualitative.",
+  "import_method": "Accessibility Insights does not require any data import; it runs locally as a browser extension or desktop tool. Install it on each tester's machine and walk through the FastPass and Assessment workflows on the same pages and flows you previously researched with Fable. Use the in-app export to save Assessment HTML or JSON reports per page, and file issues straight into GitHub or Azure DevOps from the tool when convenient. Use your archived Fable findings as a checklist to confirm the same problems are still being covered.",
+  "concept_mapping": [
+    {
+      "source": "Fable user session with tester",
+      "target": "Manual Assessment walkthrough by your team"
+    },
+    {
+      "source": "Research report PDF",
+      "target": "Assessment HTML/JSON export"
+    },
+    {
+      "source": "Discussion guide",
+      "target": "Assessment criteria checklist"
+    },
+    {
+      "source": "Fable project",
+      "target": "Per-app or per-feature Assessment run"
+    }
+  ],
+  "effort": "1-2 weeks",
+  "gotchas": [
+    "Accessibility Insights does not include real disabled users; you lose the qualitative panel signal Fable provided",
+    "FastPass is a quick scan, not a persisted dashboard, so storage of results is your responsibility",
+    "No multi-site monitoring or trend dashboards; keep a separate tracker for trends",
+    "Manual effort is required for thorough WCAG audits",
+    "Consider keeping a smaller research budget for major launches"
+  ],
+  "email": {
+    "subject": "Switching from Fable to Accessibility Insights",
+    "body": "Hi team,\n\nOver the next 14 days we will be moving our default accessibility tooling from Fable to Accessibility Insights. Fable has been great for inclusive research with disabled testers, but we need a faster, free workflow that our developers and QA can run themselves on every release.\n\nPlan:\n- Days 1-3: archive Fable reports, recordings and tickets into our shared drive.\n- Days 4-7: install Accessibility Insights for everyone and run FastPass and Assessment on key flows.\n- Days 8-12: standardize an internal WCAG checklist using Accessibility Insights' guided steps.\n- Days 13-14: finish the cutover and pause new Fable engagements.\n\nWe will keep a smaller budget for occasional research with disabled users on major launches, since Accessibility Insights cannot replicate that qualitative signal.\n\nThanks,\nYour customer"
+  }
+}

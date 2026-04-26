@@ -1,0 +1,57 @@
+{
+  "source": {
+    "slug": "basis-theory",
+    "name": "Basis Theory"
+  },
+  "target": {
+    "slug": "nium",
+    "name": "Nium"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Basis Theory is a processor-agnostic card vault, while Nium is global payouts, issuing, and FX infrastructure. The two solve different problems, so this is rarely a like-for-like migration and usually a re-architecture.",
+  "why_switch": [
+    "Need global payouts and FX, not just card vaulting",
+    "Want card issuing on a licensed platform",
+    "Consolidate vendors with one regulated provider",
+    "Move beyond tokenization into money movement"
+  ],
+  "what_to_export": [
+    "Tokenized card metadata and aliases",
+    "Token usage logs and audit trails",
+    "Customer/account references",
+    "Webhook subscriptions and endpoints",
+    "Proxy/connection configurations",
+    "API keys and application records",
+    "Compliance/PCI scope documentation",
+    "User and role assignments"
+  ],
+  "export_method": "Use the Basis Theory API and dashboard to export token records and metadata in JSON. For raw card data, you typically need a controlled detokenization flow into the destination vault rather than a bulk dump, because exposed PANs expand PCI scope. Pull audit logs and webhook history through the standard endpoints. Keep the original Basis Theory tenant active during cutover so any in-flight transactions can still resolve. Confirm contractual rights to extract card data before initiating, and coordinate any direct vault-to-vault transfer with both vendors' compliance teams.",
+  "import_method": "Nium is primarily a payouts, collections, issuing, and FX platform rather than a merchant card vault, so a direct token import is usually not the right model. Engage Nium during onboarding to scope which capabilities you actually need (payouts, issuing, collections) and complete their KYB and compliance onboarding. Build new integrations against the Nium API for the flows you keep, and keep card-checkout vaulting on a separate provider if that is still required. Treat this as a parallel implementation rather than a one-to-one migration.",
+  "concept_mapping": [
+    {
+      "source": "Token vault",
+      "target": "Card issuing / payout rails",
+      "note": "Different primitives — verify scope"
+    },
+    {
+      "source": "Webhooks",
+      "target": "Webhooks"
+    },
+    {
+      "source": "API keys",
+      "target": "API credentials"
+    }
+  ],
+  "effort": "8-16 weeks",
+  "gotchas": [
+    "Nium and Basis Theory address different parts of the stack; confirm Nium covers your actual use case before committing.",
+    "Moving raw card data out of a vault expands PCI scope; plan a controlled detokenization or vault-to-vault flow.",
+    "Nium onboarding requires KYB and licensing review that can take weeks.",
+    "If you still need merchant card vaulting, you may need to keep Basis Theory or pick another vault alongside Nium.",
+    "Pricing models differ — usage-based tokens vs custom enterprise contracts."
+  ],
+  "email": {
+    "subject": "Migrating off Basis Theory — request for export and offboarding support",
+    "body": "Hi Basis Theory team,\n\nWe have decided to wind down our use of Basis Theory over the next 14 days as we re-architect our payments stack around a different provider for our use case.\n\nTo make this clean for both sides, could you help us with:\n\n- A confirmed export path for our token records, metadata, and audit logs.\n- Guidance on the safest way to move sensitive card data out of the vault without expanding our PCI scope.\n- Any contractual steps required to terminate the agreement at the end of the current term.\n- A point of contact for questions during cutover.\n\nWe would like to complete the data extract within 10 days and decommission API keys by day 14. Please let us know if anything in that timeline needs to shift.\n\nThanks for the support so far.\n\nYour customer"
+  }
+}

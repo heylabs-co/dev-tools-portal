@@ -1,0 +1,64 @@
+{
+  "source": {
+    "slug": "modern-treasury",
+    "name": "modern-treasury"
+  },
+  "target": {
+    "slug": "unit",
+    "name": "unit"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Modern Treasury is a US-focused payment operations platform with APIs for ACH, wire, RTP, FedNow, and real-time ledgering. Unit is a US banking-as-a-service platform offering FDIC-insured accounts, ACH, wire, card issuing, and lending APIs through partner banks. Both are US-only, but Unit gives you the bank account and card stack while Modern Treasury sits on top of your own bank relationships; \"migration\" between them is really a redesign of who holds the funds and who owns compliance.",
+  "why_switch": [
+    "You want FDIC-insured end-customer accounts via a partner bank instead of operating from your own bank.",
+    "You need card issuing and lending APIs that Unit bundles natively.",
+    "You prefer a single BaaS provider over assembling bank, ledger, and ops layers yourself.",
+    "Your business model has shifted from money movement to embedded finance.",
+    "You no longer need Modern Treasury's ledgering depth and want a simpler stack."
+  ],
+  "what_to_export": [
+    "Counterparties and bank account records.",
+    "Payment orders, returns, and reversals history.",
+    "Ledger accounts, postings, and balances if you used Modern Treasury's ledgering.",
+    "Webhook subscriptions and consumer endpoints.",
+    "API keys and any user/role configuration to be revoked.",
+    "Reconciliation rules and rules-based workflows.",
+    "Bank partner agreements and ODFI relationships you currently rely on.",
+    "Reporting exports and audit logs needed for compliance retention."
+  ],
+  "export_method": "Modern Treasury exposes data through its API and dashboard, so the practical export is to pull the records you need via the API and store them in your own systems. Use generic, well-known patterns: list endpoints with pagination for counterparties, payment orders, returns, expected payments, and ledger entities; capture full payloads including IDs you may need to map later. Save webhook subscription metadata so you know which consumers must be repointed. For ledgering data, export accounts, postings, and current balances as of a frozen cutover time so you can reconcile with the new system. Keep raw exports in immutable storage for audit and compliance retention. Coordinate with your bank partners early, since some data and obligations live in the bank rather than in Modern Treasury and cannot be exported through the platform.",
+  "import_method": "Unit is a BaaS, so onboarding involves more than API integration: you will go through Unit's onboarding to pick a sponsor bank, complete due diligence, and stand up FDIC-insured accounts for your end customers. Implement the application and account-creation flows using Unit's API and SDKs, then add the products you need (ACH, wire, card issuing, lending) one at a time. Map historical data from Modern Treasury into your own internal records rather than trying to backfill it into Unit; balances and history at the bank level live with the partner bank. Move webhook consumers to Unit's webhook model. Expect compliance, KYC/KYB, and program management work to dominate the timeline rather than raw API integration.",
+  "concept_mapping": [
+    {
+      "source": "Modern Treasury counterparties",
+      "target": "Unit customers / counterparties",
+      "note": "Models differ; Unit treats end users as bank customers."
+    },
+    {
+      "source": "Payment orders (ACH, wire, RTP)",
+      "target": "Unit payment APIs",
+      "note": "Available rails depend on Unit program configuration."
+    },
+    {
+      "source": "Real-time ledger",
+      "target": "Not directly mapped — Unit is BaaS; ledgering is typically your responsibility or a separate system."
+    },
+    {
+      "source": "Webhooks",
+      "target": "Unit webhooks"
+    }
+  ],
+  "effort": "8-16 weeks",
+  "gotchas": [
+    "This is a stack change, not a swap: Unit holds the bank relationship, Modern Treasury did not.",
+    "Sponsor bank selection and due diligence can dominate the timeline; engineering is often the smaller part.",
+    "Real-time ledgering does not directly map; you may need a separate ledger system or your own.",
+    "Both are US-only; do not migrate if you need international coverage.",
+    "Compliance responsibility shifts but does not disappear; review program management obligations carefully.",
+    "BaaS partner risk is real after recent US BaaS turbulence; vet the assigned sponsor bank thoroughly before launch."
+  ],
+  "email": {
+    "subject": "Payment stack change: moving from Modern Treasury to Unit",
+    "body": "Hi team,\n\nWe are migrating our payment stack from Modern Treasury to Unit over roughly the next two weeks of engineering work, with additional time for bank onboarding and compliance review. Both platforms are US-only and the models differ, so expect parallel operation while we cut customers over and reconcile balances. Please flag any reconciliation or webhook issues immediately. Once stable, we will retire Modern Treasury access.\n\nThanks for your patience.\n\nYour customer"
+  }
+}

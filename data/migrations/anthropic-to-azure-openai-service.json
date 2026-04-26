@@ -1,0 +1,66 @@
+{
+  "source": {
+    "slug": "anthropic",
+    "name": "Anthropic"
+  },
+  "target": {
+    "slug": "azure-openai-service",
+    "name": "Azure OpenAI Service"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Both are LLM API providers, but the model families and request shapes differ — Anthropic exposes Claude via its Messages API, while Azure OpenAI hosts OpenAI models through Azure deployments. Migration is mostly an SDK and prompt-shape change, plus moving billing and governance into Azure.",
+  "why_switch": [
+    "Standardize on Microsoft Azure for procurement, billing, and compliance",
+    "Need VNet integration, private endpoints, or regional data residency",
+    "Want OpenAI models (GPT family) instead of the Claude family",
+    "Prefer enterprise SLAs and Azure-native identity (Entra ID)",
+    "Consolidate on a single cloud bill with existing Azure commitments"
+  ],
+  "what_to_export": [
+    "Prompt templates and system prompts",
+    "Few-shot examples and evaluation datasets",
+    "Request and response fixtures from production logs",
+    "Tool/function definitions used with Claude",
+    "Model parameters (temperature, max tokens, stop sequences) per use case",
+    "API keys and organization metadata (for rotation)",
+    "Usage and cost reports for capacity planning",
+    "Any fine-tuning or message-history caching logic"
+  ],
+  "export_method": "Anthropic does not provide a one-click export of prompts; treat your own codebase as the source of truth. Pull every prompt, system message, and tool schema out of code and into a versioned prompts directory. Snapshot recent request/response pairs from your logging system as a regression dataset. From the Anthropic Console, export usage and billing CSVs for capacity planning, and download invoices you may need for finance. Rotate Anthropic API keys after the cutover; do not reuse them. If you use Anthropic's tool use, capture the JSON schemas for each tool — these will need re-shaping for OpenAI's function calling format. Keep the Anthropic SDK in place during a parallel-run phase so you can A/B compare answers between Claude and the Azure OpenAI deployment before fully cutting over.",
+  "import_method": "In the Azure portal, create an Azure OpenAI resource in a region that supports the model you need, then create a model deployment (the deployment name becomes part of the request URL). Generate an API key or, preferably, configure Entra ID auth. Install the official Azure OpenAI SDK or the OpenAI SDK with Azure-specific configuration as documented by Microsoft. Update your code to send messages in OpenAI's chat-completions or responses format instead of Anthropic's Messages format, and remap tool-use schemas to OpenAI function-calling schemas. Re-run your evaluation dataset against the new deployment, compare outputs, and tune prompts and parameters until quality matches. Wire monitoring through Azure Monitor and set up budgets/alerts before exposing the new path to production traffic.",
+  "concept_mapping": [
+    {
+      "source": "Anthropic API key",
+      "target": "Azure OpenAI key or Entra ID credential",
+      "note": "Prefer managed identity over static keys when possible."
+    },
+    {
+      "source": "Messages API request",
+      "target": "Chat Completions / Responses API request",
+      "note": "Field names and roles differ; remap system/user/assistant turns."
+    },
+    {
+      "source": "Claude tool use",
+      "target": "OpenAI function calling / tools",
+      "note": "Schemas are similar but not identical — re-test."
+    },
+    {
+      "source": "Model name (e.g. claude-*)",
+      "target": "Azure deployment name",
+      "note": "Azure routes by deployment, not raw model name."
+    }
+  ],
+  "effort": "1-2 weeks for a single app with a small prompt surface; 1-2 months for multi-app rollouts that need re-evals and governance changes.",
+  "gotchas": [
+    "Output style and refusal behavior differ between Claude and GPT models — re-evaluate quality, do not assume parity.",
+    "Azure OpenAI model availability varies by region; pick a region that supports the exact model and version you need.",
+    "Quotas in Azure OpenAI are per-deployment and per-region; request increases early to avoid rate-limit surprises at launch.",
+    "Tool-use JSON schemas behave differently — strict mode, required fields, and error handling all need re-testing.",
+    "Token counting and pricing are different; rebuild cost models before promising savings to finance.",
+    "Content filtering policies are stricter on Azure for some categories; prompts that worked on Anthropic may be blocked or rewritten."
+  ],
+  "email": {
+    "subject": "Migrating from Anthropic to Azure OpenAI over the next 14 days",
+    "body": "Hi team,\n\nWe are moving our LLM workload from Anthropic to Azure OpenAI Service to consolidate on Azure for compliance and billing. Over the next 14 days we will run both providers in parallel, compare evaluation results, and cut traffic over once quality matches. Please flag any prompt or tool-use regressions in #ai-migration. Existing Anthropic keys will be rotated and revoked at the end of the window.\n\nThanks,\nYour customer"
+  }
+}

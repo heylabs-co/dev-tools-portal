@@ -1,0 +1,67 @@
+{
+  "source": {
+    "slug": "apphud",
+    "name": "Apphud"
+  },
+  "target": {
+    "slug": "teads",
+    "name": "Teads"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Apphud is an in-app subscription SDK, while Teads is a global omnichannel video ad platform. Replacing one with the other is a strategic shift from IAP revenue to brand-safe video advertising, particularly suited to mobile web and content publishers.",
+  "why_switch": [
+    "Pivot from subscriptions to video ad revenue",
+    "Tap premium brand demand across mobile and CTV",
+    "Reduce dependency on App Store / Play billing",
+    "Add omnichannel reach through Outbrain Teads",
+    "Diversify revenue with high-viewability video"
+  ],
+  "what_to_export": [
+    "Subscription product catalog and pricing tiers",
+    "Subscriber and renewal data",
+    "Paywall A/B tests and outcomes",
+    "Cohort definitions and segmentation rules",
+    "Revenue, churn, and LTV reports",
+    "Webhook and server-side notification configs",
+    "Paywall creative assets and copy",
+    "Refund and dispute history"
+  ],
+  "export_method": "Use the Apphud dashboard to download subscriber and revenue reports as CSV, and pull event history via documented APIs where available. Document paywall variants, A/B test setups, and segmentation manually — these are typically not portable as a single archive. Capture server webhook URLs and any custom backend code. Because Teads is a video ad platform rather than a subscription system, the Apphud export is a documentation step, not an import payload for Teads. Keep the Apphud account active through the transition so existing subscriptions continue to bill and so historical data remains available for support, accounting, and tax purposes. Coordinate a final snapshot of MRR before changing the monetization mix.",
+  "import_method": "Teads onboarding is sales-led, especially for self-serve enterprise access. Contact Teads to set up a publisher account and integrate via the supported method for your inventory — outstream video for mobile web, in-app SDK, or CTV integration as applicable. Configure placements where ads will appear in your content, ensure brand-safety and viewability requirements are met, and validate ads.txt / app-ads.txt entries. Run a staging integration to confirm ad delivery, latency, and viewability metrics before going live. If you keep subscriptions, leave Apphud in place for billing while Teads handles video monetization. Coordinate with editorial and product teams on UX, since outstream video placement directly affects content experience.",
+  "concept_mapping": [
+    {
+      "source": "Paywall placement",
+      "target": "Video ad placement",
+      "note": "Different monetization model"
+    },
+    {
+      "source": "Subscription product",
+      "target": "Video ad unit / format"
+    },
+    {
+      "source": "A/B test (paywall)",
+      "target": "Placement / format experiments (where supported)"
+    },
+    {
+      "source": "Apphud revenue dashboard",
+      "target": "Teads publisher reporting"
+    },
+    {
+      "source": "Webhook events",
+      "target": "Reporting feeds (where applicable)"
+    }
+  ],
+  "effort": "3-6 weeks",
+  "gotchas": [
+    "Teads is brand-led — performance metrics differ from rewarded or interstitial app ads",
+    "Mobile web integration is more mature than in-app SDK in many regions",
+    "Self-serve access is generally enterprise-only",
+    "Privacy and consent (GDPR, CCPA, ATT) must be in place before live serving",
+    "Outstream video can affect page UX and content layout — coordinate with editorial",
+    "Pricing and revshare are custom and disclosed under contract"
+  ],
+  "email": {
+    "subject": "Switching monetization from Apphud to Teads video over 14 days",
+    "body": "Hi team,\n\nWe are evolving our monetization strategy from subscriptions on Apphud to omnichannel video advertising with Teads. Over the next 14 days we will open a Teads publisher account, integrate the appropriate placements for our inventory, and validate delivery, viewability, and UX impact in staging before going live.\n\nExisting Apphud subscribers will continue to be served on their current terms during the transition. We are not migrating subscriber data into Teads — the platforms target different revenue models. Apphud will remain available for historical reporting and ongoing billing as needed.\n\nPlease flag privacy, contractual, or editorial questions ahead of the rollout so we can address them before live traffic.\n\nThanks,\nYour customer"
+  }
+}

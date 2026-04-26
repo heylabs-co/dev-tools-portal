@@ -1,0 +1,78 @@
+{
+  "source": {
+    "slug": "new-relic",
+    "name": "New Relic"
+  },
+  "target": {
+    "slug": "better-stack",
+    "name": "Better Stack"
+  },
+  "generated_at": "2026-04-25T12:00:00Z",
+  "tldr": "New Relic's hybrid data + per-user pricing pushes teams to look for simpler tools when they mainly need logs, uptime, and on-call. Better Stack covers that core with lower-friction billing.",
+  "why_switch": [
+    "Avoid New Relic's commit-tier minimum monthly spend",
+    "Per-user 'core user' fees scale poorly with team growth",
+    "Simpler product focused on logs, uptime, on-call",
+    "Standard REST APIs and OpenTelemetry-friendly ingest",
+    "Freemium tier de-risks initial adoption"
+  ],
+  "what_to_export": [
+    "APM and infrastructure logs",
+    "Custom metrics and events",
+    "Dashboards and charts",
+    "Alert conditions and policies",
+    "Synthetic monitor scripts",
+    "Users, teams, and roles",
+    "Workflows and notification destinations",
+    "Tags and entity metadata",
+    "Saved NRQL queries",
+    "Browser/RUM configuration"
+  ],
+  "export_method": "Use New Relic's public APIs (NerdGraph for most config, plus REST APIs for legacy resources) to extract dashboards, alerts, synthetics, and user data. NRQL queries can be exported as saved query definitions or run via API to pull historical event data into CSV/JSON. The Terraform provider for New Relic can capture alert policies, dashboards, synthetics, and notification workflows declaratively — strongly recommended for a clean snapshot. For raw log data, use the logs export query and paginate results into local archives. Pull users/teams via the account API. Keep all exports in object storage; New Relic retention varies by data type and edition, so older traces and logs may not be retrievable after cancellation.",
+  "import_method": "In Better Stack, configure sources for each service and re-point log shippers (OpenTelemetry collector, Vector, Fluent Bit, native logger SDKs) to the new ingest endpoints. Recreate uptime and heartbeat monitors. Set up on-call schedules, escalation policies, and notification channels under Incident Management. Rebuild key dashboards manually since the underlying query languages differ. If you used OpenTelemetry tracing on New Relic, the OTel collector pipeline can be reconfigured with a new exporter — though Better Stack's tracing depth differs from a full APM, so validate coverage. Run in parallel for at least one full incident cycle to confirm alert parity before sunsetting New Relic agents.",
+  "concept_mapping": [
+    {
+      "source": "New Relic Agent (APM)",
+      "target": "OpenTelemetry / log SDKs",
+      "note": "Migrate via OTel where possible"
+    },
+    {
+      "source": "NRQL queries",
+      "target": "Better Stack queries",
+      "note": "Rewrite — different query language"
+    },
+    {
+      "source": "Alert policies",
+      "target": "Alerts / Heartbeats",
+      "note": "Recreate thresholds"
+    },
+    {
+      "source": "Synthetics",
+      "target": "Uptime monitors",
+      "note": "Multi-step checks may need rework"
+    },
+    {
+      "source": "Workflows",
+      "target": "Incident routing",
+      "note": "Map destinations to channels"
+    },
+    {
+      "source": "Core / Full users",
+      "target": "Team members",
+      "note": "Different seat model"
+    }
+  ],
+  "effort": "2-4 weeks",
+  "gotchas": [
+    "Commit-tier minimums may keep billing through end of contracted period — check renewal date before cancelling",
+    "APM trace fidelity is not 1:1 between New Relic and a logs/uptime focused tool; validate trace use cases",
+    "OTel exporters need re-pointing across all services — coordinate deploys to avoid blind spots",
+    "Historical events older than the retention window cannot be retrieved — archive proactively",
+    "User seat counts differ in pricing model; recount your active users before sizing the new plan",
+    "Alert condition semantics (NRQL vs. log queries) differ — expect noise during the first week"
+  ],
+  "email": {
+    "subject": "Data export and account sunset — 14-day timeline",
+    "body": "Hi New Relic team,\n\nWe are moving off New Relic and need a full account export in machine-readable form (JSON/CSV). Required data: dashboards, alert policies and conditions, synthetic monitors, log archives within retention, NRQL saved queries, users/teams/roles, workflows and notification destinations, and tag/entity metadata.\n\nWe are targeting a 14-day window for export and validation. Please confirm:\n\n1. Which exports we can self-serve via NerdGraph/API vs. those requiring a support request.\n2. Options for archiving historical event/log data to our own object storage prior to cancellation.\n3. Billing implications during the dual-run period and the contract sunset date once we formally terminate.\n\nThanks,\nYour customer"
+  }
+}

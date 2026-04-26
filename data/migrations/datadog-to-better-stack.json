@@ -1,0 +1,78 @@
+{
+  "source": {
+    "slug": "datadog",
+    "name": "Datadog"
+  },
+  "target": {
+    "slug": "better-stack",
+    "name": "Better Stack"
+  },
+  "generated_at": "2026-04-25T12:00:00Z",
+  "tldr": "Teams leave Datadog when the per-host bill scales faster than the value they get from 700+ integrations. Better Stack offers a simpler, lower-cost path centered on logs, uptime, and on-call.",
+  "why_switch": [
+    "Datadog peak-host pricing locks in costs after scale-down",
+    "Lower predictable bills with freemium and metered overages",
+    "Simpler product surface focused on logs and uptime",
+    "Lower lock-in: REST APIs and standard log shippers",
+    "Built-in on-call and incident response in one tool"
+  ],
+  "what_to_export": [
+    "Application and infra logs",
+    "Custom metrics and time-series data",
+    "Dashboards and saved views",
+    "Alert/monitor definitions and thresholds",
+    "Synthetic test scripts and locations",
+    "User accounts, teams, and roles",
+    "On-call schedules and escalation policies",
+    "Notebooks and runbooks",
+    "Tag taxonomy and host metadata",
+    "Integration credentials and webhook config"
+  ],
+  "export_method": "Use Datadog's official APIs and account UI to extract data — there are public APIs for monitors, dashboards, logs, metrics, synthetics, and users. For dashboards and monitors the simplest path is to export their JSON definitions through the UI or API. For historical logs, use the log query export and pull results in batches; for metrics, use the metrics query API to pull time-series into local CSV/JSON. The Terraform provider for Datadog can also serialize most config (monitors, dashboards, SLOs) into source-controlled definitions, which is the cleanest way to capture state before cutover. Pull on-call schedules and incident workflows separately from those modules. Save raw exports to object storage so you have an immutable archive — Datadog log retention windows mean older data may be unrecoverable later.",
+  "import_method": "In Better Stack, set up sources for each application/service to receive logs, then point your existing log shippers (Vector, Fluent Bit, Logstash, syslog, native SDKs) at the new ingest endpoints. Recreate uptime monitors and heartbeats in the Better Stack UI or via their API. On-call schedules, escalation policies, and incident routing are configured under the Incident Management section. For dashboards, rebuild key views manually — the data models differ enough that automated dashboard JSON conversion isn't practical. Run both systems in parallel for at least 1-2 weeks so you can validate alert parity and adjust thresholds against real traffic before cutting Datadog agents.",
+  "concept_mapping": [
+    {
+      "source": "Datadog Agent",
+      "target": "Better Stack log shippers / SDKs",
+      "note": "Use Vector or Fluent Bit as a vendor-neutral bridge"
+    },
+    {
+      "source": "Monitors",
+      "target": "Alerts / Heartbeats",
+      "note": "Rebuild thresholds manually"
+    },
+    {
+      "source": "Dashboards",
+      "target": "Better Stack dashboards",
+      "note": "Rebuild — different data model"
+    },
+    {
+      "source": "Synthetic tests",
+      "target": "Uptime monitors",
+      "note": "Multi-step checks may not have parity"
+    },
+    {
+      "source": "Logs",
+      "target": "Logs (Logtail)",
+      "note": "Re-point shippers at new ingest"
+    },
+    {
+      "source": "Incident Management",
+      "target": "On-call / Incidents",
+      "note": "Recreate schedules and escalations"
+    }
+  ],
+  "effort": "2-4 weeks",
+  "gotchas": [
+    "Historical Datadog data outside retention window cannot be recovered after cancellation — archive proactively",
+    "APM/distributed-tracing parity may be incomplete; benchmark trace coverage before cutover",
+    "Custom metric cardinality that worked in Datadog can blow up costs elsewhere — review tag explosions",
+    "Per-host Datadog billing keeps charging at peak even after you scale down; cancel only after dual-run is verified",
+    "Alert noise will differ between platforms; expect a tuning period of 1-2 weeks",
+    "Compliance/retention requirements may need separate cold storage outside the new vendor"
+  ],
+  "email": {
+    "subject": "Data export request and account sunset — please confirm timeline",
+    "body": "Hi Datadog team,\n\nWe are migrating off Datadog and would like to extract a complete export of our account data in machine-readable formats (JSON or CSV). Specifically we need: monitor and alert definitions, dashboard JSON, synthetic test configs, log archives within current retention, custom metric series, on-call schedules, user/team/role config, and tag metadata.\n\nWe are targeting a 14-day window to complete the export and validate it against our new platform. Please confirm:\n\n1. Which exports require a support ticket vs. self-service via API/UI.\n2. Whether log and metric history can be archived to our S3 bucket before cancellation.\n3. The billing implications of downgrading hosts during the dual-run period and the exact sunset date once we cancel.\n\nThanks,\nYour customer"
+  }
+}

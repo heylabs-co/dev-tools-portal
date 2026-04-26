@@ -1,0 +1,61 @@
+{
+  "source": {
+    "slug": "anthropic",
+    "name": "Anthropic"
+  },
+  "target": {
+    "slug": "apidog",
+    "name": "Apidog"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Anthropic provides an LLM API (Claude), while Apidog is an API design, testing, and documentation platform — they solve different problems, so this is rarely a like-for-like migration. Treat this as adopting Apidog to manage the API surface that calls Anthropic, or as a category change rather than a swap.",
+  "why_switch": [
+    "Need a centralized place to design, mock, document, and test your APIs",
+    "Want OpenAPI-first workflows for internal and external API consumers",
+    "Looking for an all-in-one alternative to splitting Postman, Swagger, and a docs portal",
+    "Need a developer portal in front of the APIs you ship",
+    "Prefer a freemium tool with a generous free plan for small teams"
+  ],
+  "what_to_export": [
+    "OpenAPI/Swagger specifications for any APIs you maintain",
+    "Postman or Insomnia collections used for testing",
+    "Environment variables and secrets used in API calls",
+    "Mock server definitions and example responses",
+    "Authentication configuration (API keys, OAuth flows)",
+    "Existing prompt templates and request/response examples that hit Anthropic",
+    "Team membership and access roles",
+    "API versioning history and changelogs"
+  ],
+  "export_method": "Anthropic itself does not produce OpenAPI specs for your business APIs — it is an LLM provider. Export anything you have built around it: prompt libraries, request templates, evaluation datasets, and any code that wraps Anthropic calls. If you currently use Postman, Insomnia, or Swagger UI to document the wrappers, export those collections (Postman v2.1 JSON, OpenAPI 3.x YAML/JSON). For Anthropic configuration itself, save organization settings, API keys (rotate after migration), and usage/billing exports from the Anthropic Console. Capture sample requests and responses from logs as fixtures you can replay inside Apidog tests. Keep the Anthropic API client code unchanged — Apidog does not replace the LLM provider; it just gives you a place to design, mock, and test the surface that depends on Anthropic.",
+  "import_method": "Inside Apidog, create a new project and import any OpenAPI specs or Postman collections you exported. Apidog's documentation describes import flows for OpenAPI 3.x and Postman v2.1, which are the most common interchange formats. Recreate environments (Development, Staging, Production) and store credentials in environment variables rather than hardcoded values. Add the Anthropic Messages endpoint as an external API or HTTP request inside Apidog so you can run end-to-end tests against your wrappers. Configure team members and roles, set up the published documentation site for any APIs you expose, and wire the Apidog CLI into CI to run regression tests on every commit. Verify auth, rate-limit handling, and error paths with saved test cases before pointing real traffic at the new workflow.",
+  "concept_mapping": [
+    {
+      "source": "Anthropic API key",
+      "target": "Apidog environment variable",
+      "note": "Store the key as a secret env var; do not commit."
+    },
+    {
+      "source": "Prompt template / request body",
+      "target": "Apidog request example",
+      "note": "Save canonical request bodies as examples for replay."
+    },
+    {
+      "source": "Anthropic Console usage logs",
+      "target": "Apidog test runs / history",
+      "note": "Use Apidog test history for your wrapper, not for raw model calls."
+    }
+  ],
+  "effort": "1-3 days for a small team with existing OpenAPI specs; 1-2 weeks if specs and tests must be authored from scratch.",
+  "gotchas": [
+    "Apidog does not replace Anthropic — you still need an Anthropic account and API key for inference. Plan for both bills.",
+    "Do not paste production API keys into shared Apidog projects; use per-environment secrets and rotate the keys you exported.",
+    "OpenAPI imports rarely round-trip perfectly. Expect to fix examples, auth schemes, and tag groupings by hand.",
+    "If you relied on Postman scripts (pm.* APIs), some behaviors differ in Apidog's pre/post scripts — review test scripts after import.",
+    "Published documentation URLs change after migration; set up redirects from any old docs portal so external developers do not 404.",
+    "Free-tier limits on Apidog can constrain CI test runs; budget for a paid plan once you automate testing."
+  ],
+  "email": {
+    "subject": "Heads up: we are moving our API workflow to Apidog",
+    "body": "Hi team,\n\nOver the next 14 days we are moving our API design, mocking, and testing workflow into Apidog. Anthropic stays our LLM provider — only the tooling around it changes. Please import the shared project from the link in #eng, switch your local environment to the new variables, and report any broken examples or tests by end of week 2. After that we will retire the old collections.\n\nThanks,\nYour customer"
+  }
+}

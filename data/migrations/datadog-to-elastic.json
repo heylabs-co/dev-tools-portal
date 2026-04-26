@@ -1,0 +1,78 @@
+{
+  "source": {
+    "slug": "datadog",
+    "name": "Datadog"
+  },
+  "target": {
+    "slug": "elastic",
+    "name": "Elastic"
+  },
+  "generated_at": "2026-04-25T12:00:00Z",
+  "tldr": "Moving from Datadog to Elastic trades proprietary agents and per-host pricing for the open ELK stack — more setup, more control, often lower long-run cost. The pivot point is whether your team will operate Elasticsearch (self-hosted) or rely on Elastic Cloud.",
+  "why_switch": [
+    "Open-source stack: Elasticsearch, Kibana, Beats",
+    "OpenTelemetry-native ingest path",
+    "Avoid Datadog peak-host billing surprises",
+    "Self-host option keeps data in your infra",
+    "Reusable index/dashboard portability across environments"
+  ],
+  "what_to_export": [
+    "Logs across all services",
+    "Custom and host-level metrics",
+    "Dashboards and saved views",
+    "Monitor and alert definitions",
+    "Synthetic test scripts",
+    "APM service maps and traces",
+    "Users, teams, RBAC config",
+    "Tag taxonomy and host metadata",
+    "Notebooks and runbooks",
+    "Integration and webhook config"
+  ],
+  "export_method": "Use Datadog's public APIs and the official Terraform provider to capture monitors, dashboards, SLOs, and synthetic configs as code. Pull historical logs via the logs query API in paginated batches and save as NDJSON. Pull metrics via the metrics query API into Prometheus-style or CSV formats. Export users/teams through the account API. For APM traces, recent windows can be queried via the API; older traces may not be retrievable after retention. Stage everything in object storage so the new platform can ingest at its own pace and you have an immutable archive separate from Datadog.",
+  "import_method": "Set up Elasticsearch (self-hosted via official distributions, or managed via Elastic Cloud) plus Kibana. Switch instrumentation to the Elastic Agent or to OpenTelemetry collectors exporting to Elastic's APM/logs ingest. For logs, point Filebeat/Fluent Bit/Vector at the Elasticsearch ingest endpoints; for metrics, use Metricbeat or OTel. Define index lifecycle policies before bulk-loading historical archives so you control retention and storage tiers. Recreate dashboards in Kibana — query languages differ, so manual rebuild is realistic. Use Kibana's alerting framework to recreate Datadog monitors. Run parallel for 1-2 weeks and validate alert parity and dashboard signal-to-noise.",
+  "concept_mapping": [
+    {
+      "source": "Datadog Agent",
+      "target": "Elastic Agent / Beats / OTel",
+      "note": "Choose one ingest stack and standardize"
+    },
+    {
+      "source": "Monitors",
+      "target": "Kibana alerting rules",
+      "note": "Rewrite query expressions"
+    },
+    {
+      "source": "Dashboards",
+      "target": "Kibana dashboards",
+      "note": "Manual rebuild"
+    },
+    {
+      "source": "Logs",
+      "target": "Elasticsearch indices",
+      "note": "Plan index strategy + ILM upfront"
+    },
+    {
+      "source": "APM",
+      "target": "Elastic APM",
+      "note": "OTel SDKs work with both"
+    },
+    {
+      "source": "Synthetic tests",
+      "target": "Elastic Synthetics",
+      "note": "Multi-step parity may differ"
+    }
+  ],
+  "effort": "3-6 weeks",
+  "gotchas": [
+    "Self-hosted Elasticsearch needs ongoing capacity, sharding, and upgrade ops — budget for SRE time",
+    "Elastic License 2.0 is not OSI open-source; review legal implications for your use case",
+    "Index mapping and shard sizing decisions are hard to undo later — design before bulk import",
+    "Dashboard rebuild dominates the migration timeline; prioritize the top 10 used dashboards first",
+    "Custom metric cardinality that fit Datadog may need re-modeling for Elasticsearch fields",
+    "Run dual ingestion long enough to verify alert parity; cutting Datadog early risks blind spots"
+  ],
+  "email": {
+    "subject": "Data export request and account sunset — please confirm timeline",
+    "body": "Hi Datadog team,\n\nWe are migrating to Elastic and need a full export of our account data in machine-readable formats (JSON, NDJSON, CSV). Required: monitors and alerts, dashboards, synthetic configs, logs within current retention, custom metric series, APM trace samples within retention, users/teams/roles, tag metadata, and notebooks/runbooks.\n\nWe are targeting a 14-day export and validation window. Please confirm:\n\n1. Which exports are self-serve via API vs. require a support ticket.\n2. Whether log and metric history can be staged to our S3 bucket before cancellation.\n3. Billing implications of scaling host counts down during dual-run and the exact contract sunset date once we cancel.\n\nThanks,\nYour customer"
+  }
+}

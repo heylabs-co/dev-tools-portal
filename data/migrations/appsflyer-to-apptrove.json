@@ -1,0 +1,67 @@
+{
+  "source": {
+    "slug": "appsflyer",
+    "name": "AppsFlyer"
+  },
+  "target": {
+    "slug": "apptrove",
+    "name": "Apptrove"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "AppsFlyer and Apptrove are both mobile measurement partners (MMPs), so the move is mostly an SDK swap, partner-postback rewiring, and historical-data export. Apptrove typically attracts price-sensitive teams in emerging markets, while accepting a smaller partner catalog and thinner privacy tooling than the Tier-1 vendors.",
+  "why_switch": [
+    "Lower per-install pricing",
+    "Bundled fraud prevention",
+    "Stronger fit for India, MENA, LATAM markets",
+    "Responsive support vs larger MMPs",
+    "Reduce MMP spend at scale"
+  ],
+  "what_to_export": [
+    "Raw install and in-app event data",
+    "Cohort and LTV reports",
+    "Partner postback configurations",
+    "SKAdNetwork conversion model",
+    "Custom event schema and parameters",
+    "Deep link and OneLink configuration",
+    "Fraud-rejection logs",
+    "Audience segments if used",
+    "API and S3 export credentials"
+  ],
+  "export_method": "Use AppsFlyer's data locker, raw-data report APIs, and S3/cloud export integrations to pull install records, in-app events, and attribution metadata in CSV or Parquet. Export your SKAdNetwork conversion model definition for reference. Document every active partner integration and postback URL so you can recreate them. Capture deep link and OneLink configuration including domain associations. Export cohort and retention reports for analytics continuity. Keep AppsFlyer SDKs running in production until Apptrove SDK is integrated, validated against a known set of campaigns, and dual-running shows comparable attribution.",
+  "import_method": "Add the Apptrove SDK to your iOS and Android apps and configure the dev key. Map your existing in-app event schema to Apptrove's event API, preserving event names and parameter shapes where possible to keep downstream BI consistent. Recreate partner postback configurations in Apptrove for each active ad network. Configure SKAdNetwork settings and your conversion value model. Set up deep links and the equivalent of OneLink in Apptrove. Run AppsFlyer and Apptrove SDKs in parallel during a measurement window (typically 2-4 weeks) to validate parity on installs, events, and attribution before flipping primary attribution to Apptrove.",
+  "concept_mapping": [
+    {
+      "source": "OneLink",
+      "target": "Apptrove deep link / smart link"
+    },
+    {
+      "source": "Partner postback",
+      "target": "Partner postback"
+    },
+    {
+      "source": "SKAN conversion model",
+      "target": "SKAN conversion model"
+    },
+    {
+      "source": "Data locker / raw export",
+      "target": "Raw export"
+    },
+    {
+      "source": "In-app event",
+      "target": "In-app event"
+    }
+  ],
+  "effort": "4-8 weeks (SDK release, dual-run, partner rewiring)",
+  "gotchas": [
+    "MMP swaps require a new app release; plan store review timelines",
+    "Dual-running both SDKs inflates event counts and may double-count revenue in BI — segment carefully",
+    "Partner ad networks must be re-onboarded to the new MMP; some niche networks may not be supported",
+    "SKAN conversion values are app-specific and need re-tuning",
+    "Historical attribution data does not move — keep AppsFlyer reports archived for trend continuity",
+    "Privacy tooling (SKAN 4, ATT) maturity may differ between vendors"
+  ],
+  "email": {
+    "subject": "Moving mobile attribution from AppsFlyer to Apptrove",
+    "body": "Hi team,\n\nOver the next 14 days we're starting the migration of mobile attribution from AppsFlyer to Apptrove. Cost and bundled fraud prevention are the drivers, particularly for our growth campaigns in emerging markets where Apptrove has a strong fit.\n\nDays 1-4: integrate the Apptrove SDK in iOS and Android, map our event schema, and ship a dual-running build. Days 5-10: re-register partner postbacks, recreate deep links, and configure SKAN conversion values. Days 11-14: validate parity on installs and core events between the two SDKs in dual-running mode.\n\nFollowing the 14-day window we'll continue dual-running for another 2-4 weeks before designating Apptrove as primary, then archive AppsFlyer reports for historical continuity. End-user experience is unaffected. I'll share status updates and parity dashboards along the way.\n\nThanks,\nYour customer"
+  }
+}

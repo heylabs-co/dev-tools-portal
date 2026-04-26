@@ -1,0 +1,67 @@
+{
+  "source": {
+    "slug": "airbyte",
+    "name": "airbyte"
+  },
+  "target": {
+    "slug": "apache-nifi",
+    "name": "apache-nifi"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Airbyte is a connector-driven ELT platform with a managed cloud option, while Apache NiFi is an open-source dataflow engine focused on routing, transforming, and tracking data with provenance. Migration means rebuilding pipelines as NiFi flows rather than importing connector configs directly.",
+  "why_switch": [
+    "You need fine-grained data routing and transformation, not just ELT",
+    "You want strong data provenance tracking out of the box",
+    "You prefer a fully self-hosted Apache-licensed dataflow engine",
+    "You need real-time or streaming flows alongside batch loads",
+    "You want to avoid per-connector or volume-based subscription pricing"
+  ],
+  "what_to_export": [
+    "List of all source and destination connectors in use",
+    "Connection configurations (schedules, sync modes, namespaces)",
+    "Stream and table selections per connection",
+    "Transformations or normalization settings",
+    "Credentials and secrets stored in Airbyte (rotate during migration)",
+    "Custom connectors built with the Airbyte CDK",
+    "Operational metadata (sync history, failure rates) for benchmarking",
+    "Workspace, user, and role configuration"
+  ],
+  "export_method": "In Airbyte, document each connection: source type, destination type, sync schedule, stream selection, and any normalization or transformation steps. Use the Airbyte UI or its configuration export feature to capture connector settings, but treat the export as a reference rather than something importable into NiFi — schemas differ. Securely record any source and destination credentials so you can recreate them in NiFi processors; rotate them after the migration. If you built custom connectors with the Airbyte CDK, save the connector code separately. Capture historical sync metrics so you can benchmark NiFi flows against Airbyte performance.",
+  "import_method": "Install Apache NiFi (self-hosted) on a VM, container, or cluster following the official deployment guide. For each Airbyte connection, build an equivalent NiFi flow using built-in processors: a source processor (database, HTTP, S3, Kafka, etc.) reads data, a chain of processors handles transformation, and a sink processor writes to your destination. Use NiFi's parameter contexts and controller services to manage credentials securely. Schedule flows using the processor scheduling settings rather than a centralized cron. Validate provenance and data lineage in NiFi's UI, then run flows in parallel with Airbyte during a cutover window before turning Airbyte off.",
+  "concept_mapping": [
+    {
+      "source": "Source connector",
+      "target": "NiFi source processor",
+      "note": "Pick the closest processor; not 1:1"
+    },
+    {
+      "source": "Destination connector",
+      "target": "NiFi sink processor"
+    },
+    {
+      "source": "Connection (source -> destination)",
+      "target": "NiFi flow / process group"
+    },
+    {
+      "source": "Sync schedule",
+      "target": "Processor scheduling configuration"
+    },
+    {
+      "source": "Normalization",
+      "target": "Transformation processors (e.g., scripting, conversion)"
+    }
+  ],
+  "effort": "3-8 weeks",
+  "gotchas": [
+    "NiFi is much lower level than Airbyte; expect to build flows manually rather than configure connectors",
+    "Many Airbyte connectors have no exact NiFi equivalent — you may need scripting or custom processors",
+    "Operating NiFi in production requires capacity planning, clustering, and backup of the flow.json file",
+    "Schedules and incremental sync semantics differ; verify cursors and state handling per flow",
+    "Provenance data can grow quickly; configure repository sizes to prevent disk pressure",
+    "Security model is different (NiFi uses certificates and policies); plan SSO and access controls early"
+  ],
+  "email": {
+    "subject": "Canceling our Airbyte subscription in 14 days",
+    "body": "Hi team,\n\nWe are migrating our data pipelines from Airbyte to a self-hosted Apache NiFi setup. Please treat this email as 14 days notice to cancel our Airbyte subscription. Kindly confirm the end date, any final invoice, and steps to deactivate access. Thank you for the support during onboarding.\n\nBest,\nYour customer"
+  }
+}

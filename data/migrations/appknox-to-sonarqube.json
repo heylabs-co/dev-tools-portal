@@ -1,0 +1,64 @@
+{
+  "source": {
+    "slug": "appknox",
+    "name": "appknox"
+  },
+  "target": {
+    "slug": "sonarqube",
+    "name": "sonarqube"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Appknox specialises in mobile-app binary security testing, while SonarQube is a SAST and code-quality platform across many languages with a free Community edition. The migration moves you from binary-focused mobile scans to source-code static analysis, so coverage will shift rather than be identical.",
+  "why_switch": [
+    "Standardise on a SAST and quality platform across all repositories, not just mobile",
+    "Use the OSS Community edition to control costs",
+    "Catch issues at commit time rather than post-build",
+    "Broaden language coverage beyond mobile"
+  ],
+  "what_to_export": [
+    "List of scanned mobile apps and their identifiers",
+    "Open and historical findings with severity and status",
+    "Risk acceptance and false-positive decisions",
+    "Compliance reports already issued",
+    "User and role assignments",
+    "CI integration settings",
+    "Remediation SLA notes"
+  ],
+  "export_method": "Export each Appknox project's findings as report files (PDF or JSON) and archive them with the date of issue for audit retention. Capture suppression decisions and any risk-accepted items in a structured list so they can be re-applied as SonarQube issue resolutions. Document the list of mobile apps mapped to their source repositories — SonarQube needs the source, not the binary. Do not attempt to migrate raw scan engines or binary artifacts; these are tool-specific.",
+  "import_method": "Install SonarQube (self-hosted Community/Developer/Enterprise or SonarQube Cloud) and create a project per repository that previously fed Appknox. Configure the build pipeline to run the SonarQube scanner against the source on every PR. Re-apply suppressions as SonarQube issue resolutions (False Positive / Won't Fix) so historical decisions carry forward. Set quality gates that cover the severities your compliance program requires, and verify that the language analyzers cover your mobile codebases (Java, Kotlin, Swift, Objective-C). Run both tools in parallel until each repository's quality gate is tuned.",
+  "concept_mapping": [
+    {
+      "source": "App project (binary)",
+      "target": "Project (source repository)"
+    },
+    {
+      "source": "Finding",
+      "target": "Issue"
+    },
+    {
+      "source": "Risk acceptance",
+      "target": "Issue resolution (False Positive / Won't Fix)"
+    },
+    {
+      "source": "Compliance report",
+      "target": "Quality gate result / report export"
+    },
+    {
+      "source": "User/team",
+      "target": "Group / permission template"
+    }
+  ],
+  "effort": "2-5 weeks",
+  "gotchas": [
+    "SonarQube scans source code; binary-only mobile checks Appknox performed may not have an equivalent",
+    "Re-applying suppressions is manual and easy to forget — script it where possible",
+    "Self-hosted SonarQube requires infrastructure, upgrades, and DB maintenance",
+    "Quality gates fail builds by default — tune thresholds before turning on PR blocking",
+    "Some mobile-specific rules require the paid edition; verify license needs",
+    "Historical Appknox reports remain in Appknox unless exported in advance"
+  ],
+  "email": {
+    "subject": "Mobile and code security checks are moving to SonarQube",
+    "body": "Hi team,\n\nWe are moving our application security and code-quality checks from Appknox to SonarQube over the next 14 days. SonarQube will run on source code in CI rather than on built binaries, so findings will appear at PR time. Both tools will run in parallel while we tune the quality gates. Please flag any active Appknox finding that you want carried over.\n\nThanks for your patience.\n\nYour customer"
+  }
+}

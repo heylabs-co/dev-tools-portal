@@ -1,0 +1,68 @@
+{
+  "source": {
+    "slug": "convex",
+    "name": "Convex"
+  },
+  "target": {
+    "slug": "kairos-io",
+    "name": "Kairos"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Convex is a managed reactive backend with proprietary TypeScript functions and a transactional database, while Kairos is an immutable Linux meta-distribution for edge Kubernetes. They solve different problems, so most teams will keep an application backend (often a managed Postgres or self-hosted service running on Kubernetes) and use Kairos only as the OS layer underneath.",
+  "why_switch": [
+    "You need to run workloads on edge devices instead of a managed cloud backend",
+    "You want an open-source, Apache-2.0 base instead of a proprietary platform",
+    "You require immutable OS images and GitOps-style upgrades for fleets of nodes",
+    "You are standardizing on Kubernetes and want a bootable K8s appliance",
+    "You want to avoid the lock-in of Convex's proprietary reactive data model"
+  ],
+  "what_to_export": [
+    "All Convex tables and documents via the Convex export tooling",
+    "Schema definitions written in your Convex project",
+    "Server-side TypeScript functions (queries, mutations, actions)",
+    "Scheduled jobs and cron definitions",
+    "File storage assets stored in Convex",
+    "Auth configuration and any user records",
+    "Environment variables and project configuration",
+    "Frontend code that uses the Convex client SDK"
+  ],
+  "export_method": "Use the official Convex CLI to export your data and review their documented export commands for the current format. Convex stores documents in a proprietary reactive store, so plan to dump tables to JSON or another portable format and version-control your schema and function code in git. Because Kairos is an OS layer rather than an application backend, you also need to choose where the application data will live after migration — common targets are a managed or self-hosted Postgres, a document store, or another BaaS that can run on top of Kubernetes. Capture file storage assets separately and record any signed-URL or access-control settings you depend on. Treat exports as a snapshot: freeze writes or run a short dual-write window if you need point-in-time consistency. Always confirm exact CLI flags and file formats against the current Convex documentation before relying on them.",
+  "import_method": "Kairos itself does not ingest application data; it provisions immutable Linux nodes that run Kubernetes. Plan the migration in two layers. First, stand up a Kairos-based cluster following the official Kairos docs for your hardware and network, including any TPM, GitOps, or OTA upgrade configuration you want. Second, deploy your chosen application backend as Kubernetes workloads on that cluster — for example a Postgres operator, an object-storage service, and your own API replacing Convex functions. Re-import data into those workloads using their native tools (psql, S3-compatible clients, etc.). Port Convex queries, mutations, and actions to plain server endpoints or a backend framework of your choice, and update the client to call those endpoints instead of the Convex SDK. Validate end-to-end on a staging cluster before cutting traffic. Verify all command names and manifests against current Kairos and upstream Kubernetes documentation.",
+  "concept_mapping": [
+    {
+      "source": "Convex managed cloud",
+      "target": "Kairos-provisioned Kubernetes cluster",
+      "note": "Kairos provides the OS and K8s layer; application services run as workloads on top."
+    },
+    {
+      "source": "Convex tables and documents",
+      "target": "Database workload running on the cluster",
+      "note": "Choose a database that runs on Kubernetes; Kairos itself does not store application data."
+    },
+    {
+      "source": "Convex TypeScript functions",
+      "target": "Containerized application services"
+    },
+    {
+      "source": "Convex file storage",
+      "target": "Self-hosted or external object storage"
+    },
+    {
+      "source": "Convex auth",
+      "target": "Self-managed identity provider running on the cluster"
+    }
+  ],
+  "effort": "4-10 weeks",
+  "gotchas": [
+    "Kairos is not a drop-in replacement for Convex; you also need to pick and operate an application backend on Kubernetes.",
+    "Convex's reactive query model has no direct equivalent — plan to rebuild realtime behavior using websockets, change-data-capture, or a separate realtime layer.",
+    "Operating an immutable, GitOps-driven edge fleet is a distinct skill set; teams without Kubernetes experience should budget extra ramp-up time.",
+    "Exporting Convex data is a point-in-time snapshot; you need a freeze or dual-write window to avoid losing writes during cutover.",
+    "Self-hosting shifts responsibility for backups, upgrades, monitoring, and security patching to your team.",
+    "Confirm licensing and support expectations: Kairos is Apache-2.0 open source with limited commercial support compared to a managed BaaS."
+  ],
+  "email": {
+    "subject": "Heads up: moving our backend off Convex onto a Kairos-based stack",
+    "body": "Hi team,\n\nWe are starting a migration away from Convex. Our new target is a Kairos-based Kubernetes environment with our own application services on top, which gives us open-source infrastructure and edge-friendly deployments.\n\nOver the next 14 days we will export Convex data and configuration, stand up the Kairos cluster, and port our backend functions to services running on it. Expect short maintenance windows during cutover and possible brief realtime gaps while we re-implement reactive behavior.\n\nNo action is needed from you yet. We will share specific dates and any required client updates as they are confirmed.\n\nThanks,\nYour customer"
+  }
+}

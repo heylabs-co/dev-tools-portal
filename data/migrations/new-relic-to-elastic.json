@@ -1,0 +1,78 @@
+{
+  "source": {
+    "slug": "new-relic",
+    "name": "New Relic"
+  },
+  "target": {
+    "slug": "elastic",
+    "name": "Elastic"
+  },
+  "generated_at": "2026-04-25T12:00:00Z",
+  "tldr": "Moving from New Relic to Elastic gets you off commit-tier billing and onto an open stack you can self-host. Trade-off: more ops work for index management and dashboard rebuilds.",
+  "why_switch": [
+    "Open-source ELK stack with self-host option",
+    "Avoid New Relic commit-tier minimums",
+    "OpenTelemetry-native ingest path",
+    "Full data portability at index level",
+    "Reusable Kibana dashboards across environments"
+  ],
+  "what_to_export": [
+    "Application and infra logs",
+    "Custom metrics and events",
+    "APM traces within retention",
+    "Dashboards and charts",
+    "Alert policies and conditions",
+    "Synthetic monitor scripts",
+    "Users, teams, roles",
+    "Saved NRQL queries",
+    "Workflows and notification channels",
+    "Tags and entity metadata"
+  ],
+  "export_method": "Use New Relic's NerdGraph API plus the official Terraform provider to pull dashboards, alert policies, synthetics, and notification workflows as code. Use NRQL via API to export historical events and logs to NDJSON or CSV in pages. Pull users and teams via the account API. Stage exports to object storage so the archive is independent of the live New Relic account. Confirm retention windows per data type before scheduling cutover — older traces and logs may not be retrievable after cancellation.",
+  "import_method": "Stand up Elasticsearch and Kibana — self-hosted or via Elastic Cloud. Re-instrument services to use Elastic Agent, Beats, or OpenTelemetry exporters pointed at Elastic's APM/logs ingest. Configure index lifecycle policies before loading historical archives so storage tiers and retention are explicit. Rebuild dashboards in Kibana — NRQL has no equivalent, so all queries are rewritten in KQL/ES|QL. Recreate alerts as Kibana alerting rules. Run parallel ingestion for 1-2 weeks to verify alert and trace parity, then sunset New Relic agents service-by-service.",
+  "concept_mapping": [
+    {
+      "source": "New Relic agents",
+      "target": "Elastic Agent / Beats / OTel",
+      "note": "OTel is the most portable bridge"
+    },
+    {
+      "source": "NRQL queries",
+      "target": "KQL / ES|QL",
+      "note": "Full rewrite required"
+    },
+    {
+      "source": "Alert policies",
+      "target": "Kibana alerting rules",
+      "note": "Recreate conditions"
+    },
+    {
+      "source": "Logs",
+      "target": "Elasticsearch indices",
+      "note": "Design ILM upfront"
+    },
+    {
+      "source": "APM",
+      "target": "Elastic APM",
+      "note": "OTel SDKs supported on both sides"
+    },
+    {
+      "source": "Synthetics",
+      "target": "Elastic Synthetics",
+      "note": "Multi-step parity may differ"
+    }
+  ],
+  "effort": "3-6 weeks",
+  "gotchas": [
+    "Self-hosted Elasticsearch demands ongoing sharding, capacity, and upgrade ops",
+    "Elastic License 2.0 is not OSI open-source; check legal fit for your use case",
+    "Index mapping and shard decisions are expensive to change later — design before bulk import",
+    "All NRQL queries, dashboards, and alerts require rewriting; this dominates the timeline",
+    "Commit-tier minimums may keep New Relic billing through the end of contracted period",
+    "Dual ingest must run long enough to verify alert and trace parity before cancellation"
+  ],
+  "email": {
+    "subject": "Data export and account sunset — 14-day timeline",
+    "body": "Hi New Relic team,\n\nWe are migrating to Elastic and need a full export of our account data in machine-readable formats (JSON, NDJSON, CSV). Required: dashboards, alert policies and conditions, synthetic monitors, logs and APM traces within current retention, custom events and metrics, NRQL saved queries, users/teams/roles, workflows, and entity metadata.\n\nWe are aiming for a 14-day export and validation window. Please confirm:\n\n1. Which exports we can self-serve via NerdGraph/API vs. those needing support.\n2. Options to archive historical event/log/trace data to our own object storage before cancellation.\n3. Billing implications during dual-run and the contract sunset date once we cancel.\n\nThanks,\nYour customer"
+  }
+}

@@ -1,0 +1,71 @@
+{
+  "source": {
+    "slug": "camunda",
+    "name": "Camunda"
+  },
+  "target": {
+    "slug": "apidog",
+    "name": "Apidog"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Camunda is a BPMN process orchestration platform; Apidog is an all-in-one API design, testing and documentation tool. They overlap only at the edges — moving means rethinking workflow logic as APIs plus an external orchestrator.",
+  "why_switch": [
+    "Shift focus from long-running workflows to API-first product development",
+    "Reduce operational overhead of running a workflow engine",
+    "Standardize the team on a single API design / testing surface",
+    "Lower licensing and infrastructure spend on Camunda Platform",
+    "Adopt OpenAPI as the system of record instead of BPMN models"
+  ],
+  "what_to_export": [
+    "BPMN and DMN model files (.bpmn, .dmn)",
+    "Form definitions and configuration",
+    "Process variable schemas and message contracts",
+    "Worker / job-handler code references",
+    "Historical process instance data (audit/compliance)",
+    "Identity, role and group mappings",
+    "Connector and integration credentials",
+    "Custom dashboards and metrics queries"
+  ],
+  "export_method": "Camunda treats BPMN/DMN diagrams as portable XML, so begin by pulling those files directly from source control or Camunda Modeler. Generic steps: 1) collect every BPMN, DMN and form file from each project; 2) document process variables and message names so they can be expressed as API contracts; 3) export historical process instance data via the operations / history APIs if you need audit retention; 4) inventory external task workers and the services they call; 5) record identity mappings and connector credentials. Camunda's open-standard BPMN keeps portability high, but anything tied to Camunda-specific extensions, connectors or Tasklist UI will not move cleanly. Confirm the current Camunda export tooling and history API in the official docs before relying on it.",
+  "import_method": "Apidog does not execute workflows — it manages API specs, mock servers, tests and documentation. Plan accordingly: 1) translate each BPMN process boundary into one or more API contracts and author them as OpenAPI specs in Apidog; 2) create projects/folders that mirror your service boundaries; 3) import existing OpenAPI files via Apidog's import flow; 4) recreate test scenarios and example data that previously lived as process instances; 5) wire CI to Apidog's CLI for automated test runs; 6) if you still need orchestration, pick a separate engine (Temporal, Airflow, a lightweight scheduler) — Apidog will not replace that capability. Validate authentication, environment variables and team permissions before cutover. Verify current import formats and CLI capabilities in the latest Apidog documentation.",
+  "concept_mapping": [
+    {
+      "source": "BPMN process",
+      "target": "OpenAPI spec + external orchestrator",
+      "note": "Apidog does not run workflows"
+    },
+    {
+      "source": "External task worker",
+      "target": "API endpoint defined in Apidog"
+    },
+    {
+      "source": "Process variables",
+      "target": "Request/response schema fields"
+    },
+    {
+      "source": "Tasklist form",
+      "target": "Frontend app or separate forms tool"
+    },
+    {
+      "source": "Camunda project",
+      "target": "Apidog project / workspace"
+    },
+    {
+      "source": "DMN decision table",
+      "target": "Documented business rule, evaluated outside Apidog"
+    }
+  ],
+  "effort": "4-12 weeks",
+  "gotchas": [
+    "Apidog cannot execute long-running, stateful workflows — pair it with a dedicated orchestrator if those use cases remain.",
+    "Historical process instance data has compliance value; export and archive it before tearing Camunda down.",
+    "BPMN-native concepts (timers, compensation, multi-instance) do not map to a request/response API model and must be redesigned.",
+    "Camunda connectors and Tasklist UI have no direct equivalent and will require replacement components.",
+    "Identity providers, RBAC and audit logging differ — re-test access controls end-to-end after migration.",
+    "Performance characteristics of an API-driven design vary from a workflow engine; load-test critical paths early."
+  ],
+  "email": {
+    "subject": "Migration plan: Camunda to Apidog over the next 14 days",
+    "body": "Hi team,\n\nWe're starting a 14-day migration off Camunda. Apidog is our new home for API design, testing and docs, but it does not execute workflows — anything stateful or long-running will move to a dedicated orchestrator (decision pending). Plan:\n\n1) Days 1-3: inventory every BPMN/DMN model, form, worker and connector. Export models from source control and snapshot historical process data for audit.\n2) Days 4-8: translate process boundaries into OpenAPI specs in Apidog, recreate test scenarios, and stand up CI against Apidog's CLI. Stub orchestration-only behaviour for now.\n3) Days 9-12: identify the residual workflows that still need an engine and document the chosen orchestrator decision so we don't lose those use cases.\n4) Days 13-14: dual-run critical flows, then freeze writes to Camunda and switch traffic.\n\nPlease flag any process that relies on Camunda-specific features (timers, compensation, Tasklist UI) so we can plan replacements rather than discover gaps in production. Reply with concerns by end of week.\n\nThanks,\nYour customer"
+  }
+}

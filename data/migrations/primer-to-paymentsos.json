@@ -1,0 +1,64 @@
+{
+  "source": {
+    "slug": "primer",
+    "name": "Primer"
+  },
+  "target": {
+    "slug": "paymentsos",
+    "name": "PaymentsOS"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Primer and PaymentsOS are both payments orchestration platforms, so the move is a like-for-like swap of the orchestration layer. Expect to rebuild workflows, connectors and webhook handlers but keep the same overall architecture.",
+  "why_switch": [
+    "Prefer PayU-backed enterprise vendor",
+    "Need orchestrator with longer enterprise track record",
+    "Looking for stable multi-PSP routing at scale",
+    "Procurement requires established orchestrator",
+    "Existing contractual relationship with PayU group"
+  ],
+  "what_to_export": [
+    "Stored card / payment method tokens",
+    "Customer and payer profiles",
+    "Workflow, routing and retry rules",
+    "Connector and PSP credentials",
+    "Transaction, authorization and refund history",
+    "Webhook endpoint subscriptions",
+    "3DS / SCA configuration",
+    "Reconciliation reports"
+  ],
+  "export_method": "Export workflows, connectors, customers, transactions and webhook configs from Primer via dashboard and API. For saved card tokens, request a PCI-compliant export from Primer support to PaymentsOS — this is a regulated processor-to-processor transfer and is not a self-serve operation. Document each workflow node so it can be rebuilt as a PaymentsOS flow. Pull at least 12-24 months of transaction and reconciliation data for accounting and dispute defense.",
+  "import_method": "On PaymentsOS, recreate connectors for each PSP you use, then translate Primer workflows into the PaymentsOS routing and retry model. Coordinate the PCI token import with PaymentsOS support so cards arrive vaulted on their side. Re-issue API keys, reconfigure webhook endpoints to consume PaymentsOS events, and rebuild 3DS/SCA flows. Run PaymentsOS in parallel with Primer behind a feature flag, shift PSPs over one at a time, and reconcile both sides daily until traffic is stable.",
+  "concept_mapping": [
+    {
+      "source": "Connector",
+      "target": "Connector / provider"
+    },
+    {
+      "source": "Workflow",
+      "target": "Routing / decision flow"
+    },
+    {
+      "source": "Vault token",
+      "target": "Vault token",
+      "note": "Transfer via PCI export"
+    },
+    {
+      "source": "Webhook",
+      "target": "Webhook",
+      "note": "Payloads differ"
+    }
+  ],
+  "effort": "4-10 weeks depending on workflow complexity",
+  "gotchas": [
+    "PCI token migration is a regulated, manual process — start early",
+    "Workflow semantics differ; plan thorough testing of edge cases",
+    "Webhook payloads and event names differ between platforms",
+    "Developer experience on PaymentsOS may feel less modern than Primer",
+    "Connector coverage and per-PSP features are not identical",
+    "Run both orchestrators in parallel; do not cut over without shadowing"
+  ],
+  "email": {
+    "subject": "Switching our orchestration layer from Primer to PaymentsOS",
+    "body": "Hi team,\n\nOver the next 14 days we are migrating our payments orchestration from Primer to PaymentsOS. The reason is mostly procurement and the desire to consolidate on a PayU-backed orchestrator with a long enterprise track record. The architecture stays the same — the orchestration layer simply changes.\n\nThe plan: stand up PaymentsOS, recreate each connector and workflow, request a PCI-compliant token migration between the two vaults, and run both in parallel with traffic shadowed behind a feature flag. We will shift PSPs over one at a time and reconcile both sides daily until things are clean.\n\nA few notes. Webhook payloads and workflow semantics differ, so consumers and routing logic need careful testing. PCI token transfer is a regulated process with lead time. Some connector-specific features may not have a direct equivalent and will need workarounds.\n\nIf you own anything that talks to Primer directly, please flag it this week so we can adapt it cleanly.\n\nThanks,\nYour customer"
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "source": {
+    "slug": "coderabbit",
+    "name": "coderabbit"
+  },
+  "target": {
+    "slug": "applovin-max",
+    "name": "applovin-max"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "CodeRabbit is an AI pull-request reviewer and AppLovin MAX is a mobile ad mediation SDK; they serve completely different use cases. The right framing is to decommission CodeRabbit at the org level and, separately, integrate AppLovin MAX into your mobile apps.",
+  "why_switch": [
+    "Removing AI code review tooling from the workflow",
+    "Shifting tooling investment toward mobile monetisation",
+    "Adopting AppLovin MAX as part of a mediation strategy",
+    "Reducing third-party access to source code repositories",
+    "Internal policy change disallowing AI code review"
+  ],
+  "what_to_export": [
+    "CodeRabbit org and repository configuration",
+    "Per-repo .coderabbit.yaml or equivalent rule files",
+    "List of repositories where CodeRabbit is enabled",
+    "Webhook and integration settings for GitHub / GitLab / Bitbucket",
+    "Historical review comments worth archiving",
+    "Billing and admin contact information",
+    "Audit logs of who installed and configured the integration"
+  ],
+  "export_method": "In the CodeRabbit dashboard, list every connected organisation and repository, capture the configuration applied at org and repo level, and back up any .coderabbit.yaml files from the repos themselves. Note webhooks and OAuth / GitHub App installations so they can be revoked. Export any review history that is useful for audit. Once the configuration is archived and stakeholders are informed, plan to uninstall the CodeRabbit GitHub App or equivalent integration and cancel the subscription according to the contract terms. There is no application-side data on developer machines to migrate.",
+  "import_method": "AppLovin MAX is a mobile mediation SDK integrated inside iOS, Android, Unity or React Native apps. Create an AppLovin account, register each app, and create ad units for the formats you want to use. Integrate the AppLovin MAX SDK in each app following the official MAX integration guide, initialise it at app start, and place ads at the chosen surfaces. Configure mediation networks inside the MAX dashboard and update app-ads.txt with the required entries. Wire IAB TCF / GPP consent so ad requests carry the right privacy signals. Test on real devices with MAX test mode and ship via normal app store updates.",
+  "concept_mapping": [
+    {
+      "source": "CodeRabbit GitHub / GitLab integration",
+      "target": "AppLovin MAX mobile SDK",
+      "note": "different product categories, no direct mapping"
+    },
+    {
+      "source": "CodeRabbit configuration",
+      "target": "AppLovin MAX dashboard configuration",
+      "note": "different domains, both treat as configuration assets"
+    }
+  ],
+  "effort": "1-2 days to retire CodeRabbit; 3-8 weeks per platform to adopt AppLovin MAX",
+  "gotchas": [
+    "Do not treat this as a one-for-one migration; the products are unrelated.",
+    "Revoke the CodeRabbit GitHub / GitLab App, not just the workspace, to remove repository access.",
+    "Cancel the subscription per the contract terms, otherwise billing continues even after access is removed.",
+    "AppLovin MAX integration triggers iOS and Android store reviews.",
+    "Adding ads brings new compliance obligations (privacy policy, consent prompts) that did not exist for CodeRabbit.",
+    "Missing app-ads.txt or consent configuration silently reduces MAX revenue."
+  ],
+  "email": {
+    "subject": "Internal: retiring CodeRabbit, adopting AppLovin MAX",
+    "body": "Hi,\n\nIn the next 14 days we are removing CodeRabbit from our pull request workflow and, in parallel, integrating AppLovin MAX into our mobile apps for ad monetisation. These two changes are independent.\n\nIf you rely on CodeRabbit reviews on a specific repo, let us know and we will plan an alternative. The AppLovin MAX integration affects mobile builds and will be released through normal app store updates.\n\nReply with any questions.\n\nThanks,\nYour customer"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "source": {
+    "slug": "superwall",
+    "name": "Superwall"
+  },
+  "target": {
+    "slug": "openx",
+    "name": "OpenX"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Superwall handles in-app subscription paywalls, while OpenX is a programmatic SSP and ad exchange. Moving means rebuilding monetization around real-time bidding and header bidding rather than paywall conversion.",
+  "why_switch": [
+    "Tap into large-scale programmatic demand",
+    "Add CTV and web display alongside mobile",
+    "Reduce dependency on subscription conversion",
+    "Diversify revenue with header bidding",
+    "Leverage commodity SSP reliability"
+  ],
+  "what_to_export": [
+    "Paywall configurations and triggers",
+    "A/B test history and winning variants",
+    "Subscription SKUs and pricing tiers",
+    "Audience segments and rules",
+    "Revenue and conversion analytics",
+    "Localized paywall copy and assets",
+    "Webhook and event payload mappings"
+  ],
+  "export_method": "Use the Superwall dashboard's standard export options to pull paywall definitions, campaign configurations, and analytics reports. Capture A/B test results and segment definitions through the reporting interface. From your codebase, archive trigger names, placement identifiers, and audience filters since paywalls are referenced this way at runtime. Save image and copy assets locally. If anything is not exposed through the UI, contact support for a one-off export instead of relying on unofficial endpoints. Keep webhook payload schemas for any analytics or CRM integrations that need rewiring.",
+  "import_method": "OpenX onboarding usually goes through their publisher sales team, which provisions an account and inventory. Integrate OpenX through their SDK or via a header bidding wrapper such as Prebid; for in-app, the standard route is through a mediation platform that supports OpenX as a bidder. Define ad units corresponding to where paywalls used to appear, configure bid floors, and connect reporting. Validate fill, latency, and revenue in a staged rollout. Because OpenX is more of a demand source than a turnkey monetization product, expect to pair it with a mediation layer and not call it directly the way you called Superwall.",
+  "concept_mapping": [
+    {
+      "source": "Paywall placement",
+      "target": "Ad slot / bid request"
+    },
+    {
+      "source": "Trigger event",
+      "target": "Ad request lifecycle"
+    },
+    {
+      "source": "A/B variant",
+      "target": "Bid floor / waterfall variant"
+    },
+    {
+      "source": "Conversion event",
+      "target": "Impression / win event"
+    },
+    {
+      "source": "Audience segment",
+      "target": "Deal ID or PMP targeting"
+    }
+  ],
+  "effort": "4-8 weeks",
+  "gotchas": [
+    "OpenX is a demand source and typically requires a mediation layer for in-app, not a one-to-one Superwall replacement",
+    "Header bidding setup adds operational complexity that small teams may underestimate",
+    "Pricing is custom and revenue share is opaque; model assumed eCPM conservatively",
+    "App-specific feature investment is lighter than mobile-first platforms",
+    "Switching revenue from subscriptions to programmatic ads changes LTV calculations significantly",
+    "Latency in bid responses can affect UX where paywalls used to render instantly"
+  ],
+  "email": {
+    "subject": "Migration update: moving from Superwall to OpenX over the next 14 days",
+    "body": "Hi there,\n\nWe're rolling out a change to our monetization stack over the next two weeks, moving from Superwall paywalls to OpenX programmatic demand. The goal is to diversify revenue across mobile, web, and CTV inventory.\n\nA few things to expect:\n- Existing subscriptions remain active; nothing changes for current subscribers.\n- New users may see programmatic ads where paywalls previously appeared.\n- We'll watch performance closely and tune ad density to keep the experience clean.\n\nIf anything looks off during the rollout, reply to this email and we'll dig in.\n\nThanks for sticking with us.\n\nYour customer success team"
+  }
+}

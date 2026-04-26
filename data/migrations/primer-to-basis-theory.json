@@ -1,0 +1,65 @@
+{
+  "source": {
+    "slug": "primer",
+    "name": "Primer"
+  },
+  "target": {
+    "slug": "basis-theory",
+    "name": "Basis Theory"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Primer is a full payments orchestration platform with checkout, workflows and PSP routing, while Basis Theory is a processor-agnostic tokenization vault. Moving means keeping the vault and rebuilding the routing and workflow layer yourself.",
+  "why_switch": [
+    "Want to own routing and orchestration logic in-house",
+    "Need a portable card vault not tied to a PSP",
+    "Reduce PCI scope without orchestration lock-in",
+    "Prefer building checkout UI yourself",
+    "Optimize for vault portability across PSPs"
+  ],
+  "what_to_export": [
+    "Stored card / payment method tokens",
+    "Customer and payer profiles",
+    "Workflow and routing rules",
+    "Connector and PSP credentials",
+    "Transaction and authorization history",
+    "Webhook endpoint and event configurations",
+    "3DS and risk configuration",
+    "Vault metadata and aliases"
+  ],
+  "export_method": "From Primer, export workflows, connector configurations, customer records and transaction history through the dashboard and API. For card tokens, request a PCI-compliant token export from Primer support to Basis Theory — this is a regulated, processor-to-processor transfer and cannot be done over a public API. Document each workflow as a flowchart so you can rebuild equivalent routing logic on top of Basis Theory. Pull webhook configurations and any 3DS/SCA settings for reference, and keep at least 12-24 months of transaction history in your warehouse.",
+  "import_method": "Basis Theory provides the vault, not orchestration. Onboard with Basis Theory by setting up a tenant, defining token schemas, and integrating their SDK in your checkout. For existing tokens, coordinate the PCI bulk import with Basis Theory support so cards arrive vaulted on their side. Then build a routing layer in your own service: call your PSPs directly using Basis Theory tokens via their proxy, and re-implement retries, fallbacks, 3DS and reconciliation. Move connectors over one PSP at a time, run Primer in parallel, and cut traffic to the new path gradually behind a feature flag.",
+  "concept_mapping": [
+    {
+      "source": "Vault token",
+      "target": "Token",
+      "note": "Both processor-agnostic"
+    },
+    {
+      "source": "Connector",
+      "target": "Direct PSP integration",
+      "note": "You own the integration now"
+    },
+    {
+      "source": "Workflow",
+      "target": "Custom routing service",
+      "note": "Rebuilt in your code"
+    },
+    {
+      "source": "Webhook",
+      "target": "Webhook"
+    }
+  ],
+  "effort": "6-12 weeks, mostly to rebuild orchestration logic",
+  "gotchas": [
+    "Basis Theory replaces the vault, not the workflow engine — you own routing now",
+    "PCI token migration is a manual, regulated process with weeks of lead time",
+    "Each PSP integration that Primer abstracted must be re-implemented",
+    "3DS and SCA flows often need rework because they were handled in Primer",
+    "Reconciliation logic moves into your stack and needs careful testing",
+    "Run both in parallel — do not cut over without traffic shadowing"
+  ],
+  "email": {
+    "subject": "Moving from Primer to Basis Theory in 14 days",
+    "body": "Hi team,\n\nOver the next 14 days we are migrating our payments setup from Primer to Basis Theory. The reason is that we want a portable, processor-agnostic vault and to own the routing and workflow logic in our own services rather than in a third-party orchestrator.\n\nThe rough plan: stand up a Basis Theory tenant, request a PCI-compliant token transfer from Primer, and rebuild our PSP routing as an internal service that calls the existing PSPs through Basis Theory's proxy. We will keep Primer live, mirror traffic to the new path behind a feature flag, then shift PSPs over one by one.\n\nA few callouts. 3DS, retries and fallback logic that lived in Primer workflows need to be rebuilt. Webhook consumers will change. Reconciliation will need extra eyes during the cutover. Card data is moving via a regulated PCI process — please do not try to shortcut this.\n\nLet me know if you own anything touching Primer directly.\n\nThanks,\nYour customer"
+  }
+}

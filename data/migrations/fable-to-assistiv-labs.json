@@ -1,0 +1,62 @@
+{
+  "source": {
+    "slug": "fable",
+    "name": "Fable"
+  },
+  "target": {
+    "slug": "assistiv-labs",
+    "name": "Assistiv Labs"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Fable runs research sessions with disabled testers on its panel, while Assistiv Labs gives your own team remote access to NVDA, JAWS and VoiceOver. Switching means moving from paid third-party research to in-house remote AT testing.",
+  "why_switch": [
+    "Bring screen-reader testing in-house",
+    "Avoid per-engagement research pricing",
+    "Cross-platform access to NVDA, JAWS and VoiceOver",
+    "Faster iteration during development",
+    "No need to ship AT machines to each QA"
+  ],
+  "what_to_export": [
+    "Research reports and recordings",
+    "Tester feedback transcripts",
+    "Issues logged in your tracker",
+    "Test plans and discussion guides",
+    "Lists of flows and pages tested",
+    "Rubrics or scorecards used internally",
+    "Account, project and billing records",
+    "Screenshots and AT logs"
+  ],
+  "export_method": "Fable's outputs are mostly qualitative reports, recordings and transcripts. From the Fable web app's project area, download the reports and recordings you have access to and archive them in a shared drive. Capture written summaries of recurring issues so the team retains the knowledge. Tickets filed into Jira, Linear or GitHub remain in your tracker. There is no automated scan report or structured database to migrate because Fable is a research platform.",
+  "import_method": "Assistiv Labs is a remote AT environment, not a research repository, so there is no direct data import. Recreate your test plan in Assistiv Labs by listing the URLs and flows you previously tested with Fable's panel, then run scripted walkthroughs using NVDA, JAWS or VoiceOver in the cloud session. Save session notes and any recordings to your shared drive. Use your archived Fable reports as a baseline of known issues to confirm in the new sessions. Continue filing bugs into your existing tracker.",
+  "concept_mapping": [
+    {
+      "source": "Fable user session with tester",
+      "target": "Internal AT session in cloud",
+      "note": "Loses real-user perspective"
+    },
+    {
+      "source": "Research report",
+      "target": "Internal session notes"
+    },
+    {
+      "source": "Tester feedback",
+      "target": "QA observations using the AT"
+    },
+    {
+      "source": "Research project",
+      "target": "Test plan / scenario list"
+    }
+  ],
+  "effort": "2-3 weeks",
+  "gotchas": [
+    "Assistiv Labs does not include disabled users; you lose Fable's qualitative inclusive-research signal",
+    "Streaming latency may affect perceived screen-reader behaviour",
+    "Per-seat pricing can grow with QA team size",
+    "Internal teams may need training to use NVDA, JAWS and VoiceOver effectively",
+    "Consider keeping research engagements for major launches"
+  ],
+  "email": {
+    "subject": "Switching from Fable to Assistiv Labs",
+    "body": "Hi team,\n\nOver the next 14 days we will be transitioning our screen-reader testing from Fable to Assistiv Labs. Fable has been excellent for inclusive research, but we need a faster, in-house way to test with NVDA, JAWS and VoiceOver during development without shipping AT machines.\n\nPlan:\n- Days 1-3: archive Fable reports, recordings and tickets into our shared drive.\n- Days 4-7: onboard QA to Assistiv Labs and run AT walkthroughs on top user flows.\n- Days 8-12: integrate AT sessions into our pre-release checklist and capture findings in our tracker.\n- Days 13-14: finalize the cutover and pause new Fable engagements.\n\nWe will keep budget for occasional research with disabled testers on major launches since automated team testing cannot replicate that signal.\n\nThanks,\nYour customer"
+  }
+}

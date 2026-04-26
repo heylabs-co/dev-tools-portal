@@ -1,0 +1,71 @@
+{
+  "source": {
+    "slug": "convex",
+    "name": "Convex"
+  },
+  "target": {
+    "slug": "ubicloud",
+    "name": "Ubicloud"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Convex is a managed reactive backend with proprietary functions and storage, while Ubicloud is an open-source IaaS layer (compute, networking, and similar primitives) running on bare-metal providers. Ubicloud does not directly replace Convex; you will run your application backend as workloads on top of Ubicloud-managed infrastructure.",
+  "why_switch": [
+    "You want open-source IaaS as your foundation instead of a proprietary cloud",
+    "You are looking to reduce infrastructure costs by running on commodity hardware",
+    "You want auditable, self-hostable infrastructure under AGPL-3.0",
+    "You want to move off Convex's high lock-in and own your application stack",
+    "You want cheaper CI capacity via self-hosted GitHub Actions runners"
+  ],
+  "what_to_export": [
+    "All Convex tables and documents",
+    "Schema definitions and validation rules",
+    "Server-side TypeScript functions (queries, mutations, actions)",
+    "Scheduled jobs and cron definitions",
+    "File storage assets",
+    "Auth configuration and user records",
+    "Environment variables and project configuration",
+    "Frontend code that uses the Convex client SDK"
+  ],
+  "export_method": "Use the official Convex CLI and documented export tooling to dump your data to a portable format such as JSON or NDJSON, and preserve schema and function code in git. Because Ubicloud provides infrastructure rather than an application backend, also decide where the data and logic will live after migration — common choices are a Postgres database, an object store, and your own API service running on Ubicloud-provisioned machines. Capture file storage assets separately and note any access-control or signed-URL behavior. Freeze writes or run a brief dual-write window during cutover to keep the snapshot consistent. Treat the Convex export as data-only; server functions need to be reimplemented as your own services rather than ported directly. Verify exact CLI flags and formats against the current Convex documentation before scripting the export.",
+  "import_method": "Provision the infrastructure you need on Ubicloud following the official Ubicloud docs — typically virtual machines or managed services such as Postgres, plus any networking and credential setup. Deploy your chosen application stack onto that infrastructure: a database to receive the Convex data, an object store for files, and an API service to replace Convex functions. Import data using the database's native tools (for example psql for Postgres) and an S3-compatible client for object storage. Reimplement Convex queries, mutations, and actions as endpoints in your own backend, and rebuild realtime behavior using websockets, change-data-capture, or a dedicated realtime service. Update the frontend to call your new API instead of the Convex SDK. Validate end-to-end in a staging environment before cutting traffic. Confirm all Ubicloud commands, service names, and limits against current Ubicloud documentation before relying on them.",
+  "concept_mapping": [
+    {
+      "source": "Convex managed cloud",
+      "target": "Ubicloud-provisioned infrastructure",
+      "note": "Ubicloud is IaaS; you still need to deploy a backend on top."
+    },
+    {
+      "source": "Convex tables",
+      "target": "Database service running on Ubicloud"
+    },
+    {
+      "source": "Convex TypeScript functions",
+      "target": "Application services on Ubicloud VMs or containers"
+    },
+    {
+      "source": "Convex file storage",
+      "target": "Self-hosted or external object storage"
+    },
+    {
+      "source": "Convex auth",
+      "target": "Self-managed identity provider deployed on Ubicloud"
+    },
+    {
+      "source": "Convex CI integrations",
+      "target": "Self-hosted GitHub Actions runners on Ubicloud"
+    }
+  ],
+  "effort": "4-10 weeks",
+  "gotchas": [
+    "Ubicloud does not replace Convex on its own; you also need to choose and operate the application backend layer.",
+    "Convex's reactive queries have no direct equivalent; realtime must be rebuilt with websockets or change-data-capture.",
+    "Self-hosting shifts backups, upgrades, monitoring, and security patching to your team.",
+    "Ubicloud is younger than hyperscaler clouds and has fewer managed services; verify each capability you depend on is available.",
+    "AGPL-3.0 licensing of Ubicloud may have implications if you fork or modify the platform itself; review with your legal team.",
+    "Exports from Convex are point-in-time snapshots; plan a freeze or dual-write window to avoid lost writes during cutover."
+  ],
+  "email": {
+    "subject": "Migrating from Convex to a Ubicloud-based stack",
+    "body": "Hi team,\n\nWe are starting a migration off Convex onto infrastructure provisioned by Ubicloud, an open-source IaaS platform. We will run our own application backend on top, which gives us auditable infrastructure and more control over costs.\n\nOver the next 14 days we will export Convex data and configuration, stand up databases and services on Ubicloud, and port our backend functions. Expect short maintenance windows during cutover and possible brief gaps in realtime updates while we rebuild that layer.\n\nNo action is needed from you yet. We will share specific dates and any required client updates as they are confirmed.\n\nThanks,\nYour customer"
+  }
+}

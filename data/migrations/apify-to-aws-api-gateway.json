@@ -1,0 +1,70 @@
+{
+  "source": {
+    "slug": "apify",
+    "name": "Apify"
+  },
+  "target": {
+    "slug": "aws-api-gateway",
+    "name": "AWS API Gateway"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Apify runs scrapers; AWS API Gateway exposes APIs. Migration here means rebuilding your scraping runtime on AWS (Lambda, ECS, or Batch) and using API Gateway as the front door for triggers and results.",
+  "why_switch": [
+    "Consolidate infrastructure inside AWS",
+    "Pay-per-request pricing aligned with AWS commitments",
+    "Tight integration with Lambda, S3, and IAM",
+    "Reuse existing AWS observability and security controls",
+    "Predictable scale and regional availability"
+  ],
+  "what_to_export": [
+    "Actor source code and Dockerfiles",
+    "Input schemas and default run inputs",
+    "Datasets and key-value stores",
+    "Scheduled runs and cron expressions",
+    "Webhook destinations",
+    "Proxy and authentication settings",
+    "API tokens and consumer credentials",
+    "OpenAPI specs for any public-facing endpoints"
+  ],
+  "export_method": "Pull each actor's source and Dockerfile from the Apify console or its linked Git repo. Use the Apify API or CLI to export datasets, key-value stores, schedule definitions, and webhook configs as JSON. Save input schemas separately so you can rebuild request validation downstream. Capture credentials in your AWS Secrets Manager target rather than copying values into version control. For long-running browser actors, note memory and timeout requirements - these drive the AWS compute choice. Verify each actor still builds locally before assuming you can replatform it.",
+  "import_method": "Choose a runtime per actor: Lambda for short, lightweight scrapes; ECS/Fargate for browser-heavy or long-running jobs; AWS Batch for large async fleets. Push container images to ECR. Replace Apify scheduling with EventBridge rules. Store outputs in S3 (raw) and a database such as DynamoDB or RDS for queryable data. Define an API Gateway HTTP or REST API with routes for triggering jobs and fetching results, backed by Lambda integrations or VPC links to ECS. Configure usage plans, API keys, and WAF for auth and rate limiting. Wire CloudWatch logs and X-Ray for observability. Run both stacks side by side during cutover.",
+  "concept_mapping": [
+    {
+      "source": "Actor",
+      "target": "Lambda function or ECS task"
+    },
+    {
+      "source": "Scheduled run",
+      "target": "EventBridge schedule"
+    },
+    {
+      "source": "Dataset",
+      "target": "S3 bucket or database table"
+    },
+    {
+      "source": "Key-value store",
+      "target": "DynamoDB table or S3 prefix"
+    },
+    {
+      "source": "Webhook",
+      "target": "API Gateway route with Lambda integration"
+    },
+    {
+      "source": "Apify API token",
+      "target": "API Gateway API key with usage plan"
+    }
+  ],
+  "effort": "3-8 weeks",
+  "gotchas": [
+    "Lambda has hard timeout and package-size limits that may not fit all actors",
+    "Browser-based scrapers usually need ECS/Fargate, not Lambda",
+    "AWS lock-in is significant - moving off later is non-trivial",
+    "Egress and per-request charges can surprise teams scraping at scale",
+    "API Gateway does not handle scraping itself; it is only the entry layer",
+    "IAM and VPC setup adds days of work compared with Apify's managed defaults"
+  ],
+  "email": {
+    "subject": "Moving scraping workloads from Apify to AWS",
+    "body": "Hi,\n\nWe are kicking off a 14-day migration of our scraping stack from Apify to AWS. The plan: containerized actors on Lambda or ECS, scheduling via EventBridge, results in S3, and AWS API Gateway as the front door for triggers and result fetches.\n\nDuring the window both stacks will run in parallel so we can compare outputs per actor. Once parity is confirmed, the Apify endpoint for that actor is retired and consumers move to the new API Gateway URL with a fresh API key. We will publish the new URLs and keys at least three days before any cutover.\n\nIf you have a specific actor or dataset that is business-critical, reply and we will prioritize it.\n\nThanks,\nYour customer"
+  }
+}

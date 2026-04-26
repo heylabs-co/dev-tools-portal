@@ -1,0 +1,58 @@
+{
+  "source": {
+    "slug": "void-editor",
+    "name": "void-editor"
+  },
+  "target": {
+    "slug": "coderabbit",
+    "name": "coderabbit"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Void is an open-source AI-enabled VS Code fork used in the IDE, while CodeRabbit is an automated AI pull request reviewer that runs on your Git host. Switching means changing where AI assistance happens — from the editor to the PR — rather than transferring data.",
+  "why_switch": [
+    "Your team's biggest gap is consistent code review, not in-IDE help",
+    "You want an AI tool that runs automatically on every pull request",
+    "You prefer a managed SaaS over a local editor build",
+    "You want review summaries and walkthroughs across the org",
+    "Your developers can keep using their existing IDE separately"
+  ],
+  "what_to_export": [
+    "Local Void editor settings and extensions list",
+    "LLM provider keys configured in Void (kept with the provider, not Void)",
+    "List of repositories or workspaces opened in Void",
+    "Any custom prompts, commands, or AI configurations",
+    "Notes or AI conversations worth preserving",
+    "Keybindings or workflow customizations"
+  ],
+  "export_method": "Because Void is a local VS Code fork, the relevant export is your user configuration rather than a server-side dataset. Save your settings JSON, keybindings, and installed extension list. Record the LLM providers and API keys you used inside Void; these stay with the provider account when you move on. There is no centralized account to close on Void's side beyond uninstalling and revoking provider tokens. If you maintained a list of repos or workspaces, capture that list now so you can connect the same repos to CodeRabbit. Manually copy any AI conversation outputs you want to preserve into your own notes or wiki.",
+  "import_method": "Install CodeRabbit as a GitHub or GitLab app on your organization or selected repositories. During onboarding, choose a plan and add the seats you need for active reviewers. For each repository, optionally commit a YAML configuration file to control review behavior, path filters, and language settings. Invite developers via your Git host's organization, then verify they appear in CodeRabbit. Open a small test pull request and confirm that automated review comments and summaries appear before rolling out broadly. Developers can continue using any IDE — Void, VS Code, or another — alongside CodeRabbit's PR-level reviews.",
+  "concept_mapping": [
+    {
+      "source": "Void in-IDE chat",
+      "target": "CodeRabbit PR review comments",
+      "note": "Surface changes from editor to PR"
+    },
+    {
+      "source": "BYO LLM provider keys in Void",
+      "target": "CodeRabbit subscription",
+      "note": "CodeRabbit manages its own model access"
+    },
+    {
+      "source": "Repos opened in Void",
+      "target": "Repos connected to the CodeRabbit app"
+    }
+  ],
+  "effort": "1-2 days",
+  "gotchas": [
+    "CodeRabbit does not provide in-IDE code completion; developers may still want a separate IDE assistant",
+    "Self-hosted or unusual Git providers may not be supported by CodeRabbit's app",
+    "Per-repo YAML drift can lead to inconsistent reviews; centralize defaults early",
+    "Initial reviews on legacy code can be noisy until path filters and severity are tuned",
+    "Privacy expectations differ — CodeRabbit reads PR diffs in its cloud, unlike a fully local Void setup",
+    "Seat counting model may differ from your previous BYO-LLM costs; benchmark for at least one billing cycle"
+  ],
+  "email": {
+    "subject": "Stepping away from Void in 14 days",
+    "body": "Hi team,\n\nWe are moving our AI-assisted code workflow toward CodeRabbit for pull request review. Void is open source so there is typically no subscription to cancel, but please treat this email as 14 days notice that we will stop using Void and revoke any related access on our side. Let me know if anything else is needed from us.\n\nThanks,\nYour customer"
+  }
+}

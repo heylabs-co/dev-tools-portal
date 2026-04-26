@@ -1,0 +1,66 @@
+{
+  "source": {
+    "slug": "checkmarx",
+    "name": "checkmarx"
+  },
+  "target": {
+    "slug": "appknox",
+    "name": "appknox"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Checkmarx is an enterprise SAST, SCA, IaC, and API security platform across many languages, while Appknox specialises in mobile application security testing for Android and iOS. The switch narrows scope significantly, so it only makes sense if mobile is the dominant or sole concern.",
+  "why_switch": [
+    "Refocus on mobile-only security and reduce broader SAST overhead",
+    "Move from custom enterprise pricing to a more focused subscription",
+    "Simplify the toolset around mobile binaries",
+    "Reduce the integration surface compared with a wide-scope SAST"
+  ],
+  "what_to_export": [
+    "List of Checkmarx projects and the repositories they cover",
+    "Open and historical findings with severity",
+    "SARIF exports of recent scans",
+    "Risk acceptance and suppression decisions",
+    "Compliance reports already issued",
+    "User and team roles",
+    "CI/CD integration configuration",
+    "Custom rules or query overrides"
+  ],
+  "export_method": "Use Checkmarx's built-in export to pull findings as SARIF where supported; this is the best generic format for downstream tools. Document the project-to-repository mapping and any custom queries or rule overrides since these are highly tool-specific and will not transfer. Capture suppression and risk-acceptance decisions in a structured list so they can be re-applied. Archive historical reports for audit retention before cancelling the contract — proprietary scan history typically cannot be re-imported.",
+  "import_method": "Onboard each mobile app to Appknox by uploading APK/IPA builds or wiring the build pipeline to push artifacts to Appknox after each build. Appknox scopes itself to mobile apps, so any non-mobile Checkmarx coverage (web app SAST, IaC, API scanning) will not have a destination and must be handled by another tool or accepted as a coverage gap. Re-apply suppressions manually based on the exported list, and configure user roles and notifications to mirror the Checkmarx setup. Run both tools on mobile builds in parallel until severity tuning and reporting are validated.",
+  "concept_mapping": [
+    {
+      "source": "Project (multi-language SAST)",
+      "target": "App (mobile binary)",
+      "note": "Only mobile projects map; non-mobile projects do not"
+    },
+    {
+      "source": "Finding",
+      "target": "Vulnerability"
+    },
+    {
+      "source": "Risk acceptance",
+      "target": "Suppression / accepted risk"
+    },
+    {
+      "source": "SARIF export",
+      "target": "Report archive (reference only)"
+    },
+    {
+      "source": "User/team",
+      "target": "Workspace member / role"
+    }
+  ],
+  "effort": "3-8 weeks",
+  "gotchas": [
+    "Appknox is mobile-only — non-mobile Checkmarx coverage must be replaced separately or dropped intentionally",
+    "Custom Checkmarx queries do not port; you lose any tuning embedded in them",
+    "Historical scan data typically stays in Checkmarx; export reports for audit before cancellation",
+    "Enterprise contract terms may impose notice periods — check before announcing a cutover date",
+    "Severity scoring and naming differ; map them explicitly before tuning gates",
+    "Appknox runs against built binaries, so build pipelines need to publish artifacts reliably"
+  ],
+  "email": {
+    "subject": "Refocusing our application security on mobile with Appknox",
+    "body": "Hi team,\n\nOver the next 14 days we are narrowing our application security tooling and moving mobile coverage from Checkmarx to Appknox. Non-mobile coverage that lived in Checkmarx will be addressed separately, and we will note where there are temporary gaps. Both tools will run on mobile builds in parallel while we validate findings. Please flag any open Checkmarx item you want carried over.\n\nThanks for your patience.\n\nYour customer"
+  }
+}

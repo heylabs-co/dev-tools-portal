@@ -1,0 +1,63 @@
+{
+  "source": {
+    "slug": "cohere",
+    "name": "cohere"
+  },
+  "target": {
+    "slug": "cerebras",
+    "name": "cerebras"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Both Cohere and Cerebras are LLM inference API providers, so the migration is mainly an SDK swap and prompt re-tuning. Because each platform exposes its own model catalogue, expect to re-evaluate which model maps to your workload before cutting over.",
+  "why_switch": [
+    "You want lower-latency inference for chat or generation workloads.",
+    "You prefer a vendor that offers OpenAI-compatible endpoints to ease integration.",
+    "You're consolidating on one inference provider for cost or compliance.",
+    "You need a different model catalogue than what Cohere offers.",
+    "Your team already uses the Vercel AI SDK and wants a swappable backend."
+  ],
+  "what_to_export": [
+    "Prompt templates and system messages",
+    "Fine-tuning datasets if any",
+    "Embeddings or vector index data tied to Cohere embedding models",
+    "Evaluation suites and golden test cases",
+    "API usage logs for capacity planning",
+    "Rate limit and quota configuration",
+    "Cost dashboards and tagging conventions",
+    "Any guardrail / classifier configurations used in production"
+  ],
+  "export_method": "Pull every prompt template, system message, and chain definition out of your codebase into a versioned prompts folder. Export fine-tuning datasets (typically JSONL) from your storage. If you rely on Cohere embeddings, export the source documents and the existing vector store contents — embeddings are model-specific, so plan to re-embed on the new model. Capture golden evaluations: input/expected pairs you'll re-run against the new provider. Pull recent usage logs to estimate request volume, average tokens, and concurrency for capacity planning. Document any classifier or moderation steps wired in front of the model so they can be reproduced.",
+  "import_method": "Sign up for Cerebras and provision API keys. Update your application's LLM client — if you use the Vercel AI SDK, swap the Cohere provider for the Cerebras provider; if you call the API directly, point your HTTP client at Cerebras and adjust auth headers. Map each Cohere model you used to the closest Cerebras model and run your evaluation suite to compare quality. Re-embed any documents that previously used Cohere embeddings using a Cerebras-supported embedding model, then rebuild your vector index. Re-tune prompts where outputs drift. Roll out behind a feature flag so you can shift traffic gradually and monitor latency, cost, and quality side-by-side before fully cutting over.",
+  "concept_mapping": [
+    {
+      "source": "Cohere chat / generate endpoint",
+      "target": "Cerebras chat completion endpoint"
+    },
+    {
+      "source": "Cohere API key",
+      "target": "Cerebras API key"
+    },
+    {
+      "source": "@ai-sdk/cohere provider",
+      "target": "@ai-sdk/cerebras provider"
+    },
+    {
+      "source": "Cohere model name",
+      "target": "Cerebras model name (re-map per workload)",
+      "note": "Quality and latency profiles differ; re-evaluate."
+    }
+  ],
+  "effort": "3-7 days",
+  "gotchas": [
+    "Embeddings are not portable across providers — you must re-embed every document if you switch embedding models.",
+    "Prompts tuned for one model often need adjustment for another; budget time for prompt evaluation.",
+    "Token counts and pricing structures differ, so cost projections built on Cohere usage may not transfer 1:1.",
+    "Rate limits and concurrency caps differ — load test before production cutover.",
+    "Some Cohere features (rerank, classify, specialised endpoints) may not have a direct equivalent; check parity before migrating.",
+    "Output formatting and stop-sequence behaviour can vary; re-test any structured output flows."
+  ],
+  "email": {
+    "subject": "We're switching our LLM provider — minor changes ahead",
+    "body": "Hi,\n\nIn the next two weeks we'll be migrating our LLM workloads from Cohere to Cerebras. For most users you won't notice anything beyond, hopefully, faster responses.\n\nWe'll roll out behind a feature flag and keep both providers active during the transition so we can compare quality. If you spot a regression in tone, accuracy, or formatting, please reply to this email so we can tune prompts before full cutover.\n\nNo action needed on your end.\n\nThanks,\nYour customer"
+  }
+}

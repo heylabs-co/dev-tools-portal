@@ -1,0 +1,65 @@
+{
+  "source": {
+    "slug": "buildkite",
+    "name": "Buildkite"
+  },
+  "target": {
+    "slug": "codemagic",
+    "name": "Codemagic"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Buildkite is a generalist CI with self-hosted agents; Codemagic is mobile-focused CI/CD. Migration makes sense when your workload is primarily mobile builds, and consists of rewriting pipelines and re-hosting signing assets.",
+  "why_switch": [
+    "Codemagic is purpose-built for mobile",
+    "Built-in Flutter, iOS and Android support",
+    "Public subscription pricing",
+    "Less infra to maintain than self-hosted agents",
+    "Shorter setup for code signing"
+  ],
+  "what_to_export": [
+    "Buildkite pipeline YAML / pipeline definitions",
+    "Plugin usage and custom step scripts",
+    "Agent configuration and queues",
+    "Environment variables and secrets",
+    "Code signing certificates and provisioning profiles",
+    "Webhook and trigger configuration",
+    "Artifact and log retention settings",
+    "Team and access permissions"
+  ],
+  "export_method": "Export each Buildkite pipeline's YAML through the dashboard or the REST API. Inventory plugins and any inline scripts; note which run on hosted vs your own agents. Document agent queue tags and what infrastructure backs each queue. Export environment variables; secrets values are not exportable, so list them and prepare to re-provision. Pull mobile signing assets (certificates, provisioning profiles) out of wherever they are stored today so they can be uploaded to Codemagic. Capture webhook URLs and trigger rules.",
+  "import_method": "Create projects on Codemagic and connect the same git repositories. Translate each Buildkite pipeline into a codemagic.yaml workflow, replacing plugins with Codemagic built-ins (Flutter, Xcode, Gradle, Fastlane) or shell scripts. Re-upload signing identities via Codemagic's signing settings. Recreate environment variables and secure variables in project settings. Configure triggers and caching. Because Buildkite often relies on self-hosted agents, decide whether the equivalent jobs should run on Codemagic-managed Mac/Linux instances or stay on your infra and call out to Codemagic only for release builds. Run parallel pipelines for one release cycle before cutting over.",
+  "concept_mapping": [
+    {
+      "source": "Buildkite pipeline YAML",
+      "target": "codemagic.yaml workflow"
+    },
+    {
+      "source": "Buildkite plugin",
+      "target": "Built-in Codemagic action or shell script"
+    },
+    {
+      "source": "Buildkite agent queue",
+      "target": "Codemagic-managed instance type"
+    },
+    {
+      "source": "Buildkite secrets / env",
+      "target": "Codemagic environment variables / secure variables"
+    },
+    {
+      "source": "Buildkite webhook trigger",
+      "target": "Codemagic trigger configuration"
+    }
+  ],
+  "effort": "2-6 weeks depending on pipeline count and signing complexity",
+  "gotchas": [
+    "Buildkite's agent-based model has no direct equivalent on Codemagic-managed runners.",
+    "Plugins must be reimplemented as scripts or replaced with built-ins.",
+    "Secrets must be re-entered manually; values do not export.",
+    "Build minute economics differ; verify cost on representative builds.",
+    "If you need non-mobile pipelines, Codemagic may not be the right home for all of them."
+  ],
+  "email": {
+    "subject": "Cancelling Buildkite in 14 days — moving mobile CI to Codemagic",
+    "body": "Hi Buildkite team,\n\nWe are moving our mobile CI/CD workload off Buildkite and onto Codemagic over the next 14 days.\n\nPlease confirm the billing end date, how long pipeline history and artifacts remain available for export after cancellation, and the data deletion timeline once the account is closed.\n\nWeek one we will export pipeline YAML, document plugin usage, inventory secrets and pull signing assets. Week two we will stand up parallel pipelines on Codemagic, validate release builds against current Buildkite output, then disable Buildkite triggers before the cutover.\n\nThanks for the partnership.\n\nYour customer"
+  }
+}

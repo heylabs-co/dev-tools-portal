@@ -1,0 +1,66 @@
+{
+  "source": {
+    "slug": "datadog",
+    "name": "Datadog"
+  },
+  "target": {
+    "slug": "checkmk",
+    "name": "Checkmk"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Datadog is a hosted, usage-priced observability platform with high lock-in, while Checkmk is a freemium monitoring tool with an open-source Raw edition and commercial enterprise tiers. The move trades Datadog's broad SaaS coverage for self-hosted infrastructure monitoring with predictable licensing.",
+  "why_switch": [
+    "Avoid Datadog peak-host high-water-mark billing",
+    "Open-source Raw edition available",
+    "Mature infrastructure and host monitoring",
+    "Self-hosted control over data and retention",
+    "Predictable freemium and enterprise tiers"
+  ],
+  "what_to_export": [
+    "Host and service inventory with tags",
+    "Datadog dashboards and key visualizations",
+    "Monitor and alert definitions",
+    "Notification channels and on-call routes",
+    "Custom metrics and their sources",
+    "Integration configurations",
+    "User and team RBAC mapping",
+    "SLOs and key thresholds"
+  ],
+  "export_method": "Pull dashboards, monitors, and SLOs from Datadog using its APIs and export them as JSON. Document the tag taxonomy and environment conventions you rely on so they can be recreated as Checkmk host attributes and labels. Treat raw historical metrics as non-portable and keep Datadog read-only for lookbacks rather than trying to backfill. Capture integration credentials and any custom agent configuration that needs an equivalent on Checkmk's side. List the alert recipients and channels separately, since Checkmk's notification model is configured independently.",
+  "import_method": "Install the Checkmk site, either Raw edition for OSS or a commercial edition if you need enterprise features. Roll out the Checkmk agent to a pilot set of hosts and validate basic checks before expanding. Recreate critical dashboards and views in Checkmk, prioritizing the ones used during incidents. Configure notifications to your existing channels via Checkmk's notification rules. Translate Datadog tags into Checkmk host attributes and folder structure so your service taxonomy stays usable. Run Checkmk and Datadog in parallel until coverage and alert quality match, then decommission Datadog agents.",
+  "concept_mapping": [
+    {
+      "source": "Datadog Agent",
+      "target": "Checkmk agent"
+    },
+    {
+      "source": "Datadog hosts and tags",
+      "target": "Checkmk hosts, folders, and labels"
+    },
+    {
+      "source": "Datadog monitors",
+      "target": "Checkmk rules and notifications"
+    },
+    {
+      "source": "Datadog dashboards",
+      "target": "Checkmk views and dashboards"
+    },
+    {
+      "source": "Datadog integrations",
+      "target": "Checkmk plugins"
+    }
+  ],
+  "effort": "3-6 weeks",
+  "gotchas": [
+    "Checkmk is strongest at infrastructure monitoring, do not assume full Datadog APM/log parity",
+    "You take on operating the Checkmk site, including upgrades and backups",
+    "Datadog historical data is largely non-portable, plan a parallel window",
+    "Alert noise tuning has to be redone, thresholds rarely transfer cleanly",
+    "Some Datadog-only integrations have no direct Checkmk plugin, expect gaps",
+    "Per-host Datadog pricing locks at peak count, cancel only after full cutover"
+  ],
+  "email": {
+    "subject": "Migrating infra monitoring from Datadog to Checkmk over the next 14 days",
+    "body": "Hi team,\n\nWe are kicking off a migration from Datadog to Checkmk for infrastructure monitoring over the next 14 days. The goals are predictable cost, an OSS-friendly base, and tighter control over our data.\n\nPlan:\n- Days 1-3: export dashboards, monitors, and host inventory from Datadog and document our tag taxonomy.\n- Days 4-7: install the Checkmk site, roll the agent to a pilot set of hosts, and validate baseline checks.\n- Days 8-11: recreate priority dashboards and notification rules, wiring alerts into our existing channels.\n- Days 12-14: review parity on the pilot scope and plan the agent rollout to remaining hosts.\n\nDatadog will stay live during the migration so we keep visibility while we cut over.\n\nThanks,\nYour customer"
+  }
+}

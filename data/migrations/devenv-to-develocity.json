@@ -1,0 +1,65 @@
+{
+  "source": {
+    "slug": "devenv",
+    "name": "Devenv"
+  },
+  "target": {
+    "slug": "develocity",
+    "name": "Develocity"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Devenv (by Cachix) provides Nix-based, declarative dev environments; Develocity (by Gradle) accelerates and analyzes JVM monorepo builds via remote caching, build scans, and predictive test selection. They solve different problems and are usually adopted side by side rather than as a replacement.",
+  "why_switch": [
+    "Speed up Gradle/Maven/Bazel/sbt builds with caching",
+    "Need build scans for slow CI diagnosis",
+    "Predictive test selection to cut test time",
+    "Distributed test execution across agents",
+    "JVM monorepo with painful local + CI builds"
+  ],
+  "what_to_export": [
+    "devenv.nix configuration files",
+    "List of services declared (Postgres, Redis, etc.)",
+    "Toolchain versions used in dev",
+    "Scripts and tasks defined in devenv",
+    "direnv / shell hook integrations",
+    "CI invocation steps that use devenv",
+    "Per-developer overrides and notes",
+    "Cache configuration (Cachix bindings)"
+  ],
+  "export_method": "Devenv config lives in your repository as devenv.nix and related Nix files, so the export is your repo itself. Snapshot your devenv.nix, devenv.lock, and any direnv hooks or scripts in version control. Document which services and toolchain versions your team currently relies on, and how CI invokes devenv. Note any Cachix binary cache settings so you can keep cache hits during the transition. There is no proprietary data to export from devenv beyond what is already in your repo.",
+  "import_method": "Develocity is deployed either as a hosted instance or self-managed inside your network. Configure your build tool (Gradle, Maven, Bazel, or sbt) to point at the Develocity server: add the relevant plugin, configure server URL and auth, and enable build scan publication and remote build cache. For predictive test selection and distributed test execution, follow the per-build-tool integration steps in your CI. Keep devenv as your environment provisioning layer if you want consistent toolchains, and let Develocity sit on top to accelerate the actual builds. Validate cache hits and build scans in CI before rolling out widely.",
+  "concept_mapping": [
+    {
+      "source": "devenv.nix services",
+      "target": "CI agent prerequisites",
+      "note": "Develocity does not provision services"
+    },
+    {
+      "source": "devenv toolchain",
+      "target": "Build tool configured for Develocity",
+      "note": "Gradle/Maven/Bazel/sbt only"
+    },
+    {
+      "source": "Cachix binary cache",
+      "target": "Develocity remote build cache",
+      "note": "Different scope; can coexist"
+    },
+    {
+      "source": "devenv scripts",
+      "target": "Build/test tasks scanned by Develocity"
+    }
+  ],
+  "effort": "2-6 weeks",
+  "gotchas": [
+    "Develocity is JVM/Bazel-focused; non-JVM stacks see little benefit.",
+    "Pricing is custom enterprise; confirm fit before committing.",
+    "Wiring caching and predictive test selection correctly into CI is non-trivial.",
+    "Develocity does not replace devenv's environment provisioning; you may still need both.",
+    "Data residency and self-hosted deployment require infra work.",
+    "Build scan data is proprietary; plan how long you retain it and where."
+  ],
+  "email": {
+    "subject": "Adopting Develocity alongside Devenv over the next 14 days",
+    "body": "Hi Devenv team,\n\nThanks for the reproducible dev environments. Our build times in CI have become the dominant pain point in our JVM monorepo, so we are adopting Develocity for build acceleration and analytics. We plan to keep Devenv for environment provisioning where it adds value and complete the Develocity rollout within the next 14 days.\n\nPlanned timeline:\n- Days 1-3: snapshot devenv.nix and document our current build/test flows.\n- Days 4-9: integrate Develocity plugins for Gradle/Maven/Bazel and enable remote caching.\n- Days 10-12: validate build scans, cache hits, and predictive test selection in CI.\n- Days 13-14: roll out broadly to the team.\n\nThis is informational rather than a cancellation; we expect to continue using devenv where it fits. Please let us know if any account changes are required on our side.\n\nThanks,\nYour customer"
+  }
+}

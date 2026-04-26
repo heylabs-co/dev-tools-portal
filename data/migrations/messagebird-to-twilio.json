@@ -1,0 +1,66 @@
+{
+  "source": {
+    "slug": "messagebird",
+    "name": "MessageBird"
+  },
+  "target": {
+    "slug": "twilio",
+    "name": "Twilio"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "MessageBird and Twilio are both REST-based CPaaS providers, so the migration is mostly an SDK and endpoint rewrite plus number porting. Templates, contacts, and webhook handlers need to be re-mapped to Twilio's resource model.",
+  "why_switch": [
+    "Larger ecosystem and SDK coverage",
+    "Mature documentation and developer tooling",
+    "Broader programmable voice and video features",
+    "Wider partner integrations (Segment, SendGrid)",
+    "Predictable usage-based US SMS and voice rates"
+  ],
+  "what_to_export": [
+    "Phone numbers and country assignments",
+    "Sender IDs and short codes",
+    "Message templates (SMS and WhatsApp)",
+    "Contacts and contact groups",
+    "Conversation and message history",
+    "Webhook endpoints and signing secrets",
+    "API keys and access policies",
+    "Number routing and verification rules"
+  ],
+  "export_method": "Pull every resource you depend on through MessageBird's REST API or dashboard export, generic to most CPaaS providers. Start with an inventory: numbers, sender IDs, WhatsApp templates, contact lists, webhook URLs, and API keys. For numbers, request a Letter of Authorization (LOA) so they can be ported rather than re-purchased. For message and conversation history, page through the API and store JSON in object storage; keep at least the metadata you need for compliance and analytics. Export contacts as CSV. Capture webhook payload examples so you can reproduce verification on the new provider. Keep the export read-only by using a scoped token, and snapshot it again right before cutover so you do not lose traffic that arrived during the project.",
+  "import_method": "Create a Twilio account and sub-accounts mirroring your MessageBird workspaces. Submit number porting requests early as they typically take days or weeks per region. Recreate Messaging Services, sender pools, and WhatsApp templates (these need re-approval from Meta). Import contacts via Twilio's API or dashboard. Re-implement webhook handlers against Twilio's request format and signature validation. Start with a small percentage of traffic in production, monitor delivery and error rates, then ramp up. Keep MessageBird configured as a fallback during the porting window so messages and inbound calls are not lost. After the port completes and traffic is fully on Twilio, archive MessageBird credentials and decommission.",
+  "concept_mapping": [
+    {
+      "source": "Channels API",
+      "target": "Messaging Services / Conversations"
+    },
+    {
+      "source": "Flow Builder",
+      "target": "Studio Flows"
+    },
+    {
+      "source": "Numbers",
+      "target": "Phone Numbers (with porting)"
+    },
+    {
+      "source": "Webhooks",
+      "target": "Webhooks (different signature scheme)"
+    },
+    {
+      "source": "WhatsApp Business templates",
+      "target": "WhatsApp templates (re-approved by Meta)"
+    }
+  ],
+  "effort": "2-6 weeks, dominated by number porting timelines",
+  "gotchas": [
+    "Number porting can take days to weeks per country and may require LOAs and identity docs",
+    "WhatsApp templates must be re-submitted and approved on the new business account",
+    "Webhook signature validation is provider-specific; old verification code will not work",
+    "Per-message and per-minute rates differ; rerun cost modeling against your actual traffic mix",
+    "Two-factor and verification flows may need re-testing for deliverability in each country",
+    "Run dual-send during cutover to compare delivery rates before fully switching"
+  ],
+  "email": {
+    "subject": "Moving CPaaS from MessageBird to Twilio over 14 days",
+    "body": "Hi team,\n\nWe are migrating our messaging stack from MessageBird to Twilio over the next 14 days. The APIs are conceptually similar but the SDKs and webhook signatures differ.\n\nDays 1-3: inventory numbers, sender IDs, templates, and webhook handlers.\nDays 4-6: open Twilio account, kick off number porting, re-submit WhatsApp templates.\nDays 7-10: rewrite SDK calls and webhook validation, run in staging.\nDays 11-14: dual-send in production, then cut traffic over once delivery looks healthy.\n\nNumber porting may run beyond 14 days for some countries; we will keep MessageBird active until porting completes.\n\nThanks,\nYour customer"
+  }
+}

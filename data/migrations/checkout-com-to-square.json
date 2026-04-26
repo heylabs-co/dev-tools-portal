@@ -1,0 +1,75 @@
+{
+  "source": {
+    "slug": "checkout-com",
+    "name": "Checkout.com"
+  },
+  "target": {
+    "slug": "square",
+    "name": "Square"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Moving from Checkout.com to Square shifts you from a global online-first PSP to an omnichannel platform with built-in POS, invoicing, and SMB tooling. Plan a token migration window and dual-run period to avoid losing recurring customers.",
+  "why_switch": [
+    "Need omnichannel (online + in-store POS) under one provider",
+    "Want public, transparent transaction-fee pricing",
+    "US/SMB focus with invoicing and banking add-ons",
+    "Faster self-serve onboarding than enterprise PSPs",
+    "Consolidate hardware, e-commerce, and payouts"
+  ],
+  "what_to_export": [
+    "Customer profiles and contact details",
+    "Saved payment methods / card tokens (PCI export)",
+    "Subscription and recurring billing schedules",
+    "Historical transactions and refunds",
+    "Disputes and chargeback evidence",
+    "Webhook endpoint configuration",
+    "Product/SKU catalog if used",
+    "Payout and reconciliation reports"
+  ],
+  "export_method": "Treat the move as a PCI-compliant card migration plus a data export. For card tokens, do not try to copy raw PANs yourself; instead request a PCI-to-PCI bulk migration from Checkout.com to Square, where Checkout.com transmits encrypted card data directly to Square's vault under a signed agreement. In parallel, use Checkout.com's Dashboard and API to export non-card data: pull customers, transactions, refunds, disputes, and payout reports as CSV or via the API. Capture webhook payload history if you rely on event replay. Snapshot subscription schedules, billing intervals, trial states, and next-charge dates so they can be recreated on the new side. Document every webhook URL, signing secret, and integration that touches Checkout.com so nothing is missed during cutover. Keep at least 90 days of transaction history available locally for chargeback response windows.",
+  "import_method": "On Square, create your account, complete KYC and underwriting, and configure the products you actually need (Online Checkout, Subscriptions, Invoices, POS). Recreate your product catalog, tax settings, and webhook subscriptions first. Once Square confirms the inbound PCI card import, validate that customer-to-token mappings are intact by running small test charges on a sample of migrated cards. Recreate subscription plans and re-attach customers and tokens, preserving original next-charge dates where possible. Update server SDKs and client integrations to Square's APIs, swap public/secret keys, and point webhook handlers at new endpoints. Run Square in parallel with Checkout.com for one full billing cycle and reconcile daily payouts before fully cutting over.",
+  "concept_mapping": [
+    {
+      "source": "Customer",
+      "target": "Customer"
+    },
+    {
+      "source": "Payment / Charge",
+      "target": "Payment"
+    },
+    {
+      "source": "Source / Token",
+      "target": "Card on file",
+      "note": "Migrated via PCI vault transfer"
+    },
+    {
+      "source": "Refund",
+      "target": "Refund"
+    },
+    {
+      "source": "Dispute",
+      "target": "Dispute"
+    },
+    {
+      "source": "Webhook",
+      "target": "Webhook subscription"
+    },
+    {
+      "source": "Payout",
+      "target": "Deposit / Payout"
+    }
+  ],
+  "effort": "3-6 weeks for a typical online business; longer if you also adopt POS hardware",
+  "gotchas": [
+    "PCI-to-PCI card migrations require signed agreements on both sides and lead time — start the request early",
+    "Geographic coverage differs: Square is mainly US/CA/UK/AU/JP/IE/FR/ES, so confirm your markets are supported",
+    "Subscription logic, proration, and dunning rules rarely map 1:1 — re-test edge cases like mid-cycle upgrades",
+    "Webhook event names and payload shapes differ; rewrite handlers and verify signatures before go-live",
+    "Some Checkout.com features (issuing, advanced FX) have no direct Square equivalent",
+    "Run reconciliation in parallel for at least one full billing cycle to catch silent failures"
+  ],
+  "email": {
+    "subject": "Card data migration request: Checkout.com to Square",
+    "body": "Hi team,\n\nWe are planning to move our payment processing from Checkout.com to Square over the next 14 days and would like to coordinate a PCI-compliant migration of our stored card data and customer records.\n\nSpecifically, we would like to:\n\n- Initiate a PCI-to-PCI bulk export of stored card tokens from Checkout.com directly to Square's vault under your standard data transfer agreement.\n- Export customers, historical transactions, refunds, disputes, and payout reports for our records.\n- Confirm any open subscriptions, scheduled charges, and pending disputes so nothing is lost during cutover.\n\nWe will keep the Checkout.com account active during a parallel-run period to handle refunds and chargebacks on legacy transactions, then close it once reconciliation is complete.\n\nCould you share the required forms, expected timeline, and a technical contact on your side? We aim to start the export within the next few business days.\n\nThanks,\nYour customer"
+  }
+}

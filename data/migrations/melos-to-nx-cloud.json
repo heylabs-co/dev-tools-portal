@@ -1,0 +1,61 @@
+{
+  "source": {
+    "slug": "melos",
+    "name": "melos"
+  },
+  "target": {
+    "slug": "nx-cloud",
+    "name": "nx-cloud"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Melos orchestrates Dart and Flutter monorepos: versioning, changelogs, and cross-package scripts. Nx Cloud caches and distributes Nx task execution, primarily for JavaScript and TypeScript. The two are not direct substitutes. Adoption typically implies a broader stack shift toward Nx, not a simple swap.",
+  "why_switch": [
+    "Your monorepo is moving from Dart and Flutter to a JavaScript or TypeScript stack.",
+    "You want remote computation caching for build and test tasks.",
+    "You want distributed task execution across CI agents.",
+    "You want shared cache between developers and CI.",
+    "You can standardize on Nx project and task conventions."
+  ],
+  "what_to_export": [
+    "Melos workspace configuration including package globs",
+    "Cross-package scripts defined in Melos",
+    "Versioning and changelog policy",
+    "Pub.dev publishing pipelines",
+    "CI workflows that invoke Melos commands",
+    "Project-level dependencies between packages",
+    "Test invocation patterns and timing data if available",
+    "Documentation referencing Melos commands"
+  ],
+  "export_method": "Melos lives in the repository as melos.yaml plus configuration in package directories. There is no remote export. Inventory workspace globs, scripts, versioning rules, changelog conventions, and any pub.dev publishing logic. Save CI workflow steps that drive Melos. Because Nx Cloud does not manage Dart or Flutter package publishing, the export is a record of what your team relied on, so you can plan replacements where needed. If your migration also moves the codebase to a JavaScript or TypeScript stack, this inventory feeds the new Nx workspace design.",
+  "import_method": "Nx Cloud requires an Nx workspace, which is JavaScript and TypeScript first. If you are migrating the stack, follow the official Nx documentation to set up an Nx workspace with project configurations and task targets. Once Nx is in place, connect the workspace to Nx Cloud per the official setup, typically using an access token and enabling remote caching in nx.json. Configure CI so Nx Cloud credentials are available and tasks read and write the remote cache. Versioning, changelogs, and publishing equivalents must be implemented separately, as Nx Cloud does not provide them. Validate caching by running an affected task twice and checking for a cache hit on the second run.",
+  "concept_mapping": [
+    {
+      "source": "Melos workspace and packages",
+      "target": "Nx workspace and projects",
+      "note": "Structures are conceptually similar but the ecosystems differ; Nx targets JavaScript and TypeScript."
+    },
+    {
+      "source": "Melos scripts",
+      "target": "Nx task targets",
+      "note": "Tasks become the cacheable unit in Nx."
+    },
+    {
+      "source": "Melos versioning and changelog",
+      "target": "Not covered by Nx Cloud",
+      "note": "Use separate tooling for releases and changelogs."
+    }
+  ],
+  "effort": "Multi-month effort if it includes a stack migration; 1-4 weeks if Nx is already adopted and you only enable Nx Cloud.",
+  "gotchas": [
+    "Nx Cloud accelerates Nx task graphs only. Without Nx there is nothing for it to cache.",
+    "Dart and Flutter are not the primary target of Nx; a direct swap implies a broader stack change.",
+    "Versioning, changelog, and pub.dev publishing workflows must be replaced with separate tooling.",
+    "Pricing scales with usage; pilot before enabling broadly.",
+    "Cache correctness depends on deterministic task inputs.",
+    "Some teams report occasional cache correctness issues; document a bypass for incidents."
+  ],
+  "email": {
+    "subject": "Stack change: evaluating Nx Cloud",
+    "body": "Hi,\n\nWe are evaluating a shift from a Dart and Flutter Melos workspace toward an Nx-based JavaScript or TypeScript stack accelerated by Nx Cloud. This is broader than a tool swap, so timelines depend on the larger migration. Over the next 14 days we will share scope, affected workflows, and any actions you need to take.\n\nReply if your integration relies on Melos-specific behavior so we can plan replacements.\n\nThanks,\nYour customer"
+  }
+}

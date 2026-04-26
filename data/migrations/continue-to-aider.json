@@ -1,0 +1,65 @@
+{
+  "source": {
+    "slug": "continue",
+    "name": "continue"
+  },
+  "target": {
+    "slug": "aider",
+    "name": "aider"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Continue is an open-source IDE extension AI coding assistant; Aider is a terminal-based AI pair programmer that edits files via CLI. Both are OSS and provider-agnostic, so migration is mostly a workflow change from IDE chat to terminal CLI.",
+  "why_switch": [
+    "You prefer terminal workflows over IDE extensions",
+    "You want git-aware AI edits driven from the CLI",
+    "You like Aider's commit-per-edit pattern",
+    "You want a free OSS tool with no seat pricing",
+    "You work mostly in non-VS Code editors"
+  ],
+  "what_to_export": [
+    "Continue config (config.json or config.ts)",
+    "Custom slash commands and context providers",
+    "Model provider keys and base URLs",
+    "Codebase indexing settings",
+    "VS Code/JetBrains workspace settings related to Continue",
+    "Chat history if you want to keep it",
+    "Any custom rules or system prompts"
+  ],
+  "export_method": "Continue stores its configuration in a config file under your home directory (typically ~/.continue/config.json or config.ts) plus optional workspace overrides. Copy this file out for reference. Export the list of model providers and their settings, and note any MCP servers, context providers, or slash commands you have configured. Continue's chat history is local; if you want to retain it, archive the relevant Continue data directory. There is no canonical export command, so treat this as collecting the relevant dotfiles before uninstall.",
+  "import_method": "Aider has no direct config import from Continue. Install aider (pip install aider-chat or pipx) and create an .aider.conf.yml in your home or project directory. Map your Continue model provider keys into the equivalent aider environment variables or config keys, and set the same default model. If you used Continue's custom prompts, place equivalent guidance in a CONVENTIONS.md file and pass it to aider so it loads on each session. Recreate any .ignore patterns as a .aiderignore file. Aider works from the terminal inside a git repo; commit hygiene is largely automated by the tool.",
+  "concept_mapping": [
+    {
+      "source": "Continue config.json",
+      "target": "aider .aider.conf.yml",
+      "note": "Manual mapping"
+    },
+    {
+      "source": "Custom slash commands",
+      "target": "aider /commands and prompt files",
+      "note": "Some overlap"
+    },
+    {
+      "source": "Model provider settings",
+      "target": "Aider model env vars",
+      "note": "Same providers usually supported"
+    },
+    {
+      "source": "Context providers",
+      "target": "Files added with /add",
+      "note": "Rebuild manually"
+    }
+  ],
+  "effort": "2-5 days",
+  "gotchas": [
+    "Aider runs in the terminal; if your team prefers IDE chat, adoption will slip.",
+    "Custom Continue context providers do not map 1:1 to aider commands.",
+    "Aider auto-commits by default; review settings if you dislike that flow.",
+    "Both still depend on external LLM providers; keep an eye on their costs.",
+    "Indexing behaviour differs; large repos may need .aiderignore tuning.",
+    "Continue paid features (team policies, etc) have no aider equivalent."
+  ],
+  "email": {
+    "subject": "Switching from Continue to Aider for AI pair programming",
+    "body": "Hi team,\n\nWe plan to migrate from Continue to Aider over the next 14 days. Aider's CLI-driven, git-aware workflow fits how we work, and both tools are OSS with similar provider support.\n\nI will share an updated setup doc and the new model config. The change mainly affects your personal IDE flow; please raise concerns if you rely on a specific Continue feature so we can find a workaround.\n\nThanks,\nYour customer"
+  }
+}

@@ -1,0 +1,69 @@
+{
+  "source": {
+    "slug": "algolia",
+    "name": "Algolia"
+  },
+  "target": {
+    "slug": "coveo",
+    "name": "Coveo"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Move from Algolia's developer-first search API to Coveo's enterprise AI search platform. Expect a heavier integration project and a sales-led contract instead of self-serve usage pricing.",
+  "why_switch": [
+    "Coveo targets enterprise content unification",
+    "Built-in AI relevance and recommendations",
+    "Better fit when search spans many backends",
+    "Wider support and SLAs for large teams",
+    "Strong analytics and ML personalization"
+  ],
+  "what_to_export": [
+    "Index records and document JSON",
+    "Searchable attribute configuration",
+    "Custom ranking rules",
+    "Synonyms",
+    "Query rules / merchandising overrides",
+    "Click and conversion analytics where available",
+    "API keys and ACL definitions",
+    "Frontend search UI configuration"
+  ],
+  "export_method": "Use Algolia's dashboard export or a script using an official client to browse each index into JSON. The browse endpoint paginates all documents without the standard 1000-record search cap. Export synonyms, rules and index settings separately using their respective endpoints. Save documents as newline-delimited JSON. If you rely on Algolia Recommend or Personalization, document the signals and goals; those models cannot be exported, only re-trained on the new platform from raw event logs you still own.",
+  "import_method": "Work with Coveo to define sources for your content. Coveo typically ingests via its Push API or pre-built source connectors rather than a generic bulk endpoint. Map your Algolia documents to a Coveo schema, then push them in batches. Use the Coveo admin console to configure facets, ranking expressions and query pipelines that approximate your Algolia ranking. Replace your client SDK calls with the Coveo JavaScript or REST search API. Validate relevance against a baseline query set, then enable Coveo ML models once you have collected enough usage analytics for personalization to train.",
+  "concept_mapping": [
+    {
+      "source": "Index",
+      "target": "Coveo source / index"
+    },
+    {
+      "source": "Record",
+      "target": "Item"
+    },
+    {
+      "source": "searchableAttributes",
+      "target": "Field configuration in source"
+    },
+    {
+      "source": "customRanking",
+      "target": "Ranking expressions / query pipeline"
+    },
+    {
+      "source": "Query rules",
+      "target": "Query pipeline rules"
+    },
+    {
+      "source": "Synonyms",
+      "target": "Thesaurus rules"
+    }
+  ],
+  "effort": "1-3 months including procurement and tuning",
+  "gotchas": [
+    "Coveo is sales-led; budget time for contracting before any technical work.",
+    "Algolia frontends built on InstantSearch will need to be replaced or wrapped.",
+    "Coveo's pricing is opaque vs Algolia's public per-search rates.",
+    "Personalization and Recommend models do not transfer; retraining requires events on Coveo.",
+    "Two ranking engines tuned differently, expect a relevance tuning phase."
+  ],
+  "email": {
+    "subject": "Cancelling Algolia in 14 days — moving to Coveo",
+    "body": "Hi Algolia team,\n\nWe have decided to consolidate our search and recommendations on Coveo and will be turning down our Algolia usage over the next 14 days.\n\nPlease confirm:\n\n1. The end date for billing under our current plan.\n2. How long our indices remain readable for export after cancellation.\n3. The data retention and deletion policy once the account is closed.\n\nOur plan is to export indices, synonyms and rules in the first week, run Coveo and Algolia in parallel for a few days of validation, then fully cut over by day 14 and disable all Algolia API keys.\n\nThanks for the support to date.\n\nYour customer"
+  }
+}

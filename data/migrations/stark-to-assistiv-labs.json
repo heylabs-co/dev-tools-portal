@@ -1,0 +1,60 @@
+{
+  "source": {
+    "slug": "stark",
+    "name": "Stark"
+  },
+  "target": {
+    "slug": "assistiv-labs",
+    "name": "Assistiv Labs"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Stark catches accessibility issues at design time inside Figma; Assistiv Labs lets QA test built UIs with real screen readers in the cloud. The two cover different stages of the lifecycle, so a switch usually means shifting investment from design-phase checks to runtime AT QA.",
+  "why_switch": [
+    "Test on real NVDA, JAWS, and VoiceOver remotely",
+    "No need to ship AT licenses to distributed QA",
+    "Catch runtime ARIA bugs missed by design tools",
+    "Cross-platform AT access from one browser",
+    "Better fit for engineering-led a11y QA"
+  ],
+  "what_to_export": [
+    "Stark Figma plugin reports",
+    "Contrast and focus-order annotations",
+    "Component a11y checklists",
+    "Vision simulation screenshots used in reviews",
+    "Issue lists already filed",
+    "Design-system a11y guidelines built on Stark",
+    "Team review process docs",
+    "Linked WCAG criteria notes",
+    "Severity/triage conventions",
+    "Onboarding material for designers"
+  ],
+  "export_method": "Stark stores annotations and reports inside Figma files. Open each design file and export Stark-generated reports or screenshots; many findings are already captured as Figma comments or layers, so simply preserving the Figma file history is enough. Pull any standalone reports out of the Stark plugin via its export options. Re-document conventions (severity, WCAG mapping) internally since these belong to your team. There is no large database to migrate. Keep Stark installed during the transition so designers can still run quick checks while the runtime QA flow is set up.",
+  "import_method": "Sign up for Assistiv Labs and provision seats for the QA engineers who will run AT testing. Train them on launching screen reader sessions (NVDA, JAWS, VoiceOver) against staging or preview URLs. Add an AT QA pass to your release checklist, focused on flows where Stark's design-time checks cannot catch ARIA, focus, or live-region bugs. Tie findings into the same tracker your team already uses. Decide whether to retain Stark for designers (recommended) and use Assistiv Labs purely for engineering-side QA, or reduce Stark to a free tier if budget pressure was the motivation.",
+  "concept_mapping": [
+    {
+      "source": "Figma contrast check",
+      "target": "No like-for-like; keep design-time tooling separately"
+    },
+    {
+      "source": "Focus order annotation",
+      "target": "Verified live with screen reader on Assistiv Labs"
+    },
+    {
+      "source": "Vision simulation",
+      "target": "Browser/OS-level simulation outside Assistiv Labs"
+    }
+  ],
+  "effort": "Days to set up seats and process; weeks to build durable AT QA habits.",
+  "gotchas": [
+    "Assistiv Labs is runtime-only; you lose design-phase checks if you drop Stark fully",
+    "Per-seat pricing scales with QA team size",
+    "Streaming latency can affect screen reader timing perception",
+    "Real disabled-user testing still recommended, this tool is for QA simulation",
+    "Training time required to use screen readers correctly",
+    "Some AT versions/locales may not be available remotely"
+  ],
+  "email": {
+    "subject": "Shifting a11y QA spend from Stark to Assistiv Labs",
+    "body": "Hi Stark team,\n\nThe accessibility checks that bite us most are runtime ARIA, focus, and screen-reader bugs that surface after a build is shipped, so we are shifting investment toward Assistiv Labs for QA-side AT testing. We plan to wind down our Stark plan over the next 14 days.\n\nWe still see value in design-time checks, so depending on how the transition goes we may stay on a free tier rather than fully cancelling. We will confirm by the end of the 14-day window.\n\nCould you confirm:\n- Cancellation steps and final billing date if we move off the paid plan\n- Whether plugin-generated reports remain accessible afterward\n- Any free tier limits we should know about for designers who stay\n\nThanks for the help getting our designers on board with a11y.\n\nYour customer"
+  }
+}

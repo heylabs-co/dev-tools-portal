@@ -1,0 +1,61 @@
+{
+  "source": {
+    "slug": "anthropic",
+    "name": "Anthropic"
+  },
+  "target": {
+    "slug": "cohere",
+    "name": "Cohere"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Both are LLM API providers but with different strengths — Anthropic ships Claude for general reasoning and long context, while Cohere focuses on enterprise NLP including embeddings, classification, and retrieval. Migrating is feasible for some use cases (chat, summarization) and a feature change for others (Cohere's Rerank and Embed have no direct Anthropic equivalent).",
+  "why_switch": [
+    "Need first-class embeddings, rerank, and semantic search APIs",
+    "Want a Canadian-headquartered provider for data residency reasons",
+    "Looking for tighter focus on RAG and retrieval workflows",
+    "Already using Cohere SDKs elsewhere and want to consolidate",
+    "Prefer Cohere's pricing model for your workload mix"
+  ],
+  "what_to_export": [
+    "Prompt templates and system prompts",
+    "Few-shot examples and evaluation sets",
+    "Tool/function-use schemas",
+    "Request/response fixtures from production logs",
+    "Model parameters per use case (temperature, max tokens, stop sequences)",
+    "Existing Anthropic API keys (for rotation)",
+    "Usage and billing exports",
+    "Any retrieval pipelines that today wrap a non-Cohere embedding model"
+  ],
+  "export_method": "Pull prompts, system messages, and tool schemas out of code into a versioned prompt library. Save canonical request and response pairs from your logs as a regression dataset. Download usage and billing reports from the Anthropic Console for finance. If your workload includes retrieval-augmented generation, export the documents you index, the chunking strategy, and your current embedding model so you can swap in Cohere Embed cleanly. Rotate Anthropic keys at the end of the migration window. Keep the Anthropic client wired up during parallel evaluation so you can run the same prompt through both providers and compare quality before full cutover.",
+  "import_method": "Create a Cohere account, generate an API key, and install the official Cohere SDK for your language. Update the wrapper that today calls Anthropic's Messages API to call Cohere's chat endpoint, remapping system/user/assistant turns into Cohere's expected request shape. For RAG, replace your embedding step with Cohere Embed and consider Cohere Rerank for the post-retrieval ranking pass. Re-run your evaluation dataset against the new chain and tune prompts, retrieval depth, and parameters until quality matches or beats the Anthropic baseline. Wire keys through your secrets manager, add observability for token usage and latency, and set spend alerts before promoting the new path to production.",
+  "concept_mapping": [
+    {
+      "source": "Anthropic Messages API",
+      "target": "Cohere Chat API",
+      "note": "Re-shape role-tagged messages to Cohere's request format."
+    },
+    {
+      "source": "Claude tool use",
+      "target": "Cohere tool use",
+      "note": "Both support tool calls; schemas and field names differ — retest."
+    },
+    {
+      "source": "Anthropic API key",
+      "target": "Cohere API key",
+      "note": "Store in your secrets manager and rotate the old key after cutover."
+    }
+  ],
+  "effort": "1-2 weeks for a chat-only workload; 2-4 weeks if you also rebuild RAG pipelines on Cohere Embed and Rerank.",
+  "gotchas": [
+    "Output style differs — Claude tends to be verbose and hedged, Cohere models behave differently. Re-evaluate end-user quality.",
+    "Long-context workloads that rely on Claude's large context window may need chunking changes if Cohere model context is smaller.",
+    "Tool-use JSON schemas need remapping — do not assume the Anthropic schema works as-is.",
+    "Token counting and pricing differ; rebuild cost projections rather than copying the Anthropic spreadsheet.",
+    "If you adopt Cohere Embed mid-migration, you must re-embed your entire corpus — budget storage and compute for the reindex.",
+    "Rate limits and concurrency differ; load-test before launch."
+  ],
+  "email": {
+    "subject": "Switching our LLM provider from Anthropic to Cohere",
+    "body": "Hi team,\n\nWe are moving our LLM workload from Anthropic to Cohere over the next 14 days, with parallel evaluation in the first week and cutover in the second. Please run the standard eval set against both providers and flag regressions in #ai-migration. RAG pipelines will switch to Cohere Embed; expect a one-time reindex. Anthropic keys will be rotated and revoked at the end of the window.\n\nThanks,\nYour customer"
+  }
+}

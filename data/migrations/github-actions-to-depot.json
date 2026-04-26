@@ -1,0 +1,64 @@
+{
+  "source": {
+    "slug": "github-actions",
+    "name": "GitHub Actions"
+  },
+  "target": {
+    "slug": "depot",
+    "name": "Depot"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "GitHub Actions runs full CI/CD; Depot accelerates Docker image builds. A direct switch only makes sense if your dominant pain is image build time. More commonly, you keep Actions and call Depot from inside it for builds.",
+  "why_switch": [
+    "Faster, cached Docker builds via remote builders",
+    "Standard Docker tooling, low lock-in",
+    "Public subscription pricing",
+    "Drop-in CLI replaces docker build",
+    "Reduces Actions runner minutes spent on image builds"
+  ],
+  "what_to_export": [
+    "Dockerfiles and build contexts",
+    "Workflow steps that run docker build/buildx",
+    "Registry credentials and tag conventions",
+    "Build args and image platforms",
+    "Cache mounts and layer caching configs",
+    "Image scan/test steps",
+    "Multi-stage build definitions",
+    "Composite actions wrapping image builds",
+    "Workflow secrets used by image build",
+    "Artifact retention rules for images"
+  ],
+  "export_method": "Identify which workflow steps actually build container images. Pull the Dockerfiles and any helper scripts from your repo. List build args, secrets (by name), and platform flags currently passed to docker buildx. Note any registry-specific authentication actions you use (login-action variants). Capture the matrix of architectures you build for. Catalog any cache strategies in use (gha cache, registry cache). Secrets stay where they are in GitHub Actions; you do not export their values, only know which ones need to be referenced from the new step.",
+  "import_method": "Install the Depot CLI in your workflow (or use the official depot-build-push GitHub Action). Replace docker buildx build invocations with depot build, passing your existing Dockerfile, context, build args, platforms, and tags. Authenticate to your registry as before, push images the same way. Configure Depot project IDs and tokens via repo or org-level Actions secrets. Validate that produced images match the previous build's digest and pass downstream tests, then promote to production workflows. Keep all your other Actions jobs (tests, deploy, release) unchanged.",
+  "concept_mapping": [
+    {
+      "source": "docker buildx build step",
+      "target": "depot build step or action"
+    },
+    {
+      "source": "actions/cache for docker",
+      "target": "Depot cache (built-in)"
+    },
+    {
+      "source": "Self-hosted Docker runner",
+      "target": "Depot remote builders"
+    },
+    {
+      "source": "GitHub Actions secret",
+      "target": "Same secret, referenced from depot step"
+    }
+  ],
+  "effort": "Hours to a few days for a single repo; up to a week or two if you operate many image build pipelines.",
+  "gotchas": [
+    "Depot does not replace Actions, you still need workflows around it",
+    "Verify image digests and tests after each migrated pipeline",
+    "Multi-arch builds need explicit platform flags",
+    "Secret-mount syntax differs from buildx in some cases",
+    "Registry rate limits unchanged",
+    "Confirm pricing fits your build volume before cutting over"
+  ],
+  "email": {
+    "subject": "Adopting Depot for container builds inside GitHub Actions",
+    "body": "Hi Depot team,\n\nWe are integrating Depot into our GitHub Actions workflows to speed up container image builds. The plan over the next 14 days is to swap docker buildx for depot build in a couple of pilot repos, validate digest parity and downstream tests, then roll it out across the rest of our image-building pipelines.\n\nWe will keep GitHub Actions as our orchestration layer; Depot will only handle the image build step. We expect this to reduce our Actions runner minutes meaningfully.\n\nIf you have a recommended onboarding sequence or a preferred way to size our plan based on weekly build volume, we would appreciate the guidance. Otherwise we will start on the entry tier and adjust.\n\nThanks,\nYour customer"
+  }
+}

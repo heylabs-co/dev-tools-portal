@@ -1,0 +1,67 @@
+{
+  "source": {
+    "slug": "bytebrew",
+    "name": "ByteBrew"
+  },
+  "target": {
+    "slug": "apptrove",
+    "name": "Apptrove"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "ByteBrew is a free all-in-one mobile game growth platform (analytics, attribution, remote config); Apptrove is a Trackier MMP focused on install attribution and fraud prevention. Migration replaces the attribution piece and may leave gaps for analytics and remote config.",
+  "why_switch": [
+    "Need stronger MMP and ad network partner catalog",
+    "Want bundled fraud prevention",
+    "Stricter SLAs than ByteBrew offers",
+    "Need agency/multi-client dashboards",
+    "More mature attribution for non-game apps"
+  ],
+  "what_to_export": [
+    "App identifiers and platform IDs",
+    "Event names and parameter schemas",
+    "Attribution / install records",
+    "Monetization (IAP + ad) event mappings",
+    "Remote config keys and variants",
+    "User properties and segments",
+    "Historical CSV exports of events",
+    "Ad network postback configs"
+  ],
+  "export_method": "Use the ByteBrew dashboard to export events, monetization data, and attribution records for your apps. If a bulk export endpoint is not available on your plan, capture CSVs and screenshots of the dashboards you rely on. Document your event taxonomy, monetization mappings, and remote config keys/variants in a spreadsheet so equivalents can be modeled on the destination side. Note your current ad network postback setup; that will need to be redone on the new platform.",
+  "import_method": "Create an Apptrove account, register your apps, and configure events, conversions, and partner postbacks. Replace the ByteBrew SDK in your iOS, Android, Unity, or Unreal builds with the Apptrove SDK and re-emit your event taxonomy via the new calls. Configure fraud rules and SKAN settings in Apptrove. For analytics depth and remote config that ByteBrew bundled, plan a separate analytics tool (such as a product analytics or game telemetry service) and a separate remote-config tool. Validate attribution in test campaigns and run a parallel-tracking window before turning off ByteBrew.",
+  "concept_mapping": [
+    {
+      "source": "Event",
+      "target": "Apptrove event"
+    },
+    {
+      "source": "User property",
+      "target": "Apptrove user property"
+    },
+    {
+      "source": "Attribution record",
+      "target": "Apptrove install/event"
+    },
+    {
+      "source": "Remote config",
+      "target": "External remote-config tool",
+      "note": "Not in Apptrove's scope"
+    },
+    {
+      "source": "Ad monetization tracking",
+      "target": "MMP event + ad network postback"
+    }
+  ],
+  "effort": "2-4 weeks",
+  "gotchas": [
+    "Apptrove does not include remote config or full game-telemetry analytics; plan replacements.",
+    "Historical ByteBrew attribution and analytics data will not be visible inside Apptrove.",
+    "SDK swap requires app store releases on iOS and Android.",
+    "Postbacks must be reconfigured per ad network on the new MMP.",
+    "Run parallel tracking briefly to reconcile install and event counts.",
+    "SKAN configuration must be revalidated end-to-end."
+  ],
+  "email": {
+    "subject": "Migrating from ByteBrew to Apptrove over the next 14 days",
+    "body": "Hi ByteBrew team,\n\nThank you for the all-in-one toolkit. As our SLA, partner catalog, and fraud-prevention needs have grown, we are migrating attribution to Apptrove and will complete the transition within the next 14 days.\n\nPlanned timeline:\n- Days 1-3: export events, attribution, and remote-config data.\n- Days 4-9: integrate the Apptrove SDK and reconfigure postbacks.\n- Days 10-12: parallel-track and reconcile counts.\n- Days 13-14: cut over and stop sending attribution data to ByteBrew.\n\nCould you confirm how we fully export our remaining data and the steps to close the account at the end of the current cycle?\n\nThanks,\nYour customer"
+  }
+}

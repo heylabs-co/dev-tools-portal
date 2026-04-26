@@ -1,0 +1,71 @@
+{
+  "source": {
+    "slug": "hyperswitch",
+    "name": "Hyperswitch"
+  },
+  "target": {
+    "slug": "primer",
+    "name": "Primer"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Moving from self-hosted Hyperswitch to Primer trades operational ownership for a managed orchestration platform with workflows and a larger connector catalog. The integration layer changes, but underlying processors and PCI vault arrangements largely carry over.",
+  "why_switch": [
+    "Managed SaaS removes infra and on-call burden",
+    "Visual workflow/routing builder vs code-first config",
+    "Broad catalog of pre-built processor and APM connectors",
+    "Enterprise SLAs, support, and compliance certifications",
+    "Faster onboarding for non-engineering payment ops"
+  ],
+  "what_to_export": [
+    "Routing rules and processor priorities",
+    "Connector configurations (per-processor credentials)",
+    "Stored tokens / vault references (if Hyperswitch holds them)",
+    "Customer and payment history records",
+    "Webhook endpoints and downstream consumers",
+    "Retry, fallback, and 3DS/SCA logic",
+    "Reconciliation and reporting jobs",
+    "Custom risk rules or scripts"
+  ],
+  "export_method": "Because Hyperswitch is open source and self-hosted, you control the database. Snapshot the relevant tables for customers, payments, refunds, disputes, mandates, and any stored tokens or vault references through standard SQL or backup tools. Export connector configurations, routing rules, and webhook subscriptions as version-controlled config so they can be reproduced on Primer. If your processors hold the actual card vault (typical for Hyperswitch deployments), you generally do not need to migrate cards — you keep the same processor accounts and just change the orchestrator above them. If Hyperswitch's own vault stores tokens, coordinate a PCI-compliant transfer between vaults under a signed data transfer agreement. Document custom logic (Rust services, webhook consumers, retry rules) so equivalent behavior can be rebuilt as Primer workflows.",
+  "import_method": "Sign up with Primer and complete onboarding. Connect your existing processors and PSPs as Primer connectors, reusing the same merchant accounts so your underlying card data and acquiring relationships stay put. Rebuild routing, retry, and 3DS logic as Primer workflows in their visual builder, and configure webhooks for events you previously handled. Update your client and server SDKs to call Primer's checkout and APIs instead of Hyperswitch's, and re-implement vault tokenization through Primer if needed. Validate end-to-end by running test transactions across each processor and verifying that fallback and routing decisions match expectations. Cut traffic over gradually using a feature flag or percentage split, monitor authorization rates per processor, and only decommission the Hyperswitch deployment after a full reconciliation cycle.",
+  "concept_mapping": [
+    {
+      "source": "Connector",
+      "target": "Connector / Processor configuration"
+    },
+    {
+      "source": "Routing rule",
+      "target": "Workflow / Routing rule"
+    },
+    {
+      "source": "Customer",
+      "target": "Customer"
+    },
+    {
+      "source": "Payment",
+      "target": "Payment"
+    },
+    {
+      "source": "Webhook",
+      "target": "Webhook"
+    },
+    {
+      "source": "Mandate / token",
+      "target": "Vaulted payment method",
+      "note": "Often held at processor, not orchestrator"
+    }
+  ],
+  "effort": "4-10 weeks depending on number of connectors and custom routing logic",
+  "gotchas": [
+    "Open-source flexibility (custom Rust services, plugins) may not have a 1:1 Primer equivalent",
+    "Workflow builders trade code-level control for UI configuration — re-test edge cases carefully",
+    "If Hyperswitch held its own vault, plan a PCI-compliant token migration between vaults",
+    "Primer pricing is enterprise/custom; model fees against current self-hosted infra cost",
+    "Authorization rates can shift when routing logic is rewritten — A/B test per processor",
+    "Keep Hyperswitch running in shadow mode until full reconciliation is verified"
+  ],
+  "email": {
+    "subject": "Migration plan: Hyperswitch to Primer orchestration",
+    "body": "Hi team,\n\nWe are planning to migrate our payments orchestration layer from a self-hosted Hyperswitch deployment to Primer over the next 14 days and would appreciate help scoping the work.\n\nSpecifically, we would like to:\n\n- Connect our existing processors and acquirers to Primer using the same merchant accounts, so underlying card data and contracts stay in place.\n- Rebuild our current routing, retry, and 3DS logic as Primer workflows.\n- Migrate any tokens or vault references currently held by Hyperswitch under a PCI-compliant transfer if applicable.\n- Run Primer in parallel with Hyperswitch during cutover and validate authorization rates per processor.\n\nCould you share onboarding requirements, connector availability for the processors we use, an expected timeline, and a technical contact? We aim to begin within the next few business days.\n\nThanks,\nYour customer"
+  }
+}

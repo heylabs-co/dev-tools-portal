@@ -1,0 +1,61 @@
+{
+  "source": {
+    "slug": "melos",
+    "name": "melos"
+  },
+  "target": {
+    "slug": "develocity",
+    "name": "develocity"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Melos manages Dart and Flutter monorepos: versioning, changelogs, and script execution across packages. Develocity accelerates Gradle, Maven, Bazel, and sbt builds. The overlap is small. Treat this as a stack change rather than a tool swap, and only consider it if you are leaving Dart and Flutter for a JVM-based build chain.",
+  "why_switch": [
+    "Your build is moving from Dart and Flutter to a JVM-based monorepo.",
+    "You need build scans to diagnose slow tasks across Gradle or Maven projects.",
+    "You want predictive test selection to cut JVM test times.",
+    "You want remote build caching for a Gradle, Maven, Bazel, or sbt monorepo.",
+    "You can support an enterprise procurement and rollout."
+  ],
+  "what_to_export": [
+    "Melos workspace configuration including package globs",
+    "Versioning and changelog policy used by Melos",
+    "Scripts defined for cross-package execution",
+    "List of packages and their pub.dev publishing status",
+    "CI workflows that invoke Melos commands",
+    "Any branch and release conventions tied to Melos",
+    "Documentation that references Melos commands",
+    "Notes on which workflows must be replaced versus retired"
+  ],
+  "export_method": "Melos is open source and configured via a melos.yaml file in your repository. There is no remote export step. Inventory the workspace globs, scripts, and versioning rules. Capture changelog formatting choices and any pub.dev publishing pipelines, since those will not transfer to a JVM build tool. Save CI workflow steps that call Melos. Because the target, Develocity, does not manage Dart or Flutter packages, the export here is a record of what your team relied on for orchestration, so you can decide what to rebuild on the new stack and what to drop.",
+  "import_method": "Develocity is an enterprise product for JVM-centric build tools. Engage Gradle Inc. for licensing and deployment topology. Once you have access, install the Develocity build agent per the official documentation and add the appropriate plugin to your Gradle, Maven, Bazel, or sbt build. Authenticate the build to your Develocity instance with credentials from your administrator. Enable build scans first to establish a baseline, then enable remote build caching. Predictive test selection and test distribution are configured per build tool. Update CI to authenticate cache reads and writes. Because the source stack is Dart or Flutter, this assumes a parallel migration of the codebase or selected components to a JVM build chain.",
+  "concept_mapping": [
+    {
+      "source": "Melos workspace and packages",
+      "target": "Build tool projects (Gradle, Maven, Bazel, sbt)",
+      "note": "Workspace structure must be expressed in the new build tool; semantics differ."
+    },
+    {
+      "source": "Melos versioning and changelog",
+      "target": "Build-tool release plugins or external tooling",
+      "note": "Develocity does not manage versioning or changelogs."
+    },
+    {
+      "source": "Melos scripts",
+      "target": "Build-tool tasks",
+      "note": "Tasks become the cacheable unit; rewrite scripts accordingly."
+    }
+  ],
+  "effort": "Multi-month effort if it includes a stack migration; 4-8 weeks if a JVM build is already in place and you are only adopting Develocity.",
+  "gotchas": [
+    "Develocity does not target Dart or Flutter, so a direct swap is not coherent without a stack change.",
+    "Versioning, changelog, and pub.dev publishing workflows from Melos will not carry over and need replacements.",
+    "Develocity is enterprise-priced via custom contracts; budget approval is usually the longest pole.",
+    "Cache correctness depends on deterministic build inputs; non-deterministic steps reduce hit rates.",
+    "Self-hosting versus vendor-hosted has compliance and data locality implications.",
+    "Build scans can capture sensitive data; review captured fields before broad rollout."
+  ],
+  "email": {
+    "subject": "Build chain change: moving toward Develocity",
+    "body": "Hi,\n\nWe are evaluating a move from a Dart and Flutter Melos workspace toward a JVM-based build accelerated by Develocity. This is a stack-level change, not a like-for-like swap, so timelines depend on the broader migration. Over the next 14 days we will share scope, affected workflows, and any actions you need to take.\n\nReply if your integration relies on Melos-specific behavior so we can plan replacements.\n\nThanks,\nYour customer"
+  }
+}

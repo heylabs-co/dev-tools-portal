@@ -1,0 +1,70 @@
+{
+  "source": {
+    "slug": "apify",
+    "name": "Apify"
+  },
+  "target": {
+    "slug": "apache-apisix",
+    "name": "Apache APISIX"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Apify is a managed web scraping platform; Apache APISIX is an OSS API gateway. These are not interchangeable - the realistic path is to keep your scraping logic, self-host the runtime, and put APISIX in front to expose results as APIs.",
+  "why_switch": [
+    "Eliminate per-actor compute costs by self-hosting",
+    "Gain full control over scraping infrastructure",
+    "Expose scraped data behind a unified API gateway",
+    "Apply consistent auth, rate limiting, and observability",
+    "Avoid vendor lock-in on managed actor platform"
+  ],
+  "what_to_export": [
+    "Actor source code and Dockerfiles",
+    "Input schemas and default configs per actor",
+    "Dataset and key-value store contents",
+    "Scheduled run definitions",
+    "Webhook configurations",
+    "Proxy and residential IP settings",
+    "API tokens and integration credentials",
+    "Run history and logs (for audit)"
+  ],
+  "export_method": "Apify actors are portable as Docker images, which is the main lever here. For each actor, pull the source from the Apify console or your linked Git repo, export the input schema, and grab the latest dataset and key-value store contents through the Apify API or CLI. Dump scheduled runs and webhook definitions as JSON. Store credentials and proxy settings in your secrets manager rather than copying them verbatim. Validate that each actor builds and runs locally against its exported input before decommissioning the managed run. Treat run history as a one-time export for compliance, not as a hot dataset to migrate.",
+  "import_method": "Run scrapers on your own infrastructure (Kubernetes, Nomad, plain Docker hosts, or a managed container service) using the same Docker images you exported. Persist outputs to your own object storage or database. Stand up Apache APISIX in front and define routes that expose scraping triggers and result endpoints, then attach plugins for auth (key-auth or jwt-auth), rate limiting (limit-req), and observability (prometheus, opentelemetry). Configure upstreams to point at your scraper services or a thin API layer that fetches from storage. Use APISIX Ingress Controller if you are on Kubernetes. Run both stacks in parallel during cutover and compare output parity.",
+  "concept_mapping": [
+    {
+      "source": "Actor",
+      "target": "Containerized scraper service behind a route"
+    },
+    {
+      "source": "Dataset",
+      "target": "Out of scope - move to your own storage"
+    },
+    {
+      "source": "Key-value store",
+      "target": "Out of scope - move to your own KV/DB"
+    },
+    {
+      "source": "Scheduled run",
+      "target": "Cron job or workflow trigger in your orchestrator"
+    },
+    {
+      "source": "Webhook",
+      "target": "APISIX route with upstream to your handler"
+    },
+    {
+      "source": "Apify API token",
+      "target": "APISIX consumer credential"
+    }
+  ],
+  "effort": "3-8 weeks",
+  "gotchas": [
+    "APISIX is not a scraper runtime - you still need infrastructure to execute the actors",
+    "Residential proxy access from Apify does not transfer; arrange your own provider",
+    "Browser-based actors may need significant memory and CPU on self-hosted nodes",
+    "Anti-bot defenses tuned by Apify must be reimplemented or bought separately",
+    "Operational burden shifts to your team: scaling, retries, dead-letter queues",
+    "Cost savings are not guaranteed at low volumes once infra and ops time are counted"
+  ],
+  "email": {
+    "subject": "Migrating scraping workloads off Apify to a self-hosted setup",
+    "body": "Hi,\n\nWe are starting a 14-day migration window for our scraping workloads. We will keep the actor code as-is, run the Docker images on our own infrastructure, and put Apache APISIX in front to expose results as authenticated APIs.\n\nDuring the window you may see jobs running in both Apify and the new stack while we compare outputs. Once parity is confirmed for an actor, we will cut Apify off and route consumers through the new APISIX endpoint. Auth tokens will rotate - we will share new credentials before any breaking change.\n\nIf you depend on a specific dataset or webhook, please reply with the actor name so we can prioritize parity testing for it.\n\nThanks,\nYour customer"
+  }
+}

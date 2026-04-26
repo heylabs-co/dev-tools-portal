@@ -1,0 +1,65 @@
+{
+  "source": {
+    "slug": "algolia",
+    "name": "Algolia"
+  },
+  "target": {
+    "slug": "bloomreach",
+    "name": "Bloomreach"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Both are hosted search APIs, but Algolia is a general-purpose search platform while Bloomreach is positioned as a commerce experience platform with merchandising and personalization. Migration involves re-indexing content and re-implementing relevance, ranking, and UI bindings.",
+  "why_switch": [
+    "Avoid Algolia commit-tier high-water-mark pricing",
+    "Want commerce-focused merchandising features",
+    "Consolidate search and personalization in one vendor",
+    "Reduce expensive scaling on per-search billing"
+  ],
+  "what_to_export": [
+    "Index records and document schemas",
+    "Synonyms and dictionary entries",
+    "Ranking and relevance configuration",
+    "Query rules and merchandising rules",
+    "Facets and filter configuration",
+    "Analytics and search query logs",
+    "API keys and application settings",
+    "InstantSearch UI configuration"
+  ],
+  "export_method": "Use Algolia's index export API and dashboard to pull index records and settings as JSON, including synonyms, query rules, ranking config, and faceting. Capture search analytics for benchmarking and document the InstantSearch UI configuration so you can rewire the frontend. Note that ranking signals (custom ranking, tie-breakers) and query-rule semantics are Algolia-specific and need to be translated, not pasted, into the destination. Keep Algolia live during cutover so live search keeps working until the new index is validated.",
+  "import_method": "Set up Bloomreach search, define your catalog/content schema, and ingest the exported records. Recreate synonyms, facets, and query rules in Bloomreach's interface, then tune relevance using their merchandising tools. Replace InstantSearch with the Bloomreach SDK or APIs on the frontend, and rewire autocomplete, filtering, and analytics events. Run both engines in parallel — for example, send a small percentage of traffic or queries to Bloomreach — and compare top queries side by side before fully cutting over.",
+  "concept_mapping": [
+    {
+      "source": "Index",
+      "target": "Search index / catalog"
+    },
+    {
+      "source": "Synonyms",
+      "target": "Synonyms"
+    },
+    {
+      "source": "Query rules",
+      "target": "Merchandising / query rules"
+    },
+    {
+      "source": "Ranking config",
+      "target": "Relevance configuration",
+      "note": "Semantics differ; needs tuning"
+    },
+    {
+      "source": "InstantSearch UI",
+      "target": "Bloomreach SDK / custom UI"
+    }
+  ],
+  "effort": "6-14 weeks",
+  "gotchas": [
+    "Ranking and relevance behavior will not match out of the box; expect a tuning phase.",
+    "Algolia commit-tier pricing stays at peak through the cycle, so timing the switch matters.",
+    "InstantSearch widgets do not work with Bloomreach; the frontend must be rewritten.",
+    "Synonyms and rules use different semantics across platforms; manual review is needed.",
+    "Search analytics restart from zero on the new platform — keep Algolia logs for benchmarking."
+  ],
+  "email": {
+    "subject": "Migrating off Algolia — 14-day index export plan",
+    "body": "Hi Algolia team,\n\nWe have decided to move our search stack to a different platform and will be winding down our Algolia usage over the next 14 days.\n\nTo make the offboarding clean, could you help us with:\n\n- A confirmed export path for our index records, settings, synonyms, and query rules.\n- Access to historical search analytics for benchmarking the new system.\n- A point of contact for billing and contract closeout.\n- Confirmation of when our application API keys will be deactivated.\n\nWe plan to run both systems in parallel through day 10, then fully cut traffic over and decommission Algolia by day 14.\n\nThanks for everything.\n\nYour customer"
+  }
+}

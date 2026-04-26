@@ -1,0 +1,72 @@
+{
+  "source": {
+    "slug": "circleci",
+    "name": "CircleCI"
+  },
+  "target": {
+    "slug": "codemagic",
+    "name": "Codemagic"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Move CI/CD from CircleCI's general-purpose YAML pipelines to Codemagic, which is specialized for Flutter and mobile builds. The migration is mostly worthwhile when your workload is mobile-first; backend-only pipelines fit Codemagic less naturally.",
+  "why_switch": [
+    "Purpose-built for Flutter, iOS, and Android",
+    "Built-in code signing and Fastlane support",
+    "Free tier available on monthly subscription",
+    "Simpler mobile build configuration than generic CI",
+    "Mobile-focused docs and integrations"
+  ],
+  "what_to_export": [
+    "CircleCI config (.circleci/config.yml)",
+    "Orbs and reusable commands in use",
+    "Environment variables and contexts",
+    "API tokens and signing certificates",
+    "iOS provisioning profiles",
+    "Android keystores",
+    "Cache configuration",
+    "Build artifacts and test reports",
+    "Slack/email notification configs",
+    "Approval/manual gate definitions"
+  ],
+  "export_method": "Pipeline source already lives in your repo at .circleci/config.yml; copy it as the migration starting point. Use the CircleCI API or web UI to list contexts and project-level environment variables so you can recreate them. Secret values cannot be read back from CircleCI; pull them from your password manager. Export iOS certificates and provisioning profiles from Apple Developer or your existing keychain export. Export Android keystores from secure storage. Download recent build artifacts only if you need them for historical reference. Document each orb you depend on, because Codemagic does not consume CircleCI orbs and you will need an equivalent script or built-in step.",
+  "import_method": "In Codemagic, connect the same Git repository and create a new application. Configure builds via the Codemagic UI for the simplest setup, or commit a codemagic.yaml to your repo for config-as-code. Recreate environment variables and secrets in the Codemagic environment groups, marking signing material as secure. Upload iOS certificates and Android keystores into Codemagic's code signing section. Translate each CircleCI job into a Codemagic workflow with scripts blocks. Replace orbs with explicit script steps or built-in Codemagic integrations (Fastlane, Firebase, App Store Connect). Run a test build, compare artifacts and timings against CircleCI, then redirect default branches once green.",
+  "concept_mapping": [
+    {
+      "source": "config.yml",
+      "target": "codemagic.yaml or UI workflow"
+    },
+    {
+      "source": "Job",
+      "target": "Workflow"
+    },
+    {
+      "source": "Step",
+      "target": "Script step"
+    },
+    {
+      "source": "Context",
+      "target": "Environment group"
+    },
+    {
+      "source": "Orb",
+      "target": "Inline script or built-in integration"
+    },
+    {
+      "source": "Workflow approval",
+      "target": "Manual publishing step"
+    }
+  ],
+  "effort": "1-2 weeks for a mobile-only project, more if you also have non-mobile pipelines that need a different home.",
+  "gotchas": [
+    "Codemagic is mobile-first; backend or web-only workloads fit awkwardly",
+    "CircleCI orbs have no direct equivalent; rewrite as scripts",
+    "Build minute economics differ; estimate before committing",
+    "Custom Docker executors used in CircleCI may not map directly",
+    "Parallel test splitting features differ from CircleCI's built-ins",
+    "Recheck signing flow on real devices before retiring CircleCI"
+  ],
+  "email": {
+    "subject": "Switching CI to Codemagic, please cancel our CircleCI plan",
+    "body": "Hi CircleCI team,\n\nOur engineering work has shifted heavily to mobile, so we are moving our CI/CD to Codemagic, which fits our Flutter and native mobile builds more naturally. After several productive years on CircleCI we want to wind things down cleanly.\n\nMigration timeline is roughly 14 days. We will set up Codemagic, dual-run for about a week, then redirect main branches and stop new builds on CircleCI. We would like to keep the account in a read-only state for one more billing cycle so we can pull historical logs if needed, then close it.\n\nCould you confirm:\n- The cancellation effective date once we request closure\n- Whether build logs remain accessible during a paused or downgraded plan\n- Any export endpoints we should hit before closing\n\nThanks for the reliability over the years. This is a fit decision, not a quality complaint.\n\nYour customer"
+  }
+}

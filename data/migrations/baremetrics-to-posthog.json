@@ -1,0 +1,62 @@
+{
+  "source": {
+    "slug": "baremetrics",
+    "name": "Baremetrics"
+  },
+  "target": {
+    "slug": "posthog",
+    "name": "PostHog"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Baremetrics is SaaS subscription metrics derived primarily from billing data, while PostHog is a broader product analytics platform with events, feature flags and session replay. Most of the migration is replacing Baremetrics dashboards with PostHog reports built on event and revenue data.",
+  "why_switch": [
+    "Want product analytics, not just SaaS metrics",
+    "Need feature flags and session replay alongside metrics",
+    "Prefer open-source with self-hosted option",
+    "Want raw SQL access to event and revenue data",
+    "Consolidating analytics tools to reduce sprawl"
+  ],
+  "what_to_export": [
+    "Subscription and MRR / ARR history",
+    "Customer and account profiles",
+    "Churn and cancellation events",
+    "Plan and price catalog",
+    "Refund and dispute history (if surfaced)",
+    "Custom segments and dashboards",
+    "Source billing connection details",
+    "Notes / annotations on metrics"
+  ],
+  "export_method": "Use Baremetrics' dashboard exports and API to pull customers, subscriptions, MRR/ARR snapshots, churn and refund data into CSV or JSON. Because Baremetrics typically derives metrics from a billing source like Stripe or Chargebee, the underlying data of record lives there — pulling directly from the billing provider often yields a cleaner export than going via Baremetrics. Save dashboards, segments and any annotations as structured documents so they can be rebuilt in PostHog.",
+  "import_method": "Connect your billing provider directly to PostHog by sending subscription and revenue events from your backend, or using a Reverse ETL / warehouse sync. Model subscription start, cancellation, upgrade and downgrade as events with revenue properties. Build cohorts, retention and revenue charts in PostHog on top of these events. Where useful, also enable PostHog's product analytics SDK in the app to capture user behavior alongside revenue. Run both tools in parallel during one reporting cycle and reconcile MRR / churn numbers before retiring Baremetrics.",
+  "concept_mapping": [
+    {
+      "source": "Subscription event",
+      "target": "Custom event with revenue property"
+    },
+    {
+      "source": "Customer",
+      "target": "Person / group"
+    },
+    {
+      "source": "MRR / ARR chart",
+      "target": "Insight built on revenue events"
+    },
+    {
+      "source": "Segment",
+      "target": "Cohort"
+    }
+  ],
+  "effort": "2-5 weeks depending on dashboard count and billing complexity",
+  "gotchas": [
+    "Baremetrics computes SaaS metrics for you; in PostHog you define them",
+    "MRR / churn numbers will not match exactly during parallel run",
+    "Feeding billing data via events can over- or under-count without care",
+    "Refunds and proration need explicit modeling in PostHog",
+    "If billing source already integrates with PostHog, prefer that over manual events",
+    "Stakeholders used to Baremetrics dashboards may need training"
+  ],
+  "email": {
+    "subject": "Moving SaaS metrics from Baremetrics to PostHog",
+    "body": "Hi team,\n\nOver the next 14 days we are migrating our SaaS metrics from Baremetrics to PostHog. The reason is consolidation — we already use product analytics, and PostHog can host both behavior and revenue metrics with raw data access.\n\nThe plan: feed subscription and revenue events from our billing provider into PostHog, model MRR, churn and retention as insights on top of those events, and rebuild Baremetrics dashboards. We will pull historical customers, subscriptions and churn data from Baremetrics and the billing source, and reconcile against PostHog during a parallel reporting cycle.\n\nA few notes. Numbers will not match Baremetrics exactly at first — we will agree on tolerance and review proration and refund handling carefully. Stakeholders used to the Baremetrics dashboard may need a short walkthrough of the new PostHog views. We will keep Baremetrics live until everyone is comfortable.\n\nIf you depend on a specific Baremetrics report, please flag it this week.\n\nThanks,\nYour customer"
+  }
+}

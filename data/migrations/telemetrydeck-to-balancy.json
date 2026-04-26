@@ -1,0 +1,60 @@
+{
+  "source": {
+    "slug": "telemetrydeck",
+    "name": "TelemetryDeck"
+  },
+  "target": {
+    "slug": "balancy",
+    "name": "Balancy"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "TelemetryDeck is privacy-first signal analytics; Balancy is a no-code LiveOps and virtual economy platform for mobile games. They solve different problems, so this is a re-platform onto a monetization tool, not a like-for-like analytics swap.",
+  "why_switch": [
+    "Need no-code LiveOps offers and events",
+    "Want virtual economy CMS and bundle config",
+    "Want A/B testing built into monetization",
+    "Want smart, segment-targeted offers",
+    "Outgrowing pure signal-tracking analytics"
+  ],
+  "what_to_export": [
+    "Signal/event names and schemas",
+    "Aggregated dashboard metrics",
+    "App identifiers and platform IDs",
+    "Subscription metric mappings (RevenueCat)",
+    "Custom payload fields used in signals",
+    "User cohort definitions if any",
+    "API/ingest tokens to rotate",
+    "Historical CSV exports of signals"
+  ],
+  "export_method": "Use the TelemetryDeck dashboard to export signals and aggregated metrics for the apps you plan to migrate. Where bulk export is not available, capture screenshots and CSVs of the dashboards you rely on. Document your signal taxonomy (signal name, payload keys, originating SDK call sites) in a spreadsheet so you can re-derive equivalent events on the new platform. If you ingest TelemetryDeck data into a warehouse, snapshot those tables. Treat this as a one-way archive rather than a portable schema, since Balancy is not an analytics product.",
+  "import_method": "Balancy is configured through its dashboard and integrated via the Balancy SDK in your game/app. Create a Balancy project, model your virtual economy (items, bundles, prices, battle pass tiers) in the CMS, and define A/B tests and smart offers there. In code, install the Balancy SDK for your engine and initialize it on app start. Wire offer triggers and segment events from your client to Balancy so its targeting can fire. Validate in a staging build that offers, prices, and A/B variants render correctly before shipping to production.",
+  "concept_mapping": [
+    {
+      "source": "Signal",
+      "target": "Event/trigger",
+      "note": "Used for offer targeting, not analytics"
+    },
+    {
+      "source": "Dashboard metric",
+      "target": "LiveOps report",
+      "note": "Scope is monetization, not full product analytics"
+    },
+    {
+      "source": "RevenueCat-linked subscription metric",
+      "target": "IAP/economy item",
+      "note": "Verify mapping in Balancy CMS"
+    }
+  ],
+  "effort": "1-3 weeks",
+  "gotchas": [
+    "Balancy is not a drop-in analytics replacement; you may still need a separate analytics tool.",
+    "Re-modeling your economy in a CMS is non-trivial if it currently lives in spreadsheets or code.",
+    "A/B test history from TelemetryDeck does not transfer; expect to rerun tests.",
+    "Adding the Balancy SDK increases binary size and adds a runtime dependency.",
+    "Privacy posture differs; review GDPR and data flow before launch."
+  ],
+  "email": {
+    "subject": "Moving from TelemetryDeck to Balancy in the next 14 days",
+    "body": "Hi TelemetryDeck team,\n\nThank you for the privacy-first analytics over the past months. Our roadmap now centers on no-code LiveOps offers, virtual economy management, and A/B-tested monetization, which sits outside TelemetryDeck's scope. We have decided to migrate to Balancy and will complete the transition within the next 14 days.\n\nPlanned timeline:\n- Days 1-3: export signals, dashboards, and document our event taxonomy.\n- Days 4-9: integrate the Balancy SDK, model our economy, and configure offers.\n- Days 10-12: QA in staging, validate A/B variants and pricing.\n- Days 13-14: ship to production and stop sending new signals to TelemetryDeck.\n\nPlease confirm how to download our remaining data and the correct way to close the account at the end of our current cycle. We would also appreciate confirmation that no further charges will apply after cancellation.\n\nThanks again for the support.\n\nYour customer"
+  }
+}

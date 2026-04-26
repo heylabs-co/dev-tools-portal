@@ -1,0 +1,60 @@
+{
+  "source": {
+    "slug": "cline",
+    "name": "cline"
+  },
+  "target": {
+    "slug": "coderabbit",
+    "name": "coderabbit"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Move from Cline (an in-IDE AI coding agent) to CodeRabbit (an AI code review tool that comments on pull requests). Most of the change is workflow-level, since the two products sit at different points in the developer lifecycle, with overlap rather than full replacement.",
+  "why_switch": [
+    "Prefer review-time AI feedback over in-IDE generation",
+    "Centralise AI assistance on pull requests rather than per developer",
+    "CodeRabbit's hosted SaaS model fits procurement better than BYOK",
+    "Reduce variance from per-developer Cline configurations",
+    "Add structured AI review to a CI / GitHub or GitLab workflow"
+  ],
+  "what_to_export": [
+    "Cline workspace settings and rules / instructions files",
+    "MCP server configurations referenced by Cline",
+    "BYOK provider keys to revoke at the model provider",
+    "Custom prompts, slash commands and saved sessions",
+    "Conversation history valuable for audit or knowledge transfer",
+    "List of repositories and machines where Cline is installed",
+    "Any team conventions encoded in Cline rules that should move to CodeRabbit"
+  ],
+  "export_method": "Because Cline is an open-source VS Code extension, configuration is local to each developer. Have each developer copy their Cline configuration and project rules files into a shared backup or repository. Inventory BYOK API keys configured in Cline so they can be revoked at the upstream model provider. Export any sessions needed for audit. The most important asset to extract is your team's accumulated coding rules and review preferences expressed in Cline; capture them clearly so they can be re-encoded in CodeRabbit's review configuration. There is no central Cline tenant to drain.",
+  "import_method": "Sign up for CodeRabbit and connect it to your GitHub, GitLab or Bitbucket organisation, granting only the repositories you want reviewed. Configure CodeRabbit's review behaviour at the org or repository level: language preferences, severity thresholds, ignored paths, and review style. Translate the most valuable rules from your Cline setup into CodeRabbit configuration (for example via .coderabbit.yaml or the dashboard) so that team conventions are enforced at review time. Open a few representative pull requests to validate review quality and noise level, then roll out to the rest of the org. Once CodeRabbit is in place, ask developers to uninstall Cline and rotate any associated API keys.",
+  "concept_mapping": [
+    {
+      "source": "In-IDE AI agent (Cline)",
+      "target": "PR-time AI reviewer (CodeRabbit)",
+      "note": "different lifecycle stage, partial overlap"
+    },
+    {
+      "source": "Cline rules / instructions files",
+      "target": "CodeRabbit configuration (org / repo level)",
+      "note": "rewrite rules in CodeRabbit's format"
+    },
+    {
+      "source": "BYOK model keys in Cline",
+      "target": "CodeRabbit hosted models",
+      "note": "credentials managed inside CodeRabbit"
+    }
+  ],
+  "effort": "1-3 weeks for org rollout, plus ongoing tuning of review rules",
+  "gotchas": [
+    "CodeRabbit reviews PRs, it does not generate code in the editor; do not expect feature parity with Cline.",
+    "CodeRabbit requires repository access; review the permissions scope with security before granting it.",
+    "Noisy reviews early on cause developers to ignore the bot; tune severity and path filters before wide rollout.",
+    "Rules expressed in Cline as natural-language prompts must be re-expressed in CodeRabbit's configuration format.",
+    "Rotate every BYOK key configured in Cline, not just at the extension level.",
+    "Some teams keep both tools; if so, define clearly which one owns suggestions vs reviews to avoid conflicts."
+  ],
+  "email": {
+    "subject": "We are moving AI code review to CodeRabbit",
+    "body": "Hi,\n\nOver the next 14 days we are switching our AI assistance from Cline (in-IDE) to CodeRabbit (pull request review). CodeRabbit will leave structured comments on PRs in the repositories you work in.\n\nIf you use Cline today, please uninstall it and rotate any model API keys you set up. CodeRabbit is enabled at the organisation level and needs no action from you per machine.\n\nReply if you have questions about review noise, scope or specific repos.\n\nThanks,\nYour customer"
+  }
+}

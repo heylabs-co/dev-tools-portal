@@ -1,0 +1,65 @@
+{
+  "source": {
+    "slug": "cursor",
+    "name": "cursor"
+  },
+  "target": {
+    "slug": "github-copilot",
+    "name": "github-copilot"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Cursor is an AI-first code editor forked from VS Code; GitHub Copilot is an AI assistant that lives inside existing IDEs (VS Code, JetBrains, Visual Studio, etc.). Migration is mostly a low-friction switch back to stock VS Code (or your preferred IDE) plus the Copilot extension.",
+  "why_switch": [
+    "You want to stay in stock VS Code or JetBrains",
+    "You prefer GitHub-native tooling and PR review features",
+    "You need integrated org billing via GitHub",
+    "Your team standardised on Copilot already",
+    "You want broader IDE support than Cursor offers"
+  ],
+  "what_to_export": [
+    "Cursor settings (settings.json)",
+    "Keybindings and snippets",
+    "List of installed extensions",
+    "Workspace .vscode folders",
+    "Custom rules / .cursorrules files",
+    "Model provider preferences",
+    "Chat or composer history if you want it"
+  ],
+  "export_method": "Cursor is a VS Code fork, so most settings export the same way. Use Cursor's settings UI to view settings.json, then copy that file together with keybindings.json and snippets from the user data directory. Take the list of installed extensions (Cursor exposes this in the Extensions view) and write it down or run a CLI list command. Save any .cursorrules files in your repos; these are Cursor-specific and will need to be translated by hand. Workspace .vscode folders are already in your repos, so they carry over with no work.",
+  "import_method": "Install or open VS Code (or your preferred Copilot-supported IDE). Drop your exported settings.json, keybindings.json, and snippets into the matching VS Code user data folder. Install your previous extensions list, then add the GitHub Copilot extension and sign in with your GitHub account on the right plan. .cursorrules files do not exist in Copilot; instead, consider Copilot's repository instructions or workspace prompts to capture similar guidance. Cursor's composer/chat history will not transfer automatically.",
+  "concept_mapping": [
+    {
+      "source": "Cursor settings.json",
+      "target": "VS Code settings.json",
+      "note": "Direct copy"
+    },
+    {
+      "source": ".cursorrules",
+      "target": "Copilot repo instructions",
+      "note": "Manual rewrite"
+    },
+    {
+      "source": "Cursor Composer",
+      "target": "Copilot Chat",
+      "note": "Similar but distinct features"
+    },
+    {
+      "source": "Cursor model picker",
+      "target": "Copilot model selection",
+      "note": "Different model menu"
+    }
+  ],
+  "effort": "1-3 days",
+  "gotchas": [
+    "Some Cursor-specific extensions or features have no Copilot equivalent.",
+    "Composer-style multi-file editing differs from Copilot Chat behaviour.",
+    "Cursor's auto-imports of settings to other machines do not extend to Copilot.",
+    "Copilot pricing is per seat with no free tier on most plans; verify cost.",
+    "Existing Cursor chat history will not migrate.",
+    ".cursorrules guidance must be reauthored as Copilot repo instructions."
+  ],
+  "email": {
+    "subject": "Switching from Cursor to GitHub Copilot",
+    "body": "Hi team,\n\nWe plan to move from Cursor to GitHub Copilot in stock VS Code over the next 14 days. The change should be low friction since Cursor is a VS Code fork; settings, keybindings, and most extensions carry over.\n\nI will share a setup checklist (extensions list, settings.json, Copilot sign-in steps). Please flag any Cursor-specific feature you rely on so we can plan a workaround before we cut over.\n\nThanks,\nYour customer"
+  }
+}

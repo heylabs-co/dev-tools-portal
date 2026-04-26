@@ -1,0 +1,69 @@
+{
+  "source": {
+    "slug": "vercel",
+    "name": "Vercel"
+  },
+  "target": {
+    "slug": "netlify",
+    "name": "Netlify"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Vercel and Netlify are both Git-based frontend cloud platforms with build, CDN, and serverless/edge functions. Migration is usually motivated by pricing, team workflow preferences, or a desire for Netlify's plugin ecosystem rather than fundamental missing features on either side.",
+  "why_switch": [
+    "Different pricing model at scale",
+    "Plugin/build hooks ecosystem for build customization",
+    "Built-in form handling and identity",
+    "Less framework opinion than Vercel + Next.js",
+    "Team preference or procurement standardization"
+  ],
+  "what_to_export": [
+    "Project source repos and build settings",
+    "Environment variables (build and runtime, per environment)",
+    "Custom domains and DNS records",
+    "Redirects and headers configuration",
+    "Serverless and Edge Function code",
+    "Image optimization and ISR usage patterns",
+    "Cron / scheduled job definitions",
+    "Webhooks and deploy hooks",
+    "Team and access settings for reference",
+    "Custom 404/500 pages"
+  ],
+  "export_method": "Vercel project source already lives in Git, which is the canonical export. From the Vercel dashboard or API capture build command, output directory, framework preset, and environment variables for each environment (production, preview, development). Pull serverless and edge function source from your repo and verify each route is reflected in vercel.json or the framework's routing. Document any reliance on Vercel-specific features (ISR, Image Optimization, Vercel KV/Postgres/Blob, Cron Jobs) so you can decide what to re-implement, replace, or call remotely. Custom domains can be listed via the dashboard or API. TLS certs cannot be exported; Netlify will provision its own. Confirm exact Vercel API endpoints against current Vercel documentation.",
+  "import_method": "In Netlify, link the same Git repository, configure build command and publish directory to match Vercel's output, and recreate environment variables in Site Settings, scoped to deploy contexts. Translate routing and headers into Netlify _redirects and netlify.toml. Re-implement Vercel Serverless and Edge Functions as Netlify Functions or Edge Functions, watching for differences in runtime, request/response APIs, and execution limits. For Vercel-specific data products (KV, Postgres, Blob), choose third-party replacements compatible with Netlify or keep them addressable over the network. Add custom domains in Netlify, validate TLS, and switch DNS gradually with lowered TTLs. Verify exact Netlify build settings and function APIs against current Netlify documentation.",
+  "concept_mapping": [
+    {
+      "source": "Vercel Project",
+      "target": "Netlify Site"
+    },
+    {
+      "source": "Vercel Serverless / Edge Functions",
+      "target": "Netlify Functions / Edge Functions"
+    },
+    {
+      "source": "vercel.json",
+      "target": "netlify.toml + _redirects"
+    },
+    {
+      "source": "Vercel KV / Postgres / Blob",
+      "target": "External service",
+      "note": "No 1:1 Netlify equivalents"
+    },
+    {
+      "source": "Vercel Cron Jobs",
+      "target": "Netlify Scheduled Functions"
+    }
+  ],
+  "effort": "1-3 weeks for typical Next.js/static sites; longer with heavy Vercel-specific data services",
+  "gotchas": [
+    "ISR and Image Optimization behave differently across platforms; expect tuning and possible regressions",
+    "Edge Function runtimes and APIs are similar but not identical; validate request/response and limits",
+    "Vercel-specific data products (KV, Postgres, Blob) have no Netlify equivalents; plan replacements",
+    "Build minutes and concurrent build limits differ, which can affect monorepos and preview pipelines",
+    "Preview URL formats change, which can break previously hardcoded links and external tools",
+    "Bandwidth and invocation pricing differ; bandwidth-heavy sites may see different bills"
+  ],
+  "email": {
+    "subject": "Winding down our Vercel usage over the next 14 days",
+    "body": "Hi Vercel team,\n\nWe are moving our frontend hosting from Vercel to Netlify over the next 14 days to align with our team's preferred workflow and pricing model.\n\nIn this window we plan to run Netlify deploys in parallel with Vercel, then cut over custom domains with lowered DNS TTLs. Serverless and Edge Functions will be re-implemented on Netlify, and any Vercel-specific data products we use will either stay on Vercel or move to a third-party replacement depending on the workload.\n\nCould you confirm how long deployment history, analytics, and logs remain accessible after we stop new deploys, plus the cleanest order to disable functions, data products, and projects to avoid surprise charges or data loss?\n\nThanks for the support.\n\nYour customer"
+  }
+}

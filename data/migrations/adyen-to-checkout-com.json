@@ -1,0 +1,62 @@
+{
+  "source": {
+    "slug": "adyen",
+    "name": "Adyen"
+  },
+  "target": {
+    "slug": "checkout-com",
+    "name": "Checkout.com"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Adyen and Checkout.com are both global PSPs with proprietary tokenization, so a migration is mostly about a network token / vault transfer (PCI-compliant) and rewriting integrations against a new API. Subscriptions, recurring agreements, and webhook handling all need rework.",
+  "why_switch": [
+    "Strong developer-focused API and SDKs",
+    "Global currency and routing coverage",
+    "Public usage-based pricing with negotiation",
+    "Issuing and fraud tooling for SaaS/e-commerce",
+    "Reduces single-PSP concentration risk"
+  ],
+  "what_to_export": [
+    "Tokenized card vault (PCI-compliant transfer)",
+    "Recurring / subscription agreements and shopper references",
+    "Webhook endpoints and HMAC keys",
+    "Saved payment methods per customer",
+    "Settlement and reconciliation reports",
+    "Refund and dispute history",
+    "Merchant accounts and store hierarchies",
+    "API credentials and roles"
+  ],
+  "export_method": "Coordinate a card-vault migration directly between PSPs using a PCI-DSS-compliant data transfer; this is a contractual process between Adyen and Checkout.com (or via the card networks) and not something you do over public APIs. In parallel, export shopper references, recurring agreement IDs, refund/dispute history, and settlement reports through Adyen's standard reporting tooling. Document webhook endpoints and HMAC secrets you currently rely on. Capture the merchant account and store hierarchy because Checkout.com may model multi-entity setups differently. Keep settlement and reconciliation files for your finance team — they remain your audit trail across the cutover.",
+  "import_method": "Onboard with Checkout.com (KYC, contracts, sub-merchant accounts), then ingest the migrated card vault into their environment via the PSP-to-PSP transfer process. Re-implement payment session / payment method endpoints using Checkout.com's API and SDKs, including 3DS flows. Rebuild webhook handlers against their event payload format and HMAC verification. Update subscription/recurring logic to use Checkout.com's shopper references for off-session charges. Test in sandbox with a representative card mix, run a low-traffic canary in production, then ramp. Keep Adyen processing for in-flight disputes and refunds against pre-migration transactions.",
+  "concept_mapping": [
+    {
+      "source": "Shopper reference + recurring detail",
+      "target": "Source / customer ID for off-session charges"
+    },
+    {
+      "source": "Adyen webhook (HMAC SHA256)",
+      "target": "Checkout.com webhook (different HMAC scheme)"
+    },
+    {
+      "source": "Merchant accounts / stores",
+      "target": "Sub-entities / business accounts"
+    },
+    {
+      "source": "Adyen Dropin / Web Components",
+      "target": "Checkout.com Frames / hosted fields"
+    }
+  ],
+  "effort": "2-4 months including KYC, vault transfer, and 3DS recertification",
+  "gotchas": [
+    "Card vault transfer is contractual and PCI-controlled; cannot be done client-side",
+    "Stored payment methods may force re-authentication for PSD2/SCA in some regions",
+    "Webhook signatures and event payloads differ; do not assume compatibility",
+    "Refunds and disputes against pre-migration charges still go through Adyen",
+    "Local payment methods and acquirer routing differ; test per-country with real volume",
+    "3DS implementation must be re-tested and possibly re-certified"
+  ],
+  "email": {
+    "subject": "Migrating PSP from Adyen to Checkout.com — 14-day plan",
+    "body": "Hi team,\n\nWe are starting a migration from Adyen to Checkout.com. The full project will run beyond two weeks because of KYC and PCI vault transfer, but here is the 14-day kickoff plan.\n\nDays 1-3: complete Checkout.com onboarding, KYC, and contract.\nDays 4-7: kick off PCI-compliant card vault transfer with both PSPs and our compliance team.\nDays 8-11: build Checkout.com integration in sandbox, including Frames, 3DS, webhooks, and recurring charges.\nDays 12-14: run sandbox QA against a representative card mix and prepare a canary plan.\n\nProduction cutover and full ramp will follow once vault transfer and 3DS testing are complete.\n\nThanks,\nYour customer"
+  }
+}

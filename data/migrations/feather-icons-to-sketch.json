@@ -1,0 +1,64 @@
+{
+  "source": {
+    "slug": "feather-icons",
+    "name": "Feather Icons"
+  },
+  "target": {
+    "slug": "sketch",
+    "name": "Sketch"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Feather is an open-source SVG icon set; Sketch is a Mac-native design tool. The work is to bring Feather SVGs into Sketch as a reusable library, not to replace the icons themselves.",
+  "why_switch": [
+    "Mac-native performance for designers",
+    "JavaScript plugin API for automation",
+    "Mature design token export workflow",
+    "Use Sketch as the canvas around Feather icons",
+    "Existing team standardized on Sketch"
+  ],
+  "what_to_export": [
+    "Full Feather SVG icon set",
+    "Inventory of icons used in current product",
+    "Custom modified Feather icons",
+    "Icon naming conventions",
+    "Stroke width, size, and color tokens",
+    "React/Vue wrapper components",
+    "Icon usage map per screen",
+    "Brand color palette",
+    "Accessibility metadata",
+    "Build pipeline references"
+  ],
+  "export_method": "Feather Icons is distributed as SVGs in a GitHub repo and an npm package, so exporting means cloning or copying the SVGs you actually use. Audit your codebase to list referenced icons (ripgrep over imports works), then collect those SVGs into a single folder. Capture any locally modified variants as separate files. Note your wrapper components and how icons are bundled (per-icon imports, sprite, font), since that is what changes on the engineering side. There is no account to cancel, so the only real cleanup is removing unused icons.",
+  "import_method": "In Sketch, create a new library document and import the Feather SVGs as symbols, one per icon, on a 24x24 artboard to match the source grid. Use Sketch's plugin ecosystem (icon import or batch SVG plugins) to speed this up if the set is large. Apply consistent naming so symbol names match the Feather slugs your code uses. Publish the library to your team workspace so designers can reuse symbols across files. Developer handoff continues to import SVGs from the Feather npm package in code; the Sketch library is the design source of truth, not a runtime artifact.",
+  "concept_mapping": [
+    {
+      "source": "Feather SVG",
+      "target": "Sketch symbol"
+    },
+    {
+      "source": "Icon name / slug",
+      "target": "Symbol name"
+    },
+    {
+      "source": "Stroke / size token",
+      "target": "Sketch text/layer style"
+    },
+    {
+      "source": "GitHub repo",
+      "target": "Sketch shared library"
+    }
+  ],
+  "effort": "1-2 weeks",
+  "gotchas": [
+    "Sketch is Mac-only; designers on Windows or Linux are blocked",
+    "Symbol naming must mirror code icon names or design and dev drift",
+    "Custom-modified Feather variants must be imported explicitly",
+    "Feather has only ~280 icons; expect to supplement with another set inside Sketch",
+    "Sketch's collaboration is weaker than browser-based tools; plan file sharing carefully",
+    "Plugin updates have slowed in the broader Sketch ecosystem; verify any plugin you depend on"
+  ],
+  "email": {
+    "subject": "FYI: standardizing our design workflow on Sketch",
+    "body": "Hi team,\n\nQuick note for visibility: over the next 14 days we're moving our design workflow onto Sketch. We'll keep using Feather Icons as our SVG library and import them into Sketch as a shared symbol set, so engineering can keep importing icons from the Feather package as before.\n\nThere's no contract to cancel on the icon side since Feather is MIT-licensed open source. If you maintain wrappers or shared files with Feather, please flag them so we can keep naming consistent across Sketch symbols and code.\n\nThanks,\nYour customer"
+  }
+}

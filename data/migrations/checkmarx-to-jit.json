@@ -1,0 +1,66 @@
+{
+  "source": {
+    "slug": "checkmarx",
+    "name": "checkmarx"
+  },
+  "target": {
+    "slug": "jit",
+    "name": "jit"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Checkmarx is an enterprise SAST/SCA/IaC platform, while Jit is a developer-security orchestration layer that wires up open-source scanners (SAST, SCA, secrets, IaC) into a product-security plan. Migrating means trading a heavyweight, integrated suite for an opinionated orchestrator over OSS engines.",
+  "why_switch": [
+    "Shift from enterprise SAST to a lightweight orchestrator for OSS scanners",
+    "Improve developer ergonomics in GitHub workflows",
+    "Reduce custom enterprise contract overhead",
+    "Get SCA, secrets, and IaC coverage in one product-security plan"
+  ],
+  "what_to_export": [
+    "List of Checkmarx projects and underlying repositories",
+    "Open and historical findings, ideally as SARIF",
+    "Risk acceptance and suppression decisions",
+    "Custom queries or rule overrides",
+    "Compliance reports already issued",
+    "User and team roles",
+    "CI integration configuration",
+    "Severity gating thresholds"
+  ],
+  "export_method": "Export findings via Checkmarx's SARIF export where available, and archive scan reports for audit retention. Document custom queries separately — they are unlikely to translate to Jit's orchestrated OSS engines, so they must be reimplemented as engine-specific rules or accepted as a gap. Capture risk-acceptance decisions in a structured list for re-application. Treat user/role and CI integration data as documentation; recreate them natively in Jit. Do not move credentials directly.",
+  "import_method": "Connect Jit to your source-control organisation (typically GitHub) and let it discover repositories. Jit composes a security plan from OSS engines (e.g. Semgrep, Gitleaks, KICS, Trivy) per repository; turn on the controls that map to the Checkmarx scan types you used (SAST, SCA, secrets, IaC). Re-apply suppressions per engine, since Jit defers to the underlying scanners' ignore mechanisms. Tune PR-blocking thresholds conservatively for the first sprint to avoid build failures, then ratchet them up as developers triage backlog. Keep Checkmarx running in parallel until coverage parity is verified per repository.",
+  "concept_mapping": [
+    {
+      "source": "Project (SAST suite)",
+      "target": "Repository under a security plan"
+    },
+    {
+      "source": "SAST scan",
+      "target": "OSS SAST engine (e.g. Semgrep) orchestrated by Jit"
+    },
+    {
+      "source": "SCA scan",
+      "target": "OSS SCA engine orchestrated by Jit"
+    },
+    {
+      "source": "Custom query",
+      "target": "Engine-specific rule",
+      "note": "Manual re-implementation"
+    },
+    {
+      "source": "SARIF export",
+      "target": "SARIF / scanner output (per engine)"
+    }
+  ],
+  "effort": "3-6 weeks",
+  "gotchas": [
+    "Checkmarx custom queries do not transfer; reimplement against the underlying OSS engine or drop them",
+    "Engine-level coverage may differ from Checkmarx's proprietary analyzers — validate per language",
+    "Historical scan data stays in Checkmarx; archive reports before cancellation",
+    "Enterprise contracts may have notice periods — confirm before scheduling a cutover",
+    "PR-blocking on day one will likely fail builds; phase in gates",
+    "Suppressions are per-engine, not centralised, so audit them carefully"
+  ],
+  "email": {
+    "subject": "Moving application security from Checkmarx to Jit",
+    "body": "Hi team,\n\nOver the next 14 days we are migrating our application security tooling from Checkmarx to Jit, which orchestrates OSS scanners on each repository. Both tools will run in parallel until we have validated coverage and tuned PR gates per repo. Expect new check names in your pull requests during this period. Please reply if you depend on a specific Checkmarx report so we can plan its replacement.\n\nThanks for bearing with us.\n\nYour customer"
+  }
+}

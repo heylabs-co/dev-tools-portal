@@ -1,0 +1,61 @@
+{
+  "source": {
+    "slug": "bugsnag",
+    "name": "Bugsnag"
+  },
+  "target": {
+    "slug": "crashpad",
+    "name": "Crashpad"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Bugsnag is a hosted error monitoring product; Crashpad is a low-level open-source crash capture library. Replacing one with the other means giving up the dashboard, alerts, and grouping in exchange for a self-built or third-party backend.",
+  "why_switch": [
+    "Open-source, no SaaS bill",
+    "Full control of crash data",
+    "Battle-tested in Chromium",
+    "Avoid annual event-volume commits",
+    "Foundation for a custom pipeline"
+  ],
+  "what_to_export": [
+    "Project and environment list",
+    "User and team membership",
+    "Alert and notification rules",
+    "Symbol / debug file upload pipeline",
+    "Issue ownership and statuses",
+    "Integration list",
+    "Stability targets and release tracking config",
+    "Sample crash payloads for reference"
+  ],
+  "export_method": "Document Bugsnag projects, environments, members, alerts, and integrations from the Bugsnag UI or its API. Historical events generally do not migrate to a self-hosted setup; record the issues you actively track and any aggregates you rely on. Save symbol upload steps as build-pipeline code. Treat tokens and API keys as values to rotate after cutover. Where Bugsnags API does not clearly expose a setting, document it manually rather than assuming an endpoint.",
+  "import_method": "Crashpad is a library, not a service, so the import is really an architectural change. Integrate Crashpad into your native applications following its official documentation, replacing Bugsnags native SDK initialization. Stand up a backend that can receive minidumps from Crashpads HTTP uploader; many teams pair Crashpad with Sentry, Backtrace, or a custom service rather than building from scratch. For non-native applications that previously used Bugsnag, choose another error monitoring tool because Crashpad does not address them. Wire symbol upload to your chosen backend, configure deploy markers, and validate with controlled crashes before retiring Bugsnag.",
+  "concept_mapping": [
+    {
+      "source": "Native SDK",
+      "target": "Crashpad client library"
+    },
+    {
+      "source": "Hosted backend",
+      "target": "Self-hosted or third-party crash backend"
+    },
+    {
+      "source": "Dashboard / alerts",
+      "target": "Provided by chosen backend, not Crashpad"
+    },
+    {
+      "source": "Symbol upload",
+      "target": "Backend-specific upload tooling"
+    }
+  ],
+  "effort": "4-12 weeks",
+  "gotchas": [
+    "Crashpad provides capture only; you still need a backend",
+    "No drop-in replacement for non-native Bugsnag SDKs",
+    "Dashboards, grouping, and alerting must come from the backend you choose",
+    "Symbol management, retention, and access control become your responsibility",
+    "Historical Bugsnag data does not transfer"
+  ],
+  "email": {
+    "subject": "Winding down our Bugsnag usage",
+    "body": "Hi team,\n\nWe are moving our native crash capture to an open-source library and operating the backend ourselves, so we plan to stop using Bugsnag. Our target timeline is 14 days from today.\n\nDuring that period we will export project and integration configuration, document alert rules, and run the new pipeline in parallel for validation. After cutover, our applications will stop sending events to Bugsnag.\n\nCould you confirm the steps to disable auto-renewal, the effective end date under our current commitment, and any final invoicing details? Please share any recommended actions before account deactivation.\n\nThanks for the support.\n\nYour customer"
+  }
+}

@@ -1,0 +1,73 @@
+{
+  "source": {
+    "slug": "bunny-net",
+    "name": "Bunny.net"
+  },
+  "target": {
+    "slug": "cloudflare",
+    "name": "Cloudflare"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Move CDN, DNS, and edge scripting from Bunny.net to Cloudflare by recreating pull zones as Cloudflare cache rules and porting Edge Scripting to Workers. The migration is mostly straightforward because both platforms use HTTP-standard origins and DNS.",
+  "why_switch": [
+    "Free tier with generous CDN and DDoS protection",
+    "Workers and Pages for richer edge compute",
+    "Larger PoP footprint and broader product surface",
+    "Bundled DNS, WAF, and Zero Trust",
+    "Strong Terraform and API tooling"
+  ],
+  "what_to_export": [
+    "Pull zone and storage zone configurations",
+    "Origin URLs and host header overrides",
+    "Edge Rules and rewrite logic",
+    "Edge Scripting source code",
+    "Custom hostnames and TLS certificates",
+    "Image processing/optimization settings",
+    "DNS records (if Bunny DNS is used)",
+    "Access tokens and signed URL configuration",
+    "Logs and analytics history",
+    "Storage zone object inventory"
+  ],
+  "export_method": "Use the Bunny.net dashboard or API to list and export pull zones, storage zones, and Edge Rules. Pull each zones configuration as JSON, including caching behavior, query string handling, and origin headers. Download Edge Scripting source from the dashboard or your repository. If you use Bunny Storage as a primary origin, list the bucket and prepare to either keep Bunny Storage as origin or migrate objects to R2 or another S3-compatible store. Export DNS records from Bunny DNS as a zone file or via API. Capture custom certificates if self-managed. Pull a recent log sample to baseline traffic patterns and cache-hit ratios.",
+  "import_method": "Create a Cloudflare account and add your domain; let Cloudflare scan DNS or import your Bunny zone file. Configure origin via DNS records that point to your true origin (or to R2/Bunny Storage). Set up cache rules, page rules, or the new Rules engine to match Bunny Edge Rules behavior. Port Edge Scripting logic to Cloudflare Workers, deploying via Wrangler. If you use Bunny Storage, optionally migrate objects to R2 using rclone or aws-cli with S3-compatible endpoints. Provision TLS through Cloudflare Universal SSL or upload custom certificates. Use Terraform with the cloudflare provider to manage resources as code. Cut DNS authority over to Cloudflare nameservers once records are validated.",
+  "concept_mapping": [
+    {
+      "source": "Pull zone",
+      "target": "Zone with cache rules"
+    },
+    {
+      "source": "Storage zone",
+      "target": "R2 bucket",
+      "note": "Both expose S3-compatible APIs"
+    },
+    {
+      "source": "Edge Rules",
+      "target": "Rules engine / Cache Rules"
+    },
+    {
+      "source": "Edge Scripting",
+      "target": "Cloudflare Workers"
+    },
+    {
+      "source": "Bunny DNS",
+      "target": "Cloudflare DNS"
+    },
+    {
+      "source": "Bunny Image Processing",
+      "target": "Cloudflare Images / Image Resizing"
+    }
+  ],
+  "effort": "1-3 weeks for a typical site, longer with significant Edge Scripting",
+  "gotchas": [
+    "Edge Scripting and Workers have different runtimes and APIs; treat the port as a rewrite, not a copy-paste",
+    "Cloudflare requires changing nameservers to its DNS unless you use CNAME setup on enterprise plans",
+    "Cache key and query-string handling differs subtly; recheck hit ratios after cutover",
+    "Free-tier Workers and Cache Rules have request limits that can bite at scale; review pricing before commit",
+    "Image optimization features have different parameter syntax; URLs may need updates",
+    "Plan DNS TTL reduction at least 24 hours before nameserver change to keep rollback fast"
+  ],
+  "email": {
+    "subject": "Migrating our CDN from Bunny.net to Cloudflare over the next 14 days",
+    "body": "Hello Bunny.net team,\n\nQuick note that we are starting a migration from Bunny.net to Cloudflare over the next 14 days. The drivers are the broader product surface (Workers, R2, Zero Trust), the free tier for our smaller properties, and consolidating DNS, CDN, and security in one place.\n\nOur plan: days 1-3 export pull zone configs, Edge Rules, Edge Scripting code, and DNS; days 4-8 stand up Cloudflare with cache rules and Workers, validating on a staging hostname; days 9-12 cut DNS over with low TTLs and keep Bunny pull zones live as rollback; days 13-14 drain traffic, finalize, and close out the account.\n\nCould you confirm the steps to cleanly close pull zones, storage zones, and DNS, and whether we have any pending invoices or commitments to settle first. Bunny has been a great partner for the use case it served and we may return for specific workloads in the future.\n\nThanks,\nYour customer"
+  }
+}

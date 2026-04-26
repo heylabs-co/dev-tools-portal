@@ -1,0 +1,78 @@
+{
+  "source": {
+    "slug": "mongodb-atlas",
+    "name": "MongoDB Atlas"
+  },
+  "target": {
+    "slug": "neon-acquired-by-databricks",
+    "name": "Neon (acquired by Databricks)"
+  },
+  "generated_at": "2026-04-25T12:00:00Z",
+  "tldr": "Mongo Atlas to Neon is a paradigm change: document store to serverless Postgres. The win is standard SQL, scale-to-zero billing, and instant branching for dev workflows. The cost is data modeling work.",
+  "why_switch": [
+    "Standard PostgreSQL — broadest tooling and ORM support",
+    "Serverless scale-to-zero pricing",
+    "Instant branching for dev/preview environments",
+    "Avoid Atlas dedicated-cluster fixed pricing",
+    "Lower lock-in: pg_dump and standard SQL"
+  ],
+  "what_to_export": [
+    "All collection data per database",
+    "Indexes and unique constraints",
+    "Schema validation rules",
+    "Aggregation pipelines (logic to port)",
+    "Atlas Search indexes (if used)",
+    "Users, roles, and database access",
+    "Network access lists",
+    "Backup snapshot inventory",
+    "Triggers and scheduled functions",
+    "Connection strings used by apps"
+  ],
+  "export_method": "Use mongodump to produce a BSON archive of each database, with index definitions included. For large datasets, take an Atlas snapshot, restore to a temporary cluster, and dump from there to avoid impacting production. Export Atlas Search index configs and any aggregation pipelines as code. Pull users, roles, and network access via the Atlas Admin API. Keep BSON archives plus a JSON manifest of indexes, validators, and pipeline logic in object storage as the durable migration artifact.",
+  "import_method": "Neon is standard PostgreSQL, so the data path is mongodump → transform → COPY/INSERT. Design the target schema first: structured fields become normal columns, semi-structured payloads can live in JSONB. Convert BSON to CSV/SQL with a transform script and load via psql COPY or via Postgres's native COPY FROM. Recreate indexes and constraints in SQL. Aggregation pipelines must be rewritten as SQL (CTEs, window functions, JSONB operators where appropriate). Application code switches from a MongoDB driver to a Postgres driver/ORM. Use Neon branching to spin up an isolated migration environment for testing. Run dual-write or shadow reads for 1-2 weeks before cutover.",
+  "concept_mapping": [
+    {
+      "source": "Database",
+      "target": "Database",
+      "note": "Same concept"
+    },
+    {
+      "source": "Collection",
+      "target": "Table (+ optional JSONB)",
+      "note": "Schema design required"
+    },
+    {
+      "source": "Document",
+      "target": "Row",
+      "note": "Map fields to columns"
+    },
+    {
+      "source": "Aggregation pipeline",
+      "target": "SQL query (CTE/window)",
+      "note": "Manual rewrite"
+    },
+    {
+      "source": "Atlas Search",
+      "target": "Postgres FTS or external service",
+      "note": "Limited built-in equivalent"
+    },
+    {
+      "source": "MongoDB driver",
+      "target": "Postgres driver (pg / pgx)",
+      "note": "Application-side change"
+    }
+  ],
+  "effort": "4-10 weeks",
+  "gotchas": [
+    "Document → relational schema design is the dominant cost; estimate engineering, not ops, time",
+    "Aggregation pipelines must be rewritten as SQL — nested pipelines often need multiple CTEs",
+    "Atlas Search has no first-party equivalent; plan separate FTS or external search service",
+    "Dedicated Atlas cluster tiers don't scale down mid-cycle; align cancellation with billing boundary",
+    "All application services must switch from MongoDB drivers to Postgres drivers; coordinate deploys",
+    "Neon's serverless model has cold starts; verify P99 latency under realistic load before cutover"
+  ],
+  "email": {
+    "subject": "Data export request and account sunset — 14-day timeline",
+    "body": "Hi MongoDB Atlas team,\n\nWe are migrating off Atlas to Neon (Postgres) and need a complete export of our data in machine-readable form. Required: full mongodump archives per database, all index definitions, schema validators, Atlas Search index configs, aggregation pipeline definitions, users and roles, network access lists, backup snapshot inventory, and triggers/scheduled functions.\n\nWe are targeting a 14-day window for export and validation. Please confirm:\n\n1. Which exports are self-serve via mongodump/Admin API vs. require support.\n2. Whether snapshot restores can be staged to a short-lived cluster for offline dumps.\n3. Billing implications of pausing or downsizing dedicated clusters during dual-run and the exact account sunset date once we cancel.\n\nThanks,\nYour customer"
+  }
+}

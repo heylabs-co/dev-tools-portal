@@ -1,0 +1,263 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import { getCollection } from 'astro:content';
+import { readFileSync, existsSync } from 'node:fs';
+import { fileURLToPath } from 'node:url';
+import { dirname, join, resolve } from 'node:path';
+
+interface MigrationGuide {
+  source: { slug: string; name: string };
+  target: { slug: string; name: string };
+  generated_at?: string;
+  tldr?: string;
+  why_switch?: string[];
+  what_to_export?: string[];
+  export_method?: string;
+  import_method?: string;
+  concept_mapping?: Array<{ source: string; target: string; note?: string }>;
+  effort?: string;
+  gotchas?: string[];
+  email?: { subject: string; body: string };
+}
+
+// Load all migration guide JSONs at build time so we can both generate
+// static paths AND render the matched one.
+const __dirname = dirname(fileURLToPath(import.meta.url));
+const MIG_DIR = resolve(__dirname, '../../../data/migrations');
+
+interface PathEntry {
+  params: { pair: string };
+  props: { guide: MigrationGuide };
+}
+
+export async function getStaticPaths() {
+  const __dir = dirname(fileURLToPath(import.meta.url));
+  const dir = resolve(__dir, '../../../data/migrations');
+  if (!existsSync(dir)) return [];
+  const fs = await import('node:fs');
+  const files = fs.readdirSync(dir).filter((f) => f.endsWith('.json'));
+  const out: PathEntry[] = [];
+  for (const f of files) {
+    try {
+      const guide = JSON.parse(fs.readFileSync(join(dir, f), 'utf-8')) as MigrationGuide;
+      const pair = f.replace(/\.json$/, '');
+      if (guide?.source?.slug && guide?.target?.slug) {
+        out.push({ params: { pair }, props: { guide } });
+      }
+    } catch { /* skip malformed */ }
+  }
+  return out;
+}
+
+const { guide } = Astro.props as { guide: MigrationGuide };
+const { source, target } = guide;
+
+// Pull pricing/lock-in info from the catalog so we can show a quick comparison.
+const allCompanies = await getCollection('companies');
+const sourceCo = allCompanies.find((c) => c.data.slug === source.slug)?.data;
+const targetCo = allCompanies.find((c) => c.data.slug === target.slug)?.data;
+
+const pageTitle = `Migrate from ${source.name} to ${target.name} — Step-by-step guide`;
+const pageDescription =
+  guide.tldr ??
+  `Step-by-step migration guide: how to move from ${source.name} to ${target.name}, including export, import, concept mapping, common pitfalls, and a draft data-export request email.`;
+---
+
+<BaseLayout
+  title={pageTitle}
+  description={pageDescription}
+  jsonLd={{
+    '@context': 'https://schema.org',
+    '@type': 'HowTo',
+    name: `Migrate from ${source.name} to ${target.name}`,
+    description: pageDescription,
+    step: (guide.steps_array_replaced_below = []) || undefined,
+  }}
+>
+  <article class="mx-auto max-w-3xl px-4 py-10">
+    <Breadcrumbs items={[
+      { label: 'Home', href: '/' },
+      { label: 'Tools', href: '/tools/' },
+      { label: source.name, href: `/tools/${source.slug}/` },
+      { label: `Migrate to ${target.name}` },
+    ]} />
+
+    <!-- Hero -->
+    <header class="mt-8">
+      <div class="text-xs font-semibold uppercase tracking-wider text-orange-600 dark:text-orange-400">
+        🔄 Migration guide
+      </div>
+      <h1 class="mt-2 text-3xl font-extrabold tracking-tight text-[#0F172A] dark:text-[#EDEDEF] sm:text-4xl">
+        Migrate from {source.name} to {target.name}
+      </h1>
+      {guide.tldr && (
+        <p class="mt-4 text-lg text-[#64748B] dark:text-[#8A8F98]">
+          {guide.tldr}
+        </p>
+      )}
+      {guide.effort && (
+        <p class="mt-3 inline-block rounded-full bg-emerald-100 dark:bg-emerald-950/50 px-3 py-1 text-xs font-semibold text-emerald-700 dark:text-emerald-300">
+          ⏱ Estimated effort: {guide.effort}
+        </p>
+      )}
+    </header>
+
+    <!-- Quick comparison strip -->
+    <section class="mt-8 grid grid-cols-2 gap-4">
+      <a
+        href={`/tools/${source.slug}/`}
+        class="rounded-xl border border-gray-200 bg-white p-4 transition hover:border-[#5E6AD2]/50 dark:border-gray-800 dark:bg-gray-900"
+      >
+        <div class="text-[10px] font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400">From</div>
+        <div class="mt-1 text-lg font-bold text-gray-900 dark:text-white">{source.name}</div>
+        <div class="mt-2 space-y-1 text-xs text-gray-600 dark:text-gray-400">
+          {sourceCo?.pricing?.model && <div>Pricing: {sourceCo.pricing.model}</div>}
+          {sourceCo?.scores?.lock_in?.level && <div>Lock-in: {sourceCo.scores.lock_in.level}</div>}
+          {sourceCo?.pricing?.high_water_mark && <div class="font-semibold text-red-600 dark:text-red-400">⚠ High water mark</div>}
+        </div>
+      </a>
+      <a
+        href={`/tools/${target.slug}/`}
+        class="rounded-xl border border-gray-200 bg-white p-4 transition hover:border-[#5E6AD2]/50 dark:border-gray-800 dark:bg-gray-900"
+      >
+        <div class="text-[10px] font-semibold uppercase tracking-wider text-emerald-600 dark:text-emerald-400">To</div>
+        <div class="mt-1 text-lg font-bold text-gray-900 dark:text-white">{target.name}</div>
+        <div class="mt-2 space-y-1 text-xs text-gray-600 dark:text-gray-400">
+          {targetCo?.pricing?.model && <div>Pricing: {targetCo.pricing.model}</div>}
+          {targetCo?.scores?.lock_in?.level && <div>Lock-in: {targetCo.scores.lock_in.level}</div>}
+          {targetCo?.pricing?.high_water_mark === false && <div class="text-emerald-600 dark:text-emerald-400">✓ No HWM pricing</div>}
+        </div>
+      </a>
+    </section>
+
+    <!-- Why switch -->
+    {guide.why_switch && guide.why_switch.length > 0 && (
+      <section class="mt-10">
+        <h2 class="text-xl font-bold text-[#0F172A] dark:text-[#EDEDEF]">Why switch</h2>
+        <ul class="mt-3 list-disc space-y-1.5 pl-5 text-[15px] text-[#0F172A] dark:text-[#EDEDEF]">
+          {guide.why_switch.map((b) => <li>{b}</li>)}
+        </ul>
+      </section>
+    )}
+
+    <!-- What to export -->
+    {guide.what_to_export && guide.what_to_export.length > 0 && (
+      <section class="mt-10">
+        <h2 class="text-xl font-bold text-[#0F172A] dark:text-[#EDEDEF]">Data to export</h2>
+        <ul class="mt-3 grid grid-cols-1 gap-2 sm:grid-cols-2">
+          {guide.what_to_export.map((b) => (
+            <li class="rounded-lg border border-gray-200 bg-gray-50 px-3 py-2 text-sm dark:border-gray-800 dark:bg-gray-900">
+              {b}
+            </li>
+          ))}
+        </ul>
+      </section>
+    )}
+
+    <!-- Export -->
+    {guide.export_method && (
+      <section class="mt-10">
+        <h2 class="text-xl font-bold text-[#0F172A] dark:text-[#EDEDEF]">Exporting from {source.name}</h2>
+        <p class="mt-3 whitespace-pre-wrap text-[15px] leading-relaxed text-[#0F172A] dark:text-[#EDEDEF]">
+          {guide.export_method}
+        </p>
+      </section>
+    )}
+
+    <!-- Import -->
+    {guide.import_method && (
+      <section class="mt-10">
+        <h2 class="text-xl font-bold text-[#0F172A] dark:text-[#EDEDEF]">Importing into {target.name}</h2>
+        <p class="mt-3 whitespace-pre-wrap text-[15px] leading-relaxed text-[#0F172A] dark:text-[#EDEDEF]">
+          {guide.import_method}
+        </p>
+      </section>
+    )}
+
+    <!-- Concept mapping -->
+    {guide.concept_mapping && guide.concept_mapping.length > 0 && (
+      <section class="mt-10">
+        <h2 class="text-xl font-bold text-[#0F172A] dark:text-[#EDEDEF]">Concept mapping</h2>
+        <p class="mt-2 text-sm text-[#64748B] dark:text-[#8A8F98]">
+          How {source.name} concepts translate into {target.name}.
+        </p>
+        <div class="mt-4 overflow-hidden rounded-xl border border-gray-200 dark:border-gray-800">
+          <table class="w-full text-sm">
+            <thead class="bg-gray-50 dark:bg-gray-900">
+              <tr>
+                <th class="px-3 py-2 text-left font-semibold">{source.name}</th>
+                <th class="px-3 py-2 text-left font-semibold">{target.name}</th>
+                <th class="px-3 py-2 text-left font-semibold">Note</th>
+              </tr>
+            </thead>
+            <tbody>
+              {guide.concept_mapping.map((m) => (
+                <tr class="border-t border-gray-100 dark:border-gray-800">
+                  <td class="px-3 py-2 font-mono text-xs">{m.source}</td>
+                  <td class="px-3 py-2 font-mono text-xs">{m.target}</td>
+                  <td class="px-3 py-2 text-xs text-[#64748B] dark:text-[#8A8F98]">{m.note ?? ''}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </section>
+    )}
+
+    <!-- Gotchas -->
+    {guide.gotchas && guide.gotchas.length > 0 && (
+      <section class="mt-10">
+        <h2 class="text-xl font-bold text-[#0F172A] dark:text-[#EDEDEF]">Watch out for</h2>
+        <ul class="mt-3 space-y-2">
+          {guide.gotchas.map((g) => (
+            <li class="rounded-lg border border-yellow-200 bg-yellow-50/60 p-3 text-sm text-yellow-900 dark:border-yellow-900/50 dark:bg-yellow-950/30 dark:text-yellow-200">
+              ⚠ {g}
+            </li>
+          ))}
+        </ul>
+      </section>
+    )}
+
+    <!-- Email draft -->
+    {guide.email && (
+      <section class="mt-10">
+        <h2 class="text-xl font-bold text-[#0F172A] dark:text-[#EDEDEF]">Draft email to {source.name}</h2>
+        <p class="mt-2 text-sm text-[#64748B] dark:text-[#8A8F98]">
+          Copy-paste-ready data export request.
+        </p>
+        <div class="mt-4 rounded-xl border border-gray-200 bg-white p-4 dark:border-gray-800 dark:bg-gray-900">
+          <div class="mb-2 text-xs text-gray-500 dark:text-gray-400">
+            Subject: <span class="font-mono font-medium text-gray-700 dark:text-gray-300">{guide.email.subject}</span>
+          </div>
+          <pre class="whitespace-pre-wrap text-xs leading-relaxed text-gray-800 dark:text-gray-200 font-mono">{guide.email.body}</pre>
+        </div>
+      </section>
+    )}
+
+    <!-- Disclaimer -->
+    <section class="mt-10 rounded-xl border border-orange-200/60 bg-orange-50/40 p-4 text-sm text-orange-900 dark:border-orange-900/40 dark:bg-orange-950/20 dark:text-orange-200">
+      ⚠ <strong>AI-generated guide.</strong> Verify each step against the official {source.name}
+      and {target.name} docs before executing. APIs change; this guide refreshes monthly.
+      Spot a mistake?
+      <a
+        href={`https://github.com/heylabs-co/dev-tools-portal/issues/new?title=${encodeURIComponent(`[Migration] ${source.name}→${target.name} — incorrect step`)}&labels=migration-fix`}
+        target="_blank"
+        rel="noopener"
+        class="font-semibold underline underline-offset-2 hover:opacity-80"
+      >Report it.</a>
+    </section>
+
+    <!-- CTA back to tool pages -->
+    <section class="mt-10 flex flex-wrap gap-3">
+      <a
+        href={`/tools/${source.slug}/`}
+        class="inline-flex items-center gap-1.5 rounded-lg border border-gray-200 px-4 py-2 text-sm font-medium hover:border-[#5E6AD2]/50 dark:border-gray-800"
+      >← Back to {source.name}</a>
+      <a
+        href={`/tools/${target.slug}/`}
+        class="inline-flex items-center gap-1.5 rounded-lg bg-emerald-600 px-4 py-2 text-sm font-semibold text-white hover:bg-emerald-700"
+      >See {target.name} details →</a>
+    </section>
+  </article>
+</BaseLayout>

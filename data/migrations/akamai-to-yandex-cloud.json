@@ -1,0 +1,73 @@
+{
+  "source": {
+    "slug": "akamai",
+    "name": "Akamai"
+  },
+  "target": {
+    "slug": "yandex-cloud",
+    "name": "Yandex Cloud"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Move CDN, edge, and origin delivery from Akamai to Yandex Cloud CDN with object storage origins in Russia/CIS regions. Plan a parallel cutover with DNS-based traffic shifting and validate cache, TLS, and rules at every step.",
+  "why_switch": [
+    "Lower latency for Russia/CIS audiences",
+    "Public usage-based pricing vs custom Akamai contracts",
+    "Russian data residency for regulatory needs",
+    "Simpler billing and self-service onboarding",
+    "Reduced enterprise sales and procurement overhead"
+  ],
+  "what_to_export": [
+    "Property/site configurations and hostnames",
+    "Origin server definitions and failover rules",
+    "Caching rules and TTL policies",
+    "TLS certificates or ACME provisioning details",
+    "WAF/security rule sets",
+    "Redirect and rewrite rules",
+    "Edge logic (EdgeWorkers/Property Manager rules)",
+    "Access logs and analytics history",
+    "DNS records pointing at the CDN",
+    "Purge tokens and API credentials"
+  ],
+  "export_method": "Use the Akamai control panel or APIs to export property configurations. Most Akamai setups expose Property Manager rule trees and metadata that can be downloaded as JSON via the Akamai CLI or PAPI. Capture the full rule tree, behaviors, match conditions, and origin definitions for each property. Pull WAF policies, network lists, and bot management rules separately. Download recent access logs to characterize traffic, top URLs, and cache-hit ratios so you can validate post-migration. Export TLS certificates if you control the keys, otherwise plan to re-issue via Yandex Cloud Certificate Manager or Lets Encrypt. Snapshot DNS at your registrar or DNS provider, including TTLs. Document any EdgeWorkers logic in source form so it can be ported to Yandex serverless functions or origin code.",
+  "import_method": "In Yandex Cloud, create a folder for the project and provision an Object Storage bucket if you need an origin, plus a Yandex Cloud CDN resource pointing at your origin (either Object Storage, a custom origin, or origin group). Configure cache TTLs, query-string handling, and host header forwarding to mirror Akamai behavior. Upload or import TLS certificates into Certificate Manager and attach them to the CDN resource. Recreate WAF rules using Smart Web Security if needed. Translate Akamai redirect/rewrite rules into Yandex CDN rules or push them to your origin. Use Terraform with the yandex provider to codify resources for repeatability. Test with a staging hostname, then cut over DNS with a low TTL.",
+  "concept_mapping": [
+    {
+      "source": "Akamai Property",
+      "target": "Yandex Cloud CDN resource"
+    },
+    {
+      "source": "Akamai Origin",
+      "target": "Origin or origin group",
+      "note": "Object Storage or custom origin"
+    },
+    {
+      "source": "Property Manager rules",
+      "target": "CDN resource options + origin logic"
+    },
+    {
+      "source": "Akamai WAF / Bot Manager",
+      "target": "Smart Web Security"
+    },
+    {
+      "source": "Akamai certificates",
+      "target": "Yandex Certificate Manager"
+    },
+    {
+      "source": "EdgeWorkers",
+      "target": "Cloud Functions or origin code"
+    }
+  ],
+  "effort": "3-6 weeks for a single property, longer for portfolios with custom edge logic",
+  "gotchas": [
+    "Yandex Cloud PoP coverage is concentrated in Russia/CIS; global latency may regress for Western users",
+    "Sanctions and export-control exposure can block Western customers, partners, or payment providers",
+    "EdgeWorkers logic does not port directly; rewrite in Cloud Functions or push to origin",
+    "WAF rule semantics differ between Akamai and Smart Web Security; re-test all custom rules",
+    "Plan a low DNS TTL window before cutover and keep Akamai live as a rollback for at least a week",
+    "TLS private keys may not be exportable from Akamai-managed certificates; budget time to re-issue"
+  ],
+  "email": {
+    "subject": "Notice of intent to migrate from Akamai to Yandex Cloud over the next 14 days",
+    "body": "Hello Akamai team,\n\nI am writing to give you a heads-up that we plan to migrate our CDN and edge delivery off Akamai over the next 14 days. The decision is driven by latency for our Russia/CIS audience, the need for local data residency, and a preference for transparent usage-based pricing.\n\nOur target schedule is roughly: days 1-4 to export property configurations, rules, and logs; days 5-9 to provision the new platform, port rules, and run a staging hostname behind a low-TTL DNS record; days 10-12 to cut over production traffic in stages while keeping Akamai warm as rollback; days 13-14 to drain residual traffic and finalize cancellation.\n\nCould you please confirm the steps required to wind down our contract, any minimum notice or true-up clauses, and how to cleanly remove our properties and certificates from your platform once we have cut over. If there is anything in our current setup that would block a clean export, I would appreciate knowing now.\n\nThanks for the years of service.\n\nYour customer"
+  }
+}

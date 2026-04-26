@@ -1,0 +1,64 @@
+{
+  "source": {
+    "slug": "accessibility-insights",
+    "name": "Accessibility Insights"
+  },
+  "target": {
+    "slug": "a11ywatch",
+    "name": "A11yWatch"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Accessibility Insights is a free Microsoft browser/desktop tool for guided WCAG checks; A11yWatch is an open-source automated scanner you can self-host and wire into CI. Moving means trading guided manual workflows for automated, schedule-driven scans.",
+  "why_switch": [
+    "Automated scans across many pages, not per-page manual",
+    "Self-hostable for privacy and CI use",
+    "API and CLI for pipeline integration",
+    "Scheduled crawls catch a11y drift",
+    "Open-source, no per-page pricing self-hosted"
+  ],
+  "what_to_export": [
+    "Saved Accessibility Insights assessment results",
+    "FastPass run histories",
+    "Manual test notes and screenshots",
+    "Issue lists already filed in your tracker",
+    "Custom checklists or rule notes",
+    "List of in-scope URLs and components",
+    "Severity/triage conventions",
+    "Linked WCAG references",
+    "Team review process docs",
+    "Any local config files"
+  ],
+  "export_method": "Accessibility Insights stores assessment data locally per session. Open each saved assessment in the tool and use its built-in export to JSON or HTML report; archive these reports for historical reference. Copy any manual notes and screenshots out of the assessment. Pull the URL list and component scope from your internal documentation rather than from the tool. There is no central account to migrate from, so most of the work is collecting the artifacts your team has produced and the conventions used to triage them. Keep Accessibility Insights installed during the migration in case you need to reopen old assessments.",
+  "import_method": "Stand up A11yWatch either via its hosted tier or by self-hosting per its documentation. Configure projects/sites for each property you currently audit manually. Add the URL list as scan targets and set a schedule (for example weekly crawls) plus on-demand scans for pre-deploy. Wire the CLI or API into your CI so PRs trigger a scan on changed routes. Map A11yWatch's rule output to your existing severity scheme so issues land in the same tracker fields. Keep one or two engineers fluent with Accessibility Insights for the manual checks automation cannot cover, since automated tools generally miss a substantial share of WCAG issues.",
+  "concept_mapping": [
+    {
+      "source": "FastPass automated checks",
+      "target": "A11yWatch automated scan"
+    },
+    {
+      "source": "Assessment manual tests",
+      "target": "Manual test process outside automation"
+    },
+    {
+      "source": "Per-page review",
+      "target": "Scheduled crawl + per-PR scan"
+    },
+    {
+      "source": "Local report export",
+      "target": "API/CLI scan results in CI"
+    }
+  ],
+  "effort": "Days to a couple of weeks, mostly about wiring CI and building a triage flow.",
+  "gotchas": [
+    "Automated scanners miss a large share of WCAG issues; keep manual review",
+    "Self-hosting means you own uptime and upgrades",
+    "Crawl scope and auth flows need configuration to reach gated pages",
+    "Noise from new automated rules can swamp triage if not tuned",
+    "Community is smaller than axe-core ecosystem",
+    "Compliance audits still require human review, not just scanner output"
+  ],
+  "email": {
+    "subject": "Adding A11yWatch alongside Accessibility Insights",
+    "body": "Hi A11yWatch team,\n\nWe currently rely on Microsoft Accessibility Insights for guided per-page WCAG checks but we want to add automated scans across our full site. We plan to bring up A11yWatch over the next 14 days, wire it into CI for pre-deploy scans, and run nightly crawls of our production properties.\n\nWe do not plan to fully retire Accessibility Insights; manual assisted checks still have a place in our workflow. A11yWatch will become our automated baseline.\n\nIf you have a recommended setup path for teams new to your platform, especially for self-hosting and API integration, we would value pointers. Otherwise we will follow the public docs and reach out if we hit issues.\n\nThanks,\nYour customer"
+  }
+}

@@ -1,0 +1,75 @@
+{
+  "source": {
+    "slug": "bugsnag",
+    "name": "Bugsnag"
+  },
+  "target": {
+    "slug": "backtrace",
+    "name": "Backtrace"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Move from Bugsnag's web/mobile-focused error monitoring to Backtrace, which leans heavily into native and games crash management. Re-instrument SDKs, re-upload symbols, and rebuild triage workflows on the new side.",
+  "why_switch": [
+    "Escape Bugsnag's commit-based tiers locked per billing cycle",
+    "Backtrace's minidump fingerprinting suits native and game workloads",
+    "Better fit if your portfolio is shifting toward C++/Unity/Unreal",
+    "Different alerting and triage model may match your team better",
+    "Diversify vendor risk in error monitoring"
+  ],
+  "what_to_export": [
+    "Project list and Bugsnag API keys",
+    "Historical events with stack traces and grouping",
+    "Sourcemaps, ProGuard mappings, dSYMs already uploaded",
+    "Release versions and deploy history",
+    "Custom metadata schema and tag definitions",
+    "User identifier and contact fields",
+    "Alert rules and integration configurations",
+    "Team and project membership"
+  ],
+  "export_method": "Use the Bugsnag UI or documented Data Access API to pull projects, events, and metadata. Download all uploaded sourcemaps and symbol files since they will need to be re-uploaded to Backtrace tied to the same release versions. If the bulk export is gated, paginate the API and persist JSON to object storage. Capture custom metadata schemas, severity definitions, and notification rules in a spreadsheet so you can replay them in Backtrace's UI. Keep Bugsnag in read-only mode during a retention window so engineers can reference closed issues. Plan for events to be archival only — new errors will flow into Backtrace from cutover, and historical Bugsnag data will remain queryable in its own UI.",
+  "import_method": "Create a Backtrace project for each environment and grab the submission token. Replace Bugsnag SDK calls with the corresponding Backtrace SDK (@backtrace/node, @backtrace/browser, native SDKs for C++/Unity/Unreal) at the same boundaries you used Bugsnag's notifier. Wire user context, custom attributes, and breadcrumbs via Backtrace's API. Upload symbols and sourcemaps to Backtrace using its symbol/sourcemap upload tooling, matching the release version field. Recreate alert rules and connect Jira, Slack, PagerDuty, etc., in Backtrace's integration settings. Run both SDKs in parallel in staging to compare grouping and noise. Verify in production with a synthetic error and confirm the symbolicated frames, attributes, and notifications behave as expected.",
+  "concept_mapping": [
+    {
+      "source": "Bugsnag project + API key",
+      "target": "Backtrace project + submission token"
+    },
+    {
+      "source": "Bugsnag notifier (per language)",
+      "target": "Backtrace SDK (per language)"
+    },
+    {
+      "source": "Stability score",
+      "target": "Backtrace impact and trend views",
+      "note": "Different metric, no 1:1 mapping"
+    },
+    {
+      "source": "Sourcemap / symbol upload",
+      "target": "Backtrace symbol upload"
+    },
+    {
+      "source": "Release / deploy tracking",
+      "target": "Backtrace release tagging"
+    },
+    {
+      "source": "Custom metadata",
+      "target": "Backtrace attributes"
+    },
+    {
+      "source": "Alerts / integrations",
+      "target": "Backtrace alerts and integration marketplace"
+    }
+  ],
+  "effort": "2-5 weeks",
+  "gotchas": [
+    "Stability score does not exist in Backtrace; pick a substitute KPI before cutover",
+    "Grouping differs between vendors — issue counts will look different on day one",
+    "Symbol and sourcemap uploads must align with release versions or you lose readable frames",
+    "Backtrace's developer experience is strong on native; web SDK ergonomics may differ from Bugsnag's",
+    "Bugsnag's commit-based billing continues for the contracted term regardless of usage",
+    "Per-seat pricing on Backtrace can surprise large teams; model cost before signing"
+  ],
+  "email": {
+    "subject": "Notice of contract non-renewal — switching error monitoring vendor",
+    "body": "Hi team,\n\nWe are writing to give notice that we will not be renewing our Bugsnag subscription at the end of the current term. Within the next 14 days we plan to complete migration to Backtrace, which is a better fit for the native and games-heavy portion of our stack.\n\nThe commit-based event tier model is also a factor: our error volume varies, and we need a structure that does not lock spend for an entire billing cycle.\n\nTo wrap up cleanly we would like to:\n\n- Export all historical errors, sourcemaps, and symbol files from our projects.\n- Confirm the final invoice, contract end date, and any retention or off-boarding requirements.\n- Keep the account in read-only mode for an agreed retention window.\n\nPlease share your off-boarding checklist and the contact for the data export.\n\nThanks for the service to date.\n\nYour customer"
+  }
+}

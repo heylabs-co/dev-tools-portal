@@ -1,0 +1,62 @@
+{
+  "source": {
+    "slug": "accessibility-insights",
+    "name": "Accessibility Insights"
+  },
+  "target": {
+    "slug": "assistiv-labs",
+    "name": "Assistiv Labs"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Accessibility Insights is a free Microsoft-maintained automated and guided WCAG checker, while Assistiv Labs is a paid remote screen-reader testing service. Switching means trading guided desktop/web checks for cloud access to NVDA, JAWS and VoiceOver.",
+  "why_switch": [
+    "Need remote screen reader sessions without local VM setup",
+    "Distributed QA team can't ship JAWS licenses",
+    "Want hands-on AT testing alongside automated checks",
+    "Cross-OS access to NVDA, JAWS and VoiceOver",
+    "Reduce time spent maintaining AT test machines"
+  ],
+  "what_to_export": [
+    "FastPass and Assessment results (HTML or JSON)",
+    "Saved test cases and notes",
+    "Screenshots of failures",
+    "Tab stop visualizations",
+    "Issue reports filed in your tracker",
+    "WCAG criteria checklists you customized",
+    "Bug repro steps captured manually",
+    "Internal a11y test plans"
+  ],
+  "export_method": "Accessibility Insights stores results inside the running browser extension or desktop app session. Export each completed Assessment using the built-in export option (commonly available as HTML or JSON) and save the file to a shared drive. For FastPass runs, capture screenshots and copy the failure list into your issue tracker since FastPass is a quick scan rather than a persisted report. If you push findings to GitHub or Azure DevOps directly from the tool, those issues remain in your tracker and travel with you. Because Accessibility Insights is local, there is no API export step. Treat the exported HTML/JSON files plus your issue tracker as the source of truth before switching.",
+  "import_method": "Assistiv Labs is a remote AT-testing environment, not an audit database, so there is no direct one-to-one import. Recreate your test plan in Assistiv Labs by listing the URLs and flows you want covered with NVDA, JAWS or VoiceOver. Re-run scripted screen-reader walkthroughs in the Assistiv Labs cloud session, then save session notes or recordings to your shared drive. Keep the prior Accessibility Insights HTML/JSON exports as a baseline so you can verify the same WCAG criteria are still being checked. Continue filing bugs into your existing tracker.",
+  "concept_mapping": [
+    {
+      "source": "FastPass automated checks",
+      "target": "Manual AT walkthrough in cloud session",
+      "note": "Different paradigm: automated vs human-driven"
+    },
+    {
+      "source": "Assessment guided WCAG tests",
+      "target": "Scripted screen reader test plan"
+    },
+    {
+      "source": "Tab stop visualizer",
+      "target": "Live keyboard navigation in remote session"
+    },
+    {
+      "source": "GitHub/Azure DevOps issue export",
+      "target": "Your existing issue tracker (unchanged)"
+    }
+  ],
+  "effort": "1-2 weeks",
+  "gotchas": [
+    "Assistiv Labs does not run automated WCAG scans; you still need a scanner like axe-core or A11yWatch alongside it",
+    "Streaming latency in remote AT sessions can change perceived screen-reader timing vs local",
+    "Per-seat pricing can grow quickly across a QA team",
+    "Tools cover different layers: design-time guided checks vs runtime AT verification",
+    "No automatic migration path; rebuild test plans manually"
+  ],
+  "email": {
+    "subject": "Switching from Accessibility Insights to Assistiv Labs",
+    "body": "Hi team,\n\nI wanted to flag that we are moving our accessibility QA workflow from Accessibility Insights to Assistiv Labs over the next 14 days. Accessibility Insights has been a solid free guided checker, but our QA team is distributed and we need reliable remote access to NVDA, JAWS and VoiceOver instead of shipping AT machines.\n\nPlan:\n- Days 1-3: export existing Assessment HTML/JSON reports and snapshot any open issues in our tracker.\n- Days 4-7: rebuild the screen-reader test plan in Assistiv Labs and pilot one app flow.\n- Days 8-12: run parallel sessions to confirm coverage matches our prior FastPass and Assessment runs.\n- Days 13-14: cut over and decommission Accessibility Insights from the standard QA checklist.\n\nWe will keep Accessibility Insights exports archived for reference, and continue using axe-style automated scans separately so we do not lose the automated coverage Accessibility Insights provided.\n\nLet me know any concerns.\n\nThanks,\nYour customer"
+  }
+}

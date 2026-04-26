@@ -1,0 +1,64 @@
+{
+  "source": {
+    "slug": "iconify",
+    "name": "Iconify"
+  },
+  "target": {
+    "slug": "sketch",
+    "name": "Sketch"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Iconify is an icon framework; Sketch is a Mac-native design tool. The migration is mostly bringing the icons you use from Iconify into a Sketch library, while leaving the runtime icon code unchanged.",
+  "why_switch": [
+    "Mac-native design performance",
+    "JavaScript plugin API for automation",
+    "Mature design token export workflow",
+    "Sketch as canvas around Iconify-served icons",
+    "Existing team standardized on Sketch"
+  ],
+  "what_to_export": [
+    "Iconify sets and icon names used",
+    "Per-set licenses",
+    "Custom icons added beside Iconify",
+    "Icon size and color conventions",
+    "Framework wrappers in code",
+    "On-demand loading config",
+    "SSR / CDN setup",
+    "Accessibility metadata",
+    "Build pipeline integration points",
+    "Icon usage map per screen"
+  ],
+  "export_method": "Audit your code for Iconify references (collection:name pairs) and list every icon and set you actually use; this is the practical 'export'. Render those icons as SVGs using Iconify's tools or websites so you have a static folder of files to import into Sketch. Note the license of each Iconify set you depend on, since they differ. Capture how icons are loaded at runtime (API, bundled JSON, framework component) since that part stays in code. There is no commercial account to wind down with Iconify itself.",
+  "import_method": "In Sketch, create a new library document and import the SVGs you exported from Iconify as symbols on consistent artboards (24x24 is a sensible default if your sets use it). Group symbols by set name to mirror Iconify's structure and keep names matching the slugs in your code. Publish the library to your Sketch workspace so all designers can reuse symbols. Engineering can continue using the Iconify framework component or API in code; Sketch is the design surface only. If you stop using a set entirely, drop both its symbols and code references in the same change.",
+  "concept_mapping": [
+    {
+      "source": "Iconify icon (set:name)",
+      "target": "Sketch symbol"
+    },
+    {
+      "source": "Iconify set",
+      "target": "Sketch library page or section"
+    },
+    {
+      "source": "Iconify Figma plugin",
+      "target": "Sketch shared library"
+    },
+    {
+      "source": "On-demand API",
+      "target": "Static SVG file"
+    }
+  ],
+  "effort": "1-2 weeks",
+  "gotchas": [
+    "Sketch is Mac-only; non-Mac designers cannot participate",
+    "Per-set Iconify licenses vary; verify rights before redistributing in design files",
+    "Symbol names must mirror Iconify slugs or design/code drift",
+    "Bulk SVG export from many sets is tedious; script via Iconify tooling if possible",
+    "Sketch collaboration is weaker than browser-first tools; plan file sharing",
+    "Plugin update cadence in the Sketch ecosystem has slowed; verify any plugin you rely on"
+  ],
+  "email": {
+    "subject": "FYI: standardizing design files on Sketch",
+    "body": "Hi team,\n\nQuick note: over the next 14 days we're standardizing our design workflow on Sketch. We're keeping Iconify in code as the runtime icon source and only bringing the icons we actively use into Sketch as a shared symbol library. Per-set Iconify licenses still apply and we'll keep symbol names aligned with Iconify slugs so design and code stay in sync.\n\nThere's nothing to cancel on the icon side. If you maintain Iconify-related shared files or wrappers, please flag them so we can preserve naming.\n\nThanks,\nYour customer"
+  }
+}

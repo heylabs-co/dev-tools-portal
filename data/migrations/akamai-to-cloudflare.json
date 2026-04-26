@@ -1,0 +1,84 @@
+{
+  "source": {
+    "slug": "akamai",
+    "name": "Akamai"
+  },
+  "target": {
+    "slug": "cloudflare",
+    "name": "Cloudflare"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Moving from Akamai to Cloudflare consolidates CDN, DNS, WAF, and edge compute under one freemium-priced platform. The bulk of the work is rebuilding cache and security rules, re-issuing certificates, and migrating any edge logic.",
+  "why_switch": [
+    "Transparent freemium plans",
+    "Generous free tier for static workloads",
+    "Combined CDN, DNS, WAF, and Workers in one",
+    "Strong DDoS protection by default",
+    "Faster self-serve setup than Akamai"
+  ],
+  "what_to_export": [
+    "Property Manager configurations",
+    "Origin server definitions",
+    "TLS certificates and SAN coverage",
+    "Cache rules and TTLs",
+    "WAF and bot management policies",
+    "Redirects and URL rewrites",
+    "EdgeWorkers / EdgeKV scripts (if used)",
+    "Token authentication settings",
+    "Log delivery destinations",
+    "DNS zone records"
+  ],
+  "export_method": "Pull each Property Manager configuration as JSON via the Akamai control panel or EdgeGrid API. Inventory hostnames, certificate coverage, and DNS records. Document WAF rules and any rate-limit or bot-management policies as plain text. Capture EdgeWorkers source code from your repo and any EdgeKV data via the management API. Treat token-auth secrets as inventory-only — they will be re-issued. Pull DNS zone files (AXFR or zone export) so you can import them cleanly. The end state is an inventory document, not a literal config dump.",
+  "import_method": "Add the domains to Cloudflare and import the DNS zone, switching nameservers only after records are verified. Configure cache rules, page rules, or the newer Cache Rules engine to match Akamai behaviors. Set up WAF rules using Cloudflare's managed rulesets plus custom rules for app-specific logic. Provision certificates with Cloudflare's universal SSL or upload custom ones if you need SAN parity. Rewrite EdgeWorkers as Cloudflare Workers and migrate EdgeKV data to Workers KV or D1. Configure log push to your existing log destinations. Stage on a test hostname, verify cache and security behavior, then update DNS with low TTLs to flip traffic.",
+  "concept_mapping": [
+    {
+      "source": "Property",
+      "target": "Zone"
+    },
+    {
+      "source": "Behavior / Match criteria",
+      "target": "Cache rule / Page rule"
+    },
+    {
+      "source": "Edge certificate",
+      "target": "Universal SSL or custom certificate"
+    },
+    {
+      "source": "EdgeWorkers",
+      "target": "Cloudflare Workers"
+    },
+    {
+      "source": "EdgeKV",
+      "target": "Workers KV"
+    },
+    {
+      "source": "NetStorage",
+      "target": "R2",
+      "note": "S3-compatible"
+    },
+    {
+      "source": "Image Manager",
+      "target": "Cloudflare Images"
+    },
+    {
+      "source": "Log delivery",
+      "target": "Logpush"
+    },
+    {
+      "source": "WAF rules",
+      "target": "WAF custom rules + managed rulesets"
+    }
+  ],
+  "effort": "2-6 weeks depending on number of properties, WAF complexity, and edge code",
+  "gotchas": [
+    "WAF semantics differ between vendors — re-test against real traffic before enforcing block actions",
+    "EdgeWorkers and Cloudflare Workers have different runtime APIs; expect a rewrite",
+    "Lower DNS TTLs days before cutover so rollback is fast",
+    "Token-auth and signed-URL formats are not interchangeable",
+    "Some enterprise Akamai features (e.g. specific bot manager signatures) need careful mapping or replacement"
+  ],
+  "email": {
+    "subject": "Cancellation and offboarding from our Akamai contract",
+    "body": "Hi Akamai team,\n\nWe are moving our CDN and edge workloads to another provider over the next 14 days. Could you confirm the cleanest way to export our property configurations, certificate metadata, log delivery settings, and any account data we are entitled to before the contract ends?\n\nWe would like to schedule cancellation at the end of the current contract term. Please share the date by which we need to give written notice to avoid auto-renewal, the offboarding checklist your team uses, and any data retention timelines after the account closes so we can plan a final backup.\n\nIf there are minimum commits or remaining contractual obligations we should be aware of, please flag them.\n\nThanks,\nYour customer"
+  }
+}

@@ -1,0 +1,67 @@
+{
+  "source": {
+    "slug": "apphud",
+    "name": "Apphud"
+  },
+  "target": {
+    "slug": "openx",
+    "name": "OpenX"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Apphud handles in-app subscriptions and paywalls, while OpenX is a programmatic ad exchange and SSP. Moving from one to the other is a strategic shift from IAP revenue to programmatic ad monetization, not a feature-for-feature SDK swap.",
+  "why_switch": [
+    "Move from subscription revenue to programmatic ad revenue",
+    "Add a high-scale SSP demand source",
+    "Support mobile, web, and CTV inventory in one place",
+    "Diversify away from a single billing SDK",
+    "Plug into header bidding wrappers for higher fill"
+  ],
+  "what_to_export": [
+    "Subscription product catalog and pricing tiers",
+    "Subscriber list and current statuses",
+    "Paywall A/B test definitions and results",
+    "User cohorts and segmentation rules",
+    "Churn, LTV, and revenue reports",
+    "Webhook endpoints and server-side configs",
+    "Paywall design assets and copy",
+    "Refund and chargeback history"
+  ],
+  "export_method": "Export available data from the Apphud dashboard as CSV — subscriber lists, revenue reports, and event history are typically downloadable. Document A/B test variants, paywall designs, and segmentation logic manually since these usually do not export as a single archive. Capture webhook URLs and server integration code for reference. Because OpenX is a programmatic SSP rather than a subscription tool, you are not importing customer data into it; the Apphud export is mainly a record for future product decisions, accounting, and any continuing subscriber base. Keep the Apphud account active until all active subscriptions are resolved through churn or migration to a new billing system.",
+  "import_method": "OpenX onboarding is sales-led; contact OpenX to open a publisher account. Integrate OpenX as a demand source, typically through a header bidding wrapper such as Prebid for web or via a supported mobile SDK / mediation partner for in-app inventory. Configure ad units, floor prices, and traffic settings in the OpenX UI per their documentation. If your app previously had no ad inventory, you will need to design ad placements (banner, interstitial, native, video) and add them to your app build. Validate ads.txt and app-ads.txt entries and run a staging integration before turning on production traffic. If you continue running subscriptions, keep the Apphud SDK in place and treat OpenX as an additional, ad-based revenue layer.",
+  "concept_mapping": [
+    {
+      "source": "Paywall placement",
+      "target": "Ad slot / bid request",
+      "note": "Different monetization paradigm"
+    },
+    {
+      "source": "Subscription product",
+      "target": "Ad unit and floor price"
+    },
+    {
+      "source": "A/B test (paywall)",
+      "target": "Bidder configuration / floor experiments"
+    },
+    {
+      "source": "Apphud revenue dashboard",
+      "target": "OpenX publisher reporting"
+    },
+    {
+      "source": "Webhook events",
+      "target": "Reporting / S2S logs (where applicable)"
+    }
+  ],
+  "effort": "3-6 weeks",
+  "gotchas": [
+    "OpenX is mainly programmatic — direct in-app SDK is less central than for ad-network mediators",
+    "Header bidding adds operational complexity and requires careful timeout tuning",
+    "ads.txt / app-ads.txt entries must be configured for OpenX to bid",
+    "Privacy and consent (GDPR, CCPA, ATT) must be wired up before live ads",
+    "Pricing and revshare are custom and only disclosed under contract",
+    "Existing subscribers must continue receiving entitlements through Apphud or a successor"
+  ],
+  "email": {
+    "subject": "Adding OpenX programmatic monetization, sunsetting Apphud over 14 days",
+    "body": "Hi team,\n\nWe are shifting our monetization mix from subscriptions on Apphud to programmatic advertising via OpenX. Over the next 14 days we will set up the OpenX publisher account, integrate it into our header bidding stack (or mobile mediation), and validate fill, latency, and revenue in staging before turning on production traffic.\n\nCurrent Apphud subscribers will keep their entitlements during the transition. Subscription history and finance data will remain accessible in Apphud, since OpenX is not a subscription replacement but a programmatic ad partner.\n\nPlease flag any compliance, privacy, or contract considerations that should land before we start serving live OpenX ads.\n\nThanks,\nYour customer"
+  }
+}

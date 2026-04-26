@@ -1,0 +1,64 @@
+{
+  "source": {
+    "slug": "codemagic",
+    "name": "Codemagic"
+  },
+  "target": {
+    "slug": "deployhq",
+    "name": "DeployHQ"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Codemagic and DeployHQ solve different stages: Codemagic builds and tests mobile apps, DeployHQ pushes built code to servers via Git/SSH/SFTP. A direct switch only makes sense if your real need is Git-to-server deploys, not mobile builds.",
+  "why_switch": [
+    "Simpler if you only need deploy-on-push, not full CI",
+    "Standard Git/SSH/SFTP deploys with minimal lock-in",
+    "Public, low-cost annual pricing",
+    "Clear UI for server-by-server deployment",
+    "Free trial available before commitment"
+  ],
+  "what_to_export": [
+    "Codemagic workflows and scripts",
+    "Environment variables and secret groups",
+    "iOS certificates and provisioning profiles",
+    "Android keystores",
+    "Webhook and notification configs",
+    "Build artifacts you want to keep",
+    "Branch/tag rules",
+    "Connected app store credentials",
+    "Custom build images or scripts",
+    "Team and access settings"
+  ],
+  "export_method": "Codemagic workflows live as codemagic.yaml in your repo or as UI configuration; export both. Use the Codemagic web UI to list environment groups and document variable names; secret values themselves should be pulled from your password manager because they cannot be read back. Export signing material from your secure store rather than from Codemagic. Note that DeployHQ does not run mobile builds, so any iOS/Android compilation steps will need to remain on a build system; you will only migrate the deploy portion of your pipeline. Capture a list of deploy targets (servers, paths, protocols, credentials) that you currently configure inside Codemagic post-build steps.",
+  "import_method": "In DeployHQ, create a project per repository and connect the Git source. Configure each server as a deployment target with the appropriate protocol (SFTP, SSH, or supported cloud target) and credentials. Define the build commands DeployHQ should run (DeployHQ supports running build commands as part of the deploy). For mobile binaries, keep your build pipeline on a CI system that can produce signed artifacts, then have that pipeline upload the artifact and trigger a DeployHQ deployment via webhook or API. Set up branch-to-server mapping, deployment notifications, and team access. Run a test deploy to a staging server, validate file ownership and permissions, then point production at DeployHQ.",
+  "concept_mapping": [
+    {
+      "source": "Workflow",
+      "target": "Project + servers"
+    },
+    {
+      "source": "Build step",
+      "target": "DeployHQ build command"
+    },
+    {
+      "source": "Publish step",
+      "target": "Deployment to server"
+    },
+    {
+      "source": "Environment group",
+      "target": "Server-level config and SSH/SFTP credentials"
+    }
+  ],
+  "effort": "1-2 weeks if you only need server deploys; longer if you also need to relocate mobile builds elsewhere.",
+  "gotchas": [
+    "DeployHQ is not a mobile build service; you still need a builder for iOS/Android",
+    "App Store/Play Store publishing flows are not native to DeployHQ",
+    "Recreate signing securely; never paste keystores into deploy logs",
+    "Permissions on deployed files often differ between SFTP servers",
+    "Webhook-driven cross-tool flow needs careful retry/idempotency design",
+    "Plan rollback strategy; DeployHQ rollbacks differ from Codemagic reruns"
+  ],
+  "email": {
+    "subject": "Moving deploy automation to DeployHQ, closing Codemagic account",
+    "body": "Hi Codemagic team,\n\nOur deployment needs have shifted toward straightforward Git-to-server pushes rather than full mobile build pipelines, and we are moving that workflow to DeployHQ. We want to wrap up our Codemagic usage cleanly over the next 14 days.\n\nThe plan: stand up DeployHQ projects this week, dual-run with Codemagic for about a week to validate, then stop new builds on Codemagic and request account closure. We would appreciate one extra billing cycle of read-only access so we can pull any logs or artifacts we still need.\n\nCould you confirm:\n- How to formally cancel and the final billing date\n- Whether build artifacts remain downloadable after cancellation\n- Any export tooling you recommend before closure\n\nThanks for the help over the years. The product worked well; this is a scope change on our side.\n\nYour customer"
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "source": {
+    "slug": "algolia",
+    "name": "Algolia"
+  },
+  "target": {
+    "slug": "fd",
+    "name": "fd"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Algolia is a hosted search API; fd is an open-source CLI find replacement for local files. This is not a like-for-like migration. Treat it as cancelling Algolia and using fd for filesystem search use cases only.",
+  "why_switch": [
+    "fd is free and open-source, zero lock-in",
+    "No vendor billing at all",
+    "Good fit if usage was developer file lookups",
+    "Removes Algolia operational dependency"
+  ],
+  "what_to_export": [
+    "Algolia index records and metadata",
+    "Searchable attributes and ranking settings",
+    "Synonyms and query rules",
+    "Click and conversion analytics",
+    "API keys and ACL inventory",
+    "Frontend search UI configuration"
+  ],
+  "export_method": "Export every Algolia index using an official client's browse method or the Algolia CLI. Save records as newline-delimited JSON. Export synonyms, rules and index settings via their dedicated endpoints so a future search replacement can ingest them. Capture analytics that you still want to retain; once the account is cancelled this history is no longer accessible.",
+  "import_method": "There is no import step for fd. Install fd on the machines that need to search local files (`brew install fd`, `apt install fd-find`, or via cargo). Document the queries fd should answer and add scripts or shell aliases. If application-level full-text search was a real Algolia use case, you must select a separate search engine for that workload; fd does not index documents and cannot serve product or content search.",
+  "concept_mapping": [
+    {
+      "source": "Index of records",
+      "target": "Filesystem directory tree"
+    },
+    {
+      "source": "Search query",
+      "target": "fd pattern / regex"
+    }
+  ],
+  "effort": "1-2 days if scope is just filesystem search; otherwise add time for a real search replacement",
+  "gotchas": [
+    "fd cannot replace product search, recommendations or analytics.",
+    "Without another search backend, application-level search will break.",
+    "Algolia analytics and synonyms have no fd equivalent and will be lost.",
+    "Make sure stakeholders understand fd is a developer CLI, not a service."
+  ],
+  "email": {
+    "subject": "Cancelling Algolia in 14 days",
+    "body": "Hi Algolia team,\n\nWe are winding down our Algolia account over the next 14 days. Our remaining search needs are being handled by other tools or local utilities, and we no longer require a hosted search API.\n\nPlease confirm the end-of-billing date, how long our indices remain available for export, and the data deletion schedule after cancellation. We will export anything we still need in the first week and disable all Algolia API keys before the cutover date.\n\nThanks for the service.\n\nYour customer"
+  }
+}

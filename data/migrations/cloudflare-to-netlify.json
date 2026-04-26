@@ -1,0 +1,70 @@
+{
+  "source": {
+    "slug": "cloudflare",
+    "name": "Cloudflare"
+  },
+  "target": {
+    "slug": "netlify",
+    "name": "Netlify"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Cloudflare is a broad CDN, DNS, security, and edge-compute platform, while Netlify is a frontend hosting platform with build, CDN, edge functions, and form handling. Migration usually makes sense when you mostly use Cloudflare Pages plus a few Workers and want a more opinionated frontend developer experience.",
+  "why_switch": [
+    "Tighter Git-based deploy and preview workflow",
+    "Built-in form handling and identity for static sites",
+    "Simpler mental model for frontend-only teams",
+    "Less configuration than custom Workers + Pages",
+    "Plugin ecosystem for build-time extensions"
+  ],
+  "what_to_export": [
+    "Pages project source repos and build settings",
+    "Custom domains and DNS records",
+    "Environment variables for builds and runtime",
+    "Workers code and routes",
+    "KV / D1 / R2 data referenced from Workers",
+    "Redirects and headers configuration",
+    "Edge Function logic (Cloudflare Functions)",
+    "Access / Zero Trust policies (if used)",
+    "Webhooks and deploy hooks",
+    "Custom error pages"
+  ],
+  "export_method": "For Cloudflare Pages, your source already lives in Git, which is the primary export. From the Cloudflare dashboard or API export build configuration: build command, output directory, environment variables, custom domains, and deploy hooks. DNS records can be exported as a zone file or via the Cloudflare API / Terraform provider. Workers code lives in your wrangler project or repo; capture each Worker, its routes, and bindings (KV, D1, R2, Queues). Data inside KV, D1, or R2 must be exported separately: dump KV pairs via the API, export D1 via SQL dump, copy R2 objects with S3-compatible tooling. Confirm exact API endpoints and CLI commands against current Cloudflare documentation.",
+  "import_method": "In Netlify, link the same Git repository, configure build command and publish directory to match, and set environment variables in Site Settings. Translate Cloudflare _redirects and _headers into Netlify _redirects, netlify.toml, or equivalent configuration. For Cloudflare Workers and Pages Functions, re-implement them as Netlify Functions or Edge Functions, taking into account differences in runtime, request/response APIs, and size/time limits. KV / D1 / R2 data does not have a built-in Netlify equivalent; either keep it on Cloudflare and call it remotely, or move to a third-party data service. Move custom domains by adding them in Netlify, validating TLS, and switching DNS records gradually with lowered TTLs. Verify exact Netlify build settings and function APIs against current Netlify documentation.",
+  "concept_mapping": [
+    {
+      "source": "Cloudflare Pages project",
+      "target": "Netlify site"
+    },
+    {
+      "source": "Pages Functions / Workers",
+      "target": "Netlify Functions / Edge Functions",
+      "note": "Different runtime and limits"
+    },
+    {
+      "source": "Cloudflare _redirects / _headers",
+      "target": "Netlify _redirects / netlify.toml"
+    },
+    {
+      "source": "Cloudflare KV / D1 / R2",
+      "target": "External service or kept on Cloudflare",
+      "note": "No built-in equivalent on Netlify"
+    },
+    {
+      "source": "Cloudflare DNS zone",
+      "target": "Netlify DNS or external DNS"
+    }
+  ],
+  "effort": "1-4 weeks for typical Pages-only sites; longer with heavy Workers/KV/D1 usage",
+  "gotchas": [
+    "Cloudflare Workers (V8 isolates) and Netlify Functions (Node.js / Deno) have different runtime and execution model",
+    "KV, D1, and R2 do not have native Netlify equivalents; you either keep them on Cloudflare or migrate the data",
+    "Cloudflare's edge network and pricing are different from Netlify's; bandwidth-heavy sites may see different costs",
+    "Some Cloudflare-only features (Access, Bot Management, full DNS proxying) have no direct Netlify equivalent",
+    "Build minutes and concurrent build limits differ, which can affect monorepos and preview deploys",
+    "TLS certs from Cloudflare cannot be exported; Netlify will provision its own"
+  ],
+  "email": {
+    "subject": "Winding down our Cloudflare hosting over the next 14 days",
+    "body": "Hi Cloudflare team,\n\nWe are moving our frontend hosting from Cloudflare Pages to Netlify over the next 14 days to streamline our build and deploy workflow for the team.\n\nIn this window we plan to keep Cloudflare Pages live as a fallback while Netlify builds run in parallel, then cut over custom domains with lowered DNS TTLs. Workers and Pages Functions will be re-implemented as Netlify Functions, and any KV/D1/R2 data we own will either stay on Cloudflare or be migrated to an external service depending on the workload.\n\nCould you confirm how long build history, analytics, and Pages deployments remain accessible after we stop new deploys, plus the cleanest order to disable Workers, KV, D1, and R2 to avoid surprise charges or data loss?\n\nThanks for the support.\n\nYour customer"
+  }
+}

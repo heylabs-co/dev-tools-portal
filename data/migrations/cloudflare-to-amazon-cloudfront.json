@@ -1,0 +1,69 @@
+{
+  "source": {
+    "slug": "cloudflare",
+    "name": "Cloudflare"
+  },
+  "target": {
+    "slug": "amazon-cloudfront",
+    "name": "Amazon CloudFront"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Cloudflare is an integrated CDN, DNS, security, and edge-compute platform, while Amazon CloudFront is AWS's CDN tightly coupled to the rest of AWS. Teams typically migrate when they want everything inside one AWS bill, deeper integration with S3, Lambda, and WAF, or specific compliance posture from AWS.",
+  "why_switch": [
+    "Consolidate billing and IAM inside AWS",
+    "Tight integration with S3, ALB, and API Gateway origins",
+    "Use AWS WAF and Shield with native CDN",
+    "Run edge logic in Lambda@Edge / CloudFront Functions",
+    "Standardize on AWS for procurement and compliance"
+  ],
+  "what_to_export": [
+    "DNS zone records (managed by Cloudflare)",
+    "Page Rules / Rulesets / Transform Rules",
+    "Cache configuration and TTL overrides",
+    "Workers code and routes",
+    "R2 buckets and contents (if used as origin)",
+    "Custom domains and TLS certificates",
+    "WAF custom rules and rate limits",
+    "Bot management settings",
+    "Access / Zero Trust policies (if applicable)",
+    "Logpush / log delivery configurations"
+  ],
+  "export_method": "Cloudflare configuration is exposed via the dashboard, REST API, and Terraform. Use Terraform's Cloudflare provider or the API to export DNS records, Page Rules / Rulesets, cache rules, WAF rules, and Worker routes as code. Worker source code lives in your repo or wrangler project; verify each route and binding (KV, R2, D1, Queues). For R2 buckets used as a CDN origin, plan to copy objects to S3 using S3-compatible tooling such as rclone or aws s3 sync against the R2 endpoint. Export DNS as a zone file from the dashboard for safekeeping. TLS certs managed by Cloudflare's Universal SSL cannot be exported; you will re-issue at the new edge. Confirm exact Cloudflare API endpoints and Terraform resource names against current Cloudflare documentation.",
+  "import_method": "In AWS, create CloudFront distributions per hostname, defining origins (S3, ALB, custom origin) and behaviors that mirror your Cloudflare cache and rules logic. Use AWS Certificate Manager in us-east-1 to issue TLS for your custom domains. Re-create WAF rules in AWS WAF and attach the web ACL to the distributions. Move DNS to Route 53 (or another provider) and prepare new records pointing at the CloudFront domain. Re-implement Cloudflare Workers as Lambda@Edge or CloudFront Functions, keeping in mind their stricter runtime and size limits. Migrate one hostname at a time with low TTLs and side-by-side logs. Verify exact CloudFront, ACM, and WAF resource names against current AWS documentation.",
+  "concept_mapping": [
+    {
+      "source": "Cloudflare Zone",
+      "target": "Route 53 hosted zone"
+    },
+    {
+      "source": "Cloudflare cache rule / Page Rule",
+      "target": "CloudFront behavior + cache policy"
+    },
+    {
+      "source": "Cloudflare Workers",
+      "target": "Lambda@Edge / CloudFront Functions",
+      "note": "Different runtime and limits"
+    },
+    {
+      "source": "Cloudflare R2 bucket",
+      "target": "S3 bucket"
+    },
+    {
+      "source": "Cloudflare WAF",
+      "target": "AWS WAF web ACL"
+    }
+  ],
+  "effort": "3-8 weeks depending on Workers footprint, R2 data volume, and number of zones",
+  "gotchas": [
+    "Cloudflare Workers and Lambda@Edge have different runtimes (V8 isolates vs Node.js Lambda); not a copy-paste port",
+    "R2 is S3-compatible for object access but feature parity for lifecycle, replication, and events is not 1:1",
+    "DNS migration off Cloudflare can affect proxied (orange-cloud) protections; non-proxied features need replacements",
+    "Cloudflare's free DDoS protection is not equivalent to AWS Shield Standard plus WAF; review costs",
+    "Universal SSL certificates cannot be exported; certificates must be re-issued via ACM",
+    "Bot management, Access, and other Cloudflare-only products require AWS Marketplace or third-party replacements"
+  ],
+  "email": {
+    "subject": "Winding down our Cloudflare usage over the next 14 days",
+    "body": "Hi Cloudflare team,\n\nWe are consolidating our CDN, DNS, and edge compute on AWS (CloudFront + Route 53 + WAF) over the next 14 days to align with the rest of our AWS estate.\n\nIn this window we plan to export DNS, Page Rules / Rulesets, cache rules, Workers, and R2 buckets, then move hostnames one at a time with lowered TTLs and parallel logs. We will re-issue TLS via ACM, re-implement Workers as Lambda@Edge / CloudFront Functions, and copy R2 object data into S3.\n\nCould you confirm how long historical analytics, logs, and billing data remain accessible after we stop traffic, and the recommended order to disable Workers, R2 buckets, and zones to avoid surprise charges or data loss?\n\nThanks for the support.\n\nYour customer"
+  }
+}

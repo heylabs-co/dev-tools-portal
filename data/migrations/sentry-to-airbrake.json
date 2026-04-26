@@ -1,0 +1,65 @@
+{
+  "source": {
+    "slug": "sentry",
+    "name": "Sentry"
+  },
+  "target": {
+    "slug": "airbrake",
+    "name": "Airbrake"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Both Sentry and Airbrake handle application error monitoring with broad language SDK coverage. The migration is largely about swapping SDK initialization, redoing integrations, and accepting that historical events generally stay behind.",
+  "why_switch": [
+    "Simpler pricing structure",
+    "Avoid Sentry annual minimum-spend commitments",
+    "Mature error grouping and notifications",
+    "Reduce feature surface to error tracking only",
+    "Vendor diversification"
+  ],
+  "what_to_export": [
+    "Organization, team, and project structure",
+    "Environment and release configuration",
+    "Alert rules and notification channels",
+    "Source map / debug symbol upload pipeline",
+    "Issue assignments and ownership rules",
+    "Integration list (Slack, Jira, etc.)",
+    "Custom fingerprinting or inbound filters",
+    "Sample event payloads for validation"
+  ],
+  "export_method": "Document Sentry organization structure, projects, teams, alerts, and integrations from the Sentry UI or its API. Historical events have retention limits that depend on plan, so do not assume they can all be exported; capture aggregates and the issues you actively track. Save source map and debug symbol upload steps as code in your repo. Export ownership and inbound filter configuration manually if the API does not directly expose what you need. Treat tokens and DSNs as values to rotate, not artifacts to migrate.",
+  "import_method": "Create an Airbrake account with one project per Sentry project. Mirror teams, members, environments, and notification channels. Install the Airbrake SDK alongside Sentry in a staging build first, following Airbrakes official documentation. Replace Sentrys init code with Airbrakes init code in each application, including environment, release, and tag conventions. Re-implement source map / debug symbol upload using Airbrakes documented tooling. Reconnect Slack, Jira, and similar integrations on the Airbrake side. Run both SDKs in parallel briefly to validate that errors and metadata appear correctly, then remove Sentry and rotate DSNs.",
+  "concept_mapping": [
+    {
+      "source": "Organization / Project",
+      "target": "Account / Project"
+    },
+    {
+      "source": "Issue",
+      "target": "Error / Notice"
+    },
+    {
+      "source": "Release",
+      "target": "Deploy"
+    },
+    {
+      "source": "Alert rules",
+      "target": "Notification rules"
+    },
+    {
+      "source": "Integrations",
+      "target": "Integrations"
+    }
+  ],
+  "effort": "1-4 weeks",
+  "gotchas": [
+    "Historical issues will not transfer; only new errors appear in Airbrake",
+    "Performance, profiling, and session replay are Sentry-specific; plan replacements separately",
+    "Source map upload steps must be redone",
+    "Issue counts will diverge due to different grouping",
+    "Run both SDKs briefly to avoid losing visibility"
+  ],
+  "email": {
+    "subject": "Moving our error monitoring off Sentry",
+    "body": "Hi team,\n\nWe are reorganizing our observability stack and plan to move error monitoring from Sentry to another provider. Our target timeline is 14 days from today.\n\nDuring that period we will export project, alert, and integration configuration, run the new SDK in parallel for validation, and then stop sending events from our applications. We may continue self-hosted use of any open-source components separately, but our paid Sentry usage will end.\n\nCould you confirm how to disable auto-renewal, the effective end date under our current commitment, and any final billing steps? If there are recommended actions before deactivation, please share them.\n\nThanks for the support.\n\nYour customer"
+  }
+}

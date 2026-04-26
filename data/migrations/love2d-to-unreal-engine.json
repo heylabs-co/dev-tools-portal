@@ -1,0 +1,72 @@
+{
+  "source": {
+    "slug": "love2d",
+    "name": "LÖVE"
+  },
+  "target": {
+    "slug": "unreal-engine",
+    "name": "Unreal Engine"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Moving from LÖVE (a minimal Lua 2D framework) to Unreal Engine is a full platform shift, not a port. Plan to rebuild assets, scripting, and runtime from scratch around Unreal's editor and Blueprint/C++ workflow.",
+  "why_switch": [
+    "Need real-time 3D rendering beyond 2D scope",
+    "Want a visual editor and asset pipeline",
+    "Target consoles or mobile with first-party tooling",
+    "Tap MetaHuman, Niagara, and built-in physics",
+    "Hire from a larger Unreal talent pool"
+  ],
+  "what_to_export": [
+    "Lua game logic and state machines",
+    "Sprite sheets and 2D textures",
+    "Tilemaps and level layouts",
+    "Audio assets (WAV, OGG)",
+    "Font files",
+    "Save data formats",
+    "Localization strings",
+    "Input bindings and config",
+    "Build and packaging scripts",
+    "Project README and design docs"
+  ],
+  "export_method": "LÖVE projects are plain folders of Lua scripts, images, audio, and fonts (often shipped as a .love zip). There is no platform export step — copy the project directory and treat each subfolder as a candidate for migration. Document your scene structure, entity classes, and update/draw loop on paper before touching Unreal, because LÖVE's immediate-mode draw model has no direct Unreal counterpart. Catalog assets by type: PNG/JPG sprites, OGG/WAV audio, TTF fonts, and any custom binary data. Note any C modules or LuaJIT FFI bindings — these will not carry over and must be reimplemented in C++ or Blueprint. If you use love.physics (Box2D), record body/fixture configs since Unreal uses Chaos physics with different parameter semantics.",
+  "import_method": "Install Unreal Engine via the Epic Games Launcher and create a new project (Blank or 2D template if available in your version). Import sprites and textures through the Content Browser drag-and-drop; configure as Texture2D with appropriate compression. Audio imports as Sound Wave assets. Recreate levels as Unreal Levels with Actors and Components — there is no automatic tilemap importer from LÖVE. Reimplement game logic in Blueprints (visual scripting) or C++; Lua does not run natively. For 2D-style games, use Paper2D or similar. Set up input through the Enhanced Input system. Test packaging via Platforms menu for your target. Plan iterative milestones rather than a big-bang port.",
+  "concept_mapping": [
+    {
+      "source": "love.draw / love.update",
+      "target": "Actor Tick / BeginPlay"
+    },
+    {
+      "source": "Lua scripts",
+      "target": "Blueprints or C++ classes"
+    },
+    {
+      "source": "love.graphics.newImage",
+      "target": "Texture2D asset"
+    },
+    {
+      "source": "love.audio.newSource",
+      "target": "Sound Wave / Sound Cue"
+    },
+    {
+      "source": "love.physics (Box2D)",
+      "target": "Chaos Physics components"
+    },
+    {
+      "source": ".love package",
+      "target": "Packaged Project (Platforms menu)"
+    }
+  ],
+  "effort": "4-12 weeks for a small game; multiple months for larger projects",
+  "gotchas": [
+    "No Lua runtime in Unreal by default — third-party plugins exist but are not first-class.",
+    "LÖVE's immediate-mode 2D drawing has no direct equivalent; expect to redesign rendering logic.",
+    "Asset compression and texture settings differ; sprites may look different until tuned.",
+    "Unreal's royalty model (5% past a per-product threshold) differs from LÖVE's zlib license — review terms.",
+    "Build sizes and hardware requirements jump significantly compared to LÖVE binaries.",
+    "Hot-reload workflow in Unreal is not as fast as editing Lua and pressing run."
+  ],
+  "email": {
+    "subject": "Planning a 14-day move from LÖVE to Unreal Engine",
+    "body": "Hi team,\n\nWe're planning a migration from LÖVE to Unreal Engine over the next 14 days. The goal is to lift our prototype onto an engine with a proper editor, broader platform support, and richer rendering tools.\n\nProposed timeline:\nDays 1-3: Audit the LÖVE project — list all assets, scripts, scenes, and external dependencies. Decide what carries over and what gets rebuilt.\nDays 4-7: Stand up a new Unreal project, import textures and audio, and rebuild the core gameplay loop in Blueprints or C++.\nDays 8-11: Recreate levels, input bindings, and audio cues. Wire up save/load and localization.\nDays 12-13: QA pass on target platforms, fix performance and packaging issues.\nDay 14: Sign-off review and tag the milestone build.\n\nWe expect rough edges — Lua logic does not transfer automatically and 2D rendering will need redesign. Please flag any LÖVE-specific tricks (FFI, custom shaders, love.physics tuning) early so we can plan replacements.\n\nThanks,\nYour customer"
+  }
+}

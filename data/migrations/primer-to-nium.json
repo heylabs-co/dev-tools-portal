@@ -1,0 +1,64 @@
+{
+  "source": {
+    "slug": "primer",
+    "name": "Primer"
+  },
+  "target": {
+    "slug": "nium",
+    "name": "Nium"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Primer is a card payments orchestration platform, while Nium is a global payouts, issuing and FX infrastructure provider. They solve different problems, so this is more of a product re-platform than a like-for-like migration.",
+  "why_switch": [
+    "Need cross-border payouts, not card checkout routing",
+    "Want issuing and multi-currency cards in-house",
+    "Require FX and global collections via API",
+    "Operate a marketplace or platform paying many recipients",
+    "Prefer a licensed, regulated single provider for money movement"
+  ],
+  "what_to_export": [
+    "Customer and payer / payee profiles",
+    "Stored card and payment method tokens",
+    "Historical transaction and authorization data",
+    "Workflow and routing rules",
+    "Connector / PSP configuration",
+    "Webhook endpoint subscriptions",
+    "Reconciliation and payout reports",
+    "KYC/KYB documents already collected"
+  ],
+  "export_method": "Pull customers, transactions, refunds, disputes, workflows and connector configs from Primer via dashboard reports and API. For card tokens, request a PCI-compliant export from Primer support directly to your future card processor — Nium is not primarily a card-acquiring vault, so most card tokens may not have a useful destination on Nium. Export reconciliation reports and webhook configurations. Keep KYC artifacts and payee records in a structured format so they can be re-onboarded into Nium's compliance process.",
+  "import_method": "On Nium, scope work around payouts, issuing, collections and FX rather than card acceptance. Onboard with Nium's compliance team — expect KYC/KYB and licensing reviews. Re-create payee records and account structures via Nium's APIs, integrate payout endpoints, and if applicable, request virtual card issuing. Keep card acceptance with Primer or another PSP unless you have a clear plan to move it elsewhere. Build adapters in your code to call Nium for outbound money movement and FX, and run reconciliation against Nium's reports during a parallel period.",
+  "concept_mapping": [
+    {
+      "source": "Customer",
+      "target": "Customer / payee",
+      "note": "Different lifecycle on Nium"
+    },
+    {
+      "source": "Payment",
+      "target": "Payout / collection",
+      "note": "Outbound vs inbound rails"
+    },
+    {
+      "source": "Connector",
+      "target": "Direct Nium integration"
+    },
+    {
+      "source": "Webhook",
+      "target": "Webhook"
+    }
+  ],
+  "effort": "8-16 weeks including compliance onboarding",
+  "gotchas": [
+    "Primer and Nium overlap only partially — confirm Nium covers your use case",
+    "Compliance and licensing onboarding can take several weeks",
+    "Card acceptance still typically needs a PSP alongside Nium",
+    "FX spreads vary by corridor; model real economics before cutover",
+    "PCI card token export to Nium may not be useful if you keep PSPs elsewhere",
+    "Support tiers depend on contract size — confirm SLAs upfront"
+  ],
+  "email": {
+    "subject": "Repositioning our money movement from Primer to Nium",
+    "body": "Hi team,\n\nOver the next 14 days we are starting to shift our money movement off Primer and onto Nium. The driver is that our needs have moved toward cross-border payouts, FX and possibly card issuing — Primer is built around card payments orchestration, and Nium is built around global money movement on a licensed footprint.\n\nThe plan is to onboard with Nium's compliance team in parallel with day-to-day Primer operations, then roll over payout and collection flows once KYB is complete. Card acceptance will stay where it is for now; we will revisit that separately. We are exporting Primer transactions, payee data, workflows and webhook configs so reconciliation history is preserved.\n\nThis is a re-platform, not a swap. Expect compliance reviews to take real time, and corridor pricing to need modeling before we cut over. If your service depends on Primer payouts or routing rules, please flag it this week so we can plan adapters cleanly.\n\nThanks,\nYour customer"
+  }
+}

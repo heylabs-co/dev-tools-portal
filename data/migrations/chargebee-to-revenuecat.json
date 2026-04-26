@@ -1,0 +1,71 @@
+{
+  "source": {
+    "slug": "chargebee",
+    "name": "Chargebee"
+  },
+  "target": {
+    "slug": "revenuecat",
+    "name": "RevenueCat"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Chargebee and RevenueCat solve overlapping but different problems: Chargebee is a web SaaS billing platform, while RevenueCat is purpose-built for mobile in-app subscriptions on the App Store and Google Play. The migration only makes sense if your business is moving to or already on mobile IAP.",
+  "why_switch": [
+    "Mobile in-app subscriptions are now your main revenue",
+    "Need cross-platform entitlement management (iOS/Android/web)",
+    "Want paywall A/B testing and IAP analytics",
+    "Avoid building StoreKit/Google Play receipt validation in-house",
+    "Usage-based pricing tied to revenue, not seats"
+  ],
+  "what_to_export": [
+    "Customer profiles and subscription state",
+    "Active plans, prices, and entitlement mappings",
+    "Coupons, trials, and discounts",
+    "Invoice and revenue history",
+    "Webhook endpoints and downstream consumers",
+    "Tax configuration and rates",
+    "Dunning and retry rules",
+    "Cancellation and refund records"
+  ],
+  "export_method": "Use Chargebee's Dashboard and API to export customers, subscriptions, invoices, plans, addons, coupons, transactions, and credit notes as CSV or JSON. Document each plan's entitlements (what features the customer gets) because RevenueCat models entitlements as first-class objects, distinct from store products. Capture every webhook URL and the downstream system it feeds (CRM, analytics, ledger). Export tax settings, dunning sequences, and cancellation flows. Recognize that Chargebee subscriptions typically charge a card directly via a PSP, while RevenueCat subscriptions are paid through the App Store or Google Play — the underlying payment relationship changes, so any active web-card subscriptions cannot simply be re-billed through IAP without the user actively re-subscribing in-app.",
+  "import_method": "Create a RevenueCat project, connect it to App Store Connect and Google Play, and define your products and entitlements. Map each Chargebee plan to one or more store products plus a RevenueCat entitlement. Integrate the RevenueCat SDK into your iOS/Android (and optional web) clients, replacing direct StoreKit/Billing calls. Use webhooks and the REST API to mirror subscription state into your backend, replacing Chargebee webhooks. For existing web-card subscribers, decide on a strategy: continue billing them in Chargebee until churn, or run an in-app upgrade flow that asks them to resubscribe through the store. Run both systems in parallel: Chargebee for legacy web subscriptions and RevenueCat for new mobile IAP, until web subscriptions wind down.",
+  "concept_mapping": [
+    {
+      "source": "Customer",
+      "target": "App User (App User ID)"
+    },
+    {
+      "source": "Plan",
+      "target": "Store product + Entitlement"
+    },
+    {
+      "source": "Subscription",
+      "target": "Subscription / Entitlement grant"
+    },
+    {
+      "source": "Invoice",
+      "target": "Transaction (from store)",
+      "note": "Billing happens in App Store / Google Play"
+    },
+    {
+      "source": "Webhook",
+      "target": "Webhook"
+    },
+    {
+      "source": "Coupon",
+      "target": "Offer code (store-managed)"
+    }
+  ],
+  "effort": "4-10 weeks; longer if you also rebuild paywalls and re-acquire web users on mobile",
+  "gotchas": [
+    "RevenueCat handles app store IAP, not direct card charges — web-card subscriptions cannot be carried over without user action",
+    "Apple and Google take a platform fee on IAP that does not exist on direct PSP charges; rerun unit economics",
+    "Coupons, trials, and grace periods follow store rules, which differ from Chargebee's billing engine",
+    "Tax handling moves to Apple/Google for IAP; reconcile with your existing tax setup",
+    "Entitlement modeling is different — invest time in a clean entitlement design up front",
+    "Run both platforms in parallel until the legacy web-subscription tail churns out"
+  ],
+  "email": {
+    "subject": "Migration plan: Chargebee to RevenueCat for mobile subscriptions",
+    "body": "Hi team,\n\nWe are planning to move our mobile subscription handling from Chargebee to RevenueCat over the next 14 days and would like your help scoping the work.\n\nSpecifically, we would like to:\n\n- Export customers, subscriptions, plans, and entitlement mappings from Chargebee.\n- Define equivalent products and entitlements in RevenueCat connected to App Store Connect and Google Play.\n- Integrate the RevenueCat SDK in our iOS and Android apps and migrate webhook consumers.\n- Keep Chargebee running for legacy web-card subscriptions while new mobile IAP runs through RevenueCat.\n\nCould you confirm onboarding steps, store integration requirements, sandbox testing recommendations, and a technical contact? We aim to begin within the next few business days.\n\nThanks,\nYour customer"
+  }
+}

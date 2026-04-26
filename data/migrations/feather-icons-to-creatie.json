@@ -1,0 +1,64 @@
+{
+  "source": {
+    "slug": "feather-icons",
+    "name": "Feather Icons"
+  },
+  "target": {
+    "slug": "creatie",
+    "name": "Creatie"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Feather Icons is an MIT-licensed SVG set, while Creatie is an AI-native design tool, so this is less a migration and more an integration. You keep using Feather SVGs inside Creatie as your icon library, or replace them with Creatie's AI-generated icons.",
+  "why_switch": [
+    "Adopt AI-native design and prototyping",
+    "Combine design, handoff, and tokens in one tool",
+    "Use AI icon generation to fill Feather gaps",
+    "Move icon decisions into the design canvas",
+    "Reduce manual icon search workflow"
+  ],
+  "what_to_export": [
+    "Full Feather SVG icon set (from repo)",
+    "Inventory of icons used in current product",
+    "Custom modified Feather icons",
+    "Icon naming conventions and slugs",
+    "Icon size, stroke width, and color tokens",
+    "React/Vue wrapper components for icons",
+    "Icon usage map per screen or component",
+    "Brand color palette applied to icons",
+    "Accessibility metadata (aria-label, titles)",
+    "Build pipeline references (sprite, font, inline)"
+  ],
+  "export_method": "Feather Icons is an open-source SVG set distributed via its GitHub repo and npm package, so 'export' usually means cloning the repo or copying the SVGs you currently use into a folder. Pair that with a quick audit of your codebase to list which icons are actually referenced; tools like ripgrep over imports work well. Capture any local modifications (size, stroke width, custom variants) as separate SVG files so they are not lost. Document your wrapper components and how icons are imported (per-icon, sprite, or font), since that is what changes when you switch tools.",
+  "import_method": "In Creatie, create or import a design system file and add the Feather SVGs as a shared icon library inside the canvas. Most teams either upload the SVGs as components or paste them into a dedicated icons page so designers can drag-drop them. Use Creatie's AI icon generation only to fill gaps, and keep naming consistent with your existing Feather slugs to avoid breaking code references. For developer handoff, continue importing SVGs from your existing Feather package in code; design tooling and runtime icon source can stay decoupled. Validate visually that custom-modified icons match the originals after upload.",
+  "concept_mapping": [
+    {
+      "source": "Feather SVG asset",
+      "target": "Creatie icon component"
+    },
+    {
+      "source": "Icon name / slug",
+      "target": "Icon component name"
+    },
+    {
+      "source": "Stroke width / size token",
+      "target": "Design token / variant"
+    },
+    {
+      "source": "GitHub repo",
+      "target": "Creatie shared library"
+    }
+  ],
+  "effort": "1-2 weeks",
+  "gotchas": [
+    "Creatie is a design tool, not an icon set; you still need a runtime SVG/font/component pipeline in code",
+    "AI-generated icons may not match Feather's strict 24x24 single-weight aesthetic; enforce style review",
+    "Naming drift between design library and code icon names will cause silent gaps",
+    "Custom-modified Feather variants must be uploaded explicitly or they are lost",
+    "Creatie's free tier and feature set may change; do not depend on un-versioned features",
+    "Plugin and ecosystem maturity is lower than Figma; budget time for tooling gaps"
+  ],
+  "email": {
+    "subject": "FYI: shifting our design tool to Creatie",
+    "body": "Hi team,\n\nFor visibility: we're standardizing our design workflow on Creatie over the next 14 days. We'll keep using Feather Icons as our SVG library inside the new tool and only use Creatie's AI icon generation to fill gaps. There's no contract to wind down on the icon side since Feather is open source under MIT.\n\nIf any of you maintain shared design files or wrappers around Feather SVGs in code, please flag them so we can keep names consistent across design and runtime. Happy to share the new Creatie workspace once it's set up.\n\nThanks,\nYour customer"
+  }
+}

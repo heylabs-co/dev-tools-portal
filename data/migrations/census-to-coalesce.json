@@ -1,0 +1,66 @@
+{
+  "source": {
+    "slug": "census",
+    "name": "census"
+  },
+  "target": {
+    "slug": "coalesce",
+    "name": "coalesce"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Census is a reverse-ETL tool that pushes warehouse data out to SaaS destinations, while Coalesce is a Snowflake-centric data transformation platform with column-level lineage. Switching means rebuilding outbound syncs as in-warehouse transformations, so plan a parallel run before cutover.",
+  "why_switch": [
+    "Need column-level lineage and auto-generated documentation inside the warehouse",
+    "Consolidating transformation logic in Snowflake instead of an external sync layer",
+    "Prefer a UI-driven modeling tool over SQL-only sync mappings",
+    "Reduce reliance on a separate outbound sync product"
+  ],
+  "what_to_export": [
+    "List of Census syncs (source model, destination, schedule)",
+    "SQL models or dbt-style queries powering each sync",
+    "Field mappings between warehouse columns and destination fields",
+    "Sync schedules and trigger configuration",
+    "Connection credentials and destination accounts (re-create, do not export secrets)",
+    "RBAC/role assignments and team membership",
+    "Audit log history if required for compliance",
+    "Alerting and notification rules"
+  ],
+  "export_method": "Census exposes its configuration through a web UI and an API; the safest generic path is to inventory every sync, model and destination in the Census workspace and capture the underlying SQL plus field mappings into version control (e.g. a Git repo of .sql files and a mapping spreadsheet). For audit needs, export run history from the activity/audit views. Treat any vendor-specific export endpoints as optional; the durable artifact is the SQL plus the mapping definitions, since those are what Coalesce will need to re-implement. Do not migrate destination credentials directly — re-create OAuth or API connections in the new tool to avoid leaking secrets and to ensure scopes match Coalesce's requirements.",
+  "import_method": "Coalesce models data inside Snowflake using a node-graph UI backed by templated SQL. Recreate each Census source model as a Coalesce node (Source, Stage, or Persistent Stage) pointing at the same Snowflake tables, then build transformation nodes that produce the columns each downstream destination expects. Coalesce focuses on in-warehouse transformation rather than outbound SaaS sync, so any reverse-ETL legs to CRMs or marketing tools must be handled by a separate sync tool kept alongside Coalesce. Validate row counts and key columns against the Census-produced tables before retiring Census jobs, and lock in Git-backed version control for Coalesce projects from day one.",
+  "concept_mapping": [
+    {
+      "source": "Sync",
+      "target": "Job / pipeline run",
+      "note": "Coalesce runs transformations; outbound delivery needs a separate tool"
+    },
+    {
+      "source": "Model (SQL)",
+      "target": "Source/Stage node"
+    },
+    {
+      "source": "Destination",
+      "target": "Not 1:1 — outbound SaaS delivery is out of scope for Coalesce"
+    },
+    {
+      "source": "Field mapping",
+      "target": "Column mapping inside a transformation node"
+    },
+    {
+      "source": "Schedule",
+      "target": "Job schedule / orchestrator trigger"
+    }
+  ],
+  "effort": "2-5 weeks",
+  "gotchas": [
+    "Coalesce is Snowflake-only; if any Census source or destination is on another warehouse, this migration does not fit",
+    "Coalesce does not replace reverse-ETL — outbound syncs to CRMs or ad platforms need a different tool",
+    "Field-level transformations done implicitly inside Census syncs must be re-expressed as explicit Coalesce nodes",
+    "RBAC models differ; map Census roles to Coalesce workspace permissions manually",
+    "Run Census and Coalesce in parallel until row counts and downstream consumers are validated",
+    "Audit and run-history formats are vendor-specific; export anything you must retain before cancelling"
+  ],
+  "email": {
+    "subject": "Heads-up: we are moving our data pipelines off Census",
+    "body": "Hi team,\n\nWe are migrating from Census to Coalesce over the next 14 days to consolidate our transformation logic inside Snowflake and get column-level lineage. Existing Census syncs will keep running in parallel during the cutover, so destinations should not see interruptions. If you depend on a specific sync or destination, please reply with the name so we can validate it on the new pipeline before we shut Census down.\n\nThanks for your patience while we make this change.\n\nYour customer"
+  }
+}

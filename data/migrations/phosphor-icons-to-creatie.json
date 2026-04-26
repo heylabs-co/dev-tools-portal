@@ -1,0 +1,64 @@
+{
+  "source": {
+    "slug": "phosphor-icons",
+    "name": "Phosphor Icons"
+  },
+  "target": {
+    "slug": "creatie",
+    "name": "Creatie"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Phosphor Icons is an open-source icon family with multiple weights, while Creatie is an AI-native product design tool. The realistic move is keeping Phosphor as your icon source while standardizing screens, prototyping, and handoff inside Creatie.",
+  "why_switch": [
+    "You want a full design tool, not just an icon family",
+    "You need AI-assisted screen generation and prototyping",
+    "You want collaborative editing and built-in developer handoff",
+    "You prefer browser-based work with public freemium tiers",
+    "You want to standardize icon weight choices across screens visually"
+  ],
+  "what_to_export": [
+    "List of Phosphor icons used in your codebase",
+    "Weight variants in use such as regular, bold, fill, duotone",
+    "SVG assets for each icon at the weights you use",
+    "Color and size conventions per surface",
+    "Existing Figma library or other design source mirroring usage",
+    "Naming conventions used in code",
+    "Component and screen inventory that depends on Phosphor",
+    "License notes for Phosphor MIT"
+  ],
+  "export_method": "Audit your codebase for Phosphor imports and capture each icon name plus the weight variant used. From phosphoricons.com or your installed package's assets, download SVGs for the exact weights you rely on, since visual parity depends on weight choice. Keep names that include the weight suffix so the file name carries enough context, for example 'gear-bold.svg'. Note any places where you switch weights based on state, such as bold for active and regular for inactive, since that pattern needs to be reproduced in Creatie components. If you have a Figma library that mirrors Phosphor, export or duplicate that as your starting point. Avoid editing SVG paths during export so you preserve the canonical Phosphor look.",
+  "import_method": "In Creatie, create a project for your design system and a dedicated icon library file. Drag the exported SVGs in, group them by weight, and convert each into a component so screens reference one source. Where Creatie supports component variants or properties, model weight as a variant so a single icon can switch between regular, bold, fill, and duotone. Apply your color and size conventions as styles where the tool allows. Rebuild or migrate screens that previously referenced Phosphor and verify that visuals match by comparing side by side with a current build. Use Creatie's developer handoff to expose values to engineers while continuing to import Phosphor packages in code.",
+  "concept_mapping": [
+    {
+      "source": "Icon weight variant",
+      "target": "Creatie component variant",
+      "note": "If the tool supports variants"
+    },
+    {
+      "source": "Icon component in npm package",
+      "target": "Creatie icon component",
+      "note": "Recreated, not imported"
+    },
+    {
+      "source": "Duotone variant",
+      "target": "SVG with two fills inside Creatie component"
+    },
+    {
+      "source": "Color override",
+      "target": "Style or property on Creatie component"
+    }
+  ],
+  "effort": "3-7 days for a moderate icon set across multiple weights",
+  "gotchas": [
+    "Phosphor's weight variants multiply the asset count; do not import all weights blindly",
+    "Duotone icons rely on two fill colors and can render incorrectly if flattened",
+    "Phosphor and Lucide look different; do not mix unless intentional",
+    "Naming drift between code and Creatie components breaks handoff",
+    "If Creatie's variant model differs from your assumptions, plan for separate components per weight",
+    "Phosphor releases evolve; pin a version and refresh the Creatie library together with package upgrades"
+  ],
+  "email": {
+    "subject": "Moving our Phosphor icon workflow into Creatie",
+    "body": "Hi team,\n\nWe are bringing our Phosphor icon set into Creatie as a shared library so design files line up with code. Over the next 14 days we will inventory used icons and weights, build Creatie components, and rebuild key screens. Code keeps Phosphor packages. Please send the weights you rely on per surface so we model variants correctly. We will share the Creatie library and handoff link before cutover.\n\nThanks,\nYour customer"
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "source": {
+    "slug": "react-native-iap",
+    "name": "react-native-iap"
+  },
+  "target": {
+    "slug": "balancy",
+    "name": "Balancy"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "react-native-iap is a low-level OSS React Native IAP library; Balancy is a no-code LiveOps and monetization platform. Migrating means adding an economy and offer layer on top of (or instead of) raw IAP calls in RN.",
+  "why_switch": [
+    "Add LiveOps offers and events",
+    "Centralize virtual economy in a CMS",
+    "Run A/B tests on bundles and pricing",
+    "Reduce custom server catalog work",
+    "Let designers ship without app updates"
+  ],
+  "what_to_export": [
+    "Product IDs and store SKUs",
+    "Purchase flow code",
+    "Receipt validation logic",
+    "Subscription state mapping",
+    "Localized product copy",
+    "Restore purchase handling",
+    "Analytics events around IAP",
+    "Custom catalog or bundle definitions"
+  ],
+  "export_method": "react-native-iap has no service-side data to export. Inventory the library's usage in your RN app: getProducts, requestPurchase, purchase listeners, and any subscription-specific calls. Pull product IDs from App Store Connect and Google Play Console as the canonical, vendor-neutral identifiers. Document any server-side receipt validation: endpoints, payload shapes, and downstream account state changes. Capture analytics events around purchases to preserve the funnel. If your app maintains a virtual economy in its own code or backend, export that schema (items, currencies, bundles) since this is what will move into Balancy. List any custom A/B test definitions you may want to recreate in Balancy.",
+  "import_method": "Create a Balancy project and define your economy in the CMS: items, currencies, bundles, and store pages mapped to existing store SKUs. Keep react-native-iap as the IAP transaction layer — Balancy is not a replacement for purchase APIs. Install Balancy's React Native SDK if available, or call its REST API from JS if not. Load catalog data from Balancy at runtime and replace hardcoded catalog screens. Wire purchase success callbacks from react-native-iap into Balancy event tracking. Keep server-side receipt validation intact. Roll out behind a feature flag and phase to a percentage of users for soak testing.",
+  "concept_mapping": [
+    {
+      "source": "Hardcoded product list",
+      "target": "Balancy CMS items and bundles"
+    },
+    {
+      "source": "getProducts result",
+      "target": "Balancy store page fetch"
+    },
+    {
+      "source": "Purchase listener event",
+      "target": "Balancy purchase event log"
+    },
+    {
+      "source": "Custom A/B harness",
+      "target": "Balancy A/B test"
+    }
+  ],
+  "effort": "2-5 weeks depending on catalog size and economy depth",
+  "gotchas": [
+    "Balancy does not replace receipt validation; keep server-side checks intact.",
+    "Verify Balancy React Native SDK maturity — REST may be needed if not first-class.",
+    "Concept mismatch: react-native-iap is transactional; Balancy adds economy and LiveOps on top.",
+    "Subscription lifecycle still flows through stores and react-native-iap.",
+    "Existing analytics dashboards must be remapped to Balancy's event schema.",
+    "Native module changes in RN can require pod install and Gradle resync; allow time."
+  ],
+  "email": {
+    "subject": "Adding Balancy on top of react-native-iap — 14-day plan",
+    "body": "Hi team,\n\nWe plan to introduce Balancy alongside our react-native-iap setup over the next 14 days. react-native-iap stays as the transaction layer; Balancy owns the catalog, offers, and A/B testing.\n\nProposed timeline:\nDays 1-2: Inventory current IAP usage — product IDs, purchase flow, server validation, analytics.\nDays 3-5: Model the economy in Balancy CMS: items, currencies, bundles, store pages mapped to store SKUs.\nDays 6-9: Integrate the Balancy RN SDK (or REST) and replace hardcoded catalog screens.\nDays 10-12: Wire purchase callbacks into Balancy events; run an A/B test on a small bundle.\nDays 13-14: QA on iOS and Android, regression-test receipt validation, ship behind a feature flag.\n\nReceipt validation stays on our backend. Please flag any custom catalog or bundle logic that needs CMS-ification.\n\nThanks,\nYour customer"
+  }
+}

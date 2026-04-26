@@ -1,0 +1,67 @@
+{
+  "source": {
+    "slug": "sendgrid",
+    "name": "SendGrid"
+  },
+  "target": {
+    "slug": "resend",
+    "name": "Resend"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "SendGrid and Resend both expose SMTP and REST APIs for transactional email, so the migration is largely DNS, template porting, and webhook rewiring. Resend's draw is a developer-first SDK, React Email integration, and simpler hybrid pricing without dedicated-IP and annual-plan friction.",
+  "why_switch": [
+    "Developer-first SDKs and React Email support",
+    "Cleaner integration story for modern stacks",
+    "Avoid SendGrid dedicated-IP and annual-plan lock-in",
+    "Transparent hybrid pricing",
+    "Simpler webhook event model"
+  ],
+  "what_to_export": [
+    "Verified sending domains and DKIM keys",
+    "Dynamic templates and legacy templates",
+    "Suppression list (bounces, blocks, spam reports, unsubs)",
+    "Subusers and IP pool configuration",
+    "Event Webhook configuration",
+    "API keys and integration secrets",
+    "Inbound Parse settings if used",
+    "Recent send and engagement metrics"
+  ],
+  "export_method": "Use the SendGrid REST API to export templates (Dynamic and legacy) as JSON with versions. Export suppression list buckets (bounces, blocks, spam reports, global unsubscribes) as CSV. Document Subusers, IP pool assignments, and Event Webhook URLs so the topology can be recreated. Capture all merge-variable names used in templates to plan the rewrite to Resend's substitution syntax (or to React Email components). If you have annual SendGrid plans or dedicated IPs, schedule the migration so they expire on a clean billing boundary. Keep SendGrid sending live during DNS cutover and Resend warm-up so you can fall back if needed.",
+  "import_method": "In Resend, add your sending domain and publish the DKIM, SPF, and DMARC records Resend generates. Choose your template approach: React Email components in your codebase, MJML, or plain HTML. Port templates by mapping SendGrid Dynamic Template variables to your chosen Resend approach. Import the suppression list via Resend's API. Configure webhooks for delivery, bounce, and complaint events to your existing handler endpoint. Swap your application's SMTP credentials or API key to Resend, send a low-volume canary, and ramp to 100 percent once metrics are stable.",
+  "concept_mapping": [
+    {
+      "source": "Dynamic Template",
+      "target": "Template (React Email / HTML)",
+      "note": "Variable syntax differs; rewrite required"
+    },
+    {
+      "source": "Subuser",
+      "target": "API key with scoped permissions"
+    },
+    {
+      "source": "Event Webhook",
+      "target": "Webhook"
+    },
+    {
+      "source": "Suppression list",
+      "target": "Suppression list"
+    },
+    {
+      "source": "IP pool",
+      "target": "Dedicated IP (if purchased)"
+    }
+  ],
+  "effort": "1-3 weeks",
+  "gotchas": [
+    "SendGrid dedicated IPs and annual contracts may not be cancellable mid-cycle",
+    "Dedicated IP reputation does not transfer; plan a warm-up window on Resend",
+    "Dynamic Template variable syntax differs from Resend's substitution model",
+    "Event Webhook payload shapes differ — update handlers before flipping traffic",
+    "DNS DKIM, SPF, and DMARC propagation can take 24-48 hours",
+    "React Email is optional but encouraged; mixing approaches across templates adds complexity"
+  ],
+  "email": {
+    "subject": "Switching transactional email from SendGrid to Resend",
+    "body": "Hi team,\n\nOver the next 14 days we're moving transactional email from SendGrid to Resend. The driver is developer experience: Resend's SDKs and React Email integration line up with how our team builds, and we get cleaner pricing without the dedicated-IP and annual-plan friction we have today.\n\nDays 1-3: add our sending domain to Resend and publish DKIM, SPF, and DMARC records. Days 4-7: port templates and remap variables, import the suppression list, and wire up bounce and complaint webhooks. Days 8-11: route a small share of transactional traffic to Resend, monitor inbox placement and webhook events, then ramp. Days 12-14: keep SendGrid warm as a fallback and decommission once metrics are stable. We'll separately review when to release dedicated IPs and the annual plan.\n\nNo end-user impact is expected. Status updates at the midpoint and at cutover.\n\nThanks,\nYour customer"
+  }
+}

@@ -1,0 +1,71 @@
+{
+  "source": {
+    "slug": "snyk",
+    "name": "Snyk"
+  },
+  "target": {
+    "slug": "private-ai",
+    "name": "Private AI"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "These products solve different problems: Snyk is application security (SCA/SAST/container/IaC) while Private AI is PII redaction for text, audio, images, and documents. A move only makes sense if your real need is PII redaction in data/LLM pipelines, not code scanning.",
+  "why_switch": [
+    "Need PII redaction across multiple modalities",
+    "Want HIPAA/GDPR compliance for AI pipelines",
+    "Self-hosted deployment for data residency",
+    "Different category, not a competitor",
+    "Usage-based pricing for redaction workloads"
+  ],
+  "what_to_export": [
+    "Project list with repository mappings",
+    "SCA, SAST, IaC, container scan results",
+    "Custom rules and configurations",
+    "Triage state (ignored issues, suppressions)",
+    "Policy and severity thresholds",
+    "User, role, and SSO configuration",
+    "CI/IDE integrations and tokens",
+    "Webhooks and ticketing integrations",
+    "Audit logs and compliance evidence",
+    "Remediation/PR history"
+  ],
+  "export_method": "Use the Snyk UI, CLI, or API to export project lists, latest scan results as SARIF or JSON, ignore/suppression state, and custom rules. Capture user/role/SSO configuration and CI/IDE integration settings so they can be cleanly removed. Pull historical scan data for archival. Recognize that this export is for archival and a parallel security-tool decision; the data does not map to Private AI, which detects sensitive entities in content rather than vulnerabilities in code. Snapshot policy thresholds and PR-history reports for audit continuity.",
+  "import_method": "Plan two tracks. For PII redaction, sign up for Private AI (cloud or self-hosted) and integrate the redaction API at the points in your pipeline that touch personal data: data ingestion, LLM pre-processing, customer support tooling, log scrubbing. Tune entity types and confidence thresholds based on your data. For application security, choose a Snyk replacement (e.g., open source Semgrep/OSV-Scanner, or another commercial SCA/SAST tool) and import SARIF where possible. Do not let the Snyk cancellation create a coverage gap; keep the security tool live until a replacement is operational.",
+  "concept_mapping": [
+    {
+      "source": "SCA/SAST scan",
+      "target": "(no equivalent)",
+      "note": "Different problem domain"
+    },
+    {
+      "source": "Container scan",
+      "target": "(no equivalent)",
+      "note": "Different problem domain"
+    },
+    {
+      "source": "SARIF report",
+      "target": "Redaction API response",
+      "note": "Different schema and meaning"
+    },
+    {
+      "source": "Custom rules",
+      "target": "Entity/regex configuration"
+    },
+    {
+      "source": "CI integration",
+      "target": "API call in data pipeline"
+    }
+  ],
+  "effort": "Re-evaluate fit before committing; 1-3 weeks for PII redaction integration plus separate effort to choose a Snyk replacement",
+  "gotchas": [
+    "Snyk and Private AI solve different problems; confirm you need PII redaction, not code scanning",
+    "Cancelling Snyk without a successor leaves a security gap; do not create a window of no coverage",
+    "Private AI redaction tuning is iterative; expect multiple passes on false positives/negatives",
+    "Self-hosted Private AI requires infrastructure planning (compute sizing, networking, monitoring)",
+    "Audit/compliance evidence from Snyk should be archived before any contract termination",
+    "Usage-based Private AI pricing can scale with traffic volume; model costs at peak"
+  ],
+  "email": {
+    "subject": "Reassessing our use of Snyk; planning changes over the next 14 days",
+    "body": "Hello Snyk team,\n\nA quick heads-up that we are reassessing our use of Snyk over the next 14 days. We are introducing Private AI for PII redaction in our data and LLM pipelines, and we are separately deciding whether to keep Snyk for code-side scanning or shift that workload to another tool.\n\nPlan: days 1-4 export project lists, SARIF results, ignore state, and SSO/CI configs; days 5-9 stand up Private AI for the PII workflow and scope the security-tool decision; days 10-12 either keep Snyk in place or run a successor in parallel; days 13-14 finalize.\n\nCould you confirm our remaining contract term, notice clauses for non-renewal, and the cleanest way to export historical evidence and disconnect integrations. We want to preserve audit trails and avoid leaving stale CI hooks behind.\n\nThanks,\nYour customer"
+  }
+}

@@ -1,0 +1,71 @@
+{
+  "source": {
+    "slug": "akamai",
+    "name": "Akamai"
+  },
+  "target": {
+    "slug": "selectel",
+    "name": "Selectel"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Moving from Akamai to Selectel mainly makes sense for workloads that need Russian data residency or local compliance — Selectel is a regional cloud IaaS with CDN and storage, not a global enterprise CDN. Plan a property-by-property rebuild, not a config import.",
+  "why_switch": [
+    "Russian data residency and compliance",
+    "Local IaaS, dedicated servers, and managed Kubernetes",
+    "Competitive pricing inside the Russian market",
+    "Object storage with CDN integration",
+    "Reduced exposure to non-RU vendor billing"
+  ],
+  "what_to_export": [
+    "Property Manager configurations",
+    "Origin definitions",
+    "Hostnames and DNS records",
+    "TLS certificates and SAN coverage",
+    "Cache rules and TTLs",
+    "WAF and security policies",
+    "EdgeWorkers source",
+    "Object storage contents (if using NetStorage)",
+    "Token authentication settings",
+    "Log delivery destinations"
+  ],
+  "export_method": "Pull Property Manager configurations as JSON from the Akamai control panel or via EdgeGrid API. Inventory hostnames, DNS records, certificate coverage, cache rules, and WAF policies as plain documentation. Export NetStorage contents using Akamai's documented mechanisms or by re-uploading from the source of truth. Capture EdgeWorkers source from your repo. Treat secrets and signed-URL keys as inventory-only — they will be re-issued. The result is a structured inventory that drives the rebuild on Selectel, not a literal import.",
+  "import_method": "Provision the equivalent Selectel resources: CDN service for content delivery, object storage for static assets, and compute or managed Kubernetes for any backend or edge logic. Upload static assets to Selectel object storage and point the CDN at it as the origin. Recreate cache rules and TTLs using Selectel's CDN configuration. Provision TLS certificates through Selectel's certificate management or upload custom ones. Rewrite any EdgeWorkers logic as application-side or Kubernetes-hosted services, since runtime semantics differ. Update DNS records with low TTLs during cutover. Validate compliance and data-residency expectations end-to-end before flipping production traffic.",
+  "concept_mapping": [
+    {
+      "source": "Property",
+      "target": "CDN resource"
+    },
+    {
+      "source": "Origin",
+      "target": "Object storage bucket or compute instance"
+    },
+    {
+      "source": "Edge certificate",
+      "target": "Managed or uploaded TLS certificate"
+    },
+    {
+      "source": "NetStorage",
+      "target": "Selectel object storage"
+    },
+    {
+      "source": "EdgeWorkers",
+      "target": "Custom service in Kubernetes / VM"
+    },
+    {
+      "source": "Log delivery",
+      "target": "Log forwarding to your collector"
+    }
+  ],
+  "effort": "3-8 weeks depending on number of properties and whether non-CDN workloads also move",
+  "gotchas": [
+    "Selectel is a regional cloud — not a drop-in replacement for global enterprise CDN coverage",
+    "Sanctions and compliance exposure must be reviewed before migrating non-RU workloads",
+    "Documentation and support are primarily Russian-language",
+    "Edge compute parity is limited; budget for application-side logic rewrites",
+    "Global latency outside Russia/CIS will likely be higher than Akamai"
+  ],
+  "email": {
+    "subject": "Cancellation and offboarding from our Akamai contract",
+    "body": "Hi Akamai team,\n\nWe are moving our CDN workloads to another provider over the next 14 days and plan to wind down our Akamai usage. Could you confirm the steps to export our property configurations, certificate metadata, log delivery settings, and any account data we are entitled to before the contract ends?\n\nWe would like to schedule cancellation at the end of the current contract term. Please share the date by which we need to give written notice to avoid auto-renewal, the offboarding checklist your team uses, and any data retention timelines that apply after the account closes.\n\nIf there are minimum commits or remaining contractual obligations we should be aware of, please flag them.\n\nThanks,\nYour customer"
+  }
+}

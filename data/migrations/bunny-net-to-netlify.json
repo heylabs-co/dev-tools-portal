@@ -1,0 +1,72 @@
+{
+  "source": {
+    "slug": "bunny-net",
+    "name": "Bunny.net"
+  },
+  "target": {
+    "slug": "netlify",
+    "name": "Netlify"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Replace Bunny.net CDN delivery with Netlify by hosting the site directly on Netlify and porting Edge Rules to redirects/headers and Edge Scripting to Netlify Functions or Edge Functions. Best fit when content is built from a Git repo rather than served from a custom origin.",
+  "why_switch": [
+    "Integrated Git-based deploys and previews",
+    "Built-in CDN, redirects, and forms",
+    "Serverless and Edge Functions out of the box",
+    "Generous free tier for static sites",
+    "Strong DX, CLI, and ecosystem integrations"
+  ],
+  "what_to_export": [
+    "Pull zone configurations and origins",
+    "Storage zone contents (assets, media)",
+    "Edge Rules (redirects, rewrites, headers)",
+    "Edge Scripting source code",
+    "Custom domains and TLS certificates",
+    "DNS records (if Bunny DNS is used)",
+    "Image optimization settings and URL patterns",
+    "Access tokens and signed URL config",
+    "Cache TTL and query handling rules",
+    "Recent logs and analytics history"
+  ],
+  "export_method": "From the Bunny dashboard or API, export pull zone and storage zone configurations as JSON. List storage zone contents and download via S3-compatible API or rclone if you intend to host assets on Netlify or move them to a separate bucket. Export Edge Rules, paying particular attention to rewrite, redirect, and header-injection rules; these will need to be translated. Pull Edge Scripting source from the dashboard. Export DNS records from Bunny DNS as a zone file. Capture custom hostnames and certificate metadata. Sample recent access logs to understand traffic patterns and which paths are hottest.",
+  "import_method": "Create a Netlify site and connect it to your Git repository, or upload a build artifact. Place static assets that previously lived in a Bunny storage zone into the build output (or keep them in a bucket and reference via CDN). Translate Bunny Edge Rules into Netlifys netlify.toml redirects, rewrites, and headers; many rule types map cleanly. Port Edge Scripting code to Netlify Functions or Edge Functions, depending on whether you need request-time rewriting or back-end logic. Configure custom domains in Netlify and let Netlify provision TLS automatically (Lets Encrypt) or upload your own. Update DNS to point at Netlify, either by delegating to Netlify DNS or by adding the Netlify load-balancer records. Use the Netlify CLI for local previews and deploy hooks.",
+  "concept_mapping": [
+    {
+      "source": "Pull zone",
+      "target": "Netlify site CDN"
+    },
+    {
+      "source": "Storage zone",
+      "target": "Build artifact or external bucket"
+    },
+    {
+      "source": "Edge Rules",
+      "target": "_redirects / _headers / netlify.toml"
+    },
+    {
+      "source": "Edge Scripting",
+      "target": "Netlify Functions / Edge Functions"
+    },
+    {
+      "source": "Bunny DNS",
+      "target": "Netlify DNS"
+    },
+    {
+      "source": "Custom hostname + cert",
+      "target": "Domain + Lets Encrypt"
+    }
+  ],
+  "effort": "1-3 weeks for a typical site, longer if you have a non-Git origin or heavy Edge Scripting",
+  "gotchas": [
+    "Netlify is built around Git-based deploys; pure-proxy CDN use cases for arbitrary origins fit less naturally",
+    "Edge Functions and Netlify Functions have different runtime constraints than Bunny Edge Scripting",
+    "Bandwidth-heavy media workloads may be cheaper on Bunny than on Netlifys metered tiers; model it",
+    "Some Edge Rules (e.g., advanced match conditions) may need to be split across redirects/headers and a function",
+    "Image optimization URL parameters differ; old links may need a transform shim",
+    "Plan DNS TTL reduction before cutover and keep Bunny zones live until you have validated traffic"
+  ],
+  "email": {
+    "subject": "Migrating our site from Bunny.net to Netlify over the next 14 days",
+    "body": "Hello Bunny.net team,\n\nA quick heads-up: we are moving the site from Bunny.net to Netlify over the next 14 days. The decision is mostly about consolidating Git-based deploys, previews, and CDN/edge in one place rather than any issue with Bunnys delivery.\n\nPlan: days 1-3 export pull zone configs, Edge Rules, Edge Scripting, storage assets, and DNS; days 4-9 set up Netlify with redirects/headers and port edge logic to functions; days 10-12 cut DNS with low TTLs and keep Bunny live as rollback; days 13-14 drain traffic and close out.\n\nCould you confirm the cleanest way to wind down our pull zones, storage zones, and DNS once cutover is complete, and whether any commitments need to be settled first. Bunny has worked well for us; we may continue using it for media-heavy workloads.\n\nThanks,\nYour customer"
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "source": {
+    "slug": "cline",
+    "name": "cline"
+  },
+  "target": {
+    "slug": "appodeal",
+    "name": "appodeal"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Cline is an AI coding agent and Appodeal is a mobile ad mediation SDK; they are not interchangeable, so this is a decommission of Cline plus a separate adoption of Appodeal. Plan it as two independent tracks rather than one migration.",
+  "why_switch": [
+    "Shifting focus from developer tooling to mobile monetisation",
+    "You no longer want an in-IDE AI agent",
+    "Adopting Appodeal as part of a mediation strategy",
+    "Consolidating tooling spend on revenue-generating products",
+    "Internal policy change disallowing AI coding agents"
+  ],
+  "what_to_export": [
+    "Cline configuration and rules files per developer",
+    "MCP server configurations referenced by Cline",
+    "BYOK provider keys to rotate at the source",
+    "Saved prompts, custom commands and session history worth keeping",
+    "Inventory of machines and repositories where Cline is installed",
+    "Any team policies or guardrails around Cline usage"
+  ],
+  "export_method": "Because Cline is an open-source VS Code extension running locally, there is no central tenant to drain. Ask each developer to copy out their Cline workspace configuration, rules and any project-level instruction files into a shared backup. Catalogue the BYOK API keys configured in Cline so they can be revoked at each underlying provider. Export any session history valuable for audit or knowledge transfer. Treat this primarily as a security and configuration cleanup exercise rather than a data migration; once keys are rotated and configs are archived, the extension can be uninstalled.",
+  "import_method": "Appodeal is integrated inside iOS, Android, Unity or React Native apps. Create an Appodeal publisher account, add each app, and configure the ad formats you want (banner, interstitial, rewarded, native). Integrate the Appodeal SDK in your mobile codebase following the official Appodeal integration guide, initialise it at app start, and place ads at the chosen surfaces. In the Appodeal dashboard, enable and connect the demand networks you want to mediate. Add the required lines to app-ads.txt. Wire IAB TCF / GPP consent so requests carry correct privacy signals. Test on real devices with Appodeal's test mode, then ship via standard app store updates.",
+  "concept_mapping": [
+    {
+      "source": "Cline VS Code extension",
+      "target": "Appodeal mobile SDK",
+      "note": "different product categories, no direct mapping"
+    },
+    {
+      "source": "Cline BYOK model keys",
+      "target": "Appodeal API keys",
+      "note": "unrelated systems, both managed as secrets"
+    }
+  ],
+  "effort": "1-2 days to retire Cline; 3-8 weeks per platform to adopt Appodeal",
+  "gotchas": [
+    "Do not frame this as a one-for-one migration; the products solve unrelated problems.",
+    "Cline BYOK keys must be revoked at the model provider, not just removed from the extension.",
+    "Shared MCP servers may be used by other tools; check before disabling them.",
+    "Appodeal integration changes the binary and triggers app store review.",
+    "Adding ads creates new compliance obligations (privacy policy, consent prompts) that did not exist for Cline.",
+    "Missing app-ads.txt or consent configuration silently degrades Appodeal fill and eCPM."
+  ],
+  "email": {
+    "subject": "Internal: retiring Cline, adopting Appodeal",
+    "body": "Hi,\n\nIn the next 14 days we are retiring Cline as our in-IDE AI coding agent and, in parallel, integrating Appodeal as our mobile ad mediation provider. These two changes are independent.\n\nIf you use Cline, you will be asked to uninstall it and rotate any model API keys. If you build the mobile app, you will see Appodeal integration tasks in the repo.\n\nReply with any specific questions and we will help you through the change.\n\nThanks,\nYour customer"
+  }
+}

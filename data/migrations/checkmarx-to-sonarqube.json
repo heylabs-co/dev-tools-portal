@@ -1,0 +1,66 @@
+{
+  "source": {
+    "slug": "checkmarx",
+    "name": "checkmarx"
+  },
+  "target": {
+    "slug": "sonarqube",
+    "name": "sonarqube"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Checkmarx is an enterprise SAST/SCA/IaC platform, while SonarQube is a code-quality and SAST platform with a free Community edition and paid tiers for advanced security rules. Migration is direct on the SAST front but you may lose coverage on SCA, IaC, and API security unless those are addressed by other tools.",
+  "why_switch": [
+    "Reduce cost via OSS Community edition or smaller paid tiers",
+    "Combine code quality and SAST in a single platform",
+    "Use a more developer-familiar UI and PR-decoration flow",
+    "Avoid bespoke enterprise contracting"
+  ],
+  "what_to_export": [
+    "List of Checkmarx projects and repositories",
+    "Open and historical findings, ideally as SARIF",
+    "Risk acceptance and suppression decisions",
+    "Custom queries or rule overrides",
+    "Compliance reports for audit retention",
+    "User and team roles",
+    "CI integration configuration",
+    "Severity gating thresholds"
+  ],
+  "export_method": "Use Checkmarx's SARIF export to pull current findings, and archive scan reports for audit. Document custom queries explicitly — they are tool-specific and will not import into SonarQube; the equivalents would need to be expressed as SonarQube custom rules or accepted as a coverage gap. Capture suppression/risk-acceptance decisions in a structured list. Treat user/role and CI configuration data as documentation, and recreate it natively in SonarQube via SSO and CI plugins.",
+  "import_method": "Stand up SonarQube (Community/Developer/Enterprise self-hosted, or SonarQube Cloud) and create one project per repository covered by Checkmarx. Wire the SonarQube scanner into each CI pipeline so analysis runs on every PR. Re-apply prior suppressions as SonarQube issue resolutions (False Positive / Won't Fix). Configure quality gates to enforce the severities your compliance program requires. For SCA, IaC, and API-security coverage that Checkmarx provided, plan a complementary tool — SonarQube's coverage of those categories depends on edition and may not be a complete replacement. Keep Checkmarx running on critical projects until parity is validated.",
+  "concept_mapping": [
+    {
+      "source": "Project (multi-scan)",
+      "target": "Project (SAST + quality)"
+    },
+    {
+      "source": "Finding",
+      "target": "Issue"
+    },
+    {
+      "source": "Risk acceptance",
+      "target": "Issue resolution (False Positive / Won't Fix)"
+    },
+    {
+      "source": "Custom query",
+      "target": "Custom rule",
+      "note": "Manual reimplementation"
+    },
+    {
+      "source": "Severity gate",
+      "target": "Quality gate condition"
+    }
+  ],
+  "effort": "3-8 weeks",
+  "gotchas": [
+    "SonarQube's depth on SCA, IaC, and API security depends on edition and may not equal Checkmarx",
+    "Custom Checkmarx queries do not port; reimplement as custom rules or drop them",
+    "Historical scan data stays in Checkmarx; export reports before cancellation",
+    "Enterprise contract notice periods may delay cutover dates",
+    "Quality gates fail builds by default — tune thresholds before enforcing PR blocks",
+    "Some advanced security rules require paid SonarQube tiers; verify license needs"
+  ],
+  "email": {
+    "subject": "Moving SAST from Checkmarx to SonarQube",
+    "body": "Hi team,\n\nOver the next 14 days we are migrating SAST coverage from Checkmarx to SonarQube. Both tools will run in parallel while we tune quality gates per repository. Where Checkmarx provided SCA, IaC, or API-security coverage, we will note any temporary gaps and the plan to close them. Please flag any active Checkmarx finding you want carried over.\n\nThanks for your patience.\n\nYour customer"
+  }
+}

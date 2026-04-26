@@ -1,0 +1,67 @@
+{
+  "source": {
+    "slug": "twilio",
+    "name": "Twilio"
+  },
+  "target": {
+    "slug": "vonage",
+    "name": "Vonage"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Twilio and Vonage are both REST-based CPaaS providers covering SMS, voice, and video, so a migration is largely an SDK swap, webhook rework, and number porting. Plan extra time for porting numbers and for re-approval of any WhatsApp or voice routing.",
+  "why_switch": [
+    "Alternative carrier routing and pricing mix",
+    "Comparable per-minute and per-SMS rates",
+    "Mature SDKs across major languages",
+    "Established programmable voice/video offering",
+    "Reduces single-vendor dependency"
+  ],
+  "what_to_export": [
+    "Phone numbers (with LOA for porting)",
+    "Sender IDs and short codes",
+    "Voice TwiML/IVR call flows",
+    "WhatsApp templates and senders",
+    "Webhook endpoints and signing secrets",
+    "API keys, sub-accounts, and roles",
+    "Messaging Service / Copilot configurations",
+    "Studio flows or other low-code workflows"
+  ],
+  "export_method": "Build an inventory using Twilio's REST API: phone numbers, Messaging Services, sender pools, Studio flows, TwiML applications, sub-accounts, API keys, and webhook URLs. Numbers have to be ported with a Letter of Authorization rather than copied, so request these early. For voice, export TwiML XML and any externally hosted bins; for messaging, export templates and copy approved WhatsApp senders. Save webhook signing secrets so you can decommission them cleanly later. Pull a few weeks of message and call logs if you need them for analytics or compliance. None of this needs a Twilio-specific feature beyond the standard REST API.",
+  "import_method": "Open a Vonage account, create applications and API keys, and submit number ports early. Re-implement IVR and call control logic using Vonage's NCCO (Nexmo Call Control Object) JSON model rather than TwiML. Recreate Messaging API senders and WhatsApp templates (Meta will re-approve templates against your new business account). Update SDK calls and webhook handlers, including signature validation. Run staging tests with a Vonage test number, then move a small slice of production traffic first. Keep Twilio active during porting so traffic is not dropped. Once porting completes and metrics are stable, decommission Twilio numbers and credentials.",
+  "concept_mapping": [
+    {
+      "source": "TwiML XML",
+      "target": "NCCO JSON",
+      "note": "Voice control uses different format"
+    },
+    {
+      "source": "Studio Flow",
+      "target": "No direct equivalent; rebuild as code or third-party flow"
+    },
+    {
+      "source": "Messaging Service",
+      "target": "Messaging API with sender pool"
+    },
+    {
+      "source": "Sub-accounts",
+      "target": "Applications / sub-accounts"
+    },
+    {
+      "source": "Webhook signature (X-Twilio-Signature)",
+      "target": "Vonage signed webhooks (different scheme)"
+    }
+  ],
+  "effort": "3-8 weeks, dominated by number porting and IVR rebuild",
+  "gotchas": [
+    "TwiML does not run on Vonage; voice/IVR logic must be rebuilt in NCCO or your own code",
+    "Number porting per country can take days to weeks and requires LOAs",
+    "WhatsApp Business senders and templates must be re-approved by Meta",
+    "Webhook signature validation differs and must be re-implemented",
+    "Per-region pricing differs; rerun cost modeling on your actual traffic mix",
+    "Run dual-send during cutover and compare delivery rates before fully switching"
+  ],
+  "email": {
+    "subject": "Migrating CPaaS from Twilio to Vonage over the next 14 days",
+    "body": "Hi team,\n\nWe are migrating from Twilio to Vonage over the next 14 days. The APIs are similar but voice control is rebuilt and numbers must be ported.\n\nDays 1-3: inventory numbers, IVR flows, templates, and webhooks.\nDays 4-6: open Vonage account, kick off number porting, submit WhatsApp templates.\nDays 7-10: rebuild IVR in NCCO, swap SDKs, rewrite webhook validation.\nDays 11-14: dual-send a slice of traffic, then cut over once delivery and call quality look healthy.\n\nSome ports may extend beyond 14 days; we will keep Twilio active until porting completes.\n\nThanks,\nYour customer"
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "source": {
+    "slug": "cloudflare",
+    "name": "Cloudflare"
+  },
+  "target": {
+    "slug": "selectel",
+    "name": "Selectel"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Cloudflare is a global CDN, DNS, security, and edge-compute platform; Selectel is a Russian cloud provider whose CDN is one piece of a broader IaaS offering. This migration is essentially never a feature-driven choice — it is driven by Russian data residency, sanctions exposure, or commercial constraints.",
+  "why_switch": [
+    "Russian data residency for regulated workloads",
+    "Local billing and support in Russian",
+    "Reduce sanctions exposure on Cloudflare",
+    "Co-locate CDN with Selectel servers and storage",
+    "Better latency for users concentrated in Russia/CIS"
+  ],
+  "what_to_export": [
+    "DNS zone records",
+    "Cache and Page Rules / Rulesets",
+    "Custom domains and TLS certs",
+    "Workers code and routes",
+    "R2 bucket inventories",
+    "WAF rules and rate limits",
+    "Bot and security configurations",
+    "Logpush configurations",
+    "Origin server addresses and TLS",
+    "Redirects and header transforms"
+  ],
+  "export_method": "Cloudflare configuration can be exported via the dashboard, REST API, and Terraform. Use Terraform's Cloudflare provider to capture DNS records, cache and ruleset configuration, WAF rules, and Worker routes as code. Worker source lives in your wrangler project; document bindings (KV, D1, R2). For R2 origins, plan to mirror objects to Selectel Object Storage using S3-compatible tooling. Pull a sample of access logs from Logpush to validate hit rates after migration. TLS certificates from Cloudflare cannot be exported; plan to re-issue at the new edge. Confirm exact Cloudflare API endpoints and Terraform resources against current Cloudflare documentation.",
+  "import_method": "In Selectel, create a CDN resource per hostname pointing at your origin, which can remain in its current location during migration. Translate Cloudflare cache and Page Rules into the closest Selectel CDN cache rules, accepting that some advanced features will simplify or disappear. Move object storage from R2 to Selectel Object Storage by syncing buckets with S3-compatible tooling. Re-issue TLS certificates either via Selectel's certificate workflow or by uploading externally issued certs. Workers logic must be moved off the edge — either to your origin server or to a Selectel compute service. Cut DNS over hostname by hostname with lowered TTLs and side-by-side log comparison. Verify exact Selectel CDN and Object Storage feature names against current Selectel documentation.",
+  "concept_mapping": [
+    {
+      "source": "Cloudflare zone",
+      "target": "DNS provider (external or Selectel)"
+    },
+    {
+      "source": "Cloudflare cache rule / Page Rule",
+      "target": "Selectel CDN cache rule"
+    },
+    {
+      "source": "Cloudflare R2",
+      "target": "Selectel Object Storage",
+      "note": "Both S3-compatible APIs"
+    },
+    {
+      "source": "Cloudflare Workers",
+      "target": "Origin server or Selectel compute",
+      "note": "No drop-in equivalent"
+    },
+    {
+      "source": "Cloudflare WAF",
+      "target": "Selectel WAF / origin WAF"
+    }
+  ],
+  "effort": "3-8 weeks depending on Workers footprint, R2 data volume, and number of zones",
+  "gotchas": [
+    "Cloudflare Workers have no drop-in equivalent on Selectel; expect to refactor edge logic",
+    "Selectel's PoP footprint is RU/CIS-focused; non-CIS users may see worse latency",
+    "Sanctions and payment restrictions can block non-Russian customers from contracting with Selectel",
+    "Cloudflare's bundled DDoS, Bot Management, and Access products require separate replacements",
+    "Universal SSL certs cannot be exported; certificates must be re-issued",
+    "R2 and Selectel Object Storage are both S3-compatible but feature and performance parity is not guaranteed"
+  ],
+  "email": {
+    "subject": "Winding down our Cloudflare usage over the next 14 days",
+    "body": "Hi Cloudflare team,\n\nWe are moving our CDN, DNS, and supporting storage off Cloudflare to Selectel over the next 14 days, primarily for Russian data residency and commercial reasons.\n\nIn this window we plan to mirror R2 bucket contents to Selectel Object Storage, re-create cache rules and TLS on the Selectel CDN, refactor Worker logic onto our origin or Selectel compute, and cut DNS over hostname by hostname with lowered TTLs and parallel logs. Cloudflare will stay live as a fallback during the cutover.\n\nCould you confirm how long historical analytics, logs, and billing data remain accessible after we stop traffic, and the cleanest order to disable Workers, R2, and zones to avoid surprise charges or data loss?\n\nThanks for the support.\n\nYour customer"
+  }
+}

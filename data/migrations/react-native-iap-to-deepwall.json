@@ -1,0 +1,62 @@
+{
+  "source": {
+    "slug": "react-native-iap",
+    "name": "react-native-iap"
+  },
+  "target": {
+    "slug": "deepwall",
+    "name": "Deepwall"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "react-native-iap is a low-level OSS RN IAP library; Deepwall is a managed paywall and IAP optimization service for subscription apps. Migrating adds smart paywalls and A/B testing on top of (or instead of) raw IAP code.",
+  "why_switch": [
+    "Add no-code paywalls and A/B tests",
+    "Iterate pricing without app store releases",
+    "Reduce custom paywall UI maintenance",
+    "Centralize subscription analytics",
+    "Trigger paywalls based on user behavior"
+  ],
+  "what_to_export": [
+    "Subscription product IDs",
+    "Existing paywall RN screens",
+    "Trigger logic for paywall display",
+    "Receipt validation flow",
+    "Analytics events around purchases",
+    "Free trial and intro offer configs",
+    "Localized paywall copy",
+    "Restore purchase handling"
+  ],
+  "export_method": "react-native-iap has no backing service to export from. List subscription product IDs from App Store Connect and Google Play Console — these are reused as is. Document existing paywall RN components, where they are mounted, and any conditional logic gating display. Note the receipt validation flow: client-side parsing, server endpoints, and resulting account state. Capture analytics events fired around getProducts, requestPurchase, and purchase confirmation so the funnel can be preserved. If you have a custom A/B testing harness on paywalls, export variant definitions and any historical results separately, since Deepwall will own future tests.",
+  "import_method": "Sign up for Deepwall and configure your subscription products in the dashboard, mirroring App Store Connect and Play Console SKUs. Install Deepwall's React Native SDK if available, or use their iOS and Android SDKs through a native module bridge if RN is not first-class. Replace existing paywall components with Deepwall's hosted paywall presentation calls. Wire callbacks for purchase success, restore, and dismissal back into your Redux/Zustand state and analytics. Decide whether Deepwall handles purchases end-to-end or you keep react-native-iap for the transaction step. Keep server-side receipt validation regardless. Roll out behind a feature flag.",
+  "concept_mapping": [
+    {
+      "source": "Custom paywall component",
+      "target": "Deepwall hosted paywall"
+    },
+    {
+      "source": "Hardcoded paywall trigger",
+      "target": "Deepwall trigger rule"
+    },
+    {
+      "source": "Custom A/B test",
+      "target": "Deepwall A/B test"
+    },
+    {
+      "source": "Subscription product ID",
+      "target": "Deepwall product config"
+    }
+  ],
+  "effort": "2-4 weeks depending on paywall complexity",
+  "gotchas": [
+    "Verify Deepwall RN SDK maturity; a native bridge may be needed if not first-class.",
+    "Keep server-side receipt validation; managed paywalls do not replace it.",
+    "Existing analytics dashboards must be remapped to Deepwall's event schema.",
+    "Restore-purchase and refund edge cases need re-tested under the new SDK.",
+    "App store reviews scrutinize subscription UX; phase the rollout.",
+    "Historical A/B test data from custom harness likely cannot be imported."
+  ],
+  "email": {
+    "subject": "Adopting Deepwall on top of react-native-iap — 14-day plan",
+    "body": "Hi team,\n\nWe plan to add Deepwall as our paywall and A/B testing layer over the next 14 days. react-native-iap may stay for transactions, with Deepwall owning the paywall UI and experimentation.\n\nProposed timeline:\nDays 1-2: Inventory current paywall components, triggers, and analytics. List all subscription SKUs.\nDays 3-5: Configure products in Deepwall, design the first paywall variants matching our current UX.\nDays 6-9: Integrate the Deepwall RN SDK (or native bridge) and replace one paywall screen end-to-end.\nDays 10-12: Wire callbacks and analytics, migrate remaining paywall surfaces, set up first A/B test.\nDays 13-14: QA on iOS and Android, regression-test restore and validation, roll out behind a feature flag.\n\nReceipt validation stays on our backend. Please flag custom paywall logic that may not fit a hosted paywall.\n\nThanks,\nYour customer"
+  }
+}

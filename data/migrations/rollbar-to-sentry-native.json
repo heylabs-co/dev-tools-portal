@@ -1,0 +1,72 @@
+{
+  "source": {
+    "slug": "rollbar",
+    "name": "Rollbar"
+  },
+  "target": {
+    "slug": "sentry-native",
+    "name": "Sentry Native SDK"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Move from Rollbar's hosted error tracker to Sentry's Native SDK if your stack is C/C++ and you want minidump-based crash reporting. The bigger shift is platform (Rollbar to Sentry) plus instrumentation rewrite.",
+  "why_switch": [
+    "Native C/C++ crash handling via Crashpad/Breakpad",
+    "Self-hosted Sentry option reduces lock-in",
+    "OSS SDK with active maintenance",
+    "Unify native crashes with rest of Sentry stack",
+    "Avoid Rollbar event-volume annual commits"
+  ],
+  "what_to_export": [
+    "Active project list and environments",
+    "Notification rules and alert routing",
+    "Team members and access roles",
+    "Integration configs (Slack, Jira, GitHub)",
+    "Source map / debug symbol references",
+    "Custom fingerprinting rules",
+    "Deploy/release tagging conventions",
+    "Recent open issues and assignment state",
+    "Tag and filter conventions",
+    "Webhook endpoints and consumers"
+  ],
+  "export_method": "Rollbar exposes its data through a documented REST API and the in-app account UI. For ongoing issues, use the items API to page through occurrences and dump them to JSON or a database. Settings such as projects, notification rules, integrations, and team members are typically exported by reading them from the dashboard or via the API and re-creating them on the new side. There is no one-click full-history export, so plan for a scripted pull. If you only care about going forward, you can skip historical export and simply start dual-reporting. Account- and billing-level data should be retrieved through the Rollbar admin UI before cancellation, since access is revoked at end of term.",
+  "import_method": "Sentry Native SDK is added at the source level, not via data import. Add the SDK to your build, initialize it with your DSN, and configure Crashpad or Breakpad as the crash handler per the Sentry Native docs. Upload debug information files (dSYM, PDB, ELF debug) so minidumps symbolicate. Recreate projects, alert rules, integrations, and teams in Sentry to match Rollbar's structure. If you need historical Rollbar issues inside Sentry, write a small script that reads the Rollbar items API and posts equivalent events to Sentry's ingest endpoint; otherwise treat the cutover as a fresh start with a dual-report period.",
+  "concept_mapping": [
+    {
+      "source": "Project",
+      "target": "Project"
+    },
+    {
+      "source": "Item / Occurrence",
+      "target": "Issue / Event"
+    },
+    {
+      "source": "Environment",
+      "target": "Environment"
+    },
+    {
+      "source": "Deploy",
+      "target": "Release"
+    },
+    {
+      "source": "Notification rule",
+      "target": "Alert rule"
+    },
+    {
+      "source": "Person / Team",
+      "target": "Member / Team"
+    }
+  ],
+  "effort": "2-6 weeks",
+  "gotchas": [
+    "Native SDK integration is more involved than Rollbar's web/mobile SDKs; allocate real engineering time",
+    "Symbol upload (dSYM/PDB) must be wired into CI or stack traces will be unreadable",
+    "Issue grouping/fingerprinting differs between vendors; expect short-term noise after cutover",
+    "Rollbar annual event-volume commits do not refund; align cutover with renewal",
+    "Self-hosted Sentry shifts ops burden to your team; weigh against SaaS cost",
+    "Alert routing has to be rebuilt; Rollbar rule semantics do not map 1:1"
+  ],
+  "email": {
+    "subject": "Switching off Rollbar at end of term",
+    "body": "Hi team,\n\nWe're moving our crash reporting to Sentry's Native SDK over the next 14 days and will not be renewing our Rollbar subscription. The decision is driven by our shift to native C/C++ workloads, where Sentry's Crashpad/Breakpad-based pipeline fits better, and by our preference for an open-source SDK with a self-hosted option.\n\nPlease keep our account active through the end of the current term so we can finish exporting projects, rules, integrations, and recent issue history via the API. We'd appreciate confirmation that no auto-renewal will trigger and a contact for any final invoice questions.\n\nThanks for the support over the years.\n\nYour customer"
+  }
+}

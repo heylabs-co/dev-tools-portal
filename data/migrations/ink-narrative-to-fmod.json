@@ -1,0 +1,61 @@
+{
+  "source": {
+    "slug": "ink-narrative",
+    "name": "ink-narrative"
+  },
+  "target": {
+    "slug": "fmod",
+    "name": "fmod"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Ink is a narrative scripting language; FMOD is an audio middleware engine. They are not substitutes — you cannot replace branching dialogue with an audio engine. Only treat this as a migration if you are dropping scripted narrative and replacing it with an event-driven, audio-first experience, or if you are layering FMOD audio onto an existing Ink-driven game.",
+  "why_switch": [
+    "You decided your project is now audio-driven rather than dialogue-driven",
+    "You want event-based audio with composer-friendly tooling",
+    "You no longer need branching prose authored in Ink",
+    "You are consolidating on FMOD as your audio middleware and removing other narrative dependencies",
+    "You want adaptive music and spatial sound that Ink does not provide"
+  ],
+  "what_to_export": [
+    "All .ink source files for stories, knots, stitches and includes",
+    "Compiled story.json output from the Ink compiler",
+    "Variable lists, lists (LIST) definitions and external functions used in scripts",
+    "Save and state schemas if you persisted Ink state to disk",
+    "Bindings between Ink tags or function calls and your engine code",
+    "Asset references triggered from Ink tags (audio cues, art, animations)",
+    "Localization tables keyed by Ink tags or knot names",
+    "Test scripts and Inky playthroughs used to validate the narrative"
+  ],
+  "export_method": "Ink projects are plain-text files in your repository, so 'export' is mostly inventory. Collect all .ink files including INCLUDE-d sub-files. Compile each top-level story to JSON using the Ink compiler (inklecate) so you have a runtime-ready artifact alongside the source. List every variable, LIST and EXTERNAL function declared in the scripts. Capture how your engine consumes Ink output — typically a runtime that reads story.json and exposes Continue, Choose and ObserveVariable. Record every Ink tag your code reacts to (for example #audio:explosion or #emotion:angry), because those tags are the bridge between narrative and the rest of the game. Export any author tooling state from Inky if you used it. Save localization spreadsheets that reference Ink knot or stitch identifiers. Finally, document which gameplay events fire which knots, so you can decide what to keep, drop, or recreate as audio events.",
+  "import_method": "FMOD projects live in FMOD Studio and ship as banks. Install FMOD Studio, create a new project, and define events for the audio you want — one event per logical sound or music cue. Add parameters (continuous or labeled) for things like intensity, location or character emotion that previously came from Ink variables. Author music in FMOD using transitions, markers and tempo so it can react to those parameters. Build banks and integrate the FMOD runtime into your engine using the official Unity, Unreal or C/C++ integration. In game code, replace Ink choice and tag handlers with FMOD event instances, calling setParameterByName to drive adaptive behavior. There is no automated import from Ink — the migration is a redesign where each narrative beat that mattered audibly becomes an FMOD event, and any non-audio narrative content has to be solved separately or removed.",
+  "concept_mapping": [
+    {
+      "source": "Ink variable",
+      "target": "FMOD parameter",
+      "note": "Both drive runtime behavior, but FMOD parameters only affect audio."
+    },
+    {
+      "source": "Ink tag (e.g. #audio:cue)",
+      "target": "FMOD event",
+      "note": "If you used tags purely to trigger sound, those map cleanly to events."
+    },
+    {
+      "source": "Knot / stitch",
+      "target": "No direct equivalent",
+      "note": "FMOD has no concept of branching prose. Omit if you cannot redesign."
+    }
+  ],
+  "effort": "weeks to months",
+  "gotchas": [
+    "Ink and FMOD do not overlap. FMOD cannot author or play branching dialogue, and Ink cannot mix or spatialize audio. Most projects keep both rather than migrate.",
+    "Choices, knots and conditional prose have no FMOD equivalent. Anything dialog-heavy needs a different solution or has to be cut.",
+    "Localization workflows differ. Ink scripts are text; FMOD localization is usually per-bank assets. Your translation pipeline likely needs rework.",
+    "FMOD has commercial license tiers that depend on revenue and platform. Confirm your eligibility before committing.",
+    "Live update and profiling are FMOD strengths but require engineer setup. Budget time for the integration on each target platform.",
+    "If you plan to keep narrative and just add FMOD for audio, this is not a migration but an integration. Document the choice clearly to avoid removing Ink by accident."
+  ],
+  "email": {
+    "subject": "Update to how our game handles narrative and audio",
+    "body": "Hi,\n\nWe are reshaping the experience to focus on adaptive audio rather than scripted dialogue. Over the next 14 days, the previous narrative scripts will be replaced with an audio-first system built on industry-standard middleware.\n\nIf you have ongoing work that depends on the existing scripts, please let us know within the next few days so we can coordinate. Existing save files may not carry over because the underlying narrative engine is changing.\n\nWe will share a final cutover date once integration testing is complete.\n\nYour customer"
+  }
+}

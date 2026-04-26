@@ -1,0 +1,65 @@
+{
+  "source": {
+    "slug": "sentry-native",
+    "name": "Sentry Native SDK"
+  },
+  "target": {
+    "slug": "crashpad",
+    "name": "Crashpad"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "The Sentry Native SDK already uses Crashpad under the hood for crash capture, but it also handles upload, breadcrumbs, and integration with Sentry. Switching to Crashpad alone means keeping the capture layer and giving up the rest, including Sentry as a backend.",
+  "why_switch": [
+    "Drop hosted backend dependency",
+    "Use Crashpad directly for tighter control",
+    "Open-source, permissive license",
+    "Foundation for a custom or alternative backend",
+    "Lower-level integration with native build"
+  ],
+  "what_to_export": [
+    "Sentry project and environment config",
+    "User and team membership",
+    "Alert and notification rules",
+    "Debug file upload pipeline",
+    "Release tracking conventions",
+    "Integration list",
+    "Custom grouping or inbound filters",
+    "Sample crash payloads for validation"
+  ],
+  "export_method": "Capture your Sentry organization and project setup for native projects, alerts, releases, environments, and integrations via the Sentry UI or API. Save debug file upload and release tracking steps as build-pipeline code. Historical events have retention limits; treat what is in Sentry today as reference rather than transferable data. Document ownership and inbound filter rules manually where the API does not clearly cover them. DSNs and tokens are values to rotate, not artifacts to migrate. Avoid assuming endpoints; follow Sentrys official documentation.",
+  "import_method": "Crashpad is a library, so adoption means changing how your application captures crashes and where it sends them. Integrate Crashpad directly following its official documentation, configuring its handler, database directory, and HTTP uploader endpoint. Decide where minidumps will go: a self-hosted server, an alternative crash backend such as Backtrace, or a custom service. Reproduce symbol upload using the chosen backends tooling. Rebuild any breadcrumbs, tagging, or context propagation that the Sentry Native SDK previously provided automatically. Validate with controlled crashes on each supported OS before retiring the Sentry Native SDK and removing DSN configuration.",
+  "concept_mapping": [
+    {
+      "source": "Sentry Native SDK init",
+      "target": "Crashpad client setup"
+    },
+    {
+      "source": "Sentry backend",
+      "target": "Self-hosted or third-party crash backend"
+    },
+    {
+      "source": "Debug file upload",
+      "target": "Backend-specific symbol upload"
+    },
+    {
+      "source": "Releases / environments",
+      "target": "Backend-specific metadata"
+    },
+    {
+      "source": "Breadcrumbs / context",
+      "target": "Custom code, no built-in equivalent"
+    }
+  ],
+  "effort": "4-10 weeks",
+  "gotchas": [
+    "Crashpad captures crashes but does not provide a UI, alerts, or grouping",
+    "Breadcrumbs and rich context provided by the Sentry SDK must be rebuilt manually",
+    "Historical Sentry data does not transfer",
+    "Symbol management and retention become operational responsibilities",
+    "You still need a backend; Crashpad alone is not a replacement product"
+  ],
+  "email": {
+    "subject": "Reducing our Sentry footprint for native crash capture",
+    "body": "Hi team,\n\nWe are restructuring our native crash pipeline to use Crashpad directly with a different backend, and plan to stop using Sentry for these projects. Our target timeline is 14 days from today.\n\nDuring that period we will export project, alert, and integration configuration, run the new pipeline in parallel for validation, and then stop sending events from the affected applications. Any unrelated Sentry usage we keep will be addressed separately.\n\nCould you confirm the steps to disable auto-renewal for the affected projects, the effective end date under our current commitment, and any final invoicing details? Please share any recommended actions before deactivation.\n\nThanks for the support.\n\nYour customer"
+  }
+}

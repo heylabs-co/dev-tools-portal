@@ -1,0 +1,61 @@
+{
+  "source": {
+    "slug": "segment",
+    "name": "Segment"
+  },
+  "target": {
+    "slug": "steampipe",
+    "name": "Steampipe"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Segment is a customer data platform; Steampipe is an open-source SQL query engine for cloud and SaaS APIs. They are not direct replacements, so this migration only makes sense if you are repurposing event collection toward cloud governance and compliance queries.",
+  "why_switch": [
+    "Open-source, no per-event pricing",
+    "SQL-first cloud and SaaS introspection",
+    "Run anywhere, including locally",
+    "Better fit for compliance queries than CDP events",
+    "Avoid annual commitments"
+  ],
+  "what_to_export": [
+    "Tracking plan and event schemas",
+    "Source and destination configurations",
+    "List of integrated SaaS systems",
+    "Consent and privacy rules",
+    "Functions or transforms source code",
+    "Workspace and access settings",
+    "Historical events archived in your warehouse",
+    "Reporting queries currently fed by Segment"
+  ],
+  "export_method": "Export Segment configuration as documentation: tracking plan, sources, destinations, Functions code, and Protocols rules. If your Segment data is mirrored into a warehouse, that warehouse copy is the durable record. Capture the list of SaaS tools you connect to today; Steampipe will likely query those directly via plugins instead of through Segment. Keep credentials out of exported files and plan to rotate them after cutover. When in doubt, follow Segments official documentation rather than assuming an endpoint exists.",
+  "import_method": "Install the Steampipe CLI on a workstation or build server. Identify the SaaS and cloud systems you previously routed through Segment and install the matching Steampipe plugins (for example AWS, GCP, GitHub, Salesforce) following the official Steampipe Hub instructions. Configure each plugin with read-only credentials. Translate the questions you used to answer with Segment data into SQL queries against Steampipe tables. For recurring checks, schedule the queries with cron or your CI runner and store outputs in a database or object store. If you need dashboards, point a BI tool at Steampipe via its Postgres-compatible interface. Validate a small set of high-value queries first before deprecating Segment workflows.",
+  "concept_mapping": [
+    {
+      "source": "Sources (SaaS connectors)",
+      "target": "Steampipe plugins"
+    },
+    {
+      "source": "Warehouse destination",
+      "target": "Postgres-compatible Steampipe interface"
+    },
+    {
+      "source": "Tracking plan",
+      "target": "SQL schema expectations"
+    },
+    {
+      "source": "Scheduled syncs",
+      "target": "Cron / CI scheduled queries"
+    }
+  ],
+  "effort": "2-6 weeks",
+  "gotchas": [
+    "Steampipe is read-time queries, not an event pipeline",
+    "No real-time event streaming or webhook fan-out",
+    "Plugin coverage may not match every Segment source",
+    "You must self-host and operate Steampipe",
+    "Segment annual MTU commit may outlast your migration"
+  ],
+  "email": {
+    "subject": "Winding down our Segment workspace",
+    "body": "Hi team,\n\nOur data needs have shifted toward cloud and SaaS introspection rather than customer event collection, so we are moving that work to Steampipe and plan to stop using Segment.\n\nWe expect to complete the transition within 14 days. During that period we will export our tracking plan, source and destination configuration, and any Functions code, and confirm that warehouse-side copies of our historical events are complete. After that point we will not be sending new events through Segment.\n\nCould you confirm the steps to disable auto-renewal, the effective end date under our current commitment, and any final invoicing details? If you recommend additional steps before workspace deactivation, please share them.\n\nThanks for the partnership.\n\nYour customer"
+  }
+}

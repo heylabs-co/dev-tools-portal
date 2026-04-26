@@ -1,0 +1,64 @@
+{
+  "source": {
+    "slug": "appsflyer",
+    "name": "AppsFlyer"
+  },
+  "target": {
+    "slug": "appmetrica",
+    "name": "AppMetrica"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Moving from AppsFlyer to AppMetrica means swapping a paid enterprise MMP SDK for Yandex's free analytics + attribution SDK. Most of the work is replacing the SDK in your iOS/Android builds, rewiring server-to-server callbacks, and accepting that historical attribution data stays in AppsFlyer.",
+  "why_switch": [
+    "Free tier covers analytics and attribution",
+    "Bundles crash reporting and push notifications",
+    "Lower cost for cost-sensitive teams",
+    "Real-time install reports out of the box",
+    "Suitable for CIS-market traffic"
+  ],
+  "what_to_export": [
+    "Raw install and event data (via API or Data Lockers)",
+    "Cohort and funnel definitions",
+    "Active media-source mappings and partner IDs",
+    "SKAdNetwork conversion value schema",
+    "Postback / S2S callback configurations",
+    "Custom event taxonomy (event names + parameters)",
+    "Attribution windows and rules",
+    "User-level identifiers used for matching"
+  ],
+  "export_method": "Use AppsFlyer's standard data export options to pull historical install and in-app event data into your own warehouse before turning the SDK off. Document your event taxonomy (event names, parameter schemas, currency handling) and the attribution windows you currently use, since they will need to be configured on the new platform. Export postback configurations so you can recreate similar S2S integrations with each ad network. Save SKAdNetwork conversion value mappings as a reference. Treat AppsFlyer as the historical record: your own warehouse copy is what survives the migration, because attribution data is unlikely to be re-imported into AppMetrica.",
+  "import_method": "Add AppMetrica's iOS and Android SDKs to your app, ship a release that initializes both AppsFlyer and AppMetrica in parallel, and validate that core install + event tracking matches between them before removing AppsFlyer. Re-create your event taxonomy in AppMetrica with the same names and parameters where possible to keep dashboards comparable. Configure ad-network integrations supported by AppMetrica; for unsupported networks plan to keep AppsFlyer or use server-side tracking. Set up reporting API access for any BI pipelines. Once data parity is confirmed for a few weeks, remove the AppsFlyer SDK in a subsequent app release.",
+  "concept_mapping": [
+    {
+      "source": "AppsFlyer ID",
+      "target": "AppMetrica device ID",
+      "note": "Different identifier; not interchangeable"
+    },
+    {
+      "source": "Custom events",
+      "target": "Custom events",
+      "note": "Re-declare names and parameters"
+    },
+    {
+      "source": "Data Locker / Pull API",
+      "target": "Reporting API / log export"
+    },
+    {
+      "source": "Attribution partner integrations",
+      "target": "Smaller set of supported networks"
+    }
+  ],
+  "effort": "4-8 weeks including a parallel-SDK validation period and at least one app release cycle",
+  "gotchas": [
+    "Yandex ownership creates data residency and sanctions concerns for many EU/US apps",
+    "Historical attribution data does not move with you; preserve it in your own warehouse first",
+    "Ad-network coverage is narrower than AppsFlyer; some partners may not have direct integrations",
+    "iOS SKAdNetwork support is more limited; validate before relying on it for paid UA",
+    "App-store review rules may require updated privacy disclosures when changing SDKs",
+    "Run both SDKs in parallel for at least one full reporting cycle to confirm event parity"
+  ],
+  "email": {
+    "subject": "Switching mobile attribution from AppsFlyer to AppMetrica in 14 days",
+    "body": "Hi team,\n\nWe plan to switch our mobile attribution stack from AppsFlyer to AppMetrica over the next 14 days. AppMetrica is free and bundles analytics, attribution, crash, and push.\n\nDays 1-4: export historical AppsFlyer install + event data into our warehouse, document event taxonomy.\nDays 5-8: integrate the AppMetrica SDK alongside AppsFlyer in a new app build, recreate events.\nDays 9-12: validate parity between the two SDKs in production, configure ad-network integrations.\nDays 13-14: lock in the cutover plan; remove AppsFlyer in the next release after a parallel-run period.\n\nNote: ad-network coverage and SKAN tooling are narrower; we will flag any gaps for paid UA.\n\nThanks,\nYour customer"
+  }
+}

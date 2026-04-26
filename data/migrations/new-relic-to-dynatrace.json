@@ -1,0 +1,67 @@
+{
+  "source": {
+    "slug": "new-relic",
+    "name": "new-relic"
+  },
+  "target": {
+    "slug": "dynatrace",
+    "name": "dynatrace"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Both New Relic and Dynatrace are full-stack APM platforms, so the migration is a like-for-like swap — but each uses proprietary agents and dashboards, meaning every instrumented service and every dashboard or alert needs to be redeployed and rebuilt. Plan for a parallel-run period to avoid blind spots.",
+  "why_switch": [
+    "You prefer Dynatrace's automatic dependency mapping and root-cause analysis.",
+    "Your team wants full-stack monitoring under a single agent (OneAgent).",
+    "You're consolidating commit-tier contracts on Dynatrace as preferred vendor.",
+    "You need stronger Kubernetes / cloud-native auto-discovery.",
+    "Regional data residency requirements are easier to satisfy on Dynatrace."
+  ],
+  "what_to_export": [
+    "Service inventory and host list with agent versions",
+    "Dashboards, saved queries, and notebooks",
+    "Alert / NRQL conditions and notification policies",
+    "Synthetic monitor definitions",
+    "Apdex and SLO targets",
+    "Custom attributes and tagging conventions",
+    "User, team, and role mappings",
+    "Integration / webhook configurations"
+  ],
+  "export_method": "Use the New Relic NerdGraph API to export entities, dashboards, and alert policies — these can be pulled as JSON for programmatic re-creation. List every host, container, and serverless function reporting to New Relic and capture which language agent it runs. Document NRQL alerts with thresholds, evaluation windows, and notification channels (PagerDuty, Slack, email, webhooks). Export synthetic monitor definitions and any SLO targets. Capture custom attributes and tag conventions so they can be enforced on the new platform. Pull recent usage and ingest data to estimate Dynatrace sizing. Historical telemetry stays in New Relic for the retention window — keep the account read-only after cutover.",
+  "import_method": "Create a Dynatrace tenant and roll out OneAgent to your hosts and Kubernetes clusters; OneAgent auto-discovers most services and replaces per-language New Relic agents. For services that need explicit instrumentation, install the appropriate OneAgent SDK or rely on OpenTelemetry ingestion where supported. Recreate dashboards in Dynatrace's UI — JSON exports from New Relic are not directly importable, so use them as a reference. Re-author alerts using Dynatrace's anomaly detection plus custom metric events; map NRQL conditions to equivalent metric expressions. Recreate synthetic monitors. Configure user / team mappings and notification integrations. Run both APMs in parallel for at least one full incident cycle, validate signal parity, then decommission New Relic.",
+  "concept_mapping": [
+    {
+      "source": "New Relic language agent",
+      "target": "Dynatrace OneAgent (host-level, auto-discovers apps)"
+    },
+    {
+      "source": "NRQL alert condition",
+      "target": "Dynatrace metric event / problem rule"
+    },
+    {
+      "source": "New Relic dashboard",
+      "target": "Dynatrace dashboard",
+      "note": "Rebuilt manually."
+    },
+    {
+      "source": "Synthetic monitor",
+      "target": "Dynatrace synthetic monitor"
+    },
+    {
+      "source": "Account / sub-account",
+      "target": "Tenant / management zone"
+    }
+  ],
+  "effort": "4-8 weeks",
+  "gotchas": [
+    "Historical telemetry doesn't migrate; keep the New Relic account active read-only for the retention window.",
+    "Dashboards and NRQL queries must be re-authored — there is no direct import path.",
+    "OneAgent installs at the host level, which can be rejected by stricter security policies; plan for security review.",
+    "Both vendors use commit-tier pricing — model new-platform usage carefully to avoid cost surprises at the next renewal.",
+    "Alert thresholds may need tuning because Dynatrace's anomaly detection behaves differently from static NRQL conditions.",
+    "Custom integrations (webhooks, service-now, PagerDuty) need to be reconnected to the new tenant."
+  ],
+  "email": {
+    "subject": "APM migration: moving from New Relic to Dynatrace",
+    "body": "Hi,\n\nWe're migrating our application monitoring from New Relic to Dynatrace over the next two weeks. The change is invisible to end users — only the dashboards your team uses internally will look different.\n\nDuring the parallel-run window both platforms stay active so we can validate signals before cutting New Relic off. If you maintain personal dashboards or NRQL queries, send us the ones that matter most so we can rebuild them in Dynatrace first.\n\nReach out with questions.\n\nThanks,\nYour customer"
+  }
+}

@@ -1,0 +1,63 @@
+{
+  "source": {
+    "slug": "elastic",
+    "name": "elastic"
+  },
+  "target": {
+    "slug": "last9",
+    "name": "last9"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Last9 is a Prometheus and OpenTelemetry-native managed observability platform, so migrating from Elastic APM is largely a matter of pointing your OTel exporters and Prometheus remote-write at Last9. Dashboards and alerts still need to be rebuilt because formats and storage differ.",
+  "why_switch": [
+    "You want a Prometheus-compatible managed backend without running TSDBs yourself.",
+    "Your stack already emits OpenTelemetry and you want native OTel ingestion.",
+    "You need high-cardinality metrics that Elastic's storage struggles with.",
+    "You're moving off Elastic Cloud commit-tier pricing.",
+    "You want streaming aggregation to control cardinality cost."
+  ],
+  "what_to_export": [
+    "Service inventory and instrumentation language per service",
+    "Kibana dashboards and saved searches",
+    "Alerting rules and notification channels",
+    "APM agent or OpenTelemetry collector configuration",
+    "Prometheus scrape configs if any",
+    "Recording and aggregation rules",
+    "Tag / label conventions",
+    "Retention policy expectations"
+  ],
+  "export_method": "List every service emitting telemetry today and note whether it uses Elastic APM agents, OpenTelemetry, or Prometheus. Export Kibana saved objects via the Saved Objects API to capture dashboards and alerts as NDJSON. Pull alerting rules with their thresholds and notification routing. If you already run an OpenTelemetry Collector in front of Elastic APM, copy its pipeline configuration — the same pipelines can be redirected to Last9 with only the exporter destination changing. Capture any Prometheus recording or alerting rules from your existing rule files. Document tag and label conventions so they can be enforced consistently on the new backend.",
+  "import_method": "Provision a Last9 workspace and grab the ingestion endpoints and credentials. For services already using OpenTelemetry, update the OTel Collector exporter to point at Last9's OTLP endpoint with the new auth headers. For services on Elastic APM agents, replace them with OpenTelemetry SDKs or auto-instrumentation packages and route traffic through the OTel Collector to Last9. For Prometheus metrics, use remote_write to ship data to Last9. Rebuild dashboards in Last9's UI or in Grafana wired to Last9 as a Prometheus / OTel data source. Recreate alert rules using Last9's alerting or via Grafana / Alertmanager. Run both stacks in parallel for at least one alerting cycle before turning Elastic off.",
+  "concept_mapping": [
+    {
+      "source": "Elastic APM agent",
+      "target": "OpenTelemetry SDK / auto-instrumentation"
+    },
+    {
+      "source": "Beats / Elastic Agent metrics",
+      "target": "Prometheus remote_write to Last9"
+    },
+    {
+      "source": "Kibana dashboard",
+      "target": "Last9 / Grafana dashboard",
+      "note": "Rebuilt manually."
+    },
+    {
+      "source": "Kibana alerting rule",
+      "target": "Last9 alert rule or Alertmanager"
+    }
+  ],
+  "effort": "2-4 weeks",
+  "gotchas": [
+    "Historical Elasticsearch data cannot be ingested into Last9; plan retention overlap.",
+    "Switching APM agents to OpenTelemetry can change span and metric names — review dashboards after cutover.",
+    "High-cardinality labels can drive cost; review tag conventions and consider streaming aggregation rules early.",
+    "Dashboards and alerts must be rebuilt; prioritise critical ones first.",
+    "Authentication for OTel exporters uses headers — secure them in your secret manager.",
+    "Sampling decisions made at the agent vs collector vs backend can shift; re-validate trace completeness."
+  ],
+  "email": {
+    "subject": "Observability change: moving metrics and traces to Last9",
+    "body": "Hi,\n\nIn the next two weeks we're moving our metrics and traces from Elastic to Last9, a Prometheus and OpenTelemetry-native backend. Your dashboards and alerts will be rebuilt; the underlying signals stay the same.\n\nDuring the parallel-run window both systems are live. If a Kibana view is important to your workflow, please flag it so it's high on the rebuild list. Alerting destinations stay where they are.\n\nReach out with questions.\n\nThanks,\nYour customer"
+  }
+}

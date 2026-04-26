@@ -1,0 +1,60 @@
+{
+  "source": {
+    "slug": "heap",
+    "name": "Heap"
+  },
+  "target": {
+    "slug": "nivo",
+    "name": "Nivo"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Heap is an autocapture product analytics platform, while Nivo is an open-source React charting library. They are not the same product category, so this is replacing a managed analytics product with components you assemble yourself.",
+  "why_switch": [
+    "Drop Heap's annual event-volume commit cost",
+    "Own analytics charts inside your own app",
+    "Self-host on existing warehouse",
+    "Avoid proprietary autocapture format lock-in"
+  ],
+  "what_to_export": [
+    "Autocaptured event data",
+    "Defined events and event aliases",
+    "User and account identity records",
+    "Cohort and segment definitions",
+    "Funnel and retention definitions",
+    "Dashboards and saved reports",
+    "Project and team configuration",
+    "API keys and SDK configuration"
+  ],
+  "export_method": "Use Heap's API export and any warehouse sync (for example, to Snowflake or BigQuery) to land raw and defined events plus user data in storage you control. Document defined events, event aliases, cohort logic, funnels, and retention reports as a spec or as SQL — proprietary autocapture definitions do not export as runnable logic. Capture project settings and team configuration for reference. Keep the Heap SDK live during cutover so events are not lost while replacement instrumentation comes online.",
+  "import_method": "Nivo is a React charting library and only handles the visualization layer. You will need a query layer over your warehouse (raw SQL, dbt, or a metrics layer) and a way to feed series data into Nivo components such as line, bar, funnel, and heatmap. Rebuild the charts you relied on as React components backed by your own queries. Plan event collection, identity resolution, and sessionization separately — Nivo does none of these. Validate the new charts against Heap during a parallel period before fully cutting over.",
+  "concept_mapping": [
+    {
+      "source": "Defined event",
+      "target": "SQL-derived metric on warehouse"
+    },
+    {
+      "source": "Funnel",
+      "target": "Custom SQL + Nivo funnel chart"
+    },
+    {
+      "source": "Cohort",
+      "target": "Custom SQL on warehouse"
+    },
+    {
+      "source": "Dashboard",
+      "target": "Custom React layout"
+    }
+  ],
+  "effort": "8-16 weeks",
+  "gotchas": [
+    "Nivo is a charting library only — no event collection, storage, or queries.",
+    "Heap's autocapture and defined events do not export as runnable logic for another platform.",
+    "Annual event-volume commit at Heap does not scale down mid-cycle.",
+    "Identity resolution and sessionization must be rebuilt.",
+    "You also take on visual design and accessibility work that Heap dashboards handle for you."
+  ],
+  "email": {
+    "subject": "Ending Heap contract — 14-day export plan",
+    "body": "Hi Heap team,\n\nWe have decided not to renew and will be winding down our use of Heap over the next 14 days. We want this to be clean for both sides.\n\nCould you help us confirm:\n\n- The fastest path to export raw events, defined events, and user data to our warehouse.\n- Any export window or rate limits we should plan around.\n- A point of contact for billing and contract termination.\n- Confirmation of when SDK keys will be deactivated.\n\nWe plan to keep the SDK live through day 10 so we do not lose coverage during cutover, and to decommission keys by day 14.\n\nThanks for the partnership.\n\nYour customer"
+  }
+}

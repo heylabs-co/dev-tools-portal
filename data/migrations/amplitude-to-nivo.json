@@ -1,0 +1,60 @@
+{
+  "source": {
+    "slug": "amplitude",
+    "name": "Amplitude"
+  },
+  "target": {
+    "slug": "nivo",
+    "name": "Nivo"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Amplitude is a hosted product analytics platform, while Nivo is an open-source React charting library. They are not the same product category, so this is not a direct migration — it is replacing a managed analytics product with components you assemble yourself.",
+  "why_switch": [
+    "Cut Amplitude annual event-volume commit costs",
+    "Own the analytics stack end to end",
+    "Self-host on existing data warehouse",
+    "Visualize data already in Snowflake or BigQuery"
+  ],
+  "what_to_export": [
+    "Raw event data and properties",
+    "User and account identity records",
+    "Cohort and segment definitions",
+    "Funnel and retention chart definitions",
+    "Dashboards and saved charts",
+    "Taxonomy and event schemas",
+    "Project and team configuration",
+    "API keys and SDK configuration"
+  ],
+  "export_method": "Amplitude supports warehouse export and an export API, so the cleanest path is to land raw events and user data in Snowflake, BigQuery, or another warehouse you already operate. Document cohort, funnel, and retention definitions from the UI as SQL or as a written spec, since proprietary chart definitions do not export directly. Capture taxonomy, event schemas, and project settings as a reference for the new pipeline. Keep Amplitude SDKs running during cutover so no events are lost while you stand up replacement instrumentation.",
+  "import_method": "Nivo is a React charting library, not an analytics backend, so it only handles the visualization layer. Build or pick a query layer over your warehouse (for example, SQL, dbt models, or a metrics layer) and feed the resulting series into Nivo components such as bar, line, funnel, and heatmap. Recreate the charts you relied on in Amplitude as React components driven by your own queries. Plan separately for event collection, identity resolution, and storage — Nivo does none of these.",
+  "concept_mapping": [
+    {
+      "source": "Chart",
+      "target": "Nivo chart component"
+    },
+    {
+      "source": "Funnel report",
+      "target": "Custom SQL + Nivo funnel visualization"
+    },
+    {
+      "source": "Cohort",
+      "target": "Custom SQL on warehouse"
+    },
+    {
+      "source": "Dashboard",
+      "target": "Custom React layout"
+    }
+  ],
+  "effort": "8-16 weeks",
+  "gotchas": [
+    "Nivo is a charting library only — it does not collect, store, or query events.",
+    "You will need to build or adopt event ingestion and a query layer separately.",
+    "Cohort and funnel definitions in Amplitude do not export as runnable logic.",
+    "Annual event-volume commit on Amplitude does not scale down within the cycle.",
+    "Identity resolution, sessionization, and merging logic must be reimplemented."
+  ],
+  "email": {
+    "subject": "Ending Amplitude contract — 14-day data export plan",
+    "body": "Hi Amplitude team,\n\nWe have decided not to renew and will be winding down our use of Amplitude over the next 14 days. We want to make the offboarding clean for both sides.\n\nCould you help us confirm:\n\n- The fastest path to export raw events and user data into our warehouse.\n- Any limits on export windows so we can plan around them.\n- A point of contact for billing and contract termination.\n- Confirmation of when our SDK keys will be deactivated.\n\nWe plan to keep instrumentation live through day 10 to avoid gaps, and to fully decommission keys by day 14.\n\nThanks for the partnership.\n\nYour customer"
+  }
+}

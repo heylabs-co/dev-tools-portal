@@ -1,0 +1,61 @@
+{
+  "source": {
+    "slug": "webaim",
+    "name": "WebAIM"
+  },
+  "target": {
+    "slug": "a11ywatch",
+    "name": "A11yWatch"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "WebAIM offers free tools like the WAVE checker, contrast checker and authoritative WCAG resources, while A11yWatch is an open-source automated scanner with CLI, API and CI integration. Switching means moving from manual, browser-based checks to scriptable scans wired into CI.",
+  "why_switch": [
+    "Need automated scans across many pages",
+    "Want CI/PR integration and scheduled crawls",
+    "Self-hostable, open-source tooling",
+    "Bulk audits beyond per-page browser checks",
+    "Programmatic reporting via API"
+  ],
+  "what_to_export": [
+    "WAVE scan screenshots and notes",
+    "Contrast checker results for color tokens",
+    "Internal WCAG checklist filled in per page",
+    "Issues filed in your tracker",
+    "Reference snapshots of WebAIM Million data used",
+    "Custom rubrics or scorecards",
+    "Design system documentation citing WebAIM",
+    "Manual audit summaries"
+  ],
+  "export_method": "WebAIM's tools do not store your data centrally; results live wherever you saved them. Collect screenshots and notes from past WAVE runs, exported contrast checker results and any internal WCAG checklists you used into your shared drive. Tickets filed in Jira, Linear or GitHub remain in your tracker. Save links to the WebAIM Million report or survey data you cited so the references travel with you. Treat these archived artefacts plus your tracker as the migration baseline.",
+  "import_method": "A11yWatch is an automated scanner, so import is configuration rather than data load. Self-host A11yWatch via its open-source distribution or use the hosted tier, then point it at the same URLs you previously checked manually with WAVE. Configure scans via the CLI, API or GitHub Action and integrate with PR checks. Use your archived WAVE notes and WebAIM checklist as a baseline to validate that the scanner is catching the same issue classes. Continue using WebAIM resources for reference and for issues automated rules cannot cover.",
+  "concept_mapping": [
+    {
+      "source": "WAVE per-page scan",
+      "target": "A11yWatch scan of URL or sitemap"
+    },
+    {
+      "source": "WebAIM contrast checker",
+      "target": "Automated contrast rule in scan"
+    },
+    {
+      "source": "WebAIM WCAG checklist",
+      "target": "Scan rule set / configuration"
+    },
+    {
+      "source": "Manual run by developer",
+      "target": "CI job / scheduled crawl"
+    }
+  ],
+  "effort": "1-3 weeks",
+  "gotchas": [
+    "Automated rules typically miss a meaningful share of real a11y issues; keep manual checks for important flows",
+    "Self-hosting A11yWatch means owning uptime, upgrades and security",
+    "Different reporting formats and severity scales than WAVE",
+    "Crawler scope and auth need configuration for protected staging",
+    "Continue citing WebAIM reference resources alongside automated reports"
+  ],
+  "email": {
+    "subject": "Adding A11yWatch on top of WebAIM tools",
+    "body": "Hi team,\n\nOver the next 14 days we will be shifting our day-to-day accessibility scanning from manual WebAIM tools to A11yWatch. WAVE and the WebAIM contrast checker have been our staples, but we now need automated scans across many pages with CI integration, which is what A11yWatch provides.\n\nPlan:\n- Days 1-3: archive past WAVE notes, contrast checker results and internal checklists.\n- Days 4-7: stand up A11yWatch (self-hosted) and run a baseline scan on staging.\n- Days 8-12: wire A11yWatch into PR checks and scheduled crawls; keep a manual checklist for high-risk flows.\n- Days 13-14: finalize the cutover.\n\nWe will continue to lean on WebAIM resources, like the WCAG checklist and the WebAIM Million report, for reference and for issues automated scans cannot fully cover.\n\nThanks,\nYour customer"
+  }
+}

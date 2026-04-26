@@ -1,0 +1,69 @@
+{
+  "source": {
+    "slug": "cloudflare",
+    "name": "Cloudflare"
+  },
+  "target": {
+    "slug": "vercel",
+    "name": "Vercel"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Cloudflare is a broad CDN, DNS, security, and edge-compute platform, while Vercel is a frontend cloud optimized for Next.js with managed CDN, edge, and serverless functions. Migration is most natural for teams whose primary use of Cloudflare was Pages + Workers and who already standardize on Next.js.",
+  "why_switch": [
+    "Best-in-class Next.js deployment and preview UX",
+    "Managed serverless and edge functions",
+    "Tight integration with Git provider workflows",
+    "Less configuration for typical frontend apps",
+    "Native support for ISR, image optimization, analytics"
+  ],
+  "what_to_export": [
+    "Pages project source repos and build settings",
+    "Custom domains and DNS records",
+    "Environment variables (build and runtime)",
+    "Workers code and routes",
+    "KV / D1 / R2 data referenced from Workers",
+    "Redirects and headers configuration",
+    "Edge Function logic (Cloudflare Functions)",
+    "Access / Zero Trust policies (if used)",
+    "Deploy hooks and integrations",
+    "Custom 404/500 pages"
+  ],
+  "export_method": "Cloudflare Pages source code is already in Git, which is the main export. From the dashboard or API capture build command, output directory, environment variables, deploy hooks, and custom domains. DNS records can be exported as a zone file or via Terraform's Cloudflare provider. Worker source lives in your wrangler project; document each Worker, its routes, and its bindings (KV, D1, R2, Queues). For data in KV, D1, or R2, export with the appropriate API: KV pairs via the API, D1 via SQL dump, R2 via S3-compatible tooling. TLS managed by Cloudflare cannot be exported; Vercel will issue its own. Confirm exact API endpoints and CLI commands against current Cloudflare documentation.",
+  "import_method": "Connect the same Git repository in Vercel, choose the framework preset (typically Next.js), and configure environment variables in Project Settings, scoped per environment. Translate _redirects and _headers into Next.js or Vercel configuration (next.config.js, vercel.json) as appropriate. Re-implement Workers and Pages Functions as Vercel Serverless or Edge Functions, taking into account runtime differences and execution limits. KV, D1, and R2 do not have native Vercel replacements; either keep them on Cloudflare and call them remotely, or migrate to a third-party data service supported by Vercel integrations. Move custom domains in Vercel, validate TLS, and switch DNS gradually with lowered TTLs. Verify exact Vercel project settings and function APIs against current Vercel documentation.",
+  "concept_mapping": [
+    {
+      "source": "Cloudflare Pages project",
+      "target": "Vercel Project"
+    },
+    {
+      "source": "Pages Functions / Workers",
+      "target": "Vercel Serverless / Edge Functions"
+    },
+    {
+      "source": "Cloudflare _redirects / _headers",
+      "target": "next.config.js / vercel.json"
+    },
+    {
+      "source": "Cloudflare KV / D1 / R2",
+      "target": "External service or kept on Cloudflare",
+      "note": "No built-in equivalents on Vercel"
+    },
+    {
+      "source": "Cloudflare DNS zone",
+      "target": "Vercel DNS or external DNS"
+    }
+  ],
+  "effort": "1-4 weeks for typical Pages-only sites; more if Workers, KV, D1, or R2 are in critical path",
+  "gotchas": [
+    "Cloudflare Workers (V8 isolates) and Vercel Edge Functions have similar but not identical APIs and limits",
+    "KV, D1, and R2 have no native Vercel equivalents; plan a separate data strategy",
+    "Vercel pricing can spike with bandwidth and serverless invocations; model expected costs before cutover",
+    "Some Cloudflare-only features (Access, Bot Management, full DNS proxying) have no direct Vercel equivalent",
+    "TLS certs from Cloudflare cannot be exported; Vercel provisions its own",
+    "ISR, image optimization, and analytics are first-class on Vercel but require config to truly replace Cloudflare equivalents"
+  ],
+  "email": {
+    "subject": "Winding down our Cloudflare hosting over the next 14 days",
+    "body": "Hi Cloudflare team,\n\nWe are moving our frontend hosting from Cloudflare Pages to Vercel over the next 14 days, mainly because most of our work is now Next.js and we want the tightest fit with that framework.\n\nIn this window we plan to run Vercel deploys in parallel with Cloudflare Pages, then cut over custom domains with lowered DNS TTLs. Workers and Pages Functions will be re-implemented as Vercel Serverless / Edge Functions, and any KV, D1, or R2 data we depend on will either stay on Cloudflare or move to an external service depending on the workload.\n\nCould you confirm how long build history, analytics, and Pages deployments remain accessible after we stop new deploys, plus the cleanest order to disable Workers, KV, D1, and R2 to avoid surprise charges or data loss?\n\nThanks for the support.\n\nYour customer"
+  }
+}

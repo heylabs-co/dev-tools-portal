@@ -1,0 +1,78 @@
+{
+  "source": {
+    "slug": "datadog",
+    "name": "Datadog"
+  },
+  "target": {
+    "slug": "new-relic",
+    "name": "New Relic"
+  },
+  "generated_at": "2026-04-25T12:00:00Z",
+  "tldr": "Datadog → New Relic is a like-for-like APM migration where the win is data-volume pricing instead of per-host peak billing. Both are commercial, both are full-stack — the migration is smaller than going to OSS but still nontrivial.",
+  "why_switch": [
+    "Data-ingest pricing instead of peak-host billing",
+    "OpenTelemetry-native ingest reduces lock-in",
+    "Generous free tier for early validation",
+    "Comparable APM, logs, metrics, synthetics breadth",
+    "Single-vendor consolidation if currently multi-tool"
+  ],
+  "what_to_export": [
+    "Logs from all services",
+    "Custom and host metrics",
+    "APM traces within retention",
+    "Dashboards and saved views",
+    "Monitor and alert definitions",
+    "Synthetic test scripts",
+    "Users, teams, RBAC",
+    "Tag taxonomy and host metadata",
+    "Notebooks and runbooks",
+    "Notification channels and webhooks"
+  ],
+  "export_method": "Use the Datadog API and the official Terraform provider to pull monitors, dashboards, SLOs, and synthetics as code. Pull historical logs via the logs query API into NDJSON. Pull custom metrics via the metrics query API into a portable format. Export users/teams via the accounts API. Save all exports to object storage so the archive lives outside the Datadog account and survives cancellation. Confirm retention windows for logs and APM traces before scheduling cutover — anything older than the retention window cannot be recovered later.",
+  "import_method": "Switch instrumentation to either New Relic agents or OpenTelemetry exporters pointed at New Relic's OTLP endpoint. For logs, configure New Relic's log forwarders or send via OTel. Recreate dashboards in New Relic — NRQL is required and is not compatible with Datadog query syntax, so dashboard rebuild is manual. Re-create monitors as New Relic alert conditions and policies. Set up workflows and notification destinations to mirror existing routing. Map users/teams into New Relic's seat model (full vs. core users) carefully — the seat semantics differ. Run parallel for 1-2 weeks; verify alert parity and trace coverage before cutting Datadog.",
+  "concept_mapping": [
+    {
+      "source": "Datadog Agent",
+      "target": "New Relic agent / OTel",
+      "note": "OTel is the lowest-lock-in path"
+    },
+    {
+      "source": "Monitors",
+      "target": "Alert policies + conditions",
+      "note": "Rewrite as NRQL conditions"
+    },
+    {
+      "source": "Dashboards",
+      "target": "New Relic dashboards",
+      "note": "Rewrite queries to NRQL"
+    },
+    {
+      "source": "Logs",
+      "target": "New Relic Logs",
+      "note": "Re-point shippers"
+    },
+    {
+      "source": "APM",
+      "target": "New Relic APM",
+      "note": "OTel SDKs work with both"
+    },
+    {
+      "source": "Synthetic tests",
+      "target": "Synthetics",
+      "note": "Multi-step parity may differ"
+    }
+  ],
+  "effort": "2-4 weeks",
+  "gotchas": [
+    "New Relic commit-tier minimums lock spend for the contracted period — model usage before signing",
+    "NRQL replaces Datadog's query language entirely; dashboards and alerts must be rewritten",
+    "Datadog peak-host billing keeps charging until you actually decommission agents",
+    "Core vs. full user pricing model is different from per-host — recount seats before sizing",
+    "Retention windows differ between platforms; archive Datadog history before cancelling",
+    "Run dual ingest long enough to confirm trace and alert coverage; premature cutover risks blind spots"
+  ],
+  "email": {
+    "subject": "Data export request and account sunset — 14-day timeline",
+    "body": "Hi Datadog team,\n\nWe are migrating to New Relic and need a complete export of our account data in machine-readable formats (JSON, NDJSON, CSV). Required: monitors and alerts, dashboards, synthetic configs, logs and APM traces within current retention, custom metric series, users/teams/roles, and tag metadata.\n\nWe are targeting a 14-day window for export and validation. Please confirm:\n\n1. Which exports are self-serve via API vs. need a support ticket.\n2. Whether historical log and trace data can be archived to our S3 bucket before cancellation.\n3. Billing implications of scaling hosts down during dual-run and the contract sunset date once we formally cancel.\n\nThanks,\nYour customer"
+  }
+}

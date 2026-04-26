@@ -1,0 +1,62 @@
+{
+  "source": {
+    "slug": "flutter-inapp-purchase",
+    "name": "flutter_inapp_purchase"
+  },
+  "target": {
+    "slug": "balancy",
+    "name": "Balancy"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "flutter_inapp_purchase is a low-level OSS Flutter IAP plugin; Balancy is a no-code LiveOps and monetization platform. Migrating means adding an economy and offer layer on top of (or instead of) raw IAP calls.",
+  "why_switch": [
+    "Add LiveOps offers and events",
+    "Centralize virtual economy in a CMS",
+    "Run A/B tests on bundles and pricing",
+    "Reduce custom server work for catalog",
+    "Let designers iterate without app updates"
+  ],
+  "what_to_export": [
+    "Product IDs and store metadata",
+    "Pricing tiers per region",
+    "Subscription configurations",
+    "Receipt validation logic",
+    "Purchase event analytics",
+    "Restore and refund handling code",
+    "Localized product names and descriptions",
+    "Custom server endpoints for IAP"
+  ],
+  "export_method": "flutter_inapp_purchase is a client library, not a backend, so there is no service-side data to export. Inventory the integration in your Flutter app: which products are queried via fetchProducts (or similar), where requestPurchase is called, and how purchase streams are handled. Pull the canonical product IDs from App Store Connect and Google Play Console — these are vendor-neutral and will be reused. Document any server-side receipt validation: endpoint URL, payload shape, and downstream effects on user accounts. Capture any custom analytics events emitted around purchase events. If you maintain a virtual economy in your own backend, export the schema (items, currencies, bundle definitions) so it can be modeled in Balancy.",
+  "import_method": "Create a Balancy project and define your economy in the CMS: items, currencies, bundles, and store pages mapped to existing store SKUs. Install Balancy's Flutter SDK if available, or use REST APIs from Dart if not. Decide on a coexistence strategy — many teams keep flutter_inapp_purchase as the IAP transaction layer and use Balancy for catalog, offers, and A/B testing on top. Wire purchase success callbacks from flutter_inapp_purchase into Balancy event tracking so the platform sees conversions. Replace any in-app catalog screens with Balancy-driven content. Keep server-side receipt validation as is; Balancy is not a replacement for that security layer.",
+  "concept_mapping": [
+    {
+      "source": "Hardcoded product list",
+      "target": "Balancy CMS items and bundles"
+    },
+    {
+      "source": "fetchProducts result",
+      "target": "Balancy store page fetch"
+    },
+    {
+      "source": "Purchase event",
+      "target": "Balancy purchase event log"
+    },
+    {
+      "source": "Custom A/B harness",
+      "target": "Balancy A/B test"
+    }
+  ],
+  "effort": "2-4 weeks for catalog and offers; longer if rebuilding economy logic",
+  "gotchas": [
+    "Balancy does not replace receipt validation; keep your server-side checks intact.",
+    "Verify Balancy Flutter SDK maturity — it may require REST-based integration if not first-class.",
+    "Concept mismatch: flutter_inapp_purchase is transactional; Balancy adds economy and LiveOps on top.",
+    "Subscription lifecycle (renewals, grace periods) still flows through the stores and your IAP code.",
+    "Existing analytics dashboards must be remapped to Balancy's event schema.",
+    "Rolling out a CMS-driven catalog needs care for offline users with cached state."
+  ],
+  "email": {
+    "subject": "Adding Balancy on top of flutter_inapp_purchase — 14-day plan",
+    "body": "Hi team,\n\nWe plan to introduce Balancy alongside our existing flutter_inapp_purchase setup over the next 14 days. flutter_inapp_purchase will continue handling IAP transactions; Balancy will own the catalog, offers, and A/B testing.\n\nProposed timeline:\nDays 1-2: Inventory current IAP usage — product IDs, purchase flow, server validation, analytics.\nDays 3-5: Model the economy in Balancy CMS: items, currencies, bundles, store pages mapped to store SKUs.\nDays 6-9: Integrate the Balancy Flutter SDK (or REST) and replace hardcoded catalog screens with Balancy-driven content.\nDays 10-12: Wire purchase callbacks into Balancy events; run A/B test on a small bundle to validate.\nDays 13-14: QA on iOS and Android, regression-test receipt validation, ship behind a feature flag.\n\nReceipt validation stays unchanged on our backend. Please flag any hardcoded catalog logic that needs CMS-ification.\n\nThanks,\nYour customer"
+  }
+}

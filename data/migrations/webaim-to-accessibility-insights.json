@@ -1,0 +1,57 @@
+{
+  "source": {
+    "slug": "webaim",
+    "name": "WebAIM"
+  },
+  "target": {
+    "slug": "accessibility-insights",
+    "name": "Accessibility Insights"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "WebAIM is a nonprofit accessibility resource and home of the free WAVE checker, while Accessibility Insights is a free Microsoft tool offering FastPass and guided WCAG assessments. Switching means moving from ad-hoc WAVE scans to a more structured manual+automated audit workflow.",
+  "why_switch": [
+    "Guided FastPass workflow for fast triage",
+    "Structured Assessment mode for full WCAG coverage",
+    "Open-source, MIT-licensed, no vendor lock-in",
+    "Active Microsoft maintenance and updates",
+    "Tab-stop visualization and keyboard checks"
+  ],
+  "what_to_export": [
+    "List of pages or routes you previously audited",
+    "Saved WAVE issue notes or screenshots",
+    "Internal WCAG checklists derived from WebAIM",
+    "Color tokens previously validated in contrast checker",
+    "Documented manual test steps",
+    "Existing accessibility statement and policies",
+    "Issue tracker tickets tagged accessibility",
+    "Browser bookmarks for WebAIM tools"
+  ],
+  "export_method": "WebAIM is not a single SaaS account so there is usually no central export. Most teams keep their own artifacts: spreadsheets of audited URLs, screenshots from WAVE, and internal checklists. Collect those into a shared folder and confirm any custom WCAG checklist is captured. If you used the WebAIM contrast checker for design tokens, copy the tested foreground/background pairs into your design system documentation. Treat the export as gathering working notes rather than calling an API.",
+  "import_method": "Install the Accessibility Insights for Web browser extension and, if relevant, Accessibility Insights for Windows. Pick a representative page from your audit list and run FastPass to confirm the tool covers the automated checks you relied on in WAVE. Then walk through Assessment mode for one flow to map your existing WCAG checklist onto its guided steps. Re-import your color contrast pairs by re-checking them with the built-in contrast tooling. Document the new workflow for the team so future audits start from Accessibility Insights instead of WAVE.",
+  "concept_mapping": [
+    {
+      "source": "WAVE browser extension scan",
+      "target": "FastPass automated checks"
+    },
+    {
+      "source": "WebAIM WCAG checklist",
+      "target": "Assessment mode guided tests"
+    },
+    {
+      "source": "WebAIM contrast checker",
+      "target": "Built-in color contrast analyzer"
+    }
+  ],
+  "effort": "1-2 days",
+  "gotchas": [
+    "Accessibility Insights focuses on per-page audits and does not provide multi-site dashboards",
+    "Manual Assessment mode still requires significant tester time, similar to WebAIM workflows",
+    "WAVE-style annotated overlays differ visually from FastPass output, so screenshots from old audits will not match",
+    "Some WebAIM training material assumes WAVE conventions, retrain teammates on the new tool",
+    "There is no central account to migrate, so share the new workflow with the whole team to avoid drift"
+  ],
+  "email": {
+    "subject": "Moving our accessibility checks from WAVE to Accessibility Insights",
+    "body": "Hi team,\n\nOver the next 14 days we are switching our default accessibility checking tool from WebAIM's WAVE extension to Microsoft's Accessibility Insights for Web. The goal is a more structured workflow with FastPass for quick triage and Assessment mode for full WCAG coverage.\n\nPlan:\n- Days 1-3: collect existing audit notes, URLs, and color contrast pairs from our shared drive.\n- Days 4-7: install Accessibility Insights for Web, run FastPass on our top-traffic pages, and compare results to recent WAVE findings.\n- Days 8-11: walk through one Assessment-mode audit on a representative flow and update our internal WCAG checklist.\n- Days 12-14: document the new process, retire WAVE as the default tool, and brief the broader team.\n\nWe will keep WebAIM resources as reference material, but day-to-day audits will move to Accessibility Insights.\n\nThanks,\nYour customer"
+  }
+}

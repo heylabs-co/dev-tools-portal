@@ -1,0 +1,76 @@
+{
+  "source": {
+    "slug": "rollbar",
+    "name": "Rollbar"
+  },
+  "target": {
+    "slug": "crashpad",
+    "name": "Crashpad"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Move from Rollbar's hosted error monitoring to Crashpad, the open-source minidump capture library. This trades a managed dashboard and 30+ language SDKs for a self-operated native crash pipeline, so it only makes sense if your stack is primarily native C/C++ or you are deliberately going self-hosted.",
+  "why_switch": [
+    "Eliminate annual event-volume commits that do not scale down",
+    "Own the entire crash capture and storage pipeline",
+    "Avoid vendor pricing changes by going open source",
+    "Use the same crash plumbing battle-tested in Chrome",
+    "Self-hosted data residency for regulated environments"
+  ],
+  "what_to_export": [
+    "Project list and Rollbar access tokens",
+    "Historical occurrences and items with stack traces",
+    "Uploaded sourcemaps, ProGuard mappings, dSYMs",
+    "Release/version records and deploy tracking history",
+    "Custom person, server, and request data fields",
+    "Alert rules and notification channel configurations",
+    "Team membership and RBAC settings",
+    "Triage state (resolved, muted, snoozed)"
+  ],
+  "export_method": "Use Rollbar's documented API to pull items, occurrences, and project metadata. Download all uploaded sourcemaps and symbol files; even if you do not migrate them directly, you will need them to symbolicate any retained dumps later. If a bulk export is not available on your tier, paginate the API endpoints and persist JSON to object storage. Capture custom field schemas, alert rules, and integrations in a spreadsheet for reference — Crashpad has no equivalent UI to import them into. Keep Rollbar read-only for a retention window so engineers can reference closed items. Treat the entire export as archival: Crashpad is a capture library and accepts new minidumps only, so historical Rollbar data lives in cold storage.",
+  "import_method": "Crashpad is a client library, not a backend, so 'import' means standing up a receiver. Build Crashpad from the Chromium source tree per its README, then ship the handler binary alongside your application. Initialize CrashpadClient::StartHandler at app startup with a local database path and your collector URL. Run a collector that accepts the multipart minidump uploads Crashpad's handler posts — options include an open-source receiver, a small server you write, or pairing Crashpad with another product (such as Sentry) that already speaks the protocol. Upload symbol files into a symbol store readable by minidump_stackwalk or your chosen symbolizer. For non-C++ parts of the Rollbar footprint (Ruby, JS, Python, etc.), Crashpad does not cover them — you need a different tool for those layers. Verify by triggering a synthetic crash in staging and confirming the dump arrives, symbolicates, and reaches whatever UI you build on top.",
+  "concept_mapping": [
+    {
+      "source": "Rollbar SDKs (30+ languages)",
+      "target": "Crashpad client (C++ only)",
+      "note": "Non-native languages need a separate tool"
+    },
+    {
+      "source": "Rollbar ingestion endpoint",
+      "target": "Your collector URL"
+    },
+    {
+      "source": "Sourcemap / symbol upload",
+      "target": "Self-managed symbol store"
+    },
+    {
+      "source": "Items / occurrences UI",
+      "target": "Your own UI or paired backend",
+      "note": "Crashpad ships no UI"
+    },
+    {
+      "source": "Person / custom data",
+      "target": "Crashpad annotations"
+    },
+    {
+      "source": "Releases / deploy tracking",
+      "target": "Build into your collector"
+    },
+    {
+      "source": "Alerts and integrations",
+      "target": "Built on top of your backend"
+    }
+  ],
+  "effort": "4-12 weeks",
+  "gotchas": [
+    "Crashpad covers C/C++ native only; you still need another tool for web and backend stacks Rollbar handled",
+    "There is no dashboard — budget for a backend or a paired product before cutting over",
+    "Annual Rollbar commits keep billing through the term regardless of migration progress",
+    "Symbolication, retention, and PII scrubbing are now your operational responsibilities",
+    "Build system integration (gn/ninja or CMake forks) on Windows is often the longest task",
+    "Out-of-process handler must be packaged separately; installer changes are required"
+  ],
+  "email": {
+    "subject": "Notice of contract non-renewal — moving crash reporting in-house",
+    "body": "Hi team,\n\nWe are writing to give notice that we will not be renewing our Rollbar subscription at the end of the current term. Within the next 14 days we plan to complete migration of our native crash reporting to a self-hosted pipeline built on Crashpad.\n\nThe annual event-volume commit model is the primary driver: it does not scale down with our usage, and we need full control over the capture and storage layers for the native side of the stack.\n\nTo wrap up cleanly we would like to:\n\n- Export all historical items, occurrences, and uploaded sourcemaps and symbol files.\n- Confirm the final invoice, contract end date, and any retention or off-boarding requirements.\n- Keep the account in read-only mode for an agreed retention window so engineers can reference closed issues during the transition.\n\nPlease share your off-boarding checklist and the contact for the data export.\n\nThanks for the service over the past period.\n\nYour customer"
+  }
+}

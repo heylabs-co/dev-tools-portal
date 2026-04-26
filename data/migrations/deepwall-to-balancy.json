@@ -1,0 +1,62 @@
+{
+  "source": {
+    "slug": "deepwall",
+    "name": "Deepwall"
+  },
+  "target": {
+    "slug": "balancy",
+    "name": "Balancy"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Deepwall focuses on smart paywalls and IAP A/B testing for subscription apps; Balancy is a no-code LiveOps and economy platform aimed at mobile games. Migrating means rethinking your monetization layer around game economy and offers rather than subscription paywalls.",
+  "why_switch": [
+    "Shift from subscription paywalls to game economy",
+    "Need virtual currency and bundle CMS",
+    "Want LiveOps events and triggered offers",
+    "Designers should ship without code deploys",
+    "Consolidate economy and A/B testing in one tool"
+  ],
+  "what_to_export": [
+    "Paywall configurations and variants",
+    "A/B test definitions and results",
+    "Product IDs and pricing tiers",
+    "User segmentation rules",
+    "Trigger logic for paywall display",
+    "Localized paywall copy and assets",
+    "Conversion analytics and funnels",
+    "Subscription product catalog"
+  ],
+  "export_method": "Deepwall does not publish a generic export format. Use the Deepwall dashboard to record each paywall variant: layout, copy, products shown, and any targeting rules. Take screenshots of A/B test setups and export reports if the dashboard supports CSV download. Pull store product IDs (App Store and Google Play) from your IAP configuration since these are the canonical identifiers regardless of vendor. Capture analytics events your app sends around paywall display, dismissal, and purchase so you can preserve the funnel after migration. If the Deepwall SDK exposes server-side hooks or webhooks, document the payload shapes. Treat the migration as a clean redefinition rather than a literal data port — Balancy's primitives differ.",
+  "import_method": "Sign up for Balancy and create a project. Define your virtual economy in the Balancy CMS: items, currencies, bundles, and store pages. For each Deepwall paywall, decide whether the equivalent is a Balancy Smart Offer, a Store page, or a LiveOps event — the mapping is conceptual, not 1:1. Replace the Deepwall SDK in your mobile app with the Balancy SDK; remove paywall trigger calls and replace them with Balancy offer or store fetches. Wire purchase callbacks back into Balancy's events for analytics. Run both SDKs in parallel during a soak period if your code allows it, then remove Deepwall once Balancy is stable.",
+  "concept_mapping": [
+    {
+      "source": "Paywall variant",
+      "target": "Smart Offer or Store page"
+    },
+    {
+      "source": "A/B test",
+      "target": "Balancy A/B test"
+    },
+    {
+      "source": "Product ID",
+      "target": "Balancy item linked to store SKU"
+    },
+    {
+      "source": "Trigger rules",
+      "target": "LiveOps event conditions"
+    }
+  ],
+  "effort": "2-5 weeks depending on paywall complexity and economy depth",
+  "gotchas": [
+    "Concept mismatch: Deepwall is paywall-centric, Balancy is economy-centric; some flows need redesign rather than direct mapping.",
+    "Subscription product handling differs — Balancy is geared toward game economies with IAPs and currencies.",
+    "Historical A/B test data likely cannot be imported and must be archived externally.",
+    "SDK binary size and runtime behavior change; expect QA on cold start and offline paths.",
+    "User segments built in Deepwall must be recreated in Balancy; logic may not be portable.",
+    "App store reviews can flag major monetization changes — phase the rollout."
+  ],
+  "email": {
+    "subject": "Migrating monetization from Deepwall to Balancy in 14 days",
+    "body": "Hi team,\n\nWe're moving our monetization stack from Deepwall to Balancy over the next 14 days. Balancy fits better because our roadmap leans toward game-style economies and LiveOps offers rather than pure subscription paywalls.\n\nProposed timeline:\nDays 1-3: Audit Deepwall — export paywall variants, A/B tests, product IDs, segmentation rules, and analytics.\nDays 4-6: Model the Balancy economy: items, currencies, bundles, and Smart Offers that map to current paywalls.\nDays 7-10: Integrate the Balancy SDK in a feature branch, run both SDKs in parallel for soak testing.\nDays 11-12: Migrate offer triggers and remove Deepwall calls; verify purchase flows on iOS and Android.\nDays 13-14: QA, regression test analytics, and phase the production rollout to a percentage of users.\n\nPlease flag any paywall logic that depends on Deepwall-specific features so we can redesign early.\n\nThanks,\nYour customer"
+  }
+}

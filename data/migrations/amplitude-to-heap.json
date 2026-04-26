@@ -1,0 +1,67 @@
+{
+  "source": {
+    "slug": "amplitude",
+    "name": "Amplitude"
+  },
+  "target": {
+    "slug": "heap",
+    "name": "Heap"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Amplitude is an event-based product analytics platform with explicit instrumentation, while Heap leans on autocapture to retroactively analyze interactions. The migration replaces SDKs and rethinks how events are defined.",
+  "why_switch": [
+    "Want autocapture instead of manual instrumentation",
+    "Tired of maintaining a tracking plan",
+    "Need retroactive event definition",
+    "Prefer Heap's UX for ad-hoc exploration",
+    "Annual Amplitude commit is no longer a fit"
+  ],
+  "what_to_export": [
+    "Raw event history",
+    "User and account profiles",
+    "Cohorts and saved segments",
+    "Funnels, retention and dashboards",
+    "Tracking plan and event taxonomy",
+    "User properties and identity mappings",
+    "Feature flag or experiment metadata (if any)",
+    "Warehouse export configuration"
+  ],
+  "export_method": "Use Amplitude's export API or warehouse sync (Snowflake, BigQuery, S3) to pull raw events with full properties, plus user and group profiles. Export cohorts, charts, funnels and dashboards via the dashboard or API. Save your tracking plan as a structured document so it can be reviewed against Heap's autocapture model. For long-term storage, prefer the warehouse export — it gives you raw, queryable history that does not depend on either vendor.",
+  "import_method": "Install Heap's SDK in web and mobile clients to start autocapture immediately. For historical analysis, send Amplitude's exported events to Heap's server-side ingestion endpoints — though note that autocapture conventions differ, so events may not appear identical in Heap's UI. Re-create key cohorts, funnels and dashboards manually. Identify users consistently using the same identifier you used in Amplitude so profiles stitch correctly. Run both tools in parallel for at least one full reporting cycle and compare key metrics before fully cutting over.",
+  "concept_mapping": [
+    {
+      "source": "Event",
+      "target": "Event",
+      "note": "Heap autocaptures by default"
+    },
+    {
+      "source": "User property",
+      "target": "User property"
+    },
+    {
+      "source": "Cohort",
+      "target": "Segment"
+    },
+    {
+      "source": "Funnel / Retention",
+      "target": "Funnel / Retention"
+    },
+    {
+      "source": "Chart / Dashboard",
+      "target": "Chart / Dashboard"
+    }
+  ],
+  "effort": "2-6 weeks for SDK swap, longer if dashboards and definitions are heavy",
+  "gotchas": [
+    "Autocapture vs explicit events leads to different event names and counts",
+    "Numbers will not match exactly during parallel run — agree on tolerance up front",
+    "Identity stitching breaks easily if user IDs change between tools",
+    "Some Amplitude features (Experiment, CDP) have no direct Heap equivalent",
+    "Annual Amplitude commit may continue to bill until renewal",
+    "Backfilling historical Amplitude events into Heap is best-effort, not lossless"
+  ],
+  "email": {
+    "subject": "Switching product analytics from Amplitude to Heap",
+    "body": "Hi team,\n\nOver the next 14 days we are moving our product analytics from Amplitude to Heap. The main driver is that we want autocapture and retroactive event definition rather than maintaining a heavy tracking plan, and the Amplitude renewal is a good moment to make the change.\n\nThe plan: install the Heap SDK across web and mobile, start autocapturing in parallel with Amplitude, and re-create our key cohorts, funnels and dashboards. We will export raw events and user data from Amplitude into our warehouse so we keep full history. Identity will be stitched on the same user IDs as today.\n\nExpect numbers to differ between the two tools during the parallel run — autocapture and explicit instrumentation count things slightly differently. We will agree on a tolerance and validate the top dashboards before cutting over. Some Amplitude-specific features do not have a Heap equivalent and will be retired or replaced separately.\n\nIf your team relies on a specific Amplitude chart, please flag it this week so we prioritize rebuilding it.\n\nThanks,\nYour customer"
+  }
+}

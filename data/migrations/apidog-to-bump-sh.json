@@ -1,0 +1,61 @@
+{
+  "source": {
+    "slug": "apidog",
+    "name": "Apidog"
+  },
+  "target": {
+    "slug": "bump-sh",
+    "name": "Bump.sh"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Apidog is an all-in-one API design, mock, and test platform; Bump.sh is focused on API documentation hosting and change tracking from OpenAPI/AsyncAPI specs. Migration is straightforward for the docs piece — export your specs from Apidog and publish them on Bump.sh — but you will keep Apidog or another tool for testing and mocking unless you replace those workflows separately.",
+  "why_switch": [
+    "Want a docs-focused platform with strong change tracking on every spec update",
+    "Need a clean public-facing developer portal driven by OpenAPI",
+    "Prefer a CI-driven docs workflow over editing inside a UI",
+    "Looking for AsyncAPI support alongside OpenAPI",
+    "Want lighter, docs-first pricing instead of an all-in-one suite"
+  ],
+  "what_to_export": [
+    "OpenAPI 3.x specifications for every API in Apidog",
+    "AsyncAPI specifications if you maintain event-driven APIs",
+    "Markdown guides, tutorials, or long-form docs hosted alongside specs",
+    "Branding assets (logo, colors) used on the published portal",
+    "Custom domain configuration for the docs site",
+    "Team and access settings",
+    "Examples and code samples attached to endpoints",
+    "Tag groupings and navigation structure"
+  ],
+  "export_method": "From each Apidog project, export the API spec as OpenAPI 3.x (YAML or JSON). Apidog's documented exporters cover OpenAPI; verify nothing Apidog-specific (custom fields, internal-only endpoints) leaks into the public spec by diffing the export against your source of truth. Save examples, response samples, and any markdown guides separately if they live in Apidog rather than in your repo. Capture the navigation order and tag structure so you can recreate it on Bump.sh. Note your published docs URL, custom domain, and any redirects you need to preserve. Take a snapshot of branding (logo, colors) for re-application. Keep the Apidog project read-only during the cutover so no one edits a spec that has already been migrated.",
+  "import_method": "Create a Bump.sh organization and a documentation hub for each API. Upload the OpenAPI or AsyncAPI spec via the Bump.sh CLI or the web UI as described in their docs. Wire the Bump.sh CLI into your CI so every merge to main re-publishes the docs and produces a diff/changelog automatically. Configure your custom domain, apply branding, and recreate navigation/tag groupings. Add markdown guides if your plan supports them, and link external resources Apidog used to host. Once the new docs site is live and verified, set up redirects from the old Apidog-hosted URLs to the matching Bump.sh URLs to preserve SEO and inbound links. Announce the new docs URL to API consumers before retiring the old one.",
+  "concept_mapping": [
+    {
+      "source": "Apidog project",
+      "target": "Bump.sh documentation hub",
+      "note": "One hub per API is the typical pattern."
+    },
+    {
+      "source": "Apidog OpenAPI export",
+      "target": "Bump.sh deploy via CLI",
+      "note": "Run on every CI build for automatic changelogs."
+    },
+    {
+      "source": "Apidog published docs URL",
+      "target": "Bump.sh public docs URL",
+      "note": "Set up redirects from old to new before retiring Apidog."
+    }
+  ],
+  "effort": "2-5 days for a single API with a clean OpenAPI spec; 1-3 weeks for multi-API portfolios with custom guides and domains.",
+  "gotchas": [
+    "Bump.sh is docs-first — you still need Apidog or another tool for mocks and contract testing. Don't expect feature parity.",
+    "OpenAPI extensions Apidog uses internally may not render on Bump.sh; clean the spec before publishing.",
+    "Custom-domain DNS changes can take hours to propagate; schedule the cutover with a buffer.",
+    "If you publish breaking changes during migration, Bump.sh will surface them prominently — make sure that is what you want.",
+    "Markdown guide support and styling differ between platforms; expect to re-author long-form docs.",
+    "Redirects from old Apidog URLs are your responsibility — without them, search-engine rankings on existing docs pages can drop."
+  ],
+  "email": {
+    "subject": "Our API docs are moving to Bump.sh",
+    "body": "Hi developers,\n\nOver the next 14 days we are moving our public API documentation from Apidog to Bump.sh. The current docs URL will redirect to the new one; bookmarks should keep working. CI now publishes a fresh version on every merge, and you'll see a changelog on each release. Please report any broken links, missing examples, or rendering issues to the support address by end of week 2.\n\nThanks,\nYour customer"
+  }
+}

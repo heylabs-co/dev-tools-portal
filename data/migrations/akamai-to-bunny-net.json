@@ -1,0 +1,75 @@
+{
+  "source": {
+    "slug": "akamai",
+    "name": "Akamai"
+  },
+  "target": {
+    "slug": "bunny-net",
+    "name": "Bunny.net"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Moving from Akamai to Bunny.net trades enterprise CDN with custom configurations for a simpler, usage-priced edge platform. The cutover is mostly DNS, origin, and cache-rule rebuild plus re-issuing TLS certificates.",
+  "why_switch": [
+    "Transparent usage-based pricing",
+    "Simpler self-serve setup",
+    "Lower egress cost for many workloads",
+    "Modern dashboard and API",
+    "Faster onboarding without enterprise sales cycle"
+  ],
+  "what_to_export": [
+    "Origin server hostnames and IPs",
+    "Hostnames and CNAMEs in use",
+    "TLS certificates and SAN coverage",
+    "Cache rules and TTL configuration",
+    "WAF rules and bot protection settings",
+    "Redirects and URL rewrites",
+    "Geo / IP allow-block lists",
+    "Image and video delivery settings",
+    "Token authentication / signed URL config",
+    "Log delivery destinations"
+  ],
+  "export_method": "Pull Property Manager configurations from the Akamai control panel or via the Akamai CLI / EdgeGrid API as JSON. Export each property's behaviors, match criteria, and origin definitions. Inventory hostnames, certificate SAN coverage, and DNS records currently pointing at Akamai. Document WAF rules, custom error pages, redirect logic, and any token-auth secrets — secrets cannot be exported, only re-issued. Save log delivery configurations so you know which downstream destinations to repoint. Treat this as an inventory exercise: the configuration will be rebuilt, not literally imported.",
+  "import_method": "Create Pull Zones in Bunny.net for each origin, configure hostnames, and provision TLS — Bunny offers managed certificates for most common cases. Translate Akamai cache rules into Bunny Edge Rules: match on path, header, or query, and set TTLs accordingly. Recreate redirects and URL rewrites as Edge Rules. Configure storage zones if you need persistent edge storage. Set up Perma-Cache or Optimizer for image delivery if relevant. Stage the new setup on a test hostname, validate cache hit ratio and origin behavior, then cut DNS over with low TTLs so you can roll back quickly if needed.",
+  "concept_mapping": [
+    {
+      "source": "Property",
+      "target": "Pull Zone"
+    },
+    {
+      "source": "Behavior / Match criteria",
+      "target": "Edge Rule"
+    },
+    {
+      "source": "Origin",
+      "target": "Origin URL"
+    },
+    {
+      "source": "Edge certificate",
+      "target": "Managed TLS certificate"
+    },
+    {
+      "source": "Image Manager",
+      "target": "Bunny Optimizer"
+    },
+    {
+      "source": "NetStorage",
+      "target": "Storage Zone"
+    },
+    {
+      "source": "Log delivery",
+      "target": "Log forwarding"
+    }
+  ],
+  "effort": "1-4 weeks depending on number of properties, WAF complexity, and TLS coverage",
+  "gotchas": [
+    "WAF rule semantics differ — do not assume a 1:1 port; test with traffic samples",
+    "Use low DNS TTLs before cutover so you can roll back quickly",
+    "Token auth / signed URL formats are not interchangeable; clients must be updated",
+    "Edge compute scripts have to be rewritten in Bunny's runtime",
+    "Cache key design affects hit ratio; review before flipping production traffic"
+  ],
+  "email": {
+    "subject": "Cancellation and offboarding from our Akamai contract",
+    "body": "Hi Akamai team,\n\nWe are moving our CDN and edge workloads to another provider over the next 14 days and want to plan the wind-down cleanly. Could you confirm the steps to export our property configurations, certificate metadata, log delivery settings, and any account data we are entitled to before the contract ends?\n\nWe would like to schedule cancellation at the end of the current contract term. Please share the date by which we need to give written notice to avoid auto-renewal, the offboarding checklist your team uses, and any data retention timelines that apply after the account closes.\n\nIf there are minimum commits or remaining contractual obligations we should be aware of, please flag them.\n\nThanks,\nYour customer"
+  }
+}

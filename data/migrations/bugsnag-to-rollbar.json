@@ -1,0 +1,65 @@
+{
+  "source": {
+    "slug": "bugsnag",
+    "name": "Bugsnag"
+  },
+  "target": {
+    "slug": "rollbar",
+    "name": "Rollbar"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Bugsnag and Rollbar are both hosted error monitoring platforms with broad language SDK coverage. Migration is mostly an SDK swap and reconfiguration of integrations, with historical data generally remaining behind.",
+  "why_switch": [
+    "Comparable feature set and SDKs",
+    "Different pricing structure",
+    "Vendor consolidation or diversification",
+    "Refresh integration tooling",
+    "Avoid Bugsnag commit-based event tiers"
+  ],
+  "what_to_export": [
+    "Project and environment list",
+    "User and team membership",
+    "Alert and notification rules",
+    "Source map / symbol upload pipeline",
+    "Issue assignments and statuses",
+    "Integration list (Slack, Jira, etc.)",
+    "Stability and release tracking config",
+    "Sample event payloads for validation"
+  ],
+  "export_method": "Document Bugsnag projects, environments, members, alerts, and integrations from the Bugsnag UI or via its API. For historical events, export what your retention allows; older events typically stay behind. Save source map and symbol upload steps as code. Capture release tracking and ownership rules manually where the API does not clearly support an export. Treat API keys as values to rotate, not artifacts to move. Avoid assumptions about endpoints; follow the official Bugsnag documentation.",
+  "import_method": "Create Rollbar projects mirroring your Bugsnag projects and add users and notification channels. Install the matching Rollbar SDK in each application following Rollbars official documentation, replacing Bugsnag SDK initialization while keeping environment, release, and tag conventions consistent. Move source map / symbol upload steps in your build pipeline to Rollbars equivalents. Wire deploy tracking from CI to Rollbar. Reconnect Slack, Jira, and ticketing integrations. Run both SDKs in parallel briefly to validate event flow and metadata, then remove Bugsnag and rotate API keys.",
+  "concept_mapping": [
+    {
+      "source": "Project",
+      "target": "Project"
+    },
+    {
+      "source": "Error / Event",
+      "target": "Item / Occurrence"
+    },
+    {
+      "source": "Release",
+      "target": "Deploy"
+    },
+    {
+      "source": "Alert rules",
+      "target": "Notification rules"
+    },
+    {
+      "source": "Integrations",
+      "target": "Integrations"
+    }
+  ],
+  "effort": "1-3 weeks",
+  "gotchas": [
+    "Historical events generally do not transfer",
+    "Issue counts will not match exactly because grouping differs",
+    "Source map / symbol upload pipelines must be redone",
+    "Stability scores have no direct one-to-one in Rollbar",
+    "Both vendors have annual event-volume commits to plan around"
+  ],
+  "email": {
+    "subject": "Moving our error monitoring off Bugsnag",
+    "body": "Hi team,\n\nWe are consolidating tooling and have decided to move our error monitoring from Bugsnag to another provider. Our target timeline is 14 days from today.\n\nDuring that period we will export project and integration configuration, document alert rules, and run the new SDK in parallel for validation. After cutover, our applications will stop sending events to Bugsnag.\n\nCould you confirm the steps to disable auto-renewal, the effective end date under our current commitment, and any final invoicing details? If there are recommended steps before account deactivation, please share them.\n\nThanks for the support.\n\nYour customer"
+  }
+}

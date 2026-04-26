@@ -1,0 +1,78 @@
+{
+  "source": {
+    "slug": "fastly",
+    "name": "Fastly"
+  },
+  "target": {
+    "slug": "akamai",
+    "name": "Akamai"
+  },
+  "generated_at": "2026-04-25T12:00:00Z",
+  "tldr": "Fastly → Akamai is an enterprise CDN-to-CDN move. The mechanics are similar in spirit (origin config, caching rules, certificates) but the configuration tooling is entirely different — Fastly's VCL doesn't translate to Akamai's Property Manager.",
+  "why_switch": [
+    "Larger global footprint and DDoS scale",
+    "Enterprise contracts and SLAs at scale",
+    "Broader media-delivery and security suite",
+    "Existing enterprise procurement relationship",
+    "Compliance/regional requirements Fastly cannot meet"
+  ],
+  "what_to_export": [
+    "Service / property configurations",
+    "VCL snippets and custom logic",
+    "Cache rules and TTL policies",
+    "Origin server definitions",
+    "TLS/SSL certificates",
+    "DNS records (if hosted at Fastly)",
+    "Compute@Edge functions (WASM)",
+    "WAF / security rule sets",
+    "Logging endpoint configs",
+    "API tokens and user accounts"
+  ],
+  "export_method": "Pull all service configs through Fastly's public API or via the official Fastly CLI. The Terraform provider for Fastly is the cleanest way to capture services, VCL snippets, ACLs, dictionaries, and logging endpoints declaratively. Export VCL files for each service. For Compute@Edge, export the WASM binaries or — better — the source repos and build pipelines. Pull WAF rule sets via the security API. Export TLS certificates (private keys may not be retrievable for managed certs; plan for re-issuance). Save log streaming endpoint configs separately so you can reconfigure log destinations on the new provider.",
+  "import_method": "On Akamai, model each Fastly service as an Akamai property in Property Manager. Translate caching, TTL, header manipulation, and routing rules from VCL into Property Manager rule trees — this is largely manual. Configure origin definitions, certificate provisioning (via Akamai's CPS or upload), and WAF rules in App & API Protector or equivalent product. Compute@Edge logic typically rewrites to Akamai EdgeWorkers (JavaScript), which is a non-trivial port. Stage with a test hostname, validate behavior end-to-end, then cut over DNS gradually using weighted records. Plan a 1-2 week dual-run with both CDNs warm to validate cache-hit ratio and origin offload before cancelling Fastly.",
+  "concept_mapping": [
+    {
+      "source": "Fastly Service",
+      "target": "Akamai Property",
+      "note": "Property Manager rule tree"
+    },
+    {
+      "source": "VCL",
+      "target": "Property Manager rules + EdgeWorkers",
+      "note": "No direct translation; manual port"
+    },
+    {
+      "source": "Compute@Edge (WASM)",
+      "target": "EdgeWorkers (JavaScript)",
+      "note": "Full code rewrite"
+    },
+    {
+      "source": "Edge ACLs / Dictionaries",
+      "target": "EdgeKV / rule criteria",
+      "note": "Different storage model"
+    },
+    {
+      "source": "WAF",
+      "target": "App & API Protector",
+      "note": "Rules need re-mapping"
+    },
+    {
+      "source": "Real-time logs",
+      "target": "DataStream",
+      "note": "Reconfigure destinations"
+    }
+  ],
+  "effort": "4-8 weeks",
+  "gotchas": [
+    "VCL has no automated translation to Property Manager — every cache and routing rule is manual work",
+    "Compute@Edge WASM functions must be rewritten in JavaScript for EdgeWorkers",
+    "Managed TLS certificates may not be exportable; plan for new issuance and DNS validation steps",
+    "Akamai onboarding often involves human-driven contract and provisioning steps; build that into the timeline",
+    "Cache-hit-ratio takes time to recover after cutover; pre-warm where possible before flipping DNS",
+    "Run both CDNs in parallel via weighted DNS to fail back fast if origin offload regresses"
+  ],
+  "email": {
+    "subject": "Configuration export and account sunset — please confirm timeline",
+    "body": "Hi Fastly team,\n\nWe are migrating off Fastly to another CDN and need a full export of our account configuration in machine-readable form (JSON via API or Terraform state). Required: service configs and VCL, cache rules, origin definitions, TLS certificate metadata (and re-issuance guidance for managed certs), Compute@Edge source/binaries, WAF rules, real-time log streaming configs, ACLs, dictionaries, and user/API token inventory.\n\nWe are targeting a 14-day export and validation window. Please confirm:\n\n1. Which exports are self-serve via API/Terraform vs. require support.\n2. The procedure for retiring services without disrupting in-flight requests during dual-run.\n3. Billing implications of running services in disabled state during cutover and the exact account sunset date once we cancel.\n\nThanks,\nYour customer"
+  }
+}

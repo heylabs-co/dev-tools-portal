@@ -1,0 +1,65 @@
+{
+  "source": {
+    "slug": "rollbar",
+    "name": "Rollbar"
+  },
+  "target": {
+    "slug": "airbrake",
+    "name": "Airbrake"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Rollbar and Airbrake are both error monitoring platforms with overlapping feature sets across many languages. Migration is mostly an SDK swap and reconfiguration of integrations rather than a deep data transfer.",
+  "why_switch": [
+    "Comparable error tracking capabilities",
+    "Avoid Rollbar annual event-volume commits",
+    "Different pricing structure",
+    "Long-standing language SDK coverage",
+    "Refresh integration tooling"
+  ],
+  "what_to_export": [
+    "Project and environment configuration",
+    "User and team membership",
+    "Notification and alert rules",
+    "Issue assignments and statuses",
+    "Source map / symbol upload pipeline",
+    "Deploy tracking integrations",
+    "Custom grouping or fingerprinting rules",
+    "Sample of recent error payloads for validation"
+  ],
+  "export_method": "Document Rollbar projects, environments, members, notification channels, and integrations from the Rollbar UI or via its API. If you need historical events, query the Rollbar API or export reports for a recent window; long-term retention depends on your plan, so verify what is available rather than assuming. Capture deploy tracking, source map, and CI integration scripts as code. Treat tokens as items to rotate after cutover, not as exported data. Where the Rollbar API or UI does not clearly support an export of a given object, document it manually instead of assuming an endpoint.",
+  "import_method": "Create a new Airbrake account and one project per Rollbar project. Add users and configure notification channels and integrations to mirror Rollbar. Install the appropriate Airbrake SDK in each application following Airbrakes official documentation, replacing Rollbar SDK initialization. Move source map / symbol upload steps in your build pipeline to Airbrakes equivalents. Wire deploy tracking from CI to Airbrake. Run both SDKs in parallel in a staging environment first to validate that errors appear with expected metadata, then promote to production. Once the new pipeline is verified, remove the Rollbar SDK and rotate Rollbar tokens.",
+  "concept_mapping": [
+    {
+      "source": "Project",
+      "target": "Project"
+    },
+    {
+      "source": "Environment",
+      "target": "Environment"
+    },
+    {
+      "source": "Item / Occurrence",
+      "target": "Error / Notice"
+    },
+    {
+      "source": "Deploy tracking",
+      "target": "Deploy tracking"
+    },
+    {
+      "source": "Notification rules",
+      "target": "Notification rules"
+    }
+  ],
+  "effort": "1-3 weeks",
+  "gotchas": [
+    "Historical events generally do not transfer; only new events flow to the new tool",
+    "Grouping and fingerprinting differ, so issue counts will not line up exactly",
+    "Source map upload steps must be re-implemented",
+    "Integrations (Slack, Jira, etc.) need to be reconnected",
+    "Run both SDKs in parallel briefly to avoid blind spots"
+  ],
+  "email": {
+    "subject": "Moving our error monitoring off Rollbar",
+    "body": "Hi team,\n\nWe are consolidating tooling and have decided to move our error monitoring from Rollbar to a different provider. We plan to complete the cutover within 14 days.\n\nDuring that period we will export project and integration configuration, document our notification rules, and run the new SDK in parallel for validation. After cutover we will stop sending events from our applications.\n\nCould you confirm the steps to disable auto-renewal, the effective end date under our current commitment, and what we need to do to ensure we are not billed beyond the cutover? If there are recommended steps before account deactivation, please let us know.\n\nThanks for the support.\n\nYour customer"
+  }
+}

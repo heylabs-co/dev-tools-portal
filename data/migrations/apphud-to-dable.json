@@ -1,0 +1,64 @@
+{
+  "source": {
+    "slug": "apphud",
+    "name": "Apphud"
+  },
+  "target": {
+    "slug": "dable",
+    "name": "Dable"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Apphud manages mobile in-app subscriptions, paywalls, and revenue analytics; Dable is a native ad and content recommendation SSP focused on Korean, Japanese, and Southeast Asian publishers. The two solve different revenue models, so this switch only makes sense if your monetization is moving from subscriptions to native advertising in those regions.",
+  "why_switch": [
+    "Strong native ad fill in KR, JP, and SEA markets",
+    "Publisher-friendly revenue share",
+    "Content recommendation widgets feel non-intrusive",
+    "Suits ad-supported content apps and sites",
+    "Specialist SSP for APAC native inventory"
+  ],
+  "what_to_export": [
+    "Subscription product catalog",
+    "Paywall configurations and variants",
+    "A/B test definitions and results",
+    "Customer entitlement records",
+    "Subscription lifecycle webhooks",
+    "Revenue and churn analytics history",
+    "Apphud SDK integration code",
+    "App Store/Play Store linkage settings",
+    "Customer attribution data",
+    "User identifier mapping conventions"
+  ],
+  "export_method": "Use the Apphud dashboard and API to export your product catalog, paywall variants, A/B test definitions, and historical analytics. Note that subscriptions themselves live with Apple and Google; Apphud is a management and analytics layer over those. Cancelling Apphud does not cancel user subscriptions, but you do lose Apphud's lifecycle analytics and paywall A/B engine, so archive the analytics you care about. Document the SDK integration points in your mobile app so the team knows where to remove or replace calls. None of this Apphud data maps cleanly into Dable, which is an ad SSP, not a subscription tool; export it for archive only.",
+  "import_method": "Sign up with Dable and confirm publisher eligibility, especially regional fit. Integrate the Dable native ad and recommendation SDK into your mobile app or web property following their docs, alongside or in place of paywall logic depending on your new business model. Configure ad placements (recommendation widgets, native units) where you previously showed paywalls or upgrade prompts. Connect billing/payout details to receive revenue share. Validate fill rates and viewability in target markets before scaling. Keep platform-native subscription handling (StoreKit, Play Billing) in your code if you still offer any paid tiers; just remove or trim Apphud's wrappers.",
+  "concept_mapping": [
+    {
+      "source": "Subscription product",
+      "target": "No equivalent; Dable is ad-based"
+    },
+    {
+      "source": "Paywall variant",
+      "target": "Native ad placement / recommendation widget"
+    },
+    {
+      "source": "Subscription analytics",
+      "target": "Ad revenue and impression analytics"
+    },
+    {
+      "source": "Apphud SDK",
+      "target": "Dable SDK"
+    }
+  ],
+  "effort": "2-6 weeks because this is a business-model change, not a like-for-like swap.",
+  "gotchas": [
+    "Apphud and Dable solve different problems; only switch if monetization model changes",
+    "Dable footprint is concentrated in KR, JP, and SEA; weak fit elsewhere",
+    "Custom pricing only; no public tier rates to budget against",
+    "Native-only inventory; no video or rewarded formats",
+    "Removing Apphud SDK requires careful regression testing of receipts and entitlements",
+    "User experience changes from paywall to ads need product and legal review"
+  ],
+  "email": {
+    "subject": "Cancelling Apphud as we shift monetization to native ads",
+    "body": "Hi Apphud team,\n\nWe are pivoting the monetization model on our app from in-app subscriptions to a native-ad model targeted at Korean and Japanese audiences, working with Dable as our SSP. Because of that change, we plan to wind down our Apphud usage over the next 14 days.\n\nThe plan: remove Apphud SDK calls in the next release candidate, run one week of parallel observation against existing subscribers to make sure nothing about platform receipts or entitlements regresses, then formally close the account. We would like a one-billing-cycle read-only window so we can pull analytics history before closure.\n\nCould you confirm:\n- The cancellation steps and final billing date\n- Whether dashboards and exports stay accessible after cancellation\n- Any official data export tools you recommend\n\nThanks for the support during our subscription era. The product worked well; this is a business model change, not a complaint about Apphud.\n\nYour customer"
+  }
+}

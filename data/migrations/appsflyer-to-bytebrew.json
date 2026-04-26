@@ -1,0 +1,67 @@
+{
+  "source": {
+    "slug": "appsflyer",
+    "name": "AppsFlyer"
+  },
+  "target": {
+    "slug": "bytebrew",
+    "name": "ByteBrew"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "AppsFlyer to ByteBrew is mostly relevant for mobile games: ByteBrew bundles analytics, attribution, monetization tracking, and remote config in a free SDK. The migration is an SDK swap plus rebuilding event taxonomy and accepting narrower ad-network and fraud coverage.",
+  "why_switch": [
+    "Free analytics + attribution + remote config in one SDK",
+    "Built-in IAP and ad revenue monetization tracking",
+    "Unity and Unreal SDKs aimed at indie game studios",
+    "Lower cost vs enterprise MMP",
+    "Single dashboard for game telemetry"
+  ],
+  "what_to_export": [
+    "Raw install and event data (API/Data Lockers)",
+    "Custom event taxonomy with parameters",
+    "Cohort definitions and funnels",
+    "SKAdNetwork conversion value mappings",
+    "Postback / S2S callback configurations",
+    "IAP / ad revenue event schema",
+    "Active ad-network partner mappings",
+    "User identifiers used for matching"
+  ],
+  "export_method": "Pull historical install and event data from AppsFlyer into your own warehouse using its standard export tooling, since ByteBrew is unlikely to back-import AppsFlyer data. Document event names, parameter schemas, and any monetization events (IAP, rewarded ad, interstitial revenue). Export postback configs and SKAdNetwork conversion-value setup as a reference. Note which ad networks you currently rely on so you can confirm ByteBrew supports them or plan a hybrid approach. Keep this archive in your warehouse as the historical source of truth.",
+  "import_method": "Integrate the ByteBrew SDK in your Unity, Unreal, or native iOS/Android project alongside AppsFlyer for an initial validation period. Recreate your event taxonomy in ByteBrew with matching names where possible so dashboards stay comparable. Configure monetization tracking for IAP and ad revenue. Set up remote config keys if you want to use the A/B testing feature. Run both SDKs in parallel through one full release cycle, compare numbers, then remove AppsFlyer in the next app build. Keep AppsFlyer logs archived for compliance.",
+  "concept_mapping": [
+    {
+      "source": "Custom events",
+      "target": "Custom events"
+    },
+    {
+      "source": "AppsFlyer ID",
+      "target": "ByteBrew device ID",
+      "note": "Not interchangeable"
+    },
+    {
+      "source": "Data Locker / Pull API",
+      "target": "Reporting API"
+    },
+    {
+      "source": "Remote config (third-party)",
+      "target": "Built-in remote config"
+    },
+    {
+      "source": "Attribution partner integrations",
+      "target": "Narrower set of supported networks"
+    }
+  ],
+  "effort": "3-6 weeks including parallel SDK validation and an app release",
+  "gotchas": [
+    "ByteBrew is younger; advanced fraud and MMP features are less mature",
+    "Ad-network coverage is narrower; verify your key partners are supported",
+    "Best fit for games; non-game apps may not benefit from monetization features",
+    "Historical attribution data does not migrate; archive it from AppsFlyer first",
+    "App-store review may require updated privacy disclosures for the new SDK",
+    "Run dual-SDK for at least one full release cycle to confirm event parity"
+  ],
+  "email": {
+    "subject": "Migrating mobile attribution from AppsFlyer to ByteBrew in 14 days",
+    "body": "Hi team,\n\nFor our mobile game stack we plan to migrate from AppsFlyer to ByteBrew over the next 14 days. ByteBrew bundles analytics, attribution, remote config, and monetization tracking in a free SDK.\n\nDays 1-4: export historical install and event data from AppsFlyer to our warehouse, document the event taxonomy.\nDays 5-8: integrate ByteBrew SDK alongside AppsFlyer, recreate events and IAP/ad-revenue tracking.\nDays 9-12: run both SDKs in parallel in production, compare metrics, configure remote config.\nDays 13-14: confirm parity and plan removal of AppsFlyer in the next release.\n\nWe will flag any ad networks or fraud features that ByteBrew does not yet cover.\n\nThanks,\nYour customer"
+  }
+}

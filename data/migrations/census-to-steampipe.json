@@ -1,0 +1,64 @@
+{
+  "source": {
+    "slug": "census",
+    "name": "census"
+  },
+  "target": {
+    "slug": "steampipe",
+    "name": "steampipe"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Census is a managed reverse-ETL platform for syncing warehouse rows to SaaS apps, while Steampipe is an open-source SQL engine that queries cloud APIs and configuration data. They solve different problems, so this is a re-scoping rather than a feature-for-feature swap.",
+  "why_switch": [
+    "Move from outbound SaaS syncs to ad-hoc cloud and SaaS querying via SQL",
+    "Eliminate per-sync subscription costs by adopting an OSS tool",
+    "Bring compliance and inventory queries closer to engineering workflows",
+    "Avoid SaaS lock-in for read-only data exploration"
+  ],
+  "what_to_export": [
+    "List of Census destinations and what data was sent to each",
+    "SQL models behind each sync",
+    "Schedules and trigger conditions",
+    "Audit and run history if needed for compliance evidence",
+    "Field mappings between warehouse columns and destination fields",
+    "RBAC roles and team membership",
+    "Alerting rules"
+  ],
+  "export_method": "Document each Census sync as a tuple of (SQL source model, destination, mapping, schedule). Capture the SQL into a Git repository and the mapping definitions into a spreadsheet or YAML file. Run history that must be retained for audit purposes should be exported from the Census activity views before the account is closed. Do not export destination credentials — recreate connections in the new environment with least-privilege scopes. Keep in mind that Steampipe does not write data anywhere, so the exported syncs are only useful if they are re-implemented behind a different sync mechanism; what Steampipe will offer instead is read-only SQL access to the same SaaS APIs.",
+  "import_method": "Install Steampipe locally or on a server and add the plugins for the cloud and SaaS providers you query (AWS, GCP, Azure, GitHub, etc., depending on what is available in the Hub). Steampipe presents each provider as a Postgres-compatible schema, so you query live API state with standard SQL. There is no concept of a sync or a destination — Steampipe is read-only, so any outbound delivery that Census handled must be replaced with a separate tool (a workflow runner, a script, or another reverse-ETL product). Treat Steampipe as the inspection and compliance-query layer, and decide explicitly how outbound writes will be handled.",
+  "concept_mapping": [
+    {
+      "source": "Sync (outbound write)",
+      "target": "Not supported — Steampipe is read-only"
+    },
+    {
+      "source": "SQL model",
+      "target": "SQL query against a Steampipe plugin schema"
+    },
+    {
+      "source": "Destination connector",
+      "target": "Plugin (read-only)"
+    },
+    {
+      "source": "Schedule",
+      "target": "External cron / orchestrator running steampipe queries"
+    },
+    {
+      "source": "Audit log",
+      "target": "Local query history / external logging"
+    }
+  ],
+  "effort": "2-6 weeks",
+  "gotchas": [
+    "Steampipe is read-only — it cannot perform reverse-ETL writes that Census did",
+    "You will need a separate solution for any outbound sync that must continue",
+    "Steampipe is self-hosted; plan for a host, upgrades, and credentials management",
+    "Plugin coverage varies — confirm every provider you need is supported before committing",
+    "RBAC and audit features that Census provided as a managed service must be reproduced via OS-level controls",
+    "Run Census and Steampipe in parallel until you have explicitly handled every outbound flow"
+  ],
+  "email": {
+    "subject": "Update: replacing Census with Steampipe for read-only data work",
+    "body": "Hi team,\n\nOver the next 14 days we are winding down Census and standing up Steampipe for our cloud and SaaS querying needs. Anything that Census was syncing outbound will be moved to a separate mechanism, which we will list per destination during the transition. Please reply with any sync you depend on so we can confirm its replacement before Census is shut off.\n\nThanks for your patience.\n\nYour customer"
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "source": {
+    "slug": "assistiv-labs",
+    "name": "Assistiv Labs"
+  },
+  "target": {
+    "slug": "a11ywatch",
+    "name": "A11yWatch"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Assistiv Labs offers cloud-based screen reader sessions with NVDA, JAWS and VoiceOver, while A11yWatch is an open-source automated WCAG scanner with CLI, API and CI integration. Moving across means trading hands-on AT testing for automated, scriptable accessibility checks.",
+  "why_switch": [
+    "Need automated WCAG scans across many pages",
+    "Want self-hosted, open-source a11y tooling",
+    "Integrate accessibility checks into CI and PRs",
+    "Reduce per-seat AT-testing subscription costs",
+    "Run scheduled crawls for accessibility drift"
+  ],
+  "what_to_export": [
+    "Test plans and scripts used in AT sessions",
+    "Session notes and recorded findings",
+    "List of URLs and flows under test",
+    "Bugs filed in your issue tracker",
+    "Screenshots and screen reader transcripts",
+    "Custom checklists or rubrics",
+    "Account, seat and billing records",
+    "Any saved environment configs"
+  ],
+  "export_method": "Assistiv Labs is primarily a remote AT environment, not a persistent audit database, so most of what you need lives outside the platform: shared notes, recorded sessions and tickets in your issue tracker. Collect those artefacts first. From the Assistiv Labs account, capture the list of testers, seats and any saved session data using the in-app account or settings area. Download any session recordings or transcripts you want to keep. Because there is no automated WCAG report to export, treat your tracker plus session notes as the migration baseline. Document the manual AT scenarios you currently run (NVDA, JAWS, VoiceOver flows) so they can be reproduced or covered differently after the switch.",
+  "import_method": "A11yWatch is an automated scanner, so the import is mostly setup rather than data load. Self-host A11yWatch via its open-source distribution or use the hosted tier, then point it at the same URLs and flows you previously tested manually. Configure scans through the CLI, API or GitHub Action so they run in CI. Re-file or link existing tracker tickets to the corresponding A11yWatch findings as they appear. Keep your manual screen-reader scenarios as a separate human checklist; A11yWatch will not replace those, only the automated portion.",
+  "concept_mapping": [
+    {
+      "source": "Manual NVDA/JAWS/VoiceOver session",
+      "target": "Automated WCAG scan run",
+      "note": "Automated scans cannot fully replace AT walkthroughs"
+    },
+    {
+      "source": "Per-seat tester accounts",
+      "target": "API tokens / self-hosted instance"
+    },
+    {
+      "source": "Session recordings",
+      "target": "Scan reports and CI logs"
+    },
+    {
+      "source": "Manual checklist",
+      "target": "CLI / GitHub Action workflow"
+    }
+  ],
+  "effort": "1-3 weeks",
+  "gotchas": [
+    "Automated rules typically miss a large share of real a11y issues; keep some manual AT testing in your process",
+    "Self-hosting A11yWatch means owning uptime, upgrades and infrastructure",
+    "Different paradigms: human AT testing vs automated scanning are complements, not substitutes",
+    "CI integration may require auth and rate-limit configuration for protected environments",
+    "Reporting formats and severity definitions will differ from your prior session notes"
+  ],
+  "email": {
+    "subject": "Moving from Assistiv Labs to A11yWatch",
+    "body": "Hi team,\n\nOver the next 14 days we will be shifting our accessibility tooling from Assistiv Labs to A11yWatch. Assistiv Labs has been useful for remote screen-reader testing, but we need automated WCAG scans across many pages and tighter CI integration, which is what A11yWatch is built for.\n\nRollout plan:\n- Days 1-3: archive existing session notes and tracker links from our Assistiv Labs work.\n- Days 4-7: stand up A11yWatch (self-hosted) and run a baseline scan on staging.\n- Days 8-12: wire scans into CI and PR checks; keep a small manual AT checklist for high-risk flows.\n- Days 13-14: cancel unused Assistiv Labs seats and finalize the new workflow.\n\nWe will keep a manual screen-reader checklist for critical user flows since automated scans alone do not catch every issue.\n\nThanks,\nYour customer"
+  }
+}

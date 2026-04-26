@@ -1,0 +1,56 @@
+{
+  "source": {
+    "slug": "hermit",
+    "name": "hermit"
+  },
+  "target": {
+    "slug": "develocity",
+    "name": "develocity"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Hermit pins per-project CLI tool versions; Develocity accelerates JVM-heavy builds with remote caching, build scans, and predictive test selection. They solve different problems and most teams keep both. Treat this as adopting Develocity alongside Hermit, not replacing it.",
+  "why_switch": [
+    "You have a Gradle, Maven, Bazel, or sbt monorepo with slow CI builds.",
+    "You want build scans to diagnose slow tasks and flaky tests.",
+    "You need predictive test selection to skip unaffected tests.",
+    "You want distributed test execution across build agents.",
+    "Your organization can support an enterprise procurement and rollout."
+  ],
+  "what_to_export": [
+    "List of CLI tools and pinned versions managed by Hermit",
+    "Bin stubs and project activation scripts",
+    "CI workflow steps that activate Hermit",
+    "Any custom Hermit manifests or package definitions",
+    "Notes on which tools are critical for build vs ad hoc",
+    "Existing Gradle, Maven, or Bazel build configuration that Develocity will hook into",
+    "CI agent topology and existing cache settings",
+    "Developer onboarding documentation referencing Hermit"
+  ],
+  "export_method": "Hermit configuration lives in the repository under a bin directory of activation scripts and per-tool manifests. There is no remote export: list every pinned tool and version, capture custom packages you have authored, and document the CI step that calls hermit activate. Because Hermit is open source and file-based, your source of truth is git. The migration target, Develocity, does not replace tool pinning. Keep Hermit (or a replacement) in place for toolchain management. The export here is mostly an audit so you understand what stays and what changes when Develocity is added.",
+  "import_method": "Develocity is an enterprise product. Engage Gradle Inc. for licensing, deployment topology, and trial access. Once you have access, follow the official documentation to install the Develocity build agent and configure your build tool, typically by adding the appropriate plugin to your Gradle, Maven, Bazel, or sbt build. Authenticate the build to your Develocity instance using the credentials your administrator provides. Enable build scans first to gather a baseline, then enable remote build caching. Predictive test selection and test distribution are configured per build tool; consult the official docs for your stack. Update CI workflows so cache reads and writes are authenticated. Validate by running a clean build twice and confirming a cache hit on the second run.",
+  "concept_mapping": [
+    {
+      "source": "Hermit-pinned CLI tools",
+      "target": "Not covered by Develocity",
+      "note": "Develocity does not pin developer toolchains; keep Hermit for that."
+    },
+    {
+      "source": "Hermit activation in CI",
+      "target": "Develocity build authentication step",
+      "note": "Both add steps to CI but for different purposes; they coexist."
+    }
+  ],
+  "effort": "4-8 weeks for an enterprise adoption: procurement, deployment, plugin wiring, CI updates, and team rollout.",
+  "gotchas": [
+    "Develocity is enterprise-priced via custom contracts; budget approval is usually the longest pole.",
+    "Best value assumes JVM-heavy monorepos. ROI is weaker for non-JVM stacks even though Bazel and sbt are supported.",
+    "Cache correctness depends on deterministic task inputs. Non-deterministic build steps will undermine hit rates.",
+    "Self-hosting versus vendor-hosted has compliance and data locality implications worth resolving up front.",
+    "Build scans reveal sensitive data such as environment variables; review what is captured before broad rollout.",
+    "Hermit and Develocity solve different problems. Removing Hermit without a replacement leaves toolchain drift unsolved."
+  ],
+  "email": {
+    "subject": "Adopting Develocity for build acceleration",
+    "body": "Hi,\n\nWe are rolling out Develocity for build caching, build scans, and faster tests across our JVM monorepo. Hermit stays in place for tool pinning. Over the next 14 days expect changes to CI configuration and a short onboarding note for local builds. No action is required yet; we will share concrete steps before the cutover.\n\nReach out if your team has unusual build steps we should know about.\n\nThanks,\nYour customer"
+  }
+}

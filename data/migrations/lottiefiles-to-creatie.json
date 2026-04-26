@@ -1,0 +1,64 @@
+{
+  "source": {
+    "slug": "lottiefiles",
+    "name": "LottieFiles"
+  },
+  "target": {
+    "slug": "creatie",
+    "name": "Creatie"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "LottieFiles is a Lottie hosting and editing platform; Creatie is an AI-native design tool. Lottie itself is an open JSON format, so the move is mostly about where you store, edit, and hand off animations.",
+  "why_switch": [
+    "Adopt AI-native design and prototyping",
+    "Combine design, prototyping, and handoff",
+    "Reduce vendor surface for animations",
+    "Avoid LottieFiles team plan price creep",
+    "Keep Lottie JSON portable across tools"
+  ],
+  "what_to_export": [
+    "All hosted Lottie JSON files",
+    "Project / folder organization",
+    "Marketplace assets you have purchased or saved",
+    "After Effects source projects (where applicable)",
+    "Versions and revisions",
+    "Animation usage map per screen / app",
+    "Playback configs (loop, speed, autoplay)",
+    "Web/mobile player SDK references in code",
+    "Comments and review state",
+    "Team members and permissions"
+  ],
+  "export_method": "LottieFiles lets you download individual Lottie JSON files from your workspace; for bulk migration, page through your projects/files and download each JSON. Where you authored animations in After Effects, keep the .aep source files alongside the exported JSON so you retain an editable origin. Capture playback configs (loop, autoplay, speed) and the SDK call sites in your code, since those determine behavior at runtime. For purchased marketplace assets, re-download per their license terms before the account lapses. Document folder structure so you can recreate it on the new side.",
+  "import_method": "In Creatie, organize Lottie animations as assets in a shared library or design system file. Many teams put each animation on a dedicated frame with metadata (name, screen it appears on, playback config) so designers and engineers can find them. Creatie itself is not a Lottie player platform; runtime playback continues through the lottie-web, lottie-react, or lottie-native packages in your code, pointing at the JSON files hosted in your own asset storage (CDN, S3, or repo). Use Creatie for design and handoff, and keep your After Effects pipeline for authoring complex animations.",
+  "concept_mapping": [
+    {
+      "source": "LottieFiles project",
+      "target": "Creatie library / page"
+    },
+    {
+      "source": "Hosted Lottie JSON",
+      "target": "Asset in your CDN / repo"
+    },
+    {
+      "source": "LottieFiles preview link",
+      "target": "Creatie design frame"
+    },
+    {
+      "source": "Marketplace asset",
+      "target": "Imported asset (per license)"
+    }
+  ],
+  "effort": "1-3 weeks",
+  "gotchas": [
+    "Creatie is a design tool, not a Lottie hosting platform; you need your own asset hosting",
+    "Marketplace assets often have per-use licensing; re-verify rights before reuse in a new tool",
+    "Playback configs (loop, speed, autoplay) live in your code; design tool change does not affect them",
+    "After Effects sources are not stored on LottieFiles by default; back them up locally",
+    "Web player performance varies on low-end devices; retest after any pipeline change",
+    "Comments and review history on LottieFiles do not transfer; archive what you need"
+  ],
+  "email": {
+    "subject": "Plan to wind down our LottieFiles workspace",
+    "body": "Hi team,\n\nWe're moving our design workflow to Creatie over the next 14 days and will not renew our LottieFiles team plan. Lottie itself stays in our stack since it's an open JSON format, but we'll host the files in our own asset storage and reference them from Creatie design frames.\n\nPlease keep the workspace active through the end of the current term so we can finish downloading our Lottie JSON files, After Effects sources, and any purchased marketplace assets per their licenses. Could you confirm there is no auto-renewal and share a contact for final billing?\n\nThanks for the product over the years.\n\nYour customer"
+  }
+}

@@ -1,0 +1,74 @@
+{
+  "source": {
+    "slug": "pkl",
+    "name": "Pkl"
+  },
+  "target": {
+    "slug": "modal",
+    "name": "Modal"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Pkl is Apple's open-source configuration language; Modal is a Python-native serverless cloud. They solve different problems, so the migration is really about adopting Modal as a runtime and deciding whether and how Pkl still fits in your config pipeline.",
+  "why_switch": [
+    "Run Python workloads, including GPU jobs, on a managed serverless platform.",
+    "Define apps, schedules, and endpoints directly in Python instead of static config.",
+    "Public, usage-based pricing with predictable scaling.",
+    "Less config plumbing for teams that prefer code-defined infrastructure."
+  ],
+  "what_to_export": [
+    "All Pkl modules, schemas, and rendered outputs",
+    "Inventory of systems consuming Pkl-rendered config",
+    "Environment matrix (staging, production, regions)",
+    "Secrets references (kept outside Pkl)",
+    "CI pipelines that render and apply Pkl",
+    "Documentation describing schema intent",
+    "Examples of generated JSON/YAML and their consumers"
+  ],
+  "export_method": "Treat Pkl files themselves as the source — they live in git already. List every system that consumes Pkl-rendered output (CDN, IaC, app config) and capture the rendered artifacts so you have a snapshot. Document how each output is applied (Terraform, custom scripts, API calls). If Pkl is being retired entirely, plan how each consumer will get its config in the new world. If Pkl is staying as your config layer for non-Modal systems, no full export is needed — just isolate which parts move.",
+  "import_method": "Modal apps are defined in Python. Install the Modal CLI, authenticate, and create a project. Translate any application logic that lives behind Pkl-rendered config into Python functions decorated with Modal stubs. Container images, dependencies, and resource sizes are declared in Python. Move scheduled jobs to Modal cron schedules and HTTP endpoints to Modal web endpoints. Store secrets via Modal secrets and reference them from functions. Decide whether Pkl still drives input values for Modal apps (rendering Python module inputs or environment files); if so, keep a thin Pkl layer that emits values consumed at deploy time. Validate in a staging Modal app, then cut over traffic by updating DNS or upstream callers.",
+  "concept_mapping": [
+    {
+      "source": "Pkl module",
+      "target": "Python module on Modal",
+      "note": "Different layer; one is config, the other is runtime"
+    },
+    {
+      "source": "Rendered JSON/YAML",
+      "target": "Modal app definition in Python",
+      "note": "Code replaces config-as-data for Modal"
+    },
+    {
+      "source": "Per-env Pkl module",
+      "target": "Modal environment + secrets",
+      "note": "Modal has its own env model"
+    },
+    {
+      "source": "Pkl validation",
+      "target": "Python type checks + Modal CLI validation",
+      "note": "Different toolchain"
+    },
+    {
+      "source": "CI render step",
+      "target": "CI modal deploy step",
+      "note": "Fewer moving parts for Modal-only paths"
+    },
+    {
+      "source": "Pkl-driven non-Modal systems",
+      "target": "Keep Pkl for those",
+      "note": "Hybrid is fine"
+    }
+  ],
+  "effort": "1-4 weeks",
+  "gotchas": [
+    "Pkl and Modal are not equivalent; do not try to one-to-one port modules into Modal.",
+    "Modal is not a CDN; keep an edge layer for static or globally cached content.",
+    "Cold starts and concurrency limits differ from edge platforms; load test first.",
+    "Secrets handling shifts to Modal secrets; remove any leaked values from old configs.",
+    "Cost model is usage-based; estimate GPU and compute hours before cutover.",
+    "If keeping Pkl for other systems, define clearly which scope each tool owns."
+  ],
+  "email": {
+    "subject": "Notice: moving workloads to Modal over the next 14 days",
+    "body": "Hi team,\n\nOver the next 14 days we are moving selected workloads to Modal, a Python-native serverless platform. Configuration that previously came from Pkl-rendered files is being re-expressed in Python where it lives next to the code it controls.\n\nWhat to expect:\n- Endpoints stay reachable; URLs do not change.\n- Scheduled jobs run on the new platform on the same cadence.\n- A short freeze on related config changes during cutover.\n- We will keep Pkl in place for systems outside this migration.\n\nIf you see anything unexpected (latency spikes, missed jobs, errors), reply with the URL, timestamp, and details and we will investigate.\n\nThanks for your patience,\n\nYour customer"
+  }
+}

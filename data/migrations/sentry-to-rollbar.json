@@ -1,0 +1,73 @@
+{
+  "source": {
+    "slug": "sentry",
+    "name": "Sentry"
+  },
+  "target": {
+    "slug": "rollbar",
+    "name": "Rollbar"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Move error tracking from Sentry to Rollbar by swapping SDKs in your apps and re-pointing release/deploy hooks. Most teams complete the cutover in one to two weeks, with a short dual-write window to validate parity.",
+  "why_switch": [
+    "Different commercial terms or contract that fit your stack better",
+    "Workflow integrations (deploys, alerting routes) that match your team",
+    "Different event-volume pricing structure to evaluate at scale",
+    "Consolidating crash reporting under a single vendor across products"
+  ],
+  "what_to_export": [
+    "List of projects/applications and their environments (dev, staging, prod)",
+    "Team members, roles, and notification preferences",
+    "Alert rules and routing configuration",
+    "Issue ownership rules and assignment logic",
+    "Source map upload pipeline configuration",
+    "Release/deploy markers and version tagging conventions",
+    "Integration credentials (Slack, Jira, GitHub, PagerDuty, etc.)",
+    "Open issue list with assignees and resolution state for reference"
+  ],
+  "export_method": "Sentry exposes a REST API and SDK configuration that you can use to inventory projects, teams, members, alert rules, and integrations. For migration purposes, treat Sentry as the read-only source of truth: pull project lists, team memberships, and alert configurations via the API or the Sentry web UI export options where available, and capture them as JSON in your repo. Open issues themselves typically do not need to be migrated wholesale — instead, leave Sentry running in read-only mode for historical lookup while new errors flow into the new vendor. Document your DSN-to-environment mapping, source map upload step (CI integration), and release/deploy hook commands so you can recreate them on the target. If you use Sentry CLI in CI, save the exact commands and environment variables. For SSO and integration secrets, rotate them as part of the cutover rather than copying values.",
+  "import_method": "On Rollbar, create a project per application/environment to mirror your Sentry layout, then install the Rollbar SDK for each language/platform you use (server, browser, mobile). Configure access tokens per environment and store them as CI secrets. Recreate teams, member invites, and notification rules in the Rollbar dashboard. Wire up integrations (Slack, Jira, PagerDuty, GitHub) using Rollbar's integrations panel. Add a deploy/release notification step in your CI so each deploy is tagged in Rollbar — this powers regression detection. If you upload source maps for client-side JS, configure the Rollbar source map upload step in your build pipeline. Run Rollbar in parallel with Sentry for one to two weeks: both SDKs initialized, both receiving events, so you can compare event counts and noise. Once parity is confirmed, remove the Sentry SDK initialization and keep the Sentry account in read-only mode for historical issues until your retention window expires.",
+  "concept_mapping": [
+    {
+      "source": "Project",
+      "target": "Project"
+    },
+    {
+      "source": "Environment",
+      "target": "Environment"
+    },
+    {
+      "source": "Issue",
+      "target": "Item"
+    },
+    {
+      "source": "Release",
+      "target": "Deploy / Version"
+    },
+    {
+      "source": "Alert rule",
+      "target": "Notification rule"
+    },
+    {
+      "source": "Team",
+      "target": "Team"
+    },
+    {
+      "source": "DSN",
+      "target": "Access token"
+    }
+  ],
+  "effort": "1-2 weeks",
+  "gotchas": [
+    "Event-volume pricing differs between vendors — model your monthly event count before signing an annual plan, since both vendors note that annual commits do not scale down within the contracted period.",
+    "Source map upload steps are vendor-specific. Recreate the CI step on the target before cutover, otherwise client-side stack traces will be unreadable.",
+    "Release/deploy markers must be reconfigured. Without them, regression detection and 'first seen in release' logic will not work on the new vendor.",
+    "Alert rules rarely map one-to-one. Re-author them on the target rather than trying to translate verbatim, focusing on the few high-signal rules your team actually acts on.",
+    "Run both SDKs in parallel for a short window to catch missing platforms (mobile, background workers, edge functions) that you may have forgotten.",
+    "Historical issues do not migrate cleanly. Plan to keep the old account read-only for lookup rather than backfilling years of events."
+  ],
+  "email": {
+    "subject": "Heads up: we're moving error tracking off Sentry",
+    "body": "Hi team,\n\nWe're switching our crash reporting from Sentry to Rollbar over the next 14 days. SDKs will run in parallel for about a week so we can compare signal, then we'll remove Sentry from the apps and keep the Sentry account read-only for historical lookup.\n\nAction items: please re-subscribe to alerts in Rollbar once invites go out, and re-create any saved searches you rely on. CI source map upload and deploy hooks are being updated by the platform team.\n\nReply with questions.\n\nThanks,\nYour customer"
+  }
+}

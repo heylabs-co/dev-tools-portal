@@ -1,0 +1,63 @@
+{
+  "source": {
+    "slug": "postmark",
+    "name": "Postmark"
+  },
+  "target": {
+    "slug": "twilio",
+    "name": "Twilio"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Postmark is a transactional-email-only platform; Twilio is a broad multi-channel communications API covering SMS, voice, video, WhatsApp, and email (via SendGrid). Migrating to Twilio typically only makes sense if you are consolidating multiple channels under one vendor.",
+  "why_switch": [
+    "Consolidate SMS, voice, and email under one vendor",
+    "Add WhatsApp or programmable voice/video to the stack",
+    "Global phone number provisioning",
+    "Existing Twilio relationship covers other channels",
+    "Industry-standard SDKs and tooling"
+  ],
+  "what_to_export": [
+    "Verified sending domains and DKIM records",
+    "Postmark templates (HTML and text)",
+    "Suppression list (bounces, complaints, unsubs)",
+    "Server/message-stream configuration",
+    "Webhook subscriptions",
+    "API tokens and integration secrets",
+    "Inbound stream rules if used",
+    "Recent send-volume and bounce metrics"
+  ],
+  "export_method": "Use the Postmark API to export templates as JSON, retrieve suppression lists per server, and list webhook subscriptions. Templates use mustache-style merge variables; capture every variable name your application passes in. Export suppression entries as CSV. Document each server (transactional vs broadcast) and the From identities tied to it. Keep Postmark sending active during DNS cutover so you have a fallback. Note that for email, Twilio's offering is delivered through the Twilio SendGrid product, so plan for SendGrid setup steps if email is part of the migration.",
+  "import_method": "If you are migrating only SMS or voice, set up a Twilio account, provision phone numbers, and integrate Twilio's REST API or helper SDKs. For email, set up the Twilio SendGrid product: add your sending domain, publish DKIM records, recreate templates as SendGrid Dynamic Templates (mapping Postmark merge variables to Handlebars-style syntax), import the suppression list, and configure the Event Webhook. Update application secrets to point at Twilio credentials. Run a low-volume canary on each channel, monitor delivery and webhook events, then ramp.",
+  "concept_mapping": [
+    {
+      "source": "Server / message stream",
+      "target": "Subuser / IP pool (via SendGrid) or Messaging Service (SMS)"
+    },
+    {
+      "source": "Template",
+      "target": "Dynamic Template (SendGrid)",
+      "note": "Variable syntax differs"
+    },
+    {
+      "source": "Webhook",
+      "target": "Event Webhook (email) or Status Callback (SMS/voice)"
+    },
+    {
+      "source": "Suppression list",
+      "target": "Suppression list (SendGrid)"
+    }
+  ],
+  "effort": "2-4 weeks",
+  "gotchas": [
+    "Twilio email is a separate product (SendGrid) with its own setup, billing, and APIs",
+    "Postmark mustache-style variables do not map 1:1 to Handlebars used by SendGrid templates",
+    "Per-message pricing differs; model your real volume to avoid bill shock",
+    "DNS DKIM and Return-Path propagation can take 24-48 hours",
+    "Webhook payload shapes differ across channels and require handler updates",
+    "If you also adopt SMS or voice, plan number provisioning, A2P 10DLC registration in the US, and country-specific compliance"
+  ],
+  "email": {
+    "subject": "Consolidating communications under Twilio",
+    "body": "Hi team,\n\nOver the next 14 days we're consolidating our communications stack under Twilio. Today email runs on Postmark; bringing email under the same vendor as SMS and voice should reduce vendor surface and simplify on-call.\n\nDays 1-3: stand up our Twilio SendGrid email setup, verify the sending domain, and publish DKIM records. Days 4-7: rebuild templates as Dynamic Templates and remap merge variables, import the suppression list, and wire up Event Webhooks. Days 8-11: route a small share of transactional email traffic through Twilio, monitor inbox placement and webhook events, then ramp. Days 12-14: keep Postmark warm as a fallback for one week and decommission once metrics are stable.\n\nNo end-user impact is expected for email content or sender identity. We'll share a status note midway and at cutover.\n\nThanks,\nYour customer"
+  }
+}

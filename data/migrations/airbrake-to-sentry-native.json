@@ -1,0 +1,73 @@
+{
+  "source": {
+    "slug": "airbrake",
+    "name": "Airbrake"
+  },
+  "target": {
+    "slug": "sentry-native",
+    "name": "Sentry Native SDK"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Move native error reporting from Airbrake to the Sentry Native SDK, which uses Crashpad/Breakpad under the hood. You keep a hosted dashboard and notification model, but switch vendor, SDK initialization, and symbol-upload pipeline to Sentry's.",
+  "why_switch": [
+    "First-class C/C++ SDK with minidump handling via Crashpad and Breakpad",
+    "Active maintenance with frequent releases",
+    "Self-hostable Sentry option reduces vendor lock-in",
+    "Unified Sentry UI if you already use Sentry for other stacks",
+    "Open-source SDK under MIT license"
+  ],
+  "what_to_export": [
+    "Airbrake project list with API keys/project IDs",
+    "Open errors/incidents to retain for reference",
+    "Deploy markers and environment definitions",
+    "Custom backtrace grouping rules and ignore filters",
+    "Notification routes (Slack, email, PagerDuty)",
+    "User and team membership with roles",
+    "Symbol/sourcemap upload pipelines and artifacts",
+    "Historical error data export if needed for compliance",
+    "List of Airbrake SDK init sites in code"
+  ],
+  "export_method": "From Airbrake, export each project's open and recently-resolved errors to JSON or CSV via the dashboard or API. Treat this as a historical archive: Sentry will not import it, but you may need it for compliance or for hand-tracking long-lived issues during the cutover. Capture project metadata (API keys, environments, deploy tracking config) and notification rules in a document. Pull integrations (Slack channels, PagerDuty services, email recipients) so they can be recreated as Sentry alert rules. For symbol/sourcemap uploads, identify where in CI the Airbrake-specific upload step runs, what credentials it uses, and what artifacts it processes; you will replace this step rather than reuse it. Pull user and team membership from your IdP if SSO is in use; otherwise from Airbrake's admin UI. Within your codebase, grep for Airbrake SDK initialization (for native code, search for the Airbrake C/C++ client; for mixed stacks, also catch `@airbrake/browser`, ruby gems and so on). That list is your authoritative integration inventory and is more reliable than anything the Airbrake dashboard will show. Export historical error data within Airbrake's retention window before the subscription ends, since post-cancellation retention is not guaranteed. Rotate Airbrake API keys after cutover.",
+  "import_method": "Create a Sentry organization (cloud or self-hosted) and a project per native target. For each native binary, follow the Sentry Native SDK integration steps from Sentry's official documentation: link or vendor the SDK, decide between Crashpad-based and inproc/Breakpad-based crash handling per platform, and call sentry_init with your DSN, environment, and release at startup. Replace Airbrake SDK initialization with sentry_init in the same place. Rebuild the CI symbol-upload step using sentry-cli (upload-dif) so debug information files are pushed to Sentry on every release; without symbols, native stack traces are unusable. Recreate alert rules, notification integrations and ignore rules inside Sentry to mirror what you had in Airbrake. Configure deploy markers via sentry-cli releases new/finalize so you keep deploy-vs-error correlation. For non-native portions of your stack (web, server, mobile non-C++), use the matching Sentry SDK rather than the Native SDK. Run Airbrake and Sentry in parallel for a sprint, force a controlled crash in staging on each platform, confirm minidump capture and symbolication, then cut over and disable the Airbrake SDK in a follow-up release. Revoke Airbrake API keys and remove its CI integration at the end of the parallel-run window.",
+  "concept_mapping": [
+    {
+      "source": "Airbrake project",
+      "target": "Sentry project"
+    },
+    {
+      "source": "Airbrake SDK init",
+      "target": "Sentry Native SDK sentry_init",
+      "note": "Native code only; other stacks use other Sentry SDKs."
+    },
+    {
+      "source": "Airbrake deploy tracking",
+      "target": "Sentry releases (sentry-cli releases)"
+    },
+    {
+      "source": "Airbrake symbol upload",
+      "target": "sentry-cli upload-dif",
+      "note": "Needed for native stack traces to symbolicate."
+    },
+    {
+      "source": "Airbrake notification rules",
+      "target": "Sentry alert rules + integrations"
+    },
+    {
+      "source": "Airbrake ignore filters",
+      "target": "Sentry inbound filters / ignore rules"
+    }
+  ],
+  "effort": "1-4 weeks",
+  "gotchas": [
+    "Native symbolication requires uploading debug info via sentry-cli; if you skip this, stack traces are useless and the migration will look like a regression.",
+    "Sentry Native SDK covers native code only. Web, server-side and non-C++ mobile need their own Sentry SDKs.",
+    "Crashpad vs inproc handler choice matters per platform; pick based on Sentry's platform guidance and your installer constraints.",
+    "Historical Airbrake errors do not migrate; export within Airbrake's retention window if compliance requires it.",
+    "Some advanced Sentry features sit behind higher tiers; verify your plan covers what you need before cutover.",
+    "Run in parallel and force a staging crash on each platform before disabling Airbrake; silent capture failures are easy to miss."
+  ],
+  "email": {
+    "subject": "Switching native crash reporting from Airbrake to Sentry",
+    "body": "Hi team,\n\nWe're moving native crash reporting from Airbrake to the Sentry Native SDK over the next two weeks. Non-native services will move to their respective Sentry SDKs separately.\n\nWe'll run both side by side, force test crashes per platform to confirm symbolication, and disable Airbrake at the end of a 14-day parallel-run window. If you rely on a specific Airbrake dashboard, alert or report, reply on this thread so we can make sure Sentry covers it before cutover.\n\nThanks,\nYour customer"
+  }
+}

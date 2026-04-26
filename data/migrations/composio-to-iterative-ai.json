@@ -1,0 +1,60 @@
+{
+  "source": {
+    "slug": "composio",
+    "name": "composio"
+  },
+  "target": {
+    "slug": "iterative-ai",
+    "name": "iterative-ai"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Composio is an AI-agent tool integration platform; Iterative.ai builds open-source MLOps tooling (DVC, CML) and multimodal data products. Migration means leaving an agent-actions layer for a Git-based ML data and pipeline workflow.",
+  "why_switch": [
+    "You need MLOps versioning for datasets and models",
+    "You want Git-native pipelines with CML in CI/CD",
+    "Your work is data and model focused, not agent integrations",
+    "You prefer open-source-rooted tooling",
+    "You need reproducible ML experiments at scale"
+  ],
+  "what_to_export": [
+    "List of Composio connectors and agent tool definitions",
+    "Composio API keys and project settings",
+    "Agent codebase that imports the Composio SDK",
+    "Logs of tool-call usage",
+    "Webhook and callback configuration",
+    "Team membership and roles",
+    "Any custom actions or tool wrappers"
+  ],
+  "export_method": "There is no formal Composio bulk export. Audit your Composio dashboard for active integrations, project IDs, and credentials, then mirror that list in a spreadsheet for reference. Pull all Composio-related code from your repos so you can see which agent flows depend on which connectors. Save usage analytics if you need them for a billing reconciliation. Revoke and rotate any third-party tokens that Composio held on your behalf once the migration is final. Document custom actions and prompts so they can be re-implemented in your new ML pipeline tooling.",
+  "import_method": "Iterative.ai does not consume Composio exports because the tools serve different layers. Install DVC and CML in your repository (pip install dvc, plus the CML GitHub Action), and start tracking datasets, models, and pipelines through Git semantics. Use DVC Studio to visualise experiments and the model registry. If you previously triggered ML training via Composio agent tools, reimplement that as a CI pipeline that runs DVC stages and CML reports. Composio's connector catalogue has no equivalent; integrations to external apps will need to be coded directly or kept on Composio.",
+  "concept_mapping": [
+    {
+      "source": "Composio agent tool",
+      "target": "DVC pipeline stage",
+      "note": "Different paradigm"
+    },
+    {
+      "source": "Connector auth",
+      "target": "CI/CD secrets",
+      "note": "Move secrets into repo CI"
+    },
+    {
+      "source": "Project workspace",
+      "target": "DVC repo + Studio project",
+      "note": "Per-repo, not centralized"
+    }
+  ],
+  "effort": "2-6 weeks",
+  "gotchas": [
+    "Different problem spaces: agent integrations vs MLOps. Confirm fit before migrating.",
+    "DVC requires Git proficiency; non-engineer data folks may struggle.",
+    "Studio commercial features are less mature than some competitors.",
+    "Strategy shifts at Iterative.ai have created some product drift.",
+    "You may need both products if you do agentic ML.",
+    "Reimplementing Composio actions inside CI takes meaningful engineering time."
+  ],
+  "email": {
+    "subject": "Moving ML workflows from Composio to Iterative.ai (DVC)",
+    "body": "Hi team,\n\nWe will spend the next 14 days piloting Iterative.ai's DVC and CML for our ML pipelines, while reviewing what stays on Composio. These tools serve different layers of the stack, so this is a re-platforming exercise rather than a swap.\n\nIf your work depends on Composio agent integrations, please flag it so we can plan accordingly. Composio remains running during the pilot.\n\nThanks,\nYour customer"
+  }
+}

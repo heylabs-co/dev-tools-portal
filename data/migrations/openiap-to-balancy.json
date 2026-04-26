@@ -1,0 +1,62 @@
+{
+  "source": {
+    "slug": "openiap",
+    "name": "OpenIAP"
+  },
+  "target": {
+    "slug": "balancy",
+    "name": "Balancy"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "OpenIAP is a cross-platform IAP specification, not a runtime; Balancy is a no-code LiveOps and monetization platform. The migration is really about adding an economy, offers, and A/B testing layer on top of whichever OpenIAP-compliant library you use.",
+  "why_switch": [
+    "Add LiveOps offers and events",
+    "Manage virtual economy in a CMS",
+    "Run A/B tests on pricing and bundles",
+    "Reduce custom catalog server work",
+    "Let designers ship without code deploys"
+  ],
+  "what_to_export": [
+    "Product IDs and store SKUs",
+    "Spec-aligned IAP type usage",
+    "Receipt validation logic",
+    "Analytics events around purchases",
+    "Custom catalog or bundle definitions",
+    "Localized product copy",
+    "Subscription configurations",
+    "Existing A/B test definitions"
+  ],
+  "export_method": "OpenIAP is a spec; there is no service-side state to export. Inventory the implementing library you use (e.g. react-native-iap, flutter_inapp_purchase, or another OpenIAP-compliant SDK) and document where in your codebase it is called. List product IDs from App Store Connect and Google Play Console — these stay vendor-neutral. If your app already has a virtual economy modeled in your own code or backend, export its schema (items, currencies, bundles) since this is what will move into Balancy. Capture any custom A/B test logic for bundles or pricing so you can recreate experiments in Balancy. Document analytics events fired around purchases so the funnel survives the migration.",
+  "import_method": "Create a Balancy project and define your economy in the CMS: items, currencies, bundles, and store pages mapped to existing store SKUs. Keep your OpenIAP-compliant library as the IAP transaction layer — Balancy is not a replacement for the actual purchase API. Install Balancy's SDK for your platform (or use REST if a first-class SDK is unavailable) and load catalog data from Balancy at runtime. Wire purchase success callbacks from your IAP library into Balancy event tracking. Replace hardcoded catalog screens with Balancy-driven content. Keep server-side receipt validation intact. Roll out behind a feature flag and phase the change.",
+  "concept_mapping": [
+    {
+      "source": "Hardcoded product list",
+      "target": "Balancy CMS items and bundles"
+    },
+    {
+      "source": "OpenIAP product type",
+      "target": "Balancy item linked to store SKU"
+    },
+    {
+      "source": "Custom A/B harness",
+      "target": "Balancy A/B test"
+    },
+    {
+      "source": "Purchase event",
+      "target": "Balancy purchase event log"
+    }
+  ],
+  "effort": "2-5 weeks depending on catalog size and economy depth",
+  "gotchas": [
+    "OpenIAP is a spec, not a transaction layer — you still need the library that implements it.",
+    "Balancy does not replace receipt validation; keep server-side checks intact.",
+    "Verify Balancy SDK availability for your stack (RN, Flutter, native, Unity).",
+    "Subscription lifecycle still flows through stores and your IAP library.",
+    "Concept mismatch: OpenIAP is transactional; Balancy adds economy and LiveOps on top.",
+    "Existing analytics dashboards must be remapped to Balancy's event schema."
+  ],
+  "email": {
+    "subject": "Adding Balancy on top of our OpenIAP setup — 14-day plan",
+    "body": "Hi team,\n\nWe plan to introduce Balancy alongside our OpenIAP-aligned IAP integration over the next 14 days. The IAP library stays as the transaction layer; Balancy will own the catalog, offers, and A/B testing.\n\nProposed timeline:\nDays 1-2: Inventory current IAP usage — product IDs, purchase flow, server validation, analytics, any custom catalog logic.\nDays 3-5: Model the economy in Balancy CMS: items, currencies, bundles, store pages mapped to store SKUs.\nDays 6-9: Integrate the Balancy SDK (or REST) and replace hardcoded catalog screens with Balancy-driven content.\nDays 10-12: Wire purchase callbacks into Balancy events; run an A/B test on a small bundle to validate.\nDays 13-14: QA on all platforms, regression-test receipt validation, ship behind a feature flag.\n\nReceipt validation stays on our backend. Please flag any custom economy or bundle logic that needs CMS-ification.\n\nThanks,\nYour customer"
+  }
+}

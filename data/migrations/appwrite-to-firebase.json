@@ -1,0 +1,69 @@
+{
+  "source": {
+    "slug": "appwrite",
+    "name": "appwrite"
+  },
+  "target": {
+    "slug": "firebase",
+    "name": "firebase"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Moving from Appwrite to Firebase swaps an open-source self-hostable BaaS for Google's managed platform built around Firestore and proprietary services. Lock-in increases significantly, and most data, auth, and function code needs to be re-architected because the data models differ.",
+  "why_switch": [
+    "You want Google's managed scale without running servers yourself.",
+    "Your team is already deep in the Google Cloud ecosystem.",
+    "You need integrated mobile features like Crashlytics and Remote Config.",
+    "You prefer a fully managed backend over self-hosting Appwrite."
+  ],
+  "what_to_export": [
+    "Database collections and documents",
+    "Storage bucket contents and metadata",
+    "Authentication users and identity provider mappings",
+    "Server-side functions / cloud function code",
+    "Permission / access control rules per collection",
+    "Webhooks and event triggers",
+    "API keys and integration credentials",
+    "Schema definitions and indexes"
+  ],
+  "export_method": "Use the Appwrite CLI or server SDK to dump each database collection to JSON, iterating across collections so every document is captured. Export storage bucket contents and metadata using the API or CLI. Export user records including identity provider linkages — note that password hashes are not portable, so you'll need a sign-in reset flow on cutover. Export permission rules per collection and document them as a transition table. Save Appwrite function source code from your repo. Document webhooks, scheduled tasks, and API key scopes. Capture index definitions because Firestore requires explicit composite indexes for most multi-field queries.",
+  "import_method": "Create a Firebase project and enable the services you need: Firestore (or Realtime Database), Authentication, Cloud Functions, Cloud Storage, and Hosting. Convert exported JSON into Firestore-compatible documents — beware that Firestore organises data into collections and subcollections, which often differs from Appwrite's flat collection model. Write a one-time import script using the Firebase Admin SDK to write documents and define needed composite indexes. Upload files to Cloud Storage with their metadata. For Auth, import users using Firebase Auth's user import API; password hashes from Appwrite cannot be reused, so users will need to reset. Re-author Appwrite functions as Cloud Functions in Node.js, Python, or other supported runtimes. Translate Appwrite permission rules into Firestore Security Rules — the syntax is different and rules apply at query time. Run both backends in parallel behind a feature flag until parity is verified.",
+  "concept_mapping": [
+    {
+      "source": "Appwrite collection / document",
+      "target": "Firestore collection / document"
+    },
+    {
+      "source": "Appwrite function",
+      "target": "Cloud Function"
+    },
+    {
+      "source": "Appwrite Realtime",
+      "target": "Firestore real-time listener"
+    },
+    {
+      "source": "Appwrite Storage",
+      "target": "Cloud Storage for Firebase"
+    },
+    {
+      "source": "Appwrite Auth",
+      "target": "Firebase Authentication"
+    },
+    {
+      "source": "Appwrite permissions",
+      "target": "Firestore Security Rules"
+    }
+  ],
+  "effort": "3-6 weeks",
+  "gotchas": [
+    "Appwrite password hashes are not portable; users must reset on cutover.",
+    "Firestore requires explicit composite indexes for multi-field queries — plan ahead or queries will fail in production.",
+    "Document IDs change; rewrite any references using a mapping table.",
+    "Permission rules don't map directly; Firestore Security Rules use a different syntax and evaluation model.",
+    "Firebase has high vendor lock-in; weigh long-term portability before committing.",
+    "Cost model is pay-as-you-go; set budget alerts before cutover and re-evaluate data residency since self-hosting is lost."
+  ],
+  "email": {
+    "subject": "Backend migration coming in 2 weeks",
+    "body": "Hi,\n\nWe're moving our backend from Appwrite to Firebase over the next two weeks. The app you use will look and feel the same.\n\nOne thing to know: the first time you sign in after cutover, you'll need to reset your password. We'll send a reset link from our support email. Push notifications and real-time updates should feel a bit snappier on the new stack.\n\nIf you integrate with our API, watch for a separate note about the new endpoint shape.\n\nThanks,\nYour customer"
+  }
+}

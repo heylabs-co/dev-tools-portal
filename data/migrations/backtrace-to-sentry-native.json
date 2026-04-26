@@ -1,0 +1,74 @@
+{
+  "source": {
+    "slug": "backtrace",
+    "name": "Backtrace"
+  },
+  "target": {
+    "slug": "sentry-native",
+    "name": "Sentry Native SDK"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Replace Backtrace with the Sentry Native SDK, which uses Crashpad/Breakpad under the hood and reports into the Sentry platform. You keep a managed UI but switch vendors for native crash capture.",
+  "why_switch": [
+    "Consolidate native crashes with the rest of your Sentry telemetry",
+    "Active SDK with frequent releases and broad platform support",
+    "Self-hostable backend option if you ever want to leave the SaaS",
+    "Familiar Sentry triage, releases, and alerting flows",
+    "Open-source MIT-licensed SDK reduces client lock-in"
+  ],
+  "what_to_export": [
+    "Crash reports and attached minidumps",
+    "Uploaded debug symbols (PDB, dSYM, ELF debug info)",
+    "Application/project identifiers and release versions",
+    "Custom attribute schema and tag definitions",
+    "User identifier fields and PII handling rules",
+    "Alert rules and integration configurations",
+    "Triage state and resolved/ignored statuses",
+    "Team and project membership lists"
+  ],
+  "export_method": "Pull historical reports and minidumps from Backtrace via its web UI or documented API. Download all uploaded symbol files so you can re-upload them to Sentry for the same release versions. If your tier exposes a bulk export, prefer it; otherwise script API pulls and store output in object storage. Capture the metadata schema (custom attributes, fingerprints, severity tags) to a document so you can recreate it on the Sentry side. Treat the export as archival: do not expect to import historical events into Sentry — the SDK only reports new events going forward. Keep the Backtrace project read-only during a retention window while teams reference closed issues and verify nothing is missed.",
+  "import_method": "Create a Sentry project of type Native and copy the DSN. Add the Sentry Native SDK to your build (CMake, vcpkg, or prebuilt binaries from official releases) and call sentry_init with the DSN, release name, and a database path. Configure the backend to Crashpad (default on most platforms) so out-of-process minidump capture is enabled. Upload debug symbols to Sentry using the official sentry-cli debug-files upload command, matching the release version you ship. Wire user context, tags, and breadcrumbs in code where you previously called the Backtrace SDK. Verify with a staged crash and confirm symbolicated frames in the Sentry issue view. For self-hosted Sentry, point the DSN at your internal instance instead of sentry.io.",
+  "concept_mapping": [
+    {
+      "source": "Backtrace SDK",
+      "target": "Sentry Native SDK"
+    },
+    {
+      "source": "Project token / submission URL",
+      "target": "Sentry DSN"
+    },
+    {
+      "source": "Symbol upload",
+      "target": "sentry-cli debug-files upload"
+    },
+    {
+      "source": "Custom attributes",
+      "target": "Sentry tags and contexts"
+    },
+    {
+      "source": "User fields",
+      "target": "sentry_set_user / scope user"
+    },
+    {
+      "source": "Triage workflow",
+      "target": "Sentry Issues + workflows"
+    },
+    {
+      "source": "Alerts and integrations",
+      "target": "Sentry Alerts, integrations marketplace"
+    }
+  ],
+  "effort": "1-3 weeks",
+  "gotchas": [
+    "Historical Backtrace events do not import; plan a retention overlap",
+    "Symbol upload must match the exact release/build ID or frames stay unsymbolicated",
+    "Crashpad handler binary must be packaged and discoverable at runtime",
+    "Sentry quotas are event-based; a noisy crash can burn through monthly events fast",
+    "PII/sensitive data scrubbing rules differ from Backtrace and must be re-defined",
+    "Self-hosted Sentry has its own ops cost if you go that route"
+  ],
+  "email": {
+    "subject": "Notice of contract non-renewal — consolidating on Sentry",
+    "body": "Hi team,\n\nWe are giving notice that we will not be renewing our Backtrace subscription. Within the next 14 days we plan to complete migration to the Sentry Native SDK so our native crash data lives alongside the rest of our error telemetry.\n\nTo wrap up cleanly we would like to:\n\n- Export all historical crash reports, minidumps, and symbol files from our tenant.\n- Confirm the final invoice, contract end date, and any retention obligations.\n- Keep the account in read-only mode for the agreed retention window so engineers can reference closed issues during the transition.\n\nPlease share the off-boarding checklist and the contact for the data export.\n\nThanks for the service over the past period.\n\nYour customer"
+  }
+}

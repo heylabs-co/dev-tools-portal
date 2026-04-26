@@ -1,0 +1,64 @@
+{
+  "source": {
+    "slug": "auth0",
+    "name": "Auth0"
+  },
+  "target": {
+    "slug": "turnkey",
+    "name": "Turnkey"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Auth0 manages traditional user identity; Turnkey is secure-enclave key management for crypto and fintech apps. The migration is really replacing or augmenting identity with wallet/key infrastructure, not a like-for-like swap.",
+  "why_switch": [
+    "Need secure-enclave key management API",
+    "Programmable signing policies and quorums",
+    "Embedded wallet provisioning per user",
+    "Hardware-backed signing for payments",
+    "Non-custodial model with fine-grained permissions"
+  ],
+  "what_to_export": [
+    "Users (email, IDs, metadata)",
+    "Password hashes if portable",
+    "Social/identity provider links",
+    "MFA enrollment data",
+    "Roles and permissions",
+    "Tenants/organizations",
+    "Application/client configs",
+    "Rules/Actions/Hooks as code"
+  ],
+  "export_method": "Use Auth0's Management API or Import/Export tooling to export users, identities, metadata, MFA enrollments, roles, and password hashes where supported. Export connection, application, and organization configurations, and capture Rules/Actions/Hooks as code. Document the relationship between your application logic and Auth0 user IDs, because Turnkey will model users as end-users within its organization/sub-organization structure. Encrypt and store exports for the migration window only.",
+  "import_method": "Create a Turnkey organization and obtain API credentials. Use the Turnkey SDK to provision sub-organizations or end-users mapped to your existing user IDs, attach signing credentials and policies, and configure approval quorums where required. If you still need email/social/MFA login, keep that with another provider and use Turnkey only for key management. Update your backend to call Turnkey for signing operations and verify policy outcomes. Validate sign requests, policy denials, and approval flows against the sandbox before enabling real assets.",
+  "concept_mapping": [
+    {
+      "source": "Tenant",
+      "target": "Turnkey organization"
+    },
+    {
+      "source": "User",
+      "target": "Turnkey end-user/sub-organization"
+    },
+    {
+      "source": "MFA factor",
+      "target": "Turnkey credential",
+      "note": "Different security model"
+    },
+    {
+      "source": "Rule/Action",
+      "target": "Signing policy",
+      "note": "Per-operation enforcement"
+    }
+  ],
+  "effort": "4-8 weeks",
+  "gotchas": [
+    "Turnkey is wallet infrastructure, not a login provider; auth surface elsewhere is still needed.",
+    "Pricing is not fully transparent; verify rates at your scale before committing.",
+    "Policy and organization model has a learning curve and is hard to refactor later.",
+    "You build end-user UX yourself; expect more frontend work than with consumer wallet SDKs.",
+    "Custodial assumptions differ; review compliance and signing flows with legal/security.",
+    "Existing JWTs from Auth0 are unrelated to Turnkey calls and must be managed separately."
+  ],
+  "email": {
+    "subject": "Adopting Turnkey and reducing Auth0 scope over the next 14 days",
+    "body": "Hi Auth0 team,\n\nThank you for the identity service to date. Our roadmap now requires secure-enclave key management for signing and custody, so we are adopting Turnkey and will be reducing our Auth0 scope within the next 14 days.\n\nPlanned timeline:\n- Days 1-4: export users, hashes, connections, and rules from Auth0.\n- Days 5-9: provision Turnkey organizations, end-users, and signing policies.\n- Days 10-12: validate signing and approvals in sandbox.\n- Days 13-14: cut over the relevant production traffic.\n\nCould you confirm available export endpoints on our plan and how to downgrade or terminate at the end of the current cycle, with confirmation about future MAU-based charges?\n\nThanks,\nYour customer"
+  }
+}

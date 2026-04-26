@@ -1,0 +1,65 @@
+{
+  "source": {
+    "slug": "bugsnag",
+    "name": "Bugsnag"
+  },
+  "target": {
+    "slug": "sentry-native",
+    "name": "Sentry Native SDK"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Bugsnag is a full hosted error monitoring product covering many platforms. The Sentry Native SDK only covers C/C++ and native apps and reports into Sentry. Migration only fits native apps moving into the Sentry ecosystem; non-native services need a separate plan.",
+  "why_switch": [
+    "First-class C/C++ native crash handling",
+    "Minidump support via Crashpad/Breakpad",
+    "Tight Sentry dashboard integration",
+    "Active SDK maintenance",
+    "Avoid Bugsnag commit-based event tiers"
+  ],
+  "what_to_export": [
+    "Native project list and environment config",
+    "User and team membership",
+    "Alert and notification rules",
+    "Symbol / debug file upload pipeline",
+    "Release tracking and stability targets",
+    "Integration list",
+    "Custom grouping rules",
+    "Sample crash payloads for validation"
+  ],
+  "export_method": "Identify which Bugsnag projects are native (C/C++) and in scope for the Sentry Native SDK; non-native projects are out of scope for this migration. Document those projects, environments, members, alerts, and integrations from the Bugsnag UI or its API. Capture symbol upload steps from your build pipeline as code. Save release tracking conventions. Treat API keys as values to rotate after cutover. If the Bugsnag API does not clearly expose a given setting, document it manually instead of guessing endpoints.",
+  "import_method": "Create or reuse a Sentry organization and add Sentry projects for each native application. Integrate the Sentry Native SDK following the official Sentry documentation for native, including Crashpad or Breakpad backend selection. Replace Bugsnag native SDK initialization with sentry_init and equivalent configuration. Move symbol upload in your build pipeline to Sentrys debug file upload tooling. Configure releases and environments to mirror your Bugsnag conventions. Reconnect Slack, Jira, and ticketing integrations on the Sentry side. For non-native services that previously used Bugsnag, choose a separate path because the Sentry Native SDK does not cover them.",
+  "concept_mapping": [
+    {
+      "source": "Project",
+      "target": "Sentry project"
+    },
+    {
+      "source": "Native SDK",
+      "target": "Sentry Native SDK"
+    },
+    {
+      "source": "Symbol upload",
+      "target": "Debug file upload"
+    },
+    {
+      "source": "Release",
+      "target": "Release"
+    },
+    {
+      "source": "Alert rules",
+      "target": "Sentry alert rules"
+    }
+  ],
+  "effort": "2-6 weeks",
+  "gotchas": [
+    "Sentry Native SDK only covers C/C++ and native; plan separately for other platforms",
+    "Historical Bugsnag events do not transfer",
+    "Symbol upload workflow is non-trivial and must be set up carefully",
+    "Stability scores have no direct one-to-one in Sentry",
+    "Sentry pricing and ecosystem replace Bugsnags; review tier shape before commit"
+  ],
+  "email": {
+    "subject": "Moving our native crash reporting off Bugsnag",
+    "body": "Hi team,\n\nWe are moving our native crash reporting to a SDK that fits better with the rest of our stack and plan to stop using Bugsnag for those projects. Our target timeline is 14 days from today.\n\nDuring that period we will export project and integration configuration, document alert rules, and run the new SDK in parallel for validation. After cutover, the affected applications will stop sending events to Bugsnag.\n\nCould you confirm the steps to disable auto-renewal, the effective end date under our current commitment, and any final invoicing details? Please share any recommended steps before account deactivation.\n\nThanks for the support.\n\nYour customer"
+  }
+}

@@ -1,0 +1,84 @@
+{
+  "source": {
+    "slug": "github-actions",
+    "name": "GitHub Actions"
+  },
+  "target": {
+    "slug": "circleci",
+    "name": "CircleCI"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Switching from GitHub Actions to CircleCI usually means trading a tightly integrated CI for one with stronger orchestration features like parallelism, test splitting, and orbs. The pipeline YAML must be rewritten and secrets rotated.",
+  "why_switch": [
+    "First-class test splitting and parallelism",
+    "Orbs ecosystem for reusable CI logic",
+    "Predictable credit-based pricing",
+    "Better support for resource class tuning",
+    "Mature self-hosted runner story for regulated workloads"
+  ],
+  "what_to_export": [
+    ".github/workflows/*.yml definitions",
+    "Reusable workflows and composite actions",
+    "Environment variables and secrets",
+    "Environments and protection rules",
+    "OIDC trust configuration to cloud providers",
+    "Cache keys and patterns",
+    "Self-hosted runner inventory",
+    "Branch protection / required checks",
+    "Artifact retention policy",
+    "Status check names referenced by branch protection"
+  ],
+  "export_method": "All GitHub Actions workflow definitions are already in the repo under .github/workflows. Treat the migration as a rewrite, not a dump. List every secret and variable from the repository and organization settings — values cannot be exported, only the names. Note which workflows use OIDC to assume cloud roles, since the trust policy will need a new issuer. Capture branch protection rules that reference status check names so you can remap them to the new CircleCI check names. Inventory composite actions and reusable workflows your pipelines call.",
+  "import_method": "Add a .circleci/config.yml at the repo root and translate workflows job by job. Pick resource classes that match your previous runner sizing. Recreate secrets as CircleCI project or context variables; for shared org-level values, use Contexts. Replace marketplace actions with equivalent orbs or inline shell steps. For cloud auth, switch OIDC trust policies to CircleCI's issuer. Update branch protection in GitHub to require the new CircleCI status checks, then disable the old workflows by deleting or commenting out the .github/workflows files. Run both CIs in parallel for a few merges before fully cutting over.",
+  "concept_mapping": [
+    {
+      "source": "Workflow file",
+      "target": ".circleci/config.yml"
+    },
+    {
+      "source": "Job",
+      "target": "Job"
+    },
+    {
+      "source": "Step / Action",
+      "target": "Step / Orb command"
+    },
+    {
+      "source": "Secrets",
+      "target": "Project env vars / Contexts"
+    },
+    {
+      "source": "Reusable workflow",
+      "target": "Orb command or job"
+    },
+    {
+      "source": "Matrix strategy",
+      "target": "matrix in workflow"
+    },
+    {
+      "source": "actions/cache",
+      "target": "save_cache / restore_cache"
+    },
+    {
+      "source": "Self-hosted runners",
+      "target": "Self-hosted runners"
+    },
+    {
+      "source": "OIDC to AWS/GCP",
+      "target": "OIDC to AWS/GCP",
+      "note": "Re-create trust policy for new issuer"
+    }
+  ],
+  "effort": "1-3 weeks depending on number of workflows, custom actions, and OIDC integrations",
+  "gotchas": [
+    "Branch protection rules tied to old check names will block merges until updated",
+    "OIDC trust policies must be re-issued; do not reuse the old role conditions",
+    "Many GitHub Actions have no 1:1 orb — budget time to write shell steps",
+    "Caching semantics differ; cache keys may need restructuring",
+    "Per-credit billing requires modeling actual workloads to forecast spend"
+  ],
+  "email": {
+    "subject": "Plan to wind down GitHub Actions usage",
+    "body": "Hi GitHub team,\n\nWe are moving our CI/CD pipelines to a different provider over the next 14 days. We do not need to close our GitHub account, only stop running Actions workloads on the paid plan. Could you confirm how to remove paid Actions minutes from the next invoice, and whether any reserved or prepaid minutes will be lost or refunded?\n\nWe would also like to confirm the data retention timeline for build logs and artifacts after we stop running workflows, in case we need a final pull. If there is a notice period, billing cutoff date, or specific setting we need to toggle to avoid the next charge, please share it.\n\nThanks for the help getting this scheduled cleanly.\n\nYour customer"
+  }
+}

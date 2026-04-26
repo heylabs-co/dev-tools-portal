@@ -1,0 +1,74 @@
+{
+  "source": {
+    "slug": "snyk",
+    "name": "Snyk"
+  },
+  "target": {
+    "slug": "jit",
+    "name": "Jit"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Move from Snyk's developer-first security suite to Jit's orchestrated product security plan. Both cover SAST, SCA, secrets and IaC, so the migration is mostly about re-wiring CI/IDE integrations and re-creating policy and ignore lists in Jit's plan model.",
+  "why_switch": [
+    "Jit packages SAST, SCA, secrets and IaC into a single orchestrated plan",
+    "GitHub-integrated workflow can simplify rollout for GitHub-native teams",
+    "Consolidates multiple OSS scanners under one policy surface",
+    "Pricing model may suit teams that dislike Snyk's per-developer billing",
+    "Single dashboard for product security posture instead of per-tool views"
+  ],
+  "what_to_export": [
+    "Repository inventory and which Snyk products are enabled per repo",
+    "Snyk Organizations, projects and team membership",
+    "Policy configuration: severity thresholds, license rules, ignore policies",
+    "Ignored issues with reason, expiry and scope",
+    "Findings exported as SARIF or JSON for historical reference",
+    "PR check / required-status configuration in your Git provider",
+    "IDE plugin configuration patterns used by developers",
+    "Webhook and notification routes (Slack, Jira, email)",
+    "API tokens currently in use (to be rotated/revoked)"
+  ],
+  "export_method": "Snyk supports exporting findings in SARIF/JSON, which is the most useful format for posterity. From each Snyk Organization, export project lists and findings via the Snyk CLI (snyk test --json / snyk monitor) or via the Snyk API where available. Treat the export as a snapshot, not a live feed: the goal is to have a static record you can refer back to, not to import into Jit one-to-one. For policy, copy each Organization's settings page (severity thresholds, license policies, ignore lists) into a structured document or YAML so a human can recreate the equivalent in Jit. Pull repository inventory from your Git provider rather than Snyk, since that's the source of truth. Capture ignore policies in particular detail: each ignored vulnerability typically has a reason, an expiration, and a scope, and these need to be preserved or you will see a flood of 'new' findings on the first Jit scan. Export team and user membership from your IdP if you use SSO; otherwise pull it from the Snyk admin UI. Rotate or revoke Snyk API tokens once Jit is stable, and document all CI configuration that referenced Snyk before you remove it, so rollback is possible during the parallel-run period.",
+  "import_method": "Connect Jit to your Git provider (GitHub is its strongest integration) and grant access to the same repositories Snyk was watching. Configure or accept Jit's product-security plan and adjust which scanners are enabled (SAST, SCA, secrets, IaC, container as applicable) to match the coverage you had in Snyk. Re-create your policy decisions inside the plan: severity thresholds, license rules, and ignore lists. Use your exported Snyk ignore list as the authoritative input when seeding suppressions in Jit. Wire up PR checks: Jit will typically post results as PR comments and/or required status checks; update branch protection rules in your Git provider to match. For IDE coverage, communicate to developers what changes (Snyk's IDE plugins go away; check what equivalent local feedback Jit offers and whether you keep Snyk IDE plugins read-only during transition). Rotate Slack/Jira/webhook integrations to point at Jit. Run Jit and Snyk in parallel for one to two weeks; compare findings counts and severities to catch silent coverage gaps before disabling Snyk and revoking its tokens.",
+  "concept_mapping": [
+    {
+      "source": "Snyk Organization",
+      "target": "Jit account/workspace"
+    },
+    {
+      "source": "Snyk Project",
+      "target": "Jit-monitored repository"
+    },
+    {
+      "source": "Snyk policy file (.snyk)",
+      "target": "Jit plan policy + per-repo ignore configuration",
+      "note": "Format differs; recreate semantically rather than copying files."
+    },
+    {
+      "source": "Snyk ignore",
+      "target": "Jit suppression/ignore",
+      "note": "Carry over reason and expiry where possible."
+    },
+    {
+      "source": "Snyk PR checks",
+      "target": "Jit PR checks via Git provider integration"
+    },
+    {
+      "source": "Snyk SARIF export",
+      "target": "Historical archive only",
+      "note": "Used for reference, not direct import."
+    }
+  ],
+  "effort": "1-3 weeks",
+  "gotchas": [
+    "Coverage parity is not automatic. Confirm each Snyk product (SCA, SAST, container, IaC) has an enabled equivalent in Jit's plan before cutover.",
+    "Ignore lists do not migrate automatically; expect a noisy first scan and budget time to re-suppress known false positives.",
+    "Snyk's IDE/CLI workflow is a strong developer habit; communicate the change early so devs aren't surprised when local tooling goes away.",
+    "Branch protection rules in your Git provider often hard-code Snyk's status check names; update them or PRs will block waiting for a check that no longer runs.",
+    "Run in parallel before cutover. Quietly diverging finding counts are the main risk, not visible failures.",
+    "Revoke Snyk API tokens and remove webhooks after migration to avoid stale alerts and security exposure."
+  ],
+  "email": {
+    "subject": "Migrating security scanning from Snyk to Jit",
+    "body": "Hi team,\n\nWe're moving our security scanning from Snyk to Jit over the next two weeks. Plan is to run both tools in parallel, compare findings, then cut PR checks over to Jit and disable Snyk at the end of a 14-day window.\n\nIf you rely on Snyk's IDE plugin, dashboards, or specific PR-check names in branch protection, please reply on this thread so we can make sure the new setup covers your workflow before cutover. Otherwise no action needed.\n\nThanks,\nYour customer"
+  }
+}

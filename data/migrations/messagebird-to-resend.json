@@ -1,0 +1,66 @@
+{
+  "source": {
+    "slug": "messagebird",
+    "name": "MessageBird"
+  },
+  "target": {
+    "slug": "resend",
+    "name": "Resend"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Resend is a developer-first transactional email API, while MessageBird is a broader multi-channel platform. Migrating the email portion to Resend gets you cleaner SDKs, React Email support, and a simpler billing model; non-email channels stay on a separate provider.",
+  "why_switch": [
+    "Developer-first email API with React Email support",
+    "Cleaner SDKs and faster integration",
+    "Transparent hybrid pricing",
+    "Webhook-driven event model",
+    "Reduce surface area for the email channel"
+  ],
+  "what_to_export": [
+    "Verified sending domains and DKIM records",
+    "Email templates (HTML and plain text)",
+    "Suppression list and bounce data",
+    "Webhook subscriptions for delivery and bounce events",
+    "From-address and reply-to identities",
+    "API credentials",
+    "Inbound routing rules if used",
+    "Recent send-volume metrics"
+  ],
+  "export_method": "Export domains, templates, and suppression entries from MessageBird using the dashboard export or REST API. Templates can be saved as HTML files locally; capture the variable names your application passes in. Export suppression and bounce data as CSV. List active webhooks pointing at your application. If you use MessageBird only for email, plan a full cutover; if you use SMS, voice, or WhatsApp, keep MessageBird for those. Snapshot recent send metrics for analytics continuity. Keep MessageBird sending live until Resend DNS and warm-up checks are clean.",
+  "import_method": "In Resend, add your sending domain and publish the DKIM, SPF, and DMARC records Resend generates. Use Resend's API or SDK to send mail from your application — the @resend/node SDK and HTTP API both work. Recreate templates as React Email components, MJML, or plain HTML depending on your stack. Import the suppression list via Resend's API. Configure webhooks for delivery, bounce, and complaint events. Send a low-volume canary, validate inbox placement and webhook events, then ramp to 100 percent.",
+  "concept_mapping": [
+    {
+      "source": "Channel (email)",
+      "target": "Domain / API key"
+    },
+    {
+      "source": "Template",
+      "target": "Template (or React Email component)"
+    },
+    {
+      "source": "Webhook",
+      "target": "Webhook"
+    },
+    {
+      "source": "Suppression list",
+      "target": "Suppression list"
+    },
+    {
+      "source": "Sender identity",
+      "target": "Verified domain / from address"
+    }
+  ],
+  "effort": "1-2 weeks (email only)",
+  "gotchas": [
+    "Resend is email-only — SMS, WhatsApp, voice need a separate provider",
+    "DNS DKIM and DMARC propagation can take 24-48 hours",
+    "React Email is optional but encouraged; existing HTML templates still work",
+    "Webhook event shapes differ from MessageBird; update handlers before cutover",
+    "Domain reputation is per-provider; expect a brief warm-up period",
+    "Pricing model differs; project real-volume cost before flipping traffic"
+  ],
+  "email": {
+    "subject": "Switching transactional email to Resend",
+    "body": "Hi team,\n\nOver the next 14 days we're moving transactional email from MessageBird to Resend. The motivation is developer experience and clarity: Resend's SDKs, React Email support, and transparent pricing match how our team builds, and we don't need MessageBird's multi-channel surface for the email path.\n\nDays 1-3: add and verify our sending domain in Resend and publish DKIM, SPF, and DMARC records. Days 4-7: port templates, import the suppression list, and wire up bounce and complaint webhooks. Days 8-11: route a small share of transactional sends to Resend, watch inbox placement and event delivery, then ramp. Days 12-14: keep MessageBird available as a fallback and decommission once metrics are stable.\n\nNo end-user disruption is expected. From addresses and content stay the same. I'll share a midway status and a final go-live note.\n\nThanks,\nYour customer"
+  }
+}

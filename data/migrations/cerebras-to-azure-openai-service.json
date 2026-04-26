@@ -1,0 +1,70 @@
+{
+  "source": {
+    "slug": "cerebras",
+    "name": "Cerebras"
+  },
+  "target": {
+    "slug": "azure-openai-service",
+    "name": "Azure OpenAI Service"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Both Cerebras and Azure OpenAI Service offer hosted LLM inference with OpenAI-compatible SDKs, so the porting effort is mostly configuration: swap the base URL, key and model names. The harder work is re-validating quality, latency and cost on Azure-hosted models.",
+  "why_switch": [
+    "Standardize on Azure as the cloud and identity boundary",
+    "Need enterprise SLAs, VNet integration and Microsoft Entra ID auth",
+    "Consolidate AI spend under an existing Azure enterprise agreement",
+    "Access to specific OpenAI-family models hosted on Azure",
+    "Tighter compliance and data-residency controls than a startup provider"
+  ],
+  "what_to_export": [
+    "Application code that calls Cerebras endpoints",
+    "Prompts, system messages and prompt templates",
+    "Model names, parameters (temperature, max tokens) and tool/function schemas",
+    "Evaluation datasets and golden outputs",
+    "API keys and secret references",
+    "Rate-limit and retry configuration",
+    "Logging, tracing and cost dashboards",
+    "CI tests and load-test scripts"
+  ],
+  "export_method": "Cerebras exposes an OpenAI-compatible API, so the canonical 'export' is your application code, prompt assets and evaluation harness — they are already portable. Generic steps: 1) inventory every code path that calls Cerebras (look for the base URL and SDK init); 2) gather all prompt templates, system messages and tool/function schemas from source control; 3) export evaluation datasets and recent golden outputs so you can compare quality after the swap; 4) record current model names, default parameters and per-route rate limits; 5) capture observability config (logs, traces, dashboards) and CI tests. Lock-in is low because the API surface is OpenAI-compatible, but vendor-specific model names, latency assumptions and any Cerebras-only features will not carry over. Verify any Cerebras-specific extensions in the current docs before assuming portability.",
+  "import_method": "Azure OpenAI Service uses an OpenAI-compatible interface but requires Azure-specific configuration. Generic steps: 1) request access in the Azure portal and create an Azure OpenAI resource in your target subscription and region; 2) deploy the model(s) you need and note each deployment name (Azure routes by deployment, not model id); 3) collect the endpoint URL and API key, or configure Microsoft Entra ID for keyless auth; 4) install the official SDK (@azure/openai for Node, openai with the Azure base URL for Python, etc.) and update client init to point at the Azure endpoint and api-version; 5) update each call site to use the deployment name in place of the Cerebras model name; 6) re-run your evaluation harness, then load- and latency-test before cutover; 7) configure content filters, quotas and monitoring. Confirm current model SKUs, regions, api-versions and pricing in the Azure documentation.",
+  "concept_mapping": [
+    {
+      "source": "Cerebras API key",
+      "target": "Azure OpenAI API key or Entra ID credential"
+    },
+    {
+      "source": "Cerebras base URL",
+      "target": "Azure resource endpoint + api-version"
+    },
+    {
+      "source": "Model name in request",
+      "target": "Azure model deployment name"
+    },
+    {
+      "source": "Cerebras SDK client",
+      "target": "@azure/openai or openai SDK with Azure base URL"
+    },
+    {
+      "source": "Provider rate limits",
+      "target": "Azure quotas per deployment and region"
+    },
+    {
+      "source": "Provider dashboards",
+      "target": "Azure Monitor / Application Insights"
+    }
+  ],
+  "effort": "1-3 weeks",
+  "gotchas": [
+    "Azure routes calls by deployment name, not model id — every call site needs updating, not just the API key.",
+    "Latency and tokens-per-second profiles differ from Cerebras; re-validate user-perceived performance, especially streaming UX.",
+    "Quotas, regional model availability and access approvals can delay rollout — start the Azure side early.",
+    "Content filters and abuse policies in Azure OpenAI may block prompts that worked on Cerebras; build fallbacks.",
+    "Pricing model differs by token and deployment type — forecast cost on representative traffic before committing.",
+    "Output quality and tool-calling behaviour vary across models even with the same prompts; gate cutover on evaluations."
+  ],
+  "email": {
+    "subject": "Switching LLM provider: Cerebras to Azure OpenAI in 14 days",
+    "body": "Hi team,\n\nWe're moving our LLM workloads from Cerebras to Azure OpenAI Service over the next 14 days to consolidate on Azure. Both providers expose an OpenAI-compatible interface, so most of the work is configuration plus re-validation rather than a rewrite. Plan:\n\n1) Days 1-3: inventory every Cerebras call site, prompt template and evaluation dataset. Capture current model names, parameters and rate-limit assumptions.\n2) Days 4-7: provision the Azure OpenAI resource, deploy the required models, and update SDK clients to target the Azure endpoint and deployment names. Set up keyless auth via Microsoft Entra ID where possible.\n3) Days 8-11: re-run evaluation suites against Azure, load- and latency-test critical paths, and tune content filters and retries.\n4) Days 12-14: canary a small slice of production traffic, monitor cost and quality, then complete cutover and decommission Cerebras keys.\n\nIf any feature relies on Cerebras-specific behaviour (latency profile, model variants), please flag it now so we can plan around it. Concerns, reply here.\n\nThanks,\nYour customer"
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "source": {
+    "slug": "coderabbit",
+    "name": "coderabbit"
+  },
+  "target": {
+    "slug": "appodeal",
+    "name": "appodeal"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "CodeRabbit is an AI code review tool for pull requests and Appodeal is a mobile ad mediation SDK; they do not overlap. Plan this as two independent tracks: removing CodeRabbit at the org level and integrating Appodeal into your mobile apps.",
+  "why_switch": [
+    "Removing AI code review from the developer workflow",
+    "Shifting investment from developer tooling to mobile monetisation",
+    "Adopting Appodeal as part of a wider mediation strategy",
+    "Reducing third-party access to source repositories",
+    "Internal policy change disallowing AI code review"
+  ],
+  "what_to_export": [
+    "CodeRabbit org and repository configuration",
+    "Per-repo .coderabbit.yaml or equivalent rule files",
+    "List of repositories with CodeRabbit enabled",
+    "Webhook and integration settings on GitHub / GitLab / Bitbucket",
+    "Useful historical review comments",
+    "Billing and admin contact information",
+    "Audit logs of integration installation and changes"
+  ],
+  "export_method": "In the CodeRabbit dashboard, list every connected organisation and repository and back up the org-level and per-repo configuration. Export any .coderabbit.yaml files from the repos themselves. Document webhooks and OAuth / GitHub App installations so they can be cleanly revoked. Save any review history needed for audit. Once configuration is archived, plan to uninstall the CodeRabbit GitHub App or equivalent and cancel the subscription per the contract. There is no developer-machine state to migrate; the work is at the organisation integration level.",
+  "import_method": "Appodeal is integrated inside iOS, Android, Unity or React Native apps. Create an Appodeal publisher account, register each app, and configure the ad formats you want (banner, interstitial, rewarded, native). Integrate the Appodeal SDK in the codebase following the official Appodeal integration guide, initialise it on app start, and place ads at the chosen surfaces. In the Appodeal dashboard, enable the demand networks you want to mediate. Add the required entries to app-ads.txt. Wire IAB TCF / GPP consent so ad requests carry correct signals. Validate with Appodeal's test mode on real devices, then release through normal app store updates.",
+  "concept_mapping": [
+    {
+      "source": "CodeRabbit GitHub / GitLab integration",
+      "target": "Appodeal mobile SDK",
+      "note": "different product categories, no direct mapping"
+    },
+    {
+      "source": "CodeRabbit configuration",
+      "target": "Appodeal dashboard configuration",
+      "note": "configuration in unrelated domains"
+    }
+  ],
+  "effort": "1-2 days to retire CodeRabbit; 3-8 weeks per platform to adopt Appodeal",
+  "gotchas": [
+    "Do not treat this as a one-for-one migration; the products are unrelated.",
+    "Revoke the CodeRabbit GitHub / GitLab App, not just the workspace, to remove repository access.",
+    "Cancel the CodeRabbit subscription per the contract or billing will continue.",
+    "Appodeal integration triggers iOS and Android store reviews.",
+    "Adding ads creates compliance obligations (privacy policy, consent prompts) that did not exist with CodeRabbit.",
+    "Missing or wrong app-ads.txt entries silently reduce Appodeal demand and revenue."
+  ],
+  "email": {
+    "subject": "Internal: retiring CodeRabbit, adopting Appodeal",
+    "body": "Hi,\n\nIn the next 14 days we are removing CodeRabbit from our pull request workflow and, in parallel, integrating Appodeal into our mobile apps for ad monetisation. These are two independent changes.\n\nIf you rely on CodeRabbit reviews on a specific repo, let us know so we can plan an alternative. The Appodeal integration ships through normal app store updates.\n\nReply with any questions.\n\nThanks,\nYour customer"
+  }
+}

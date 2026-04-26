@@ -1,0 +1,71 @@
+{
+  "source": {
+    "slug": "camunda",
+    "name": "Camunda"
+  },
+  "target": {
+    "slug": "azure-openai-service",
+    "name": "Azure OpenAI Service"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Camunda orchestrates BPMN workflows; Azure OpenAI Service is a hosted LLM inference platform. This is not a like-for-like swap — it only makes sense when workflow logic is being replaced by AI calls or by Azure-native services.",
+  "why_switch": [
+    "Replace deterministic workflow steps with LLM-powered automation",
+    "Standardize on Azure as the single cloud and identity boundary",
+    "Cut the cost and ops burden of running a workflow engine",
+    "Move toward AI-assisted decisioning instead of BPMN/DMN tables",
+    "Consolidate procurement under an existing Azure agreement"
+  ],
+  "what_to_export": [
+    "BPMN and DMN model files",
+    "Process variable and message schemas",
+    "Worker code and external service contracts",
+    "Historical process instance and audit data",
+    "Form definitions",
+    "Identity and role mappings",
+    "Connector credentials and secrets",
+    "Operational dashboards and alerts"
+  ],
+  "export_method": "BPMN and DMN files are portable XML — pull them from source control or Camunda Modeler as the primary artifact. Generic steps: 1) collect every BPMN/DMN and form file per project; 2) capture process variables, message names and worker contracts so they can be reframed as prompts or API calls; 3) export historical process instances via the history API for audit retention; 4) document each external task worker and the system it integrates with; 5) record identity mappings, connector credentials, dashboards and alerts. Because BPMN is an open standard, lock-in is low at the model layer, but Camunda-specific connectors, Tasklist UI and engine extensions will not transfer. Confirm exact export endpoints in the current Camunda documentation before cutover.",
+  "import_method": "Azure OpenAI Service does not orchestrate workflows. Treat the migration as a redesign: 1) decide which Camunda steps become LLM calls (e.g. classification, drafting, extraction) and which need a dedicated orchestrator (Azure Logic Apps, Durable Functions, Temporal); 2) provision an Azure OpenAI resource, deploy the required model(s), and capture the endpoint and credentials (API key or Microsoft Entra ID); 3) install the appropriate SDK (e.g. @azure/openai or the OpenAI SDK pointed at the Azure base URL); 4) author and version prompts that replace BPMN logic, including evaluation tests; 5) re-implement orchestration in your chosen engine and call Azure OpenAI from worker steps; 6) validate quotas, region availability, content filters and observability. Verify current model SKUs, pricing and regions in the Azure documentation.",
+  "concept_mapping": [
+    {
+      "source": "BPMN process",
+      "target": "Azure orchestrator + LLM calls",
+      "note": "Azure OpenAI alone does not execute workflows"
+    },
+    {
+      "source": "DMN decision table",
+      "target": "Prompted classifier or rule service"
+    },
+    {
+      "source": "External task worker",
+      "target": "Function/app calling Azure OpenAI"
+    },
+    {
+      "source": "Process variables",
+      "target": "Prompt inputs and structured outputs"
+    },
+    {
+      "source": "Camunda credentials",
+      "target": "Azure resource API key or Entra ID identity"
+    },
+    {
+      "source": "Tasklist UI",
+      "target": "Custom UI or separate human-in-the-loop tool"
+    }
+  ],
+  "effort": "6-16 weeks",
+  "gotchas": [
+    "Azure OpenAI is not an orchestrator — without a workflow engine, retries, timers and compensation must be re-implemented elsewhere.",
+    "LLM outputs are non-deterministic; deterministic Camunda decisions need careful prompt design, structured outputs and evaluations.",
+    "Azure OpenAI access, model availability and quotas vary by region and may require approval — plan capacity early.",
+    "Content filtering can block legitimate inputs; build fallbacks for safety-rejected prompts.",
+    "Audit and compliance posture changes from an on-prem/cloud workflow engine to a managed AI service — review with security/legal.",
+    "Cost shifts from infrastructure plus licensing to per-token billing; forecast usage before scaling rollout."
+  ],
+  "email": {
+    "subject": "14-day plan: Camunda wind-down + Azure OpenAI rollout",
+    "body": "Hi team,\n\nOver the next 14 days we'll begin migrating off Camunda toward an Azure-first stack. Azure OpenAI Service replaces specific decision and content-generation steps, but it does not execute workflows on its own — we will pair it with an Azure-native orchestrator (Logic Apps or Durable Functions, decision pending). Plan:\n\n1) Days 1-4: export every BPMN/DMN model, form and worker contract; archive historical process data for audit.\n2) Days 5-9: provision the Azure OpenAI resource, deploy required models, and prototype the prompts that will replace selected BPMN/DMN steps. Build evaluations so we can compare against Camunda outputs.\n3) Days 10-13: re-implement orchestration for the residual workflow logic and wire workers to call Azure OpenAI. Validate quotas, content filters and observability.\n4) Day 14: dual-run critical processes, then freeze writes to Camunda once parity is confirmed.\n\nPlease flag any process that relies on Camunda-specific features (timers, compensation, Tasklist) so we can plan replacements before they bite us in production.\n\nThanks,\nYour customer"
+  }
+}

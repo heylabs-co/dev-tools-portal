@@ -1,0 +1,65 @@
+{
+  "source": {
+    "slug": "sentry",
+    "name": "Sentry"
+  },
+  "target": {
+    "slug": "backtrace",
+    "name": "Backtrace"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Sentry covers a broad range of platforms including native, while Backtrace is specifically tuned for native and game crash management. Switching is appropriate when native minidump workflows are central and you can absorb the loss of Sentrys non-error features.",
+  "why_switch": [
+    "Native-focused crash workflows",
+    "Strong minidump and debugger support",
+    "Avoid Sentry annual minimum-spend",
+    "Different pricing shape (per-user)",
+    "Vendor diversification"
+  ],
+  "what_to_export": [
+    "Organization, team, and project structure",
+    "Environment and release configuration",
+    "Alert rules and notification channels",
+    "Debug symbol / source map upload pipeline",
+    "Issue ownership rules",
+    "Integration list",
+    "Custom fingerprinting or inbound filters",
+    "Sample crash payloads for validation"
+  ],
+  "export_method": "Capture Sentry org and project structure, alerts, environments, releases, and integrations via the Sentry UI or API. Historical events have retention limits and may not all be exportable; record what you actively rely on and treat the rest as historical reference only. Save debug file and source map upload steps as code in your build pipeline. Document ownership and inbound filter rules manually where the API does not clearly cover them. Tokens and DSNs are values to rotate after cutover, not artifacts to move.",
+  "import_method": "Create Backtrace projects mirroring your Sentry projects and add team members and notification channels. For native applications, integrate Backtraces SDK (or Crashpad/Breakpad with Backtraces upload endpoint) following Backtraces official documentation, replacing the Sentry Native SDK. For non-native services, evaluate whether Backtraces SDK coverage fits or whether those services should stay on a different tool. Configure symbol upload from CI. Reconnect Slack, Jira, and ticketing integrations. Validate with a controlled crash from each platform before flipping traffic, then remove Sentry SDK initialization and rotate DSNs.",
+  "concept_mapping": [
+    {
+      "source": "Organization / Project",
+      "target": "Account / Project"
+    },
+    {
+      "source": "Issue",
+      "target": "Error / Crash"
+    },
+    {
+      "source": "Release",
+      "target": "Deploy / Version"
+    },
+    {
+      "source": "Debug Files",
+      "target": "Symbol upload"
+    },
+    {
+      "source": "Alert rules",
+      "target": "Alert rules"
+    }
+  ],
+  "effort": "2-6 weeks",
+  "gotchas": [
+    "Historical Sentry issues will not move",
+    "Performance, profiling, and replay features have no direct equivalent",
+    "Per-user pricing on Backtrace changes cost behavior vs Sentrys event-volume model",
+    "Symbol upload pipelines must be re-implemented",
+    "Plan parallel run to avoid losing visibility during cutover"
+  ],
+  "email": {
+    "subject": "Winding down our Sentry usage",
+    "body": "Hi team,\n\nWe are restructuring our crash reporting toward a native-focused tool and plan to stop using Sentry. Our target timeline is 14 days from today.\n\nDuring that period we will export org, project, alert, and integration configuration, run the new SDK in parallel for validation, and then stop sending events from our applications. Any self-hosted, open-source components we use are handled separately.\n\nCould you confirm the steps to disable auto-renewal, the effective end date given our current commitment, and any final invoicing details? Please share recommended steps before account deactivation.\n\nThanks for the support.\n\nYour customer"
+  }
+}

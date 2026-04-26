@@ -1,0 +1,53 @@
+{
+  "source": {
+    "slug": "asolytics",
+    "name": "asolytics"
+  },
+  "target": {
+    "slug": "faros-ai",
+    "name": "faros-ai"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Asolytics focuses on App Store Optimisation (keywords, metadata, store rankings) while Faros AI is an engineering intelligence platform centred on DORA metrics and delivery insights — these tools serve different audiences. A real switch only makes sense if your priority shifted from store growth to engineering analytics, and most data isn't directly transferable.",
+  "why_switch": [
+    "Your priority shifted from app store growth to engineering delivery metrics.",
+    "You want a single platform for DORA metrics and dev tool aggregation.",
+    "You need engineering analytics rather than ASO keyword research.",
+    "You're consolidating tools and engineering visibility outranks ASO."
+  ],
+  "what_to_export": [
+    "Tracked keyword lists and ranking history",
+    "Competitor app sets and metadata snapshots",
+    "Custom Meta Editor templates and saved drafts",
+    "Saved reports and CSV exports",
+    "User accounts and role assignments",
+    "Notification / alert configuration",
+    "Integration credentials for app stores",
+    "Historical rank / impression CSVs for offline archive"
+  ],
+  "export_method": "Open Asolytics and use built-in CSV / report exports to download tracked keywords, ranking histories, and competitor snapshots. Export saved metadata drafts from Meta Editor. Capture lists of competitor apps you've configured for benchmarking. Document users, roles, and any alert rules so they can be reproduced if needed. Note that ASO data doesn't have a meaningful equivalent in Faros AI — preserve these CSVs for archival rather than import. If you also want to keep ASO running on a different vendor, prepare for a parallel evaluation rather than a clean switch.",
+  "import_method": "Sign up for Faros AI and connect the engineering data sources you actually want to track: Git providers, issue trackers, CI / CD systems, and incident tools. Faros pulls data from these connectors to build DORA metrics and delivery dashboards — there's no ASO data model to import into. Configure team and service mappings so DORA metrics are scoped correctly. Set up any custom dashboards and KPIs your engineering org cares about. If ASO is still required, keep Asolytics running in parallel or evaluate a dedicated ASO replacement — Faros does not replace ASO functionality.",
+  "concept_mapping": [
+    {
+      "source": "Tracked keyword",
+      "target": "No direct equivalent — Faros tracks engineering signals, not ASO"
+    },
+    {
+      "source": "Asolytics user account",
+      "target": "Faros AI user account"
+    }
+  ],
+  "effort": "1-3 weeks",
+  "gotchas": [
+    "These tools serve different audiences — confirm the underlying need before switching, because Faros doesn't replace ASO.",
+    "Historical keyword and ranking data has no destination in Faros; archive it as CSV.",
+    "Faros depends on connectors to your dev tools; expect onboarding time to wire up GitHub, Jira, CI, and incident sources.",
+    "DORA metrics need a few weeks of data before they're meaningful; don't judge the platform on day one.",
+    "Permissions for Git and issue tracker connectors must be reviewed by security.",
+    "If both ASO and engineering analytics matter, plan for two tools rather than a single replacement."
+  ],
+  "email": {
+    "subject": "Heads up: changes to our analytics tooling",
+    "body": "Hi,\n\nOver the next two weeks we're transitioning our analytics setup. We're standing up Faros AI for engineering delivery metrics and re-evaluating our ASO tooling separately, since the two cover different needs.\n\nIf you currently use Asolytics for keyword research or store metadata, please flag it so we can plan replacement coverage. Faros will need read access to GitHub, Jira, and our CI tools — security will review the scopes before approval.\n\nQuestions welcome.\n\nThanks,\nYour customer"
+  }
+}

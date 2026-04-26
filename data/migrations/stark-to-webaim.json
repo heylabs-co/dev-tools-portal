@@ -1,0 +1,61 @@
+{
+  "source": {
+    "slug": "stark",
+    "name": "Stark"
+  },
+  "target": {
+    "slug": "webaim",
+    "name": "WebAIM"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Stark embeds accessibility checks inside design tools like Figma, while WebAIM is a nonprofit offering free tools like the WAVE checker, contrast checker and authoritative WCAG resources. Switching means trading a polished commercial design-time plugin for a mix of free runtime tools and reference material.",
+  "why_switch": [
+    "Reduce paid design-tool plugin spend",
+    "Use the free WAVE browser extension for runtime checks",
+    "Cite WebAIM's authoritative WCAG resources",
+    "Use WebAIM's free contrast checker for tokens",
+    "Lean on widely trusted nonprofit guidance"
+  ],
+  "what_to_export": [
+    "Stark annotations and audit reports",
+    "Contrast and focus-order findings per design",
+    "Custom checklists embedded in Figma",
+    "Tickets filed from Stark into your tracker",
+    "Workspace and seat records",
+    "Saved color tokens and palettes",
+    "Design files referenced by Stark",
+    "Internal summaries of past Stark audits"
+  ],
+  "export_method": "Stark's findings live in your Figma files and the Stark workspace. Open each relevant design file and capture annotations, contrast results and focus-order notes; copy them into your shared drive or design system documentation. Use any export options the Stark dashboard offers to save audit summaries. Designs themselves stay in Figma. Tickets you filed into Jira, Linear or GitHub remain in your tracker. Treat the exported summaries and design files as your baseline before switching.",
+  "import_method": "WebAIM is not a single product; it is a collection of free tools and resources. There is no data import. Adopt the WAVE browser extension on each developer and QA machine to scan pages at runtime, use the WebAIM contrast checker to validate color tokens, and standardize your team on WebAIM's WCAG checklist for manual reviews. Reference the WebAIM Million report and screen reader survey to prioritize AT support. Use your archived Stark findings as a baseline to confirm the same classes of issue are still being caught.",
+  "concept_mapping": [
+    {
+      "source": "Figma contrast plugin check",
+      "target": "WebAIM contrast checker on color tokens"
+    },
+    {
+      "source": "Stark Figma audit",
+      "target": "WAVE browser extension scan"
+    },
+    {
+      "source": "Stark focus order annotation",
+      "target": "Manual keyboard testing per WebAIM checklist"
+    },
+    {
+      "source": "Stark workspace",
+      "target": "Free tools per developer machine, no workspace"
+    }
+  ],
+  "effort": "1-2 weeks",
+  "gotchas": [
+    "WebAIM is not a single SaaS product; you lose centralized dashboards and seat management",
+    "WAVE UI is functional but dated compared with commercial tools",
+    "No multi-site monitoring or trend dashboards",
+    "Design-time coverage shrinks unless you keep a Figma plugin around",
+    "Workflow becomes more manual; document a checklist to keep teams aligned"
+  ],
+  "email": {
+    "subject": "Switching from Stark to WebAIM tools",
+    "body": "Hi team,\n\nOver the next 14 days we will be moving our default accessibility tooling from Stark to WebAIM's free tools and resources. Stark has been useful in Figma, but we want to lean on free, widely trusted runtime tools like WAVE and the WebAIM contrast checker, plus the WebAIM WCAG checklist for manual reviews.\n\nPlan:\n- Days 1-3: archive Stark annotations and audit summaries from key Figma files.\n- Days 4-7: install WAVE for everyone and standardize on the WebAIM contrast checker for token reviews.\n- Days 8-12: adopt WebAIM's WCAG checklist for manual audits on top flows.\n- Days 13-14: finalize the cutover and reduce Stark seats.\n\nWe may keep a small number of Stark seats for designers since WebAIM tools are runtime-focused and not Figma-native.\n\nThanks,\nYour customer"
+  }
+}

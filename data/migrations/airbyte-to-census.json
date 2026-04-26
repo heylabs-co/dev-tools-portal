@@ -1,0 +1,63 @@
+{
+  "source": {
+    "slug": "airbyte",
+    "name": "airbyte"
+  },
+  "target": {
+    "slug": "census",
+    "name": "census"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Airbyte ingests data into your warehouse (ELT), while Census syncs warehouse data out to SaaS tools (reverse ETL). They are complementary, so 'migrating' usually means flipping the direction of your data flow, not replacing one with the other.",
+  "why_switch": [
+    "Your priority is pushing warehouse data into SaaS tools, not ingesting",
+    "You want SQL-defined sync models from your warehouse to CRMs and ad tools",
+    "You already have a warehouse loaded by another mechanism",
+    "You want consent-aware syncs into operational tools",
+    "You are consolidating reverse ETL on a single, dedicated platform"
+  ],
+  "what_to_export": [
+    "List of Airbyte sources actually needed going forward",
+    "Destination warehouse details (Snowflake, BigQuery, Redshift, etc.)",
+    "Credentials and secrets to rotate",
+    "Schemas and tables that will feed Census models",
+    "Custom connectors and any normalization logic",
+    "User and workspace configuration",
+    "Sync schedules to recreate downstream",
+    "Billing and admin contacts"
+  ],
+  "export_method": "Document your Airbyte connections to understand which data lands in the warehouse and which downstream systems consume it. Census reads from your existing warehouse, so the migration depends on having that warehouse intact. Capture warehouse credentials and schema definitions for the tables you will sync. Securely record API credentials for the SaaS destinations you currently push data to (e.g., HubSpot, Salesforce). Note current sync schedules and freshness expectations so you can match them in Census. If Airbyte is also responsible for ingestion, you may need to keep it running or replace it separately — Census does not perform ingestion.",
+  "import_method": "Create a Census workspace and connect it to your warehouse using a service user with the necessary read permissions. Define models in Census using SQL queries against the tables previously populated by Airbyte. For each downstream SaaS destination, add a Census destination connector and create a sync that maps model columns to destination fields. Configure schedules to match your prior Airbyte cadence. Run a small test sync into a sandbox or test record before enabling production syncs. If Airbyte was your ingestion layer, decide separately whether to keep it, replace it, or rely on warehouse-native pipelines.",
+  "concept_mapping": [
+    {
+      "source": "Airbyte connection (source -> warehouse)",
+      "target": "Warehouse pipeline (kept separately)",
+      "note": "Census does not ingest — keep ingestion separate"
+    },
+    {
+      "source": "Destination configuration",
+      "target": "Census destination connector"
+    },
+    {
+      "source": "Sync schedule",
+      "target": "Census sync schedule"
+    },
+    {
+      "source": "Normalization",
+      "target": "SQL model in Census"
+    }
+  ],
+  "effort": "1-3 weeks",
+  "gotchas": [
+    "Census is reverse ETL; it does not replace Airbyte's ingestion role",
+    "Both tools may need to run together if you still need to load the warehouse",
+    "Permissions for a Census service user must be scoped carefully in the warehouse",
+    "Field-level mapping into SaaS destinations differs from raw warehouse loads — expect schema work",
+    "Rate limits in destination SaaS APIs can throttle Census syncs; size batches accordingly",
+    "Idempotency and primary keys are critical for Census syncs to avoid duplicates"
+  ],
+  "email": {
+    "subject": "Adjusting our Airbyte subscription in 14 days",
+    "body": "Hi team,\n\nWe are changing our data architecture and reducing our use of Airbyte as we move reverse ETL onto Census. Please treat this email as 14 days notice for any subscription changes or cancellation we need to make on our side. Kindly confirm next steps and any final billing details. Thanks for your help.\n\nBest,\nYour customer"
+  }
+}

@@ -1,0 +1,67 @@
+{
+  "source": {
+    "slug": "new-relic",
+    "name": "New Relic"
+  },
+  "target": {
+    "slug": "apache-skywalking",
+    "name": "Apache SkyWalking"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "New Relic is a hosted observability platform with hybrid usage and user pricing and OpenTelemetry support, while Apache SkyWalking is an Apache-licensed self-hosted APM. The move replaces a commit-tier SaaS bill with operational ownership of OAP and storage.",
+  "why_switch": [
+    "Escape New Relic commit-tier minimum spend",
+    "Apache 2.0 license, full data ownership",
+    "Self-hosted retention and storage policies",
+    "OpenTelemetry-friendly ingestion path",
+    "Strong topology and tracing for microservices"
+  ],
+  "what_to_export": [
+    "Service and entity inventory",
+    "Dashboards and chart definitions",
+    "Alert policies and conditions",
+    "SLOs and key transactions",
+    "Notification channels and workflows",
+    "User and team RBAC mapping",
+    "Tags and entity attributes",
+    "Custom NRQL queries you depend on",
+    "Synthetic check definitions"
+  ],
+  "export_method": "Use the New Relic API and exports to capture dashboards, alert policies, and entity metadata as JSON. Document any NRQL queries that drive critical alerts or reports so they can be reimplemented as SkyWalking queries or external dashboards. Since New Relic supports OpenTelemetry ingestion, map which services already emit OTel data, those will be the easiest to repoint. For services using New Relic agents, plan a swap to SkyWalking agents or an OTel collector. Keep New Relic active during the migration so you can compare data and not lose history.",
+  "import_method": "Deploy Apache SkyWalking OAP with a supported storage backend such as Elasticsearch. For services already emitting OpenTelemetry, point the OTel exporter at a collector feeding SkyWalking. For services using New Relic agents, replace them with SkyWalking native agents or OTel auto-instrumentation. Recreate priority dashboards and alert rules in SkyWalking, wiring notifications to your existing channels via SkyWalking's alerting hooks. Validate service topology, traces, and key alerts on a pilot service before rolling out broadly. Decommission New Relic agents and downgrade the contract only after parity is confirmed.",
+  "concept_mapping": [
+    {
+      "source": "New Relic APM agent",
+      "target": "SkyWalking agent or OTel collector"
+    },
+    {
+      "source": "Entities and services",
+      "target": "SkyWalking services and instances"
+    },
+    {
+      "source": "Dashboards",
+      "target": "SkyWalking UI dashboards"
+    },
+    {
+      "source": "Alert policies",
+      "target": "SkyWalking alert rules"
+    },
+    {
+      "source": "OpenTelemetry ingest",
+      "target": "OTel collector to SkyWalking"
+    }
+  ],
+  "effort": "4-6 weeks",
+  "gotchas": [
+    "Commit-tier pricing means you pay through the contract period regardless of usage",
+    "NRQL queries do not translate directly, expect to rebuild reporting",
+    "You take on operating OAP and storage, including upgrades and scaling",
+    "Historical New Relic data should be considered non-portable, plan overlap",
+    "Synthetic checks need a separate solution, SkyWalking is not a synthetics platform",
+    "Alerting integrations may need a thin layer between SkyWalking and existing channels"
+  ],
+  "email": {
+    "subject": "Migrating APM from New Relic to Apache SkyWalking over the next 14 days",
+    "body": "Hi team,\n\nWe are moving APM and tracing from New Relic to self-hosted Apache SkyWalking. The drivers are predictable cost, full data ownership, and avoiding commit-tier lock-in. The plan is staged, not a flip.\n\nPlan:\n- Days 1-3: export dashboards, alerts, and entity metadata from New Relic and document key NRQL queries.\n- Days 4-7: stand up SkyWalking OAP with storage and onboard one OTel-emitting service end to end.\n- Days 8-11: replace New Relic agents on a pilot tier of services, validate topology and traces, and wire critical alerts into our existing notification channels.\n- Days 12-14: review parity, plan the agent rollout to remaining services, and align on contract timing.\n\nNew Relic will stay live during the rollout so we can compare and avoid losing visibility.\n\nThanks,\nYour customer"
+  }
+}

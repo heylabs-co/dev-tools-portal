@@ -1,0 +1,74 @@
+{
+  "source": {
+    "slug": "vanta",
+    "name": "Vanta"
+  },
+  "target": {
+    "slug": "drata",
+    "name": "Drata"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Moving from Vanta to Drata is a like-for-like compliance automation swap; both monitor controls, collect evidence, and connect to auditors. Plan a parallel-run period through your next audit cycle to avoid evidence gaps.",
+  "why_switch": [
+    "Different commercial terms or pricing",
+    "Better fit for your auditor or framework mix",
+    "Specific integrations or features needed",
+    "Different policy and training workflows",
+    "Customer support or onboarding experience"
+  ],
+  "what_to_export": [
+    "Active control set and framework mappings",
+    "Evidence artifacts (screenshots, exports, attestations)",
+    "Policies, procedures, and acknowledgement records",
+    "Employee directory and access reviews",
+    "Vendor risk records and DPAs",
+    "Risk register and treatment plans",
+    "Trust/security page content",
+    "Auditor and stakeholder access roles"
+  ],
+  "export_method": "Use Vanta's Dashboard to export evidence artifacts, policies, employee training records, vendor risk records, access reviews, and the current control set as PDF/CSV where supported. Snapshot your trust report content separately. Document each integration you have configured (cloud, IdP, MDM, ticketing) and the evidence each one collects, because you will need to reconnect equivalent integrations on Drata. Pull your risk register and any custom controls so they can be recreated. Keep the auditor's prior reports, SOC 2 letters, and acceptance memos archived in your own document store rather than only in Vanta. Plan the cutover so you do not lose continuous-monitoring evidence during the transition window.",
+  "import_method": "Onboard with Drata and select the frameworks you need (SOC 2, ISO 27001, HIPAA, GDPR, etc.). Reconnect integrations in Drata for cloud providers, identity, MDM, ticketing, and code repos so it can begin collecting evidence automatically. Upload imported policies, procedures, and historical evidence and map them to Drata's control library. Recreate your risk register, vendor list, and access review schedules. Re-run employee policy acknowledgements and security training inside Drata so the audit trail is consistent. Run both Vanta and Drata in parallel through your next monitoring cycle, then transition the auditor portal once Drata's evidence quality matches. Inform your auditor in advance and confirm they accept evidence from Drata before cancelling Vanta.",
+  "concept_mapping": [
+    {
+      "source": "Control",
+      "target": "Control"
+    },
+    {
+      "source": "Evidence task",
+      "target": "Evidence request"
+    },
+    {
+      "source": "Policy",
+      "target": "Policy"
+    },
+    {
+      "source": "Integration / Connector",
+      "target": "Integration / Connector"
+    },
+    {
+      "source": "Vendor risk record",
+      "target": "Vendor record"
+    },
+    {
+      "source": "Auditor portal",
+      "target": "Auditor portal"
+    },
+    {
+      "source": "Training",
+      "target": "Security training"
+    }
+  ],
+  "effort": "4-10 weeks; align with your audit cycle to avoid gaps",
+  "gotchas": [
+    "Avoid switching mid-audit — wait for an observation window boundary if possible",
+    "Control libraries differ in granularity; re-mapping may surface false gaps that need explanation",
+    "Historical evidence may need manual re-upload; plan time for this",
+    "Both tools have proprietary evidence formats — keep originals in your own document store",
+    "Re-running employee policy acknowledgements and training adds change-management overhead",
+    "Confirm your auditor accepts Drata before cancelling Vanta"
+  ],
+  "email": {
+    "subject": "Migration plan: Vanta to Drata compliance automation",
+    "body": "Hi team,\n\nWe are planning to move our compliance automation from Vanta to Drata over the next 14 days and would like to coordinate the transition without creating evidence gaps.\n\nSpecifically, we would like to:\n\n- Export our current control set, policies, evidence artifacts, vendor records, and risk register from Vanta.\n- Reconnect cloud, identity, MDM, and ticketing integrations on Drata so continuous monitoring resumes quickly.\n- Re-run policy acknowledgements and training inside Drata and notify our auditor of the change.\n- Run both platforms in parallel through one monitoring cycle before fully cutting over.\n\nCould you share onboarding timelines, framework support for our audits, integration availability for our stack, and a technical contact? We aim to begin within the next few business days.\n\nThanks,\nYour customer"
+  }
+}

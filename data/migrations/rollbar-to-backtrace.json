@@ -1,0 +1,65 @@
+{
+  "source": {
+    "slug": "rollbar",
+    "name": "Rollbar"
+  },
+  "target": {
+    "slug": "backtrace",
+    "name": "Backtrace"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Rollbar focuses on web and backend error monitoring; Backtrace is oriented toward native, game, and desktop crash management. Migration makes sense when your stack is shifting toward native crashes with minidumps.",
+  "why_switch": [
+    "Better support for native and game crashes",
+    "Minidump-based fingerprinting",
+    "Different pricing structure",
+    "Avoid Rollbar annual event-volume commits",
+    "Tighter native debugger integration"
+  ],
+  "what_to_export": [
+    "Project and environment list",
+    "User and team membership",
+    "Notification and alert rules",
+    "Source map / symbol upload pipeline",
+    "Deploy tracking integrations",
+    "Custom grouping rules",
+    "Issue ownership and statuses",
+    "Sample of recent error payloads"
+  ],
+  "export_method": "Document your Rollbar projects, environments, members, alerts, and integrations using the Rollbar UI or API. For historical events, export what your retention plan allows; do not assume a full historical transfer is possible. Save build-pipeline steps such as source map upload as code. Treat tokens as items to rotate after cutover. If the Rollbar API does not clearly expose a given setting, capture it manually rather than guessing endpoints.",
+  "import_method": "Create a Backtrace project per Rollbar project and add users and notification channels. Install the relevant Backtrace SDK or integrate with Crashpad/Breakpad for native applications, following Backtraces official documentation. For non-native services, use Backtraces language SDKs where available, or keep those services on a different error tool if no SDK fits. Configure symbol upload for native builds and deploy markers from CI. Reconnect Slack, Jira, and ticketing integrations. Validate by sending test crashes from each platform and confirming they group and alert correctly before cutting traffic over.",
+  "concept_mapping": [
+    {
+      "source": "Project",
+      "target": "Project"
+    },
+    {
+      "source": "Item / Occurrence",
+      "target": "Error / Crash"
+    },
+    {
+      "source": "Deploy tracking",
+      "target": "Deploy markers"
+    },
+    {
+      "source": "Notification rules",
+      "target": "Alert rules"
+    },
+    {
+      "source": "Source maps",
+      "target": "Symbol upload"
+    }
+  ],
+  "effort": "2-6 weeks",
+  "gotchas": [
+    "Historical events generally stay in Rollbar",
+    "Native vs web SDK coverage differs; some services may not have a 1:1 SDK",
+    "Symbol / debug-info upload pipelines must be rebuilt",
+    "Grouping and fingerprinting will differ",
+    "Per-user pricing on Backtrace can change cost shape vs event volume"
+  ],
+  "email": {
+    "subject": "Winding down our Rollbar usage",
+    "body": "Hi team,\n\nWe are shifting our crash and error monitoring toward a tool more focused on native and desktop applications, and plan to stop using Rollbar. Our target timeline is 14 days from today.\n\nDuring that period we will export project and integration configuration, document alert rules, and run the new SDK in parallel for validation. After cutover, our applications will stop sending events to Rollbar.\n\nCould you confirm the steps to disable auto-renewal, the effective end date given our current commitment, and any final invoicing details? Please share any recommended steps before account deactivation.\n\nThanks for the support over the years.\n\nYour customer"
+  }
+}

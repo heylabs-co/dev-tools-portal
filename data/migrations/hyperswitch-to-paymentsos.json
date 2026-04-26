@@ -1,0 +1,60 @@
+{
+  "source": {
+    "slug": "hyperswitch",
+    "name": "Hyperswitch"
+  },
+  "target": {
+    "slug": "paymentsos",
+    "name": "PaymentsOS"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Both are payment orchestrators with smart routing across multiple PSPs, but Hyperswitch is open-source and self-hosted while PaymentsOS is an enterprise SaaS owned by PayU. The migration is mainly about trading infra ownership for managed operations and a vendor relationship.",
+  "why_switch": [
+    "Want managed orchestration instead of running Rust infra",
+    "Need enterprise SLAs and PayU-backed support",
+    "Reduce DevOps headcount around payments",
+    "Prefer a single sales contract over self-hosting"
+  ],
+  "what_to_export": [
+    "Connector and PSP credentials",
+    "Routing rules and fallback logic",
+    "Stored payment methods and customers",
+    "Merchant accounts and API keys",
+    "Webhook endpoints and secrets",
+    "Transaction, refund, and dispute history",
+    "Reporting and reconciliation exports",
+    "Compliance and audit records"
+  ],
+  "export_method": "Because Hyperswitch is self-hosted, you own the database and can extract everything you need. Snapshot Postgres for customers, stored payment methods, connectors, routing rules, and transaction history, or pull through the API where structured exports are easier. Document connector credentials and routing logic in a vendor-neutral form so they can be re-entered into the destination orchestrator. For card data, plan a vault-to-vault transfer rather than a raw PAN export to keep PCI scope contained. Keep the Hyperswitch instance running during cutover for in-flight transactions and refunds.",
+  "import_method": "Engage PaymentsOS sales to set up your tenant and connect the same PSPs you used in Hyperswitch. Recreate routing rules in their UI, taking the chance to simplify any rules that drifted over time. For card data, coordinate a vault-to-vault transfer between your previous vault and PaymentsOS so PANs never land in your systems. Recreate webhook subscriptions, retest 3DS and APM flows, and run a parallel period where a small percentage of traffic flows through PaymentsOS before full cutover.",
+  "concept_mapping": [
+    {
+      "source": "Connector",
+      "target": "PSP integration / provider"
+    },
+    {
+      "source": "Routing rule",
+      "target": "Routing rule"
+    },
+    {
+      "source": "Merchant account",
+      "target": "Merchant / tenant"
+    },
+    {
+      "source": "Webhook",
+      "target": "Webhook"
+    }
+  ],
+  "effort": "6-14 weeks",
+  "gotchas": [
+    "Routing rule semantics differ between platforms; do not assume a one-to-one paste.",
+    "PaymentsOS is enterprise sales-led, so onboarding and contracting can add weeks before integration starts.",
+    "Card vault transfers must be coordinated with both vault providers to stay within PCI scope.",
+    "You lose self-host and open-source flexibility; customizations on Hyperswitch may not be reproducible.",
+    "Pricing flips from free/self-host to enterprise contract — model TCO carefully."
+  ],
+  "email": {
+    "subject": "Sunsetting Hyperswitch self-host — 14-day plan",
+    "body": "Hi team,\n\nWe are winding down our self-hosted Hyperswitch deployment over the next 14 days as we move orchestration to a managed enterprise platform.\n\nWe are coordinating internally on:\n\n- Database snapshot of customers, stored payment methods, connectors, and routing rules.\n- A vendor-neutral export of routing logic so it can be re-implemented on the new platform.\n- Vault-to-vault transfer of live cards where applicable.\n- Decommissioning of API keys and webhooks by day 14, with the instance set read-only first.\n\nAny guidance from the Hyperswitch community or commercial team on a clean shutdown and on handling in-flight transactions during cutover would be appreciated.\n\nThanks,\nYour customer"
+  }
+}

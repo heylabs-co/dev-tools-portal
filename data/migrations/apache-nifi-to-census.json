@@ -1,0 +1,62 @@
+{
+  "source": {
+    "slug": "apache-nifi",
+    "name": "apache-nifi"
+  },
+  "target": {
+    "slug": "census",
+    "name": "census"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Apache NiFi is a self-hosted dataflow engine for routing and transforming data, while Census is a managed reverse ETL service that syncs warehouse data to SaaS tools. Migrating means converting NiFi flows that push to SaaS into SQL-defined Census models against your warehouse.",
+  "why_switch": [
+    "You want a managed reverse ETL service instead of self-hosted dataflows",
+    "Your destinations are mostly SaaS tools (CRM, marketing, ads)",
+    "You prefer SQL models over a visual processor graph",
+    "You want to reduce operational overhead of running NiFi clusters",
+    "You need consent-aware syncs into operational systems"
+  ],
+  "what_to_export": [
+    "Inventory of NiFi flows that push to SaaS destinations",
+    "Source data locations (warehouse tables, files, queues)",
+    "Transformation logic in each flow",
+    "Destination SaaS tools and their field mappings",
+    "Credentials and parameter contexts (rotate during migration)",
+    "Schedule settings per processor or process group",
+    "Custom processors or scripts to replicate in SQL",
+    "Provenance / audit requirements"
+  ],
+  "export_method": "Identify NiFi flows whose endpoint is a SaaS destination — those are the candidates for Census. For each, capture the source query or table, the transformation chain, the destination connector, and the field mapping. Export the flow as a NiFi template or take screenshots of the processor graph for reference; templates are not directly importable into Census. Securely record destination API credentials and any parameter contexts. If your data is not yet in a warehouse, plan to land it there first, because Census reads from warehouses, not arbitrary NiFi sources. Document scheduling and freshness expectations from the existing flows.",
+  "import_method": "Connect Census to your warehouse using a service user with read access to the relevant schemas. For each previously identified NiFi flow, write a SQL model in Census that produces the same output rows the flow used to send. Configure a destination connector for the SaaS tool and map the model's columns to destination fields, replicating the field mapping from NiFi. Set a sync schedule that matches the prior NiFi cadence. Run a test sync into a sandbox or on a small subset before enabling production. Keep NiFi running for any flow that does ingestion, transformation, or routing not aimed at SaaS — Census is not a general-purpose dataflow engine.",
+  "concept_mapping": [
+    {
+      "source": "NiFi flow ending at SaaS sink",
+      "target": "Census sync"
+    },
+    {
+      "source": "Source processor + transformations",
+      "target": "Census SQL model"
+    },
+    {
+      "source": "Sink processor field mapping",
+      "target": "Census field mapping in destination"
+    },
+    {
+      "source": "Processor scheduling",
+      "target": "Census sync schedule"
+    }
+  ],
+  "effort": "2-6 weeks",
+  "gotchas": [
+    "Census only reads from warehouses; flows not backed by a warehouse cannot move directly",
+    "Complex per-row branching in NiFi may not translate cleanly into a SQL model",
+    "Provenance tracking present in NiFi has no exact equivalent in Census",
+    "Destination API rate limits can throttle Census syncs; size batches accordingly",
+    "Idempotency and primary keys are critical to avoid duplicate records in destinations",
+    "Operational responsibilities shift; budget time to retire NiFi flows safely after cutover"
+  ],
+  "email": {
+    "subject": "Decommissioning Apache NiFi flows in 14 days",
+    "body": "Hi team,\n\nWe are moving our reverse ETL workflows from Apache NiFi onto Census. Apache NiFi itself has no subscription to cancel, but please treat this as 14 days notice that we will be turning down related infrastructure and access. Let me know if anything is needed from us during the transition.\n\nThanks,\nYour customer"
+  }
+}

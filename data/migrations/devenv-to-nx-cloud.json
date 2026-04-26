@@ -1,0 +1,61 @@
+{
+  "source": {
+    "slug": "devenv",
+    "name": "devenv"
+  },
+  "target": {
+    "slug": "nx-cloud",
+    "name": "nx-cloud"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Devenv and Nx Cloud solve different problems: Devenv reproduces local dev environments via Nix, while Nx Cloud provides remote caching and distributed task execution for Nx monorepos. Migration is really an addition: keep your environment reproducibility story separate, and adopt Nx Cloud only if you also adopt Nx as your task runner.",
+  "why_switch": [
+    "You need faster CI through remote computation caching for build and test tasks.",
+    "You want distributed task execution across multiple CI agents.",
+    "Your codebase is JavaScript/TypeScript heavy and fits the Nx monorepo model.",
+    "You want shared build artifacts between developer machines and CI runs.",
+    "You are willing to standardize on Nx conventions for tasks and project graph."
+  ],
+  "what_to_export": [
+    "List of services and toolchain versions defined in devenv.nix",
+    "Custom scripts and processes declared in your devenv configuration",
+    "Environment variables used by your local stack",
+    "Language and runtime versions you currently pin",
+    "CI workflow files that activate the devenv shell",
+    "Any direnv configuration tied to devenv",
+    "Documentation describing the developer onboarding flow",
+    "Notes on services like databases or queues started by devenv"
+  ],
+  "export_method": "Devenv configuration lives in your repository as devenv.nix and related files, so there is no remote export step. Inventory the file: list every package, language toolchain, service, script, and environment variable it declares. Capture the exact versions and any custom shell hooks. Save your CI configuration that bootstraps the devenv shell, plus any shared cache settings. Because Devenv is fully open source and file-based, all source-of-truth data is already in version control. The migration target here is orthogonal: Nx Cloud caches task results, it does not provide development environments. So the export is really a documentation pass, not a data transfer. If you intend to keep environment reproducibility, plan to keep Devenv (or replace it with another env tool) in parallel with Nx Cloud.",
+  "import_method": "Nx Cloud sits on top of an Nx workspace, so the prerequisite is having (or migrating to) an Nx monorepo. Follow the official Nx documentation to convert your existing project structure into Nx projects with task definitions. Once Nx is configured, connect the workspace to Nx Cloud per the official setup flow, which typically involves adding an access token and enabling remote caching in nx.json. Configure your CI to use the Nx Cloud token so build, test, and lint tasks can read and write the shared cache. Keep your Devenv setup for local environment reproducibility unless you have a separate replacement strategy. Validate by running a task twice: the second run should hit the remote cache.",
+  "concept_mapping": [
+    {
+      "source": "devenv.nix package list",
+      "target": "Nx workspace tooling (separate concern)",
+      "note": "Nx Cloud does not manage local toolchains; keep Devenv or another tool for that."
+    },
+    {
+      "source": "devenv scripts",
+      "target": "Nx task targets",
+      "note": "Nx tasks become the cacheable unit; rewrite scripts as Nx targets to benefit from caching."
+    },
+    {
+      "source": "devenv services",
+      "target": "Not covered by Nx Cloud",
+      "note": "Service orchestration is out of scope for Nx Cloud."
+    }
+  ],
+  "effort": "1-3 weeks if Nx is not yet adopted; 1-3 days if you already have an Nx workspace and only need to enable Nx Cloud.",
+  "gotchas": [
+    "Nx Cloud only accelerates Nx task graphs. If you do not adopt Nx, there is nothing for it to cache.",
+    "Devenv and Nx Cloud are not substitutes. Migrating off Devenv without a replacement leaves you without reproducible local environments.",
+    "Remote cache hit rates depend on deterministic task inputs; non-deterministic build steps will defeat caching.",
+    "Pricing scales with usage. Run a small pilot before enabling cloud caching across all teams and CI workflows.",
+    "Some teams report occasional cache correctness issues; keep a way to bypass the cache during incident response.",
+    "If your stack is not JavaScript/TypeScript, evaluate whether Nx is even the right runner before paying for Nx Cloud."
+  ],
+  "email": {
+    "subject": "Heads up: switching our build acceleration approach",
+    "body": "Hi,\n\nWe are evaluating Nx Cloud for monorepo build and test caching. Our local environment setup with Devenv stays in place; this change only affects task execution speed in CI. Expect minor CI configuration updates over the next 14 days. No action needed from you. We will share the new task commands and any onboarding notes before the cutover.\n\nIf you have questions about your specific workflow, reply directly.\n\nThanks,\nYour customer"
+  }
+}

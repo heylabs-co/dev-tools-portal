@@ -1,0 +1,62 @@
+{
+  "source": {
+    "slug": "hyperswitch",
+    "name": "Hyperswitch"
+  },
+  "target": {
+    "slug": "basis-theory",
+    "name": "Basis Theory"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Hyperswitch is an open-source payments switch that routes to multiple processors, while Basis Theory is a portable card vault. Moving from one to the other is a scope change, not a swap, and usually means giving up routing in exchange for vault portability.",
+  "why_switch": [
+    "Want managed PCI offload instead of self-hosted infra",
+    "Prefer processor-agnostic tokens over routing logic",
+    "Reduce DevOps load of running Hyperswitch in Rust",
+    "Need cleaner SAQ A scope for compliance"
+  ],
+  "what_to_export": [
+    "Stored payment method records",
+    "Customer and merchant identifiers",
+    "Connector and processor configurations",
+    "Routing rules and fallback logic",
+    "Webhook endpoints and secrets",
+    "API keys and merchant accounts",
+    "Transaction history for reporting",
+    "Refund and dispute records"
+  ],
+  "export_method": "Because Hyperswitch is open source and self-hosted, you control the database. Pull stored payment method records, customers, connectors, and routing config directly from your Postgres tables or via the Hyperswitch admin and API endpoints. Export raw card data only through a controlled flow — typically by re-vaulting cards into the destination provider rather than dumping PANs to disk. Snapshot routing rules and connector credentials so you can replicate the orchestration layer separately if you still need it. Keep your Hyperswitch instance live during cutover for in-flight transactions.",
+  "import_method": "In Basis Theory, create a tenant and applications, then ingest cards through their tokenization endpoints. The cleanest path for existing cards is a vault-to-vault transfer coordinated with both vendors so PANs never land in your environment. Recreate webhook subscriptions and proxy configurations to match your previous flows. Note that Basis Theory is a vault, not an orchestrator — if you need routing across PSPs you will have to keep Hyperswitch (or another orchestrator) in front of the vault, or rebuild that logic yourself.",
+  "concept_mapping": [
+    {
+      "source": "Connector",
+      "target": "Proxy / application",
+      "note": "Different abstraction levels"
+    },
+    {
+      "source": "Stored payment method",
+      "target": "Token",
+      "note": "Both reference vaulted cards"
+    },
+    {
+      "source": "Merchant account",
+      "target": "Tenant / application"
+    },
+    {
+      "source": "Webhook",
+      "target": "Webhook"
+    }
+  ],
+  "effort": "4-10 weeks",
+  "gotchas": [
+    "Basis Theory does not orchestrate or route to PSPs; you lose Hyperswitch's routing layer unless you rebuild it.",
+    "Card data should move vault-to-vault to avoid expanding PCI scope.",
+    "Hyperswitch's connector and routing rules have no direct equivalent in Basis Theory.",
+    "Pricing model flips from free/self-host to metered tokens and API calls.",
+    "Confirm contractual rights to export cards from your Hyperswitch instance and any upstream processors."
+  ],
+  "email": {
+    "subject": "Winding down Hyperswitch self-host — 14-day plan",
+    "body": "Hi team,\n\nWe are sunsetting our self-hosted Hyperswitch deployment over the next 14 days and moving the vaulting portion of our stack to a managed provider.\n\nFor a clean handover internally, we are coordinating:\n\n- A frozen snapshot of our database with stored payment methods, customers, and routing rules.\n- A vault-to-vault transfer for live cards instead of any raw export.\n- Decommissioning of API keys, webhooks, and connector credentials by day 14.\n- Documentation of the routing rules we may need to reimplement elsewhere.\n\nIf the community or commercial side of Hyperswitch can advise on best practices for a clean exit and on coordinating the card transfer with the destination vault, that would be appreciated.\n\nThanks,\nYour customer"
+  }
+}

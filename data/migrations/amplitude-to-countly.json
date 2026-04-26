@@ -1,0 +1,64 @@
+{
+  "source": {
+    "slug": "amplitude",
+    "name": "Amplitude"
+  },
+  "target": {
+    "slug": "countly",
+    "name": "Countly"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Countly is an open-source, self-hostable product analytics platform with strong mobile SDK support. Event taxonomy and user properties port; you trade managed scale for control and lower TCO.",
+  "why_switch": [
+    "Self-hostable — full data sovereignty",
+    "No annual event-volume commits",
+    "Mobile-first SDKs for iOS, Android, Unity",
+    "Open-source codebase you can audit"
+  ],
+  "what_to_export": [
+    "Raw events with timestamps",
+    "User properties and identify mappings",
+    "Cohorts and segments",
+    "Saved charts / dashboards",
+    "Event taxonomy (names, properties, types)",
+    "API keys and source tokens",
+    "Team members and roles",
+    "Annotations / release markers"
+  ],
+  "export_method": "Use Amplitude's Export API to pull raw events for the time range you need, and the warehouse-native sync if it is configured. Save cohorts and chart definitions via the dashboard. Document the full event taxonomy so you can re-implement it cleanly in Countly. Be sure to capture both `user_id` and `device_id` per event so identity stitching can be reproduced. Confirm the end date of any annual event commitment via your account settings.",
+  "import_method": "Deploy Countly via Docker, Kubernetes, or the official packaged installer; or use Countly Cloud. Create an app in the Countly dashboard and grab the App Key + Server URL. Install the matching Countly SDK in your application and replicate the events you previously sent to Amplitude — `logEvent` becomes `Countly.recordEvent`. For historical events, use Countly's bulk events endpoint to backfill with original timestamps so retention/funnel charts stay accurate. Rebuild key cohorts and dashboards in Countly's UI. Run both SDKs in parallel for a week, compare DAU and event counts, then remove Amplitude.",
+  "concept_mapping": [
+    {
+      "source": "Event",
+      "target": "Event"
+    },
+    {
+      "source": "User Property",
+      "target": "User property"
+    },
+    {
+      "source": "Cohort",
+      "target": "Cohort / segment"
+    },
+    {
+      "source": "Project API Key",
+      "target": "App Key"
+    },
+    {
+      "source": "Funnel chart",
+      "target": "Funnel"
+    }
+  ],
+  "effort": "2-4 weeks",
+  "gotchas": [
+    "Amplitude annual event commit does not pro-rate",
+    "Self-hosted Countly adds infra and ops cost — budget realistically",
+    "Historical event timestamps must be preserved on bulk import",
+    "Identity model differs — verify user/device merge produces same DAU",
+    "License is non-standard (NOASSERTION on repo) — review before commercial use"
+  ],
+  "email": {
+    "subject": "Data export and wind-down — Amplitude",
+    "body": "Hi Amplitude team,\n\nWe plan to migrate to a self-hosted analytics platform over the next 14 days. Could you help with:\n1. Confirming the recommended path to export full historical events, cohorts, and chart definitions via the Export API or warehouse sync.\n2. Sharing the end date of our current annual event-volume commitment so we can plan cutover.\n3. Confirming the data retention/purge timeline after cancellation.\n\nWe will run instrumentation in parallel for a short overlap period and then cancel. Please flag anything that requires your team to action.\n\nThanks,\nYour customer"
+  }
+}

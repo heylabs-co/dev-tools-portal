@@ -1,0 +1,60 @@
+{
+  "source": {
+    "slug": "composio",
+    "name": "composio"
+  },
+  "target": {
+    "slug": "voxel51",
+    "name": "voxel51"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Composio is an agent tool-integration platform; Voxel51 (FiftyOne) is a multimodal data platform for curating and evaluating visual AI datasets. Migration means leaving a generic agent-integration layer for specialised computer vision data tooling.",
+  "why_switch": [
+    "Your work is centred on computer vision datasets",
+    "You need dataset curation, visualization, and evaluation",
+    "You want OSS FiftyOne with optional commercial features",
+    "You are debugging visual model predictions at scale",
+    "Generic agent integrations are no longer the bottleneck"
+  ],
+  "what_to_export": [
+    "Composio connector inventory and project IDs",
+    "Credentials stored in Composio",
+    "Agent code referencing the Composio SDK",
+    "Tool definitions and custom actions",
+    "Webhook and callback config",
+    "Usage and billing logs",
+    "Team and role assignments"
+  ],
+  "export_method": "Composio does not provide a documented bulk export. Use the dashboard to list each integration, project, and team member, and snapshot that into a spreadsheet. Pull all Composio SDK code from your repos so you can see which actions your agents perform. Save usage and billing reports if you need them, then plan to revoke third-party tokens once the migration is final. Document custom actions you have built so they can be reimplemented in your new tooling. Note that nothing about Composio's data is structured for direct ingestion into a CV-dataset platform like FiftyOne.",
+  "import_method": "Voxel51's FiftyOne is consumed via a Python SDK and a desktop or web app. Install fiftyone (pip install fiftyone) and import your image, video, or 3D datasets using FiftyOne's dataset loaders, which support common formats (COCO, YOLO, custom). There is no path to import Composio data; this is a fresh setup. If your Composio agent kicked off CV jobs, replace those calls with FiftyOne's Python API or schedule them via your existing CI. For commercial features (collaboration, hosted Studio), upgrade to Voxel51's paid tier as needed.",
+  "concept_mapping": [
+    {
+      "source": "Composio tool",
+      "target": "FiftyOne dataset operation",
+      "note": "Different abstraction layer"
+    },
+    {
+      "source": "Connector auth",
+      "target": "Cloud storage creds for datasets",
+      "note": "Re-add per source"
+    },
+    {
+      "source": "Agent action",
+      "target": "Python script using FiftyOne SDK",
+      "note": "Rebuild manually"
+    }
+  ],
+  "effort": "2-6 weeks",
+  "gotchas": [
+    "Different problem spaces: agent integrations vs CV dataset tooling.",
+    "FiftyOne can be memory-heavy on very large datasets.",
+    "Learning curve for non-CV teams.",
+    "Some enterprise features sit behind a paid tier.",
+    "No automated import path from Composio.",
+    "You may still need Composio if non-CV agent work continues."
+  ],
+  "email": {
+    "subject": "Shifting CV dataset work from Composio to Voxel51",
+    "body": "Hi team,\n\nOver the next 14 days we will pilot Voxel51 (FiftyOne) for our computer vision dataset workflows while reviewing what stays on Composio. These tools sit in different layers, so this is a scope realignment, not a swap.\n\nComposio remains live during the pilot. If your work depends on Composio agent integrations, please flag it.\n\nThanks,\nYour customer"
+  }
+}

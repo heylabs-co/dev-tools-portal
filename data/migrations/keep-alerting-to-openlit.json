@@ -1,0 +1,57 @@
+{
+  "source": {
+    "slug": "keep-alerting",
+    "name": "keep-alerting"
+  },
+  "target": {
+    "slug": "openlit",
+    "name": "openlit"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Keep is an open-source AIOps alert management layer that aggregates and correlates alerts from many observability tools. OpenLIT is an open-source, OpenTelemetry-native observability platform focused on GenAI and LLM application stacks. They solve different problems, so a \"migration\" usually means you have decided alert aggregation is not your real need and you want LLM/GenAI tracing instead; expect to redesign your observability rather than copy data one-to-one.",
+  "why_switch": [
+    "Your primary workload is now LLM or GenAI applications and you need token, latency, and cost tracing.",
+    "You want OpenTelemetry-native instrumentation that plugs into your existing OTel pipelines.",
+    "You no longer need cross-tool alert correlation and prefer focused LLM observability.",
+    "You want vendor-neutral OSS instrumentation with an Apache 2.0 license.",
+    "Your stack has consolidated on OTel and Keep's AIOps layer is no longer worth the operational burden."
+  ],
+  "what_to_export": [
+    "List of alert sources Keep is currently ingesting from.",
+    "Deduplication and correlation rules configured in Keep.",
+    "Alert routing and suppression policies.",
+    "Notification destinations (Slack, PagerDuty, email, etc.).",
+    "On-call and escalation logic embedded in Keep workflows.",
+    "Historical alert data, if you need it for post-mortem reference.",
+    "Inventory of services that should be instrumented for LLM tracing under OpenLIT."
+  ],
+  "export_method": "Because Keep and OpenLIT do not overlap functionally, the export step is mostly about inventorying what Keep does for you today so you can decide which parts to retire and which to rehome. List every integration Keep is configured against and every notification destination it pushes to. Document the deduplication, correlation, routing, and suppression rules currently active, treating them as policies that may either be retired, moved into the underlying observability tool that owns the signal, or kept in Keep alongside OpenLIT. Pull configuration out of source control if managed there, or export from the Keep UI/API if managed in-product. Separately, build a list of LLM-using services and applications that should be instrumented, since this is what OpenLIT will actually receive. Save credentials and tokens you intend to revoke after cutover.",
+  "import_method": "OpenLIT is OpenTelemetry-native, so importing means instrumenting your applications with OTel and pointing them at OpenLIT, not loading Keep's alerts into it. Stand up OpenLIT (managed or self-hosted) per the official docs, and instrument LLM/GenAI services using the OpenLIT SDKs or supported OTel integrations for OpenAI, Anthropic, vector databases, and similar providers. Validate that traces, token usage, and latency show up for a sample request before scaling out. If you still need alert aggregation, decide whether to keep Keep running for that purpose or to move alerting into the underlying observability stack; OpenLIT does not replace Keep's correlation features. Wire OpenLIT into your existing OTel collector if you already have one, to keep a single ingestion path.",
+  "concept_mapping": [
+    {
+      "source": "Alert ingestion from 50+ tools",
+      "target": "Not directly mapped — OpenLIT consumes OTel telemetry from instrumented apps, not alerts."
+    },
+    {
+      "source": "Deduplication and correlation rules",
+      "target": "Not directly mapped — handle in the underlying alerting tool or keep Keep alongside."
+    },
+    {
+      "source": "Notification destinations",
+      "target": "Not directly mapped — configure in your alerting tool of choice."
+    }
+  ],
+  "effort": "2-6 weeks",
+  "gotchas": [
+    "Keep and OpenLIT solve different problems; do not assume features carry over.",
+    "If you still need AIOps correlation, you may need to keep Keep running or replace it separately.",
+    "OpenLIT focuses on GenAI/LLM observability; non-LLM workloads are not its core use case.",
+    "Both are young OSS projects; expect API and config churn over time.",
+    "Self-hosting either tool puts operational burden (upgrades, storage, auth) on your team.",
+    "Plan a parallel-run period so a missed alert source does not become a blind spot."
+  ],
+  "email": {
+    "subject": "Observability change: adopting OpenLIT for LLM telemetry",
+    "body": "Hi team,\n\nWe are introducing OpenLIT to capture LLM and GenAI telemetry (traces, token usage, latency) using OpenTelemetry. Keep's role in alert aggregation will be reviewed separately; the two tools cover different needs. Expect a rollout period of about two weeks while services are instrumented and dashboards stabilize. Please report any gaps in alerting or tracing visibility so we can address them quickly.\n\nThanks for your patience.\n\nYour customer"
+  }
+}

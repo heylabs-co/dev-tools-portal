@@ -1,0 +1,54 @@
+{
+  "source": {
+    "slug": "cline",
+    "name": "cline"
+  },
+  "target": {
+    "slug": "chartboost",
+    "name": "chartboost"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Cline is an open-source AI coding agent for IDEs and Chartboost is a mobile ad network and mediation SDK; they are not substitutes. Treat the move as decommissioning Cline and separately adopting Chartboost in your mobile apps.",
+  "why_switch": [
+    "Refocusing tooling spend on mobile monetisation",
+    "You no longer need an in-IDE AI coding agent",
+    "Adopting Chartboost as part of a mediation or demand strategy",
+    "Reducing the number of developer-facing AI tools in use",
+    "Internal policy change disallowing AI coding agents"
+  ],
+  "what_to_export": [
+    "Cline configuration and rules files per developer",
+    "MCP server configurations referenced by Cline",
+    "BYOK provider keys to rotate at the source",
+    "Saved prompts, custom commands and useful session history",
+    "List of machines and repositories where Cline is installed",
+    "Any team policies governing Cline use"
+  ],
+  "export_method": "Cline is a local, open-source VS Code extension, so there is no central tenant to drain. Ask each developer to copy out their Cline workspace configuration, rules and project-level instruction files into a shared backup. Inventory BYOK API keys held in Cline so they can be revoked at each model provider. Export any session history needed for audit or knowledge transfer. Once keys are rotated and configs archived, uninstall the extension on each machine. Treat the operation as a security and configuration cleanup rather than a data migration.",
+  "import_method": "Chartboost is integrated inside iOS, Android, Unity or React Native apps. Create a Chartboost publisher account, register each app, and create ad units (banner / interstitial / rewarded / native). Integrate the Chartboost SDK in your mobile codebase following Chartboost's official integration guide, initialise it at app start, and call ads at the chosen surfaces. Configure mediation in the Chartboost dashboard and add Chartboost's required entries to app-ads.txt. Wire IAB TCF / GPP consent so ad requests carry correct signals. Use test mode on real devices to validate, then ship through normal app store updates.",
+  "concept_mapping": [
+    {
+      "source": "Cline VS Code extension",
+      "target": "Chartboost mobile SDK",
+      "note": "different product categories, no direct mapping"
+    },
+    {
+      "source": "Cline BYOK model keys",
+      "target": "Chartboost API keys",
+      "note": "unrelated systems, both managed as secrets"
+    }
+  ],
+  "effort": "1-2 days to retire Cline; 3-8 weeks per platform to adopt Chartboost",
+  "gotchas": [
+    "Do not treat this as a one-for-one migration; the two tools solve unrelated problems.",
+    "Cline BYOK keys must be revoked at each model provider, not only removed from the extension.",
+    "Shared MCP servers may be used by other tools; verify before disabling.",
+    "Chartboost integration affects the binary and forces an app store review.",
+    "Adding ads introduces compliance and consent obligations Cline never had.",
+    "App-ads.txt errors silently cut Chartboost demand; validate after deploy."
+  ],
+  "email": {
+    "subject": "Internal: retiring Cline, adopting Chartboost",
+    "body": "Hi,\n\nIn the next 14 days we are retiring Cline as our in-IDE AI coding agent and, separately, integrating Chartboost as a mobile ad provider. These are two independent changes.\n\nIf you use Cline, you will be asked to uninstall it and rotate any model API keys. If you work on the mobile app, you will see Chartboost integration tasks in the repo.\n\nReply with any questions about how this affects your specific workflow.\n\nThanks,\nYour customer"
+  }
+}

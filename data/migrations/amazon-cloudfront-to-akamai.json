@@ -1,0 +1,73 @@
+{
+  "source": {
+    "slug": "amazon-cloudfront",
+    "name": "Amazon CloudFront"
+  },
+  "target": {
+    "slug": "akamai",
+    "name": "Akamai"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Replace CloudFront distributions with Akamai properties, mapping origins, behaviors, and edge logic into Akamai Property Manager. This is mostly a configuration translation exercise plus a careful DNS cutover and a Lambda@Edge to EdgeWorkers rewrite.",
+  "why_switch": [
+    "Mature global PoP footprint and enterprise SLAs",
+    "Advanced bot, WAF, and DDoS capabilities",
+    "Dedicated account team and managed services",
+    "Decoupling delivery from the AWS ecosystem",
+    "Stronger media delivery and large-file optimization"
+  ],
+  "what_to_export": [
+    "Distribution configurations and aliases",
+    "Origin definitions including S3 and custom HTTP origins",
+    "Cache behaviors and TTL settings",
+    "Origin request and response policies",
+    "Lambda@Edge and CloudFront Functions code",
+    "WAF rules and managed rule groups",
+    "ACM or imported certificates and SAN lists",
+    "Geo restrictions and signed URL/cookie policies",
+    "Real-time and standard log destinations",
+    "DNS aliases pointing at distribution domains"
+  ],
+  "export_method": "Use the AWS Console, AWS CLI, or Terraform to export each CloudFront distribution as JSON. Capture the full distribution config, including default and custom cache behaviors, origin groups, error pages, geo restrictions, and signing settings. Download Lambda@Edge and CloudFront Functions source from the Lambda console or your code repository, noting which event types they bind to. Export AWS WAF web ACLs and rule groups as JSON. List certificates in ACM and identify which can be exported versus which must be re-issued at Akamai. Pull a representative window of CloudFront access logs from S3 to baseline cache-hit ratios, top URLs, and traffic by region.",
+  "import_method": "In Akamai, create properties for each hostname and configure origins to match CloudFront origins, including host header behavior, custom origin paths, and origin failover. Translate cache behaviors into Property Manager rule trees with matching path patterns, TTLs, query string handling, and cookie/header forwarding. Reimplement Lambda@Edge logic as EdgeWorkers, keeping in mind the different runtime, request lifecycle hooks, and quotas. Recreate WAF coverage in App and API Protector or Kona Site Defender. Provision certificates via Akamai-managed CPS or upload your own. Use the Akamai CLI and Terraform provider to codify configs. Validate with the staging network before activating to production, then cut DNS over to the Akamai edge hostname with reduced TTLs.",
+  "concept_mapping": [
+    {
+      "source": "CloudFront distribution",
+      "target": "Akamai property"
+    },
+    {
+      "source": "Cache behavior",
+      "target": "Property Manager rule"
+    },
+    {
+      "source": "Origin",
+      "target": "Origin definition (Akamai)"
+    },
+    {
+      "source": "Lambda@Edge / CloudFront Functions",
+      "target": "EdgeWorkers",
+      "note": "Different runtime; rewrite required"
+    },
+    {
+      "source": "AWS WAF",
+      "target": "App and API Protector"
+    },
+    {
+      "source": "ACM certificate",
+      "target": "Akamai CPS or uploaded cert"
+    }
+  ],
+  "effort": "4-10 weeks depending on number of distributions and edge logic complexity",
+  "gotchas": [
+    "Lambda@Edge and EdgeWorkers have different runtimes, lifecycles, and limits; do not assume drop-in compatibility",
+    "Akamai contracts are typically annual with custom pricing; finalize commercial terms before deep technical work",
+    "Signed URLs and signed cookies use different schemes; clients that generate URLs must be updated",
+    "Origin Access Identity to S3 must be replaced with an alternative authenticated origin pattern",
+    "Cache key semantics differ; expect cache-hit ratio to swing during the first days after cutover",
+    "Test on the Akamai staging network before activation; production activation is harder to roll back"
+  ],
+  "email": {
+    "subject": "Heads-up: planning a CloudFront to Akamai migration over the next 14 days",
+    "body": "Hello AWS team,\n\nThis is a courtesy note that we intend to move our public delivery from CloudFront to Akamai over the next 14 days. The drivers are enterprise SLAs, a more capable bot and WAF stack, and decoupling our delivery layer from a single cloud.\n\nOur rough plan: days 1-4 export distribution configs, Lambda@Edge code, WAF rules, and recent logs; days 5-10 stand up Akamai properties on staging, port edge logic, and validate against a mirror hostname; days 11-13 stage DNS cutover with low TTLs and keep CloudFront warm as rollback; day 14 retire CloudFront distributions and clean up associated resources.\n\nCould you confirm whether any committed-spend or private-pricing agreements affect a clean shutdown of CloudFront, and the recommended way to disable distributions without breaking dependent AWS services. We would also appreciate guidance on safely revoking OAIs, certificates, and Lambda@Edge replicas.\n\nThanks for the support over the years.\n\nYour customer"
+  }
+}

@@ -1,0 +1,80 @@
+{
+  "source": {
+    "slug": "akamai",
+    "name": "Akamai"
+  },
+  "target": {
+    "slug": "modal",
+    "name": "Modal"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Akamai is an enterprise CDN/edge platform; Modal is a Python-native serverless cloud for compute and GPU workloads. This is not a like-for-like swap, so plan to keep a CDN in front while moving compute or dynamic logic to Modal.",
+  "why_switch": [
+    "Move from opaque enterprise quotes to usage-based, public pricing.",
+    "Replace edge configuration complexity with Python-first developer ergonomics.",
+    "Run on-demand GPU and serverless workloads without managing infra.",
+    "Faster iteration: define functions in Python, deploy with a CLI."
+  ],
+  "what_to_export": [
+    "List of Akamai properties, hostnames, and origins",
+    "Cache rules, TTLs, and key behaviors from Property Manager",
+    "Edge logic (EdgeWorkers/Lua) source code",
+    "TLS certificates and DNS records",
+    "WAF and rate-limit rules",
+    "Redirect maps and URL rewrite rules",
+    "Access logs needed for analytics or compliance",
+    "Purge/invalidation tooling and scripts"
+  ],
+  "export_method": "Use Akamai APIs (Property Manager API, EdgeGrid auth) or the CLI to export property configurations, behaviors, and rules as JSON. Pull EdgeWorkers code from your repo or via the EdgeWorkers API. Download recent access logs through Log Delivery Service if you need history. Export DNS zones from Edge DNS as zone files, and download TLS certificates or note their renewal source. Capture WAF rule sets from App & API Protector. Snapshot any reports or analytics you need before cancellation. Treat exported configs as documentation rather than something Modal can directly import — Modal does not consume Akamai configuration formats. Verify that you have everything by diffing exports against your live setup.",
+  "import_method": "Modal does not replace a CDN, so first decide whether you keep a CDN (Cloudflare, Fastly, CloudFront) in front or only migrate compute. Install the Modal CLI, authenticate, and create an app. Re-implement dynamic logic (APIs, background jobs, GPU inference, scheduled tasks) as Python functions decorated with Modal stubs. Define container images and dependencies in code. Map scheduled tasks to Modal cron schedules and HTTP endpoints to Modal web endpoints. Move secrets via Modal secrets. Validate behavior in a staging app, then cut over DNS or your CDN origin to point to Modal endpoints. Keep observability hooked up via Modal logs and your existing tools.",
+  "concept_mapping": [
+    {
+      "source": "Property / Configuration",
+      "target": "Modal app + stub",
+      "note": "Modal is code-defined, not config-driven"
+    },
+    {
+      "source": "EdgeWorkers",
+      "target": "Modal Python function",
+      "note": "Different runtime; logic must be ported to Python"
+    },
+    {
+      "source": "Origin",
+      "target": "Modal web endpoint or upstream service",
+      "note": "Modal can be the origin behind a CDN"
+    },
+    {
+      "source": "Cache rules",
+      "target": "Front CDN cache rules",
+      "note": "Modal does not provide global edge caching"
+    },
+    {
+      "source": "WAF / App Protector",
+      "target": "Front CDN WAF or app-layer middleware",
+      "note": "Keep at the CDN or app layer"
+    },
+    {
+      "source": "Edge DNS",
+      "target": "External DNS provider",
+      "note": "Modal is not a DNS host"
+    },
+    {
+      "source": "Log Delivery Service",
+      "target": "Modal logs + external sink",
+      "note": "Architectures differ"
+    }
+  ],
+  "effort": "2-6 weeks",
+  "gotchas": [
+    "Modal is not a CDN: you still need an edge cache for static and global delivery.",
+    "EdgeWorkers logic does not port directly; expect to rewrite it in Python on Modal.",
+    "Cold-start and concurrency behavior differ from Akamai edge; load test before cutover.",
+    "DNS, certificate, and WAF responsibilities must be reassigned to another provider.",
+    "Cost model shifts from enterprise contract to usage-based; model expected GPU/compute hours.",
+    "Compliance posture (data residency, certifications) must be re-validated for Modal."
+  ],
+  "email": {
+    "subject": "Notice: migrating our edge and compute off Akamai",
+    "body": "Hi team,\n\nWe are moving off Akamai over the next 14 days. Dynamic compute and scheduled jobs are moving to Modal, with a separate CDN handling edge caching and security in front.\n\nWhat to expect:\n- DNS will be updated in stages; brief propagation effects are possible.\n- Existing endpoints stay reachable; URLs do not change.\n- Cache rules and WAF policies have been re-implemented on the new edge.\n- Logs and dashboards will move to our new tooling.\n\nIf you spot anything unusual (latency spikes, blocked requests, broken redirects), please reply to this email with the URL, timestamp, and any error details.\n\nThanks for your patience while we make this transition.\n\nYour customer"
+  }
+}

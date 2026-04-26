@@ -1,0 +1,75 @@
+{
+  "source": {
+    "slug": "convex",
+    "name": "convex"
+  },
+  "target": {
+    "slug": "aws-amplify",
+    "name": "aws-amplify"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Convex is a TypeScript-first reactive backend with a proprietary data model; AWS Amplify is a hosting and BaaS layer over AWS services like AppSync (GraphQL), Cognito, and S3. The migration requires re-architecting your data layer around GraphQL or DynamoDB and rewriting server-side logic — there's no direct import path.",
+  "why_switch": [
+    "You want to standardise on AWS services and reuse existing AWS billing and IAM.",
+    "Your team prefers GraphQL via AppSync over Convex's reactive queries.",
+    "You need deeper integration with AWS services like Lambda and S3.",
+    "Compliance or data residency requirements push you to AWS regions.",
+    "You want full-stack hosting (frontend + backend) on a single cloud provider."
+  ],
+  "what_to_export": [
+    "Tables, schema definitions, and documents",
+    "File storage contents and metadata",
+    "User identities and auth provider linkages",
+    "Server-side queries, mutations, and actions",
+    "Scheduled jobs (Convex cron)",
+    "Auth and authorisation logic embedded in functions",
+    "Environment variables and secrets",
+    "External integrations and webhooks"
+  ],
+  "export_method": "Use the Convex CLI export to dump tables to JSONL — the CLI provides a snapshot tool that writes your dataset to local files. Export file storage contents by iterating through stored files via the Convex API and downloading them with their metadata. Capture user identities; if you already use a third-party auth provider with Convex, the user data lives in that provider rather than Convex. Save the source of all queries, mutations, and actions from your repo since Convex code is co-located with your application. Document scheduled functions defined in `crons.ts`. List environment variables and secrets configured in the Convex dashboard. Note any custom HTTP endpoints exposed via Convex HTTP actions.",
+  "import_method": "Initialise an Amplify project (Amplify Gen 2 if starting fresh) and define your data model. Choose AppSync GraphQL with DynamoDB for a schema-driven flow, or wire DynamoDB directly if you need fine control. Translate your Convex schema into the GraphQL schema or DynamoDB table definitions, then write a one-time loader (a Lambda or local script using the AWS SDK) that reads your exported JSONL and writes records to DynamoDB. Upload files to S3 via Amplify Storage. Configure Amazon Cognito as the auth provider and migrate users — if you used a third-party auth provider with Convex, you can either keep it via federation or move users into Cognito. Re-author Convex queries and mutations as AppSync resolvers, Lambda functions, or Amplify data functions. Recreate scheduled jobs using EventBridge. Roll out behind a feature flag and keep Convex read-only until parity is verified.",
+  "concept_mapping": [
+    {
+      "source": "Convex table",
+      "target": "DynamoDB table (or AppSync data source)"
+    },
+    {
+      "source": "Convex query / mutation",
+      "target": "AppSync resolver or Lambda function"
+    },
+    {
+      "source": "Convex action",
+      "target": "Lambda function"
+    },
+    {
+      "source": "Convex reactive query",
+      "target": "AppSync subscription",
+      "note": "Subscriptions are explicit, not implicit."
+    },
+    {
+      "source": "Convex file storage",
+      "target": "Amplify Storage on S3"
+    },
+    {
+      "source": "Convex cron",
+      "target": "EventBridge scheduled rule"
+    },
+    {
+      "source": "Convex env vars",
+      "target": "Amplify environment / Secrets Manager / SSM"
+    }
+  ],
+  "effort": "4-8 weeks",
+  "gotchas": [
+    "Convex's reactive query model has no direct equivalent in Amplify; subscriptions require explicit GraphQL subscriptions and resolver work.",
+    "Document IDs change on import; rewrite cross-table references using a mapping table.",
+    "DynamoDB single-table design and access patterns differ greatly from Convex's relational-flavoured tables — expect modelling work.",
+    "Auth migration depends on your current Convex auth provider; password-based users may need a reset if moving to Cognito.",
+    "Amplify Gen 1 vs Gen 2 have different patterns; pick one before starting.",
+    "AWS billing has many sub-line items (DynamoDB, AppSync, Lambda, S3, Cognito); model costs early and expect more IAM / monitoring ops work."
+  ],
+  "email": {
+    "subject": "Backend infrastructure change in 2 weeks",
+    "body": "Hi,\n\nOver the next two weeks we're moving our backend from Convex to AWS Amplify. The product you use will look and behave the same.\n\nDepending on how auth is handled, you may be asked to sign in again on first use after cutover — we'll send a heads up the day before. Real-time features will keep working but may feel slightly different.\n\nIf you build against our API, watch for a follow-up note about the new endpoint shape and authentication flow.\n\nThanks,\nYour customer"
+  }
+}

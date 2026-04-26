@@ -1,0 +1,72 @@
+{
+  "source": {
+    "slug": "mongodb-atlas",
+    "name": "MongoDB Atlas"
+  },
+  "target": {
+    "slug": "planetscale",
+    "name": "PlanetScale"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Atlas to PlanetScale is a database paradigm change from MongoDB documents to MySQL-compatible relational tables. Plan for a schema redesign and an application data-access rewrite, not a copy.",
+  "why_switch": [
+    "Move to MySQL-compatible relational model",
+    "Branching and non-blocking schema changes",
+    "Standard SQL portability reduces lock-in",
+    "Single-node entry plan for small workloads",
+    "Avoid Atlas dedicated-tier price floors"
+  ],
+  "what_to_export": [
+    "Database and collection inventory",
+    "Documents per collection (full dataset)",
+    "Index definitions",
+    "Atlas Search / vector index configs",
+    "Database users and roles",
+    "Network access lists and private endpoints",
+    "Triggers and scheduled jobs",
+    "Data API / App Services configs",
+    "Backup and PITR policy",
+    "Application connection strings and ORM configs"
+  ],
+  "export_method": "Use mongodump for full collection exports and mongoexport for selective JSON/CSV pulls; both are standard MongoDB tooling. For very large datasets, snapshot the cluster in Atlas first and run dump from a private network to avoid traffic costs. Index definitions, users, network rules, triggers, and scheduled jobs should be captured from the Atlas UI or Admin API as configuration. Document any Atlas Search or vector indexes you depend on so the new design accounts for them. Keep the cluster running until your replacement is verified, since Atlas dedicated tiers have fixed-period pricing that does not refund mid-cycle.",
+  "import_method": "Design a relational schema in PlanetScale that fits your domain; do not try to translate documents 1:1. Create the database and a development branch, run schema migrations, then load data using a script that reads the mongodump output and writes to MySQL via the standard MySQL driver or your ORM. Recreate indexes on the new tables based on access patterns rather than copying Mongo indexes. Update application code to use a MySQL client and ORM, and replace any Mongo-specific queries (aggregation pipelines, $lookup, change streams) with SQL or application logic. Roll out via PlanetScale branches, then promote and switch your app's connection string. Run dual-write or shadow-read in staging before cutover.",
+  "concept_mapping": [
+    {
+      "source": "Database",
+      "target": "Database"
+    },
+    {
+      "source": "Collection",
+      "target": "Table"
+    },
+    {
+      "source": "Document",
+      "target": "Row"
+    },
+    {
+      "source": "Index",
+      "target": "Index"
+    },
+    {
+      "source": "Atlas user",
+      "target": "PlanetScale user / password"
+    },
+    {
+      "source": "Network access list",
+      "target": "IP allowlist / connection settings"
+    }
+  ],
+  "effort": "1-3 months",
+  "gotchas": [
+    "Document model to relational schema is a redesign, not a copy; expect application changes",
+    "Aggregation pipelines and $lookup do not have direct SQL equivalents; rewrite as joins or app code",
+    "Atlas Search and vector search are not provided by PlanetScale; plan a separate search store if needed",
+    "Foreign keys and referential integrity behave differently in Vitess; review constraints",
+    "Atlas dedicated tiers have fixed-period pricing; align cutover with billing cycle",
+    "Change streams have no direct equivalent; redesign event-driven flows around CDC or app events"
+  ],
+  "email": {
+    "subject": "Winding down our Atlas cluster over the next two weeks",
+    "body": "Hi team,\n\nWe're migrating our primary application database from MongoDB Atlas to PlanetScale over the next 14 days. Because the data model is changing from documents to relational tables, we'll be exporting via mongodump, redesigning the schema in PlanetScale, and re-loading the data with a custom script.\n\nPlease keep the Atlas cluster live through the end of the current billing period so we can finish snapshotting, validate the new system, and capture any last-minute deltas. Could you confirm there is no auto-renewal on the dedicated tier and share a contact for final invoicing?\n\nThanks for the partnership.\n\nYour customer"
+  }
+}

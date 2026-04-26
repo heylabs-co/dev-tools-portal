@@ -1,0 +1,62 @@
+{
+  "source": {
+    "slug": "stark",
+    "name": "Stark"
+  },
+  "target": {
+    "slug": "fable",
+    "name": "Fable"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Stark catches accessibility issues at design time inside Figma, while Fable provides research sessions with disabled testers using assistive technology. Switching means moving from automated design-time checks to qualitative research with real users.",
+  "why_switch": [
+    "Need feedback from real disabled users",
+    "Validate AT compatibility beyond rule-based checks",
+    "Combine usability and accessibility insight",
+    "Cover screen-reader and AT flows in QA",
+    "Strengthen pre-launch checks for major releases"
+  ],
+  "what_to_export": [
+    "Stark annotations and audit reports",
+    "Contrast and focus-order findings per design",
+    "Custom checklists embedded in Figma",
+    "Tickets filed from Stark into your tracker",
+    "Workspace and seat records",
+    "Saved color tokens and palettes",
+    "Design files referenced by Stark",
+    "Internal summaries of Stark sessions"
+  ],
+  "export_method": "Stark's findings live inside your Figma files and Stark workspace. Open each design file and document any annotations, contrast results and focus-order notes Stark added, copying them into your shared drive or design system documentation. Use any export options the Stark dashboard offers to save audit summaries. Tickets you filed into Jira, Linear or GitHub remain in your tracker. Designs themselves stay in Figma. Treat the exported summaries plus design files as your migration baseline.",
+  "import_method": "Fable is a research platform, so the import step is operational rather than data-based. Set up a Fable workspace, define the personas and AT combinations you want to cover, and write discussion guides for the flows you previously checked in Stark. Schedule research sessions with disabled testers via Fable. Use your archived Stark findings as known design-level issues to validate during sessions. Capture session reports and recordings in Fable and file resulting bugs into your existing tracker.",
+  "concept_mapping": [
+    {
+      "source": "Figma contrast plugin check",
+      "target": "Tester observation during session",
+      "note": "Qualitative vs rule-based"
+    },
+    {
+      "source": "Focus order annotation",
+      "target": "AT user feedback on focus flow"
+    },
+    {
+      "source": "Design-time audit",
+      "target": "Research session with disabled testers"
+    },
+    {
+      "source": "Stark workspace",
+      "target": "Fable workspace / project"
+    }
+  ],
+  "effort": "2-4 weeks",
+  "gotchas": [
+    "Fable does not replace design-time contrast and focus-order checks; consider keeping a Figma plugin for that",
+    "Per-engagement research pricing is structurally different from design-tool seats",
+    "Research-heavy workflow needs research process maturity to leverage well",
+    "Panel availability may affect scheduling timelines",
+    "Different output: narrative reports vs in-Figma annotations"
+  ],
+  "email": {
+    "subject": "Switching accessibility tooling from Stark to Fable",
+    "body": "Hi team,\n\nOver the next 14 days we will be moving our accessibility focus from Stark to Fable. Stark has helped designers catch issues in Figma, but we need direct feedback from disabled users on real flows, and that is exactly what Fable provides.\n\nPlan:\n- Days 1-3: archive Stark annotations and audit summaries from key Figma files.\n- Days 4-7: set up our Fable workspace and write discussion guides for top flows.\n- Days 8-12: run pilot research sessions with disabled testers and triage findings.\n- Days 13-14: finalize the workflow and reduce Stark seats accordingly.\n\nWe will likely keep a small number of Stark seats for designers since contrast and focus-order checks at design time are still useful and not what Fable is for.\n\nThanks,\nYour customer"
+  }
+}

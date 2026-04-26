@@ -1,0 +1,76 @@
+{
+  "source": {
+    "slug": "crowdin",
+    "name": "Crowdin"
+  },
+  "target": {
+    "slug": "lokalise",
+    "name": "Lokalise"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Move localization from Crowdin to Lokalise by exporting translation files in standard formats and re-importing them into Lokalise projects. Most teams complete the cutover in one to two weeks, depending on the number of languages and integrations.",
+  "why_switch": [
+    "Different pricing structure or seat model that fits your team better",
+    "Integrations and CLI workflow that match your build pipeline",
+    "Consolidating localization under a single vendor across products",
+    "Workflow features (review states, branching) that suit your release cadence"
+  ],
+  "what_to_export": [
+    "Source language files in their original format (JSON, XLIFF, .strings, .po, etc.)",
+    "Translated language files for every target language",
+    "Translation memory if exportable",
+    "Glossary terms and term base",
+    "Project structure (which files belong to which project/branch)",
+    "User list with roles (translator, reviewer, manager)",
+    "Integration configuration (GitHub/GitLab connector, CI tokens)",
+    "Screenshot/context attachments tied to keys",
+    "Custom workflow states or QA rules you rely on"
+  ],
+  "export_method": "Crowdin supports exporting translations in standard localization formats. Use the Crowdin web UI's Download Translations option, or the Crowdin CLI / API, to pull every target language for every source file. Export in the same format your source files use (XLIFF is the most portable for cross-vendor moves; otherwise keep the native format like JSON or .po). Also export your translation memory (TMX is the standard format) and glossary (TBX or CSV). Capture the project structure — which files map to which project and any branch organization — as a manifest in your repo. List users and their roles for re-invitation on the target. Document integration tokens and webhook URLs so you can rotate and recreate them. Do not assume any vendor-specific metadata (custom workflow tags, internal IDs) will survive the round-trip; plan to recreate workflow conventions on the target.",
+  "import_method": "On Lokalise, create one project per Crowdin project (or consolidate if your structure allows). Use the Lokalise CLI or web UI to upload your source files first, then upload the translated files per language. For TMX and glossary, use Lokalise's translation memory and glossary import features. Re-invite team members and assign roles (translator, reviewer, admin). Connect your repo via the Lokalise GitHub/GitLab integration if you use a code-based workflow, and update your CI pipeline to push/pull from Lokalise instead of Crowdin. If you attach screenshots for context, re-upload them and re-link to keys (this is usually the most manual part). Run a sanity check: pick 3-5 languages and diff the translated files between Crowdin and Lokalise to confirm no content was lost in the round trip. Keep Crowdin read-only for one to two weeks during the transition, then archive once you've shipped a release end-to-end through Lokalise.",
+  "concept_mapping": [
+    {
+      "source": "Project",
+      "target": "Project"
+    },
+    {
+      "source": "Source file",
+      "target": "Source file"
+    },
+    {
+      "source": "String / key",
+      "target": "Key"
+    },
+    {
+      "source": "Translation memory",
+      "target": "Translation memory"
+    },
+    {
+      "source": "Glossary",
+      "target": "Glossary"
+    },
+    {
+      "source": "Branch",
+      "target": "Branch",
+      "note": "Branching models differ; verify on target"
+    },
+    {
+      "source": "Workflow step",
+      "target": "Task / workflow",
+      "note": "Re-author rather than translate verbatim"
+    }
+  ],
+  "effort": "1-2 weeks",
+  "gotchas": [
+    "Format round-trips can lose plurals, placeholders, or HTML escaping. Diff a sample of translated files after import before assuming parity.",
+    "Translation memory format support varies. TMX is the most portable; expect some metadata loss across vendors.",
+    "Screenshot-to-key linkage usually has to be recreated manually, which is tedious for large key sets.",
+    "Custom workflow states and QA rules rarely map one-to-one. List the rules that actually catch bugs and re-author those on the target.",
+    "Repo integrations (GitHub/GitLab) need new tokens and webhook URLs. Plan a CI maintenance window for the cutover.",
+    "User roles do not transfer; re-invite and re-permission everyone on the target."
+  ],
+  "email": {
+    "subject": "Heads up: we're moving localization to a new platform",
+    "body": "Hi team,\n\nWe're migrating our translation workflow from Crowdin to Lokalise over the next 14 days. Source and translated files have been exported and will be re-imported into matching Lokalise projects. Translation memory and glossary are coming along.\n\nAction items: translators and reviewers will receive Lokalise invites this week — please accept and confirm you can see your assigned languages. CI pipelines and the repo connector are being switched by the platform team. Crowdin will stay read-only for two weeks, then we'll archive it.\n\nReply with questions.\n\nThanks,\nYour customer"
+  }
+}

@@ -1,0 +1,81 @@
+{
+  "source": {
+    "slug": "firebase",
+    "name": "Firebase"
+  },
+  "target": {
+    "slug": "supabase",
+    "name": "Supabase"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Moving from Firebase to Supabase swaps a NoSQL document store and Google-managed services for Postgres, plus open-source equivalents for auth, storage, realtime, and edge functions. Expect significant data-modeling work translating Firestore documents into relational schemas.",
+  "why_switch": [
+    "PostgreSQL with full SQL instead of Firestore documents",
+    "Lower lock-in — Postgres is portable",
+    "Open-source core, self-host option available",
+    "Predictable freemium pricing",
+    "Easier joins, complex queries, and analytics"
+  ],
+  "what_to_export": [
+    "Firestore collections and documents",
+    "Realtime Database trees",
+    "Authentication users and providers",
+    "Cloud Storage objects and metadata",
+    "Cloud Functions source code",
+    "Security rules (Firestore, RTDB, Storage)",
+    "Hosting configuration and redirects",
+    "Remote Config values",
+    "FCM tokens (if used)",
+    "Analytics audiences (if needed)"
+  ],
+  "export_method": "Export Firestore and Realtime Database using Google Cloud's managed export to a Cloud Storage bucket, then download for transformation. Pull users via the Firebase Admin SDK or the Firebase CLI auth:export command, which produces a JSON or CSV with hashed passwords. Copy Storage objects with gsutil or the Cloud Storage transfer service. Capture function source from your repo (you should already have it in git). Save security rules as plain text — they do not translate. Remote Config values can be downloaded from the console or via the REST API. Validate counts against the Firebase console before transforming.",
+  "import_method": "Design a Postgres schema that flattens Firestore documents into tables and foreign keys; many fields with array/object payloads can stay as jsonb when relational modeling is overkill. Use the Supabase CLI or psql with COPY to bulk-load transformed data. Import users with Supabase's auth admin endpoints, preserving the original UID where possible to avoid breaking client references; password hash compatibility is limited, so plan for forced password reset or magic-link-only login if hashes don't transfer cleanly. Move Storage objects into Supabase Storage buckets and update download URLs in your app. Rewrite Cloud Functions as Supabase Edge Functions or Postgres triggers / RLS policies. Re-implement security rules as Row Level Security policies. Run dual-write during cutover so writes stay in sync until traffic is fully shifted.",
+  "concept_mapping": [
+    {
+      "source": "Firestore collection",
+      "target": "Postgres table",
+      "note": "Often requires schema flattening"
+    },
+    {
+      "source": "Realtime Database",
+      "target": "Postgres + Supabase Realtime"
+    },
+    {
+      "source": "Firebase Auth",
+      "target": "Supabase Auth"
+    },
+    {
+      "source": "Cloud Storage",
+      "target": "Supabase Storage"
+    },
+    {
+      "source": "Cloud Functions",
+      "target": "Edge Functions / Postgres triggers"
+    },
+    {
+      "source": "Security rules",
+      "target": "Row Level Security policies"
+    },
+    {
+      "source": "Remote Config",
+      "target": "Custom table or feature flag service"
+    },
+    {
+      "source": "Hosting",
+      "target": "Separate static host (Vercel, Netlify, Cloudflare Pages)"
+    }
+  ],
+  "effort": "3-8 weeks for a real production app, longer if Firestore documents are deeply nested",
+  "gotchas": [
+    "Firestore document model rarely maps cleanly to relational tables — expect schema redesign",
+    "Password hashes may not transfer; plan for forced reset or magic links",
+    "Realtime semantics differ; client subscriptions and offline behavior need rework",
+    "Cloud Functions triggers (onWrite, etc.) become Postgres triggers or app-side logic",
+    "Security rules become RLS policies — different mental model, test thoroughly",
+    "Hosting is not part of Supabase; pick a separate static host"
+  ],
+  "email": {
+    "subject": "Offboarding plan for our Firebase project",
+    "body": "Hi Firebase team,\n\nWe are migrating off Firebase to a different backend over the next 14 days and want to plan the wind-down cleanly. Could you confirm the cleanest way to export our Firestore data, Realtime Database trees, Authentication users, and Cloud Storage objects, and let us know if any of those steps require support assistance versus standard tooling?\n\nWe would also like to schedule the project to stop incurring charges at the end of the current billing cycle. Please share how to disable Blaze billing, the date by which we need to confirm to avoid the next charge, and the data retention or deletion timeline after the project is wound down.\n\nIf there are any prepaid commitments or quotas we should be aware of, please flag them.\n\nThanks,\nYour customer"
+  }
+}

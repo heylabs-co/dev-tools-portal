@@ -1,0 +1,75 @@
+{
+  "source": {
+    "slug": "bugsnag",
+    "name": "Bugsnag"
+  },
+  "target": {
+    "slug": "airbrake",
+    "name": "Airbrake"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Swap Bugsnag's error monitoring for Airbrake's. Both are mature SaaS error trackers with per-language SDKs and similar concepts, so the migration is mostly mechanical: re-instrument apps, re-upload sourcemaps/symbols, and rebuild integrations.",
+  "why_switch": [
+    "Escape Bugsnag's commit-based event tiers locked for the billing cycle",
+    "Airbrake's freemium with metered overages can fit smaller teams better",
+    "Different roadmap, alerting, and triage UX may suit your workflow",
+    "Both expose similar SDK surface, keeping code changes contained",
+    "Diversify away from a vendor whose pricing structure penalizes spikes"
+  ],
+  "what_to_export": [
+    "Project list and per-project API keys",
+    "Historical errors with stack traces and grouping data",
+    "Uploaded sourcemaps, ProGuard mappings, dSYMs",
+    "Release/version records and deploy tracking history",
+    "Custom metadata fields and tag schemas",
+    "User identifier and email fields",
+    "Alert rules, notification channels, integrations",
+    "Team and project membership"
+  ],
+  "export_method": "Use the Bugsnag web UI or its documented Data Access API to pull errors, events, and project metadata. Download uploaded sourcemaps and symbol files so they can be re-uploaded to Airbrake for the same release versions. If a bulk export is not exposed on your plan, paginate through the API and store JSON to object storage. Document custom severity, tags, and notification rules in a spreadsheet — these are easier to recreate than to import. Keep Bugsnag read-only for a retention window so teams can reference closed issues. Note that historical events typically cannot be imported into Airbrake, so the export is archival; new events flow into Airbrake from cutover forward.",
+  "import_method": "Create an Airbrake account and a project per environment. Replace Bugsnag SDK calls with the matching Airbrake library for each language (e.g., @airbrake/browser, airbrake-ruby, pybrake) using the project ID and key from Airbrake. Re-implement breadcrumbs, user context, and custom metadata using Airbrake's notifier API. Upload sourcemaps, ProGuard mappings, and dSYMs to Airbrake via its CLI or upload endpoint, tied to the release version. Recreate alert rules and connect Slack, PagerDuty, Jira, etc., from scratch in Airbrake's integration settings. Run both Bugsnag and Airbrake SDKs in parallel in staging to compare grouping and noise before cutting over. Verify production by triggering a known error and confirming it appears with the expected stack trace and metadata in Airbrake.",
+  "concept_mapping": [
+    {
+      "source": "Bugsnag project + API key",
+      "target": "Airbrake project ID + project key"
+    },
+    {
+      "source": "Bugsnag notifier",
+      "target": "Airbrake notifier (per language)"
+    },
+    {
+      "source": "Stability score",
+      "target": "Airbrake error counts and trends",
+      "note": "Not a 1:1 metric"
+    },
+    {
+      "source": "Sourcemap upload",
+      "target": "Airbrake sourcemap upload"
+    },
+    {
+      "source": "Releases / deploy tracking",
+      "target": "Airbrake deploy tracking"
+    },
+    {
+      "source": "Custom metadata",
+      "target": "Airbrake context/params/environment fields"
+    },
+    {
+      "source": "Alerts / integrations",
+      "target": "Airbrake notification channels"
+    }
+  ],
+  "effort": "2-4 weeks",
+  "gotchas": [
+    "Stability scores are Bugsnag-specific; you cannot replicate the exact metric in Airbrake",
+    "Grouping algorithms differ — expect different issue counts and noisiness right after cutover",
+    "Sourcemap and symbol uploads must match release versions or stack traces stay raw",
+    "Airbrake's open-source main repo shows long gaps between commits; verify SDK activity for your specific language before committing",
+    "Bugsnag's commit-based pricing means the contract may continue billing until the term ends regardless of usage",
+    "Run both SDKs in parallel before cutover to avoid a quiet outage if Airbrake misroutes any errors"
+  ],
+  "email": {
+    "subject": "Notice of contract non-renewal — switching error monitoring vendor",
+    "body": "Hi team,\n\nWe are writing to give notice that we will not be renewing our Bugsnag subscription at the end of the current term. Within the next 14 days we plan to complete migration to Airbrake.\n\nThe primary driver is the commit-based event tier model, which locks our spend for the billing cycle and does not match how our error volume actually moves. We need a structure that scales down as well as up.\n\nTo wrap up cleanly we would like to:\n\n- Export all historical errors, sourcemaps, and symbol files from our projects.\n- Confirm the final invoice, contract end date, and any retention or off-boarding requirements.\n- Keep the account in read-only mode for an agreed retention window.\n\nPlease share your off-boarding checklist and the contact for the data export.\n\nThanks for the service over the past period.\n\nYour customer"
+  }
+}

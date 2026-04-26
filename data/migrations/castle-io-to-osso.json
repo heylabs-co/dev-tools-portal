@@ -1,0 +1,64 @@
+{
+  "source": {
+    "slug": "castle-io",
+    "name": "Castle"
+  },
+  "target": {
+    "slug": "osso",
+    "name": "Osso"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Castle is a fraud and risk API for account takeover, signup abuse, and risk scoring, while Osso is an SSO integration layer for SAML and OIDC. These solve different problems, so this is not a true replacement; treat the move as adopting Osso for enterprise SSO while either keeping Castle for fraud signals or replacing fraud coverage with a fraud-specific tool.",
+  "why_switch": [
+    "Your priority is shipping enterprise SAML and OIDC SSO, not fraud detection",
+    "You want to abstract per-tenant IdP configuration without custom code",
+    "You need SCIM directory sync support for enterprise customers",
+    "You prefer a tool with open-source heritage for auth glue",
+    "You realized Castle does not solve your auth integration problem"
+  ],
+  "what_to_export": [
+    "List of Castle integration points in your codebase",
+    "Risk policies and rules you currently rely on",
+    "Webhook subscribers and downstream actions tied to Castle",
+    "User and device identifiers Castle tracks for your accounts",
+    "Auth event log fields used to detect ATO",
+    "Mapping between Castle risk decisions and product behavior",
+    "Documentation that references Castle in your runbooks",
+    "List of enterprise customers needing SSO via SAML or OIDC"
+  ],
+  "export_method": "Castle and Osso solve different problems, so the export is really a scoping exercise. Inventory every place your code calls Castle APIs or processes Castle webhooks, and capture which risk decisions drive product behavior such as MFA prompts, signup blocks, or workspace flags. Pull these from your repo via a code search for Castle SDK calls and from Castle's dashboard for any policies or rules you have configured. Separately, build a list of enterprise customers who need SSO and the IdPs they use, since that is the actual input to Osso. Keep these two lists separate and resist the temptation to map fraud rules onto SSO configuration; they do not correspond. If you plan to keep Castle for fraud, this step doubles as your audit before adding Osso alongside it.",
+  "import_method": "Treat this as adding Osso for SSO rather than importing Castle data. In Osso, configure your application as an SSO consumer and add tenants for the enterprise customers from your scoping list, registering each one's SAML or OIDC settings. Wire your auth flow to delegate to Osso for those tenants while keeping your existing flow for self-serve users. If SCIM is in scope, configure directory sync per tenant. Decide explicitly whether Castle stays in place to provide fraud signals on the same auth events, since Osso does not replace that capability. Test with a non-production tenant first, then enable customer by customer. Update runbooks so on-call engineers know that fraud questions still go to Castle and SSO questions go to Osso.",
+  "concept_mapping": [
+    {
+      "source": "Risk score on login",
+      "target": "No equivalent in Osso",
+      "note": "Different product category; keep Castle or pick a fraud tool"
+    },
+    {
+      "source": "Device fingerprint event",
+      "target": "No equivalent in Osso"
+    },
+    {
+      "source": "Webhook for risk decision",
+      "target": "No equivalent in Osso"
+    },
+    {
+      "source": "User auth event",
+      "target": "SSO assertion via Osso",
+      "note": "Only for SSO-backed tenants"
+    }
+  ],
+  "effort": "1-3 weeks for a clean Osso rollout; fraud scope is separate",
+  "gotchas": [
+    "Castle and Osso solve different problems, so treating this as a swap leaves fraud coverage gaps",
+    "Turning off Castle without a replacement weakens ATO and signup abuse defenses",
+    "SSO rollout per enterprise tenant is gated on the customer's IdP team, which can be slow",
+    "Mapping risk policies into auth flows is a separate exercise from configuring Osso tenants",
+    "Runbooks and on-call docs must clearly separate fraud and SSO ownership after the move",
+    "If a fraud tool is still required, scope and budget that work explicitly rather than assuming Osso covers it"
+  ],
+  "email": {
+    "subject": "Adopting Osso for enterprise SSO; revisiting fraud coverage separately",
+    "body": "Hi team,\n\nWe are bringing in Osso to handle SAML and OIDC SSO for enterprise customers. Over the next 14 days we will scope tenants, configure Osso, and pilot with one customer. Castle currently handles fraud and risk, which is a different problem; we will decide separately whether to keep it or replace it. Please share any enterprise SSO requests in flight so we sequence them. We will share rollout status weekly.\n\nThanks,\nYour customer"
+  }
+}

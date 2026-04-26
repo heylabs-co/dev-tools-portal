@@ -1,0 +1,63 @@
+{
+  "source": {
+    "slug": "keep-alerting",
+    "name": "keep-alerting"
+  },
+  "target": {
+    "slug": "sensu-go",
+    "name": "sensu-go"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Keep is an open-source AIOps alert management layer focused on aggregating, deduplicating, and correlating alerts from many observability tools. Sensu Go is an event-driven monitoring and observability pipeline aimed at hybrid and multi-cloud infrastructure. They overlap on \"events flowing through a pipeline\" but Sensu Go is a monitoring system that emits events rather than an aggregator of third-party alerts; expect to redesign rather than copy.",
+  "why_switch": [
+    "You need agent-based monitoring of hybrid and on-prem infrastructure, not just alert aggregation.",
+    "You want an event-driven pipeline-as-code monitoring tool with a declarative config.",
+    "You prefer a single tool that produces and routes events instead of layering AIOps on top of others.",
+    "You value commercial backing for enterprise support alongside an OSS core.",
+    "Keep's AIOps correlation is not paying off for your team and you want simpler infra monitoring."
+  ],
+  "what_to_export": [
+    "List of alert sources Keep currently ingests from.",
+    "Deduplication and correlation rules configured in Keep.",
+    "Alert routing and suppression policies.",
+    "Notification destinations (Slack, PagerDuty, email, etc.).",
+    "Inventory of hosts and services that need direct monitoring.",
+    "On-call and escalation logic embedded in Keep workflows.",
+    "Existing checks or probes that would map to Sensu Go checks.",
+    "Credentials and tokens to be revoked after cutover."
+  ],
+  "export_method": "There is no one-shot export from Keep that matches Sensu Go's model, so treat this as an inventory and translation exercise. Document every integration Keep ingests from and every notification destination it routes to. Export Keep's deduplication, correlation, routing, and suppression rules as policy descriptions you can reimplement, taking them from your version control if rules are stored there or from the Keep UI/API otherwise. Separately, list the hosts, containers, and services that will need agents and checks under Sensu Go; this list usually comes from your CMDB, infra inventory, or cloud provider tags rather than from Keep itself. Capture on-call escalation logic so it can be reproduced in Sensu Go's handlers or in a downstream tool. Note credentials slated for retirement after cutover.",
+  "import_method": "Sensu Go is configured declaratively as a pipeline of agents, checks, events, filters, and handlers. Stand up the Sensu Go backend (self-hosted or commercial) and roll out agents to the hosts and containers you want monitored. Translate your inventory into Sensu Go entities and define checks that produce events; this is fundamentally different from Keep, which consumes events from elsewhere. Wire handlers for the notification destinations you exported (Slack, PagerDuty, email) and reimplement filter logic to approximate Keep's deduplication and routing. Pipeline-as-code is a strength here, so manage configuration in Git from day one. Validate by running both stacks in parallel and comparing alert volumes and signal quality before retiring Keep.",
+  "concept_mapping": [
+    {
+      "source": "Alert ingestion from external tools",
+      "target": "Sensu Go agents and checks producing events"
+    },
+    {
+      "source": "Deduplication / correlation rules",
+      "target": "Sensu Go filters and handler logic",
+      "note": "Approximation only; Sensu Go's model is event-driven, not AIOps-correlation-driven."
+    },
+    {
+      "source": "Notification destinations",
+      "target": "Sensu Go handlers"
+    },
+    {
+      "source": "Routing and suppression policies",
+      "target": "Filters in the Sensu Go pipeline"
+    }
+  ],
+  "effort": "4-10 weeks",
+  "gotchas": [
+    "Keep aggregates alerts from existing tools; Sensu Go produces them itself, so you may end up with parallel data sources.",
+    "Sensu Go's correlation model is simpler than AIOps; expect to lose some Keep-specific dedupe behavior.",
+    "Operating Sensu Go means operating agents, checks, and a backend; this is more infra than running Keep.",
+    "Configuration complexity is higher than Prometheus-style scraping; expect a learning curve.",
+    "Release cadence is slower than fast-moving OSS peers; plan upgrades carefully.",
+    "Run both stacks in parallel for at least one incident cycle to avoid missed alerts."
+  ],
+  "email": {
+    "subject": "Monitoring change: moving to Sensu Go",
+    "body": "Hi team,\n\nWe are moving our monitoring pipeline from Keep to Sensu Go over the next two weeks. The two systems work differently, so during the transition you may see duplicate alerts or short gaps as checks are migrated and tuned. Please report missed or noisy alerts quickly so we can adjust filters and handlers. After cutover we expect a simpler pipeline aligned with our hybrid infrastructure.\n\nThanks for your patience.\n\nYour customer"
+  }
+}

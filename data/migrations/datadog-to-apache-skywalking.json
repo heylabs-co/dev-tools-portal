@@ -1,0 +1,67 @@
+{
+  "source": {
+    "slug": "datadog",
+    "name": "Datadog"
+  },
+  "target": {
+    "slug": "apache-skywalking",
+    "name": "Apache SkyWalking"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Datadog is a hosted, usage-priced observability platform with high lock-in, while Apache SkyWalking is an Apache-licensed open-source APM you self-host. The move trades managed convenience and per-host billing for full control, OSS licensing, and operational ownership.",
+  "why_switch": [
+    "Avoid Datadog peak-host high-water-mark billing",
+    "Apache 2.0 license, no vendor lock-in",
+    "Self-hosted control over data and retention",
+    "Auto-instrumentation for many runtimes",
+    "Strong service topology and tracing"
+  ],
+  "what_to_export": [
+    "Inventory of hosts, services, and environments",
+    "Dashboards and key visualizations",
+    "Monitor and alert definitions",
+    "SLO and SLI configurations",
+    "Notification channels and on-call routes",
+    "Tag taxonomy used across resources",
+    "Custom metrics and their sources",
+    "Synthetic test definitions",
+    "User and team RBAC mapping"
+  ],
+  "export_method": "Use Datadog's APIs and configuration export options to pull dashboards, monitors, and SLOs as JSON. Document your tag taxonomy, environment naming, and team structure so you can recreate them in SkyWalking and your own alerting stack. Treat raw historical metrics and traces as largely non-portable due to Datadog's proprietary storage format, so plan to keep Datadog read-only for historical lookups during the transition rather than trying to backfill SkyWalking. Save a copy of integration configurations and any custom agent settings before disabling the Datadog Agent.",
+  "import_method": "Stand up an Apache SkyWalking OAP backend and UI, plus storage such as Elasticsearch or a supported alternative. Roll out SkyWalking agents or OpenTelemetry collectors to your services, starting with a small set to validate topology and tracing. Recreate the most important dashboards and alerts, prioritizing the ones that drive on-call response. Wire alerts into your existing notification channels via SkyWalking's alerting hooks or an external alert manager. Run SkyWalking and Datadog in parallel for a sprint or two, then decommission Datadog agents once parity and on-call confidence are achieved.",
+  "concept_mapping": [
+    {
+      "source": "Datadog Agent",
+      "target": "SkyWalking agent or OTel collector"
+    },
+    {
+      "source": "APM service map",
+      "target": "SkyWalking service topology"
+    },
+    {
+      "source": "Datadog dashboards",
+      "target": "SkyWalking UI dashboards"
+    },
+    {
+      "source": "Datadog monitors",
+      "target": "SkyWalking alert rules"
+    },
+    {
+      "source": "Tags",
+      "target": "SkyWalking labels and service attributes"
+    }
+  ],
+  "effort": "4-8 weeks",
+  "gotchas": [
+    "Historical Datadog data is effectively non-portable, plan an overlap window for lookbacks",
+    "You take on operating the OAP backend and storage, including upgrades and capacity",
+    "Dashboards and alerts must be rebuilt, not migrated 1:1",
+    "OpenTelemetry data sent to Datadog is converted internally, do not assume seamless reuse",
+    "Per-host Datadog pricing locks at peak count, cancel only after fully cut over",
+    "Team workflows around Datadog notebooks and integrations need replacements"
+  ],
+  "email": {
+    "subject": "Moving APM from Datadog to Apache SkyWalking over the next 14 days",
+    "body": "Hi team,\n\nWe are starting a migration from Datadog to self-hosted Apache SkyWalking for APM and tracing. The drivers are cost predictability, the Apache 2.0 license, and reducing vendor lock-in. We will run the two side by side, not flip overnight.\n\nPlan:\n- Days 1-3: export dashboards, monitors, and SLOs from Datadog and document our tag taxonomy.\n- Days 4-7: stand up SkyWalking OAP plus storage and onboard one pilot service with an agent or OTel collector.\n- Days 8-11: roll agents to a broader set of services, recreate top dashboards, and wire critical alerts into our existing notification channels.\n- Days 12-14: review parity, freeze new Datadog work, and plan the agent rollout to remaining services.\n\nDatadog will remain read-only for historical data while we complete the cutover in following sprints.\n\nThanks,\nYour customer"
+  }
+}

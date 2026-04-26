@@ -1,0 +1,75 @@
+{
+  "source": {
+    "slug": "akamai",
+    "name": "Akamai"
+  },
+  "target": {
+    "slug": "pkl",
+    "name": "Pkl"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Akamai is a CDN/edge platform; Pkl is Apple's open-source configuration language. You are not replacing the CDN — you are replacing how its configuration is authored and managed by adopting Pkl as the source of truth.",
+  "why_switch": [
+    "Type-checked, validated configuration instead of sprawling JSON or UI clicks.",
+    "Reusable modules and templates across environments.",
+    "Configuration lives in version control with code review.",
+    "Reduces drift between staging, production, and disaster-recovery setups."
+  ],
+  "what_to_export": [
+    "All Akamai property configurations (rules, behaviors, criteria)",
+    "Hostname-to-origin mappings",
+    "EdgeWorkers and Cloudlets configurations",
+    "WAF and rate-limit policies",
+    "DNS zones and records",
+    "TLS certificate metadata",
+    "Redirect maps and rewrite rules",
+    "Environment matrix (staging vs production differences)"
+  ],
+  "export_method": "Pull current Akamai configurations via the Property Manager API or Akamai CLI as JSON. Export DNS zones from Edge DNS, WAF policies from App & API Protector, and EdgeWorkers code from the EdgeWorkers API. Capture environment-specific values (origin hostnames, TTLs, allowlists) into a structured spreadsheet or YAML so they can be modeled in Pkl. Use the export as the input for your Pkl schema design.",
+  "import_method": "Pkl does not deploy to Akamai by itself — it is a language for producing configuration. Install Pkl locally, then design Pkl schemas that mirror Akamai's property and behavior structure. Define a base module with shared defaults and per-environment modules that override values. Render Pkl into the JSON/YAML formats that Akamai's API expects, then push the rendered output via the Property Manager API or Terraform Akamai provider. Wire this into CI so every change is type-checked, peer-reviewed, and applied through an automated pipeline. Store secrets outside Pkl files, injected at render time. Validate by diffing rendered output against the existing live configuration before cutting over to Pkl-driven changes.",
+  "concept_mapping": [
+    {
+      "source": "Property JSON in Property Manager",
+      "target": "Pkl module rendering JSON",
+      "note": "Same structure, different authoring"
+    },
+    {
+      "source": "Per-env property versions",
+      "target": "Pkl per-env modules with shared base",
+      "note": "Use amends to override"
+    },
+    {
+      "source": "Behaviors / criteria",
+      "target": "Pkl typed records",
+      "note": "Adds compile-time validation"
+    },
+    {
+      "source": "EdgeWorkers config",
+      "target": "Pkl-generated config + separate code repo",
+      "note": "Code stays in its own repo"
+    },
+    {
+      "source": "WAF rule set",
+      "target": "Pkl module rendering WAF JSON",
+      "note": "Same idea as properties"
+    },
+    {
+      "source": "Manual UI edits",
+      "target": "Pull request + CI render + API push",
+      "note": "GitOps workflow"
+    }
+  ],
+  "effort": "1-3 weeks",
+  "gotchas": [
+    "Pkl does not call Akamai APIs; you still need a deploy step (Terraform, custom script, or CLI).",
+    "Schema design upfront pays off — rushing leads to brittle modules.",
+    "Drift between Pkl source and live Akamai config must be policed in CI.",
+    "Secrets must never live inside Pkl files committed to git.",
+    "Team needs a brief learning curve on Pkl syntax and tooling.",
+    "Plan a freeze window when cutting over from manual edits to Pkl-driven workflow."
+  ],
+  "email": {
+    "subject": "Heads up: configuration moving to Pkl over the next 14 days",
+    "body": "Hi team,\n\nOver the next 14 days we are moving our edge and CDN configuration into Pkl, an open-source configuration language. The underlying platform does not change — only how we author and review configuration.\n\nWhat to expect:\n- All config changes will go through pull requests and CI.\n- Rendered output is diffed before any push to the live platform.\n- A short freeze on manual UI edits during cutover.\n- Same endpoints, same behavior; no user-visible changes are planned.\n\nIf you notice anything unexpected during the cutover window, reply with the URL, timestamp, and details and we will look into it.\n\nThanks,\n\nYour customer"
+  }
+}

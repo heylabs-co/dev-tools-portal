@@ -1,0 +1,78 @@
+{
+  "source": {
+    "slug": "fastly",
+    "name": "Fastly"
+  },
+  "target": {
+    "slug": "bunny-net",
+    "name": "Bunny.net"
+  },
+  "generated_at": "2026-04-25T12:00:00Z",
+  "tldr": "Fastly → Bunny.net is the 'cut the bill, keep the basics' CDN move. You lose deep VCL programmability and Compute@Edge, but gain dramatically simpler usage-based pricing and a clean REST API.",
+  "why_switch": [
+    "Usage-based pricing without enterprise commits",
+    "Much lower per-GB delivery cost",
+    "Simple REST API and clean dashboard",
+    "Edge Rules cover most routing/caching needs",
+    "Lower lock-in: standard CDN configuration model"
+  ],
+  "what_to_export": [
+    "Service / property configurations",
+    "VCL snippets and custom logic",
+    "Cache rules and TTL policies",
+    "Origin server definitions",
+    "TLS/SSL certificates",
+    "Compute@Edge functions",
+    "WAF / security rule sets",
+    "Logging endpoint configs",
+    "Edge ACLs and dictionaries",
+    "API tokens and user accounts"
+  ],
+  "export_method": "Use Fastly's public API and the official Terraform provider to capture service configs, VCL, ACLs, dictionaries, logging endpoints, and TLS metadata. Export VCL files per service so you have a record of custom routing logic, even though it won't run on Bunny directly. For Compute@Edge functions, export source code; the WASM binaries themselves don't run on Bunny.net, so plan for a rewrite if the function is critical. Pull WAF rule sets via the security API. Save log endpoint configs separately. Keep all exports in object storage as a durable archive.",
+  "import_method": "In Bunny.net, create a Pull Zone for each origin and configure Edge Rules to express the caching, header, and routing logic that previously lived in VCL. Edge Rules are declarative and not Turing-complete, so any non-trivial VCL logic must be either simplified or moved into your origin application. For dynamic edge logic, evaluate Bunny Edge Scripting; for compute-heavy work, expect to relocate it to your origin. Provision TLS via Bunny's free SSL or upload your own certs. Configure log streaming to your existing pipeline (S3, syslog, etc.). Validate behavior with a staging hostname, then cut DNS over gradually using weighted records during a 1-2 week dual-run.",
+  "concept_mapping": [
+    {
+      "source": "Fastly Service",
+      "target": "Pull Zone",
+      "note": "One per origin"
+    },
+    {
+      "source": "VCL",
+      "target": "Edge Rules",
+      "note": "Declarative; complex logic moves to origin"
+    },
+    {
+      "source": "Compute@Edge (WASM)",
+      "target": "Edge Scripting / origin",
+      "note": "WASM functions don't port; rewrite needed"
+    },
+    {
+      "source": "Edge ACLs / Dictionaries",
+      "target": "Edge Rules conditions",
+      "note": "Less flexible; review fit"
+    },
+    {
+      "source": "Real-time logs",
+      "target": "Log Forwarding",
+      "note": "Reconfigure destinations"
+    },
+    {
+      "source": "TLS certificates",
+      "target": "Bunny SSL or custom cert upload",
+      "note": "Re-issue if private keys unavailable"
+    }
+  ],
+  "effort": "2-4 weeks",
+  "gotchas": [
+    "VCL logic does not translate to Edge Rules; complex routing must be simplified or pushed to origin",
+    "Compute@Edge functions require a full rewrite — plan capacity for a code port",
+    "Managed Fastly TLS keys may not be exportable; expect re-issuance and DNS validation",
+    "Cache-hit-ratio takes time to warm up after DNS cutover; pre-warm critical paths",
+    "Edge Rules condition language has different semantics than VCL — test edge cases carefully",
+    "Run both CDNs in parallel via weighted DNS so you can fail back during validation"
+  ],
+  "email": {
+    "subject": "Configuration export and account sunset — 14-day timeline",
+    "body": "Hi Fastly team,\n\nWe are migrating to Bunny.net and need a full export of our account configuration in machine-readable form (JSON via API or Terraform). Required: service configs and VCL, cache rules, origin definitions, TLS certificate metadata, Compute@Edge source code, WAF rules, real-time log streaming configs, ACLs, dictionaries, and user/API tokens.\n\nWe are targeting a 14-day export and validation window. Please confirm:\n\n1. Which exports are self-serve via API/Terraform vs. require support.\n2. Procedure for retiring services cleanly during dual-run on weighted DNS.\n3. Billing implications during the wind-down and the exact account sunset date once we cancel.\n\nThanks,\nYour customer"
+  }
+}

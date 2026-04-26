@@ -1,0 +1,67 @@
+{
+  "source": {
+    "slug": "superwall",
+    "name": "Superwall"
+  },
+  "target": {
+    "slug": "dable",
+    "name": "Dable"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Superwall is a remote-config paywall SDK for iOS and Android subscription apps, while Dable is a native ad and content recommendation SDK focused on Korean, Japanese, and SEA publishers. Replacing one with the other is a shift from subscription revenue to native-ad monetization, often paired with a content-driven product.",
+  "why_switch": [
+    "Pivot from subscriptions to native-ad revenue",
+    "Strong APAC reach in Korea, Japan, and SEA",
+    "Native, in-feed ads feel less intrusive than paywalls",
+    "Add content recommendation widgets to editorial",
+    "Reduce dependency on subscription billing flows"
+  ],
+  "what_to_export": [
+    "Paywall placements and their app contexts",
+    "Subscription products and price tiers",
+    "Paywall A/B tests and remote configurations",
+    "User segments and cohort definitions",
+    "Conversion and churn analytics",
+    "Webhook endpoints and server-side configs",
+    "Paywall creative assets and copy",
+    "Subscriber list and renewal status"
+  ],
+  "export_method": "Use the Superwall dashboard to export available subscriber and revenue data, typically as CSV. Document paywall configurations, A/B tests, and audience rules manually since remote-config paywall setups generally do not export as a single archive. Capture any server webhook URLs and integration code. Because Dable is a native-ad and content recommendation platform rather than a subscription system, this export is reference documentation rather than an import payload. Keep the Superwall account active through the transition so current subscribers continue to bill normally and historical data remains available for support and finance. Coordinate with finance on a final snapshot of MRR and active subscriber counts before changing the monetization model.",
+  "import_method": "Dable onboarding is sales-led with a regional focus on Korea, Japan, and Southeast Asia. Contact Dable to open a publisher account, then integrate their native ad / recommendation SDK or widget into your app or web property per the official documentation. Decide where recommendation units fit naturally in your content layout — typically below articles, in feeds, or as related-content blocks — and design them so they read as native rather than disruptive. Validate ad delivery and revenue in a staging build before rolling out. If you keep subscriptions for some users, leave Superwall in place for billing while Dable handles ad monetization for free-tier or content readers. Coordinate with editorial on UX since native units sit inside the content.",
+  "concept_mapping": [
+    {
+      "source": "Paywall placement",
+      "target": "Native ad / recommendation widget",
+      "note": "Different monetization paradigm"
+    },
+    {
+      "source": "Subscription product",
+      "target": "Native ad unit / content slot"
+    },
+    {
+      "source": "Paywall A/B test",
+      "target": "Widget placement / layout experiment (where supported)"
+    },
+    {
+      "source": "Superwall analytics",
+      "target": "Dable publisher reporting"
+    },
+    {
+      "source": "User cohort",
+      "target": "Audience segment (where supported)"
+    }
+  ],
+  "effort": "3-6 weeks",
+  "gotchas": [
+    "Dable is APAC-specialist; revenue outside KR/JP/SEA is typically thin",
+    "English-language support may be limited for non-APAC teams",
+    "Native-only inventory: no rewarded video or banner formats",
+    "Privacy and consent (GDPR, CCPA, regional rules) must be wired up",
+    "Pricing and revshare are custom and only disclosed via sales",
+    "Existing Superwall subscribers must continue receiving entitlements"
+  ],
+  "email": {
+    "subject": "Moving monetization from Superwall to Dable over the next 14 days",
+    "body": "Hi team,\n\nWe are shifting our monetization approach from subscription paywalls on Superwall to native-ad and content recommendation monetization with Dable, focused on our Korean, Japanese, and SEA traffic. Over the next 14 days we will set up the Dable publisher account, integrate their SDK/widget, and validate revenue, layout, and UX in staging before going live.\n\nExisting Superwall subscribers will continue to be served during the transition. We are not migrating subscriber data into Dable — the two platforms address different revenue models. Subscription history and finance data will remain accessible through Superwall.\n\nPlease flag editorial, compliance, or regional questions you want resolved before we turn on live recommendations.\n\nThanks,\nYour customer"
+  }
+}

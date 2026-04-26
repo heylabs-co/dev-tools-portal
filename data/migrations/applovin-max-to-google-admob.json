@@ -1,0 +1,71 @@
+{
+  "source": {
+    "slug": "applovin-max",
+    "name": "applovin-max"
+  },
+  "target": {
+    "slug": "google-admob",
+    "name": "google-admob"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Replace AppLovin MAX with Google AdMob as your mobile mediation layer, swapping SDKs, ad units and waterfall configuration in each app. The migration is mostly mobile-engineering work and store-release coordination, not data migration.",
+  "why_switch": [
+    "Consolidate ads inside the Google ecosystem alongside Firebase / Play",
+    "Use AdMob's Google demand and bidding partners",
+    "Different revenue share or payment terms vs AppLovin",
+    "Reduce vendor count by reusing existing Google Cloud / Play account",
+    "Compliance or procurement preference for Google as a provider"
+  ],
+  "what_to_export": [
+    "List of apps, platforms and ad units in MAX",
+    "Mediation waterfall priorities and floors",
+    "Per-network credentials and ad unit IDs",
+    "Historical revenue, impression and eCPM reports",
+    "Consent and privacy settings (GDPR, CCPA, ATT)",
+    "Test device IDs",
+    "App-ads.txt entries",
+    "Code references to the MAX SDK and ad unit IDs"
+  ],
+  "export_method": "Inside the AppLovin MAX dashboard, list every app, ad unit and ad format, and capture the current waterfall, including manual CPMs or floors. Export historical performance reports as CSV from MAX so you can baseline post-migration revenue. Document each connected network, its account ID and how it is wired into MAX. Note your current consent setup (IAB TCF, GPP, ATT prompt copy) and your existing app-ads.txt entries. In code, search for AppLovin MAX SDK imports, init calls and ad unit constants in iOS, Android, Unity and React Native sources. Keep this inventory as the authoritative spec until AdMob is fully live.",
+  "import_method": "Create or reuse a Google AdMob account, register your iOS and Android apps, link them to their respective Google Play / App Store identifiers, and create AdMob ad units matching the MAX inventory (banner / interstitial / rewarded / native / app-open). Add the Google Mobile Ads SDK to each platform following the official AdMob integration guide and remove the AppLovin MAX SDK once parity is reached. Configure mediation in the AdMob console for the demand sources you want to keep, providing their credentials. Update app-ads.txt with Google's required lines. Wire consent (UMP SDK or your existing CMP) so non-personalised ad signals reach AdMob correctly. Test with AdMob's test ad units and test devices, ship behind a remote config flag, then ramp traffic and compare against your MAX baseline.",
+  "concept_mapping": [
+    {
+      "source": "MAX app",
+      "target": "AdMob app"
+    },
+    {
+      "source": "MAX ad unit",
+      "target": "AdMob ad unit"
+    },
+    {
+      "source": "MAX mediation waterfall",
+      "target": "AdMob mediation groups"
+    },
+    {
+      "source": "Connected networks in MAX",
+      "target": "Mediation networks in AdMob",
+      "note": "available partners differ"
+    },
+    {
+      "source": "MAX reporting",
+      "target": "AdMob reporting"
+    },
+    {
+      "source": "AppLovin entries in app-ads.txt",
+      "target": "Google AdMob entries in app-ads.txt"
+    }
+  ],
+  "effort": "3-8 weeks per platform end-to-end, including review and ramp",
+  "gotchas": [
+    "An app store release per platform is required; factor in iOS and Android review timelines.",
+    "AppLovin is itself a partner network in AdMob; misconfiguring it can double-count or starve fill.",
+    "Consent signalling must use Google's UMP or a compatible CMP, otherwise EEA fill drops.",
+    "Ad policy enforcement is stricter on AdMob; review creatives and placements against Google's policies.",
+    "App-ads.txt must include Google's lines exactly; missing entries silently cut programmatic demand.",
+    "Old MAX code left in the binary can cause duplicate impression accounting and crashes."
+  ],
+  "email": {
+    "subject": "We're moving our app ads to Google AdMob",
+    "body": "Hi,\n\nIn the next 14 days we are switching our mobile ad provider from AppLovin MAX to Google AdMob. The change happens through normal app updates from the App Store and Google Play.\n\nYou might notice small differences in the ad experience while the new system optimises. Please install the latest version of the app when it becomes available.\n\nIf this raises any account or compliance questions, just reply to this email.\n\nThanks,\nYour customer"
+  }
+}

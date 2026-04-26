@@ -1,0 +1,69 @@
+{
+  "source": {
+    "slug": "airbrake",
+    "name": "Airbrake"
+  },
+  "target": {
+    "slug": "crashpad",
+    "name": "Crashpad"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Airbrake is a hosted error-monitoring product; Crashpad is an OSS native crash-capture library, not a backend or UI. Migrating means giving up the hosted product and building or adopting a backend to receive minidumps yourself.",
+  "why_switch": [
+    "Crashpad is open source under Apache-2.0 with no per-event billing",
+    "Battle-tested in Chrome across macOS, Windows, Linux",
+    "Eliminates third-party data egress for crash reports",
+    "Fits native C/C++ apps where SDK-style libraries are awkward",
+    "Pairs naturally with self-hosted backends or Sentry for the UI layer"
+  ],
+  "what_to_export": [
+    "List of Airbrake projects and their API keys/project IDs",
+    "Notification rules and integrations (Slack, email, PagerDuty)",
+    "Deploy markers and environment definitions",
+    "Open errors/incidents you want to retain for reference",
+    "Custom backtrace grouping rules and ignore filters",
+    "User and team membership with role assignments",
+    "Symbol/sourcemap upload pipelines and artifacts",
+    "Historical error data export if retention matters for compliance"
+  ],
+  "export_method": "Airbrake supports project and error data via its dashboard and API. From each project, export the open and recently-resolved errors to JSON or CSV using whichever export options the UI exposes; treat this as a historical archive, not data you will import into Crashpad. Capture project metadata: API keys, environments, deploy tracking configuration, and notification rules. Pull integrations (Slack channels, email recipients, PagerDuty services) into a document so you can recreate routing on the new backend. For symbol/sourcemap pipelines, locate where in CI they are uploaded to Airbrake and document the artifacts and credentials, since you will need an equivalent upload step for whatever backend you pair with Crashpad. Export user and team membership from Airbrake's admin UI or, ideally, from your IdP if SSO is in use. If retention is a compliance requirement, download the full historical error log within Airbrake's retention window before the subscription ends; vendor data retention after cancellation is rarely guaranteed. Finally, inventory every place in your codebase where the Airbrake SDK (`@airbrake/browser`, language-specific gems/packages) is initialized; this is the list of integration points you will rewrite. Do this from your repo, not from the Airbrake dashboard, to be authoritative.",
+  "import_method": "Crashpad is a library, not a service, so 'importing' really means designing the new pipeline. Decide where minidumps will be sent: a custom backend you build (Crashpad uploads to an HTTP endpoint), Sentry, Backtrace, or another product that accepts Crashpad minidumps. For each native target (macOS, Windows, Linux, possibly mobile), follow the platform integration steps from Crashpad's official documentation: build or vendor the Crashpad library, install the out-of-process handler binary alongside your app, and configure the upload URL and database directory at startup. Replace Airbrake SDK initialization with Crashpad initialization in your application's entry point. Rebuild the symbol-upload step in CI to push symbols to whatever backend you chose, since Crashpad on its own does not symbolicate. Recreate notification and grouping rules in the new backend. For non-C/C++ portions of the stack (JavaScript front end, mobile JS, server-side Ruby/Python/Node), Crashpad does not apply; pick separate error-tracking SDKs for those. Validate by intentionally crashing a build in a staging environment and confirming the minidump arrives, symbolicates, and routes to the right channel before rolling out to production. Run Airbrake and Crashpad in parallel during the transition.",
+  "concept_mapping": [
+    {
+      "source": "Airbrake hosted dashboard",
+      "target": "(no direct equivalent in Crashpad)",
+      "note": "You must choose or build a backend to view crashes."
+    },
+    {
+      "source": "Airbrake SDK init",
+      "target": "Crashpad handler initialization",
+      "note": "Only applies to native (C/C++) parts of your stack."
+    },
+    {
+      "source": "Airbrake backtrace grouping",
+      "target": "Backend-side dedup/grouping",
+      "note": "Crashpad uploads raw minidumps; grouping happens in whatever receives them."
+    },
+    {
+      "source": "Airbrake symbolication",
+      "target": "Backend symbolication + your CI symbol upload step"
+    },
+    {
+      "source": "Airbrake notifications",
+      "target": "Backend notification rules"
+    }
+  ],
+  "effort": "2-6 weeks (depends on choice of backend and platform spread)",
+  "gotchas": [
+    "Crashpad covers native crashes only. JS, server-side, and mobile non-C++ code still needs a separate error tracker.",
+    "There is no UI without a backend. Plan for either self-hosting a minidump receiver or pairing Crashpad with Sentry/Backtrace before cutover.",
+    "Symbol upload pipelines must be rebuilt; without symbols, minidumps are nearly useless.",
+    "Out-of-process handler deployment adds an extra binary to ship and version with your app, which can complicate installers and updates.",
+    "Airbrake historical data is not preserved unless you export it; export within the retention window before cancelling.",
+    "Operational responsibility shifts to your team: uptime, storage, retention and access control of crash data are now yours unless a paired backend covers them."
+  ],
+  "email": {
+    "subject": "Replacing Airbrake with a Crashpad-based crash reporting setup",
+    "body": "Hi team,\n\nWe're moving native crash reporting from Airbrake to a Crashpad-based pipeline over the next few weeks. For non-native code paths (web, server, JS-based mobile) we'll keep a separate error tracker.\n\nDuring the transition we'll run both side by side, validate that crashes symbolicate correctly on the new backend, then disable Airbrake at the end of a 14-day parallel-run window. If you rely on a specific Airbrake dashboard, alert or report, reply here so we can make sure it has an equivalent before cutover.\n\nThanks,\nYour customer"
+  }
+}

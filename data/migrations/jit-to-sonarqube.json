@@ -1,0 +1,69 @@
+{
+  "source": {
+    "slug": "jit",
+    "name": "Jit"
+  },
+  "target": {
+    "slug": "sonarqube",
+    "name": "SonarQube"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Move from Jit's orchestrated security plan to SonarQube's SAST and code quality platform. Expect to replace Jit's bundled SCA/SAST/secrets/IaC orchestration with SonarQube scanners plus complementary OSS tools where coverage gaps emerge.",
+  "why_switch": [
+    "SonarQube offers an OSS Community edition that lowers vendor lock-in",
+    "Mature 30+ language coverage with deep SAST and code-smell rules",
+    "Public freemium pricing with predictable monthly tiers",
+    "Self-hostable for teams with data-residency requirements",
+    "Larger ecosystem of CI integrations and IDE plugins"
+  ],
+  "what_to_export": [
+    "List of repositories under scan and their default branches",
+    "Active rule sets and severity overrides used in Jit",
+    "Ignore/allow lists and false-positive suppressions",
+    "Open findings with status (open, fixed, accepted)",
+    "PR/CI integration configuration and required-check policies",
+    "User and team membership with role mappings",
+    "Notification and alerting routes (Slack, email, webhook)",
+    "Compliance plan templates or checklists if used"
+  ],
+  "export_method": "Jit does not publish a single documented bulk-export endpoint that we can reference here. Plan to extract data through whatever export options exist in the Jit UI or API at the time of migration: download or screenshot the active plan/policy configuration, export findings to CSV or JSON if the UI supports it, and capture screenshots of rule selections, ignore lists and integration settings as a fallback. For repository inventory, pull the list directly from your Git provider (GitHub, GitLab, Bitbucket) rather than from Jit, since that list is the source of truth. For findings you intend to migrate, prefer exporting them as SARIF if Jit offers it, since SonarQube and most other SAST tools understand SARIF as an exchange format. If only CSV/JSON is available, keep the raw files; you will use them to seed suppression rules in SonarQube manually rather than importing them directly. Capture user and team membership from your SSO/IdP rather than Jit when possible. Before disabling Jit, freeze its config, archive a final export bundle, and store it alongside your infrastructure-as-code so you have an auditable snapshot of the security baseline you are leaving behind.",
+  "import_method": "On the SonarQube side, decide first between SonarQube Community/Server (self-hosted) and SonarQube Cloud. Provision the instance, set up authentication (typically via your existing SSO), and create projects matching your repositories. Wire up scanning by adding the appropriate SonarScanner step to each repository's CI pipeline (Maven, Gradle, .NET, CLI, or GitHub Action depending on stack), pointing at your SonarQube server with a project key and token. Configure quality gates and quality profiles to approximate the rule coverage you had in Jit; SonarQube ships default profiles per language that you can clone and tighten. Connect SonarQube to your Git provider so it can decorate pull requests with findings and enforce gates. Re-create suppressions by marking issues as 'Won't Fix' or 'False Positive' in SonarQube, using your exported Jit ignore list as a checklist. For coverage areas SonarQube does not directly replace (SCA dependency scanning, secrets detection, IaC), plan to add complementary tools such as Dependabot/Renovate, gitleaks/trufflehog, and Checkov/tfsec, each invoked from CI alongside SonarScanner. Validate by running both Jit and SonarQube in parallel for a sprint before cutting over.",
+  "concept_mapping": [
+    {
+      "source": "Jit security plan",
+      "target": "SonarQube quality profile + quality gate",
+      "note": "SonarQube splits 'what to check' (profile) from 'pass/fail criteria' (gate); plan equivalents must be assembled from both."
+    },
+    {
+      "source": "Jit orchestrated SAST",
+      "target": "SonarQube native SAST rules",
+      "note": "Coverage overlaps but is not identical; review per-language rule packs."
+    },
+    {
+      "source": "Jit SCA/secrets/IaC scanners",
+      "target": "External OSS tools wired into CI",
+      "note": "SonarQube focuses on code quality and SAST; SCA, secrets and IaC are typically handled by separate tools."
+    },
+    {
+      "source": "Jit PR checks",
+      "target": "SonarQube PR decoration + branch analysis"
+    },
+    {
+      "source": "Jit ignore/suppression list",
+      "target": "SonarQube issue status (Won't Fix / False Positive)"
+    }
+  ],
+  "effort": "1-3 weeks",
+  "gotchas": [
+    "Jit bundles SCA, secrets and IaC scanning; SonarQube does not fully replace these, so plan to add complementary tools or you will silently lose coverage.",
+    "Quality gate thresholds in SonarQube apply to 'new code' by default; if you copy strict rules without understanding this, you may block every PR until the baseline is cleaned up.",
+    "Self-hosted SonarQube needs a database (typically PostgreSQL) and ongoing upgrade work; do not underestimate operational cost vs. a SaaS like Jit.",
+    "License and edition matter: branch analysis, PR decoration and some language rules historically live in paid editions, not Community.",
+    "Suppressions do not migrate automatically; expect to triage findings again on first scan and to re-create false-positive markings by hand.",
+    "If Jit was your compliance/SOC2 evidence source, replace that workflow explicitly; SonarQube is not a compliance dashboard."
+  ],
+  "email": {
+    "subject": "Switching our security scanning from Jit to SonarQube",
+    "body": "Hi team,\n\nWe're migrating off Jit and standardizing on SonarQube for SAST and code quality, with complementary OSS tools for SCA, secrets and IaC. The plan is to run both in parallel for two weeks, cut CI checks over to SonarQube, and decommission Jit at the end of a 14-day window.\n\nNo action needed from you today. We'll share the new PR-check expectations and quality gate before cutover and update runbooks accordingly. If you rely on a specific Jit dashboard or report, reply to this thread so we can make sure it has an equivalent before we shut things down.\n\nThanks,\nYour customer"
+  }
+}

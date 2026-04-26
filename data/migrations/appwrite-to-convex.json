@@ -1,0 +1,71 @@
+{
+  "source": {
+    "slug": "appwrite",
+    "name": "appwrite"
+  },
+  "target": {
+    "slug": "convex",
+    "name": "convex"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Appwrite is an open-source REST-based BaaS while Convex is a TypeScript-first reactive backend with a proprietary data model — the migration requires re-architecting how data is queried and how server logic is written. Plan a multi-week effort because there's no automated import path between the two.",
+  "why_switch": [
+    "You want reactive queries that auto-update clients without manual subscriptions.",
+    "Your stack is TypeScript end-to-end and you prefer TS-native functions.",
+    "You want strong transactional guarantees baked into the data model.",
+    "You're moving from self-hosted ops to a fully managed backend.",
+    "You need tighter integration between database, functions, and the client SDK."
+  ],
+  "what_to_export": [
+    "Database collections and documents",
+    "Storage bucket contents and metadata",
+    "Authentication users and identity provider mappings",
+    "Server-side functions / cloud function code",
+    "Permission / access control rules per collection",
+    "Webhooks and event triggers",
+    "API keys, scopes, and integration credentials",
+    "Schema definitions and indexes"
+  ],
+  "export_method": "Use the Appwrite CLI or server SDK to dump every collection as JSON; iterate per database and collection to capture all documents along with their attributes. Export storage buckets either via the CLI or by listing files through the API and downloading them with their metadata. Export the user list including identity provider linkages — passwords are hashed and not portable, so users will need a re-onboarding flow. Pull permission rules per collection and document them as a mapping table. Save server-side function source code from your version control (Appwrite functions are typically stored in your repo). Document webhooks, scheduled functions, and API key scopes so they can be recreated.",
+  "import_method": "Create a Convex project and define your schema in `schema.ts` — Convex uses a code-first schema rather than a UI-driven collection builder. Write a one-time import function in Convex that reads your exported JSON and inserts documents into the appropriate tables; mind that document IDs differ, so build a mapping table if foreign keys reference Appwrite IDs. Upload exported files to Convex's file storage via its storage API. For auth, integrate Convex with an identity provider (e.g. Clerk, Auth0) since Convex doesn't ship a password-based user store; users will need to re-authenticate. Re-author server-side logic as Convex queries, mutations, and actions in TypeScript — these are not drop-in replacements for Appwrite functions because Convex queries are reactive and run inside a transactional model. Recreate scheduled jobs using Convex cron. Roll out behind a feature flag and keep Appwrite read-only until parity is verified.",
+  "concept_mapping": [
+    {
+      "source": "Appwrite collection / document",
+      "target": "Convex table / document"
+    },
+    {
+      "source": "Appwrite function",
+      "target": "Convex query / mutation / action",
+      "note": "Reactive and transactional model differs."
+    },
+    {
+      "source": "Appwrite Realtime subscription",
+      "target": "Convex reactive query (automatic)"
+    },
+    {
+      "source": "Appwrite Storage bucket",
+      "target": "Convex file storage"
+    },
+    {
+      "source": "Appwrite Auth",
+      "target": "Third-party identity provider integrated with Convex"
+    },
+    {
+      "source": "Appwrite permissions",
+      "target": "Authorization checks inside Convex functions"
+    }
+  ],
+  "effort": "3-6 weeks",
+  "gotchas": [
+    "Appwrite passwords are hashed with one scheme and cannot be imported into another auth system; users must reset or re-authenticate.",
+    "Document IDs change on import; rewrite any cross-collection references using a mapping table.",
+    "Convex's reactive query model is different from Appwrite's REST + Realtime; expect to rethink data access patterns.",
+    "Permission rules don't map declaratively — auth checks become code in Convex functions.",
+    "Appwrite is open-source self-hostable; Convex is managed, so disaster recovery and data residency requirements may need re-evaluation.",
+    "Convex schema is typed and enforced; loose Appwrite documents may need normalisation before import."
+  ],
+  "email": {
+    "subject": "Backend migration coming in 2 weeks",
+    "body": "Hi,\n\nWe're migrating our backend from Appwrite to Convex over the next two weeks. The app surface stays the same, but a few things change for you.\n\nThe biggest one: you'll be asked to sign in again the first time you open the app after cutover. We'll send a separate note when that lands. Real-time updates should feel snappier afterwards.\n\nIf you build automations against our API, watch for an upcoming API note with the new endpoint shape.\n\nThanks,\nYour customer"
+  }
+}

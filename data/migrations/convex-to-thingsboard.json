@@ -1,0 +1,70 @@
+{
+  "source": {
+    "slug": "convex",
+    "name": "Convex"
+  },
+  "target": {
+    "slug": "thingsboard",
+    "name": "ThingsBoard"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Convex is a general-purpose reactive backend, while ThingsBoard is an open-source IoT platform focused on device management, telemetry, dashboards, and rule chains. The switch only makes sense if your product is primarily an IoT application; for general app backends, ThingsBoard is not a direct replacement.",
+  "why_switch": [
+    "Your product is IoT-centric and needs device management out of the box",
+    "You need MQTT, CoAP, HTTP, or LwM2M ingestion supported natively",
+    "You want built-in dashboards and a rule engine for telemetry",
+    "You prefer an open-source, self-hostable platform over a proprietary cloud",
+    "You want to lower Convex's high lock-in by moving to standard IoT protocols"
+  ],
+  "what_to_export": [
+    "Device records and identifiers from Convex tables",
+    "Telemetry time-series data tied to those devices",
+    "Schema definitions and validation rules",
+    "Server functions implementing device or telemetry logic",
+    "Scheduled jobs and background tasks",
+    "User and auth records, including tenant or customer mapping",
+    "File storage assets associated with devices",
+    "Environment configuration and integration secrets"
+  ],
+  "export_method": "Use the official Convex CLI and documented export tooling to dump tables to a portable format such as JSON or NDJSON. For IoT migrations, separate the data into three buckets: device metadata (identifiers, attributes, ownership), telemetry (time-series readings), and operational logic (functions, schedules). Map device tables to ThingsBoard's device and asset concepts and pick credential types (access token, MQTT basic, X.509) for each device. Telemetry should be exported with timestamps preserved so it can be replayed. File attachments tied to devices export separately. Freeze writes or run a brief dual-write window during cutover for consistency. Server-side Convex functions will need to be reimplemented as ThingsBoard rule chains or external services rather than ported directly. Verify exact CLI flags and export formats against the current Convex documentation before scripting the migration.",
+  "import_method": "Provision a ThingsBoard environment (cloud or self-hosted) following the official ThingsBoard docs, including tenant setup, device profiles, and any rule chain templates you need. Create devices and assets using the ThingsBoard REST API or bulk-provisioning tooling, attaching the credential type you chose during export. Replay telemetry into ThingsBoard via its documented telemetry APIs (REST or MQTT) preserving original timestamps where possible; do small batches first to validate parsing and rule chains. Recreate dashboards and rule chains for alerts, transformations, and integrations. Reimplement Convex server logic as ThingsBoard rule nodes or as external services that subscribe to ThingsBoard events. Update clients and devices to send data to ThingsBoard endpoints instead of Convex. Confirm all API paths, credential formats, and rule node behavior against current ThingsBoard documentation before relying on them.",
+  "concept_mapping": [
+    {
+      "source": "Convex table of devices",
+      "target": "ThingsBoard device or asset"
+    },
+    {
+      "source": "Convex telemetry rows",
+      "target": "ThingsBoard telemetry time-series"
+    },
+    {
+      "source": "Convex query / mutation",
+      "target": "ThingsBoard REST API call or rule node"
+    },
+    {
+      "source": "Convex scheduled function",
+      "target": "ThingsBoard scheduled rule chain"
+    },
+    {
+      "source": "Convex auth",
+      "target": "ThingsBoard tenant, customer, and user model"
+    },
+    {
+      "source": "Convex realtime subscription",
+      "target": "ThingsBoard websocket or rule chain output"
+    }
+  ],
+  "effort": "4-10 weeks",
+  "gotchas": [
+    "ThingsBoard is purpose-built for IoT; non-IoT apps will fight its device-centric model.",
+    "Self-hosting at scale requires tuning Cassandra or Postgres yourself; budget ops time.",
+    "Convex's reactive queries do not map 1:1 to ThingsBoard; realtime UI needs to be rebuilt on ThingsBoard websockets or custom infrastructure.",
+    "Some advanced features are gated behind ThingsBoard Professional Edition; verify which capabilities you need are in the open-source community edition.",
+    "Rule chains have a learning curve — plan time to design and test them before cutover.",
+    "Confirm protocol support (MQTT, CoAP, HTTP, LwM2M) and quotas against current ThingsBoard docs before committing devices."
+  ],
+  "email": {
+    "subject": "Moving our backend from Convex to ThingsBoard",
+    "body": "Hi team,\n\nWe are migrating our backend from Convex to ThingsBoard, an open-source IoT platform. ThingsBoard gives us native device management, telemetry, dashboards, and a rule engine, which fits our roadmap better than a general-purpose reactive backend.\n\nOver the next 14 days we will export device and telemetry data from Convex, provision devices in ThingsBoard, replay telemetry, and rebuild rule chains and dashboards. Expect short maintenance windows during cutover and possible brief gaps in realtime updates.\n\nNo action is needed from you yet. We will confirm exact dates and any client or device firmware changes as the plan firms up.\n\nThanks,\nYour customer"
+  }
+}

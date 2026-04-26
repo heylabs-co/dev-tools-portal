@@ -1,0 +1,68 @@
+{
+  "source": {
+    "slug": "new-relic",
+    "name": "New Relic"
+  },
+  "target": {
+    "slug": "checkmk",
+    "name": "Checkmk"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Move from New Relic's hosted APM/observability suite to Checkmk, an infrastructure and application monitoring platform with an open-source raw edition. Plan to rebuild dashboards and alerts since the data models and query approaches are different.",
+  "why_switch": [
+    "Avoid New Relic's commit-tier minimums by self-hosting",
+    "Checkmk has a free OSS edition for cost control",
+    "Lower lock-in via a more portable monitoring model",
+    "Strong fit if infrastructure monitoring is the core need",
+    "On-prem or self-hosted deployment options available"
+  ],
+  "what_to_export": [
+    "APM service inventory and language agents in use",
+    "Custom dashboards",
+    "Alert policies, conditions, and notification channels",
+    "Synthetic monitor definitions (if used)",
+    "Infrastructure host and integration list",
+    "Log pipelines and parsing rules (if used)",
+    "Users, teams, and role assignments",
+    "SLO and error budget definitions",
+    "Tags and entity metadata"
+  ],
+  "export_method": "Use the New Relic NerdGraph API to list and export dashboards, alert policies, conditions, synthetics, and entity metadata as JSON. Store the exports in a Git repo so you have an auditable record before any change in production. For metric and event history, run NRQL queries over the windows you must retain and persist the results to object storage; full historical backfill is usually impractical due to retention and rate limits, so most teams keep New Relic read-only for a transition window. Export users, teams, and roles via the admin API. Document NRQL queries that drive critical alerts and dashboards because they will need to be reformulated against the new tool. Capture the list of active language agents and infra integrations deployed across hosts and Kubernetes clusters so you can plan replacements. If you depend on logs, export pipeline rules and sampling configuration. Keep New Relic agents running during the parallel period to avoid blind spots.",
+  "import_method": "Install a Checkmk site (Raw or Enterprise) and roll out the Checkmk agent to your hosts and containers. Configure host groups, services, and check plugins to cover the inventory you exported from New Relic. Recreate alert rules using Checkmk's notification rules and wire them to the same email, Slack, or PagerDuty channels you used previously. Rebuild key dashboards in Checkmk's views and graphs; treat the New Relic export as a reference only since query languages differ. For application-level signals that Checkmk does not natively replace, plan a complementary tool (for example, an OpenTelemetry-based tracer) rather than expecting full APM parity. Validate by running both systems in parallel and comparing alert and uptime behaviour for at least one business cycle. Recreate users, contact groups, and roles in Checkmk and connect SSO to your IdP. Once parity is confirmed, remove New Relic agents and end the contract at the next renewal point.",
+  "concept_mapping": [
+    {
+      "source": "New Relic agent",
+      "target": "Checkmk agent or special agents"
+    },
+    {
+      "source": "NRQL query",
+      "target": "Checkmk metric/service rules",
+      "note": "Rewrite required; semantics differ"
+    },
+    {
+      "source": "Alert policies",
+      "target": "Checkmk notification rules"
+    },
+    {
+      "source": "Dashboards",
+      "target": "Checkmk views and graphs"
+    },
+    {
+      "source": "Entities and tags",
+      "target": "Hosts, services, and host tags"
+    }
+  ],
+  "effort": "3-8 weeks",
+  "gotchas": [
+    "Checkmk's primary strength is infrastructure monitoring; full APM parity may need an additional tool",
+    "Self-hosting Checkmk adds operational responsibility (backups, upgrades, sizing)",
+    "NRQL does not translate directly; plan a dashboard rebuild",
+    "New Relic commit tiers may keep billing in force until the contract end date",
+    "Notification payload formats may need template updates downstream",
+    "Run both systems in parallel until alert parity is confirmed"
+  ],
+  "email": {
+    "subject": "Notice: ending our New Relic subscription within 14 days",
+    "body": "Hi team,\n\nWe are moving our monitoring to a self-hosted setup and will not be renewing New Relic. Please treat this email as our 14-day notice to end the subscription at the next available term and to disable auto-renewal.\n\nKindly confirm the effective end date, the final invoice, and any data export options that remain available to us. We will keep agents running until cutover completes.\n\nThanks for the support over the contract period.\n\nBest regards,\nYour customer"
+  }
+}

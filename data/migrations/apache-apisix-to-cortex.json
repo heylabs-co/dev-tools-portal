@@ -1,0 +1,67 @@
+{
+  "source": {
+    "slug": "apache-apisix",
+    "name": "Apache APISIX"
+  },
+  "target": {
+    "slug": "cortex",
+    "name": "Cortex"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Moving from Apache APISIX (an OSS API gateway) to Cortex (an internal developer portal) is not a like-for-like swap. Treat it as adopting a service catalog alongside your existing gateway, then optionally pulling routing metadata into Cortex scorecards.",
+  "why_switch": [
+    "Centralize service ownership, on-call, and maturity scorecards",
+    "Improve developer discoverability with a searchable catalog",
+    "Track engineering standards and compliance across teams",
+    "Replace ad-hoc gateway docs with structured metadata",
+    "Provide a single pane of glass for service health"
+  ],
+  "what_to_export": [
+    "Route definitions and upstream targets from APISIX",
+    "Plugin configurations and rate-limit policies",
+    "Consumer/credential records",
+    "Service ownership metadata (team, repo, runbook)",
+    "TLS/SSL certificate inventory",
+    "Observability dashboards and alert links",
+    "API specifications (OpenAPI/Swagger) per service",
+    "On-call rotation and contact info"
+  ],
+  "export_method": "Use the APISIX Admin API or etcd snapshot to dump current routes, services, upstreams, consumers, and plugin configs as JSON. Most teams script this with curl against the Admin API endpoints, paginate through resources, and write each object to disk. Capture cluster-wide config separately. For OpenAPI specs, gather them from your source repos rather than from APISIX itself, since APISIX does not own that data. Keep the export idempotent so it can be re-run after parity testing. Verify the dump is complete by counting routes and consumers against the live cluster before proceeding.",
+  "import_method": "Cortex ingests services primarily via a YAML descriptor (commonly checked into each service repo) and through Git, IdP, and cloud integrations. Map each APISIX route or upstream to a Cortex service entry, populate ownership, tier, lifecycle, and links to docs/dashboards. Use the Cortex API or CLI (where available) to bulk-create entities from your transformed JSON. Configure scorecards after the catalog is populated, not before. Connect Cortex to GitHub/GitLab, your cloud provider, and PagerDuty/Opsgenie so service health pulls in automatically. Validate by spot-checking 10-20 services for accurate ownership and links.",
+  "concept_mapping": [
+    {
+      "source": "Route",
+      "target": "Service entity",
+      "note": "One service entity per logical API, not per route"
+    },
+    {
+      "source": "Upstream",
+      "target": "Service dependency or component"
+    },
+    {
+      "source": "Consumer",
+      "target": "Out of scope - keep in gateway"
+    },
+    {
+      "source": "Plugin config",
+      "target": "Out of scope - keep in gateway"
+    },
+    {
+      "source": "Route metadata/labels",
+      "target": "Service tags and custom fields"
+    }
+  ],
+  "effort": "2-6 weeks",
+  "gotchas": [
+    "Cortex does not replace the API gateway - keep APISIX running for traffic",
+    "Service catalog quality depends on accurate ownership data; budget time for cleanup",
+    "Scorecards encourage compliance but can create alert fatigue if rolled out too fast",
+    "Per-seat pricing model means costs scale with engineering headcount",
+    "Cortex GitHub repo activity is low; rely on the SaaS product, not the OSS repo",
+    "Plan for stakeholder buy-in - IDPs only succeed when teams actually maintain entries"
+  ],
+  "email": {
+    "subject": "Heads up: we are adding Cortex as our service catalog",
+    "body": "Hi team,\n\nOver the next 14 days we are rolling out Cortex as our internal developer portal. Apache APISIX continues to handle API traffic - nothing changes there. Cortex sits alongside it to give us a searchable service catalog, ownership records, and engineering scorecards.\n\nWhat you will see: a YAML descriptor landing in each service repo, a one-time backfill of metadata pulled from APISIX, and access to the Cortex UI for browsing services and on-call info. We will share onboarding docs and office hours before scorecards go live.\n\nNo action required this week. If you own services today, please review your team mapping when we send the validation list.\n\nThanks,\nYour customer"
+  }
+}

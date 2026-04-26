@@ -1,0 +1,69 @@
+{
+  "source": {
+    "slug": "algolia",
+    "name": "Algolia"
+  },
+  "target": {
+    "slug": "bonsai",
+    "name": "Bonsai"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Move from Algolia's hosted proprietary search to Bonsai's managed Elasticsearch/OpenSearch. Expect schema and query rewrites since Bonsai exposes the standard Elasticsearch API, not Algolia's index API.",
+  "why_switch": [
+    "Bonsai uses standard Elasticsearch API, lower lock-in",
+    "Avoid Algolia commit-tier high-water-mark billing",
+    "Self-controlled cluster sizing on Bonsai",
+    "Public freemium pricing vs Algolia search-op rates",
+    "Easier exit later: Elasticsearch is portable"
+  ],
+  "what_to_export": [
+    "Index records and document JSON",
+    "Index settings (searchable attributes, ranking)",
+    "Synonyms list",
+    "Stopwords / custom dictionaries",
+    "Query rules (where representable)",
+    "API key configuration and ACLs",
+    "Analytics or click/conversion logs you still need",
+    "Frontend search UI configuration"
+  ],
+  "export_method": "Use Algolia's dashboard or API client to export each index. The official Algolia clients expose a browse method that paginates all records into JSON; the Algolia CLI also supports index export. Export synonyms and rules separately via their respective endpoints. Capture index settings (searchableAttributes, customRanking, attributesForFaceting) so you can map them to Elasticsearch analyzers and field mappings. Save outputs as newline-delimited JSON since that format imports cleanly into Elasticsearch's bulk API. Algolia-specific features such as Personalization, Recommend models and AI re-ranking signals do not transfer; only the underlying records and basic ranking settings will.",
+  "import_method": "Provision a Bonsai cluster sized for your record count and traffic. Define an Elasticsearch index with explicit mappings derived from your Algolia attributes (text vs keyword, analyzers for typo tolerance, completion fields for autocomplete). Use the Elasticsearch _bulk endpoint to load the exported NDJSON. Recreate synonyms via Elasticsearch synonym token filters and translate Algolia ranking into a function_score or rank features. Update your application to use an Elasticsearch client (or the Algolia-to-Elasticsearch query translator pattern) instead of the Algolia SDK. Smoke-test relevance against a frozen query set before cutting traffic.",
+  "concept_mapping": [
+    {
+      "source": "Index",
+      "target": "Elasticsearch index"
+    },
+    {
+      "source": "Record / object",
+      "target": "Document"
+    },
+    {
+      "source": "searchableAttributes",
+      "target": "Field mappings + analyzers"
+    },
+    {
+      "source": "customRanking",
+      "target": "function_score / sort"
+    },
+    {
+      "source": "Synonyms",
+      "target": "Synonym token filter"
+    },
+    {
+      "source": "API key with ACLs",
+      "target": "Bonsai HTTP basic auth / per-index credentials"
+    }
+  ],
+  "effort": "2-6 weeks depending on index count and ranking customization",
+  "gotchas": [
+    "Algolia typo tolerance is built-in; on Elasticsearch you must configure analyzers, fuzzy queries and edge n-grams yourself.",
+    "InstantSearch-Algolia widgets do not work directly against Elasticsearch without an adapter layer.",
+    "Algolia Personalization, Recommend and AI features have no direct Bonsai equivalent.",
+    "Relevance will differ; budget time for re-tuning with real query logs.",
+    "Faceting and filtering syntax differs; rewrite frontend filter code."
+  ],
+  "email": {
+    "subject": "Cancelling Algolia in 14 days — moving to Bonsai",
+    "body": "Hi Algolia team,\n\nWe are migrating our search workload off Algolia and onto Bonsai over the next 14 days. The decision was driven by predictable Elasticsearch-based pricing and lower long-term lock-in for our team.\n\nPlease treat this as formal notice of cancellation at the end of our current cycle. Could you confirm:\n\n1. The exact end date for billing on our account.\n2. The window during which our indices will remain available for export.\n3. Any data deletion timeline after cancellation.\n\nWe plan to export records, synonyms and settings in the first week, complete the cutover in the second, and then disable our Algolia API keys. We would appreciate keeping read access to our indices until the cutover is verified.\n\nThanks for the years of service.\n\nYour customer"
+  }
+}

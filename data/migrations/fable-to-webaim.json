@@ -1,0 +1,60 @@
+{
+  "source": {
+    "slug": "fable",
+    "name": "Fable"
+  },
+  "target": {
+    "slug": "webaim",
+    "name": "WebAIM"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Fable provides paid usability research with disabled testers; WebAIM is a nonprofit offering free tools (like WAVE), training, and consulting. Switching means moving from a managed research panel to a mix of free tooling, reference material, and on-demand consulting engagements.",
+  "why_switch": [
+    "Free tools and reference material for everyday checks",
+    "Authoritative WCAG guidance and research",
+    "WAVE browser extension for fast page reviews",
+    "Lower ongoing cost than per-engagement panels",
+    "Trusted training and consulting available"
+  ],
+  "what_to_export": [
+    "Fable session recordings and notes",
+    "Tester feedback summaries and quotes",
+    "Issue lists already filed in your tracker",
+    "Research questions and protocols you used",
+    "Roadmap items influenced by Fable findings",
+    "Internal a11y guidelines built on results",
+    "Tester demographic context (anonymized)",
+    "Severity/triage conventions",
+    "Links between findings and WCAG criteria",
+    "Stakeholder reports and decks"
+  ],
+  "export_method": "Fable session artifacts (recordings, transcripts, summaries) typically live in the Fable platform. Use the platform's export or download options for each engagement to pull recordings, notes, and any structured findings to local secure storage. Copy any final reports and decks you have produced into your own document store. Re-document the protocols and research questions internally since these belong to your team, not the vendor. Maintain anonymity and consent obligations from your prior engagements. WebAIM is not a single platform you import into; you are switching to a set of resources and services rather than another panel product.",
+  "import_method": "Adopt the WAVE browser extension and online checker for fast per-page reviews and bake them into your design and engineering review checklists. Use the WebAIM contrast checker during design token decisions. Reference WebAIM's WCAG checklist and Million report when prioritizing remediation. For deeper engagements, contract WebAIM training or consulting for specific audits or team education. For ongoing research with disabled users, consider keeping Fable or another panel for the highest-value studies; WebAIM does not provide an equivalent recruited tester platform on demand.",
+  "concept_mapping": [
+    {
+      "source": "Fable user research session",
+      "target": "WebAIM consulting engagement (when needed)"
+    },
+    {
+      "source": "Per-engagement findings",
+      "target": "WAVE scan + manual checklist results"
+    },
+    {
+      "source": "Recruited disabled tester",
+      "target": "No like-for-like in WebAIM; plan separately"
+    }
+  ],
+  "effort": "Days to weeks; the harder part is replacing the human research loop, not the tooling.",
+  "gotchas": [
+    "WebAIM does not provide a recruited tester panel; you lose that capability",
+    "WAVE is browser-based, not an enterprise monitoring platform",
+    "Consulting engagements are project-based, not always on demand",
+    "Existing research recordings may have consent terms limiting reuse",
+    "Free tools require team discipline to be used consistently",
+    "Audit findings still need engineering remediation capacity"
+  ],
+  "email": {
+    "subject": "Wrapping up our Fable engagement",
+    "body": "Hi Fable team,\n\nThank you for the work we have done together. We are restructuring our accessibility program toward more automated tooling and free resources from groups like WebAIM, supplemented by occasional consulting. As part of that, we plan to wind down our Fable engagement over the next 14 days.\n\nWe would like to download the session artifacts, transcripts, and any summary reports we still need before the account closes, and we want to confirm what happens to recordings after cancellation given your privacy obligations to the testers involved.\n\nCould you confirm:\n- The cancellation effective date once we formally request it\n- The window during which we can still download artifacts\n- Any data retention or deletion process we should be aware of\n\nThe research itself was high quality. This is a budget and program change on our side.\n\nYour customer"
+  }
+}

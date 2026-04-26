@@ -1,0 +1,68 @@
+{
+  "source": {
+    "slug": "launchdarkly",
+    "name": "LaunchDarkly"
+  },
+  "target": {
+    "slug": "flagsmith",
+    "name": "Flagsmith"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Swap LaunchDarkly's proprietary, per-seat feature flag platform for open-source Flagsmith — self-hosted or SaaS. Flag definitions and targeting rules port well; SDK calls need a thin adapter.",
+  "why_switch": [
+    "Open-source — self-host to remove vendor risk",
+    "Escape LaunchDarkly per-seat + annual MAU commits",
+    "Audit and extend the codebase yourself",
+    "Lower predictable cost for small/mid teams"
+  ],
+  "what_to_export": [
+    "Flag definitions (key, type, default value)",
+    "Environments (dev/staging/prod)",
+    "Targeting rules and segments",
+    "User/context attributes used in rules",
+    "Multivariate variations and weights",
+    "Project structure",
+    "SDK keys / environment keys",
+    "Audit log (for compliance evidence)"
+  ],
+  "export_method": "Use the LaunchDarkly public API to export flags, environments, and segments per project — every flag has a JSON representation that includes variations, targeting rules, and prerequisites. Iterate over projects → environments → flags and write the responses to disk. Capture segment rules separately as they are referenced by flags. If you have many flags, script the export with the official LaunchDarkly REST API and store keys, descriptions, tags, and current default rule per environment. Pull recent audit log entries for compliance retention. Export team members and role assignments through the account settings if you need to recreate access control.",
+  "import_method": "Stand up Flagsmith via the managed cloud or self-host it (Docker / Kubernetes / their published images). Create matching projects and environments. Write a small adapter script that walks the exported LaunchDarkly JSON and creates equivalent flags via Flagsmith's public API: flag name → feature name, environment defaults → environment values, targeting rules → segment + segment overrides. Map LaunchDarkly Contexts onto Flagsmith Identity traits. In application code, replace the LaunchDarkly SDK with Flagsmith's SDK — both expose an `is_enabled(flag, user)` style API, so wrapping behind your own thin interface is the cleanest path. Run both SDKs in parallel during cutover and compare evaluations on a sample of traffic before removing LaunchDarkly.",
+  "concept_mapping": [
+    {
+      "source": "Flag",
+      "target": "Feature"
+    },
+    {
+      "source": "Environment",
+      "target": "Environment"
+    },
+    {
+      "source": "Segment",
+      "target": "Segment"
+    },
+    {
+      "source": "Context / User",
+      "target": "Identity + Traits"
+    },
+    {
+      "source": "Variation",
+      "target": "Multivariate value"
+    },
+    {
+      "source": "SDK Key",
+      "target": "Environment key"
+    }
+  ],
+  "effort": "2-4 weeks",
+  "gotchas": [
+    "Annual MAU commit on LaunchDarkly does not refund mid-contract",
+    "Context model differs — multi-context targeting may need rule rewrites",
+    "Streaming evaluation behavior can differ between SDKs; verify latency",
+    "Percentage rollout bucketing hash is provider-specific — users may flip cohorts",
+    "Audit log format/retention differs — keep an export for compliance"
+  ],
+  "email": {
+    "subject": "Data export and contract wind-down — LaunchDarkly",
+    "body": "Hi LaunchDarkly team,\n\nWe are moving our feature flag stack to a self-hosted alternative over the next 14 days. To make the transition clean, could you help with:\n1. Confirming the best way to export every flag, segment, environment, and audit log entry via the public API.\n2. Sharing the renewal/end date for our current annual MAU commitment so we can plan cutover and not double-pay.\n3. Letting us know whether SDK keys remain valid through the wind-down so we can run both systems in parallel.\n\nWe will keep the account active during the parallel-run window and notify you before final cancellation.\n\nThanks,\nYour customer"
+  }
+}

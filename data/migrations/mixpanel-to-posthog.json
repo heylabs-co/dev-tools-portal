@@ -1,0 +1,68 @@
+{
+  "source": {
+    "slug": "mixpanel",
+    "name": "Mixpanel"
+  },
+  "target": {
+    "slug": "posthog",
+    "name": "PostHog"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "PostHog is a strong functional replacement for Mixpanel: events, funnels, retention, plus replay and flags. Event names usually map 1:1, but $-prefixed properties and identity merge rules need attention.",
+  "why_switch": [
+    "Open-source, self-hostable",
+    "Bundles analytics, replay, flags, surveys",
+    "Raw SQL on your own data",
+    "Avoid Mixpanel annual MTU commit"
+  ],
+  "what_to_export": [
+    "Raw event archive (with timestamps)",
+    "User profiles and properties",
+    "Cohorts and saved segments",
+    "Funnels, retention, and dashboard configs",
+    "Event taxonomy (names + property types)",
+    "Service account / project tokens",
+    "Annotations",
+    "Team members and roles"
+  ],
+  "export_method": "Use Mixpanel's Raw Data export endpoint to pull events for the time window you want preserved — output is JSON Lines with full event payloads. Profiles can be exported through the engage/profile export endpoint. Save cohort definitions and dashboard configs through the dashboard. Document the project token, service account, and the exact `distinct_id` strategy you used (anonymous vs identified). Confirm end date of the annual MTU commit in your account settings.",
+  "import_method": "Spin up PostHog Cloud or self-host. Install the PostHog SDK and replicate `track`/`people.set` calls — Mixpanel `track` becomes PostHog `capture`, `people.set` becomes `$set` person properties. Use PostHog's historical import endpoint to backfill the Mixpanel raw events with original timestamps so retention and funnel charts remain correct. Recreate cohorts as PostHog cohorts, and rebuild key funnels and retention insights. Map Mixpanel `distinct_id` to PostHog `distinct_id` directly to keep identity stitching consistent. Run both SDKs in parallel for a week and reconcile DAU before cutting Mixpanel.",
+  "concept_mapping": [
+    {
+      "source": "Event",
+      "target": "Event"
+    },
+    {
+      "source": "People property",
+      "target": "Person property"
+    },
+    {
+      "source": "Cohort",
+      "target": "Cohort"
+    },
+    {
+      "source": "Funnel / Retention / Insights",
+      "target": "Funnel / Retention / Trends"
+    },
+    {
+      "source": "Project Token",
+      "target": "Project API Key"
+    },
+    {
+      "source": "distinct_id",
+      "target": "distinct_id"
+    }
+  ],
+  "effort": "2-4 weeks",
+  "gotchas": [
+    "Mixpanel annual MTU commit does not pro-rate mid-cycle",
+    "Reserved/auto-collected property names differ — re-check dashboards",
+    "Identity merge semantics differ — verify alias/identify produces same users",
+    "Historical timestamps MUST be preserved on bulk import",
+    "Self-hosted PostHog adds infra cost — benchmark first"
+  ],
+  "email": {
+    "subject": "Data export and wind-down — Mixpanel",
+    "body": "Hi Mixpanel team,\n\nWe are migrating product analytics to another platform over the next 14 days and want to wind down cleanly. Could you help with:\n1. Confirming the recommended way to export full raw events, profiles, cohorts, and dashboards via the API.\n2. Sharing the end date of our current annual MTU commitment so we can plan cutover.\n3. Confirming the post-cancellation data retention window.\n\nWe will run both SDKs in parallel during the transition and notify you before final cancellation. Please let me know if anything needs to be initiated from your side.\n\nThanks,\nYour customer"
+  }
+}

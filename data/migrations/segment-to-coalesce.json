@@ -1,0 +1,67 @@
+{
+  "source": {
+    "slug": "segment",
+    "name": "Segment"
+  },
+  "target": {
+    "slug": "coalesce",
+    "name": "Coalesce"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Segment is a customer data platform; Coalesce is a Snowflake-focused data transformation tool. The two solve different problems, so a migration is really a re-architecture rather than a like-for-like move.",
+  "why_switch": [
+    "Consolidate transforms inside the warehouse",
+    "Reduce dependency on per-event CDP pricing",
+    "Centralize lineage and documentation in one tool",
+    "Tighter Snowflake-native workflow",
+    "Avoid annual MTU commitments"
+  ],
+  "what_to_export": [
+    "Tracking plan and event schemas",
+    "Source and destination configurations",
+    "Identity and user trait mappings",
+    "Connection credentials and webhooks",
+    "Warehouse sync settings",
+    "Workspace, function, and protocol definitions",
+    "Consent and privacy rules",
+    "Historical event data archived in your warehouse"
+  ],
+  "export_method": "Treat the export as documentation plus warehouse data. From your Segment workspace, export the tracking plan and event schemas as JSON or CSV, and capture source/destination configuration from the Config API or admin UI. If you already replicate Segment events to a warehouse, that warehouse copy is the most reliable record of historical events. Pull source code for any Functions, screenshots or exports of Protocols, and a list of connected destinations. Save consent/privacy configuration separately because it rarely maps cleanly to other tools. Treat secrets (write keys, destination tokens) as items to rotate rather than migrate. If anything is unclear, follow Segments official documentation rather than assumptions; do not invent endpoints.",
+  "import_method": "Coalesce works against data already loaded into Snowflake, so import is mostly about pointing Coalesce at the same warehouse that Segment was loading into. Connect Coalesce to your Snowflake account with appropriate role, warehouse, and database grants. Recreate the logical model: stage the raw event tables, then build cleaned/conformed/marts layers using Coalesce nodes. Use the tracking plan you exported as the spec for column-level expectations and tests. For anything that previously ran as a Segment Function or destination-side transform, rebuild it as a Coalesce transformation node. Set up jobs and schedules in Coalesce to replace any cadence Segment provided. Validate row counts and key metrics against the previous Segment-driven pipeline before cutting over.",
+  "concept_mapping": [
+    {
+      "source": "Sources",
+      "target": "Snowflake raw tables",
+      "note": "Land events in Snowflake via your existing loader"
+    },
+    {
+      "source": "Tracking plan",
+      "target": "Coalesce model spec",
+      "note": "Use as schema contract"
+    },
+    {
+      "source": "Functions / transforms",
+      "target": "Coalesce transformation nodes"
+    },
+    {
+      "source": "Warehouse destination",
+      "target": "Coalesce target schema"
+    },
+    {
+      "source": "Protocols (data quality)",
+      "target": "Coalesce tests and lineage"
+    }
+  ],
+  "effort": "3-8 weeks",
+  "gotchas": [
+    "Segment and Coalesce solve different layers; you still need an event collector",
+    "Real-time downstream destinations served by Segment will not exist in Coalesce",
+    "Consent and identity-resolution logic must be rebuilt explicitly",
+    "Coalesce is Snowflake-specific; multi-warehouse setups need extra planning",
+    "Annual Segment MTU commits may run past your cutover date"
+  ],
+  "email": {
+    "subject": "Planning to wind down our Segment workspace",
+    "body": "Hi team,\n\nWe are restructuring our data stack and moving transformation work into Snowflake using Coalesce. Because our event collection and warehouse modeling will be handled differently going forward, we are planning to stop using our Segment workspace.\n\nOur target timeline is 14 days from today. During that period we will export our tracking plan, source and destination configuration, and any Functions code, and we will confirm that the warehouse copy of our historical events is complete. After cutover we expect no further events to flow through Segment.\n\nCould you confirm the steps to disable auto-renewal on our current plan, the effective end date given our annual commitment, and the process for final invoicing? If there is anything you recommend we capture before workspace deactivation, please let us know.\n\nThanks for the support over the years.\n\nYour customer"
+  }
+}

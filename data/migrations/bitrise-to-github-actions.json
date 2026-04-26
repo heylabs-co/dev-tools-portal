@@ -1,0 +1,80 @@
+{
+  "source": {
+    "slug": "bitrise",
+    "name": "Bitrise"
+  },
+  "target": {
+    "slug": "github-actions",
+    "name": "GitHub Actions"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Moving mobile CI from Bitrise to GitHub Actions consolidates pipelines into the same platform as your code and pull requests. The biggest work is rewriting Bitrise Steps as Actions jobs and rebuilding signing/secrets in GitHub.",
+  "why_switch": [
+    "Pipelines live next to code and PRs",
+    "Generous free minutes for public repos",
+    "Huge marketplace of reusable actions",
+    "Usage-based pricing instead of seat-style plans",
+    "Easier to standardize across mobile and backend repos"
+  ],
+  "what_to_export": [
+    "bitrise.yml workflow definitions",
+    "Environment variables and secrets",
+    "Code signing certificates and provisioning profiles",
+    "Build artifacts retention policy",
+    "Cache configuration",
+    "Trigger map (branch, tag, PR rules)",
+    "Webhooks and integrations",
+    "Team and access roles",
+    "Custom Steps you authored",
+    "Test report and artifact destinations"
+  ],
+  "export_method": "Pull bitrise.yml from each app's Bitrise project — it contains the full workflow definition and trigger map. Inventory secrets and Code Signing assets from the Bitrise dashboard; secret values must be re-entered, but you can list names and which workflows consume them. Document any custom Steps and the marketplace Steps each workflow uses, since they map to different Actions. Note runner stack choices (macOS version, Xcode version) so you can pick equivalent GitHub-hosted runners. Keep this inventory in version control as a migration plan, not a one-shot dump.",
+  "import_method": "Create .github/workflows/*.yml files mirroring each Bitrise workflow. Pick runner images that match the Xcode and macOS versions you used on Bitrise. Recreate secrets and certificates in GitHub repository or organization secrets, using a base64-encoded p12 plus provisioning profile pattern for iOS signing. Replace each Bitrise Step with the closest GitHub Action — official actions for setup-node, setup-java, cache, upload-artifact, and community actions for Fastlane, Gradle, and similar. Wire branch/tag/PR triggers via the on: stanza. Run the new pipeline in parallel with Bitrise on a few feature branches before disabling Bitrise triggers, then cut over.",
+  "concept_mapping": [
+    {
+      "source": "Workflow",
+      "target": "Workflow (.github/workflows/*.yml)"
+    },
+    {
+      "source": "Step",
+      "target": "Step / Action"
+    },
+    {
+      "source": "bitrise.yml",
+      "target": "GitHub Actions YAML",
+      "note": "Different schema; rewrite, do not translate verbatim"
+    },
+    {
+      "source": "Trigger Map",
+      "target": "on: triggers"
+    },
+    {
+      "source": "Secrets",
+      "target": "GitHub Actions secrets"
+    },
+    {
+      "source": "Code Signing tab",
+      "target": "Encrypted secrets + Fastlane match or similar"
+    },
+    {
+      "source": "Cache",
+      "target": "actions/cache"
+    },
+    {
+      "source": "Stacks (Xcode/macOS)",
+      "target": "runs-on / runner image"
+    }
+  ],
+  "effort": "1-3 weeks per app depending on signing complexity and number of workflows",
+  "gotchas": [
+    "macOS minutes on GitHub-hosted runners are billed at a higher multiplier — model cost before cutover",
+    "iOS signing setup is the most error-prone part; test on a throwaway branch first",
+    "Bitrise Steps often hide implementation details that you must recreate explicitly in Actions",
+    "Concurrency and queue behavior differs; large mobile repos may need self-hosted runners",
+    "Artifact and log retention defaults differ — set retention-days explicitly if needed"
+  ],
+  "email": {
+    "subject": "Cancellation and offboarding from our Bitrise plan",
+    "body": "Hi Bitrise team,\n\nWe are consolidating our CI onto GitHub Actions and plan to wind down our Bitrise usage over the next 14 days. Could you confirm the cleanest path to export our workflow definitions, build history, and any secrets metadata we are entitled to before the account is closed?\n\nWe would like to schedule cancellation at the end of the current billing cycle. Please share the date by which we need to confirm cancellation to avoid the next charge, how to disable auto-renewal, and any data retention timelines that apply after the account closes so we can plan a final backup.\n\nIf there are remaining credits, prepaid minutes, or contractual notice periods we should be aware of, please flag those as well.\n\nThanks,\nYour customer"
+  }
+}

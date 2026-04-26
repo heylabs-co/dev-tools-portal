@@ -1,0 +1,80 @@
+{
+  "source": {
+    "slug": "supabase",
+    "name": "Supabase"
+  },
+  "target": {
+    "slug": "convex",
+    "name": "Convex"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Supabase is an open-source Postgres-based BaaS with auth, storage, realtime, and edge functions, while Convex is a managed reactive backend built around TypeScript functions and a proprietary transactional store. Migration replaces SQL tables and Postgres-style access with Convex's document model and reactive queries, which is straightforward for simple apps but a significant rewrite for complex SQL logic.",
+  "why_switch": [
+    "You want first-class reactive queries without polling or websockets glue",
+    "Your team works mostly in TypeScript and wants end-to-end typed functions",
+    "You prefer a single managed platform with built-in transactions",
+    "You want excellent DX for prototyping and shipping mobile or web apps",
+    "You are willing to accept higher lock-in in exchange for a tighter platform"
+  ],
+  "what_to_export": [
+    "All Postgres tables, including Supabase-managed schemas",
+    "Schema, indexes, and constraints",
+    "Row-Level Security (RLS) policies",
+    "Storage buckets and objects",
+    "Auth users and identity provider configuration",
+    "Edge Functions source code",
+    "Database functions, triggers, and stored procedures",
+    "Realtime channel configuration and any client subscriptions",
+    "Environment variables and project configuration"
+  ],
+  "export_method": "Use Supabase's documented export paths to capture the database, storage, and auth data. Postgres data is typically exported with pg_dump or via the Supabase dashboard's documented export options; export schema and data so you can reason about types and constraints when redesigning for Convex. Storage objects can be downloaded with an S3-compatible client or the Supabase Storage API. Auth users can be exported via the Supabase admin API or documented user-export tooling, including identity-provider links if you use them. Treat RLS policies, triggers, and SQL functions as design inputs rather than data: they describe rules you will reimplement inside Convex functions. Freeze writes or run a brief dual-write window during cutover to keep snapshots consistent. Edge Functions and database functions should be exported as source code via git. Verify exact commands, flags, and endpoints against the current Supabase documentation before relying on them.",
+  "import_method": "Set up a Convex project following the official Convex docs and define your schema using Convex's schema definitions. Map each Postgres table to a Convex table, choosing document shapes that fit your access patterns rather than copying the relational schema verbatim. Load data using the Convex CLI's documented import tooling, typically from JSON or NDJSON files derived from your pg_dump. Reimplement RLS policies as authorization checks inside Convex queries and mutations, and port database triggers, stored procedures, and Edge Functions to Convex actions or scheduled functions. Migrate Storage objects to Convex file storage and update client code to use the Convex client SDK and reactive queries instead of the Supabase JS client. Validate small slices end-to-end (auth, reads, writes, realtime) before full cutover. Always confirm CLI flags, schema syntax, and import formats against current Convex documentation.",
+  "concept_mapping": [
+    {
+      "source": "Postgres table",
+      "target": "Convex table",
+      "note": "Document shape; rethink joins as denormalization or relational links."
+    },
+    {
+      "source": "RLS policy",
+      "target": "Authorization check inside a Convex query or mutation"
+    },
+    {
+      "source": "SQL view or function",
+      "target": "Convex query function"
+    },
+    {
+      "source": "Database trigger",
+      "target": "Convex mutation logic or scheduled function"
+    },
+    {
+      "source": "Edge Function",
+      "target": "Convex action"
+    },
+    {
+      "source": "Realtime channel",
+      "target": "Convex reactive query"
+    },
+    {
+      "source": "Supabase Storage bucket",
+      "target": "Convex file storage"
+    },
+    {
+      "source": "Supabase Auth",
+      "target": "Convex auth integration with your chosen provider"
+    }
+  ],
+  "effort": "3-8 weeks",
+  "gotchas": [
+    "Convex is not SQL; complex joins, window functions, and ad-hoc analytical queries do not translate directly and may need a separate analytics store.",
+    "RLS-heavy apps require careful re-implementation of authorization in every Convex function; missing a check is a security risk.",
+    "Convex has a higher lock-in score than Supabase — plan ahead for how you would export data later if needed.",
+    "Realtime semantics differ: Supabase streams Postgres changes, while Convex re-runs reactive queries; behavior under heavy write load may not match 1:1.",
+    "Storage URLs and access-control patterns change; client code that relies on signed Supabase URLs will need updating.",
+    "Pricing models differ between freemium Supabase and Convex's hybrid plan; confirm cost expectations at your scale against current pricing pages."
+  ],
+  "email": {
+    "subject": "Moving our backend from Supabase to Convex",
+    "body": "Hi team,\n\nWe are migrating our backend from Supabase to Convex. Convex gives us reactive queries and end-to-end TypeScript functions, which fit our app model better than maintaining Postgres, RLS, and realtime channels separately.\n\nOver the next 14 days we will export data, storage, and auth from Supabase, redesign the schema for Convex, and port our server logic and client code. Expect short maintenance windows during cutover and possible brief realtime gaps as we switch.\n\nNo action is needed from you yet. We will confirm exact dates and any client updates as the plan firms up.\n\nThanks,\nYour customer"
+  }
+}

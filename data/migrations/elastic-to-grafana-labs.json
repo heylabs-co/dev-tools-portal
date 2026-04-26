@@ -1,0 +1,76 @@
+{
+  "source": {
+    "slug": "elastic",
+    "name": "Elastic"
+  },
+  "target": {
+    "slug": "grafana-labs",
+    "name": "Grafana Labs"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Moving from Elastic to Grafana Cloud (Loki, Tempo, Mimir) swaps Elasticsearch-centric search for an OpenTelemetry-native, Prometheus-friendly stack. Most of the lift is in dashboard rebuild and re-pointing log/metric shippers.",
+  "why_switch": [
+    "OpenTelemetry- and Prometheus-native by default",
+    "Open-source core (Grafana, Loki, Tempo, Mimir)",
+    "More flexible self-hosted vs cloud choice",
+    "Avoid Elastic's reserved tier billing pressure",
+    "Better fit if you already use Prometheus metrics"
+  ],
+  "what_to_export": [
+    "Log indices retention windows",
+    "Index templates and mappings",
+    "Kibana dashboards and saved searches",
+    "Watcher / alerting rules",
+    "Ingest pipelines",
+    "APM service definitions",
+    "Distributed tracing configuration",
+    "Metric mappings and rollup jobs",
+    "Role mappings and API keys",
+    "SLO definitions"
+  ],
+  "export_method": "Take Elasticsearch snapshots to S3-compatible storage as a cold archive; do not assume snapshots restore into Grafana's stack. Plan a forward-from date and dual-ship instead of attempting a full backfill. Export Kibana saved objects as JSON so dashboards and searches exist for reference when rebuilding in Grafana. Document Watcher alert logic, ingest pipeline transforms, and APM agent configuration as plain text — they have to be rewritten, not translated. Inventory metric names, label cardinality, and trace sample rates so you can size the new backend correctly.",
+  "import_method": "Switch shippers to OpenTelemetry Collector or vendor-supplied agents pointed at Grafana Cloud (or your self-hosted Loki/Tempo/Mimir). Logs go to Loki, traces to Tempo, metrics to Mimir or Prometheus remote_write. Recreate dashboards in Grafana using the Kibana exports as a checklist. Re-implement alerts as Grafana alert rules with the same notification channels. Set up SLOs and on-call routing in Grafana's IRM features or your existing on-call tool. Run both stacks in parallel until you have confirmed query parity and alert behavior on a representative sample.",
+  "concept_mapping": [
+    {
+      "source": "Elasticsearch index",
+      "target": "Loki stream / Mimir series"
+    },
+    {
+      "source": "Kibana dashboard",
+      "target": "Grafana dashboard",
+      "note": "Rebuild manually"
+    },
+    {
+      "source": "Watcher",
+      "target": "Grafana alert rule"
+    },
+    {
+      "source": "Elastic APM",
+      "target": "Grafana Tempo + APM views"
+    },
+    {
+      "source": "Beats / Logstash",
+      "target": "OpenTelemetry Collector / Promtail / Alloy"
+    },
+    {
+      "source": "Index lifecycle policy",
+      "target": "Retention policy in Loki/Mimir"
+    },
+    {
+      "source": "Role mapping",
+      "target": "Team and access policy"
+    }
+  ],
+  "effort": "3-8 weeks depending on telemetry volume, custom dashboards, and APM integrations",
+  "gotchas": [
+    "Elasticsearch query DSL has no equivalent in LogQL/PromQL — complex aggregations need redesign",
+    "Historical data does not migrate; expect a parallel-run window and a cold archive",
+    "Loki indexes labels not full text — review log query patterns before cutover",
+    "Metric label cardinality is the main cost driver in Mimir; audit before sending everything",
+    "APM trace formats differ; expect to switch agents to OpenTelemetry"
+  ],
+  "email": {
+    "subject": "Offboarding plan for our Elastic Cloud subscription",
+    "body": "Hi Elastic team,\n\nWe are moving our observability stack to a different provider over the next 14 days. Could you confirm the cleanest way to export our data — snapshots, Kibana saved objects, and any account configuration we are entitled to — before the subscription ends?\n\nWe would like to schedule cancellation at the end of the current billing period. Please share the date by which we need to confirm cancellation to avoid the next charge, how reserved or prepaid commits are handled, and the data retention timeline after the cluster is deleted.\n\nIf there is any contractual notice period or remaining commit we should know about, please flag it so we can plan around it.\n\nThanks,\nYour customer"
+  }
+}

@@ -1,0 +1,75 @@
+{
+  "source": {
+    "slug": "sentry",
+    "name": "Sentry"
+  },
+  "target": {
+    "slug": "crashpad",
+    "name": "Crashpad"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Crashpad is a native crash-capture library, not a hosted product, so this is not a like-for-like move; it makes sense when you want to own the crash-handling pipeline for desktop/native apps. Plan to keep a backend (your own or a third party) to receive minidumps that Crashpad uploads.",
+  "why_switch": [
+    "Open source, no vendor lock-in",
+    "Battle-tested in Chromium across major OSes",
+    "Own the data pipeline end to end",
+    "Avoid event-volume pricing surprises",
+    "Fine-grained control over native crash handling"
+  ],
+  "what_to_export": [
+    "Project list and DSNs",
+    "Issue history and triage state",
+    "Release and source map associations",
+    "Symbol/debug files (PDB, dSYM, Breakpad)",
+    "Alert rules and notification routing",
+    "Performance/tracing data",
+    "User feedback and session replay metadata",
+    "Team/role assignments and SSO config",
+    "Integrations (Slack, Jira, GitHub)",
+    "Audit logs"
+  ],
+  "export_method": "Use the Sentry UI or API to export organization, project, and team configurations. Pull issue history, release metadata, and triage state via the API; for large orgs, use the data export endpoints or a self-hosted replica. Download debug/symbol files associated with releases (these are needed by any crash-symbolication backend). Capture alert rules, notification routing, and integration tokens so you can disable cleanly. Recognize that Sentry covers a much broader surface than Crashpad: web/mobile/backend errors, performance, replay, profiling. Crashpad only handles native crash capture, so most non-native data has no analogue in the destination.",
+  "import_method": "Integrate the Crashpad client library into your native applications (C/C++/Rust on macOS, Windows, Linux), configuring the handler executable, dump directory, and upload URL. Stand up a backend that accepts minidumps from Crashpad: this can be your own service that stores and symbolicates dumps, a self-hosted Sentry instance (which natively ingests Crashpad reports), or another commercial backend. Provision symbol/debug file storage so reports can be symbolicated. For non-native parts of your stack (web/mobile/backend), keep Sentry or pick a different tool; Crashpad alone will not cover them. Build dashboards or use a backends UI to triage. Plan retention and access controls in the new pipeline.",
+  "concept_mapping": [
+    {
+      "source": "Sentry SDK (native)",
+      "target": "Crashpad client"
+    },
+    {
+      "source": "Sentry ingestion",
+      "target": "Custom backend or self-hosted Sentry"
+    },
+    {
+      "source": "Issue triage UI",
+      "target": "(your backend UI)",
+      "note": "Crashpad has none"
+    },
+    {
+      "source": "Symbolication",
+      "target": "Your symbol server"
+    },
+    {
+      "source": "Performance/tracing",
+      "target": "(no equivalent)",
+      "note": "Out of scope for Crashpad"
+    },
+    {
+      "source": "Session replay",
+      "target": "(no equivalent)",
+      "note": "Out of scope for Crashpad"
+    }
+  ],
+  "effort": "4-12 weeks; longer if you build your own backend, shorter if you self-host Sentry as the receiver",
+  "gotchas": [
+    "Crashpad is a library, not a product; you must run a backend to receive and view crashes",
+    "Crashpad covers native crashes only; web, mobile JS, and backend errors need a separate tool",
+    "Sentry annual plans typically have minimum spend commitments; review notice clauses before cancelling",
+    "Symbolication requires keeping debug files (PDB, dSYM, Breakpad symbols) for every shipped build",
+    "Privacy and retention obligations transfer to you when you operate the receiving backend",
+    "Plan parallel operation (Sentry plus Crashpad backend) for at least one release cycle to validate coverage"
+  ],
+  "email": {
+    "subject": "Moving native crash reporting from Sentry to Crashpad over the next 14 days",
+    "body": "Hello Sentry team,\n\nThis is a heads-up that we are starting to move our native crash reporting onto Crashpad with our own backend over the next 14 days. The driver is owning the native crash pipeline end to end and reducing exposure to event-volume pricing on annual plans. Sentry will likely stay in our stack for non-native errors during a transition period.\n\nPlan: days 1-4 export project configs, issue history, debug/symbol files, alert rules, and integration tokens; days 5-9 integrate Crashpad in our native apps and stand up the receiving backend; days 10-12 run Sentry and the new pipeline in parallel and compare crash visibility; days 13-14 finalize the cutover for native and decide on the rest of the stack.\n\nCould you confirm our remaining contract term, notice clauses, and the cleanest way to export historical issue data, releases, and debug files. We want a clean archive for audit continuity.\n\nThanks for the support.\n\nYour customer"
+  }
+}

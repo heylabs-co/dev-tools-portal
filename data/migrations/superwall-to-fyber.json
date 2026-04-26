@@ -1,0 +1,72 @@
+{
+  "source": {
+    "slug": "superwall",
+    "name": "Superwall"
+  },
+  "target": {
+    "slug": "fyber",
+    "name": "Fyber"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Superwall is a paywall SDK focused on subscription conversion, while Fyber is an in-app advertising mediation platform. Migrating means rebuilding monetization around ads and offerwall instead of remote-configurable paywalls.",
+  "why_switch": [
+    "Shift business model from subscription to ad-supported",
+    "Access FairBid in-app bidding for higher eCPM",
+    "Add offerwall and rewarded video formats",
+    "Tap into Digital Turbine's demand ecosystem",
+    "Fit free-to-play game monetization patterns"
+  ],
+  "what_to_export": [
+    "Paywall configuration JSON / templates",
+    "A/B test variant definitions and outcomes",
+    "Subscription product IDs and price tiers",
+    "Conversion analytics events and funnels",
+    "User cohort and segment definitions",
+    "Localized paywall copy per market",
+    "Webhook endpoints and event payload mappings",
+    "Custom audience triggers / placement rules"
+  ],
+  "export_method": "Use the Superwall dashboard to export paywall configurations, campaigns, and A/B test results where supported. Capture analytics via the standard CSV/report export. For data not available through UI, use the documented API or webhook history to reconstruct events. Save SDK configuration (placement IDs, trigger names, audience filters) from your codebase since paywalls are referenced by identifiers there. Snapshot any localizations and image assets stored in Superwall. If exact endpoints are not certain, contact support for a data export rather than relying on undocumented APIs.",
+  "import_method": "Fyber onboarding generally goes through a sales / account manager who provisions a publisher account and apps. Integrate the Fyber FairBid SDK in iOS and Android, register placements (banner, interstitial, rewarded, offerwall) corresponding to where Superwall paywalls used to fire, and map them to your existing trigger logic. Configure mediation waterfall or in-app bidding through the Fyber dashboard, attach demand partners, and set up reporting. Replace paywall trigger code with ad-show calls and adjust UX so ads appear at appropriate moments. Validate fill rate and eCPM in test mode before rolling out.",
+  "concept_mapping": [
+    {
+      "source": "Paywall",
+      "target": "Ad placement",
+      "note": "Subscription gate becomes ad unit"
+    },
+    {
+      "source": "Trigger / event",
+      "target": "Placement show call",
+      "note": "Code path stays similar"
+    },
+    {
+      "source": "A/B test variant",
+      "target": "Mediation waterfall test"
+    },
+    {
+      "source": "Subscription product",
+      "target": "Rewarded video / offerwall reward"
+    },
+    {
+      "source": "Conversion event",
+      "target": "Impression / completion event"
+    },
+    {
+      "source": "Audience segment",
+      "target": "Targeting rule in dashboard"
+    }
+  ],
+  "effort": "3-6 weeks",
+  "gotchas": [
+    "Switching from subscription revenue to ad revenue changes unit economics; model expected ARPDAU before committing",
+    "Fyber pricing is custom and contract-driven, so timelines depend on sales cycle",
+    "FairBid SDK has its own initialization order requirements that may conflict with other SDKs",
+    "Offerwall and rewarded video introduce store-policy considerations not present with paywalls",
+    "Post-Digital Turbine acquisition, product roadmap clarity may be limited",
+    "Existing subscribers cannot be migrated to ad model without UX redesign"
+  ],
+  "email": {
+    "subject": "Heads up: we're moving from Superwall to Fyber over the next two weeks",
+    "body": "Hi there,\n\nI wanted to give you a quick heads up that over the next 14 days we'll be migrating our monetization stack from Superwall to Fyber. The goal is to better fit our free-to-play model with FairBid mediation, offerwall, and rewarded video formats.\n\nWhat this means for you:\n- The app experience will gradually shift from subscription paywalls to optional ad-supported flows.\n- Existing subscribers will continue to be honored; nothing changes on your billing.\n- You may see new ad placements at natural break points; we'll keep them non-intrusive.\n\nWe're rolling this out app-by-app and watching analytics carefully. If anything feels off, please reply to this email and we'll take a look.\n\nThanks for sticking with us.\n\nYour customer success team"
+  }
+}

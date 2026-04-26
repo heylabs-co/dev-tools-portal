@@ -1,0 +1,69 @@
+{
+  "source": {
+    "slug": "algolia",
+    "name": "Algolia"
+  },
+  "target": {
+    "slug": "typesense",
+    "name": "Typesense"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Move from Algolia's hosted search to Typesense, an open-source typo-tolerant search engine with an Algolia-compatible InstantSearch adapter. The frontend often survives with minor changes; the indexing pipeline must be rewritten.",
+  "why_switch": [
+    "Typesense is open-source, very low lock-in",
+    "InstantSearch-compatible adapter exists",
+    "Self-host or Typesense Cloud, your choice",
+    "Avoid Algolia commit-tier high-water-mark billing",
+    "Sub-50ms search comparable for many workloads"
+  ],
+  "what_to_export": [
+    "Index records and document JSON",
+    "Searchable attributes and ranking settings",
+    "Synonyms",
+    "Query rules where representable",
+    "Stopwords / custom dictionaries",
+    "API keys and ACL definitions",
+    "Click / conversion analytics",
+    "Frontend search UI configuration"
+  ],
+  "export_method": "Use an Algolia client's browse method or the Algolia CLI to export each index as newline-delimited JSON. Export synonyms and rules via their endpoints, and capture index settings (searchableAttributes, customRanking, attributesForFaceting). Save click/conversion analytics if you still need that history; Typesense will only see traffic after cutover. Document any Personalization or Recommend features you used; those will not transfer.",
+  "import_method": "Provision Typesense (self-hosted or Typesense Cloud). Define a collection with an explicit schema, mapping Algolia attributes to Typesense fields with the correct types, facetability and indexing flags. Use the Typesense bulk import endpoint to load your NDJSON. Recreate synonyms via Typesense's synonyms API. For the frontend, swap the Algolia client for the typesense-instantsearch-adapter so existing InstantSearch widgets keep working with limited changes. Translate Algolia ranking into Typesense default_sorting_field and per-query sort_by expressions, then validate relevance against a frozen query set before traffic cutover.",
+  "concept_mapping": [
+    {
+      "source": "Index",
+      "target": "Collection"
+    },
+    {
+      "source": "Record / object",
+      "target": "Document"
+    },
+    {
+      "source": "searchableAttributes",
+      "target": "query_by fields in schema"
+    },
+    {
+      "source": "customRanking",
+      "target": "default_sorting_field / sort_by"
+    },
+    {
+      "source": "Synonyms",
+      "target": "Typesense synonyms API"
+    },
+    {
+      "source": "Faceting attributes",
+      "target": "facet: true on schema fields"
+    }
+  ],
+  "effort": "1-4 weeks depending on index count and ranking complexity",
+  "gotchas": [
+    "Typesense schema is stricter; you must define field types upfront.",
+    "Algolia Personalization, Recommend and AI re-ranking have no direct Typesense equivalent.",
+    "InstantSearch adapter covers most widgets but not every advanced Algolia feature.",
+    "Self-hosting means you own scaling, replication and backup.",
+    "Relevance tuning will differ; budget time to retune with real queries."
+  ],
+  "email": {
+    "subject": "Cancelling Algolia in 14 days — moving to Typesense",
+    "body": "Hi Algolia team,\n\nWe are migrating our search workload to Typesense over the next 14 days. The drivers are predictable open-source pricing and lower long-term lock-in.\n\nPlease confirm the billing end date, how long our indices remain readable for export after cancellation, and the data retention policy once the account is closed.\n\nWe plan to export indices, synonyms and settings in week one, run Typesense in shadow mode mid-week two for relevance validation, then cut over and disable our Algolia API keys before the end of the period.\n\nThanks for everything.\n\nYour customer"
+  }
+}

@@ -1,0 +1,75 @@
+{
+  "source": {
+    "slug": "akamai",
+    "name": "Akamai"
+  },
+  "target": {
+    "slug": "netlify",
+    "name": "Netlify"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Moving from Akamai to Netlify makes sense when the workload is primarily a frontend site or JAMstack app — Netlify is a hosting and edge platform built around git deploys, not a like-for-like CDN replacement for arbitrary origins.",
+  "why_switch": [
+    "Git-based deploys with branch previews",
+    "Simple freemium pricing for frontend workloads",
+    "Built-in forms, functions, and edge handlers",
+    "Faster onboarding for static and SSR sites",
+    "Avoid Akamai enterprise contracts for simple frontends"
+  ],
+  "what_to_export": [
+    "Origin and frontend source code (already in git, ideally)",
+    "Hostnames and CNAMEs",
+    "TLS certificate coverage",
+    "Cache rules and TTLs",
+    "Redirects and URL rewrites",
+    "WAF and security rules",
+    "EdgeWorkers source",
+    "Token authentication settings",
+    "Log delivery destinations",
+    "DNS zone records"
+  ],
+  "export_method": "Confirm the application source is fully in git — Netlify deploys from a repo, not from a generic origin. Inventory hostnames, redirects, and rewrite rules from Akamai Property Manager. Document edge logic from EdgeWorkers as plain code so you can rewrite it. Export DNS zone records and TLS certificate coverage details. Note any non-frontend workloads (APIs, large media, video) — those should not be moved to Netlify, only the frontend portion. Capture access controls and any signed-URL setup as inventory.",
+  "import_method": "Connect the git repo to Netlify and configure the build command and publish directory. Add custom domains and let Netlify provision managed TLS, or upload custom certificates if needed. Translate Akamai redirects and rewrites into a _redirects file or netlify.toml. Move edge logic into Netlify Functions (Node.js, AWS Lambda runtime) or Edge Functions (Deno-based) — these are not drop-in replacements for EdgeWorkers and should be rewritten. For non-frontend workloads, keep them on a separate origin and route via DNS rather than forcing them through Netlify. Lower DNS TTLs before the cutover so you can roll back quickly.",
+  "concept_mapping": [
+    {
+      "source": "Property",
+      "target": "Site"
+    },
+    {
+      "source": "Origin",
+      "target": "Build output / publish directory"
+    },
+    {
+      "source": "Behavior / Match criteria",
+      "target": "_redirects / netlify.toml rules"
+    },
+    {
+      "source": "Edge certificate",
+      "target": "Managed TLS or custom certificate"
+    },
+    {
+      "source": "EdgeWorkers",
+      "target": "Netlify Edge Functions / Functions"
+    },
+    {
+      "source": "Image Manager",
+      "target": "Netlify Image CDN"
+    },
+    {
+      "source": "Log delivery",
+      "target": "Log drains (paid plans)"
+    }
+  ],
+  "effort": "1-4 weeks for frontend-only workloads, longer if Akamai also fronts APIs or media",
+  "gotchas": [
+    "Netlify is built for frontend / JAMstack — it is not a generic CDN for arbitrary origins",
+    "Edge Functions run on Deno and have a different runtime than EdgeWorkers; expect a rewrite",
+    "Redirect and rewrite syntax is file-based, not GUI-based; review carefully",
+    "Bandwidth and function invocations are metered; model cost on real traffic",
+    "Some Akamai security features (advanced WAF, bot management) have no direct Netlify equivalent"
+  ],
+  "email": {
+    "subject": "Cancellation and offboarding from our Akamai contract",
+    "body": "Hi Akamai team,\n\nWe are moving our frontend hosting to another platform over the next 14 days and plan to wind down our Akamai usage. Could you confirm the steps to export our property configurations, certificate metadata, log delivery settings, and any account data we are entitled to before the contract ends?\n\nWe would like to schedule cancellation at the end of the current contract term. Please share the date by which we need to give written notice to avoid auto-renewal, the offboarding checklist your team uses, and any data retention timelines that apply after the account closes.\n\nIf there are minimum commits or remaining contractual obligations we should be aware of, please flag them.\n\nThanks,\nYour customer"
+  }
+}

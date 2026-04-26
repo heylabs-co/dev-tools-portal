@@ -1,0 +1,69 @@
+{
+  "source": {
+    "slug": "amazon-cloudfront",
+    "name": "Amazon CloudFront"
+  },
+  "target": {
+    "slug": "yandex-cloud",
+    "name": "Yandex Cloud"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Amazon CloudFront is a global AWS CDN tightly integrated with the rest of AWS, while Yandex Cloud offers CDN and edge delivery as part of a broader Russian hyperscaler. This migration usually only makes sense when your traffic and compliance footprint sit primarily in Russia and the CIS.",
+  "why_switch": [
+    "Russian data residency for regulated workloads",
+    "Better latency for Russian and CIS users",
+    "Local billing and support in Russian",
+    "Reduce sanctions-related exposure on AWS",
+    "Co-locate CDN with Yandex Cloud compute and storage"
+  ],
+  "what_to_export": [
+    "Distribution and behavior configuration",
+    "Cache and origin request policies",
+    "Custom domain names (CNAMEs)",
+    "TLS certificates (or plan to re-issue)",
+    "Signed URL / signed cookie configuration",
+    "WAF rules and geo restrictions",
+    "Lambda@Edge / CloudFront Functions code",
+    "S3 origin bucket inventories",
+    "Access log samples for validation",
+    "Invalidation / purge patterns"
+  ],
+  "export_method": "Capture each CloudFront distribution as JSON via the AWS CLI or your IaC tool (CloudFormation/Terraform). Save distribution config, cache and origin request policies, response header policies, attached WAF web ACLs, and origin definitions. Pull Lambda@Edge / CloudFront Functions source from the function configuration and from your version control. Sample access logs from the configured S3 destination so you can compare hit ratios and error rates after migration. ACM-issued TLS certificates cannot be exported as private keys; plan to re-issue certificates via Let's Encrypt or upload your own. Confirm exact AWS CLI commands and IaC resource names against current AWS documentation.",
+  "import_method": "In Yandex Cloud, create a CDN resource pointing at your origin (which can be a Yandex Object Storage bucket, a public origin, or a balancer). Re-create cache rules to match your CloudFront behaviors, simplifying where exact parity is not feasible. Attach custom domains and TLS certificates, either issued through Yandex Cloud's certificate manager or uploaded. For previous Lambda@Edge logic, decide whether to push it to the origin or re-implement using Yandex Cloud Functions / API Gateway. Migrate DNS gradually: lower TTLs first, cut a low-risk hostname over, validate cache hit rates and error rates, then move the rest. Verify exact CDN feature names and Function bindings against current Yandex Cloud documentation.",
+  "concept_mapping": [
+    {
+      "source": "CloudFront Distribution",
+      "target": "Yandex Cloud CDN Resource"
+    },
+    {
+      "source": "CloudFront Behavior",
+      "target": "Yandex CDN cache rule"
+    },
+    {
+      "source": "S3 origin",
+      "target": "Yandex Object Storage origin"
+    },
+    {
+      "source": "Lambda@Edge",
+      "target": "Yandex Cloud Functions or origin logic",
+      "note": "No drop-in equivalent"
+    },
+    {
+      "source": "ACM certificate",
+      "target": "Yandex Certificate Manager or uploaded cert"
+    }
+  ],
+  "effort": "2-6 weeks depending on edge logic complexity and number of distributions",
+  "gotchas": [
+    "Lambda@Edge has no drop-in replacement; expect to refactor edge logic",
+    "Yandex Cloud's PoP footprint is RU/CIS-focused; non-CIS users may see worse latency",
+    "ACM certificates cannot be exported; plan to re-issue TLS on the new platform",
+    "Sanctions and payment restrictions can block non-Russian entities from using Yandex Cloud",
+    "S3 vs Yandex Object Storage have similar APIs but features and limits differ; validate large-object and multipart behavior",
+    "Signed URL / signed cookie schemes need to be re-implemented and tested on the new CDN"
+  ],
+  "email": {
+    "subject": "Winding down our CloudFront distributions over the next 14 days",
+    "body": "Hi AWS team,\n\nWe are migrating CDN delivery from CloudFront to Yandex Cloud over the next 14 days, primarily for data residency and latency in our Russia/CIS user base.\n\nIn this window we plan to keep CloudFront live as a fallback while we move hostnames one at a time, with lowered DNS TTLs and side-by-side log comparison before each cutover. Edge logic that currently runs on Lambda@Edge will be refactored to the origin or to Yandex Cloud Functions.\n\nCould you confirm how long access logs in S3 and historical billing reports stay available after we disable distributions, and the cleanest way to avoid charges on idle resources while we keep them around as a rollback option?\n\nThanks for the years of service.\n\nYour customer"
+  }
+}

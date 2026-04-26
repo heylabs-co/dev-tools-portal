@@ -1,0 +1,71 @@
+{
+  "source": {
+    "slug": "convex",
+    "name": "Convex"
+  },
+  "target": {
+    "slug": "medplum",
+    "name": "Medplum"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Convex is a general-purpose reactive backend, while Medplum is an open-source, FHIR-native EHR platform aimed at healthcare apps. Migrating only makes sense if your product is a healthcare application that benefits from FHIR, HIPAA, and SOC2 tooling; otherwise Medplum is not a like-for-like replacement.",
+  "why_switch": [
+    "Your product is a healthcare app and you need FHIR-native data models",
+    "You need HIPAA-aligned and SOC2-aligned tooling out of the box",
+    "You prefer an open-source, API-first backend over a proprietary one",
+    "You want the option to self-host or use Medplum's managed cloud",
+    "You want to reduce Convex's high lock-in score for long-lived clinical data"
+  ],
+  "what_to_export": [
+    "All Convex documents that map to clinical or patient data",
+    "Convex schema definitions and validation rules",
+    "Server functions implementing business logic",
+    "Scheduled jobs and background tasks",
+    "File storage (clinical attachments, images, documents)",
+    "User and auth records, including roles and permissions",
+    "Audit and access logs if you retain them",
+    "Environment configuration and integration secrets"
+  ],
+  "export_method": "Use the official Convex CLI and documented export tooling to dump your tables to a portable format such as JSON or NDJSON. Because Medplum is FHIR-native, plan an additional modeling step: each Convex table that holds clinical data needs to be mapped to a FHIR resource type (for example Patient, Practitioner, Observation, Encounter, DocumentReference). Capture the schema and any validation logic from your Convex code so you can reproduce equivalent FHIR profiles or extensions. Export file storage assets separately and note their access-control settings — they typically become DocumentReference or Binary resources in FHIR. Freeze writes or run a brief dual-write window during the cutover to keep the snapshot consistent. Treat the export as data-only; server functions in Convex will need to be reimplemented as Medplum bots, subscriptions, or external services. Verify exact CLI flags and formats in the current Convex documentation before scripting the export.",
+  "import_method": "Provision a Medplum project (managed or self-hosted) and follow the official Medplum docs to set up your auth, organization, and access policies. Transform your exported Convex data into FHIR resources following the resource types you mapped during export, then load them using Medplum's documented import paths — typically the FHIR REST API or batch/transaction bundles for bulk loads. Validate small batches first against your FHIR profiles before doing full loads. Reimplement Convex server functions as Medplum bots, subscriptions, or external services that call the FHIR API. Migrate file attachments to Binary or DocumentReference resources. Update your client to use Medplum's TypeScript SDK or raw FHIR endpoints instead of the Convex client. Always confirm endpoint paths, bundle formats, and auth flows against the current Medplum documentation before relying on them.",
+  "concept_mapping": [
+    {
+      "source": "Convex table",
+      "target": "FHIR resource type",
+      "note": "Pick the closest standard resource (Patient, Observation, etc.) and use extensions for custom fields."
+    },
+    {
+      "source": "Convex document",
+      "target": "FHIR resource instance"
+    },
+    {
+      "source": "Convex query / mutation",
+      "target": "FHIR REST request or Medplum bot"
+    },
+    {
+      "source": "Convex scheduled function",
+      "target": "Medplum bot on a schedule"
+    },
+    {
+      "source": "Convex auth",
+      "target": "Medplum project membership and access policies"
+    },
+    {
+      "source": "Convex file storage",
+      "target": "FHIR Binary or DocumentReference"
+    }
+  ],
+  "effort": "6-12 weeks",
+  "gotchas": [
+    "Medplum is healthcare-specific; non-clinical apps will fight the FHIR data model rather than benefit from it.",
+    "FHIR has a real learning curve — modeling existing tables as resources and extensions is the bulk of the work.",
+    "Convex's reactive queries do not map 1:1 to FHIR; realtime needs to be rebuilt with Medplum subscriptions or your own layer.",
+    "HIPAA and SOC2 are organizational programs, not just product features — confirm your processes match before going live with PHI.",
+    "Server-side logic in Convex must be ported to Medplum bots or external services; budget time to retest business rules.",
+    "Verify all Medplum API shapes, bot capabilities, and pricing tiers against current docs before committing to a cutover plan."
+  ],
+  "email": {
+    "subject": "Migrating our backend from Convex to Medplum",
+    "body": "Hi team,\n\nWe are moving our backend from Convex to Medplum, an open-source FHIR-native EHR platform. The goal is to align our data model with healthcare standards and lean on Medplum's HIPAA and SOC2 tooling.\n\nOver the next 14 days we will export Convex data, map it to FHIR resources, and reimplement our server logic as Medplum bots and services. Expect short maintenance windows during cutover and possible brief gaps in realtime updates.\n\nNo action is needed from you yet. We will confirm exact dates and any client changes as the plan firms up.\n\nThanks,\nYour customer"
+  }
+}

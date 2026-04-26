@@ -1,0 +1,57 @@
+{
+  "source": {
+    "slug": "cohere",
+    "name": "cohere"
+  },
+  "target": {
+    "slug": "bump-sh",
+    "name": "bump-sh"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Cohere is an NLP/LLM API provider while Bump.sh is an API documentation platform — these tools serve different jobs, so a true 'switch' is uncommon. If you're moving from Cohere's developer-portal experience to Bump.sh for hosting public API docs, focus on capturing your OpenAPI specs and rebuilding the docs site.",
+  "why_switch": [
+    "You want a dedicated API documentation hub, not vendor-tied reference pages.",
+    "Your team standardises on OpenAPI/AsyncAPI as the source of truth for docs.",
+    "You need versioned, hosted documentation with diffs between API releases.",
+    "You prefer a tool focused on docs UX over a bundled vendor portal."
+  ],
+  "what_to_export": [
+    "OpenAPI / AsyncAPI specifications for any APIs you publish",
+    "Markdown content (guides, tutorials, changelogs)",
+    "Custom domain and DNS settings used by the existing portal",
+    "Branding assets (logos, colour palette, favicons)",
+    "Authentication / access control policies for who can view docs",
+    "Webhook or CI integrations that publish docs on release",
+    "Analytics or feedback configurations attached to current docs",
+    "List of consumers / partners who rely on the documentation"
+  ],
+  "export_method": "Locate the OpenAPI or AsyncAPI definitions that describe the APIs you currently document — these are typically stored in your application repository, not inside Cohere itself, so check your codebase first. Export any Markdown guides, tutorials, and release notes from wherever they're authored today (Git, Notion, internal CMS). Capture branding (logo, colours, custom fonts) and the custom domain configuration. If documentation is generated from code annotations, run your existing spec generator to produce a clean OpenAPI 3.x file. Validate each spec with a linter such as Spectral or the Swagger Editor before moving on. Save everything in a single migration folder and commit it to version control so the import is reproducible.",
+  "import_method": "Create a Bump.sh account and a new documentation hub. Upload your OpenAPI / AsyncAPI files through the Bump.sh dashboard or the bump-sh CLI to publish your reference docs. Re-author guides and tutorials as Markdown using the structure Bump.sh supports for topical content. Configure your custom domain and DNS records once the hub is live. Wire the bump-sh CLI into your CI/CD pipeline so each merge to main republishes the docs and surfaces a diff. Re-create access control rules and invite your team. Confirm versioning, search, and the changelog feed render as expected, then redirect the old documentation URL to the new Bump.sh hub.",
+  "concept_mapping": [
+    {
+      "source": "API reference page",
+      "target": "OpenAPI document published to a Bump.sh hub"
+    },
+    {
+      "source": "Custom domain on developer portal",
+      "target": "Custom domain configured in Bump.sh"
+    },
+    {
+      "source": "Manual docs publishing",
+      "target": "bump-sh CLI in CI/CD"
+    }
+  ],
+  "effort": "1-2 weeks",
+  "gotchas": [
+    "Cohere and Bump.sh solve different problems — confirm the migration goal is documentation hosting, not LLM inference.",
+    "If your existing reference docs aren't backed by an OpenAPI spec, you'll need to author one before importing.",
+    "Custom domain cutover requires DNS changes; plan a maintenance window and keep the old URL reachable until propagation completes.",
+    "Branding fidelity may not be 1:1 — review typography and colours after the first publish.",
+    "Search engine ranking on the old docs URL can drop temporarily; set up redirects from old paths to new Bump.sh paths.",
+    "Versioning conventions differ between platforms; decide upfront how you'll represent past versions in Bump.sh."
+  ],
+  "email": {
+    "subject": "Heads up: we're moving our API documentation",
+    "body": "Hi,\n\nOver the next two weeks we're moving our API documentation to a new home built on Bump.sh. The current docs URL will keep working through the transition, but starting today new updates will appear on the new site first.\n\nIf you bookmark specific reference pages, we'll publish a redirect map before we cut over. We'll also email you the new URL on launch day. The OpenAPI spec stays the same, so your generated clients won't need changes.\n\nReach out if anything breaks for you.\n\nThanks,\nYour customer"
+  }
+}

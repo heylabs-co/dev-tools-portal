@@ -1,0 +1,76 @@
+{
+  "source": {
+    "slug": "backtrace",
+    "name": "Backtrace"
+  },
+  "target": {
+    "slug": "crashpad",
+    "name": "Crashpad"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Move from Backtrace's hosted crash management to Crashpad, the open-source minidump capture library used by Chromium. You trade a managed dashboard for full control over the capture pipeline plus a backend you provide.",
+  "why_switch": [
+    "Eliminate per-seat or event-volume fees by self-hosting",
+    "Drop vendor lock-in on the capture client side",
+    "Standardize on the same crash plumbing used in Chrome",
+    "Open-source license keeps long-term roadmap predictable",
+    "Out-of-process handler survives many crashes that in-process tools miss"
+  ],
+  "what_to_export": [
+    "Existing minidump archives stored in Backtrace",
+    "Symbol files (.sym, PDB, dSYM) uploaded for symbolication",
+    "Project and application identifiers used by Backtrace SDKs",
+    "Custom attribute schemas attached to crash reports",
+    "User and email metadata fields",
+    "Alert rules and Jira/Slack integration configuration",
+    "Triage assignments and resolved/ignored statuses",
+    "Release/version mapping records"
+  ],
+  "export_method": "Use Backtrace's web UI or documented API to download crash reports, attached minidumps, and symbol files. If a bulk export endpoint is unavailable on your tier, contact Backtrace support to request a one-time data dump. Save symbols separately so you can feed them into your own symbolication pipeline later. For metadata (custom attributes, triage state), export per-project as CSV or JSON if the UI allows; otherwise script API pulls page-by-page. Keep raw minidumps untouched — they are portable across any Crashpad-compatible backend. Treat the export as archival only: Crashpad itself does not import historical reports, so plan to keep the Backtrace tenant read-only for a retention window while new crashes flow into the new system.",
+  "import_method": "Crashpad is a client library, not a backend, so 'import' means rebuilding the receive side. Stand up a crash collector that accepts minidump uploads over HTTP multipart (the format Crashpad's handler posts). Options: an open-source receiver, a thin server you write, or pairing Crashpad with another product (Sentry, your own S3 + processing). Build Crashpad from the Chromium source tree following the project README, link the handler binary into your app's release bundle, and call CrashpadClient::StartHandler at startup with your collector URL and a local database path. Upload your symbol files into whatever symbolication tool you choose (e.g., minidump_stackwalk with a symbol store). Verify by triggering a synthetic crash in a staging build and confirming the minidump arrives and symbolicates.",
+  "concept_mapping": [
+    {
+      "source": "Backtrace SDK",
+      "target": "Crashpad client library",
+      "note": "C++ API; wrappers needed for non-C++ stacks"
+    },
+    {
+      "source": "Backtrace ingestion endpoint",
+      "target": "Your collector URL",
+      "note": "You operate the receiver"
+    },
+    {
+      "source": "Symbol upload UI",
+      "target": "Self-managed symbol store",
+      "note": "Often a directory tree consumed by stackwalk tools"
+    },
+    {
+      "source": "Web dashboard / triage",
+      "target": "Your own UI or paired backend",
+      "note": "Crashpad ships no UI"
+    },
+    {
+      "source": "Custom attributes",
+      "target": "Crashpad annotations",
+      "note": "Key/value pairs attached to the dump"
+    },
+    {
+      "source": "Alerts and integrations",
+      "target": "Built on top of your backend",
+      "note": "Not provided by Crashpad itself"
+    }
+  ],
+  "effort": "3-8 weeks",
+  "gotchas": [
+    "Crashpad has no dashboard — budget for a backend or a paired product before you cut over",
+    "Build system integration (gn/ninja or CMake forks) can be the longest single task on Windows",
+    "Symbolication is your responsibility; pipeline minidump_stackwalk or similar against your symbol store",
+    "Out-of-process handler must ship as a separate binary alongside the app; installer changes are required",
+    "Non-C++ apps need an FFI or wrapper; the official surface is C++",
+    "Historical Backtrace reports cannot be imported into Crashpad workflows — plan retention separately"
+  ],
+  "email": {
+    "subject": "Notice of contract non-renewal — moving crash reporting in-house",
+    "body": "Hi team,\n\nWe are giving notice that we will not be renewing our Backtrace subscription at the end of the current term. Over the next 14 days we will complete migration to a self-hosted crash reporting pipeline built on Crashpad, which gives us direct control over capture, storage, and symbolication.\n\nBefore the cutover we would like to:\n\n- Export all crash reports, minidumps, and symbol files from our tenant.\n- Confirm the final invoice and any data retention obligations on your side.\n- Keep the account in read-only mode for our agreed retention window so we can reference historical issues.\n\nPlease send the off-boarding checklist and confirm the contact for the data export. We appreciate the service over the past period and want to wrap up cleanly.\n\nThanks,\nYour customer"
+  }
+}

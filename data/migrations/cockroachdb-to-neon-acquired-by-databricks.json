@@ -1,0 +1,65 @@
+{
+  "source": {
+    "slug": "cockroachdb",
+    "name": "CockroachDB"
+  },
+  "target": {
+    "slug": "neon-acquired-by-databricks",
+    "name": "Neon (acquired by Databricks)"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Both CockroachDB and Neon speak the PostgreSQL wire protocol, so most application code keeps working with only a connection-string swap. The migration is mainly about exporting data with pg_dump-compatible tooling and re-importing into Neon while reviewing CockroachDB-specific SQL constructs.",
+  "why_switch": [
+    "Serverless Postgres with scale-to-zero pricing",
+    "Database branching for preview environments",
+    "Lower entry pricing for early-stage projects",
+    "Standard single-region Postgres simplifies tooling",
+    "Backed by Databricks for long-term roadmap"
+  ],
+  "what_to_export": [
+    "Schema (DDL: tables, indexes, constraints)",
+    "Table data (rows)",
+    "Sequences and current values",
+    "Views and materialized views",
+    "Functions and stored procedures",
+    "Roles, users, and granted privileges",
+    "Foreign key relationships",
+    "Extensions in use",
+    "Application connection strings and pool sizes"
+  ],
+  "export_method": "Use pg_dump with a Postgres-compatible client to export schema and data from your CockroachDB cluster. Run a schema-only dump first (pg_dump --schema-only) so you can review CockroachDB-specific syntax that Neon's Postgres may not accept (for example, INTERLEAVE IN PARENT or some experimental locality clauses) and rewrite those before importing. Then dump data separately with pg_dump --data-only or use COPY ... TO for very large tables. For multi-terabyte databases, dump per-table in parallel and store output in object storage. Capture sequence current values explicitly so they aren't reset on import. Keep a synchronized snapshot timestamp where possible to avoid skew between schema and data dumps. Validate the dump by counting rows and inspecting a sample restore in a staging environment before scheduling the real cutover.",
+  "import_method": "Provision a Neon project and database, then use psql or pg_restore to apply the schema dump first, fixing any CockroachDB-only SQL that errored. Once schema is clean, load data with psql \\copy, pg_restore, or COPY FROM, ideally in transaction batches and with indexes deferred until after the bulk load to speed things up. Re-create indexes and constraints, then run ANALYZE to update planner statistics. Reset sequences to the captured values. Smoke-test the application against Neon using a non-production branch first, then cut traffic over during a planned maintenance window. Keep the CockroachDB cluster running in read-only or paused mode for a rollback window before decommissioning.",
+  "concept_mapping": [
+    {
+      "source": "PostgreSQL wire protocol",
+      "target": "PostgreSQL wire protocol",
+      "note": "Drivers and ORMs work with both"
+    },
+    {
+      "source": "Multi-region cluster",
+      "target": "Single-region project",
+      "note": "Neon does not replicate the same multi-region SQL semantics"
+    },
+    {
+      "source": "Cluster + database + schema",
+      "target": "Project + database + schema"
+    },
+    {
+      "source": "Serverless / pay-as-you-go",
+      "target": "Usage-based with $5/mo minimum (Launch)"
+    }
+  ],
+  "effort": "1-3 weeks for a typical app; longer if you rely on CockroachDB multi-region features",
+  "gotchas": [
+    "CockroachDB-specific syntax (e.g. INTERLEAVE, AS OF SYSTEM TIME) will not work on Neon and must be rewritten",
+    "Serializable isolation behavior differs in edge cases; review transaction-heavy code paths",
+    "Multi-region failover and survivability features have no direct Neon equivalent",
+    "Connection pooling: Neon recommends pooled connection strings for serverless workloads",
+    "Scale-to-zero introduces cold-start latency that some workloads cannot tolerate",
+    "Verify all Postgres extensions you depend on are supported on Neon before cutover"
+  ],
+  "email": {
+    "subject": "Migrating off CockroachDB to Neon over the next 14 days",
+    "body": "Hi team,\n\nWe are planning to migrate our primary database from CockroachDB to Neon over the next 14 days. Both speak the PostgreSQL wire protocol, so most application code should continue to work after a connection-string change.\n\nDays 1-3: inventory schema, extensions, and any CockroachDB-specific SQL.\nDays 4-7: take pg_dump-style schema and data exports, restore into a Neon staging project, and run our test suite.\nDays 8-11: shadow traffic and fix any compatibility issues.\nDays 12-14: schedule a maintenance window, perform the final cutover, and keep the CockroachDB cluster paused as a rollback option.\n\nPlease flag any features that depend on CockroachDB-specific behavior so we can plan around them.\n\nThanks,\nYour customer"
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "source": {
+    "slug": "segment",
+    "name": "Segment"
+  },
+  "target": {
+    "slug": "airbyte",
+    "name": "Airbyte"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Move from Segment's hosted CDP event routing to Airbyte's open-source ELT platform. Expect a paradigm shift: Segment streams real-time events to many destinations, while Airbyte runs scheduled or near-real-time syncs that load raw data into a warehouse for downstream activation.",
+  "why_switch": [
+    "Avoid Segment's annual MTU commit pricing",
+    "Open-source core gives more deployment flexibility",
+    "Warehouse-first model centralises data ownership",
+    "Wide connector library for sources and destinations",
+    "Lower long-term lock-in via portable connector configs"
+  ],
+  "what_to_export": [
+    "List of sources (web, mobile, server) currently sending events",
+    "List of destinations and their config",
+    "Tracking plan and event schemas",
+    "Identity resolution rules and user traits",
+    "Consent and privacy settings",
+    "Transformations and Functions code",
+    "Workspace users, roles, and access settings",
+    "Connection credentials inventory (to be rotated)",
+    "Replay/archival storage location if used"
+  ],
+  "export_method": "Use the Segment Config API and the workspace UI to export sources, destinations, tracking plan, and Functions/transformation code as JSON. Commit those exports to a Git repo so you have a versioned record. Pull a representative sample of recent events from each source to document the actual payload shapes that downstream systems rely on. If you have Segment archive or warehouse loading enabled, ensure that storage location is preserved as the source of truth for historical events. Export the list of destinations and their settings so you can rebuild integrations later. Capture identity resolution rules, default traits, and any consent settings. Document users, roles, and SSO configuration. Inventory all API keys and write keys so they can be rotated and removed once cutover completes. Note any Personas/Engage audiences if applicable, since those are not directly portable. Keep Segment running during the parallel period.",
+  "import_method": "Deploy Airbyte (Cloud or self-hosted OSS) and configure sources for the systems where your data actually lives, such as your application database, warehouse, and SaaS tools. Configure destinations such as your data warehouse (BigQuery, Snowflake, Redshift, Postgres). Recognise that Airbyte is ELT, not a real-time event router, so client-side and server-side event capture must be replaced by an alternative event collection layer (for example, an OSS event tracker that writes to a warehouse or queue) before Airbyte can sync from it. For SaaS-to-warehouse paths Segment was performing as reverse ingestion, configure equivalent Airbyte source connectors. Add transformations downstream (for example, dbt) to model the raw tables. Rebuild downstream activation through a separate reverse-ETL tool if you need warehouse-to-SaaS pushes that Segment used to do directly. Validate row counts and freshness before cutting over. Once parity is confirmed, disable Segment sources and rotate keys.",
+  "concept_mapping": [
+    {
+      "source": "Source (event tracking)",
+      "target": "Separate event collector + Airbyte source",
+      "note": "Airbyte does not capture web/mobile events itself"
+    },
+    {
+      "source": "Destination",
+      "target": "Airbyte destination or downstream reverse-ETL"
+    },
+    {
+      "source": "Tracking plan",
+      "target": "Schema definitions in warehouse / dbt models"
+    },
+    {
+      "source": "Functions / transformations",
+      "target": "dbt models or SQL transformations"
+    },
+    {
+      "source": "Workspace users",
+      "target": "Airbyte workspace members"
+    }
+  ],
+  "effort": "4-10 weeks",
+  "gotchas": [
+    "Airbyte is ELT/batch; it does not replace Segment's real-time client-side event capture",
+    "Reverse-ETL paths (warehouse to SaaS) may need a separate tool",
+    "Identity resolution and Personas features have no direct equivalent",
+    "Segment annual MTU commit may keep billing in place until renewal",
+    "Connector behaviours and incremental syncs vary; test before cutover",
+    "Plan downstream model rebuild (for example, dbt) for analytics parity"
+  ],
+  "email": {
+    "subject": "Notice: ending our Segment subscription within 14 days",
+    "body": "Hi team,\n\nWe are restructuring our data pipeline around an ELT/warehouse-first approach and will not be renewing Segment. Please treat this email as our 14-day notice to end the subscription at the next available term and to disable auto-renewal.\n\nKindly confirm the effective end date, the final invoice, and any data or configuration export options still available to us. We will keep sources active until cutover is complete.\n\nThanks for the partnership.\n\nBest regards,\nYour customer"
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "source": {
+    "slug": "fivetran",
+    "name": "fivetran"
+  },
+  "target": {
+    "slug": "airbyte",
+    "name": "airbyte"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Fivetran is a fully managed ELT service with a large catalogue of connectors, while Airbyte is an open-source alternative offering self-hosted and cloud editions plus a connector development kit. Migration is conceptually direct — same source-to-warehouse model — but each connector pair must be validated for schema and incremental-sync behaviour.",
+  "why_switch": [
+    "Move to an open-source platform with a community CDK for custom connectors",
+    "Self-host for data residency or cost control",
+    "Avoid vendor MAR-style billing growth",
+    "Greater visibility into connector internals and the ability to fork them"
+  ],
+  "what_to_export": [
+    "List of Fivetran connectors with source and destination details",
+    "Schema and table inclusion/exclusion settings",
+    "Sync frequencies and historical sync windows",
+    "Column-level transformations or hashing rules",
+    "Destination warehouse credentials (re-create in Airbyte)",
+    "User and role assignments",
+    "Alerting and notification configuration",
+    "Any dbt or post-load transformation hooks"
+  ],
+  "export_method": "Inventory every Fivetran connector along with its source type, destination, schema settings, and sync frequency. The Fivetran UI exposes connector configuration that should be captured into a spreadsheet or YAML so you can recreate each one in Airbyte. Note any column hashing, blocking, or schema-change handling rules; these are connector-specific and need to be re-applied. Historical sync state is connector-specific and not generally portable, so plan for an initial full re-sync on Airbyte. Do not migrate credentials directly — issue fresh secrets per connector when configuring Airbyte.",
+  "import_method": "Stand up Airbyte (Cloud or self-hosted via Docker/Kubernetes), then create a Source and Destination for each Fivetran connector you are replacing. Map column-level options (hashing, exclusions) explicitly in the Airbyte source configuration. Trigger an initial full sync per connector and validate row counts and primary-key alignment against the Fivetran-loaded tables before redirecting downstream consumers. Where Airbyte's connector is missing a Fivetran-only feature, decide between accepting the gap, building a custom connector with the Airbyte CDK, or keeping that specific source on Fivetran for now.",
+  "concept_mapping": [
+    {
+      "source": "Connector",
+      "target": "Source + Destination pair"
+    },
+    {
+      "source": "Schema settings",
+      "target": "Stream configuration"
+    },
+    {
+      "source": "Sync frequency",
+      "target": "Connection schedule"
+    },
+    {
+      "source": "Column hashing/blocking",
+      "target": "Source-level field configuration",
+      "note": "Verify support per connector"
+    },
+    {
+      "source": "Transformations",
+      "target": "External tool (e.g. dbt) wired to the destination"
+    }
+  ],
+  "effort": "3-8 weeks",
+  "gotchas": [
+    "Connector parity is not 100% — confirm every Fivetran source has a working Airbyte equivalent",
+    "Initial historical sync will likely re-pull all data and may be slow or expensive",
+    "Self-hosted Airbyte requires infrastructure, upgrades, and monitoring",
+    "Schema-change handling defaults differ; review per-connector behaviour explicitly",
+    "Custom Fivetran transformations or post-load hooks must be ported to your transformation layer",
+    "Run both pipelines in parallel and reconcile counts before retiring Fivetran"
+  ],
+  "email": {
+    "subject": "We are moving our ELT pipelines from Fivetran to Airbyte",
+    "body": "Hi team,\n\nOver the next 14 days we will migrate our ELT connectors from Fivetran to Airbyte. Both will run in parallel during the transition so warehouse tables stay populated. We expect minor differences in load timing on a handful of connectors, and we will validate row counts before pointing downstream models at the Airbyte-loaded data. Please flag any pipeline you depend on so we can prioritise it.\n\nThanks for your patience.\n\nYour customer"
+  }
+}

@@ -1,0 +1,69 @@
+{
+  "source": {
+    "slug": "amazon-cloudfront",
+    "name": "Amazon CloudFront"
+  },
+  "target": {
+    "slug": "selectel",
+    "name": "Selectel"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Amazon CloudFront is a global AWS CDN with Lambda@Edge, while Selectel is a Russian cloud provider offering CDN and edge delivery alongside its IaaS portfolio. This migration is typically driven by data residency, sanctions, or pricing considerations for traffic concentrated in Russia and the CIS, not by feature parity.",
+  "why_switch": [
+    "Russian data residency for regulatory compliance",
+    "Better performance for end users in Russia/CIS",
+    "Local billing in rubles, no US payment friction",
+    "Reduce exposure to AWS sanctions risk",
+    "Bundle CDN with other Selectel cloud services"
+  ],
+  "what_to_export": [
+    "Origin server addresses and TLS configuration",
+    "Distribution behaviors / cache rules",
+    "Cache key and query string handling rules",
+    "Custom domain names (CNAMEs)",
+    "TLS certificates (or plan to re-issue)",
+    "Signed URL / signed cookie configuration",
+    "WAF rules and geo restrictions",
+    "Lambda@Edge / CloudFront Functions code",
+    "Logging targets (S3 buckets, log fields)",
+    "Invalidation patterns and frequencies"
+  ],
+  "export_method": "CloudFront configuration is best captured by exporting each distribution as JSON via the AWS CLI or CloudFormation/Terraform state. Save distribution config, cache policies, origin request policies, response headers policies, behaviors, and any attached WAF web ACLs. Lambda@Edge and CloudFront Functions code lives in source control or AWS Lambda; export the function source and triggers separately. Pull representative access logs from the configured S3 bucket so you can replay traffic patterns against the new CDN for validation. TLS certificates issued by ACM cannot be exported as private keys; plan to re-issue certificates on the new platform via Let's Encrypt or upload your own. Confirm exact AWS CLI and Terraform resource names against current AWS documentation.",
+  "import_method": "In Selectel, create a CDN resource pointing at your existing origin (which can still be in AWS or anywhere reachable). Map each CloudFront behavior to an equivalent Selectel CDN rule for cache TTL, query string handling, and headers, simplifying where exact parity is not available. Re-issue TLS certificates for your custom domains and attach them to the Selectel CDN endpoint. Re-implement edge logic that previously ran in Lambda@Edge either at the origin, in a Selectel compute service, or by adjusting cache rules. Move DNS gradually: lower TTLs, switch a low-risk hostname first, validate logs and error rates, then cut over. Verify exact CDN feature names and rule semantics against current Selectel documentation.",
+  "concept_mapping": [
+    {
+      "source": "CloudFront Distribution",
+      "target": "Selectel CDN Resource"
+    },
+    {
+      "source": "CloudFront Behavior",
+      "target": "Selectel CDN cache rule"
+    },
+    {
+      "source": "CloudFront Origin",
+      "target": "Selectel CDN origin"
+    },
+    {
+      "source": "Lambda@Edge",
+      "target": "Origin-side logic or Selectel compute",
+      "note": "No drop-in equivalent"
+    },
+    {
+      "source": "ACM certificate",
+      "target": "Re-issued / uploaded TLS cert"
+    }
+  ],
+  "effort": "2-6 weeks depending on edge logic complexity and number of distributions",
+  "gotchas": [
+    "Lambda@Edge has no direct equivalent; plan to refactor that logic at the origin or via another compute service",
+    "Selectel's PoP footprint is concentrated in Russia/CIS; performance outside that region may regress",
+    "TLS certificates issued by ACM cannot be exported, so re-issue on the new platform",
+    "Sanctions and payment restrictions can block non-Russian customers from contracting with Selectel",
+    "Cache invalidation semantics and propagation times may differ; rebuild your purge tooling against the new API",
+    "Signed URL / signed cookie schemes are CDN-specific and need to be re-implemented and re-tested"
+  ],
+  "email": {
+    "subject": "Winding down our CloudFront distributions over the next 14 days",
+    "body": "Hi AWS team,\n\nWe are moving our CDN delivery from CloudFront to Selectel over the next 14 days, primarily for data residency and performance reasons in our core Russia/CIS market.\n\nDuring this window we plan to keep CloudFront active as a fallback origin while we cut over hostnames one at a time, lowering DNS TTLs first, validating with access logs, and only then disabling the old distributions. We will also re-issue TLS certificates externally rather than relying on ACM exports.\n\nCould you confirm how long CloudFront access logs in S3 and historical billing data remain available after we disable distributions, and any recommended steps to avoid charges on idle but not-yet-deleted resources during the transition?\n\nThanks for the years of service.\n\nYour customer"
+  }
+}

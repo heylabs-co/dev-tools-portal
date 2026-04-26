@@ -1,0 +1,76 @@
+{
+  "source": {
+    "slug": "lokalise",
+    "name": "Lokalise"
+  },
+  "target": {
+    "slug": "phrase",
+    "name": "Phrase"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Move localization from Lokalise to Phrase by exporting translation files in standard formats and re-importing them into Phrase projects. Most teams complete the cutover in one to two weeks, depending on language and integration count.",
+  "why_switch": [
+    "Different pricing or contract terms that fit your team better",
+    "TMS and CAT tooling features that suit your translator workflow",
+    "Integrations or CLI behavior that match your build pipeline",
+    "Consolidating localization under a single enterprise vendor"
+  ],
+  "what_to_export": [
+    "Source language files in their original format (JSON, XLIFF, .strings, .po, etc.)",
+    "Translated language files for every target language",
+    "Translation memory if exportable (TMX)",
+    "Glossary / term base (TBX or CSV)",
+    "Project and branch structure",
+    "User list with roles (translator, reviewer, admin)",
+    "Integration tokens and webhook URLs",
+    "Screenshots/context attachments tied to keys",
+    "Custom QA rules or workflow conventions"
+  ],
+  "export_method": "Lokalise supports exporting translations via its web UI, CLI, and API. Pull every target language for every source file in the same format your project uses (XLIFF is the most portable for cross-vendor migrations; otherwise keep the native format). Export translation memory in TMX and the glossary in TBX or CSV where supported. Capture the project structure — files, branches, and key namespaces — as a manifest in your repo. List users and their roles for re-invitation. Document any integration tokens (GitHub/GitLab connectors, CI access tokens) so you can rotate and recreate them rather than copying secrets. Do not assume vendor-specific metadata such as custom workflow states or internal IDs will round-trip; plan to recreate workflow conventions on the target.",
+  "import_method": "On Phrase, create one project per Lokalise project (or consolidate if structure allows). Upload your source files first using Phrase's web UI or CLI, then upload translated files per language. Import TMX into Phrase's translation memory and TBX/CSV into the glossary. Re-invite team members and assign appropriate roles. Connect your repo via Phrase's repo integration if you use a code-based workflow, and update CI pipelines to push/pull from Phrase. Re-upload screenshots and re-link to keys for context — expect this to be the most manual step. Validate by diffing 3-5 languages between Lokalise and Phrase to confirm content parity (plurals, placeholders, HTML escaping). Keep Lokalise read-only during a one to two week transition window, then archive once you've shipped a release through Phrase end-to-end.",
+  "concept_mapping": [
+    {
+      "source": "Project",
+      "target": "Project"
+    },
+    {
+      "source": "Source file",
+      "target": "Source file / Job"
+    },
+    {
+      "source": "Key",
+      "target": "Key"
+    },
+    {
+      "source": "Translation memory",
+      "target": "Translation memory"
+    },
+    {
+      "source": "Glossary",
+      "target": "Term base"
+    },
+    {
+      "source": "Branch",
+      "target": "Branch / Job",
+      "note": "Branching models differ; verify on target"
+    },
+    {
+      "source": "Task / workflow",
+      "target": "Workflow step",
+      "note": "Re-author rather than translate verbatim"
+    }
+  ],
+  "effort": "1-2 weeks",
+  "gotchas": [
+    "File-format round-trips can drop plurals, placeholders, or HTML escaping. Diff a sample after import before declaring parity.",
+    "TMX/TBX support varies by vendor — expect minor metadata loss across the round-trip.",
+    "Screenshot-to-key linkage typically needs to be recreated manually for every screenshot.",
+    "Custom QA rules and workflow states do not map one-to-one. List the rules that actually catch bugs and re-author those.",
+    "Repo connectors (GitHub/GitLab) need fresh tokens and webhooks; plan a short CI maintenance window.",
+    "User roles and permissions need to be reissued on the target — they do not transfer."
+  ],
+  "email": {
+    "subject": "Heads up: we're moving localization to a new TMS",
+    "body": "Hi team,\n\nWe're migrating our translation workflow from Lokalise to Phrase over the next 14 days. All source and translated files are being exported and re-imported into matching Phrase projects. Translation memory and glossary are coming along.\n\nAction items: translators and reviewers will receive Phrase invites this week — please accept and confirm visibility on your languages. CI and the repo connector are being switched by the platform team. Lokalise will stay read-only for two weeks, then we'll archive it.\n\nReply with questions.\n\nThanks,\nYour customer"
+  }
+}

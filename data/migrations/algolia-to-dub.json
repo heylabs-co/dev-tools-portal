@@ -1,0 +1,53 @@
+{
+  "source": {
+    "slug": "algolia",
+    "name": "Algolia"
+  },
+  "target": {
+    "slug": "dub",
+    "name": "Dub"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "These are different categories: Algolia is a search API while Dub focuses on link management. Treat this as decommissioning Algolia and adopting Dub for a different use case rather than a like-for-like search migration.",
+  "why_switch": [
+    "Dub is open-source and lower lock-in",
+    "Public freemium pricing vs Algolia commits",
+    "Useful when search is not actually needed",
+    "Simpler scope for link-driven products"
+  ],
+  "what_to_export": [
+    "Algolia index records and document JSON",
+    "Searchable attribute and ranking config",
+    "Synonyms and query rules",
+    "Analytics / click logs you want to retain",
+    "API key inventory",
+    "Any short-link or redirect data already managed in Algolia"
+  ],
+  "export_method": "Export Algolia indices via the dashboard or an official client's browse method, which paginates all records into JSON. Export synonyms, rules and index settings separately. Save analytics or click logs you still need; they cannot be reproduced after cancellation. If your real goal is link management rather than search, identify the subset of records that map to URLs, slugs and metadata and prepare a clean CSV or JSON for that data only.",
+  "import_method": "Set up a Dub workspace and create the link domains you need. Use Dub's import or bulk-create flow (dashboard or API) to load short links and metadata. Map Algolia record fields like slug, target URL and tags to Dub's link, destination URL and tag fields. Replace any Algolia search calls with Dub's link-lookup or analytics calls where the underlying use case is link redirection or click tracking. If you still need full text search elsewhere, keep that on a dedicated search engine; Dub is not a replacement for an Algolia index.",
+  "concept_mapping": [
+    {
+      "source": "Record (link-shaped)",
+      "target": "Dub link"
+    },
+    {
+      "source": "Tag attribute",
+      "target": "Dub link tag"
+    },
+    {
+      "source": "Click analytics",
+      "target": "Dub analytics"
+    }
+  ],
+  "effort": "Variable; 1-2 weeks if scope reduces to link management, longer if also replacing search",
+  "gotchas": [
+    "Dub is not a search engine, so generic full-text queries have no equivalent.",
+    "Only the link-management subset of Algolia data is meaningful to migrate.",
+    "If you still need search you must adopt a separate search tool in addition to Dub.",
+    "Algolia analytics history will not transfer into Dub click analytics."
+  ],
+  "email": {
+    "subject": "Cancelling Algolia in 14 days",
+    "body": "Hi Algolia team,\n\nWe are sunsetting our Algolia usage over the next 14 days as part of an internal product simplification. The remaining workload will be handled by other tools, including Dub for our link management needs.\n\nPlease confirm the billing end date, the export window for our indices, and the data deletion timeline after cancellation.\n\nWe will export the data we still need in week one, validate the new setup, and disable our Algolia API keys before day 14.\n\nThanks for the partnership.\n\nYour customer"
+  }
+}

@@ -1,0 +1,75 @@
+{
+  "source": {
+    "slug": "cloudflare",
+    "name": "Cloudflare"
+  },
+  "target": {
+    "slug": "pkl",
+    "name": "Pkl"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Cloudflare is a CDN/edge platform; Pkl is Apple's open-source configuration language. The change is in how Cloudflare configuration is authored and reviewed, not in the platform you serve traffic from.",
+  "why_switch": [
+    "Type-checked, validated config instead of dashboard clicks.",
+    "Single source of truth for zones, rules, and Workers.",
+    "Better diffs, code review, and rollback through git.",
+    "Reusable modules across zones and environments."
+  ],
+  "what_to_export": [
+    "Zone settings and DNS records",
+    "Page rules, rulesets, transform rules, and redirects",
+    "WAF custom rules and managed rule overrides",
+    "Workers, routes, and bindings",
+    "R2, KV, D1, and Queues bindings used by Workers",
+    "Pages projects and environment variables",
+    "TLS/SSL settings and origin certificates",
+    "Logpush or analytics destinations"
+  ],
+  "export_method": "Use the Cloudflare API or wrangler to export current zones, DNS records, rulesets, Workers scripts, and bindings. The Cloudflare Terraform provider already covers most resources, so existing Terraform state is a good starting point. For Workers, pull source from your repo and bindings via wrangler. Export environment differences (staging, production) so they can be modeled as Pkl overrides. Capture R2 bucket names, KV namespace IDs, and D1 database IDs — these are referenced rather than defined.",
+  "import_method": "Pkl does not call Cloudflare APIs by itself. Install Pkl, design schemas that mirror Cloudflare's resource model (zones, records, rulesets, Workers), and render Pkl into the formats your deploy tool consumes — typically Terraform variables for the Cloudflare provider, or JSON for direct API calls. Define a base module with shared defaults and per-environment modules amending it. Keep Workers code in its own repo and reference deployed script names and routes from Pkl. Wire CI to render, plan, and apply on merge. Store API tokens in your CI secrets store, never in Pkl files. Validate the migration by rendering Pkl, diffing against current Terraform state, and only then cutting over to Pkl-driven changes.",
+  "concept_mapping": [
+    {
+      "source": "Dashboard settings",
+      "target": "Pkl module rendering Terraform vars",
+      "note": "GitOps replaces clicks"
+    },
+    {
+      "source": "Rulesets / page rules",
+      "target": "Pkl typed records",
+      "note": "Validated at render time"
+    },
+    {
+      "source": "DNS records",
+      "target": "Pkl list of typed records",
+      "note": "Reusable across zones"
+    },
+    {
+      "source": "Workers scripts",
+      "target": "Separate code repo + Pkl references",
+      "note": "Pkl handles config, not code"
+    },
+    {
+      "source": "Bindings (KV, R2, D1)",
+      "target": "Pkl-defined binding records",
+      "note": "IDs referenced as inputs"
+    },
+    {
+      "source": "Per-env zones",
+      "target": "Pkl per-env module amending base",
+      "note": "DRY config"
+    }
+  ],
+  "effort": "1-3 weeks",
+  "gotchas": [
+    "Pkl does not deploy to Cloudflare; you still need Terraform, wrangler, or a script.",
+    "Workers code lives outside Pkl; coordinate deploys so config and code stay in sync.",
+    "Secrets and API tokens must be kept out of Pkl files committed to git.",
+    "Drift between Pkl source and live Cloudflare state needs CI checks.",
+    "Some Cloudflare features lag in the Terraform provider; plan a fallback path.",
+    "Team needs ramp-up time on Pkl syntax and tooling."
+  ],
+  "email": {
+    "subject": "Heads up: Cloudflare configuration moving to Pkl over the next 14 days",
+    "body": "Hi team,\n\nOver the next 14 days we are moving our Cloudflare configuration into Pkl, an open-source configuration language. The platform serving traffic does not change — only how we author and review configuration.\n\nWhat to expect:\n- All config changes will go through pull requests and CI.\n- Rendered output is diffed and planned before any deploy.\n- A short freeze on dashboard edits during cutover.\n- Same domains, same behavior; no user-visible changes are planned.\n\nIf anything looks off during the cutover window, reply with the URL, timestamp, and details and we will look into it.\n\nThanks,\n\nYour customer"
+  }
+}

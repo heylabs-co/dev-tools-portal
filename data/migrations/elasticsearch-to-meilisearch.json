@@ -1,0 +1,75 @@
+{
+  "source": {
+    "slug": "elasticsearch",
+    "name": "Elasticsearch"
+  },
+  "target": {
+    "slug": "meilisearch",
+    "name": "Meilisearch"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Moving from Elasticsearch to Meilisearch is a good fit when you mainly use search-as-you-type over moderate document volumes and want simpler operations. Expect to rewrite query DSL and rethink heavy analytics use cases that Meilisearch is not designed for.",
+  "why_switch": [
+    "Simpler operations and developer experience",
+    "Strong typo tolerance and instant-search defaults",
+    "Lower operational overhead than ES clusters",
+    "Lighter memory footprint for many workloads",
+    "Open-source core with managed cloud option"
+  ],
+  "what_to_export": [
+    "Document data per index",
+    "Index mappings and analyzers",
+    "Synonyms, stopwords, and stemming rules",
+    "Ranking and boosting configuration",
+    "Filter and facet definitions",
+    "Search query templates used by the app",
+    "API key and access policies",
+    "Snapshot/backup configuration"
+  ],
+  "export_method": "Use Elasticsearch's standard tooling to export documents from each index: the scroll/PIT search API or _search streaming for full reads, or a snapshot to a file system or S3 for bulk transfer. Capture index settings (mappings, analyzers, tokenizers, synonyms) as JSON for reference. Document your application's query patterns and aggregations because the query DSL will not transfer directly. If you use ingest pipelines or transforms, document those separately. Export users, roles, and API keys for any access control you need to recreate. Plan whether you migrate one index at a time or all at once based on size and downtime tolerance.",
+  "import_method": "Provision Meilisearch (self-hosted or cloud) and create one index per Elasticsearch index you plan to migrate. Configure searchable, filterable, and sortable attributes plus synonyms, stop words, and ranking rules to approximate your previous behavior. Use the Meilisearch documents API (single or batch endpoints) or the official client SDKs to load exported documents, ideally in chunks of a few thousand for throughput. Rewrite application queries to use Meilisearch's search API, replacing aggregations with filterable attributes and facet distribution where possible. Validate relevance with a representative query set and tune ranking rules. Run both engines in parallel via a feature flag, compare top-N results, and switch over once relevance is acceptable.",
+  "concept_mapping": [
+    {
+      "source": "Index",
+      "target": "Index"
+    },
+    {
+      "source": "Document",
+      "target": "Document"
+    },
+    {
+      "source": "Mapping (field types)",
+      "target": "Searchable / filterable / sortable attributes"
+    },
+    {
+      "source": "Analyzer / tokenizer",
+      "target": "Built-in analyzer (limited tuning)"
+    },
+    {
+      "source": "Synonyms",
+      "target": "Synonyms"
+    },
+    {
+      "source": "Aggregations",
+      "target": "Faceted search / filters",
+      "note": "Heavy analytics not a Meilisearch focus"
+    },
+    {
+      "source": "Query DSL",
+      "target": "Search API parameters"
+    }
+  ],
+  "effort": "2-6 weeks depending on index count and query complexity",
+  "gotchas": [
+    "Meilisearch is search-focused; complex aggregations and analytics are not a 1:1 fit",
+    "Custom analyzers and tokenizers in Elasticsearch may not have direct equivalents",
+    "Vector / kNN search support and behavior differs — re-evaluate if you rely on it",
+    "Very large indexes (hundreds of GB) may need careful sharding and infra planning",
+    "Relevance tuning is different; expect to rewrite ranking rules and re-test with real queries",
+    "Run both engines in parallel until top-N relevance is comparable"
+  ],
+  "email": {
+    "subject": "Migration plan: Elasticsearch to Meilisearch",
+    "body": "Hi team,\n\nWe are planning to move our search workload from Elasticsearch to Meilisearch over the next 14 days and would appreciate your help scoping the migration.\n\nSpecifically, we would like to:\n\n- Export documents and index settings (mappings, synonyms, analyzers) from Elasticsearch.\n- Create equivalent Meilisearch indexes with searchable, filterable, and sortable attributes configured.\n- Rewrite our application queries from the Elasticsearch DSL to Meilisearch's search API.\n- Run both engines in parallel behind a feature flag and validate relevance before full cutover.\n\nCould you confirm recommended cluster sizing for our document volume, ingestion best practices, and a technical contact for tuning? We aim to begin within the next few business days.\n\nThanks,\nYour customer"
+  }
+}

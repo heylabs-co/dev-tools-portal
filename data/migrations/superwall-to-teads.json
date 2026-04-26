@@ -1,0 +1,67 @@
+{
+  "source": {
+    "slug": "superwall",
+    "name": "Superwall"
+  },
+  "target": {
+    "slug": "teads",
+    "name": "Teads"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Superwall is a subscription paywall SDK, while Teads is a premium video advertising platform across mobile web, in-app, and CTV. Migrating means trading subscription conversion for brand-safe video ad monetization.",
+  "why_switch": [
+    "Access premium brand video demand",
+    "Add omnichannel reach across mobile and CTV",
+    "Tap into Outbrain Teads merged supply",
+    "Improve viewability for video formats",
+    "Shift focus from conversion to brand revenue"
+  ],
+  "what_to_export": [
+    "Paywall templates and copy",
+    "A/B test history and outcomes",
+    "Subscription SKUs and price tiers",
+    "Audience segments and triggers",
+    "Conversion analytics and revenue events",
+    "Localizations per market",
+    "Webhook configuration and event payloads"
+  ],
+  "export_method": "Pull paywall configurations, campaigns, and analytics through the Superwall dashboard's export options. Save A/B test results and segment definitions via the reporting interface. From the codebase, archive trigger names, placement identifiers, and audience filters used at runtime. Keep image and copy assets locally. If specific datasets are unavailable in the UI, contact support for an assisted export instead of relying on undocumented endpoints. Snapshot webhook payload schemas so downstream analytics and CRM integrations can be rewired against the new vendor.",
+  "import_method": "Teads onboarding typically goes through a managed-sales process where an account team provisions publisher access and approves inventory. Integrate the relevant Teads SDK or partner integration depending on whether you serve mobile web, in-app, or CTV. Define ad placements that correspond to where paywalls used to fire, focusing on outstream and in-stream video formats. Configure brand-safety settings, viewability targets, and reporting. Validate ad delivery and revenue during a staged rollout, and pair with a mediation layer if you need fallback fill, since Teads alone is typically not used as a sole demand source.",
+  "import_method_note": null,
+  "concept_mapping": [
+    {
+      "source": "Paywall trigger",
+      "target": "Video ad placement"
+    },
+    {
+      "source": "Conversion event",
+      "target": "Impression / completion"
+    },
+    {
+      "source": "A/B variant",
+      "target": "Creative or placement test"
+    },
+    {
+      "source": "Audience segment",
+      "target": "Brand campaign targeting"
+    },
+    {
+      "source": "Subscription SKU",
+      "target": "Not applicable",
+      "note": "No direct equivalent"
+    }
+  ],
+  "effort": "3-6 weeks",
+  "gotchas": [
+    "Teads leans brand-focused, so performance and rewarded use cases may underdeliver",
+    "Mobile web integration is stronger than in-app SDK maturity",
+    "Self-serve access is enterprise-only; expect sales-cycle delays",
+    "Pricing is custom; model expected revenue conservatively",
+    "Switching from subscription revenue changes LTV math significantly",
+    "Mobile game developers seeking rewarded fill should pair with another vendor"
+  ],
+  "email": {
+    "subject": "Heads up: switching from Superwall to Teads over the next 14 days",
+    "body": "Hi there,\n\nA quick note that over the next two weeks we'll be migrating our monetization stack from Superwall paywalls to Teads premium video. This lets us tap into stronger brand-safe video demand across mobile and CTV.\n\nWhat to expect:\n- Existing subscribers remain on their current plans; billing is unchanged.\n- Some app surfaces will shift from subscription prompts to short video ads.\n- We'll roll out gradually and tune ad density to keep things smooth.\n\nIf you notice anything off during the transition, reply to this email and we'll take a look.\n\nThanks for being with us.\n\nYour customer success team"
+  }
+}

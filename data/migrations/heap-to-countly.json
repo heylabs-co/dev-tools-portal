@@ -1,0 +1,65 @@
+{
+  "source": {
+    "slug": "heap",
+    "name": "Heap"
+  },
+  "target": {
+    "slug": "countly",
+    "name": "Countly"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Trade Heap's autocapture for Countly's explicit-tracking, open-source model. You self-host or use Countly Cloud, and you re-instrument events deliberately — losing autocapture but gaining ownership.",
+  "why_switch": [
+    "Open-source, self-hostable",
+    "No annual event-volume commitment",
+    "Strong mobile SDK story (iOS/Android/Unity)",
+    "Lower long-term cost and full data ownership"
+  ],
+  "what_to_export": [
+    "Defined events and event taxonomy",
+    "User profiles and identify properties",
+    "Cohorts / segments",
+    "Saved charts and dashboards",
+    "Raw event archive (where the plan allows)",
+    "API keys and source tokens",
+    "Team members and roles",
+    "Annotations / release markers"
+  ],
+  "export_method": "Heap's defined events, properties, and cohorts can be exported via the dashboard or the public API depending on your plan. Pull raw events through the data pipeline / warehouse sync if you have one configured. Document the autocapture selectors that map to defined events so you have a recipe for re-instrumentation. Save dashboards as screenshots plus a description of the underlying definition. Confirm the end date of any annual event-volume commitment in your account settings.",
+  "import_method": "Deploy Countly (Docker/K8s/managed) and create an app to obtain the App Key + Server URL. Because Countly does not autocapture, you must add explicit `recordEvent` calls in your application code for the events that mattered most in Heap — start with the top 20 by usage and expand from there. Use Countly's bulk events endpoint to backfill historical events from your Heap export with original timestamps so retention and funnels stay accurate. Recreate cohorts and dashboards. Run both tools in parallel for a week, reconcile DAU and key funnels, then disconnect Heap.",
+  "concept_mapping": [
+    {
+      "source": "Autocapture event",
+      "target": "Manually instrumented event",
+      "note": "Requires code changes"
+    },
+    {
+      "source": "Defined event",
+      "target": "Event"
+    },
+    {
+      "source": "User property",
+      "target": "User property"
+    },
+    {
+      "source": "Cohort",
+      "target": "Cohort / segment"
+    },
+    {
+      "source": "Source / Project key",
+      "target": "App Key"
+    }
+  ],
+  "effort": "3-6 weeks",
+  "gotchas": [
+    "Loss of autocapture means real engineering work to re-instrument",
+    "Heap annual commit does not pro-rate mid-cycle",
+    "Self-hosted Countly adds infra and ops overhead",
+    "Historical event timestamps must be preserved on bulk import",
+    "Countly repo license is non-standard — review for commercial use"
+  ],
+  "email": {
+    "subject": "Data export and wind-down — Heap",
+    "body": "Hi Heap team,\n\nWe are migrating analytics to a self-hosted platform over the next 14 days and need to wind down cleanly. Could you help with:\n1. Confirming the best way to export defined events, cohorts, dashboards, and raw event history via the dashboard or API.\n2. Sharing our current annual commitment end date so we can plan cutover.\n3. Confirming the post-cancellation retention window for any data we cannot export immediately.\n\nWe will keep instrumentation running in parallel during the transition. Please flag anything that requires action from your side.\n\nThanks,\nYour customer"
+  }
+}

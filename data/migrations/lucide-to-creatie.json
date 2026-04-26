@@ -1,0 +1,60 @@
+{
+  "source": {
+    "slug": "lucide",
+    "name": "Lucide"
+  },
+  "target": {
+    "slug": "creatie",
+    "name": "Creatie"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Lucide is an open-source SVG icon library shipped as code packages, while Creatie is an AI-native product design tool. The realistic move is not a swap but using Lucide icons inside Creatie design files alongside Creatie's design and handoff workflow.",
+  "why_switch": [
+    "You want a full design tool with AI-assisted UI generation, not just an icon set",
+    "You need prototyping, multiplayer editing, and developer handoff in one place",
+    "You are starting fresh and want AI-native workflows from day one",
+    "You prefer freemium pricing with public tiers over self-hosting",
+    "Your team needs design files, not just icon components in code"
+  ],
+  "what_to_export": [
+    "List of Lucide icons currently used in your codebase",
+    "Custom icon variants or modifications layered on Lucide",
+    "Icon usage map per component or screen",
+    "Color, stroke-width, and size conventions applied to icons",
+    "Naming conventions used in your design tokens",
+    "Existing design system documentation referencing Lucide",
+    "Any Figma or design file that mirrors current icon usage",
+    "License and attribution notes"
+  ],
+  "export_method": "Lucide is a code-first library, so there is nothing to export from Lucide itself; the artifacts you need live in your codebase and design files. Generate an inventory of every Lucide import across your repo (for example by grepping for 'lucide-react', 'lucide-vue-next', or similar package names) and capture the unique icon names. Save SVGs for each used icon directly from the official Lucide gallery on lucide.dev or from your installed package's SVG assets, keeping the same names. If you maintain a Figma or other design library that already mirrors your Lucide usage, export it as your source of truth for screens. Document stroke width, default size, and color tokens you currently apply so you can recreate the same look in Creatie. Treat this as a 'recreate, do not migrate' task.",
+  "import_method": "Inside Creatie, create a project for your design system and a dedicated icon library file. Bring the SVGs in by drag-and-drop or paste, then convert each into a reusable component so screens reference one source. Apply your previous stroke and size conventions as component properties or styles where Creatie supports them. Rebuild key screens or components in Creatie referencing the new icon components. Use Creatie's developer handoff to inspect values, and continue using the Lucide npm packages in code if you want generated screens to map to icons that already exist in your bundle. Verify that icon names and visuals line up between Creatie components and code imports before opening handoff to engineers.",
+  "concept_mapping": [
+    {
+      "source": "Icon component in npm package",
+      "target": "Icon component in Creatie library",
+      "note": "Recreated, not auto-imported"
+    },
+    {
+      "source": "Icon SVG asset",
+      "target": "SVG placed inside Creatie component"
+    },
+    {
+      "source": "Stroke-width prop",
+      "target": "Component style or property in Creatie",
+      "note": "Mapping varies by tool capabilities"
+    }
+  ],
+  "effort": "1-3 days for a small design system, 1-2 weeks if rebuilding many screens",
+  "gotchas": [
+    "Lucide is an icon library and Creatie is a design tool, so this is a workflow change, not a like-for-like replacement",
+    "There is no automatic Lucide-to-Creatie import; expect to recreate components",
+    "Naming drift between code and design files breaks handoff if you rename icons during the move",
+    "Visual parity is easy to miss if you forget to set the original stroke width and size",
+    "If Creatie's plugin or library features differ from what you assumed, plan around manual updates instead",
+    "Lucide updates over time; pin a version so designs and code stay in sync"
+  ],
+  "email": {
+    "subject": "Switching our icon and design workflow from Lucide to Creatie",
+    "body": "Hi team,\n\nWe are moving our design workflow into Creatie while continuing to use Lucide icons in code. Over the next 14 days we will inventory used icons, build a Creatie icon library, and rebuild key screens. Production code keeps Lucide imports for now. Please flag any custom icon variants you rely on so we capture them. We will share the new Creatie library and handoff link before cutover.\n\nThanks,\nYour customer"
+  }
+}

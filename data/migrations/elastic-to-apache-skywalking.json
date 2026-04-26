@@ -1,0 +1,67 @@
+{
+  "source": {
+    "slug": "elastic",
+    "name": "elastic"
+  },
+  "target": {
+    "slug": "apache-skywalking",
+    "name": "apache-skywalking"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Moving from Elastic APM to Apache SkyWalking means swapping a commercial observability stack for an open-source APM with its own auto-instrumentation agents. Plan for a parallel-run period since dashboards, alerts, and trace formats need rebuilding from scratch.",
+  "why_switch": [
+    "You want a fully open-source APM under the Apache 2.0 licence.",
+    "You want to escape Elastic Cloud commit-tier pricing and Elastic License 2.0.",
+    "Your stack is service-mesh heavy and benefits from SkyWalking's topology view.",
+    "You prefer self-hosting on your own infrastructure.",
+    "You want auto-instrumentation across languages without per-host fees."
+  ],
+  "what_to_export": [
+    "Service inventory and naming conventions",
+    "Saved searches, dashboards, and visualisations from Kibana",
+    "Alerting rules and notification channels",
+    "APM agent configuration (sampling rate, ignored URLs, tags)",
+    "Custom transaction / span names used in instrumentation",
+    "Service-level objective definitions",
+    "Index lifecycle / retention policies for reference",
+    "User and role mappings for the observability UI"
+  ],
+  "export_method": "Inventory every service currently reporting to Elastic APM and capture its naming convention, environment tags, and instrumentation language. Export Kibana saved objects (dashboards, visualisations, searches, alerts) using the built-in Saved Objects export, which produces an NDJSON file. Document your alerting rules and the channels they fire to (Slack, PagerDuty, email). Pull APM agent configuration from your application config files and infrastructure-as-code repos. Note retention policies so you can reproduce equivalents on SkyWalking's storage. Snapshot recent traces and metrics if you need to keep historical data — Elastic indices are not directly importable, so plan to keep the old cluster read-only for the retention window.",
+  "import_method": "Stand up a SkyWalking OAP backend and UI on your infrastructure (typically as containers behind a load balancer) with a supported storage backend such as Elasticsearch, BanyanDB, or H2 for testing. Replace Elastic APM agents with the equivalent SkyWalking agents per language: Java agent JAR, Python, Node, Go, and others published by the project. Update agent configuration to point at the OAP collector endpoint and set service / instance names. If your apps already emit OpenTelemetry data, configure the SkyWalking OTel receiver to ingest OTLP directly. Recreate dashboards in the SkyWalking UI — they don't import from Kibana — and rebuild alert rules using SkyWalking's alarm engine or an external tool like Grafana wired to SkyWalking. Run both stacks in parallel for at least one full incident cycle before decommissioning Elastic.",
+  "concept_mapping": [
+    {
+      "source": "Elastic APM agent",
+      "target": "SkyWalking agent"
+    },
+    {
+      "source": "Kibana dashboard",
+      "target": "SkyWalking UI dashboard",
+      "note": "Rebuilt manually."
+    },
+    {
+      "source": "Kibana alerting rule",
+      "target": "SkyWalking alarm rule"
+    },
+    {
+      "source": "Elasticsearch storage",
+      "target": "SkyWalking storage backend (ES, BanyanDB, etc.)"
+    },
+    {
+      "source": "Service / transaction",
+      "target": "Service / endpoint"
+    }
+  ],
+  "effort": "3-6 weeks",
+  "gotchas": [
+    "Historical Elasticsearch APM indices cannot be migrated into SkyWalking; keep the old cluster read-only for compliance.",
+    "Dashboards do not transfer — every visualisation needs to be rebuilt in SkyWalking's UI.",
+    "Agent capabilities differ per language; verify that the SkyWalking agent for your stack covers the libraries you depend on.",
+    "Alert semantics differ; map thresholds carefully to avoid alert fatigue or missed incidents during cutover.",
+    "Self-hosting SkyWalking shifts operational burden — capacity planning, upgrades, and storage are now your responsibility.",
+    "OpenTelemetry support exists but instrumentation conventions differ; double-check span and metric names after switching."
+  ],
+  "email": {
+    "subject": "Observability stack migration: moving APM to SkyWalking",
+    "body": "Hi,\n\nWe're rolling our application performance monitoring from Elastic APM to Apache SkyWalking over the next two weeks. The change is internal — your dashboards and alerts will look slightly different, but the underlying signals are the same.\n\nDuring the parallel-run window both systems will be active. If you have personal saved searches in Kibana, please flag them so we can rebuild them in SkyWalking before we cut Elastic off.\n\nReach out with questions.\n\nThanks,\nYour customer"
+  }
+}

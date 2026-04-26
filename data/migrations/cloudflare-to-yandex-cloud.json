@@ -1,0 +1,70 @@
+{
+  "source": {
+    "slug": "cloudflare",
+    "name": "Cloudflare"
+  },
+  "target": {
+    "slug": "yandex-cloud",
+    "name": "Yandex Cloud"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Cloudflare is a global CDN, DNS, security, and edge-compute platform, while Yandex Cloud is a Russian hyperscaler with CDN, compute, storage, and ML services. Teams typically migrate to consolidate inside Yandex Cloud for data residency, sanctions, and procurement reasons rather than for feature parity.",
+  "why_switch": [
+    "Russian data residency for regulatory compliance",
+    "Better latency for users in Russia and CIS",
+    "Local billing and Russian-language support",
+    "Reduce sanctions exposure on Cloudflare",
+    "Co-locate CDN with Yandex compute and storage"
+  ],
+  "what_to_export": [
+    "DNS zone records",
+    "Cache rules / Page Rules / Rulesets",
+    "Custom domains and TLS configuration",
+    "Workers code and routes",
+    "R2 bucket inventories",
+    "WAF rules and rate limits",
+    "Bot management settings",
+    "Logpush configurations",
+    "Origin server addresses",
+    "Redirects and header transforms"
+  ],
+  "export_method": "Use Terraform's Cloudflare provider or the REST API to export DNS records, cache and ruleset configuration, WAF rules, and Worker routes as code. Worker source lives in your wrangler project; capture each Worker, its routes, and its bindings (KV, D1, R2, Queues). For R2 origins, mirror objects to Yandex Object Storage using S3-compatible tooling such as rclone or aws s3 sync against the R2 endpoint. Pull a sample of Cloudflare access logs from Logpush so you can compare cache hit ratios after cutover. TLS certificates from Cloudflare cannot be exported; plan to re-issue on Yandex Cloud. Confirm exact Cloudflare API endpoints and Terraform resources against current Cloudflare documentation.",
+  "import_method": "In Yandex Cloud, create CDN resources per hostname with origins pointing at your existing infrastructure or at Yandex Object Storage. Translate Cloudflare cache rules into Yandex CDN configuration, simplifying where features have no parity. Move R2 contents to Yandex Object Storage with S3-compatible tooling. Re-implement Workers either at the origin or as Yandex Cloud Functions / API Gateway, accounting for runtime differences. Issue or upload TLS certificates via Yandex Cloud's certificate workflow. Cut DNS over one hostname at a time with lowered TTLs and side-by-side log comparison. Verify exact Yandex Cloud feature names and Function bindings against current Yandex Cloud documentation.",
+  "concept_mapping": [
+    {
+      "source": "Cloudflare zone",
+      "target": "DNS provider (external or Yandex Cloud DNS)"
+    },
+    {
+      "source": "Cloudflare cache rule / Page Rule",
+      "target": "Yandex CDN cache rule"
+    },
+    {
+      "source": "Cloudflare R2",
+      "target": "Yandex Object Storage",
+      "note": "Both S3-compatible APIs"
+    },
+    {
+      "source": "Cloudflare Workers",
+      "target": "Yandex Cloud Functions or origin logic",
+      "note": "No drop-in equivalent"
+    },
+    {
+      "source": "Cloudflare WAF",
+      "target": "Yandex Cloud WAF / origin WAF"
+    }
+  ],
+  "effort": "3-8 weeks depending on Workers footprint, R2 data volume, and number of zones",
+  "gotchas": [
+    "Workers have no drop-in equivalent; refactor to origin logic or Yandex Cloud Functions",
+    "Yandex Cloud's PoP footprint is RU/CIS-focused; non-CIS users may see worse latency",
+    "Sanctions and payment restrictions can block non-Russian customers from contracting with Yandex Cloud",
+    "Bundled Cloudflare features (Access, Bot Management, full DNS proxying) require separate replacements",
+    "TLS certs from Cloudflare cannot be exported; certificates must be re-issued",
+    "S3-compatible parity between R2 and Yandex Object Storage is not exact; validate large-object and multipart workflows"
+  ],
+  "email": {
+    "subject": "Winding down our Cloudflare usage over the next 14 days",
+    "body": "Hi Cloudflare team,\n\nWe are migrating our CDN, DNS, and edge workloads off Cloudflare onto Yandex Cloud over the next 14 days, mostly for data residency and commercial reasons in our Russia/CIS footprint.\n\nIn this window we plan to mirror R2 buckets to Yandex Object Storage, re-create cache rules and TLS on Yandex CDN, refactor Worker logic to our origin or Yandex Cloud Functions, and cut DNS over hostname by hostname with lowered TTLs and parallel logs. Cloudflare will remain live as a fallback during cutover.\n\nCould you confirm how long historical analytics, logs, and billing data remain accessible after we stop traffic, plus the cleanest order to disable Workers, R2, and zones to avoid surprise charges or data loss?\n\nThanks for the support.\n\nYour customer"
+  }
+}

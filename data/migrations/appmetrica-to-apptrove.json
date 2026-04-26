@@ -1,0 +1,68 @@
+{
+  "source": {
+    "slug": "appmetrica",
+    "name": "AppMetrica"
+  },
+  "target": {
+    "slug": "apptrove",
+    "name": "Apptrove"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "AppMetrica is Yandex's free real-time mobile analytics + attribution; Apptrove is Trackier's MMP focused on install attribution and fraud prevention. Migration mainly means swapping the SDK and re-mapping events, with attribution data not transferring.",
+  "why_switch": [
+    "Avoid Yandex ownership and residency risk",
+    "Need fraud prevention bundled with attribution",
+    "Want broader ad network partner catalog",
+    "Multi-client agency dashboard",
+    "Better fit for non-CIS markets"
+  ],
+  "what_to_export": [
+    "App identifiers and platform IDs",
+    "Event names and parameter schemas",
+    "Conversion / attribution mappings",
+    "User properties and segments",
+    "Crash reporting data (if archived)",
+    "Push token mappings (if used)",
+    "Historical CSV exports of events",
+    "Attribution partner configurations"
+  ],
+  "export_method": "From the AppMetrica console, export raw events and reports for the apps and date ranges you need. Where bulk export is limited, capture CSVs and screenshots of the dashboards you rely on. Document your event taxonomy and parameter schema so equivalent events can be sent to the new MMP. If you use the AppMetrica Logs API, take a final snapshot of recent windows. Save partner/integration settings (postbacks, ad network setup) as documentation, since they will not transfer.",
+  "import_method": "Create an Apptrove account and configure your apps, conversion events, and partner integrations in its dashboard. Replace the AppMetrica SDK in your iOS and Android apps with the Apptrove SDK, and re-emit your event taxonomy via the new SDK calls. Configure SKAN, deep linking, and fraud-prevention rules in Apptrove. Set up postbacks for your ad networks. Validate end-to-end attribution in test campaigns and confirm event parameters arrive intact before fully cutting over. Plan a parallel-tracking window so you can reconcile numbers.",
+  "concept_mapping": [
+    {
+      "source": "Event",
+      "target": "Apptrove event",
+      "note": "Re-map names and params"
+    },
+    {
+      "source": "User property",
+      "target": "Apptrove user property"
+    },
+    {
+      "source": "Conversion",
+      "target": "Apptrove conversion event"
+    },
+    {
+      "source": "Crash report",
+      "target": "External crash tool",
+      "note": "Apptrove focus is attribution"
+    },
+    {
+      "source": "Push notification",
+      "target": "Separate push provider"
+    }
+  ],
+  "effort": "2-4 weeks",
+  "gotchas": [
+    "Crash reporting and push are AppMetrica extras; Apptrove may not cover them, so plan replacements.",
+    "Historical attribution data does not transfer; expect a discontinuity in reports.",
+    "SDK swap requires an app store release on iOS and Android.",
+    "Postbacks must be reconfigured per ad network on the new MMP.",
+    "Run parallel tracking briefly to reconcile event counts before turning AppMetrica off.",
+    "SKAN setup needs revalidation under Apptrove's configuration."
+  ],
+  "email": {
+    "subject": "Migrating from AppMetrica to Apptrove over the next 14 days",
+    "body": "Hi AppMetrica team,\n\nThank you for the analytics and attribution support. Due to vendor and data-residency considerations, we are moving to Apptrove and will complete the migration within the next 14 days.\n\nPlanned timeline:\n- Days 1-3: export historical events and document our event taxonomy.\n- Days 4-9: integrate the Apptrove SDK and reconfigure ad network postbacks.\n- Days 10-12: run parallel tracking and reconcile counts.\n- Days 13-14: ship the cutover and stop sending data to AppMetrica.\n\nCould you confirm the steps to fully export remaining data and to close our account so no further data is processed after the cutover date?\n\nThanks,\nYour customer"
+  }
+}

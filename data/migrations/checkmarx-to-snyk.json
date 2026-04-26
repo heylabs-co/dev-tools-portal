@@ -1,0 +1,73 @@
+{
+  "source": {
+    "slug": "checkmarx",
+    "name": "Checkmarx"
+  },
+  "target": {
+    "slug": "snyk",
+    "name": "Snyk"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Move application security scanning from Checkmarx to Snyk by re-onboarding repositories, importing SARIF where possible, and replumbing CI/IDE integrations. Snyk is more developer-first; expect coverage and rule-set differences in deep SAST.",
+  "why_switch": [
+    "Developer-first IDE and CLI experience",
+    "Public, transparent pricing",
+    "Native integrations across CI/CD and Git",
+    "Lower lock-in with SARIF/JSON exports",
+    "Faster onboarding and self-service"
+  ],
+  "what_to_export": [
+    "Project list with repository mappings",
+    "SAST, SCA, IaC, and container scan results",
+    "Custom rules and queries",
+    "Triage state (false positives, suppressions)",
+    "Policy thresholds and severity gates",
+    "User, role, and SSO configuration",
+    "CI/IDE integrations and tokens",
+    "Webhooks and ticketing integrations",
+    "Audit logs and compliance evidence",
+    "Remediation/PR history"
+  ],
+  "export_method": "Use the Checkmarx UI or APIs to export each project configuration, the latest scan results in SARIF, and any custom queries. Capture triage state so you can replay false-positive markings and suppressions in the new tool. Export user and role assignments plus SSO metadata for cutover. Document CI and IDE integrations so they can be uninstalled cleanly. Pull representative historical scans to keep an offline archive for audit continuity. Note that some Checkmarx custom queries are tightly coupled to its query language and may not have direct equivalents elsewhere; document intent, not just syntax.",
+  "import_method": "In Snyk, create the organization and import repositories from your Git provider; Snyk will start scanning automatically. Configure Snyk Code (SAST), Snyk Open Source (SCA), Snyk IaC, and Snyk Container as needed. Re-add CI integrations using the Snyk CLI or native plugins for GitHub Actions, GitLab CI, Jenkins, and others; install IDE plugins for developers. Translate Checkmarx custom queries into Snyk Code custom rules where supported, otherwise document them as gaps. Re-establish severity thresholds and break-build policies. Set up SSO and user provisioning. Replay triage state by suppressing or ignoring known false positives in Snyk to match prior decisions.",
+  "concept_mapping": [
+    {
+      "source": "Checkmarx SAST",
+      "target": "Snyk Code"
+    },
+    {
+      "source": "Checkmarx SCA",
+      "target": "Snyk Open Source"
+    },
+    {
+      "source": "Checkmarx IaC",
+      "target": "Snyk IaC"
+    },
+    {
+      "source": "Checkmarx Container",
+      "target": "Snyk Container"
+    },
+    {
+      "source": "SARIF export",
+      "target": "SARIF/JSON import or archive"
+    },
+    {
+      "source": "Custom queries",
+      "target": "Snyk Code custom rules",
+      "note": "Coverage varies by language"
+    }
+  ],
+  "effort": "3-8 weeks depending on portfolio size and custom rule volume",
+  "gotchas": [
+    "SAST coverage and rule sets differ; expect different findings and tune severities accordingly",
+    "Custom Checkmarx queries may not have direct Snyk equivalents; plan gap mitigation",
+    "Run both tools in parallel during cutover to avoid coverage gaps",
+    "Triage state (false positives) must be replayed manually; do not assume automatic transfer",
+    "Enterprise Checkmarx contracts typically have notice and renewal clauses; check before terminating",
+    "Compliance evidence trails should be preserved across the cutover for audit continuity"
+  ],
+  "email": {
+    "subject": "Migrating application security from Checkmarx to Snyk over the next 14 days",
+    "body": "Hello Checkmarx team,\n\nThis is a courtesy note that we are moving our application security scanning from Checkmarx to Snyk over the next 14 days. The drivers are developer experience, transparent pricing, and tighter Git/CI/IDE integration for our engineers.\n\nPlan: days 1-4 export project list, SARIF results, custom queries, triage state, and user/SSO configs; days 5-10 onboard repos to Snyk, recreate CI/IDE integrations, and replay triage; days 11-13 run both tools in parallel and compare findings; day 14 begin contract wind-down with Checkmarx.\n\nCould you confirm our remaining contract term, the notice period for non-renewal, and the cleanest way to disable integrations and export historical evidence. We want to preserve audit trails and avoid leaving stale CI hooks or webhooks behind.\n\nThanks for the partnership.\n\nYour customer"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "source": {
+    "slug": "bitrise",
+    "name": "Bitrise"
+  },
+  "target": {
+    "slug": "codemagic",
+    "name": "Codemagic"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Both are mobile-focused CI/CD platforms. Migration is mostly translating Bitrise workflows and Steps into Codemagic's YAML pipelines, plus moving signing assets and environment variables across.",
+  "why_switch": [
+    "Codemagic strong on Flutter and mobile",
+    "Public subscription pricing from $0/month",
+    "CI YAML config is portable",
+    "Avoid Bitrise Steps proprietary format",
+    "Lower lock-in if you keep YAML in repo"
+  ],
+  "what_to_export": [
+    "Bitrise workflow YAML (bitrise.yml)",
+    "Custom and third-party Steps in use",
+    "Environment variables and secrets",
+    "Code signing certificates and provisioning profiles",
+    "Cache configuration",
+    "Webhook and trigger settings",
+    "Test reports and artifact retention rules",
+    "Team and access permissions"
+  ],
+  "export_method": "Download bitrise.yml from each project (Bitrise lets you view and download the workflow YAML). Inventory every Step used: distinguish official Bitrise Steps, community Steps and your own scripts. Export environment variables and identify which are secrets that must be re-provisioned (Bitrise does not export secret values). Pull code signing assets — certificates (.p12) and provisioning profiles — out of Bitrise's secure storage so you can re-upload them on Codemagic. Capture trigger rules and webhook URLs so you can recreate them.",
+  "import_method": "Create the corresponding apps on Codemagic and connect the same git repositories. Translate each Bitrise workflow into a Codemagic codemagic.yaml pipeline: replace Bitrise Steps with shell scripts or Codemagic's built-in functionality (Flutter, Xcode, Gradle, Fastlane). Re-upload signing certificates and provisioning profiles using Codemagic's signing settings. Recreate environment variables and secrets in the project settings. Configure triggers, caching and artifact retention. Run pipelines in parallel with Bitrise for at least one release cycle to confirm parity before cutting over.",
+  "concept_mapping": [
+    {
+      "source": "bitrise.yml workflow",
+      "target": "codemagic.yaml workflow"
+    },
+    {
+      "source": "Bitrise Step",
+      "target": "Shell script or built-in Codemagic action"
+    },
+    {
+      "source": "Workflow Editor",
+      "target": "Codemagic UI editor / YAML"
+    },
+    {
+      "source": "Code signing in Bitrise",
+      "target": "Codemagic code signing identities"
+    },
+    {
+      "source": "Bitrise env vars / secrets",
+      "target": "Codemagic environment variables / secure variables"
+    }
+  ],
+  "effort": "2-6 weeks depending on number of apps and Step complexity",
+  "gotchas": [
+    "Bitrise Steps are proprietary; community Steps may have no Codemagic equivalent and need scripting.",
+    "Secrets must be re-entered manually; values are not exportable.",
+    "Caching semantics differ between platforms, expect a tuning pass.",
+    "Code signing reconfiguration is the highest-risk part — test on a non-prod app first.",
+    "Pricing models differ; verify your monthly build minutes assumptions on Codemagic."
+  ],
+  "email": {
+    "subject": "Cancelling Bitrise in 14 days — moving CI to Codemagic",
+    "body": "Hi Bitrise team,\n\nWe are migrating our mobile CI/CD off Bitrise and onto Codemagic over the next 14 days.\n\nPlease confirm the end-of-billing date for our plan, how long workflow history and artifacts remain accessible after cancellation, and the data deletion schedule once the account is closed.\n\nWeek one we will export workflow YAML, secrets inventories and signing assets, then stand up parallel pipelines on Codemagic. Week two we will run release builds on both platforms, validate parity, and disable Bitrise triggers before the cutover date.\n\nThanks for the years of mobile CI service.\n\nYour customer"
+  }
+}

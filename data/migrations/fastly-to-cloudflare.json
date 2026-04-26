@@ -1,0 +1,73 @@
+{
+  "source": {
+    "slug": "fastly",
+    "name": "Fastly"
+  },
+  "target": {
+    "slug": "cloudflare",
+    "name": "Cloudflare"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Replace Fastly services with Cloudflare by translating VCL into Rules engine entries, Cache Rules, and Workers, and porting Compute@Edge to Workers. Plan a careful staged DNS cutover and review your Fastly annual commit before terminating.",
+  "why_switch": [
+    "Free tier and lower entry pricing for many workloads",
+    "Bundled DNS, WAF, and Zero Trust",
+    "Larger PoP footprint and global network",
+    "Workers, Pages, R2, and D1 ecosystem",
+    "Strong Terraform and API tooling"
+  ],
+  "what_to_export": [
+    "Service configurations and active versions",
+    "VCL snippets and custom VCL",
+    "Compute@Edge source code and bindings",
+    "Backends/origins and shielding settings",
+    "ACLs, dictionaries, and edge dictionaries",
+    "TLS certificates and custom domains",
+    "Logging endpoints and log formats",
+    "WAF/Next-Gen WAF rules",
+    "Image optimization settings",
+    "DNS records pointing at Fastly"
+  ],
+  "export_method": "Use the Fastly API or CLI to export each service version as JSON, capturing backends, conditions, headers, cache settings, and any custom VCL. Download Compute@Edge source from your repository. Export edge dictionaries and ACLs via the API. Pull TLS configurations including SAN lists; private keys may not be exportable for Fastly-managed certificates, so plan for re-issuance. Capture logging configurations so you can recreate the destinations. Document Next-Gen WAF rules, network lists, and rate limiting policies. Pull representative log samples to baseline cache-hit ratios and traffic patterns.",
+  "import_method": "Add the domain to Cloudflare and let it import DNS or paste a zone file. Configure cache rules, transform rules, and origin rules to mirror Fastly cache and request-handling behavior. Translate VCL into a combination of Rules engine entries and Workers; complex VCL almost always becomes a Worker. Port Compute@Edge code to Workers, accounting for runtime differences (WASI vs V8 isolates and APIs). Recreate Next-Gen WAF semantics in Cloudflare WAF and rate-limiting rules. Provision TLS via Universal SSL or upload custom certificates. Configure logpush to your existing log destinations. Use Terraform with the cloudflare provider to manage configuration. Test on a staging hostname, then cut DNS authority to Cloudflare nameservers with low TTLs.",
+  "concept_mapping": [
+    {
+      "source": "Fastly service",
+      "target": "Cloudflare zone + rules"
+    },
+    {
+      "source": "VCL",
+      "target": "Rules engine + Workers",
+      "note": "No 1-to-1 VCL on Cloudflare"
+    },
+    {
+      "source": "Compute@Edge",
+      "target": "Cloudflare Workers"
+    },
+    {
+      "source": "Edge dictionaries / ACLs",
+      "target": "KV / Lists"
+    },
+    {
+      "source": "Next-Gen WAF",
+      "target": "Cloudflare WAF"
+    },
+    {
+      "source": "Logging endpoints",
+      "target": "Logpush"
+    }
+  ],
+  "effort": "4-10 weeks depending on VCL/Compute complexity and contract wind-down",
+  "gotchas": [
+    "Fastly typically sells annual traffic commits; review minimums and notice clauses before terminating",
+    "VCL has no direct equivalent on Cloudflare; complex services must be redesigned, not translated line for line",
+    "Compute@Edge (WASI) and Workers (V8 isolates) have different runtimes and APIs; expect a rewrite",
+    "Cache key and request-handling semantics differ; cache-hit ratio may regress at first",
+    "Fastly-managed TLS keys may not be exportable; plan for cert re-issuance during cutover",
+    "Cloudflare requires nameserver delegation on most plans, which complicates parallel-running"
+  ],
+  "email": {
+    "subject": "Notice of intent to migrate from Fastly to Cloudflare over the next 14 days",
+    "body": "Hello Fastly team,\n\nThis is a courtesy note that we are starting a migration from Fastly to Cloudflare over the next 14 days. The drivers are pricing structure (we want to move off an annual commit), product breadth (Workers, R2, Zero Trust in one place), and a desire to consolidate DNS and CDN with one vendor.\n\nPlan: days 1-4 export service configs, VCL, Compute@Edge code, WAF rules, and logging endpoints; days 5-10 set up Cloudflare zones with cache rules and Workers, validating on staging; days 11-13 stage DNS cutover with low TTLs and keep Fastly warm as rollback; day 14 drain traffic and begin contract wind-down.\n\nCould you confirm our remaining commit, the notice period for non-renewal, and the cleanest way to deactivate services and certificates without breaking anything in flight. We would also appreciate guidance on whether any of our TLS certificates can be exported for reuse.\n\nThanks for the partnership.\n\nYour customer"
+  }
+}

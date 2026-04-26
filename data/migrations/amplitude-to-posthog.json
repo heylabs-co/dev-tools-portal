@@ -1,0 +1,68 @@
+{
+  "source": {
+    "slug": "amplitude",
+    "name": "Amplitude"
+  },
+  "target": {
+    "slug": "posthog",
+    "name": "PostHog"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "PostHog is the closest open-source equivalent to Amplitude with funnels, retention, cohorts plus session replay and flags in one tool. Event taxonomy ports well; SDK swap is mostly mechanical.",
+  "why_switch": [
+    "Open-source, self-hostable — no MAU lock-in",
+    "Bundles analytics, replay, flags, A/B tests",
+    "Raw SQL access to your own event data",
+    "Usage-based pricing scales down, not just up"
+  ],
+  "what_to_export": [
+    "Event stream (historical events)",
+    "User profiles and identify properties",
+    "Cohorts and saved segments",
+    "Charts, funnels, retention, dashboards",
+    "Event taxonomy (event + property names, types)",
+    "API keys and source tokens",
+    "Annotations / release markers",
+    "Team members and access roles"
+  ],
+  "export_method": "Pull raw events using Amplitude's Export API for the time window you want preserved, or — if you have warehouse-native mode enabled — query Snowflake/BigQuery directly for a clean dump. Save cohorts and chart configs through the dashboard/API. Capture your full event taxonomy (event names, property keys, types) so you can recreate governance rules in PostHog. Identify and merge IDs need special care: Amplitude uses `user_id` and `device_id`; preserve both columns in the export so PostHog can stitch identities correctly.",
+  "import_method": "Spin up PostHog Cloud or self-host. Install the PostHog SDK in your application and replicate `track`, `identify`, `group` calls — Amplitude's `logEvent` maps to PostHog's `capture`. For the historical event dump, use PostHog's batch import / historical migration endpoint to ingest the JSON or CSV with original timestamps so retention and funnel charts remain correct. Recreate cohorts as PostHog cohorts (static or dynamic) and rebuild key dashboards. Run both SDKs in parallel for at least a week so you can compare event counts and catch instrumentation drift before cutting Amplitude off.",
+  "concept_mapping": [
+    {
+      "source": "Event",
+      "target": "Event"
+    },
+    {
+      "source": "User Property",
+      "target": "Person property"
+    },
+    {
+      "source": "Group",
+      "target": "Group"
+    },
+    {
+      "source": "Cohort",
+      "target": "Cohort"
+    },
+    {
+      "source": "Funnel / Retention / Cohorts chart",
+      "target": "Funnel / Retention / Trends insight"
+    },
+    {
+      "source": "Project API Key",
+      "target": "Project API Key"
+    }
+  ],
+  "effort": "2-4 weeks",
+  "gotchas": [
+    "Annual event-volume commit on Amplitude does not pro-rate",
+    "Event timestamps MUST be preserved on historical import or retention charts break",
+    "Identity stitching differs — verify user_id/device_id merges produce same DAU",
+    "Default/reserved property names differ — update dashboards after import",
+    "Self-hosting PostHog adds infra cost; benchmark before committing"
+  ],
+  "email": {
+    "subject": "Data export and wind-down — Amplitude",
+    "body": "Hi Amplitude team,\n\nWe are migrating our product analytics to another platform over the next 14 days and want to wind down cleanly. Could you help with:\n1. Confirming the recommended way to export full historical events, cohorts, charts, and user properties via the Export API or warehouse sync.\n2. Sharing the end date of our current annual event-volume commitment so we don't double-pay during overlap.\n3. Confirming any data retention/purge timeline after cancellation so we have a clear deadline to finish the export.\n\nWe will keep instrumentation dual-writing during the parallel run, then cancel. Please flag anything that needs your team to action.\n\nThanks,\nYour customer"
+  }
+}

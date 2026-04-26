@@ -1,0 +1,61 @@
+{
+  "source": {
+    "slug": "logrocket",
+    "name": "LogRocket"
+  },
+  "target": {
+    "slug": "hotjar",
+    "name": "Hotjar"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Both record sessions and surface UX issues, but LogRocket leans toward frontend monitoring and error context while Hotjar focuses on heatmaps, recordings, and feedback. Migration is mostly swapping snippets and accepting that historical replays do not transfer.",
+  "why_switch": [
+    "Avoid LogRocket annual session commit",
+    "Simpler tool focused on UX, not frontend errors",
+    "Lower-priced subscription with public tiers",
+    "Easier offboarding and lower lock-in"
+  ],
+  "what_to_export": [
+    "Session metadata and saved replays list",
+    "Funnel and segment definitions",
+    "Custom event and user properties",
+    "Issue and error annotations",
+    "Saved dashboards and reports",
+    "Project and team configuration",
+    "API keys and SDK configuration",
+    "Privacy and masking rules"
+  ],
+  "export_method": "Use LogRocket's export API and dashboard to pull session metadata, custom events, user properties, and any saved reports. Document funnels, segments, and privacy rules as a spec because proprietary replay and console-log data does not transfer between vendors. Keep the LogRocket SDK live during cutover so recent sessions remain accessible during the parallel period. Confirm contractual rights to extract data and the retention window that applies after the contract ends.",
+  "import_method": "Install the Hotjar tracking snippet, set up your projects, masking rules, and team access. Recreate funnels, heatmap targets, and surveys based on your documented spec. Hotjar will start fresh — past LogRocket replays and frontend error context will not appear, since storage formats are proprietary on both sides. Run both tools in parallel briefly so you can validate that the new coverage matches expectations before removing the LogRocket snippet. Plan a separate solution if you still need frontend error monitoring, since that is not Hotjar's focus.",
+  "concept_mapping": [
+    {
+      "source": "Session replay",
+      "target": "Session recording"
+    },
+    {
+      "source": "Funnel",
+      "target": "Funnel"
+    },
+    {
+      "source": "Issue / error",
+      "target": "Not directly equivalent",
+      "note": "Hotjar is UX-focused, not error tracking"
+    },
+    {
+      "source": "Privacy masking rule",
+      "target": "Privacy / suppression rule"
+    }
+  ],
+  "effort": "2-4 weeks",
+  "gotchas": [
+    "Past session replays and console logs do not migrate.",
+    "Hotjar does not replace frontend error monitoring; plan separately for that.",
+    "Annual session commit at LogRocket does not scale down mid-cycle.",
+    "Privacy and masking rules must be reimplemented to avoid PII leaks.",
+    "Sampling and session limits differ; coverage at the same nominal volume can vary."
+  ],
+  "email": {
+    "subject": "Not renewing LogRocket — 14-day transition",
+    "body": "Hi LogRocket team,\n\nWe have decided not to renew and will be moving off LogRocket over the next 14 days, switching to a UX-focused tool that better matches our current needs.\n\nFor a clean handover, could you help with:\n\n- A confirmed path to export session metadata, saved reports, and custom events.\n- Confirmation of post-termination data retention and access windows.\n- A point of contact for billing and contract closeout.\n- Deactivation of SDK keys at the end of the period.\n\nWe plan to keep the SDK live through day 10 to avoid gaps, then fully decommission by day 14.\n\nThanks,\nYour customer"
+  }
+}

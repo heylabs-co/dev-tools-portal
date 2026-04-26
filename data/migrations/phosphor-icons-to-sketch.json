@@ -1,0 +1,63 @@
+{
+  "source": {
+    "slug": "phosphor-icons",
+    "name": "Phosphor Icons"
+  },
+  "target": {
+    "slug": "sketch",
+    "name": "Sketch"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Phosphor Icons is an open-source icon family with multiple weights, and Sketch is a Mac-native vector design tool. The realistic task is to bring Phosphor icons into Sketch as a versioned symbol library that designers can use across product files.",
+  "why_switch": [
+    "You need a Mac-native design environment, not just an icon set",
+    "Your team relies on Sketch symbols, libraries, and plugins",
+    "You want CSS values exposed through Sketch handoff",
+    "Designers prefer offline, native performance on macOS",
+    "You already maintain a Sketch design system and want icons inside it"
+  ],
+  "what_to_export": [
+    "Inventory of Phosphor icons in use",
+    "Weight variants used per icon such as regular, bold, fill, duotone",
+    "SVGs for each icon and weight",
+    "Default sizes and stroke conventions",
+    "Color usage and theming notes",
+    "Naming convention used in code",
+    "Any Figma library that mirrors current Phosphor usage",
+    "License attribution for Phosphor MIT"
+  ],
+  "export_method": "Search your code for Phosphor imports to build an inventory of icon names and weights. Download SVGs for each icon at the weights you use from phosphoricons.com or from your installed package assets, keeping names that include the weight to avoid collisions in Sketch. Group exports into folders by weight and category so the import path inside Sketch stays organized. Capture the size conventions you rely on, for example 16, 20, 24, since Sketch artboards and symbols should match. If duotone icons are in scope, confirm the source SVGs preserve both layers and any opacity rules; flattening at this step is hard to undo. Keep a small spec file mapping icon to category and intended weight so symbols can be named consistently.",
+  "import_method": "Create a Sketch document for the Phosphor library and add an artboard per icon at your standard size. Import the SVGs and convert each artboard into a symbol with a name like 'icon/regular/gear' or 'icon/bold/gear' so weight is part of the symbol path. Save the document as a Library so product files can subscribe and stay in sync. Use shared color styles for fill so theming works across symbols; for duotone icons keep the two fills distinct so designers can recolor them. Pin the Phosphor version inside the library description, and use Sketch's handoff features to expose CSS values to engineers. Refresh the library when you upgrade the Phosphor package in code so design and code stay aligned.",
+  "concept_mapping": [
+    {
+      "source": "Icon component in npm package",
+      "target": "Sketch symbol"
+    },
+    {
+      "source": "Icon weight variant",
+      "target": "Symbol path prefix or separate symbol",
+      "note": "Sketch symbol nesting strategy is your choice"
+    },
+    {
+      "source": "Duotone variant",
+      "target": "Sketch symbol with two fills"
+    },
+    {
+      "source": "Color override",
+      "target": "Sketch shared color style"
+    }
+  ],
+  "effort": "3-7 days, longer if importing every weight or rebuilding components",
+  "gotchas": [
+    "Sketch is Mac-only, so any non-Mac contributors lose direct access",
+    "Importing every Phosphor weight balloons the library; pick the weights you actually use",
+    "Duotone icons can flatten on import if SVG layers are not preserved",
+    "Symbol naming drift between Sketch and code breaks handoff",
+    "Color overrides only work cleanly when SVGs use currentColor or single fills per layer",
+    "Phosphor releases evolve; without a refresh process the Sketch library goes stale"
+  ],
+  "email": {
+    "subject": "Phosphor icons into a Sketch symbol library",
+    "body": "Hi team,\n\nWe are publishing our Phosphor icons as a Sketch Library so design files stay aligned with code. Over the next 14 days we will pick the weights we use, import SVGs, build symbols, and ship the library. Code keeps Phosphor packages. Please tell us which weights you rely on per surface so we do not overbuild. We will share the Sketch Library URL before cutover.\n\nThanks,\nYour customer"
+  }
+}

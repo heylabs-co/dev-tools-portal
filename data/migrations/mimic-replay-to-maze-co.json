@@ -1,0 +1,55 @@
+{
+  "source": {
+    "slug": "mimic-replay",
+    "name": "MIMIC Replay"
+  },
+  "target": {
+    "slug": "maze-co",
+    "name": "Maze"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "These tools serve different purposes: MIMIC Replay is a self-hosted rrweb-based session replay framework, while Maze is a hosted user research and prototype testing platform. A direct migration is not realistic; this is a tool change for a different workflow.",
+  "why_switch": [
+    "Maze is turnkey, no infra to run",
+    "Native prototype, card sort and tree testing",
+    "Built for design and research teams",
+    "Recordings tied to research tasks, not raw traffic",
+    "Faster path to UX insights than self-hosted rrweb"
+  ],
+  "what_to_export": [
+    "Saved rrweb session recordings",
+    "Custom network interceptor logs",
+    "Replay metadata (user IDs, timestamps)",
+    "Self-hosted infrastructure config",
+    "Storage retention policies",
+    "Any internal dashboards or scripts built on top"
+  ],
+  "export_method": "Because MIMIC Replay is self-hosted, you control the storage. Identify where rrweb event payloads and network interceptor data are persisted (object storage, database or filesystem) and snapshot the directories or tables you care about. Document the retention rules in place. Note that rrweb event JSON is only meaningful inside an rrweb-compatible player, so archived sessions effectively become cold artifacts unless you keep a player available.",
+  "import_method": "Maze does not import production session recordings. Instead, set up Maze studies that match the questions you used MIMIC for: prototype usability tests, card sorts, tree tests, surveys. Connect Figma or the URL of your live app, define tasks, recruit participants from your audience or Maze's panel and run unmoderated tests. The output is task-scoped recordings and quantitative metrics inside Maze, not a continuation of historical rrweb data. Plan to keep MIMIC running in archive mode for old recordings if you need to refer back.",
+  "concept_mapping": [
+    {
+      "source": "rrweb session recording",
+      "target": "Maze test recording (task-scoped)"
+    },
+    {
+      "source": "Production traffic capture",
+      "target": "Recruited participants in a Maze study"
+    },
+    {
+      "source": "Self-hosted storage",
+      "target": "Maze SaaS storage"
+    }
+  ],
+  "effort": "2-4 weeks to redesign workflow around research studies",
+  "gotchas": [
+    "Maze is not a production session replay tool; you cannot stream live user sessions into it.",
+    "Historical rrweb recordings cannot be imported into Maze.",
+    "Engineering-focused error triage on live users disappears with this switch.",
+    "Maze higher-tier features may be required for advanced research methods.",
+    "Privacy posture changes: data leaves your infra and lands in Maze SaaS."
+  ],
+  "email": {
+    "subject": "Switching from MIMIC Replay to Maze in 14 days",
+    "body": "Hi team,\n\nWe are reorienting our UX work over the next 14 days. The team will move research and usability testing onto Maze and stop relying on our self-hosted MIMIC Replay deployment for that purpose.\n\nDuring week one we will archive existing rrweb recordings and document what they covered. In week two we will stand up Maze studies that replace the questions MIMIC was helping us answer, then decommission the live MIMIC ingestion path.\n\nIf there are recordings you still need pulled, please flag them before the cutover so we can grab them from the self-hosted store.\n\nThanks,\nYour customer"
+  }
+}

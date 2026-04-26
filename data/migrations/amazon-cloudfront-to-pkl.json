@@ -1,0 +1,75 @@
+{
+  "source": {
+    "slug": "amazon-cloudfront",
+    "name": "Amazon CloudFront"
+  },
+  "target": {
+    "slug": "pkl",
+    "name": "Pkl"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "CloudFront is AWS's CDN; Pkl is Apple's open-source configuration language. The migration is about authoring CloudFront and related AWS configuration in Pkl rather than swapping the CDN itself.",
+  "why_switch": [
+    "Type-checked, reusable config beats raw JSON or console clicks.",
+    "Single source of truth for distributions, behaviors, and policies.",
+    "Better diffs, code review, and rollback through git.",
+    "Easier to keep multiple environments in sync."
+  ],
+  "what_to_export": [
+    "CloudFront distributions and their behaviors",
+    "Cache, origin request, and response headers policies",
+    "CloudFront Functions and Lambda@Edge associations",
+    "WAF web ACLs attached to distributions",
+    "Origin definitions (S3, ALB, custom origins)",
+    "TLS certificate references (ACM ARNs)",
+    "Route 53 records pointing at distributions",
+    "Logging configuration (S3 bucket, real-time logs)"
+  ],
+  "export_method": "Use the AWS CLI or SDK to dump current CloudFront distribution configs (get-distribution-config), cache and origin policies, and function associations as JSON. Export Route 53 zones, ACM certificate metadata, and WAF web ACLs the same way. If you already use Terraform or CloudFormation, treat those templates as the starting point. Capture environment differences (staging, production, regions) so they can be modeled as Pkl overrides. Store the raw exports in a working directory while you design Pkl schemas.",
+  "import_method": "Pkl does not deploy to AWS by itself. Install Pkl, design schemas that mirror CloudFront's distribution and policy structure, and render Pkl into the JSON or HCL that AWS or Terraform consume. A common pattern is Pkl producing Terraform variable files or CloudFormation templates, which are then applied with terraform apply or aws cloudformation deploy. Define a base module with shared defaults and per-environment modules with overrides. Keep Lambda@Edge and CloudFront Functions code in their own repos and reference deployed versions from Pkl. Wire CI to render, plan, and apply on merge. Store secrets in AWS Secrets Manager or Parameter Store, injected at deploy time. Validate by diffing rendered output against live infrastructure before adopting Pkl-driven changes.",
+  "concept_mapping": [
+    {
+      "source": "Distribution config JSON",
+      "target": "Pkl module rendering JSON or Terraform vars",
+      "note": "Same data, typed authoring"
+    },
+    {
+      "source": "Cache policy / origin policy",
+      "target": "Pkl typed record",
+      "note": "Reusable across distributions"
+    },
+    {
+      "source": "CloudFormation / Terraform stacks",
+      "target": "Pkl-generated input to those tools",
+      "note": "Pkl sits above IaC"
+    },
+    {
+      "source": "Per-env stacks",
+      "target": "Pkl per-env modules amending base",
+      "note": "Reduces duplication"
+    },
+    {
+      "source": "Lambda@Edge config",
+      "target": "Pkl reference + separate code repo",
+      "note": "Code lives elsewhere"
+    },
+    {
+      "source": "Console edits",
+      "target": "PR + CI render + IaC apply",
+      "note": "GitOps"
+    }
+  ],
+  "effort": "1-3 weeks",
+  "gotchas": [
+    "Pkl does not call AWS APIs; you still need Terraform, CDK, or a deploy script.",
+    "CloudFront updates can take time to propagate; coordinate cutovers carefully.",
+    "Secrets and account IDs must be kept out of committed Pkl files.",
+    "Drift detection between Pkl source and live AWS state needs CI coverage.",
+    "Lambda@Edge versions are immutable; plan how Pkl references them.",
+    "Team needs ramp-up time on Pkl syntax and module patterns."
+  ],
+  "email": {
+    "subject": "Heads up: CDN configuration moving to Pkl over the next 14 days",
+    "body": "Hi team,\n\nOver the next 14 days we are moving our CloudFront and related AWS configuration into Pkl, an open-source configuration language. The CDN platform itself does not change — only how we author and review configuration.\n\nWhat to expect:\n- All config changes will go through pull requests and CI.\n- Rendered output is diffed and planned before any AWS apply.\n- A short freeze on console edits during cutover.\n- Same domains, same behavior; no user-visible changes are planned.\n\nIf you see anything off during the cutover window, reply with the URL, timestamp, and details and we will investigate.\n\nThanks,\n\nYour customer"
+  }
+}

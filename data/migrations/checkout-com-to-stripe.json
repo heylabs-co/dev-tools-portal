@@ -1,0 +1,75 @@
+{
+  "source": {
+    "slug": "checkout-com",
+    "name": "Checkout.com"
+  },
+  "target": {
+    "slug": "stripe",
+    "name": "Stripe"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Moving from Checkout.com to Stripe is one of the most common PSP migrations and is well-trodden on both sides. Expect a PCI-compliant card vault transfer, an SDK rewrite, and a parallel-run period to validate subscriptions and webhooks.",
+  "why_switch": [
+    "Faster self-serve onboarding and global SDK ecosystem",
+    "Tight integration with Billing, Connect, Tax, Radar",
+    "Larger third-party integration footprint",
+    "Public, predictable per-transaction pricing",
+    "Strong developer documentation and tooling"
+  ],
+  "what_to_export": [
+    "Customer profiles and metadata",
+    "Saved card tokens (PCI vault transfer)",
+    "Subscription and recurring billing schedules",
+    "Historical transactions and refunds",
+    "Disputes and chargeback evidence",
+    "Webhook endpoint configuration",
+    "Product/price catalog",
+    "Payout and reconciliation reports"
+  ],
+  "export_method": "Run a PCI-to-PCI bulk migration: request Checkout.com to transmit encrypted card data directly to Stripe under their standard card data import program. Do not attempt to handle raw PANs yourself unless you are PCI DSS Level 1 certified. In parallel, use Checkout.com's Dashboard and API to export non-card data (customers, transactions, refunds, disputes, payouts) as CSV or JSON. Document subscription plans, billing intervals, trial states, proration rules, and next-charge dates. Capture every webhook URL, signing secret, and integration touching Checkout.com. Keep at least 90 days of transaction history accessible for chargeback responses. Maintain a customer-to-token mapping spreadsheet so you can validate that migrated cards line up with the right Stripe customer IDs after import.",
+  "import_method": "Create a Stripe account, complete activation and tax/identity verification, then provision API keys for test and live modes. Stand up a parallel integration: install stripe-node or your language SDK, replicate webhooks, and rebuild product/price objects to match your existing catalog. After Stripe confirms the card import, validate by issuing zero-amount auths or small test charges against a sample of migrated cards and check the customer mapping. Recreate subscription schedules with original next-billing dates, preserving trial and proration state where possible. Cut traffic over gradually: route new sign-ups to Stripe first, keep renewals on Checkout.com until validated, then flip the rest. Reconcile payouts daily for at least one full billing cycle before closing the legacy account.",
+  "concept_mapping": [
+    {
+      "source": "Customer",
+      "target": "Customer"
+    },
+    {
+      "source": "Payment / Charge",
+      "target": "PaymentIntent / Charge"
+    },
+    {
+      "source": "Source / Token",
+      "target": "PaymentMethod",
+      "note": "Migrated via PCI vault transfer"
+    },
+    {
+      "source": "Refund",
+      "target": "Refund"
+    },
+    {
+      "source": "Dispute",
+      "target": "Dispute"
+    },
+    {
+      "source": "Webhook",
+      "target": "Webhook endpoint"
+    },
+    {
+      "source": "Payout",
+      "target": "Payout"
+    }
+  ],
+  "effort": "3-6 weeks for a typical online business",
+  "gotchas": [
+    "PCI-to-PCI vault transfers require signed agreements and lead time on both sides",
+    "Webhook event names and payload shapes differ — rewrite handlers and re-verify signatures",
+    "Subscription proration, trial, and dunning logic rarely map 1:1; re-test mid-cycle changes",
+    "3DS, SCA, and local payment method coverage may differ by market",
+    "Some Checkout.com features (issuing, complex risk rules) need to be rebuilt with Stripe equivalents",
+    "Run dual-processing for a full billing cycle to catch edge-case failures"
+  ],
+  "email": {
+    "subject": "Card data migration request: Checkout.com to Stripe",
+    "body": "Hi team,\n\nWe are migrating our payment processing from Checkout.com to Stripe over the next 14 days and would like your help coordinating a PCI-compliant transfer of our stored card data and related records.\n\nSpecifically, we would like to:\n\n- Initiate a PCI-to-PCI bulk export of stored card tokens from Checkout.com directly to Stripe's vault under your standard data transfer process.\n- Export our customer list, historical transactions, refunds, disputes, and payout reports for our records.\n- Confirm any open subscriptions, scheduled renewals, and pending disputes so nothing is lost at cutover.\n\nWe plan to keep the Checkout.com account active during a parallel-run period for refunds and chargebacks on legacy charges, then close it after reconciliation.\n\nCould you share the required forms, an expected timeline, and a technical contact for the import? We aim to start within the next few business days.\n\nThanks,\nYour customer"
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "source": {
+    "slug": "datadog",
+    "name": "Datadog"
+  },
+  "target": {
+    "slug": "last9",
+    "name": "Last9"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Move from Datadog's proprietary agent and per-host billing to Last9's Prometheus-compatible, high-cardinality metrics backend. Expect a parallel-run period while you re-instrument with OpenTelemetry/Prometheus and rebuild dashboards.",
+  "why_switch": [
+    "Datadog bills on peak host count; Last9 uses standard subscription tiers",
+    "Last9 is Prometheus-compatible, so metrics stay portable",
+    "Reduce proprietary-agent lock-in by standardising on OTel/Prom",
+    "High-cardinality metrics are a first-class use case on Last9",
+    "Lower switching cost in the future since data formats are open"
+  ],
+  "what_to_export": [
+    "Metric names, labels, and retention requirements",
+    "Custom dashboards (JSON export)",
+    "Monitor and alert definitions with thresholds",
+    "Notification channels and on-call routing",
+    "Service maps and APM service inventory",
+    "Log pipelines and parsing rules (if used)",
+    "Synthetic test definitions (if used)",
+    "User accounts, teams, and role assignments",
+    "Integration list (cloud accounts, Kubernetes, CI)",
+    "SLO definitions and error budgets"
+  ],
+  "export_method": "Use the Datadog API and CLI to export configuration as JSON or YAML. Dashboards, monitors, SLOs, and synthetics can typically be pulled via their respective list/get endpoints; save each object as a versioned file in a Git repo so you have a rollback record. For raw metric history, query the metrics API for the windows you must preserve and store the response in object storage; long-range historical backfill is usually limited by retention and rate limits, so most teams keep Datadog read-only for a transition window rather than backfilling everything. Export user, team, and role lists from the admin API. Capture the active integrations and any custom check definitions deployed with the Datadog Agent. Document any Datadog-specific tags, monitor query syntax, and dashboard widget types because they will not all map 1:1. If you rely on logs or APM, also export pipeline configs and sampling rules so the new stack can match behaviour. Keep the Datadog Agent running during cutover to avoid gaps.",
+  "import_method": "Stand up Last9 ingestion endpoints and point a Prometheus remote_write or OpenTelemetry Collector at them in parallel with the existing Datadog Agent. Re-deploy applications with OpenTelemetry SDKs (or keep using Prometheus exporters) so metrics flow to both backends during the cutover. Recreate dashboards in Last9 using PromQL; treat the Datadog JSON export as a reference, not a direct import, since query languages differ. Rebuild alert rules using Last9 alerting (or Alertmanager if you front it that way) and wire notification channels to the same destinations. Validate parity by comparing key SLO and golden-signal panels side by side for at least one full business cycle. Once dashboards, alerts, and on-call routing are confirmed, remove the Datadog Agent and decommission the contract at the next renewal point. Migrate users and roles by recreating teams in Last9 and inviting members; SSO setup should be repeated against your IdP.",
+  "concept_mapping": [
+    {
+      "source": "Datadog Agent",
+      "target": "OpenTelemetry Collector or Prometheus exporters"
+    },
+    {
+      "source": "Datadog metric query (DQL)",
+      "target": "PromQL",
+      "note": "Rewrite required; not a 1:1 translation"
+    },
+    {
+      "source": "Dashboards",
+      "target": "Last9 dashboards",
+      "note": "Rebuild manually; export is reference only"
+    },
+    {
+      "source": "Monitors / alerts",
+      "target": "Last9 alert rules"
+    },
+    {
+      "source": "Tags",
+      "target": "Prometheus labels"
+    }
+  ],
+  "effort": "2-6 weeks",
+  "gotchas": [
+    "Query languages differ; do not expect dashboards to import directly",
+    "Datadog peak-host billing means costs do not drop until the next billing cycle",
+    "APM trace data and log pipelines may need separate tooling if you only adopt the metrics path",
+    "Cardinality limits and retention windows differ; review before cutover",
+    "Notification channel formatting (Slack, PagerDuty payloads) may need template updates",
+    "Keep both backends running in parallel until alert parity is verified"
+  ],
+  "email": {
+    "subject": "Notice: ending our Datadog subscription within 14 days",
+    "body": "Hi team,\n\nWe are migrating our observability stack off Datadog and onto a Prometheus-compatible backend. Please treat this email as our 14-day notice to end the subscription at the next available term and to stop any auto-renewal.\n\nKindly confirm the effective end date, the final invoice amount, and the process for exporting any remaining configuration or data we are entitled to retain. We will keep the agent running until cutover is complete.\n\nThanks for the partnership.\n\nBest regards,\nYour customer"
+  }
+}

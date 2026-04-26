@@ -1,0 +1,72 @@
+{
+  "source": {
+    "slug": "elastic",
+    "name": "Elastic"
+  },
+  "target": {
+    "slug": "better-stack",
+    "name": "Better Stack"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Moving from Elastic to Better Stack swaps a heavy ELK-style stack for a lighter, mostly hosted observability product focused on logs, uptime, and on-call. Expect to redesign dashboards and alerts, and to lose some of Elasticsearch's deeper analytics flexibility.",
+  "why_switch": [
+    "Simpler hosted setup, less stack to operate",
+    "Cleaner pricing without reserved-tier traps",
+    "Combined logs, uptime, and on-call in one place",
+    "Faster onboarding for small teams",
+    "Lower operational burden than self-hosted ELK"
+  ],
+  "what_to_export": [
+    "Log indices and recent retention windows",
+    "Index templates and mappings",
+    "Kibana dashboards and saved searches",
+    "Watcher / alerting rules",
+    "Ingest pipelines",
+    "API keys and role mappings",
+    "On-call schedules and integrations (if used)",
+    "Uptime / heartbeat checks",
+    "Lens/visualization configurations",
+    "Data view definitions"
+  ],
+  "export_method": "Snapshot Elasticsearch indices to a repository (S3-compatible storage works well) for cold archive — restoring into Better Stack is not supported, but the snapshot is your safety net. For data you actually need to query going forward, plan a forward-from date instead of a full backfill: start dual-shipping logs to Better Stack today, keep Elastic queryable read-only for the historical tail, and let it age out. Export Kibana saved objects (dashboards, searches, visualizations) through Kibana's saved-objects export so they exist as JSON for reference when rebuilding panels in the new tool. Document Watcher rules and ingest pipelines as plain text since their semantics will not transfer.",
+  "import_method": "Point your log shippers (Logstash, Beats, Fluent Bit, Vector, OpenTelemetry Collector) at Better Stack's log ingestion endpoint using its documented protocol. Update each application's logging config to ship in parallel during the cutover window. Recreate uptime monitors and on-call schedules from the inventory you exported. Rebuild dashboards manually using the saved-objects export as a reference for which fields and queries mattered. After verifying parity, stop sending new data to Elastic and let the old retention window expire before tearing down the cluster.",
+  "concept_mapping": [
+    {
+      "source": "Index",
+      "target": "Source / log stream"
+    },
+    {
+      "source": "Kibana dashboard",
+      "target": "Dashboard",
+      "note": "Rebuild manually"
+    },
+    {
+      "source": "Watcher",
+      "target": "Alert rule"
+    },
+    {
+      "source": "Heartbeat",
+      "target": "Uptime monitor"
+    },
+    {
+      "source": "Role mapping / API key",
+      "target": "Team member / API token"
+    },
+    {
+      "source": "Index lifecycle policy",
+      "target": "Retention setting"
+    }
+  ],
+  "effort": "2-6 weeks depending on log volume, dashboard count, and number of integrations",
+  "gotchas": [
+    "Elasticsearch query DSL has no equivalent — complex aggregations may need to be redesigned",
+    "Historical data does not migrate; plan a parallel-run window plus cold archive",
+    "License terms on Elastic snapshots vary by version; verify before relying on them long-term",
+    "Field cardinality and ingest cost models differ — review billing on a sample workload first",
+    "Custom Kibana plugins or vector embeddings won't carry over"
+  ],
+  "email": {
+    "subject": "Offboarding plan for our Elastic Cloud subscription",
+    "body": "Hi Elastic team,\n\nWe are moving our observability stack to a different provider over the next 14 days and want to plan the wind-down cleanly. Could you confirm the steps to export our data — snapshots, saved objects, and any account configuration we are entitled to — before the subscription ends?\n\nWe would like to schedule cancellation at the end of the current billing period. Please share the date by which we need to confirm cancellation to avoid the next charge, how reserved or prepaid commits are handled, and the data retention timeline after the cluster is deleted.\n\nIf there is any contractual notice period or remaining commit we should know about, please flag it so we can plan around it.\n\nThanks,\nYour customer"
+  }
+}

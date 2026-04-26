@@ -1,0 +1,60 @@
+{
+  "source": {
+    "slug": "aider",
+    "name": "aider"
+  },
+  "target": {
+    "slug": "composio",
+    "name": "composio"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Aider is a terminal AI pair-programming CLI; Composio is a tool-integration platform exposing app connectors to AI agents. These solve different problems, so 'migration' usually means redirecting your AI workflow from local code editing to agent-based tool calls.",
+  "why_switch": [
+    "You need agents that act on external apps, not edit local files",
+    "You want managed authentication for many third-party connectors",
+    "You are building autonomous agents rather than IDE workflows",
+    "You need a platform with usage-based pricing and SDKs",
+    "You prefer a hosted integration layer over a local CLI"
+  ],
+  "what_to_export": [
+    "Aider configuration files (.aider.conf.yml)",
+    "Custom prompts and conventions files",
+    "Chat history and session logs",
+    "Model provider API keys and settings",
+    "Repository-specific .aiderignore rules",
+    "Any scripts wrapping the aider CLI",
+    "List of LLM models in use"
+  ],
+  "export_method": "Aider stores configuration as plain files in the repo or home directory. Copy .aider.conf.yml, .aiderignore, and any CONVENTIONS.md or prompt files from your projects. Chat logs typically live as markdown files alongside your repo or under the aider history directory; archive them for reference. There is no formal export command; treat this as a file-system backup of all aider-related dotfiles and any shell aliases or wrapper scripts you have built. Record which LLM providers and models you call, since these settings are not transferable directly to a tool-calling platform like Composio.",
+  "import_method": "Composio is consumed via SDKs and an API rather than files, so 'import' means rebuilding agent workflows. Sign up at composio.dev, create a project, and connect the apps your agent needs through Composio's connector catalogue. Install the relevant Composio SDK in your agent codebase and authenticate. Define the tools your agent should expose, then wire them into your existing LLM call loop. Aider-style 'edit my repo' behaviour is not a 1:1 feature of Composio; if you need code editing, keep aider for that workflow and use Composio for the external-action layer of your agent.",
+  "concept_mapping": [
+    {
+      "source": "Aider CLI session",
+      "target": "Composio agent runtime",
+      "note": "Different paradigm: local edits vs tool calls"
+    },
+    {
+      "source": "LLM model config",
+      "target": "Your own LLM client",
+      "note": "Composio is provider-agnostic for the model"
+    },
+    {
+      "source": "Repo file edits",
+      "target": "App connector actions",
+      "note": "No direct equivalent"
+    }
+  ],
+  "effort": "1-3 weeks",
+  "gotchas": [
+    "Aider edits code files; Composio orchestrates app actions. Confirm the use case actually overlaps before migrating.",
+    "Composio requires per-app OAuth or token setup for each connector you enable.",
+    "You still need to choose and pay for an LLM provider separately.",
+    "Tool calls add latency compared to local CLI edits.",
+    "Pricing models differ: aider is free OSS plus model costs; Composio adds usage-based fees on top.",
+    "Migrating means rewriting workflows in your agent code, not running an importer."
+  ],
+  "email": {
+    "subject": "Heads up: moving our AI workflow from Aider to Composio",
+    "body": "Hi team,\n\nWe are evaluating a move from Aider to Composio over the next 14 days because our agent work is shifting from in-repo edits to triggering actions across third-party apps.\n\nThis is a paradigm change rather than a drop-in swap. We will keep Aider available for codebase edits where useful and rebuild the action-oriented flows on Composio's connector platform. Expect a short period of duplicated tooling while we validate.\n\nLet me know if this affects anything you depend on.\n\nThanks,\nYour customer"
+  }
+}

@@ -1,0 +1,67 @@
+{
+  "source": {
+    "slug": "amazon-ses",
+    "name": "Amazon SES"
+  },
+  "target": {
+    "slug": "postmark",
+    "name": "Postmark"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Amazon SES and Postmark are both transactional email providers, so the migration is mostly a config-and-DNS exercise. Postmark trades SES's lower per-message cost for stronger out-of-the-box deliverability, faster onboarding, and better analytics on bounces and opens.",
+  "why_switch": [
+    "Better inbox placement on transactional streams",
+    "Cleaner deliverability dashboards and bounce analytics",
+    "Simpler setup vs IAM and SES sandbox flow",
+    "Predictable per-email pricing without AWS sprawl",
+    "Strong support response times"
+  ],
+  "what_to_export": [
+    "Verified sending domains and DKIM keys",
+    "Email templates (HTML and text)",
+    "Suppression list (bounces, complaints, unsubscribes)",
+    "Configuration sets and event destinations",
+    "Webhook/SNS event destinations",
+    "IP warming history if using dedicated IPs",
+    "Sender identities and From addresses",
+    "Recent message metadata for analytics continuity"
+  ],
+  "export_method": "Most SES configuration lives in your AWS console and IaC. Pull verified identities and DKIM records from the SES console or via the AWS CLI. Export your suppression list using the SES suppression list APIs and save as CSV. Templates can be retrieved as JSON via the SES API. If you use configuration sets to publish events to SNS, CloudWatch, or Kinesis Firehose, document the event flow so you can recreate the equivalent in Postmark. Capture historical send metrics from CloudWatch if you need them for analytics continuity. Keep your AWS account active until DNS cutover and warm-up are complete in case you need to fall back.",
+  "import_method": "In Postmark, create a server (Postmark's term for an isolated sending environment), then add and verify your sending domain by publishing the DKIM and Return-Path DNS records Postmark generates. Import suppression entries into Postmark's suppression list via the API. Recreate templates in Postmark's template editor (Postmark uses MJML-like markup with variable substitution). Wire up Postmark's webhook for delivery, bounce, and spam-complaint events to your application endpoint. Switch your application's SMTP credentials or API token to Postmark and route a small percentage of traffic first to confirm deliverability before full cutover.",
+  "concept_mapping": [
+    {
+      "source": "Configuration set",
+      "target": "Server / message stream",
+      "note": "Postmark separates transactional and broadcast streams explicitly"
+    },
+    {
+      "source": "SNS event destination",
+      "target": "Webhook"
+    },
+    {
+      "source": "Suppression list",
+      "target": "Suppression list"
+    },
+    {
+      "source": "Verified identity",
+      "target": "Sender signature / domain"
+    },
+    {
+      "source": "Template",
+      "target": "Template"
+    }
+  ],
+  "effort": "1-2 weeks",
+  "gotchas": [
+    "DNS propagation can take up to 48 hours — schedule cutover with a buffer",
+    "Postmark separates transactional from broadcast streams; mixing them risks suspension",
+    "Dedicated IP reputation does not transfer; expect a warm-up period if you used a dedicated SES IP",
+    "Suppression-list import format may need transformation between providers",
+    "Webhook payload shapes differ — update your event handler before flipping traffic",
+    "Per-message cost is typically higher on Postmark than SES; model the bill at your real volume"
+  ],
+  "email": {
+    "subject": "Switching transactional email from Amazon SES to Postmark",
+    "body": "Hi team,\n\nWe're moving transactional email from Amazon SES to Postmark over the next 14 days. The driver is deliverability and visibility: Postmark's transactional-only focus and clearer dashboards should reduce the time we spend chasing bounces and inbox issues.\n\nDays 1-3: verify our sending domain in Postmark and publish DKIM and Return-Path records. Days 4-7: recreate templates, import the suppression list, and wire up bounce and complaint webhooks. Days 8-11: route 10 percent of transactional traffic to Postmark, monitor delivery and complaint rates, then ramp to 100 percent. Days 12-14: keep SES warm as a fallback, then decommission once Postmark metrics are stable.\n\nNo end-user impact is expected. From addresses and email content stay the same. We'll send an internal status update at the midway point and a final note when SES is decommissioned.\n\nThanks,\nYour customer"
+  }
+}

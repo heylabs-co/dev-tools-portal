@@ -1,0 +1,68 @@
+{
+  "source": {
+    "slug": "segment",
+    "name": "Segment"
+  },
+  "target": {
+    "slug": "apache-nifi",
+    "name": "Apache NiFi"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Move from Segment's hosted CDP event routing to Apache NiFi, an open-source dataflow platform you self-host. Expect significant architecture work: NiFi is a general-purpose flow engine, not a drop-in CDP, so you must rebuild event capture, routing, and destination delivery as flows.",
+  "why_switch": [
+    "Eliminate Segment's annual MTU commit pricing",
+    "Apache 2.0 license, no vendor lock-in",
+    "Full control over routing, transformation, and provenance",
+    "Self-hosted on your own infrastructure",
+    "Strong fit when audit and provenance tracking matter"
+  ],
+  "what_to_export": [
+    "List of sources (web, mobile, server) currently sending events",
+    "List of destinations and their configurations",
+    "Tracking plan and event schemas",
+    "Transformations and Functions code",
+    "Identity resolution rules and user traits",
+    "Consent and privacy settings",
+    "Workspace users, roles, and SSO configuration",
+    "API/write keys inventory (to be rotated)",
+    "Archive/warehouse loading configuration if used"
+  ],
+  "export_method": "Use the Segment Config API and the workspace UI to export sources, destinations, the tracking plan, and Functions/transformation code as JSON. Commit those exports to a Git repo to keep a versioned record. Pull representative event payloads from each source to capture the actual schemas that downstream systems depend on. If you have warehouse loading or archives enabled, treat that storage as the historical source of truth so you do not need to backfill old events through the new pipeline. Export destination configurations so you can recreate equivalent flows. Document identity rules, traits, and consent settings. Capture users, roles, and SSO configuration. Inventory all API keys and write keys so they can be rotated and removed once cutover completes. Note Personas/Engage audiences separately since they will not port to a generic dataflow tool. Keep Segment running during the parallel period to avoid data loss.",
+  "import_method": "Provision Apache NiFi on your infrastructure (on-prem, VM, or Kubernetes) following the Apache documentation. Define a flow per logical pipeline: an ingestion processor (for example, ListenHTTP or a queue consumer) to receive events, transformation processors to map to your canonical schema, and delivery processors to push to each destination (warehouse, SaaS, queue). Note that NiFi does not provide a client-side SDK, so web and mobile event capture must be solved upstream by your own collection layer that posts to NiFi's HTTP endpoint or a message queue. Implement identity stitching and consent enforcement as explicit flow logic. Wire authentication, TLS, and access policies according to your security requirements. Use NiFi's data provenance to validate routing during a parallel period when both Segment and NiFi receive a copy of events. Once row counts and downstream behaviours match, cut over and disable Segment sources, then rotate keys.",
+  "concept_mapping": [
+    {
+      "source": "Source (event tracking)",
+      "target": "Custom event collector + ListenHTTP or queue input",
+      "note": "NiFi has no client SDK"
+    },
+    {
+      "source": "Destination",
+      "target": "NiFi processor or PublishKafka/PutS3/PutDatabase flow"
+    },
+    {
+      "source": "Functions / transformations",
+      "target": "NiFi processor chain (UpdateRecord, JoltTransform, etc.)"
+    },
+    {
+      "source": "Tracking plan",
+      "target": "Schema files / record readers and writers"
+    },
+    {
+      "source": "Workspace users",
+      "target": "NiFi user policies and access groups"
+    }
+  ],
+  "effort": "6-12 weeks",
+  "gotchas": [
+    "NiFi is a general dataflow tool, not a CDP; client SDKs and identity logic must be built",
+    "Self-hosting adds responsibility for HA, backups, upgrades, and security hardening",
+    "Reverse-ETL style activation needs explicit per-destination flows",
+    "Consent and PII handling must be implemented as part of the flow",
+    "Personas/Engage features do not have a direct equivalent",
+    "Segment annual MTU commit may keep billing active until renewal"
+  ],
+  "email": {
+    "subject": "Notice: ending our Segment subscription within 14 days",
+    "body": "Hi team,\n\nWe are moving event routing in-house onto a self-hosted dataflow platform and will not be renewing Segment. Please treat this email as our 14-day notice to end the subscription at the next available term and to disable auto-renewal.\n\nKindly confirm the effective end date, the final invoice, and any data or configuration export options still available to us. We will keep sources active until cutover completes.\n\nThanks for the partnership.\n\nBest regards,\nYour customer"
+  }
+}

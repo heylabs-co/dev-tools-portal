@@ -1,0 +1,72 @@
+{
+  "source": {
+    "slug": "circleci",
+    "name": "CircleCI"
+  },
+  "target": {
+    "slug": "bitrise",
+    "name": "Bitrise"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "CircleCI is a general-purpose CI/CD platform configured via YAML and Orbs, while Bitrise is a mobile-first CI/CD with prebuilt Steps for iOS, Android, Flutter, and React Native. Migration is most attractive when your pipelines are dominated by mobile builds that benefit from Bitrise's managed Mac/Android stacks and Steps ecosystem.",
+  "why_switch": [
+    "Mobile-first stack with managed iOS/Android runners",
+    "Prebuilt Steps for signing, provisioning, store upload",
+    "Less custom scripting for Xcode/Gradle pipelines",
+    "Visual Workflow Editor alongside YAML",
+    "Specialized debugging tools for mobile builds"
+  ],
+  "what_to_export": [
+    "CircleCI .circleci/config.yml files",
+    "Custom Orbs and reusable commands",
+    "Project-level environment variables and contexts",
+    "Secrets and signing assets (certificates, keystores)",
+    "Cache and workspace usage patterns",
+    "Scheduled workflows / cron triggers",
+    "SSH keys and deploy keys",
+    "Webhooks and notification integrations",
+    "Test result and artifact retention settings",
+    "Branch protection / required-check names"
+  ],
+  "export_method": "CircleCI configuration lives in your repo at .circleci/config.yml, so the source of truth is already in Git. From the CircleCI web UI or API, export project environment variables, contexts, scheduled triggers, SSH keys, and webhook configurations. Treat secrets as one-way: re-issue them in Bitrise rather than copying values where possible. Custom Orbs you authored can be inspected via the CircleCI CLI or registry; document each job and command they expose so you can re-implement the behavior with Bitrise Steps or inline scripts. Any signing assets (Apple certificates, provisioning profiles, Android keystores) should be exported from secure storage, not from CI logs. Confirm the exact API endpoints and CLI commands against current CircleCI docs before scripting.",
+  "import_method": "In Bitrise, create an organization and add your repository through the standard 'Add new app' flow. Use the Workflow Editor to scaffold an iOS, Android, or cross-platform workflow, then translate each CircleCI job into a Bitrise Workflow composed of Steps. Common CircleCI patterns map onto Bitrise Steps such as Git Clone, Cache Pull/Push, dependency installs, Xcode/Gradle build, test runners, code signing, and Deploy to App Store Connect / Google Play. Re-create environment variables and secrets in App Settings and Secrets, upload signing files to Code Signing, and wire up triggers to match your old branch and tag rules. Validate the workflow with a few manual builds before flipping required-check names in your Git host. Verify exact Step names and inputs against current Bitrise documentation.",
+  "concept_mapping": [
+    {
+      "source": "CircleCI Workflow",
+      "target": "Bitrise Workflow"
+    },
+    {
+      "source": "CircleCI Job",
+      "target": "Bitrise Workflow (or chained Workflow)"
+    },
+    {
+      "source": "CircleCI Step",
+      "target": "Bitrise Step"
+    },
+    {
+      "source": "CircleCI Orb",
+      "target": "Bitrise Step (or custom Step)"
+    },
+    {
+      "source": "CircleCI Context",
+      "target": "Bitrise Secrets / Env Vars"
+    },
+    {
+      "source": "CircleCI Scheduled Pipeline",
+      "target": "Bitrise Trigger / Schedule"
+    }
+  ],
+  "effort": "1-4 weeks depending on number of pipelines, custom Orbs, and signing complexity",
+  "gotchas": [
+    "Orbs do not have a 1:1 equivalent; expect to re-implement reusable logic as Bitrise Steps or shared scripts",
+    "Cache semantics differ between platforms; benchmark cache hit rates before declaring parity",
+    "macOS runner availability and pricing models differ; review concurrency and queue behavior",
+    "iOS code signing setup is different; plan a dedicated session for certificates and profiles",
+    "Required-check names in GitHub/GitLab will change and may break branch protection rules",
+    "Credit/usage accounting works differently, so cost projections need to be redone, not translated"
+  ],
+  "email": {
+    "subject": "Winding down our CircleCI usage over the next 14 days",
+    "body": "Hi CircleCI team,\n\nWe are moving our CI/CD to Bitrise over the next 14 days because most of our build time is mobile (iOS and Android) and we want a managed mobile-first stack.\n\nIn this window we plan to freeze new pipeline changes on CircleCI, run both systems in parallel for a week to validate parity on build times and test results, then cut over required checks branch by branch. We will also rotate any secrets and revoke SSH/deploy keys tied to CircleCI as we go.\n\nCould you confirm how long pipeline history, artifacts, and audit logs remain available after we stop new builds, and the cleanest way to scale our plan down without losing access to historical data we may need for compliance reviews?\n\nThanks for the support over the years.\n\nYour customer"
+  }
+}

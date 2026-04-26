@@ -1,0 +1,72 @@
+{
+  "source": {
+    "slug": "hubspot",
+    "name": "HubSpot"
+  },
+  "target": {
+    "slug": "plain",
+    "name": "Plain"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Moving in-app support from HubSpot to Plain is mainly an API-driven re-import of contacts and conversations plus an SDK swap in the app. CRM/marketing data on HubSpot stays put unless you replace those modules separately.",
+  "why_switch": [
+    "Developer-first support tooling and API",
+    "Better fit for product-led, in-app support",
+    "Lighter, more focused than full HubSpot",
+    "Avoid HubSpot annual seat commits",
+    "Simpler pricing surface for support-only use"
+  ],
+  "what_to_export": [
+    "Contacts and customer records",
+    "Companies / accounts",
+    "Open and recent support tickets",
+    "Ticket pipelines, statuses, and properties",
+    "Conversation threads and attachments",
+    "Knowledge base articles",
+    "Macros / canned responses",
+    "Routing and assignment rules",
+    "Team members and roles",
+    "Integration configs (Slack, email, webhooks)"
+  ],
+  "export_method": "HubSpot provides REST APIs for contacts, companies, tickets, conversations, and knowledge base, plus CSV export from the in-app UI for many object types. Use the API for anything that includes threaded messages or custom properties so you keep structure; use CSV for simple object dumps. Pull macros, pipelines, ticket statuses, and routing rules through the dashboard and document them as configuration. Keep attachments by following the file references in the conversations API. Schedule a final delta export close to cutover to capture the last day of activity, since access ends when the contract closes.",
+  "import_method": "In Plain, create the workspace, add team members, and configure email and in-app channels. Use Plain's API to upsert customers and companies from the HubSpot export, then import threads or recent tickets as needed; many teams import only open tickets and freeze the rest as historical reference. Install the Plain support SDK in your app to replace the HubSpot chat widget. Recreate macros, routing, and labels to match your HubSpot pipeline as closely as the data model allows. Run both systems briefly with a clear banner so customers know which channel to use, then cut email forwarding and remove the HubSpot widget.",
+  "concept_mapping": [
+    {
+      "source": "Contact",
+      "target": "Customer"
+    },
+    {
+      "source": "Company",
+      "target": "Company / Tenant"
+    },
+    {
+      "source": "Ticket",
+      "target": "Thread"
+    },
+    {
+      "source": "Pipeline stage",
+      "target": "Thread status"
+    },
+    {
+      "source": "Macro / snippet",
+      "target": "Snippet"
+    },
+    {
+      "source": "Owner / agent",
+      "target": "Assignee"
+    }
+  ],
+  "effort": "2-6 weeks",
+  "gotchas": [
+    "HubSpot custom properties and pipelines do not have a direct equivalent; expect schema simplification",
+    "Marketing, sales, and CMS hubs are not replaced by Plain; plan separately if you used those",
+    "Email deliverability and forwarding need to be reconfigured to point at Plain",
+    "Annual seat commits on HubSpot do not refund mid-cycle; time the switch to renewal",
+    "Customer-facing chat widget URL/asset paths change; QA across browsers and mobile",
+    "Historical tickets may import as flat threads, losing internal-note nuances"
+  ],
+  "email": {
+    "subject": "Closing our HubSpot support workspace at renewal",
+    "body": "Hi team,\n\nWe're moving our in-app support to Plain over the next 14 days and will not renew our HubSpot subscription for that workspace. Please keep the account live through the end of the current term so we can complete exports of contacts, companies, tickets, conversation threads, and knowledge base articles via your API and CSV tools.\n\nWe plan to run both systems briefly while we cut over, then remove the HubSpot chat widget from our app. Could you confirm that auto-renewal is off and point us at a contact for any final billing questions?\n\nThanks,\nYour customer"
+  }
+}

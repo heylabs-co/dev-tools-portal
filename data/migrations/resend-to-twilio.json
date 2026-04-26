@@ -1,0 +1,63 @@
+{
+  "source": {
+    "slug": "resend",
+    "name": "Resend"
+  },
+  "target": {
+    "slug": "twilio",
+    "name": "Twilio"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Resend is an email-only transactional API; Twilio is a multi-channel communications platform whose email offering runs through Twilio SendGrid. Migrating typically signals a desire to consolidate email with SMS, voice, or WhatsApp under one vendor.",
+  "why_switch": [
+    "Add SMS, voice, or WhatsApp under one vendor",
+    "Consolidate communications billing",
+    "Global phone number provisioning",
+    "Existing Twilio integration for other channels",
+    "Standardized SDKs and webhooks across channels"
+  ],
+  "what_to_export": [
+    "Verified sending domains and DKIM records",
+    "Templates (React Email components, MJML, or HTML)",
+    "Suppression list",
+    "Webhook subscriptions",
+    "API keys",
+    "Audience or contact lists if used",
+    "Recent send-volume and bounce metrics",
+    "From-address and reply-to identities"
+  ],
+  "export_method": "Use the Resend API or dashboard to export domain configuration, templates, suppression entries, and webhook configuration. Templates that live as React Email components in your codebase are already portable; HTML templates can be saved directly. Export suppression and bounce data as CSV. Document API keys and webhook subscriptions so you can recreate them. Keep Resend live during DNS cutover so you can fall back. Because Twilio's email is delivered through SendGrid, plan your migration steps against the SendGrid surface, not the core Twilio Programmable Messaging API.",
+  "import_method": "Create a Twilio SendGrid account (or enable SendGrid within an existing Twilio account). Add your sending domain and publish the DKIM, SPF, and Return-Path records SendGrid generates. Recreate templates as SendGrid Dynamic Templates with Handlebars-style variable substitution; React Email components can render to HTML at build time and be uploaded as static templates. Import suppression entries via the SendGrid API. Configure the Event Webhook to your application endpoint. Swap application credentials to a SendGrid API key, run a low-volume canary, and ramp once delivery and webhook events look clean. If SMS or voice is part of the consolidation, integrate Twilio's REST API for those channels separately.",
+  "concept_mapping": [
+    {
+      "source": "Domain",
+      "target": "Domain (SendGrid)"
+    },
+    {
+      "source": "Template (React Email / HTML)",
+      "target": "Dynamic Template",
+      "note": "Variable syntax becomes Handlebars-style"
+    },
+    {
+      "source": "Webhook",
+      "target": "Event Webhook"
+    },
+    {
+      "source": "Suppression list",
+      "target": "Suppression list"
+    }
+  ],
+  "effort": "2-4 weeks",
+  "gotchas": [
+    "Twilio's email offering is SendGrid; plan your migration against the SendGrid surface",
+    "React Email or MJML templates need to render to HTML before becoming SendGrid Dynamic Templates",
+    "Variable syntax differs; review every template",
+    "DNS DKIM and Return-Path propagation can take 24-48 hours",
+    "Per-message pricing differs; model your real volume before cutover",
+    "If adopting SMS or voice, plan A2P 10DLC registration and country-specific compliance"
+  ],
+  "email": {
+    "subject": "Consolidating email and other channels under Twilio",
+    "body": "Hi team,\n\nOver the next 14 days we're moving transactional email from Resend to Twilio so our communications stack runs under one vendor. Twilio's email runs through SendGrid, so the migration is essentially a Resend-to-SendGrid setup with the rest of Twilio available for SMS or voice when we need them.\n\nDays 1-3: stand up SendGrid inside Twilio, verify the sending domain, and publish DKIM, SPF, and Return-Path records. Days 4-7: port templates from React Email/HTML into SendGrid Dynamic Templates, remap variables, import the suppression list, and wire up the Event Webhook. Days 8-11: route a small share of transactional email through SendGrid, monitor inbox placement and event delivery, then ramp. Days 12-14: keep Resend warm as a fallback for a week and decommission when metrics are stable.\n\nNo end-user impact is expected. Status update at the midpoint and at go-live.\n\nThanks,\nYour customer"
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "source": {
+    "slug": "please-build",
+    "name": "please-build"
+  },
+  "target": {
+    "slug": "nx-cloud",
+    "name": "nx-cloud"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Going from Please to Nx Cloud means swapping a polyglot Bazel-style build system for the Nx ecosystem, where Nx Cloud provides remote caching and distributed task execution on top of Nx itself. The migration is essentially \"adopt Nx\" first; Nx Cloud is the acceleration layer added afterwards and is most valuable when your stack is JavaScript or TypeScript heavy.",
+  "why_switch": [
+    "Your codebase is primarily JavaScript or TypeScript, where Nx is a stronger fit than Please.",
+    "You want a managed remote cache and distributed CI without operating cache infrastructure.",
+    "You need richer dependency graph tooling and IDE integration than Please offers.",
+    "You prefer a tool with a generous free tier you can adopt incrementally.",
+    "Please's smaller ecosystem and unclear long-term momentum are a risk for your team."
+  ],
+  "what_to_export": [
+    "BUILD files and Please target definitions.",
+    ".plzconfig and any subrepo configuration.",
+    "Custom build_defs rules and macros.",
+    "Remote cache configuration.",
+    "CI commands that drive plz build / plz test.",
+    "Toolchain pins (Go, Python, Java) referenced by Please.",
+    "Project structure (which directories produce which artifacts).",
+    "Test commands and coverage configuration."
+  ],
+  "export_method": "Treat the export as an inventory and translation step rather than a one-shot dump. Collect every BUILD file plus the root .plzconfig; these are plain text and can be committed alongside the new build. Use plz query commands you already rely on to print targets and their dependency edges, and save those outputs as a reference graph you can replay against the Nx graph after migration. List custom rules and macros, since these usually require manual translation into Nx generators or executors. Note the toolchains Please pins so Node, JDK, or other runtimes can be aligned. Capture CI invocations and the artifact paths under plz-out that downstream systems consume. Document your current remote cache backend and credentials so you can decommission them after Nx Cloud takes over.",
+  "import_method": "Nx Cloud is not a build tool on its own; it caches and distributes Nx tasks. Start by adopting Nx in the repository, restructuring projects so Nx can see them and re-expressing your Please targets as Nx project configurations and tasks. Once nx run and nx affected work locally and in CI, follow the official Nx Cloud setup to connect the workspace, typically by running the connect command Nx provides and authenticating against your Nx Cloud account. After connection, enable remote caching and, if needed, distributed task execution on CI. Validate cache hits on a representative branch before rolling out broadly, and review which projects benefit; non-JS portions of a polyglot Please repo may not map cleanly to Nx.",
+  "concept_mapping": [
+    {
+      "source": "BUILD target",
+      "target": "Nx project + targets"
+    },
+    {
+      "source": "plz build / plz test",
+      "target": "nx run / nx affected"
+    },
+    {
+      "source": "Please remote cache",
+      "target": "Nx Cloud remote cache"
+    },
+    {
+      "source": "Custom build_defs rules",
+      "target": "Nx executors or generators"
+    }
+  ],
+  "effort": "3-8 weeks",
+  "gotchas": [
+    "Adopting Nx is the real cost; Nx Cloud is a quick add once Nx is in place.",
+    "Nx is strongest for JS/TS; polyglot Please repos with heavy Go, Python, or Java may not map cleanly.",
+    "Lock-in to Nx conventions is real; the build graph becomes coupled to Nx's project model.",
+    "Pricing scales with usage, so monitor cache and CE minute consumption as the team grows.",
+    "Cache correctness depends on accurate inputs; misconfigured task hashing can cause stale or wrong artifacts.",
+    "Self-hosting Nx Cloud is a higher tier; budget if data residency matters."
+  ],
+  "email": {
+    "subject": "We're moving the monorepo to Nx + Nx Cloud",
+    "body": "Hi team,\n\nWe are migrating our build from Please to Nx, with Nx Cloud handling remote cache and distributed CI. Plan for roughly two weeks of transition during which both systems may coexist and CI behavior may be uneven. Please report blockers quickly so we can sequence work. After cutover, expect faster CI for affected projects and a clearer dependency graph in tooling.\n\nThanks for bearing with us.\n\nYour customer"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "source": {
+    "slug": "sendgrid",
+    "name": "SendGrid"
+  },
+  "target": {
+    "slug": "messagebird",
+    "name": "MessageBird"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Move transactional email and SMS workloads from SendGrid to MessageBird's multi-channel API. Both speak REST + SMTP, so the porting work is mostly templates, suppression lists, and DNS.",
+  "why_switch": [
+    "Multi-channel reach: SMS, voice, WhatsApp from one API",
+    "Avoid SendGrid annual + dedicated IP commitments",
+    "European data residency option (Netherlands HQ)",
+    "Consolidate SMS and email vendors into one bill"
+  ],
+  "what_to_export": [
+    "Email templates (HTML + plaintext)",
+    "Suppression list (unsubscribes, bounces, blocks)",
+    "Sender identities and verified domains",
+    "API keys and webhook endpoints",
+    "Contact lists / marketing recipients",
+    "Event/activity logs for the retention window",
+    "Inbound parse routes",
+    "DKIM/SPF/DMARC records"
+  ],
+  "export_method": "Use the SendGrid dashboard to export contacts and suppressions as CSV via the account settings. Email templates can be pulled through the public API or copied manually if you have only a few. Activity/event data is available through an activity export option on plans that support it; otherwise rely on your own logging captured via the event webhook. Save the DKIM/SPF/DMARC records you published for sender authentication so you can roll back DNS quickly if needed. Snapshot your inbound parse webhook config and any IP allowlists. If you use dedicated IPs, confirm the contractual end date — dedicated IPs are typically not released mid-cycle. Keep API keys active until cutover so retries from in-flight queues continue to work.",
+  "import_method": "In MessageBird, create a workspace and verify your sending domain (DKIM, SPF, return-path) before sending any production traffic. Re-upload suppressions through the dashboard or via the public API so unsubscribed users stay unsubscribed. Recreate templates in MessageBird's template UI; if your SendGrid templates use templating substitutions you'll need to remap variable syntax. Provision API keys per environment and update SDK calls in your application — both providers expose REST endpoints for sending mail, so the change is mostly base URL, auth header, and field names. Re-register webhook URLs for delivery, bounce, and click events. Send through a low-volume warm-up domain or subdomain first, watch deliverability, then flip DNS / app config to MessageBird. Keep SendGrid live in parallel for at least one full billing cycle.",
+  "concept_mapping": [
+    {
+      "source": "API Key",
+      "target": "API Key"
+    },
+    {
+      "source": "Dynamic Template",
+      "target": "Template",
+      "note": "Variable syntax may differ — re-test rendering"
+    },
+    {
+      "source": "Suppression List",
+      "target": "Suppression / opt-out list"
+    },
+    {
+      "source": "Event Webhook",
+      "target": "Delivery webhook"
+    },
+    {
+      "source": "Sender Authentication (DKIM/SPF)",
+      "target": "Domain verification"
+    }
+  ],
+  "effort": "1-2 weeks",
+  "gotchas": [
+    "Billing overlap: SendGrid annual plans and dedicated IPs do not pro-rate mid-cycle",
+    "Template variable syntax differs — every template needs a render test",
+    "Deliverability dips during DNS/IP transition; warm up gradually",
+    "Suppression list MUST be re-imported or unsubscribed users get re-mailed (CAN-SPAM/GDPR risk)",
+    "WhatsApp/SMS templates require separate carrier or Meta approval"
+  ],
+  "email": {
+    "subject": "Data export request — migrating off SendGrid",
+    "body": "Hi SendGrid team,\n\nWe are migrating our messaging stack to another provider over the next 14 days and need to wind down our account in an orderly way.\n\nCould you please:\n1. Confirm how to export our full suppression list, contacts, and template library via the dashboard or API.\n2. Share the activity/event log export options available on our current plan.\n3. Confirm the contractual end date for any dedicated IPs and annual commitments so we can plan cutover and avoid double billing.\n\nWe plan to keep the account active in parallel for one billing cycle while DNS and traffic shift, then cancel. Please let me know if anything on the account requires manual action from your side.\n\nThanks,\nYour customer"
+  }
+}

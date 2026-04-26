@@ -1,0 +1,60 @@
+{
+  "source": {
+    "slug": "heap",
+    "name": "Heap"
+  },
+  "target": {
+    "slug": "baremetrics",
+    "name": "Baremetrics"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Baremetrics is revenue/SaaS metrics, not behavioural analytics — use it if Heap was overkill and what you actually need is MRR, churn, and LTV. Behavioural data does not migrate.",
+  "why_switch": [
+    "SaaS revenue dashboards out of the box",
+    "Escape Heap annual event commit",
+    "No instrumentation — connects to billing",
+    "Predictable monthly subscription"
+  ],
+  "what_to_export": [
+    "Customer list (with billing IDs)",
+    "Heap event taxonomy (for archival)",
+    "Saved charts / reports (screenshots)",
+    "Cohorts / segments as CSV",
+    "User properties relevant to revenue",
+    "API keys / source tokens",
+    "Team members and roles",
+    "Stripe (or billing) credentials for new tool"
+  ],
+  "export_method": "Heap's autocapture data can be exported through the dashboard or via the public API for accounts on plans that include export. Pull the event taxonomy, defined events, and any saved cohorts/reports. Treat this as cold archive — Baremetrics does not ingest behavioural events. Save chart screenshots and a written description of each KPI so the team retains context. Confirm the end date of any annual event-volume commitment in your account settings before scheduling cancellation.",
+  "import_method": "In Baremetrics, connect your billing provider (Stripe, Chargebee, Recurly, Braintree) through the dashboard onboarding. MRR, churn, LTV, ARR, and customer-level revenue dashboards populate automatically from the billing source — no SDK or event work required. Customer attributes flow from your billing provider. If you also need lightweight behavioural tracking, plan a separate lightweight analytics tool; Baremetrics is intentionally narrow. Reconcile MRR figures against Heap's prior reports for at least one month before cancelling Heap.",
+  "concept_mapping": [
+    {
+      "source": "Autocapture event",
+      "target": "(no equivalent)"
+    },
+    {
+      "source": "User",
+      "target": "Customer (from Stripe)"
+    },
+    {
+      "source": "Cohort",
+      "target": "Customer segment"
+    },
+    {
+      "source": "Funnel",
+      "target": "(no equivalent)"
+    }
+  ],
+  "effort": "1-2 weeks",
+  "gotchas": [
+    "Behavioural data does not transfer — only billing-derived metrics survive",
+    "Heap annual commit does not pro-rate mid-cycle",
+    "Baremetrics requires a clean Stripe/billing dataset to be useful",
+    "Funnel and retention insight is lost without a complementary tool",
+    "Identity matching depends on billing emails — non-paying users disappear"
+  ],
+  "email": {
+    "subject": "Data export and account wind-down — Heap",
+    "body": "Hi Heap team,\n\nWe are restructuring our analytics stack and plan to wind down our Heap account over the next 14 days. Could you help with:\n1. Confirming how to export the full event archive, cohorts, and saved reports via the dashboard or API.\n2. Sharing our current annual commitment end date so we can avoid overlap billing.\n3. Confirming the post-cancellation retention window for our data.\n\nWe will keep instrumentation in place for a short parallel period to ensure nothing critical is lost, then cancel. Please let me know if any of this needs action from your side.\n\nThanks,\nYour customer"
+  }
+}

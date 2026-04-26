@@ -1,0 +1,62 @@
+{
+  "source": {
+    "slug": "fable",
+    "name": "Fable"
+  },
+  "target": {
+    "slug": "a11ywatch",
+    "name": "A11yWatch"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Fable provides human accessibility testing with disabled users on its panel, while A11yWatch is an open-source automated WCAG scanner. Switching means trading qualitative human research for automated, scriptable scans wired into CI.",
+  "why_switch": [
+    "Need automated, scaled scans across many pages",
+    "Want CI/PR integration for a11y checks",
+    "Lower recurring cost vs per-engagement research",
+    "Self-hostable, open-source tooling",
+    "Faster turnaround for regression checks"
+  ],
+  "what_to_export": [
+    "Past research reports and recordings",
+    "Tester feedback transcripts",
+    "Issue lists derived from sessions",
+    "Test plans and discussion guides",
+    "Account, project and billing records",
+    "Screenshots and AT logs from sessions",
+    "Any custom rubrics or scoring sheets",
+    "Tickets created in your issue tracker"
+  ],
+  "export_method": "Fable's value lives in qualitative research artefacts: session reports, recordings, transcripts and the tickets you filed afterwards. Use the Fable web app's project area to download any reports, recordings and notes you have access to, then archive them in your shared drive. If your team logged findings into Jira, Linear or GitHub, those tickets stay in your tracker and travel with you. Capture a list of past research questions and discussion guides so the institutional knowledge is preserved. There is no automated report to migrate because Fable is a research platform, not a scanner.",
+  "import_method": "A11yWatch is an automated scanning platform, so import is configuration rather than data load. Deploy A11yWatch (self-hosted or hosted) and point it at the URLs and flows you previously researched with Fable. Set up scans via the CLI, API or GitHub Action and integrate results into PR checks. Use your archived Fable reports as a baseline of issues already known and confirm whether the scanner catches them. Keep a separate plan for ongoing user research with disabled testers; automated scans do not replace human insight.",
+  "concept_mapping": [
+    {
+      "source": "Tester feedback session",
+      "target": "Automated scan run",
+      "note": "Different signal: qualitative vs rule-based"
+    },
+    {
+      "source": "Research project",
+      "target": "Scan target / config"
+    },
+    {
+      "source": "Session report PDF",
+      "target": "Scan report / CI artefact"
+    },
+    {
+      "source": "Issue tracker tickets",
+      "target": "Issue tracker tickets (unchanged)"
+    }
+  ],
+  "effort": "2-4 weeks",
+  "gotchas": [
+    "Automated scanners typically miss a large share of issues only humans catch in usability sessions",
+    "If you drop human research entirely, you may lose qualitative signal that drives the most impactful fixes",
+    "Self-hosting means owning uptime, upgrades and security",
+    "Different output formats: narrative reports vs rule-based JSON",
+    "Plan to retain at least some user research budget for inclusive testing"
+  ],
+  "email": {
+    "subject": "Switching accessibility tooling from Fable to A11yWatch",
+    "body": "Hi team,\n\nOver the next 14 days we will be moving our day-to-day accessibility tooling from Fable to A11yWatch. Fable has been valuable for inclusive research with disabled testers, but we currently need automated WCAG scans wired into CI more than we need additional research engagements.\n\nPlan:\n- Days 1-3: archive Fable session reports, recordings and ticket links into our shared drive.\n- Days 4-7: stand up A11yWatch and run a baseline scan on staging and production.\n- Days 8-12: wire A11yWatch into PR checks and scheduled crawls.\n- Days 13-14: finalize the cutover and pause new Fable engagements.\n\nWe still plan to commission targeted research with disabled users for major launches, since automated scans alone do not surface the qualitative issues Fable was great at.\n\nThanks,\nYour customer"
+  }
+}

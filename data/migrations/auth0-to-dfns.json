@@ -1,0 +1,65 @@
+{
+  "source": {
+    "slug": "auth0",
+    "name": "Auth0"
+  },
+  "target": {
+    "slug": "dfns",
+    "name": "Dfns"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Auth0 handles user identity (login, MFA, SSO); Dfns is an MPC wallet-as-a-service for programmable crypto custody. They overlap only loosely, so this is best framed as adopting Dfns alongside or in place of certain identity workflows for fintech/crypto use cases.",
+  "why_switch": [
+    "Need MPC wallet creation per user",
+    "Programmable signing policies for transactions",
+    "Multi-party approval flows for custody",
+    "HSM-backed key management without self-ops",
+    "Identity tied to crypto custody, not just login"
+  ],
+  "what_to_export": [
+    "Users (email, IDs, metadata)",
+    "Password hashes if portable",
+    "Social/identity provider links",
+    "MFA enrollment data",
+    "Roles and permissions",
+    "Tenants/organizations",
+    "Custom claims and rules logic",
+    "Application/client configs"
+  ],
+  "export_method": "Use Auth0's Management API or Import/Export tooling to extract users, identities, metadata, MFA enrollments, roles, and password hashes where supported. Export connection settings, applications, organizations, and Rules/Actions/Hooks as code. Document any application logic that ties Auth0 identities to user actions, because Dfns will model users via its own organization and credential primitives. Store exports in encrypted storage during the migration.",
+  "import_method": "Create a Dfns organization and provision API credentials. Integrate the Dfns SDK in your backend to create per-user wallets and credentials, mapping your existing user IDs to Dfns end-user objects. Define signing policies, approval quorums, and asset/network configurations in Dfns. If you still need traditional login (email, social, MFA), keep that with another provider or your own service, and use Dfns only for the wallet/key management portion. Test wallet creation, policy enforcement, signing, and webhook delivery in a sandbox before enabling production traffic.",
+  "concept_mapping": [
+    {
+      "source": "User",
+      "target": "Dfns end-user",
+      "note": "Wallet and credentials, not login"
+    },
+    {
+      "source": "MFA factor",
+      "target": "Dfns credential/approval",
+      "note": "Different security model"
+    },
+    {
+      "source": "Tenant",
+      "target": "Dfns organization"
+    },
+    {
+      "source": "Rule/Action",
+      "target": "Signing policy",
+      "note": "Per-transaction policy engine"
+    }
+  ],
+  "effort": "4-8 weeks",
+  "gotchas": [
+    "Dfns is wallet infrastructure, not a login provider; you may still need a separate auth solution.",
+    "Custodial key-share lock-in: once policies and wallets are provisioned, exit cost rises.",
+    "Pricing is custom enterprise; confirm contract terms before committing.",
+    "Compliance and regulatory work remains your responsibility.",
+    "User-facing UX components are minimal compared to consumer wallet SDKs.",
+    "Existing JWTs and sessions are unrelated to Dfns and must continue to be managed elsewhere."
+  ],
+  "email": {
+    "subject": "Adopting Dfns and reducing Auth0 scope over the next 14 days",
+    "body": "Hi Auth0 team,\n\nThank you for the identity support to date. Our roadmap requires programmable crypto custody, so we are adopting Dfns for MPC wallet management. We will be reducing our Auth0 scope accordingly within the next 14 days.\n\nPlanned timeline:\n- Days 1-4: export users, identities, and rules from Auth0.\n- Days 5-9: provision Dfns wallets and policies for migrated users.\n- Days 10-12: integrate signing flows in staging and validate webhooks.\n- Days 13-14: cut over the relevant production traffic.\n\nCould you confirm available export endpoints on our plan and the correct way to either downgrade or terminate at the end of our current cycle, with confirmation about future MAU-based charges?\n\nThanks for your help,\nYour customer"
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "source": {
+    "slug": "airbyte",
+    "name": "airbyte"
+  },
+  "target": {
+    "slug": "aptible",
+    "name": "aptible"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Airbyte is a data integration / ELT platform, while Aptible is a HIPAA-focused deployment PaaS — they solve different problems. There is no meaningful data migration between them; if you are switching, you are likely replacing one piece of infrastructure with an unrelated one.",
+  "why_switch": [
+    "You discovered your actual need is HIPAA-compliant app hosting, not ELT",
+    "You are consolidating onto a healthcare-focused platform",
+    "You no longer require a managed data integration tool",
+    "You want a deployment platform that signs BAAs out of the box",
+    "You are simplifying your stack by removing tools you do not use"
+  ],
+  "what_to_export": [
+    "List of Airbyte connections (sources, destinations, schedules)",
+    "Credentials and secrets configured in Airbyte (rotate during migration)",
+    "Custom connectors built with the Airbyte CDK",
+    "Workspace and user configuration",
+    "Sync history for benchmarking",
+    "Billing and admin contact info"
+  ],
+  "export_method": "Document your Airbyte configuration as a reference even if you are not moving the workload — list every source, destination, schedule, and any normalization in use. Securely capture credentials so they can be reused or rotated. Save any custom connector code separately. If you still need ELT after switching to Aptible, plan for a separate replacement (Aptible does not provide ELT). Confirm that no downstream system depends on Airbyte syncs before turning anything off, and capture sync history for reference. Treat this strictly as decommissioning, not as importing data into Aptible.",
+  "import_method": "Aptible is a deployment platform, so 'importing' means deploying your applications, not your data pipelines. Create an Aptible account and a stack appropriate for your environment (HIPAA-eligible if needed). For each application, follow Aptible's documentation to deploy via git push, configure databases, and add environment variables. Sign a BAA with Aptible if HIPAA coverage is required. Wire up logging and monitoring through Aptible's standard integrations. None of your Airbyte connectors translate into Aptible — if you still need ELT, choose a separate tool to run alongside Aptible.",
+  "concept_mapping": [],
+  "effort": "1-4 weeks",
+  "gotchas": [
+    "These products solve different problems; double-check that this switch matches your actual goal",
+    "Aptible does not replace Airbyte's ELT capability — plan for a separate data integration tool if you still need it",
+    "HIPAA coverage on Aptible requires a signed BAA and correct stack configuration",
+    "App architecture may need adjustment to fit Aptible's deployment model",
+    "Rotate any credentials previously held in Airbyte after decommissioning",
+    "Cost profile differs significantly; benchmark before committing"
+  ],
+  "email": {
+    "subject": "Canceling our Airbyte subscription in 14 days",
+    "body": "Hi team,\n\nOur stack is changing direction and we are stepping away from Airbyte. Please treat this email as 14 days notice to cancel our Airbyte subscription. Kindly confirm the end date and any final invoice. Thanks for your help during our time as a customer.\n\nBest,\nYour customer"
+  }
+}

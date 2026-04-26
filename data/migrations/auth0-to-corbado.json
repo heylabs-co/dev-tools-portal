@@ -1,0 +1,65 @@
+{
+  "source": {
+    "slug": "auth0",
+    "name": "Auth0"
+  },
+  "target": {
+    "slug": "corbado",
+    "name": "Corbado"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Auth0 is a broad CIAM with passwords, social, MFA, and enterprise SSO; Corbado is focused on passkey-first authentication. Moving means re-architecting sign-in around passkeys, not just swapping vendors.",
+  "why_switch": [
+    "Move to passkey-first sign-in UX",
+    "Drop MAU-based peak billing exposure",
+    "Reduce password-related support tickets",
+    "Simpler auth surface for passwordless apps",
+    "Standards-based WebAuthn under the hood"
+  ],
+  "what_to_export": [
+    "Users (email, IDs, metadata)",
+    "Password hashes (for fallback)",
+    "Social/identity provider links",
+    "MFA enrollment data",
+    "Roles and permissions",
+    "Tenants/organizations",
+    "Application/client configs",
+    "Custom claims and rules logic"
+  ],
+  "export_method": "Use the Auth0 Management API or Import/Export tooling to extract users, identities, metadata, roles, and password hashes where supported. Export connection settings (SAML, OIDC, social) and application client configurations. Capture Auth0 Rules, Hooks, and Actions as code so the logic can be reimplemented elsewhere. Document your MFA factors, since passkeys may replace some but not all of them. Store exports in encrypted storage and rotate any sensitive credentials at the end of the migration.",
+  "import_method": "Create a Corbado project and integrate its SDK on your frontend and backend. Configure relying party settings (domain, name) for WebAuthn, then import or recreate user records keyed by your existing user IDs or emails. For users without passkeys, surface an enrollment flow on first login; for users on legacy passwords, use a password-then-passkey upgrade flow. Replace Auth0 client SDK calls with Corbado's authentication APIs and update your backend session/JWT verification accordingly. Verify any non-passkey requirements (such as enterprise SSO) are covered, since Corbado's primary focus is passkeys.",
+  "concept_mapping": [
+    {
+      "source": "User",
+      "target": "Corbado user",
+      "note": "Keyed by your existing user ID or email"
+    },
+    {
+      "source": "MFA factor",
+      "target": "Passkey credential",
+      "note": "Passkey can replace some second factors"
+    },
+    {
+      "source": "Connection (social/SAML/OIDC)",
+      "target": "External IdP integration",
+      "note": "Verify each IdP is supported"
+    },
+    {
+      "source": "Rule/Action/Hook",
+      "target": "Backend webhook/middleware"
+    }
+  ],
+  "effort": "3-6 weeks",
+  "gotchas": [
+    "Corbado is passkey-focused; verify it covers your full social and enterprise SSO needs before committing.",
+    "Existing JWTs and sessions must be invalidated and reissued at cutover.",
+    "Users without passkey-capable devices need a fallback path you must design.",
+    "Auth0 Rules/Actions logic does not port automatically; plan to rewrite.",
+    "Pricing is not fully public; confirm cost at your projected scale before signing.",
+    "Custom claim shapes will change; relying parties need updated token validation."
+  ],
+  "email": {
+    "subject": "Migrating from Auth0 to Corbado over the next 14 days",
+    "body": "Hi Auth0 team,\n\nThank you for supporting our identity stack. We are moving to a passkey-first authentication model and will be migrating to Corbado over the next 14 days.\n\nPlanned timeline:\n- Days 1-4: export users, hashes, connections, and rules.\n- Days 5-9: integrate Corbado, import users, and design a passkey enrollment flow.\n- Days 10-12: parallel-test sign-in and fallbacks in staging.\n- Days 13-14: cut over production and rotate keys.\n\nPlease confirm the export endpoints available on our plan and the procedure to terminate the account at the end of our current cycle, with confirmation that no further MAU-based charges will apply.\n\nThanks for your help,\nYour customer"
+  }
+}

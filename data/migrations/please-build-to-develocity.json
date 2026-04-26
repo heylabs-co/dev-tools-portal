@@ -1,0 +1,63 @@
+{
+  "source": {
+    "slug": "please-build",
+    "name": "please-build"
+  },
+  "target": {
+    "slug": "develocity",
+    "name": "develocity"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Migrating from Please (a Bazel-inspired polyglot build system) to Develocity means leaving a self-contained build tool for a build acceleration and analytics layer that sits on top of Gradle, Maven, Bazel, or sbt. You will need to rebuild your build configuration in one of those supported build tools, then connect Develocity to capture caching, scans, and predictive test selection.",
+  "why_switch": [
+    "You are consolidating onto a JVM-heavy stack (Gradle, Maven, Bazel, or sbt) and want first-class enterprise tooling.",
+    "You need build scans and analytics to diagnose slow CI, which Please does not provide.",
+    "You want predictive test selection and distributed test execution for large monorepos.",
+    "You prefer a vendor-supported acceleration layer over maintaining a niche OSS build system.",
+    "Please's smaller community and rule ecosystem are blocking you on tooling and integrations."
+  ],
+  "what_to_export": [
+    "BUILD files and Please targets (sources, deps, visibility, test targets).",
+    ".plzconfig and any subrepo or plugin configuration.",
+    "Custom build rules and macros written in Please's language.",
+    "Remote cache configuration and any shared cache backends.",
+    "CI pipeline definitions invoking plz build / plz test.",
+    "Toolchain pins (Go, Python, Java versions) referenced by Please.",
+    "Generated artifact paths and conventions used downstream.",
+    "Test runner configuration and coverage settings."
+  ],
+  "export_method": "Please does not have a single \"export everything\" command, so treat this as an inventory exercise. Walk the repository and collect every BUILD file plus the root .plzconfig; these are plain text and can be committed and reviewed in version control as-is. Run plz query commands you already use (such as querying targets and their dependencies) to produce machine-readable lists of what currently builds and tests, and save the output as part of the migration artifacts. Catalogue any custom build_defs files that define macros or rules. Capture the toolchain versions Please pins (compilers, interpreters, SDKs) so the new build can match them. Record the CI commands that drive Please today and the artifacts they publish, including paths under plz-out. Finally, document your remote cache backend and credentials so you know what infrastructure can be retired after cutover.",
+  "import_method": "Develocity is not a build tool itself; it accelerates and observes Gradle, Maven, Bazel, or sbt. So the first import step is choosing one of those build tools and authoring a build for it, mirroring the targets and dependency graph you exported from Please. Once the new build runs locally and in CI, follow the official Develocity setup for that build tool to attach the platform: this typically involves adding the vendor-provided plugin or extension, pointing it at your Develocity server, and authenticating CI agents. After connection, enable the features you need (remote build cache, build scans, predictive test selection, test distribution) one at a time so you can verify each independently. Validate cache hit rates and scan output on a representative branch before turning Develocity on for the whole team.",
+  "concept_mapping": [
+    {
+      "source": "BUILD targets",
+      "target": "Build tool targets/modules",
+      "note": "Re-expressed in Gradle, Maven, Bazel, or sbt depending on chosen tool."
+    },
+    {
+      "source": "Please remote cache",
+      "target": "Develocity remote build cache"
+    },
+    {
+      "source": "plz test",
+      "target": "Build tool test task with Develocity test analytics"
+    },
+    {
+      "source": "Custom build_defs rules",
+      "target": "Plugins, conventions, or Bazel rules in the new tool"
+    }
+  ],
+  "effort": "4-10 weeks",
+  "gotchas": [
+    "Develocity does not replace Please; you must first port the build to Gradle, Maven, Bazel, or sbt, which is the bulk of the work.",
+    "If you keep polyglot builds (Go, Python) outside the JVM tools, only the supported portion benefits from Develocity acceleration.",
+    "Hermeticity guarantees in Please are not automatically inherited by the new build; configure caching carefully to avoid poisoned caches.",
+    "Develocity pricing is enterprise/custom, so budget approval can become the critical path rather than engineering.",
+    "Build scans capture build metadata; review what is uploaded to ensure it complies with your data and compliance policies.",
+    "Predictive test selection requires sufficient historical data; expect a ramp-up period before savings appear."
+  ],
+  "email": {
+    "subject": "Heads-up: we're migrating our build to Develocity",
+    "body": "Hi team,\n\nWe are moving our monorepo build from Please to a Develocity-supported stack (Gradle, Maven, Bazel, or sbt) over roughly the next two weeks. During the transition both builds may run in parallel and CI may be slower than usual. Please flag any blocked workflows early so we can prioritize them. After cutover you should see faster CI and richer build scans for diagnosing failures.\n\nThanks for your patience.\n\nYour customer"
+  }
+}

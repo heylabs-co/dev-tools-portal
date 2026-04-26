@@ -1,0 +1,57 @@
+{
+  "source": {
+    "slug": "nium",
+    "name": "Nium"
+  },
+  "target": {
+    "slug": "paymentsos",
+    "name": "PaymentsOS"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Nium is a licensed global payouts, issuing, and FX platform, while PaymentsOS is a multi-PSP orchestrator focused on card acceptance routing. The two solve different problems, so most teams do not replace one with the other — they either pick the right tool or run both.",
+  "why_switch": [
+    "Need merchant card-routing across PSPs, not payouts",
+    "Centralize PSP analytics on one orchestrator",
+    "Move from money movement to acceptance focus",
+    "Consolidate routing logic in a managed platform"
+  ],
+  "what_to_export": [
+    "Customer and counterparty records",
+    "Beneficiary and payout instructions",
+    "Card and account references",
+    "Transaction and FX history",
+    "Webhook endpoints and secrets",
+    "API credentials and client accounts",
+    "Reconciliation and reporting exports",
+    "Compliance and KYB documentation"
+  ],
+  "export_method": "Use the Nium API and reporting tools to export customers, beneficiaries, transactions, and FX history in structured formats. Pull webhook subscription details and credential metadata, and capture compliance and KYB documents through the dashboard. Keep card and account references aligned with the Nium identifiers so you can reconcile during a parallel period. Confirm with Nium which records you are contractually entitled to take with you, since some balances and licensed product data may need to settle or be returned rather than migrated.",
+  "import_method": "PaymentsOS is not a payouts or issuing platform, so most Nium data does not have a destination there. For the parts of your stack that involve card acceptance routing, engage PaymentsOS sales to set up a tenant, connect your PSPs, and recreate routing rules. Treat this as a new implementation that runs alongside your money-movement provider rather than a swap. Recreate webhook subscriptions, run a parallel period on a small percentage of traffic, and keep Nium live for any flows it uniquely covers.",
+  "concept_mapping": [
+    {
+      "source": "Beneficiary / payout",
+      "target": "Not directly applicable",
+      "note": "PaymentsOS focuses on acceptance"
+    },
+    {
+      "source": "Webhook",
+      "target": "Webhook"
+    },
+    {
+      "source": "API credentials",
+      "target": "API credentials"
+    }
+  ],
+  "effort": "8-16 weeks",
+  "gotchas": [
+    "PaymentsOS does not replace Nium's payouts, issuing, or FX functionality.",
+    "Nium termination involves licensed-product offboarding and balance settlement that takes time.",
+    "PaymentsOS is enterprise-led; contracting can add weeks before integration starts.",
+    "Webhook and event semantics differ; do not assume parity.",
+    "Reconciliation between licensed flows and acceptance flows must be planned end-to-end."
+  ],
+  "email": {
+    "subject": "Offboarding from Nium — 14-day transition plan",
+    "body": "Hi Nium team,\n\nWe are transitioning portions of our payments stack to a different platform over the next 14 days and need to plan a clean handover.\n\nCould you help with:\n\n- Confirming the export path for customers, beneficiaries, transactions, and FX history.\n- Steps required to settle or close any balances and licensed-product positions.\n- Decommissioning of API credentials and webhooks by day 14.\n- A point of contact for compliance and contractual offboarding questions.\n\nWe would like to align on timing so any in-flight transactions can settle cleanly.\n\nThanks for the partnership.\n\nYour customer"
+  }
+}

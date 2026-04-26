@@ -1,0 +1,60 @@
+{
+  "source": {
+    "slug": "mindsdb",
+    "name": "mindsdb"
+  },
+  "target": {
+    "slug": "bolt-new",
+    "name": "bolt-new"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "MindsDB is an OSS federated data engine for AI-over-data via SQL; Bolt.new is a browser-based AI full-stack app builder. They solve different problems, so migration usually means moving from a data-engine layer to building apps from prompts.",
+  "why_switch": [
+    "You want to ship full web apps, not data pipelines",
+    "You prefer an in-browser AI dev environment",
+    "Your work is no longer SQL-on-data centric",
+    "You want a freemium tier with quick onboarding",
+    "You can integrate any data layer from inside Bolt-built apps"
+  ],
+  "what_to_export": [
+    "MindsDB CREATE DATABASE statements (data source connections)",
+    "AI-Table / model definitions (CREATE MODEL ... statements)",
+    "User and role configuration",
+    "Custom SQL procedures and views",
+    "Configuration files (config.json or env vars)",
+    "Logs of important queries",
+    "Backups of any local MindsDB state"
+  ],
+  "export_method": "MindsDB is open source and SQL-driven, so most state is reproducible from SQL scripts. Use SHOW DATABASES, SHOW MODELS, and similar statements to dump the definitions of your connected data sources and AI-Tables, then save the resulting CREATE statements as .sql files in version control. Capture the contents of MindsDB's config (config.json or environment variables) without secrets. Note user/role grants for your deployment. If you self-host MindsDB on a database backend, take a database-level backup of its metadata before tearing down the deployment.",
+  "import_method": "Bolt.new does not import MindsDB definitions because it builds apps, not data engines. Sign in at bolt.new, start a project, and describe the app you want. Use the in-browser editor and live preview to iterate, and deploy from there. If you still need MindsDB-style AI-over-data, integrate MindsDB (or any other database/AI service) from inside the Bolt-built app via standard API calls. Bolt.new is best treated as a starting-from-scratch UI/app layer, with the data engine kept as a separate dependency.",
+  "concept_mapping": [
+    {
+      "source": "MindsDB AI-Table",
+      "target": "API endpoint your app calls",
+      "note": "Wire externally"
+    },
+    {
+      "source": "CREATE DATABASE connector",
+      "target": "Database client in app code",
+      "note": "Rebuild manually"
+    },
+    {
+      "source": "MindsDB project",
+      "target": "Bolt.new project",
+      "note": "Different scope"
+    }
+  ],
+  "effort": "2-6 weeks",
+  "gotchas": [
+    "Different problem spaces; confirm Bolt.new actually fits your use case.",
+    "Bolt.new's repo shows long inactivity in our dataset; do due diligence.",
+    "No automated import path from MindsDB to Bolt.new.",
+    "You may end up running both products: MindsDB for data, Bolt for UI.",
+    "Generated apps may need significant refactor before production use.",
+    "MindsDB license on GitHub is non-standard (NOASSERTION); review terms."
+  ],
+  "email": {
+    "subject": "Re-platforming: MindsDB to Bolt.new for app delivery",
+    "body": "Hi team,\n\nOver the next 14 days we will pilot Bolt.new for rapid app generation, while reviewing what stays on MindsDB for data-grounded AI. The two tools sit in different layers, so this is a scope realignment, not a swap.\n\nMindsDB stays online during the pilot. Please flag any data workflows you rely on so we can plan transitions or keep them as-is.\n\nThanks,\nYour customer"
+  }
+}

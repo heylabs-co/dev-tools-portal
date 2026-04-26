@@ -1,0 +1,72 @@
+{
+  "source": {
+    "slug": "sentry",
+    "name": "Sentry"
+  },
+  "target": {
+    "slug": "bugsnag",
+    "name": "Bugsnag"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Both are mature error monitoring platforms; the move from Sentry to Bugsnag is mostly an SDK swap and a re-creation of projects, alerts, and integrations. Historical event data generally does not transfer.",
+  "why_switch": [
+    "Stability score model fits release-quality workflows",
+    "Mature SDKs across web, mobile, and server",
+    "Simpler product surface than full-Sentry suite",
+    "Different commercial terms or support fit",
+    "Consolidate with existing Bugsnag-using teams"
+  ],
+  "what_to_export": [
+    "Project list with platform/runtime per project",
+    "Alert rules and notification channels",
+    "Team members and roles",
+    "Slack, Jira, PagerDuty integration configs",
+    "Source map and debug symbol upload pipeline",
+    "Release/deploy tagging conventions",
+    "Custom fingerprint and grouping rules",
+    "Open issue list with assignees and status",
+    "Tag conventions and saved searches",
+    "Inbound webhooks and consumers"
+  ],
+  "export_method": "Sentry exposes a documented REST API plus org/project export options in the dashboard. For inventory, list projects, members, teams, alert rules, and integrations through the API and store the results as JSON. To capture issues, page through the issues endpoint per project and dump fields you care about (title, culprit, last seen, assignee, status). Source maps and debug files live in Sentry's release artifacts; re-upload them at the new vendor rather than trying to migrate them. If you self-host Sentry, you also have direct database access for deeper extraction. Cancel only after you have written confirmations and your replacement is live, since access ends at term close.",
+  "import_method": "In Bugsnag, create one project per Sentry project, picking the matching notifier (browser, Node, iOS, Android, etc.). Install the corresponding @bugsnag SDK, initialize with the API key, and remove the Sentry init from each app. Wire source maps and symbol uploads into CI per Bugsnag docs. Re-create alert rules, stability targets, and notification channels (Slack, email, PagerDuty) to match the Sentry setup. Add team members and assign roles. Run both SDKs in parallel for one to two release cycles to validate ingestion and grouping before turning Sentry off. Historical issues are not migrated; use exported JSON for reference only.",
+  "concept_mapping": [
+    {
+      "source": "Project",
+      "target": "Project"
+    },
+    {
+      "source": "Issue / Event",
+      "target": "Error / Event"
+    },
+    {
+      "source": "Environment",
+      "target": "Release stage"
+    },
+    {
+      "source": "Release",
+      "target": "App version / Release"
+    },
+    {
+      "source": "Alert rule",
+      "target": "Notification rule"
+    },
+    {
+      "source": "Team / Member",
+      "target": "Team / Member"
+    }
+  ],
+  "effort": "2-6 weeks",
+  "gotchas": [
+    "Issue grouping differs; same crash may produce different fingerprints, inflating issue counts after switch",
+    "Source map and symbol upload must be re-wired in CI; missing artifacts produce unreadable stack traces",
+    "Performance/tracing and session replay features are not 1:1; confirm parity before cutover",
+    "Annual commitments on either side may prevent immediate savings; align with renewal",
+    "Alert rule semantics differ; rebuild rules and verify with synthetic events",
+    "User identification and PII scrubbing rules must be re-implemented per SDK"
+  ],
+  "email": {
+    "subject": "Plan to wind down Sentry over the next two weeks",
+    "body": "Hi team,\n\nWe're moving our error monitoring to Bugsnag over the next 14 days and will not be renewing our Sentry plan. We're keeping the account active through the end of the current term so we can finish exporting projects, alert rules, integrations, and recent issue metadata via the API.\n\nWe plan to dual-report from both SDKs for the first part of that window, then cut over and disable the Sentry init. Could you confirm there is no auto-renewal and share a contact for any final billing questions? We've appreciated the product and the docs.\n\nThanks,\nYour customer"
+  }
+}

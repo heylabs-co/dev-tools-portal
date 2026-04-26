@@ -1,0 +1,60 @@
+{
+  "source": {
+    "slug": "telemetrydeck",
+    "name": "TelemetryDeck"
+  },
+  "target": {
+    "slug": "deepwall",
+    "name": "Deepwall"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "TelemetryDeck is privacy-first mobile analytics; Deepwall is a no-code paywall and IAP management SDK with A/B testing. The migration is really a re-platform from analytics to paywall tooling, not a feature-for-feature swap.",
+  "why_switch": [
+    "Need no-code paywalls with A/B testing",
+    "Want remote paywall config without app releases",
+    "Subscription CVR is the core KPI",
+    "Want behavior-triggered paywalls without backend",
+    "Faster iteration on pricing and copy"
+  ],
+  "what_to_export": [
+    "Signal names and payload schemas",
+    "Aggregated dashboard metrics",
+    "App and platform identifiers",
+    "Subscription/IAP product IDs",
+    "RevenueCat integration mapping",
+    "Custom user properties used in signals",
+    "Historical CSV exports",
+    "Any saved dashboard views"
+  ],
+  "export_method": "From the TelemetryDeck dashboard, export signals and dashboard views for each app. Where bulk export is not exposed, save CSVs and screenshots of the views you depend on. Document your signal taxonomy (name, payload, call site) in a spreadsheet so the equivalent funnel events can be recreated where needed. Since Deepwall is paywall infrastructure rather than analytics, treat the TelemetryDeck export as an archive and keep a copy in your own storage. Snapshot any RevenueCat integration data so you can reconcile subscription IDs on the new platform.",
+  "import_method": "Create a Deepwall account and configure your products and paywall variants in its dashboard. Add the Deepwall SDK to your iOS and Android apps and initialize it during app startup. Identify the user-behavior triggers that should present a paywall (for example, paywall on premium feature tap) and wire them via the Deepwall SDK. Define A/B test variants in the dashboard, then ship a build that loads paywall config remotely. Validate in a sandbox/test environment that purchase flow, restore, and variant assignment work before enabling for real users.",
+  "concept_mapping": [
+    {
+      "source": "Signal",
+      "target": "SDK event/trigger",
+      "note": "Used to launch paywalls, not for analytics"
+    },
+    {
+      "source": "Subscription metric",
+      "target": "IAP product/paywall",
+      "note": "Mapped per product ID"
+    },
+    {
+      "source": "Dashboard view",
+      "target": "Paywall A/B report",
+      "note": "Scope is paywall CVR only"
+    }
+  ],
+  "effort": "1-2 weeks",
+  "gotchas": [
+    "Deepwall does not replace product analytics; you may still need TelemetryDeck or another tool.",
+    "Public Deepwall SDK release activity appears infrequent; verify currency before depending on it.",
+    "Adding another SDK alongside RevenueCat or StoreKit increases complexity.",
+    "Lock-in on paywall configs is non-trivial; export variants regularly.",
+    "Historical TelemetryDeck CVR data will not be visible inside Deepwall."
+  ],
+  "email": {
+    "subject": "Moving from TelemetryDeck to Deepwall in the next 14 days",
+    "body": "Hi TelemetryDeck team,\n\nThank you for supporting our analytics. We are shifting our focus to subscription paywall optimization with A/B testing and remote configuration, which is outside TelemetryDeck's current scope. We will be migrating to Deepwall over the next 14 days.\n\nPlanned timeline:\n- Days 1-3: export signals, dashboards, and document our event and product mapping.\n- Days 4-9: integrate the Deepwall SDK, configure paywalls and variants.\n- Days 10-12: validate purchase, restore, and A/B assignment in test builds.\n- Days 13-14: ship and stop sending new signals to TelemetryDeck.\n\nPlease confirm how to bulk-export our remaining data and how to close the account at the end of the current cycle, with confirmation that no further charges will apply.\n\nThanks again,\nYour customer"
+  }
+}

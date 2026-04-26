@@ -1,0 +1,60 @@
+{
+  "source": {
+    "slug": "codemagic",
+    "name": "Codemagic"
+  },
+  "target": {
+    "slug": "depot",
+    "name": "Depot"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Codemagic and Depot serve different purposes: Codemagic is a full mobile CI/CD platform, while Depot is a remote Docker build accelerator. A direct replacement only makes sense if your real bottleneck is container image build time, not mobile compilation.",
+  "why_switch": [
+    "Faster Docker image builds via remote builders",
+    "Standard Docker tooling, low lock-in",
+    "Public subscription pricing",
+    "Plugs into existing CI without replacing it",
+    "Strong CLI and CI integration docs"
+  ],
+  "what_to_export": [
+    "Dockerfiles and build context layout",
+    "Codemagic build scripts that build images",
+    "Container registry credentials",
+    "Image tags and versioning conventions",
+    "Cache configuration",
+    "Build args and environment variables",
+    "CI integration secrets",
+    "Multi-arch build configs",
+    "Test/build artifacts you want to keep",
+    "Notification configs"
+  ],
+  "export_method": "Identify which Codemagic workflows actually build container images versus which compile mobile binaries; only the container portion is in scope for Depot. Export the relevant Dockerfiles and any build scripts from your repo. From Codemagic, document environment variables, registry credentials, and build args used during image build. Secret values come from your password manager, not Codemagic. Note any caching or layer-reuse tricks already in place. If you produce multi-architecture images, document the platforms list. Mobile build steps (Xcode, Gradle) stay on Codemagic or another CI; Depot does not replace that.",
+  "import_method": "Sign up for Depot and create a project. Install the Depot CLI in your CI environment (Codemagic, GitHub Actions, etc.) and replace docker build invocations with depot build, passing your existing Dockerfile and build context. Configure registry login the same way you do today and push tags as before. Move build args, secrets (via supported secret-mounting flags), and platform flags to the Depot CLI. Validate that produced images are byte-equivalent and pass downstream tests, then enable Depot for production builds. Keep Codemagic for any mobile compilation that is unrelated to containerized builds.",
+  "concept_mapping": [
+    {
+      "source": "Codemagic build script",
+      "target": "depot build CLI invocation in CI"
+    },
+    {
+      "source": "Codemagic env vars",
+      "target": "Depot project + CI env vars"
+    },
+    {
+      "source": "Local docker buildx",
+      "target": "Remote Depot builders"
+    }
+  ],
+  "effort": "Days to a couple of weeks for a CI integration swap, depending on how many image build pipelines you operate.",
+  "gotchas": [
+    "Depot does not replace mobile CI; you still need a build platform for app binaries",
+    "Verify image digest parity before trusting cutover",
+    "Secret-mount syntax differs across Docker tooling; rewrite with care",
+    "Registry rate limits unchanged, plan retries",
+    "Multi-arch builds require explicit platform flags",
+    "Pricing starts at a higher monthly tier; validate ROI before committing"
+  ],
+  "email": {
+    "subject": "Closing Codemagic plan as we shift container builds to Depot",
+    "body": "Hi Codemagic team,\n\nOur container image build pipeline has become the long pole in our CI, and we are moving those builds to Depot's remote builders. The mobile parts of our work are also shrinking, so we plan to wind down our Codemagic subscription rather than keep it for a small slice of work.\n\nOver the next 14 days we will integrate Depot into our CI, run both systems in parallel for about a week, then stop using Codemagic. We would like a final read-only window of one billing cycle to pull any historical logs or artifacts before closing the account.\n\nCould you confirm:\n- The cancellation steps and final billing date\n- How long artifacts stay accessible after cancellation\n- Any official export tools you recommend\n\nThanks for the support during our mobile CI period.\n\nYour customer"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "source": {
+    "slug": "checkout-com",
+    "name": "Checkout.com"
+  },
+  "target": {
+    "slug": "unit",
+    "name": "Unit"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Checkout.com is a global card-acquiring PSP, while Unit is a US banking-as-a-service platform with FDIC-insured accounts, ACH, wire, cards and lending. Treat this as a re-architecture rather than a like-for-like migration.",
+  "why_switch": [
+    "Need FDIC-insured accounts, not just card acquiring",
+    "Want native ACH and wire rails inside the product",
+    "Plan to issue cards or offer embedded lending",
+    "US-focused customer base versus global card volume",
+    "Looking for unified BaaS instead of pure PSP"
+  ],
+  "what_to_export": [
+    "Customer profiles and KYC artifacts",
+    "Stored card and payment method tokens",
+    "Historical transaction and refund records",
+    "Subscription and recurring schedules (if any)",
+    "Webhook subscriptions and endpoint URLs",
+    "Dispute and chargeback case history",
+    "Payout and reconciliation reports",
+    "API keys, webhook secrets and IP allow lists"
+  ],
+  "export_method": "Use Checkout.com's dashboard reports and API to pull transactions, customers, payment methods and disputes into CSV or JSON. For card data, contact Checkout.com support to arrange a PCI-compliant token export to your new vault or processor — this is a regulated process and cannot be done via a self-serve endpoint. Pull webhook configurations, API keys and reconciliation reports separately. Keep at least 12-24 months of history for accounting, tax and dispute defense. If you rely on saved cards, make the PCI export request early — turnaround often takes weeks.",
+  "import_method": "Unit is not a card-acquiring PSP, so you usually do not import card tokens at all. Instead, model your customers as Unit end-customers, open the appropriate deposit accounts, and originate ACH, wire or card transactions through Unit's APIs. Build KYC and onboarding flows on top of Unit's customer creation endpoints, then re-issue cards via Unit's card issuing APIs if needed. Historical Checkout.com data should be kept in your own database or warehouse for reference, not pushed into Unit. Plan a parallel run where new business goes to Unit while Checkout.com handles legacy disputes and refunds.",
+  "concept_mapping": [
+    {
+      "source": "Payment / charge",
+      "target": "ACH or wire payment, or card transaction",
+      "note": "Different rails, not a 1:1 swap"
+    },
+    {
+      "source": "Customer",
+      "target": "End-customer / application",
+      "note": "Unit treats customers as banking entities"
+    },
+    {
+      "source": "Card token",
+      "target": "Issued card / linked account",
+      "note": "Unit issues cards rather than acquiring them"
+    },
+    {
+      "source": "Webhook",
+      "target": "Event / webhook"
+    }
+  ],
+  "effort": "6-12 weeks for a focused team, longer if KYC, compliance and reconciliation flows must be rebuilt",
+  "gotchas": [
+    "Checkout.com and Unit solve different problems — confirm Unit actually fits before migrating",
+    "Unit relies on sponsor banks; vet the assigned bank's policies carefully",
+    "US-only scope means non-US customers cannot be served on Unit",
+    "PCI token export from Checkout.com is a manual, regulated process and takes time",
+    "Dispute and chargeback history does not transfer; keep Checkout.com active for legacy cases",
+    "Pricing is custom on both sides — get written quotes before committing"
+  ],
+  "email": {
+    "subject": "Moving our payments stack from Checkout.com to Unit",
+    "body": "Hi team,\n\nWe are planning to move our payments and money-movement stack from Checkout.com to Unit over the next 14 days. The driver is that we need US banking rails — accounts, ACH, wire and card issuing — alongside basic card acceptance, and Unit is a better fit than a pure PSP for that shape of product.\n\nDuring the transition we will keep Checkout.com active for in-flight transactions, refunds and disputes. New customers and new flows will be onboarded through Unit. We are exporting transactions, customers and webhook configs from Checkout.com now, and will request the PCI export early since that step has lead time. Reconciliation will be reviewed daily during the cutover.\n\nIf you maintain anything that calls Checkout.com directly, please flag it this week so we can plan the cutover without surprises. Tax, accounting and dispute defense data will continue to live in our warehouse.\n\nThanks for your patience while we get this in.\n\nYour customer"
+  }
+}

@@ -1,0 +1,69 @@
+{
+  "source": {
+    "slug": "discourse",
+    "name": "Discourse"
+  },
+  "target": {
+    "slug": "plain",
+    "name": "Plain"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Move from a Discourse community forum to Plain's in-app support workflow by exporting forum data for archival and routing new conversations through Plain. The two products serve different shapes of conversation, so plan a workflow change rather than a one-to-one data import.",
+  "why_switch": [
+    "Shifting from public peer discussion to private one-to-one support",
+    "Reducing self-hosting ops overhead by moving to a managed support tool",
+    "Tighter in-app integration for ticket-style conversations",
+    "Consolidating support under a developer-focused API workflow"
+  ],
+  "what_to_export": [
+    "Full forum database backup (Discourse provides an admin backup)",
+    "User accounts and roles for archival reference",
+    "Categories, tags, and topic structure",
+    "Posts and replies (HTML/Markdown plus attachments)",
+    "Trust level configuration",
+    "SSO configuration and identity provider details",
+    "Webhook and integration list",
+    "Custom plugins and themes you depend on",
+    "Static export of high-traffic threads for SEO redirects"
+  ],
+  "export_method": "Discourse provides a built-in admin backup that produces a full database dump including users, categories, topics, posts, and uploads. Run the backup from the Discourse admin panel and store the archive somewhere durable. For SEO purposes, also generate a static crawl or sitemap of the highest-traffic threads so you can plan redirects to whatever replaces them (a docs site, a knowledge base, or a support portal). List your plugins and themes as a separate inventory — these are usually the hardest to replace and often define why people self-host Discourse in the first place. Capture SSO and webhook configuration as a config file in your repo. Because Discourse and Plain serve different conversation shapes (public forum vs in-app support), do not plan to import threads into Plain. Treat Discourse data as an archive and a redirect source.",
+  "import_method": "On Plain, install the Plain SDK or in-app widget in your product so customers can start a conversation from inside the app. Configure your team, roles, and notification routing in the Plain dashboard. Connect Plain to your existing channels (email, Slack) so support requests land in one queue. If you have a knowledge base you want to link from Plain, host it separately — Plain focuses on the support conversation itself. For the Discourse archive, decide on one of three paths: keep Discourse running read-only behind an auth wall for historical lookup, export top threads into a static knowledge base, or shut Discourse down and 301-redirect high-traffic URLs to the new docs/support entry point. Communicate the change clearly to your community: a public forum closing is a meaningful change for users who relied on it for peer help.",
+  "concept_mapping": [
+    {
+      "source": "Topic / thread",
+      "target": "Conversation",
+      "note": "Public many-to-many becomes private one-to-one — workflow shift, not a data mapping"
+    },
+    {
+      "source": "User",
+      "target": "Customer"
+    },
+    {
+      "source": "Staff member",
+      "target": "Team member"
+    },
+    {
+      "source": "Category / tag",
+      "target": "Label / tier",
+      "note": "Verify naming on target"
+    },
+    {
+      "source": "Trust level",
+      "target": "—",
+      "note": "No equivalent; archive only"
+    }
+  ],
+  "effort": "2-4 weeks",
+  "gotchas": [
+    "Discourse and Plain solve different problems. A forum's public peer-to-peer threads do not translate into a one-to-one support tool — plan a workflow change, not a data migration.",
+    "Public forum content is often indexed by Google and drives organic traffic. Plan redirects or a static archive before shutting Discourse down, or you will lose SEO.",
+    "Trust levels, badges, and gamification do not exist in support tools. Communicate this to your community before the cutover.",
+    "Plugins and themes are usually the reason a team self-hosts Discourse. Inventory which ones you actually depend on before assuming a SaaS replacement covers your needs.",
+    "SSO configuration must be reconfigured against the new tool; do not copy secrets, rotate them.",
+    "If your forum hosts long-running troubleshooting threads, consider extracting the best ones into a static knowledge base before retiring the forum."
+  ],
+  "email": {
+    "subject": "Heads up: we're changing how we handle community support",
+    "body": "Hi team,\n\nWe're moving customer support off our Discourse forum and into Plain over the next 14 days. Plain is an in-app support tool, so this is a workflow change, not a one-to-one data move. Discourse will stay online read-only for archival and SEO while we redirect high-traffic threads to the new support entry point.\n\nAction items: support team will get Plain invites this week. Please confirm your routing and notification preferences. Engineering is wiring up the in-app widget and Slack handoff.\n\nReply with questions.\n\nThanks,\nYour customer"
+  }
+}

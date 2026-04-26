@@ -1,0 +1,70 @@
+{
+  "source": {
+    "slug": "paddle",
+    "name": "Paddle"
+  },
+  "target": {
+    "slug": "revenuecat",
+    "name": "RevenueCat"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Paddle is a Merchant of Record for web SaaS billing, while RevenueCat is a subscription SDK layered on top of Apple App Store and Google Play. This is not a like-for-like swap; it generally only makes sense if your business is moving from web checkout to mobile in-app subscriptions.",
+  "why_switch": [
+    "Move to native iOS/Android in-app purchases",
+    "Unified entitlement state across iOS, Android, web",
+    "Built-in paywall A/B testing and cohort analytics",
+    "Avoid handling tax and refunds yourself on mobile",
+    "Better fit if revenue is mostly mobile subscriptions"
+  ],
+  "what_to_export": [
+    "Customer list with external IDs",
+    "Active subscription plans and prices",
+    "Subscription status and renewal dates",
+    "Trial state and expiration timestamps",
+    "Transaction and refund history",
+    "Coupon/discount definitions",
+    "Webhook consumer endpoints and secrets",
+    "Tax and invoice records for accounting",
+    "Product/SKU catalog mapping",
+    "Past MRR/ARR snapshots for analytics continuity"
+  ],
+  "export_method": "Paddle exposes account data through its dashboard and API. Use the Paddle dashboard to export customers, subscriptions, transactions, and invoices as CSV from the relevant report sections. For programmatic export, use the Paddle API to paginate over customers, subscriptions, transactions, and adjustments and persist responses to JSON or a database. Because Paddle is a Merchant of Record, the customer-of-record relationship for tax purposes stays with Paddle for past transactions; you cannot 'transfer' those invoices to a new processor. Plan to keep Paddle live for renewals already in flight while new sign-ups are routed elsewhere. If your migration target is mobile IAP, there is no direct equivalent to Paddle's checkout — you will recreate products in App Store Connect and Google Play Console, then attach those store products to RevenueCat. Confirm exact endpoints and report names against the current Paddle documentation before scripting.",
+  "import_method": "RevenueCat does not bill end users itself; it sits in front of StoreKit (iOS) and Google Play Billing. Set up a RevenueCat project, create products that mirror your App Store Connect and Google Play SKUs, and group them into Offerings and Entitlements. Install the RevenueCat SDK in your apps and identify users with your own stable user ID so previously known users can be matched. For users with active Paddle subscriptions, you typically grant a 'promotional' entitlement in RevenueCat for the remaining paid period, then let renewals happen through the stores. Wire RevenueCat webhooks into your backend to keep your own database authoritative on entitlement state. Verify the exact SDK setup, webhook payloads, and promotional-entitlement workflow against current RevenueCat docs.",
+  "concept_mapping": [
+    {
+      "source": "Paddle Customer",
+      "target": "RevenueCat App User ID",
+      "note": "Use your own stable user ID on both sides"
+    },
+    {
+      "source": "Paddle Subscription",
+      "target": "RevenueCat Entitlement",
+      "note": "Entitlements are the access-control unit"
+    },
+    {
+      "source": "Paddle Product/Plan",
+      "target": "Store product + RevenueCat Offering"
+    },
+    {
+      "source": "Paddle Webhook",
+      "target": "RevenueCat Webhook"
+    },
+    {
+      "source": "Paddle Checkout",
+      "target": "Native StoreKit / Google Play Billing flow"
+    }
+  ],
+  "effort": "3-8 weeks for a small mobile-first SaaS; longer if you also need to keep web billing alive in parallel",
+  "gotchas": [
+    "RevenueCat does not replace Paddle for web checkout; for web billing you still need Stripe, Paddle, or similar",
+    "Apple and Google take their own platform fee on top of any RevenueCat fee, which changes unit economics",
+    "Past Paddle invoices remain Paddle's tax records and cannot be re-issued by the stores",
+    "Existing web subscribers cannot be auto-migrated to App Store/Play; they must purchase via the store or be granted promotional entitlements",
+    "Refunds and chargebacks on mobile are governed by the stores, not by you",
+    "Restore-purchases UX and account linking need explicit design to avoid double charges"
+  ],
+  "email": {
+    "subject": "Winding down our Paddle subscription over the next 14 days",
+    "body": "Hi Paddle team,\n\nWe are moving our subscription billing to RevenueCat on top of native iOS and Android in-app purchases over the next 14 days, since the bulk of our revenue is now mobile.\n\nDuring this window we will: stop creating new Paddle checkouts, let existing Paddle subscriptions run to their next renewal, export customers, subscriptions, transactions, and invoices via the dashboard and API, and grant equivalent entitlements in the new system so paying users keep access without interruption.\n\nCould you confirm the cleanest way to pause new sign-ups while keeping current renewals healthy, plus how long historical reports and invoices stay accessible after we stop new activity? Please also flag anything tax- or MoR-related we should not miss as the merchant of record on past transactions.\n\nThanks for the support so far.\n\nYour customer"
+  }
+}

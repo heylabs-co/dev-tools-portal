@@ -1,0 +1,64 @@
+{
+  "source": {
+    "slug": "github-actions",
+    "name": "GitHub Actions"
+  },
+  "target": {
+    "slug": "deployhq",
+    "name": "DeployHQ"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "GitHub Actions runs full CI/CD inside GitHub, while DeployHQ focuses on Git-to-server deploys via SFTP/SSH. A switch makes sense if you want to simplify deploys and offload them to a dedicated tool, but you usually still need Actions or another CI for tests and builds.",
+  "why_switch": [
+    "Dedicated UI for managing per-server deploys",
+    "Standard Git/SSH/SFTP, minimal lock-in",
+    "Cheap subscription pricing",
+    "Easier to give non-engineers deploy access",
+    "Cleaner rollback per server target"
+  ],
+  "what_to_export": [
+    "Workflow YAML files (.github/workflows)",
+    "Repository and org-level secrets",
+    "Environment definitions and protection rules",
+    "Self-hosted runner configurations",
+    "Deploy target hostnames and credentials",
+    "Branch protection and required checks",
+    "Webhook URLs for notifications",
+    "Build artifacts you need to retain",
+    "Dependabot/security configs",
+    "Composite actions and reusable workflows"
+  ],
+  "export_method": "Workflow YAML lives in .github/workflows in each repo and is already source-controlled. Use the GitHub Actions UI or REST API to enumerate secrets at repo, environment, and org levels (names only; values are not readable). Document each environment, including required reviewers and wait timers. Export self-hosted runner registration tokens are not portable, but you can decommission those runners after migration. Identify which jobs in your workflows actually deploy versus which build/test; only the deploy jobs move to DeployHQ. Capture a list of deploy targets (servers, paths, users, protocols) currently configured inside deploy steps.",
+  "import_method": "In DeployHQ, create a project per repository and connect the Git source. Add each server as a deployment target with appropriate protocol (SFTP, SSH, or supported cloud target). Configure build commands DeployHQ should run before sending files. Migrate per-environment secrets into DeployHQ's server configuration. Keep GitHub Actions workflows for testing and building; replace deploy-only jobs with a webhook or API call into DeployHQ to trigger deployment. Map branches to environments inside DeployHQ. Run a test deploy to staging, verify file permissions and ownership, then cut production over.",
+  "concept_mapping": [
+    {
+      "source": "Workflow file",
+      "target": "DeployHQ project"
+    },
+    {
+      "source": "Environment",
+      "target": "DeployHQ server + branch mapping"
+    },
+    {
+      "source": "Deploy job",
+      "target": "DeployHQ deployment"
+    },
+    {
+      "source": "Secret",
+      "target": "Server credential or DeployHQ config variable"
+    }
+  ],
+  "effort": "Days to ~2 weeks for the deploy slice; CI/test workflows generally stay in Actions.",
+  "gotchas": [
+    "DeployHQ does not replace test/build workflows; keep Actions or another CI",
+    "Trigger flow becomes cross-system, plan for failures and retries",
+    "Permissions on deployed files vary by SFTP server",
+    "Rollback semantics differ from re-running an Actions job",
+    "Approval gates in Actions Environments need a DeployHQ equivalent",
+    "Sensitive data in deploy logs needs new redaction review"
+  ],
+  "email": {
+    "subject": "Moving production deploys to DeployHQ from GitHub Actions",
+    "body": "Hi DeployHQ team,\n\nWe are consolidating our deployment workflow on DeployHQ over the next 14 days. We will keep GitHub Actions for tests and builds, but the actual push to servers will move to DeployHQ for cleaner per-server control and easier rollback.\n\nPlan: set up DeployHQ projects this week, dual-run with our existing Actions deploy jobs for about a week, then disable the Actions deploy steps and route everything through DeployHQ. We do not foresee blocking questions, but if you have onboarding tips for teams coming from Actions we would value them.\n\nWe expect to remain a happy customer; this note is a heads-up, not a cancellation. If you have a recommended billing cadence given our timeline, let us know.\n\nThanks,\nYour customer"
+  }
+}

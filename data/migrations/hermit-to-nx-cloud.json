@@ -1,0 +1,56 @@
+{
+  "source": {
+    "slug": "hermit",
+    "name": "hermit"
+  },
+  "target": {
+    "slug": "nx-cloud",
+    "name": "nx-cloud"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Hermit pins CLI tool versions per project; Nx Cloud caches and distributes Nx task execution. They are not substitutes. Adopting Nx Cloud only makes sense if you are willing to also adopt Nx as your task runner. Plan to keep Hermit (or a replacement) for toolchain pinning in parallel.",
+  "why_switch": [
+    "You want remote computation caching for build and test tasks.",
+    "Your code is primarily JavaScript or TypeScript and fits the Nx model.",
+    "You want distributed task execution across CI agents.",
+    "You want shared cache between local developer machines and CI.",
+    "You are ready to standardize on Nx project and task conventions."
+  ],
+  "what_to_export": [
+    "List of CLI tools and versions pinned by Hermit",
+    "Hermit activation scripts and CI integration steps",
+    "Existing build and test commands per project",
+    "CI workflow files that drive current pipelines",
+    "Notes on which scripts are cacheable in principle",
+    "Project boundaries and dependency graph documentation",
+    "Test invocation patterns and timing data if available",
+    "Onboarding documentation referencing Hermit"
+  ],
+  "export_method": "Hermit configuration is repository-local: a bin directory of stubs, manifests, and activation scripts. There is no remote export. Inventory the pinned tools and versions, the CI activation step, and any custom packages you maintain. Because Hermit is open source and file-based, git already has the source of truth. The target, Nx Cloud, does not manage developer toolchains, so the export is a documentation exercise, not a data transfer. Decide whether Hermit stays in place after the migration or is replaced by another toolchain manager.",
+  "import_method": "Nx Cloud requires an Nx workspace. If you do not yet use Nx, follow the official Nx documentation to convert your repository into an Nx workspace with project configurations and task targets. Once Nx is in place, connect the workspace to Nx Cloud per the official setup, which typically involves an access token and enabling remote caching in nx.json. Configure CI so Nx Cloud credentials are available and tasks read and write the remote cache. Keep Hermit active for tool pinning during and after the migration unless you have a separate replacement plan. Validate by running an affected task twice and confirming the second run hits the cache.",
+  "concept_mapping": [
+    {
+      "source": "Hermit pinned tools",
+      "target": "Not covered by Nx Cloud",
+      "note": "Toolchain pinning remains a separate responsibility."
+    },
+    {
+      "source": "Per-project scripts",
+      "target": "Nx task targets",
+      "note": "Convert scripts into Nx targets so they become cacheable units."
+    }
+  ],
+  "effort": "1-4 weeks if Nx is not yet adopted; 1-3 days if Nx is already in place and you only enable Nx Cloud.",
+  "gotchas": [
+    "Nx Cloud only accelerates Nx task graphs; without Nx, there is nothing to cache.",
+    "Hermit and Nx Cloud are not substitutes. Removing Hermit leaves toolchain pinning unsolved.",
+    "Remote cache effectiveness depends on deterministic task inputs; non-deterministic steps reduce hit rates.",
+    "Pricing scales with usage. Pilot before enabling org-wide.",
+    "If your stack is not JavaScript or TypeScript, weigh whether Nx itself is the right runner.",
+    "Some teams report occasional cache correctness issues; have a documented bypass for incidents."
+  ],
+  "email": {
+    "subject": "Adding Nx Cloud for monorepo build acceleration",
+    "body": "Hi,\n\nWe are evaluating Nx Cloud to speed up CI through remote caching and distributed task execution. Hermit stays for tool pinning. Expect changes to task commands and CI configuration over the next 14 days; we will share onboarding notes before the cutover. No action required yet.\n\nReply if you have unusual workflows we should account for during the rollout.\n\nThanks,\nYour customer"
+  }
+}

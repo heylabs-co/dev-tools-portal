@@ -1,0 +1,71 @@
+{
+  "source": {
+    "slug": "applovin-max",
+    "name": "applovin-max"
+  },
+  "target": {
+    "slug": "chartboost",
+    "name": "chartboost"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Replace AppLovin MAX mediation with Chartboost as the primary SDK across your iOS and Android apps, then re-wire ad units, networks and reporting. The bulk of the work is in mobile builds and waterfall configuration, not in any data export.",
+  "why_switch": [
+    "Consolidate mediation under Chartboost's network and bidding stack",
+    "Different revenue share, fill rate or eCPM in your geos",
+    "Reduce dependency on AppLovin's overall ecosystem",
+    "Access to Chartboost-specific demand or partner integrations",
+    "Internal preference for Chartboost reporting or account management"
+  ],
+  "what_to_export": [
+    "List of ad units (banner, interstitial, rewarded, native) per app and platform",
+    "Mediation waterfall configuration and network priorities",
+    "Per-network credentials and ad unit IDs currently in MAX",
+    "Historical revenue and impression reports",
+    "GDPR / CCPA / ATT consent configuration",
+    "Test device IDs and QA configurations",
+    "App-ads.txt and sellers.json entries pointing at AppLovin",
+    "Ad placement code references in your mobile code base"
+  ],
+  "export_method": "Inside the AppLovin MAX dashboard, document every app, platform and ad unit, including ad format, placement name and any custom segmentation. Export mediation waterfall settings and the list of connected networks with their account IDs. Pull historical reports as CSV from the MAX reporting UI for a baseline you can compare against post-migration. Capture consent and privacy settings (GDPR, CCPA, ATT prompts) and your app-ads.txt entries. In your mobile code base, grep for the AppLovin MAX SDK imports, initialization calls and ad unit identifiers so you have a complete inventory before any code change. Treat the existing live integration as your source of truth until Chartboost is fully validated.",
+  "import_method": "Create a Chartboost publisher account, register each app and create equivalent ad units (banner / interstitial / rewarded / native) matching your MAX inventory. Integrate the Chartboost SDK on iOS and Android (and Unity / React Native if applicable) following Chartboost's official integration guide. Replace AppLovin MAX init code and ad unit IDs with Chartboost equivalents in your client code, behind a feature flag where possible. Reconnect each demand network to Chartboost's mediation, re-entering credentials and ad unit IDs. Update app-ads.txt to include Chartboost's required lines and remove AppLovin entries you no longer need. Re-implement consent strings (IAB TCF, GPP) so they are forwarded to Chartboost. Run on test devices with Chartboost's test mode, then ramp traffic gradually, comparing eCPM and fill against your MAX baseline.",
+  "concept_mapping": [
+    {
+      "source": "MAX app",
+      "target": "Chartboost app"
+    },
+    {
+      "source": "MAX ad unit",
+      "target": "Chartboost ad unit / placement"
+    },
+    {
+      "source": "MAX mediation waterfall",
+      "target": "Chartboost mediation configuration"
+    },
+    {
+      "source": "Connected networks in MAX",
+      "target": "Networks connected via Chartboost mediation",
+      "note": "exact partner list differs"
+    },
+    {
+      "source": "MAX reporting",
+      "target": "Chartboost reporting"
+    },
+    {
+      "source": "AppLovin entries in app-ads.txt",
+      "target": "Chartboost entries in app-ads.txt"
+    }
+  ],
+  "effort": "3-8 weeks per platform including QA, store review and gradual ramp",
+  "gotchas": [
+    "Mediation switches require new app store builds; plan around review cycles for both iOS and Android.",
+    "Available demand partners differ between MAX and Chartboost, so some incremental demand may be lost or gained.",
+    "ATT, GDPR and GPP consent must be wired explicitly to the new SDK or fill drops sharply.",
+    "Reported eCPM and fill rates can swing significantly during the first weeks; do not act on early numbers.",
+    "Old AppLovin SDK code left in the build can cause double counting or crashes; remove it cleanly.",
+    "App-ads.txt errors block demand silently; validate the file with a third-party checker after changes."
+  ],
+  "email": {
+    "subject": "We're switching mobile ad mediation providers",
+    "body": "Hi,\n\nOver the next 14 days we are moving our mobile ad mediation from AppLovin MAX to Chartboost. The change happens inside the app via standard store updates and should be invisible to your users.\n\nDuring the transition you may see small fluctuations in fill rate and eCPM as the new waterfall stabilises. Please update to the latest app version when prompted.\n\nIf you have questions about how this affects your account, just reply.\n\nThanks,\nYour customer"
+  }
+}

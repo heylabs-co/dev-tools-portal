@@ -1,0 +1,76 @@
+{
+  "source": {
+    "slug": "chargebee",
+    "name": "Chargebee"
+  },
+  "target": {
+    "slug": "paddle",
+    "name": "Paddle"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Chargebee is a subscription billing platform that sits on top of your own payment provider, while Paddle is a merchant-of-record billing platform that handles payments and global tax for you. Switching changes both your billing engine and your tax-of-record.",
+  "why_switch": [
+    "Want Paddle as merchant of record for global tax",
+    "Tired of managing VAT, sales tax and filings",
+    "Sell mostly digital goods or B2B SaaS",
+    "Prefer fewer compliance and billing vendors",
+    "Acceptable to trade some flexibility for simplicity"
+  ],
+  "what_to_export": [
+    "Customer records and contact details",
+    "Subscription plans, prices and active subs",
+    "Coupon, discount and trial configuration",
+    "Invoice and credit note history",
+    "Stored payment method tokens (via PCI export)",
+    "Tax registration and historical tax reports",
+    "Webhook endpoints and event subscriptions",
+    "Dunning and retry rules"
+  ],
+  "export_method": "From Chargebee, export customers, subscriptions, plans, prices, coupons, invoices and credit notes via the dashboard or API in CSV or JSON. Pull dunning configuration and webhook subscriptions for reference. For saved cards, request a PCI-compliant token export from Chargebee — and from the underlying gateway like Stripe or Braintree — to the destination processor. Keep at least 24 months of invoice history and tax reports for accounting and audit purposes. Document custom logic such as proration rules and metered usage meters.",
+  "import_method": "In Paddle, recreate the product catalog, prices and plans first — structures rarely map 1:1, so simplify where possible. Use Paddle's import tools or API to load customers and subscriptions, and coordinate the PCI-compliant token transfer with Paddle support. Reconfigure dunning and webhook endpoints against Paddle's events. Because Paddle is merchant of record, retire your own tax setup for the in-scope geographies and let Paddle handle collection and remittance. Run both stacks in parallel: route new signups to Paddle and let existing Chargebee subscriptions continue until natural renewal or migrate them in waves.",
+  "concept_mapping": [
+    {
+      "source": "Customer",
+      "target": "Customer"
+    },
+    {
+      "source": "Plan / Addon",
+      "target": "Product / Price"
+    },
+    {
+      "source": "Subscription",
+      "target": "Subscription"
+    },
+    {
+      "source": "Invoice",
+      "target": "Transaction / invoice"
+    },
+    {
+      "source": "Coupon",
+      "target": "Discount"
+    },
+    {
+      "source": "Tax (own MoR)",
+      "target": "Built-in MoR tax",
+      "note": "Paddle becomes seller of record"
+    },
+    {
+      "source": "Webhook event",
+      "target": "Webhook event",
+      "note": "Different events and payloads"
+    }
+  ],
+  "effort": "4-10 weeks depending on plan complexity, metered usage and tax footprint",
+  "gotchas": [
+    "Statement descriptors and refund flows change because Paddle is MoR",
+    "Metered / usage-based billing may not map cleanly to Paddle's model",
+    "PCI token migration is a regulated, manual process with lead time",
+    "Tax history and filings stay your responsibility for the Chargebee period",
+    "Webhook events and payloads differ — every consumer needs review",
+    "Running both engines means double reconciliation during cutover"
+  ],
+  "email": {
+    "subject": "Switching billing from Chargebee to Paddle over the next 14 days",
+    "body": "Hi team,\n\nOver the next 14 days we are migrating our billing stack from Chargebee to Paddle. The main reason is that Paddle acts as merchant of record and handles global sales tax and VAT, which removes a class of compliance work we no longer want to own.\n\nThe plan: recreate our product catalog and plans in Paddle, route new signups there starting next week, and let existing Chargebee subscriptions continue until renewal or migrate in waves. For customers we want to move actively, we are coordinating a PCI-compliant token transfer between processors. Webhook consumers and dunning rules will be rebuilt against Paddle's events.\n\nA few callouts. Statement descriptors will change because Paddle is now seller of record. Metered or usage-based plans need careful remodeling — we will review those one by one. Tax history for the Chargebee period remains our responsibility; Paddle takes over going forward.\n\nIf you maintain anything that calls Chargebee directly, please flag it this week so we can plan the cutover without surprises.\n\nThanks,\nYour customer"
+  }
+}

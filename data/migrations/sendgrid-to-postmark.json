@@ -1,0 +1,68 @@
+{
+  "source": {
+    "slug": "sendgrid",
+    "name": "SendGrid"
+  },
+  "target": {
+    "slug": "postmark",
+    "name": "Postmark"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "SendGrid and Postmark both speak SMTP and REST, so this is one of the cleanest email migrations to plan. Postmark trades SendGrid's broader marketing tooling for stronger transactional inbox placement, simpler analytics, and a strictly transactional posture.",
+  "why_switch": [
+    "Better transactional inbox placement",
+    "Cleaner bounce and complaint analytics",
+    "Avoid SendGrid dedicated-IP and annual-plan lock-in",
+    "Strict transactional/broadcast separation reduces risk",
+    "Simpler per-message pricing at predictable volumes"
+  ],
+  "what_to_export": [
+    "Verified sending domains and DKIM keys",
+    "Dynamic templates and legacy templates (HTML + JSON)",
+    "Suppression list (bounces, blocks, spam reports, unsubs)",
+    "Subusers and IP pools configuration",
+    "Webhook (Event Webhook) configuration",
+    "API keys and integration secrets",
+    "Inbound Parse settings if used",
+    "Recent send and engagement metrics"
+  ],
+  "export_method": "Use the SendGrid REST API to export templates (both Dynamic and legacy), suppression lists, and verified sender identities. Templates can be retrieved as JSON with versions. Export suppression entries by bucket (bounces, blocks, spam reports, global unsubscribes) and save as CSV. Document subuser, IP pool, and Event Webhook configuration so you can recreate the equivalent flow on Postmark. If you have annual plans or dedicated IPs in SendGrid, schedule the migration so you do not pay for unused capacity. Keep SendGrid live during DNS cutover and Postmark warm-up so you can fall back if needed.",
+  "import_method": "In Postmark, create a server and add your sending domain, then publish the DKIM and Return-Path DNS records. Recreate templates in Postmark's template editor; mapping Dynamic Template variables to Postmark's mustache-style merge fields is the bulk of the work. Import suppression entries via the Postmark API. Configure webhooks for delivery, bounce, and complaint events against your application endpoint. Switch your application's SMTP credentials or API key to Postmark, send a small canary batch, monitor inbox placement and webhook events, then ramp to 100 percent of transactional traffic.",
+  "concept_mapping": [
+    {
+      "source": "Dynamic Template",
+      "target": "Template",
+      "note": "Variable syntax differs; rewrite is required"
+    },
+    {
+      "source": "Subuser",
+      "target": "Server",
+      "note": "Postmark uses servers as isolated sending environments"
+    },
+    {
+      "source": "Event Webhook",
+      "target": "Webhook"
+    },
+    {
+      "source": "Suppression list",
+      "target": "Suppression list"
+    },
+    {
+      "source": "IP pool",
+      "target": "Dedicated IP (if purchased)"
+    }
+  ],
+  "effort": "1-3 weeks",
+  "gotchas": [
+    "SendGrid dedicated IPs and annual contracts may not be cancellable mid-cycle",
+    "Dedicated IP reputation does not transfer; plan a warm-up window on Postmark",
+    "Dynamic Template variable syntax differs from Postmark mustache fields — rewrite each template",
+    "Postmark enforces strict transactional/broadcast separation; mixing streams risks suspension",
+    "Event Webhook payload shapes differ from Postmark's webhook events — update handlers",
+    "DNS DKIM and Return-Path propagation can take 24-48 hours"
+  ],
+  "email": {
+    "subject": "Moving transactional email from SendGrid to Postmark",
+    "body": "Hi team,\n\nOver the next 14 days we're moving our transactional email stream from SendGrid to Postmark. Inbox placement and clearer analytics are the drivers, and Postmark's strictly transactional posture lines up better with how we use email today.\n\nDays 1-3: add our sending domain to Postmark and publish DKIM and Return-Path records. Days 4-7: rebuild templates and remap Dynamic Template variables, import the suppression list, and wire up bounce and complaint webhooks. Days 8-11: route a small percentage of transactional traffic to Postmark, monitor delivery and complaint rates, then ramp. Days 12-14: keep SendGrid warm as a fallback and decommission once Postmark metrics look clean.\n\nNo end-user impact is expected. From addresses and content stay the same. We'll review whether to release dedicated IPs and the annual SendGrid plan separately, since those have their own billing windows. Status updates at the midpoint and at cutover.\n\nThanks,\nYour customer"
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "source": {
+    "slug": "primer",
+    "name": "Primer"
+  },
+  "target": {
+    "slug": "spreedly",
+    "name": "Spreedly"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Both Primer and Spreedly are orchestration layers, so the move mostly affects how you configure routing and where the PCI vault lives. The underlying processors and acquiring relationships generally carry over.",
+  "why_switch": [
+    "Spreedly's processor-agnostic vault as core product",
+    "Established PCI vault with broad gateway coverage",
+    "Decouples card data from any single PSP",
+    "Different commercial terms or volume pricing",
+    "Specific processor or APM coverage you need"
+  ],
+  "what_to_export": [
+    "Connector / gateway configurations",
+    "Routing rules and workflow definitions",
+    "Customer records and payment history",
+    "Stored tokens / vault references (if held by Primer)",
+    "Webhook endpoints and downstream consumers",
+    "Retry, fallback, and 3DS/SCA logic",
+    "Reconciliation jobs and reports",
+    "Custom risk rules"
+  ],
+  "export_method": "Use Primer's Dashboard and API to export customers, payments, refunds, disputes, and any stored payment method references. If Primer holds your card vault, request a PCI-compliant export of stored tokens directly to Spreedly's vault under signed data transfer agreements on both sides — do not handle raw PANs yourself. Snapshot routing and workflow definitions, including retry policies and 3DS/SCA logic, so they can be rebuilt as Spreedly transactions and routing logic. Document each connected processor's credentials and configuration; you will reconnect those same merchant accounts to Spreedly. Capture every webhook URL, event type, and downstream consumer (CRM, analytics, ledger) that depends on Primer events.",
+  "import_method": "Sign up with Spreedly and provision an environment. Reconnect the same processors and gateways you already use, keeping your underlying merchant accounts unchanged so acquiring relationships and contracted rates stay in place. Coordinate the inbound vault import with Spreedly so migrated tokens are accessible via their API, and verify by running test transactions against a sample. Rebuild routing and retry logic using Spreedly's transaction routing features, and re-implement 3DS/SCA flows where required. Update client and server SDKs to call Spreedly instead of Primer, and re-point webhook handlers at Spreedly's events. Cut traffic over gradually behind a feature flag, monitor authorization rates per processor, reconcile payouts daily for at least one full billing cycle, then decommission Primer.",
+  "concept_mapping": [
+    {
+      "source": "Connector",
+      "target": "Gateway"
+    },
+    {
+      "source": "Workflow / Routing rule",
+      "target": "Transaction routing rule"
+    },
+    {
+      "source": "Customer",
+      "target": "Payment method owner / metadata"
+    },
+    {
+      "source": "Payment",
+      "target": "Transaction"
+    },
+    {
+      "source": "Vaulted payment method",
+      "target": "Payment method (Spreedly vault)"
+    },
+    {
+      "source": "Webhook",
+      "target": "Webhook / event"
+    }
+  ],
+  "effort": "4-10 weeks depending on connector count and custom logic",
+  "gotchas": [
+    "PCI-to-PCI vault transfers require signed agreements and lead time on both sides",
+    "Workflow features differ — Primer's visual workflows may not map directly to Spreedly's routing",
+    "Authorization rates can shift when routing is rebuilt; A/B test per processor",
+    "Both vendors have custom/enterprise pricing — model total cost carefully",
+    "Webhook event names and payload shapes differ; rewrite handlers and signature verification",
+    "Run dual-orchestration shadow mode until reconciliation matches"
+  ],
+  "email": {
+    "subject": "Migration plan: Primer to Spreedly orchestration",
+    "body": "Hi team,\n\nWe are planning to move our payments orchestration from Primer to Spreedly over the next 14 days and would like your help coordinating the transition.\n\nSpecifically, we would like to:\n\n- Reconnect our existing processors and acquirers to Spreedly using the same merchant accounts so underlying contracts and rates stay in place.\n- Coordinate a PCI-compliant transfer of any stored card tokens from Primer's vault to Spreedly's vault.\n- Rebuild our current routing, retry, and 3DS logic on Spreedly.\n- Run Spreedly in parallel with Primer during cutover and validate authorization rates per processor.\n\nCould you share onboarding requirements, vault import process, an expected timeline, and a technical contact? We aim to begin within the next few business days.\n\nThanks,\nYour customer"
+  }
+}

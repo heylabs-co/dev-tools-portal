@@ -1,0 +1,69 @@
+{
+  "source": {
+    "slug": "superwall",
+    "name": "Superwall"
+  },
+  "target": {
+    "slug": "nativex",
+    "name": "Nativex"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Superwall is a subscription paywall SDK, while Nativex is a mobile user-acquisition and creative platform from Mobvista. Migration here is really a strategy shift from monetizing existing users to acquiring new ones, plus rebuilding ad placements through Nativex's SDK.",
+  "why_switch": [
+    "Pair monetization with UA in one ecosystem",
+    "Reach APAC and Chinese mobile demand",
+    "Use integrated creative testing tooling",
+    "Leverage Mobvista supply relationships",
+    "Consolidate SDKs across UA and ads"
+  ],
+  "what_to_export": [
+    "Paywall templates and copy",
+    "A/B test history and winning variants",
+    "Subscription SKUs and price points",
+    "User segments and audience triggers",
+    "Conversion analytics and revenue events",
+    "Localization assets per market",
+    "Webhook configuration and event mappings",
+    "Creative assets currently used inside paywalls"
+  ],
+  "export_method": "Export paywall configurations, campaign definitions, and analytics from the Superwall dashboard using its standard export options. Pull A/B test outcomes via the reporting interface. Save trigger names, placement IDs, and audience filters from your codebase since these are referenced as identifiers. Archive image and copy assets locally. If specific data is not exposed through the UI, request a support-assisted export rather than depending on undocumented endpoints. Keep a snapshot of webhook payload schemas for any downstream integrations.",
+  "import_method": "Onboarding Nativex typically involves working with their account team to set up a publisher / advertiser profile. Integrate the Nativex SDK in iOS and Android, register the placements that map to your previous paywall trigger points, and configure the relevant ad formats. If you also plan to run UA, set up campaigns through their dashboard and provision creative assets for testing. Replace paywall fire calls with Nativex ad show calls and connect attribution and revenue events to your analytics. Run a staged rollout across a small percentage of traffic first to validate fill, latency, and revenue.",
+  "concept_mapping": [
+    {
+      "source": "Paywall trigger",
+      "target": "Ad placement",
+      "note": "Same in-app moment, different surface"
+    },
+    {
+      "source": "A/B variant",
+      "target": "Creative variant",
+      "note": "Test ad creatives instead of paywall designs"
+    },
+    {
+      "source": "Audience segment",
+      "target": "Targeting rule"
+    },
+    {
+      "source": "Conversion",
+      "target": "Impression or install event"
+    },
+    {
+      "source": "Subscription SKU",
+      "target": "Reward or in-app event",
+      "note": "Only if shifting to rewarded ads"
+    }
+  ],
+  "effort": "3-6 weeks",
+  "gotchas": [
+    "Chinese ownership may trigger compliance review for Western enterprises before rollout",
+    "Nativex pricing is custom; budget visibility is lower than Superwall's published tiers",
+    "Self-serve creative tooling is reportedly weaker than the managed creative service",
+    "Combining UA and monetization SDKs from the same vendor can create attribution loops if misconfigured",
+    "Switching from subscription to ad-driven revenue requires unit-economics rework",
+    "APAC-strong demand may not match a Western-focused user base"
+  ],
+  "email": {
+    "subject": "Migration notice: switching from Superwall to Nativex over 14 days",
+    "body": "Hi there,\n\nA quick note that over the next two weeks we'll be migrating our mobile monetization and acquisition stack from Superwall to Nativex. The goal is to consolidate our growth and monetization tooling and to expand reach in markets where Nativex has strong supply.\n\nWhat to expect:\n- Existing subscribers stay on their current plans; billing is unchanged.\n- Ad placements may evolve as we test new creative formats.\n- We'll roll this out gradually and monitor performance closely.\n\nIf you notice anything unexpected during the transition, just reply and we'll investigate.\n\nThanks for being with us.\n\nYour customer success team"
+  }
+}

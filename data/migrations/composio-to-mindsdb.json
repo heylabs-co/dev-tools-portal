@@ -1,0 +1,60 @@
+{
+  "source": {
+    "slug": "composio",
+    "name": "composio"
+  },
+  "target": {
+    "slug": "mindsdb",
+    "name": "mindsdb"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Composio is an agent tool-integration platform; MindsDB is an open-source federated data engine that lets you query 200+ data sources via SQL and natural language. Migration means moving from a tool-calling agent layer to an SQL-native AI-over-data workflow.",
+  "why_switch": [
+    "You want to build AI features over heterogeneous data sources",
+    "You prefer SQL semantics for AI predictions and agents",
+    "You need to expose agents as AI-Tables to existing apps",
+    "You want an OSS core with a freemium tier",
+    "Your problem is data-grounded, not action-oriented"
+  ],
+  "what_to_export": [
+    "Composio connectors and agent tool inventory",
+    "API keys and credentials stored in Composio",
+    "Agent code that uses the Composio SDK",
+    "Custom actions and tool definitions",
+    "Webhook configurations",
+    "Usage and billing history",
+    "Team and project memberships"
+  ],
+  "export_method": "Composio has no documented bulk export of integrations or tool definitions. Use the Composio dashboard to enumerate every connector, project, and team member, and capture credentials (names, scopes, owners) into a private spreadsheet. Search your repos for Composio SDK imports to pull the full list of tool calls in code. Save any usage logs you need for capacity planning, then plan to revoke third-party tokens that Composio held on your behalf once you no longer need them. Treat custom actions and prompts as code artifacts that you will re-author in MindsDB's SQL-based primitives.",
+  "import_method": "MindsDB does not import Composio data. Deploy MindsDB self-hosted or use their cloud, then connect your data sources through CREATE DATABASE statements (database connectors are first-class in MindsDB). Define AI logic as AI-Tables using CREATE MODEL syntax to ground LLMs in your data, and call them from your existing apps as if they were SQL tables. If your Composio agent triggered actions, MindsDB can call out via SQL, but agentic tool-calling at Composio's scope is not its primary feature; you may need to keep Composio for that and use MindsDB for the data side.",
+  "concept_mapping": [
+    {
+      "source": "Composio tool",
+      "target": "MindsDB AI-Table",
+      "note": "Different abstraction; rebuild logic"
+    },
+    {
+      "source": "Connector auth",
+      "target": "MindsDB CREATE DATABASE credentials",
+      "note": "Re-add per data source"
+    },
+    {
+      "source": "Agent runtime",
+      "target": "SQL query against AI-Tables",
+      "note": "Different execution model"
+    }
+  ],
+  "effort": "2-6 weeks",
+  "gotchas": [
+    "Composio and MindsDB target different layers; confirm overlap before migrating.",
+    "MindsDB's SQL-on-everything abstraction can hide query performance issues.",
+    "License is non-standard (NOASSERTION on GitHub); review terms before commercial use.",
+    "Enterprise scale may need a paid support tier.",
+    "Reimplementing Composio agent actions in SQL takes engineering effort.",
+    "You may end up running both products in parallel."
+  ],
+  "email": {
+    "subject": "Pilot: shifting AI-over-data work from Composio to MindsDB",
+    "body": "Hi team,\n\nOver the next 14 days we will pilot MindsDB to see if our data-grounded AI work is better served by an SQL-native, federated data engine than by Composio's agent tool layer. These tools solve different problems, so this is a scope review rather than a straight migration.\n\nComposio stays online through the pilot. Please flag any agent integrations you rely on so we can plan around them.\n\nThanks,\nYour customer"
+  }
+}

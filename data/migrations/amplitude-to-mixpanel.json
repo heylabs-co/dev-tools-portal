@@ -1,0 +1,70 @@
+{
+  "source": {
+    "slug": "amplitude",
+    "name": "Amplitude"
+  },
+  "target": {
+    "slug": "mixpanel",
+    "name": "Mixpanel"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Both Amplitude and Mixpanel are event-based product analytics platforms with very similar mental models. The migration is mostly an SDK swap plus rebuilding charts and dashboards, with care around identity and report semantics.",
+  "why_switch": [
+    "Prefer Mixpanel's reporting UX for some workflows",
+    "Mobile-heavy product where Mixpanel SDKs are mature",
+    "Annual Amplitude commit is no longer a good fit",
+    "Want simpler pricing or different free tier",
+    "Consolidating tooling across teams"
+  ],
+  "what_to_export": [
+    "Raw event history",
+    "User and group / company profiles",
+    "Cohorts and saved segments",
+    "Funnels, retention and dashboards",
+    "Tracking plan and event taxonomy",
+    "User identity / alias mappings",
+    "Notebook / report definitions",
+    "Warehouse export configuration"
+  ],
+  "export_method": "Use Amplitude's export API or warehouse sync (Snowflake, BigQuery, S3) to pull raw events plus user and group profiles in JSON or Parquet. Export cohorts, funnels, retention and dashboards via dashboard or API. Save the tracking plan separately as a structured document. Keep a copy of identity and alias mappings — they are critical for stitching users across tools. Prefer the warehouse export over the API for long-running jobs and large volumes.",
+  "import_method": "Install Mixpanel's SDKs across web, mobile and server, mirroring the same event names and properties used in Amplitude where it makes sense. Use Mixpanel's import API to backfill historical events from your warehouse export, with original timestamps. Re-create cohorts, funnels and dashboards manually — both tools have similar primitives but the UI differs. Configure identity using the same user IDs as Amplitude so profiles stitch. Run both tools in parallel for one full reporting cycle and validate the top metrics before retiring Amplitude.",
+  "concept_mapping": [
+    {
+      "source": "Event",
+      "target": "Event"
+    },
+    {
+      "source": "User property",
+      "target": "User profile property"
+    },
+    {
+      "source": "Group / account",
+      "target": "Group"
+    },
+    {
+      "source": "Cohort",
+      "target": "Cohort"
+    },
+    {
+      "source": "Funnel / Retention",
+      "target": "Funnel / Retention"
+    },
+    {
+      "source": "Chart / Dashboard",
+      "target": "Report / Board"
+    }
+  ],
+  "effort": "2-6 weeks depending on dashboard count and instrumentation depth",
+  "gotchas": [
+    "Identity merging works differently — test alias and identify flows carefully",
+    "Funnel and retention math can differ slightly; agree on tolerance",
+    "Some Amplitude charts have no direct equivalent and need rework",
+    "Annual commit on Amplitude may keep billing until renewal",
+    "Backfilled events should preserve original timestamps to keep retention valid",
+    "Mobile and server SDKs need the same event taxonomy as web for clean reports"
+  ],
+  "email": {
+    "subject": "Moving product analytics from Amplitude to Mixpanel",
+    "body": "Hi team,\n\nOver the next 14 days we are migrating our product analytics from Amplitude to Mixpanel. The driver is mostly fit and pricing — both tools share the same event-based mental model, so the architecture does not change much.\n\nThe plan: install Mixpanel SDKs across web, mobile and server using the same event names and properties as today, backfill historical events from our warehouse export with original timestamps, and rebuild key cohorts, funnels and dashboards. We will run both tools in parallel for one reporting cycle and validate top metrics before retiring Amplitude. Identity will be stitched on the same user IDs we already use.\n\nA few notes. Funnel and retention numbers can differ slightly between tools, so we will agree on tolerance. A few Amplitude-specific reports may need rework. The Amplitude contract may continue to bill until renewal — that is expected.\n\nIf your team owns a critical chart, please flag it this week so we can rebuild it as part of the cutover.\n\nThanks,\nYour customer"
+  }
+}

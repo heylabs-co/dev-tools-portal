@@ -1,0 +1,75 @@
+{
+  "source": {
+    "slug": "auth0",
+    "name": "Auth0"
+  },
+  "target": {
+    "slug": "clerk",
+    "name": "Clerk"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Auth0 is an enterprise CIAM with deep SAML/SCIM and rules; Clerk is a developer-first auth with prebuilt React/Next.js components and a generous free tier. Migration is feasible but requires rebuilding your sign-in UI and re-issuing sessions.",
+  "why_switch": [
+    "Drop MAU-based peak billing exposure",
+    "Use prebuilt React components for sign-in",
+    "Generous free tier up to 50K MAU",
+    "Faster setup for Next.js / React stacks",
+    "Simpler organization and user management UX"
+  ],
+  "what_to_export": [
+    "Users (email, IDs, metadata)",
+    "Password hashes if exportable",
+    "Social/identity provider links",
+    "MFA enrollment data",
+    "Roles and permissions",
+    "Tenants/organizations",
+    "Application/client configurations",
+    "Custom claims and rules logic",
+    "Connections (SAML, OIDC) settings"
+  ],
+  "export_method": "In Auth0, use the Management API or the Import/Export tooling to extract users with their metadata, identities, and (where supported) password hashes. Export application client configurations, connection settings (SAML, OIDC, social), roles and permissions, and any organization/tenant structures. Capture rules, hooks, or actions as code so logic can be reimplemented. Save a copy of MFA enrollment data so users can be re-enrolled or trusted on first login. Keep all exports in encrypted storage during the migration window.",
+  "import_method": "Create a Clerk application and configure your social providers, password policy, and MFA settings to match your current setup. Import users via Clerk's user import flow, supplying email, identifiers, metadata, and password hashes where the hash format is supported; otherwise plan a forced password reset on first login. Recreate organizations, roles, and permissions in Clerk. Replace your application code with Clerk's SDK and prebuilt components (SignIn, UserButton, etc.) for React/Next.js, and update API verification to use Clerk session tokens. Run a parallel-auth period in staging to validate migrated accounts before cutover.",
+  "concept_mapping": [
+    {
+      "source": "Tenant",
+      "target": "Clerk application instance"
+    },
+    {
+      "source": "Application/client",
+      "target": "Clerk frontend/backend keys"
+    },
+    {
+      "source": "Connection (social/OIDC/SAML)",
+      "target": "Clerk social/SSO provider"
+    },
+    {
+      "source": "Rule/Action/Hook",
+      "target": "Clerk webhook or middleware"
+    },
+    {
+      "source": "Organization",
+      "target": "Clerk Organization"
+    },
+    {
+      "source": "User metadata",
+      "target": "Clerk public/private metadata"
+    },
+    {
+      "source": "MFA factor",
+      "target": "Clerk MFA factor"
+    }
+  ],
+  "effort": "2-6 weeks",
+  "gotchas": [
+    "Password hashes only migrate if Clerk supports the source hash algorithm; otherwise plan resets.",
+    "Custom Auth0 Rules/Actions logic must be rewritten as webhooks or middleware in Clerk.",
+    "Enterprise SAML/SCIM coverage differs; verify your specific IdPs are supported.",
+    "Existing JWTs must be invalidated and re-issued; plan a session cutover window.",
+    "Tokens, claims, and issuer URLs change, so all relying parties need updated configuration.",
+    "MAU-based pricing still applies on Clerk; model your scale before committing."
+  ],
+  "email": {
+    "subject": "Migrating from Auth0 to Clerk over the next 14 days",
+    "body": "Hi Auth0 team,\n\nThank you for supporting our identity stack. To better fit our React/Next.js stack and to avoid peak MAU billing exposure, we are migrating to Clerk and will complete the transition within 14 days.\n\nPlanned timeline:\n- Days 1-4: export users, password hashes, connections, rules, and organizations.\n- Days 5-9: provision the Clerk app, import users, and rebuild rules as webhooks.\n- Days 10-12: parallel-test sign-in, MFA, and SSO in staging.\n- Days 13-14: cut over production and rotate keys.\n\nCould you confirm the exact export endpoints available on our plan and the steps to terminate at the end of our current billing cycle, with confirmation that no further MAU-based charges will apply?\n\nThanks for your help,\nYour customer"
+  }
+}

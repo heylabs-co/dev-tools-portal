@@ -1,0 +1,60 @@
+{
+  "source": {
+    "slug": "composio",
+    "name": "composio"
+  },
+  "target": {
+    "slug": "bolt-new",
+    "name": "bolt-new"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Composio is an AI-agent tool-integration platform; Bolt.new is a browser-based AI full-stack app builder. They solve different problems, so migration typically means moving away from agentic tool calls toward full-stack app generation.",
+  "why_switch": [
+    "You want to build and ship full web apps from prompts",
+    "You prefer an in-browser dev environment with live preview",
+    "Your needs shifted from agent integrations to app generation",
+    "You want a freemium tier with simple onboarding",
+    "You no longer need a managed connector catalogue"
+  ],
+  "what_to_export": [
+    "List of Composio connectors enabled per project",
+    "Authentication credentials stored in Composio",
+    "Agent code that calls Composio SDKs",
+    "Tool definitions and custom actions",
+    "Usage logs for capacity planning",
+    "Webhook configurations",
+    "Team/project membership lists"
+  ],
+  "export_method": "Composio configuration is largely defined through their dashboard and SDKs. Use the Composio dashboard to inventory active integrations, connector identifiers, and project members. From your codebase, collect any files importing the Composio SDK so you can see how tools are wired into your agent. Record API keys held in Composio for downstream services so you can re-add them at the source. There is no documented one-click export of connector definitions; treat this as a manual audit. Save logs you need for compliance before shutting down the project, and note any custom actions you have authored so they can be reimplemented elsewhere.",
+  "import_method": "Bolt.new does not import Composio data because it builds web apps from natural-language prompts in a browser IDE. Sign in at bolt.new, start a new project, and describe the app you want to build. Use the in-browser editor to refine code, run it in the live preview, and deploy. If your previous Composio agent calls are still needed, you can integrate Composio (or any API) from inside the Bolt.new project as you would in any web app, but Bolt.new itself does not natively replicate Composio's agent tool layer. Treat this as starting a new project, not migrating data.",
+  "concept_mapping": [
+    {
+      "source": "Composio project",
+      "target": "Bolt.new project",
+      "note": "Conceptually similar workspace, totally different feature set"
+    },
+    {
+      "source": "Connector / tool",
+      "target": "Bolt-generated API client",
+      "note": "Rebuild manually"
+    },
+    {
+      "source": "Agent runtime",
+      "target": "App runtime in browser",
+      "note": "Different execution model"
+    }
+  ],
+  "effort": "1-3 weeks",
+  "gotchas": [
+    "These products solve different problems; verify Bolt.new actually fits your use case.",
+    "Bolt.new's GitHub repo shows long inactivity per our data; do diligence before committing.",
+    "There is no automated import of Composio connectors into Bolt.new.",
+    "You may still need Composio or another integration layer alongside a Bolt-built app.",
+    "Generated apps may need refactoring before production use.",
+    "Pricing model differs: Composio is usage-based; Bolt.new is freemium subscription."
+  ],
+  "email": {
+    "subject": "Plan: moving from Composio to Bolt.new for app builds",
+    "body": "Hi team,\n\nOver the next 14 days we will pilot Bolt.new for rapid full-stack app generation while reviewing what stays on Composio. The two tools serve different needs, so this is a re-platforming decision, not a like-for-like swap.\n\nWe will keep Composio active during the pilot. If your work touches our agent integrations, please flag any dependencies before we move further.\n\nThanks,\nYour customer"
+  }
+}

@@ -1,0 +1,61 @@
+{
+  "source": {
+    "slug": "apidog",
+    "name": "Apidog"
+  },
+  "target": {
+    "slug": "cerebras",
+    "name": "Cerebras"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Apidog is an API design, testing, and documentation platform; Cerebras is an LLM inference API. They are not substitutes — moving from one to the other only makes sense if Apidog was being misused as an LLM gateway, or if you are reorganizing your stack and want to track the change. In most cases Apidog stays as the API tooling layer and Cerebras becomes a downstream API your team integrates.",
+  "why_switch": [
+    "You want to add fast LLM inference (Cerebras) to a stack that previously only had API tooling",
+    "You used Apidog primarily as a request-runner for AI calls and want a real LLM provider",
+    "You are consolidating on OpenAI-compatible endpoints across providers",
+    "You need lower-latency completions than your current stack offers",
+    "You're decommissioning Apidog and replacing the use cases separately"
+  ],
+  "what_to_export": [
+    "OpenAPI specs for any APIs you currently host in Apidog",
+    "Postman or Apidog request collections",
+    "Environment variables and secrets",
+    "Request/response examples for the AI endpoints you call",
+    "Authentication configuration",
+    "Test scripts and CI integrations",
+    "Team membership and roles",
+    "Published documentation links and custom domains"
+  ],
+  "export_method": "Apidog and Cerebras solve different problems, so the export step is mostly about preserving the parts of Apidog you still need elsewhere. Export OpenAPI 3.x specs for each project, plus any Postman-format collections and environment variables. Save request examples that hit AI endpoints — those will become the seeds for new Cerebras integration tests. Pull team membership and roles for re-creation in whichever tool replaces Apidog. Note any published docs URLs and custom domains so you can redirect them later. Rotate any Apidog-managed API keys at the end of the cutover. Apidog is not an LLM provider, so there is no model state to migrate; the only AI artifacts to keep are prompt templates, examples, and evaluation cases.",
+  "import_method": "Create a Cerebras account and generate an API key. Install the official Cerebras SDK or use the OpenAI SDK pointed at the Cerebras OpenAI-compatible base URL as documented by Cerebras. Wire the key through your secrets manager. In code, send chat-completion-style requests for the model deployment you choose. Re-run your evaluation prompts against Cerebras and compare quality and latency to whatever you used before. If you are keeping Apidog for design/testing of the wrappers, add the Cerebras endpoint as an external HTTP request inside Apidog so you can run integration tests there. Set up monitoring for token usage, latency, and rate limits, and configure spend alerts before sending production traffic.",
+  "concept_mapping": [
+    {
+      "source": "Apidog request collection",
+      "target": "Cerebras integration tests in code or your test runner",
+      "note": "Cerebras has no UI for collections — tests live in your CI."
+    },
+    {
+      "source": "Apidog environment variable",
+      "target": "Secrets manager / .env entry for Cerebras API key",
+      "note": "Do not commit keys."
+    },
+    {
+      "source": "Apidog mock server",
+      "target": "Local mock or recorded fixtures for Cerebras responses",
+      "note": "Cerebras itself does not provide mocks; record responses for tests."
+    }
+  ],
+  "effort": "2-5 days if you only adopt Cerebras as a new LLM provider; 1-3 weeks if you also retire Apidog and rebuild design/testing/docs flows in other tools.",
+  "gotchas": [
+    "Apidog and Cerebras are not substitutes — make sure stakeholders understand you may need both, or replacements for each Apidog use case.",
+    "Cerebras is OpenAI-compatible for chat-completions, but compatibility is not 100% across every parameter; test edge cases.",
+    "Model availability and context windows differ from other providers — re-tune chunking and prompts for the model you pick.",
+    "Token counting and pricing differ; rebuild cost projections before committing.",
+    "Rate limits and concurrency caps can change quickly on a fast-moving inference provider — load-test before launch.",
+    "If you retire Apidog without picking a replacement for testing and docs, you will lose mocks, contract tests, and your published portal."
+  ],
+  "email": {
+    "subject": "Updating our stack: adding Cerebras and reshaping our Apidog usage",
+    "body": "Hi team,\n\nOver the next 14 days we're adding Cerebras as an LLM inference provider and reorganizing how we use Apidog. Apidog is not a like-for-like replacement, so we'll keep what we need from it and migrate the rest. Please review the new env vars in #eng, run the eval set against Cerebras, and flag latency or quality issues before cutover. Old Apidog keys will be rotated at the end of the window.\n\nThanks,\nYour customer"
+  }
+}

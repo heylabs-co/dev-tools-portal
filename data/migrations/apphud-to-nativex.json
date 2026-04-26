@@ -1,0 +1,67 @@
+{
+  "source": {
+    "slug": "apphud",
+    "name": "Apphud"
+  },
+  "target": {
+    "slug": "nativex",
+    "name": "Nativex"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Apphud is an in-app subscription SDK, while Nativex is a mobile user acquisition and monetization platform from Mobvista. Replacing one with the other is a strategic shift from subscription revenue to ad-driven UA and monetization, especially for APAC reach.",
+  "why_switch": [
+    "Shift focus from subscription billing to user acquisition",
+    "Tap APAC and Chinese market demand via Mobvista supply",
+    "Use a unified SDK plus creative tooling for ads",
+    "Add programmatic retargeting for lapsed users",
+    "Diversify revenue beyond IAP subscriptions"
+  ],
+  "what_to_export": [
+    "Subscription product catalog and price tiers",
+    "Subscriber list and renewal status",
+    "Paywall A/B test configurations and outcomes",
+    "Churn and LTV analytics",
+    "User segmentation and cohort definitions",
+    "Webhook endpoints and server notifications",
+    "Custom paywall assets and copy",
+    "Revenue and refund history for accounting"
+  ],
+  "export_method": "Use the Apphud dashboard to export available subscriber, revenue, and event data, typically as CSV. Document A/B tests, paywall variants, and segmentation rules manually — they generally do not export as a portable archive. Save server webhook configurations and any custom backend integrations. Since Nativex is a UA and ad monetization platform rather than a subscription system, the export is reference documentation rather than an import payload. Keep Apphud running for any continuing subscribers so renewal, refund, and tax data remain accessible. Coordinate with finance to snapshot MRR and active subscription metrics before changing the monetization model.",
+  "import_method": "Nativex onboarding goes through their sales team. Once a publisher account is created, integrate the Nativex SDK in your iOS or Android app per the official docs, and configure ad placements where they make sense in the user journey. If you are also using Nativex for user acquisition, set up campaign tracking, creative assets, and attribution per their UA workflow. Be aware that Nativex is built around Mobvista's ad supply, with strong APAC and China coverage, so review your privacy, consent, and compliance requirements before going live. Run a staging integration to validate ad fill, eCPM, and SDK stability. If you keep subscriptions alongside ads, leave Apphud in place for billing while Nativex handles ads.",
+  "concept_mapping": [
+    {
+      "source": "Paywall flow",
+      "target": "Ad placement / UA funnel",
+      "note": "Different monetization model"
+    },
+    {
+      "source": "Subscription product",
+      "target": "Ad unit or campaign"
+    },
+    {
+      "source": "Cohort / segmentation",
+      "target": "Audience targeting (where supported)"
+    },
+    {
+      "source": "Apphud dashboard analytics",
+      "target": "Nativex publisher / advertiser dashboard"
+    },
+    {
+      "source": "Webhook events",
+      "target": "Postback / S2S tracking (if applicable)"
+    }
+  ],
+  "effort": "3-6 weeks",
+  "gotchas": [
+    "This is a monetization-model change, not a 1:1 SDK swap",
+    "Chinese ownership may trigger enterprise vendor reviews and compliance checks",
+    "Privacy regulations (GDPR, ATT, CCPA) require consent for ad SDKs",
+    "Existing subscribers must continue receiving entitlements",
+    "Pricing is custom — revshare and CPM details only available via sales",
+    "Self-serve tooling can lag behind managed creative services"
+  ],
+  "email": {
+    "subject": "Migrating monetization from Apphud to Nativex over 14 days",
+    "body": "Hi team,\n\nWe are evolving our mobile monetization strategy by adding Nativex as our ad and UA partner, replacing the subscription-only model we ran on Apphud. Over the next 14 days we will integrate the Nativex SDK, configure ad placements, and validate fill rate and SDK stability in staging.\n\nExisting Apphud subscribers will keep their entitlements during the transition. We are not migrating subscription data into Nativex — the platforms address different problems. Subscription history and finance reports will remain accessible in Apphud for the foreseeable future.\n\nPlease flag any compliance, privacy, or contractual questions you want addressed before we move ad placements into production.\n\nThanks,\nYour customer"
+  }
+}

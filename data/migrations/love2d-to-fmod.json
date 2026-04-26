@@ -1,0 +1,71 @@
+{
+  "source": {
+    "slug": "love2d",
+    "name": "love2d"
+  },
+  "target": {
+    "slug": "fmod",
+    "name": "fmod"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "LOVE is a 2D Lua game framework; FMOD is audio middleware. They are not substitutes — you would not replace a game framework with an audio engine. Only treat this as a 'migration' if you are dropping LOVE entirely and your remaining audio needs go through FMOD inside a different engine, or if you want to integrate FMOD as the audio layer for an existing LOVE project. The latter is integration, not migration.",
+  "why_switch": [
+    "You moved your project off LOVE to a different engine and want professional audio middleware",
+    "You need adaptive music, spatial audio or live profiling that LOVE's built-in love.audio cannot provide",
+    "You want event-driven audio with composer-friendly authoring",
+    "You are standardizing audio across multiple titles on FMOD",
+    "You no longer want a Lua-only audio API"
+  ],
+  "what_to_export": [
+    "All audio assets used by love.audio (wav, ogg, mp3 where licensed)",
+    "Lua code that creates love.audio.Source objects and controls playback",
+    "Volume, pitch, looping and spatial settings applied at runtime",
+    "Mapping of game events to audio playback calls",
+    "Music tracks and any custom mixing logic implemented in Lua",
+    "Asset folder structure and naming conventions",
+    "Localized voice-over assets if any",
+    "Notes on which sounds are 2D versus positional"
+  ],
+  "export_method": "LOVE stores audio as plain files referenced from Lua code, so 'export' is inventory plus refactor preparation. Walk your project and list every audio asset by path. Search Lua sources for love.audio.newSource, source:play, source:setVolume, source:setPitch, source:setLooping and source:setPosition to enumerate every place audio is created or controlled. Group calls by the in-game event that fires them (footstep, hit, music change). Note which sources are positional and which are static. Capture any custom mix logic such as duck-on-dialogue or fade transitions you wrote by hand. Export the asset folder as-is — FMOD will reuse the same wav and ogg files. Document which assets are licensed for commercial use, since FMOD does not change licensing constraints on third-party audio.",
+  "import_method": "If you are moving to a host engine that supports FMOD (Unity, Unreal, custom C/C++), install FMOD Studio and the matching engine integration. Create a new FMOD project, import your existing audio files into the asset browser, and build events that wrap them. Replace per-call playback logic with event instances: create a 'footstep' event instead of calling love.audio.newSource each step, with parameters for surface or speed. Map LOVE source properties to FMOD equivalents: volume becomes event volume or a parameter, pitch becomes a pitch modifier, looping becomes the event's loop region, and 3D position becomes the event's 3D attributes. Build banks and load them at runtime through the engine's FMOD integration. There is no automated converter from LOVE Lua audio code; you will rewrite each audio touchpoint to call FMOD instead of love.audio.",
+  "concept_mapping": [
+    {
+      "source": "love.audio.Source",
+      "target": "FMOD event instance",
+      "note": "Both represent a playable sound."
+    },
+    {
+      "source": "source:setVolume",
+      "target": "FMOD volume / parameter",
+      "note": "Author level in Studio or drive via a parameter."
+    },
+    {
+      "source": "source:setPitch",
+      "target": "FMOD pitch modulation",
+      "note": "Set on the event or via a parameter."
+    },
+    {
+      "source": "source:setPosition",
+      "target": "FMOD 3D attributes",
+      "note": "Provide listener and event positions each frame."
+    },
+    {
+      "source": "Custom Lua mixer logic",
+      "target": "FMOD mixer / snapshots",
+      "note": "Authored in Studio rather than coded."
+    }
+  ],
+  "effort": "weeks",
+  "gotchas": [
+    "FMOD does not replace LOVE. You still need a host engine that runs FMOD; LOVE itself does not have an official FMOD integration, so this migration usually implies leaving LOVE.",
+    "FMOD licensing depends on revenue and platform. Indie tiers exist but confirm your eligibility and per-platform fees before committing.",
+    "Asset formats remain the same, but 'how you trigger them' changes from direct API calls to authored events. Plan time for both authoring and code refactor.",
+    "Lua bindings for FMOD are limited and unofficial. If you must stay in Lua, evaluate whether the integration is worth the cost compared to LOVE's built-in audio.",
+    "Spatial audio behavior differs. LOVE's basic 3D model is not equivalent to FMOD's; expect tuning to match the previous mix.",
+    "Hot reload and live update workflows change. Train the team on FMOD Studio's connect-to-game feature before disabling Lua-side audio."
+  ],
+  "email": {
+    "subject": "Audio system upgrade in our next build",
+    "body": "Hi,\n\nWe are upgrading the audio layer of the game to industry-standard middleware so we can deliver adaptive music and better spatial sound. Over the next 14 days, in-game audio will be rebuilt on the new system, and the previous Lua-based audio will be retired.\n\nIf you have feedback on specific sounds or mixing issues, please share it within the next week so we can address it during the rebuild. Custom audio mods or scripts targeting the old system may stop working after the change.\n\nWe will confirm the cutover date once testing is complete.\n\nYour customer"
+  }
+}

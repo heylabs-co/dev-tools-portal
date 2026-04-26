@@ -1,0 +1,70 @@
+{
+  "source": {
+    "slug": "apify",
+    "name": "Apify"
+  },
+  "target": {
+    "slug": "cortex",
+    "name": "Cortex"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Apify runs scrapers; Cortex is an internal developer portal. The realistic migration is to register Apify actors as services in Cortex for ownership and scorecards, not to replace the scraping runtime.",
+  "why_switch": [
+    "Track ownership and on-call for scraping services",
+    "Apply maturity scorecards across all services including scrapers",
+    "Centralize discoverability with the rest of engineering",
+    "Pull GitHub, cloud, and PagerDuty signals into one view",
+    "Standardize service metadata across teams"
+  ],
+  "what_to_export": [
+    "Actor name, description, and owning team",
+    "Source repo URLs",
+    "Input schemas and run configs",
+    "Schedule definitions",
+    "Webhook destinations",
+    "Dataset and KV store inventory",
+    "Observability links (logs, dashboards)",
+    "On-call and Slack channel info"
+  ],
+  "export_method": "Use the Apify API or CLI to list all actors, schedules, and storage stores, then for each actor capture the metadata you need in Cortex: name, repo, description, team, lifecycle, runtime dashboard URL. Datasets and run history do not need to be exported - they stay in Apify or move with the runtime separately. Pull team ownership from your HR or IDP system rather than from Apify, since Apify's view of teams is usually partial. Save the export as JSON or a CSV that maps cleanly onto Cortex service fields. Re-run after any actor churn so the import reflects current state.",
+  "import_method": "Cortex models services through YAML descriptors (commonly cortex.yaml) checked into each repo and through API/CLI imports. For each actor, create a service entry with owner, tier, lifecycle, links (repo, runtime, runbook), and tags. Use the Cortex API or CLI to bulk-create entries from your exported JSON. Connect Cortex to GitHub for repo signals, to your cloud provider for infra signals, and to PagerDuty or Opsgenie for on-call. Add scorecards only after the catalog is accurate - rolling them out too early creates noise. Validate by spot-checking 10-20 services for accurate ownership and working links.",
+  "concept_mapping": [
+    {
+      "source": "Actor",
+      "target": "Service entity"
+    },
+    {
+      "source": "Actor source repo",
+      "target": "Service repo link"
+    },
+    {
+      "source": "Apify team",
+      "target": "Cortex team or group"
+    },
+    {
+      "source": "Schedule",
+      "target": "Out of scope - link only"
+    },
+    {
+      "source": "Dataset",
+      "target": "Resource or custom field"
+    },
+    {
+      "source": "Webhook",
+      "target": "Documented integration link"
+    }
+  ],
+  "effort": "2-6 weeks",
+  "gotchas": [
+    "Cortex does not run scrapers - the runtime stays on Apify or wherever you replatform",
+    "Per-seat pricing means cost scales with engineering headcount, not service count",
+    "Scorecards need stakeholder buy-in or they decay into noise",
+    "GitHub repo for Cortex (cortexlabs) is a different unrelated project; rely on the SaaS product",
+    "Catalog quality depends on accurate ownership - budget time for cleanup",
+    "Integrations with cloud and on-call require admin access to set up"
+  ],
+  "email": {
+    "subject": "Registering Apify actors in Cortex over the next 14 days",
+    "body": "Hi,\n\nWe are adding our Apify actors to Cortex as service entries so we can track ownership, maturity, and on-call alongside the rest of our services. Apify keeps running the actors - this is about visibility, not replatforming.\n\nYou will see a cortex.yaml descriptor land in each actor repo, plus a one-time backfill from our existing Apify metadata. We will share a validation list so you can confirm team and lifecycle are correct. Scorecards roll out only after the catalog is clean.\n\nNo action required this week. Reply if your team owns scrapers we should prioritize in the validation pass.\n\nThanks,\nYour customer"
+  }
+}

@@ -449,12 +449,17 @@ const timeOptions = [
       render();
     });
 
-    // Show more — extend the visible window without re-fetching
+    // Show more — extend the visible window without re-fetching.
+    // Anchor the page so the button STAYS at the same viewport position
+    // after re-render (new items appear above it). Without this the
+    // button jumps to the bottom of the longer list and the user feels
+    // teleported.
     showMoreBtn.addEventListener('click', function () {
+      const beforeTop = showMoreBtn.getBoundingClientRect().top;
       visibleCount += PAGE_SIZE;
       render();
-      // scroll the new batch into view
-      showMoreBtn.scrollIntoView({ block: 'center', behavior: 'smooth' });
+      const afterTop = showMoreBtn.getBoundingClientRect().top;
+      window.scrollBy({ top: afterTop - beforeTop, behavior: 'instant' });
     });
 
     // ── initial load ───────────────────────────────────────────────────

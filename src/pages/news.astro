@@ -459,7 +459,9 @@ const timeOptions = [
       visibleCount += PAGE_SIZE;
       render();
       const afterTop = showMoreBtn.getBoundingClientRect().top;
-      window.scrollBy({ top: afterTop - beforeTop, behavior: 'instant' });
+      // Legacy 2-arg scrollBy is always synchronous-instant; behavior:'instant'
+      // in the options form isn't universally supported across browsers.
+      window.scrollBy(0, afterTop - beforeTop);
     });
 
     // ── initial load ───────────────────────────────────────────────────

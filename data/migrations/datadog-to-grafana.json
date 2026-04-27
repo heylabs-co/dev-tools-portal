@@ -1,0 +1,63 @@
+{
+  "source": {"slug": "datadog", "name": "Datadog"},
+  "target": {"slug": "grafana", "name": "Grafana"},
+  "generated_at": "2026-04-27T09:32:52Z",
+  "quality": "hand-crafted",
+  "tldr": "Datadog's per-host pricing and high-water-mark billing make it one of the most expensive observability stacks in the market; moving to Grafana (self-hosted OSS or Grafana Cloud) typically cuts spend by 50-80% and replaces a closed agent with an OpenTelemetry-native, multi-source platform you actually own.",
+  "why_switch": [
+    "High-water-mark billing — Datadog locks your bill to peak host count for the month, so a single autoscale spike can pin you at the top tier even after you scale back down.",
+    "Per-host + per-feature pricing compounds fast: Infra, APM, Logs, Synthetics, RUM, and Custom Metrics are each line items. A modest fleet on all SKUs commonly clears six figures per year.",
+    "Vendor lock-in via the proprietary Datadog Agent — even when you ingest OpenTelemetry, Datadog converts to its internal format, so you can't easily replay your data elsewhere.",
+    "Grafana has a real OSS option (AGPLv3 Grafana, Apache-2 Loki/Mimir/Tempo/Pyroscope) — you can self-host the entire stack and pay only for infra, or use Grafana Cloud's free tier (10k metrics, 50 GB logs/traces) and metered upgrades.",
+    "Grafana dashboards query 100+ data sources side-by-side (Prometheus, Loki, Tempo, CloudWatch, BigQuery, Postgres, Elasticsearch, Datadog itself), so you can run both stacks during the cutover and consolidate later.",
+    "OpenTelemetry-native ingest path: send OTLP straight to Grafana's backends (Mimir for metrics, Loki for logs, Tempo for traces) with no proprietary agent in between — your instrumentation stays portable.",
+    "Querying is open-standard — PromQL, LogQL, TraceQL — instead of Datadog's bespoke query language, which makes hiring, tooling, and AI assistance much easier."
+  ],
+  "what_to_export": [
+    "Dashboards (timeboards, screenboards, and the unified Dashboard JSON)",
+    "Monitors / alert definitions (metric, log, APM, anomaly, composite)",
+    "SLOs and SLO alerts",
+    "Notebook content (if relied on for runbooks)",
+    "Log indexes, pipelines, and processing rules",
+    "Log archives and retention/exclusion filters",
+    "APM service catalog entries, service maps, and trace retention filters",
+    "Custom metrics list (count and tag cardinality — for budgeting on the new backend)",
+    "Synthetic tests (API, browser, multi-step) and global variables",
+    "RUM applications and session replay configuration",
+    "Service-level configuration: tags, downtimes, muted hosts, scheduled silences",
+    "Users, teams, roles, and notification channels (Slack, PagerDuty, email integrations)"
+  ],
+  "export_method": "Datadog supports a per-dashboard JSON export from the UI: open a dashboard, click the Configure icon in the upper-right, and choose 'Export dashboard JSON' (also available from the Share menu). For bulk work, use the public REST API — Datadog publishes v1 monitor and dashboard endpoints under api.datadoghq.com/api/v1/ (e.g. POST /api/v1/monitor for monitor management; the dashboards group lives at /api/v1/dashboard). Authenticate with an API key plus an application key in the DD-API-KEY and DD-APPLICATION-KEY headers, and remember the host depends on your Datadog site (datadoghq.com, datadoghq.eu, us3/us5/ap1/ap2, ddog-gov.com).\n\nFor anything beyond a handful of resources, the Datadog Terraform provider is the practical choice. It covers datadog_dashboard, datadog_monitor, datadog_slo, datadog_synthetics_test, datadog_logs_index, datadog_logs_pipeline, datadog_logs_archive, and more — running `terraform import` against existing IDs gives you a versioned, reproducible snapshot of the tenant. For logs and traces themselves (the raw data, not the config), Datadog only offers replay via Log Archives written to S3/GCS/Azure Blob; historical logs and traces inside Datadog's storage are not exportable in bulk through a public endpoint.\n\nCustom metrics deserve a dedicated audit before you migrate: pull the custom metrics list from the Usage section and capture tag cardinality, because Datadog's per-custom-metric pricing model does not map 1:1 to Prometheus/Mimir's series-based costs, and unbounded labels that were affordable on Datadog can become expensive on Mimir if you don't trim them up front.",
+  "import_method": "Grafana ingests dashboards in three official ways. The UI flow is Dashboards → New → Import dashboard, where you can upload a JSON file, paste JSON, or paste a Grafana.com dashboard ID. For repeatable deployments, file-based provisioning drops dashboard JSON into a configured directory (commonly under /etc/grafana/provisioning/dashboards/ on self-hosted Grafana), referenced by a YAML provider config; the same provisioning subtree handles datasources/. Note that file-based provisioning is not available on Grafana Cloud — Cloud customers should use the HTTP API or Terraform instead. The HTTP API is documented under /docs/grafana/latest/developers/http_api/ and exposes dashboard create/update endpoints suitable for CI pipelines.\n\nAlerting provisioning (Grafana-managed alerts, contact points, notification policies, mute timings, templates) supports three paths: file-based provisioning on self-hosted, the official Terraform provider (grafana/grafana), and the Alerting provisioning HTTP API. Grafana's docs explicitly warn that the JSON returned by most non-provisioning Alerting endpoints is NOT directly reusable as a provisioning file, so prefer the provisioning API or Terraform when you want round-trip-safe definitions. Alerts that were Datadog metric monitors should land as Grafana-managed alert rules backed by a Prometheus/Mimir datasource and rewritten in PromQL; log monitors map to LogQL alerts on Loki.\n\nFor data ingest, decide your backend before importing anything: most teams pair Prometheus or Grafana Mimir for metrics, Loki for logs, Tempo for traces, and (optionally) Pyroscope for profiling. Point your apps at the OpenTelemetry Collector, configure OTLP exporters to Mimir/Loki/Tempo, and migrate dashboards datasource-by-datasource. Datadog dashboard JSON is not directly importable into Grafana — you will rebuild panels with PromQL/LogQL queries, but the layout/intent transfers cleanly when you treat the export as a specification rather than a wire format.",
+  "concept_mapping": [
+    {"datadog": "Dashboard (timeboard / screenboard)", "grafana": "Grafana Dashboard (panels + variables)"},
+    {"datadog": "Monitor (metric / log / APM)", "grafana": "Grafana-managed alert rule (PromQL / LogQL / TraceQL)"},
+    {"datadog": "SLO", "grafana": "Grafana SLO (Cloud) or Sloth/Pyrra rules on Mimir"},
+    {"datadog": "Notebook", "grafana": "Dashboard with text panels, or Grafana Incident timelines"},
+    {"datadog": "APM (traces, service map)", "grafana": "Grafana Tempo + Service Graph (via OTel Collector)"},
+    {"datadog": "Logs + log pipelines", "grafana": "Grafana Loki + LogQL parsers / pipeline stages"},
+    {"datadog": "Log archives (S3/GCS/Azure)", "grafana": "Loki object-store backend (S3/GCS/Azure) — native, not an archive tier"},
+    {"datadog": "Custom metrics", "grafana": "Prometheus / Mimir series (priced by active series, not per metric)"},
+    {"datadog": "Synthetic tests (API / browser)", "grafana": "Grafana Cloud Synthetic Monitoring (k6-based) or self-hosted k6"},
+    {"datadog": "RUM", "grafana": "Grafana Faro (frontend OTel SDK) + Tempo/Loki"},
+    {"datadog": "Continuous Profiler", "grafana": "Grafana Pyroscope"},
+    {"datadog": "Watchdog / anomaly detection", "grafana": "Mimir recording + alert rules; ML-based anomaly is a Grafana Cloud feature, not OSS"},
+    {"datadog": "Datadog Agent", "grafana": "Grafana Alloy (OTel-compatible) or vanilla OpenTelemetry Collector"},
+    {"datadog": "Notification channels (Slack/PagerDuty/email)", "grafana": "Contact points + notification policies in Grafana Alerting"}
+  ],
+  "effort": "4-12 weeks for a full cutover, depending on fleet size and how many Datadog SKUs you use. Typical split: 1-2 weeks design + backend choice; 1-2 weeks instrumentation swap to OTel/Alloy; 2-4 weeks dashboard rebuild and alert migration; 1-2 weeks parallel run with both stacks live; 1-2 weeks decommission and contract wind-down. Teams using only metrics + dashboards can finish in 3-4 weeks; teams with heavy APM, RUM, Synthetics, and SLO surface area should plan toward the high end.",
+  "gotchas": [
+    "Query language rewrite is unavoidable: Datadog's query syntax (e.g. `avg:system.cpu.user{env:prod} by {host}`) does not auto-translate to PromQL or LogQL. Plan a query inventory and a rewrite pass — there is no reliable converter.",
+    "Custom metric economics flip: Datadog charges per custom metric name + tag combo, while Mimir/Prometheus charge per active series. Unbounded labels (user_id, request_id) that were merely 'extra' on Datadog will blow up cardinality and cost on Mimir if you don't relabel/drop them at the collector.",
+    "No drop-in replacement for Datadog's logs ↔ APM ↔ metrics correlation UI. Grafana's correlations work via shared trace_id/exemplars and must be wired in your instrumentation; expect to add OTel trace context propagation everywhere if it isn't already there.",
+    "Dashboard JSON is not portable between the two products. Treat Datadog exports as a spec: keep the panel intent, rebuild the query. Variables, template repeats, and conditional formatting often need redesign.",
+    "Synthetic tests don't transfer. Datadog's recorded browser tests are proprietary; rewrite them as k6 scripts (Grafana Cloud Synthetic Monitoring) or use Grafana Cloud Frontend Observability — there is no automated importer.",
+    "Alert routing and on-call need a parallel migration. If you used Datadog's incident management or @-mentions in monitor messages, recreate the equivalents as Grafana contact points + notification policies, and keep PagerDuty/Opsgenie as the source of truth during the parallel-run window.",
+    "Grafana Cloud's file-based provisioning is not available — Cloud users must use the HTTP API or Terraform. Plan your IaC tooling before you pick the hosting model.",
+    "Historical data is generally not migrated. Most teams accept a clean cutover for metrics/logs/traces and keep Datadog read-only for the retention window (often 30-90 days) rather than backfilling Mimir/Loki/Tempo."
+  ],
+  "email": {
+    "subject": "Datadog → Grafana: cutting observability spend without losing coverage",
+    "body": "Hey team,\n\nProposing we move our observability stack from Datadog to Grafana over the next quarter. The driver is cost: Datadog's per-host pricing plus high-water-mark billing means a single autoscale event pins us to peak pricing for the whole month, and the per-SKU model (APM, Logs, Synthetics, RUM, Custom Metrics each billed separately) compounds fast as we grow.\n\nThe target stack is Grafana for visualization and alerting, with Mimir (metrics), Loki (logs), Tempo (traces), and Pyroscope (profiles) as backends, fed by an OpenTelemetry Collector / Grafana Alloy. Either self-hosted OSS or Grafana Cloud — both keep us on open standards (PromQL, LogQL, TraceQL, OTLP) so we never end up locked in like we are today.\n\nMigration plan, roughly 4-12 weeks:\n  1. Inventory: dashboards, monitors, SLOs, custom metrics + cardinality, synthetics, log pipelines.\n  2. Pick backend (self-host vs Cloud), stand up Mimir/Loki/Tempo, wire OTel collectors.\n  3. Export Datadog config via the Terraform provider where possible; export dashboards as JSON from the UI / API.\n  4. Rebuild dashboards and alerts in Grafana — queries get rewritten in PromQL/LogQL, panel intent ports cleanly.\n  5. Run both stacks in parallel for 2 weeks, then cut alerting over and decommission Datadog at contract renewal.\n\nKnown gotchas: query language rewrite is manual, custom-metric cardinality needs trimming before it hits Mimir, synthetic tests must be rewritten as k6, and historical data won't be migrated (Datadog stays read-only for the retention tail).\n\nHappy to share the full migration doc and a cost model. Want to greenlight a 2-week spike to validate the Mimir + Loki + Tempo backend on staging?\n\nThanks"
+  }
+}

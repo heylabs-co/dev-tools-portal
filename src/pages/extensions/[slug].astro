@@ -16,6 +16,26 @@ export async function getStaticPaths() {
 const { extension } = Astro.props;
 const d = extension.data;
 
+// Cross-link extension → main tool page when publisher matches a catalog entry.
+// Match by slugified publisher name; fallback by exact name match (case-insensitive).
+let publisherTool: { slug: string; name: string } | null = null;
+if (d.publisher) {
+  const slugified = d.publisher
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/(^-|-$)/g, '');
+  const companies = await getCollection('companies');
+  const byName = d.publisher.trim().toLowerCase();
+  const match = companies.find(
+    (c) =>
+      c.data.slug === slugified ||
+      c.data.name.trim().toLowerCase() === byName,
+  );
+  if (match) {
+    publisherTool = { slug: match.data.slug, name: match.data.name };
+  }
+}
+
 const pageTitle = d.seo?.title ?? `${d.name} — VS Code Extension`;
 const pageDescription = d.seo?.meta_description ?? d.description ?? `Install and learn about ${d.name} VS Code extension.`;
 
@@ -117,7 +137,17 @@ const schemaOrg = {
 
           {d.publisher && (
             <p class="mt-2 text-sm text-[#64748B] dark:text-[#8A8F98]">
-              by <span class="font-medium text-[#0F172A] dark:text-[#EDEDEF]">{d.publisher}</span>
+              by{' '}
+              {publisherTool ? (
+                <a
+                  href={`/tools/${publisherTool.slug}/`}
+                  class="font-medium text-[#5E6AD2] underline-offset-2 hover:underline dark:text-[#818CF8]"
+                >
+                  {d.publisher}
+                </a>
+              ) : (
+                <span class="font-medium text-[#0F172A] dark:text-[#EDEDEF]">{d.publisher}</span>
+              )}
             </p>
           )}
         </div>
@@ -226,12 +256,34 @@ const schemaOrg = {
         )}
       </div>
     </section>
-  </article>
 
-  <RecommendCTA
-    headline="Want a better VS Code extension for your flow?"
-    subline="Get AI-ranked extension picks based on your language and workflow."
-  />
+    {publisherTool && (
+      <section class="mt-10">
+        <a
+          href={`/tools/${publisherTool.slug}/`}
+          class="group block rounded-xl border border-gray-200 bg-white p-5 transition hover:border-[#5E6AD2]/50 dark:border-gray-800 dark:bg-gray-900"
+        >
+          <div class="text-[10px] font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400">
+            More from this publisher
+          </div>
+          <div class="mt-1 flex items-center justify-between">
+            <div class="text-lg font-semibold text-[#0F172A] dark:text-[#EDEDEF]">
+              See {publisherTool.name} on tool.news
+            </div>
+            <span class="text-[#5E6AD2] group-hover:translate-x-1 transition dark:text-[#818CF8]">→</span>
+          </div>
+          <div class="mt-1 text-sm text-[#64748B] dark:text-[#8A8F98]">
+            Pricing, lock-in score, alternatives, and migration guides.
+          </div>
+        </a>
+      </section>
+    )}
+
+    <RecommendCTA
+      headline="Want a better VS Code extension for your flow?"
+      subline="Get AI-ranked extension picks based on your language and workflow."
+    />
+  </article>
 
   <!-- Schema.org -->
   <script type="application/ld+json" set:html={JSON.stringify(schemaOrg)} />

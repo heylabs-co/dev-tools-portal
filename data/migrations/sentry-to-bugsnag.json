@@ -1,72 +1,61 @@
 {
-  "source": {
-    "slug": "sentry",
-    "name": "Sentry"
-  },
-  "target": {
-    "slug": "bugsnag",
-    "name": "Bugsnag"
-  },
-  "generated_at": "2026-04-25T00:00:00Z",
-  "tldr": "Both are mature error monitoring platforms; the move from Sentry to Bugsnag is mostly an SDK swap and a re-creation of projects, alerts, and integrations. Historical event data generally does not transfer.",
+  "source": {"slug": "sentry", "name": "Sentry"},
+  "target": {"slug": "bugsnag", "name": "Bugsnag"},
+  "generated_at": "2026-04-26T00:00:00Z",
+  "quality": "hand-crafted",
+  "tldr": "Migrating from Sentry to Bugsnag is mostly an SDK swap plus a fresh source-map upload pipeline. Historical issues do not transfer cleanly because Bugsnag's grouping algorithm and stability-score model differ from Sentry's, so plan to run both side-by-side for one to two release cycles.",
   "why_switch": [
-    "Stability score model fits release-quality workflows",
-    "Mature SDKs across web, mobile, and server",
-    "Simpler product surface than full-Sentry suite",
-    "Different commercial terms or support fit",
-    "Consolidate with existing Bugsnag-using teams"
+    "Stability-score model: Bugsnag's per-release crash-free user/session stability score is a first-class metric, which mobile and release-engineering teams often prefer over Sentry's release-health view.",
+    "Simpler error-first product: if you only need crash reporting (not tracing, profiling, replays, logs), Bugsnag's narrower scope means less noise in the UI and pricing.",
+    "SmartBear ecosystem fit: post-acquisition, Bugsnag integrates with the broader SmartBear quality stack (BitBar, Zephyr, TestComplete) which matters for QA-led organizations.",
+    "Predictable event-volume pricing: Bugsnag's commit-based event tiers can be easier to forecast than Sentry's mix of errors + transactions + replays + spans.",
+    "Strong mobile-first SDKs: Android, iOS, React Native, and Unity SDKs are mature and actively released (the bugsnag-android repo ships roughly every 2-3 weeks).",
+    "Lower cognitive surface area: no decisions about traces vs. profiling vs. replays vs. monitors — fewer knobs, fewer surprise bills.",
+    "Cleaner release-driven workflow: deploys, builds, and stability-by-release are tightly coupled in Bugsnag's UI, which suits teams shipping frequent versioned mobile releases."
   ],
   "what_to_export": [
-    "Project list with platform/runtime per project",
-    "Alert rules and notification channels",
-    "Team members and roles",
-    "Slack, Jira, PagerDuty integration configs",
-    "Source map and debug symbol upload pipeline",
-    "Release/deploy tagging conventions",
-    "Custom fingerprint and grouping rules",
-    "Open issue list with assignees and status",
-    "Tag conventions and saved searches",
-    "Inbound webhooks and consumers"
+    "Project list and per-project DSN/API-key mapping (so you can build a Sentry-project to Bugsnag-project crosswalk).",
+    "Open and recently-resolved issues with title, culprit, first/last seen, event count, assignee, and status.",
+    "Release tags and their associated commits (Sentry's release-commits endpoint exposes this).",
+    "Source maps and other release artifacts uploaded per release/dist.",
+    "Environment configuration (production, staging, etc.) and any environment-scoped alert rules.",
+    "Alert rules and notification routing (Slack, email, PagerDuty, webhooks).",
+    "Integrations (GitHub, GitLab, Jira, Linear, Slack) — these have to be re-authorized in Bugsnag, not migrated.",
+    "Team membership and per-project roles.",
+    "Sample rates / traces-sample-rate / replays-sample-rate values from each SDK init — you'll need to translate these into Bugsnag SDK config.",
+    "Inbound filters, allow-listed URLs, and ignore-error patterns (denylists/allowlists).",
+    "Custom tags, fingerprinting rules, and any server-side grouping overrides.",
+    "Audit log export (useful for compliance handover and to reconstruct who changed what)."
   ],
-  "export_method": "Sentry exposes a documented REST API plus org/project export options in the dashboard. For inventory, list projects, members, teams, alert rules, and integrations through the API and store the results as JSON. To capture issues, page through the issues endpoint per project and dump fields you care about (title, culprit, last seen, assignee, status). Source maps and debug files live in Sentry's release artifacts; re-upload them at the new vendor rather than trying to migrate them. If you self-host Sentry, you also have direct database access for deeper extraction. Cancel only after you have written confirmations and your replacement is live, since access ends at term close.",
-  "import_method": "In Bugsnag, create one project per Sentry project, picking the matching notifier (browser, Node, iOS, Android, etc.). Install the corresponding @bugsnag SDK, initialize with the API key, and remove the Sentry init from each app. Wire source maps and symbol uploads into CI per Bugsnag docs. Re-create alert rules, stability targets, and notification channels (Slack, email, PagerDuty) to match the Sentry setup. Add team members and assign roles. Run both SDKs in parallel for one to two release cycles to validate ingestion and grouping before turning Sentry off. Historical issues are not migrated; use exported JSON for reference only.",
+  "export_method": "Sentry exposes most data via its REST API at https://sentry.io/api/0/. The endpoints you'll lean on most are List an Organization's Issues, List a Project's Issues, List an Organization's Releases, and the release-files endpoints (Upload/List/Retrieve a Project Release File) — the same family used to push source maps. Authenticate with an organization auth token that has project:read, org:read, and event:read scopes. There is no single \"export everything\" button: write a small script that paginates each endpoint and writes JSON to disk per project.\n\nFor source maps and other release artifacts, use the project release files endpoints to enumerate what's attached to each release; you typically won't re-upload these to Bugsnag (Bugsnag wants its own upload), but listing them gives you a checklist of which releases need maps re-generated and pushed to the new vendor. For alert rules and integrations, Sentry exposes project-level rule endpoints, but several integration tokens are non-exportable for security reasons — capture the configuration semantically (channel name, conditions, thresholds) rather than trying to migrate tokens.\n\nFinally, request the audit log export (Settings -> Audit Log on self-hosted, or via the audit log endpoint on sentry.io) and grab a snapshot of organization members, teams, and project memberships. This is what you'll use to recreate access in Bugsnag, since user identities don't carry across.",
+  "import_method": "Bugsnag setup is per-project: create each project in the Bugsnag dashboard (one per app/platform, matching your Sentry project layout), grab the project API key, and drop it into the SDK init in place of your Sentry DSN. The SDK-level swap is the bulk of the work — replace @sentry/* packages with @bugsnag/* equivalents (for example @bugsnag/node, @bugsnag/js, @bugsnag/react-native), wrap your app in Bugsnag.start({ apiKey, releaseStage, appVersion }), and remove Sentry's tracing/replay imports unless you have a separate plan for those signals.\n\nFor source maps, Bugsnag now recommends the BugSnag CLI — per Bugsnag's own docs, the older @bugsnag/source-maps and bugsnag-build-reporter packages have been superseded. Wire the CLI into your build/CI step so every production build uploads maps for the corresponding appVersion / releaseStage right after bundling. For Webpack-based JS apps, Bugsnag's Webpack integration is the recommended alternative to invoking the CLI directly.\n\nReleases and deploys: send a build/release notification on every deploy so Bugsnag can compute stability per release (this replaces Sentry's sentry-cli releases new / finalize / deploys flow). Re-wire integrations manually in the Bugsnag dashboard — Slack, Jira, GitHub, PagerDuty all need to be reconnected with fresh OAuth/webhooks. Recreate alert rules (notification settings / data filters in Bugsnag) by hand using the semantic export from the Sentry side. Note: Bugsnag's API reference now lives on the SmartBear developer portal at developer.smartbear.com/bugsnag; older docs.bugsnag.com/api/ links redirect there.",
   "concept_mapping": [
-    {
-      "source": "Project",
-      "target": "Project"
-    },
-    {
-      "source": "Issue / Event",
-      "target": "Error / Event"
-    },
-    {
-      "source": "Environment",
-      "target": "Release stage"
-    },
-    {
-      "source": "Release",
-      "target": "App version / Release"
-    },
-    {
-      "source": "Alert rule",
-      "target": "Notification rule"
-    },
-    {
-      "source": "Team / Member",
-      "target": "Team / Member"
-    }
+    {"sentry": "Issue", "bugsnag": "Error", "notes": "Conceptually the same — a deduped group of events. Grouping algorithms differ, so the same crash may split or merge differently."},
+    {"sentry": "Event", "bugsnag": "Event", "notes": "Individual occurrence with stack trace, breadcrumbs, context. 1:1 mapping."},
+    {"sentry": "Release", "bugsnag": "Release / App Version", "notes": "Both track per-release health. Bugsnag uses appVersion + releaseStage; Sentry uses release + environment."},
+    {"sentry": "Environment", "bugsnag": "Release Stage", "notes": "production / staging / development. Same idea, different field name in SDK config."},
+    {"sentry": "DSN", "bugsnag": "API Key (notifier key)", "notes": "Per-project credential dropped into SDK init."},
+    {"sentry": "Performance / Tracing", "bugsnag": "Performance Monitoring", "notes": "Bugsnag has a separate Performance product; feature parity is partial — distributed-tracing depth in Sentry is generally deeper. Validate before migrating tracing workloads."},
+    {"sentry": "Session Replay", "bugsnag": "(no direct equivalent)", "notes": "Bugsnag does not offer DOM replay. If replays are load-bearing, keep Sentry or pair Bugsnag with a dedicated replay tool."},
+    {"sentry": "Profiling", "bugsnag": "(no direct equivalent at parity)", "notes": "Sentry's continuous profiling has no straight 1:1 in Bugsnag. Treat as a feature loss."},
+    {"sentry": "Release Health (crash-free users/sessions)", "bugsnag": "Stability Score", "notes": "Same intent — percentage of users/sessions without a crash, scoped to a release."},
+    {"sentry": "Alert Rule", "bugsnag": "Notification / Data Filter", "notes": "Recreate manually. Conditions and thresholds map roughly, but routing is per-integration."},
+    {"sentry": "Inbound Filter / Ignore Errors", "bugsnag": "Discard rules / onError callback", "notes": "Bugsnag does most filtering in-SDK via onError; server-side discard rules also exist."},
+    {"sentry": "Source Map Upload (sentry-cli sourcemaps upload)", "bugsnag": "BugSnag CLI source-map upload", "notes": "Different CLI, different flags, same intent. The legacy @bugsnag/source-maps npm package is deprecated per Bugsnag's docs."}
   ],
-  "effort": "2-6 weeks",
+  "effort": "1-4 weeks for a small-to-medium estate (5-15 projects, single platform). Add 1-2 weeks per additional platform (mobile + web + backend) and another week if you're standing up source-map CI for the first time. Most of the time goes into SDK swap across services, source-map pipeline rewiring, and recreating alert routing — not data export.",
   "gotchas": [
-    "Issue grouping differs; same crash may produce different fingerprints, inflating issue counts after switch",
-    "Source map and symbol upload must be re-wired in CI; missing artifacts produce unreadable stack traces",
-    "Performance/tracing and session replay features are not 1:1; confirm parity before cutover",
-    "Annual commitments on either side may prevent immediate savings; align with renewal",
-    "Alert rule semantics differ; rebuild rules and verify with synthetic events",
-    "User identification and PII scrubbing rules must be re-implemented per SDK"
+    "Sample-rate semantics differ: Sentry's tracesSampleRate / replaysSampleRate have no direct Bugsnag analog. For errors, Bugsnag samples differently (often 100% of errors, with sessions sampled separately) — re-think your sampling strategy rather than copying numbers.",
+    "Source maps must be re-uploaded for every release to Bugsnag — you cannot reuse the Sentry-side artifacts. Plan a CI change, not a one-time copy.",
+    "No 1:1 for Sentry Replays or continuous Profiling. If your team relies on these, the migration is a feature regression unless paired with another vendor.",
+    "Grouping/dedup algorithm differences mean issue counts won't match between vendors during the parallel-run period. Don't panic-revert based on raw counts; compare stability score and unique-user impact instead.",
+    "Integrations don't migrate — Slack, Jira, GitHub, PagerDuty all require fresh OAuth/install in Bugsnag. Capture channel names and routing rules from Sentry before you turn it off.",
+    "Alert-rule semantics differ. Sentry's percent-change-over-time and frequency-window conditions don't all have exact Bugsnag equivalents. Recreate by intent, not by literal threshold.",
+    "Historical issue data effectively does not migrate. You can pull metadata via Bugsnag's Data Access API later, but the UI experience is built around live ingestion. Treat Sentry data as archival and accept a clean-slate start in Bugsnag.",
+    "Bugsnag's API documentation now lives on the SmartBear developer portal (developer.smartbear.com/bugsnag) — older bookmarks under docs.bugsnag.com/api/ redirect there. Update any internal runbooks accordingly."
   ],
   "email": {
-    "subject": "Plan to wind down Sentry over the next two weeks",
-    "body": "Hi team,\n\nWe're moving our error monitoring to Bugsnag over the next 14 days and will not be renewing our Sentry plan. We're keeping the account active through the end of the current term so we can finish exporting projects, alert rules, integrations, and recent issue metadata via the API.\n\nWe plan to dual-report from both SDKs for the first part of that window, then cut over and disable the Sentry init. Could you confirm there is no auto-renewal and share a contact for any final billing questions? We've appreciated the product and the docs.\n\nThanks,\nYour customer"
+    "subject": "Sentry -> Bugsnag migration plan (1-4 weeks, parallel-run required)",
+    "body": "Team,\n\nQuick plan for the Sentry -> Bugsnag swap.\n\nWhat changes:\n- SDKs: replace @sentry/* with @bugsnag/* across web, backend, and mobile. DSN -> API key per project.\n- Source maps: rewire CI to use the BugSnag CLI (the @bugsnag/source-maps npm package is deprecated). Maps must be re-uploaded for every release; we cannot reuse Sentry artifacts.\n- Releases: send a build notification on every deploy so we get a per-release stability score (Bugsnag's equivalent of Sentry's release-health view).\n- Integrations: Slack, Jira, GitHub, PagerDuty all have to be reconnected manually in Bugsnag — OAuth tokens don't migrate.\n- Alert rules: recreate by intent. Bugsnag's notification/discard model doesn't 1:1 map to Sentry's alert rules.\n\nWhat we lose:\n- Session Replay: no direct equivalent in Bugsnag. If we need replays, we'd pair Bugsnag with a separate tool.\n- Continuous Profiling: same — no parity. Plan accordingly.\n- Distributed tracing depth: Bugsnag Performance exists but is narrower than Sentry tracing.\n\nApproach:\n1. Stand up Bugsnag projects mirroring our Sentry layout, capture API keys.\n2. Add Bugsnag SDK alongside Sentry in one service first, dual-report for one release cycle.\n3. Validate stability score, grouping behavior, and alert routing on real traffic.\n4. Roll the SDK swap to remaining services, decommission Sentry once the parallel-run looks clean.\n\nEffort: 1-4 weeks depending on platform count and CI maturity. Most of the time is source-map pipeline + re-wiring alerts, not data export.\n\nGotchas to flag up front: issue counts will differ between vendors during parallel run (different grouping algorithms), and historical Sentry data is effectively archival — Bugsnag starts clean.\n\nLet me know if you want to walk through the per-service SDK diff before we kick off."
   }
 }

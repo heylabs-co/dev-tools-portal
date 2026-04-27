@@ -1,0 +1,61 @@
+{
+  "source": {"slug": "auth0", "name": "Auth0"},
+  "target": {"slug": "supabase", "name": "Supabase"},
+  "generated_at": "2026-04-26T00:00:00Z",
+  "quality": "hand-crafted",
+  "tldr": "Export Auth0 users via the Management API bulk-export job (NDJSON), then import into Supabase Auth using auth.admin.createUser with the password_hash field for users whose bcrypt hashes you can extract — and fall back to a trickle migration (or forced password reset) for users whose hashes Auth0 won't release on your plan.",
+  "why_switch": [
+    "Auth0's MAU pricing scales steeply once you exit the free tier — Supabase Auth is bundled into a single $25/mo Pro plan with 100K MAU included on most current pricing pages (verify current tiers)",
+    "Supabase ships Auth, Postgres, Storage, Realtime and Edge Functions in one BaaS — replaces Auth0 + a separate database in your stack",
+    "Open-source Postgres + GoTrue means lower lock-in: you can self-host the same stack or pg_dump your way out at any time",
+    "Row Level Security tied directly to auth.uid() removes the round-trip to Auth0 for permission checks — policies live next to the data",
+    "Native JWT with a Postgres-aware claims set works directly with PostgREST, so the same token authenticates the API call and authorizes the row read",
+    "First-class social providers, magic links, MFA (TOTP), and SSO (paid) cover most Auth0 use cases without per-feature add-on pricing",
+    "Better fit for solo devs and small teams who want to stop paying enterprise auth prices for a side project or early-stage SaaS"
+  ],
+  "what_to_export": [
+    "User identifiers (user_id, email, email_verified, phone_number, phone_verified)",
+    "Profile data (name, given_name, family_name, nickname, picture, locale)",
+    "Password hashes — bcrypt format, only available if your Auth0 plan/agreement permits hash export (gated; confirm with Auth0 support)",
+    "user_metadata (per-field, since CSV can't dump the whole object — JSON/NDJSON export preserves it)",
+    "app_metadata (roles, permissions, feature flags you store here)",
+    "Identities array (linked social/enterprise providers per user — Google, GitHub, SAML, etc.)",
+    "MFA enrollments (TOTP secrets, recovery codes, WebAuthn — note: TOTP secrets are not portable on most plans)",
+    "Created_at / updated_at / last_login / logins_count timestamps",
+    "Blocked status and login-blocked reasons",
+    "Custom database connection scripts (Login, Get User, Change Password, Verify) if you used a custom DB connection",
+    "Rules / Actions / Hooks source code (for re-implementation as Supabase Edge Functions or DB triggers)",
+    "Tenant settings: allowed callback URLs, logout URLs, CORS origins, branding"
+  ],
+  "export_method": "Auth0's official path is the Management API bulk export job: POST https://YOUR_TENANT.auth0.com/api/v2/jobs/users-exports with a Management API token holding the read:users scope. The body lets you specify connection_id (to scope to a single DB connection), format (json or csv), limit, and a fields array — note CSV caps at 30 fields and cannot dump app_metadata or user_metadata as a whole, so use JSON/NDJSON if you have any meaningful metadata. Auth0 returns a job_id; poll GET /api/v2/jobs/{id} until status is completed, then download the result from the signed location URL (valid for 60 seconds — re-poll if it expires). Job artifacts are auto-deleted after 24 hours, so move the file off Auth0 immediately. The output file is NDJSON (one JSON object per line) despite the json format flag.\n\nPassword hashes are the hard part. Auth0 does NOT include password hashes in the standard bulk export; releasing them requires a separate request to Auth0 support and is gated by your plan / custom agreement (the public docs say availability 'depends on your specific login implementation and your Auth0 plan' — verify with your account manager before promising users a seamless migration). When granted, hashes come as bcrypt ($2a$ / $2b$). If you cannot get the hashes, you have two fallbacks: (1) run a trickle/automatic migration where Auth0's custom DB connection forwards plaintext credentials to your endpoint on first login so you can re-hash and store them in Supabase, or (2) force-reset every user via Supabase magic-link or password-reset email after import.\n\nFor MFA enrollments, identities (social/SAML links), and Rules/Actions code, plan to re-create rather than transfer: TOTP shared secrets are typically not exported, social identity links re-establish on first OAuth login if you reuse the same provider client IDs and emails match, and Rules/Actions become Postgres triggers or Edge Functions on the Supabase side.",
+  "import_method": "On the Supabase side, the canonical import path is the Admin API: supabase.auth.admin.createUser({ email, password_hash, email_confirm: true, user_metadata, app_metadata }) called from a server with the service_role key (NEVER from the browser). The password_hash field accepts bcrypt hashes directly, so users whose Auth0 hashes you obtained log in with their existing password on day one. Set email_confirm: true for already-verified Auth0 users so Supabase doesn't re-send a confirmation email. user_metadata and app_metadata map cleanly — Supabase stores both on auth.users and exposes them in the JWT.\n\nFor users without portable hashes, create them with createUser using only email and email_confirm: true (no password), then trigger supabase.auth.admin.generateLink({ type: 'recovery', email }) or send a magic link so they set a new password on first visit. Whichever path you take, batch the import: createUser is rate-limited and synchronous, so a typical pattern is a Node script that reads the NDJSON line-by-line, applies a small concurrency limit (e.g. p-limit at 5–10), and logs failures for retry. For very large tenants, consider seeding directly into the auth.users table via SQL (Supabase exposes the GoTrue schema), but this is unsupported for end users — prefer the Admin API unless you've coordinated with Supabase support.\n\nAfter users land, three pieces still need wiring: (1) write Row Level Security policies referencing auth.uid() to replace whatever permission logic lived in Auth0 Rules/Actions; (2) reconfigure your social/enterprise identity providers in the Supabase dashboard (Auth → Providers) using the same OAuth client IDs where possible, so existing users re-link silently on next login; (3) swap your app's JWT verification — Supabase issues its own HS256 (or ES256, depending on project) tokens signed with the project JWT secret, so any backend that was verifying Auth0 RS256 tokens against Auth0's JWKS needs to point at Supabase's secret/JWKS instead.",
+  "concept_mapping": [
+    {"source": "Auth0 Universal Login", "target": "Supabase Auth UI (@supabase/auth-ui-react) or hand-rolled forms calling signInWithPassword / signInWithOtp", "note": "Supabase doesn't host a hosted login page — you render auth UI inside your app"},
+    {"source": "Auth0 Database Connection", "target": "Supabase auth.users (GoTrue-managed)", "note": "One built-in user store per Supabase project; no concept of multiple parallel DB connections"},
+    {"source": "Auth0 Social Connections (Google, GitHub, etc.)", "target": "Supabase Auth Providers (configured per project in dashboard)", "note": "Reuse the same OAuth client IDs/secrets where allowed so existing users re-link on first OAuth login"},
+    {"source": "Auth0 Enterprise Connections (SAML, OIDC)", "target": "Supabase SSO (SAML 2.0)", "note": "SSO is a paid feature on Supabase — confirm pricing on supabase.com/pricing before committing"},
+    {"source": "Auth0 Rules / Actions / Hooks", "target": "Postgres triggers, RLS policies, or Supabase Edge Functions", "note": "Pre-/post-login logic moves to Postgres for data-shape concerns and to Edge Functions for external calls"},
+    {"source": "Auth0 Roles & Permissions (RBAC)", "target": "Custom role column on a profiles table + RLS policies", "note": "Supabase has no built-in RBAC UI; convention is a public.profiles table joined to auth.users with a role enum, gated by RLS"},
+    {"source": "Auth0 MFA (TOTP, SMS, WebAuthn)", "target": "Supabase MFA factors (TOTP)", "note": "Supabase MFA covers TOTP; SMS and WebAuthn coverage is more limited — verify current docs if those are required"},
+    {"source": "Auth0 user_metadata", "target": "auth.users.raw_user_meta_data (JSONB)", "note": "Editable by the user via updateUser; mirrored into the JWT under user_metadata"},
+    {"source": "Auth0 app_metadata", "target": "auth.users.raw_app_meta_data (JSONB)", "note": "Service-role-only writes; safe place for roles/permissions/feature flags"},
+    {"source": "Auth0 JWT (RS256, JWKS at /.well-known/jwks.json)", "target": "Supabase JWT (HS256 by default, signed with project JWT secret)", "note": "Verify with the Supabase project secret on backends; rotate via the dashboard. Some projects can opt into asymmetric keys — check current docs"},
+    {"source": "Auth0 Management API", "target": "Supabase Admin API (auth.admin.*) + direct Postgres access", "note": "Admin actions need the service_role key; never ship it to a client"},
+    {"source": "Auth0 Tenant Logs / Log Streams", "target": "Supabase Auth logs in the dashboard + log drains (paid)", "note": "Coverage is decent but less granular than Auth0 — budget for log forwarding if you need SIEM ingestion"}
+  ],
+  "effort": "2–6 weeks for a small SaaS (under ~50K users, mostly password + a couple of social providers). Add 2–4 weeks if you need password hashes released by Auth0 support, are migrating SAML SSO customers, or have non-trivial Rules/Actions logic to port to RLS + Edge Functions.",
+  "gotchas": [
+    "Password hash export is gated — confirm in writing with Auth0 support BEFORE you announce a migration date; otherwise every user gets a forced password reset",
+    "Auth0 export download URLs expire after 60 seconds and the whole job is deleted after 24 hours — script the download, don't click it manually",
+    "CSV export caps at 30 fields and can't dump the full app_metadata/user_metadata objects — always use JSON/NDJSON for migrations",
+    "Supabase JWT defaults to HS256 with a shared secret, while Auth0 uses RS256 with public JWKS — every backend that validates tokens needs new verification code, not just a new issuer URL",
+    "MFA TOTP secrets are not portable in practice — plan to re-enroll users post-migration and communicate this clearly",
+    "Social identity links re-establish silently only if email matches AND you reuse the same OAuth client; otherwise users see 'account already exists' errors and you'll need a manual link flow",
+    "auth.admin.createUser is rate-limited and not designed for millions of rows in one shot — batch with concurrency limits and exponential backoff, or coordinate with Supabase support for very large imports",
+    "Auth0 Rules/Actions often mutate the ID token claims — Supabase JWT claims are more constrained, so any frontend reading custom claims needs to be reworked to read from a profiles table or app_metadata"
+  ],
+  "email": {
+    "subject": "We're moving authentication to Supabase",
+    "body": "Hi {{first_name}},\n\nWe're migrating our login system from Auth0 to Supabase over the next few weeks. The short version: nothing changes for you, your account and history move with you, and the login page will look slightly different the next time you sign in.\n\nWhat to expect:\n• Your email address and profile carry over automatically.\n• {{password_path}} — either: 'Your existing password keeps working — just log in as usual.' OR: 'For security, we'll ask you to set a new password on your next visit. We'll send a one-time link to this email.'\n• Social logins (Google, GitHub, etc.) re-link automatically on your next sign-in.\n• If you use two-factor auth, you'll be asked to re-enroll your authenticator app once after the move.\n\nNo action needed today. If anything looks off after the cutover, reply to this email and we'll sort it within the day.\n\nThanks for sticking with us,\n{{team_name}}"
+  }
+}

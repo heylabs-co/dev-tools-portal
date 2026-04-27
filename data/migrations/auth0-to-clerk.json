@@ -7,69 +7,120 @@
     "slug": "clerk",
     "name": "Clerk"
   },
-  "generated_at": "2026-04-25T00:00:00Z",
-  "tldr": "Auth0 is an enterprise CIAM with deep SAML/SCIM and rules; Clerk is a developer-first auth with prebuilt React/Next.js components and a generous free tier. Migration is feasible but requires rebuilding your sign-in UI and re-issuing sessions.",
+  "generated_at": "2026-04-27T09:31:47Z",
+  "quality": "hand-crafted",
+  "tldr": "Auth0 ships a job-based bulk export at POST /api/v2/jobs/users-exports but withholds password hashes from the API for security reasons, so a hash transfer requires a paid-tier support ticket; once you have the JSON dump, Clerk ingests it through POST https://api.clerk.com/v1/users with a password_hasher field (bcrypt is supported, and Clerk transparently re-hashes on first login).",
   "why_switch": [
-    "Drop MAU-based peak billing exposure",
-    "Use prebuilt React components for sign-in",
-    "Generous free tier up to 50K MAU",
-    "Faster setup for Next.js / React stacks",
-    "Simpler organization and user management UX"
+    "Auth0 bills on peak MAU within the cycle (high-water-mark) and gets expensive fast at scale; Clerk's free tier covers up to 50,000 MAU before any paid plan kicks in (verify against current Clerk pricing page).",
+    "Clerk ships drop-in React/Next.js components (SignIn, SignUp, UserButton, OrganizationSwitcher) so you delete most of your custom auth UI instead of styling Universal Login via the Auth0 New Universal Login templates.",
+    "Clerk exposes Organizations, roles, and invitations as first-class primitives in the free/Pro plans; on Auth0 the equivalent (Organizations + RBAC + SCIM) sits behind higher tiers and Actions glue.",
+    "Auth0's legacy Rules and Hooks are deprecated in favor of Actions; if you are already facing a Rules-to-Actions rewrite, switching to Clerk webhooks/middleware costs roughly the same engineering hours and removes the vendor.",
+    "Clerk's Backend SDK and Next.js middleware are tighter for App Router than @auth0/nextjs-auth0, which removes a class of session-edge bugs (verify against current SDK changelogs).",
+    "Auth0 password hash export requires opening a support ticket and is explicitly not available on the Free subscription tier per Auth0 docs; if you are already on a paid Auth0 tier, there is no extra cost to request the hashes during cancellation.",
+    "Clerk's developer-experience score (prebuilt UI + Next.js focus) is materially higher for React-only stacks; Auth0 remains stronger for polyglot/enterprise SAML+SCIM workloads, so this switch is a poor fit if you are heavily SAML-bound."
   ],
   "what_to_export": [
-    "Users (email, IDs, metadata)",
-    "Password hashes if exportable",
-    "Social/identity provider links",
-    "MFA enrollment data",
-    "Roles and permissions",
-    "Tenants/organizations",
-    "Application/client configurations",
-    "Custom claims and rules logic",
-    "Connections (SAML, OIDC) settings"
+    "Users: user_id, email, email_verified, phone_number, phone_verified, username, name, nickname, picture, created_at, updated_at, last_login, logins_count, blocked",
+    "Password hashes (bcrypt) — only obtainable via Auth0 support ticket on a paid subscription; not available through any Management API endpoint",
+    "user_metadata and app_metadata (Auth0 splits writable user-controlled vs. read-only app-controlled metadata; both map to Clerk's public/private/unsafe metadata buckets)",
+    "Identities array (federated provider links: google-oauth2, github, apple, windowslive, plus any Enterprise IdP user_ids)",
+    "MFA enrollment data: enrolled factors (otp, sms, push, webauthn-platform, webauthn-roaming, recovery-code) per user — recovery codes do not roundtrip and must be regenerated",
+    "Roles and Permissions (from Auth0 RBAC) — export via GET /api/v2/roles, GET /api/v2/roles/{id}/permissions, GET /api/v2/users/{id}/roles",
+    "Organizations and memberships — export via GET /api/v2/organizations, GET /api/v2/organizations/{id}/members, GET /api/v2/organizations/{id}/invitations",
+    "Connections (Database, Social, Enterprise SAML/OIDC) configuration — export via GET /api/v2/connections; secrets (client_secret, signing certs) must be re-pasted because they are write-only",
+    "Applications/Clients — export via GET /api/v2/clients (note: callback URLs, allowed origins, grant types must be re-created in Clerk)",
+    "Actions, Rules (deprecated), Hooks (deprecated), Triggers — export source code via GET /api/v2/actions/actions; you will rewrite these as Clerk webhooks (svix) or Next.js middleware",
+    "Tenant settings: custom domain, branding, email templates, password policy, anomaly-detection thresholds",
+    "Refresh tokens and active sessions — these CANNOT be migrated; all sessions must be invalidated at cutover"
   ],
-  "export_method": "In Auth0, use the Management API or the Import/Export tooling to extract users with their metadata, identities, and (where supported) password hashes. Export application client configurations, connection settings (SAML, OIDC, social), roles and permissions, and any organization/tenant structures. Capture rules, hooks, or actions as code so logic can be reimplemented. Save a copy of MFA enrollment data so users can be re-enrolled or trusted on first login. Keep all exports in encrypted storage during the migration window.",
-  "import_method": "Create a Clerk application and configure your social providers, password policy, and MFA settings to match your current setup. Import users via Clerk's user import flow, supplying email, identifiers, metadata, and password hashes where the hash format is supported; otherwise plan a forced password reset on first login. Recreate organizations, roles, and permissions in Clerk. Replace your application code with Clerk's SDK and prebuilt components (SignIn, UserButton, etc.) for React/Next.js, and update API verification to use Clerk session tokens. Run a parallel-auth period in staging to validate migrated accounts before cutover.",
+  "export_method": "Bulk user export is a job, not a synchronous endpoint. Authenticate against Auth0 Management API v2 with a token that has the read:users scope, then POST to https://{yourDomain}/api/v2/jobs/users-exports with a JSON body specifying connection_id, format ('csv' or 'json'/NDJSON), limit, and the explicit fields array (Auth0 caps this at 30 fields and requires you to enumerate metadata sub-paths individually rather than dumping the whole object). The response returns a job id; poll GET /api/v2/jobs/{id} until status is 'completed', then download from the signed URL (the link is valid for 60 seconds; the underlying job and data are auto-deleted 24 hours after creation, so move the file to your own encrypted storage immediately).\n\nPassword hashes are deliberately NOT included in any export endpoint. Per Auth0's customer-support documentation, password hashes are 'not available through the API (for security reasons)' and the export 'is not available for our Free subscription tier' — you must open a ticket at https://support.auth0.com from a paid tenant requesting the bcrypt hash export. Auth0 explicitly states they 'are unable to accept or guarantee requests for exports at a specific time and date,' so file the ticket on day 1 of your migration and treat the delivery date as variable. The only API alternative is to have been running a Custom Database Connection from the start, in which case Auth0 never stored the hashes and you already control them.\n\nFor everything else (roles, permissions, connections, organizations, applications, actions source), call the corresponding Management API GET endpoints and persist the JSON locally. The legacy User Import/Export Extension is being deprecated in September 2025; the same features now live in the Auth0 Dashboard under User Management → Users → Export Users. Consult current Auth0 docs to confirm which endpoints have changed since this guide's generated_at date.",
+  "import_method": "Clerk does not yet ship a one-shot CLI for Auth0; the official path is its open-source migration tool plus the Backend API. Provision a Clerk application, configure social providers, password policy, and MFA factors to match your Auth0 tenant, then loop your exported NDJSON through POST https://api.clerk.com/v1/users (the CreateUser endpoint, also exposed as clerk.users.createUser() in @clerk/backend). For each user, supply email_address[], phone_number[], external_id (set this to the Auth0 user_id so legacy JWTs in your DB still resolve), public_metadata, private_metadata, password_digest, and password_hasher. Auth0 stores passwords as bcrypt and Clerk's Backend API explicitly lists bcrypt as a supported password_hasher value, so the digests transfer directly; Clerk additionally documents that it will 'transparently upgrade your users' password hashes to the more secure Bcrypt hashing algorithm' on first login if you supply a different supported algorithm. For users with no password (social-only), set skip_password_requirement: true and recreate the OAuth identity via Clerk's external account API.\n\nThe migration script must respect rate limits — Clerk returns HTTP 429 when exceeded — so add retry-with-backoff around every createUser call. Recreate Auth0 Organizations as Clerk Organizations via POST /v1/organizations, then create memberships with POST /v1/organizations/{organization_id}/memberships, mapping Auth0 roles onto Clerk's organization roles (admin/basic_member by default; custom roles require Clerk Pro+ — verify against current pricing). Social-connection client IDs and secrets must be re-pasted into Clerk's Dashboard because Auth0 never returns the secret over the API; you also need to add Clerk's OAuth callback URLs (e.g. https://{your-clerk-frontend-api}/v1/oauth_callback) to each provider's app console (Google, GitHub, Apple, etc.) before cutover.\n\nReplace @auth0/nextjs-auth0 with @clerk/nextjs in your application: swap UserProvider for ClerkProvider, useUser/withPageAuthRequired for Clerk's useUser/auth(), and any /api/auth/[...auth0] route handler for Clerk middleware. Verify backend JWT validation uses Clerk's JWKS (https://{frontend-api}/.well-known/jwks.json) instead of Auth0's. Run a staging parallel-auth window where both stacks are live, then flip the production env vars and invalidate Auth0 sessions. Consult current Clerk docs for any breaking changes since this guide's generated_at.",
   "concept_mapping": [
     {
       "source": "Tenant",
-      "target": "Clerk application instance"
+      "target": "Clerk application instance",
+      "note": "One Clerk instance per Auth0 tenant; environments (dev/staging/prod) are separate Clerk instances, not sub-tenants."
     },
     {
-      "source": "Application/client",
-      "target": "Clerk frontend/backend keys"
+      "source": "Application / Client",
+      "target": "Clerk Frontend API + Backend API key pair",
+      "note": "Auth0 client_id/client_secret pairs collapse into Clerk's Publishable Key + Secret Key per instance. Per-app callback URL lists become Clerk's allowed redirect origins."
     },
     {
-      "source": "Connection (social/OIDC/SAML)",
-      "target": "Clerk social/SSO provider"
+      "source": "Database Connection",
+      "target": "Clerk built-in user store (Email + Password strategy)",
+      "note": "Clerk has no separate Connection abstraction for its own DB; you toggle Email/Username/Phone strategies in the Clerk Dashboard."
     },
     {
-      "source": "Rule/Action/Hook",
-      "target": "Clerk webhook or middleware"
+      "source": "Social Connection (google-oauth2, github, etc.)",
+      "target": "Clerk Social Connection (oauth_google, oauth_github, etc.)",
+      "note": "Clerk uses oauth_<provider> identifiers. You must re-paste each provider's client_id and client_secret because Auth0 never exposes the secret."
     },
     {
-      "source": "Organization",
-      "target": "Clerk Organization"
+      "source": "Enterprise Connection (SAML / OIDC / Active Directory / LDAP)",
+      "target": "Clerk SAML SSO connection (Enterprise plan)",
+      "note": "Clerk SAML is a paid Enterprise feature and supports OIDC + SAML 2.0; LDAP/AD direct connectors do not have a 1:1 equivalent — bridge via a SAML IdP. Verify against current Clerk Enterprise SSO docs."
     },
     {
-      "source": "User metadata",
-      "target": "Clerk public/private metadata"
+      "source": "Rule / Hook (deprecated)",
+      "target": "Clerk Webhook (svix) or Next.js middleware",
+      "note": "Auth0 Rules and Hooks are deprecated; Auth0 Actions are the modern equivalent. Both rewrite as Clerk webhooks (user.created, session.created, etc.) or framework middleware that runs on the auth() call."
     },
     {
-      "source": "MFA factor",
-      "target": "Clerk MFA factor"
+      "source": "Action (post-login, pre-user-registration, M2M)",
+      "target": "Clerk webhook + JWT template",
+      "note": "Pre-registration validation moves to a webhook with verification_status, while custom claims that Actions injected into the access token become Clerk JWT Templates."
+    },
+    {
+      "source": "Universal Login / New Universal Login",
+      "target": "<SignIn /> and <SignUp /> components, or Clerk Account Portal",
+      "note": "No more hosted login page customization via Liquid templates; you embed Clerk's React components directly or use the Account Portal hosted UI."
+    },
+    {
+      "source": "MFA factor (otp, sms, push, webauthn, recovery-code)",
+      "target": "Clerk MFA strategy (totp, phone_code, backup_code, passkey)",
+      "note": "TOTP secrets and WebAuthn credentials roundtrip via the import API; Auth0 'push' (Guardian) does not have a Clerk equivalent and users must re-enroll. Recovery codes regenerate."
+    },
+    {
+      "source": "Role + Permission (Auth0 RBAC)",
+      "target": "Clerk Organization Role + Permission",
+      "note": "Auth0's tenant-level roles map to Clerk Organization roles. Custom roles beyond the default admin/basic_member require Clerk Pro or higher — verify current plan."
+    },
+    {
+      "source": "Organization + Members + Invitations",
+      "target": "Clerk Organization + Memberships + Invitations",
+      "note": "Direct 1:1 mapping; Clerk supports per-org metadata and slugs. Invitations migrate as new Clerk invitations (existing Auth0 invitation tokens are not portable)."
+    },
+    {
+      "source": "Machine-to-Machine (M2M) Application",
+      "target": "Clerk M2M tokens (beta) or short-lived backend keys",
+      "note": "Clerk's M2M story is less mature than Auth0's client_credentials grant; for service-to-service auth, many teams keep Auth0 just for M2M or switch to a dedicated provider. Verify current Clerk M2M support."
+    },
+    {
+      "source": "user_metadata / app_metadata",
+      "target": "publicMetadata / privateMetadata / unsafeMetadata",
+      "note": "Auth0 user_metadata (user-writable) ≈ unsafeMetadata; app_metadata (server-only) ≈ privateMetadata. publicMetadata is server-write/client-read with no Auth0 equivalent."
+    },
+    {
+      "source": "Custom Domain (auth.example.com)",
+      "target": "Clerk Custom Domain (clerk.example.com / accounts.example.com)",
+      "note": "Both require CNAME + TXT verification. DNS cutover invalidates all in-flight OAuth flows, so schedule during low traffic."
     }
   ],
-  "effort": "2-6 weeks",
+  "effort": "2-6 weeks for an app with <100K users, standard social login, and no SAML; 6-12 weeks if you have Enterprise SSO, SCIM provisioning, or heavy Actions logic to port.",
   "gotchas": [
-    "Password hashes only migrate if Clerk supports the source hash algorithm; otherwise plan resets.",
-    "Custom Auth0 Rules/Actions logic must be rewritten as webhooks or middleware in Clerk.",
-    "Enterprise SAML/SCIM coverage differs; verify your specific IdPs are supported.",
-    "Existing JWTs must be invalidated and re-issued; plan a session cutover window.",
-    "Tokens, claims, and issuer URLs change, so all relying parties need updated configuration.",
-    "MAU-based pricing still applies on Clerk; model your scale before committing."
+    "Password hash export is gated by Auth0 support ticket and explicitly unavailable on the Free tier — file the ticket on day 1, because Auth0 docs warn they 'are unable to accept or guarantee requests for exports at a specific time and date.' If hashes do not arrive in time, you must force-reset every user.",
+    "Auth0's bulk-export job download URL is valid for only 60 seconds and the job is auto-deleted after 24 hours — script the download, do not click it manually, and persist the NDJSON to your own encrypted storage immediately.",
+    "Auth0 import jobs (the inverse direction, if you ever roll back) cap at 500KB per file via POST /api/v2/jobs/users-imports — irrelevant for the forward migration but worth knowing for your rollback plan.",
+    "Social provider client secrets are write-only in Auth0; you must re-paste them into Clerk's Dashboard AND add Clerk's new redirect URI to each provider's console (Google Cloud OAuth client, GitHub OAuth App, Apple Service ID, etc.) before cutover, or social login breaks.",
+    "Auth0 Rules are deprecated and Hooks were already removed; if your tenant still runs Rules you are doing two migrations at once (Rules→Actions plus Auth0→Clerk). Rewrite directly as Clerk webhooks/middleware to avoid the intermediate step.",
+    "Refresh tokens and active sessions cannot be transferred — every user gets logged out at cutover. Plan a maintenance window or a parallel-auth period where you accept Auth0 tokens for N days while Clerk takes new logins.",
+    "Issuer URL changes from https://{tenant}.auth0.com/ to https://{frontend-api}.clerk.accounts.dev (or your custom domain), so every backend service that validates JWTs needs its JWKS URL, audience, and issuer config updated. Mobile apps with cached OIDC discovery documents need a forced refresh.",
+    "M2M client_credentials grants are first-class on Auth0 but immature on Clerk (M2M is in beta as of 2026 — verify current state). If you have heavy service-to-service traffic, evaluate keeping Auth0 for M2M or moving M2M to a dedicated provider before migrating CIAM.",
+    "Custom domain DNS cutover (auth.example.com → clerk.example.com) breaks any in-flight OAuth round-trips and invalidates browser state for SameSite cookies; do this in a low-traffic window and pre-warm Clerk's TLS cert."
   ],
   "email": {
-    "subject": "Migrating from Auth0 to Clerk over the next 14 days",
-    "body": "Hi Auth0 team,\n\nThank you for supporting our identity stack. To better fit our React/Next.js stack and to avoid peak MAU billing exposure, we are migrating to Clerk and will complete the transition within 14 days.\n\nPlanned timeline:\n- Days 1-4: export users, password hashes, connections, rules, and organizations.\n- Days 5-9: provision the Clerk app, import users, and rebuild rules as webhooks.\n- Days 10-12: parallel-test sign-in, MFA, and SSO in staging.\n- Days 13-14: cut over production and rotate keys.\n\nCould you confirm the exact export endpoints available on our plan and the steps to terminate at the end of our current billing cycle, with confirmation that no further MAU-based charges will apply?\n\nThanks for your help,\nYour customer"
+    "subject": "Auth0 data export request — bulk user export job + password hash export ticket",
+    "body": "Hi Auth0 Support,\n\nWe are migrating off Auth0 within the next 30 days and need to export the full state of our tenant. Please confirm the following and assist where indicated.\n\nTenant: {your-tenant}.auth0.com\nSubscription tier: {your-tier}\nApproximate user count: {N}\n\n1. Bulk user export\nWe will run POST /api/v2/jobs/users-exports against our Management API to pull users in NDJSON, including user_id, email, email_verified, phone_number, username, name, picture, created_at, updated_at, last_login, logins_count, blocked, identities, app_metadata, and user_metadata. Please confirm there are no per-tenant rate limits or field restrictions on our plan that we should be aware of.\n\n2. Password hash export\nPer Auth0 docs, password hashes are not available through the Management API and require a support ticket. This is that ticket. Please export the bcrypt password hashes for all users in our Database connection {connection-name} and deliver them via your standard secure-transfer mechanism. We understand timing cannot be guaranteed; please give us your current best-estimate ETA so we can sequence our cutover.\n\n3. Configuration export\nWe will pull connections, clients, roles, permissions, organizations, and Actions source via the Management API. Please flag anything on our plan that is NOT retrievable via /api/v2 so we can collect it manually from the Dashboard.\n\n4. Subscription termination\nOnce the migration is complete (target date: {date}), please confirm the procedure to terminate at the end of the current billing cycle and confirm that no further MAU charges will accrue after termination. Our tenant will remain live during the parallel-auth window; please do not auto-suspend.\n\nThanks,\n{your name}\n{your title}, {your company}"
   }
 }

@@ -237,8 +237,14 @@ const timeOptions = [
 
     function formatTime(iso) {
       if (!iso) return '';
-      const s = iso.includes('T') ? iso : iso.replace(' ', 'T') + 'Z';
-      const d = new Date(s);
+      // Try native parse first — JS handles Twitter's "Sat Apr 25 02:05:21 +0000 2026"
+      // and ISO formats out of the box. Only fall back to space→T munging for
+      // SQLite-style "2026-04-27 08:49:03" strings that lack the T separator.
+      let d = new Date(iso);
+      if (Number.isNaN(d.getTime())) {
+        const s = iso.includes('T') ? iso : iso.replace(' ', 'T') + 'Z';
+        d = new Date(s);
+      }
       if (Number.isNaN(d.getTime())) return '';
       const diff = Date.now() - d.getTime();
       const mins = Math.round(diff / 60000);
@@ -253,8 +259,11 @@ const timeOptions = [
 
     function toDate(iso) {
       if (!iso) return 0;
-      const s = iso.includes('T') ? iso : iso.replace(' ', 'T') + 'Z';
-      const d = new Date(s);
+      let d = new Date(iso);
+      if (Number.isNaN(d.getTime())) {
+        const s = iso.includes('T') ? iso : iso.replace(' ', 'T') + 'Z';
+        d = new Date(s);
+      }
       return Number.isNaN(d.getTime()) ? 0 : d.getTime();
     }
 

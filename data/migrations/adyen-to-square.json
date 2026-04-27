@@ -7,56 +7,61 @@
     "slug": "square",
     "name": "Square"
   },
-  "generated_at": "2026-04-25T00:00:00Z",
-  "tldr": "Adyen and Square are both PSPs but Square is SMB-focused with strong omnichannel POS, online checkout, and invoicing. The migration is a vault transfer plus a rewrite against Square's APIs, and is best suited to teams whose payment volume and feature needs fit Square's SMB profile.",
+  "generated_at": "2026-04-26T12:05:00Z",
+  "tldr": "Adyen and Square are both PSPs but Square is SMB-focused with strong omnichannel POS, online checkout, and invoicing. The migration is a PCI-compliant vault transfer plus a rewrite against Square's APIs, and is best suited to teams whose payment volume and feature needs fit Square's SMB profile.",
   "why_switch": [
-    "Simpler self-serve onboarding for SMBs",
-    "Public transaction-rate pricing",
-    "Strong in-store POS and reader hardware",
-    "Invoicing and online checkout in one platform",
-    "Predictable subscription tier from $30/mo"
+    "Simpler self-serve onboarding for SMBs without enterprise sales cycles",
+    "Public, transaction-rate pricing that is easier to model than negotiated interchange++",
+    "Strong in-store POS hardware and reader ecosystem if omnichannel matters",
+    "Integrated invoicing and online checkout in one platform",
+    "Tighter fit for SMB operational needs — verify current plans and fees on the target's official pricing page"
   ],
   "what_to_export": [
-    "Tokenized card vault (PCI-compliant transfer)",
+    "Tokenized card vault (handled via PCI-compliant transfer, not client export)",
     "Customer payment methods and recurring agreements",
-    "Webhook endpoints and HMAC keys",
+    "Webhook endpoints and HMAC signing keys",
     "Settlement and reconciliation reports",
     "Refund and dispute history",
-    "Merchant account / store hierarchy",
+    "Merchant account and store / location hierarchy",
     "Catalog or product references tied to payments",
-    "API credentials and roles"
+    "API credentials and role assignments"
   ],
-  "export_method": "Coordinate a PCI-DSS-compliant vault transfer between Adyen and Square via the standard PSP-to-PSP / network-token process; this is contractual and not a client-side data export. In parallel, export shopper references, recurring agreements, refund/dispute history, and settlement reports from Adyen using its reporting tools. Save webhook configurations and signing keys. Capture the Adyen merchant account and store hierarchy because Square models multi-location setups differently (locations within a Square account). Keep finance reports as your audit trail.",
-  "import_method": "Onboard a Square account, complete KYC, and set up locations matching your Adyen store structure. Initiate the card vault transfer with both PSPs. Re-integrate against Square's Payments API (Web Payments SDK on the client, server SDKs for charges and refunds), including 3DS where needed. Re-implement webhook handlers against Square's event format and signature verification. If you use Square for in-person payments, integrate readers and the Terminal API. Test in sandbox, run a low-traffic canary, then ramp. Keep Adyen for in-flight disputes and refunds against pre-migration charges.",
+  "export_method": "Coordinate a PCI-DSS-compliant vault transfer between Adyen and Square via the standard PSP-to-PSP / network-token process; this is contractual and cannot be done as a client-side data export. In parallel, export shopper references, recurring agreements, refund and dispute history, and settlement reports from Adyen using its reporting tools. Save webhook configurations and signing keys. Capture the Adyen merchant account and store hierarchy, since Square models multi-location setups differently (locations within a Square account). Keep finance reports as your audit trail through cutover.",
+  "import_method": "Onboard a Square account, complete KYC, and set up locations matching your Adyen store structure. Initiate the card vault transfer with both PSPs and your compliance team. Re-integrate against Square's Payments API (Web Payments SDK on the client, server SDKs for charges and refunds), including 3DS / SCA where needed. Re-implement webhook handlers against Square's event format and signature verification. If you take in-person payments, integrate readers and the Terminal API. Verify exact endpoints, supported regions, and current behavior in the Square official docs. Test in sandbox, run a low-traffic canary, then ramp. Keep Adyen active for in-flight disputes and refunds against pre-migration charges.",
   "concept_mapping": [
     {
-      "source": "Shopper reference",
-      "target": "Customer + Card on File"
+      "source": "Adyen shopperReference",
+      "target": "Square Customer + Card on File"
     },
     {
-      "source": "Adyen Dropin / Components",
-      "target": "Web Payments SDK"
+      "source": "Adyen Drop-in / Components",
+      "target": "Square Web Payments SDK"
     },
     {
-      "source": "Stores",
-      "target": "Locations"
+      "source": "Adyen Stores",
+      "target": "Square Locations"
     },
     {
       "source": "Adyen webhooks (HMAC SHA256)",
       "target": "Square webhook signature (different scheme)"
+    },
+    {
+      "source": "Interchange++ negotiated pricing",
+      "target": "Square published rates",
+      "note": "Consult target's official pricing page for current per-transaction rates and any plan fees"
     }
   ],
   "effort": "2-4 months including KYC, vault transfer, and 3DS testing",
   "gotchas": [
-    "Square has narrower country coverage than Adyen; verify availability per market",
+    "Square has narrower country coverage than Adyen; verify availability per market in current docs",
     "Card vault transfer is contractual and PCI-controlled; cannot be client-driven",
-    "Per-country local payment methods may not match Adyen's coverage",
-    "3DS/SCA flows must be re-implemented and tested per region",
-    "Refunds and disputes on pre-migration charges still flow through Adyen",
-    "Square's pricing model and fee structure differ; rerun unit economics"
+    "Per-country local payment methods may not match Adyen's coverage — audit your top markets",
+    "3DS / SCA flows must be re-implemented and tested per region",
+    "Refunds and disputes on pre-migration charges still flow through Adyen until they age out",
+    "Pricing and plan fees differ between Adyen and Square — rerun unit economics against the target's official pricing page rather than assumed numbers"
   ],
   "email": {
     "subject": "Migrating PSP from Adyen to Square — kickoff plan",
-    "body": "Hi team,\n\nWe are evaluating a move from Adyen to Square. The end-to-end project runs longer than two weeks because of KYC and the card-vault transfer, but here is the 14-day kickoff plan.\n\nDays 1-3: confirm Square covers our markets and SMB feature needs, complete onboarding and KYC.\nDays 4-7: kick off PCI-compliant vault transfer with both PSPs and our compliance team.\nDays 8-11: rebuild integration on Web Payments SDK and server SDK in sandbox, including 3DS and webhooks.\nDays 12-14: run sandbox QA across representative scenarios and finalize the canary plan.\n\nFull production cutover will follow once vault transfer and 3DS testing are complete.\n\nThanks,\nYour customer"
+    "body": "Hi team,\n\nWe are evaluating a move from Adyen to Square. The end-to-end project runs longer than two weeks because of KYC and the card-vault transfer, but here is the 14-day kickoff plan.\n\nDays 1-3: confirm Square covers our markets and SMB feature needs, complete onboarding and KYC, and validate current rates on Square's official pricing page.\nDays 4-7: kick off PCI-compliant vault transfer with both PSPs and our compliance team.\nDays 8-11: rebuild integration on Web Payments SDK and server SDK in sandbox, including 3DS and webhooks.\nDays 12-14: run sandbox QA across representative scenarios and finalize the canary plan.\n\nFull production cutover will follow once vault transfer and 3DS testing are complete.\n\nThanks,\nYour customer"
   }
 }

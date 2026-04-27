@@ -7,14 +7,14 @@
     "slug": "kount",
     "name": "Kount"
   },
-  "generated_at": "2026-04-25T00:00:00Z",
+  "generated_at": "2026-04-26T00:00:00Z",
   "tldr": "FingerprintJS to Kount moves you from a focused device identification signal to a full fraud platform with AI scoring and a Mastercard-backed merchant network. You will trade simple signal calls for a deeper integration that issues recommended actions.",
   "why_switch": [
     "Kount provides scoring and recommended actions, not just signals",
-    "Backed by Mastercard's merchant network",
-    "Public entry pricing at $0.07 per event",
+    "Backed by Mastercard's merchant network for shared fraud intelligence",
     "Better fit for payment and CNP fraud workflows",
-    "Free tier for getting started"
+    "Free tier available for getting started; consult Kount's official pricing page for current rates",
+    "Mature case management and rules tooling out of the box"
   ],
   "what_to_export": [
     "Visitor identifier history and lookups",
@@ -50,7 +50,7 @@
   "gotchas": [
     "Kount offers verdicts; if you only had Fingerprint signals + custom rules, you must redesign decisioning",
     "Lock-in increases vs FingerprintJS; integration is deeper",
-    "Pricing tiers beyond entry rate are opaque; negotiate volume",
+    "Pricing structure is not fully transparent — request a quote and verify in current docs before committing",
     "Bot mitigation coverage differs; validate during shadow mode",
     "Visitor identifier reputation does not transfer; backfill where possible",
     "Privacy and data flow review may be needed for the additional payload sent to Kount"

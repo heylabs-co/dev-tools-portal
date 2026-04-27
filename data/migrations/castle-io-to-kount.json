@@ -7,14 +7,14 @@
     "slug": "kount",
     "name": "Kount"
   },
-  "generated_at": "2026-04-25T00:00:00Z",
+  "generated_at": "2026-04-26T00:00:00Z",
   "tldr": "Castle to Kount moves you from a SaaS-focused account abuse API to a Mastercard-backed fraud and identity trust platform with device fingerprinting and AI scoring. Expect a deeper integration and richer transaction-fraud coverage in exchange for higher lock-in.",
   "why_switch": [
     "Kount targets payment and CNP fraud with AI scoring",
-    "Backed by Mastercard's merchant network",
-    "Public entry pricing at $0.07 per event",
-    "Stronger transaction-fraud coverage than Castle",
-    "Free tier for getting started"
+    "Backed by Mastercard's merchant network for richer signals",
+    "Stronger transaction-fraud coverage than Castle's account-abuse focus",
+    "Better fit when checkout/CNP is the primary risk surface, not just login or signup",
+    "Enterprise support and SLAs available for regulated workloads"
   ],
   "what_to_export": [
     "Castle policies and rule definitions",
@@ -49,7 +49,7 @@
   "effort": "4-10 weeks",
   "gotchas": [
     "Lock-in is rated higher with Kount than with Castle; integration tends to be deeper",
-    "Pricing tiers above the entry rate are not public; negotiate volume",
+    "Kount pricing is generally quoted per deployment; consult Kount's official pricing page and your sales contact rather than assuming a fixed published rate",
     "Bot mitigation needs differ from Castle; layer with a WAF if needed",
     "Castle policies do not export; expect to rewrite them",
     "Real-time scoring adds latency on the critical path",

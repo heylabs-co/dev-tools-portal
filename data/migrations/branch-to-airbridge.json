@@ -8,13 +8,13 @@
     "name": "Airbridge"
   },
   "generated_at": "2026-04-26T00:00:00Z",
-  "tldr": "Replace Branch's deep linking and MMP with Airbridge's published-price subscription and similar feature surface.",
+  "tldr": "Replace Branch's deep linking and MMP with Airbridge for a similar feature surface. Validate current commercial terms on each vendor's official pricing page before committing.",
   "why_switch": [
-    "Branch pricing is opaque; Airbridge publishes from $199/month",
-    "Includes 15K attributed installs free for early-stage testing",
-    "Airbridge has lower scored lock-in for attribution data",
+    "Consolidate deep links and attribution in one tool",
+    "Airbridge has lower scored lock-in for attribution data on our scoring model",
     "Comparable deep linking, web-to-app, and SKAN coverage",
-    "Consolidate links + attribution in one tool with clearer cost"
+    "Strong APAC coverage and incrementality features",
+    "Consult Airbridge's official pricing page and verify current free-tier and overage rules in their docs"
   ],
   "what_to_export": [
     "Branch link inventory (long links, short links, link metadata)",
@@ -27,7 +27,7 @@
     "SKAdNetwork conversion value schema"
   ],
   "export_method": "Use Branch's data export and exports API to retrieve link metadata, click/install events, and attribution logs to your warehouse or S3. Confirm the current export options, retention windows, and quotas in Branch's official documentation before relying on a specific endpoint.",
-  "import_method": "Integrate the Airbridge SDK in a new app build, configure your associated domain / app link entitlements for Airbridge link routing, and re-create campaigns, partners, and SKAN conversion values in the Airbridge console. For existing Branch links already in the wild, plan a redirect strategy via your owned domain or maintain Branch links during a transition window. Verify supported features against current Airbridge docs.",
+  "import_method": "Integrate the Airbridge SDK in a new app build, configure your associated domain / app link entitlements for Airbridge link routing, and re-create campaigns, partners, and SKAN conversion values in the Airbridge console. For existing Branch links already in the wild, plan a redirect strategy via your owned domain or maintain Branch links during a transition window. Verify supported features, SDK versions, and partner catalog against current Airbridge docs.",
   "concept_mapping": [
     {
       "source": "Branch links",
@@ -67,10 +67,10 @@
     "Run both SDKs in parallel to reconcile attribution before cutover",
     "Web-to-app journey features may not have direct equivalents",
     "SKAN conversion value mapping must be re-validated end-to-end",
-    "Plan for a long tail of users on old app versions still pinging Branch"
+    "Confirm current commercial terms on both vendors' official pricing pages; do not rely on stale figures"
   ],
   "email": {
     "subject": "Migrating deep linking + MMP from Branch to Airbridge",
-    "body": "Hi team,\n\nWe're planning to migrate from Branch to Airbridge to get clearer pricing and consolidate links + attribution.\n\nPlan:\n1. Export Branch link metadata, clicks, installs, and attribution logs to our warehouse.\n2. Integrate the Airbridge SDK and update associated domains / App Links in the next release.\n3. Define a redirect strategy for live Branch links in ads, emails, and partner placements.\n4. Run both SDKs in parallel and reconcile before fully cutting over.\n\nExpected effort: 2-4 weeks. Existing Branch links will need ongoing handling until users update.\n\nQuestions welcome."
+    "body": "Hi team,\n\nWe're planning to migrate from Branch to Airbridge to consolidate links and attribution under one vendor and reduce lock-in on attribution data. Commercial terms on both sides will be confirmed with sales before sign-off.\n\nPlan:\n1. Export Branch link metadata, clicks, installs, and attribution logs to our warehouse.\n2. Integrate the Airbridge SDK and update associated domains / App Links in the next release.\n3. Define a redirect strategy for live Branch links in ads, emails, and partner placements.\n4. Run both SDKs in parallel and reconcile before fully cutting over.\n\nExpected effort: 2-4 weeks. Existing Branch links will need ongoing handling until users update. Please verify current pricing on each vendor's official page before approvals.\n\nQuestions welcome."
   }
 }

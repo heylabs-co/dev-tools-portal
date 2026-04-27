@@ -7,27 +7,27 @@
     "slug": "bolt-new",
     "name": "Bolt.new"
   },
-  "generated_at": "2026-04-25T00:00:00Z",
+  "generated_at": "2026-04-26T12:10:00Z",
   "tldr": "Aider is a terminal-based AI pair programmer that edits local files via CLI, while Bolt.new is a browser-based AI full-stack environment that scaffolds and runs apps from prompts. Migration means moving from a CLI-driven workflow against your own repo to a hosted in-browser IDE.",
   "why_switch": [
-    "Skip local environment setup entirely",
-    "Run, preview, and deploy from the browser",
-    "Faster scaffolding for new apps",
-    "Built-in full-stack runtime",
-    "Lower barrier for non-CLI teammates"
+    "Skip local environment setup entirely — the runtime lives in the browser",
+    "Run, preview, and deploy from a single hosted workspace",
+    "Faster scaffolding for greenfield apps and prototypes",
+    "Built-in full-stack runtime with package install and preview handled for you",
+    "Lower barrier to entry for teammates who don't live in a terminal"
   ],
   "what_to_export": [
-    "Local repository state and history",
-    "Aider config (model, edit mode, settings)",
-    "Conversation transcripts if retained",
-    "Prompt or instruction templates used",
-    "Any custom scripts wrapping Aider",
-    "Environment variables and API keys",
-    "Branching and CI configuration",
+    "Local repository state and Git history",
+    "Aider configuration (model selection, edit mode, settings)",
+    "Conversation transcripts if you retain them",
+    "Prompt or instruction templates used with Aider",
+    "Any custom scripts that wrap Aider",
+    "Environment variables and API key sources",
+    "Branching strategy and CI configuration",
     "Test suite and run commands"
   ],
-  "export_method": "Aider operates against a local Git repository, so export is mostly already done: your code lives in your repo and version history. Capture your Aider configuration file (commonly a project-level config plus environment variables for the model provider), any wrapper scripts, and your prompt templates. If you keep transcripts of Aider sessions, archive them locally. Note which model backends you use (OpenAI, Anthropic, etc.) and your API key sources. Document conventions like commit-on-edit behavior and any pre-commit hooks Aider relied on, since those will need a different home in a hosted environment.",
-  "import_method": "In Bolt.new, start by importing or pasting your existing project, or scaffold a fresh app and copy code in. The browser IDE handles dependencies, runtime, and preview, so you typically configure the project structure and let it install. Wire up environment variables in the project settings for any external API keys you previously fed Aider. Recreate prompt templates as in-IDE instructions or saved snippets. For team workflows, connect Bolt.new to your Git remote so changes flow back to your canonical repo. Validate that your test suite and scripts still run inside the hosted runtime, and adjust commands that assumed a local terminal environment.",
+  "export_method": "Aider operates against a local Git repository, so the bulk of your export is already done: code and history live in your repo. Capture your Aider configuration file (typically a project-level config plus environment variables for your model provider), any wrapper scripts, and your prompt templates. If you keep transcripts of Aider sessions, archive them locally. Note which model backends you use and where their API keys come from. Document conventions like commit-on-edit behavior and any pre-commit hooks Aider relied on, since those will need a different home in a hosted environment.",
+  "import_method": "In Bolt.new, start by importing or pasting your existing project, or scaffold a fresh app and copy code in. The browser IDE handles dependencies, runtime, and preview, so you typically configure project structure and let it install. Wire up environment variables in the project settings for any external API keys you previously fed Aider. Recreate prompt templates as in-IDE instructions or saved snippets. For team workflows, connect Bolt.new to your Git remote so changes flow back to your canonical repo. Validate that your test suite and scripts still run inside the hosted runtime, and adjust any commands that assumed a local terminal. Verify model availability, plan tiers, and runtime limits in current Bolt.new docs before standardizing the workflow.",
   "concept_mapping": [
     {
       "source": "CLI session",
@@ -36,11 +36,12 @@
     {
       "source": "Local repo edits",
       "target": "Hosted workspace edits",
-      "note": "Sync via Git remote"
+      "note": "Sync via Git remote to keep canonical history"
     },
     {
       "source": "Model backend config",
-      "target": "IDE model settings"
+      "target": "IDE model settings",
+      "note": "Available models depend on the platform — confirm in current docs"
     },
     {
       "source": "Aider commands",
@@ -48,7 +49,7 @@
     },
     {
       "source": "Prompt templates",
-      "target": "Saved instructions / snippets"
+      "target": "Saved instructions or snippets"
     },
     {
       "source": "Local test runner",
@@ -57,15 +58,15 @@
   ],
   "effort": "1-2 weeks",
   "gotchas": [
-    "Bolt.new runs in a hosted browser environment, so workflows that assume local filesystem or system tools may need adaptation",
-    "Aider works against any LLM backend you configure; Bolt.new's available models depend on the platform",
+    "Bolt.new runs in a hosted browser environment, so workflows that assume a local filesystem or system tools may need adaptation",
+    "Aider works against any LLM backend you configure; Bolt.new's available models and limits depend on the platform — verify in current docs",
     "Long-running processes or specialized native dependencies may not behave the same in a browser runtime",
-    "Aider commits directly to Git; verify Bolt.new's commit / sync model matches your team's expectations",
-    "The Bolt.new repo health signals show low recent activity, so monitor product direction",
-    "Cost models differ: Aider is OSS with user-paid model usage, while Bolt.new bundles tiers"
+    "Aider commits directly to Git; verify Bolt.new's commit and sync model matches your team's expectations",
+    "Cost models differ: Aider is OSS with user-paid model usage, while Bolt.new bundles tiers — consult target's official pricing page for current plans and any usage limits",
+    "Confirm data export and code portability options in current Bolt.new docs before committing the team's primary workflow"
   ],
   "email": {
     "subject": "Dev workflow change: moving from Aider to Bolt.new over 14 days",
-    "body": "Hi there,\n\nA quick heads up that over the next two weeks our team will be moving its AI-assisted development workflow from Aider to Bolt.new. The motivation is to reduce local setup overhead and let more of the team collaborate on prototypes directly in the browser.\n\nWhat this means for you:\n- Nothing changes in the product you use day-to-day; this is an internal tooling change.\n- Code review and release cadence stay the same.\n- You may see slightly faster iteration on small features as we settle in.\n\nIf you notice anything unusual in releases during this period, just reply and we'll investigate.\n\nThanks for being with us.\n\nYour customer success team"
+    "body": "Hi there,\n\nA quick heads up that over the next two weeks our team will be moving its AI-assisted development workflow from Aider to Bolt.new. The motivation is to reduce local setup overhead and let more of the team collaborate on prototypes directly in the browser.\n\nWhat this means for you:\n- Nothing changes in the product you use day-to-day; this is an internal tooling change.\n- Code review and release cadence stay the same.\n- You may see slightly faster iteration on small features as we settle in.\n\nWe will validate Bolt.new's current plan tiers and runtime limits against our needs on the official pricing and docs pages before standardizing. If you notice anything unusual in releases during this period, just reply and we'll investigate.\n\nThanks for being with us.\n\nYour customer success team"
   }
 }

@@ -7,14 +7,14 @@
     "slug": "kount",
     "name": "Kount"
   },
-  "generated_at": "2026-04-25T00:00:00Z",
-  "tldr": "SEON to Kount moves you from API-based machine learning fraud scoring to a Mastercard-backed fraud and identity trust platform with a shared merchant network. Expect similar event-driven integration shape but different rule semantics and pricing structure.",
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "SEON to Kount moves you from API-based machine learning fraud scoring to a Mastercard-backed fraud and identity trust platform with a shared merchant network. Expect a similar event-driven integration shape but different rule semantics and pricing structure.",
   "why_switch": [
-    "Kount offers a Mastercard-backed merchant network",
-    "Public entry pricing at $0.07 per event",
-    "Free tier for getting started",
+    "Kount offers a Mastercard-backed merchant network for shared signal",
+    "Free tier available for getting started; consult Kount's official pricing page for current rates",
     "Strong fit for CNP and high-value transactions",
-    "More transparent pricing than SEON's custom model"
+    "Mature case management and verdict workflows out of the box",
+    "Single-vendor coverage of device, identity, and transaction signals"
   ],
   "what_to_export": [
     "SEON rules and rule sets",
@@ -49,14 +49,14 @@
   "effort": "4-10 weeks",
   "gotchas": [
     "Rule semantics differ; expect to rewrite rule sets rather than translate them mechanically",
-    "Lock-in with Kount is rated higher than SEON; integration tends to be deeper",
-    "Kount pricing tiers above entry are opaque; negotiate volume",
+    "Lock-in with Kount tends to be higher than SEON; integration is deeper",
+    "Both vendors run custom or partially-public pricing — request quotes from both and verify in current docs before committing",
     "Real-time scoring adds latency on the critical path",
     "Validate merchant network value for your vertical during shadow mode",
     "Reputation built up in SEON does not transfer; rebuild via shadow mode comparisons"
   ],
   "email": {
     "subject": "Migrating fraud scoring from SEON to Kount",
-    "body": "Hi team,\n\nWe are moving our fraud scoring from SEON to Kount over the next 14 days. Kount gives us a Mastercard-backed merchant network and more transparent entry pricing for our payment and CNP use cases.\n\nWhat to expect:\n- The Kount data collector will be installed on checkout, login, and signup pages, replacing the SEON collector there.\n- Backend services will call Kount's scoring API and consume the recommended action.\n- SEON rule sets will be reimplemented as Kount rules or in our own decisioning layer.\n- We will run both systems in parallel for the first week and compare verdicts before cutover.\n\nPlease flag any service that depends on SEON webhooks or scores so we can route it to the new pipeline. Reach out with questions before the end of the week.\n\nThanks,\nYour customer"
+    "body": "Hi team,\n\nWe are moving our fraud scoring from SEON to Kount over the next 14 days. Kount gives us a Mastercard-backed merchant network and a mature verdict workflow for our payment and CNP use cases.\n\nWhat to expect:\n- The Kount data collector will be installed on checkout, login, and signup pages, replacing the SEON collector there.\n- Backend services will call Kount's scoring API and consume the recommended action.\n- SEON rule sets will be reimplemented as Kount rules or in our own decisioning layer.\n- We will run both systems in parallel for the first week and compare verdicts before cutover.\n\nPlease flag any service that depends on SEON webhooks or scores so we can route it to the new pipeline. Reach out with questions before the end of the week.\n\nThanks,\nYour customer"
   }
 }

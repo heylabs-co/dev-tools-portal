@@ -8,13 +8,13 @@
     "name": "Airbridge"
   },
   "generated_at": "2026-04-26T00:00:00Z",
-  "tldr": "Switch from AppsFlyer's per-install pricing to Airbridge's flat-rate subscription with comparable MMP capabilities.",
+  "tldr": "Switch from AppsFlyer to Airbridge while preserving comparable MMP capabilities. Validate current commercial terms on each vendor's official pricing page before committing to the move.",
   "why_switch": [
-    "More predictable cost via subscription vs. $0.05-0.07/install metering",
-    "Airbridge publishes pricing from $199/month with a 15K-install free tier",
-    "Strong APAC coverage and incrementality features",
+    "Looking to reduce dependence on AppsFlyer's metered model in favor of a published subscription tier",
+    "Strong APAC coverage and incrementality features in Airbridge",
     "Comparable feature set: deep linking, web-to-app, SKAdNetwork support",
-    "Lower lock-in score on our scoring model"
+    "Lower lock-in score on our scoring model",
+    "Confirm current pricing tiers and any free-tier limits on Airbridge's official pricing page before signing"
   ],
   "what_to_export": [
     "Raw install and in-app event logs",
@@ -27,7 +27,7 @@
     "Fraud rules and exclusion lists"
   ],
   "export_method": "Use AppsFlyer's data export options (Pull/Push API, Data Locker) to land raw installs, in-app events, and re-attributions into your warehouse or S3. Verify current export endpoints, retention windows, and rate limits in AppsFlyer's official documentation before scheduling the export.",
-  "import_method": "Integrate the Airbridge SDK in a new app build and recreate campaign, partner, and postback configuration in the Airbridge console. For history, keep the AppsFlyer export in cold storage and join it with Airbridge data in your warehouse. Run both SDKs in parallel for one to two weeks to reconcile attribution before cutting over. Refer to the Airbridge docs for supported partner integrations and any S2S ingestion paths.",
+  "import_method": "Integrate the Airbridge SDK in a new app build and recreate campaign, partner, and postback configuration in the Airbridge console. For history, keep the AppsFlyer export in cold storage and join it with Airbridge data in your warehouse. Run both SDKs in parallel for one to two weeks to reconcile attribution before cutting over. Refer to current Airbridge docs for supported partner integrations, SDK versions, and any S2S ingestion paths.",
   "concept_mapping": [
     {
       "source": "AppsFlyer SDK events",
@@ -67,10 +67,10 @@
     "Historical LTV reports stay in AppsFlyer; plan a warehouse-side join",
     "Mind iOS App Store update timing for the SDK swap",
     "Validate fraud filtering parity before disabling AppsFlyer billing",
-    "Confirm pricing and limits with Airbridge sales for your install volume"
+    "Confirm pricing, free-tier limits, and overage rules with both vendors for your install volume before cutover"
   ],
   "email": {
     "subject": "Migrating MMP from AppsFlyer to Airbridge",
-    "body": "Hi team,\n\nWe're planning to move our mobile attribution from AppsFlyer to Airbridge to get more predictable pricing and reduce per-install metering risk.\n\nPlan:\n1. Export raw installs, events, and re-attributions from AppsFlyer (Data Locker / Pull API) into our warehouse.\n2. Integrate Airbridge SDK in the next release and reconfigure partners, deep links, and SKAN conversion values.\n3. Run both SDKs in parallel for 1-2 weeks to reconcile attribution.\n4. Cut over once numbers match within tolerance.\n\nExpected effort: 1-3 weeks. We'll keep AppsFlyer historical data in cold storage for reporting.\n\nLet me know concerns before we kick off."
+    "body": "Hi team,\n\nWe're planning to move our mobile attribution from AppsFlyer to Airbridge. The goal is more predictable cost behavior and a lower lock-in profile on attribution data. Commercial terms on both sides will be re-confirmed with sales before we sign.\n\nPlan:\n1. Export raw installs, events, and re-attributions from AppsFlyer (Data Locker / Pull API) into our warehouse.\n2. Integrate Airbridge SDK in the next release and reconfigure partners, deep links, and SKAN conversion values.\n3. Run both SDKs in parallel for 1-2 weeks to reconcile attribution.\n4. Cut over once numbers match within tolerance.\n\nExpected effort: 1-3 weeks. We'll keep AppsFlyer historical data in cold storage for reporting. Please verify current pricing on each vendor's official page before approvals.\n\nLet me know concerns before we kick off."
   }
 }

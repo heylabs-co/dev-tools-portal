@@ -7,14 +7,14 @@
     "slug": "kount",
     "name": "Kount"
   },
-  "generated_at": "2026-04-25T00:00:00Z",
+  "generated_at": "2026-04-26T00:00:00Z",
   "tldr": "Migrating from Alloy to Kount moves you from identity decisioning for fintech to a Mastercard-backed fraud and identity trust platform with device fingerprinting and AI scoring. KYC and credit underwriting workflows from Alloy will not map cleanly and may need a separate provider.",
   "why_switch": [
-    "Kount has public pricing starting at $0.07 per event",
-    "Backed by Mastercard with a shared merchant network",
-    "Strong fit for CNP and high-value transaction fraud",
-    "Free tier available for getting started",
-    "Documented developer experience"
+    "Mastercard-backed platform with a shared merchant network signal",
+    "Strong fit for card-not-present and high-value transaction fraud",
+    "Device fingerprinting plus AI scoring out of the box",
+    "Documented developer experience for engineering integration",
+    "Consult Kount's official pricing page and your account team for current commercial terms"
   ],
   "what_to_export": [
     "Workflow and decision rule definitions",
@@ -26,8 +26,8 @@
     "Audit logs for compliance retention",
     "KYC document references"
   ],
-  "export_method": "Alloy does not publish a self-serve bulk export, so request a final data export from your account manager covering applicants, decisions, and audit history. Supplement with dashboard CSV downloads and direct API pulls for any records you can address by ID. Workflow logic and rules typically do not export to a portable format, so transcribe them manually into a design doc that lists triggers, conditions, data sources, and outcomes. Capture all webhook configurations and the credentials of any third-party data sources Alloy was orchestrating. Save audit logs to long-term storage for the retention period your regulator requires. Run the export in parallel with live traffic so the cutover snapshot is consistent, and verify counts on each batch before disconnecting.",
-  "import_method": "Kount integration generally combines a client-side data collector with a server-side API call that returns a risk score and recommended action. Provision a Kount account, generate API credentials, and install the data collector on checkout, login, and signup pages. On the backend, send transaction or event payloads to Kount and consume the returned score and reason codes. Recreate the action layer of your Alloy workflows in Kount's policy or rules surface, or in your own decisioning code. For workflows that depend on KYC document verification or credit bureau pulls, you will most likely need to keep or replace those with a dedicated provider rather than Kount. Run Kount in parallel with Alloy first, compare verdicts on real traffic, tune thresholds, then cut over once approval and catch rates are acceptable.",
+  "export_method": "Alloy does not publish a self-serve bulk export, so request a final data export from your account manager covering applicants, decisions, and audit history. Supplement with dashboard CSV downloads and direct API pulls for any records you can address by ID. Workflow logic and rules typically do not export to a portable format, so transcribe them manually into a design doc that lists triggers, conditions, data sources, and outcomes. Capture all webhook configurations and the credentials of any third-party data sources Alloy was orchestrating. Save audit logs to long-term storage for the retention period your regulator requires. Run the export in parallel with live traffic so the cutover snapshot is consistent, and verify counts on each batch before disconnecting. Verify retention windows and rate limits in Alloy's current docs before scheduling the export.",
+  "import_method": "Kount integration generally combines a client-side data collector with a server-side API call that returns a risk score and recommended action. Provision a Kount account, generate API credentials, and install the data collector on checkout, login, and signup pages. On the backend, send transaction or event payloads to Kount and consume the returned score and reason codes. Recreate the action layer of your Alloy workflows in Kount's policy or rules surface, or in your own decisioning code. For workflows that depend on KYC document verification or credit bureau pulls, you will most likely need to keep or replace those with a dedicated provider rather than Kount. Run Kount in parallel with Alloy first, compare verdicts on real traffic, tune thresholds, then cut over once approval and catch rates are acceptable. Verify endpoint and SDK details against current Kount documentation.",
   "concept_mapping": [
     {
       "source": "Workflow",
@@ -48,8 +48,8 @@
   ],
   "effort": "4-10 weeks",
   "gotchas": [
-    "Kount pricing tiers above the entry rate are not public; expect to negotiate volume",
-    "Lock-in is rated high; integration tends to be deeper than a pure scoring API",
+    "Kount commercial terms are typically negotiated; consult their official pricing page and sales team for current numbers",
+    "Lock-in tends to be deeper than a pure scoring API; integration touches checkout, login, and signup",
     "KYC and credit underwriting from Alloy will not map onto Kount; plan a separate provider",
     "Shared merchant network value depends on your vertical; validate during shadow mode",
     "Alloy export shape is vendor-specific; budget engineering time to parse and transform",
@@ -57,6 +57,6 @@
   ],
   "email": {
     "subject": "Migrating fraud and risk decisioning from Alloy to Kount",
-    "body": "Hi team,\n\nWe are moving our fraud and risk decisioning from Alloy to Kount over the next 14 days. Kount gives us a Mastercard-backed network, transparent entry pricing, and a fit for our high-value and CNP transaction use cases.\n\nWhat to expect:\n- The Kount data collector will be added to checkout, login, and signup pages.\n- Backend services will call Kount for scoring and consume the recommended action.\n- Decision logic that lives inside Alloy workflows will be reimplemented as Kount policies or in our own decision layer.\n- KYC and credit underwriting that ran on Alloy will move to a dedicated provider rather than Kount.\n- We will run both systems in parallel for the first week to compare verdicts before cutover.\n\nPlease flag any downstream consumer of Alloy webhooks or decisions. Reach out with questions before the end of the week.\n\nThanks,\nYour customer"
+    "body": "Hi team,\n\nWe are moving our fraud and risk decisioning from Alloy to Kount over the next 14 days. Kount gives us a Mastercard-backed network signal and a fit for our high-value and CNP transaction use cases. Commercial terms will be confirmed with their sales team; please treat any prior numbers as placeholders until contracted.\n\nWhat to expect:\n- The Kount data collector will be added to checkout, login, and signup pages.\n- Backend services will call Kount for scoring and consume the recommended action.\n- Decision logic that lives inside Alloy workflows will be reimplemented as Kount policies or in our own decision layer.\n- KYC and credit underwriting that ran on Alloy will move to a dedicated provider rather than Kount.\n- We will run both systems in parallel for the first week to compare verdicts before cutover.\n\nPlease flag any downstream consumer of Alloy webhooks or decisions. Reach out with questions before the end of the week.\n\nThanks,\nYour customer"
   }
 }

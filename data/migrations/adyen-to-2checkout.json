@@ -7,34 +7,33 @@
     "slug": "2checkout",
     "name": "2Checkout"
   },
-  "generated_at": "2026-04-26T00:00:00Z",
-  "tldr": "Migrate from Adyen's enterprise unified payments platform to 2Checkout for SaaS and e-commerce billing.",
+  "generated_at": "2026-04-26T12:00:00Z",
+  "tldr": "Migrate from Adyen's enterprise unified payments platform to 2Checkout for SaaS and e-commerce billing, with the heavy lifting concentrated in a PCI-compliant token transfer and an integration rewrite.",
   "why_switch": [
-    "Adyen's minimum fees are heavy for sub-$1M TPV; 2Checkout fits SaaS/e-commerce volumes",
-    "Want a checkout product oriented around digital goods and subscriptions out of the box",
-    "Reduce operational complexity of interchange++ negotiated pricing",
-    "Consolidate global tax/VAT handling that 2Checkout's merchant-of-record model can absorb",
-    "Simplify vendor relationship away from enterprise contracts"
+    "Adyen's enterprise model can feel heavy for lower-volume SaaS and digital-goods workloads",
+    "2Checkout is positioned around digital goods, subscriptions, and global online checkout",
+    "Move away from negotiated interchange++ contracts toward a simpler merchant relationship",
+    "Consolidate global tax, VAT, and compliance handling under a merchant-of-record model",
+    "Reduce the operational overhead of maintaining an enterprise PSP integration"
   ],
   "what_to_export": [
     "Customer records (name, email, billing address)",
-    "Stored payment methods / tokens (subject to PCI scope rules)",
+    "Stored payment methods and tokens (handled via PCI-compliant transfer, not raw export)",
     "Subscription and recurring billing schedules",
-    "Historical transactions and refunds",
-    "Dispute and chargeback records",
+    "Historical transactions, refunds, and chargeback records",
     "Webhook endpoint inventory and event types in use",
-    "Product/SKU catalog and pricing",
+    "Product or SKU catalog and current pricing",
     "Tax configuration and exemption records",
-    "Payout/settlement reports for reconciliation",
-    "API keys and integration credentials inventory"
+    "Payout and settlement reports for reconciliation",
+    "API keys and integration credential inventory"
   ],
-  "export_method": "Use Adyen's CSV export and reporting tools in the Customer Area to pull recurring payment details, transactions, and payout reports. For tokenized cards, request a card data migration through Adyen support — networks generally require a PCI-compliant processor-to-processor transfer, not a self-serve download. Validate scope and timing with Adyen's official migration team before scheduling cutover.",
-  "import_method": "Import customers, products, and subscriptions into 2Checkout via their merchant dashboard or API. Coordinate a PCI-compliant card token migration between Adyen and 2Checkout's vault provider; do not attempt to move raw PANs yourself. Re-point checkout flows and webhooks to 2Checkout endpoints, and run parallel processing for a billing cycle to validate. Confirm exact API and import endpoints in the current 2Checkout official docs.",
+  "export_method": "Use Adyen's Customer Area reporting and CSV export tools to pull recurring payment metadata, transaction history, refunds, disputes, and payout reports. For tokenized cards, do not attempt a self-serve download — request a processor-to-processor migration through Adyen support, since card networks generally require a PCI-compliant transfer between vaults. Capture webhook configurations, signing keys, and any custom risk rules so the new integration can be reproduced. Confirm scope, timing, and required documentation with Adyen's official migration team before scheduling cutover.",
+  "import_method": "Onboard a 2Checkout merchant account, complete KYC, and import customers, products, and subscriptions through their merchant dashboard or API. Coordinate the PCI-compliant card token migration between Adyen and 2Checkout's vault provider — both vendors must be involved and the work is contractual rather than client-driven. Re-point checkout flows and webhook handlers to 2Checkout endpoints, re-implement signature verification, and run parallel processing for at least one full billing cycle to validate. Verify the exact API surface, supported payment methods, and import endpoints in the current 2Checkout official documentation before cutover.",
   "concept_mapping": [
     {
       "source": "Adyen shopperReference",
       "target": "2Checkout customer",
-      "note": "Map identifier and persist mapping table during cutover"
+      "note": "Map identifier and persist a mapping table during cutover"
     },
     {
       "source": "Adyen recurringDetailReference",
@@ -43,36 +42,36 @@
     },
     {
       "source": "Adyen payment session",
-      "target": "2Checkout checkout/order",
+      "target": "2Checkout checkout / order",
       "note": "Different session lifecycle — re-implement client integration"
     },
     {
       "source": "Adyen webhooks (notifications)",
-      "target": "2Checkout IPN/webhooks",
-      "note": "Event names and payload shapes differ"
+      "target": "2Checkout IPN / webhooks",
+      "note": "Event names and payload shapes differ; re-test all consumers"
     },
     {
       "source": "Adyen Customer Area reports",
       "target": "2Checkout merchant control panel",
-      "note": "Reconcile reporting fields manually"
+      "note": "Reconcile reporting fields manually against finance records"
     },
     {
-      "source": "Interchange++ pricing",
+      "source": "Interchange++ negotiated pricing",
       "target": "2Checkout merchant pricing",
-      "note": "Confirm rates with sales — pricing is not publicly itemized"
+      "note": "Confirm rates with sales — consult target's official pricing page and any written quote"
     }
   ],
   "effort": "3-8 weeks",
   "gotchas": [
-    "Card token migration requires a PCI-compliant processor-to-processor transfer; plan with both vendors",
-    "2Checkout's GitHub SDKs show stale activity (last commit 1000+ days ago); validate SDK currency directly with 2Checkout support",
-    "2Checkout pricing is not transparent — get a written quote before committing",
-    "Merchant-of-record vs gateway models differ; tax and refund flows may change semantically",
-    "Subscription proration, trials, and dunning logic rarely map 1:1 — re-test every plan",
+    "Card token migration requires a PCI-compliant processor-to-processor transfer; coordinate with both vendors early",
+    "2Checkout pricing is not transparent — consult target's official pricing page and obtain a written quote before committing",
+    "Confirm SDK and library currency directly with 2Checkout support and verify in current docs rather than relying on third-party signals",
+    "Merchant-of-record vs gateway models differ; tax remittance and refund flows may change semantically",
+    "Subscription proration, trials, and dunning logic rarely map 1:1 — re-test every plan and edge case",
     "Run dual processing for at least one full billing cycle before decommissioning Adyen"
   ],
   "email": {
     "subject": "Migration plan: Adyen to 2Checkout",
-    "body": "Hi team,\n\nI'd like to move our payments from Adyen to 2Checkout. Adyen's enterprise model is heavier than we need at our current TPV, and 2Checkout's SaaS/e-commerce focus matches our use case better.\n\nThe critical piece is the PCI-compliant token transfer between vaults — that has to be coordinated with both vendors, not done by us. We will export customers, subscriptions, and reports from Adyen, import to 2Checkout, run parallel for one full billing cycle, then cut over. Estimated 3-8 weeks.\n\nBefore we commit, I want a written quote from 2Checkout (their pricing isn't public) and confirmation that their current SDKs are actively maintained.\n\nGreen light?"
+    "body": "Hi team,\n\nI'd like to move our payments from Adyen to 2Checkout. Adyen's enterprise model is heavier than we need at our current TPV, and 2Checkout's SaaS/e-commerce focus matches our use case better.\n\nThe critical piece is the PCI-compliant token transfer between vaults — that has to be coordinated with both vendors, not done by us. We will export customers, subscriptions, and reports from Adyen, import to 2Checkout, run parallel for one full billing cycle, then cut over. Estimated 3-8 weeks.\n\nBefore we commit, I want a written quote from 2Checkout (their pricing isn't published) and confirmation from their support team that the SDKs we depend on are actively maintained against current docs.\n\nGreen light?"
   }
 }

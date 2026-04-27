@@ -64,7 +64,7 @@
   "gotchas": [
     "Lock-in increases — CleverTap stores rich behavioral data that is harder to extract later",
     "Push tokens must be re-registered via CleverTap SDK; you cannot transfer APNs/FCM tokens directly",
-    "Pricing jumps from freemium to subscription starting at $75 — re-budget early",
+    "CleverTap moves you from a freemium model to a paid subscription; consult CleverTap's official pricing page and current docs to re-budget before cutover",
     "Identity unification rules differ; plan how anonymous-to-known merges should behave",
     "Preference management is platform-specific; recheck unsubscribe and compliance flows",
     "Run dual-send during cutover to confirm deliverability before turning Courier off"

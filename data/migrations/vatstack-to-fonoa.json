@@ -51,8 +51,8 @@
     },
     {
       "source": "Free/freemium tier",
-      "target": "Paid subscription from $5",
-      "note": "Validate current pricing on Fonoa's pricing page"
+      "target": "Paid subscription tier",
+      "note": "Validate current pricing on Fonoa's official pricing page; their model is enterprise-led, expect a quote rather than a public rate card"
     },
     {
       "source": "Direct REST integration",
@@ -64,12 +64,12 @@
   "gotchas": [
     "Fonoa is a much larger surface area than Vatstack — resist re-implementing only what Vatstack did",
     "Response shapes will differ; do not assume drop-in compatibility",
-    "Rate-limit and pricing characteristics differ — model your call volume before committing",
+    "Rate-limit and pricing characteristics differ — model your call volume and confirm pricing in current docs before committing",
     "Some Vatstack edge cases (e.g. unusual country results) may behave differently — re-test",
     "Keep historical Vatstack validation receipts for audit trails"
   ],
   "email": {
     "subject": "Vatstack -> Fonoa migration plan",
-    "body": "Hi team,\n\nProposing we move VAT tooling from Vatstack to Fonoa. Vatstack has been solid for validation and rates, but we need full tax determination and e-invoicing as we scale across more markets.\n\nPlan:\n1. Inventory every Vatstack caller in our codebase.\n2. Stand up a Fonoa tenant per their official docs.\n3. Wrap our existing tax helper so we can run both APIs in parallel behind a flag.\n4. Compare results on real traffic, then cut over and revoke the Vatstack key.\n\nEstimated effort 1-3 weeks. Main risks are response-shape differences and pricing model change. Please review.\n\nThanks"
+    "body": "Hi team,\n\nProposing we move VAT tooling from Vatstack to Fonoa. Vatstack has been solid for validation and rates, but we need full tax determination and e-invoicing as we scale across more markets.\n\nPlan:\n1. Inventory every Vatstack caller in our codebase.\n2. Stand up a Fonoa tenant per their official docs.\n3. Wrap our existing tax helper so we can run both APIs in parallel behind a flag.\n4. Compare results on real traffic, then cut over and revoke the Vatstack key.\n\nEstimated effort 1-3 weeks. Main risks are response-shape differences and pricing model change (Fonoa is enterprise-led; we will need a quote). Please review.\n\nThanks"
   }
 }

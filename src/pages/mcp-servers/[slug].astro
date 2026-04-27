@@ -16,22 +16,39 @@ export async function getStaticPaths() {
 const { server } = Astro.props;
 const d = server.data;
 
-// Cross-link MCP server → main tool catalog when author matches a company.
+// Cross-link MCP server → main tool catalog. d.author is rarely set
+// in our data, so try multiple signals in priority order:
+//   1. d.author (slugified or exact name)
+//   2. github_repo org part (e.g. "stripe/agent-toolkit" → "stripe")
+//   3. d.slug itself (e.g. mcp slug "stripe" → tool slug "stripe")
+//   4. d.name (slugified or exact)
+const slugify = (s: string) =>
+  s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+
 let publisherTool: { slug: string; name: string } | null = null;
-if (d.author) {
-  const slugified = d.author
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, '-')
-    .replace(/(^-|-$)/g, '');
-  const companies = await getCollection('companies');
-  const byName = d.author.trim().toLowerCase();
-  const match = companies.find(
-    (c) =>
-      c.data.slug === slugified ||
-      c.data.name.trim().toLowerCase() === byName,
-  );
-  if (match) {
-    publisherTool = { slug: match.data.slug, name: match.data.name };
+{
+  const candidates: string[] = [];
+  if (d.author) candidates.push(d.author);
+  if (d.github_repo) {
+    const org = d.github_repo.split('/')[0];
+    if (org) candidates.push(org);
+  }
+  if (d.slug) candidates.push(d.slug);
+  if (d.name) candidates.push(d.name);
+
+  if (candidates.length > 0) {
+    const companies = await getCollection('companies');
+    const bySlug = new Map(companies.map((c) => [c.data.slug, c.data]));
+    const byName = new Map(companies.map((c) => [c.data.name.trim().toLowerCase(), c.data]));
+    for (const cand of candidates) {
+      const sl = slugify(cand);
+      const nm = cand.trim().toLowerCase();
+      const m = bySlug.get(sl) ?? byName.get(nm);
+      if (m) {
+        publisherTool = { slug: m.slug, name: m.name };
+        break;
+      }
+    }
   }
 }
 

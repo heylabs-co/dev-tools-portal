@@ -11,23 +11,29 @@ const config = {
     classes: 'bg-emerald-50 text-emerald-700 dark:bg-emerald-950/50 dark:text-emerald-400',
     label: 'Low',
     icon: 'M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285Z',
+    tooltip: 'Low lock-in — easy to migrate away (open formats, exports, OSS-friendly, no proprietary primitives).',
   },
   medium: {
     classes: 'bg-amber-50 text-amber-700 dark:bg-amber-950/50 dark:text-amber-400',
     label: 'Medium',
     icon: 'M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126ZM12 15.75h.007v.008H12v-.008Z',
+    tooltip: 'Medium lock-in — workable to migrate, but expect rewrites: proprietary APIs, formats, or workflows tie you in.',
   },
   high: {
     classes: 'bg-rose-50 text-rose-700 dark:bg-rose-950/50 dark:text-rose-400',
     label: 'High',
     icon: 'M12 9v3.75m9-.75a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 3.75h.008v.008H12v-.008Z',
+    tooltip: 'High lock-in — hard to leave: deeply proprietary primitives, limited export, or no equivalent target. Plan for major rewrites.',
   },
 };
 
-const { classes, label, icon } = config[level];
+const { classes, label, icon, tooltip } = config[level];
 ---
 
-<span class={`inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[11px] font-medium transition-colors duration-150 ${classes}`}>
+<span
+  class={`inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[11px] font-medium transition-colors duration-150 cursor-help ${classes}`}
+  title={tooltip}
+>
   <svg class="h-3 w-3 shrink-0" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
     <path stroke-linecap="round" stroke-linejoin="round" d={icon} />
   </svg>

@@ -53,13 +53,19 @@ const initial = name.charAt(0).toUpperCase();
     {lockInLevel && <LockInBadge level={lockInLevel} />}
 
     {pricingModel && pricingModel !== 'unknown' && (
-      <span class="inline-flex items-center rounded-full bg-gray-100 dark:bg-white/5 px-2 py-0.5 text-[11px] font-medium text-[#64748B] dark:text-[#8A8F98]">
+      <span
+        class="inline-flex items-center rounded-full bg-gray-100 dark:bg-white/5 px-2 py-0.5 text-[11px] font-medium text-[#64748B] dark:text-[#8A8F98] cursor-help"
+        title={`Pricing model: ${pricingModel}`}
+      >
         {pricingModel}
       </span>
     )}
 
     {hasFree && (
-      <span class="inline-flex items-center rounded-full bg-emerald-50 dark:bg-emerald-950/40 px-2 py-0.5 text-[11px] font-medium text-emerald-700 dark:text-emerald-400">
+      <span
+        class="inline-flex items-center rounded-full bg-emerald-50 dark:bg-emerald-950/40 px-2 py-0.5 text-[11px] font-medium text-emerald-700 dark:text-emerald-400 cursor-help"
+        title="Has a free tier — no payment required to start using this tool."
+      >
         Free tier
       </span>
     )}

@@ -20,7 +20,10 @@ import { postApprovedToChannel } from './handlers/telegram';
 const SITE_SCORE_THRESHOLD = 5;
 const CHANNEL_SCORE_THRESHOLD = 7;
 const CHANNEL_VIRALITY_THRESHOLD = 6;
-const MAX_AUTO_PUBLISH_PER_RUN = 50;
+// 500 per run × ~260 cron runs/day (5-min cadence) ≈ 130k/day theoretical max.
+// Way above the ~1300 high-score events ingested per day — backlog drains
+// in a single run if it ever appears, and the feed never lags behind ingest.
+const MAX_AUTO_PUBLISH_PER_RUN = 500;
 const MAX_CHANNEL_POSTS_PER_RUN = 5;
 const CHANNEL_FRESH_HOURS = 24;
 
@@ -52,15 +55,19 @@ export async function runAutoPublisher(env: Env): Promise<AutoPublishStats> {
   };
 
   // Step 1: pick events eligible for site publication.
-  // Order by score DESC so high-score events get to channel first when
-  // backlog is draining; tie-break by age so we chew the oldest first.
+  // Order by ingested_at DESC FIRST so the freshest items always surface,
+  // then break ties by score. Previous policy (score DESC, ingested_at ASC)
+  // chewed through a multi-day backlog of old "score 8" items and starved
+  // the feed of today's news — users saw a feed stuck 2-3 days behind.
+  // Old high-score items will still get picked up across runs since they
+  // remain eligible until processed.
   const { results } = await env.DB.prepare(
     `SELECT * FROM events
       WHERE score >= ?
         AND posted = 0
         AND pushed_at IS NULL
         AND drafts_json IS NULL
-      ORDER BY score DESC, virality_score DESC, ingested_at ASC
+      ORDER BY ingested_at DESC, score DESC, virality_score DESC
       LIMIT ?`,
   )
     .bind(SITE_SCORE_THRESHOLD, MAX_AUTO_PUBLISH_PER_RUN)

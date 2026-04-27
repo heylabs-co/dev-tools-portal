@@ -20,11 +20,12 @@ binding = "KV"
 id = "0a9ddfe21e744266bd0609131e1f576a"
 
 # ── Cron Triggers ────────────────────────────────────────────────────────
-# Poller every 15 min (dev test: "*/5 * * * *" to speed up).
+# Workers Paid plan — bumped from */15 to */5 so news lands within minutes,
+# not 15+ minutes. Auto-publisher's 500-per-run cap drains any backlog fast.
 # Drafter daily at 06:00 UTC (= 08:00 Warsaw, 09:00 Moscow).
 [triggers]
 crons = [
-  "*/15 * * * *",   # every 15 min — Twitter poll + classifier
+  "*/5 * * * *",    # every 5 min — Twitter poll + classifier + auto-publish
   "30 */3 * * *",   # every 3h at :30 — free sources (HN, Reddit, GH, Lobsters, PH)
   "0 6 * * *",      # daily 06:00 UTC — drafter + push to Telegram
 ]

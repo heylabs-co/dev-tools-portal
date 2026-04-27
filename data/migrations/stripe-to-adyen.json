@@ -1,75 +1,60 @@
 {
-  "source": {
-    "slug": "stripe",
-    "name": "Stripe"
-  },
-  "target": {
-    "slug": "adyen",
-    "name": "Adyen"
-  },
-  "generated_at": "2026-04-25T00:00:00Z",
-  "tldr": "Moving from Stripe to Adyen is typically driven by enterprise scale, lower interchange-plus economics, or unified online plus in-store needs. Plan for a longer underwriting and integration phase than a Stripe-to-Stripe-style swap.",
+  "source": { "slug": "stripe", "name": "Stripe" },
+  "target": { "slug": "adyen", "name": "Adyen" },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "quality": "hand-crafted",
+  "tldr": "Move from Stripe (usage 2.9% + $0.30) to Adyen (interchange++ ~EUR 0.11 + scheme fee). Both are PCI-compliant PSPs, so card vault data can be transferred PCI-to-PCI. Plan 4-10 weeks of engineering: rewrite checkout, re-tokenize cards, rebuild webhook handlers, renegotiate acquiring. Best fit when TPV is high enough that lower per-transaction cost outweighs Stripe's faster DX. Consult official docs for current procedures.",
   "why_switch": [
-    "Lower fees at high transaction volume via interchange++",
-    "Unified online and in-store (POS) processing",
-    "Broader local payment method coverage worldwide",
-    "Direct acquiring in many regions reduces hops",
-    "Enterprise-grade reporting and reconciliation"
+    "Lower effective rate at scale: interchange++ vs blended 2.9% + $0.30",
+    "Single global acquirer across EU/US/APAC reduces FX and cross-border fees",
+    "Unified online + in-store (POS) processing on one platform",
+    "Direct access to 250+ local payment methods without third-party connectors",
+    "Stronger enterprise SLAs and dedicated account management",
+    "Richer raw data (network tokens, settlement detail) for finance and risk teams"
   ],
   "what_to_export": [
-    "Customer profiles and metadata",
-    "Saved PaymentMethods (PCI vault transfer)",
-    "Subscriptions, schedules, and billing anchors",
-    "Historical Charges/PaymentIntents and refunds",
-    "Disputes and chargeback evidence",
-    "Products, prices, coupons, tax rates",
-    "Webhook endpoints and signing secrets",
-    "Payout and balance transaction reports"
+    "Customer records (Stripe customer IDs, email, metadata)",
+    "Saved payment methods / cards (pm_ and card_ tokens via PCI export)",
+    "Active subscriptions and their billing anchors / schedules",
+    "Recurring mandates (SEPA, ACH, BACS)",
+    "Open invoices and payment intents in non-terminal states",
+    "Historical charge / refund / dispute records (for reporting and chargebacks)",
+    "Webhook endpoint URLs and signing secrets",
+    "Coupons, promotion codes, and tax rates",
+    "Connected accounts (if using Stripe Connect)",
+    "Radar rules and fraud allow/block lists",
+    "Product / price catalog used in Checkout",
+    "Payout / bank account configuration"
   ],
-  "export_method": "Use Stripe's Dashboard exports and API to pull customers, charges/PaymentIntents, refunds, disputes, products, prices, subscriptions, and balance transaction reports. Stripe supports a PCI-to-PCI card data export to other processors under a signed data transfer agreement; request this with both parties so cards migrate directly between vaults without you ever touching raw PANs. Snapshot subscription state including trial end, current period end, and proration behavior. Capture every webhook URL, signing secret, and downstream integration that reads Stripe events (billing, CRM, analytics). Keep at least 90 days of charge data accessible to handle chargebacks during transition. Build a customer-to-token mapping spreadsheet to verify migrated cards land on the correct Adyen shopperReference after import.",
-  "import_method": "Onboard with Adyen, complete underwriting and KYC, and configure your merchant account, store, and payment methods per market. Recreate your product/price catalog and rebuild server-side integrations using Adyen's APIs and SDKs. Stand up webhook (notification) endpoints with HMAC verification, then have Adyen confirm the inbound vault import and validate by running test transactions on a sample of migrated cards. Recreate subscriptions with original billing anchors so renewals continue on the same date. Cut traffic over in stages: new customers to Adyen first, existing renewals stay on Stripe until validated, then flip the rest. Reconcile payouts and settlement reports daily for at least one full billing cycle and keep Stripe live for refunds and chargebacks on legacy charges.",
+  "export_method": "Request a PCI-compliant card data export from Stripe support — they transfer encrypted card vault data directly to Adyen under a tripartite data transfer agreement. For non-card data (customers, subscriptions, invoices, charges), use the Stripe API or Sigma to dump CSV/JSON, plus Dashboard CSV exports for most resources. Build a customer-to-token mapping so migrated cards land on the correct Adyen shopperReference. Allow 2-6 weeks lead time for the PCI handoff. Consult official docs for the latest export procedure.",
+  "import_method": "Adyen ingests the PCI export and re-tokenizes cards into its vault, returning shopperReference / recurringDetailReference values you map back to your customer IDs. Non-card data is loaded via the Adyen Management / Checkout APIs or CSV import for recurring details. Re-implement checkout (Drop-in or Components from @adyen/adyen-web), set up Standard Notification webhooks with HMAC signing, and configure merchant accounts per region. Run both processors in parallel during cutover and validate with test transactions on migrated cards. Consult official docs for current import endpoints.",
   "concept_mapping": [
-    {
-      "source": "Customer",
-      "target": "Shopper (shopperReference)"
-    },
-    {
-      "source": "PaymentIntent / Charge",
-      "target": "Payment"
-    },
-    {
-      "source": "PaymentMethod",
-      "target": "Stored payment detail",
-      "note": "Migrated via PCI vault transfer"
-    },
-    {
-      "source": "Refund",
-      "target": "Refund / Modification"
-    },
-    {
-      "source": "Dispute",
-      "target": "Dispute / Notification of Chargeback"
-    },
-    {
-      "source": "Webhook endpoint",
-      "target": "Standard notification"
-    },
-    {
-      "source": "Payout",
-      "target": "Settlement / Payout"
-    }
+    { "source": "Customer", "target": "Shopper (shopperReference)", "note": "String identifier you supply; not auto-generated" },
+    { "source": "PaymentMethod (pm_/card_)", "target": "Stored payment method (recurringDetailReference)", "note": "Created via PCI handoff or first-charge tokenization" },
+    { "source": "PaymentIntent / Charge", "target": "/payments call", "note": "Single-step; 3DS handled via /payments/details" },
+    { "source": "SetupIntent", "target": "Zero-auth /payments with storePaymentMethod=true", "note": "Tokenize without charging" },
+    { "source": "Refund", "target": "Refund modification", "note": "Async; result delivered via notification webhook" },
+    { "source": "Webhook endpoint", "target": "Standard Notification (HMAC-signed)", "note": "Different signing model — verify via HMAC key, not signing secret" },
+    { "source": "Subscription", "target": "No native object — orchestrate with stored tokens", "note": "Pair with Chargebee/Recurly or roll your own cadence" },
+    { "source": "Stripe Checkout", "target": "Adyen Drop-in / Hosted Payment Pages", "note": "Sessions API on Adyen side; different config model" },
+    { "source": "Stripe Elements", "target": "Adyen Components (@adyen/adyen-web)", "note": "Per-method components; different DOM API" },
+    { "source": "Radar", "target": "RevenueProtect", "note": "Rule engine differs; rules are not portable" },
+    { "source": "Connect (platforms)", "target": "Adyen for Platforms", "note": "KYC/onboarding model differs; not a drop-in swap" },
+    { "source": "Stripe Tax", "target": "External tax engine", "note": "Limited native tax — pair with Avalara/TaxJar" }
   ],
-  "effort": "8-16 weeks including underwriting, integration, and parallel run",
+  "effort": "4-10 weeks for a mid-size SaaS; 2-6 months for a marketplace using Connect. Add 2-4 weeks for PCI vault transfer lead time and Adyen underwriting.",
   "gotchas": [
-    "Adyen onboarding and underwriting typically take longer than Stripe self-serve sign-up",
-    "Reconciliation models differ (interchange++ vs blended) — finance team must update reports",
-    "3DS, SCA, and local-method routing differs; re-test conversion in each major market",
-    "Webhook (notification) format is different — rewrite handlers and signature verification",
-    "Subscription/recurring logic must be rebuilt; Adyen has tokenized recurring but no Stripe Billing",
-    "Plan parallel processing for at least one billing cycle and keep Stripe live for chargebacks"
+    "Adyen webhooks are async — code that relied on Stripe's synchronous charge result must be refactored",
+    "No native Subscription object — billing logic stays in your app or a billing layer",
+    "HMAC notification signing differs from Stripe's signing-secret model; verification code must be rewritten",
+    "Pricing is interchange++ with negotiated scheme fees — true cost only visible after first month's invoice",
+    "Minimum monthly fees and annual contracts apply; not a fit for low-TPV merchants",
+    "Connect → Adyen for Platforms is not a drop-in migration; KYC/onboarding flows must be rebuilt",
+    "Local payment methods (iDEAL, SEPA, etc.) need separate enablement per merchant account and region",
+    "Test environment uses different card numbers and merchant accounts — full QA pass required"
   ],
   "email": {
     "subject": "Card data migration request: Stripe to Adyen",
-    "body": "Hi team,\n\nWe are migrating our payment processing from Stripe to Adyen over the next 14 days and would like to coordinate a PCI-compliant transfer of our stored card data and customer records.\n\nSpecifically, we would like to:\n\n- Initiate a PCI-to-PCI bulk export of stored payment methods from Stripe directly to Adyen's vault under your standard data transfer process.\n- Export our customers, historical charges, refunds, disputes, products, prices, subscriptions, and payout reports for our records.\n- Confirm any active subscriptions, scheduled renewals, and pending disputes so nothing is lost during cutover.\n\nWe will keep Stripe active during a parallel-run period to handle refunds and chargebacks on legacy transactions, then wind it down once reconciliation is complete.\n\nCould you share the required forms, expected timelines, and a technical contact on your side? We aim to begin within the next few business days.\n\nThanks,\nYour customer"
+    "body": "Hi Stripe team,\n\nWe are migrating our payment processing to Adyen and would like to coordinate the offboarding.\n\nCould you please:\n\n1. Initiate a PCI-compliant card data export to Adyen — we will share the receiving contact and data transfer agreement separately.\n2. Confirm timeline and any required forms.\n3. Keep the account active in read-only mode for 90 days after cutover so we can reconcile historical charges, refunds, and disputes.\n4. Provide final invoices and confirm the closure date.\n\nWe appreciate the partnership and the platform quality — this decision is driven by scale economics, not by any service issue.\n\nThanks,\n[Your name]"
   }
 }

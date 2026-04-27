@@ -1,0 +1,60 @@
+{
+  "source": { "slug": "mailgun", "name": "Mailgun" },
+  "target": { "slug": "resend", "name": "Resend" },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "quality": "hand-crafted",
+  "tldr": "Both are transactional email APIs over REST + SMTP, so the wire-level switch is mostly drop-in. Real work is re-verifying DKIM/SPF on each sending domain, porting templates (Resend leans on React Email), and rebuilding webhooks and suppression lists. Mailgun-specific features like inbound Routes and email validation have no 1:1 Resend equivalent and may need third-party replacements.",
+  "why_switch": [
+    "Modern, developer-first API with concise SDKs (Node, Python, Ruby, Go, PHP, Rust)",
+    "First-class React Email integration — author templates as React components instead of Handlebars",
+    "React Email is open source, lowering template lock-in",
+    "Cleaner dashboard and logs UX vs. Mailgun's older console",
+    "Simpler hybrid pricing with a 3,000 emails/mo free tier (per Resend pricing page)",
+    "SMTP relay still available, so existing SMTP-based code paths keep working",
+    "Active product velocity and migration guides published from common competitors"
+  ],
+  "what_to_export": [
+    "Verified sending domains and their DKIM, SPF, DMARC, MX records",
+    "Suppression lists: bounces, unsubscribes, complaints (Mailgun /v3/<domain>/bounces, /unsubscribes, /complaints)",
+    "Email templates and stored versions (Mailgun template store)",
+    "Mailing list / contacts data if used for transactional sends",
+    "Inbound Routes and their match expressions / forward actions",
+    "Webhook endpoints and event subscriptions (delivered, opened, clicked, failed, etc.)",
+    "API keys, domain-scoped keys, and any IP allowlists",
+    "Dedicated sending IPs and their warm-up state, if on a plan that includes them",
+    "Tracking settings (open, click) per domain",
+    "Logs / event history for compliance — export before retention window expires",
+    "Tags and custom variables used for segmentation in logs"
+  ],
+  "export_method": "Use Mailgun's REST API with a master key: paginate /v3/<domain>/bounces, /unsubscribes, /complaints to JSON; pull /v3/<domain>/templates for templates; /v3/<domain>/routes for inbound rules; /v3/domains/<domain>/webhooks for webhook config; /v3/<domain>/events for historical logs. The dashboard also offers CSV export for suppressions on most plans. Save DNS records (DKIM/SPF/DMARC) separately — they are visible per domain in the Mailgun control panel.",
+  "import_method": "In Resend: add each sending domain and publish the new DKIM/SPF records from Resend (you cannot reuse Mailgun's DKIM keys). Re-create API keys, then upload suppressions via the Resend API or dashboard (check current docs for the exact endpoint). Re-author templates as React Email components or plain HTML. Re-register webhooks pointing at the same internal handlers — verify event-name mapping. Switch SDK calls from `mailgun.js` to `resend` (or swap SMTP host/port/credentials if using SMTP). Run in shadow mode (dual-send or percentage cutover) before flipping DNS-level MX/inbound traffic.",
+  "concept_mapping": [
+    { "mailgun": "Domain (sending domain)", "resend": "Domain", "notes": "1:1; new DKIM keys required" },
+    { "mailgun": "API key (master / domain / HTTP)", "resend": "API key", "notes": "Resend keys are scoped; recreate per environment" },
+    { "mailgun": "SMTP credentials", "resend": "SMTP credentials", "notes": "Both support SMTP relay; host and port differ — check Resend docs" },
+    { "mailgun": "/v3/<domain>/messages send", "resend": "POST /emails (or SDK `resend.emails.send`)", "notes": "Payload shape differs but concepts align" },
+    { "mailgun": "Templates (Handlebars)", "resend": "React Email templates / inline HTML", "notes": "No automatic conversion — re-author" },
+    { "mailgun": "Suppressions: bounces / unsubscribes / complaints", "resend": "Suppression list", "notes": "Re-import to preserve compliance" },
+    { "mailgun": "Webhooks (delivered, opened, clicked, failed, complained, unsubscribed)", "resend": "Webhooks", "notes": "Event names and signature scheme differ" },
+    { "mailgun": "Tags / custom variables", "resend": "Tags / headers", "notes": "Used for log filtering; rebuild any analytics that depended on them" },
+    { "mailgun": "Mailing lists", "resend": "Audiences / contacts", "notes": "Naming and capabilities differ; verify before relying on them" },
+    { "mailgun": "Inbound Routes", "resend": "No direct equivalent (as of writing)", "notes": "May need a third-party inbound provider or self-hosted relay" },
+    { "mailgun": "Email validation API", "resend": "Not a built-in product", "notes": "Use a dedicated validator (ZeroBounce, Kickbox, etc.)" },
+    { "mailgun": "EU vs US region", "resend": "Region selection at domain/account level", "notes": "Confirm current Resend region options before migrating EU data" }
+  ],
+  "effort": "Small project: ~1–2 days for a single domain with a handful of templates and webhooks. Medium project: ~1–2 weeks if you have multiple domains, dedicated IPs to warm up, complex Routes, or large suppression lists.",
+  "gotchas": [
+    "Mailgun inbound Routes have no direct Resend equivalent — if you rely on inbound parsing, plan a separate solution before cutover",
+    "Dedicated IP availability and pricing differ between providers; confirm current Resend plan terms and budget for warm-up time",
+    "EU vs US region: data residency matters for GDPR — make sure the new Resend domain is provisioned in the right region",
+    "Log / event retention windows differ — export Mailgun events you may need for audit before retiring the account",
+    "Suppression lists must be migrated before first send to avoid re-mailing users who bounced or unsubscribed",
+    "DKIM keys cannot be carried over; you need to publish Resend's DNS records and wait for propagation",
+    "Reputation does not transfer with the domain — if you switch sending IPs, expect a warm-up period",
+    "Mailgun's email validation and mailing-list features may require third-party replacements; budget for that"
+  ],
+  "email": {
+    "subject": "Migrating our transactional email from Mailgun to Resend",
+    "body": "Hi team,\n\nWe're moving our transactional email from Mailgun to Resend. Both are REST + SMTP providers, so application code changes are limited, but a few items need coordination:\n\n1. DNS — we'll publish new DKIM/SPF records from Resend per sending domain. Mailgun's keys cannot be reused.\n2. Suppressions — bounces, unsubscribes, and complaints will be exported from Mailgun and imported into Resend before first production send.\n3. Templates — existing Handlebars templates will be re-authored (React Email or plain HTML).\n4. Webhooks — endpoints stay the same, but event names and signatures will be updated.\n5. Inbound Routes / email validation — no direct Resend equivalent; we'll evaluate a third-party option.\n\nWe'll cut over in shadow mode first, then flip traffic. Expect questions about deliverability during the switch — please flag any anomalies.\n\nThanks."
+  }
+}

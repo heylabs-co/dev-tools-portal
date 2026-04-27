@@ -1,81 +1,62 @@
 {
-  "source": {
-    "slug": "algolia",
-    "name": "Algolia"
-  },
-  "target": {
-    "slug": "meilisearch",
-    "name": "Meilisearch"
-  },
-  "generated_at": "2026-04-25T00:00:00Z",
-  "tldr": "Moving from Algolia to Meilisearch trades a hosted proprietary search API for an open-source engine you can self-host or run on Meilisearch Cloud. Index schemas, ranking rules, and client integrations have to be re-mapped, but most apps can run both side-by-side during cutover.",
+  "source": { "slug": "algolia", "name": "Algolia" },
+  "target": { "slug": "meilisearch", "name": "Meilisearch" },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "quality": "hand-crafted",
+  "tldr": "Swap hosted Algolia for self-hosted (or Meilisearch Cloud) Meilisearch. Index data and most settings map cleanly; ranking semantics, replicas, and analytics differ enough to require re-tuning and a relevance QA pass.",
   "why_switch": [
-    "Lower and more predictable cost at scale",
-    "Open-source engine, self-host option removes vendor lock-in",
-    "Simple REST API and typo-tolerant relevance out of the box",
-    "Avoid Algolia's commit/peak-record billing pressure",
-    "Keep instant-search UX with comparable client SDKs"
+    "OSS, self-hostable — eliminates per-search vendor pricing at scale",
+    "Predictable cost: server bill instead of records + operations metering",
+    "Strong typo-tolerance and instant search out of the box",
+    "Simpler REST API and smaller mental model than Algolia's settings surface",
+    "No high-water-mark commit tier — capacity is whatever you provision",
+    "Permissive license + control over data residency and infra",
+    "Lower lock-in — easy to migrate away again if needed"
   ],
   "what_to_export": [
-    "Index records (documents)",
-    "Index settings (searchable, filterable, sortable attributes)",
-    "Ranking and custom ranking rules",
-    "Synonyms",
-    "Stop words",
-    "Rules / query-level overrides",
-    "API keys and key scopes",
-    "Replicas / sorting indices",
-    "Analytics history (if needed)",
-    "Frontend search UI configuration"
+    "Index records (full document payloads per index)",
+    "Index settings: searchableAttributes",
+    "Index settings: attributesForFaceting (filterable / facet attributes)",
+    "Index settings: customRanking and ranking criteria",
+    "Replicas / sort replicas configuration",
+    "Synonyms (one-way and multi-way)",
+    "Query rules (merchandising, pinning, redirects, banners)",
+    "Stop words and dictionaries (compounds, plurals, segmentation)",
+    "API keys and ACL scopes (search-only, admin, secured keys)",
+    "Analytics events / click & conversion tracking config (Insights)",
+    "Personalization / Recommend strategies (if used)",
+    "InstantSearch / front-end UI configuration and templates"
   ],
-  "export_method": "Use the Algolia dashboard or the official Algolia client SDK to export each index. The browse method (or equivalent in your SDK) lets you stream all records out as JSON, paginating until done. Pull index settings, synonyms, rules, and stop words separately through their respective endpoints in the SDK so nothing is lost. Keep one JSON file per index plus a settings file alongside it. Do not invent a one-click migration tool — script the export per index, verify counts against the dashboard, and store the dump in object storage so you can re-import if anything goes wrong. Capture API key definitions and scope restrictions from the dashboard for re-creation in the new system; secrets cannot be re-exported, only re-issued.",
-  "import_method": "Spin up Meilisearch (Docker, self-hosted binary, or Meilisearch Cloud). Create one index per Algolia index, set the primary key, then bulk-add documents in batches using the Meilisearch client SDK or REST API. Translate Algolia settings into Meilisearch equivalents: searchableAttributes, filterableAttributes, sortableAttributes, ranking rules, synonyms, stop words. Re-issue API keys in Meilisearch with appropriate actions and index scopes — do not copy Algolia keys. Validate by replaying a sample of recent production queries against both engines and diffing the top results before flipping traffic. Run dual-write for at least one cycle so writes stay in sync until cutover.",
+  "export_method": "Use the Algolia API or `algolia` CLI to dump each index: records via browse, plus settings, synonyms, and rules endpoints. Save as JSON per index. API keys cannot be exported as plaintext — re-issue equivalents on Meilisearch. Analytics history is not portable; archive reports separately. Verify record counts against the dashboard before cutover.",
+  "import_method": "Run a Meilisearch instance (Docker or Meilisearch Cloud). Create one index per Algolia index, set `primaryKey`, then bulk-add documents via `POST /indexes/{uid}/documents`. Apply settings via the settings endpoint (searchableAttributes, filterableAttributes, sortableAttributes, rankingRules, synonyms, stopWords). Re-create API keys via the keys endpoint. A small adapter script is usually required; community tooling exists but verify currency. Dual-write during cutover and diff top queries before flipping traffic.",
   "concept_mapping": [
-    {
-      "source": "Index",
-      "target": "Index"
-    },
-    {
-      "source": "Searchable attributes",
-      "target": "searchableAttributes"
-    },
-    {
-      "source": "Attributes for faceting",
-      "target": "filterableAttributes"
-    },
-    {
-      "source": "Custom ranking",
-      "target": "Ranking rules",
-      "note": "Order and semantics differ; review carefully"
-    },
-    {
-      "source": "Synonyms",
-      "target": "Synonyms"
-    },
-    {
-      "source": "Stop words",
-      "target": "Stop words"
-    },
-    {
-      "source": "Replicas (per-sort indexes)",
-      "target": "sortableAttributes"
-    },
-    {
-      "source": "API keys",
-      "target": "API keys",
-      "note": "Re-issue, do not migrate values"
-    }
+    { "source": "Index", "target": "Index" },
+    { "source": "objectID", "target": "primaryKey (document id field)" },
+    { "source": "searchableAttributes", "target": "searchableAttributes (order matters in both)" },
+    { "source": "attributesForFaceting", "target": "filterableAttributes" },
+    { "source": "customRanking", "target": "rankingRules (asc/desc on attribute)" },
+    { "source": "ranking (typo, geo, words, ...)", "target": "rankingRules — different default order, fewer knobs", "note": "Relevance will not be byte-identical" },
+    { "source": "Replicas / sort replicas", "target": "sortableAttributes + sort param at query time" },
+    { "source": "Synonyms", "target": "synonyms" },
+    { "source": "Stop words", "target": "stopWords" },
+    { "source": "Query Rules", "target": "No direct equivalent — partially covered by filters/boosting + app-side logic" },
+    { "source": "API keys / Secured API keys", "target": "API keys + tenant tokens for scoped access", "note": "Re-issue, do not migrate values" },
+    { "source": "Insights / Analytics", "target": "No built-in analytics on OSS — bring your own (logs, ClickHouse, etc.); Cloud has limited analytics" },
+    { "source": "InstantSearch.js", "target": "instant-meilisearch adapter — verify feature/widget parity" }
   ],
-  "effort": "1-3 weeks for a typical app, longer if you rely heavily on Rules, Personalization, or Recommend",
+  "effort": "1-3 weeks for a typical single-app migration; longer with heavy Query Rules, Personalization, or many replicas. Self-hosting adds ops work (sizing, backups, monitoring).",
   "gotchas": [
-    "Ranking semantics differ — relevance will not be byte-identical, plan for QA on top queries",
-    "Algolia Rules and Personalization have no 1:1 equivalent; budget for product-side rework",
-    "InstantSearch widgets need the Meilisearch InstantSearch adapter, not a drop-in swap",
-    "Plan capacity for self-hosted Meilisearch (RAM-bound) or factor in Meilisearch Cloud cost",
-    "Analytics history does not transfer; export anything you need for reporting first"
+    "Algolia is schema-less; Meilisearch infers types per field — mixed types in one attribute can cause filter/sort errors",
+    "Ranking formulas differ — relevance will not match 1:1; budget time for re-tuning rankingRules and weights",
+    "Replicas → sortableAttributes is conceptually similar but query shape changes (sort param vs separate index)",
+    "InstantSearch works via the instant-meilisearch adapter, but not every Algolia widget/feature is supported — test before swapping",
+    "Query Rules have no direct equivalent; merchandising/pinning logic likely needs application-layer code",
+    "No built-in click/conversion analytics on OSS — wire up your own pipeline if you relied on Insights",
+    "Self-hosting requires sizing RAM/disk for the dataset; Meilisearch keeps significant data in memory",
+    "Highlighting, pagination, and faceting response shapes differ — front-end response parsing will need updates"
   ],
   "email": {
     "subject": "Cancellation and data export request for our Algolia account",
-    "body": "Hi Algolia team,\n\nWe are migrating off Algolia over the next 14 days and want to make sure the offboarding goes smoothly. Could you please confirm the cleanest way to export all of our indices, including documents, settings, synonyms, stop words, and rules, and let us know whether any of that requires support assistance versus what we can pull through the dashboard or API ourselves?\n\nWe would also like to schedule cancellation at the end of the current billing cycle once the export is verified. Please share the steps to disable auto-renewal, the date by which we need to confirm cancellation to avoid the next charge, and any data retention or deletion timelines after the account is closed.\n\nIf there is anything we should know about commit tiers or remaining credits before we cancel, please flag it. Aiming to wrap up within two weeks.\n\nThanks,\nYour customer"
+    "body": "Hi Algolia team,\n\nWe're migrating our search workload to self-hosted Meilisearch and want to wind down our Algolia account cleanly. Could you confirm the best path to export all of our indices — documents, settings, synonyms, stop words, and rules — and flag anything that needs support involvement versus what we can pull via the API ourselves?\n\nWe'd also like to schedule cancellation at the end of the current billing cycle once exports are verified. Please share the steps to disable auto-renewal, the deadline to confirm cancellation to avoid the next charge, and any data retention/deletion timelines after the account is closed. If there's anything to know about commit tiers or remaining credits before we cancel, please flag it.\n\nAiming to wrap within two weeks. Thanks for the service.\n\nBest,\n[Name]"
   }
 }

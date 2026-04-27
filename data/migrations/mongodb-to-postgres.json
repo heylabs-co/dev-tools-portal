@@ -1,0 +1,70 @@
+{
+  "source": {"slug": "mongodb", "name": "MongoDB"},
+  "target": {"slug": "postgres", "name": "PostgreSQL"},
+  "generated_at": "2026-04-26T00:00:00Z",
+  "quality": "hand-crafted",
+  "tldr": "This is a paradigm shift, not a swap. MongoDB stores schemaless BSON documents; Postgres is a relational system with strong typing. Decide upfront per collection: keep the document as a single jsonb column (fastest path, minimal rewrite) or normalize into proper tables (best long-term query performance and integrity). Most production migrations end up hybrid — hot/queryable fields normalized, the rest left in jsonb. Plan for application code rewrites: aggregation pipelines, change streams, _id semantics, and write-concern semantics all change.",
+  "why_switch": [
+    "Mature SQL with full ACID transactions across multiple rows and tables — not just multi-document transactions bolted on later",
+    "Strong, declarative schemas with constraints (CHECK, FOREIGN KEY, NOT NULL, UNIQUE) — catches data drift at write time instead of at query time",
+    "No 16 MB BSON document size limit — rows can be wide and TOAST-ed transparently; large blobs go to bytea or external storage",
+    "First-class JSON via jsonb with GIN indexing and jsonpath — you can keep document-style data where it actually fits without giving up SQL",
+    "Single source of truth: relational data, JSON, full-text search, and vector (pgvector) all live in one engine, queryable in one statement",
+    "Permissive PostgreSQL License (open source, no SSPL restriction) — fewer hosting and redistribution constraints than MongoDB Community Server's SSPL",
+    "Enormous, portable ecosystem: every major cloud, every ORM, every BI tool, plus extensions (PostGIS, TimescaleDB, pgvector, pg_partman)"
+  ],
+  "what_to_export": [
+    "Collections — full document dump per collection (mongodump → BSON, or mongoexport → Extended JSON)",
+    "Indexes — list via db.collection.getIndexes(); compound, partial, TTL, text, geospatial, and unique indexes each map differently in Postgres",
+    "Schema validators — JSON Schema validators attached to collections (db.getCollectionInfos()) — these become CHECK constraints or jsonb schema validation",
+    "Aggregation pipelines — every $match/$group/$lookup/$unwind/$project pipeline used in app code; these need rewriting as SQL (CTEs, window funcs, jsonb_path_query, LATERAL joins)",
+    "GridFS files — fs.files and fs.chunks if you store binaries; decide between bytea, large objects (lo), or external object storage (S3/R2) with a pointer column",
+    "Users, roles, and authentication rules — Mongo's role-based access maps loosely to Postgres ROLE/GRANT; SCRAM-SHA passwords don't transfer",
+    "Change streams — any consumer that uses change streams for CDC needs a Postgres equivalent: logical replication slots, wal2json/pgoutput, or LISTEN/NOTIFY for lighter cases",
+    "Sharding metadata — shard keys, chunk distribution, and zone tags; in Postgres this becomes either declarative partitioning (RANGE/LIST/HASH) or Citus if you need true horizontal sharding",
+    "Time-series collections — these have special on-disk layout in MongoDB; in Postgres consider TimescaleDB hypertables or native partitioning by time",
+    "Capped collections — no direct equivalent; emulate with a trigger that DELETEs oldest rows, or use a partitioned table with rolling DROP PARTITION",
+    "Replica set / oplog state — only relevant if you need a consistent point-in-time cut; use mongodump --oplog for the snapshot",
+    "Application-side concerns — write concerns (w:majority), read preferences (secondary), and retry semantics all need to be re-mapped to Postgres connection settings, synchronous_commit, and pooler config (PgBouncer)"
+  ],
+  "export_method": "Two official tools, pick by goal. (1) mongodump (recommended for migration): produces a binary BSON dump per collection plus a metadata.json with index definitions. Preserves all BSON types with full fidelity. Flags: --uri, --db, --collection, --out, --gzip, --archive, --oplog (for consistent point-in-time snapshot of a replica set), -j for parallel collections. Example: `mongodump --uri='mongodb://...' --db=app --gzip --out=./dump`. (2) mongoexport: produces JSON (default, Extended JSON v2 — relaxed or canonical) or CSV. Required: --collection. Useful flags: --db, --query, --fields, --type=csv, --jsonArray, --out, --limit, --skip, --sort. Example: `mongoexport --uri='mongodb://...' --db=app --collection=users --jsonArray --out=users.json`. mongoexport explicitly is NOT a backup tool per MongoDB docs — type fidelity is partial (Extended JSON encodes ObjectId, Date, Decimal128 as wrapped objects). For active databases, run against a secondary (--readPreference=secondary) or a snapshot. The --forceTableScan flag exists historically to bypass index-based reads when index state is suspect; verify it is still present and applicable for your MongoDB server version before relying on it.",
+  "import_method": "Postgres COPY natively supports only three formats: text (default), csv, and binary — there is no FORMAT JSON. So you have three realistic strategies. (A) jsonb-as-landing-zone (fastest migration): create a staging table `(id text, doc jsonb)`, convert each Mongo document to one line, and load with `COPY staging(id, doc) FROM '/path/to/file.csv' (FORMAT csv, QUOTE '\\u0001')` or via `\\copy ... FROM PROGRAM 'cat file.ndjson'`. Then transform with SQL (jsonb_path_query, ->, ->>) into the real schema. (B) Tooling: pgloader has a built-in MongoDB source that reads a live Mongo instance and writes to Postgres in one step; mongo_fdw exposes Mongo collections as foreign tables you can `INSERT ... SELECT` from; community scripts like mongo-to-postgres-nodejs or stream-based ETL (Airbyte, Fivetran, Debezium) handle ongoing CDC. (C) Custom script: read the BSON dump (or Extended JSON), transform per-collection in Python/Node, and bulk-insert via COPY in binary or csv format. Important: Extended JSON wraps types ($oid, $date, $numberDecimal) — your transform must unwrap these into uuid/timestamptz/numeric or they will land as nested jsonb. Use `\\copy` (psql client-side) when the file is on the client machine; use server-side `COPY ... FROM '/path'` only when the file is on the database server.",
+  "concept_mapping": [
+    "Document → Row (or jsonb value inside a row)",
+    "Collection → Table (or single jsonb column on a generic table)",
+    "Database → Schema (CREATE SCHEMA app) or separate database",
+    "Embedded document → JSONB column, OR a child table with a foreign key (decision per access pattern)",
+    "Array field → JSONB array (queryable with jsonb_path_query / @>), OR a child table for true 1:N normalization, OR Postgres native array type for primitives",
+    "_id ObjectId → uuid (gen_random_uuid() from pgcrypto) or bigint identity; keep the original ObjectId as a text column during cutover for cross-system reconciliation",
+    "Index (single field) → CREATE INDEX (B-tree by default)",
+    "Compound index → CREATE INDEX ON t (a, b, c) — column order matters identically",
+    "Index on embedded path → expression index, e.g. `CREATE INDEX ON t ((doc->>'email'))`, or GIN on the whole jsonb",
+    "Text index → tsvector + GIN, or pg_trgm for fuzzy/substring",
+    "Geospatial 2dsphere → PostGIS geography/geometry with GiST index",
+    "TTL index → no native equivalent; use a scheduled job (pg_cron) that DELETEs rows past expiry, or a partitioned table with rolling DROP PARTITION",
+    "Aggregation pipeline ($match/$group/$project) → SELECT ... WHERE ... GROUP BY ... combined with CTEs (WITH) and window functions",
+    "$lookup → JOIN (or LATERAL JOIN for correlated lookups)",
+    "$unwind → jsonb_array_elements(...) in a LATERAL join",
+    "Schema validator (JSON Schema) → CHECK constraints, NOT NULL, plus optional jsonb schema validation via extensions",
+    "Change streams → logical replication (pgoutput, wal2json, Debezium) for full CDC, or LISTEN/NOTIFY for lightweight in-app pubsub",
+    "Sharding (shard key + chunks) → declarative partitioning (RANGE/LIST/HASH) for single-node, or Citus extension for distributed Postgres",
+    "GridFS → bytea column for small blobs, large objects (lo) for streaming, or external object store (S3/R2) with a URL/key column"
+  ],
+  "effort": "Typical range: 4-12 weeks of focused work for a single production system. Small app (<10 collections, no aggregation pipelines, no change streams): ~2-3 weeks. Mid-size (20-50 collections, some pipelines, no sharding): ~6-8 weeks. Large/sharded with custom aggregation logic, GridFS, and change-stream consumers: 3-6 months including dual-write and shadow-read validation. The export+import itself is usually a small fraction of the total — most time goes into schema design decisions (jsonb vs normalize, per collection), rewriting application queries, and cutover orchestration.",
+  "gotchas": [
+    "Schema decision is permanent in practice — choosing jsonb-everywhere is fast to migrate but gives up most of the relational benefits you migrated for; choosing full normalization is slow but pays off long-term. Decide per collection, not globally",
+    "_id semantics: ObjectId is 12 bytes with embedded timestamp; uuid is 16 bytes random. If your app relies on _id ordering or extracts the timestamp, that breaks — you need a separate created_at column",
+    "Extended JSON type wrapping: Mongo's JSON output wraps types as `{\"$oid\":\"...\"}`, `{\"$date\":\"...\"}`, `{\"$numberDecimal\":\"...\"}`. If you load these straight into jsonb you get nested objects, not native types. Unwrap during transform",
+    "Transactions: MongoDB single-document writes are atomic by default; Postgres transactions are explicit (BEGIN/COMMIT). Cross-document atomicity that worked implicitly in Mongo (because everything was in one document) now requires multi-row transactions",
+    "No schemaless by default: app code that wrote arbitrary new fields will fail against a strict schema. Either lock the schema and fix the writes, or keep an `extra jsonb` catch-all column during transition",
+    "Aggregation operators don't translate 1:1: $facet, $bucket, $graphLookup, $merge, and $function have no direct SQL equivalent — they need rewriting (often as CTEs, recursive CTEs, or PL/pgSQL)",
+    "Change streams → logical replication: requires wal_level=logical, a replication slot per consumer, and slot management (an unconsumed slot will fill the WAL and stall the database). LISTEN/NOTIFY is a much lighter alternative but only for in-cluster, non-durable signals",
+    "Write concern vs synchronous_commit: Mongo's w:majority maps roughly to synchronous_commit=on with synchronous replicas configured; the defaults are NOT equivalent and silent durability differences are an easy footgun",
+    "Connection model: Postgres connections are heavyweight (one process each). Use PgBouncer or the equivalent pooler — driver-level pools alone won't save you the way they do with Mongo's native pooling",
+    "Case sensitivity: Postgres folds unquoted identifiers to lowercase; Mongo field names are case-sensitive everywhere. `userId` and `userid` are the same column unless you double-quote"
+  ],
+  "email": {
+    "subject": "Migrating from MongoDB to PostgreSQL — what to plan for",
+    "body": "Hi,\n\nIf you're considering a move from MongoDB to PostgreSQL, the honest summary is that it's a paradigm shift, not a drop-in swap. The export side is straightforward — mongodump gives you a faithful BSON snapshot, mongoexport gives you JSON or CSV — but Postgres COPY doesn't accept JSON natively (only text, csv, and binary), so you'll land documents into a jsonb staging column and transform from there.\n\nThe real work is the schema decision, made per collection: keep documents as jsonb (fast migration, GIN-indexable, but you give up most of the relational wins) or normalize into tables (slower, but you get constraints, joins, and predictable query plans). Most teams end up hybrid — hot fields normalized, the rest in jsonb.\n\nBudget 4-12 weeks for a typical production system. Time goes mostly into rewriting aggregation pipelines as SQL (CTEs, jsonb_path_query, LATERAL joins), replacing change-stream consumers with logical replication or LISTEN/NOTIFY, and re-mapping write concerns to synchronous_commit settings. The data move itself is usually a small slice.\n\nThings that bite people: ObjectId → uuid loses the embedded timestamp, Extended JSON wraps types ($oid, $date, $numberDecimal) that need unwrapping, no native TTL indexes, and Postgres connections need PgBouncer in front. Happy to go deeper on any of these.\n\nBest,"
+  }
+}

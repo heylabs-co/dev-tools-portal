@@ -1,68 +1,64 @@
 {
-  "source": {
-    "slug": "amplitude",
-    "name": "Amplitude"
-  },
-  "target": {
-    "slug": "posthog",
-    "name": "PostHog"
-  },
-  "generated_at": "2026-04-25T00:00:00Z",
-  "tldr": "PostHog is the closest open-source equivalent to Amplitude with funnels, retention, cohorts plus session replay and flags in one tool. Event taxonomy ports well; SDK swap is mostly mechanical.",
+  "source": {"slug": "amplitude", "name": "Amplitude"},
+  "target": {"slug": "posthog", "name": "PostHog"},
+  "generated_at": "2026-04-26T00:00:00Z",
+  "quality": "hand-crafted",
+  "tldr": "Move product analytics from Amplitude to PostHog by exporting raw event JSONL via Amplitude's Export API and replaying it into PostHog's /batch/ endpoint with historical_migration set to true. Plan for a few weeks if you also rebuild dashboards, cohorts, and identify/merge logic; PostHog also offers a managed migration path that automates much of the heavy lifting.",
   "why_switch": [
-    "Open-source, self-hostable — no MAU lock-in",
-    "Bundles analytics, replay, flags, A/B tests",
-    "Raw SQL access to your own event data",
-    "Usage-based pricing scales down, not just up"
+    "Open-source core with a self-hosted option — no vendor reaches into your raw data store, and you can run PostHog inside your own VPC if compliance demands it.",
+    "All-in-one platform: product analytics, session replay, feature flags, A/B testing, and surveys ship under one project token instead of stitching three or four tools together.",
+    "Raw SQL access to your event data through PostHog's HogQL/data warehouse — no proprietary query DSL gating exports.",
+    "Usage-based pricing with a free tier; Amplitude's paid tiers are documented as annual event-volume commitments that don't shrink mid-cycle.",
+    "Active OSS community and public roadmap — HN mentions in the last 30 days are roughly two orders of magnitude higher than Amplitude's, signaling momentum.",
+    "Lower lock-in score in our registry (PostHog: 1/5, Amplitude: 3/5) thanks to a standard event schema and self-host fallback.",
+    "Session replay is built in at the same data layer as analytics — you can jump from a funnel drop-off straight into the recording without a separate Hotjar/FullStory subscription."
   ],
   "what_to_export": [
-    "Event stream (historical events)",
-    "User profiles and identify properties",
-    "Cohorts and saved segments",
-    "Charts, funnels, retention, dashboards",
-    "Event taxonomy (event + property names, types)",
-    "API keys and source tokens",
-    "Annotations / release markers",
-    "Team members and access roles"
+    "Raw event stream — all historical events with properties, timestamps, and user/device IDs (Amplitude Export API, /api/2/export).",
+    "User profiles and user properties — captured per-event in the export payload under user_properties; persistent profile state can be replayed via PostHog $identify calls.",
+    "Identify / alias history — Amplitude's user_id, amplitude_id, and device_id linkage so anonymous-to-identified merges survive the move.",
+    "Behavioral cohorts — list via GET /api/3/cohorts, then request, poll, and download per cohort (GET /api/5/cohorts/request/{id}, then /api/5/cohorts/request-status/{request_id}, then /api/5/cohorts/request/{requestId}/file).",
+    "Charts, funnels, and retention reports — capture definitions (events, filters, breakdowns, time windows) so you can rebuild them as PostHog Insights.",
+    "Dashboards — the layout and which charts they contain; PostHog dashboards group Insights similarly.",
+    "Event taxonomy — event names, property names, descriptions, and any governance rules so you can recreate them as PostHog event/property definitions.",
+    "Group analytics / Accounts data if you use Amplitude Accounts — the group identifier and group properties need to map onto PostHog Groups.",
+    "Feature flag and experiment configs (if you used Amplitude Experiment) — these become PostHog feature flags / experiments and usually need to be recreated by hand.",
+    "Annotations / release markers on charts — re-add as PostHog annotations after import.",
+    "Saved segments and notebooks — there is no 1:1 export, so capture the queries so analysts can rebuild them.",
+    "Alerts / scheduled digests — Amplitude alert thresholds need to be recreated as PostHog Insight alerts or subscriptions."
   ],
-  "export_method": "Pull raw events using Amplitude's Export API for the time window you want preserved, or — if you have warehouse-native mode enabled — query Snowflake/BigQuery directly for a clean dump. Save cohorts and chart configs through the dashboard/API. Capture your full event taxonomy (event names, property keys, types) so you can recreate governance rules in PostHog. Identify and merge IDs need special care: Amplitude uses `user_id` and `device_id`; preserve both columns in the export so PostHog can stitch identities correctly.",
-  "import_method": "Spin up PostHog Cloud or self-host. Install the PostHog SDK in your application and replicate `track`, `identify`, `group` calls — Amplitude's `logEvent` maps to PostHog's `capture`. For the historical event dump, use PostHog's batch import / historical migration endpoint to ingest the JSON or CSV with original timestamps so retention and funnel charts remain correct. Recreate cohorts as PostHog cohorts (static or dynamic) and rebuild key dashboards. Run both SDKs in parallel for at least a week so you can compare event counts and catch instrumentation drift before cutting Amplitude off.",
+  "export_method": "Use Amplitude's Export API: GET https://amplitude.com/api/2/export (or https://analytics.eu.amplitude.com/api/2/export for EU residency) with HTTP Basic auth using {api_key}:{secret_key}. The endpoint takes start and end parameters in YYYYMMDDTHH format and returns a zipped archive of JSON files (one JSON event per line). Per Amplitude's docs: maximum 365-day window per request, 4GB per request, data is available roughly 2 hours after server receipt, and 504 responses on large windows mean you should narrow the range or use the S3 destination instead. For cohorts, use the /api/3/cohorts list endpoint plus the async /api/5/cohorts/request flow (request, poll status, download — with a redirect to a pre-signed S3 URL for larger cohorts). Note Amplitude's documented quotas: 500 cohort download requests per month on Growth/Enterprise plans, a 2M-user cohort cap, and rate limits around 60 requests per 10 minutes per app. Verify these numbers against your contract before scripting.",
+  "import_method": "Replay events into PostHog using the public ingest endpoints: POST https://us.i.posthog.com/batch/ (or https://eu.i.posthog.com/batch/, or your self-hosted domain). Each request body is a JSON object containing your project api_key plus a batch array; each event needs at minimum event (name), distinct_id, and properties, plus an ISO 8601 timestamp. For historical replay, set historical_migration: true so PostHog bypasses real-time spike detection. Per PostHog's docs the request body must stay under roughly 20MB, and historical timestamps must be at least 48 hours in the past. Alternatively, PostHog offers managed migrations from Amplitude that automate the export/transform/ingest pipeline — worth checking before building a custom pipeline. Cohorts and dashboards are recreated via the PostHog API (Insights, Dashboards, Cohorts endpoints) or the UI; event/property definitions can be seeded by simply ingesting events with the right names.",
   "concept_mapping": [
-    {
-      "source": "Event",
-      "target": "Event"
-    },
-    {
-      "source": "User Property",
-      "target": "Person property"
-    },
-    {
-      "source": "Group",
-      "target": "Group"
-    },
-    {
-      "source": "Cohort",
-      "target": "Cohort"
-    },
-    {
-      "source": "Funnel / Retention / Cohorts chart",
-      "target": "Funnel / Retention / Trends insight"
-    },
-    {
-      "source": "Project API Key",
-      "target": "Project API Key"
-    }
+    {"amplitude": "User ID", "posthog": "distinct_id (identified)"},
+    {"amplitude": "Device ID / amplitude_id (anonymous)", "posthog": "distinct_id (anonymous, later merged via $identify)"},
+    {"amplitude": "Identify call (set/setOnce on user_properties)", "posthog": "$identify event with $set / $set_once on properties"},
+    {"amplitude": "Event Stream", "posthog": "Events"},
+    {"amplitude": "Event Properties", "posthog": "Event properties"},
+    {"amplitude": "User Properties", "posthog": "Person properties"},
+    {"amplitude": "Charts (Segmentation, Funnels, Retention, Pathfinder)", "posthog": "Insights (Trends, Funnels, Retention, Paths)"},
+    {"amplitude": "Dashboards", "posthog": "Dashboards"},
+    {"amplitude": "Behavioral Cohorts", "posthog": "Cohorts (dynamic) / Static cohorts"},
+    {"amplitude": "Accounts / Group analytics", "posthog": "Groups"},
+    {"amplitude": "Lookback window / Date range", "posthog": "Insight time range"},
+    {"amplitude": "Annotations", "posthog": "Annotations"},
+    {"amplitude": "Amplitude Experiment", "posthog": "Feature flags + Experiments"},
+    {"amplitude": "Data Taxonomy (event/property descriptions)", "posthog": "Event & property definitions / Data management"}
   ],
-  "effort": "2-4 weeks",
+  "effort": "2-6 weeks for a typical mid-size product. Roughly: 2-4 days to wire up SDK dual-write and stand up the PostHog project; 3-7 days to script the Export API to /batch/ pipeline (or evaluate managed migrations) and validate counts; 1-2 weeks to rebuild dashboards, funnels, and cohorts; 3-5 days for QA, alerting, and decommissioning. Larger event volumes (>1B events) or heavy use of group analytics, behavioral cohorts, and Experiment push toward the upper end.",
   "gotchas": [
-    "Annual event-volume commit on Amplitude does not pro-rate",
-    "Event timestamps MUST be preserved on historical import or retention charts break",
-    "Identity stitching differs — verify user_id/device_id merges produce same DAU",
-    "Default/reserved property names differ — update dashboards after import",
-    "Self-hosting PostHog adds infra cost; benchmark before committing"
+    "Identify/alias semantics differ. Amplitude auto-merges device_id with user_id on the first identified event; in PostHog you must emit an explicit $identify event with the anonymous distinct_id and the new identified distinct_id, otherwise pre-login activity stays on a separate person.",
+    "Anonymous-to-identified merges only survive if you carry both Amplitude's device_id and user_id through the transformer and decide which one becomes distinct_id. A common pattern: use user_id when present, otherwise device_id, and emit $identify with $anon_distinct_id = device_id at the first identified event.",
+    "PostHog historical ingest requires timestamps at least 48 hours in the past and historical_migration: true on /batch/, otherwise events can be rejected or treated as real-time and trip anomaly detection.",
+    "Event name case sensitivity. Amplitude event names are case-sensitive (\"Sign Up\" is not the same as \"sign up\"); PostHog is also case-sensitive but conventional names are snake_case. Decide on a canonical form during transform or you'll end up with duplicate definitions.",
+    "Group analytics translation is not automatic — Amplitude Accounts use a group_type/group_value pair, PostHog Groups use $groups: { groupType: groupKey } in event properties. Without this mapping, account-level dashboards won't replay correctly.",
+    "Behavioral cohorts don't port 1:1. Amplitude's cohort builder has constructs (e.g., \"users who did X but not Y in the last 30 days, grouped by property Z\") that need to be re-expressed as PostHog cohort filters; static membership lists are easier to migrate via a cohort upload.",
+    "Pathfinder has no exact equivalent — PostHog Paths covers most cases but the algorithm and UI differ; expect to rebuild path analyses rather than translate them.",
+    "Export API quotas and the 4GB/request cap mean you'll typically chunk by hour or day for high-volume projects; cohort downloads have a documented 500/month cap on Growth/Enterprise and a 2M-user-per-cohort ceiling — plan around that before scripting.",
+    "Charts, alerts, and SQL-backed dashboards have no machine-readable export from Amplitude in many setups — budget time to recreate them in PostHog Insights/HogQL by hand."
   ],
   "email": {
-    "subject": "Data export and wind-down — Amplitude",
-    "body": "Hi Amplitude team,\n\nWe are migrating our product analytics to another platform over the next 14 days and want to wind down cleanly. Could you help with:\n1. Confirming the recommended way to export full historical events, cohorts, charts, and user properties via the Export API or warehouse sync.\n2. Sharing the end date of our current annual event-volume commitment so we don't double-pay during overlap.\n3. Confirming any data retention/purge timeline after cancellation so we have a clear deadline to finish the export.\n\nWe will keep instrumentation dual-writing during the parallel run, then cancel. Please flag anything that needs your team to action.\n\nThanks,\nYour customer"
+    "subject": "Plan: Amplitude to PostHog migration",
+    "body": "Hi team,\n\nProposing we move product analytics from Amplitude to PostHog. Short version of why: PostHog gives us analytics, session replay, feature flags, and experiments under one project, with raw SQL access and a self-host option, at usage-based pricing. Our internal lock-in registry rates PostHog 1/5 vs Amplitude 3/5.\n\nMigration plan:\n\n1. Stand up a PostHog project (US or EU cloud, or self-host) and dual-write from our SDKs so both tools receive live events for the QA window.\n2. Export historical events from Amplitude via the Export API (https://amplitude.com/api/2/export — JSONL inside a zip, max 365-day window and 4GB per request). Chunk by day for our volume.\n3. Transform: map user_id to distinct_id when present (else device_id), preserve event_type as the event name, fold user_properties into person properties, and emit $identify with $anon_distinct_id for the first identified event of each anonymous device_id.\n4. Replay into PostHog's /batch/ endpoint with historical_migration: true and ISO 8601 timestamps. Keep batches under ~20MB. Evaluate PostHog managed migrations first — it may eliminate most of step 3.\n5. Export behavioral cohorts via /api/3/cohorts plus /api/5/cohorts/request/* (mind the 500/month and 2M-user caps) and recreate them in PostHog as static or dynamic cohorts.\n6. Rebuild key dashboards and funnels as PostHog Insights, port annotations, and recreate alert subscriptions.\n7. QA: reconcile event counts, DAU/WAU, and top funnels between the two tools for at least one full week before cutting writes from Amplitude.\n\nEstimated effort: 2-6 weeks depending on how much we lean on Accounts (groups), behavioral cohorts, and Experiment. Risks I want to call out: identify/merge semantics differ, Pathfinder has no 1:1 equivalent, and historical timestamps must be at least 48h old for PostHog's historical ingest.\n\nHappy to scope this in more detail — let me know if we should start with managed migrations or a custom pipeline.\n\nThanks,"
   }
 }

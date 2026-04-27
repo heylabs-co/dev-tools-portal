@@ -1,64 +1,62 @@
 {
-  "source": {
-    "slug": "heap",
-    "name": "Heap"
-  },
-  "target": {
-    "slug": "posthog",
-    "name": "PostHog"
-  },
-  "generated_at": "2026-04-25T00:00:00Z",
-  "tldr": "PostHog also supports autocapture, which makes it the closest functional swap for Heap. You gain open-source plus session replay, flags and SQL access, but identity stitching needs verification.",
+  "source": {"slug": "heap", "name": "Heap"},
+  "target": {"slug": "posthog", "name": "PostHog"},
+  "generated_at": "2026-04-26T00:00:00Z",
+  "quality": "hand-crafted",
+  "tldr": "Both tools are autocapture-first product analytics platforms, so the day-one collection model translates almost 1:1. PostHog adds open-source / self-hosted, session replay, feature flags, experiments, and surveys in the same SKU. Migration cost is concentrated in (a) replaying historical Heap events into PostHog via the /batch ingestion API with historical_migration=true and (b) re-creating Heap Virtual Properties and Event Definitions as PostHog Actions, calculated properties, or HogQL.",
   "why_switch": [
-    "Autocapture parity — minimal re-instrumentation",
-    "Open-source, self-hostable option",
-    "Replay, flags, A/B tests bundled in",
-    "SQL access to your own event data"
+    "Autocapture parity: PostHog autocaptures clicks, taps, form submissions, pageviews, pageleaves, and dead clicks on web (JS/React) and mobile (Android, iOS, with React Native and Flutter opt-in), so you keep the no-upfront-tagging workflow Heap teams expect.",
+    "Session replay is bundled in the same product — no separate FullStory/Hotjar contract — and is wired to the same autocaptured events.",
+    "Feature flags + A/B experiments + surveys live next to your analytics, so cohorts you build from autocaptured behavior can target a flag without a Segment/LaunchDarkly hop.",
+    "Open-source core with a self-hosted option removes Heap's proprietary-format lock-in concern (Heap scores 3/5 lock-in in our index; PostHog scores 1/5).",
+    "Pricing is published, usage-based, and decreases at scale, vs. Heap's annual event-volume commit (a 'high-water-mark' contract that does not scale down mid-cycle).",
+    "Raw event access via HogQL / SQL-style queries, so analysts aren't gated behind a UI-only query builder.",
+    "Active OSS community and rapid release cadence — useful if you want to extend SDKs or run in a private VPC."
   ],
   "what_to_export": [
-    "Defined events and event taxonomy",
-    "Raw event archive",
-    "User profiles and identify properties",
-    "Cohorts and segments",
-    "Saved dashboards / reports",
-    "API keys and source tokens",
-    "Team members and roles",
-    "Annotations / release markers"
+    "Autocaptured events — the full historical event stream (clicks, form submits, pageviews). On Heap this lives behind Heap Connect; CSV chart exports are explicitly insufficient per PostHog's own migration guide.",
+    "Identified users + their user properties (email, plan, account_id, etc.) — Heap's users table in the warehouse export.",
+    "Session/pageview data if you rely on session-scoped analysis (Heap exposes these as separate warehouse tables).",
+    "Event Definitions — the human-readable event names you've curated in Heap's Definitions library; these become PostHog Actions.",
+    "Virtual Properties / Defined Properties — derived fields computed at query time in Heap; these need to be re-expressed as PostHog calculated properties or HogQL expressions.",
+    "Segments / Cohorts — user lists defined by behavior; rebuild as PostHog Cohorts (static or dynamic).",
+    "Funnels, retention, and other saved Reports — rebuild as PostHog Insights.",
+    "Dashboards — rebuild on PostHog dashboards once underlying Insights exist.",
+    "Identity merges (Heap's anonymous → identified stitching) — preserve the Heap user_id mapping so you can pass it as distinct_id (and $anon_distinct_id where applicable) on import.",
+    "Account-level / group properties if you use Heap Accounts — map to PostHog Groups.",
+    "Pre-existing tagged custom events (server-side or manually-defined client events) — these come through Heap Connect alongside autocaptured events.",
+    "Note: Heap session replays do NOT transfer; plan to start fresh on PostHog replay."
   ],
-  "export_method": "Use Heap's dashboard or public API to export defined events, cohorts, and dashboards. Raw events can be pulled through the data pipeline or warehouse sync depending on plan. Capture the autocapture selectors that drive each defined event — you will use them to recreate equivalent definitions in PostHog. Confirm the end date of your annual event-volume commitment via your account settings.",
-  "import_method": "Spin up PostHog Cloud or self-host. Replace Heap's snippet with PostHog's autocapture snippet — most page-view, click, and form events flow without code changes. For each Heap defined event, build a matching PostHog event definition or use PostHog's element-based filters. Use PostHog's historical import endpoint to backfill exported raw events with original timestamps so retention and funnel charts remain correct. Map Heap user identity to PostHog `distinct_id` carefully; mismatches cause apparent DAU drops. Recreate cohorts and dashboards, run both in parallel for a week, then disable Heap.",
+  "export_method": "Recommended path per PostHog's official Heap migration guide: use **Heap Connect** to replicate raw Heap data into S3, Snowflake, Redshift, or BigQuery. Heap Connect is a paid feature, generally gated to higher Heap tiers (PostHog's guide describes it as available on Pro/Premier — verify current eligibility with your Heap CSM, as plan names change). The alternative is a one-time JSON export requested from Heap support, which also requires a paid plan. Heap's chart-view CSV export is NOT sufficient for migration. There is no documented public bulk-export REST endpoint that returns the full raw event stream — the warehouse replication is the supported route.",
+  "import_method": "Read events from your warehouse, transform property names to PostHog conventions (e.g. landing_page → $current_url, Heap pageview → $pageview, ISO-8601 timestamps), and POST to PostHog's `/batch/` endpoint (or use the Python/Node SDK) with `historical_migration: true` set on each event. The flag (a) keeps historical data from being billed as fresh ingestion and (b) signals PostHog to handle the timestamps correctly. Timestamps must be at least 48 hours in the past for the historical path. Use distinct_id derived from Heap's identified user_id (or anonymous heap identity for unauth'd sessions). Auth is the project API key passed as `api_key` in the JSON body. Batch payloads must stay under 20MB per request — build a resumable chunker for large backfills. Going forward, install posthog-js (or the relevant SDK) — autocapture handles new events with no per-event instrumentation, matching the Heap workflow.",
   "concept_mapping": [
-    {
-      "source": "Autocapture event",
-      "target": "Autocapture event"
-    },
-    {
-      "source": "Defined event",
-      "target": "Event definition"
-    },
-    {
-      "source": "User property",
-      "target": "Person property"
-    },
-    {
-      "source": "Cohort",
-      "target": "Cohort"
-    },
-    {
-      "source": "Source / Project key",
-      "target": "Project API key"
-    }
+    {"source": "Identity (heap.identify)", "target": "distinct_id + posthog.identify()"},
+    {"source": "Anonymous user ID", "target": "anonymous distinct_id, merged via $anon_distinct_id on identify"},
+    {"source": "Event Definition (curated event in Definitions library)", "target": "Action (definition built on top of raw events)"},
+    {"source": "Autocaptured click / change / submit", "target": "Autocaptured $autocapture event with $event_type = click / change / submit"},
+    {"source": "Pageview", "target": "$pageview event"},
+    {"source": "Virtual Property / Defined Property", "target": "Calculated property or inline HogQL expression in an Insight"},
+    {"source": "Segment (user list)", "target": "Cohort (static or dynamic)"},
+    {"source": "Account / Account-level properties", "target": "Group + group properties"},
+    {"source": "Report (funnel, retention, etc.)", "target": "Insight (Funnel, Retention, Trends, Paths)"},
+    {"source": "Dashboard", "target": "Dashboard"},
+    {"source": "Heap Connect (warehouse replication)", "target": "Data warehouse export + HogQL for in-product SQL"},
+    {"source": "Session", "target": "Session (auto-derived) + Session Replay recording"}
   ],
-  "effort": "2-4 weeks",
+  "effort": "2-6 weeks for a typical mid-size product team. Roughly: 2-3 days to stand up Heap Connect (if not already on) and a warehouse landing zone; 3-7 days to write and run the transform/replay job into PostHog /batch/ with historical_migration=true; 1-2 weeks to recreate Virtual Properties as calculated properties / HogQL and re-author Insights and Dashboards; the rest is parallel-running both tools and reconciling counts before cutting over the SDK.",
   "gotchas": [
-    "Heap annual event commit does not pro-rate mid-cycle",
-    "Autocapture selectors differ — verify defined events match",
-    "Identity model differs — confirm distinct_id stitching produces same DAU",
-    "Historical timestamps MUST be preserved on bulk import",
-    "Self-hosted PostHog has infra cost; benchmark before committing"
+    "Event-name divergence: Heap autocapture event names (and the Definitions you've layered on top) won't match PostHog's autocapture taxonomy. Plan a name-mapping table — don't import Heap event names verbatim or your PostHog Insights will be a mess of click_button_xyz strings instead of $autocapture + Actions.",
+    "Virtual Properties don't migrate as data — they're query-time computations. You must re-express each as either a PostHog calculated property (computed on ingest going forward) or an inline HogQL expression in the relevant Insight. There is no bulk import.",
+    "Retroactive analysis on PostHog only works for events you actually ingest. Heap's headline 'analyze any past interaction without prior tagging' assumes its own autocapture archive — on PostHog you get retroactive analysis only on data you replayed via /batch/. Decide your historical window before exporting.",
+    "Session Replay does NOT transfer. Heap session recordings stay in Heap; PostHog replay starts from the day you install posthog-js with session_recording enabled.",
+    "historical_migration: true is non-negotiable for backfill. Forgetting it will (a) bill your historical replay as fresh ingestion and (b) break PostHog's person-profile timestamp handling. Timestamps must also be >=48h old.",
+    "Identity stitching: Heap and PostHog both merge anonymous → identified, but the merge semantics differ. Pass Heap's identified user_id as distinct_id and use $anon_distinct_id where you have a prior anonymous heap identity, otherwise you'll fragment users across two profiles in PostHog.",
+    "Dashboard semantics: Heap funnels allow loose step-ordering and lookback windows that don't map 1:1 to PostHog Funnel Insights — re-validate every funnel's numbers before deleting Heap.",
+    "Heap Connect is a paid add-on and the JSON-export fallback also requires a paid Heap plan — budget this before announcing the migration. Verify current eligibility with Heap; tier names change.",
+    "Batch payload limit: PostHog /batch/ caps at 20MB per request. For a multi-billion-event backfill, build a resumable chunker with a cursor."
   ],
   "email": {
-    "subject": "Data export and wind-down — Heap",
-    "body": "Hi Heap team,\n\nWe are migrating to a different product analytics platform over the next 14 days. Could you help with:\n1. Confirming the best way to export defined events, raw events, cohorts, and dashboards via the dashboard or API.\n2. Sharing our current annual commitment end date so we don't double-pay.\n3. Confirming the post-cancellation data retention window.\n\nWe will run both systems in parallel during the transition and notify you before final cancellation. Please flag anything that requires your team to action.\n\nThanks,\nYour customer"
+    "subject": "Migrating from Heap to PostHog — plan + 4-6 week estimate",
+    "body": "Hi team,\n\nShort version: Heap and PostHog are both autocapture-first, so the live tracking model is a near drop-in. PostHog gets us session replay, feature flags, experiments, and surveys in one SKU, removes the proprietary-format lock-in, and replaces the annual event-volume commit with usage-based pricing that scales down.\n\nMigration plan (2-6 weeks, mostly parallel work):\n\n1. Export. Use Heap Connect (paid add-on) to replicate raw events + users to our warehouse — S3, Snowflake, Redshift, or BigQuery all work. The chart-view CSV export is not sufficient per PostHog's own guide. If we don't have Connect enabled, the fallback is a one-time JSON export via Heap support (also paid).\n\n2. Import. Stream the warehouse tables into PostHog's /batch/ endpoint with historical_migration=true so we aren't billed as fresh ingestion and timestamps are handled correctly. Map property names (landing_page -> $current_url, pageview -> $pageview, ISO-8601 timestamps, distinct_id from Heap user_id).\n\n3. Rebuild semantics. Heap Event Definitions become PostHog Actions. Heap Virtual Properties get re-expressed as PostHog calculated properties or inline HogQL — there's no bulk import for these. Segments -> Cohorts, Reports -> Insights, Dashboards -> Dashboards.\n\n4. Cutover. Install posthog-js with autocapture + session replay enabled. Run both tools in parallel for ~2 weeks to reconcile event counts and funnel numbers, then turn off Heap.\n\nKey caveats: session replays don't transfer (PostHog replay starts day-one of install), retroactive analysis only works on events we actually backfill, and Heap funnel semantics don't always match PostHog funnels 1:1 — every saved funnel needs eyeballing before we trust it.\n\nHappy to scope the engineering work in more detail if helpful.\n\nThanks"
   }
 }

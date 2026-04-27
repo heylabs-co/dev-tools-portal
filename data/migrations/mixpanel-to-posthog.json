@@ -1,68 +1,61 @@
 {
-  "source": {
-    "slug": "mixpanel",
-    "name": "Mixpanel"
-  },
-  "target": {
-    "slug": "posthog",
-    "name": "PostHog"
-  },
-  "generated_at": "2026-04-25T00:00:00Z",
-  "tldr": "PostHog is a strong functional replacement for Mixpanel: events, funnels, retention, plus replay and flags. Event names usually map 1:1, but $-prefixed properties and identity merge rules need attention.",
+  "source": {"slug": "mixpanel", "name": "Mixpanel"},
+  "target": {"slug": "posthog", "name": "PostHog"},
+  "generated_at": "2026-04-27T10:02:30Z",
+  "quality": "hand-crafted",
+  "tldr": "Mixpanel and PostHog share an event-based model, so the bulk of the swap is exporting raw events and people profiles, normalizing into PostHog's schema, and replaying through the /batch/ endpoint with historical_migration=true. The trickier work is concept mapping (alias/identify semantics, JQL → HogQL, group analytics) and rebuilding insights/funnels/dashboards on the PostHog side.",
   "why_switch": [
-    "Open-source, self-hostable",
-    "Bundles analytics, replay, flags, surveys",
-    "Raw SQL on your own data",
-    "Avoid Mixpanel annual MTU commit"
+    "Cost: Mixpanel bills on MTUs with an annual high-water-mark commitment that does not scale down within the contracted period; PostHog uses pure usage-based pricing with volume discounts and a free tier that already includes session replay and feature flags.",
+    "Open source / self-host: PostHog is OSS and offers self-hosted deployments for teams with strict data-residency or air-gap requirements — Mixpanel is closed SaaS only.",
+    "All-in-one: PostHog bundles product analytics, session replay, feature flags, A/B experiments, and surveys in one project — Mixpanel charges separately for replay and does not ship feature flags.",
+    "Raw SQL access: PostHog exposes HogQL (a SQL dialect over your event store) and a data warehouse for ad-hoc queries; Mixpanel's JQL is JavaScript-based and does not give you direct SQL.",
+    "Lower vendor lock-in: PostHog publishes its event schema and provides a documented batch capture API, so you can dual-write or move data out without proprietary connectors.",
+    "Autocapture: PostHog can autocapture pageviews, clicks, and form interactions out of the box, reducing instrumentation work — Mixpanel requires explicit track() calls for almost everything.",
+    "Active community: 238 HN mentions in the last 30 days vs 0 for Mixpanel signals stronger developer mindshare and a faster-moving roadmap."
   ],
   "what_to_export": [
-    "Raw event archive (with timestamps)",
-    "User profiles and properties",
-    "Cohorts and saved segments",
-    "Funnels, retention, and dashboard configs",
-    "Event taxonomy (names + property types)",
-    "Service account / project tokens",
-    "Annotations",
-    "Team members and roles"
+    "Raw events with full property payloads (the source of truth — everything else can be rebuilt from this).",
+    "User / people profiles ($people / engage data) with custom properties.",
+    "Cohorts (definitions, not just static membership — re-derive in PostHog where possible).",
+    "Funnels (definitions: step events, conversion windows, breakdowns).",
+    "Retention reports (definitions and time grains).",
+    "Insights / saved reports and their filter logic.",
+    "Dashboards (layout + the underlying insight references).",
+    "Custom JQL queries (you will need to translate these to HogQL).",
+    "Lookup tables / data dictionaries used for property enrichment.",
+    "Lexicon (event and property descriptions, schema annotations) — export as CSV if available.",
+    "Alerts and scheduled report subscriptions (rebuild manually; semantics differ).",
+    "Annotations / release markers used on charts."
   ],
-  "export_method": "Use Mixpanel's Raw Data export endpoint to pull events for the time window you want preserved — output is JSON Lines with full event payloads. Profiles can be exported through the engage/profile export endpoint. Save cohort definitions and dashboard configs through the dashboard. Document the project token, service account, and the exact `distinct_id` strategy you used (anonymous vs identified). Confirm end date of the annual MTU commit in your account settings.",
-  "import_method": "Spin up PostHog Cloud or self-host. Install the PostHog SDK and replicate `track`/`people.set` calls — Mixpanel `track` becomes PostHog `capture`, `people.set` becomes `$set` person properties. Use PostHog's historical import endpoint to backfill the Mixpanel raw events with original timestamps so retention and funnel charts remain correct. Recreate cohorts as PostHog cohorts, and rebuild key funnels and retention insights. Map Mixpanel `distinct_id` to PostHog `distinct_id` directly to keep identity stitching consistent. Run both SDKs in parallel for a week and reconcile DAU before cutting Mixpanel.",
+  "export_method": "Mixpanel exposes a Raw Event Export API (commonly referenced as /api/2.0/export on the data.mixpanel.com host, with data-eu.mixpanel.com for EU residency) that streams events as newline-delimited JSON. Authentication is via service-account credentials or project secret using HTTP Basic auth — verify the exact host, endpoint path, and auth scheme against your project's current Mixpanel docs before scripting, since Mixpanel has revised these over time. Profile / people data is pulled separately via the Engage API. Dashboards, funnels, and JQL queries do not have a single bulk export endpoint and typically need to be exported one by one through the UI or scripted via Mixpanel's Query API. For larger projects, Mixpanel's Data Pipelines / warehouse export to S3, GCS, Snowflake, or BigQuery is usually faster than streaming the export API and gives you a stable schema to transform from.",
+  "import_method": "PostHog's batch capture endpoint is POST https://us.i.posthog.com/batch/ (or https://eu.i.posthog.com/batch/ for EU Cloud, or your self-hosted domain). The body is JSON with api_key, an events array under batch, and per-event event name + properties (which carry distinct_id). Per PostHog's docs, the request body must be under 20MB; there is no hard cap on event count per batch. For a backfill, set historical_migration: true on the request so events are flagged as a migration. People properties are sent via $set / $set_once on a $identify event using the same /batch/ endpoint. Feature flag definitions, dashboards, and insights are recreated through PostHog's REST API or via the UI — a 1:1 dashboard JSON import path is not guaranteed across tools, so plan to rebuild them. PostHog also offers a managed migration service for Mixpanel that automates export + transform + import, and a community-built tool (Stablecog's) is referenced in their docs — both are worth evaluating before writing custom code.",
   "concept_mapping": [
-    {
-      "source": "Event",
-      "target": "Event"
-    },
-    {
-      "source": "People property",
-      "target": "Person property"
-    },
-    {
-      "source": "Cohort",
-      "target": "Cohort"
-    },
-    {
-      "source": "Funnel / Retention / Insights",
-      "target": "Funnel / Retention / Trends"
-    },
-    {
-      "source": "Project Token",
-      "target": "Project API Key"
-    },
-    {
-      "source": "distinct_id",
-      "target": "distinct_id"
-    }
+    {"source": "Mixpanel distinct_id", "target": "PostHog distinct_id (same field name, but PostHog distinguishes anonymous $device_id vs identified user — formatting matters during migration)"},
+    {"source": "Mixpanel $identify / alias", "target": "PostHog $identify event (alias() exists in PostHog but its merge semantics differ; review carefully before mass-replaying)"},
+    {"source": "Mixpanel People properties ($set / $set_once / $unset)", "target": "PostHog person properties via $set / $set_once on $identify"},
+    {"source": "Mixpanel Insights", "target": "PostHog Insights (Trends)"},
+    {"source": "Mixpanel Funnels", "target": "PostHog Funnels"},
+    {"source": "Mixpanel Retention", "target": "PostHog Retention"},
+    {"source": "Mixpanel Cohorts", "target": "PostHog Cohorts (static and dynamic both supported)"},
+    {"source": "Mixpanel custom event properties", "target": "PostHog event properties (top-level properties object)"},
+    {"source": "Mixpanel JQL", "target": "PostHog HogQL (SQL dialect, not JavaScript — full rewrite required)"},
+    {"source": "Mixpanel Group Analytics", "target": "PostHog Groups (concept exists in both, but group key registration and billing differ)"},
+    {"source": "Mixpanel Lexicon", "target": "PostHog Data Management / taxonomy (event + property definitions)"},
+    {"source": "Mixpanel Dashboards", "target": "PostHog Dashboards (rebuild; insight definitions don't translate 1:1)"}
   ],
-  "effort": "2-4 weeks",
+  "effort": "2–6 weeks for a typical product team. ~3–5 days to set up the export pipeline and replay raw events through /batch/, ~1 week to remap distinct_id / identify semantics and validate person properties, ~1–2 weeks to rebuild dashboards, funnels, retention, and translate JQL → HogQL, plus 1–2 weeks of dual-running both systems to verify event counts and key metrics match before cutting over.",
   "gotchas": [
-    "Mixpanel annual MTU commit does not pro-rate mid-cycle",
-    "Reserved/auto-collected property names differ — re-check dashboards",
-    "Identity merge semantics differ — verify alias/identify produces same users",
-    "Historical timestamps MUST be preserved on bulk import",
-    "Self-hosted PostHog adds infra cost — benchmark first"
+    "distinct_id model differs: PostHog separates anonymous $device_id from the identified user_id and merges them on $identify. A naive replay can create duplicate persons if you don't preserve the original Mixpanel distinct_id and emit $identify events at the right points in the timeline.",
+    "Alias semantics aren't 1:1: Mixpanel's alias() and PostHog's alias() both link IDs but merge behavior and which ID 'wins' can differ — test on a sandbox project before bulk-importing.",
+    "Event naming conventions: Mixpanel commonly uses Title Case 'Page Viewed' style; PostHog conventions lean toward $pageview, $autocapture, snake_case custom events. Decide on a naming policy before import — renaming later breaks saved insights.",
+    "Autocapture overlap: if you turn on PostHog autocapture while also replaying historical Mixpanel pageview/click events, you'll double-count. Either disable autocapture for migrated event types or namespace migrated events.",
+    "JQL → HogQL is a full rewrite, not a translation: JQL is JavaScript map/reduce; HogQL is SQL. Budget time per saved query and don't expect a transpiler to do this for you.",
+    "Group analytics: both products support groups, but group property updates, billing impact, and group-level insights are modeled differently — re-validate any account-level / org-level reports after migration.",
+    "Deduplication on retries: if you re-run an export, set a stable per-event ID (PostHog's $insert_id or equivalent) on every replayed event; otherwise expect double-counting.",
+    "Historical events flag: always send historical_migration=true on the /batch/ payload during backfill so events are flagged correctly per PostHog's migration docs."
   ],
   "email": {
-    "subject": "Data export and wind-down — Mixpanel",
-    "body": "Hi Mixpanel team,\n\nWe are migrating product analytics to another platform over the next 14 days and want to wind down cleanly. Could you help with:\n1. Confirming the recommended way to export full raw events, profiles, cohorts, and dashboards via the API.\n2. Sharing the end date of our current annual MTU commitment so we can plan cutover.\n3. Confirming the post-cancellation data retention window.\n\nWe will run both SDKs in parallel during the transition and notify you before final cancellation. Please let me know if anything needs to be initiated from your side.\n\nThanks,\nYour customer"
+    "subject": "Migrating from Mixpanel to PostHog — what to expect",
+    "body": "Hi,\n\nIf you're looking at moving product analytics off Mixpanel and onto PostHog, the short version is: the data model is similar enough that a migration is mostly a pipeline problem, not a re-instrumentation problem.\n\nThe core path is: pull raw events out of Mixpanel (the Raw Event Export API streams newline-delimited JSON; for larger projects the Data Pipelines warehouse export is faster), normalize to PostHog's schema, and replay through PostHog's batch capture endpoint at /batch/ with historical_migration=true. People profiles ride along via $identify with $set / $set_once. PostHog also has a managed migration service for Mixpanel and a community tool referenced in their docs — worth evaluating before writing custom code.\n\nThe gotchas worth flagging up front:\n\n- distinct_id model: PostHog separates anonymous $device_id from identified user IDs and merges them on $identify. Replaying naively will create duplicate persons.\n- JQL → HogQL is a rewrite, not a translation. JQL is JavaScript; HogQL is SQL. Budget per saved query.\n- Autocapture overlap: if you turn on PostHog autocapture while replaying Mixpanel pageview/click events, you'll double-count.\n- Dashboards, funnels, and retention definitions don't import cleanly — plan to rebuild them on the PostHog side.\n- Always set historical_migration=true on the batch payload during backfill.\n\nRealistic effort for a typical product team is 2–6 weeks, with the heaviest chunk being dashboard rebuilds and JQL → HogQL translation rather than the data move itself. I'd recommend dual-running both systems for at least a week before cutting Mixpanel off, so you can sanity-check event counts and key funnels.\n\nHappy to dig into specifics — distinct_id strategy, group analytics, or the export pipeline — whichever is the bottleneck for you.\n\nBest,"
   }
 }

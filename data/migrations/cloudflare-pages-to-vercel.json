@@ -1,0 +1,106 @@
+{
+  "source": {
+    "slug": "cloudflare-pages",
+    "name": "Cloudflare Pages"
+  },
+  "target": {
+    "slug": "vercel",
+    "name": "Vercel"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "quality": "hand-crafted",
+  "tldr": "Both are Git-driven hosting platforms with preview deployments and serverless functions, so the project shape carries over almost 1:1. Vercel wins on framework integration (Next.js, ISR, Image Optimization, Middleware) and DX polish; Cloudflare Pages wins on bandwidth pricing (no metered egress on the free tier) and tighter coupling to Workers/KV/D1/R2. The real migration cost is not the build pipeline — it is rewriting Pages Functions to Vercel Functions and replacing CF storage primitives (KV, D1, R2) with Vercel Blob, Edge Config, or Marketplace integrations like Neon and Upstash.",
+  "why_switch": [
+    "First-party Next.js support: zero-config builds, ISR, On-Demand Revalidation, Image Optimization and Middleware all work out of the box without an adapter (CF Pages requires @cloudflare/next-on-pages or OpenNext to bridge gaps).",
+    "Built-in observability: Vercel Speed Insights, Web Analytics, Log Drains, and per-function traces ship with the platform; on Pages you typically wire up Workers Analytics Engine or external tooling.",
+    "Stronger Preview/Production/Development environment model with per-environment env vars, custom environments (Pro), and per-branch domain assignment baked into the dashboard.",
+    "Larger ecosystem of native framework presets (SvelteKit, Nuxt, Remix, Astro, Vite, etc.) with verified build defaults, vs. CF Pages where some frameworks need adapters or beta runtimes.",
+    "Marketplace storage: provision Neon Postgres, Upstash Redis/KV, or Supabase from inside the Vercel dashboard with credentials auto-injected as env vars per environment.",
+    "Team workflow: granular role-based access, shared envs, audit logs, and SSO on Pro/Enterprise feel more mature than Cloudflare Access for typical product teams.",
+    "Hedge on cost: Vercel meters bandwidth, function invocations, ISR writes and Image Optimization transformations. Cloudflare Pages historically advertises unlimited bandwidth on the free tier. Whether Vercel is more or less expensive is entirely traffic-shape-dependent — model your actual numbers before switching for cost reasons."
+  ],
+  "what_to_export": [
+    "Git provider connection (GitHub / GitLab / Bitbucket repo and the production branch — usually main).",
+    "Build settings: framework preset, build command, output directory, install command, Node.js version, root directory.",
+    "Environment variables for every environment Pages exposes (Production and Preview), including any secrets — these must be re-entered on Vercel; they are not exportable in plaintext from CF.",
+    "Custom domains and their DNS records (apex + subdomains) plus any Cloudflare DNS-level rules you depended on (Workers routes, Page Rules, Transform Rules).",
+    "Pages Functions code under functions/ (including [[catchall]].ts, middleware _middleware.ts, and any nested route handlers) — this is the code that needs to be rewritten.",
+    "_headers and _redirects files from your static asset directory (public/, static/, or build output).",
+    "wrangler.toml or pages.toml: compatibility_date, compatibility_flags, build watch paths, and binding declarations.",
+    "Bindings: KV namespaces, D1 databases, R2 buckets, Durable Objects, Queues, AI, Vectorize, and Service Bindings — each needs a target on Vercel or an external replacement.",
+    "Pages Access policies (Cloudflare Access / Zero Trust) protecting preview URLs or specific routes.",
+    "Preview-deployment settings: which branches build, branch alias domains, and any deploy hooks/webhooks.",
+    "Build cache and asset upload behavior assumptions (CF Pages uses its own asset uploader with size and file-count limits — useful to know what currently fits).",
+    "Any wrangler secrets pushed via `wrangler pages secret put` (these are write-only on CF — you must have the source values stored elsewhere, e.g. 1Password)."
+  ],
+  "export_method": "Cloudflare Pages does not have a single 'export project' button. Most of the project lives in your Git repo already (functions/, _headers, _redirects, wrangler.toml/pages.toml). For the rest, work through the Pages dashboard for the project: Settings → Builds & deployments (capture build command, output dir, root, env vars, branch deployment controls), Settings → Environment variables (note names and which ones are Production vs Preview; re-fetch secret values from your source of truth), Custom domains (capture every hostname and current DNS target), and Functions → Bindings (list every KV, D1, R2, Durable Object, Queue, AI, Service binding by name and target). For redirects/headers, confirm `_redirects` is under your static asset directory and remember it is capped at 2,100 entries and does not apply to requests served by Pages Functions. If you use `wrangler pages` locally, run `wrangler pages project list` and `wrangler pages deployment list <project>` to verify what is actually deployed. Save Cloudflare Access policies separately from Zero Trust → Access → Applications.",
+  "import_method": "On Vercel, click 'Add New… → Project', pick the same Git repo, and let Vercel auto-detect the framework. Override Build Command / Output Directory / Install Command / Root Directory if your CF Pages settings diverged from defaults. Add environment variables under Settings → Environment Variables, scoped to Production, Preview, and/or Development as needed (Vercel separates these explicitly — do not lump everything into Production). Move HTTP-level rules into vercel.json: `headers` replaces `_headers`, `redirects` replaces redirect lines from `_redirects`, and `rewrites` replaces proxy/rewrite lines. For dynamic code, port Pages Functions from `functions/**` to Vercel Functions under `api/` (or `app/api/**/route.ts` for Next.js App Router); keep edge-style handlers on the Edge runtime via `export const runtime = 'edge'` and move long-running or Node-only code to the default Node runtime. Wire up storage: Blob and Edge Config natively, Postgres/KV/Redis via Vercel Marketplace (Neon, Upstash, Supabase) — credentials auto-inject as env vars. Add custom domains under the Domains tab and update DNS at your registrar (or move the zone to Vercel) once previews look healthy. Recreate Cloudflare Access policies as Vercel Deployment Protection / SSO / Password Protection (plan-dependent).",
+  "concept_mapping": [
+    {
+      "from": "Pages Functions in functions/ (Workers runtime)",
+      "to": "Vercel Functions in api/ or app/api/**/route.ts; choose Edge runtime for low-latency global handlers, Node runtime for everything else"
+    },
+    {
+      "from": "_middleware.ts in functions/",
+      "to": "middleware.ts at the project root (Next.js Middleware) or per-route logic in Vercel Functions"
+    },
+    {
+      "from": "_headers file",
+      "to": "headers array in vercel.json (or vercel.ts)"
+    },
+    {
+      "from": "_redirects file (redirect lines)",
+      "to": "redirects array in vercel.json — note 2,100-entry cap on CF does not directly map; check Vercel's current limits in the project-configuration docs before bulk-importing"
+    },
+    {
+      "from": "_redirects file (proxy/rewrite lines, status 200)",
+      "to": "rewrites array in vercel.json"
+    },
+    {
+      "from": "Workers KV binding",
+      "to": "Upstash Redis or Upstash for KV via Vercel Marketplace (or keep CF KV and call it over its REST API from Vercel) — there is no first-party Vercel KV anymore; the Marketplace is the supported path"
+    },
+    {
+      "from": "D1 (SQLite at the edge)",
+      "to": "Neon Postgres via Vercel Marketplace, or Turso/PlanetScale/Supabase — schemas need a SQLite→Postgres translation if you pick Neon"
+    },
+    {
+      "from": "R2 bucket",
+      "to": "Vercel Blob for app-managed file storage, or keep R2 and access it via S3-compatible API from Vercel Functions"
+    },
+    {
+      "from": "Durable Objects",
+      "to": "No direct equivalent — re-architect onto Upstash Redis, a Postgres row-lock pattern, or a dedicated stateful service (Cloudflare DO is genuinely sticky)"
+    },
+    {
+      "from": "Cloudflare Access policy on a Pages project",
+      "to": "Vercel Deployment Protection (Password Protection, Vercel Authentication, or SSO depending on plan)"
+    },
+    {
+      "from": "wrangler.toml compatibility_date / compatibility_flags",
+      "to": "Node.js version + framework version in Project Settings; runtime selection per-function via `export const runtime = 'edge' | 'nodejs'`"
+    },
+    {
+      "from": "Preview deployment per branch (CF Pages default)",
+      "to": "Preview environment per branch (Vercel default) — same mental model; on Vercel Pro you also get custom environments"
+    },
+    {
+      "from": "Cron Triggers on a Worker / Pages Functions",
+      "to": "crons in vercel.json pointing at a function path"
+    }
+  ],
+  "effort": "3-10 days for a typical project. A purely static site with a handful of redirects and no Pages Functions is a 1-day swap (point Git, copy env vars, move headers/redirects into vercel.json, cut DNS). A full-stack project with Pages Functions plus KV/D1/R2 bindings is the upper end — most of the time goes into rewriting Workers-style handlers as Vercel Functions and replatforming D1 to Postgres or R2 access patterns to Blob/S3 calls.",
+  "gotchas": [
+    "Bandwidth pricing models differ. Cloudflare Pages does not meter egress on the free tier; Vercel Hobby and Pro both include bandwidth allowances and bill overages. A high-traffic site can see materially different bills — model your actual bandwidth before switching for cost reasons.",
+    "Pages Functions and Vercel Edge Functions both run on V8 isolates, but the runtime APIs are not identical. CF-specific globals (env bindings, ctx.waitUntil from a Pages handler signature, KV/D1/R2 binding objects) do not exist on Vercel; expect to refactor handler signatures and replace binding access with HTTP/SDK calls.",
+    "KV, D1, R2 and Durable Objects are Cloudflare-locked. There is no in-place migration — you either keep talking to them from Vercel over their public APIs (acceptable, but you lose the colocation latency win) or replatform to Vercel Marketplace equivalents (Neon, Upstash, Blob) and dual-write during cutover.",
+    "DNS cutover timing matters. Lower TTLs on your domain 24-48h before the swap, deploy on Vercel under a vercel.app preview URL first, verify production behavior end-to-end, then flip DNS. If the zone currently lives on Cloudflare, decide whether to keep it there with proxy disabled and CNAME to Vercel, or move the zone — both work, the former lets you keep CF DNS-only features.",
+    "Environment variable scoping is stricter on Vercel. Pages has a Production/Preview split; Vercel splits into Production, Preview, and Development and lets you target specific Preview branches. Re-enter every secret from a trusted source — they are not exportable in plaintext from Cloudflare.",
+    "vercel.json redirects/rewrites/headers use a different syntax than `_redirects`/`_headers`. Splats, placeholders and status codes map but require manual translation — bulk-converting the file with a script is usually faster than hand-editing if you have hundreds of rules.",
+    "If you use Cloudflare-only features (Bot Management, Turnstile, Workers AI, Image Resizing, Email Routing, Stream) you need to either keep them on Cloudflare in front of Vercel or find a replacement. Putting Cloudflare in front of Vercel works but adds a hop and complicates header/IP forwarding."
+  ],
+  "email": {
+    "subject": "Migrating our Pages project to Vercel — plan + risks",
+    "body": "Hi team,\n\nI scoped what it takes to move our app from Cloudflare Pages to Vercel. Headline: the Git-driven build, preview deployments and env-var workflow are essentially the same on both platforms, so the move is mostly mechanical — except for the Workers/Pages Functions code and any KV/D1/R2 bindings, which need real engineering work.\n\nWhat carries over almost as-is:\n- Repo, build command, output dir, framework preset.\n- Environment variables (we re-enter them, scoped to Production/Preview/Development on Vercel).\n- Preview-per-branch model.\n- _headers / _redirects rules (translated into the headers/redirects/rewrites blocks of vercel.json).\n\nWhat needs rewriting:\n- Every file under functions/ becomes a Vercel Function under api/ (or app/api/route.ts). We pick Edge runtime where the Pages Function was clearly edge-shaped, Node runtime otherwise.\n- KV → Upstash (Marketplace) or kept on CF and called over REST.\n- D1 → Neon Postgres (Marketplace), with a SQLite→Postgres schema pass.\n- R2 → Vercel Blob, or kept on R2 via its S3-compatible API.\n- Durable Objects → no direct equivalent; re-architect on Redis/Postgres.\n- Cloudflare Access → Vercel Deployment Protection.\n\nGotchas worth flagging up-front:\n- Bandwidth pricing models are different. CF doesn't meter egress on the free tier; Vercel does. We should model our real traffic before claiming this saves or costs money.\n- DNS cutover: drop TTLs 24-48h before, validate on the *.vercel.app URL first, flip DNS only after smoke tests pass.\n- Secrets aren't exportable from Cloudflare — we pull them from our password manager and re-enter on Vercel.\n\nEffort estimate: 3-10 days. A pure static slice is a 1-day swap; the Pages Functions + bindings work is most of the cost.\n\nProposing we cut a feature branch, stand the project up on Vercel under a preview domain, dual-run for a week, then flip DNS. I can own the build/env/headers part; we'll need an owner for the Functions + storage replatforming.\n\nLet me know if you want me to write up the per-file Functions migration plan next."
+  }
+}

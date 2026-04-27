@@ -1,81 +1,65 @@
 {
-  "source": {
-    "slug": "firebase",
-    "name": "Firebase"
-  },
-  "target": {
-    "slug": "supabase",
-    "name": "Supabase"
-  },
-  "generated_at": "2026-04-25T00:00:00Z",
-  "tldr": "Moving from Firebase to Supabase swaps a NoSQL document store and Google-managed services for Postgres, plus open-source equivalents for auth, storage, realtime, and edge functions. Expect significant data-modeling work translating Firestore documents into relational schemas.",
+  "source": {"slug": "firebase", "name": "Firebase"},
+  "target": {"slug": "supabase", "name": "Supabase"},
+  "generated_at": "2026-04-26T00:00:00Z",
+  "quality": "hand-crafted",
+  "tldr": "Firebase (Firestore + Auth + Storage + Cloud Functions + RTDB) maps to Supabase (Postgres + Auth + Storage + Edge Functions + Realtime). Feature-equivalent for most apps, but it's a paradigm shift: NoSQL documents become relational tables, Security Rules become Postgres RLS, and FCM has no first-party replacement. Plan a multi-week migration with a parallel-run cutover.",
   "why_switch": [
-    "PostgreSQL with full SQL instead of Firestore documents",
-    "Lower lock-in — Postgres is portable",
-    "Open-source core, self-host option available",
-    "Predictable freemium pricing",
-    "Easier joins, complex queries, and analytics"
+    "Postgres + SQL: real joins, transactions, complex queries, CTEs — replaces Firestore's limited query model.",
+    "Row Level Security (RLS) is declarative SQL on the same engine that stores data, not a separate rules language to test.",
+    "Open source and self-hostable — you can run the entire Supabase stack on your own infra if you ever leave the managed cloud.",
+    "Predictable freemium pricing ($25/mo Pro per Supabase pricing page) vs. Blaze pay-as-you-go that mixes reads, writes, network, and Cloud Functions invocations.",
+    "Reduced Google Cloud lock-in: no forced GCP project, no Firebase-specific SDKs in clients (PostgREST + supabase-js are standard HTTP/WebSockets).",
+    "Standard tooling: pg_dump, psql, any Postgres client, any ORM (Prisma, Drizzle, Kysely) — vs. proprietary Firestore admin SDK.",
+    "Edge Functions run on Deno (open standard) instead of Cloud Functions' Node-only managed runtime tied to GCP."
   ],
   "what_to_export": [
-    "Firestore collections and documents",
-    "Realtime Database trees",
-    "Authentication users and providers",
-    "Cloud Storage objects and metadata",
-    "Cloud Functions source code",
-    "Security rules (Firestore, RTDB, Storage)",
-    "Hosting configuration and redirects",
-    "Remote Config values",
-    "FCM tokens (if used)",
-    "Analytics audiences (if needed)"
+    "Firestore collections and documents (per-collection export — subcollections require separate runs).",
+    "Firebase Authentication users including password hash parameters (algorithm, base64_signer_key, base64_salt_separator, rounds, mem_cost).",
+    "Realtime Database JSON tree (separate product from Firestore — export via Firebase console or REST API).",
+    "Cloud Storage for Firebase buckets (objects + metadata; ACLs do not transfer).",
+    "Cloud Functions source code (already in your repo — port logic, don't 'export' artifacts).",
+    "Firebase Hosting static assets and rewrite/redirect rules.",
+    "Firestore Security Rules and Storage Security Rules (as reference for writing RLS policies).",
+    "Firestore composite indexes (recreate as Postgres indexes).",
+    "Remote Config parameter values (no direct equivalent — model as a Postgres table or Edge Config).",
+    "FCM topics and device tokens (no Supabase equivalent — keep FCM, OneSignal, or roll your own).",
+    "Custom claims on Auth users (move to Supabase JWT app_metadata or a profiles table)."
   ],
-  "export_method": "Export Firestore and Realtime Database using Google Cloud's managed export to a Cloud Storage bucket, then download for transformation. Pull users via the Firebase Admin SDK or the Firebase CLI auth:export command, which produces a JSON or CSV with hashed passwords. Copy Storage objects with gsutil or the Cloud Storage transfer service. Capture function source from your repo (you should already have it in git). Save security rules as plain text — they do not translate. Remote Config values can be downloaded from the console or via the REST API. Validate counts against the Firebase console before transforming.",
-  "import_method": "Design a Postgres schema that flattens Firestore documents into tables and foreign keys; many fields with array/object payloads can stay as jsonb when relational modeling is overkill. Use the Supabase CLI or psql with COPY to bulk-load transformed data. Import users with Supabase's auth admin endpoints, preserving the original UID where possible to avoid breaking client references; password hash compatibility is limited, so plan for forced password reset or magic-link-only login if hashes don't transfer cleanly. Move Storage objects into Supabase Storage buckets and update download URLs in your app. Rewrite Cloud Functions as Supabase Edge Functions or Postgres triggers / RLS policies. Re-implement security rules as Row Level Security policies. Run dual-write during cutover so writes stay in sync until traffic is fully shifted.",
+  "export_method": "Firestore: enable billing (Blaze), then `gcloud firestore export gs://BUCKET_NAME [--collection-ids=col1,col2]` writes a managed export to a Cloud Storage bucket. The Cloud Firestore service agent (service-PROJECT_NUMBER@gcp-sa-firestore.iam.gserviceaccount.com) needs Storage Admin on the bucket. Note: collection-group exports do not automatically include subcollections, and indexes are not part of the export. For row-level migration, the supabase-community/firebase-to-supabase tooling uses `firestore2json.js` to pull collections directly via the Admin SDK into per-collection JSON files. Auth: `firebase auth:export users.json --format=json` (Firebase CLI) produces a JSON file with users plus a top-level `hash_config` block; cross-check the password-hash parameters in Firebase Console → Authentication → Users → ⋮ → Password hash parameters. Storage: use the firebase-to-supabase `download.js` script with an Admin SDK service-account key — it iterates objects and writes them to a local folder. `gsutil -m cp -r gs://BUCKET ./local` is the generic alternative. Cloud Functions: source already lives in your repository; rewrite as Supabase Edge Functions (Deno) or Postgres functions/triggers — there's nothing to 'export' from Google. Realtime DB: Firebase Console → Realtime Database → Export JSON, or `curl 'https://<db>.firebaseio.com/.json?auth=<secret>'`.",
+  "import_method": "Database: design your Postgres schema first (this is the hardest step — Firestore is schemaless). Create tables with `supabase migration new` or raw SQL, then import. The supabase-community `json2supabase.js` script reads the per-collection JSON output of `firestore2json.js` and inserts rows; against a fresh table it auto-creates basic columns of type `text`, `numeric`, `boolean`, or `jsonb`. For complex nested documents, write a transform hook to split into normalized tables before import. Auth: use the companion `import_users` script — it inserts into the `auth.users` table preserving the Firebase scrypt hash and hash parameters so existing passwords keep working. Per Supabase docs, for advanced cases you can run a small middleware that verifies against Firebase scrypt on first login and re-hashes — see the firebase-to-supabase repo. Storage: run `node upload.js <prefix> <folder> <bucket>`; if the bucket doesn't exist it's created as non-public, and you must set policies on `storage.objects` in the Supabase Dashboard before clients can read. Edge Functions: `supabase functions new <name>` then `supabase functions deploy <name>`. RLS: rewrite each Security Rule as a Postgres policy on the matching table; test with `set role authenticated; set request.jwt.claims = '...'` against representative JWTs.",
   "concept_mapping": [
-    {
-      "source": "Firestore collection",
-      "target": "Postgres table",
-      "note": "Often requires schema flattening"
-    },
-    {
-      "source": "Realtime Database",
-      "target": "Postgres + Supabase Realtime"
-    },
-    {
-      "source": "Firebase Auth",
-      "target": "Supabase Auth"
-    },
-    {
-      "source": "Cloud Storage",
-      "target": "Supabase Storage"
-    },
-    {
-      "source": "Cloud Functions",
-      "target": "Edge Functions / Postgres triggers"
-    },
-    {
-      "source": "Security rules",
-      "target": "Row Level Security policies"
-    },
-    {
-      "source": "Remote Config",
-      "target": "Custom table or feature flag service"
-    },
-    {
-      "source": "Hosting",
-      "target": "Separate static host (Vercel, Netlify, Cloudflare Pages)"
-    }
+    {"source": "Firestore collection", "target": "Postgres table (or single jsonb column for unstructured docs)"},
+    {"source": "Firestore document ID", "target": "Primary key column (uuid or text)"},
+    {"source": "Firestore subcollection", "target": "Child table with foreign key to parent"},
+    {"source": "Firestore Security Rules", "target": "Row Level Security (RLS) policies in SQL"},
+    {"source": "Firestore composite index", "target": "Postgres `CREATE INDEX ... (col_a, col_b)`"},
+    {"source": "Firestore real-time listener (`onSnapshot`)", "target": "Supabase Realtime channel on Postgres logical replication"},
+    {"source": "Realtime Database", "target": "Postgres + Supabase Realtime (or a single jsonb tree if you really want the original shape)"},
+    {"source": "Firebase Auth (`signInWithEmailAndPassword`)", "target": "`supabase.auth.signInWithPassword`"},
+    {"source": "Firebase Auth custom claims", "target": "JWT `app_metadata` (set via Admin API) or a `profiles` table joined via `auth.uid()`"},
+    {"source": "Cloud Storage for Firebase", "target": "Supabase Storage (S3-compatible buckets with policies on `storage.objects`)"},
+    {"source": "Cloud Functions (HTTP / callable)", "target": "Supabase Edge Functions (Deno) or PostgREST RPC to a Postgres function"},
+    {"source": "Cloud Functions (Firestore triggers)", "target": "Postgres triggers + `pg_net`/`pg_cron`, or Database Webhooks → Edge Function"},
+    {"source": "FCM push notifications", "target": "No first-party equivalent — keep FCM, or use OneSignal / Expo Push"},
+    {"source": "Remote Config", "target": "No direct equivalent — model as a config table read by the client"},
+    {"source": "Firebase Hosting", "target": "Out of scope for Supabase — use Vercel, Netlify, or Cloudflare Pages"}
   ],
-  "effort": "3-8 weeks for a real production app, longer if Firestore documents are deeply nested",
+  "effort": "4-10 weeks for a real production app (one engineer, full-time). Breakdown: 1-2 weeks schema design and RLS rewrite, 1-2 weeks data migration scripts and dry runs, 1-2 weeks porting Cloud Functions to Edge Functions, 1-2 weeks client SDK swap and QA, 1-2 weeks parallel-run + cutover. A read-mostly app with one Firestore collection and Auth can be done in a long weekend; a Firestore-heavy app with deep subcollection nesting and dozens of Cloud Functions trends toward the 10-week end.",
   "gotchas": [
-    "Firestore document model rarely maps cleanly to relational tables — expect schema redesign",
-    "Password hashes may not transfer; plan for forced reset or magic links",
-    "Realtime semantics differ; client subscriptions and offline behavior need rework",
-    "Cloud Functions triggers (onWrite, etc.) become Postgres triggers or app-side logic",
-    "Security rules become RLS policies — different mental model, test thoroughly",
-    "Hosting is not part of Supabase; pick a separate static host"
+    "Schema design is on you: Firestore is schemaless, Postgres is not. You must decide per-collection whether to normalize into tables or store as `jsonb`. Get this wrong and queries get painful later.",
+    "Password hashes: Firebase uses a custom scrypt variant (firebase-scrypt) that is NOT standard scrypt or bcrypt. Supabase preserves the hash + parameters on import so existing passwords keep working, but custom auth backends won't verify them without the firebase-scrypt algorithm — see the firebase-to-supabase middleware pattern.",
+    "Security Rules → RLS is not mechanical. Rules use `request.auth`, `resource.data`, and a custom DSL; RLS uses SQL with `auth.uid()` and table columns. Plan to rewrite each rule and test with both authenticated and anonymous JWTs.",
+    "Real-time semantics differ. `onSnapshot` delivers full document state on every change; Supabase Realtime delivers row-level INSERT/UPDATE/DELETE events from logical replication. Code that depended on 'always have the full doc' must adapt.",
+    "Subcollections do not auto-export. `gcloud firestore export` and `firestore2json.js` operate per collection; you must list and migrate subcollections explicitly.",
+    "Anonymous users: Firebase auto-creates anonymous UIDs that persist across sessions on a device. Supabase supports anonymous sign-ins (must be enabled in dashboard) but the UID generation rules differ — plan a linking strategy if you rely on persistent anon identity.",
+    "FCM has no Supabase equivalent. If you rely on push, keep Firebase Cloud Messaging as a standalone service or move to OneSignal / Expo Push — don't expect Supabase to replace it.",
+    "Cloud Functions vs. Edge Functions runtime gap: Cloud Functions are Node.js with full npm; Edge Functions run on Deno with a different module system, shorter execution limits, and no native Firebase Admin SDK. Heavy server logic may be better on a separate Node host that talks to Postgres directly.",
+    "Firestore queries don't translate 1:1. `array-contains-any`, `where in` with up to 30 values, and composite-index-backed queries map to SQL but performance characteristics differ — benchmark hot paths on real data volumes before cutover.",
+    "Firestore exports are not point-in-time snapshots by default — writes during the export may or may not be included. For a clean cutover either freeze writes or use PITR exports (whole-minute timestamps within the past seven days)."
   ],
   "email": {
-    "subject": "Offboarding plan for our Firebase project",
-    "body": "Hi Firebase team,\n\nWe are migrating off Firebase to a different backend over the next 14 days and want to plan the wind-down cleanly. Could you confirm the cleanest way to export our Firestore data, Realtime Database trees, Authentication users, and Cloud Storage objects, and let us know if any of those steps require support assistance versus standard tooling?\n\nWe would also like to schedule the project to stop incurring charges at the end of the current billing cycle. Please share how to disable Blaze billing, the date by which we need to confirm to avoid the next charge, and the data retention or deletion timeline after the project is wound down.\n\nIf there are any prepaid commitments or quotas we should be aware of, please flag them.\n\nThanks,\nYour customer"
+    "subject": "Migrating from Firebase to Supabase: a practical playbook",
+    "body": "Hi,\n\nIf you're weighing a Firebase → Supabase move, here's the short version of what actually matters.\n\nWhat you keep: your auth users (with working passwords, thanks to Firebase's exported hash parameters), your data (as Postgres tables or jsonb), your Storage objects, and your Cloud Functions logic (rewritten as Edge Functions or Postgres triggers).\n\nWhat changes: Firestore's schemaless documents become a real schema you have to design. Security Rules become RLS policies in SQL. `onSnapshot` becomes row-level Realtime events. FCM has no Supabase equivalent — keep it or swap to OneSignal.\n\nThe path:\n1. Design your Postgres schema first. This is the hard part.\n2. Export Firestore (`gcloud firestore export` or `firestore2json.js`) and Auth (`firebase auth:export` plus hash parameters from the console).\n3. Import with the supabase-community `firebase-to-supabase` scripts (`json2supabase.js`, `import_users`).\n4. Rewrite Security Rules as RLS policies and test with real JWTs.\n5. Port Cloud Functions to Edge Functions (Deno) or Postgres functions.\n6. Run both stacks in parallel for a week, dual-write, then cut over reads.\n\nBudget 4-10 weeks for a real production app. The wins: SQL, transactions, OSS, predictable pricing, no GCP lock-in.\n\nGood luck,\n"
   }
 }

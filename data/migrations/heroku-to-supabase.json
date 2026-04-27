@@ -1,0 +1,67 @@
+{
+  "source": {
+    "slug": "heroku",
+    "name": "Heroku"
+  },
+  "target": {
+    "slug": "supabase",
+    "name": "Supabase"
+  },
+  "generated_at": "2026-04-27T10:30:34Z",
+  "quality": "hand-crafted",
+  "tldr": "These platforms only overlap on Postgres. Heroku is a PaaS (dynos + add-ons + Heroku Postgres). Supabase is a Postgres-first BaaS (Postgres + Auth + Storage + Realtime + Edge Functions) with no equivalent of dynos. So this is almost always a partial migration: move the database (and optionally auth/storage/scheduled jobs) to Supabase, but keep your app running on Heroku — or relocate it in parallel to Render, Fly.io, Railway, or Vercel. The actual DB move is well-trodden: pg_dump from Heroku Postgres, psql import into Supabase via the Session Pooler. The hard parts are extension parity, role re-creation, scheduled jobs (Heroku Scheduler → pg_cron), and porting any application-level auth into auth.users.",
+  "why_switch": [
+    "Heroku Postgres pricing has stepped up substantially since the free tier removal in late 2022; Supabase still ships a meaningful free tier (500MB DB, 50K MAU on auth) and a $25/mo Pro plan.",
+    "Supabase is Postgres-first: you get the raw database with Row Level Security, triggers, functions, and 50+ extensions enabled from the dashboard — no add-on marketplace tax per feature.",
+    "Auth, Storage, Realtime, and Edge Functions are bundled. On Heroku each of those is a separate paid add-on (Auth0, Bucketeer/S3, Pusher, etc.) wired together by you.",
+    "Open source: Supabase can be self-hosted on your own infra if you ever want to leave the managed offering. Heroku Postgres is a closed managed service.",
+    "Better Postgres extension story: PostGIS, pgvector, pg_cron, pgcrypto, pg_net, pg_graphql and others are toggleable from the dashboard; on Heroku Postgres the extension list is curated and changes by plan.",
+    "Lower lock-in on the data layer — Supabase exposes the standard Postgres wire protocol on port 5432/6543, so any Postgres client/ORM works unchanged.",
+    "If you also need realtime subscriptions or file storage, you collapse 2-3 Heroku add-ons into one Supabase project."
+  ],
+  "what_to_export": [
+    "Full Postgres logical dump of every Heroku Postgres database your app uses (primary + any followers/forks you actually rely on).",
+    "Schema separately from data, if you want to review/edit DDL before loading (pg_dump --schema-only and --data-only).",
+    "List of installed extensions (SELECT extname, extversion FROM pg_extension;) so you can confirm parity on Supabase before importing.",
+    "Custom roles/users and their grants — Supabase will not let you recreate superusers, so plan to map app roles to the postgres/authenticated/anon roles or to a new least-privilege role.",
+    "Scheduled jobs from Heroku Scheduler (the add-on UI lists them) — these need to be re-implemented as pg_cron jobs, GitHub Actions, or an external scheduler.",
+    "Heroku config vars (heroku config -s -a <app>) — DATABASE_URL will change, but everything else (API keys, third-party creds) needs to land wherever your app is hosted next.",
+    "Files stored on any S3-compatible add-on (Bucketeer, S3, Cloudinary) if you plan to consolidate onto Supabase Storage — bucket contents need to be re-uploaded; database references to file paths need a rewrite.",
+    "Application-level user accounts (your users table) — Supabase Auth uses its own auth.users table with bcrypt/scrypt hashes; importing requires a separate auth admin import flow, not pg_restore.",
+    "Heroku Connect mappings (if you sync Salesforce) — there is no drop-in Supabase equivalent; you'll need a separate ETL.",
+    "Add-on-specific data: Redis (Heroku Data for Redis), search indexes (Bonsai/SearchBox), queues — these don't migrate to Supabase at all and need separate hosting.",
+    "Any logical replication slots or subscriptions if you've set up CDC out of Heroku Postgres.",
+    "The current TLS setup / sslmode your app uses — Supabase requires SSL; Heroku Postgres also defaults to SSL but with self-signed cert quirks (sslmode=require vs verify-full)."
+  ],
+  "export_method": "Two viable paths. (A) Heroku-native snapshot: `heroku pg:backups:capture --app <app>` produces a compressed binary pg_dump (custom format), retained per plan (Essential 5 / Standard 25 / Premium 50 manual backups; snapshots are stored in the U.S. regardless of DB region). Download with `heroku pg:backups:download <id> -a <app>` to get latest.dump. PGBackups is officially recommended only for DBs up to 20 GB. (B) Direct pg_dump (this is what Supabase's own migration guide recommends, because it produces a plain SQL file that's easier to feed into Supabase's restricted role model): pull credentials from Heroku Dashboard → Resources → Postgres → Settings → View Credentials, then run `pg_dump --clean --if-exists --quote-all-identifiers -h $HEROKU_HOST -U $HEROKU_USER -d $HEROKU_DATABASE --no-owner --no-privileges > heroku_dump.sql`. The `--no-owner --no-privileges` flags are important — they strip Heroku-side role grants that won't exist on Supabase. For DBs over ~6 GB Supabase recommends pre-provisioning a Large compute add-on before importing.",
+  "import_method": "Create a Supabase project, then in the dashboard click Connect (top of the page) and copy the Session Pooler connection string — this is the recommended one for migrations because it's IPv4-friendly and tolerates long-running statements better than the transaction pooler (port 6543, no prepared statements). Replace the [YOUR-PASSWORD] placeholder with the DB password from Project Settings → Database. Then: `psql -d \"$SUPABASE_CONN_STRING\" -f heroku_dump.sql`. If you used Heroku's binary .dump format from path (A), restore with `pg_restore --no-owner --no-privileges --clean --if-exists -d \"$SUPABASE_CONN_STRING\" latest.dump` instead. Before importing, enable any required extensions from Database → Extensions in the dashboard (or `create extension <name> with schema extensions;`) so DDL referencing them succeeds. Application users from your old `users` table do NOT go into `auth.users` via SQL import — use Supabase's Auth admin API or a dashboard CSV/JSON import to bring over email/password hashes (and only if your hash algorithm is supported; otherwise users will need to reset).",
+  "concept_mapping": [
+    "Heroku Postgres → Supabase Postgres (same engine; Supabase tracks recent Postgres major versions).",
+    "Heroku Scheduler add-on → pg_cron extension on Supabase (for SQL-driven jobs) or an external runner (GitHub Actions cron, Cloudflare Cron Triggers) for shell-style jobs.",
+    "Heroku Connect (Salesforce sync) → no direct equivalent; use Fivetran/Airbyte writing into Supabase Postgres.",
+    "Heroku Data for Redis → no Supabase equivalent; keep using a managed Redis (Upstash, Redis Cloud).",
+    "Heroku Bucketeer / S3 add-on → Supabase Storage (S3-compatible API as of recent releases) or keep S3 directly.",
+    "Heroku app dynos → not part of Supabase at all; relocate the app to Render, Fly.io, Railway, Vercel, or stay on Heroku and just point DATABASE_URL at Supabase.",
+    "Heroku Review Apps / Pipelines → Supabase Branching (preview database branches per PR) covers the DB side; CI/CD itself stays in your existing tooling.",
+    "Application auth (Devise, Passport, custom users table) → Supabase Auth with auth.users; RLS policies on your tables replace app-level authorization checks.",
+    "Heroku logplex / log drains → Supabase has its own Logs explorer per service (Postgres, Auth, Storage, Edge); plug a log drain to Logflare/Datadog if you need long-term retention.",
+    "Heroku Postgres followers / forks → Supabase Read Replicas (paid tiers) and database branching for forks.",
+    "PgBouncer add-on on Heroku → Supavisor on Supabase, exposed on port 6543 (transaction mode) and 5432 (session mode) — no separate setup needed."
+  ],
+  "effort": "1-2 weeks for a pure database move on a small/medium app (under ~10GB, no exotic extensions, no Heroku Connect). 3-4 weeks if you also fold in Auth, Storage, and scheduled jobs. 6-10 weeks for full-stack relocation that includes moving dynos to a new host (Render/Fly/Vercel), porting Heroku Connect flows, and re-implementing app-level auth on top of Supabase Auth. Plan for at least one staging dry-run and a short maintenance window for the cutover.",
+  "gotchas": [
+    "Extension version drift: PostGIS, pgvector, pgcrypto, and pg_cron exist on both sides but the available versions differ by plan and date. Do `SELECT extname, extversion FROM pg_extension;` on Heroku and confirm Supabase has equal-or-higher versions in Database → Extensions before you dump.",
+    "No superuser on Supabase. The dump must be loaded as `postgres` (the elevated role you get), and any `CREATE ROLE`, `ALTER SYSTEM`, or `COMMENT ON EXTENSION` lines may error. The `--no-owner --no-privileges` flags on pg_dump are non-negotiable — they strip Heroku-side role grants that won't apply.",
+    "Connection pooling differs. Heroku exposes raw Postgres (or PgBouncer via add-on); Supabase puts Supavisor in front. Use the Session Pooler (port 5432) for the migration import — Transaction Pooler (port 6543) does not support prepared statements and breaks pg_dump-style restores.",
+    "auth.users is not just a table you INSERT into. Supabase Auth maintains hashed credentials, identities, and triggers. Importing app users requires the Auth admin API (or the dashboard's user import). Plan for the case where your existing password hash algorithm is incompatible — affected users will need a password reset email.",
+    "Row Level Security is OFF on imported tables but the Supabase API (PostgREST) refuses to read tables until RLS is configured. Either disable PostgREST exposure for those schemas, or write RLS policies before pointing the app at Supabase.",
+    "Heroku Scheduler jobs do not migrate. Re-create them as pg_cron entries (`select cron.schedule(...)`) for SQL-only work, or as GitHub Actions cron / Cloudflare Cron Triggers for anything that needs a runtime.",
+    "Heroku's pgbackups snapshots are stored in the U.S. regardless of your DB region — if you're moving an EU dataset for compliance reasons, prefer a direct pg_dump over an SSH/VPN session, not the snapshot path.",
+    "App stays on Heroku initially in most real migrations. The only thing that changes day-1 is DATABASE_URL. Don't try to flip dynos and the database in the same window — too many moving parts.",
+    "PGBackups is officially supported only for DBs up to 20 GB. Above that, use direct pg_dump with --jobs for parallelism, and pre-provision a Large compute add-on on Supabase per their docs."
+  ],
+  "email": {
+    "subject": "Heroku Postgres → Supabase: a sane migration plan",
+    "body": "Hey,\n\nQuick framing before you start: Heroku and Supabase only overlap on Postgres. Heroku also runs your app (dynos) and your add-ons (Redis, Scheduler, Bucketeer, Heroku Connect). Supabase doesn't replace any of that — it gives you Postgres + Auth + Storage + Realtime + Edge Functions. So in practice almost nobody does a clean \"Heroku → Supabase\" move. What people actually do is:\n\n1. Move the database to Supabase first. Keep the app on Heroku. Just change DATABASE_URL.\n2. (Optional, weeks later) Move app-level auth to Supabase Auth, files to Supabase Storage, scheduled jobs to pg_cron.\n3. (Optional, even later) Move dynos off Heroku to Render / Fly.io / Vercel, since you've now decoupled the data layer.\n\nThe DB move itself is the well-paved path:\n\n- pg_dump from Heroku with --no-owner --no-privileges --clean --if-exists (Supabase's own migration guide recommends exactly this).\n- Restore via psql against the Session Pooler connection string from Project Settings → Database (port 5432, IPv4-friendly, tolerates long-running statements; do NOT use the Transaction Pooler on 6543 for the import — it breaks prepared statements).\n- Pre-enable any extensions you used (PostGIS, pgvector, pg_cron, pgcrypto, etc.) in Database → Extensions before loading the dump.\n\nWatch out for: no superuser on Supabase (drop role/grant lines will warn), Heroku Scheduler jobs need to become pg_cron jobs or GitHub Actions, your application's users table is NOT auth.users (different import path entirely), and PGBackups is officially capped at 20GB so above that go direct pg_dump.\n\nRealistic timelines: 1-2 weeks DB-only, 3-4 weeks if you fold in Auth/Storage/jobs, 6-10 weeks for full-stack relocation with dynos moving too.\n\nHappy to walk through the dry-run when you're ready.\n\n— "
+  }
+}

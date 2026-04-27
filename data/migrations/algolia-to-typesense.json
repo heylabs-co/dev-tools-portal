@@ -7,63 +7,109 @@
     "slug": "typesense",
     "name": "Typesense"
   },
-  "generated_at": "2026-04-25T00:00:00Z",
-  "tldr": "Move from Algolia's hosted search to Typesense, an open-source typo-tolerant search engine with an Algolia-compatible InstantSearch adapter. The frontend often survives with minor changes; the indexing pipeline must be rewritten.",
+  "generated_at": "2026-04-27T10:02:22Z",
+  "quality": "hand-crafted",
+  "tldr": "Swap Algolia's hosted, operations-priced search for Typesense — an open-source typo-tolerant engine you can self-host or run on Typesense Cloud. Most InstantSearch UI code keeps working through the official typesense-instantsearch-adapter; the real work is rewriting your index settings as a Typesense collection schema and re-indexing through the JSONL import endpoint.",
   "why_switch": [
-    "Typesense is open-source, very low lock-in",
-    "InstantSearch-compatible adapter exists",
-    "Self-host or Typesense Cloud, your choice",
-    "Avoid Algolia commit-tier high-water-mark billing",
-    "Sub-50ms search comparable for many workloads"
+    "Cost shape: Algolia's Grow/Premium tiers bill on operations (searches + records) and stay at peak usage for the cycle, which punishes spiky traffic; Typesense charges a flat hourly rate for a cluster (Cloud) or zero licence cost when self-hosted.",
+    "Open-source escape hatch: Typesense is GPL-3.0 and runs on your own infra, so 'we have to leave' stops being a six-month migration project.",
+    "Predictable bill: a fixed-size Typesense Cloud cluster costs the same whether you serve 10K or 10M searches that day — no high-water-mark surprises.",
+    "Algolia-compatible UI layer: the official typesense-instantsearch-adapter lets React/Vue/Angular InstantSearch components keep working with minimal config changes, so frontend rewrites are usually unnecessary.",
+    "Typo tolerance and faceting parity: Typesense ships typo tolerance, faceting, filtering, sorting, grouping, and curation out of the box — the core feature set most teams actually use from Algolia.",
+    "Data ownership: documents, schema, synonyms, and curation rules live in your cluster (or your Typesense Cloud account) in plain JSON — no proprietary export format.",
+    "Vector / hybrid search: Typesense has built-in vector fields and hybrid (keyword + semantic) search, which on Algolia requires the separate NeuralSearch / AI add-on."
   ],
   "what_to_export": [
-    "Index records and document JSON",
-    "Searchable attributes and ranking settings",
-    "Synonyms",
-    "Query rules where representable",
-    "Stopwords / custom dictionaries",
-    "API keys and ACL definitions",
-    "Click / conversion analytics",
-    "Frontend search UI configuration"
+    "All records per index — pull via Algolia's browse method (returns matching records without ranking/highlighting, paginated by cursor; capped around 1,000 per request per official docs).",
+    "Index settings: searchableAttributes, attributesForFaceting, customRanking, ranking, replicas (verified in Algolia's settings API parameter list).",
+    "Typo tolerance config: typoTolerance, minWordSizefor1Typo, minWordSizefor2Typos, ignorePlurals.",
+    "Language settings: queryLanguages, removeStopWords, indexLanguages.",
+    "Synonyms — one-way and two-way synonyms per index (Algolia stores them per-index, not globally).",
+    "Query Rules — promotion/demotion/redirect rules tied to specific queries or contexts (these become Typesense curation overrides).",
+    "Replicas / virtual replicas — each replica is effectively a different sort order; in Typesense these collapse into sort_by parameters and default_sorting_field.",
+    "API keys and their ACLs — you'll mint new search-only and admin keys in Typesense; do not try to import Algolia keys.",
+    "Highlighting / snippet config: attributesToHighlight, attributesToSnippet, snippetEllipsisText.",
+    "Click and conversion analytics events if you use them — Algolia stores these server-side; Typesense has its own analytics module but the historical event log does not transfer.",
+    "Dictionaries (stop words, plurals, compounds) if customised — in Typesense, equivalents are configured per-collection (locale, stem) or globally via stopwords.",
+    "Personalization / Recommend / NeuralSearch configurations — these are Algolia-specific; expect to redesign rather than port."
   ],
-  "export_method": "Use an Algolia client's browse method or the Algolia CLI to export each index as newline-delimited JSON. Export synonyms and rules via their endpoints, and capture index settings (searchableAttributes, customRanking, attributesForFaceting). Save click/conversion analytics if you still need that history; Typesense will only see traffic after cutover. Document any Personalization or Recommend features you used; those will not transfer.",
-  "import_method": "Provision Typesense (self-hosted or Typesense Cloud). Define a collection with an explicit schema, mapping Algolia attributes to Typesense fields with the correct types, facetability and indexing flags. Use the Typesense bulk import endpoint to load your NDJSON. Recreate synonyms via Typesense's synonyms API. For the frontend, swap the Algolia client for the typesense-instantsearch-adapter so existing InstantSearch widgets keep working with limited changes. Translate Algolia ranking into Typesense default_sorting_field and per-query sort_by expressions, then validate relevance against a frozen query set before traffic cutover.",
+  "export_method": "Algolia exposes the data through its Search API. The browse method (documented under api-reference/api-methods/browse) returns records without ranking and is the canonical way to dump an index — it explicitly 'returns matching records only', skips highlighting/typo-tolerance/personalization, and returns up to roughly 1,000 records per request, paginated via a cursor. Settings, synonyms, and rules each have their own endpoints under /1/indexes/{indexName}/... — fetch settings, then synonyms (search/export), then rules (search/export). Algolia also publishes an official CLI; verify the exact subcommand names against the current CLI release before scripting (commands and flags have changed between versions). For one-off migrations the dashboard's per-index 'Manage index → Export' option works for small indices.",
+  "import_method": "Typesense is schema-first by default. The flow is: (1) POST /collections with a JSON schema declaring fields and types (string, int32, int64, float, bool, geopoint, object, plus their array variants), per-field flags (facet, optional, index, sort, locale, stem, infix), and an optional default_sorting_field. (2) POST /collections/{name}/documents/import with a JSONL body — one JSON document per line, no commas — using the action query parameter (create | upsert | update | emplace) and an optional batch_size (server-side default 40). (3) Recreate synonyms via the synonyms API and Algolia Query Rules as curation_sets / overrides (PUT /curation_sets/:name/items/:id, with includes / excludes / filter_by / replace_query / remove_matched_tokens / sort_by). If you do not want to declare every field, Typesense supports an auto-schema mode by adding a wildcard field {\"name\": \".*\", \"type\": \"auto\"}, which lets it infer types from incoming documents — useful for prototyping but you give up strict validation.",
   "concept_mapping": [
     {
-      "source": "Index",
-      "target": "Collection"
+      "algolia": "Application + Index",
+      "typesense": "Cluster + Collection",
+      "notes": "One Typesense collection ≈ one Algolia index. A single Typesense cluster hosts many collections, like an Algolia application."
     },
     {
-      "source": "Record / object",
-      "target": "Document"
+      "algolia": "Index settings (searchableAttributes, attributesForFaceting, etc.)",
+      "typesense": "Collection schema (fields[] with facet/index/sort flags) + per-query query_by",
+      "notes": "Algolia configures search behaviour at the index level; Typesense splits it: structural choices live in the schema, runtime choices (which fields to search, how to weight them) live in the query (query_by, query_by_weights)."
     },
     {
-      "source": "searchableAttributes",
-      "target": "query_by fields in schema"
+      "algolia": "searchableAttributes (ordered list)",
+      "typesense": "query_by parameter on the search request, ordered fields",
+      "notes": "Order in query_by influences ranking the same way order in searchableAttributes does on Algolia."
     },
     {
-      "source": "customRanking",
-      "target": "default_sorting_field / sort_by"
+      "algolia": "attributesForFaceting",
+      "typesense": "Field-level \"facet\": true in the schema",
+      "notes": "Marked once at collection-create time. Filtering uses filter_by at query time."
     },
     {
-      "source": "Synonyms",
-      "target": "Typesense synonyms API"
+      "algolia": "customRanking + ranking",
+      "typesense": "default_sorting_field + sort_by on the request",
+      "notes": "Algolia's tie-breaker formula (typo, geo, words, filters, proximity, attribute, exact, custom) does not translate one-to-one. Typesense has its own fixed ranking factors plus your sort_by tail; expect tuning."
     },
     {
-      "source": "Faceting attributes",
-      "target": "facet: true on schema fields"
+      "algolia": "Replicas / virtual replicas",
+      "typesense": "sort_by alternative orderings on the same collection",
+      "notes": "You usually do not need a separate collection per sort. Replace 'replica index sorted by price asc' with sort_by=price:asc on the primary collection."
+    },
+    {
+      "algolia": "Synonyms (one-way / two-way / placeholder / altCorrection)",
+      "typesense": "Synonym sets (one-way / multi-way)",
+      "notes": "Two-way maps cleanly. Algolia's altCorrections are partially covered by Typesense's typo tolerance; placeholders need a redesign."
+    },
+    {
+      "algolia": "Query Rules (consequence: promote / hide / filter / userData)",
+      "typesense": "Curation overrides (includes / excludes / filter_by / replace_query / sort_by)",
+      "notes": "Includes/excludes pin or hide specific document IDs; filter_by adds dynamic filters; replace_query rewrites the query — covers most rule consequences except 'userData' free-form payloads."
+    },
+    {
+      "algolia": "typoTolerance + minWordSizefor1Typo / minWordSizefor2Typos",
+      "typesense": "num_typos + min_len_1typo / min_len_2typo (per-query)",
+      "notes": "Typesense tunes typos at query time, not on the index. Pick sane defaults at the application layer."
+    },
+    {
+      "algolia": "InstantSearch.js / React InstantSearch widgets",
+      "typesense": "Same widgets via typesense-instantsearch-adapter",
+      "notes": "The official adapter swaps the searchClient; you keep your component tree. Configure server (host/port/protocol/apiKey) and additionalSearchParameters with query_by."
+    },
+    {
+      "algolia": "Algolia Analytics / click & conversion events",
+      "typesense": "Typesense Analytics (queries, clicks, conversions) — separate, no auto-import",
+      "notes": "Historical event data does not migrate. Re-instrument from the cutover date."
+    },
+    {
+      "algolia": "API keys with ACLs / secured API keys",
+      "typesense": "API keys with actions + collections scope",
+      "notes": "Mint fresh keys in Typesense. Search-only keys for the browser, admin keys server-side only."
     }
   ],
-  "effort": "1-4 weeks depending on index count and ranking complexity",
+  "effort": "Small catalogue / docs site (1 index, <100K records, default settings, InstantSearch UI): 1-3 days, mostly schema design + smoke testing. Mid-size product search (3-10 indices, custom ranking, synonyms, rules, replicas, 1-10M records): 1-3 weeks, dominated by ranking parity tuning and rule rewrites. Multi-tenant / personalised / NeuralSearch workloads: 4-8+ weeks because customRanking parity, Recommend, and Personalization need to be redesigned, not ported.",
   "gotchas": [
-    "Typesense schema is stricter; you must define field types upfront.",
-    "Algolia Personalization, Recommend and AI re-ranking have no direct Typesense equivalent.",
-    "InstantSearch adapter covers most widgets but not every advanced Algolia feature.",
-    "Self-hosting means you own scaling, replication and backup.",
-    "Relevance tuning will differ; budget time to retune with real queries."
+    "Schema-first vs schema-less: Typesense rejects documents whose fields are not in the schema unless you explicitly add the wildcard {\"name\": \".*\", \"type\": \"auto\"} field. Plan the schema before importing — adding it later means a re-import.",
+    "Ranking is not a drop-in match. Algolia's tie-breaker pipeline (typo → geo → words → filters → proximity → attribute → exact → custom) is its own thing. Typesense exposes its own factors plus a sort_by tail. Do not assume identical result orders — A/B test the top-50 for your top queries before cutover.",
+    "Replicas don't exist in Typesense. If you have N replicas for N sort orders, collapse them into one collection and pass sort_by per request. This usually saves money but the migration script that recreates 'replicas' should be deleted, not ported.",
+    "Browse is rate-limited and capped (~1,000 records per request per Algolia's docs). For multi-million-record indices, paginate the cursor patiently and respect rate limits — don't slam it from a single thread.",
+    "Self-hosted clusters need real sizing. Typesense recommends RAM ≥ index size + headroom and fast disks; a single t3.small will fall over on 10M records. Use Typesense Cloud for the first migration unless you already operate stateful services.",
+    "Typo tolerance config moves from index-level to query-level (num_typos, min_len_1typo, min_len_2typo). Centralise these in your search client wrapper so you don't drift across endpoints.",
+    "InstantSearch adapter caveats: not every Algolia widget feature maps 1:1. Personalization, Recommend, Dynamic Re-Ranking, and some advanced rule consequences either need rework or are not supported. Review the adapter's compatibility notes before promising 'zero frontend changes'.",
+    "Analytics history is gone on day one. Algolia click/conversion events stay in Algolia. Typesense has its own analytics module but starts empty — warn product/marketing before they ask why last quarter's top queries vanished."
   ],
   "email": {
-    "subject": "Cancelling Algolia in 14 days — moving to Typesense",
-    "body": "Hi Algolia team,\n\nWe are migrating our search workload to Typesense over the next 14 days. The drivers are predictable open-source pricing and lower long-term lock-in.\n\nPlease confirm the billing end date, how long our indices remain readable for export after cancellation, and the data retention policy once the account is closed.\n\nWe plan to export indices, synonyms and settings in week one, run Typesense in shadow mode mid-week two for relevance validation, then cut over and disable our Algolia API keys before the end of the period.\n\nThanks for everything.\n\nYour customer"
+    "subject": "Cutting our search bill: Algolia → Typesense plan",
+    "body": "Hey team,\n\nProposing we move our search from Algolia to Typesense. Short version: Algolia bills on operations and stays at peak usage for the cycle, which is why our invoice keeps climbing even on flat traffic. Typesense is open-source, has a flat-rate Cloud option, and ships with an official InstantSearch adapter so most of our frontend keeps working.\n\nWhat the migration looks like:\n\n1. Export from Algolia: dump records per index via the browse API (returns records without ranking/highlighting, ~1,000 per page via cursor), plus settings, synonyms, and rules from their respective endpoints.\n2. Define the Typesense schema per collection (fields with types + facet/sort/index flags). One Algolia index = one Typesense collection. Replicas collapse into sort_by on the primary collection.\n3. Bulk-import documents as JSONL via POST /collections/{name}/documents/import with action=upsert. Recreate synonyms and rewrite Query Rules as Typesense curation overrides (includes/excludes/filter_by/replace_query).\n4. Frontend: swap the searchClient to typesense-instantsearch-adapter, configure server + query_by. Most InstantSearch widgets keep working as-is.\n5. Run both side-by-side for a week, A/B the top queries, then cut over.\n\nEffort estimate: ~1-3 days for a simple docs/catalogue search, 1-3 weeks for our main product search (ranking parity + rule rewrites are the long pole). Multi-tenant / Personalization / NeuralSearch use cases would be longer because they need redesign, not port.\n\nKnown gotchas I want to flag up front: ranking formulas don't match exactly (we'll need to tune), Algolia analytics history doesn't transfer, and self-hosting needs proper cluster sizing — I'd start on Typesense Cloud and only self-host once the migration is stable.\n\nHappy to spike a proof-of-concept on our smallest index next sprint and share numbers (latency, relevance, projected cost) before we commit to the full move.\n\nThanks"
   }
 }

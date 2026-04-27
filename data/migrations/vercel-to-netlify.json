@@ -1,69 +1,61 @@
 {
-  "source": {
-    "slug": "vercel",
-    "name": "Vercel"
-  },
-  "target": {
-    "slug": "netlify",
-    "name": "Netlify"
-  },
-  "generated_at": "2026-04-25T00:00:00Z",
-  "tldr": "Vercel and Netlify are both Git-based frontend cloud platforms with build, CDN, and serverless/edge functions. Migration is usually motivated by pricing, team workflow preferences, or a desire for Netlify's plugin ecosystem rather than fundamental missing features on either side.",
+  "source": {"slug": "vercel", "name": "Vercel"},
+  "target": {"slug": "netlify", "name": "Netlify"},
+  "generated_at": "2026-04-26T00:00:00Z",
+  "quality": "hand-crafted",
+  "tldr": "Both are Git-driven hosting platforms with PR previews, serverless and edge runtimes, so the migration is moderate rather than hard. Netlify tends to be cheaper at scale, ships a stronger plugin ecosystem (Build Plugins, Forms, Identity), and uses Deno-based Edge Functions; Vercel has deeper Next.js integration. Most of the work is translating vercel.json into netlify.toml, moving API routes to Netlify Functions, and re-pointing DNS.",
   "why_switch": [
-    "Different pricing model at scale",
-    "Plugin/build hooks ecosystem for build customization",
-    "Built-in form handling and identity",
-    "Less framework opinion than Vercel + Next.js",
-    "Team preference or procurement standardization"
+    "More predictable pricing at scale — Netlify's bandwidth and build-minute model often works out cheaper than Vercel Pro overages on bandwidth-heavy or image-heavy sites",
+    "Build Plugins ecosystem — declarative plugins for caching, sitemap, lighthouse, image optimization, and framework adapters that hook into the build lifecycle",
+    "Built-in product surface beyond hosting — Netlify Forms, Identity, and Blobs are first-party (Vercel pushes you to integrations)",
+    "Edge Functions on Deno — open-standard runtime (Web APIs, native TypeScript, npm via npm: specifiers) instead of Vercel's proprietary V8 isolate",
+    "Less framework gravity — Netlify treats Next.js, Astro, SvelteKit, Nuxt, Remix more uniformly via adapters; useful if you don't want a Next.js-first roadmap",
+    "Configuration as code — netlify.toml is committed by default and overrides UI settings, which is friendlier for IaC workflows than Vercel's UI-first model",
+    "Deploy Previews and branch deploys with a workflow you already know, so the day-to-day team UX doesn't regress"
   ],
   "what_to_export": [
-    "Project source repos and build settings",
-    "Environment variables (build and runtime, per environment)",
-    "Custom domains and DNS records",
-    "Redirects and headers configuration",
-    "Serverless and Edge Function code",
-    "Image optimization and ISR usage patterns",
-    "Cron / scheduled job definitions",
-    "Webhooks and deploy hooks",
-    "Team and access settings for reference",
-    "Custom 404/500 pages"
+    "Git connection — note which repo, default branch, and which directory is the project root (monorepo subdir matters)",
+    "Build command and output directory — from Vercel project settings or vercel.json",
+    "Environment variables, scoped per environment (Production / Preview / Development) — pull with `vercel env pull` for each env",
+    "Custom domains and DNS records — apex/www config, wildcards, MX/TXT records",
+    "Redirects and rewrites — currently in vercel.json (`redirects`, `rewrites`, `headers`) plus any framework-level config",
+    "API routes / server functions — `/api/*`, Next.js Route Handlers, or any `/api` directory with serverless handlers",
+    "ISR / SSG configuration — which routes use revalidate, on-demand revalidation tags, and any fallback settings",
+    "Edge Middleware — `middleware.ts` at the project root and any `matcher` config",
+    "Image optimization config — `next.config.js` images block, remote patterns, formats",
+    "Preview deploy settings — branch deploy rules, password protection, deploy hooks",
+    "Team / users / access — roles per project, SSO config if any, webhook integrations",
+    "Cron jobs / scheduled functions — Vercel Cron entries in vercel.json"
   ],
-  "export_method": "Vercel project source already lives in Git, which is the canonical export. From the Vercel dashboard or API capture build command, output directory, framework preset, and environment variables for each environment (production, preview, development). Pull serverless and edge function source from your repo and verify each route is reflected in vercel.json or the framework's routing. Document any reliance on Vercel-specific features (ISR, Image Optimization, Vercel KV/Postgres/Blob, Cron Jobs) so you can decide what to re-implement, replace, or call remotely. Custom domains can be listed via the dashboard or API. TLS certs cannot be exported; Netlify will provision its own. Confirm exact Vercel API endpoints against current Vercel documentation.",
-  "import_method": "In Netlify, link the same Git repository, configure build command and publish directory to match Vercel's output, and recreate environment variables in Site Settings, scoped to deploy contexts. Translate routing and headers into Netlify _redirects and netlify.toml. Re-implement Vercel Serverless and Edge Functions as Netlify Functions or Edge Functions, watching for differences in runtime, request/response APIs, and execution limits. For Vercel-specific data products (KV, Postgres, Blob), choose third-party replacements compatible with Netlify or keep them addressable over the network. Add custom domains in Netlify, validate TLS, and switch DNS gradually with lowered TTLs. Verify exact Netlify build settings and function APIs against current Netlify documentation.",
+  "export_method": "Pull a clean snapshot before changing anything. Run `vercel env pull .env.production` (and repeat for preview/development) to capture env vars. Commit a copy of `vercel.json` and `next.config.js` to a migration branch so you have a frozen reference. Document Vercel-specific behaviors that don't translate 1:1: ISR revalidate cadence, on-demand revalidation tags, image optimization (formats, remote patterns), Edge Middleware matchers, cron schedules, and any KV/Postgres/Blob storage you depend on. Export DNS zone records (apex, www, subdomains, MX/TXT) from your registrar — you'll re-point them after first successful Netlify deploy. Do NOT cancel the Vercel project until DNS has propagated and you've verified parity in production.",
+  "import_method": "On Netlify, use Add new project -> Import an existing project, pick GitHub/GitLab/Bitbucket, and select the repo. Netlify auto-detects framework, build command, and publish directory for known stacks; override on the import screen if needed. Translate `vercel.json` into a `netlify.toml` at repo root: `[build]` (command, publish, base for monorepos), `[[redirects]]` for redirects/rewrites, `[[headers]]` for headers, `[functions]` for the functions directory. Move API routes into `netlify/functions/` (Functions) or `netlify/edge-functions/` (Edge Functions). For Next.js apps, install the official Next.js adapter — it handles `next/image`, ISR, Route Handlers, and Middleware mapping automatically. Set environment variables under Site configuration -> Environment variables (or via `netlify env:import .env`). Verify a Deploy Preview, then point DNS to Netlify and decommission the Vercel project.",
   "concept_mapping": [
-    {
-      "source": "Vercel Project",
-      "target": "Netlify Site"
-    },
-    {
-      "source": "Vercel Serverless / Edge Functions",
-      "target": "Netlify Functions / Edge Functions"
-    },
-    {
-      "source": "vercel.json",
-      "target": "netlify.toml + _redirects"
-    },
-    {
-      "source": "Vercel KV / Postgres / Blob",
-      "target": "External service",
-      "note": "No 1:1 Netlify equivalents"
-    },
-    {
-      "source": "Vercel Cron Jobs",
-      "target": "Netlify Scheduled Functions"
-    }
+    {"from": "vercel.json", "to": "netlify.toml (TOML, repo root, overrides UI settings)"},
+    {"from": "Vercel Serverless Functions (/api)", "to": "Netlify Functions in netlify/functions/ (JS/TS/Go on AWS Lambda; us-east-2 by default for sites created after Oct 4, 2023)"},
+    {"from": "Vercel Edge Functions / Edge Middleware", "to": "Netlify Edge Functions in netlify/edge-functions/ (Deno runtime, Web APIs)"},
+    {"from": "Vercel ISR (revalidate)", "to": "Netlify with the Next.js adapter (handles ISR) or On-demand Builders / build hooks for non-Next stacks"},
+    {"from": "Vercel rewrites/redirects in vercel.json", "to": "[[redirects]] blocks in netlify.toml (also supports a _redirects file)"},
+    {"from": "Vercel headers in vercel.json", "to": "[[headers]] blocks in netlify.toml (or _headers file)"},
+    {"from": "Vercel env vars (Production/Preview/Development)", "to": "Netlify environment variables with deploy-context scoping (production, deploy-preview, branch-deploy)"},
+    {"from": "Vercel KV / Postgres / Blob", "to": "Netlify Blobs for object/blob-like data; bring-your-own for KV/Postgres (Upstash, Neon, Supabase, etc.)"},
+    {"from": "Vercel Image Optimization (next/image)", "to": "Handled by the Netlify Next.js adapter for Next sites; otherwise Netlify Image CDN or a Build Plugin"},
+    {"from": "Vercel Cron Jobs", "to": "Netlify Scheduled Functions (cron-style schedule on a Netlify Function)"},
+    {"from": "Vercel Deploy Previews per PR", "to": "Netlify Deploy Previews per PR + branch deploys (same model)"},
+    {"from": "Vercel Analytics / Speed Insights", "to": "Netlify Analytics (server-side, paid add-on) or third-party RUM (Plausible, etc.)"}
   ],
-  "effort": "1-3 weeks for typical Next.js/static sites; longer with heavy Vercel-specific data services",
+  "effort": "3-10 days for a typical production app. Static sites and simple SPAs land in 1-2 days. Next.js apps with ISR, Middleware, image optimization, and cron jobs trend toward the upper end because each Vercel-specific feature needs verification on Netlify (often via the Next.js adapter). Add buffer for DNS cutover and re-testing third-party integrations bound to Vercel webhooks.",
   "gotchas": [
-    "ISR and Image Optimization behave differently across platforms; expect tuning and possible regressions",
-    "Edge Function runtimes and APIs are similar but not identical; validate request/response and limits",
-    "Vercel-specific data products (KV, Postgres, Blob) have no Netlify equivalents; plan replacements",
-    "Build minutes and concurrent build limits differ, which can affect monorepos and preview pipelines",
-    "Preview URL formats change, which can break previously hardcoded links and external tools",
-    "Bandwidth and invocation pricing differ; bandwidth-heavy sites may see different bills"
+    "Edge runtime difference — Vercel Edge runs on a V8 isolate with a Web-API-like surface; Netlify Edge Functions run on Deno. Most Web APIs work on both, but Node-only modules and some npm packages may need adjustment (Deno supports npm via `npm:` specifiers, but native addons won't work)",
+    "Next.js feature parity goes through the adapter — ISR, Route Handlers, Middleware, and next/image are supported on Netlify via the official Next.js adapter; verify the adapter version matches your Next.js version before assuming parity",
+    "ISR semantics — time-based revalidation generally works, but on-demand revalidation tags and any code that assumes Vercel's exact cache headers should be re-tested end-to-end",
+    "Image optimization — Vercel's built-in next/image pipeline isn't a 1:1 swap; on Netlify it goes through the adapter / Image CDN, and remote patterns and formats may need re-declaring",
+    "Environment variable scoping — Vercel scopes per env (Production/Preview/Development); Netlify scopes per deploy context (production, deploy-preview, branch-deploy, dev). Re-map carefully so previews don't accidentally hit production secrets",
+    "Middleware migration — Vercel Edge Middleware sits at the framework level; on Netlify it's an Edge Function with a path declaration. Matchers and request rewriting need to be ported, not lifted",
+    "Function limits differ — Netlify Functions default to 1024 MB memory, 60s synchronous / 15min background, 6 MB request/response payload (20 MB for streamed responses). If your Vercel functions rely on different limits, validate before cutover",
+    "Build minutes vs Vercel pricing — Netlify meters build minutes and bandwidth on its own usage model; rerun your cost estimate against actual traffic and build frequency before assuming savings"
   ],
   "email": {
-    "subject": "Winding down our Vercel usage over the next 14 days",
-    "body": "Hi Vercel team,\n\nWe are moving our frontend hosting from Vercel to Netlify over the next 14 days to align with our team's preferred workflow and pricing model.\n\nIn this window we plan to run Netlify deploys in parallel with Vercel, then cut over custom domains with lowered DNS TTLs. Serverless and Edge Functions will be re-implemented on Netlify, and any Vercel-specific data products we use will either stay on Vercel or move to a third-party replacement depending on the workload.\n\nCould you confirm how long deployment history, analytics, and logs remain accessible after we stop new deploys, plus the cleanest order to disable functions, data products, and projects to avoid surprise charges or data loss?\n\nThanks for the support.\n\nYour customer"
+    "subject": "Moving our frontend hosting from Vercel to Netlify",
+    "body": "Hey team,\n\nI'm planning to move our frontend hosting from Vercel to Netlify. The reasoning: more predictable pricing at our traffic level, a stronger plugin ecosystem (Forms, Identity, Build Plugins), and Deno-based Edge Functions instead of Vercel's proprietary edge runtime. Both platforms are Git-driven with PR previews, so the day-to-day workflow won't change.\n\nMigration plan at a high level:\n  1. Import the repo into Netlify (Add new project -> Import from Git).\n  2. Translate vercel.json into netlify.toml (build, redirects, headers, functions).\n  3. Move /api routes to netlify/functions and Edge Middleware to netlify/edge-functions; for Next.js the official adapter handles most of this (ISR, next/image, Route Handlers).\n  4. Re-create environment variables per deploy context (production / deploy-preview / branch-deploy) using `netlify env:import`.\n  5. Verify a Deploy Preview end-to-end, then re-point DNS and decommission the Vercel project.\n\nRealistic effort: 3-10 days depending on how much we lean on Vercel-specific features (ISR tags, Edge Middleware, image optimization, cron). Main risks to validate: Edge runtime differences (V8 isolate vs Deno), ISR parity through the adapter, and env-var scoping. I'll flag anything that doesn't map cleanly so we can decide before cutover.\n\nLet me know if you want me to spike a Deploy Preview first or go straight into the full plan."
   }
 }

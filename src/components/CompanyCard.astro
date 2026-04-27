@@ -49,7 +49,7 @@ const initial = name.charAt(0).toUpperCase();
     </div>
   </div>
 
-  <div class="mt-3 flex flex-wrap items-center gap-1.5">
+  <div class="relative z-20 mt-3 flex flex-wrap items-center gap-1.5">
     {lockInLevel && <LockInBadge level={lockInLevel} />}
 
     {pricingModel && pricingModel !== 'unknown' && (

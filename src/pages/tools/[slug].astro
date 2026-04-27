@@ -702,6 +702,20 @@ if (hwm) {
           if (e.key === 'Escape' && !modal.classList.contains('hidden')) close();
         });
 
+        // Deep-link auto-open: /tools/{slug}/?migrate=open opens the modal.
+        // Used by extension pages so users can hit "Help me migrate" from
+        // /extensions/{publisher} and land in the modal directly.
+        try {
+          const params = new URLSearchParams(window.location.search);
+          if (params.get('migrate') === 'open') {
+            open();
+            // Clean the URL so back-nav / refresh doesn't re-open.
+            params.delete('migrate');
+            const next = window.location.pathname + (params.toString() ? '?' + params.toString() : '');
+            history.replaceState({}, '', next);
+          }
+        } catch (_) { /* no-op */ }
+
         function esc(s) { return String(s ?? '').replace(/[&<>"']/g, function (c) {
           return ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'})[c];
         }); }

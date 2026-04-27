@@ -50,4 +50,7 @@ jobs:
             fi
           fi
         env:
-          GH_TOKEN: ${{ secrets.GH_PAT }}
+          # Use the workflow's auto-issued GITHUB_TOKEN (issues:write granted at
+          # the job level above). The PAT didn't have issues scope and was
+          # failing with "Resource not accessible by personal access token".
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -81,10 +81,14 @@ html {
   scrollbar-color: var(--color-scrollbar-thumb) var(--color-scrollbar-track);
 }
 
-/* Page fade-in */
+/* Page fade-in.
+ * NOTE: opacity-only — DO NOT add `transform` here. A `transform` on <body>
+ * (even `translateY(0)`) makes it the containing block for `position: fixed`
+ * descendants, breaking modals (they anchor to the document instead of the
+ * viewport). */
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(4px); }
-  to { opacity: 1; transform: translateY(0); }
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 .animate-fade-in {

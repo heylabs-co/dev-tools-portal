@@ -31,8 +31,9 @@ const { classes, label, icon, tooltip } = config[level];
 ---
 
 <span
-  class={`inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[11px] font-medium transition-colors duration-150 cursor-help ${classes}`}
-  title={tooltip}
+  class={`tip inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[11px] font-medium transition-colors duration-150 cursor-help ${classes}`}
+  data-tip={tooltip}
+  tabindex="0"
 >
   <svg class="h-3 w-3 shrink-0" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
     <path stroke-linecap="round" stroke-linejoin="round" d={icon} />

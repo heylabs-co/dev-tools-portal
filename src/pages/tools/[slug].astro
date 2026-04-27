@@ -313,35 +313,6 @@ if (hwm) {
       </section>
     )}
 
-    <!-- Migration Cheatsheet -->
-    {d.content?.migration_cheatsheet && (
-      <section class="mt-14">
-        <h2 class="flex items-center gap-3 text-lg font-semibold text-[#0F172A] dark:text-[#EDEDEF]">
-          <span class="block w-1 h-6 rounded-full bg-amber-500 dark:bg-amber-400"></span>
-          Migration Guide
-        </h2>
-        <div class="mt-5 rounded-xl border border-gray-200 dark:border-gray-700/60 bg-white dark:bg-[#13131A] p-6 space-y-4">
-          <div class="flex items-center gap-3">
-            <span class="text-sm font-medium text-[#0F172A] dark:text-[#EDEDEF]">Difficulty:</span>
-            <span class="inline-flex items-center rounded-full bg-amber-50 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-800/40 px-3 py-0.5 text-xs font-medium text-amber-700 dark:text-amber-400 capitalize">{d.content.migration_cheatsheet.difficulty}</span>
-          </div>
-          <div class="text-sm">
-            <span class="font-medium text-[#0F172A] dark:text-[#EDEDEF]">Data you can export:</span>
-            <span class="ml-2 text-[#64748B] dark:text-[#8A8F98]">{d.content.migration_cheatsheet.data_you_keep}</span>
-          </div>
-          <div class="text-sm">
-            <span class="font-medium text-[#0F172A] dark:text-[#EDEDEF]">API standard:</span>
-            <span class="ml-2 text-[#64748B] dark:text-[#8A8F98]">{d.content.migration_cheatsheet.api_standard}</span>
-          </div>
-          {d.content.migration_cheatsheet.tip && (
-            <p class="text-sm text-[#64748B] dark:text-[#8A8F98] italic border-t border-gray-100 dark:border-gray-800 pt-4">
-              💡 {d.content.migration_cheatsheet.tip}
-            </p>
-          )}
-        </div>
-      </section>
-    )}
-
     <!-- Works Well With -->
     {d.content?.works_well_with && d.content.works_well_with.length > 0 && (
       <section class="mt-14">
@@ -363,39 +334,6 @@ if (hwm) {
       </section>
     )}
 
-    <!-- Lock-in Section -->
-    <div data-pagefind-ignore>
-    {lockIn && (
-      <section class="mt-14">
-        <h2 class="flex items-center gap-3 text-lg font-semibold text-[#0F172A] dark:text-[#EDEDEF]">
-          <span class="block w-1 h-6 rounded-full bg-orange-500 dark:bg-orange-400"></span>
-          Lock-in Assessment
-        </h2>
-        <div class="mt-5 rounded-xl border border-gray-200 dark:border-gray-700/60 bg-white dark:bg-[#13131A] p-6 space-y-5">
-          <div class="flex items-center gap-3">
-            <LockInBadge level={lockIn.level} score={lockIn.score} />
-          </div>
-          <MetricBar label="Lock-in Score" value={lockIn.score} maxValue={5} inverted={true} />
-          {lockIn.explanation && (
-            <p class="text-sm text-[#64748B] dark:text-[#8A8F98] leading-relaxed">{lockIn.explanation}</p>
-          )}
-          {lockIn.data_portability && (
-            <div class="text-sm">
-              <span class="font-medium text-[#0F172A] dark:text-[#EDEDEF]">Data Portability:</span>
-              <span class="ml-2 text-[#64748B] dark:text-[#8A8F98]">{lockIn.data_portability}</span>
-            </div>
-          )}
-          {lockIn.api_compatibility && (
-            <div class="text-sm">
-              <span class="font-medium text-[#0F172A] dark:text-[#EDEDEF]">API Compatibility:</span>
-              <span class="ml-2 text-[#64748B] dark:text-[#8A8F98]">{lockIn.api_compatibility}</span>
-            </div>
-          )}
-        </div>
-      </section>
-    )}
-
-    </div>
     <!-- Pricing Section -->
     <div data-pagefind-ignore>
     {d.pricing && (
@@ -503,7 +441,70 @@ if (hwm) {
     <!-- Health Score -->
     {d.health && <HealthScore health={d.health} />}
 
-    <!-- Alternatives Section -->
+    </div>
+
+    <!-- ── Exit-funnel: Lock-in → Migrate CTA → Alternatives → Family ── -->
+    <div data-pagefind-ignore>
+
+    <!-- Lock-in Section (signal of how hard it is to leave) -->
+    {lockIn && (
+      <section class="mt-14">
+        <h2 class="flex items-center gap-3 text-lg font-semibold text-[#0F172A] dark:text-[#EDEDEF]">
+          <span class="block w-1 h-6 rounded-full bg-orange-500 dark:bg-orange-400"></span>
+          Lock-in Assessment
+        </h2>
+        <div class="mt-5 rounded-xl border border-gray-200 dark:border-gray-700/60 bg-white dark:bg-[#13131A] p-6 space-y-5">
+          <div class="flex items-center gap-3">
+            <LockInBadge level={lockIn.level} score={lockIn.score} />
+          </div>
+          <MetricBar label="Lock-in Score" value={lockIn.score} maxValue={5} inverted={true} />
+          {lockIn.explanation && (
+            <p class="text-sm text-[#64748B] dark:text-[#8A8F98] leading-relaxed">{lockIn.explanation}</p>
+          )}
+          {lockIn.data_portability && (
+            <div class="text-sm">
+              <span class="font-medium text-[#0F172A] dark:text-[#EDEDEF]">Data Portability:</span>
+              <span class="ml-2 text-[#64748B] dark:text-[#8A8F98]">{lockIn.data_portability}</span>
+            </div>
+          )}
+          {lockIn.api_compatibility && (
+            <div class="text-sm">
+              <span class="font-medium text-[#0F172A] dark:text-[#EDEDEF]">API Compatibility:</span>
+              <span class="ml-2 text-[#64748B] dark:text-[#8A8F98]">{lockIn.api_compatibility}</span>
+            </div>
+          )}
+        </div>
+      </section>
+    )}
+
+    <!-- Migrate CTA — opens modal to draft an export-request email -->
+    <section class="mt-12">
+      <div class="rounded-2xl border border-orange-200/60 dark:border-orange-900/40 bg-orange-50/40 dark:bg-orange-950/20 p-6">
+        <h3 class="flex items-center gap-2 text-base font-bold" style="color: var(--color-text);">
+          <span>🔄</span>
+          Thinking about migrating off {d.name}?
+        </h3>
+        <p class="mt-2 text-sm" style="color: var(--color-muted);">
+          Get an AI-drafted migration plan + a copy-paste email to {d.name} support
+          requesting a data export. Pick where you're moving to and tell us your context.
+        </p>
+        <button
+          id="migrate-open-btn"
+          type="button"
+          data-source-slug={d.slug}
+          data-source-name={d.name}
+          data-source-category={d.categories.primary.slug}
+          class="mt-4 inline-flex items-center gap-2 rounded-lg bg-gradient-to-r from-orange-500 to-amber-500 px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:opacity-90"
+        >
+          Help me migrate from {d.name}
+          <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+          </svg>
+        </button>
+      </div>
+    </section>
+
+    <!-- Alternatives -->
     {d.alternatives && d.alternatives.length > 0 && (
       <section class="mt-14">
         <h2 class="flex items-center gap-3 text-lg font-semibold text-[#0F172A] dark:text-[#EDEDEF] mb-5">
@@ -524,26 +525,9 @@ if (hwm) {
       </section>
     )}
 
-    </div>
-    <!-- Report incorrect data -->
-    <div data-pagefind-ignore>
-    <div class="mt-16 pt-8 border-t border-gray-100 dark:border-gray-800/60 text-center">
-      <a
-        href={`https://github.com/heylabs-co/dev-tools-portal/issues/new?title=${encodeURIComponent(`[Data] Incorrect info for ${d.name}`)}&body=${encodeURIComponent(`**Tool:** ${d.name}\n**Page:** /tools/${d.slug}/\n\n**What's incorrect:**\n\n**Correct information:**\n`)}`}
-        target="_blank"
-        rel="noopener"
-        class="inline-flex items-center gap-1.5 text-sm text-[#64748B] dark:text-[#8A8F98] hover:text-[#0F172A] dark:hover:text-[#EDEDEF] transition-colors"
-      >
-        <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-        </svg>
-        Report incorrect data
-      </a>
-    </div>
-
     <!-- Family / sibling products from same brand -->
     {familyMembers.length > 0 && (
-      <section class="mt-12" data-pagefind-ignore>
+      <section class="mt-12">
         <h2 class="flex items-center gap-3 text-lg font-semibold" style="color: var(--color-text);">
           <span class="block w-1 h-6 rounded-full bg-gradient-to-b from-[#5E6AD2] to-[#818CF8]"></span>
           More from {familyName}
@@ -575,32 +559,24 @@ if (hwm) {
       </section>
     )}
 
-    <!-- Migrate CTA — opens modal to draft an export-request email -->
-    <section class="mt-12" data-pagefind-ignore>
-      <div class="rounded-2xl border border-orange-200/60 dark:border-orange-900/40 bg-orange-50/40 dark:bg-orange-950/20 p-6">
-        <h3 class="flex items-center gap-2 text-base font-bold" style="color: var(--color-text);">
-          <span>🔄</span>
-          Thinking about migrating off {d.name}?
-        </h3>
-        <p class="mt-2 text-sm" style="color: var(--color-muted);">
-          Get an AI-drafted migration plan + a copy-paste email to {d.name} support
-          requesting a data export. Pick where you're moving to and tell us your context.
-        </p>
-        <button
-          id="migrate-open-btn"
-          type="button"
-          data-source-slug={d.slug}
-          data-source-name={d.name}
-          data-source-category={d.categories.primary.slug}
-          class="mt-4 inline-flex items-center gap-2 rounded-lg bg-gradient-to-r from-orange-500 to-amber-500 px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:opacity-90"
-        >
-          Help me migrate from {d.name}
-          <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-          </svg>
-        </button>
-      </div>
-    </section>
+    </div>
+
+    <!-- Report incorrect data -->
+    <div data-pagefind-ignore>
+    <div class="mt-16 pt-8 border-t border-gray-100 dark:border-gray-800/60 text-center">
+      <a
+        href={`https://github.com/heylabs-co/dev-tools-portal/issues/new?title=${encodeURIComponent(`[Data] Incorrect info for ${d.name}`)}&body=${encodeURIComponent(`**Tool:** ${d.name}\n**Page:** /tools/${d.slug}/\n\n**What's incorrect:**\n\n**Correct information:**\n`)}`}
+        target="_blank"
+        rel="noopener"
+        class="inline-flex items-center gap-1.5 text-sm text-[#64748B] dark:text-[#8A8F98] hover:text-[#0F172A] dark:hover:text-[#EDEDEF] transition-colors"
+      >
+        <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+        Report incorrect data
+      </a>
+    </div>
+
 
     <!-- Migrate Modal — hidden until button click -->
     <div

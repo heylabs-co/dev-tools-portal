@@ -1,0 +1,76 @@
+{
+  "source": {
+    "slug": "anteon",
+    "name": "Anteon"
+  },
+  "target": {
+    "slug": "openlit",
+    "name": "OpenLIT"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "Switch from Anteon's general K8s observability to OpenLIT, an OpenTelemetry-native open-source platform focused on GenAI/LLM workloads.",
+  "why_switch": [
+    "OpenLIT is Apache-2.0 and free to self-host.",
+    "OpenTelemetry-native — no proprietary SDK lock-in.",
+    "Purpose-built for LLM token, latency, and cost tracing.",
+    "Avoids Anteon's ingest-based pricing.",
+    "Active project with frequent releases."
+  ],
+  "what_to_export": [
+    "Existing service and resource attributes",
+    "Custom alert rules and thresholds",
+    "Dashboard definitions",
+    "Trace sampling configuration",
+    "Log retention policies",
+    "Integration credentials (Slack, PagerDuty, etc.)",
+    "User/team/role assignments",
+    "Historical traces and metrics worth preserving"
+  ],
+  "export_method": "Anteon does not document a unified export API publicly. Pull alert rules, dashboards, and configuration via its admin API or self-hosted DB if you run open-core. For historical telemetry, archive what you need to object storage. Refer to Anteon's official docs for exact endpoints.",
+  "import_method": "OpenLIT installs via Docker Compose, Kubernetes manifests, or Helm (consult openlit.io docs for the current path). Once running, instrument applications with the OpenLIT SDK or any OpenTelemetry SDK pointed at OpenLIT's OTLP collector endpoint. Rebuild dashboards inside OpenLIT or via Grafana over the underlying ClickHouse store. Rewire Slack/PagerDuty notifications using OpenLIT's alert configuration.",
+  "concept_mapping": [
+    {
+      "source": "Anteon agents/SDK",
+      "target": "OpenTelemetry SDK + OpenLIT auto-instrumentation",
+      "note": "Standard OTel replaces vendor SDK."
+    },
+    {
+      "source": "Anteon traces",
+      "target": "OpenLIT traces (OTel-native)",
+      "note": "OTLP ingest, no proprietary protocol."
+    },
+    {
+      "source": "Anteon dashboards",
+      "target": "OpenLIT UI / Grafana",
+      "note": "Rebuild from scratch; layouts are not portable."
+    },
+    {
+      "source": "Anteon alerts",
+      "target": "OpenLIT alerting / Alertmanager",
+      "note": "Confirm exact alerting features in OpenLIT docs."
+    },
+    {
+      "source": "K8s eBPF infra metrics",
+      "target": "Bring-your-own (Prometheus, etc.)",
+      "note": "OpenLIT centers on app/LLM telemetry, not eBPF cluster metrics."
+    },
+    {
+      "source": "Hosted SaaS billing",
+      "target": "Self-host cost only",
+      "note": "No per-GB ingest fees; you own ops."
+    }
+  ],
+  "effort": "8-20 hours",
+  "gotchas": [
+    "OpenLIT specializes in GenAI/LLM observability; it is not a 1:1 replacement for general K8s eBPF monitoring.",
+    "If you relied on Anteon for cluster network-level visibility, plan a separate tool.",
+    "Re-instrumentation may be required to use OTel SDKs cleanly.",
+    "Young project — APIs may shift between minor versions; pin chart/SDK versions.",
+    "Self-host means you own ClickHouse/storage scaling.",
+    "Historical Anteon data won't backfill into OpenLIT; expect a fresh start."
+  ],
+  "email": {
+    "subject": "Migrating from Anteon to OpenLIT",
+    "body": "Hi team,\n\nProposing a move from Anteon to OpenLIT for our observability stack, especially as our LLM-related workloads grow. OpenLIT is Apache-2.0, OpenTelemetry-native, and removes ingest-based billing.\n\nNote: OpenLIT is GenAI/LLM-focused, so for raw cluster/network signals we'll keep or add a complementary tool (Prometheus + Grafana, or similar).\n\nWork: export Anteon alert rules and dashboards; deploy OpenLIT; instrument apps with OTel SDKs; rebuild dashboards and alerts; re-route Slack/PagerDuty.\n\nEstimated effort: 8-20 hours plus a parallel-run window.\n\nWill follow up with a migration plan doc.\n\nThanks."
+  }
+}

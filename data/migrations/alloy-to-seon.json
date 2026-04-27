@@ -1,0 +1,62 @@
+{
+  "source": {
+    "slug": "alloy",
+    "name": "Alloy"
+  },
+  "target": {
+    "slug": "seon",
+    "name": "SEON"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Migrating from Alloy to SEON shifts you from identity decisioning to API-based fraud scoring with real-time machine learning. KYC and credit underwriting flows will not map cleanly to SEON and likely need a separate provider.",
+  "why_switch": [
+    "SEON focuses on API-based fraud scoring",
+    "Machine learning detection for payment and ATO fraud",
+    "Documented developer experience and SDKs",
+    "Fit for fintech, e-commerce, and marketplaces",
+    "Alternative to Alloy's enterprise contract model"
+  ],
+  "what_to_export": [
+    "Workflow and rule definitions",
+    "Applicant and user records",
+    "Historical decisions and outcomes",
+    "Webhook endpoints and subscriptions",
+    "API keys and credentials",
+    "Custom data source connections",
+    "Audit logs for compliance retention",
+    "Mapping of users to external IDs"
+  ],
+  "export_method": "Alloy does not publish a self-serve bulk export, so plan to export through the contract-level channels available to you. Ask your account manager for a one-time data export of applicants, decisions, and audit history in CSV or JSON. Pull additional reports from the dashboard and call the Alloy API for any records addressable by ID. Workflows and rules usually do not export to a portable format, so transcribe each one into a design doc covering triggers, data sources, conditions, and outcomes. Capture webhook configurations, secrets, and any third-party data source credentials. Archive audit logs to long-term storage for the retention window required by your regulator. Run exports in parallel with continued production traffic and verify counts before disconnecting.",
+  "import_method": "SEON is integrated through a JS or mobile SDK on the client and a REST API on the server. Provision a SEON account, generate API keys, and install the data collector on the events you want to score (signups, logins, payments). On the backend, send event payloads to SEON's fraud API and consume the returned score and rule outcomes. Recreate Alloy rule logic as SEON rules or in your own decision layer that consumes SEON scores. Configure webhooks for asynchronous risk verdicts and to keep your case management system in sync. KYC document verification and credit underwriting from Alloy will not move to SEON without significant work; plan a dedicated provider for those. Run SEON in shadow mode first, compare verdicts against historical Alloy decisions, tune thresholds, and only then cut over.",
+  "concept_mapping": [
+    {
+      "source": "Workflow",
+      "target": "SEON ruleset"
+    },
+    {
+      "source": "Decision outcome",
+      "target": "SEON score + rule verdict"
+    },
+    {
+      "source": "Webhook event",
+      "target": "Webhook event"
+    },
+    {
+      "source": "Applicant record",
+      "target": "User identifier in SEON event"
+    }
+  ],
+  "effort": "3-8 weeks",
+  "gotchas": [
+    "SEON pricing is custom; transparency is rated low so negotiate volume tiers carefully",
+    "Overly aggressive rules can block legitimate users; tune thresholds in shadow mode",
+    "KYC and credit underwriting will not map to SEON and need a separate provider",
+    "Alloy export shape is vendor-specific; budget engineering time to transform it",
+    "Real-time scoring adds latency to the request path; place calls on the right boundary",
+    "Compliance retention obligations follow the data, so archive Alloy records securely"
+  ],
+  "email": {
+    "subject": "Moving fraud scoring from Alloy to SEON over the next two weeks",
+    "body": "Hi team,\n\nWe are migrating our fraud scoring from Alloy to SEON over the next 14 days. SEON gives us API-based machine learning detection that fits our payment and account takeover use cases.\n\nWhat to expect:\n- The SEON data collector will be added to signup, login, and payment events.\n- Backend services will call the SEON API for scoring and consume the rule verdicts.\n- Alloy rule logic will be reimplemented as SEON rules or in our own decision layer.\n- KYC and credit underwriting will move to a dedicated provider, not SEON.\n- We will run both systems in parallel for the first week to compare verdicts before cutover.\n\nPlease flag any downstream consumer of Alloy webhooks or decisions so we can route it to the new pipeline. Reach out with questions before the end of the week.\n\nThanks,\nYour customer"
+  }
+}

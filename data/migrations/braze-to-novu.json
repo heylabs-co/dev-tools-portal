@@ -1,0 +1,81 @@
+{
+  "source": {
+    "slug": "braze",
+    "name": "Braze"
+  },
+  "target": {
+    "slug": "novu",
+    "name": "Novu"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "Replace Braze's proprietary engagement suite with Novu's open-source, self-hostable notification infrastructure.",
+  "why_switch": [
+    "Open-source core — option to self-host and avoid vendor lock-in",
+    "Generous free tier vs. Braze paid-only model",
+    "Developer-first SDKs for in-app feed, email, push, SMS",
+    "Lower lock-in score (templates and workflows live in your codebase via Novu's framework)",
+    "Active OSS community"
+  ],
+  "what_to_export": [
+    "User profiles and subscriber identifiers",
+    "Custom attributes used in personalization",
+    "Push tokens and device records",
+    "Email templates and copy",
+    "Subscription preferences per channel",
+    "Canvas / journey definitions (for re-implementation)",
+    "Event taxonomy and trigger names",
+    "Active campaign content and schedules"
+  ],
+  "export_method": "Pull users, attributes, and events through Braze's REST API; for templates and Canvas flows, export from the dashboard where available or document them manually. If your Braze plan includes Currents, configure a one-time historical dump to S3 for richer event history. Confirm push subscription state is included so you don't lose opt-ins.",
+  "import_method": "Stand up a Novu workspace (cloud) or self-host. Add subscribers via Novu's API, configure providers (FCM/APNs/SES/Twilio/etc.) under Integrations, and define workflows using Novu's framework — workflows live as code, which gives you version control. Replace Braze SDK calls with Novu's trigger calls in your application. For in-app feed, embed Novu's prebuilt component or call the API. Always verify endpoints against current Novu docs.",
+  "concept_mapping": [
+    {
+      "source": "Braze user",
+      "target": "Novu subscriber",
+      "note": "subscriberId is the equivalent of external_id."
+    },
+    {
+      "source": "Canvas (journey)",
+      "target": "Novu workflow",
+      "note": "Workflows are code-defined — re-author rather than auto-import."
+    },
+    {
+      "source": "Campaign",
+      "target": "Trigger event",
+      "note": "Novu is event-driven; scheduled blasts need an external scheduler or Novu's scheduling features — check docs."
+    },
+    {
+      "source": "Segment",
+      "target": "Topics / subscriber filters",
+      "note": "Verify current segmentation capabilities in Novu docs."
+    },
+    {
+      "source": "Liquid templates",
+      "target": "Novu template engine (Handlebars-based)",
+      "note": "Re-test all merge fields."
+    },
+    {
+      "source": "Subscription groups",
+      "target": "Preferences",
+      "note": "Map per-channel opt-ins explicitly."
+    },
+    {
+      "source": "In-app messages",
+      "target": "Novu in-app feed / Inbox",
+      "note": "UI component differs; design review needed."
+    }
+  ],
+  "effort": "4-8 weeks",
+  "gotchas": [
+    "Self-hosting Novu adds ops burden — only choose it if you have infra capacity.",
+    "Workflows-as-code is a paradigm shift from Canvas — train the team.",
+    "Provider credentials (APNs, FCM, ESP) must be re-uploaded to Novu.",
+    "Personalization syntax differs; don't copy Liquid templates verbatim.",
+    "Plan a dual-run period to validate delivery rates before sunsetting Braze.",
+    "Some advanced Braze features (e.g., Predictive Suite) have no direct equivalent."
+  ],
+  "email": {
+    "subject": "Migrating from Braze to Novu",
+    "body": "Hi team,\n\nProposing we move our notification stack from Braze to Novu. Novu is open-source and gives us workflow-as-code, lower cost, and the option to self-host if we want full control.\n\nPlan: export subscribers, attributes, push tokens, templates, and journeys from Braze; recreate workflows in Novu's framework; swap Braze SDK calls for Novu triggers; run both in parallel for a lifecycle window.\n\nEstimated effort: 4-8 weeks. Main risks: workflow paradigm shift, no 1:1 mapping for advanced Braze features (Predictive Suite, etc.), and self-host ops cost if we go that route.\n\nHappy to walk through the migration checklist."
+  }
+}

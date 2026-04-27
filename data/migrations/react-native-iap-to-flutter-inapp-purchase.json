@@ -1,0 +1,76 @@
+{
+  "source": {
+    "slug": "react-native-iap",
+    "name": "react-native-iap"
+  },
+  "target": {
+    "slug": "flutter-inapp-purchase",
+    "name": "flutter_inapp_purchase"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "Switching from react-native-iap to flutter_inapp_purchase implies a full app rewrite from React Native to Flutter — the IAP layer itself is the easy part since both libraries align with the OpenIAP spec.",
+  "why_switch": [
+    "You're already migrating the app from React Native to Flutter and need an equivalent IAP library",
+    "Both libraries share the OpenIAP-aligned API surface, easing concept transfer",
+    "Type-safe Dart bindings replace TypeScript bindings of similar shape",
+    "Continue owning the IAP stack rather than adopting a managed service",
+    "Active maintenance on the Flutter library aligns with current StoreKit 2 and Play Billing 8"
+  ],
+  "what_to_export": [
+    "Product IDs and subscription IDs from App Store Connect and Google Play Console",
+    "Subscription group and offer configurations",
+    "Receipt validation server endpoints and logic",
+    "Purchase event handlers and their side effects",
+    "Restore purchases flow logic",
+    "Error code handling for billing edge cases",
+    "Localization for paywall and purchase UI strings",
+    "Analytics event names tied to purchases"
+  ],
+  "export_method": "There is nothing to export from react-native-iap itself — store-side product configuration in App Store Connect and Google Play Console persists across the migration. Document your purchase, restore, and receipt validation logic as a spec so you can re-implement it in Dart. If you have server-side receipt validation, that code is reusable since it runs outside the client.",
+  "import_method": "Add flutter_inapp_purchase to your pubspec.yaml and rebuild the purchase flow following its OpenIAP-aligned API. Wire it to the same App Store Connect and Google Play product IDs. Reuse your existing receipt validation server. Refer to the flutter_inapp_purchase official docs for the current API surface, since the library tracks OpenIAP changes closely.",
+  "concept_mapping": [
+    {
+      "source": "useIAP hook / methods",
+      "target": "flutter_inapp_purchase API",
+      "note": "Both align with OpenIAP, so concepts map closely — check current docs for exact names"
+    },
+    {
+      "source": "Purchase listener",
+      "target": "Dart stream subscription",
+      "note": "Subscribe to purchase events via the library's stream/callback API"
+    },
+    {
+      "source": "Product fetch",
+      "target": "Equivalent fetch call in Dart",
+      "note": "Same product ID schema applies"
+    },
+    {
+      "source": "Receipt validation",
+      "target": "Reuse server-side validator",
+      "note": "Validation logic is platform-agnostic"
+    },
+    {
+      "source": "Restore purchases",
+      "target": "Equivalent restore method",
+      "note": "Both libraries expose restoration flows"
+    },
+    {
+      "source": "Error handling",
+      "target": "OpenIAP error codes",
+      "note": "OpenIAP unifies error codes across platforms"
+    }
+  ],
+  "effort": "Days for the IAP layer alone; weeks-to-months for the full RN-to-Flutter app rewrite",
+  "gotchas": [
+    "This is really an app-framework migration, not just an IAP swap",
+    "Test sandbox purchases on both iOS and Android before release",
+    "Subscription state continuity for existing users requires careful server-side handling",
+    "Native linking may differ; follow the library's installation steps in current docs",
+    "Receipt formats and validation are platform-driven, not library-driven, so server logic should still work",
+    "Plan a parallel-run period or a staged rollout to catch regressions"
+  ],
+  "email": {
+    "subject": "Note on IAP migration during the React Native to Flutter rewrite",
+    "body": "Hi team,\n\nFor the Flutter rewrite, the IAP layer maps cleanly: react-native-iap and flutter_inapp_purchase both align with the OpenIAP spec, so concepts and product IDs transfer directly. App Store Connect and Google Play config stays as-is, and our receipt validation server is reusable.\n\nThe IAP work itself is days, not weeks — the bigger lift is the RN-to-Flutter rewrite. We'll sandbox test on both platforms and stage rollout to protect existing subscribers.\n\nI'll cross-reference the current flutter_inapp_purchase docs before locking exact API calls."
+  }
+}

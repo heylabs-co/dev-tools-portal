@@ -1,0 +1,83 @@
+{
+  "source": {
+    "slug": "wwise",
+    "name": "Wwise"
+  },
+  "target": {
+    "slug": "unreal-engine",
+    "name": "Unreal Engine"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "Moving from Wwise audio middleware to Unreal Engine's built-in audio means trading best-in-class adaptive audio tooling for tighter engine integration and a single licensing model.",
+  "why_switch": [
+    "Consolidate licensing under Unreal's royalty model and avoid Wwise's separate per-platform fees as you scale",
+    "Reduce build pipeline complexity by removing a middleware integration layer",
+    "Use MetaSounds and the engine's audio engine directly inside Blueprints without external authoring tools",
+    "Simpler onboarding for small teams that don't need a dedicated audio middleware specialist",
+    "Tighter coupling with Unreal's animation, gameplay, and sequencer systems"
+  ],
+  "what_to_export": [
+    "Source audio assets (WAV/AIFF) used in Wwise projects",
+    "Event names and their trigger contexts in code/Blueprints",
+    "RTPC parameter mappings and ranges",
+    "Switch and State group definitions",
+    "Bus and bus volume routing structure",
+    "Mix snapshots and ducking rules",
+    "Spatialization settings (attenuation curves, occlusion)",
+    "SoundBank organization and dependency notes",
+    "Localization audio variants per language",
+    "Music switch container hierarchies and stinger logic"
+  ],
+  "export_method": "Wwise stores authoring data in its own project format alongside source WAV/AIFF assets. Treat the original source audio files as the export — they are the portable artifact. Document everything else (event names, RTPCs, switches, attenuation curves, bus structure, music container logic) as a spec document by inspecting the Wwise project. There is no automated converter to Unreal's audio system, so consult the official Audiokinetic documentation for project structure details before mapping concepts manually.",
+  "import_method": "Bring source audio into Unreal as Sound Wave assets and rebuild the runtime structure using MetaSounds, Sound Cues, Sound Classes, and Sound Mixes. Replace Wwise events with audio component calls or MetaSound triggers in Blueprints/C++. Recreate RTPCs as MetaSound parameters or Sound Cue modulators, and rebuild attenuation as Attenuation Settings assets. Refer to the Unreal Engine audio documentation for current best practices, since the audio stack has evolved across versions.",
+  "concept_mapping": [
+    {
+      "source": "Wwise Event",
+      "target": "MetaSound trigger / Sound Cue / Audio Component play call",
+      "note": "Most one-shot and looping events map to a Sound Cue or MetaSound asset invoked from Blueprint"
+    },
+    {
+      "source": "RTPC",
+      "target": "MetaSound input parameter or Sound Cue modulator",
+      "note": "Drive at runtime via Set Float Parameter on the audio component"
+    },
+    {
+      "source": "Switch / State",
+      "target": "Branch logic inside MetaSound or separate Sound Cues selected in Blueprint",
+      "note": "No direct equivalent — model with conditional logic"
+    },
+    {
+      "source": "SoundBank",
+      "target": "Asset references / chunked cooking",
+      "note": "Unreal handles loading via asset references and chunking; rethink memory budgeting"
+    },
+    {
+      "source": "Attenuation curves",
+      "target": "Attenuation Settings asset",
+      "note": "Reusable shared asset applied to sounds or components"
+    },
+    {
+      "source": "Bus / Bus volume",
+      "target": "Sound Class / Submix / Sound Mix",
+      "note": "Routing and ducking handled via Submix graph and Sound Mix overrides"
+    },
+    {
+      "source": "Music switch container",
+      "target": "Quartz subsystem or MetaSound music patch",
+      "note": "Sample-accurate music typically built with Quartz; check official docs for current patterns"
+    }
+  ],
+  "effort": "2-8 weeks for a mid-sized project",
+  "gotchas": [
+    "There is no automated migration — every event, RTPC, and bus must be rebuilt manually",
+    "Loss of Wwise-only DSP effects and authoring features; budget time to find Unreal equivalents or accept a different sound",
+    "Spatial audio implementations differ; verify occlusion and reverb behavior in playtests",
+    "Memory and streaming budgets work differently in Unreal; profile early",
+    "Sample-accurate music transitions require careful work in Unreal — consult official docs before promising parity",
+    "If your team's audio designers know Wwise but not MetaSounds, plan training time"
+  ],
+  "email": {
+    "subject": "Plan: migrating game audio from Wwise to Unreal Engine native",
+    "body": "Hi team,\n\nI'm scoping a migration off Wwise onto Unreal Engine's native audio stack (MetaSounds, Sound Cues, Submixes). The goal is to simplify our pipeline and licensing.\n\nNo automated converter exists, so we'll export source WAV assets and rebuild events, RTPCs, switches, and bus routing as a spec, then re-implement in MetaSounds and Blueprints. I'm estimating 2-8 weeks depending on project scope. Audio designers will need ramp-up time on MetaSounds.\n\nFlagging risk areas: spatialization parity, music transitions, and any Wwise-only DSP we relied on. I'll consult Unreal's official audio docs before locking the approach.\n\nThoughts?"
+  }
+}

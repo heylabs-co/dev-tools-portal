@@ -1,0 +1,81 @@
+{
+  "source": {
+    "slug": "clevertap",
+    "name": "CleverTap"
+  },
+  "target": {
+    "slug": "novu",
+    "name": "Novu"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "Replace CleverTap's proprietary mobile engagement suite with Novu's open-source notification infrastructure — accept that segmentation and analytics need a rebuild.",
+  "why_switch": [
+    "Open source with self-host option — no vendor lock-in",
+    "Generous free tier vs. CleverTap's paid-only entry",
+    "Workflows-as-code: version-controlled, reviewable in PRs",
+    "Multi-channel API (push, email, SMS, in-app feed)",
+    "Active developer community"
+  ],
+  "what_to_export": [
+    "User profiles and identifiers",
+    "Custom attributes",
+    "Push tokens (APNs, FCM)",
+    "Push and in-app templates",
+    "Campaign / journey logic for re-implementation",
+    "Subscription preferences per channel",
+    "Event taxonomy",
+    "Active segments"
+  ],
+  "export_method": "Use CleverTap's REST and Data Export APIs to pull profiles, events, and subscription state. Export templates and campaign definitions through the dashboard. Request bulk historical exports through CleverTap support if your plan supports them. Confirm push token capture before SDK removal.",
+  "import_method": "Set up a Novu workspace (cloud or self-hosted), configure providers (FCM, APNs, ESP, SMS) under Integrations, and define workflows using Novu's framework so they live in your codebase. Replace CleverTap SDK calls with Novu trigger calls and embed Novu's in-app feed component if you need an inbox. Always verify endpoints against current Novu docs.",
+  "concept_mapping": [
+    {
+      "source": "CleverTap user",
+      "target": "Novu subscriber",
+      "note": "subscriberId maps to external_id."
+    },
+    {
+      "source": "Campaign / journey",
+      "target": "Novu workflow",
+      "note": "Workflows defined in code — author rather than auto-import."
+    },
+    {
+      "source": "Segment",
+      "target": "Topics / subscriber filters",
+      "note": "Verify current segmentation capabilities in Novu docs."
+    },
+    {
+      "source": "Push template",
+      "target": "Novu template (Handlebars-based)",
+      "note": "Re-test personalization tokens."
+    },
+    {
+      "source": "In-app message",
+      "target": "Novu in-app feed / Inbox",
+      "note": "UI component differs; design review needed."
+    },
+    {
+      "source": "Analytics dashboard",
+      "target": "Novu activity feed + your warehouse",
+      "note": "Pair with your own analytics — history does not transfer."
+    },
+    {
+      "source": "Subscription state",
+      "target": "Preferences",
+      "note": "Map per-channel opt-ins explicitly."
+    }
+  ],
+  "effort": "4-8 weeks",
+  "gotchas": [
+    "CleverTap analytics and behavioral segmentation are richer — plan to fill gaps with your own warehouse + tooling.",
+    "Self-hosting Novu adds ops burden; cloud is simpler if you can use it.",
+    "Workflows-as-code is a mindset shift — train the team.",
+    "Push credentials (APNs, FCM) must be re-uploaded to Novu.",
+    "Personalization syntax differs; do not copy templates verbatim.",
+    "Run both stacks in parallel for one lifecycle window before sunsetting CleverTap."
+  ],
+  "email": {
+    "subject": "Migrating from CleverTap to Novu",
+    "body": "Hi team,\n\nProposing we move from CleverTap to Novu. Novu is open-source notification infrastructure with workflows-as-code, a free tier, and the option to self-host.\n\nPlan: export users, attributes, tokens, templates, and journeys from CleverTap; recreate workflows in Novu's framework; swap SDK calls; run in parallel for a lifecycle window before cutting over.\n\nEstimated effort: 4-8 weeks. Main risks: weaker analytics and segmentation out of the box (we'd lean on our warehouse), workflow paradigm shift, and ops cost if we self-host.\n\nWant to walk through the checklist?"
+  }
+}

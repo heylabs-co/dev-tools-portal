@@ -1,0 +1,75 @@
+{
+  "source": {
+    "slug": "boxyhq",
+    "name": "BoxyHQ"
+  },
+  "target": {
+    "slug": "corbado",
+    "name": "Corbado"
+  },
+  "generated_at": "2026-04-26T12:50:00Z",
+  "tldr": "Move from BoxyHQ's SAML/SSO bridge to Corbado's passkey-first authentication if your priority shifts from B2B SSO to consumer passwordless login.",
+  "why_switch": [
+    "Corbado specializes in passkey (WebAuthn) authentication out of the box",
+    "Passwordless UX reduces friction and password-related support tickets",
+    "Hosted service removes Jackson + database operations",
+    "Standards-based passkeys keep credentials portable",
+    "Better fit for consumer or prosumer apps where SAML isn't the priority"
+  ],
+  "what_to_export": [
+    "User accounts and profile metadata from your application DB",
+    "Existing WebAuthn/passkey credentials if any",
+    "Email verification state per user",
+    "SAML SSO connections (only if you plan to keep B2B SSO — verify Corbado's support)",
+    "MFA enrollments (likely require re-enrollment)",
+    "Tenant/organization records and memberships",
+    "Active sessions (plan a forced re-login)"
+  ],
+  "export_method": "User accounts live in your application database since Jackson is primarily an SSO bridge — export them directly. Inventory any WebAuthn credentials stored by your app. Pull SAML connection metadata from Jackson's admin API if you intend to migrate B2B SSO too. Consult Corbado's official documentation for the supported user import format and how to seed existing passkeys vs. requiring re-enrollment.",
+  "import_method": "Create a Corbado project, configure your relying party (RP) settings — domain, RP ID, and origins — then import users via Corbado's user API or admin tooling per their official docs. Decide whether existing passkeys can be migrated or must be re-enrolled (this depends on Corbado's import capabilities at the time of migration). Integrate the Corbado frontend SDK to replace your existing login UI. Pilot with a small user segment before full cutover.",
+  "concept_mapping": [
+    {
+      "source": "Jackson SSO Connection",
+      "target": "Corbado enterprise SSO (if available on your plan)",
+      "note": "Confirm Corbado's SAML/OIDC support matches your needs"
+    },
+    {
+      "source": "Jackson tenant",
+      "target": "Corbado project / tenant",
+      "note": "Verify Corbado's multi-tenant model in their docs"
+    },
+    {
+      "source": "Email/password login",
+      "target": "Corbado passkey + email fallback",
+      "note": "Strategy shift to passwordless-first"
+    },
+    {
+      "source": "Your custom login UI",
+      "target": "Corbado-provided web component / SDK",
+      "note": "Replaces password form with passkey ceremony"
+    },
+    {
+      "source": "Your user table",
+      "target": "Corbado user",
+      "note": "Keep your DB user ID synced via metadata"
+    },
+    {
+      "source": "MFA TOTP/SMS",
+      "target": "Passkey as primary factor",
+      "note": "Re-enrollment required for most users"
+    }
+  ],
+  "effort": "1-3 weeks",
+  "gotchas": [
+    "Corbado's pricing isn't fully public — get a quote before committing",
+    "Passkey adoption requires user education; plan a fallback flow (email magic link or OTP)",
+    "B2B SAML/SCIM coverage may differ from Jackson — verify before migrating enterprise tenants",
+    "WebAuthn RP ID changes are disruptive — pick the right domain before launch",
+    "Older browsers and devices may not support passkeys; keep a fallback path",
+    "Re-enrollment of existing MFA factors is almost always required"
+  ],
+  "email": {
+    "subject": "Switching from BoxyHQ to Corbado for passkey-first auth",
+    "body": "Hi team,\n\nIf consumer-facing passwordless is the direction, I'd like us to evaluate moving from BoxyHQ Jackson to Corbado. Corbado leads with passkeys and removes the Jackson infra we maintain.\n\nPlan:\n1. Spike a Corbado project and confirm B2B SSO coverage matches our needs.\n2. Get a Corbado pricing quote (their pricing isn't fully public).\n3. Pilot passkey enrollment with a small user cohort.\n4. Migrate users and switch the login UI to the Corbado SDK.\n\nEffort: 1-3 weeks. Open questions: SAML/SCIM scope on Corbado, fallback flow for non-passkey devices, and pricing. Will report back after the spike.\n\nThanks"
+  }
+}

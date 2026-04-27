@@ -1,0 +1,76 @@
+{
+  "source": {
+    "slug": "corbado",
+    "name": "Corbado"
+  },
+  "target": {
+    "slug": "dfns",
+    "name": "Dfns"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "Corbado is a passkey/auth provider; Dfns is an MPC wallet-as-a-service — only migrate if your real need is programmable custody plus user identity, not pure consumer login.",
+  "why_switch": [
+    "Need MPC-backed wallet creation tied to user identity, not just authentication",
+    "Want institutional-grade key management with policy and approval workflows",
+    "Targeting regulated fintech / crypto custody use cases",
+    "Looking for SOC 2-aligned key infrastructure rather than a passkey UX layer",
+    "Consolidating auth and signing under one programmable platform"
+  ],
+  "what_to_export": [
+    "User directory (IDs, emails, identifiers)",
+    "Registered passkey / credential metadata (public keys, credential IDs)",
+    "MFA factors and recovery settings",
+    "Session and login logs for audit continuity",
+    "Tenant / project configuration",
+    "Webhook endpoints and event subscriptions",
+    "API keys and service credentials inventory",
+    "Custom branding / email template assets"
+  ],
+  "export_method": "Use Corbado's admin console and any user/credentials export available in your plan to pull the user list and credential metadata; otherwise request a data export from Corbado support. Save raw passkey public keys and credential IDs — these cannot be re-derived. Consult Corbado's official documentation for the current export endpoints rather than relying on assumed APIs.",
+  "import_method": "Dfns is wallet-as-a-service, not a drop-in auth provider, so importing means provisioning Dfns end-users and wallets via the Dfns API/SDK and re-binding them to your existing user IDs. Passkeys in Dfns' WebAuthn flow generally must be re-registered per user since private credential material cannot move between vendors. Plan a re-enrollment flow and read the Dfns SDK docs for the supported registration sequence.",
+  "concept_mapping": [
+    {
+      "source": "Corbado user",
+      "target": "Dfns end-user / identity",
+      "note": "Map by stable external user ID; Dfns user objects are tied to wallets, not just login."
+    },
+    {
+      "source": "Passkey credential",
+      "target": "Dfns WebAuthn credential",
+      "note": "Re-register; private keys never leave the authenticator."
+    },
+    {
+      "source": "Session / JWT",
+      "target": "Dfns auth token",
+      "note": "Issue your own session after Dfns auth; token semantics differ."
+    },
+    {
+      "source": "MFA factor",
+      "target": "Dfns policy + signer",
+      "note": "Multi-approval is modeled as policy rules, not just a second factor."
+    },
+    {
+      "source": "Webhook event",
+      "target": "Dfns webhook event",
+      "note": "Event names and payloads differ — re-subscribe and re-map handlers."
+    },
+    {
+      "source": "Tenant / project",
+      "target": "Dfns application / org",
+      "note": "Provision a new app and re-issue service credentials."
+    }
+  ],
+  "effort": "3-10 days",
+  "gotchas": [
+    "Dfns is wallet infrastructure, not a passkey-auth replacement — confirm scope before committing",
+    "All passkeys must be re-registered; users will see a re-enrollment prompt",
+    "Pricing on Dfns is custom/enterprise — get a quote before migration",
+    "Dfns lock-in on key shares and policy model is non-trivial to undo",
+    "Compliance work (KYC, AML) still sits on your side",
+    "Verify exact API/feature names against Dfns' official docs before coding"
+  ],
+  "email": {
+    "subject": "Moving from Corbado to Dfns — re-enrollment plan",
+    "body": "Hi team,\n\nWe're evaluating a move from Corbado (passkey auth) to Dfns (MPC wallet-as-a-service) because our roadmap now needs programmable custody alongside user identity.\n\nThe migration is not a like-for-like swap: Dfns is wallet infrastructure, so users will need to re-register their WebAuthn credentials and we'll provision Dfns end-users tied to our existing user IDs. We'll export users, credential metadata, and audit logs from Corbado, then onboard via the Dfns SDK in a phased rollout.\n\nExpect 3-10 days of engineering plus a re-enrollment flow for end users. I'll confirm pricing and exact API surfaces with Dfns before we cut over.\n\nThanks"
+  }
+}

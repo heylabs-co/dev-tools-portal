@@ -1,0 +1,76 @@
+{
+  "source": {
+    "slug": "convert",
+    "name": "Convert"
+  },
+  "target": {
+    "slug": "vercel-flags-sdk",
+    "name": "Flags SDK"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Convert is a paid A/B testing SaaS; Flags SDK is a free open-source Vercel library that wires Next.js and SvelteKit apps to a flag provider of your choice. Migrating means picking a separate flag/experimentation backend and moving Convert logic into typed flag declarations in your framework code.",
+  "why_switch": [
+    "Free and MIT-licensed — no subscription cost for the SDK layer itself",
+    "Framework-native Next.js and SvelteKit integration with edge support",
+    "Provider-agnostic adapters let you swap backends without rewriting call sites",
+    "Type-safe flag declarations co-located with the code that consumes them",
+    "Cleanly handles server, edge, and preview-deployment evaluation"
+  ],
+  "what_to_export": [
+    "List of active flags with names and descriptions",
+    "Targeting rules and audience segmentation logic",
+    "Rollout percentages and bucket allocations",
+    "Environment overrides (preview, staging, production)",
+    "Variation payloads where flags are not just boolean",
+    "Experiment goals and historical results worth archiving",
+    "Flag owners and Jira/Linear references",
+    "Custom user attributes used for targeting"
+  ],
+  "export_method": "Use Convert's dashboard to enumerate every active and recently active experiment and feature. Export experiment configurations, audience definitions, and results to CSV or JSON wherever the dashboard offers it. For any data not exposed through self-serve export, open a ticket with Convert support before cancelling. Capture screenshots or screen recordings of complex targeting trees so the logic is preserved even if structured export omits it. Store the export bundle in your repo or a long-lived bucket — once the subscription ends, regaining historical access is typically not possible without a renewal.",
+  "import_method": "Flags SDK has no migration importer; you author flags in TypeScript. Install the SDK in your Next.js or SvelteKit app and choose an adapter for the provider that will actually evaluate flags (LaunchDarkly, Statsig, Optimizely, ConfigCat, DevCycle, Hypertune, or Flipt). Provision that provider, recreate each Convert flag there with its targeting and rollout, then declare a typed flag() in your code that points at the adapter. Replace Convert SDK calls with the new flag() invocation at the call site. Configure identify() with the user attributes your targeting rules need, and verify edge/server evaluation paths in preview deployments. Use the Vercel Toolbar overrides during QA to confirm each flag behaves correctly before removing the Convert SDK.",
+  "concept_mapping": [
+    {
+      "source": "Convert experiment",
+      "target": "Provider experiment + Flags SDK flag()",
+      "note": "SDK only declares the flag; the chosen provider runs the experiment"
+    },
+    {
+      "source": "Convert variation",
+      "target": "Flag return value (boolean or typed payload)",
+      "note": "Multi-arm support depends on the chosen provider"
+    },
+    {
+      "source": "Audience / segment",
+      "target": "Provider segment + identify context",
+      "note": "Pass user attributes via identify on the server"
+    },
+    {
+      "source": "Goal / metric",
+      "target": "Provider analytics or external pipeline",
+      "note": "Flags SDK does not collect metrics"
+    },
+    {
+      "source": "Convert dashboard",
+      "target": "Provider dashboard",
+      "note": "Day-to-day toggling lives in the provider, not the SDK"
+    },
+    {
+      "source": "Convert API key",
+      "target": "Provider credentials in env vars",
+      "note": "Stored in Vercel project settings"
+    }
+  ],
+  "effort": "1-2 weeks (excluding provider selection)",
+  "gotchas": [
+    "Flags SDK is only the framework glue; you still need a real provider, which may itself be paid",
+    "Best DX assumes Vercel hosting — non-Vercel deployments work but lose preview-deployment overrides",
+    "Limited utility outside Next.js and SvelteKit; other frameworks need a different approach",
+    "Some adapters lag the upstream provider's newest features, so verify parity for anything advanced",
+    "Convert's privacy-first cookieless tracking does not carry over; the new provider's tracking model may differ",
+    "Historical Convert experiment data is locked once you cancel, so export results before the cutover"
+  ],
+  "email": {
+    "subject": "Migrating feature flags from Convert to Flags SDK over the next 14 days",
+    "body": "Hi team,\n\nWe're moving feature flag wiring from Convert to Vercel's open-source Flags SDK in our Next.js app over the next 14 days. The SDK plugs into a separate flag provider that we'll select and stand up as part of this work.\n\nWhat changes for you:\n- Flag toggles will move from Convert's dashboard to the new provider's dashboard.\n- Engineers will declare flags in code via the Flags SDK; new flags require a small PR plus a provider config.\n- Preview deployments will support per-PR overrides via the Vercel Toolbar.\n\nWe'll keep both systems live during a short overlap and then turn off Convert. If you need anything from Convert — experiment results, audience definitions — please export it this week. Flag any in-flight experiment that must finish on Convert and we'll schedule around it.\n\nThanks,\nYour customer"
+  }
+}

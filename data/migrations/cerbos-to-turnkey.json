@@ -1,0 +1,69 @@
+{
+  "source": {
+    "slug": "cerbos",
+    "name": "Cerbos"
+  },
+  "target": {
+    "slug": "turnkey",
+    "name": "Turnkey"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "Cerbos is a general authorization engine, Turnkey is secure-enclave wallet/key infrastructure — moving between them implies a product pivot, not a feature swap.",
+  "why_switch": [
+    "Your product is becoming a crypto/fintech app needing key custody",
+    "You want secure-enclave signing with programmable policies",
+    "You no longer need a general PDP for authorization",
+    "You prefer non-custodial key management exposed via API",
+    "You are consolidating around wallet primitives instead of authz primitives"
+  ],
+  "what_to_export": [
+    "Cerbos YAML policy bundles",
+    "Resource/principal schemas",
+    "Derived roles",
+    "Policy tests",
+    "Decision audit logs",
+    "List of PDP integration points",
+    "Custom data sources or context providers"
+  ],
+  "export_method": "Cerbos policies are file-based — keep your policies directory under version control. Export Cerbos decision logs through its audit exporter as described in the Cerbos official docs.",
+  "import_method": "Turnkey is wallet/key infrastructure, not an authz engine. Model users, sub-organizations, and signing policies in Turnkey per the Turnkey official docs; reimplement any non-signing authorization in your application or in a dedicated authz layer.",
+  "concept_mapping": [
+    {
+      "source": "Principal",
+      "target": "Turnkey user / API user",
+      "note": "Verify entity model in current docs"
+    },
+    {
+      "source": "Resource",
+      "target": "Wallet / private key",
+      "note": "Authz scope narrows to signing"
+    },
+    {
+      "source": "Derived role",
+      "target": "Tag / policy condition",
+      "note": "Confirm available primitives"
+    },
+    {
+      "source": "Cerbos policy",
+      "target": "Turnkey policy",
+      "note": "Different DSL; rewrite from scratch"
+    },
+    {
+      "source": "Decision log",
+      "target": "Activity log",
+      "note": "Map fields manually"
+    }
+  ],
+  "effort": "2-6 weeks",
+  "gotchas": [
+    "Turnkey does not replace generic application authorization",
+    "Turnkey pricing is not fully transparent — get a quote first",
+    "Plan key recovery, root user, and policy emergency-break procedures",
+    "Run signing flows in a sandbox before going live",
+    "Audit how non-signing access decisions get enforced after Cerbos is removed"
+  ],
+  "email": {
+    "subject": "Cancellation: Cerbos Cloud / commercial plan",
+    "body": "Hi Cerbos team,\n\nWe are pivoting toward wallet and key infrastructure and adopting Turnkey, so we will be winding down our Cerbos commercial usage. Please confirm the cancellation steps, final invoice timing, and any export we should run before account closure.\n\nThanks for the work on Cerbos.\n\nBest regards"
+  }
+}

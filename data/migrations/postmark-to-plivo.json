@@ -1,0 +1,74 @@
+{
+  "source": {
+    "slug": "postmark",
+    "name": "Postmark"
+  },
+  "target": {
+    "slug": "plivo",
+    "name": "Plivo"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "Move transactional email sending from Postmark to Plivo's broader CPaaS stack when you need SMS, voice, and WhatsApp alongside email under one vendor.",
+  "why_switch": [
+    "Consolidate email with SMS, voice, and WhatsApp under a single CPaaS provider.",
+    "Plivo offers a published per-message pricing page and a free credit for new accounts.",
+    "Reduce vendor count if you already use Plivo for SMS/voice and want fewer integrations to maintain.",
+    "Useful when your roadmap moves beyond pure transactional email into multi-channel notifications."
+  ],
+  "what_to_export": [
+    "Sender domains and their DNS records (SPF, DKIM, return-path / custom tracking)",
+    "Server / message stream definitions and per-stream settings",
+    "Email templates (HTML + text) and any template variables/layouts",
+    "Suppression list (hard bounces, spam complaints, manual unsubscribes)",
+    "Webhook endpoints and event subscriptions (delivery, bounce, open, click)",
+    "API keys / server tokens currently used by your application",
+    "Recent message activity / logs needed for compliance or analytics",
+    "Inbound email routing rules, if you use Postmark inbound"
+  ],
+  "export_method": "Use the Postmark dashboard and HTTP API to export what you need: download templates, copy server tokens, and retrieve message activity and bounces via the API. Export your suppression list (bounces and spam complaints) so you do not re-mail addresses that previously failed. Save DNS records (SPF, DKIM, return-path) for each sending domain — you will reuse those values to authenticate the same domains on the new provider. For exact endpoints and response formats, consult Postmark's official developer documentation.",
+  "import_method": "Create a Plivo account, add and verify your sending domains, and configure SPF/DKIM per Plivo's documentation. Re-create templates in Plivo (or render them in your own service and send raw HTML), set up webhook URLs for delivery and bounce events, and import your suppression list so previously-bounced addresses stay blocked. Swap the Postmark SDK/SMTP credentials in your application for Plivo's, then run a low-volume canary before cutting full traffic. Verify exact API surface and limits in Plivo's official docs before coding.",
+  "concept_mapping": [
+    {
+      "source": "Server / Message Stream",
+      "target": "Plivo application / endpoint",
+      "note": "Conceptual grouping of senders; structure may differ — check Plivo docs."
+    },
+    {
+      "source": "Server API Token",
+      "target": "Plivo Auth ID + Auth Token",
+      "note": "Different credential model; rotate keys during cutover."
+    },
+    {
+      "source": "Templates (Postmark)",
+      "target": "Templates in Plivo or app-side rendering",
+      "note": "Variable syntax differs; re-test merge fields before sending."
+    },
+    {
+      "source": "Suppression list",
+      "target": "Suppression / blocklist on Plivo",
+      "note": "Re-import to avoid re-mailing previously-bounced addresses."
+    },
+    {
+      "source": "Webhooks (delivery/bounce/open/click)",
+      "target": "Plivo webhooks / callbacks",
+      "note": "Payload schema is different; update webhook handlers."
+    },
+    {
+      "source": "SPF / DKIM / Return-Path DNS",
+      "target": "SPF / DKIM provided by Plivo",
+      "note": "New DKIM records required; keep old ones live during transition."
+    }
+  ],
+  "effort": "1-3 days",
+  "gotchas": [
+    "New DKIM/SPF setup means a fresh sender reputation — warm up volume gradually.",
+    "Webhook payload schemas differ between providers; do not assume field names match.",
+    "Suppression lists are not portable automatically — import yours or risk re-mailing bounces.",
+    "Template syntax and merge variables are vendor-specific; re-test every dynamic field.",
+    "Keep both providers active in parallel until delivery rates on the new vendor are stable."
+  ],
+  "email": {
+    "subject": "Migrating our transactional email from Postmark to Plivo",
+    "body": "Hi team,\n\nWe're planning to migrate transactional email from Postmark to Plivo so we can consolidate email, SMS, and voice under one CPaaS vendor.\n\nScope: sender domains and DNS, templates, suppression list, webhooks, and API keys. Plan: stand up Plivo in parallel, warm up sending, then cut over and keep Postmark live as a fallback for one billing cycle.\n\nEstimated effort: 1-3 days of engineering plus a warm-up window. I'll share a checklist and a cutover date once domain auth is verified.\n\nThanks"
+  }
+}

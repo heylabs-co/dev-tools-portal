@@ -1,0 +1,62 @@
+{
+  "source": {
+    "slug": "castle-io",
+    "name": "Castle"
+  },
+  "target": {
+    "slug": "kount",
+    "name": "Kount"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Castle to Kount moves you from a SaaS-focused account abuse API to a Mastercard-backed fraud and identity trust platform with device fingerprinting and AI scoring. Expect a deeper integration and richer transaction-fraud coverage in exchange for higher lock-in.",
+  "why_switch": [
+    "Kount targets payment and CNP fraud with AI scoring",
+    "Backed by Mastercard's merchant network",
+    "Public entry pricing at $0.07 per event",
+    "Stronger transaction-fraud coverage than Castle",
+    "Free tier for getting started"
+  ],
+  "what_to_export": [
+    "Castle policies and rule definitions",
+    "User and event records",
+    "Webhook endpoints and subscriptions",
+    "API keys and credentials",
+    "Risk score and verdict logs",
+    "Device or fingerprint metadata where available",
+    "Custom event schemas",
+    "Audit logs for compliance"
+  ],
+  "export_method": "Castle does not publish a fully documented bulk-export endpoint, so combine what the API exposes with your own logs. Use the Castle API and dashboard to extract historical events and verdicts for ranges or IDs you control. Rebuild policy definitions from your dashboard configuration into a design doc; policy logic does not export portably. Save webhook URLs, signing keys, and custom event schemas. Mine your own application logs for the richest user-event-device mappings since you usually own the most complete copy there. Keep audit logs in long-term storage for the retention window your regulator requires. Run the export in parallel with production traffic so the cutover snapshot is consistent, and verify counts before disconnecting.",
+  "import_method": "Kount typically integrates by installing a client-side data collector on checkout, login, and signup pages and calling a server-side API for each event to receive a risk score and recommended action. Provision a Kount account, generate API credentials, install the data collector, and instrument backend services to send transaction or event payloads. Recreate Castle policies as Kount rules or in your own decisioning layer reading Kount scores. Configure webhooks or async callbacks for verdict updates. Backfill user identifiers to keep reputation continuity if available. Run Kount in shadow mode alongside Castle on real traffic, compare verdicts, tune thresholds, and only then cut over. Validate that the merchant-network signals improve outcomes for your vertical before fully removing Castle.",
+  "concept_mapping": [
+    {
+      "source": "Risk score",
+      "target": "Kount risk score"
+    },
+    {
+      "source": "Policy",
+      "target": "Kount rules / policy"
+    },
+    {
+      "source": "Webhook event",
+      "target": "Webhook or async callback"
+    },
+    {
+      "source": "User identifier",
+      "target": "Customer or transaction identifier"
+    }
+  ],
+  "effort": "4-10 weeks",
+  "gotchas": [
+    "Lock-in is rated higher with Kount than with Castle; integration tends to be deeper",
+    "Pricing tiers above the entry rate are not public; negotiate volume",
+    "Bot mitigation needs differ from Castle; layer with a WAF if needed",
+    "Castle policies do not export; expect to rewrite them",
+    "Real-time scoring adds latency on the critical path",
+    "Validate the merchant network value for your vertical during shadow mode"
+  ],
+  "email": {
+    "subject": "Migrating fraud and risk from Castle to Kount",
+    "body": "Hi team,\n\nWe are moving our fraud and risk decisioning from Castle to Kount over the next 14 days. Kount gives us a Mastercard-backed network and stronger payment-fraud coverage for our checkout flows.\n\nWhat to expect:\n- The Kount data collector will be added to checkout, login, and signup pages.\n- Backend services will call Kount for scoring and consume the recommended action.\n- Castle policies will be reimplemented as Kount rules or in our own decisioning layer.\n- We will run both systems in parallel for the first week and compare verdicts before cutover.\n\nPlease flag any service that depends on Castle webhooks or policies so we can route it to the new pipeline. Reach out with questions before the end of the week.\n\nThanks,\nYour customer"
+  }
+}

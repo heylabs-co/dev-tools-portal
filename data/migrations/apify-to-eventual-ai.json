@@ -1,0 +1,76 @@
+{
+  "source": {
+    "slug": "apify",
+    "name": "Apify"
+  },
+  "target": {
+    "slug": "eventual-ai",
+    "name": "Eventual"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Apify focuses on managed web scraping Actors and dataset storage, while Eventual (built on Daft) is a Python-native distributed query engine for multimodal data. Migration means rebuilding scraping/extraction logic as Python jobs and re-modeling Apify datasets as Daft DataFrames.",
+  "why_switch": [
+    "Python-native DataFrame API replaces opaque Actor abstractions",
+    "Native handling of images, video, and audio alongside structured rows",
+    "Open-source Daft engine removes platform-only execution lock-in",
+    "Better fit for ML preprocessing pipelines feeding training data",
+    "Distributed scaling without redesigning around Actor concurrency limits"
+  ],
+  "what_to_export": [
+    "Actor source code and Dockerfiles from the Apify console",
+    "Dataset records (JSON, CSV, or Excel) for each named dataset",
+    "Key-value store entries used as state or artifacts",
+    "Request queue contents if you need to resume crawls",
+    "Schedules and webhook configurations for re-implementation",
+    "Proxy and integration credentials stored in Apify",
+    "Input schemas and default input objects per Actor",
+    "Build logs and run history for reference"
+  ],
+  "export_method": "Use the Apify console or API to export each Dataset (Dataset.exportTo or the GET /datasets/{id}/items endpoint) in JSON, CSV, or Parquet form. Save these files to S3, GCS, or local disk so Daft can read them directly. Pull key-value store items via the storage API and persist them as files. Clone Actor source via the Apify CLI (apify pull) so the scraping logic is preserved as Node or Python code you can re-host. Capture each Actor's input schema and a few sample input JSON payloads for replay. Note schedules, webhooks, and proxy settings in a migration sheet — these will be rebuilt outside Apify. Keep run history and build logs as auditing reference. Avoid relying on signed temporary download URLs; copy data into your own object storage so it remains available during migration.",
+  "import_method": "Stand up Daft locally or on a Ray/Kubernetes cluster following the Eventual/Daft docs. Read exported data with daft.read_parquet, read_csv, or read_json from the same object store, producing a DataFrame per former Apify dataset. Re-host scraping logic outside the Actor runtime — typical patterns are running the original code on Cloud Run, ECS, Lambda, or a dedicated worker — and write outputs to object storage instead of an Apify dataset. From there, Daft pipelines load and transform the scraped files as part of your ETL or ML preprocessing graph. Re-create schedules with cron, Airflow, Prefect, or Dagster, and replace Apify webhooks with calls into your own queue or workflow. Validate row counts and key field distributions per dataset against the original Apify export before cutting over.",
+  "concept_mapping": [
+    {
+      "source": "Actor",
+      "target": "External worker + Daft pipeline",
+      "note": "Daft is not a scraping runtime; scraping moves to your own compute"
+    },
+    {
+      "source": "Dataset",
+      "target": "Daft DataFrame over Parquet/CSV/JSON",
+      "note": "Materialized as files in object storage"
+    },
+    {
+      "source": "Key-value store",
+      "target": "Object storage bucket",
+      "note": "Plain S3/GCS keys"
+    },
+    {
+      "source": "Request queue",
+      "target": "External queue (SQS, Redis, etc.)",
+      "note": "Rebuild outside Daft"
+    },
+    {
+      "source": "Schedules",
+      "target": "Cron / Airflow / Prefect",
+      "note": "Daft does not schedule jobs itself"
+    },
+    {
+      "source": "Webhook",
+      "target": "Your event bus or workflow trigger",
+      "note": "Re-wire to downstream system"
+    }
+  ],
+  "effort": "2-5 weeks",
+  "gotchas": [
+    "Daft is a query engine, not a scraping platform — the crawl runtime must be rebuilt elsewhere, which is the bulk of the work.",
+    "Apify proxy and anti-bot capabilities have no direct Eventual equivalent; budget for a separate proxy provider or self-hosted solution.",
+    "Schema drift between Actor runs may surface once data hits Daft, since Daft enforces stricter typing than loose JSON datasets.",
+    "Large key-value stores can be slow to enumerate via the Apify API — paginate carefully and verify counts after export.",
+    "Daft is younger than Spark and Ray; some integrations and connectors may be missing and require custom code.",
+    "Cost shape changes from per-Actor compute units to cluster or serverless time — model expected workloads before cutover."
+  ],
+  "email": {
+    "subject": "Heads up: we are moving our data pipelines off Apify to Eventual",
+    "body": "Hi team,\n\nOver the next 14 days we are migrating our scraping and data pipelines from Apify to Eventual, which is built on the open-source Daft engine. The driver is a Python-native DataFrame API, native multimodal data support, and less platform lock-in for our ML workloads.\n\nWhat to expect:\n\n- Days 1 to 5: export every dataset, key-value store, and Actor source from Apify into our object storage and Git.\n- Days 6 to 10: re-host scrapers on our own workers and rebuild transformations as Daft pipelines.\n- Days 11 to 14: run both stacks in parallel, validate row counts and key fields, then cut over and freeze Apify.\n\nIf you depend on a specific Actor, dataset, schedule, or webhook, please reply with the name so we can confirm coverage in the new pipeline. After cutover the Apify project will be paused for 30 days before deletion.\n\nThanks,\nYour customer"
+  }
+}

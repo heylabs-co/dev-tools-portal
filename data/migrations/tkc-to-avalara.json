@@ -1,0 +1,76 @@
+{
+  "source": {
+    "slug": "tkc",
+    "name": "TKC"
+  },
+  "target": {
+    "slug": "avalara",
+    "name": "Avalara"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "TKC is a CPA-centric Japanese accounting/ERP suite; Avalara is a global subscription tax compliance platform — migrate when JP-only, CPA-driven workflows no longer fit a multi-country, API-first business.",
+  "why_switch": [
+    "Need multi-country sales tax / VAT / GST coverage, not just JP e-tax filing",
+    "Want a developer-friendly, API-first compliance platform with 1200+ integrations",
+    "Reduce dependence on a CPA-bound, traditional UX",
+    "Scale invoicing volume across many jurisdictions",
+    "Prefer transparent monthly subscription pricing"
+  ],
+  "what_to_export": [
+    "Company and entity master data",
+    "Customer master with tax IDs (JP corporate numbers, foreign VAT IDs)",
+    "Product catalog with taxability assumptions",
+    "Historical transactions / invoices",
+    "JP e-tax filing history and acknowledgements",
+    "Tax rate / category configurations",
+    "Integration touchpoints (ERP, accounting, billing)",
+    "Audit logs"
+  ],
+  "export_method": "TKC exports typically go through your CPA's TKC system; coordinate with them and TKC support to extract customer, transaction, and filing data in CSV or system-supported formats. Archive JP e-tax filing acknowledgements separately for audit. Rely on TKC's official guidance rather than assumed APIs, as developer-grade exports are limited.",
+  "import_method": "Avalara has documented import paths (CSV templates, API, and ERP connectors) for customers, products, transactions, and exemption certificates. Map TKC entities and tax categories to Avalara concepts and import in batches. For ongoing flows, integrate via the AvaTax API or a supported ERP connector; consult Avalara's official documentation for current import templates and API surfaces.",
+  "concept_mapping": [
+    {
+      "source": "TKC company / entity",
+      "target": "Avalara company / nexus",
+      "note": "Re-declare nexus per jurisdiction in Avalara."
+    },
+    {
+      "source": "JP consumption tax category",
+      "target": "Avalara tax code",
+      "note": "Manual remapping; JP categories are a subset of AvaTax codes."
+    },
+    {
+      "source": "TKC customer",
+      "target": "Avalara customer",
+      "note": "Carry over JP corporate numbers and foreign VAT IDs."
+    },
+    {
+      "source": "TKC transaction",
+      "target": "AvaTax transaction (committed)",
+      "note": "Backfill only what you need for audit and reporting."
+    },
+    {
+      "source": "JP e-tax filing",
+      "target": "Avalara returns / external JP filer",
+      "note": "Confirm JP filing scope; you may still need a JP-local solution."
+    },
+    {
+      "source": "TKC ERP integration",
+      "target": "Avalara ERP connector or AvaTax API",
+      "note": "Use a supported connector where possible."
+    }
+  ],
+  "effort": "4-10 weeks",
+  "gotchas": [
+    "JP e-tax filing may still need a JP-local provider — verify Avalara's JP coverage",
+    "Tax categories and exemption logic are not 1:1; expect manual mapping",
+    "CPA workflows in TKC do not have a direct analog in Avalara",
+    "Run parallel for at least one filing cycle to catch discrepancies",
+    "Some TKC data may only be exportable via your CPA, not directly",
+    "Validate features and endpoints against Avalara's official documentation"
+  ],
+  "email": {
+    "subject": "Migration plan: TKC to Avalara for multi-country tax",
+    "body": "Hi team,\n\nAs our footprint moves beyond Japan, TKC's CPA-centric model is no longer a fit. We're planning a migration to Avalara to get multi-country sales tax, VAT, and GST coverage with an API-first integration story and broad ERP connectors.\n\nWe'll coordinate with our CPA to export customers, transactions, and filing acknowledgements from TKC, then map JP tax categories to AvaTax codes and import via Avalara's CSV/API tooling. JP e-tax filing scope will be validated separately — we may keep a JP-local filer alongside Avalara if needed.\n\nRealistic effort is 4-10 weeks with one parallel filing cycle. I'll confirm Avalara's JP coverage and connector options before locking the plan.\n\nThanks"
+  }
+}

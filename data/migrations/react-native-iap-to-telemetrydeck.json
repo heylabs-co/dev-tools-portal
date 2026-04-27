@@ -1,0 +1,76 @@
+{
+  "source": {
+    "slug": "react-native-iap",
+    "name": "react-native-iap"
+  },
+  "target": {
+    "slug": "telemetrydeck",
+    "name": "TelemetryDeck"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "These are complementary tools: react-native-iap handles purchases, TelemetryDeck handles privacy-first analytics — adopt TelemetryDeck alongside, not as a replacement.",
+  "why_switch": [
+    "Add GDPR-friendly product analytics for subscription metrics without collecting PII",
+    "Lower analytics cost vs. heavier platforms when signal-based tracking is enough",
+    "Keep react-native-iap for actual billing while sending events to TelemetryDeck",
+    "Privacy-first signals are easier to defend in EU markets",
+    "Simpler dashboards reduce time spent on analytics maintenance"
+  ],
+  "what_to_export": [
+    "Existing analytics event names tied to purchase flows",
+    "Subscription lifecycle hook handlers",
+    "Conversion funnel definitions",
+    "Product ID list for payload tagging",
+    "User consent flow and privacy policy",
+    "Server-side purchase validation events you may want to mirror",
+    "Any current analytics destinations and their schemas",
+    "Cohort or segment definitions if you use them"
+  ],
+  "export_method": "react-native-iap doesn't store analytics, so there is nothing to export from the library. Inventory the events you fire on purchase callbacks today (or want to fire). If another analytics SDK is in place, document its event schema so you can mirror it as TelemetryDeck signals.",
+  "import_method": "Add a TelemetryDeck client suitable for React Native — consult the TelemetryDeck official docs for the current recommended approach, as direct RN support varies. Emit signals from your react-native-iap callbacks (purchase initiated, completed, failed, restored, subscription renewed). Configure dashboards in TelemetryDeck to track conversion and retention.",
+  "concept_mapping": [
+    {
+      "source": "Purchase callback",
+      "target": "TelemetryDeck signal",
+      "note": "Send a signal per purchase outcome"
+    },
+    {
+      "source": "Subscription renewal",
+      "target": "TelemetryDeck signal",
+      "note": "Best emitted from server-side webhooks for accuracy"
+    },
+    {
+      "source": "Restore flow",
+      "target": "TelemetryDeck signal",
+      "note": "Track restore attempts and outcomes"
+    },
+    {
+      "source": "Product ID",
+      "target": "Signal payload field",
+      "note": "Pass as payload key to slice dashboards"
+    },
+    {
+      "source": "User ID",
+      "target": "Anonymous hashed identifier",
+      "note": "Avoid PII to honor TelemetryDeck's privacy model"
+    },
+    {
+      "source": "Conversion funnel",
+      "target": "Signal sequence query",
+      "note": "Build funnels in TelemetryDeck dashboards from ordered signals"
+    }
+  ],
+  "effort": "4-12 hours for initial integration",
+  "gotchas": [
+    "Not a replacement for react-native-iap — purchases still flow through it",
+    "TelemetryDeck is intentionally minimal; deep funnels may need another tool",
+    "Confirm React Native client support in current TelemetryDeck docs before scoping",
+    "Do not send PII; consider hashing any user identifier",
+    "Server-side webhooks give more accurate subscription lifecycle signals than client callbacks",
+    "GDPR consent flow should still gate analytics initialization"
+  ],
+  "email": {
+    "subject": "Adding TelemetryDeck analytics alongside react-native-iap",
+    "body": "Hi team,\n\nClarifying: these aren't substitutes. react-native-iap keeps handling purchases, and we'd add TelemetryDeck for privacy-first analytics — particularly subscription metrics.\n\nPlan: emit TelemetryDeck signals from our purchase callbacks (initiated, completed, failed, restored, renewed) and ideally from server-side webhooks for renewals. No PII. Estimating 4-12 hours for initial integration.\n\nFlag: I need to confirm RN client support in TelemetryDeck's current docs before locking the approach. If we need deep funnels later we may revisit.\n\nLet me know if you want me to scope further."
+  }
+}

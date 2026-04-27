@@ -1,0 +1,81 @@
+{
+  "source": {
+    "slug": "jumio",
+    "name": "Jumio"
+  },
+  "target": {
+    "slug": "persona",
+    "name": "Persona"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "Switch from Jumio's enterprise KYC/AML suite to Persona's modular, rule-based identity platform for more flexible flows and clearer per-verification economics.",
+  "why_switch": [
+    "Want modular, configurable verification flows instead of a fixed enterprise pipeline",
+    "Prefer pay-per-successful-verification economics over seat-style contracts",
+    "Need rule-based decisioning you can iterate on quickly",
+    "Looking for stronger self-serve developer experience and SDKs",
+    "Consolidating IDV, KYB, and document checks under one configurable provider"
+  ],
+  "what_to_export": [
+    "Verified user records with status and timestamps",
+    "Document scans and metadata where retention policy allows",
+    "Liveness/biometric check outcomes",
+    "AML/ongoing monitoring history (hits, dispositions)",
+    "Decisioning rules and thresholds currently configured in Jumio",
+    "Webhook event history",
+    "Operator audit logs and case notes",
+    "Mapping between Jumio reference IDs and your internal user IDs"
+  ],
+  "export_method": "Use Jumio's official export mechanisms (admin console and/or API as documented) to extract verification records and audit data. Treat all PII as production-sensitive and coordinate with your DPO on retention. Pull configuration (rules, thresholds, branding) into a written spec rather than trying to migrate it directly — Persona's model is different.",
+  "import_method": "Provision a Persona tenant following their official documentation, model your verification journey using Persona's configurable flows, and load reference data via their documented APIs. Persona supports API export per their documented data-portability story, so plan a parallel-run period: route a percentage of new traffic to Persona, compare outcomes against Jumio, then ramp up. Wire webhooks for verification events into your existing case management.",
+  "concept_mapping": [
+    {
+      "source": "Jumio fixed verification pipeline",
+      "target": "Persona configurable flows",
+      "note": "Re-design the journey rather than porting it 1:1"
+    },
+    {
+      "source": "Jumio seat-based pricing",
+      "target": "Pay per successful verification",
+      "note": "Model expected volume to compare TCO honestly"
+    },
+    {
+      "source": "Jumio AML/ongoing monitoring",
+      "target": "Persona AML/monitoring features",
+      "note": "Confirm exact coverage in Persona's docs for your jurisdictions"
+    },
+    {
+      "source": "Jumio SDKs",
+      "target": "Persona SDKs",
+      "note": "Replace mobile/web SDK integration; UX QA required"
+    },
+    {
+      "source": "Webhook events",
+      "target": "Persona webhooks",
+      "note": "New event names/payloads — re-implement handlers"
+    },
+    {
+      "source": "Decisioning rules",
+      "target": "Persona rule engine",
+      "note": "Re-author rules using Persona's primitives"
+    },
+    {
+      "source": "Admin/case management UI",
+      "target": "Persona case management",
+      "note": "Operator retraining required"
+    }
+  ],
+  "effort": "4-10 weeks",
+  "gotchas": [
+    "Pricing models are different (seat vs per-verification); model both at expected volume",
+    "Verification UX will visibly change; run A/B or shadow flows before full cutover",
+    "Rules don't port directly — rebuild them and re-validate against historical decisions",
+    "AML/ongoing-monitoring coverage details vary; confirm jurisdictional fit in official docs",
+    "Keep Jumio archives for the full statutory retention window",
+    "Plan operator retraining for the new case management surface"
+  ],
+  "email": {
+    "subject": "Jumio -> Persona migration proposal",
+    "body": "Hi team,\n\nI'd like to migrate our identity verification stack from Jumio to Persona. The driver is configurable, modular flows and clearer per-verification economics.\n\nPlan:\n1. Export verification records, decisions, and audit logs from Jumio per their docs.\n2. Document current rules and thresholds as a spec (not a literal port).\n3. Stand up a Persona tenant per their official docs and rebuild flows + rules using their primitives.\n4. Run Persona in parallel for a traffic slice; compare outcomes vs Jumio.\n5. Cut over by segment, then decommission Jumio after the retention window.\n\nEstimated effort 4-10 weeks. Main risks: UX change, rule rebuild correctness, and jurisdictional coverage parity.\n\nThanks"
+  }
+}

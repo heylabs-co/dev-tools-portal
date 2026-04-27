@@ -1,0 +1,76 @@
+{
+  "source": {
+    "slug": "freee",
+    "name": "Freee"
+  },
+  "target": {
+    "slug": "fonoa",
+    "name": "Fonoa"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "Freee is a JP-only accounting + invoicing platform; Fonoa is a global VAT/GST and e-invoicing API — migrate when the business expands beyond Japan and needs multi-country tax automation.",
+  "why_switch": [
+    "Selling into 40+ countries and need global VAT/GST coverage",
+    "Real-time tax calc and e-invoicing across jurisdictions",
+    "API-first architecture that fits a modern SaaS backend",
+    "Decoupling tax from JP accounting so the ledger can stay in Freee or move",
+    "Need invoice validation and clearance flows beyond JP qualified invoice"
+  ],
+  "what_to_export": [
+    "Customer master with country and VAT/tax IDs",
+    "Product catalog with taxability classifications",
+    "Historical invoices and tax line items",
+    "JP qualified invoice numbers and metadata",
+    "Tax rates and rules currently configured",
+    "API integration points calling Freee for tax",
+    "Webhook subscribers for invoice events",
+    "Filing / remittance archive"
+  ],
+  "export_method": "Use Freee's REST API and admin exports to pull customers, invoices, and product data (CSV / API). Snapshot any JP-specific tax logic and qualified-invoice metadata before cutting over. Consult Freee's official developer documentation for current export endpoints rather than assuming names.",
+  "import_method": "Fonoa is a tax automation API, not a bookkeeping system, so you don't import invoices wholesale — you integrate Fonoa at the point of tax determination and e-invoice issuance. Build a thin adapter that calls Fonoa for calc/validation/clearance per transaction and decide whether your ledger continues in Freee or moves elsewhere. Verify endpoint shapes against Fonoa's official documentation.",
+  "concept_mapping": [
+    {
+      "source": "Freee invoice",
+      "target": "Fonoa tax calc + invoice issue",
+      "note": "Fonoa handles tax/e-invoice; ledger stays in your accounting system."
+    },
+    {
+      "source": "JP consumption tax code",
+      "target": "Fonoa country tax category",
+      "note": "JP becomes one country among many; rules differ per jurisdiction."
+    },
+    {
+      "source": "Qualified invoice metadata",
+      "target": "Fonoa e-invoicing payload",
+      "note": "Map JP-specific fields into Fonoa's per-country schema."
+    },
+    {
+      "source": "Freee partner / customer",
+      "target": "Customer record passed to Fonoa",
+      "note": "Pass country + tax ID per call; Fonoa is largely stateless on customers."
+    },
+    {
+      "source": "Freee API call",
+      "target": "Fonoa REST API call",
+      "note": "Different auth, endpoints, and rate limits."
+    },
+    {
+      "source": "Freee report / filing data",
+      "target": "Fonoa reporting + your accounting",
+      "note": "Filing/remittance scope varies — confirm what Fonoa covers per country."
+    }
+  ],
+  "effort": "3-8 weeks",
+  "gotchas": [
+    "Fonoa replaces tax automation, not accounting — keep a ledger somewhere",
+    "JP qualified invoice rules don't translate 1:1 to other jurisdictions",
+    "Check exact country coverage and what Fonoa files vs reports",
+    "Run both systems in parallel for one full close before cutover",
+    "Rate limits and pricing should be validated for your transaction volume",
+    "Confirm all features and endpoints against Fonoa's official documentation"
+  ],
+  "email": {
+    "subject": "Moving tax stack from Freee to Fonoa for global expansion",
+    "body": "Hi team,\n\nAs we expand outside Japan, Freee's JP-only tax model is becoming a constraint. The plan is to keep accounting where it is for now and route tax determination and e-invoicing through Fonoa, which covers VAT/GST and e-invoice flows in 40+ countries.\n\nWe'll export customers, invoices, and tax mappings from Freee, then build an adapter that calls Fonoa per transaction for calc, validation, and clearance. JP-specific qualified-invoice rules will be remapped into Fonoa's per-country schema.\n\nEstimated effort is 3-8 weeks with one full close in parallel before cutover. I'll confirm country coverage and pricing with Fonoa before we lock the plan.\n\nThanks"
+  }
+}

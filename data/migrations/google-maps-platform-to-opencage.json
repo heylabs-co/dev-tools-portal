@@ -1,0 +1,76 @@
+{
+  "source": {
+    "slug": "google-maps-platform",
+    "name": "Google Maps Platform"
+  },
+  "target": {
+    "slug": "opencage",
+    "name": "OpenCage"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "Move geocoding workloads off Google Maps Platform to OpenCage when you want lower cost, GDPR-friendly hosting, and OSM-based data — but keep in mind OpenCage replaces only the geocoding piece, not maps/Places/Directions.",
+  "why_switch": [
+    "Generally lower cost for high-volume geocoding.",
+    "EU-based, GDPR-friendly provider.",
+    "OSM-aggregated data with permissive use terms.",
+    "Simpler, single-endpoint REST API.",
+    "Lower lock-in: no Google Cloud account or billing project required."
+  ],
+  "what_to_export": [
+    "List of address strings currently geocoded via Google",
+    "Cached Google geocoding results (lat/lng + place_id usage)",
+    "Code paths calling Geocoding API / Places API for address resolution",
+    "Reverse-geocoding call sites",
+    "API key restrictions and referrer rules",
+    "Quota / billing history for sizing on OpenCage",
+    "Any place_id-dependent logic",
+    "Logging / audit trails tied to Google requests"
+  ],
+  "export_method": "Google Maps Platform geocoding results live in your own systems (Google does not provide a bulk export of past requests). Pull cached results from your application database, and pull request volume from Google Cloud Console billing/usage exports to size the OpenCage plan. Check Google's official docs for current usage-export options.",
+  "import_method": "OpenCage is stateless — there is no import. Update your code to call OpenCage's forward/reverse geocoding endpoint with your OpenCage API key and re-geocode addresses on demand or backfill in batches. Refer to OpenCage's official docs for current endpoint URLs, parameters, and rate limits.",
+  "concept_mapping": [
+    {
+      "source": "Geocoding API (forward)",
+      "target": "OpenCage forward geocoding",
+      "note": "Different response shape."
+    },
+    {
+      "source": "Geocoding API (reverse)",
+      "target": "OpenCage reverse geocoding",
+      "note": "Pass lat,lng."
+    },
+    {
+      "source": "place_id",
+      "target": "No equivalent",
+      "note": "OpenCage has no Google place identifier; rework anything keyed off place_id."
+    },
+    {
+      "source": "Google API key + restrictions",
+      "target": "OpenCage API key",
+      "note": "Server-side only; rotate on migration."
+    },
+    {
+      "source": "Places Autocomplete",
+      "target": "Not provided",
+      "note": "OpenCage is geocoding only; pick a different tool for autocomplete."
+    },
+    {
+      "source": "Maps JavaScript API",
+      "target": "Not provided",
+      "note": "Pair OpenCage with a separate map renderer."
+    }
+  ],
+  "effort": "1-3 days",
+  "gotchas": [
+    "OpenCage does not replace Maps JS, Directions, Places Autocomplete, or Street View — scope carefully.",
+    "place_id-based logic must be redesigned; OpenCage has no equivalent.",
+    "Result accuracy varies by region — sample-test critical markets.",
+    "Rate limits on lower OpenCage tiers can bite during backfills.",
+    "Update key handling: OpenCage keys are server-side, not domain-restricted like Google Maps JS keys.",
+    "Re-check attribution and licensing obligations under OSM/OpenCage terms."
+  ],
+  "email": {
+    "subject": "Moving geocoding from Google Maps Platform to OpenCage",
+    "body": "Hi team,\n\nProposing we move our geocoding workload from Google Maps Platform to OpenCage. Reasons: lower cost at our volume, GDPR-friendly hosting, and a simpler REST API with less lock-in.\n\nImportant scoping note: OpenCage replaces forward/reverse geocoding only. Anything we use Google for beyond that — Maps JS, Directions, Places Autocomplete, place_id lookups — stays on Google or moves to a different replacement.\n\nPlan:\n1. Inventory every Google geocoding call site and any place_id dependencies.\n2. Pull billing/usage data to size the OpenCage plan.\n3. Swap forward/reverse calls to OpenCage with caching + rate limiting.\n4. Spot-check accuracy in our key markets.\n5. Rotate keys and remove unused Google APIs.\n\nEstimated effort: 1-3 days.\n\nThanks"
+  }
+}

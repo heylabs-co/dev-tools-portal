@@ -1,0 +1,75 @@
+{
+  "source": {
+    "slug": "adjust",
+    "name": "Adjust"
+  },
+  "target": {
+    "slug": "appsflyer",
+    "name": "AppsFlyer"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "Switch your mobile measurement partner from Adjust to AppsFlyer when you want broader ad-network integrations and a larger partner catalog — at the cost of re-instrumenting your apps and losing historical attribution depth.",
+  "why_switch": [
+    "Larger ad network and integration catalog on AppsFlyer.",
+    "Often a better fit for teams already standardized on AppsFlyer's reporting and audience tooling.",
+    "Strong SKAN/Privacy Sandbox tooling for iOS and Android attribution.",
+    "Better support and partner ecosystem for global UA campaigns."
+  ],
+  "what_to_export": [
+    "Raw event / install / postback exports for the retention window you need",
+    "Tracker / campaign URL list with naming conventions and partner mappings",
+    "List of integrated ad networks and any partner-specific configurations",
+    "Custom event taxonomy and parameter definitions",
+    "Postback / S2S endpoints and authentication details",
+    "Cohort, audience, and attribution-window settings",
+    "Fraud rules and exclusion lists",
+    "API tokens used for raw data export or BI pipelines"
+  ],
+  "export_method": "Use Adjust's dashboard and data export tooling to pull raw events, callback / postback history, and tracker definitions. Save your event taxonomy, partner list, and attribution settings as documentation — these define the schema you will rebuild on AppsFlyer. For exact export endpoints, formats, and retention limits, consult Adjust's official documentation.",
+  "import_method": "Create an AppsFlyer account, add your apps, and integrate the AppsFlyer SDK alongside (or replacing) the Adjust SDK in iOS, Android, and any web/CTV surfaces. Recreate your event taxonomy, set attribution windows, configure partners (each integration is per-network), and rebuild postbacks for downstream systems. Validate with test installs and events before redirecting paid traffic. Confirm SDK init, event names, and partner setup steps in AppsFlyer's official docs.",
+  "concept_mapping": [
+    {
+      "source": "Adjust tracker URL",
+      "target": "AppsFlyer OneLink / attribution link",
+      "note": "URL structure and parameters differ; rebuild per partner."
+    },
+    {
+      "source": "Adjust event token",
+      "target": "AppsFlyer event name",
+      "note": "Re-map all custom events; keep a translation table during overlap."
+    },
+    {
+      "source": "Callbacks (Adjust)",
+      "target": "Postbacks (AppsFlyer)",
+      "note": "Different payload schema; update receivers."
+    },
+    {
+      "source": "Adjust partner integrations",
+      "target": "AppsFlyer integrated partners",
+      "note": "Each network must be reconfigured on the new MMP."
+    },
+    {
+      "source": "Audiences (Adjust)",
+      "target": "AppsFlyer Audiences",
+      "note": "Definitions don't migrate; rebuild rules manually."
+    },
+    {
+      "source": "Fraud rules",
+      "target": "Protect360 (AppsFlyer)",
+      "note": "Different rule engine; revisit thresholds and signals."
+    }
+  ],
+  "effort": "2-6 weeks",
+  "gotchas": [
+    "MMP attribution history is generally not portable between vendors — historical reports stay on the old platform.",
+    "Run both SDKs in parallel for a validation period before deactivating Adjust.",
+    "Event names and parameters are tightly coupled to dashboards and downstream BI — coordinate with analytics owners.",
+    "Each ad network requires its own re-integration; budget time per partner.",
+    "iOS SKAN setup (conversion values) must be reconfigured carefully to avoid attribution gaps.",
+    "App store review may be needed if you change SDKs in a release."
+  ],
+  "email": {
+    "subject": "Migrating our MMP from Adjust to AppsFlyer",
+    "body": "Hi team,\n\nWe're planning to switch our mobile measurement partner from Adjust to AppsFlyer to align with our partner ecosystem and reporting needs.\n\nScope includes SDK swap on iOS and Android, rebuilding event taxonomy and attribution links, re-integrating each ad network, and redoing SKAN conversion values. Historical attribution will remain on Adjust — we won't be able to migrate it.\n\nExpected timeline is 2-6 weeks with both SDKs running in parallel during validation. I'll send a partner-by-partner cutover plan and a deprecation date for the Adjust SDK.\n\nThanks"
+  }
+}

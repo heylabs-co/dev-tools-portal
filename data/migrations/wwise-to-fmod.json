@@ -1,0 +1,81 @@
+{
+  "source": {
+    "slug": "wwise",
+    "name": "Wwise"
+  },
+  "target": {
+    "slug": "fmod",
+    "name": "FMOD"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "Move your interactive audio middleware from Wwise to FMOD by rebuilding the event hierarchy, mix structure, and engine integration — there is no automatic project conversion between the two.",
+  "why_switch": [
+    "Simpler authoring UX that smaller teams pick up faster",
+    "Indie-friendly pricing (verify current FMOD revenue threshold in their official docs)",
+    "Live update workflow is praised for fast iteration during playtests",
+    "Reduces overhead if you don't need Wwise's deepest DSP and spatial features",
+    "Cleaner integration if your team prefers FMOD Studio's event-first model"
+  ],
+  "what_to_export": [
+    "Source audio assets (original WAV / lossless, not converted .wem files)",
+    "Event hierarchy and naming conventions from Wwise",
+    "Bus structure, RTPCs, States, and Switches",
+    "SoundBank layout and load/unload strategy",
+    "Attenuation curves and spatial / 3D settings",
+    "Music segments, transitions, and stinger logic",
+    "Engine integration call sites (Unity / Unreal Blueprint / C++)",
+    "Profiler captures of typical gameplay for parity testing"
+  ],
+  "export_method": "There is no supported direct project conversion from Wwise to FMOD — plan a manual rebuild. Recover original source audio from your DAW or asset repository, then export Wwise project structure as documentation: event names, RTPC mappings, state/switch logic, and bus topology. Consult Wwise's official docs for any project-level export options and to confirm current SoundBank tooling.",
+  "import_method": "Install the FMOD Studio integration for your engine (Unity or Unreal), recreate the event hierarchy and mix bus structure in FMOD Studio, and replace Wwise event posts in code with FMOD event instance calls. Map RTPCs to FMOD parameters and States/Switches to FMOD parameters or labelled params. Migrate vertical slices first and run side-by-side mix comparisons before decommissioning Wwise.",
+  "concept_mapping": [
+    {
+      "source": "Wwise Event",
+      "target": "FMOD Event",
+      "note": "Both are top-level units; rename consistently and re-author logic."
+    },
+    {
+      "source": "Wwise RTPC",
+      "target": "FMOD Parameter",
+      "note": "Continuous values; recreate driving curves in FMOD."
+    },
+    {
+      "source": "Wwise State / Switch",
+      "target": "FMOD labelled / discrete parameter",
+      "note": "Use labelled parameters for state-like behavior."
+    },
+    {
+      "source": "Wwise SoundBank",
+      "target": "FMOD Bank",
+      "note": "Re-plan load groups; loading APIs and timing differ."
+    },
+    {
+      "source": "Wwise Bus / Aux Bus",
+      "target": "FMOD Bus / VCA / Return",
+      "note": "Recreate hierarchy and routing in the FMOD mixer."
+    },
+    {
+      "source": "Wwise Music Segment / Transition",
+      "target": "FMOD Multi-instrument / transition timeline",
+      "note": "Authoring model differs; expect rework on adaptive music."
+    },
+    {
+      "source": "PostEvent (engine API)",
+      "target": "FMOD event instance Start",
+      "note": "Replace at every call site."
+    }
+  ],
+  "effort": "4-12 weeks",
+  "gotchas": [
+    "No automated migration — every event, parameter, and bank is rebuilt by hand",
+    "Music systems with complex transitions are the highest-risk area; budget extra time",
+    "SoundBank vs FMOD Bank loading semantics differ — re-plan streaming and memory budgets",
+    "Confirm FMOD integration plugin version compatibility with your engine version",
+    "Mix parity is qualitative — schedule a dedicated audio QA pass with the audio lead",
+    "Verify current FMOD indie revenue threshold and licensing in official sources before committing"
+  ],
+  "email": {
+    "subject": "Migrating game audio from Wwise to FMOD",
+    "body": "Hi team,\n\nWe're evaluating a move from Wwise to FMOD as our audio middleware. Drivers: simpler authoring UX, indie-friendly pricing at our scale (to be re-confirmed against FMOD's published terms), and a faster live-update workflow.\n\nReality: there is no automated project conversion. We will rebuild events, mix structure, RTPCs/States, and SoundBanks in FMOD by hand, then swap engine call sites from Wwise PostEvent to FMOD event instances.\n\nPlan:\n1) Inventory Wwise project — events, RTPCs, States/Switches, banks, attenuation, music segments.\n2) Stand up FMOD Studio integration matching our engine version.\n3) Rebuild event and mix hierarchy in FMOD; migrate one vertical slice end-to-end.\n4) Side-by-side mix comparison with the audio lead before broad rollout.\n5) Migrate remaining content, swap call sites, and decommission Wwise.\n\nEstimated effort: 4-12 weeks depending on project size and music complexity. I'll circulate a runbook and risk list before kickoff.\n\nThanks,"
+  }
+}

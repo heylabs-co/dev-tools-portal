@@ -1,0 +1,76 @@
+{
+  "source": {
+    "slug": "fyne",
+    "name": "Fyne"
+  },
+  "target": {
+    "slug": "slint",
+    "name": "Slint"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "Move a Go cross-platform GUI to a declarative Slint UI when you want a modern UI markup, embedded targets, or a Rust/C++/Python backend.",
+  "why_switch": [
+    "Declarative .slint UI language separates layout from logic",
+    "Bindings for Rust, C++, JavaScript, and Python broaden backend choices",
+    "Compiles to native with a tiny runtime suitable for embedded devices",
+    "Live preview speeds up UI iteration",
+    "Open-source dual license (GPL + commercial) per the Slint site"
+  ],
+  "what_to_export": [
+    "Widget tree and screen layouts from each Fyne app",
+    "Theme tokens (colors, spacing, fonts)",
+    "Icon and image assets",
+    "Localization strings",
+    "Event handlers and the data they touch",
+    "Background/business logic written in Go",
+    "App entry points and lifecycle hooks",
+    "Build/packaging scripts per platform"
+  ],
+  "export_method": "Inventory each Fyne window: widget hierarchy, layouts, callbacks, and the Go data they bind to. Extract assets and theme values into a neutral location. Slint cannot consume Go directly, so plan to either rewrite the backend in a Slint-supported language (Rust, C++, JS, Python) or run Go as a separate process the new UI talks to via IPC. Verify language binding details in the official Slint docs.",
+  "import_method": "Create a new Slint project following the official getting-started guide for your chosen backend language. Translate each Fyne screen into a .slint component with properties and callbacks. Wire callbacks to backend code via the language binding. Reuse exported assets and theme tokens. Iterate using Slint's live preview, then port logic screen by screen.",
+  "concept_mapping": [
+    {
+      "source": "Fyne widget",
+      "target": "Slint built-in or custom component",
+      "note": "Declared in .slint markup"
+    },
+    {
+      "source": "Fyne container/layout",
+      "target": "Slint VerticalLayout/HorizontalLayout/GridLayout",
+      "note": "Confirm exact layout names in current Slint docs"
+    },
+    {
+      "source": "Fyne data binding (Go struct)",
+      "target": "Slint property + callback",
+      "note": "Updated from backend through generated bindings"
+    },
+    {
+      "source": "Fyne theme",
+      "target": "Slint global styles/styling system",
+      "note": "Centralize color and font tokens"
+    },
+    {
+      "source": "Go backend",
+      "target": "Rust/C++/JS/Python backend or IPC bridge",
+      "note": "No Go binding listed; treat Go as a separate service if kept"
+    },
+    {
+      "source": "Fyne packaging",
+      "target": "Native binary per platform",
+      "note": "Follow Slint platform docs for embedded vs desktop"
+    }
+  ],
+  "effort": "1-4 weeks",
+  "gotchas": [
+    "Slint does not list a Go binding — plan for a backend rewrite or IPC",
+    "Dual licensing means closed-source distribution may require the commercial license; check current terms",
+    "Widget set is younger than Fyne's; some controls may need to be built",
+    "Mobile support differs — verify target platforms in the Slint docs",
+    "Animation and gesture handling differ; budget time for UX polish",
+    "Localization workflow differs from Fyne's"
+  ],
+  "email": {
+    "subject": "Proposal: migrate our Fyne app UI to Slint",
+    "body": "Team,\n\nProposing we move the desktop UI from Fyne (Go) to Slint. The win is a declarative .slint UI language, live preview, and tiny native runtime that even fits embedded targets. Bindings cover Rust, C++, JS, and Python.\n\nThe catch: Slint has no listed Go binding, so we either rewrite the backend in a supported language or split the app into a Slint UI plus a Go service over IPC. I'd start with one screen as a spike to validate the binding path and licensing fit.\n\nWill share the spike plan and license review next.\n\nThanks"
+  }
+}

@@ -1,0 +1,76 @@
+{
+  "source": {
+    "slug": "backstage",
+    "name": "Backstage"
+  },
+  "target": {
+    "slug": "aws-api-gateway",
+    "name": "AWS API Gateway"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Backstage is an internal developer portal with a service catalog and plugins, while AWS API Gateway is a managed service for publishing REST, HTTP, and WebSocket APIs. These tools solve different problems, so a migration usually means replacing only the API-publishing aspects of a Backstage setup with API Gateway, not the portal itself.",
+  "why_switch": [
+    "Fully managed API hosting without running a Backstage app",
+    "Built-in throttling, auth, and usage plans for API consumers",
+    "Tight integration with Lambda, IAM, and CloudWatch on AWS",
+    "Reduce operational burden of self-hosted plugin platform",
+    "Lower bus factor risk than maintaining custom Backstage code"
+  ],
+  "what_to_export": [
+    "catalog-info.yaml entities for services, components, and APIs",
+    "OpenAPI or AsyncAPI specs referenced by Backstage API entities",
+    "TechDocs sources tied to each service",
+    "Plugin and proxy configurations from app-config.yaml",
+    "Auth provider settings and group/user mappings",
+    "Custom plugin source code under packages/",
+    "Scaffolder templates and their parameters",
+    "Backstage database backup (catalog, scaffolder tasks)"
+  ],
+  "export_method": "Treat Backstage as the source of record for API metadata. Export each API entity's OpenAPI or AsyncAPI document from the underlying YAML or storage location into a versioned Git repo. Snapshot catalog-info.yaml files and any catalog-import locations. Dump the Backstage Postgres or SQLite database for restoration if needed. Pull TechDocs Markdown sources into Git so they are decoupled from the portal. Capture app-config.yaml (with secrets redacted) plus environment variables to document plugin wiring. Generic if uncertain: any data Backstage owns is plain YAML, Markdown, or relational rows, so file-system and database-level dumps are sufficient. Keep custom plugin code and Scaffolder templates in their existing repos. Avoid relying on the running portal during migration — work from the exported artifacts.",
+  "import_method": "In AWS API Gateway, create a REST or HTTP API per service that Backstage cataloged as an API. Import the exported OpenAPI documents using the Import API feature, the AWS CLI (apigateway import-rest-api), CloudFormation, Terraform, or AWS CDK. Wire each route to its backend (Lambda, ALB, VPC link, or HTTP endpoint). Configure stages, custom domains, and usage plans to match the environments previously documented in Backstage. Re-implement the developer-portal experience separately if needed: API Gateway has a developer portal sample, or you can keep a slimmed-down Backstage instance pointed at the new API endpoints. Move auth from Backstage proxy patterns to API Gateway authorizers (IAM, Cognito, JWT, or Lambda). Validate by replaying representative requests through the new endpoints before changing DNS or client configuration.",
+  "concept_mapping": [
+    {
+      "source": "Service catalog entity",
+      "target": "API Gateway API + tagging",
+      "note": "API Gateway has no general catalog; tags or external registry fill the gap"
+    },
+    {
+      "source": "API entity (OpenAPI)",
+      "target": "Imported REST/HTTP API",
+      "note": "Direct OpenAPI import supported"
+    },
+    {
+      "source": "TechDocs",
+      "target": "External docs site (S3, static host)",
+      "note": "API Gateway does not host docs natively"
+    },
+    {
+      "source": "Plugin",
+      "target": "Native AWS feature or Lambda integration",
+      "note": "Functionality must be mapped per plugin"
+    },
+    {
+      "source": "Scaffolder template",
+      "target": "CloudFormation/Terraform/CDK template",
+      "note": "IaC replaces in-portal scaffolding"
+    },
+    {
+      "source": "Auth provider",
+      "target": "API Gateway authorizer",
+      "note": "Cognito, IAM, JWT, or Lambda authorizers"
+    }
+  ],
+  "effort": "3-8 weeks",
+  "gotchas": [
+    "API Gateway is not a developer portal — losing Backstage means losing the catalog, scorecards, and TechDocs unless replaced separately.",
+    "OpenAPI imports may flag unsupported extensions; expect manual cleanup of vendor-specific fields.",
+    "AWS-only deployment increases cloud lock-in compared to self-hosted Backstage.",
+    "Per-request and data transfer pricing can surprise teams used to flat-rate self-hosting; model expected traffic.",
+    "WebSocket and long-lived connections behave differently from typical Backstage proxy plugins; review timeouts and quotas.",
+    "IAM, resource policies, and authorizer configuration are easy to misconfigure — pen-test or review before public cutover."
+  ],
+  "email": {
+    "subject": "Migrating our APIs from Backstage to AWS API Gateway",
+    "body": "Hi team,\n\nOver the next 14 days we are moving the APIs currently catalogued and proxied through Backstage onto AWS API Gateway. Backstage will keep running for the catalog and TechDocs in the short term, but the runtime API surface will be served by API Gateway.\n\nPlan:\n\n- Days 1 to 4: export OpenAPI specs and catalog entities from Backstage into Git.\n- Days 5 to 9: provision matching APIs, stages, and authorizers in AWS API Gateway via Terraform.\n- Days 10 to 12: run dual stacks, replay key requests, and validate auth and quotas.\n- Days 13 to 14: switch DNS, monitor CloudWatch, and freeze the old proxy paths.\n\nIf any of your services depend on a specific Backstage proxy, plugin behaviour, or TechDocs link, reply with the entity name so we can confirm coverage. We will keep Backstage available read-only for at least 30 days after cutover.\n\nThanks,\nYour customer"
+  }
+}

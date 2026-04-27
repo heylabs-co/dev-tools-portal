@@ -1,0 +1,76 @@
+{
+  "source": {
+    "slug": "prove",
+    "name": "Prove"
+  },
+  "target": {
+    "slug": "persona",
+    "name": "Persona"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "Swap Prove's phone-intelligence KYC for Persona's modular, rule-based verification platform with usage pricing.",
+  "why_switch": [
+    "Modular flows (KYC, KYB, document, database) instead of a phone-first pipeline",
+    "Usage-based pricing aligned to successful verifications",
+    "Broader global document coverage beyond US carrier data",
+    "Custom rule-based decisioning in a visual editor",
+    "Mature SDKs for web and mobile"
+  ],
+  "what_to_export": [
+    "Verification outcomes and decision reasons",
+    "Stored identity attributes (name, DOB, address, document refs)",
+    "Webhook event archive",
+    "User-to-verification ID mapping",
+    "Audit logs and reviewer notes",
+    "Risk thresholds and step-up rules",
+    "Retention and deletion records",
+    "Any dashboard-defined workflows or templates"
+  ],
+  "export_method": "Request a structured export from Prove via account management and simultaneously snapshot data you already persist from webhooks. Maintain your own database as the source of truth across the cutover. Refer to Prove's current documentation for the exact export procedure.",
+  "import_method": "Configure a Persona Inquiry template that matches your required identity fields, deploy the SDK on your sign-up surfaces, and route new users through Persona while old Prove records remain read-only. Consume Persona webhooks to mirror outcomes into your database. Consult Persona's official docs for current API paths, SDK versions and template configuration.",
+  "concept_mapping": [
+    {
+      "source": "Prove verification",
+      "target": "Persona Inquiry",
+      "note": "Inquiry is the umbrella object for a verification attempt"
+    },
+    {
+      "source": "Pre-Fill autofill",
+      "target": "Persona prefilled fields / database lookup",
+      "note": "Different mechanism; verify field-by-field equivalence"
+    },
+    {
+      "source": "Phone-possession check",
+      "target": "No exact equivalent",
+      "note": "Use a separate signal vendor or rely on document + selfie"
+    },
+    {
+      "source": "Decision rules",
+      "target": "Persona Workflows",
+      "note": "Rebuild logic in the visual workflow editor"
+    },
+    {
+      "source": "Webhook events",
+      "target": "Persona webhooks",
+      "note": "Different signature and payload format"
+    },
+    {
+      "source": "Custom contract pricing",
+      "target": "Pay-per-verification",
+      "note": "Forecast monthly volume to avoid surprises"
+    }
+  ],
+  "effort": "3-8 weeks",
+  "gotchas": [
+    "Pay-per-verification can spike during fraud waves — set anomaly alerts",
+    "Workflow logic must be re-implemented; no lift-and-shift of rules",
+    "Phone-centric anti-fraud signals from Prove are not 1:1 reproducible",
+    "Persona Inquiry templates deeply influence drop-off rates — A/B test before cutover",
+    "Confirm data residency and sub-processor list with your compliance lead",
+    "Keep Prove logs accessible for as long as regulators require"
+  ],
+  "email": {
+    "subject": "Notice of non-renewal — Prove",
+    "body": "Hello Prove team,\n\nWe will be migrating identity verification to a different provider and do not plan to renew the current agreement.\n\nCould you confirm the renewal date, the process for exporting our verification records and audit logs, and the timeline for data deletion after termination?\n\nThanks for the partnership.\n\nBest regards,"
+  }
+}

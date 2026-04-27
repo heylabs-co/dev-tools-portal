@@ -1,0 +1,76 @@
+{
+  "source": {
+    "slug": "cloudinary",
+    "name": "Cloudinary"
+  },
+  "target": {
+    "slug": "mux",
+    "name": "Mux"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "Move video workloads from Cloudinary's general media platform to Mux, a specialized video infrastructure API for adaptive streaming and analytics.",
+  "why_switch": [
+    "Purpose-built video pipeline (adaptive bitrate, HLS, real-time data) vs Cloudinary's general media tooling",
+    "Stronger streaming performance and quality analytics for video-heavy products",
+    "Cleaner developer ergonomics for video upload, processing, and playback",
+    "Better tooling for live streaming if you need it",
+    "Predictable per-minute pricing model for delivery"
+  ],
+  "what_to_export": [
+    "Original (master) video files from Cloudinary",
+    "Public IDs / paths and folder structure",
+    "Tags and metadata associated with videos",
+    "Currently used video URLs and embeds (player references)",
+    "Captions, subtitles, and other text tracks",
+    "Thumbnail/poster images you depend on",
+    "Access control / signed URL configuration",
+    "Any custom video transformation recipes"
+  ],
+  "export_method": "Use Cloudinary's Admin API or CLI to enumerate video resources and download masters in batches. Capture metadata, captions, and thumbnails alongside each file in a migration manifest. For very large libraries, request bulk export via Cloudinary support. Refer to Cloudinary's official docs for current procedures.",
+  "import_method": "Create a Mux account and use the Mux Video API to ingest masters as new Assets — Mux can pull from a public URL or you can upload via their direct upload flow. Mux generates playback IDs and HLS streams. Replace player embeds with a Mux-compatible player (mux-player or any HLS player) and update database references from Cloudinary public IDs to Mux playback IDs. Consult Mux's official docs for current ingest options.",
+  "concept_mapping": [
+    {
+      "source": "Cloudinary video public_id",
+      "target": "Mux Asset / playback ID",
+      "note": "Map old IDs to new IDs in your DB"
+    },
+    {
+      "source": "Cloudinary URL transforms (video)",
+      "target": "Mux Asset settings + player config",
+      "note": "Adaptive bitrate is handled automatically by Mux"
+    },
+    {
+      "source": "Cloudinary signed URLs",
+      "target": "Mux signed playback URLs",
+      "note": "Use Mux signing keys per their docs"
+    },
+    {
+      "source": "Auto thumbnails",
+      "target": "Mux thumbnail API",
+      "note": "Generate via Mux image endpoints"
+    },
+    {
+      "source": "Captions/subtitles",
+      "target": "Mux text tracks",
+      "note": "Attach via API after asset creation"
+    },
+    {
+      "source": "Player embed",
+      "target": "mux-player or HLS player",
+      "note": "Swap player component"
+    }
+  ],
+  "effort": "2-4 weeks",
+  "gotchas": [
+    "Mux is video-only — image assets still need a separate solution",
+    "Player swap requires QA across browsers and devices",
+    "Re-encoding all videos through Mux can take significant time for large libraries",
+    "Pricing is per delivered minute — model your traffic carefully before committing",
+    "Old Cloudinary video URLs may be cached in CDNs/clients; plan redirects if needed",
+    "Verify DRM/access control parity if you rely on Cloudinary's restrictions"
+  ],
+  "email": {
+    "subject": "Cancelling Cloudinary subscription — moving video to Mux",
+    "body": "Hi Cloudinary team,\n\nWe're moving our video infrastructure to Mux. Please let me know how to cancel our Cloudinary subscription at the end of the current billing cycle and confirm the data retention timeline after closure.\n\nCould you also share the recommended approach for a bulk export of our master video files via the Admin API?\n\nThanks for the service.\n\nBest regards"
+  }
+}

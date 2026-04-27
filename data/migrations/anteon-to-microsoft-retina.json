@@ -1,0 +1,76 @@
+{
+  "source": {
+    "slug": "anteon",
+    "name": "Anteon"
+  },
+  "target": {
+    "slug": "microsoft-retina",
+    "name": "Retina"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "Move from Anteon's hosted/self-hosted K8s observability to Microsoft Retina, an open-source eBPF network observability tool for Kubernetes.",
+  "why_switch": [
+    "Retina is fully free and MIT-licensed (no usage-based billing).",
+    "Microsoft-backed project with active development and frequent releases.",
+    "eBPF-based network flow visibility without sidecars.",
+    "Cloud-agnostic: works on AKS, EKS, GKE, on-prem clusters.",
+    "Avoid Anteon's data-ingestion pricing surprises."
+  ],
+  "what_to_export": [
+    "List of monitored Kubernetes clusters and namespaces",
+    "Existing alert rules and thresholds",
+    "Dashboards and saved queries",
+    "Service-level objectives and error budgets",
+    "User accounts, teams, and RBAC mappings",
+    "Notification channel configs (Slack, PagerDuty, email)",
+    "Retention policies for logs/metrics/traces",
+    "Integration tokens and webhook endpoints",
+    "Historical metric/log data you want to preserve"
+  ],
+  "export_method": "Anteon does not advertise a single-click export. Use its API or self-hosted database to dump alert rules, dashboards, and recent metric/log data. For historical telemetry, query through the standard interfaces and write results to local Parquet/JSON files. Consult Anteon's official documentation for exact endpoints and export formats.",
+  "import_method": "Retina installs into Kubernetes via Helm or its published manifests (see retina.sh docs). After install, configure capture and metric profiles, then point a Prometheus/Grafana stack at Retina's metrics endpoint. Recreate dashboards in Grafana and rebuild alert rules in Prometheus Alertmanager or your existing alerting layer. Retina focuses on network observability, so logging/tracing concerns may need separate tools.",
+  "concept_mapping": [
+    {
+      "source": "Anteon agent (eBPF on K8s)",
+      "target": "Retina DaemonSet (eBPF)",
+      "note": "Both run as cluster-wide eBPF agents."
+    },
+    {
+      "source": "Anteon dashboards",
+      "target": "Grafana dashboards on Retina metrics",
+      "note": "Retina exposes Prometheus-compatible metrics; you bring your own Grafana."
+    },
+    {
+      "source": "Anteon alerts",
+      "target": "Prometheus Alertmanager rules",
+      "note": "Rebuild thresholds against Retina metric names."
+    },
+    {
+      "source": "Anteon log aggregation",
+      "target": "Out of scope",
+      "note": "Retina is network-focused; pair with Loki/ELK for logs."
+    },
+    {
+      "source": "Anteon distributed tracing",
+      "target": "Out of scope",
+      "note": "Use Tempo/Jaeger or another tracing backend alongside Retina."
+    },
+    {
+      "source": "Hosted SaaS billing",
+      "target": "Self-managed cluster cost only",
+      "note": "No per-GB ingest fees; ops burden shifts to your team."
+    }
+  ],
+  "effort": "8-24 hours",
+  "gotchas": [
+    "Retina covers network observability, not full APM/logs/traces — plan a complementary stack.",
+    "eBPF requires a compatible kernel; verify on each node pool.",
+    "Metric names and labels differ from Anteon — dashboards must be rebuilt, not copy-pasted.",
+    "No managed offering: you own upgrades, storage sizing, and HA.",
+    "Historical Anteon data won't import cleanly; expect a fresh baseline."
+  ],
+  "email": {
+    "subject": "Migrating from Anteon to Microsoft Retina",
+    "body": "Hi team,\n\nWe're planning to move our Kubernetes observability from Anteon to Microsoft Retina. Retina is open-source, MIT-licensed, eBPF-based, and removes the data-ingestion billing risk we've seen with Anteon.\n\nScope of work: export current alert rules, dashboards, and integration configs from Anteon; install Retina via Helm; pair with Prometheus + Grafana; rebuild dashboards and alerts; layer in Loki/Tempo for logs and traces if needed.\n\nEstimated effort: 8-24 hours, plus a parallel-run window before fully decommissioning Anteon.\n\nWill share a tracking doc and run a checkpoint after the pilot cluster is wired up.\n\nThanks."
+  }
+}

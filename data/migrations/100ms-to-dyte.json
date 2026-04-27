@@ -1,0 +1,77 @@
+{
+  "source": {
+    "slug": "100ms",
+    "name": "100ms"
+  },
+  "target": {
+    "slug": "dyte",
+    "name": "Dyte"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "Move your live video/audio rooms from 100ms to Dyte by re-implementing meeting creation, participant tokens, and the client SDK against Dyte's APIs.",
+  "why_switch": [
+    "Dyte offers a freemium tier that lowers the floor compared to 100ms's $500/mo entry price",
+    "Active SDK ecosystem with prebuilt UI components and per-platform clients",
+    "Transparent public pricing reduces billing unpredictability",
+    "Comparable feature set for video calls, recording, and live streaming",
+    "Both vendors are India-HQ — similar timezone for support if that matters to you"
+  ],
+  "what_to_export": [
+    "Room/session IDs and configuration metadata",
+    "Recordings and any stored media artifacts",
+    "Webhook endpoints and subscribed event types",
+    "Role and permission definitions",
+    "Token-issuance logic from your backend",
+    "Custom UI assets used in 100ms prebuilt components",
+    "API key inventory (for rotation, not reuse)",
+    "Usage and billing history for reconciliation",
+    "List of client apps integrated with the SDK"
+  ],
+  "export_method": "Pull room metadata, session logs, and recording references via 100ms's official REST API and dashboard. Recordings typically land in your own object storage — verify that bucket. Treat your backend (token mint, webhook handlers) as the canonical business logic source. There is no documented one-click bulk export; budget time for scripted extraction and manual capture of dashboard config.",
+  "import_method": "Sign up for Dyte, generate organization-level API credentials, and re-implement server-side meeting creation and participant authentication against Dyte's REST API per their official docs. Swap the 100ms client SDK for Dyte's client SDK on each platform you ship. Reconfigure webhooks to your handler using Dyte's event schema. Re-point recording storage and validate the recording lifecycle.",
+  "concept_mapping": [
+    {
+      "source": "Room",
+      "target": "Meeting",
+      "note": "Equivalent containers for a session; create fresh on Dyte"
+    },
+    {
+      "source": "Peer / participant token",
+      "target": "Participant auth token",
+      "note": "Mint per participant from your backend using Dyte's auth flow"
+    },
+    {
+      "source": "Role / template",
+      "target": "Preset (role-equivalent)",
+      "note": "Similar idea of permission bundles; verify exact field names in Dyte docs"
+    },
+    {
+      "source": "Prebuilt UI",
+      "target": "Dyte UI Kit",
+      "note": "Both ship a prebuilt UI; component APIs differ — rebuild composition"
+    },
+    {
+      "source": "Recording",
+      "target": "Recording",
+      "note": "Both support cloud recording; webhook events and storage targets differ"
+    },
+    {
+      "source": "Webhooks",
+      "target": "Webhooks",
+      "note": "Rewrite handler against Dyte's event payload"
+    }
+  ],
+  "effort": "1-3 weeks",
+  "gotchas": [
+    "Token formats and signing are not interchangeable — backend mint must be rewritten",
+    "Recording outputs and webhook timing differ; do not assume parity in filenames or events",
+    "Mobile permission and build setup must be re-validated per platform",
+    "If you customized 100ms prebuilt UI heavily, expect rework on Dyte's UI kit",
+    "Run both vendors in parallel during cutover to compare quality on real networks",
+    "Verify pricing dimensions for your workload directly on Dyte's official pricing page"
+  ],
+  "email": {
+    "subject": "Migrating our video stack from 100ms to Dyte",
+    "body": "Hi team,\n\nI'm planning to migrate our real-time video/audio rooms from 100ms to Dyte. Main drivers: lower entry cost via Dyte's freemium tier and a comparable feature set with active SDK development.\n\nScope includes rebuilding server-side meeting and token issuance against Dyte's API, swapping the client SDK, reconfiguring webhooks, and validating recording flows end-to-end. Estimating 1-3 weeks of engineering plus a parallel-run period. I'll confirm exact pricing and feature details from Dyte's official docs before final sign-off.\n\nHappy to walk through the plan.\n\nThanks"
+  }
+}

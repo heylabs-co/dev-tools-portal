@@ -1,0 +1,70 @@
+{
+  "source": {
+    "slug": "lucide",
+    "name": "Lucide"
+  },
+  "target": {
+    "slug": "phosphor-icons",
+    "name": "Phosphor Icons"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Lucide and Phosphor Icons are both open-source SVG icon families with framework packages, so migration is mostly a rename-and-reimport exercise. The main work is mapping icon names and choosing weight variants Phosphor offers that Lucide does not.",
+  "why_switch": [
+    "Need multiple weight variants (thin, light, regular, bold, fill, duotone)",
+    "Want a larger catalog (1200+ icons vs Lucide's set)",
+    "Prefer Flutter and Figma library coverage in addition to web",
+    "Express brand voice through weight rather than single style",
+    "MIT license with active maintenance"
+  ],
+  "what_to_export": [
+    "Inventory of every Lucide icon name used",
+    "Framework package in use (react, vue, svelte, angular)",
+    "Size, color, and stroke-width props per usage",
+    "Any custom-styled or remapped icon components",
+    "Design token mapping from token name to Lucide icon",
+    "Accessibility labels associated with each icon",
+    "Bundle import strategy (named imports vs barrel)",
+    "Tests or snapshots referencing icon component names"
+  ],
+  "export_method": "There is no service export — Lucide is a static library. Run a codebase grep for imports from lucide-react, lucide-vue-next, lucide-svelte, or lucide-angular and produce a CSV with: file path, icon PascalCase name, props passed (size, color, strokeWidth, className), and the surface where it appears. Capture the design-system token-to-icon mapping if you maintain one (typically a JSON or TS file). Note any icons you have wrapped in higher-level components (e.g. a DSIcon abstraction) — those become the migration choke points. Save current visual snapshots of representative screens so a reviewer can confirm parity after switching weights. If you import via a barrel file, list each icon once; if you import per-file, the grep gives you the per-occurrence count for impact sizing.",
+  "import_method": "Install the Phosphor package for your framework (e.g. @phosphor-icons/react, @phosphor-icons/vue, phosphor-flutter, or the Figma library). Decide on a default weight that matches Lucide's stroke aesthetic — Phosphor's regular weight is the closest visual analog. Replace imports module-by-module: rename the Lucide PascalCase name to the Phosphor equivalent (most common icons exist on both sides under similar names), and pass size/color via Phosphor's props (size, color, weight). Where Lucide passed strokeWidth, pick a Phosphor weight instead. Update your design-system token map so the same token now resolves to a Phosphor component. Run visual regression on representative screens; adjust weights per surface if needed. Keep accessibility labels by passing aria-label on the wrapping element.",
+  "concept_mapping": [
+    {
+      "source": "lucide-react import",
+      "target": "@phosphor-icons/react import"
+    },
+    {
+      "source": "Icon name (PascalCase)",
+      "target": "Icon name (PascalCase)",
+      "note": "Many overlap; some need manual remap"
+    },
+    {
+      "source": "strokeWidth prop",
+      "target": "weight prop",
+      "note": "Use thin/light/regular/bold/fill/duotone"
+    },
+    {
+      "source": "size prop (number)",
+      "target": "size prop (number)",
+      "note": "Same convention"
+    },
+    {
+      "source": "color prop",
+      "target": "color prop",
+      "note": "Same convention"
+    }
+  ],
+  "effort": "2-5 days",
+  "gotchas": [
+    "Icon names do not all match one-to-one; build a rename map and review unmatched names manually",
+    "Phosphor's regular weight is slightly heavier than Lucide; QA visually before shipping",
+    "Multiple weights can balloon bundle size — stick to one or two unless you need contrast",
+    "Duotone variants render two colors and may need theming changes for dark mode",
+    "Tests and snapshots referencing Lucide component names will need updating",
+    "Tree-shaking depends on per-icon imports; avoid barrel re-exports that pull the whole set"
+  ],
+  "email": {
+    "subject": "Migrating icon library from Lucide to Phosphor Icons",
+    "body": "Hi team,\n\nWe are migrating our icon library from Lucide to Phosphor Icons over the next 14 days. The driver is access to multiple weight variants (regular, bold, fill, duotone) and a larger catalog, both useful as we expand the product.\n\nThe work is mostly mechanical: rename imports, map icon names, and replace strokeWidth with Phosphor's weight prop. We will keep size, color, and aria-label conventions identical. Visual regression will run on representative screens before merging.\n\nIf you own a screen with custom icon styling or a hand-rolled icon wrapper, please flag it so we can review together. The design-system token map will be updated centrally.\n\nNo user-visible behavior changes are expected.\n\nThanks,\nYour customer"
+  }
+}

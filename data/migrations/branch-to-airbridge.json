@@ -1,0 +1,76 @@
+{
+  "source": {
+    "slug": "branch",
+    "name": "Branch"
+  },
+  "target": {
+    "slug": "airbridge",
+    "name": "Airbridge"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "Replace Branch's deep linking and MMP with Airbridge's published-price subscription and similar feature surface.",
+  "why_switch": [
+    "Branch pricing is opaque; Airbridge publishes from $199/month",
+    "Includes 15K attributed installs free for early-stage testing",
+    "Airbridge has lower scored lock-in for attribution data",
+    "Comparable deep linking, web-to-app, and SKAN coverage",
+    "Consolidate links + attribution in one tool with clearer cost"
+  ],
+  "what_to_export": [
+    "Branch link inventory (long links, short links, link metadata)",
+    "Custom data and analytics tags attached to links",
+    "Install, click, and re-engagement event logs",
+    "Attribution and partner configurations",
+    "Deferred deep link routing rules",
+    "Universal Link / App Link domain configurations",
+    "Audience and journey definitions",
+    "SKAdNetwork conversion value schema"
+  ],
+  "export_method": "Use Branch's data export and exports API to retrieve link metadata, click/install events, and attribution logs to your warehouse or S3. Confirm the current export options, retention windows, and quotas in Branch's official documentation before relying on a specific endpoint.",
+  "import_method": "Integrate the Airbridge SDK in a new app build, configure your associated domain / app link entitlements for Airbridge link routing, and re-create campaigns, partners, and SKAN conversion values in the Airbridge console. For existing Branch links already in the wild, plan a redirect strategy via your owned domain or maintain Branch links during a transition window. Verify supported features against current Airbridge docs.",
+  "concept_mapping": [
+    {
+      "source": "Branch links",
+      "target": "Airbridge tracking links",
+      "note": "Not 1:1; existing Branch URLs need redirects or sunset plan"
+    },
+    {
+      "source": "Deferred deep linking",
+      "target": "Airbridge deferred deep links",
+      "note": "Re-implement routing logic on cold start"
+    },
+    {
+      "source": "Branch SDK events",
+      "target": "Airbridge SDK events",
+      "note": "Re-map event names, revenue, and custom params"
+    },
+    {
+      "source": "Universal Links / App Links",
+      "target": "Airbridge associated domains",
+      "note": "Update apple-app-site-association and assetlinks.json"
+    },
+    {
+      "source": "Branch partner integrations",
+      "target": "Airbridge partner integrations",
+      "note": "Reconfigure each ad network from Airbridge side"
+    },
+    {
+      "source": "Journeys (web-to-app smart banners)",
+      "target": "Airbridge web-to-app",
+      "note": "Feature parity not guaranteed; check current docs"
+    }
+  ],
+  "effort": "2-4 weeks",
+  "gotchas": [
+    "Live Branch links in emails, ads, and partner placements need a redirect strategy",
+    "Universal Link / App Link config requires app store updates",
+    "Run both SDKs in parallel to reconcile attribution before cutover",
+    "Web-to-app journey features may not have direct equivalents",
+    "SKAN conversion value mapping must be re-validated end-to-end",
+    "Plan for a long tail of users on old app versions still pinging Branch"
+  ],
+  "email": {
+    "subject": "Migrating deep linking + MMP from Branch to Airbridge",
+    "body": "Hi team,\n\nWe're planning to migrate from Branch to Airbridge to get clearer pricing and consolidate links + attribution.\n\nPlan:\n1. Export Branch link metadata, clicks, installs, and attribution logs to our warehouse.\n2. Integrate the Airbridge SDK and update associated domains / App Links in the next release.\n3. Define a redirect strategy for live Branch links in ads, emails, and partner placements.\n4. Run both SDKs in parallel and reconcile before fully cutting over.\n\nExpected effort: 2-4 weeks. Existing Branch links will need ongoing handling until users update.\n\nQuestions welcome."
+  }
+}

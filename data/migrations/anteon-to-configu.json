@@ -1,0 +1,76 @@
+{
+  "source": {
+    "slug": "anteon",
+    "name": "Anteon"
+  },
+  "target": {
+    "slug": "configu",
+    "name": "Configu"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "Anteon (Kubernetes observability) and Configu (configuration management) solve different problems — this migration only makes sense if you're consolidating tooling or replacing how Anteon-related config/secrets are managed; otherwise consult both vendors' official docs before switching.",
+  "why_switch": [
+    "Consolidating configuration and environment management under an OSS-friendly tool",
+    "Lower lock-in: Configu is open-source with a CLI/SDK and standard formats",
+    "Stronger schema validation and audit trail for config values",
+    "Better fit if your primary need is config/secret management rather than k8s observability",
+    "Active development cadence and OSS community"
+  ],
+  "what_to_export": [
+    "All Anteon dashboard and alert configurations",
+    "Connected cluster / agent configuration",
+    "User and team roles / RBAC settings",
+    "Saved queries, filters, and views",
+    "Integration credentials (Slack, PagerDuty, etc.) — rotate during migration",
+    "Retention and ingestion policy settings",
+    "Any custom config schemas you've encoded in Anteon's settings",
+    "Historical telemetry data you need to retain (export to long-term storage)"
+  ],
+  "export_method": "Anteon and Configu address different domains, so there is no direct one-click export path. Document your existing Anteon configuration via its UI/API, export any settings as YAML/JSON where supported, and capture integration credentials. Consult Anteon's official docs for the current export and self-hosted backup procedures.",
+  "import_method": "Configu is configuration management, not observability — import the items that map to its model (config schemas, environment values, secrets) using the Configu CLI and ConfigStores. For observability features that don't map (dashboards, traces, metrics), keep an observability tool in place and only use Configu for config. Refer to Configu's official docs for current setup, schema definition, and CLI usage.",
+  "concept_mapping": [
+    {
+      "source": "Anteon dashboards",
+      "target": "Not applicable in Configu",
+      "note": "Configu is not an observability tool — keep a separate observability stack"
+    },
+    {
+      "source": "Anteon alerts",
+      "target": "Not applicable",
+      "note": "Use a dedicated alerting tool"
+    },
+    {
+      "source": "Environment / config values stored in Anteon",
+      "target": "Configu ConfigSet + ConfigStore",
+      "note": "Map env-specific values into Configu's environment model"
+    },
+    {
+      "source": "RBAC / users",
+      "target": "Configu users and roles",
+      "note": "Reconfigure per Configu docs"
+    },
+    {
+      "source": "Audit trail",
+      "target": "Configu audit log",
+      "note": "Verify scope and retention in Configu docs"
+    },
+    {
+      "source": "Secrets / credentials",
+      "target": "Configu integrated secret store",
+      "note": "Rotate during migration"
+    }
+  ],
+  "effort": "2-6 hours (config-only scope) — significantly more if you also stand up a replacement observability stack",
+  "gotchas": [
+    "These tools target different problems — confirm scope before migrating",
+    "You will likely still need a separate observability solution for k8s monitoring",
+    "Rotate every credential migrated, never copy secrets in plaintext",
+    "Configu's free tier and feature mapping should be verified against current pricing/docs",
+    "Historical telemetry from Anteon won't import into Configu — archive separately if needed",
+    "Validate schema definitions in a non-prod environment before rolling out to production"
+  ],
+  "email": {
+    "subject": "Cancelling Anteon subscription",
+    "body": "Hi Anteon team,\n\nWe're consolidating our internal tooling and will be winding down our Anteon usage. Please let me know the steps to cancel our subscription at the end of the current billing cycle and any data retention policy after closure.\n\nCould you also confirm the recommended approach for exporting our existing configuration and historical data?\n\nThanks for the service.\n\nBest regards"
+  }
+}

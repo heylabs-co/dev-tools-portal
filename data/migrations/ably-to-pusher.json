@@ -1,0 +1,75 @@
+{
+  "source": {
+    "slug": "ably",
+    "name": "Ably"
+  },
+  "target": {
+    "slug": "pusher",
+    "name": "Pusher"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "Move pub/sub channels and presence from Ably to Pusher Channels by re-pointing SDK clients and remapping channel/event names.",
+  "why_switch": [
+    "Simpler pricing if your workload fits Pusher's connection model",
+    "Established Channels SDKs across web and mobile",
+    "Beams add-on for push notifications alongside pub/sub",
+    "You want to consolidate on a single real-time vendor",
+    "Team already familiar with Pusher's API conventions"
+  ],
+  "what_to_export": [
+    "List of active channels and naming conventions",
+    "Event names and payload schemas",
+    "Presence membership data (if persisted)",
+    "Auth/token issuance logic",
+    "Webhook subscriptions (channel events)",
+    "Client SDK versions and target platforms",
+    "Server-side publish endpoints",
+    "Rate limit and connection metrics for sizing"
+  ],
+  "export_method": "Ably does not store channel history beyond its retention window, so most state lives in your application database. Inventory your channels, presence consumers, and webhook handlers from your own code. Snapshot any history you need via Ably's history API while the account is still active.",
+  "import_method": "Create a Pusher app, install the matching Channels SDK on clients and server, and re-implement publish/subscribe calls against Pusher's API. Wire up auth endpoints for private/presence channels and reconfigure webhooks to your backend. Run both providers in parallel behind a feature flag while you cut traffic over.",
+  "concept_mapping": [
+    {
+      "source": "Channel",
+      "target": "Channel",
+      "note": "Naming is similar; private/presence prefixes differ"
+    },
+    {
+      "source": "Presence",
+      "target": "Presence channel",
+      "note": "Requires presence- prefix on Pusher"
+    },
+    {
+      "source": "Token auth",
+      "target": "Auth endpoint",
+      "note": "Pusher signs auth on your server per channel"
+    },
+    {
+      "source": "Webhooks",
+      "target": "Webhooks",
+      "note": "Different event payload shapes"
+    },
+    {
+      "source": "History API",
+      "target": "n/a",
+      "note": "Verify current Pusher history support before relying on it"
+    },
+    {
+      "source": "MQTT/SSE protocols",
+      "target": "Channels protocol",
+      "note": "Pusher uses its own WebSocket protocol"
+    }
+  ],
+  "effort": "1-3 weeks",
+  "gotchas": [
+    "Channel naming prefixes (private-, presence-) are enforced by Pusher",
+    "Connection-based pricing can spike with long-lived clients",
+    "MQTT and SSE clients on Ably need a rewrite to Channels SDK",
+    "Auth signing differs; reuse of Ably tokens is not possible",
+    "Verify regional latency for your user base before full cutover"
+  ],
+  "email": {
+    "subject": "Cancelling Ably subscription",
+    "body": "Hi Ably team,\n\nWe're migrating our real-time workload off Ably and onto another provider. Please confirm the cancellation date and any final billing for our account.\n\nThanks."
+  }
+}

@@ -1,0 +1,64 @@
+{
+  "source": {
+    "slug": "lob",
+    "name": "Lob"
+  },
+  "target": {
+    "slug": "sonner",
+    "name": "Sonner"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "Lob and Sonner are not substitutes — Lob is a direct-mail API (server-side), Sonner is an open-source React toast notification library (client-side UI) — so a 'migration' only makes sense for in-app user feedback, not for any actual mail/messaging workflow.",
+  "why_switch": [
+    "Sonner is free and open source — zero vendor lock-in",
+    "Tiny API and great DX for in-app toast notifications",
+    "Right tool if the real need is UI feedback, not outbound messaging",
+    "Removes a paid vendor from the stack for any UI-only use case",
+    "Works natively with React without a backend service"
+  ],
+  "what_to_export": [
+    "Inventory of places in the app where Lob is currently triggered for user feedback (if any)",
+    "Notification copy and tone guidelines",
+    "Any client-side success/error states tied to Lob calls",
+    "Branding/styling tokens for toasts",
+    "Translations / i18n strings used in notifications",
+    "Accessibility requirements (ARIA, timing)",
+    "List of API integrations that should remain on Lob (mail flows)"
+  ],
+  "export_method": "There is no direct data export here because Sonner does not store anything — it is a UI library. Audit your codebase for places where Lob is being used purely to surface in-app messages, and document the copy and triggering events. Consult Sonner's and Lob's official docs for current capabilities.",
+  "import_method": "Install Sonner in your React app (per its official docs), mount its Toaster component near the app root, and replace the relevant client-side notification calls with Sonner's toast API. Keep Lob in place for any actual outbound mail workflows. Consult Sonner's official docs for current install and usage steps.",
+  "concept_mapping": [
+    {
+      "source": "Lob API call (for UI feedback)",
+      "target": "toast(message)",
+      "note": "Client-side only"
+    },
+    {
+      "source": "Send status",
+      "target": "toast.success / toast.error",
+      "note": "Visual state only"
+    },
+    {
+      "source": "Webhook",
+      "target": "n/a",
+      "note": "Sonner has no server side"
+    },
+    {
+      "source": "Template",
+      "target": "JSX/React component passed to toast",
+      "note": "Fully customizable"
+    }
+  ],
+  "effort": "1-3 hours (only if Lob was misused for UI feedback)",
+  "gotchas": [
+    "These are different categories — do not remove Lob if you actually need to send physical mail",
+    "Sonner runs in the browser; it cannot deliver email, SMS, or mail",
+    "Accessibility: ensure toasts respect screen-reader and reduced-motion settings",
+    "Toasts disappear — don't use them for critical confirmations",
+    "Keep server-side logging for anything previously tracked through Lob"
+  ],
+  "email": {
+    "subject": "Replacing in-app Lob feedback with Sonner toasts",
+    "body": "Hi team,\n\nQuick note: where we're currently using Lob purely to drive in-app user feedback, we should switch those spots to Sonner — a free open-source React toast library. Lob stays in place for any real mail/messaging flows.\n\nScope: audit UI-only call sites, install Sonner, mount the Toaster, and replace those calls with toast.success / toast.error. Estimated 1-3 hours.\n\nThanks"
+  }
+}

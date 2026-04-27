@@ -1,0 +1,76 @@
+{
+  "source": {
+    "slug": "courier",
+    "name": "Courier"
+  },
+  "target": {
+    "slug": "novu",
+    "name": "Novu"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "Move from Courier's hosted notification API to Novu's open-source notification infrastructure with self-hostable backend.",
+  "why_switch": [
+    "Want open-source notification infrastructure with the option to self-host",
+    "Reduce vendor lock-in and gain control over data residency",
+    "Strong developer-first SDKs and a generous free tier",
+    "Code-first workflow definitions instead of UI-only configuration",
+    "Active community and freemium pricing"
+  ],
+  "what_to_export": [
+    "Templates per channel (email, push, SMS, in-app)",
+    "User / subscriber profiles with identifiers",
+    "Channel tokens and integrations (provider credentials)",
+    "Routing rules and channel priority",
+    "User preferences",
+    "Tags / properties",
+    "Lists / topics",
+    "Brand assets used in templates"
+  ],
+  "export_method": "Use the Courier API to dump templates, profiles, preferences, lists, and brands as JSON. Script per-resource pulls with pagination; consult Courier's official API reference for exact endpoint names.",
+  "import_method": "Define workflows in Novu using its code-first SDK (or the dashboard) and create subscribers via the Novu API. Configure providers (SES, FCM, APNs, etc.) inside Novu. For self-hosted setups, deploy the Novu backend first. Verify all endpoint names and SDK methods in Novu's official documentation before scripting bulk imports.",
+  "concept_mapping": [
+    {
+      "source": "Courier Notification",
+      "target": "Novu Workflow",
+      "note": "Workflows are code-first in Novu and version-controllable"
+    },
+    {
+      "source": "Courier User Profile",
+      "target": "Novu Subscriber",
+      "note": "Map subscriberId to your internal user id; channel tokens attach to subscriber"
+    },
+    {
+      "source": "Courier Routing rules",
+      "target": "Novu Workflow steps + conditions",
+      "note": "Channel priority and fallback are expressed as workflow steps"
+    },
+    {
+      "source": "Courier Lists",
+      "target": "Novu Topics",
+      "note": "Topics group subscribers for fan-out delivery"
+    },
+    {
+      "source": "Courier Tags / properties",
+      "target": "Novu Subscriber data",
+      "note": "Set custom data fields on subscriber records"
+    },
+    {
+      "source": "Courier Brands",
+      "target": "Novu Layouts / templates",
+      "note": "Recreate styling inside layouts and template content"
+    }
+  ],
+  "effort": "12-40 hours",
+  "gotchas": [
+    "If self-hosting, account for infra ops (DB, queue, deployment) — not just app code",
+    "Provider credentials (FCM/APNs/SES/Twilio) must be reconfigured inside Novu",
+    "Push tokens need to be sent to Novu via the SDK; cannot blindly copy tokens",
+    "Workflow code structure is different — plan a clean rewrite instead of mechanical translation",
+    "Preference center semantics differ; revalidate unsubscribe handling for compliance",
+    "Run dual-send during cutover to verify deliverability"
+  ],
+  "email": {
+    "subject": "Migrating from Courier to Novu",
+    "body": "Hi team,\n\nWe're migrating our notifications from Courier to Novu so we can use an open-source, code-first workflow engine and optionally self-host.\n\nPlan:\n- Export templates, users, preferences, and routing config from Courier\n- Define workflows in Novu via its SDK\n- Configure delivery providers (FCM/APNs/SES/Twilio) in Novu\n- Migrate subscribers and dual-send during cutover\n- Decommission Courier once parity is verified\n\nEffort: about 12-40 hours. Checklist to follow.\n\nThanks"
+  }
+}

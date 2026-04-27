@@ -1,0 +1,71 @@
+{
+  "source": {
+    "slug": "phosphor-icons",
+    "name": "Phosphor Icons"
+  },
+  "target": {
+    "slug": "feather-icons",
+    "name": "Feather Icons"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Phosphor Icons and Feather Icons are both open-source SVG icon sets, so migration is a rename-and-reimport job. The main caveats are Feather's smaller catalog (~280 icons) and single weight, which may force you to find replacements or keep Phosphor for missing icons.",
+  "why_switch": [
+    "Prefer Feather's minimal single-weight 24x24 aesthetic",
+    "Smaller bundle footprint with simpler SVG output",
+    "Align with developer-tooling UI conventions",
+    "Reduce design surface area to one consistent style",
+    "MIT-licensed open-source with no commercial strings"
+  ],
+  "what_to_export": [
+    "Inventory of every Phosphor icon name used",
+    "Weight variant used per occurrence (thin/regular/bold/fill/duotone)",
+    "Size, color, and className props per usage",
+    "Framework package in use (react, vue, flutter, web)",
+    "Design token mapping from token name to Phosphor icon",
+    "Accessibility labels associated with each icon",
+    "List of duotone or fill icons that have no Feather equivalent",
+    "Tests or snapshots referencing Phosphor component names"
+  ],
+  "export_method": "Both libraries are static, so export is a code inventory. Grep for imports from @phosphor-icons/react, @phosphor-icons/vue, phosphor-flutter, or the web package, and record file path, icon name, and props (size, color, weight, className). Group by weight variant — non-regular weights are the riskiest because Feather offers only one weight. Cross-reference each icon against Feather's published list (currently ~280 icons) and mark misses. Misses split into three buckets: (1) close visual analog exists, (2) no analog and the icon is critical, (3) no analog and the icon can be removed or redesigned. Capture before-state screenshots of representative screens for visual regression. If you have a design-system token map pointing to Phosphor names, export it so reassignment can happen in one PR.",
+  "import_method": "Install the appropriate Feather package (feather-icons for vanilla, react-feather for React, vue-feather for Vue, etc., depending on what your framework community maintains). Build a Phosphor-to-Feather rename map for icons that exist on both sides. For the misses identified during export, decide per-icon whether to (a) keep Phosphor installed for that single icon, (b) substitute a close Feather analog, or (c) remove the icon. Replace imports module-by-module and update prop names — Feather typically takes size, color, and stroke-width as props. Drop any weight-related logic since Feather is single-weight. Run visual regression and confirm aria-labels remain on the wrapping element.",
+  "concept_mapping": [
+    {
+      "source": "@phosphor-icons/react import",
+      "target": "react-feather import",
+      "note": "Or framework equivalent"
+    },
+    {
+      "source": "weight prop",
+      "target": "stroke-width prop",
+      "note": "Feather is single-weight; map to a stroke value"
+    },
+    {
+      "source": "Icon name (PascalCase)",
+      "target": "Icon name (PascalCase)",
+      "note": "Build a rename map; not all overlap"
+    },
+    {
+      "source": "size prop",
+      "target": "size prop",
+      "note": "Same numeric convention"
+    },
+    {
+      "source": "duotone/fill variant",
+      "target": "n/a",
+      "note": "Feather has no equivalent — substitute or keep Phosphor"
+    }
+  ],
+  "effort": "3-7 days",
+  "gotchas": [
+    "Feather has ~280 icons vs Phosphor's 1200+; expect missing icons that need substitutes or fallbacks",
+    "Single weight only — duotone and fill variants must be redesigned or kept on Phosphor",
+    "Feather maintenance has been slow; verify the package version you adopt is stable",
+    "Icon names do not all match — manual rename map required",
+    "Visual style is more minimal; QA against design tokens to keep contrast and weight balanced",
+    "Tests and snapshots referencing Phosphor component names will need updating"
+  ],
+  "email": {
+    "subject": "Migrating icon library from Phosphor Icons to Feather Icons",
+    "body": "Hi team,\n\nWe are planning to migrate our icon library from Phosphor Icons to Feather Icons over the next 14 days. The goal is a more minimal, single-weight aesthetic and a smaller surface area to maintain.\n\nThe main risk is Feather's smaller catalog and single weight: any duotone or fill icons we use will need a substitute, and a few icons may not have a Feather analog. We will inventory current usage, build a rename map, and decide per-miss whether to substitute, redesign, or keep Phosphor installed for that single case.\n\nIf you own a screen using Phosphor weight variants (bold, duotone, fill) or rely on icons unique to Phosphor, please flag it during the inventory phase. Visual regression will run before merging.\n\nThanks,\nYour customer"
+  }
+}

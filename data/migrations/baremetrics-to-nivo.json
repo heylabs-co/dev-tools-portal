@@ -1,0 +1,72 @@
+{
+  "source": {
+    "slug": "baremetrics",
+    "name": "Baremetrics"
+  },
+  "target": {
+    "slug": "nivo",
+    "name": "Nivo"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "Heads up: Nivo is an open-source React charting library, not an analytics platform — moving from Baremetrics to Nivo means building dashboards yourself.",
+  "why_switch": [
+    "Nivo is free and MIT-licensed — no vendor lock-in or subscription cost",
+    "Full control over how metrics are visualized when paired with your own data layer",
+    "Avoids Baremetrics' dependency on its proprietary Stripe-derived pipeline",
+    "Useful if you already have a warehouse and want to build internal dashboards",
+    "Lets you embed charts directly in your own apps"
+  ],
+  "what_to_export": [
+    "Stripe connection details (keep Stripe as source of truth)",
+    "Metric definitions: MRR, ARR, churn, LTV, etc.",
+    "Customer property schema",
+    "Saved dashboards and report layouts (for reference)",
+    "Cohort and segment logic",
+    "Forecast and goal configurations",
+    "Team access list (to mirror in your new tool)",
+    "Annotations and notes",
+    "Historical metric snapshots if needed"
+  ],
+  "export_method": "Use Baremetrics' export options or API to pull historical metrics and configuration. Plan to keep Stripe (or your billing system) as the source of truth — Nivo will visualize whatever you put in front of it, so you'll need a data pipeline (warehouse + transforms) feeding it.",
+  "import_method": "Install Nivo in a React project (e.g., npm install @nivo/core plus the chart packages you need) per the official docs. Build a small dashboard app that queries your warehouse or API, transforms data, and renders the charts. This is custom development — there is no import wizard.",
+  "concept_mapping": [
+    {
+      "source": "Hosted dashboards",
+      "target": "Custom React app using Nivo",
+      "note": "You build and host this"
+    },
+    {
+      "source": "Pre-built MRR/churn views",
+      "target": "Custom-coded charts",
+      "note": "Implement with @nivo/line, @nivo/bar, etc."
+    },
+    {
+      "source": "Stripe sync",
+      "target": "Your own ETL/warehouse pipeline",
+      "note": "Stitch, Fivetran, dbt, custom scripts"
+    },
+    {
+      "source": "User access controls",
+      "target": "Handled by your app or hosting layer",
+      "note": "Auth is your responsibility"
+    },
+    {
+      "source": "Alerts/notifications",
+      "target": "Build separately",
+      "note": "Nivo only renders charts"
+    }
+  ],
+  "effort": "Several weeks to months (this is a build-vs-buy switch)",
+  "gotchas": [
+    "Nivo is a charting library, not an analytics product — apples to oranges",
+    "You'll need a data pipeline, storage, and an app to render charts",
+    "Maintenance burden shifts entirely to your team",
+    "No built-in alerts, sharing, or scheduled reports",
+    "Realistically you may want to pair Nivo with a BI tool or keep a metrics SaaS",
+    "Reconsider whether this swap actually solves your problem before starting"
+  ],
+  "email": {
+    "subject": "Re-evaluating Baremetrics — Nivo is not a like-for-like replacement",
+    "body": "Team,\n\nQuick note: Nivo is an open-source React charting library, not an analytics platform. Replacing Baremetrics with Nivo means we'd be building dashboards ourselves on top of our own data pipeline.\n\nThat's viable if we want full control and have engineering capacity, but it's a significant build. Before we commit, I'd like to confirm the goal: cost savings, customization, or something else? Depending on the answer, a different tool — or keeping Baremetrics — may make more sense.\n\nLet's discuss.\n\nThanks"
+  }
+}

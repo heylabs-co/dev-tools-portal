@@ -1,0 +1,70 @@
+{
+  "source": {
+    "slug": "duckdb-labs",
+    "name": "DuckDB Labs"
+  },
+  "target": {
+    "slug": "cortex",
+    "name": "Cortex"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "Moving from DuckDB Labs (consultancy around the open-source DuckDB analytical engine) to Cortex (a commercial data integration platform) is more of a category change than a like-for-like swap, so plan it as a re-architecture rather than a port.",
+  "why_switch": [
+    "Need a managed product with SLAs instead of consultancy hours",
+    "Want a vendor-supported pipeline UI rather than hand-rolled DuckDB scripts",
+    "Looking for built-in connectors and scheduling instead of writing your own",
+    "Team prefers seat-based commercial support over project-based consulting",
+    "Want a single platform for warehouse syncing rather than scripts plus support contract"
+  ],
+  "what_to_export": [
+    "DuckDB database files (.duckdb) and any persisted local stores",
+    "Parquet/CSV source files referenced by your DuckDB queries",
+    "SQL scripts and views used in your ETL workflows",
+    "Macros, UDFs, and DuckDB extensions in use",
+    "Schedules / cron entries that trigger DuckDB jobs",
+    "Documentation of source-to-destination mappings",
+    "Credentials and connection strings for upstream sources",
+    "Notes from any DuckDB Labs engagement (architecture, tuning advice)"
+  ],
+  "export_method": "DuckDB is open source and fully portable: use the DuckDB CLI to EXPORT DATABASE to a directory of Parquet/CSV files, or COPY individual tables to Parquet/CSV. Keep your SQL scripts under version control. There is no proprietary lock-in to extract from on the DuckDB Labs side; the consultancy itself does not host data. Consult official DuckDB docs for the exact EXPORT/COPY syntax for your version.",
+  "import_method": "Cortex is a commercial platform; the exact ingestion path depends on the connectors and product tier you choose. In general, you will recreate sources and destinations in the Cortex UI, map fields, and load historical data via the supported connector or a bulk file load. Verify the current connector list and bulk-load options in Cortex's official documentation before committing to a migration plan.",
+  "concept_mapping": [
+    {
+      "source": "DuckDB tables",
+      "target": "Cortex managed datasets",
+      "note": "Schema must be recreated inside Cortex; check supported types in their docs"
+    },
+    {
+      "source": "SQL scripts / views",
+      "target": "Cortex pipeline transforms",
+      "note": "Logic generally needs to be reimplemented in Cortex's transform model"
+    },
+    {
+      "source": "Parquet/CSV on disk or S3",
+      "target": "Cortex source connectors",
+      "note": "Confirm supported connector list in official docs"
+    },
+    {
+      "source": "DuckDB Labs support hours",
+      "target": "Cortex commercial support plan",
+      "note": "Different model: subscription seats vs. consulting engagement"
+    },
+    {
+      "source": "Local cron / Airflow triggers",
+      "target": "Cortex scheduling",
+      "note": "Verify scheduling capabilities and cadence in Cortex docs"
+    }
+  ],
+  "effort": "1-3 weeks",
+  "gotchas": [
+    "DuckDB's analytical SQL dialect may not map 1:1 to Cortex's transform layer — expect rewrites",
+    "Cortex is per-seat priced; total cost can exceed a fixed consulting retainer",
+    "DuckDB Labs is a service, not a product — 'migrating off' mostly means redirecting queries, not exporting hosted data",
+    "Validate that every source you rely on has an official Cortex connector before committing",
+    "Performance characteristics differ: DuckDB is in-process columnar; Cortex is a hosted pipeline, so latency expectations change"
+  ],
+  "email": {
+    "subject": "Wrapping up DuckDB Labs engagement — moving warehouse syncing to Cortex",
+    "body": "Hi team,\n\nWe are winding down our DuckDB Labs engagement and consolidating our data integration work onto Cortex. DuckDB itself stays open source and we keep all our scripts and Parquet files, so there is nothing locked in to migrate.\n\nOver the next few weeks we will recreate our pipelines inside Cortex, port the SQL transforms, and verify connector coverage against the official Cortex docs. Please flag any DuckDB-specific UDFs or extensions you are relying on so we can plan equivalents.\n\nThanks!"
+  }
+}

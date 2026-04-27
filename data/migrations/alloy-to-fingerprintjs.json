@@ -1,0 +1,62 @@
+{
+  "source": {
+    "slug": "alloy",
+    "name": "Alloy"
+  },
+  "target": {
+    "slug": "fingerprintjs",
+    "name": "FingerprintJS"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Moving from Alloy to FingerprintJS trades a full identity decisioning platform for a focused device identification signal. You keep device-based fraud signals on FingerprintJS but must move KYC, credit, and decisioning logic elsewhere.",
+  "why_switch": [
+    "FingerprintJS has transparent freemium pricing",
+    "Strong device ID accuracy benchmarked publicly",
+    "Simple JS and mobile SDK integration",
+    "Better fit if you only need a device identity signal",
+    "Lower lock-in for device-level data"
+  ],
+  "what_to_export": [
+    "Workflow and rule definitions",
+    "Applicant and user records",
+    "Historical decision logs",
+    "Webhook endpoints",
+    "API keys and credentials",
+    "Data source connections",
+    "Audit logs for compliance",
+    "Device or session identifiers if available"
+  ],
+  "export_method": "Alloy does not publish a self-serve bulk-export endpoint, so coordinate with your account manager for a final data export covering applicants, decisions, and audit logs. Pull dashboard reports where possible and use the Alloy API to fetch any records you can reference by ID. Document workflows and rule logic by hand, since rule definitions usually do not export to a portable format. Capture webhook configurations, integration credentials, and audit trails before terminating the contract. Preserve KYC and identity-verification records for the retention window your regulator requires. Run the export while production traffic continues so you have a clean cutover snapshot, and verify checksums or row counts on each batch.",
+  "import_method": "FingerprintJS is integrated by installing the Fingerprint Pro JS agent on web pages and the platform SDKs on mobile, then calling the Server API from your backend to fetch identification results and Smart Signals. Sign up, generate API keys, and embed the agent on login, signup, and high-risk action pages. On each event, your backend looks up the visitor identifier and risk signals and feeds them into your own rules engine or downstream provider. FingerprintJS does not provide turnkey approve or decline decisions, so keep or build a decision layer for that. For KYC and credit underwriting workflows previously on Alloy, choose a dedicated provider and integrate it separately. Run shadow mode first: collect Fingerprint identifiers alongside Alloy decisions, compare against historical fraud labels, then cut over once you trust the signal coverage.",
+  "concept_mapping": [
+    {
+      "source": "Workflow",
+      "target": "Custom rules engine consuming Fingerprint signals"
+    },
+    {
+      "source": "Decision outcome",
+      "target": "Visitor identifier + Smart Signals"
+    },
+    {
+      "source": "Webhook event",
+      "target": "Server API lookup or webhook (where supported)"
+    },
+    {
+      "source": "Applicant record",
+      "target": "Visitor ID linked to your user record"
+    }
+  ],
+  "effort": "3-8 weeks",
+  "gotchas": [
+    "FingerprintJS gives you signals, not decisions; you must build or buy a rules engine to act on them",
+    "Costs scale linearly with identification calls, so cap calls on low-risk pages",
+    "EU deployments need a privacy review of fingerprinting under GDPR",
+    "KYC, credit underwriting, and document verification are out of scope and require a different provider",
+    "Alloy export formats are vendor-specific; allocate engineering time to transform them",
+    "Determined fraudsters can bypass device ID alone, so layer with behavioral or network signals"
+  ],
+  "email": {
+    "subject": "Switching device and fraud signals from Alloy to FingerprintJS",
+    "body": "Hi team,\n\nOver the next 14 days we are moving our fraud and device identification signals from Alloy to FingerprintJS. FingerprintJS gives us reliable device identity at transparent pricing with a clean SDK across web and mobile.\n\nWhat changes:\n- The Fingerprint Pro agent will be added to login, signup, and sensitive action pages.\n- Our backend will consume visitor identifiers and Smart Signals from the Server API.\n- Decisioning that lived inside Alloy workflows will move into our own rules layer.\n- KYC and credit underwriting will move to a dedicated provider, not FingerprintJS.\n- We will run both systems in parallel for the first week and compare results before cutover.\n\nPlease flag any service that consumes Alloy webhooks or decisions so we can route it to the new pipeline. Reach out with questions this week.\n\nThanks,\nYour customer"
+  }
+}

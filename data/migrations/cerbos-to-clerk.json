@@ -1,0 +1,69 @@
+{
+  "source": {
+    "slug": "cerbos",
+    "name": "Cerbos"
+  },
+  "target": {
+    "slug": "clerk",
+    "name": "Clerk"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "Cerbos is a policy-based authorization engine while Clerk is a drop-in authentication platform; switching means replacing authorization logic with whatever Clerk natively offers (and likely keeping a separate authz layer).",
+  "why_switch": [
+    "You want a managed, drop-in auth UI instead of self-hosting an authorization service",
+    "Your team prefers prebuilt React components for sign-in, MFA, and org management",
+    "You no longer need fine-grained ABAC/RBAC policy evaluation",
+    "You are consolidating identity and authorization into a single SaaS",
+    "You need Clerk's organization features for B2B"
+  ],
+  "what_to_export": [
+    "Cerbos policy bundles (YAML)",
+    "Resource and principal schemas",
+    "Derived roles definitions",
+    "Policy test suites",
+    "Audit logs of authorization decisions",
+    "Custom policy variables and conditions",
+    "Integration code calling the Cerbos PDP"
+  ],
+  "export_method": "Cerbos policies live in version control as YAML — copy the policies directory and any test fixtures from your repository. Export decision logs from your Cerbos deployment per the Cerbos official docs.",
+  "import_method": "Clerk does not natively replace a policy engine. Map only what Clerk supports (users, sessions, organizations, roles) using its dashboard or Backend API; consult Clerk official docs for the current import endpoints. For anything beyond simple roles, keep Cerbos or another authz layer alongside Clerk.",
+  "concept_mapping": [
+    {
+      "source": "Principal",
+      "target": "User",
+      "note": "Clerk users carry public/private metadata"
+    },
+    {
+      "source": "Resource",
+      "target": "Application object",
+      "note": "No direct equivalent; modeled in your app DB"
+    },
+    {
+      "source": "Derived role",
+      "target": "Organization role",
+      "note": "Clerk roles are coarser; review docs"
+    },
+    {
+      "source": "Policy (YAML)",
+      "target": "Custom code / org permissions",
+      "note": "Rewrite as application checks"
+    },
+    {
+      "source": "Decision log",
+      "target": "Webhook events / your logs",
+      "note": "Clerk emits auth events, not authz decisions"
+    }
+  ],
+  "effort": "1-3 weeks",
+  "gotchas": [
+    "Clerk is auth (who you are), Cerbos is authz (what you can do) — losing Cerbos may leave a gap",
+    "ABAC rules with conditions cannot be expressed in Clerk's role model",
+    "Plan how to enforce permissions in your application code post-migration",
+    "Clerk's free tier limits and MAU pricing should be modeled before cutover",
+    "Keep Cerbos running in shadow mode while you validate Clerk's role checks"
+  ],
+  "email": {
+    "subject": "Cancellation: Cerbos Cloud / commercial plan",
+    "body": "Hi Cerbos team,\n\nWe are migrating our auth and access control stack to Clerk and need to wind down our Cerbos commercial usage. Could you confirm the cancellation steps, final billing, and any data export we should run before closure? We will continue to use the open-source Cerbos PDP locally if needed.\n\nThanks for the work on Cerbos.\n\nBest regards"
+  }
+}

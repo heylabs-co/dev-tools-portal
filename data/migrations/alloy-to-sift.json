@@ -1,0 +1,62 @@
+{
+  "source": {
+    "slug": "alloy",
+    "name": "Alloy"
+  },
+  "target": {
+    "slug": "sift",
+    "name": "Sift"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Migrating from Alloy to Sift moves decisioning from a fintech-focused identity platform to a digital trust and safety platform that scores account, payment, and content abuse with machine learning. KYC and credit underwriting do not map and will need a separate provider.",
+  "why_switch": [
+    "Sift covers account, payment, and content abuse in one platform",
+    "Machine learning across the customer lifecycle",
+    "Documented entry pricing for subscription tier",
+    "Strong fit for marketplaces and CNP fraud",
+    "Established developer documentation and SDKs"
+  ],
+  "what_to_export": [
+    "Workflow and rule definitions",
+    "Applicant and user records",
+    "Historical decision and outcome logs",
+    "Webhook endpoints and subscriptions",
+    "API keys and integration credentials",
+    "Custom data source connections",
+    "Audit logs for compliance retention",
+    "User to external ID mappings"
+  ],
+  "export_method": "Alloy does not document a self-serve bulk-export endpoint, so route the export through your contract. Request a final data export of applicants, decisions, and audit logs from your account manager in CSV or JSON. Augment with dashboard report downloads and direct API calls for any records addressable by ID. Rule logic and workflows generally do not export portably, so document each workflow as a design doc with triggers, conditions, data sources, and outcomes. Capture webhook configurations, secrets, and third-party data source credentials. Preserve audit logs in long-term storage for the retention window your regulator requires. Run the export alongside live production traffic so the cutover snapshot is internally consistent, and verify counts and checksums on each batch before disconnecting.",
+  "import_method": "Sift is integrated through a JS snippet on the client and a REST API on the server, with events sent for relevant actions across the customer lifecycle. Provision a Sift account, generate API keys, install the JS snippet on relevant pages, and instrument backend events for signup, login, transaction, and content actions. On each event, your code sends a payload to Sift and reads back risk scores and recommended actions. Recreate Alloy workflow logic as Sift workflows or in your own decision layer that consumes Sift scores. Configure webhooks for async events. KYC document verification and credit underwriting from Alloy do not map to Sift without significant additional tooling, so plan a dedicated KYC provider for those flows. Run Sift in parallel with Alloy first, compare verdicts on real traffic, tune thresholds, then cut over.",
+  "concept_mapping": [
+    {
+      "source": "Workflow",
+      "target": "Sift workflow or routing rules"
+    },
+    {
+      "source": "Decision outcome",
+      "target": "Sift score + recommended action"
+    },
+    {
+      "source": "Webhook event",
+      "target": "Webhook or decision event"
+    },
+    {
+      "source": "Applicant record",
+      "target": "User identifier in Sift event"
+    }
+  ],
+  "effort": "4-10 weeks",
+  "gotchas": [
+    "Sift pricing tiers above the entry rate are opaque; negotiate carefully on volume",
+    "KYC and credit underwriting from Alloy will not map to Sift; budget for a separate provider",
+    "Lifecycle event coverage requires instrumenting many call sites, not just one",
+    "Alloy export format is vendor-specific; allocate engineering time to transform it",
+    "Real-time scoring adds latency to the request path",
+    "Compliance retention obligations follow the data, so archive Alloy records securely"
+  ],
+  "email": {
+    "subject": "Migrating trust and safety from Alloy to Sift",
+    "body": "Hi team,\n\nWe are moving our trust and safety stack from Alloy to Sift over the next 14 days. Sift gives us machine learning across the customer lifecycle, covering signups, logins, payments, and content abuse in one platform.\n\nWhat to expect:\n- The Sift JS snippet will be added to the relevant pages and our backend will emit events for signup, login, transaction, and content actions.\n- Decision logic from Alloy workflows will be reimplemented as Sift workflows or in our own decision layer.\n- KYC and credit underwriting that ran on Alloy will move to a dedicated provider, not Sift.\n- We will run both systems in parallel for the first week and compare verdicts before cutover.\n\nPlease flag any service that consumes Alloy webhooks or decisions so we can route it to the new pipeline. Reach out with questions before the end of the week.\n\nThanks,\nYour customer"
+  }
+}

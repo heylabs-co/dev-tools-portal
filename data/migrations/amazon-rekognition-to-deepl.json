@@ -1,0 +1,76 @@
+{
+  "source": {
+    "slug": "amazon-rekognition",
+    "name": "Amazon Rekognition"
+  },
+  "target": {
+    "slug": "deepl",
+    "name": "DeepL"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "Note: Rekognition is a computer-vision API and DeepL is a translation API — these solve different problems; this guide covers the case where you are decommissioning Rekognition and standing up DeepL for translation, not a like-for-like swap.",
+  "why_switch": [
+    "DeepL targets text translation, not image or video analysis — use it only if your real need is localization",
+    "Public freemium pricing vs. AWS per-image / per-minute billing",
+    "Lower lock-in profile for translation use cases",
+    "Simple REST API and SDKs aimed at translation workflows",
+    "If you need image analysis, DeepL is not a replacement — keep a vision provider"
+  ],
+  "what_to_export": [
+    "Any stored Rekognition labels, detections or face metadata you rely on",
+    "Custom Labels models and training datasets",
+    "Collections of indexed faces (if used) and their external IDs",
+    "S3 references and IAM policies tied to Rekognition",
+    "Logs of API usage for cost and audit reconciliation",
+    "Source text, glossaries, and translation memories you want to bring to DeepL",
+    "Locale and language pair mappings",
+    "Any pipeline configuration calling Rekognition that needs to be retired or rerouted"
+  ],
+  "export_method": "For Rekognition, retrieve any indexed face collections, custom-label models and stored detection results via the AWS SDK and S3, then archive them to your own storage before deletion. Capture CloudWatch / billing reports for audit. Consult AWS's official Rekognition documentation for current export and deletion procedures.",
+  "import_method": "Stand up DeepL for translation workflows by integrating its REST API or official SDK, configuring language pairs and any glossaries, and routing your localization pipeline through it. Keep this work fully separate from any computer-vision pipeline you previously ran on Rekognition. Consult DeepL's official docs for current endpoints, authentication, and SDK versions.",
+  "concept_mapping": [
+    {
+      "source": "DetectLabels / DetectFaces (Rekognition)",
+      "target": "Not applicable",
+      "note": "DeepL does not provide image analysis"
+    },
+    {
+      "source": "Custom Labels model",
+      "target": "Not applicable",
+      "note": "No equivalent in DeepL — pair with another vision vendor if needed"
+    },
+    {
+      "source": "Face collection",
+      "target": "Not applicable",
+      "note": "Out of scope for a translation API"
+    },
+    {
+      "source": "AWS IAM credentials",
+      "target": "DeepL API key",
+      "note": "Store securely and rotate per your secrets policy"
+    },
+    {
+      "source": "Per-image / per-minute pricing",
+      "target": "Freemium / character-based pricing",
+      "note": "Forecast based on translated character volume, not images"
+    },
+    {
+      "source": "Localization pipeline using AWS",
+      "target": "Localization pipeline using DeepL",
+      "note": "Only relevant portion that maps cleanly between the two"
+    }
+  ],
+  "effort": "1-4 weeks",
+  "gotchas": [
+    "These products solve different problems — confirm you are not losing a needed capability",
+    "If image analysis is still required, keep a vision provider in parallel",
+    "Translation cost models are character-based; volume forecasting differs from per-image billing",
+    "Glossaries and translation memory require curation, not raw text dumps",
+    "DeepL language coverage is strong but not exhaustive — verify all target locales",
+    "Audit any downstream services still calling Rekognition before turning off IAM access"
+  ],
+  "email": {
+    "subject": "Decommissioning Amazon Rekognition usage",
+    "body": "Hello AWS team,\n\nWe are winding down our use of Amazon Rekognition as part of a stack consolidation.\n\nPlease confirm the recommended steps to delete our Rekognition-related resources (custom models, face collections, stored outputs) and to ensure billing stops at the appropriate date.\n\nThanks,"
+  }
+}

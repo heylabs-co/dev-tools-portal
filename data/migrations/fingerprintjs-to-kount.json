@@ -1,0 +1,62 @@
+{
+  "source": {
+    "slug": "fingerprintjs",
+    "name": "FingerprintJS"
+  },
+  "target": {
+    "slug": "kount",
+    "name": "Kount"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "FingerprintJS to Kount moves you from a focused device identification signal to a full fraud platform with AI scoring and a Mastercard-backed merchant network. You will trade simple signal calls for a deeper integration that issues recommended actions.",
+  "why_switch": [
+    "Kount provides scoring and recommended actions, not just signals",
+    "Backed by Mastercard's merchant network",
+    "Public entry pricing at $0.07 per event",
+    "Better fit for payment and CNP fraud workflows",
+    "Free tier for getting started"
+  ],
+  "what_to_export": [
+    "Visitor identifier history and lookups",
+    "Smart Signals usage and event payloads",
+    "Server-side request logs to FingerprintJS",
+    "API keys and credentials",
+    "Webhook configuration where used",
+    "User-to-visitor identifier mappings",
+    "Per-page agent configuration",
+    "Audit logs and retention metadata"
+  ],
+  "export_method": "FingerprintJS exposes identification results and Smart Signals through its Server API and webhooks. To export, pull historical identification events from the Server API for the date ranges you operate on, and rely on your own application logs for the user-to-visitor-id mappings since you typically own the richest copy. Save webhook URLs, signing keys, and any per-route or per-event configuration you have. Document where the JS agent and mobile SDKs are installed (which routes, which event types) so the new platform can be instrumented in the same places. Capture API keys and any secret references in your code. Run the export alongside continued production traffic, verify counts, and only then disconnect FingerprintJS.",
+  "import_method": "Kount typically integrates with a client-side data collector on checkout, login, and signup pages and a server-side API call that returns a risk score and recommended action. Provision a Kount account, generate API credentials, install the data collector on the same pages where the Fingerprint agent ran, and instrument backend services to send transaction or event payloads. Replace your code paths that read FingerprintJS Smart Signals with calls to Kount's scoring API. If you previously fed Fingerprint signals into your own rules engine, replace those rules with Kount rules or keep them and feed Kount's score in as a strong feature. Configure webhooks for asynchronous verdicts. Run Kount in shadow mode alongside FingerprintJS on real traffic, compare outcomes against historical fraud labels, tune thresholds, then cut over.",
+  "concept_mapping": [
+    {
+      "source": "Visitor identifier",
+      "target": "Customer or session identifier in Kount"
+    },
+    {
+      "source": "Smart Signal",
+      "target": "Kount risk signal / score input"
+    },
+    {
+      "source": "Server API lookup",
+      "target": "Kount scoring API call"
+    },
+    {
+      "source": "Webhook event",
+      "target": "Webhook or async callback"
+    }
+  ],
+  "effort": "4-10 weeks",
+  "gotchas": [
+    "Kount offers verdicts; if you only had Fingerprint signals + custom rules, you must redesign decisioning",
+    "Lock-in increases vs FingerprintJS; integration is deeper",
+    "Pricing tiers beyond entry rate are opaque; negotiate volume",
+    "Bot mitigation coverage differs; validate during shadow mode",
+    "Visitor identifier reputation does not transfer; backfill where possible",
+    "Privacy and data flow review may be needed for the additional payload sent to Kount"
+  ],
+  "email": {
+    "subject": "Moving fraud detection from FingerprintJS to Kount",
+    "body": "Hi team,\n\nWe are migrating our fraud detection from FingerprintJS to Kount over the next 14 days. Kount gives us scoring and recommended actions on top of device data, plus access to a Mastercard-backed merchant network.\n\nWhat to expect:\n- The Kount data collector will be installed on checkout, login, and signup pages, replacing the Fingerprint agent there.\n- Backend services will call Kount for scoring rather than reading Smart Signals.\n- Custom rules that consumed Fingerprint signals will be reimplemented as Kount rules or kept with Kount's score as input.\n- We will run both systems in parallel for the first week and compare outcomes before cutover.\n\nPlease flag any service that depends on FingerprintJS lookups so we can route it to the new pipeline. Reach out with questions before the end of the week.\n\nThanks,\nYour customer"
+  }
+}

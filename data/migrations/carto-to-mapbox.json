@@ -1,0 +1,76 @@
+{
+  "source": {
+    "slug": "carto",
+    "name": "CARTO"
+  },
+  "target": {
+    "slug": "mapbox",
+    "name": "Mapbox"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "Move from CARTO's spatial-analytics + map stack to Mapbox's vector-tile + SDK platform when you need rich client-side maps and navigation rather than SQL-driven analytics.",
+  "why_switch": [
+    "Mapbox provides first-class vector tiles, navigation, and mobile SDKs that CARTO does not focus on.",
+    "Stronger client-side rendering performance and styling tools (Mapbox Studio).",
+    "Broader ecosystem for web/iOS/Android map apps.",
+    "Public, predictable pricing tiers with a free tier for getting started.",
+    "Better fit if your use case is map UX rather than spatial SQL analytics."
+  ],
+  "what_to_export": [
+    "Datasets stored in CARTO (PostGIS tables) as GeoJSON, Shapefile, or CSV",
+    "Custom map styles / cartography rules",
+    "SQL queries and views used to power dashboards",
+    "Tilesets you serve through CARTO",
+    "User/team and API key inventory",
+    "Embedded map URLs and iframes used in apps",
+    "Layer definitions (visualization configs)",
+    "Any stored procedures or scheduled jobs"
+  ],
+  "export_method": "CARTO is PostGIS-backed, so the typical path is to export tables from your CARTO data warehouse to GeoJSON/Shapefile/CSV via the CARTO UI export option or by running SELECT against your CARTO connection and dumping the results. For larger datasets, use the official CARTO export tooling or your underlying warehouse (e.g. BigQuery/Snowflake) export — consult CARTO's official docs for the current recommended method.",
+  "import_method": "On Mapbox, upload your data as Tilesets via Mapbox Studio (drag-and-drop GeoJSON/Shapefile/CSV) or programmatically via the Mapbox Uploads/Tilesets workflow. Recreate styling in Mapbox Studio, then load the resulting style URL in mapbox-gl-js or the mobile SDKs. Check current upload size limits and supported formats in Mapbox's official docs before bulk-uploading.",
+  "concept_mapping": [
+    {
+      "source": "CARTO dataset (PostGIS table)",
+      "target": "Mapbox tileset",
+      "note": "Upload via Mapbox Studio or Tilesets API."
+    },
+    {
+      "source": "CARTO Builder map",
+      "target": "Mapbox Studio style",
+      "note": "Rebuild styling; not a 1:1 import."
+    },
+    {
+      "source": "CARTO SQL API",
+      "target": "No direct equivalent",
+      "note": "Mapbox does not run arbitrary SQL on your data; precompute in your warehouse."
+    },
+    {
+      "source": "CARTO viz / layer config",
+      "target": "Style layers in Mapbox GL",
+      "note": "Translate to Mapbox style spec."
+    },
+    {
+      "source": "CARTO API key",
+      "target": "Mapbox access token",
+      "note": "Scoped tokens with URL restrictions."
+    },
+    {
+      "source": "CARTO embedded map",
+      "target": "mapbox-gl-js embed",
+      "note": "Replace iframe with GL JS bootstrap."
+    }
+  ],
+  "effort": "1-3 weeks",
+  "gotchas": [
+    "Mapbox does not provide SQL-on-data — analytical workloads must move to your warehouse first.",
+    "Styling is not portable; you will rebuild cartography in Mapbox Studio.",
+    "Pricing models differ; meter map loads, tile requests and SDK sessions before committing.",
+    "Vector tile generation may require schema cleanup (geometry validity, projection).",
+    "Token scoping and URL restrictions matter — don't ship a default public token.",
+    "Re-test mobile performance separately; Mapbox SDKs have their own quirks."
+  ],
+  "email": {
+    "subject": "Migrating from CARTO to Mapbox",
+    "body": "Hi team,\n\nWe're planning to move our maps from CARTO to Mapbox. The driver is that our use case is increasingly about rich client-side map UX (web + mobile) rather than spatial SQL analytics, and Mapbox's tiles + SDKs are a stronger fit there.\n\nPlan at a high level:\n1. Export CARTO datasets (GeoJSON/Shapefile) and inventory all SQL/views still in use.\n2. Move analytical queries upstream to our warehouse so we no longer depend on CARTO's SQL API.\n3. Upload tilesets to Mapbox and rebuild styles in Mapbox Studio.\n4. Swap embeds and SDK calls to mapbox-gl-js / mobile SDKs.\n5. Validate performance, token scoping, and pricing meters before cutover.\n\nEstimated effort: 1-3 weeks depending on how many maps and dashboards we re-create. I'll share a more detailed plan once the inventory is done.\n\nThanks"
+  }
+}

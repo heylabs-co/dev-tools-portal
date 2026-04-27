@@ -1,0 +1,76 @@
+{
+  "source": {
+    "slug": "veriff",
+    "name": "Veriff"
+  },
+  "target": {
+    "slug": "pliance",
+    "name": "Pliance"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "Move from Veriff's identity verification SaaS to Pliance's developer-first AML / sanctions / PEP API stack focused on EU and Nordic compliance.",
+  "why_switch": [
+    "Strong AML focus — sanctions, PEP and ongoing monitoring as first-class APIs",
+    "Swedish hosting and GDPR posture comfortable for EU fintechs",
+    "Developer-first APIs with documented SDKs",
+    "Combines CDD, screening and transaction monitoring in one stack",
+    "Better fit if you actually need AML rather than only document verification"
+  ],
+  "what_to_export": [
+    "Verification sessions and decisions",
+    "Identity attributes (name, DOB, address, document references)",
+    "Webhook event history",
+    "User-to-session ID mapping",
+    "Audit logs and reviewer actions",
+    "Decision thresholds and step-up rules",
+    "Retention and deletion records",
+    "Any custom workflow configurations"
+  ],
+  "export_method": "Request a data export through Veriff support and, in parallel, ensure all webhook payloads have already been persisted to your own database. Use your internal store as the source of truth during cutover. Consult Veriff's official documentation for current export procedures and retention obligations.",
+  "import_method": "Plan Pliance as the AML / screening layer; if you also need document verification, keep that in a separate provider or evaluate whether Pliance's flows cover your needs. Wire customer onboarding to call Pliance's screening and monitoring APIs, persist case IDs against your user records, and subscribe to ongoing-monitoring alerts. Consult Pliance's official docs for current endpoints and SDK versions.",
+  "concept_mapping": [
+    {
+      "source": "Veriff verification session",
+      "target": "Pliance customer / case",
+      "note": "Different primitive — Pliance is screening-centric, not document-centric"
+    },
+    {
+      "source": "Document + selfie check",
+      "target": "Not a 1:1 equivalent",
+      "note": "Confirm whether Pliance covers your document verification needs or pair with a separate KYC vendor"
+    },
+    {
+      "source": "Decision webhook",
+      "target": "Screening / monitoring webhook",
+      "note": "Different events: hits, status changes, ongoing alerts"
+    },
+    {
+      "source": "Verification configuration",
+      "target": "Screening configuration",
+      "note": "Configure lists, thresholds and adverse-media settings"
+    },
+    {
+      "source": "User mapping",
+      "target": "Customer entity",
+      "note": "Map your user IDs onto Pliance customer records for ongoing monitoring"
+    },
+    {
+      "source": "Subscription tier",
+      "target": "Custom contract",
+      "note": "Pliance pricing is sales-led; budget time for procurement"
+    }
+  ],
+  "effort": "4-10 weeks",
+  "gotchas": [
+    "Pliance and Veriff overlap only partially — clarify which problem you are actually solving (KYC vs AML)",
+    "If you still need document verification, plan a hybrid stack",
+    "Custom contract means pricing transparency drops — negotiate exit terms up front",
+    "Ongoing monitoring creates new alert volume your ops team must handle",
+    "EU focus means non-EU coverage may be thinner — validate target geographies",
+    "Retain Veriff records as required by regulation even after migration"
+  ],
+  "email": {
+    "subject": "Notice of non-renewal — Veriff",
+    "body": "Hello Veriff team,\n\nWe are migrating our compliance stack to a different provider and will not be renewing our current Veriff subscription.\n\nPlease confirm the effective end date, the process to export our verification records and audit logs, and the data deletion timeline after termination.\n\nThanks for the partnership.\n\nBest regards,"
+  }
+}

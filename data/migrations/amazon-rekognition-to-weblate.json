@@ -1,0 +1,70 @@
+{
+  "source": {
+    "slug": "amazon-rekognition",
+    "name": "Amazon Rekognition"
+  },
+  "target": {
+    "slug": "weblate",
+    "name": "Weblate"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "Rekognition is a vision API and Weblate is a translation management platform; this is adopting Weblate for localization workflows, not a direct replacement.",
+  "why_switch": [
+    "Weblate is open source and self-hostable, eliminating vendor lock-in.",
+    "Native Git integration keeps translations in version control.",
+    "Translator UI for non-technical contributors.",
+    "Supports many file formats out of the box.",
+    "Better fit when the goal is managing translations across teams."
+  ],
+  "what_to_export": [
+    "Existing translation files (po, json, xliff, properties, etc.)",
+    "List of supported locales",
+    "Source language",
+    "Project structure (per-app, per-component, etc.)",
+    "User and translator list with roles",
+    "Glossaries or translation memory (if any)",
+    "Quality check rules in use",
+    "Sample screens per locale for QA"
+  ],
+  "export_method": "Collect translation files from your repo or current TMS in their native format. If translations don't yet exist, extract source strings from code into a supported file format (e.g., JSON, gettext PO, XLIFF). Consult Weblate official docs for the supported list of formats.",
+  "import_method": "Set up a Weblate instance (self-hosted or hosted) and connect it to a Git repository containing the translation files. Configure components per file/locale layout, add languages, and invite translators. Weblate will commit translation changes back to Git automatically. Consult Weblate official docs for component configuration and CI integration.",
+  "concept_mapping": [
+    {
+      "source": "Rekognition API call",
+      "target": "n/a",
+      "note": "Different domain."
+    },
+    {
+      "source": "AWS SDK",
+      "target": "Weblate UI / API",
+      "note": "Translation workflow tool, not a runtime library."
+    },
+    {
+      "source": "IAM user",
+      "target": "Weblate user with role",
+      "note": "RBAC at the project/component level."
+    },
+    {
+      "source": "Region",
+      "target": "Language/locale",
+      "note": "Conceptual mapping only."
+    },
+    {
+      "source": "S3 input",
+      "target": "Git repository",
+      "note": "Source of truth becomes Git, not S3."
+    }
+  ],
+  "effort": "1-3 days for setup and initial import",
+  "gotchas": [
+    "Self-hosting Weblate adds infra responsibility (DB, backups, upgrades).",
+    "File format choice affects what features (plurals, context) you get.",
+    "Machine translation backends require their own API keys and billing.",
+    "Git history can grow large with many small translation commits.",
+    "Weblate does not replace a runtime i18n library — pair it with one (FormatJS, react-intl, next-intl, etc.)."
+  ],
+  "email": {
+    "subject": "Migrating from Amazon Rekognition to Weblate",
+    "body": "Hi team,\n\nRekognition (vision) and Weblate (translation management) cover different needs. If translation workflow is the goal, the plan is to stand up Weblate, connect it to our Git repo, import existing translation files, and onboard translators. Estimated effort: 1-3 days for setup and initial import. We'll still need a runtime i18n library and, if applicable, a separate plan for any vision workloads.\n\nThanks"
+  }
+}

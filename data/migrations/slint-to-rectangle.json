@@ -1,0 +1,68 @@
+{
+  "source": {
+    "slug": "slint",
+    "name": "Slint"
+  },
+  "target": {
+    "slug": "rectangle",
+    "name": "Rectangle"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "Slint and Rectangle do not overlap — Slint is a GUI toolkit for building apps, Rectangle is a macOS window-snapping utility — so a migration only makes sense if you were misusing Slint for window management or are switching disciplines entirely.",
+  "why_switch": [
+    "You only need macOS window snapping, not a UI toolkit",
+    "You want a free, zero-config tool with keyboard shortcuts and drag-to-snap",
+    "You prefer a turnkey app over building UI yourself",
+    "You're moving off cross-platform UI work and just need a productivity utility",
+    "You want zero telemetry and no account requirement"
+  ],
+  "what_to_export": [
+    "Source .slint files (kept as archive)",
+    "List of supported platforms you previously targeted",
+    "Custom widgets and components (kept as archive)",
+    "Build configuration (Cargo.toml, CMakeLists, package.json)",
+    "Any keyboard-shortcut conventions you want to mirror in Rectangle",
+    "Window-size presets your app used (for reference)"
+  ],
+  "export_method": "Slint apps live in your repo as plain source. There is nothing to 'export' — keep the project as-is or archive it. Consult Slint's official docs for any platform-specific build artifacts.",
+  "import_method": "Rectangle is installed from rectangleapp.com or via Homebrew (brew install --cask rectangle) — confirm install method on the official site. On first launch, grant Accessibility permission and configure shortcuts in Preferences. There is no project import; configuration is per-user.",
+  "concept_mapping": [
+    {
+      "source": "Slint Window component",
+      "target": "Rectangle snap zones",
+      "note": "App-level windowing in Slint vs OS-level window resize in Rectangle — not equivalent."
+    },
+    {
+      "source": "Slint layouts",
+      "target": "Rectangle half/quarter shortcuts",
+      "note": "Rectangle ships built-in layout actions; consult official docs for the current set."
+    },
+    {
+      "source": "Slint key handlers",
+      "target": "Rectangle global shortcuts",
+      "note": "Configured in the Rectangle preferences pane."
+    },
+    {
+      "source": "Cross-platform builds",
+      "target": "macOS only",
+      "note": "Rectangle is macOS-only; no Windows or Linux equivalent."
+    },
+    {
+      "source": "Custom UI widgets",
+      "target": "Pro custom grids (paid tier)",
+      "note": "Rectangle Pro adds custom grids — check official site for current pricing."
+    }
+  ],
+  "effort": "30 min - 2 hours (just install Rectangle and set shortcuts). Archiving the Slint project is bookkeeping.",
+  "gotchas": [
+    "These products are not interchangeable — be sure Rectangle actually fits your need",
+    "Rectangle requires macOS Accessibility permission to function",
+    "Multi-monitor setups may need manual tweaks",
+    "No automation API for scripted layouts",
+    "If you needed full i3-style tiling, look at other tools — consult comparisons"
+  ],
+  "email": {
+    "subject": "Switching from Slint to Rectangle",
+    "body": "Hi,\n\nThese two tools cover different problems, but for the use-case at hand (macOS window snapping) Rectangle is a better fit than building UI in Slint. I'll archive the Slint project and document the Rectangle shortcuts I land on. No migration tooling needed.\n\nThanks"
+  }
+}

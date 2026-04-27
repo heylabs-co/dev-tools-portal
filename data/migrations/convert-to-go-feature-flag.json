@@ -1,0 +1,75 @@
+{
+  "source": {
+    "slug": "convert",
+    "name": "Convert"
+  },
+  "target": {
+    "slug": "go-feature-flag",
+    "name": "GO Feature Flag"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "Replace Convert's SaaS feature flagging with GO Feature Flag, a self-hosted, OpenFeature-native MIT solution with 15+ language SDKs.",
+  "why_switch": [
+    "Free, MIT-licensed alternative to Convert's monthly subscription",
+    "OpenFeature-native; portable across providers later",
+    "15+ language SDKs via the relay proxy for polyglot stacks",
+    "Flag definitions live in Git, S3, or HTTP for GitOps workflows",
+    "Local evaluation removes per-call remote latency"
+  ],
+  "what_to_export": [
+    "All flag keys and variants",
+    "Targeting rules and segment definitions",
+    "Rollout percentages and gradual rollout schedules",
+    "Default values and fallbacks per flag",
+    "Context attributes used for targeting",
+    "Environment overrides (dev/staging/prod)",
+    "Stale flags to retire during migration",
+    "A/B experiment definitions to handle separately"
+  ],
+  "export_method": "Use Convert's dashboard or API (consult official Convert docs for the current export endpoint) to retrieve flags, variants, and targeting rules. If a bulk export is unavailable, script their REST API or transcribe definitions. Convert each flag into the GO Feature Flag YAML/JSON schema described in the official gofeatureflag.org docs.",
+  "import_method": "Store flag definitions in Git (or S3/HTTP) using the GO Feature Flag schema. Run the GO Feature Flag relay proxy and point it at that source. In each service, install the OpenFeature SDK for that language plus the GO Feature Flag provider, then call OpenFeature's getBooleanValue / getStringValue / getObjectValue for evaluation. For Go services, you can embed the library directly without the relay proxy.",
+  "concept_mapping": [
+    {
+      "source": "Convert flag",
+      "target": "GO Feature Flag flag entry",
+      "note": "Defined in YAML/JSON, stored in Git/S3/HTTP"
+    },
+    {
+      "source": "Variation",
+      "target": "Variation",
+      "note": "Named values returned by evaluation"
+    },
+    {
+      "source": "Targeting rule",
+      "target": "Rule with rollout strategy",
+      "note": "Percentage, progressive, scheduled rollouts supported"
+    },
+    {
+      "source": "SDK call",
+      "target": "OpenFeature client",
+      "note": "Use OpenFeature SDK with the GO Feature Flag provider"
+    },
+    {
+      "source": "Dashboard",
+      "target": "Git-based config + optional editors",
+      "note": "Primary workflow is GitOps; consult docs for any UI options"
+    },
+    {
+      "source": "Environment",
+      "target": "Per-env relay proxy / config source",
+      "note": "Separate config files or branches per environment"
+    }
+  ],
+  "effort": "2-5 days",
+  "gotchas": [
+    "You own the operational story: relay proxy deployment, scaling, HA",
+    "UI is less polished than SaaS; non-engineers may need a separate workflow",
+    "Experimentation analytics are basic; pair with a dedicated analytics tool if needed",
+    "At very high QPS, plan SDK caching / relay proxy scaling carefully",
+    "Keep OpenFeature SDK and GO Feature Flag provider versions aligned to avoid evaluation drift"
+  ],
+  "email": {
+    "subject": "Moving feature flags from Convert to GO Feature Flag",
+    "body": "Hi team,\n\nWe're moving feature flagging from Convert to GO Feature Flag so we get a self-hosted, OpenFeature-native setup at zero subscription cost. Plan: export Convert's flags and targeting, encode them in GO Feature Flag's YAML schema in Git, run the relay proxy, and swap services to the OpenFeature SDK plus the GO Feature Flag provider. Polyglot services pick up the same flags via the relay. We'll handle experimentation analytics separately. Effort estimate: 2-5 days.\n\nThanks"
+  }
+}

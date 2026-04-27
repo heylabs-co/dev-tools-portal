@@ -1,0 +1,75 @@
+{
+  "source": {
+    "slug": "convert",
+    "name": "Convert"
+  },
+  "target": {
+    "slug": "flagd",
+    "name": "flagd"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "Replace Convert's SaaS feature flagging with flagd, the OpenFeature reference daemon for self-hosted HTTP/gRPC flag evaluation.",
+  "why_switch": [
+    "Eliminate Convert's monthly subscription with free OSS",
+    "Standardize on the OpenFeature spec for portability",
+    "HTTP and gRPC evaluation works across polyglot services",
+    "Built-in OpenTelemetry tracing for every flag evaluation",
+    "Self-host with full control over availability and data"
+  ],
+  "what_to_export": [
+    "All flag keys and variants",
+    "Default on/off / variant values per environment",
+    "Targeting rules and segments",
+    "Rollout percentages",
+    "Context attributes used for targeting",
+    "Stale or archived flags to drop instead of migrate",
+    "Any A/B experiment definitions to handle separately",
+    "Owners and descriptions for documentation"
+  ],
+  "export_method": "Use Convert's dashboard or API (consult official Convert docs for the current export endpoint) to dump flags, variants, and targeting rules. If no bulk export exists, script the REST API. Translate audience/targeting rules into the data shape you'll need for flagd's flag definition file format described in the official flagd docs.",
+  "import_method": "Run flagd as a sidecar or standalone daemon and point it at a flag definition source (file, HTTP endpoint, or supported store, per official flagd docs). Recreate each Convert flag as a flagd flag entry with variants and targeting rules. In your services, install the matching OpenFeature SDK and the flagd provider, then replace each Convert SDK call with OpenFeature client.getBooleanValue / getStringValue / etc. Wire OpenTelemetry to capture evaluation traces.",
+  "concept_mapping": [
+    {
+      "source": "Convert flag",
+      "target": "flagd flag entry",
+      "note": "Defined in JSON/YAML flag definition"
+    },
+    {
+      "source": "Variation",
+      "target": "Variant",
+      "note": "Named variants returned by evaluation"
+    },
+    {
+      "source": "Targeting rule",
+      "target": "Targeting expression",
+      "note": "Evaluated locally by flagd"
+    },
+    {
+      "source": "SDK call",
+      "target": "OpenFeature client",
+      "note": "client.getBooleanValue / getStringValue with flagd provider"
+    },
+    {
+      "source": "Dashboard",
+      "target": "Bring your own UI",
+      "note": "flagd has minimal UI; configuration is file-driven"
+    },
+    {
+      "source": "Environment",
+      "target": "Per-env flagd instance / config",
+      "note": "Separate definition files or sources per environment"
+    }
+  ],
+  "effort": "2-5 days",
+  "gotchas": [
+    "flagd has minimal UI; non-engineers will miss Convert's dashboard",
+    "You own the operational stack: deployment, HA, secrets, upgrades",
+    "Configuration is file-driven; treat flag definitions as code with review",
+    "No built-in experimentation analytics; pair with a separate analytics tool",
+    "Schema and provider versions must match between flagd and the OpenFeature SDKs you use"
+  ],
+  "email": {
+    "subject": "Moving feature flags from Convert to flagd (OpenFeature)",
+    "body": "Hi team,\n\nWe're moving feature flagging from Convert to flagd so we standardize on the OpenFeature spec and drop the subscription. Plan: export flags and targeting rules from Convert, recreate them in flagd's definition file, run flagd as a sidecar, and swap our SDK calls to OpenFeature clients with the flagd provider. We pick up OpenTelemetry tracing on every evaluation as a bonus. Heads up: flagd is a daemon, not a polished dashboard, so we'll decide separately how to handle the non-engineer flag UI. Effort estimate: 2-5 days.\n\nThanks"
+  }
+}

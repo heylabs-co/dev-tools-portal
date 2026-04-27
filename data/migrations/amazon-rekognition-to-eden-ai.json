@@ -1,0 +1,75 @@
+{
+  "source": {
+    "slug": "amazon-rekognition",
+    "name": "Amazon Rekognition"
+  },
+  "target": {
+    "slug": "eden-ai",
+    "name": "Eden AI"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "Move from Amazon Rekognition's vision API to Eden AI's unified multi-provider AI gateway to reduce single-vendor lock-in and gain provider flexibility.",
+  "why_switch": [
+    "Eden AI aggregates multiple AI providers behind one API, reducing reliance on a single cloud.",
+    "Lower entry pricing tier compared to Rekognition's subscription model.",
+    "Easier provider swapping if one backend's quality or price changes.",
+    "Unified billing and playground simplify experimentation across vision and NLP tasks.",
+    "Avoids deep AWS IAM/SDK coupling for teams not otherwise on AWS."
+  ],
+  "what_to_export": [
+    "List of Rekognition API calls in use (DetectLabels, DetectFaces, etc.)",
+    "Custom Labels project models and training datasets (if any)",
+    "Face collections and indexed face IDs",
+    "S3 bucket references used as input sources",
+    "IAM roles and policies tied to Rekognition",
+    "Any stored confidence thresholds and label filters",
+    "CloudWatch logs/metrics for usage baselines",
+    "Sample input/output pairs for regression testing"
+  ],
+  "export_method": "There is no single Rekognition export tool. Inventory current usage by listing models (DescribeProjects, DescribeProjectVersions for Custom Labels) and face collections (ListCollections, ListFaces) via the AWS CLI or SDK. Pull underlying training images from your S3 buckets directly. Save the resulting metadata as JSON for reference. Consult AWS official docs for exact commands.",
+  "import_method": "Eden AI does not natively import AWS Rekognition assets. Recreate workflows by calling Eden AI's unified API endpoints for the corresponding tasks (e.g., object detection, face recognition) and selecting a provider per request. Re-upload any reference images or face datasets through whichever provider Eden AI routes to. Validate against your saved sample input/output pairs. Consult Eden AI official docs for endpoint details.",
+  "concept_mapping": [
+    {
+      "source": "DetectLabels",
+      "target": "Object/Label detection endpoint",
+      "note": "Eden AI exposes equivalent functionality across multiple providers; verify provider parity."
+    },
+    {
+      "source": "DetectFaces",
+      "target": "Face detection endpoint",
+      "note": "Confidence values and attribute lists differ between providers."
+    },
+    {
+      "source": "Face Collections / IndexFaces",
+      "target": "Face recognition feature (provider-dependent)",
+      "note": "Not all providers behind Eden AI support persistent face collections; check docs."
+    },
+    {
+      "source": "Custom Labels",
+      "target": "Custom model training (provider-dependent)",
+      "note": "May require switching to a provider that supports custom vision; otherwise retrain elsewhere."
+    },
+    {
+      "source": "AWS IAM auth",
+      "target": "Eden AI API key",
+      "note": "Single API key replaces AWS sigv4 signing."
+    },
+    {
+      "source": "S3 input URIs",
+      "target": "Direct upload or public URL",
+      "note": "Confirm upload size limits in Eden AI docs."
+    }
+  ],
+  "effort": "1-2 weeks",
+  "gotchas": [
+    "Label taxonomies and confidence scales differ between providers; thresholds need re-tuning.",
+    "Face recognition accuracy varies; run side-by-side validation before cutover.",
+    "Custom Labels models cannot be transferred — retraining is required if you used them.",
+    "Latency profile changes once requests route through an aggregator.",
+    "Compliance/data-residency posture differs from AWS — review for regulated workloads."
+  ],
+  "email": {
+    "subject": "Migrating from Amazon Rekognition to Eden AI",
+    "body": "Hi team,\n\nWe're planning to move our vision/AI workloads from Amazon Rekognition to Eden AI to reduce single-vendor lock-in and simplify provider swaps. The plan: inventory current Rekognition usage (labels, face collections, custom models), map each call to an Eden AI endpoint, and validate output parity on a saved sample set before cutover. Estimated effort is 1-2 weeks. I'll share a detailed checklist and rollback plan before we start.\n\nThanks"
+  }
+}

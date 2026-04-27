@@ -1,0 +1,76 @@
+{
+  "source": {
+    "slug": "braze",
+    "name": "Braze"
+  },
+  "target": {
+    "slug": "courier",
+    "name": "Courier"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "Move from Braze's all-in-one engagement suite to Courier's notification routing API with template management across channels.",
+  "why_switch": [
+    "Lower entry cost vs. Braze enterprise contracts",
+    "Simpler notification API surface focused on routing",
+    "Channel abstraction (push, email, SMS, Slack, in-app) behind one template",
+    "Less platform lock-in around segmentation and journeys",
+    "Freemium tier on Courier vs. paid-only Braze"
+  ],
+  "what_to_export": [
+    "User profiles and external IDs",
+    "Custom user attributes",
+    "Push tokens (APNs, FCM)",
+    "Email templates and message copy",
+    "Segments / audience definitions",
+    "Canvas / journey logic (for re-implementation)",
+    "Event schema and naming conventions",
+    "Subscription/preference data",
+    "Recent campaign analytics for benchmarks"
+  ],
+  "export_method": "Use Braze's REST API and the user export endpoints to pull profiles, attributes, and event history; export templates and Canvas definitions through the Braze dashboard or API where supported. For data not exposed via API (e.g., some campaign analytics), request a CSV export through Braze support or use scheduled S3 exports if your plan includes Currents. Verify tokens (push, email subscription state) are included before disconnecting.",
+  "import_method": "Provision a Courier workspace, configure providers (FCM/APNs, your ESP, SMS) under Channels, then upload or recreate templates in Courier's template editor. Push user data via the Courier API (profile/preferences endpoints) and adapt your application code to call Courier's send API instead of Braze's. Re-implement journey logic using Courier's Automations or your own orchestration layer. Consult official Courier docs for current endpoint shapes.",
+  "concept_mapping": [
+    {
+      "source": "Braze user profile",
+      "target": "Courier user profile",
+      "note": "Maps via external_id; verify attribute naming."
+    },
+    {
+      "source": "Canvas (journey)",
+      "target": "Automations",
+      "note": "Feature parity is partial — re-design flows, do not assume 1:1."
+    },
+    {
+      "source": "Campaign",
+      "target": "Send / Notification",
+      "note": "Courier is more API-driven; scheduled blasts may need an external scheduler."
+    },
+    {
+      "source": "Segment",
+      "target": "Lists / audience filters",
+      "note": "Confirm current Courier audience capabilities in docs."
+    },
+    {
+      "source": "Liquid templating",
+      "target": "Courier template variables",
+      "note": "Syntax differs — re-test merge fields."
+    },
+    {
+      "source": "Subscription groups",
+      "target": "Preferences",
+      "note": "Map per-channel opt-ins explicitly."
+    }
+  ],
+  "effort": "3-6 weeks",
+  "gotchas": [
+    "Push token format and provider credentials must be re-uploaded; tokens are tied to bundle IDs.",
+    "Liquid vs. Courier template syntax differences will break personalization if copy-pasted.",
+    "Journey re-implementation rarely maps 1:1 — budget design time.",
+    "Analytics history does not transfer; keep a Braze read-only seat during transition.",
+    "Run both platforms in parallel for one full lifecycle window before cutover."
+  ],
+  "email": {
+    "subject": "Migrating from Braze to Courier",
+    "body": "Hi team,\n\nWe're planning a migration from Braze to Courier for our messaging stack. The goal is a simpler, API-first notification layer with lower fixed cost.\n\nHigh-level plan: export user profiles, attributes, push tokens, templates, and segment definitions from Braze; recreate templates and re-route sends through Courier; re-implement journeys as Courier Automations or in our own orchestration. We'll run both systems in parallel for a lifecycle window before cutting over.\n\nEstimated effort: 3-6 weeks. Main risks: template syntax differences, journey re-design, and analytics history not transferring.\n\nLet me know if you want to review the cutover checklist."
+  }
+}

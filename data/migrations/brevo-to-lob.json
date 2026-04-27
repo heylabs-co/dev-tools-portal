@@ -1,0 +1,75 @@
+{
+  "source": {
+    "slug": "brevo",
+    "name": "Brevo"
+  },
+  "target": {
+    "slug": "lob",
+    "name": "Lob"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "Lob is a direct (physical) mail API, not an email/SMS provider, so this is a channel switch rather than a like-for-like migration — only do it if you're replacing digital messages with printed mail.",
+  "why_switch": [
+    "Reach recipients via physical mail when email deliverability or engagement is poor",
+    "Programmatic postcards, letters, and checks via API",
+    "Useful for compliance documents, KYC, or high-value retention pieces",
+    "Adds an offline channel; does not replace transactional email at parity"
+  ],
+  "what_to_export": [
+    "Audit of which Brevo flows you actually want delivered as physical mail",
+    "Recipient name + postal address fields (these may not exist in your current Brevo data)",
+    "Templates that need to be redesigned for print (PDF/HTML print layouts)",
+    "Suppression / do-not-mail list",
+    "Brand assets (logo, fonts) at print resolution",
+    "Existing Brevo templates and contact attributes for reference",
+    "Webhook handlers for delivery events",
+    "Compliance and consent records for postal contact"
+  ],
+  "export_method": "From Brevo, export contacts and templates via the official API or dashboard — consult Brevo's current documentation. Most Brevo contact records will not include verified postal addresses, so plan an address-collection or address-verification step before any Lob send.",
+  "import_method": "Create a Lob account, set up an API key, and rebuild templates as print-ready HTML/PDF per Lob's documentation. Verify and standardize addresses through Lob's address verification flow before sending. Hook delivery and tracking webhooks into your existing event pipeline. Start with a small test batch before scaling up.",
+  "concept_mapping": [
+    {
+      "source": "Email send",
+      "target": "Lob postcard / letter send",
+      "note": "Different channel, different latency and cost profile"
+    },
+    {
+      "source": "Email template",
+      "target": "Print template (HTML/PDF)",
+      "note": "Page size, bleed, and resolution requirements differ"
+    },
+    {
+      "source": "Email address",
+      "target": "Verified postal address",
+      "note": "Run through address verification before sending"
+    },
+    {
+      "source": "Unsubscribe",
+      "target": "Do-not-mail list",
+      "note": "Maintain a separate suppression list for physical mail"
+    },
+    {
+      "source": "Open / click events",
+      "target": "Delivery / scan events",
+      "note": "Tracking semantics differ; no opens or clicks"
+    },
+    {
+      "source": "Marketing automation",
+      "target": "n/a",
+      "note": "Lob is a sending API, not an automation platform"
+    }
+  ],
+  "effort": "1-3 weeks",
+  "gotchas": [
+    "Physical mail has per-piece printing and postage cost — far higher than email",
+    "You almost certainly need to collect and verify postal addresses you don't have today",
+    "Delivery latency is days, not seconds — flows assuming instant delivery must be redesigned",
+    "Print artwork has strict size, bleed, and resolution requirements",
+    "Do not retire Brevo until you confirm Lob covers the underlying use case (most likely it doesn't fully)",
+    "Regional availability and postage rates vary; confirm in the official Lob documentation"
+  ],
+  "email": {
+    "subject": "Reframing the Brevo → Lob 'migration'",
+    "body": "Hi team,\n\nA note before we start: Lob is a physical mail API (postcards, letters, checks), so it isn't a drop-in replacement for Brevo's email/SMS sending. We should treat this as adding or swapping a channel, not as a 1:1 migration.\n\nIf the goal is genuinely to move some flows to direct mail, we need to: collect/verify postal addresses, redesign templates for print, set up Lob webhooks, and run a small pilot. For the email and SMS work currently in Brevo, we'd still need a separate plan if we're moving off Brevo at all.\n\nCan we align on which specific flows are in scope before I write the runbook?\n\nThanks"
+  }
+}

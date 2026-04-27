@@ -1,0 +1,76 @@
+{
+  "source": {
+    "slug": "please-build",
+    "name": "Please Build"
+  },
+  "target": {
+    "slug": "hermit",
+    "name": "Hermit"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "Different layers — Please is a build system, Hermit pins CLI tools — so this swap typically means dropping a fine-grained build graph in favor of simpler tool-pinning plus ad-hoc scripts, and only fits if the build complexity isn't paying off.",
+  "why_switch": [
+    "Build graph maintenance cost outweighs caching benefits at current scale",
+    "Team prefers simpler scripts plus pinned tools over BUILD files",
+    "Want lighter onboarding without learning Please rules",
+    "Concerned about long-term maintenance momentum of the build system",
+    "Hermit's hermetic tool installs cover the reproducibility you actually need"
+  ],
+  "what_to_export": [
+    "All BUILD files and the targets they define",
+    "Toolchain versions Please was managing for builds",
+    "Test commands per package",
+    "Outputs and artifact paths produced by plz build",
+    "CI commands invoking plz",
+    "Remote cache configuration (you will lose this)",
+    "Custom rules or build_defs you've authored",
+    "External dependency declarations"
+  ],
+  "export_method": "No automated path. Walk every BUILD file and translate targets into equivalent shell commands or Make targets — these will replace plz invocations. Capture toolchain versions Please was pinning so you can install them via Hermit. Custom rules need full rewrites as scripts. Confirm any Please CLI behavior against the official Please documentation before relying on it.",
+  "import_method": "Install Hermit per the official guide. Run hermit install for each toolchain version you extracted (compilers, linters, build helpers). Replace plz commands in CI and dev workflows with shell scripts or Make targets that call those tools directly. Accept that you lose hermetic build graph and remote caching. Verify Hermit package availability and command syntax against the current official Hermit documentation.",
+  "concept_mapping": [
+    {
+      "source": "BUILD file targets",
+      "target": "Make / shell scripts",
+      "note": "Each plz target becomes an equivalent script"
+    },
+    {
+      "source": "plz build / plz test",
+      "target": "Direct compiler/test invocation",
+      "note": "Through tools installed via Hermit"
+    },
+    {
+      "source": "Toolchain pins in Please",
+      "target": "hermit install <tool>@<version>",
+      "note": "Verify catalog availability"
+    },
+    {
+      "source": "Remote cache",
+      "target": "(no equivalent)",
+      "note": "Hermit does not cache build outputs"
+    },
+    {
+      "source": "Hermetic builds",
+      "target": "(partial)",
+      "note": "Hermit gives hermetic tools, not hermetic build sandbox"
+    },
+    {
+      "source": "Custom build_defs",
+      "target": "Shell functions",
+      "note": "Rewrite logic into plain scripts"
+    }
+  ],
+  "effort": "1-2 weeks",
+  "gotchas": [
+    "You lose remote build caching — CI may slow down significantly",
+    "You lose incremental, fine-grained rebuild detection",
+    "Tools and build system are not equivalent; this is a downgrade in build capability",
+    "Custom rules require full rewrites with no automation",
+    "If the repo is large, ditching Please without a replacement build system will hurt",
+    "Validate every tool name and command against current Hermit documentation"
+  ],
+  "email": {
+    "subject": "Proposal: drop Please Build, lean on Hermit + scripts",
+    "body": "Hi team,\n\nPlease Build gives us hermetic, cached builds, but the BUILD file maintenance cost has been heavy and remote cache infra has its own overhead. I want to discuss whether dropping Please in favor of Hermit-pinned tools plus shell/Make is right-sized for us.\n\nTrade-offs are real: we lose fine-grained caching and incremental rebuilds. Worth it only if our actual build times are tolerable without them. Estimated 1-2 weeks to migrate. Want to benchmark a no-Please CI run before committing?\n\nThanks"
+  }
+}

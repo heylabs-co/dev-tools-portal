@@ -1,0 +1,85 @@
+{
+  "source": {
+    "slug": "elasticsearch",
+    "name": "Elasticsearch"
+  },
+  "target": {
+    "slug": "pinecone",
+    "name": "Pinecone"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "Not a drop-in swap: Elasticsearch is a lexical/full-text engine, Pinecone is a managed vector DB. You'll re-architect around embeddings, or run them side-by-side for hybrid search.",
+  "why_switch": [
+    "Need semantic/vector search over embeddings instead of keyword/BM25",
+    "Want a fully managed service without cluster ops",
+    "Sub-50ms ANN queries at scale without tuning Lucene",
+    "Tighter fit for RAG and AI-native workloads"
+  ],
+  "what_to_export": [
+    "Index mappings and field schemas",
+    "Source documents (raw text, IDs, metadata) via _source",
+    "Any precomputed embeddings stored in dense_vector fields",
+    "Filter/facet metadata used for hybrid queries",
+    "Synonym lists, analyzers, tokenizer configs (for reference, not portable)",
+    "Query logs and relevance tuning notes",
+    "Access roles and API key inventory",
+    "Snapshot of the cluster for rollback"
+  ],
+  "export_method": "Use Elasticsearch scroll API or _search_after to dump documents to NDJSON; elasticdump or a custom script works. Snapshot to S3-compatible storage as a backup.",
+  "import_method": "Generate embeddings for each document with your chosen model (OpenAI, Cohere, open-source, etc.), then upsert vectors with metadata into a Pinecone index via the official SDK in batches.",
+  "concept_mapping": [
+    {
+      "source": "Index",
+      "target": "Index",
+      "note": "Pinecone index is per-dimension/metric; one Pinecone index ~= one ES index in role"
+    },
+    {
+      "source": "Document _id",
+      "target": "Vector id",
+      "note": "Reuse the same string id to keep external references stable"
+    },
+    {
+      "source": "_source / fields",
+      "target": "metadata",
+      "note": "Pinecone metadata is filter-only and size-limited; keep raw text in your own store"
+    },
+    {
+      "source": "dense_vector field",
+      "target": "values",
+      "note": "Dimension must match index config"
+    },
+    {
+      "source": "match / multi_match query",
+      "target": "query() with embedded text",
+      "note": "Embed the query string with the same model used at index time"
+    },
+    {
+      "source": "filter / term query",
+      "target": "metadata filter",
+      "note": "Pinecone supports $eq, $in, $gt, etc., on metadata"
+    },
+    {
+      "source": "Analyzers / tokenizers",
+      "target": "n/a",
+      "note": "No lexical analysis in Pinecone; handled at the embedding model level"
+    },
+    {
+      "source": "Aggregations",
+      "target": "n/a",
+      "note": "No aggregations; do counts/facets in your app or a separate store"
+    }
+  ],
+  "effort": "2-6 weeks for a single index; longer if you depend heavily on aggregations, custom analyzers, or BM25 relevance",
+  "gotchas": [
+    "Pinecone has no full-text/BM25 — pure keyword queries will regress unless you keep ES or add a hybrid layer",
+    "Embedding cost and latency become a new line item at index and query time",
+    "Metadata size limits mean you cannot store full documents alongside vectors",
+    "Re-embedding everything is required if you change models",
+    "No aggregations or analytics — plan a separate store if you need them",
+    "Lock-in shifts from infra ops to a proprietary vector format and pricing model"
+  ],
+  "email": {
+    "subject": "Migrating our search from Elasticsearch to Pinecone",
+    "body": "Hi team,\n\nWe're moving our search workload from Elasticsearch to Pinecone to support semantic/vector search and reduce cluster ops. This is not a like-for-like swap: Pinecone has no BM25 or aggregations, so we'll re-architect around embeddings and keep a lightweight metadata store for filters.\n\nPlan:\n1. Export documents from ES via scroll API.\n2. Generate embeddings with our chosen model.\n3. Upsert vectors + metadata into Pinecone in batches, reusing existing IDs.\n4. Run both systems in parallel, shadow-test queries, then cut over.\n\nExpected effort: 2-6 weeks. Main risks: relevance regressions on keyword-heavy queries and ongoing embedding costs. I'll share a more detailed design doc this week.\n\nThanks"
+  }
+}

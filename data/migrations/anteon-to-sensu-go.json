@@ -1,0 +1,76 @@
+{
+  "source": {
+    "slug": "anteon",
+    "name": "Anteon"
+  },
+  "target": {
+    "slug": "sensu-go",
+    "name": "Sensu Go"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "Move from Anteon's K8s-centric observability to Sensu Go, an event-driven monitoring pipeline for hybrid and multi-cloud infrastructure.",
+  "why_switch": [
+    "MIT-licensed open-source core with a freemium tier.",
+    "Event-driven model fits hybrid cloud + on-prem better than pure K8s tools.",
+    "Pipeline-as-code declarative configuration.",
+    "Sumo Logic backing for enterprise support if needed.",
+    "Removes Anteon's usage-based ingest billing."
+  ],
+  "what_to_export": [
+    "Existing checks and thresholds",
+    "Alert routing and notification configs",
+    "Dashboards and saved queries",
+    "Asset/agent inventory",
+    "User/team/RBAC mappings",
+    "Integration tokens (Slack, PagerDuty, email)",
+    "Maintenance/silence windows",
+    "Historical event data worth retaining"
+  ],
+  "export_method": "Anteon does not document a unified bundle export. Pull configuration via its API or self-hosted DB; archive historical data to object storage if needed. See Anteon's official docs for current export endpoints.",
+  "import_method": "Sensu Go is installed by deploying the backend, agents on each host/cluster, and the sensuctl CLI (see sensu.io docs for current install steps). Define checks, handlers, and pipelines as YAML/JSON resources and apply via sensuctl. Wire notifications via handlers (Slack, PagerDuty, email). For Kubernetes, install Sensu agents as a DaemonSet and define checks against pods/nodes.",
+  "concept_mapping": [
+    {
+      "source": "Anteon agent on K8s",
+      "target": "Sensu agent (DaemonSet or per-host)",
+      "note": "Sensu agents run anywhere — K8s, VMs, on-prem."
+    },
+    {
+      "source": "Anteon alert rule",
+      "target": "Sensu check + handler pipeline",
+      "note": "Event-driven model: checks generate events, handlers act on them."
+    },
+    {
+      "source": "Anteon dashboards",
+      "target": "Sensu Web UI or Grafana",
+      "note": "Rebuild; integrate metrics via Sensu's metric pipelines."
+    },
+    {
+      "source": "Anteon log aggregation",
+      "target": "Out of scope",
+      "note": "Sensu is monitoring/events-focused; pair with ELK/Loki for logs."
+    },
+    {
+      "source": "Anteon distributed tracing",
+      "target": "Out of scope",
+      "note": "Use Tempo/Jaeger separately."
+    },
+    {
+      "source": "Hosted SaaS billing",
+      "target": "Self-host or paid Sensu tier",
+      "note": "Confirm tier features in Sensu's pricing docs."
+    }
+  ],
+  "effort": "16-40 hours",
+  "gotchas": [
+    "Sensu's event/pipeline model differs from Prometheus-style polling — expect a learning curve.",
+    "Sensu Go does not cover logs or traces; build a complementary stack.",
+    "Releases are less frequent than active SaaS competitors; plan upgrade cadence accordingly.",
+    "Configuration complexity grows with pipeline count — keep it in Git.",
+    "Confirm commercial tier scope with Sumo Logic / Sensu sales if you need support.",
+    "Historical Anteon data won't replay into Sensu; restart with a fresh baseline."
+  ],
+  "email": {
+    "subject": "Migrating from Anteon to Sensu Go",
+    "body": "Hi team,\n\nProposing to switch from Anteon to Sensu Go for monitoring across our hybrid cloud + on-prem footprint. Sensu Go is MIT-licensed, event-driven, and fits non-Kubernetes hosts better than our current setup.\n\nWork: deploy Sensu backend; roll out agents (DaemonSet on K8s, packages on VMs); translate existing alerts into Sensu checks and pipelines; wire Slack/PagerDuty handlers.\n\nNote: Sensu doesn't cover logs/traces — we'll keep or add a separate stack for those.\n\nEstimated effort: 16-40 hours plus a parallel-run window.\n\nWill share a detailed migration doc.\n\nThanks."
+  }
+}

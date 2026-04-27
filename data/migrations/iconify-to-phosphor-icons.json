@@ -1,0 +1,76 @@
+{
+  "source": {
+    "slug": "iconify",
+    "name": "Iconify"
+  },
+  "target": {
+    "slug": "phosphor-icons",
+    "name": "Phosphor Icons"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "Move from Iconify's universal multi-set runtime to Phosphor's curated 1200+ icon family with six weight variants and tree-shakeable framework packages.",
+  "why_switch": [
+    "Single curated visual language instead of mixing styles across many sets",
+    "Six built-in weights (thin, light, regular, bold, fill, duotone) for expressive UI",
+    "Tree-shakeable per-framework packages avoid runtime icon lookups",
+    "MIT-licensed across the whole family with predictable maintenance",
+    "Simpler mental model: one library, one API, one set of names"
+  ],
+  "what_to_export": [
+    "List of every Iconify icon name in use (e.g. mdi:home, ph:gear)",
+    "Icon size, color, and stroke conventions in your design system",
+    "Wrapper components or hooks that resolve Iconify names",
+    "Accessibility props (aria-label, role) attached to icons",
+    "Bundling/SSR config related to Iconify on-demand loading",
+    "Figma icon library mappings or design tokens",
+    "Locations where icons are referenced via raw SVG dump",
+    "Any custom icon sets you registered with Iconify"
+  ],
+  "export_method": "Grep your codebase for Iconify imports and the Iconify component usages to enumerate every icon name. Group names by the source set they came from (e.g. material-symbols, heroicons) and produce a CSV mapping. Iconify icon names live as strings, so a search across .tsx/.vue/.svelte/.html files is usually sufficient. Consult the official Iconify docs for any project-specific export tooling before relying on assumptions.",
+  "import_method": "Install the Phosphor package for your framework (e.g. @phosphor-icons/react, @phosphor-icons/vue) per its official docs. Replace Iconify component calls with named Phosphor imports, choosing the desired weight variant. Update your wrapper component (if any) so consumers pass a Phosphor component instead of a string name. Verify per-icon imports so the bundler can tree-shake.",
+  "concept_mapping": [
+    {
+      "source": "Iconify <Icon icon=\"name\" />",
+      "target": "Named import like <Heart />",
+      "note": "Compile-time import vs runtime string lookup."
+    },
+    {
+      "source": "Mixed icon sets (mdi, heroicons, ph, ...)",
+      "target": "Single Phosphor family",
+      "note": "Pick the closest Phosphor equivalent; some icons may not exist 1:1."
+    },
+    {
+      "source": "On-demand icon API",
+      "target": "Static per-icon imports",
+      "note": "Bundler tree-shakes unused icons; no network fetch."
+    },
+    {
+      "source": "Style via stroke/color props",
+      "target": "weight prop + color/size props",
+      "note": "Phosphor exposes weight variants instead of swapping sets."
+    },
+    {
+      "source": "Iconify Figma plugin",
+      "target": "Phosphor Figma library",
+      "note": "Re-link design components; consult Phosphor docs for current Figma assets."
+    },
+    {
+      "source": "Custom registered icon set",
+      "target": "Custom SVG component",
+      "note": "Phosphor does not aggregate third-party sets; ship your own SVGs separately."
+    }
+  ],
+  "effort": "4-12 hours",
+  "gotchas": [
+    "Not every Iconify icon has a Phosphor equivalent; budget time for substitutes",
+    "Importing all weights for the same icon balloons bundle size — pick one default weight",
+    "SSR/hydration code paths that relied on Iconify's runtime fetch will need removal",
+    "Naming differs (kebab-case strings vs PascalCase components); a manual mapping table helps",
+    "Accessibility attributes must be re-added per icon; defaults differ between libraries",
+    "If you used niche sets (e.g. brand logos) via Iconify, you may need a separate source"
+  ],
+  "email": {
+    "subject": "Switching our icons from Iconify to Phosphor",
+    "body": "Hey team,\n\nI'm planning to migrate our icon usage from Iconify to Phosphor Icons. Phosphor gives us a single curated family with six weights, tree-shakeable framework packages, and an MIT license — which simplifies our design system and trims runtime overhead.\n\nFirst step: I'll grep the codebase for every Iconify name and produce a mapping CSV to Phosphor equivalents (with notes on icons that don't have a 1:1 match). Then I'll swap imports framework-by-framework and verify bundle size and a11y attributes after each pass. Estimated effort: 4-12 hours depending on coverage.\n\nLet me know if you want to weigh in on the default weight or flag icons we should keep as custom SVGs.\n\nThanks"
+  }
+}

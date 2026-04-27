@@ -1,0 +1,71 @@
+{
+  "source": {
+    "slug": "mapbox-js",
+    "name": "Mapbox JS"
+  },
+  "target": {
+    "slug": "opencage",
+    "name": "OpenCage"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "Mapbox JS is a map-rendering SDK; OpenCage is a geocoding API. Only migrate if all you actually used Mapbox JS for was its geocoding helper — otherwise pair OpenCage with a separate map renderer.",
+  "why_switch": [
+    "Lower cost for pure geocoding compared to Mapbox session/request pricing.",
+    "GDPR-friendly EU provider with OSM-aggregated data.",
+    "Simpler REST API than the Mapbox SDK surface.",
+    "Avoids being tied to Mapbox tokens for a non-rendering use case.",
+    "Easier to swap providers later if needed."
+  ],
+  "what_to_export": [
+    "All addresses or coordinates you currently geocode via Mapbox",
+    "Cached geocoding results stored client- or server-side",
+    "Code paths invoking Mapbox geocoding helpers",
+    "Mapbox access tokens and where they're referenced",
+    "Any custom country/region biasing parameters in use",
+    "Quota / usage history from Mapbox dashboard",
+    "Autocomplete UI components if any",
+    "Tests covering geocoding behavior"
+  ],
+  "export_method": "Mapbox JS does not store your data — geocoding results live in your app. Export cached results from your own DB, and pull usage history from the Mapbox account dashboard to size an OpenCage plan. Consult Mapbox's official docs for current usage-export options.",
+  "import_method": "OpenCage is stateless. Replace Mapbox geocoding calls with OpenCage's forward/reverse geocoding endpoint using your OpenCage API key. For autocomplete UI, you will likely build your own debounced input against OpenCage or pick a different autocomplete-focused provider — check OpenCage's official docs for current endpoint behavior and rate limits.",
+  "concept_mapping": [
+    {
+      "source": "Mapbox geocoding (forward)",
+      "target": "OpenCage forward geocoding",
+      "note": "Adjust response parsing."
+    },
+    {
+      "source": "Mapbox geocoding (reverse)",
+      "target": "OpenCage reverse geocoding",
+      "note": "Pass lat,lng."
+    },
+    {
+      "source": "Mapbox access token in browser",
+      "target": "Server-side OpenCage key",
+      "note": "Don't ship OpenCage keys in client JS."
+    },
+    {
+      "source": "Mapbox map rendering (GL JS)",
+      "target": "Not provided",
+      "note": "Keep Mapbox/MapLibre or another renderer."
+    },
+    {
+      "source": "Country/proximity biasing",
+      "target": "OpenCage params",
+      "note": "Names differ; map carefully."
+    }
+  ],
+  "effort": "4-12 hours",
+  "gotchas": [
+    "OpenCage does not render maps — keep your map SDK separate.",
+    "Don't expose OpenCage keys in browser code; route via your backend.",
+    "Autocomplete UX is not a drop-in: OpenCage is request/response, not a typeahead widget.",
+    "Result schemas differ; update parsers and confidence thresholds.",
+    "Watch rate limits when backfilling at scale.",
+    "Re-check attribution requirements for OSM-derived results."
+  ],
+  "email": {
+    "subject": "Migrating geocoding off Mapbox JS to OpenCage",
+    "body": "Hi team,\n\nFor our geocoding-only workload we're considering moving from Mapbox JS to OpenCage. The map rendering use cases would stay where they are; this is purely about address <-> lat/lng calls.\n\nPlan:\n1. Confirm which Mapbox calls are pure geocoding vs map rendering.\n2. Move geocoding calls server-side and swap to OpenCage.\n3. Adjust response parsing and biasing params.\n4. Keep map rendering on the existing SDK.\n5. Spot-check accuracy and rate-limit headroom.\n\nEstimated effort: 4-12 hours.\n\nThanks"
+  }
+}

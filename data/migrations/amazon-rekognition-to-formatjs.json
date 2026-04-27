@@ -1,0 +1,70 @@
+{
+  "source": {
+    "slug": "amazon-rekognition",
+    "name": "Amazon Rekognition"
+  },
+  "target": {
+    "slug": "formatjs",
+    "name": "FormatJS"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "These tools serve different purposes — Rekognition is a vision API, FormatJS is an open-source i18n library — so this is a workflow change, not a 1:1 migration.",
+  "why_switch": [
+    "FormatJS is free and open source with no vendor lock-in.",
+    "Standards-based ICU MessageFormat support for pluralization and rich formatting.",
+    "Strong React ecosystem integration via react-intl.",
+    "No per-request billing or quota concerns.",
+    "Better fit if your real need is application-level internationalization rather than image analysis."
+  ],
+  "what_to_export": [
+    "Existing translation strings and message catalogs (if any)",
+    "Locale list currently supported",
+    "Any AWS-side text or label outputs being shown to users",
+    "Pluralization and date/number formatting rules in use",
+    "Fallback locale strategy",
+    "Source-of-truth language (typically en)",
+    "Any custom translation memory or glossaries",
+    "Sample UI screens for QA in each locale"
+  ],
+  "export_method": "If you have no existing translation pipeline, start by extracting hardcoded user-facing strings from your codebase. If translations exist elsewhere (spreadsheets, another platform), export them in a structured format such as JSON or CSV keyed by message ID. Consult FormatJS official docs for the recommended message format.",
+  "import_method": "Install the FormatJS toolchain (e.g., @formatjs/cli, react-intl or equivalent runtime) and convert exported strings into ICU MessageFormat message files per locale. Wire up the IntlProvider at the app root, replace hardcoded strings with FormattedMessage components or the intl.formatMessage API, and run the FormatJS extractor to keep catalogs in sync. Consult FormatJS official docs for setup specifics.",
+  "concept_mapping": [
+    {
+      "source": "Rekognition API call",
+      "target": "n/a",
+      "note": "Different domain — no direct equivalent."
+    },
+    {
+      "source": "AWS region/endpoint",
+      "target": "Locale + message catalog",
+      "note": "Configuration is now build-time, not request-time."
+    },
+    {
+      "source": "IAM credentials",
+      "target": "n/a",
+      "note": "FormatJS runs locally — no auth."
+    },
+    {
+      "source": "Confidence threshold",
+      "target": "Fallback locale",
+      "note": "Conceptually replaces 'unsure' handling with a fallback strategy."
+    },
+    {
+      "source": "Per-request cost",
+      "target": "Zero runtime cost",
+      "note": "All formatting happens client/server-side via library."
+    }
+  ],
+  "effort": "4-12 hours for a small app, longer if string extraction is greenfield",
+  "gotchas": [
+    "FormatJS does not perform translation — you still need translators or an MT service.",
+    "ICU MessageFormat has a learning curve for plurals and selectors.",
+    "Bundle size grows with locale data; lazy-load locale data when possible.",
+    "If you genuinely need image analysis, FormatJS is not a replacement — keep Rekognition or pick a vision tool.",
+    "SSR setups (Next.js, Remix) require careful provider placement."
+  ],
+  "email": {
+    "subject": "Migrating from Amazon Rekognition to FormatJS",
+    "body": "Hi team,\n\nNote that Amazon Rekognition (vision API) and FormatJS (i18n library) cover different problems, so this isn't a like-for-like migration. If our actual need is internationalization, the plan is to adopt FormatJS, extract user-facing strings into ICU message catalogs, and wire up IntlProvider in the app. Estimated effort: a few hours to a couple of days depending on string volume. If we still need image analysis, we should keep that tool separately.\n\nThanks"
+  }
+}

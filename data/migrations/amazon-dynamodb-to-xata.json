@@ -1,0 +1,76 @@
+{
+  "source": {
+    "slug": "amazon-dynamodb",
+    "name": "Amazon DynamoDB"
+  },
+  "target": {
+    "slug": "xata",
+    "name": "Xata"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "Migrating from DynamoDB (proprietary NoSQL, key-value/document) to Xata (Postgres-backed serverless platform) is a real data-model shift — plan to redesign tables and rewrite access patterns, not just move rows.",
+  "why_switch": [
+    "Want a relational/SQL model instead of single-table NoSQL design",
+    "Looking to escape AWS-specific lock-in around DynamoDB's API",
+    "Need built-in features like full-text search and branching that Xata advertises",
+    "Prefer simpler, more transparent freemium pricing for smaller workloads",
+    "Team is more comfortable with Postgres than with DynamoDB access patterns"
+  ],
+  "what_to_export": [
+    "Each DynamoDB table's items (full scan or backup-based export)",
+    "Table schemas: primary key, sort key, attribute definitions",
+    "Global and local secondary index definitions",
+    "TTL configuration and stream settings",
+    "IAM policies referencing table ARNs",
+    "Lambda triggers and any DynamoDB Streams consumers",
+    "Application access patterns (which queries hit which keys/indexes)",
+    "Capacity / on-demand settings for cost baselining"
+  ],
+  "export_method": "DynamoDB supports exporting tables to Amazon S3 (point-in-time export to JSON or Ion) without affecting throughput, and you can also use AWS Data Pipeline or a custom scan with the AWS SDK. Confirm the current export options and formats in the official AWS DynamoDB documentation.",
+  "import_method": "In Xata, model your data as Postgres tables and load via Xata's CLI / SDK or by transforming the DynamoDB export into SQL inserts or CSV. Because the data model is different, expect a transformation step rather than a 1:1 import. Check Xata's official docs for the current import paths and CLI commands.",
+  "concept_mapping": [
+    {
+      "source": "DynamoDB table",
+      "target": "Xata table (Postgres)",
+      "note": "Single-table designs usually become several normalized tables"
+    },
+    {
+      "source": "Partition + sort key",
+      "target": "Primary key + indexes",
+      "note": "Redesign around relational queries, not key access"
+    },
+    {
+      "source": "GSIs / LSIs",
+      "target": "Postgres indexes",
+      "note": "Plan indexes against your real query patterns"
+    },
+    {
+      "source": "DynamoDB Streams",
+      "target": "Application-level events / triggers",
+      "note": "Verify Xata's current change-feed / trigger support in docs"
+    },
+    {
+      "source": "On-demand / provisioned capacity",
+      "target": "Xata plan limits",
+      "note": "Different pricing model — re-baseline cost"
+    },
+    {
+      "source": "AWS SDK (DocumentClient)",
+      "target": "Xata SDK / SQL",
+      "note": "All data access code needs to be rewritten"
+    }
+  ],
+  "effort": "2-6 weeks",
+  "gotchas": [
+    "DynamoDB and Postgres have fundamentally different data models — single-table designs rarely port cleanly",
+    "Eventual vs. strong consistency semantics differ; revisit assumptions in your code",
+    "Streams-based architectures (Lambda triggers) need new wiring on Xata",
+    "Hot-key and capacity tuning experience does not transfer to a SQL-based system",
+    "Validate current Xata limits (row size, storage, search) against your DynamoDB workload before committing",
+    "Cost shape changes from per-request to plan-based — model both before cutover"
+  ],
+  "email": {
+    "subject": "Planning migration from DynamoDB to Xata",
+    "body": "Hi team,\n\nWe are evaluating moving our DynamoDB workloads to Xata to get a Postgres-backed model with simpler pricing and less AWS-specific lock-in. This is a meaningful change: the data model and access patterns will need to be redesigned, not just copied.\n\nNear-term plan: export each table to S3, document current access patterns, and prototype the new Xata schema for one service before committing. Please send me the list of tables and the queries you rely on so we can prioritize.\n\nThanks!"
+  }
+}

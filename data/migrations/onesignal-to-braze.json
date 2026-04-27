@@ -1,0 +1,81 @@
+{
+  "source": {
+    "slug": "onesignal",
+    "name": "OneSignal"
+  },
+  "target": {
+    "slug": "braze",
+    "name": "Braze"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "Move from OneSignal's developer-friendly push platform to Braze's enterprise customer engagement suite with Canvas journey orchestration.",
+  "why_switch": [
+    "Need cross-channel journey orchestration (push, in-app, email, SMS, WhatsApp) in one place",
+    "Want richer segmentation, personalization, and lifecycle tooling",
+    "Require enterprise SLAs and account management",
+    "Outgrowing OneSignal's campaign UI for complex marketing flows",
+    "Consolidate engagement under a single CRM-style platform"
+  ],
+  "what_to_export": [
+    "User / device records with external IDs and tags",
+    "Push tokens and channel info (for reference; reregister via SDK)",
+    "Subscription / consent state",
+    "Templates per channel (push, email, in-app, SMS)",
+    "Segments and audience definitions",
+    "Automated message / journey configurations",
+    "Custom user properties and event taxonomy",
+    "Brand / styling assets used in templates"
+  ],
+  "export_method": "Use the OneSignal API to export users (CSV exports for users are typically available) and pull templates and segments via the API. Confirm exact endpoints, export formats, and rate limits in OneSignal's official documentation before scripting.",
+  "import_method": "Integrate the Braze SDKs into iOS/Android/Web apps so users register through Braze and push tokens are captured fresh. Use Braze's REST API (User Track / Users endpoints) to upload historical attributes and events. Rebuild templates, segments, and Canvas journeys inside the Braze dashboard. Verify endpoint names, payload shape, and rate limits in Braze's official documentation before automating bulk imports.",
+  "concept_mapping": [
+    {
+      "source": "OneSignal External User ID",
+      "target": "Braze External ID",
+      "note": "Map your stable user id 1:1 to keep identity consistent"
+    },
+    {
+      "source": "OneSignal Tags",
+      "target": "Braze Custom Attributes",
+      "note": "Convert string/numeric tags to typed Braze attributes"
+    },
+    {
+      "source": "OneSignal Segments",
+      "target": "Braze Segments",
+      "note": "Rebuild filters; semantics differ slightly"
+    },
+    {
+      "source": "OneSignal Templates",
+      "target": "Braze Templates / Content Blocks",
+      "note": "Recreate per channel; consider Content Blocks for reuse"
+    },
+    {
+      "source": "OneSignal Automated Messages",
+      "target": "Braze Canvas",
+      "note": "Multi-step journeys live in Canvas with branching and delays"
+    },
+    {
+      "source": "OneSignal In-App Messages",
+      "target": "Braze In-App Messages",
+      "note": "Rebuild creatives; trigger conditions differ"
+    },
+    {
+      "source": "OneSignal Events / Outcomes",
+      "target": "Braze Custom Events",
+      "note": "Standardize event names and properties before importing"
+    }
+  ],
+  "effort": "40-120 hours",
+  "gotchas": [
+    "Push tokens cannot be transferred — devices must reregister through the Braze SDK after release",
+    "Lock-in increases significantly — Braze accumulates rich profile data that is harder to extract later",
+    "Pricing jumps from freemium to enterprise contracts; negotiate quotas and overages up front",
+    "Identity unification rules differ; plan anonymous-to-known merge behavior carefully",
+    "Event taxonomy should be cleaned up before import — bad names will haunt segmentation",
+    "Run dual-send during cutover and validate deliverability across each channel before disabling OneSignal"
+  ],
+  "email": {
+    "subject": "Migrating from OneSignal to Braze",
+    "body": "Hi team,\n\nWe're planning to move our engagement stack from OneSignal to Braze so we can run cross-channel journeys (push, in-app, email, SMS, WhatsApp) through Canvas with stronger segmentation and enterprise support.\n\nPlan:\n- Export users, tags, segments, templates, and automations from OneSignal\n- Integrate Braze SDKs in iOS/Android/Web; devices reregister organically\n- Upload historical attributes and events via Braze's REST API\n- Rebuild segments, templates, and Canvas journeys\n- Dual-send during cutover, validate deliverability per channel, then turn OneSignal off\n\nEstimated effort: 40-120 hours depending on journey complexity and event taxonomy cleanup. Detailed checklist to follow.\n\nThanks"
+  }
+}

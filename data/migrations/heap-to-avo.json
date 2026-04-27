@@ -1,0 +1,78 @@
+{
+  "source": {
+    "slug": "heap",
+    "name": "Heap"
+  },
+  "target": {
+    "slug": "avo",
+    "name": "Avo"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "Move from Heap's autocapture model to Avo's tracking-plan-driven, governed analytics workflow.",
+  "why_switch": [
+    "Heap's autocapture creates noisy, proprietary event shapes; Avo enforces a defined tracking plan",
+    "Avo focuses on analytics governance and schema enforcement — better data quality long-term",
+    "Heap's annual event-volume commit can lock you into peak usage; Avo offers a freemium tier",
+    "Easier to standardize naming, properties, and ownership across teams with Avo",
+    "Avo can emit to multiple destinations (e.g., your existing warehouse or analytics tool), so it pairs with — not just replaces — analytics backends"
+  ],
+  "what_to_export": [
+    "List of tracked events and their properties from Heap",
+    "Custom event definitions and virtual events",
+    "User and account property schema",
+    "Saved reports, funnels, and retention analyses (for reference)",
+    "Cohort/segment definitions",
+    "Dashboards and shared views",
+    "Team members, roles, and permissions",
+    "Integration/destination configurations",
+    "Historical event data export (if needed for archive)",
+    "Identity resolution rules"
+  ],
+  "export_method": "Use Heap's data export options to pull event definitions and historical data; for the schema itself, document each event and its properties from the Heap UI or via its export APIs. Consult Heap's official docs for current export endpoints and any contractual limits before canceling.",
+  "import_method": "In Avo, create a workspace and define the tracking plan event-by-event using the events and properties exported from Heap. Connect Avo to your downstream analytics destinations and integrate the Avo Codegen / Inspector into your codebase per Avo's official setup docs so events conform to the plan.",
+  "concept_mapping": [
+    {
+      "source": "Autocapture events",
+      "target": "Explicitly defined tracked events",
+      "note": "Avo requires intentional definition; pick the events that actually matter"
+    },
+    {
+      "source": "Event properties",
+      "target": "Properties on tracking plan",
+      "note": "Add types and descriptions for each"
+    },
+    {
+      "source": "User properties",
+      "target": "User properties in plan",
+      "note": "Define ownership and update cadence"
+    },
+    {
+      "source": "Cohorts/segments",
+      "target": "Defined in destination tool",
+      "note": "Avo governs schema, not segmentation"
+    },
+    {
+      "source": "Funnels/reports",
+      "target": "Built in your analytics destination",
+      "note": "Avo doesn't replace the analysis layer"
+    },
+    {
+      "source": "Integrations",
+      "target": "Avo destinations",
+      "note": "Configure per Avo docs"
+    }
+  ],
+  "effort": "1-3 weeks",
+  "gotchas": [
+    "Avo is governance + tracking-plan tooling, not a drop-in analytics backend — you may still need an analytics destination",
+    "Autocaptured events rarely map 1:1; expect to curate which events are worth keeping",
+    "Historical Heap data won't backfill into Avo's plan — keep an archive if needed",
+    "Naming conventions will need to be normalized as part of the migration",
+    "Engineering buy-in is required; Avo changes how events are instrumented",
+    "Confirm Heap's contract terms before canceling to avoid early-termination fees"
+  ],
+  "email": {
+    "subject": "Switching from Heap to Avo — kicking off tracking plan",
+    "body": "Team,\n\nWe're moving from Heap to Avo to take control of our event schema and reduce noise from autocapture. Avo will be the source of truth for our tracking plan; analyses will continue in our chosen analytics destination.\n\nNext steps: I'll export current Heap event definitions and properties, draft an initial Avo tracking plan, and circulate it for review. Engineering will then integrate Avo's Inspector/Codegen into the codebase.\n\nPlease flag any Heap reports, cohorts, or events you rely on so we keep them in scope.\n\nThanks"
+  }
+}

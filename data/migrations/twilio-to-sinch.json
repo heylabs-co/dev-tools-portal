@@ -1,0 +1,81 @@
+{
+  "source": {
+    "slug": "twilio",
+    "name": "Twilio"
+  },
+  "target": {
+    "slug": "sinch",
+    "name": "Sinch"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "Move SMS/voice/messaging workloads from Twilio to Sinch when you want global carrier reach, often-better enterprise economics, and don't depend on Twilio-specific products like Studio or Segment.",
+  "why_switch": [
+    "Sinch is a global CPaaS with strong international SMS/voice reach.",
+    "Enterprise pricing is typically negotiated and may beat Twilio at high volume.",
+    "Less reliance on the Twilio ecosystem (Studio, SendGrid, Segment) if you already standardize elsewhere.",
+    "Reduce single-vendor concentration risk for critical messaging workflows."
+  ],
+  "what_to_export": [
+    "List of phone numbers (long codes, short codes, toll-free) and country/region",
+    "Messaging service / sender pool configurations and routing rules",
+    "10DLC brand and campaign registrations (US A2P)",
+    "WhatsApp Business sender approvals and template registrations",
+    "Verify / 2FA flows and any OTP templates",
+    "TwiML applications, Studio flows, and Functions logic",
+    "Webhook URLs for status callbacks and inbound messages",
+    "Subaccount structure, API keys, and access controls",
+    "Recent message and call logs needed for audit/compliance"
+  ],
+  "export_method": "Use the Twilio Console and REST API to inventory phone numbers, messaging services, and webhook configurations. Pull recent message and call logs via the API for the retention window you need. Export TwiML application configs, Studio flow JSON, and any serverless Functions code from your repo or via the Console. For exact API paths and pagination behavior, consult Twilio's official documentation rather than relying on memory.",
+  "import_method": "Create a Sinch account and provision equivalent capabilities (SMS, voice, WhatsApp) per the regions you need. For phone numbers, initiate carrier porting via Sinch's number-porting process — this can take days to weeks per number depending on country and carrier. Re-register A2P 10DLC brand/campaigns and re-submit WhatsApp templates for approval. Replace Twilio SDK calls and webhook handlers with Sinch's APIs. Always confirm endpoint shapes and rate limits in Sinch's official docs before integration work.",
+  "concept_mapping": [
+    {
+      "source": "Messaging Service",
+      "target": "Sinch messaging app / sender pool",
+      "note": "Both group senders, but configuration model differs."
+    },
+    {
+      "source": "TwiML / Studio Flow",
+      "target": "Application code or Sinch flow tooling",
+      "note": "No 1:1 equivalent — most teams reimplement logic in app code."
+    },
+    {
+      "source": "Verify (Twilio)",
+      "target": "Sinch Verification",
+      "note": "Both offer OTP/Verify products; APIs and channel coverage differ."
+    },
+    {
+      "source": "Subaccounts",
+      "target": "Sinch projects / accounts",
+      "note": "Different isolation model; map carefully for billing and access control."
+    },
+    {
+      "source": "10DLC registration",
+      "target": "10DLC registration via Sinch",
+      "note": "Re-registration required; cannot transfer brand/campaign automatically."
+    },
+    {
+      "source": "WhatsApp templates",
+      "target": "WhatsApp templates re-approved on Sinch",
+      "note": "Template approvals are tied to the BSP — expect re-review."
+    },
+    {
+      "source": "Status callbacks / webhooks",
+      "target": "Sinch webhooks",
+      "note": "Payload schemas and signing differ; update handlers."
+    }
+  ],
+  "effort": "2-6 weeks",
+  "gotchas": [
+    "Phone number porting is slow and country-specific; plan for multi-week timelines.",
+    "10DLC and WhatsApp template re-registration mean throttled sending until approvals land.",
+    "Studio flows have no direct equivalent — budget time to reimplement orchestration in code.",
+    "If you depend on Twilio-adjacent products (SendGrid, Segment), plan replacements separately.",
+    "Run both providers in parallel during cutover so you can fail back if delivery dips.",
+    "Webhook signing differs; do not skip signature verification on the new platform."
+  ],
+  "email": {
+    "subject": "Proposal: migrate SMS/voice from Twilio to Sinch",
+    "body": "Hi team,\n\nI'd like to start a migration from Twilio to Sinch for SMS and voice. The main drivers are global reach and better enterprise economics at our send volume.\n\nKey workstreams: number porting (the long pole), 10DLC and WhatsApp template re-registration, replacing TwiML/Studio with app-side logic, and rewriting webhook handlers. Studio flows and any SendGrid/Segment dependencies will need separate plans.\n\nRealistic timeline is 2-6 weeks end to end. We'll run both providers in parallel during cutover and keep Twilio as fallback until we're confident.\n\nThanks"
+  }
+}

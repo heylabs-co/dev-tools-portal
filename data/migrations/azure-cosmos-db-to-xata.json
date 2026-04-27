@@ -1,0 +1,76 @@
+{
+  "source": {
+    "slug": "azure-cosmos-db",
+    "name": "Azure Cosmos DB"
+  },
+  "target": {
+    "slug": "xata",
+    "name": "Xata"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "Moving from Azure Cosmos DB (multi-model, multi-API) to Xata (Postgres-based serverless) is a data-model shift; plan a redesign around relational tables rather than a direct copy.",
+  "why_switch": [
+    "Want to consolidate on a Postgres-based platform instead of a multi-model Azure service",
+    "Looking to reduce Azure-specific lock-in",
+    "Prefer transparent freemium pricing over Cosmos DB's request-unit model",
+    "Team values Xata's developer experience (SDK, CLI, branching) for app workflows",
+    "Workload fits a relational schema better than a document/graph/column model"
+  ],
+  "what_to_export": [
+    "Containers (databases) and their items / documents",
+    "Partition key definitions and indexing policies",
+    "Stored procedures, triggers, and UDFs (if used)",
+    "Throughput settings (RU/s, autoscale config) for cost baselining",
+    "Consistency level configuration",
+    "Change feed consumers",
+    "Connection strings and identity bindings",
+    "Application access patterns and API surface (SQL, MongoDB, Cassandra, etc.)"
+  ],
+  "export_method": "Cosmos DB supports data export through the Azure Data Migration Tool, Azure Data Factory, or by reading containers via the appropriate SDK. The right path depends on which API your account uses (Core SQL, MongoDB, Cassandra, etc.). Confirm the current supported export methods in Microsoft's official Cosmos DB documentation.",
+  "import_method": "Define your tables in Xata, transform exported documents into rows (flattening or normalizing as needed), and load using Xata's CLI / SDK or CSV import. Because Cosmos is schemaless and Xata is Postgres-backed, expect a transformation step. Check Xata's official docs for current import paths.",
+  "concept_mapping": [
+    {
+      "source": "Cosmos container",
+      "target": "Xata table",
+      "note": "Schemaless documents must be modeled into a fixed schema"
+    },
+    {
+      "source": "Partition key",
+      "target": "Index / primary key strategy",
+      "note": "Postgres indexes replace partition-based scaling"
+    },
+    {
+      "source": "Indexing policy",
+      "target": "Postgres indexes",
+      "note": "Define explicit indexes per query pattern"
+    },
+    {
+      "source": "Change feed",
+      "target": "Application-level triggers / events",
+      "note": "Verify Xata's current change-feed support in official docs"
+    },
+    {
+      "source": "RU/s throughput",
+      "target": "Xata plan limits",
+      "note": "Different cost model — rebaseline expected usage"
+    },
+    {
+      "source": "Cosmos SDK (any API)",
+      "target": "Xata SDK / SQL",
+      "note": "Application data layer needs to be rewritten"
+    }
+  ],
+  "effort": "2-6 weeks",
+  "gotchas": [
+    "Cosmos's tunable consistency does not have a one-to-one analogue — define your real consistency needs",
+    "Multi-region writes are a Cosmos-specific feature; verify Xata's regional model before assuming parity",
+    "Document-shaped data may need normalization to fit a relational schema cleanly",
+    "Cost model shifts from RU-based to plan-based — model both",
+    "Validate current Xata storage / row-size limits against largest documents",
+    "If you rely on the MongoDB or Cassandra API, application code needs more than a connection-string change"
+  ],
+  "email": {
+    "subject": "Migrating from Azure Cosmos DB to Xata",
+    "body": "Hi team,\n\nWe are looking at moving our workloads off Azure Cosmos DB onto Xata to standardize on a Postgres-backed platform with simpler pricing.\n\nThis is not a drop-in migration: schemas, indexes, and access code will need to be redesigned. Near-term we will export each container, document current query patterns, and prototype one service end-to-end on Xata before committing. Please share which Cosmos API your service uses and your top queries.\n\nThanks!"
+  }
+}

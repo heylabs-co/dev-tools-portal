@@ -1,0 +1,77 @@
+{
+  "source": {
+    "slug": "ably",
+    "name": "Ably"
+  },
+  "target": {
+    "slug": "dyte",
+    "name": "Dyte"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "Note: Ably is pub/sub messaging and Dyte is video/audio SDK — this is not a like-for-like swap. Only migrate if your real Ably usage is call/room coordination.",
+  "why_switch": [
+    "Dyte is a fit if your underlying use case is real-time audio/video calls",
+    "Freemium entry tier lowers cost floor versus Ably's $29/mo",
+    "Strong SDKs and prebuilt UI components",
+    "Transparent public pricing",
+    "Single vendor for video if you can drop generic pub/sub"
+  ],
+  "what_to_export": [
+    "Channel inventory and configurations",
+    "Publisher/subscriber integration points across services",
+    "Backend token-issuance logic",
+    "Webhook and integration rule definitions",
+    "Channel history retention settings (and any history you want to preserve)",
+    "Presence schemas and member metadata",
+    "API key inventory (for rotation)",
+    "Usage history for billing reconciliation",
+    "List of clients using the Ably SDK"
+  ],
+  "export_method": "Use Ably's official REST API and dashboard to inventory channels, integration rules and history. Pull persisted history via Ably's history API per their official docs if retention matters. Capture dashboard config (integrations, namespaces) manually. Backend code (token mint, producers/consumers) is canonical and should drive the rebuild.",
+  "import_method": "Dyte has no general pub/sub primitive — only proceed if your traffic is call-oriented. Sign up for Dyte, generate organization API credentials, and implement server-side meeting creation and participant authentication against Dyte's REST API per their official docs. Swap clients to Dyte's per-platform SDK. For any non-call pub/sub workloads, choose a different target (this guide does not cover that).",
+  "concept_mapping": [
+    {
+      "source": "Channel",
+      "target": "Meeting",
+      "note": "Different abstraction; only maps if the channel coordinates a call"
+    },
+    {
+      "source": "Token request / capability token",
+      "target": "Participant auth token",
+      "note": "Both backend-minted, but claim shapes are vendor-specific"
+    },
+    {
+      "source": "Presence",
+      "target": "Participant list on meeting",
+      "note": "Dyte exposes participants on a meeting; not a global presence service"
+    },
+    {
+      "source": "Message publish/subscribe",
+      "target": "In-meeting messaging / data channel",
+      "note": "Limited to a meeting scope; not a generic pub/sub replacement"
+    },
+    {
+      "source": "Integration rules / webhooks",
+      "target": "Webhooks",
+      "note": "Rewrite against Dyte's event schema"
+    },
+    {
+      "source": "Channel history",
+      "target": "(no direct equivalent)",
+      "note": "Dyte is not a message store; persist history yourself if required"
+    }
+  ],
+  "effort": "2-6 weeks (longer if Ably usage extends beyond calls)",
+  "gotchas": [
+    "Different product categories — confirm fit before committing",
+    "No replacement for persisted history, large-scale presence, MQTT/SSE protocols on Dyte",
+    "Token formats and capability models do not translate",
+    "Delivery-guarantee semantics differ; load test before cutover",
+    "Pricing dimensions differ (messages/peers vs. participant minutes) — verify on Dyte's official pricing page",
+    "Run vendors in parallel during cutover and watch for missing events"
+  ],
+  "email": {
+    "subject": "Considering moving Ably real-time workloads to Dyte",
+    "body": "Hi team,\n\nFlagging a possible migration from Ably to Dyte. Caveat upfront: Ably is pub/sub and Dyte is video/audio, so this only fits if our actual Ably workload is call/room coordination. Other pub/sub use cases would need a separate target.\n\nIf fit holds, scope is rebuilding server-side meeting and token issuance on Dyte, swapping clients, and reconfiguring webhooks. Estimating 2-6 weeks depending on how much of our surface is call-shaped. I'll confirm features and pricing from official docs before locking the plan.\n\nHappy to talk through use-case fit first.\n\nThanks"
+  }
+}

@@ -1,0 +1,85 @@
+{
+  "source": {
+    "slug": "bonsai",
+    "name": "Bonsai"
+  },
+  "target": {
+    "slug": "coveo",
+    "name": "Coveo"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "Moving from Bonsai (managed Elasticsearch/OpenSearch) to Coveo (AI-powered enterprise search) means giving up direct index control for a higher-level platform. Plan to re-model your schema, rebuild ingestion via Coveo Push/connector APIs, and re-implement query logic against the Coveo Search API.",
+  "why_switch": [
+    "Need AI-powered relevance, personalization, and recommendations out of the box.",
+    "Want a unified enterprise search platform across multiple content sources, not just an Elasticsearch cluster.",
+    "Looking for managed ML ranking, query suggestions, and analytics without operating the stack.",
+    "Outgrew the Bonsai pricing tiers or want vendor-managed enterprise SLAs and support."
+  ],
+  "what_to_export": [
+    "Index mappings/schema (field names, types, analyzers).",
+    "All documents (full re-export, not just deltas).",
+    "Custom analyzers, tokenizers, and synonym lists.",
+    "Query templates / saved searches used by your app.",
+    "Boost/scoring rules and function score configs.",
+    "Ingestion pipelines and any enrichment steps.",
+    "Search analytics or click logs you want to retain.",
+    "Access credentials and IP allowlists for cleanup."
+  ],
+  "export_method": "Use Elasticsearch/OpenSearch native tooling against your Bonsai cluster: scroll/search_after or the _reindex API to a snapshot, or elasticdump to stream documents and mappings to NDJSON. Snapshot to S3-compatible storage if you need a point-in-time copy. Export mappings with GET /<index>/_mapping and settings with GET /<index>/_settings.",
+  "import_method": "In Coveo, create an organization and a Push source (or appropriate connector for your content type). Transform Elasticsearch documents into Coveo's JSON document model and POST them via the Push API in batches. Map fields in the Coveo Admin Console, define ranking/query pipelines, and re-implement client queries with the Coveo Search API or Headless/Atomic UI libraries.",
+  "concept_mapping": [
+    {
+      "source": "Index",
+      "target": "Source",
+      "note": "A Coveo Source is the closest analogue; documents live inside an org-level unified index."
+    },
+    {
+      "source": "Document",
+      "target": "Item / document",
+      "note": "Coveo items require a unique URI and permission model; rework _id into documentId/uri."
+    },
+    {
+      "source": "Mapping / field type",
+      "target": "Field (Admin Console)",
+      "note": "Fields are defined org-wide and reused across sources; types are coarser than ES."
+    },
+    {
+      "source": "Analyzer / tokenizer",
+      "target": "Built-in language pipeline",
+      "note": "Coveo handles tokenization per language; custom analyzers usually do not port directly."
+    },
+    {
+      "source": "Query DSL",
+      "target": "Search API + query syntax",
+      "note": "Replace bool/match/term queries with q, aq, cq, and facet parameters."
+    },
+    {
+      "source": "Function score / boosts",
+      "target": "Query Pipeline ranking rules",
+      "note": "Boosts and rules live in pipelines, not inline with the query."
+    },
+    {
+      "source": "Synonyms file",
+      "target": "Thesaurus rule in Query Pipeline",
+      "note": "Define synonyms per pipeline rather than per index analyzer."
+    },
+    {
+      "source": "Ingest pipeline",
+      "target": "Indexing Pipeline Extension (IPE)",
+      "note": "Per-document Python scripts run during indexing; not 1:1 with ES processors."
+    }
+  ],
+  "effort": "2-6 weeks for a typical app; longer if you rely on heavy custom analyzers, complex scoring, or many content sources.",
+  "gotchas": [
+    "No direct Elasticsearch query DSL on Coveo - all client queries must be rewritten.",
+    "Coveo uses a permission/security model on every item; plan identities and groups before bulk push.",
+    "Pricing is contact-sales and usage-based; validate cost on real query/doc volumes before cutover.",
+    "Custom analyzers, token filters, and language-specific analyzers from ES rarely transfer cleanly.",
+    "Relevance tuning is pipeline-based, so existing function_score logic must be redesigned, not copied.",
+    "Run Bonsai and Coveo in parallel during cutover and reconcile result quality before flipping traffic."
+  ],
+  "email": {
+    "subject": "Migrating our search from Bonsai to Coveo",
+    "body": "Hi team,\n\nWe're planning to move our search backend from Bonsai (managed Elasticsearch) to Coveo. The goal is AI-powered relevance, built-in recommendations, and a single managed platform across our content sources.\n\nHigh-level plan:\n1. Export mappings, settings, and all documents from Bonsai via Elasticsearch APIs / elasticdump.\n2. Stand up a Coveo org, create a Push source, and define fields in the Admin Console.\n3. Transform documents into Coveo's item model and push them in batches; configure query pipelines, ranking, and synonyms.\n4. Rewrite client queries against the Coveo Search API and run both stacks in parallel until relevance is validated.\n\nEstimated effort: 2-6 weeks depending on custom analyzers and scoring. I'll share a more detailed timeline and cost estimate once we have Coveo pricing for our volume.\n\nThanks"
+  }
+}

@@ -1,0 +1,75 @@
+{
+  "source": {
+    "slug": "melos",
+    "name": "Melos"
+  },
+  "target": {
+    "slug": "hermit",
+    "name": "Hermit"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "These tools solve different problems — Melos orchestrates Dart/Flutter packages, Hermit pins CLI tool versions — so this is rarely a true substitution and usually only fits if the project moved off Dart/Flutter.",
+  "why_switch": [
+    "Project no longer Dart/Flutter centric",
+    "Need polyglot CLI tool pinning across the team and CI",
+    "Want hermetic per-project tool installs without polluting PATH",
+    "Drop Dart-specific dependency in favor of a generic tool manager",
+    "Simpler scope: just tool versions, no package orchestration"
+  ],
+  "what_to_export": [
+    "List of CLI tools your workflow currently relies on",
+    "Dart/Flutter SDK versions used by Melos commands",
+    "Scripts defined in melos.yaml you want to preserve",
+    "CI commands that wrap melos run / melos bootstrap",
+    "External tools your packages depend on at build time",
+    "Pre-commit hook tools",
+    "Linters and formatters used"
+  ],
+  "export_method": "No automated tool. Manually inventory melos.yaml scripts and identify which entries depend on CLI tools (vs which depend on Melos's package orchestration). Hermit can replace the tool-pinning aspect only. If you still need cross-package scripts, plan a separate solution (Make, just, npm-style runners). Verify current Hermit features against the official documentation.",
+  "import_method": "Initialize Hermit in the repo per the official installation guide. Use hermit install for each CLI tool you identified. For Dart/Flutter SDK pinning, check whether the current Hermit catalog includes them — otherwise pair Hermit with fvm or asdf. Re-implement melos.yaml scripts in your chosen task runner. Update CI to source Hermit's activation script before invoking commands. Confirm exact commands and catalog entries via the official Hermit docs.",
+  "concept_mapping": [
+    {
+      "source": "melos.yaml packages",
+      "target": "(no equivalent)",
+      "note": "Hermit does not understand workspaces"
+    },
+    {
+      "source": "melos.yaml scripts",
+      "target": "Makefile / just / shell scripts",
+      "note": "Move task definitions to a generic runner"
+    },
+    {
+      "source": "melos bootstrap",
+      "target": "(no equivalent)",
+      "note": "If keeping Dart, run dart pub get manually or via script"
+    },
+    {
+      "source": "Flutter SDK pin",
+      "target": "hermit install or external SDK manager",
+      "note": "Verify Hermit catalog; otherwise use fvm/asdf"
+    },
+    {
+      "source": "Pub publishing flow",
+      "target": "Custom script",
+      "note": "Hermit does not publish packages"
+    },
+    {
+      "source": "Cross-package runs",
+      "target": "Shell loops or task runner",
+      "note": "Replicate filtering manually if needed"
+    }
+  ],
+  "effort": "1-2 days",
+  "gotchas": [
+    "You lose package orchestration entirely — versioning, changelogs, pub publishing",
+    "If you still ship Dart packages, this swap will likely hurt; reconsider",
+    "Hermit catalog may not include every Dart/Flutter version you need",
+    "Pre-commit and lint configs must be re-created independently",
+    "CI workflows need a full rewrite of the activation step",
+    "Validate every command and tool name against current Hermit documentation"
+  ],
+  "email": {
+    "subject": "Proposal: replace Melos with Hermit (only if we're moving off Flutter)",
+    "body": "Hi team,\n\nMelos and Hermit aren't true substitutes — Melos manages Dart/Flutter packages, Hermit pins CLI tools. I want to flag this swap only as a fit if our project is leaving the Dart/Flutter ecosystem.\n\nIf so, plan: inventory CLI tools, install via Hermit, port melos scripts to a generic task runner, drop Melos. Estimated 1-2 days. If we're staying on Flutter, we should keep Melos and just add Hermit alongside for non-Dart tools.\n\nThoughts?\n\nThanks"
+  }
+}

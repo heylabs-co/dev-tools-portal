@@ -1,0 +1,83 @@
+{
+  "source": {
+    "slug": "braze",
+    "name": "Braze"
+  },
+  "target": {
+    "slug": "batch",
+    "name": "Batch"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "Move mobile push and in-app messaging from Braze to Batch by replacing SDKs, re-importing user data, and rebuilding Canvases as Batch campaigns.",
+  "why_switch": [
+    "EU/GDPR data residency posture",
+    "Freemium entry pricing vs Braze's enterprise-tier pricing",
+    "Simpler mobile-focused product surface",
+    "Reduce lock-in to Braze's Canvas/Liquid model",
+    "Good fit for teams that don't need full omnichannel CRM"
+  ],
+  "what_to_export": [
+    "User profiles with stable external IDs",
+    "iOS and Android device tokens / platform metadata",
+    "Custom user attributes",
+    "Subscription groups and consent state",
+    "Custom events used as triggers",
+    "Segment definitions",
+    "Canvas (journey) logic and content",
+    "Push and in-app templates",
+    "Content Cards content (if used)",
+    "Campaign performance baselines"
+  ],
+  "export_method": "Use Braze's user and event export capabilities documented in Braze's official docs to pull profiles, attributes, events, and subscription state. Capture Canvas flow logic and template content from the dashboard. Save exports in CSV/JSON for transformation before import.",
+  "import_method": "Integrate Batch's iOS and Android SDKs following Batch's official integration docs, using your existing external IDs as Batch custom user IDs. Backfill custom attributes via Batch's documented APIs. Recreate segments, push templates, and in-app campaigns in the Batch dashboard, and rebuild Canvas flows as Batch triggered campaigns.",
+  "concept_mapping": [
+    {
+      "source": "External ID",
+      "target": "Custom User ID",
+      "note": "Stable cross-device identifier"
+    },
+    {
+      "source": "Custom Attributes",
+      "target": "Custom Attributes",
+      "note": "Direct conceptual map; verify supported types"
+    },
+    {
+      "source": "Subscription Groups",
+      "target": "Channel opt-in state",
+      "note": "Re-import consent explicitly"
+    },
+    {
+      "source": "Canvas",
+      "target": "Triggered Campaigns",
+      "note": "Multi-step Canvases require manual rebuild as chained triggers"
+    },
+    {
+      "source": "Custom Events",
+      "target": "Custom Events",
+      "note": "Re-emit via Batch SDK / transactional API"
+    },
+    {
+      "source": "Content Cards",
+      "target": "In-App Messages (closest)",
+      "note": "No exact equivalent — redesign required"
+    },
+    {
+      "source": "Liquid Templates",
+      "target": "Batch's templating",
+      "note": "Rewrite templates; syntax and helpers differ"
+    }
+  ],
+  "effort": "4-10 weeks",
+  "gotchas": [
+    "Push tokens are not portable; they're collected fresh by the Batch SDK after release",
+    "Liquid templating won't work in Batch — plan for a full template rewrite",
+    "Multi-step Canvas flows rarely map 1:1 to Batch triggered campaigns",
+    "Web push and email coverage in Batch is narrower than Braze's omnichannel",
+    "Subscription state must be migrated carefully to avoid messaging unsubscribed users",
+    "Batch pricing scales aggressively at high volumes — model costs before committing"
+  ],
+  "email": {
+    "subject": "Braze → Batch migration plan",
+    "body": "Hi team,\n\nWe're planning to move our mobile push and in-app messaging from Braze to Batch to take advantage of EU data residency and a simpler, mobile-first product.\n\nApproach:\n1) Export users, devices, attributes, events, and subscription state from Braze.\n2) Integrate Batch SDKs in iOS and Android using our existing external IDs.\n3) Backfill attributes via Batch's APIs.\n4) Rebuild segments, templates, and Canvas flows as Batch triggered campaigns.\n5) Dual-run for one release cycle, then cut over.\n\nEstimated effort: 4-10 weeks depending on Canvas complexity. Detailed checklist (templating rewrite, consent migration, omnichannel gaps) to follow.\n\nThanks"
+  }
+}

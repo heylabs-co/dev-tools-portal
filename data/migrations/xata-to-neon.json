@@ -1,0 +1,76 @@
+{
+  "source": {
+    "slug": "xata",
+    "name": "Xata"
+  },
+  "target": {
+    "slug": "neon",
+    "name": "Neon"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Both Xata and Neon are serverless Postgres platforms, so this is a same-engine migration with a familiar shape: dump from one, restore to the other, then update connection strings. The biggest delta is in proprietary surface area like Xata's SDK, file attachments, and search, which need replacements on Neon.",
+  "why_switch": [
+    "Stay on standard Postgres with strong serverless branching on Neon",
+    "Consolidate on a Postgres-first vendor with broad ecosystem support",
+    "Use Neon's branching for preview environments and CI",
+    "Reduce dependency on Xata-specific SDK and console features",
+    "Public freemium pricing makes scaling costs predictable"
+  ],
+  "what_to_export": [
+    "Database schema (tables, indexes, constraints, types)",
+    "Row data per table",
+    "Sequences and identity column current values",
+    "Views, materialized views, functions, triggers",
+    "Roles, grants, and RLS policies",
+    "File attachment metadata and binary content",
+    "Full-text search configurations",
+    "Branch list if multiple environments are in use"
+  ],
+  "export_method": "Obtain a Postgres connection string for each Xata database/branch you want to migrate. Run pg_dump --no-owner --no-privileges --format=custom -d \"$XATA_PG_URL\" -f xata.dump. For large datasets consider parallel dumps with --jobs and per-schema scoping. If Postgres-level access is restricted in your plan, fall back to exporting each table via the Xata CLI or REST API to CSV or JSON and separately capture the DDL. Record row counts per table and a checksum (md5 of ordered rows) for verification later. Freeze writes during the final cutover dump or use logical replication to capture a delta after the initial dump. Store dumps encrypted and keep the export window short to limit drift.",
+  "import_method": "Create a Neon project and a database matching your source. Get the Neon connection string from the console. Restore with pg_restore --no-owner --no-privileges -d \"$NEON_URL\" xata.dump (or psql for plain SQL). Recreate any extensions Neon supports before the data restore (CREATE EXTENSION ...). Update application connection strings and any pgbouncer/pooled URLs; Neon offers both pooled and direct endpoints. Replace Xata SDK calls with a standard Postgres driver (node-postgres, pg, Prisma, Drizzle, etc.). For features that were Xata-only such as file attachments or search, plan replacements: object storage plus a files table for attachments, and Postgres FTS or an external search engine for query workloads. Validate row counts and checksums against the export, run integration tests, and only then redirect production traffic. Keep the old Xata database in read-only mode for a rollback window.",
+  "concept_mapping": [
+    {
+      "source": "Xata database",
+      "target": "Neon database",
+      "note": "Direct equivalent"
+    },
+    {
+      "source": "Xata branch",
+      "target": "Neon branch",
+      "note": "Both support branching; semantics differ slightly"
+    },
+    {
+      "source": "Xata SDK",
+      "target": "Standard Postgres driver / ORM",
+      "note": "Pick pg, Prisma, Drizzle, or similar"
+    },
+    {
+      "source": "Xata file attachments",
+      "target": "External object storage + table",
+      "note": "Neon does not store blobs as a feature"
+    },
+    {
+      "source": "Xata search",
+      "target": "Postgres FTS or external engine",
+      "note": "Use tsvector or Meilisearch/Elastic"
+    },
+    {
+      "source": "Xata REST API",
+      "target": "Direct SQL over Postgres protocol",
+      "note": "Refactor application data layer"
+    }
+  ],
+  "effort": "3-10 days",
+  "gotchas": [
+    "Neon supports a curated extension list; verify each Xata-required extension before restore.",
+    "Connection pooling on Neon uses a separate pooled endpoint; pick the right one per workload.",
+    "Cold starts can occur on idle Neon compute; pre-warm before traffic switch.",
+    "File attachments do not migrate automatically; design and implement object-storage handling.",
+    "Branch URLs differ; update CI/CD to use Neon branch-per-PR if you relied on Xata branches.",
+    "RLS, roles, and grants need explicit recreation; pg_dump can omit ownership clauses you may want."
+  ],
+  "email": {
+    "subject": "Database move from Xata to Neon within 14 days",
+    "body": "Hi,\n\nWe are migrating our application database from Xata to Neon over the next 14 days. Both are serverless Postgres platforms, so the move is technical plumbing rather than a feature change.\n\nWhat to expect:\n- Functionality stays the same.\n- A brief read-only window during final sync; we will announce the exact time 48 hours in advance.\n- Existing Xata API tokens will be retired after cutover. If you use them in any direct integration, reply and we will issue Neon-side credentials.\n\nWhat is unchanged:\n- Your account, data, and access patterns.\n- Pricing and support terms.\n\nIf your team has direct database access or custom jobs, please reply so we can coordinate the connection-string change together.\n\nThanks for the patience while we improve our infrastructure.\n\nYour customer success team"
+  }
+}

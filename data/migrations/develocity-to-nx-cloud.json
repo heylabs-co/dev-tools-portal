@@ -1,0 +1,76 @@
+{
+  "source": {
+    "slug": "develocity",
+    "name": "Develocity"
+  },
+  "target": {
+    "slug": "nx-cloud",
+    "name": "Nx Cloud"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "Switch from JVM-focused Develocity to Nx Cloud for JavaScript/TypeScript Nx monorepos with remote caching and distributed task execution.",
+  "why_switch": [
+    "Nx Cloud fits JS/TS monorepos where Develocity targets JVM stacks",
+    "Public freemium pricing vs. Develocity's enterprise-only contracts",
+    "Tight integration with the Nx CLI, plugins, and Nx Console",
+    "Remote computation cache + distributed task execution out of the box",
+    "Simpler onboarding for teams already standardized on Nx"
+  ],
+  "what_to_export": [
+    "Build cache hit/miss telemetry and historical scans (for reference only)",
+    "Build scan URLs or archives needed for audits",
+    "CI pipeline definitions that wire Develocity into builds",
+    "Custom build cache node / replication configuration",
+    "Predictive test selection configuration",
+    "Access control / SSO configuration",
+    "Notification and integration settings (Slack, etc.)",
+    "Authorized user list and roles"
+  ],
+  "export_method": "Develocity does not offer a portable cache format; treat historical build scans and cache analytics as reference data only. Use the Develocity API and admin UI to archive any build scans, audit data, and configuration you need to keep before contract end. Refer to Gradle's official Develocity documentation for the current export and retention options.",
+  "import_method": "Adopt Nx in your repo (if not already) and connect to Nx Cloud via the Nx CLI to enable remote caching and distributed task execution. Update CI pipelines to use Nx commands and to authenticate with Nx Cloud. Replace Develocity-specific build cache plugins and Gradle/Maven hooks. Validate cache correctness on a feature branch before rolling out to main. Consult Nx Cloud documentation for current setup commands and self-hosted options.",
+  "concept_mapping": [
+    {
+      "source": "Develocity remote build cache",
+      "target": "Nx Cloud remote computation cache",
+      "note": "Different cache key model; not interchangeable"
+    },
+    {
+      "source": "Build scans",
+      "target": "Nx Cloud run details / dashboards",
+      "note": "No 1:1 scan equivalent; UI and depth differ"
+    },
+    {
+      "source": "Predictive test selection",
+      "target": "Nx affected commands",
+      "note": "Different mechanism; based on Nx project graph"
+    },
+    {
+      "source": "Distributed test execution",
+      "target": "Nx Cloud distributed task execution",
+      "note": "Concept similar; configuration and agents differ"
+    },
+    {
+      "source": "Gradle / Maven / Bazel plugins",
+      "target": "Nx plugins / executors",
+      "note": "Tooling assumes Nx-managed projects"
+    },
+    {
+      "source": "SSO / RBAC",
+      "target": "Nx Cloud organization settings",
+      "note": "Re-create access controls in Nx Cloud"
+    }
+  ],
+  "effort": "2-6 weeks",
+  "gotchas": [
+    "Big stack mismatch if your monorepo is primarily JVM (Gradle/Maven/Bazel)",
+    "Adopting Nx itself can be a sizable refactor before Nx Cloud helps",
+    "Historical build scan data does not migrate; archive what you need",
+    "Cache correctness needs validation on a branch before main",
+    "Nx Cloud pricing scales with usage; model your CI workload first",
+    "Self-hosting Nx Cloud is a premium tier; confirm if needed"
+  ],
+  "email": {
+    "subject": "Migrating monorepo build acceleration from Develocity to Nx Cloud",
+    "body": "Hi team,\n\nWe're evaluating moving from Develocity to Nx Cloud for monorepo build acceleration.\n\nWhy:\n- Better fit for our JS/TS Nx workflow.\n- Public pricing vs. enterprise-only Develocity contracts.\n- Tight Nx CLI integration, remote cache, and distributed task execution.\n\nPlan:\n1. Archive any Develocity build scans and audit data we need to retain.\n2. Wire Nx Cloud into the repo via the Nx CLI and update CI pipelines.\n3. Validate cache correctness on a feature branch before rolling to main.\n4. Decommission Develocity-specific cache plugins and hooks.\n\nExpected effort: 2-6 weeks depending on how Nx-native our repo already is.\n\nLet me know concerns, especially if any subprojects are JVM-heavy."
+  }
+}

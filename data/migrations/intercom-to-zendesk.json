@@ -1,0 +1,87 @@
+{
+  "source": {
+    "slug": "intercom",
+    "name": "Intercom"
+  },
+  "target": {
+    "slug": "zendesk",
+    "name": "Zendesk"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "Move conversations, contacts, and help-center articles from Intercom to Zendesk by exporting via Intercom's API/data export and importing through Zendesk's API and CSV import tools. Plan 2-6 weeks depending on conversation volume, custom workflows, and integrations. Run both platforms in parallel during cutover to avoid losing live tickets.",
+  "why_switch": [
+    "Mature ticketing model with strong SLA, escalation, and queue management for larger support orgs",
+    "More predictable seat-based pricing without per-resolution AI fees layered on top",
+    "Broader marketplace of CRM, telephony, and BI integrations for enterprise stacks",
+    "Stronger reporting/Explore for cross-channel analytics and historical trend analysis",
+    "Better fit when support volume outgrows a messaging-first inbox and needs formal ticket workflows"
+  ],
+  "what_to_export": [
+    "Conversations and message history (with attachments and internal notes)",
+    "Contacts/users and companies with custom attributes",
+    "Tags, conversation topics, and team/teammate assignments",
+    "Help Center articles, collections, and translations",
+    "Macros / saved replies and canned responses",
+    "Workflow/bot logic and routing rules (as documentation, not as direct import)",
+    "Custom data attributes schema for people and conversations",
+    "SLA policies, business hours, and office configurations",
+    "Integrations inventory (Slack, Jira, Salesforce, etc.) for re-wiring on the target side"
+  ],
+  "export_method": "Use Intercom's REST API to paginate conversations, contacts, companies, and articles, or request a Data Export job from Settings to receive a bulk archive. Help Center content can be pulled via the Articles API. Attachments are downloadable via signed URLs included in the API payload. Store everything as JSON/CSV plus a separate folder of attachment files for downstream transformation.",
+  "import_method": "Map the exported data to Zendesk's data model and load it through Zendesk's REST API: contacts to Users, companies to Organizations, conversations to Tickets (with comments preserving author and timestamp where supported), and Help Center articles via the Help Center API. For bulk users/orgs, Zendesk supports CSV import in the admin UI. Run a small pilot batch first, validate IDs and timestamps, then run the full migration in chunks with retry/backoff against rate limits.",
+  "concept_mapping": [
+    {
+      "source": "Conversation",
+      "target": "Ticket",
+      "note": "Each Intercom conversation becomes a Zendesk ticket; messages map to ticket comments."
+    },
+    {
+      "source": "Contact / User / Lead",
+      "target": "User (end user)",
+      "note": "Leads and users both flatten into Zendesk end users; preserve external_id to keep references stable."
+    },
+    {
+      "source": "Company",
+      "target": "Organization",
+      "note": "Attach users via organization_id; custom company attributes go to organization fields."
+    },
+    {
+      "source": "Teammate",
+      "target": "Agent",
+      "note": "Re-invite teammates as agents; roles need to be re-mapped to Zendesk's role model."
+    },
+    {
+      "source": "Tag",
+      "target": "Tag",
+      "note": "Tags transfer 1:1 but are flat in Zendesk; nested taxonomies need to be flattened."
+    },
+    {
+      "source": "Custom data attribute",
+      "target": "Custom field (user/org/ticket)",
+      "note": "Recreate fields up front; field types and key names should match before import to avoid null values."
+    },
+    {
+      "source": "Saved reply / Macro",
+      "target": "Macro",
+      "note": "Recreate manually; placeholders use different syntax (Zendesk uses Liquid-style {{ticket.requester.name}})."
+    },
+    {
+      "source": "Help Center Article / Collection",
+      "target": "Guide Article / Section / Category",
+      "note": "Three-level Guide hierarchy (Category > Section > Article) vs Intercom's Collection > Article — plan the structure mapping before import."
+    }
+  ],
+  "effort": "2-6 weeks for a typical mid-size workspace; 1-2 weeks for small teams with low conversation history, 6-12+ weeks for enterprise with heavy custom workflows, bots, and many integrations.",
+  "gotchas": [
+    "Intercom bot/Workflow logic does not import — you have to rebuild flows in Zendesk's bot/Flow Builder from scratch",
+    "Message authorship and timestamps in imported tickets may be limited by API constraints; verify how 'created_at' is preserved before bulk import",
+    "Attachments need to be re-uploaded to Zendesk and re-linked; signed Intercom URLs expire",
+    "API rate limits on both sides require batching, exponential backoff, and resumable jobs for large datasets",
+    "Help Center URL slugs will change — set up redirects from old Intercom article URLs to new Guide URLs to protect SEO and saved links",
+    "Custom roles, business hours, and SLA policies must be configured manually before the first ticket lands so routing and metrics work correctly"
+  ],
+  "email": {
+    "subject": "Heads up: we're moving support from Intercom to Zendesk",
+    "body": "Hi team,\n\nWe're migrating our customer support stack from Intercom to Zendesk over the next few weeks. The goal is a more structured ticketing workflow, cleaner SLA tracking, and tighter integrations with the rest of our tooling.\n\nWhat to expect:\n- Open Intercom conversations will continue to be handled in Intercom until cutover.\n- Historical conversations, contacts, companies, and Help Center articles will be exported and imported into Zendesk.\n- After cutover, all new inbound support traffic will land in Zendesk; please switch your bookmarks and saved views.\n- Macros, custom fields, and SLA policies are being recreated on the Zendesk side — let us know if you rely on a specific saved reply so we don't miss it.\n\nIf you notice missing data after the migration or have questions about the new workflow, reply to this thread or ping the support tooling channel.\n\nThanks,\nSupport Ops"
+  }
+}

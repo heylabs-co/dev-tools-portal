@@ -1,0 +1,75 @@
+{
+  "source": {
+    "slug": "sift",
+    "name": "Sift"
+  },
+  "target": {
+    "slug": "kount",
+    "name": "Kount"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "Move from Sift's ML trust-and-safety platform to Kount's Mastercard-backed fraud and identity trust stack while keeping device fingerprinting, scoring, and chargeback workflows intact.",
+  "why_switch": [
+    "Kount publishes a lower entry price point and more transparent pricing than Sift",
+    "Mastercard ownership gives Kount tighter card-network signal and chargeback data",
+    "Shared merchant network adds cross-merchant fraud signal Sift relies more on per-customer ML",
+    "Better fit if you already lean into card-payment fraud rather than full account-lifecycle abuse",
+    "Kount has a free tier for evaluation; Sift requires sales contact"
+  ],
+  "what_to_export": [
+    "List of integrated event types (login, signup, transaction, content) and their schemas",
+    "Custom rules, score thresholds, and decision logic configured in Sift Console",
+    "Allowlists, blocklists, and watchlists",
+    "Historical event data and decisions for model warm-up (request via support if needed)",
+    "Workflow / Decision automation definitions",
+    "Webhook endpoints and notification settings",
+    "User and team / role configuration",
+    "Chargeback feedback and labeled fraud outcomes"
+  ],
+  "export_method": "Sift exposes data and configuration primarily through its console and APIs. Use the Sift Events / Decisions APIs to pull historical event and decision data, and export rules, lists, and workflow definitions from the console. For bulk historical data or labeled outcomes, contact Sift support — there is no single one-click export, so plan a scripted pull. Consult the official Sift docs for current endpoint paths and rate limits.",
+  "import_method": "Kount integration is typically driven by their JavaScript Data Collector (device fingerprint) plus server-side scoring API calls during transactions. Re-instrument your client and server with Kount SDKs, recreate equivalent rules and lists in the Kount control panel, and replay a sample of historical events through their API to validate scores before flipping production traffic. Use a shadow-mode period where both systems score in parallel.",
+  "concept_mapping": [
+    {
+      "source": "Sift Events API",
+      "target": "Kount scoring / risk API",
+      "note": "Re-map event payloads; field names differ — verify in current Kount docs."
+    },
+    {
+      "source": "Sift JavaScript Snippet (device fingerprint)",
+      "target": "Kount Data Collector JS",
+      "note": "Replace tag on every relevant page; tokens flow with the transaction call."
+    },
+    {
+      "source": "Sift Decisions / Workflows",
+      "target": "Kount rules / policies",
+      "note": "Manual recreation; logic differs in expression syntax."
+    },
+    {
+      "source": "Sift Score (0-100)",
+      "target": "Kount risk score",
+      "note": "Score scales and meanings differ — recalibrate thresholds with parallel runs."
+    },
+    {
+      "source": "Sift Lists (allow/block/watch)",
+      "target": "Kount lists",
+      "note": "Export as CSV from Sift, import into Kount."
+    },
+    {
+      "source": "Sift Chargeback / Labels API",
+      "target": "Kount chargeback feedback",
+      "note": "Continue feeding outcomes to the new system to keep models tuned."
+    }
+  ],
+  "effort": "3-8 weeks",
+  "gotchas": [
+    "Score calibration is not 1:1 — run shadow mode for at least one full billing cycle before changing decision automation",
+    "Device fingerprint identities do not transfer; trust history rebuilds from zero on the new platform",
+    "Webhook signatures and retry semantics differ — re-validate downstream consumers",
+    "PCI / data-residency review may be required when re-routing card data through a new vendor",
+    "Cancel Sift only after Kount is in full enforcement mode and chargeback feedback loop is wired"
+  ],
+  "email": {
+    "subject": "Migrating from Sift to Kount — plan and timeline",
+    "body": "Hi team,\n\nWe're planning to move our fraud and risk stack from Sift to Kount. Drivers: more transparent pricing, Mastercard-backed card-network signal, and a shared merchant network that fits our payment-fraud profile.\n\nPlan:\n1) Export rules, lists, decisions, and historical events from Sift via their APIs and console.\n2) Stand up Kount in shadow mode — Data Collector on the client, scoring API server-side — running in parallel with Sift.\n3) Recreate rules, thresholds, and workflows in Kount; calibrate score thresholds against the shadow data.\n4) Cut over decision automation once shadow metrics look healthy for a full chargeback cycle.\n5) Wire chargeback feedback into Kount, then decommission Sift.\n\nEstimated effort: 3-8 weeks depending on rule complexity. I'll share a more detailed runbook before we start.\n\nThanks,"
+  }
+}

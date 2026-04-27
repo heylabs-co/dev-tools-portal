@@ -1,0 +1,69 @@
+{
+  "source": {
+    "slug": "cerbos",
+    "name": "Cerbos"
+  },
+  "target": {
+    "slug": "dfns",
+    "name": "Dfns"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "Cerbos (authorization policy engine) and Dfns (MPC wallet-as-a-service) are different categories, so this is a product pivot rather than a like-for-like migration.",
+  "why_switch": [
+    "Your product is moving into crypto custody or wallet provisioning",
+    "You need MPC-backed key management with policy-driven approvals",
+    "You no longer require a general-purpose authorization engine",
+    "Compliance demands SOC 2 institutional-grade key custody",
+    "You want a managed wallet API rather than self-hosting authz"
+  ],
+  "what_to_export": [
+    "Cerbos policy bundles (YAML)",
+    "Resource and principal schemas",
+    "Decision audit logs",
+    "Policy test suites",
+    "List of services calling the PDP",
+    "Mapping of Cerbos roles to business actions",
+    "Any custom attribute sources"
+  ],
+  "export_method": "Cerbos policies live as YAML in your repository — keep the directory under version control and snapshot decision logs via the Cerbos audit exporter (see Cerbos official docs).",
+  "import_method": "Dfns does not consume authorization policies; instead, you model approval logic as Dfns policies attached to wallets and users. Recreate the relevant rules in Dfns per the Dfns official docs, focusing on signing approvals rather than general resource/action access.",
+  "concept_mapping": [
+    {
+      "source": "Principal",
+      "target": "Dfns end-user / service account",
+      "note": "Confirm exact entity names in current docs"
+    },
+    {
+      "source": "Resource",
+      "target": "Wallet / asset",
+      "note": "Authz is per-wallet rather than per-resource"
+    },
+    {
+      "source": "Derived role",
+      "target": "Permission group",
+      "note": "Verify availability in Dfns"
+    },
+    {
+      "source": "Cerbos policy",
+      "target": "Dfns policy on signing",
+      "note": "Scope is narrower — only signing decisions"
+    },
+    {
+      "source": "Decision log",
+      "target": "Activity / approval log",
+      "note": "Different schema; map fields manually"
+    }
+  ],
+  "effort": "2-6 weeks",
+  "gotchas": [
+    "Categories differ: Dfns will not replace generic authorization across your app",
+    "MPC key shares introduce custodial lock-in — plan exit strategy upfront",
+    "Dfns pricing is custom; budget a procurement cycle",
+    "Compliance review (KYC, AML, jurisdictions) will likely be required",
+    "Run wallet operations in a sandbox before moving real funds"
+  ],
+  "email": {
+    "subject": "Cancellation: Cerbos Cloud / commercial plan",
+    "body": "Hi Cerbos team,\n\nOur product direction has shifted toward wallet and key infrastructure (we are adopting Dfns), so we are winding down our Cerbos commercial usage. Please share the cancellation steps, the final invoice timing, and any data export we should run before account closure.\n\nThanks for the partnership.\n\nBest regards"
+  }
+}

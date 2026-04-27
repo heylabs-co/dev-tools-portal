@@ -1,0 +1,75 @@
+{
+  "source": {
+    "slug": "agora",
+    "name": "Agora"
+  },
+  "target": {
+    "slug": "dyte",
+    "name": "Dyte"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "Move audio/video sessions from Agora to Dyte by recreating meetings via Dyte's REST API and swapping in Dyte's client SDKs.",
+  "why_switch": [
+    "Pre-built UI kit reduces client-side work",
+    "Simple meeting/participant REST model",
+    "Recording and live streaming included in core product",
+    "Free tier for prototyping",
+    "Modern SDKs for web, mobile, and React"
+  ],
+  "what_to_export": [
+    "Active channel/room inventory",
+    "Token-issuing logic and user roles",
+    "Recording files and storage policy",
+    "Client SDK versions per platform",
+    "Custom UI components built on Agora primitives",
+    "Webhook handlers for call lifecycle",
+    "Live streaming output configuration",
+    "Bandwidth and concurrent-user metrics"
+  ],
+  "export_method": "Session state is ephemeral. Export your room inventory and any recordings from Agora's cloud storage to your own bucket before cancelling. Document custom UI components and signaling so they can be rebuilt on Dyte's primitives.",
+  "import_method": "Create a Dyte organization, generate API keys, and use the REST API to create meetings and add participants. Install Dyte's web/mobile SDK or use the prebuilt UI kit. Issue auth tokens server-side per participant. Migrate behind a feature flag and validate quality before full cutover.",
+  "concept_mapping": [
+    {
+      "source": "Channel",
+      "target": "Meeting",
+      "note": "Dyte meetings created via REST API"
+    },
+    {
+      "source": "RTC token",
+      "target": "Auth token",
+      "note": "Per-participant token issued server-side"
+    },
+    {
+      "source": "Custom UI on raw SDK",
+      "target": "UI Kit or headless SDK",
+      "note": "Choose between prebuilt UI or core SDK"
+    },
+    {
+      "source": "Cloud recording",
+      "target": "Recording",
+      "note": "Different storage hooks"
+    },
+    {
+      "source": "Live streaming",
+      "target": "Live streaming",
+      "note": "Verify output formats"
+    },
+    {
+      "source": "RTM (signaling)",
+      "target": "Plugins / data channels",
+      "note": "Rebuild custom signaling on Dyte primitives"
+    }
+  ],
+  "effort": "2-6 weeks",
+  "gotchas": [
+    "Enterprise tier availability differs; confirm SLAs if you need them",
+    "Dyte's prebuilt UI may not match your existing design system",
+    "Platform coverage may not include every Agora SDK target",
+    "Recording storage and retention model is different",
+    "Custom signaling on RTM needs to be redesigned"
+  ],
+  "email": {
+    "subject": "Cancelling Agora account",
+    "body": "Hi Agora team,\n\nWe're migrating our video/audio workload to Dyte. Please confirm the cancellation date and any final billing on our account.\n\nThanks."
+  }
+}

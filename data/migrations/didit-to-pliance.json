@@ -1,0 +1,76 @@
+{
+  "source": {
+    "slug": "didit",
+    "name": "Didit"
+  },
+  "target": {
+    "slug": "pliance",
+    "name": "Pliance"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "Move from Didit's document/biometric KYC API to Pliance's Swedish AML platform when EU compliance, sanctions/PEP screening, and ongoing monitoring become the priority.",
+  "why_switch": [
+    "Need ongoing AML monitoring (sanctions, PEP, adverse media) rather than one-off identity checks",
+    "EU/Nordic regulatory fit and GDPR-aligned hosting is becoming a hard requirement",
+    "Want CDD, screening, and transaction monitoring on one platform",
+    "Looking for developer-first AML APIs with detailed docs and SDKs",
+    "Reducing per-verification cost shape in favor of a custom EU-fintech contract"
+  ],
+  "what_to_export": [
+    "Verified user records and their KYC status",
+    "Document images and metadata (where retention policy permits)",
+    "Biometric/liveness check outcomes and timestamps",
+    "Risk scores and decisioning history",
+    "Webhook/event history from Didit",
+    "PII fields you'll need on the Pliance side (name, DOB, country, IDs)",
+    "Audit logs of operator decisions",
+    "Mapping between Didit user IDs and your internal user IDs"
+  ],
+  "export_method": "Pull customer KYC data from Didit using the export mechanisms documented in their official API/docs, treating PII with the same care as production data (encrypted in transit and at rest). For artifacts you cannot legally retain post-cancellation, capture the decision metadata only. Coordinate with your DPO on what to actually move versus what to re-collect under a new lawful basis.",
+  "import_method": "Stand up a Pliance tenant per their official documentation, configure your jurisdictions and screening lists, and load existing customers into their CDD/screening flows via the documented APIs. Re-screen migrated customers against sanctions/PEP/adverse-media to establish a fresh baseline, then enable ongoing monitoring. Wire webhooks for ongoing-monitoring alerts into your case-management system before going live.",
+  "concept_mapping": [
+    {
+      "source": "Didit document scanning + biometrics",
+      "target": "Pliance CDD inputs (often paired with a separate IDV vendor)",
+      "note": "Pliance focuses on AML; confirm whether you still need a doc/biometric vendor alongside"
+    },
+    {
+      "source": "Didit one-off verification",
+      "target": "Pliance ongoing monitoring",
+      "note": "Operational shift from event-based to continuous"
+    },
+    {
+      "source": "Didit free/subscription tiers",
+      "target": "Pliance custom contract",
+      "note": "Expect quote-based pricing; budget accordingly"
+    },
+    {
+      "source": "REST API + webhooks",
+      "target": "REST API + webhooks + SDKs",
+      "note": "Re-implement webhook handlers against Pliance's event schema"
+    },
+    {
+      "source": "Risk decisioning rules",
+      "target": "Pliance rules/case management",
+      "note": "Re-author rules; do not assume parity"
+    },
+    {
+      "source": "Global identity coverage",
+      "target": "EU/Nordic-strong coverage",
+      "note": "Validate non-EU coverage before migrating those segments"
+    }
+  ],
+  "effort": "4-10 weeks",
+  "gotchas": [
+    "Pliance and Didit solve overlapping but different problems — you may need both an IDV and an AML vendor",
+    "PII migration must respect GDPR purpose limitation; involve legal/DPO early",
+    "Re-screening migrated users will surface new hits — staff case management before cutover",
+    "EU focus means non-EU coverage may be weaker; validate every region you serve",
+    "Custom pricing means TCO is opaque until you have a quote",
+    "Audit trail continuity matters for regulators — keep Didit records archived"
+  ],
+  "email": {
+    "subject": "Migrating KYC/AML from Didit to Pliance",
+    "body": "Hi team,\n\nProposing we move our KYC/AML stack from Didit to Pliance, with a focus on EU compliance, sanctions/PEP screening, and ongoing monitoring.\n\nPlan:\n1. Loop in DPO/legal on what PII can be migrated under current lawful basis.\n2. Export customer records, decisions, and audit logs from Didit per their docs.\n3. Stand up a Pliance tenant per their official documentation; load CDD data and configure screening lists.\n4. Re-screen migrated users to establish a baseline, then enable ongoing monitoring and wire alerts into case management.\n5. Decide whether we still need an IDV vendor alongside Pliance for document/biometric checks.\n\nEffort estimate 4-10 weeks. Pricing is custom on Pliance, so we'll need a quote.\n\nThanks"
+  }
+}

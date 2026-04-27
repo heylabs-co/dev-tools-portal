@@ -1,0 +1,71 @@
+{
+  "source": {
+    "slug": "lob",
+    "name": "Lob"
+  },
+  "target": {
+    "slug": "postmark",
+    "name": "Postmark"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "Lob and Postmark serve different channels (Lob = physical direct mail, Postmark = transactional email), so this is less a swap and more a re-platforming of any email-adjacent workflows onto Postmark.",
+  "why_switch": [
+    "Postmark is purpose-built for transactional email deliverability and analytics",
+    "Lower entry pricing on Postmark for typical transactional email volume",
+    "Lower vendor lock-in: Postmark exposes both REST and standard SMTP",
+    "Strong bounce/spam reporting and template management",
+    "Better fit if your real need is email (not physical mail)"
+  ],
+  "what_to_export": [
+    "List of senders / verified domains and DKIM/SPF records",
+    "Email templates (HTML + text)",
+    "Recipient/contact lists used for transactional sends",
+    "Webhook endpoints (delivery, bounce, open, click)",
+    "Suppression / bounce lists",
+    "API keys and integration touchpoints in your codebase",
+    "Any address-verification or mailing logic that must remain on Lob",
+    "Historical send logs needed for audit/reporting"
+  ],
+  "export_method": "Lob has no built-in 'email export' because Lob's primary product is physical mail; pull whatever email-related data you may have via Lob's API or dashboard exports, and otherwise rebuild templates and recipient lists from your own application database. Consult Lob's official docs for current export endpoints.",
+  "import_method": "In Postmark, create a Server, add and verify your sending domain (DKIM/Return-Path), recreate templates in Postmark's template editor or via API, configure message streams (transactional vs broadcast), set up webhooks, and switch your application to send via Postmark's REST API or SMTP. Consult Postmark's official docs for current setup steps.",
+  "concept_mapping": [
+    {
+      "source": "Lob API key",
+      "target": "Postmark Server API token",
+      "note": "Per-server scoping in Postmark"
+    },
+    {
+      "source": "Verified sender (if any)",
+      "target": "Sender Signature / verified domain",
+      "note": "DKIM + Return-Path required"
+    },
+    {
+      "source": "Template",
+      "target": "Postmark Template",
+      "note": "Mustache-style variables"
+    },
+    {
+      "source": "Webhook",
+      "target": "Message Stream webhook",
+      "note": "Per-stream configuration"
+    },
+    {
+      "source": "Send log",
+      "target": "Activity / Message events",
+      "note": "Retention varies by plan"
+    }
+  ],
+  "effort": "4-12 hours",
+  "gotchas": [
+    "Lob and Postmark are not 1:1 — physical mail workflows do not migrate to Postmark at all",
+    "Domain authentication (DKIM/SPF/DMARC) must be set up before production sends",
+    "Postmark separates transactional vs broadcast streams; pick the right one",
+    "Warm-up may be needed if your sending volume is high",
+    "Webhook payload shapes differ — update consumers",
+    "Keep Lob running for any direct-mail use cases that have no Postmark equivalent"
+  ],
+  "email": {
+    "subject": "Moving our transactional email from Lob to Postmark",
+    "body": "Hi team,\n\nWe're planning to move transactional email off Lob and onto Postmark. Lob will stay in place for any physical direct-mail flows, but Postmark gives us better deliverability, cleaner pricing, and lower lock-in (REST + SMTP).\n\nScope: export templates, recipient lists, suppressions, and webhook endpoints; verify our sending domain in Postmark; rewire the app to Postmark's API or SMTP; and validate bounce/open/click webhooks before cutover.\n\nRough estimate: 4-12 hours of engineering. I'll share a checklist and a rollout plan in the ticket.\n\nThanks"
+  }
+}

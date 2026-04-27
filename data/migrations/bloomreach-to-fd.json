@@ -1,0 +1,79 @@
+{
+  "source": {
+    "slug": "bloomreach",
+    "name": "Bloomreach"
+  },
+  "target": {
+    "slug": "fd",
+    "name": "fd"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "Bloomreach is a hosted commerce search/personalization platform; fd is an OSS CLI file finder. These are not feature-equivalent, so a direct migration is not realistic. If you only need filesystem search, fd works; for product/site search you need a different replacement.",
+  "why_switch": [
+    "Eliminate subscription costs by moving to free OSS tooling",
+    "Remove vendor lock-in tied to a hosted commerce search platform",
+    "Simpler stack if your real need was local/file-based search, not product search",
+    "Open-source transparency and self-host control"
+  ],
+  "what_to_export": [
+    "Product/content catalog feeds",
+    "Search index schema and field mappings",
+    "Synonym, stopword, and dictionary lists",
+    "Merchandising rules and boost/bury configs",
+    "Recommendation/personalization model configs",
+    "Query analytics and click logs",
+    "API integration code (SDK calls, frontend widgets)",
+    "Access roles and API keys inventory"
+  ],
+  "export_method": "Use Bloomreach admin/console export tools and APIs to download catalog feeds, index configs, and rules. Confirm exact endpoints in current Bloomreach docs before relying on any specific path.",
+  "import_method": "fd has no index or catalog concept — it scans a filesystem path on demand. There is nothing to import; install fd (cargo, brew, apt, etc.) and run queries against directories. For real product search you would import the exported feed into a different engine (e.g. self-hosted search), not fd.",
+  "concept_mapping": [
+    {
+      "source": "Hosted search index",
+      "target": "Local filesystem tree",
+      "note": "fd searches files/paths, not records"
+    },
+    {
+      "source": "Catalog feed / documents",
+      "target": "Files and directories",
+      "note": "No structured fields in fd"
+    },
+    {
+      "source": "Query API (REST)",
+      "target": "fd CLI invocation",
+      "note": "Shell-based, not HTTP"
+    },
+    {
+      "source": "Facets and filters",
+      "target": "fd flags (--type, --extension, --size)",
+      "note": "Limited filter set"
+    },
+    {
+      "source": "Synonyms / analyzers",
+      "target": "Regex / glob patterns",
+      "note": "No linguistic analysis"
+    },
+    {
+      "source": "Merchandising rules",
+      "target": "Not supported",
+      "note": "fd has no ranking control beyond match order"
+    },
+    {
+      "source": "Recommendations / personalization",
+      "target": "Not supported",
+      "note": "Out of scope for fd"
+    }
+  ],
+  "effort": "1-3 days if scope is truly filesystem search; weeks-to-months if you need to replace commerce search functionality with another platform",
+  "gotchas": [
+    "fd is not a SaaS search replacement — most Bloomreach features have no fd equivalent",
+    "No relevance tuning, no analytics, no merchandising in fd",
+    "Frontend search widgets and storefront integrations must be rebuilt or replaced",
+    "Personalization/recommendation models cannot be ported",
+    "Re-evaluate whether the pairing makes sense before committing to migration"
+  ],
+  "email": {
+    "subject": "Cancelling Bloomreach subscription",
+    "body": "Hi team,\n\nWe are winding down our use of Bloomreach and will not be renewing. Please confirm the cancellation effective date, any data export options for our catalog and configuration, and the data retention/deletion policy after cancellation.\n\nKindly share final invoices and confirm closure of our account and API credentials.\n\nThanks."
+  }
+}

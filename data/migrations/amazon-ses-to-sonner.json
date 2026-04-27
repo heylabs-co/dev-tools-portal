@@ -1,0 +1,70 @@
+{
+  "source": {
+    "slug": "amazon-ses",
+    "name": "Amazon SES"
+  },
+  "target": {
+    "slug": "sonner",
+    "name": "Sonner"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "Sonner is an open-source React toast/notification library, not an email sending service — this is not a like-for-like replacement for Amazon SES, only an option if you're replacing user-facing in-app notifications.",
+  "why_switch": [
+    "Sonner runs entirely client-side as a React component, with no per-message cost",
+    "Useful only if your SES use case was actually surfacing in-app notifications, not delivering email",
+    "Removes a vendor and an API dependency for purely UI notifications",
+    "Open-source and lightweight"
+  ],
+  "what_to_export": [
+    "Inventory of every code path currently calling SES",
+    "Classification of each path: must-deliver email vs in-app UI message",
+    "Email templates that were really just UI copy",
+    "Suppression list and bounce history (still needed if any email use case remains)",
+    "DKIM/SPF/DMARC DNS records (keep until migration is fully scoped)",
+    "Webhook handlers for bounce/complaint events",
+    "Recipient preference data",
+    "Any analytics or open/click tracking tied to email"
+  ],
+  "export_method": "Audit your codebase for SES SDK calls and group them by intent. For anything that is genuinely transactional or marketing email, plan a separate migration to a real email provider — Sonner cannot send email. For flows that are really just in-app status messages, capture the message content and triggers so they can be re-implemented as toast notifications. Consult the Amazon SES documentation for exact export commands.",
+  "import_method": "Install Sonner in your React app per the official Sonner documentation, mount its toast container at the app root, and replace the relevant SES calls with client-side toast invocations. Keep a real email provider (or SES itself) for any flow that must reach the user's inbox.",
+  "concept_mapping": [
+    {
+      "source": "SES SendEmail call",
+      "target": "Toast invocation in React",
+      "note": "Only valid if the message was UI feedback, not delivered mail"
+    },
+    {
+      "source": "Email template",
+      "target": "Toast content / component",
+      "note": "Re-author as React; no HTML email rendering"
+    },
+    {
+      "source": "Bounce/complaint webhook",
+      "target": "n/a",
+      "note": "No delivery, so no delivery events"
+    },
+    {
+      "source": "Suppression list",
+      "target": "n/a",
+      "note": "Not applicable to in-app toasts"
+    },
+    {
+      "source": "Configuration set",
+      "target": "Toaster component props",
+      "note": "Position, duration, theming live in the React component"
+    }
+  ],
+  "effort": "Varies — hours for true UI-only flows, weeks if you'd misclassified email as 'notification'",
+  "gotchas": [
+    "Sonner does not send email, SMS, or voice — do not use it as a drop-in for transactional mail",
+    "Anything legally or operationally required (receipts, password resets, alerts) must keep using a real messaging provider",
+    "Toast notifications only reach users who are currently active in the app",
+    "Audit carefully before deleting SES identities — you likely still need them",
+    "No delivery, open, or click analytics from a client-side toast",
+    "Confirm scope with stakeholders before scheduling this migration"
+  ],
+  "email": {
+    "subject": "Re-scoping the Amazon SES → Sonner migration",
+    "body": "Hi team,\n\nQuick heads-up: Sonner is a React toast library, not an email sending service, so it can't replace Amazon SES one-for-one. Where it is appropriate is for in-app UI notifications that we may have been pushing through SES by mistake.\n\nProposed plan: audit every SES call site, split them into 'must deliver email' vs 'in-app UI message', migrate only the UI subset to Sonner, and keep a real email provider for the rest.\n\nI'll share the audit results before we change any code.\n\nThanks"
+  }
+}

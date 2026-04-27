@@ -1,0 +1,75 @@
+{
+  "source": {
+    "slug": "radar",
+    "name": "Radar"
+  },
+  "target": {
+    "slug": "opencage",
+    "name": "OpenCage"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "Move from Radar's location platform to OpenCage when you only need geocoding/reverse-geocoding and want OpenStreetMap-based pricing without subscriptions.",
+  "why_switch": [
+    "OpenCage offers a free tier and per-request pricing; Radar is subscription-only.",
+    "OpenCage aggregates OpenStreetMap and other open data, reducing vendor lock-in.",
+    "OpenCage is GDPR-friendly and based in the UK if EU compliance matters.",
+    "Simpler scope: if you don't use Radar's geofencing/SDK/trip-tracking, OpenCage is lighter.",
+    "Cleaner REST contract for forward and reverse geocoding."
+  ],
+  "what_to_export": [
+    "List of cached geocode results (lat/lng + formatted address)",
+    "Saved place / POI records you maintain in your DB",
+    "Geofence definitions (polygons, radii, metadata) — note: not directly portable",
+    "User location history (if stored on your side)",
+    "API usage logs for capacity sizing",
+    "Webhook configurations and subscribers",
+    "Custom address-component mappings used by your app",
+    "List of API keys, allowed origins, and rate limits"
+  ],
+  "export_method": "Radar does not publish a single 'export everything' endpoint, so plan to extract data through the Radar dashboard and your application database. For geofences and places, use the Radar API (see Radar docs) to list resources and dump them to JSON. For cached geocodes and user trip history, query your own data store. Treat any SDK-managed state on devices as ephemeral.",
+  "import_method": "OpenCage is primarily a stateless geocoding API — there is no 'import' for geofences or trip data. Re-issue forward/reverse geocoding requests against the OpenCage API as needed and persist results in your database. For features Radar provided that OpenCage does not (geofencing, trip tracking, fraud), plan a separate solution or keep them in-house.",
+  "concept_mapping": [
+    {
+      "source": "Forward geocoding (address → lat/lng)",
+      "target": "GET /geocode/v1/json?q={address}",
+      "note": "Verify exact endpoint in OpenCage docs."
+    },
+    {
+      "source": "Reverse geocoding (lat/lng → address)",
+      "target": "GET /geocode/v1/json?q={lat}+{lng}",
+      "note": "Same endpoint, different query format."
+    },
+    {
+      "source": "Geofences",
+      "target": "Not provided",
+      "note": "Implement geofencing app-side (e.g., point-in-polygon)."
+    },
+    {
+      "source": "Trip tracking",
+      "target": "Not provided",
+      "note": "No equivalent — keep client-side or use another vendor."
+    },
+    {
+      "source": "Address autocomplete",
+      "target": "Limited / consult docs",
+      "note": "OpenCage focus is geocoding; check current capabilities."
+    },
+    {
+      "source": "API key auth",
+      "target": "API key query param / header",
+      "note": "Confirm in OpenCage docs."
+    }
+  ],
+  "effort": "1-3 days",
+  "gotchas": [
+    "Feature gap: Radar's geofencing, trip tracking, and fraud detection have no OpenCage equivalent.",
+    "Address component schemas differ — map fields carefully and re-test downstream parsers.",
+    "Rate limits and pricing model differ; size your plan against expected QPS.",
+    "Coordinate precision and result ranking can differ — eyeball-test key queries before cutover.",
+    "If you relied on Radar's mobile SDKs, you'll need a different background-location strategy."
+  ],
+  "email": {
+    "subject": "Migrating our geocoding from Radar to OpenCage",
+    "body": "Hi team,\n\nProposal: move our geocoding workload from Radar to OpenCage. We mostly use forward/reverse geocoding, and OpenCage's OSM-backed pricing should reduce cost and lock-in. Geofencing and trip tracking would need to be replaced or handled in-house — open to options there.\n\nNext step: I'll prototype OpenCage against our top 100 query patterns and report on accuracy and latency before we plan a full cutover.\n\nThanks"
+  }
+}

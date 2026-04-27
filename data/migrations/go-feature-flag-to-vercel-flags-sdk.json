@@ -1,0 +1,76 @@
+{
+  "source": {
+    "slug": "go-feature-flag",
+    "name": "GO Feature Flag"
+  },
+  "target": {
+    "slug": "vercel-flags-sdk",
+    "name": "Flags SDK"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "Swap a self-hosted polyglot flag backend for a framework-native Next.js/SvelteKit SDK that delegates evaluation to a provider you choose.",
+  "why_switch": [
+    "Your product is consolidating on Next.js or SvelteKit and you want first-class server/edge integration",
+    "You'd rather not operate the GO Feature Flag relay proxy yourself",
+    "You want clean A/B testing tied to Vercel deployment previews",
+    "You plan to plug into a managed provider (LaunchDarkly, Statsig, ConfigCat, etc.) via official adapters",
+    "You need edge-compatible evaluation without latency penalties"
+  ],
+  "what_to_export": [
+    "Flag keys and default values",
+    "Targeting rules and segments",
+    "Rollout percentages",
+    "Variant definitions for multivariate flags",
+    "Per-environment configurations",
+    "User attribute schemas used in rules",
+    "Existing analytics/experiment metadata",
+    "Audit log of recent flag changes"
+  ],
+  "export_method": "Pull the GO Feature Flag config file from its retriever (Git, S3, or HTTP). Treat it as the canonical export and translate each flag into the schema of the provider you'll back Flags SDK with. The Flags SDK itself does not store flags; it is a framework adapter layer. Consult the official GO Feature Flag and target-provider docs for current export formats.",
+  "import_method": "Pick a provider compatible with Flags SDK (e.g., LaunchDarkly, Statsig, Optimizely, Hypertune, ConfigCat, DevCycle, or Flipt — verify supported adapters in the official Flags SDK docs). Create flags in that provider, install the Flags SDK package and the matching provider adapter in your Next.js or SvelteKit app, define each flag with the SDK's flag() helper, and reference them from server components, route handlers, or middleware. Test in deployment previews before enabling in production.",
+  "concept_mapping": [
+    {
+      "source": "GO Feature Flag retriever",
+      "target": "Provider chosen behind Flags SDK",
+      "note": "Flags SDK is a framework layer, not a backend"
+    },
+    {
+      "source": "YAML/JSON flag definition",
+      "target": "flag() declaration + provider config",
+      "note": "Keys live in code; rules live in the provider"
+    },
+    {
+      "source": "OpenFeature SDK call",
+      "target": "Flags SDK adapter call",
+      "note": "Flags SDK is Next.js/SvelteKit-native, not OpenFeature-native"
+    },
+    {
+      "source": "Relay proxy",
+      "target": "Not needed",
+      "note": "Provider SDKs talk directly from server/edge"
+    },
+    {
+      "source": "Polyglot SDKs (15+ langs)",
+      "target": "JS/TS only",
+      "note": "Other languages must keep using GO Feature Flag or another solution"
+    },
+    {
+      "source": "Self-hosted ops",
+      "target": "Managed provider (usually)",
+      "note": "Self-hostable Flipt is one option if you want to stay self-hosted"
+    }
+  ],
+  "effort": "1-4 days",
+  "gotchas": [
+    "Flags SDK only covers Next.js and SvelteKit — non-JS services need their own flag client",
+    "You still need to choose and configure a provider; the SDK alone won't evaluate flags",
+    "Costs may appear if you pick a paid SaaS provider — model usage before committing",
+    "Edge runtime constraints differ from Node — verify your provider adapter supports the runtime you target",
+    "Some adapters lag upstream feature parity; check current support in official docs",
+    "Best DX is on Vercel hosting — non-Vercel deploys may lose preview-based experimentation niceties"
+  ],
+  "email": {
+    "subject": "Migrating from GO Feature Flag to Flags SDK",
+    "body": "Hi team,\n\nProposing we move feature flagging on the Next.js app to Vercel's Flags SDK. It's framework-native, edge-compatible, and lets us pick a provider behind it (LaunchDarkly/Statsig/ConfigCat/Flipt/etc.).\n\nPlan:\n1. Decide on a provider — managed if we want polish, Flipt if we want to stay self-hosted.\n2. Export the current GO Feature Flag YAML, translate flags into the provider's schema.\n3. Install Flags SDK + adapter, define flags via flag() in code, wire to server/edge handlers.\n4. Validate in deployment previews, then cut over.\n\nNote: non-JS services keep their existing flag client. Effort: 1-4 days, mostly waiting on provider config."
+  }
+}

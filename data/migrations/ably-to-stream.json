@@ -1,0 +1,75 @@
+{
+  "source": {
+    "slug": "ably",
+    "name": "Ably"
+  },
+  "target": {
+    "slug": "stream",
+    "name": "Stream"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "Replace Ably pub/sub with Stream's Chat or Feeds APIs when your real-time use case is primarily messaging or activity feeds.",
+  "why_switch": [
+    "Higher-level chat and feed primitives instead of raw pub/sub",
+    "Built-in moderation, reactions, and threads",
+    "Strong SDK coverage for web, iOS, Android, React Native",
+    "Activity feed aggregation out of the box",
+    "Single vendor for chat plus feeds"
+  ],
+  "what_to_export": [
+    "Channel and room definitions",
+    "Message history (if persisted in your DB)",
+    "User identity and roles",
+    "Presence and typing indicator logic",
+    "Push notification routing",
+    "Moderation rules currently enforced in app code",
+    "Webhook handlers for message events",
+    "Client SDK versions per platform"
+  ],
+  "export_method": "Inventory your Ably channels and any message history you store yourself. If you keep messages in your own database, prepare them for import via Stream's server SDK. For ephemeral pub/sub state, no export is needed; you re-establish subscriptions on the new client.",
+  "import_method": "Create a Stream app, install the Chat or Feeds SDK on clients, and map your existing channels/rooms to Stream channels. Use Stream's server SDK to bulk-import historical messages and users if required. Run both stacks in parallel during cutover and migrate user cohorts incrementally.",
+  "concept_mapping": [
+    {
+      "source": "Channel",
+      "target": "Chat channel",
+      "note": "Stream channels carry message history natively"
+    },
+    {
+      "source": "Presence",
+      "target": "Watcher/presence",
+      "note": "Stream tracks watchers per channel"
+    },
+    {
+      "source": "Token auth",
+      "target": "User token",
+      "note": "Stream issues JWTs server-side"
+    },
+    {
+      "source": "Pub/sub message",
+      "target": "Chat message",
+      "note": "Messages are persisted by default"
+    },
+    {
+      "source": "Webhooks",
+      "target": "Webhooks",
+      "note": "Different event taxonomy"
+    },
+    {
+      "source": "Custom protocols (MQTT/SSE)",
+      "target": "Stream SDK",
+      "note": "Use Stream's WebSocket SDK; no MQTT bridge"
+    }
+  ],
+  "effort": "2-4 weeks",
+  "gotchas": [
+    "Stream is opinionated around chat/feeds; pure pub/sub fits less cleanly",
+    "Pricing tier jumps can be steep for high MAU apps",
+    "Message persistence semantics differ from Ably's ephemeral pub/sub",
+    "Moderation features may overlap with custom logic you already wrote",
+    "Plan for user identity migration and token rotation"
+  ],
+  "email": {
+    "subject": "Cancelling Ably subscription",
+    "body": "Hi Ably team,\n\nWe're moving our real-time chat and feeds workload to Stream. Please confirm the cancellation date and any final invoice.\n\nThanks."
+  }
+}

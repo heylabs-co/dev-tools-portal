@@ -1,0 +1,77 @@
+{
+  "source": {
+    "slug": "primer",
+    "name": "Primer"
+  },
+  "target": {
+    "slug": "portone",
+    "name": "PortOne"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "Primer-to-PortOne only makes sense if your business is Korea-heavy; you trade Primer's broad global orchestration and workflow tooling for PortOne's deeper Korean PG ecosystem.",
+  "why_switch": [
+    "PortOne has dominant coverage of Korean PGs (KakaoPay, Toss, NaverPay, KG Inicis, etc.)",
+    "Localized Korean checkout UX is stronger out of the box than rebuilding it on Primer",
+    "If most of your traffic is Korean, paying for Primer's global orchestration breadth is overkill",
+    "PortOne's usage-based pricing model can be a cleaner fit than Primer's hybrid enterprise contracts",
+    "Single SDK across 20+ Korean and global PGs reduces integration burden in-region"
+  ],
+  "what_to_export": [
+    "List of connected PSPs and routing rules in Primer",
+    "Customer profiles and saved payment methods",
+    "Transaction history and reconciliation reports",
+    "Subscription/recurring billing data",
+    "Refund and dispute history",
+    "Webhook subscriptions and event handlers",
+    "Workflow definitions (Primer-specific orchestration logic)",
+    "Checkout UI configuration",
+    "API credentials inventory"
+  ],
+  "export_method": "Use Primer's official APIs and dashboard to export transactions, customers, payment methods, and any workflow definitions. Primer's orchestration workflows are platform-specific and will not import into PortOne — capture them as documentation for re-implementation. Verify exact endpoints and export formats in Primer's official docs.",
+  "import_method": "Set up a PortOne merchant account, configure the Korean and global PGs you need, and rebuild checkout against PortOne's SDK. Customer and token data is generally PSP-scoped, so coordinate token portability with each underlying PG rather than expecting orchestrator-to-orchestrator transfer. Refer to PortOne's official onboarding documentation for current connector list and SDK setup.",
+  "concept_mapping": [
+    {
+      "source": "Primer Workflows",
+      "target": "(no direct equivalent)",
+      "note": "Re-implement orchestration logic using PortOne's routing/SDK or in your own backend"
+    },
+    {
+      "source": "Primer PSP connections",
+      "target": "PortOne PG connections",
+      "note": "Connector catalogs differ; confirm each PG's availability"
+    },
+    {
+      "source": "Primer checkout UI",
+      "target": "PortOne SDK checkout",
+      "note": "Re-build checkout UI; configurations are not portable"
+    },
+    {
+      "source": "Primer webhooks",
+      "target": "PortOne webhooks",
+      "note": "Different event schema; re-subscribe and re-map handlers"
+    },
+    {
+      "source": "Primer customers/payment methods",
+      "target": "PortOne customers/payment methods",
+      "note": "Field mapping per PortOne docs; tokens typically not portable"
+    },
+    {
+      "source": "Primer routing rules",
+      "target": "PortOne routing",
+      "note": "Re-author; semantics may differ"
+    }
+  ],
+  "effort": "3-8 weeks",
+  "gotchas": [
+    "Primer's Workflows have no direct PortOne analog — plan to rebuild that logic",
+    "PortOne's strength is Korean coverage; non-Korean PG depth may be thinner",
+    "PortOne's docs are strongest in Korean — ensure team reference is available",
+    "Stored payment tokens are typically PSP-scoped; coordinate with each PG for portability",
+    "Webhook schemas and reconciliation outputs differ — finance and ops need lead time",
+    "Run parallel for at least one full reconciliation cycle before decommissioning Primer"
+  ],
+  "email": {
+    "subject": "Migration plan: Primer to PortOne",
+    "body": "Team,\n\nProposing we move payments orchestration from Primer to PortOne. This only makes sense if our traffic is Korea-heavy — PortOne's strength is its 20+ Korean PG coverage, while Primer is broader globally and has stronger workflow tooling.\n\nPlan:\n1. Confirm Korean traffic share justifies the swap; otherwise hold.\n2. Inventory Primer Workflows, PSPs, and webhooks; document logic that will need re-implementation.\n3. Stand up PortOne, configure required Korean and global PGs, rebuild checkout on the PortOne SDK.\n4. Run both stacks in parallel; cut over progressively.\n5. Decommission Primer after a clean reconciliation cycle.\n\nEstimated effort: 3-8 weeks. Specifics will be verified against Primer and PortOne official docs.\n\nThanks"
+  }
+}

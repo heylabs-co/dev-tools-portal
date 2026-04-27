@@ -1,0 +1,76 @@
+{
+  "source": {
+    "slug": "devenv",
+    "name": "Devenv"
+  },
+  "target": {
+    "slug": "please-build",
+    "name": "Please Build"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "Different layers: Devenv is a dev environment provisioner, Please Build is a hermetic build system — usually you adopt Please alongside or instead of make/scripts, while keeping or replacing Devenv as a separate decision.",
+  "why_switch": [
+    "Need hermetic, incremental, polyglot builds across Go/Python/Java/JS",
+    "Want remote build caching shared with CI",
+    "Bazel-style fine-grained targets with lighter setup than Bazel",
+    "Single Go binary — avoid Nix install if Devenv was only for env",
+    "Better build performance for large monorepos than ad-hoc scripts"
+  ],
+  "what_to_export": [
+    "Existing build commands (make targets, npm scripts, shell scripts)",
+    "Source layout per language (Go modules, Python packages, Java projects)",
+    "External dependencies and their versions",
+    "Test invocations per package",
+    "Artifact outputs and where they're produced",
+    "CI build pipeline commands that ran inside devenv shell",
+    "Toolchain versions you need at build time",
+    "Any Docker images currently produced"
+  ],
+  "export_method": "No automated converter. Document current build graph: inputs, outputs, and commands per package. Devenv's devenv.nix typically does not contain build rules (it provides the environment), so most extraction comes from Make/scripts. Keep this inventory as the source for writing BUILD files. Confirm rule names and syntax against the official Please documentation.",
+  "import_method": "Install Please via the official one-line installer described in Please's docs. Run the init command at the repo root, which scaffolds a .plzconfig and example BUILD files. Author BUILD files per package using the appropriate language rules (e.g. go_library, python_library — verify current names). Wire remote caching per official guide. Keep Devenv (or replacement) for tool installs separately, since Please assumes tools are on PATH. Verify all rule names and config keys against current Please docs.",
+  "concept_mapping": [
+    {
+      "source": "Make / shell build scripts",
+      "target": "BUILD files with targets",
+      "note": "Each package gets a BUILD file declaring rules"
+    },
+    {
+      "source": "devenv.nix toolchain pin",
+      "target": "Please subrepo / system tool",
+      "note": "Please can manage some toolchains; consult docs for current options"
+    },
+    {
+      "source": "devenv shell run X",
+      "target": "plz run //path:target",
+      "note": "Targets become the runnable units"
+    },
+    {
+      "source": "Test scripts",
+      "target": "*_test rules",
+      "note": "Per-language test rules; verify exact names"
+    },
+    {
+      "source": "CI cache",
+      "target": "Please remote cache",
+      "note": "Configure per official remote cache docs"
+    },
+    {
+      "source": "services.* in devenv",
+      "target": "(no equivalent)",
+      "note": "Please builds; orchestrate services separately"
+    }
+  ],
+  "effort": "1-3 weeks",
+  "gotchas": [
+    "Authoring BUILD files for an existing repo is the bulk of the work",
+    "Please and Devenv are not substitutes — you may keep both initially",
+    "Smaller rule ecosystem than Bazel; some custom rules may be needed",
+    "Hermetic builds require pinning toolchain locations — non-trivial",
+    "Remote cache setup adds operational overhead",
+    "Verify all rule names and config syntax against current Please documentation before writing"
+  ],
+  "email": {
+    "subject": "Proposal: introduce Please Build for hermetic monorepo builds",
+    "body": "Hi team,\n\nDevenv covers our dev environments well, but our build commands are a tangle of Make and shell. I'd like to pilot Please Build for hermetic, cached, polyglot builds with fine-grained targets.\n\nThis is additive, not a Devenv replacement — different layer. Pilot scope: one service, write BUILD files, wire remote cache, measure CI savings. Estimated 1-3 weeks for the pilot.\n\nWorth a try?\n\nThanks"
+  }
+}

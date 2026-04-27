@@ -1,0 +1,69 @@
+{
+  "source": {
+    "slug": "cerbos",
+    "name": "Cerbos"
+  },
+  "target": {
+    "slug": "corbado",
+    "name": "Corbado"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "Cerbos handles authorization policies while Corbado focuses on passkey-based authentication, so this is a category shift rather than a feature-for-feature swap.",
+  "why_switch": [
+    "You are prioritizing passwordless/passkey login and dropping a custom authz layer",
+    "You want a managed authentication SaaS rather than a self-hosted PDP",
+    "Your authorization needs have simplified to a few static roles",
+    "You want to reduce infrastructure surface area",
+    "Compliance or UX pressure pushes you toward passkeys"
+  ],
+  "what_to_export": [
+    "Cerbos policy bundles (YAML)",
+    "Resource and principal schemas",
+    "Derived roles",
+    "Policy test suites",
+    "Audit/decision logs",
+    "List of integration points calling the PDP",
+    "Any custom data sources used by Cerbos"
+  ],
+  "export_method": "Cerbos policies are file-based YAML stored in your repository — archive that directory plus any test fixtures. For decision logs, follow the Cerbos official docs for the audit log exporter.",
+  "import_method": "Corbado is an authentication provider, so Cerbos data does not map onto it. Set up Corbado for sign-in/passkey flows per Corbado official docs and reimplement authorization checks in your application or in a separate authz tool.",
+  "concept_mapping": [
+    {
+      "source": "Principal",
+      "target": "User account",
+      "note": "Corbado users authenticate via passkey"
+    },
+    {
+      "source": "Resource / action",
+      "target": "App-side check",
+      "note": "No direct primitive in Corbado"
+    },
+    {
+      "source": "Derived role",
+      "target": "App-stored role",
+      "note": "Track in your own database"
+    },
+    {
+      "source": "Policy YAML",
+      "target": "Application code",
+      "note": "Rewrite as middleware"
+    },
+    {
+      "source": "PDP request",
+      "target": "Auth session validation",
+      "note": "Different layer entirely"
+    }
+  ],
+  "effort": "1-3 weeks",
+  "gotchas": [
+    "Removing Cerbos without a replacement leaves authorization undefined",
+    "Passkey adoption needs UX planning and fallback flows",
+    "Corbado pricing is not fully transparent — get a quote before commitment",
+    "Plan account recovery and device-lost flows for passkeys",
+    "Verify regional availability and compliance for your user base"
+  ],
+  "email": {
+    "subject": "Cancellation: Cerbos Cloud / commercial plan",
+    "body": "Hi Cerbos team,\n\nWe are simplifying our identity stack and moving authentication to Corbado. We would like to wind down our Cerbos commercial usage — please confirm the cancellation procedure, any final invoices, and any export we should run before account closure.\n\nThanks for the support.\n\nBest regards"
+  }
+}

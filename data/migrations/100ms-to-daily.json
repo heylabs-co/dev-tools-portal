@@ -1,0 +1,78 @@
+{
+  "source": {
+    "slug": "100ms",
+    "name": "100ms"
+  },
+  "target": {
+    "slug": "daily",
+    "name": "Daily"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "Move your real-time video/audio rooms from 100ms to Daily by re-implementing room creation, token issuance, and the client SDK against Daily's APIs.",
+  "why_switch": [
+    "Daily is actively maintained with strong SDK velocity; 100ms's public web SDK has shown reduced release activity recently",
+    "Lower entry pricing on Daily for small workloads compared to 100ms's $500/mo starting tier",
+    "Mature browser, iOS, Android and React Native SDKs with prebuilt UI components",
+    "US-headquartered vendor may simplify procurement/compliance for some buyers",
+    "Public, transparent pricing tiers reduce billing surprises"
+  ],
+  "what_to_export": [
+    "List of room/session identifiers and their configurations",
+    "Recordings and any stored media artifacts",
+    "Webhook endpoint definitions and event subscriptions",
+    "API keys/credentials inventory (for rotation, not direct reuse)",
+    "Token-issuance logic from your backend",
+    "Custom UI/branding assets used in 100ms prebuilt UI",
+    "Role and permission definitions for participants",
+    "Analytics/usage history for billing reconciliation",
+    "Any moderation rules or recording retention policies",
+    "List of client integrations consuming the SDK"
+  ],
+  "export_method": "100ms does not document a single bulk-export endpoint covering everything — consult the official 100ms dashboard and REST API docs to pull room metadata, recordings, and session logs. Recordings are typically delivered to your own object storage, so verify that bucket is intact before cutover. Capture API keys and webhook configurations from the dashboard manually. Treat your own backend code (token mint, webhook handler) as the source of truth for business logic.",
+  "import_method": "On Daily, create a new account, generate API keys, and re-implement server-side room creation and meeting token issuance against Daily's REST API per their official docs. Replace the 100ms client SDK with Daily's client SDK (web, iOS, Android, or React Native) and rewire join flows. Reconfigure webhooks to point at your handler with Daily's event payload shape. Migrate recording storage destinations and re-test recording lifecycle end-to-end.",
+  "concept_mapping": [
+    {
+      "source": "Room",
+      "target": "Room",
+      "note": "Both platforms model a room/session; field names and lifecycle differ — re-create rather than translate IDs"
+    },
+    {
+      "source": "Auth token (room/peer token)",
+      "target": "Meeting token",
+      "note": "Re-issue from your backend; signing keys and claim shapes are vendor-specific"
+    },
+    {
+      "source": "Role / template",
+      "target": "Permissions on token",
+      "note": "Roles map approximately to permission claims; review official Daily docs for exact fields"
+    },
+    {
+      "source": "Prebuilt UI",
+      "target": "Daily Prebuilt or custom call object",
+      "note": "Prebuilt iframe vs. headless SDK — pick based on how much UI you customized"
+    },
+    {
+      "source": "Recording",
+      "target": "Recording",
+      "note": "Both support cloud recording; storage destination and webhook events differ"
+    },
+    {
+      "source": "Webhooks",
+      "target": "Webhooks",
+      "note": "Event names and payload schemas differ; rewrite handler"
+    }
+  ],
+  "effort": "1-3 weeks",
+  "gotchas": [
+    "Token signing/claims are not portable — your backend mint code must be rewritten",
+    "Recording file naming, format and webhook timing differ; do not assume parity",
+    "Mobile SDK install/permissions setup (camera/mic) needs re-validation per platform",
+    "If you used 100ms's prebuilt UI heavily, expect UX regression risk during rebuild",
+    "Run both vendors in parallel during cutover to compare media quality on real networks",
+    "Confirm pricing dimensions (participant minutes vs. peak concurrency) before committing — exact metering rules change; verify on the official pricing page"
+  ],
+  "email": {
+    "subject": "Migrating our real-time video stack from 100ms to Daily",
+    "body": "Hi team,\n\nI'm planning a migration of our real-time video/audio infrastructure from 100ms to Daily. The driver is a combination of pricing fit at our current scale and Daily's stronger ongoing SDK release cadence.\n\nWork involves: rebuilding server-side room and token issuance against Daily's API, swapping the client SDK, reconfiguring webhooks, and validating recording flows. I expect 1-3 weeks of engineering plus a parallel-run period before full cutover. I'll consult Daily's official docs for exact endpoints and pricing before locking estimates.\n\nLet me know if you want to review the cutover plan together.\n\nThanks"
+  }
+}

@@ -1,0 +1,76 @@
+{
+  "source": {
+    "slug": "novu",
+    "name": "Novu"
+  },
+  "target": {
+    "slug": "batch",
+    "name": "Batch"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "Move from Novu's open-source notification infrastructure to Batch's mobile push and in-app messaging platform with EU/GDPR posture.",
+  "why_switch": [
+    "Prefer a managed mobile-first platform over self-hosted infrastructure",
+    "Want EU data residency and GDPR-native posture",
+    "Need built-in segmentation, A/B testing, and campaign UI",
+    "Reduce ops burden of running notification infra",
+    "Have a primarily mobile audience with marketing + transactional needs"
+  ],
+  "what_to_export": [
+    "Workflow definitions and template content",
+    "Subscribers with identifiers and channel info",
+    "Subscriber custom data and preferences",
+    "Topics / list memberships",
+    "Layouts and template assets",
+    "Provider credentials (regenerate at target)",
+    "Triggering integration code points in your apps",
+    "Historical send logs (for reference, if needed)"
+  ],
+  "export_method": "Use the Novu API and database (if self-hosted) to export subscribers, topics, workflows, and preferences as JSON. Confirm exact endpoints and DB schema in Novu's official docs before scripting.",
+  "import_method": "Integrate the Batch mobile SDKs into iOS/Android apps to register devices, then push user attributes via Batch's APIs. Recreate campaigns and in-app templates in the Batch dashboard. Use Batch's transactional API for triggered sends. Verify endpoint names and payloads in Batch's official documentation before automating bulk imports.",
+  "concept_mapping": [
+    {
+      "source": "Novu Subscriber",
+      "target": "Batch Custom User ID + Installation",
+      "note": "Batch ties messaging to installations; map your user id to a custom user id"
+    },
+    {
+      "source": "Novu Workflow",
+      "target": "Batch Campaign / Transactional API",
+      "note": "Marketing flows go to campaigns; triggered sends use the transactional API"
+    },
+    {
+      "source": "Novu Workflow conditions",
+      "target": "Batch segmentation + targeting",
+      "note": "Express conditions via Batch's segmentation rules"
+    },
+    {
+      "source": "Novu Topics",
+      "target": "Batch Audiences / Segments",
+      "note": "Topic-based fan-out becomes audience targeting"
+    },
+    {
+      "source": "Novu Subscriber data",
+      "target": "Batch Custom Attributes / Tags",
+      "note": "Map 1:1 where possible"
+    },
+    {
+      "source": "Novu Layouts / templates",
+      "target": "Batch Templates",
+      "note": "Rebuild visual styles inside Batch's template editor"
+    }
+  ],
+  "effort": "20-50 hours",
+  "gotchas": [
+    "Batch is mobile-centric; web push and email coverage may be weaker than Novu's multi-channel model",
+    "Push tokens must be registered through Batch SDK on device; you cannot transfer APNs/FCM tokens directly",
+    "Identity model differs — plan how anonymous-to-known transitions should behave",
+    "Pricing scales aggressively per Batch reviews; clarify quotas before signing",
+    "If you self-host Novu today, decommissioning includes shutting down infra cleanly",
+    "Run dual-send during cutover to validate deliverability"
+  ],
+  "email": {
+    "subject": "Migrating from Novu to Batch",
+    "body": "Hi team,\n\nWe're moving from Novu to Batch to drop self-hosted notification infra and lean on Batch's EU/GDPR-friendly mobile push platform.\n\nPlan:\n- Export workflows, subscribers, topics, and preferences from Novu\n- Integrate Batch SDKs in iOS/Android and register installations\n- Push user attributes and recreate campaigns in Batch\n- Use Batch's transactional API for triggered messages\n- Dual-send during cutover, then retire Novu infra\n\nEffort: roughly 20-50 hours.\n\nThanks"
+  }
+}

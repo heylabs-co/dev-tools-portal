@@ -1,0 +1,86 @@
+{
+  "source": {
+    "slug": "algolia",
+    "name": "Algolia"
+  },
+  "target": {
+    "slug": "pinecone",
+    "name": "Pinecone"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "Algolia is a hosted lexical/typo-tolerant search API; Pinecone is a managed vector database for embedding-based similarity search. This is not a drop-in swap — you re-architect the retrieval layer: export records from Algolia, generate embeddings via a separate model provider, and upsert vectors into Pinecone. Plan for code changes on both indexing and query sides, plus a hybrid or re-ranking strategy if you want to preserve faceting and exact-match behavior.",
+  "why_switch": [
+    "You need semantic / vector similarity search (RAG, Q&A, recommendations on embeddings) rather than keyword matching with typo tolerance.",
+    "Your AI stack already produces embeddings and you want a single store optimized for ANN queries instead of a lexical inverted index.",
+    "Algolia's commit-tier billing tracks peak records and operations, while Pinecone's tiered pricing may fit a more predictable embedding workload.",
+    "You want to consolidate retrieval for LLM applications (chatbots, copilots) where Algolia's relevance tuning is the wrong primitive.",
+    "You are willing to trade Algolia's out-of-the-box faceting, ranking strategies, and InstantSearch UI for vector-native retrieval."
+  ],
+  "what_to_export": [
+    "All Algolia indices and their settings (searchable attributes, custom ranking, faceting config) for reference, even though most won't translate 1:1.",
+    "Per-record objectID values so you can preserve stable IDs in Pinecone.",
+    "Full record payloads (title, body, description, tags, categories, URLs).",
+    "Numeric and categorical attributes used for filtering or faceting (price, brand, status, timestamps).",
+    "Synonyms, stop words, and rules — you'll need to decide whether to drop, replicate in app code, or replace with re-ranking.",
+    "Query analytics / top queries and click-through data, useful for evaluating quality after migration.",
+    "Replicas / virtual indices configurations (sort orders) — these have no Pinecone equivalent and become app-side concerns.",
+    "Any personalization or A/B test configurations, for parity testing post-migration."
+  ],
+  "export_method": "Use Algolia's official client SDK (e.g., browseObjects / browse iterator) to page through every index and dump records as JSONL. Pull index settings, synonyms, and rules via the corresponding settings endpoints in the same SDK. Avoid the dashboard CSV export for anything beyond spot checks — programmatic export is the only safe path for full fidelity. Store raw JSONL plus a manifest of index settings in object storage before transforming.",
+  "import_method": "For each exported record: (1) build a text representation by concatenating the fields you previously marked as searchable in Algolia; (2) call your chosen embedding model provider to produce a vector; (3) upsert into a Pinecone index using the official Pinecone SDK, with the Algolia objectID as the vector ID and the remaining structured fields as metadata for filtering. Create the Pinecone index with the dimension that matches your embedding model and a metric appropriate to it (typically cosine for normalized text embeddings — confirm against the model's documentation). Batch upserts and parallelize across namespaces if you previously had multiple indices.",
+  "concept_mapping": [
+    {
+      "source": "Index",
+      "target": "Index (or Namespace within an index)",
+      "note": "Multiple Algolia indices often map cleanly to Pinecone namespaces inside a single index, especially when they share embedding dimension and metric."
+    },
+    {
+      "source": "Record / object with objectID",
+      "target": "Vector with id + metadata",
+      "note": "Reuse objectID as the vector id; move structured fields into the metadata map."
+    },
+    {
+      "source": "Searchable attributes",
+      "target": "Text concatenated and embedded at write time",
+      "note": "Pinecone has no notion of 'searchable fields' — relevance is a property of the embedding, not the store."
+    },
+    {
+      "source": "Filters / facetFilters / numericFilters",
+      "target": "Metadata filter expression on query()",
+      "note": "Most equality and range filters translate, but supported operators differ — review Pinecone's metadata filter docs before designing schemas."
+    },
+    {
+      "source": "Custom ranking / typo tolerance / synonyms",
+      "target": "Embedding model choice + optional re-ranker",
+      "note": "These have no direct equivalent. Quality must come from the embedding model and an optional re-ranking step in your app."
+    },
+    {
+      "source": "Replicas (alternate sort orders)",
+      "target": "Application-side sort after vector retrieval",
+      "note": "Fetch top-K by similarity, then sort/filter in your service layer."
+    },
+    {
+      "source": "Query rules / merchandising",
+      "target": "Application logic or hybrid retrieval pipeline",
+      "note": "Implement promotions/pinning outside the vector store."
+    },
+    {
+      "source": "InstantSearch UI widgets",
+      "target": "Custom UI",
+      "note": "InstantSearch is tightly coupled to Algolia's response shape; expect to rebuild the search UI."
+    }
+  ],
+  "effort": "2-6 weeks for a typical mid-sized catalog (single team), depending on whether you also introduce a new embedding pipeline and re-ranking layer.",
+  "gotchas": [
+    "Algolia and Pinecone solve different problems — vector similarity will not behave like typo-tolerant keyword search; expect quality regressions on short, exact-match queries unless you add a hybrid or lexical fallback.",
+    "Embedding generation is now your responsibility and a recurring cost (per-token/per-call against an LLM or embedding provider) — budget for it separately from Pinecone usage.",
+    "Re-embedding the entire corpus is required whenever you change embedding models; build the pipeline so backfills are repeatable from day one.",
+    "Pinecone metadata has size and operator limits — large blobs (full HTML, long descriptions) belong in your primary database, not in the vector record.",
+    "Faceting, counts, and 'search-as-you-type' behavior do not come for free; design the UX before committing to the swap.",
+    "Run both systems in parallel (dual-write + shadow queries) until quality and latency on your real traffic are acceptable — don't cut over on day one."
+  ],
+  "email": {
+    "subject": "Moving search from Algolia to Pinecone — plan and timeline",
+    "body": "Hi team,\n\nWe're planning to move our retrieval layer from Algolia to Pinecone. Quick framing so everyone is aligned:\n\nThese aren't the same product. Algolia gives us hosted lexical search with typo tolerance, faceting, and InstantSearch widgets out of the box. Pinecone is a managed vector database — it returns nearest neighbors over embeddings we generate ourselves. The motivation is our growing AI/RAG workload, where embedding-based similarity is the right primitive and where keeping search inside the same store as our other AI infrastructure is operationally simpler.\n\nWhat the migration looks like:\n\n1. Export every Algolia index (records + settings + synonyms + rules) via the official SDK into JSONL in object storage.\n2. Stand up an embedding pipeline against our chosen model provider, with batching and a repeatable backfill job.\n3. Create Pinecone indices with the embedding dimension and metric that match the model. Map Algolia indices to namespaces where it makes sense.\n4. Upsert vectors using Algolia objectIDs as vector IDs, with structured fields kept as metadata for filtering.\n5. Run Pinecone in shadow mode behind the existing Algolia traffic, compare top-K quality on real queries, and only cut over once we're satisfied.\n\nThings to expect:\n\n- We will lose Algolia-specific features (custom ranking, typo tolerance, synonyms, replicas, InstantSearch UI). Some come back via embeddings + a re-ranker, others move into application code, and some we may consciously drop.\n- Embedding generation becomes a recurring cost line separate from Pinecone usage.\n- The search UI will need to be rebuilt; InstantSearch widgets won't carry over.\n- For short exact-match queries, expect possible quality regressions unless we add a hybrid or lexical fallback.\n\nRough effort: 2–6 weeks, depending on how much of the embedding and re-ranking pipeline we're building from scratch. I'll follow up with a more detailed plan and owners.\n\nQuestions and concerns welcome before we start the export.\n\nThanks"
+  }
+}

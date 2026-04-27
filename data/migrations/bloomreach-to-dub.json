@@ -1,0 +1,76 @@
+{
+  "source": {
+    "slug": "bloomreach",
+    "name": "Bloomreach"
+  },
+  "target": {
+    "slug": "dub",
+    "name": "Dub"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "Bloomreach and Dub serve different needs — Bloomreach is a commerce search/personalization platform, Dub is a link management tool. A direct migration only makes sense if you used Bloomreach mainly for trackable URLs or simple redirect/recommendation links; otherwise treat this as a partial replacement.",
+  "why_switch": [
+    "Lower cost: Dub has a free tier; Bloomreach is enterprise subscription",
+    "Higher transparency: Dub publishes tiers, Bloomreach quotes opaque enterprise pricing",
+    "Lower lock-in: link data on Dub is easy to export",
+    "Simpler stack if you no longer need full commerce search/merchandising",
+    "Open-source option for self-hosting"
+  ],
+  "what_to_export": [
+    "Catalog/content feed (products, IDs, URLs)",
+    "Search query logs and click data (for analytics, not for replay)",
+    "Redirect or short-link mappings, if used",
+    "Merchandising rules (manual reference only)",
+    "Synonyms / stopwords lists",
+    "Recommendation widget configurations",
+    "API keys and webhook endpoints inventory",
+    "User/role list for the admin console"
+  ],
+  "export_method": "Use Bloomreach admin export tools and the catalog/feed APIs you already configured to dump JSON/CSV. There is no one-click migration to Dub.",
+  "import_method": "Create a Dub workspace, then import short links via the Dub dashboard CSV import or its API. Other Bloomreach assets (search index, merchandising rules, recommendations) have no equivalent in Dub and must be re-implemented elsewhere.",
+  "concept_mapping": [
+    {
+      "source": "Product catalog / search index",
+      "target": "—",
+      "note": "No equivalent in Dub; needs a separate search engine"
+    },
+    {
+      "source": "Trackable product URL",
+      "target": "Short link",
+      "note": "Map 1:1 if you only used Bloomreach for trackable links"
+    },
+    {
+      "source": "Merchandising rule",
+      "target": "—",
+      "note": "Not supported; manual replacement required"
+    },
+    {
+      "source": "Recommendation widget",
+      "target": "—",
+      "note": "Out of scope for Dub"
+    },
+    {
+      "source": "Analytics event",
+      "target": "Link click event",
+      "note": "Dub tracks clicks/conversions per link only"
+    },
+    {
+      "source": "Workspace / account",
+      "target": "Workspace",
+      "note": "Same concept, different scope"
+    }
+  ],
+  "effort": "1-3 days for link-only use; weeks if Bloomreach search/merchandising must be replaced with another vendor",
+  "gotchas": [
+    "Dub does not replace product search or recommendations — confirm scope before cutover",
+    "Historical search analytics will not transfer",
+    "Custom Bloomreach SDK integrations (`@bloomreach/spa-sdk`) need full code removal",
+    "Bus factor and stale repo on Bloomreach side mean little SDK support — plan a clean break",
+    "Free tier limits on Dub can bite at scale; review tiers before committing",
+    "Domain/SSL setup on Dub takes DNS time — schedule cutover with buffer"
+  ],
+  "email": {
+    "subject": "Moving from Bloomreach to Dub — scope check",
+    "body": "Team — proposing we drop the Bloomreach contract. We mainly use it for trackable links, and Dub covers that on a free/transparent plan with lower lock-in. Search/merchandising features would need a separate replacement, so I want to confirm we no longer rely on those before we cut over. Plan: export catalog and link mappings, set up a Dub workspace with our domain, import links via CSV/API, swap SDK calls, decommission Bloomreach. Rough effort: 1-3 days if link-only, longer if we need a new search backend. Flag any Bloomreach feature you still depend on by EOW."
+  }
+}

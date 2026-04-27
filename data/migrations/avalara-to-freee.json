@@ -1,0 +1,76 @@
+{
+  "source": {
+    "slug": "avalara",
+    "name": "Avalara"
+  },
+  "target": {
+    "slug": "freee",
+    "name": "Freee"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "Avalara is global multi-jurisdiction tax compliance; Freee is a Japan-focused cloud accounting + invoicing platform — only migrate if your business is consolidating into Japan-only operations.",
+  "why_switch": [
+    "Operations are now Japan-centric and global tax engine is overkill",
+    "Need integrated JP accounting, payroll, and qualified-invoice issuance, not just tax calc",
+    "Want native JP consumption tax and e-invoice (JP PINT) compliance",
+    "Prefer a single Japanese vendor over a US-based global suite",
+    "Local SMB tooling and ecosystem matter more than 1200+ ERP integrations"
+  ],
+  "what_to_export": [
+    "Company / nexus and registration settings",
+    "Tax codes and product taxability mappings",
+    "Customer master with VAT/tax IDs",
+    "Historical transactions / invoices and tax line items",
+    "Exemption certificates and supporting documents",
+    "Filing history and remittance records",
+    "API / webhook configuration inventory",
+    "Custom rules and overrides"
+  ],
+  "export_method": "Use Avalara's admin UI to export transactions, customers, exemption certificates, and filing history (CSV/Excel) and pull configuration via the Avalara API where supported. For anything non-obvious, follow Avalara's official export documentation and request a support-assisted export of historical filings to keep an audit trail.",
+  "import_method": "Freee does not provide a direct Avalara importer. Plan to map Avalara taxability data to Freee's JP tax categories and import customers/invoices via Freee's REST API or CSV upload features. Because Freee is JP-specific, only the Japan-relevant subset of your Avalara data should move; consult Freee's developer documentation for current endpoints and field requirements.",
+  "concept_mapping": [
+    {
+      "source": "Avalara company / nexus",
+      "target": "Freee company / office",
+      "note": "Only JP nexus is meaningful in Freee."
+    },
+    {
+      "source": "Tax code (Avatax)",
+      "target": "JP consumption tax category in Freee",
+      "note": "Manual remapping required; no 1:1 list."
+    },
+    {
+      "source": "Customer with VAT IDs",
+      "target": "Freee partner / customer",
+      "note": "Carry over JP corporate numbers; foreign VAT IDs may not map."
+    },
+    {
+      "source": "Avalara transaction",
+      "target": "Freee invoice / transaction",
+      "note": "Re-create historical invoices only if needed for JP audit."
+    },
+    {
+      "source": "Exemption certificate",
+      "target": "JP qualified invoice metadata",
+      "note": "Different model — review JP invoice retention rules."
+    },
+    {
+      "source": "AvaTax API call",
+      "target": "Freee REST API call",
+      "note": "Endpoints, auth, and rate limits differ; rewrite integration."
+    }
+  ],
+  "effort": "2-6 weeks",
+  "gotchas": [
+    "Freee is Japan-only — non-JP entities cannot be served by it",
+    "Tax codes and taxability rules are not 1:1; expect manual mapping",
+    "Freee API rate limits require careful batching, especially for backfills",
+    "Some Freee documentation is primarily in Japanese",
+    "Keep Avalara active for any non-JP filings until fully out",
+    "Confirm e-invoice / qualified invoice obligations with a JP CPA"
+  ],
+  "email": {
+    "subject": "Migration plan: Avalara to Freee for JP operations",
+    "body": "Hi team,\n\nGiven our consolidation into Japan, we're planning a move from Avalara to Freee. Freee gives us native JP consumption tax, qualified-invoice issuance, and integrated accounting/payroll in one stack.\n\nWe'll export transactions, customers, exemption data, and filing history from Avalara, then map JP-relevant records into Freee via its REST API and CSV import. Tax codes will need manual remapping into Freee's JP categories, and we'll keep Avalara live for any residual non-JP obligations during the transition.\n\nRealistic effort is 2-6 weeks including data mapping, API rewrite, and CPA review. I'll share a detailed cutover plan once we've validated Freee's API limits.\n\nThanks"
+  }
+}

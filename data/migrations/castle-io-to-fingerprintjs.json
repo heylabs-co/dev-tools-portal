@@ -1,0 +1,62 @@
+{
+  "source": {
+    "slug": "castle-io",
+    "name": "Castle"
+  },
+  "target": {
+    "slug": "fingerprintjs",
+    "name": "FingerprintJS"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Castle to FingerprintJS replaces a developer-first risk scoring and policy API with a focused device identification signal. You keep device-based fraud signals on FingerprintJS but lose Castle's policy engine and webhook-driven verdicts unless you build them yourself.",
+  "why_switch": [
+    "FingerprintJS focuses on accurate device identification",
+    "Strong SDK coverage across web and mobile",
+    "Transparent freemium pricing",
+    "Better fit if you only need a device signal",
+    "Lower vendor lock-in for device data"
+  ],
+  "what_to_export": [
+    "Castle policies and rule definitions",
+    "User identifiers and event history",
+    "Webhook endpoints and subscriptions",
+    "API keys and integration credentials",
+    "Risk score and verdict logs",
+    "Device or fingerprint metadata where available",
+    "Custom event schemas",
+    "Audit logs for compliance"
+  ],
+  "export_method": "Castle does not publish a fully documented bulk-export endpoint, so plan to export through whatever your account exposes plus your own logs. Pull historical events and verdicts from the Castle dashboard and via the Castle API for ranges or IDs you control. Rebuild policy definitions from your dashboard configuration into a design doc since policy logic is not portable. Save webhook URLs, signing keys, and any custom event schemas. Mine your own application logs for the user-to-device-to-event mappings you have stored, since these are usually the richest source. Keep audit logs for the retention window your regulator requires. Run the export in parallel with continued production traffic so the cutover snapshot is consistent, and verify counts before disconnecting.",
+  "import_method": "FingerprintJS is integrated by installing the Fingerprint Pro JS agent on web pages and the platform SDKs on mobile, then calling the Server API from your backend to read identification results and Smart Signals. Sign up, generate API keys, and embed the agent on login, signup, and high-risk action pages. Backend services request the visitor identifier and risk signals for each event and pass them into your own rules engine. Castle's policies do not migrate; reimplement them as code in your decisioning layer or with another rules tool. Backfill prior user-to-visitor identifier mappings if you want to preserve reputation. Run FingerprintJS in shadow mode alongside Castle, compare against historical verdicts, tune thresholds, then cut over once coverage is acceptable.",
+  "concept_mapping": [
+    {
+      "source": "Risk score",
+      "target": "Visitor identifier + Smart Signals"
+    },
+    {
+      "source": "Policy",
+      "target": "Custom rules engine consuming Fingerprint signals"
+    },
+    {
+      "source": "Webhook event",
+      "target": "Server API lookup or webhook (where supported)"
+    },
+    {
+      "source": "User identifier",
+      "target": "Visitor ID linked to your user record"
+    }
+  ],
+  "effort": "2-6 weeks",
+  "gotchas": [
+    "FingerprintJS gives signals, not decisions; you lose Castle's policy verdicts unless you rebuild them",
+    "Costs grow linearly with identification calls, so cap calls on low-risk pages",
+    "EU deployments need a privacy review of fingerprinting under GDPR",
+    "Bot detection coverage differs; validate against your traffic during shadow mode",
+    "Webhook semantics differ: Castle's verdict events do not have a one-to-one Fingerprint equivalent",
+    "Plan for a rules engine or decision service to replace Castle's policy layer"
+  ],
+  "email": {
+    "subject": "Moving fraud signals from Castle to FingerprintJS",
+    "body": "Hi team,\n\nOver the next 14 days we are migrating our fraud signal pipeline from Castle to FingerprintJS. FingerprintJS gives us accurate device identification with strong SDKs across web and mobile.\n\nWhat to expect:\n- The Fingerprint Pro agent will be added to login, signup, and sensitive action pages.\n- Our backend will consume visitor identifiers and Smart Signals from the Server API.\n- Castle policies will be reimplemented as code in our decisioning layer; FingerprintJS does not provide turnkey verdicts.\n- We will run both systems in parallel for the first week to compare and tune thresholds.\n\nPlease flag any service that depends on Castle webhooks or policy verdicts so we can route it to the new pipeline. Reach out with questions before the end of the week.\n\nThanks,\nYour customer"
+  }
+}

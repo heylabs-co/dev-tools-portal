@@ -1,0 +1,86 @@
+{
+  "source": {
+    "slug": "stream",
+    "name": "Stream"
+  },
+  "target": {
+    "slug": "yjs",
+    "name": "Yjs"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "Stream is a managed chat and activity-feed API; Yjs is an open-source CRDT library for collaborative state. Migration only makes sense if your real use case is collaborative editing or peer-synced state, not chat. You will own the transport (WebSocket/WebRTC), persistence, presence, and auth that Stream previously provided.",
+  "why_switch": [
+    "Eliminate per-MAU and per-connection subscription fees by self-hosting transport and storage",
+    "Remove vendor lock-in: Yjs is OSS (MIT) with portable CRDT documents you fully control",
+    "Better fit when the core feature is collaborative editing (text, drawings, structured docs) rather than chat threads",
+    "Offline-first and peer-to-peer support out of the box via Yjs providers",
+    "Full control over data residency, encryption, and compliance posture"
+  ],
+  "what_to_export": [
+    "Channel and thread metadata (IDs, members, created_at, custom fields)",
+    "Message history with author IDs, timestamps, attachments, and reactions",
+    "User profiles and role/permission mappings",
+    "Activity feeds and follow relationships (if using Stream Feeds)",
+    "Moderation flags, bans, and mute lists",
+    "Webhook configurations and any server-side push rules",
+    "Uploaded media references (CDN URLs and original keys)",
+    "Custom commands, slash actions, and channel-type definitions"
+  ],
+  "export_method": "Use Stream's server-side SDKs or REST API to paginate channels, messages, users, and feeds; persist them as NDJSON or to your own database. Stream supports a data export job for chat that produces a downloadable archive — request it from the dashboard or via the server SDK, then transform records into shapes your Yjs-backed app expects.",
+  "import_method": "Yjs has no managed import endpoint. Stand up a Yjs provider (y-websocket, Hocuspocus, y-webrtc, or Liveblocks/Partykit hosting Yjs) and a persistence layer (y-leveldb, y-redis, or Postgres via custom adapter). For each logical room, create a Y.Doc, hydrate Y.Array/Y.Map/Y.Text from your exported records, and encode the initial state with Y.encodeStateAsUpdate for storage. Re-attach users via your own auth on the provider's connection handshake.",
+  "concept_mapping": [
+    {
+      "source": "Channel",
+      "target": "Y.Doc (one document per room)",
+      "note": "A Yjs document is the unit of shared state. Pick a stable room ID matching the former channel ID."
+    },
+    {
+      "source": "Message",
+      "target": "Entry in a Y.Array of Y.Map items",
+      "note": "Yjs has no built-in message type. Model messages as Y.Map with author, body, ts, and reactions fields."
+    },
+    {
+      "source": "Reaction",
+      "target": "Y.Map field on the message Y.Map",
+      "note": "Use a nested Y.Map keyed by emoji with arrays of user IDs."
+    },
+    {
+      "source": "Presence / typing indicators",
+      "target": "Awareness protocol (y-protocols/awareness)",
+      "note": "Awareness is ephemeral and not persisted — different model from Stream's user state."
+    },
+    {
+      "source": "User auth & permissions",
+      "target": "Provider-level auth (your code)",
+      "note": "Yjs ships no auth. Validate JWTs in the WebSocket upgrade handler of y-websocket/Hocuspocus."
+    },
+    {
+      "source": "Moderation / bans",
+      "target": "Application-layer middleware",
+      "note": "Implement bans, rate limits, and content filters yourself before applying updates to the Y.Doc."
+    },
+    {
+      "source": "File uploads",
+      "target": "External object storage (S3/R2) referenced from Y.Map",
+      "note": "Yjs is not a file store. Keep uploads where they are or migrate to your own bucket."
+    },
+    {
+      "source": "Webhooks / server events",
+      "target": "Provider observers (doc.on('update'))",
+      "note": "Subscribe to update events on the server-side Y.Doc and fan out to your own webhook pipeline."
+    }
+  ],
+  "effort": "3-8 weeks for a small-to-mid app; longer if Stream Feeds, advanced moderation, or multi-region scaling are involved",
+  "gotchas": [
+    "Yjs is a library, not a service — you must operate the WebSocket server, persistence, scaling, and backups yourself",
+    "Awareness state (presence, cursors) is not persisted; do not rely on it for durable data",
+    "CRDT merges are last-writer-wins per operation, not per field — UX expectations from chat may not map cleanly",
+    "No built-in moderation, spam protection, or push notifications; budget time to rebuild these",
+    "Document size grows with edit history; plan for periodic compaction via Y.encodeStateAsUpdate snapshots",
+    "Large historical message imports as a single Y.Array can hurt initial load — consider archiving older messages outside the Y.Doc"
+  ],
+  "email": {
+    "subject": "Migration plan: Stream to Yjs",
+    "body": "Hi team,\n\nI'm scoping a move from Stream to Yjs. Worth flagging up front: these are not direct replacements. Stream is a managed chat and feeds API; Yjs is an open-source CRDT library. The migration makes sense for us only if our real product surface is collaborative editing and shared state, not threaded chat — anything chat-shaped we'd be rebuilding from primitives.\n\nPlan in brief:\n1. Export channels, messages, users, and feed data via Stream's server SDK / data export job.\n2. Stand up a Yjs provider (y-websocket or Hocuspocus) with a persistence backend and our own auth on the WebSocket upgrade.\n3. Map each channel to a Y.Doc; model messages as a Y.Array of Y.Map entries; move presence to the Awareness protocol.\n4. Rebuild moderation, rate limiting, push notifications, and webhooks at the application layer.\n5. Cut over room-by-room with read-only fallback to Stream during the transition.\n\nRough effort: 3-8 weeks depending on whether we keep Feeds-style functionality and how much moderation we recreate. Main risks are operational ownership (we run the transport now), no built-in auth/moderation, and document growth over time.\n\nHappy to walk through the concept mapping and a prototype room before committing.\n\nThanks"
+  }
+}

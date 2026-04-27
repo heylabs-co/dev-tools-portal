@@ -1,0 +1,76 @@
+{
+  "source": {
+    "slug": "bytebrew",
+    "name": "ByteBrew"
+  },
+  "target": {
+    "slug": "airbridge",
+    "name": "Airbridge"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "Move from ByteBrew's free game stack to Airbridge for a more mature MMP with enterprise-grade attribution.",
+  "why_switch": [
+    "More mature MMP feature set and partner integrations",
+    "Better fit beyond mobile games and for non-Unity stacks",
+    "Stronger fraud and incrementality tooling",
+    "Published subscription pricing with a free install allowance",
+    "Better suited if you outgrow ByteBrew's young roadmap"
+  ],
+  "what_to_export": [
+    "Raw event logs and custom event schemas",
+    "Install and attribution records",
+    "Ad revenue and IAP / monetization events",
+    "Remote config keys and A/B test definitions",
+    "User and device identifier mappings",
+    "Funnel and cohort definitions",
+    "Network / partner postback configurations",
+    "SKAdNetwork conversion value schema (if configured)"
+  ],
+  "export_method": "Use ByteBrew's available data export options to pull raw events, installs, and attribution data into your own warehouse. Specific export channels and limits should be confirmed in ByteBrew's official documentation, as the platform is relatively new and capabilities evolve.",
+  "import_method": "Integrate the Airbridge SDK in a new app build and recreate networks, partners, deep links, and SKAN conversion values in the Airbridge console. Keep ByteBrew exports in cold storage for historical context. Run dual SDKs for at least one attribution window to validate counts before fully removing ByteBrew. Verify Airbridge ingestion options and partner support in current docs.",
+  "concept_mapping": [
+    {
+      "source": "ByteBrew events",
+      "target": "Airbridge SDK events",
+      "note": "Re-map event names and parameters"
+    },
+    {
+      "source": "ByteBrew attribution",
+      "target": "Airbridge attribution",
+      "note": "Reconfigure partners and postbacks from Airbridge"
+    },
+    {
+      "source": "ByteBrew remote config",
+      "target": "External remote config tool",
+      "note": "Airbridge focus is MMP; pick a dedicated config tool"
+    },
+    {
+      "source": "ByteBrew monetization tracking",
+      "target": "Airbridge revenue events",
+      "note": "Map ad revenue and IAP into Airbridge revenue schema"
+    },
+    {
+      "source": "ByteBrew dashboards",
+      "target": "Airbridge dashboards",
+      "note": "Manual recreation of saved views and segments"
+    },
+    {
+      "source": "ByteBrew funnels",
+      "target": "Airbridge analytics",
+      "note": "Recreate manually; consult docs for parity"
+    }
+  ],
+  "effort": "1-3 weeks",
+  "gotchas": [
+    "Remote config likely needs a separate vendor",
+    "Cost goes up: Airbridge subscription vs. ByteBrew free tier",
+    "Run both SDKs in parallel for an attribution window",
+    "Re-onboard each ad network on Airbridge side",
+    "Validate SKAN setup end-to-end before cutover",
+    "Historical ByteBrew data stays for reporting only"
+  ],
+  "email": {
+    "subject": "Migrating mobile attribution from ByteBrew to Airbridge",
+    "body": "Hi team,\n\nWe're planning to migrate our MMP from ByteBrew to Airbridge as we outgrow the free game-focused stack.\n\nPlan:\n1. Export raw events, installs, and attribution data from ByteBrew into our warehouse.\n2. Integrate the Airbridge SDK in the next app build and reconfigure networks, deep links, and SKAN conversion values.\n3. Run both SDKs in parallel for one attribution window to reconcile.\n4. Pick a separate remote config tool to replace ByteBrew's remote config.\n\nExpected effort: 1-3 weeks. Costs will go up (Airbridge subscription) in exchange for a more mature MMP.\n\nFeedback welcome before we start."
+  }
+}

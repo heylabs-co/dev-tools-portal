@@ -1,0 +1,78 @@
+{
+  "source": {
+    "slug": "auth0",
+    "name": "Auth0"
+  },
+  "target": {
+    "slug": "boxyhq",
+    "name": "BoxyHQ"
+  },
+  "generated_at": "2026-04-26T12:50:00Z",
+  "tldr": "Move from Auth0's hosted CIAM to BoxyHQ's open-source SAML/SSO stack to drop MAU-based pricing and self-host enterprise auth.",
+  "why_switch": [
+    "BoxyHQ is Apache-2.0 OSS — no MAU-based billing surprises at scale",
+    "Self-hosting keeps user data and audit logs inside your perimeter",
+    "Standards-based: SAML, SCIM, and OIDC stay portable across vendors",
+    "Auth0's enterprise feature gating disappears when you run the SSO service yourself",
+    "Lower long-term TCO for predictable B2B SSO workloads"
+  ],
+  "what_to_export": [
+    "User profiles (email, name, metadata) via Auth0 user export",
+    "Password hashes (bcrypt) — request via Auth0 support if needed",
+    "Social/identity provider connections and their client IDs",
+    "Enterprise SAML connection metadata (entityID, certs, ACS URLs)",
+    "SCIM provisioning configuration per tenant",
+    "MFA enrollments (note: most factors require user re-enrollment)",
+    "Custom claims, app_metadata, user_metadata fields",
+    "Roles, permissions, and RBAC assignments",
+    "Tenant/organization mapping for B2B accounts",
+    "Audit/log retention required for compliance"
+  ],
+  "export_method": "Use Auth0's Management API and the Import/Export extension (or User Import/Export job) to pull users and metadata as JSON. For password hashes specifically, follow Auth0's documented hash export flow (typically via support ticket). Export SAML/SCIM connection metadata from the Auth0 dashboard. Consult Auth0's official migration documentation for exact endpoints and any current rate limits.",
+  "import_method": "Stand up BoxyHQ Jackson (the SAML/OIDC service) via Docker or their Helm chart, configure your database, then load tenants and SAML connections through Jackson's admin API. For end-user accounts, you'll typically pair Jackson with your own user store or SaaS Starter Kit — Jackson itself focuses on the SSO bridge rather than full user management. Re-create SCIM directories per tenant. Validate end-to-end SSO with one tenant before cutover.",
+  "concept_mapping": [
+    {
+      "source": "Auth0 Tenant",
+      "target": "BoxyHQ Jackson tenant",
+      "note": "Multi-tenant model maps cleanly; review tenant identifier conventions in Jackson docs"
+    },
+    {
+      "source": "Auth0 Enterprise Connection (SAML)",
+      "target": "Jackson SSO Connection",
+      "note": "Re-upload IdP metadata XML per connection"
+    },
+    {
+      "source": "Auth0 SCIM",
+      "target": "Jackson Directory Sync",
+      "note": "Provisioning endpoints differ — re-issue tokens to IdPs"
+    },
+    {
+      "source": "Auth0 Rules / Actions",
+      "target": "Your application code or middleware",
+      "note": "Jackson does not run server-side hooks the same way; port logic into your backend"
+    },
+    {
+      "source": "Auth0 Universal Login",
+      "target": "Your own login UI",
+      "note": "BoxyHQ Jackson handles the SAML/OIDC handshake; the login UI is yours"
+    },
+    {
+      "source": "Auth0 user database",
+      "target": "Your application DB / SaaS Starter Kit",
+      "note": "Jackson is not a primary user store — plan persistence separately"
+    }
+  ],
+  "effort": "1-3 weeks",
+  "gotchas": [
+    "BoxyHQ Jackson focuses on SAML/OIDC SSO — you still need a user database and password flow elsewhere",
+    "Password hash imports require Auth0 to release them; not all hash algorithms are universally portable",
+    "MFA factors (TOTP, WebAuthn) typically require user re-enrollment after migration",
+    "Self-hosting means you own uptime, key rotation, and database backups",
+    "Test SCIM provisioning per IdP — Okta, Entra ID, and Google each have quirks",
+    "Audit log format and retention windows differ; check your compliance requirements"
+  ],
+  "email": {
+    "subject": "Migrating from Auth0 to BoxyHQ — kickoff plan",
+    "body": "Hi team,\n\nWe're planning to move our auth stack from Auth0 to BoxyHQ. The main drivers are predictable cost (no MAU billing) and keeping user data in our infrastructure.\n\nProposed phases:\n1. Stand up BoxyHQ Jackson in staging and wire one pilot tenant.\n2. Export users, SAML connections, and SCIM config from Auth0.\n3. Re-issue IdP metadata to enterprise customers and validate SSO end-to-end.\n4. Cut over per-tenant with a rollback plan.\n\nRough effort: 1-3 weeks. Open questions: password hash export format, MFA re-enrollment policy, and which Jackson deployment topology we want. Will share a detailed runbook once staging is up.\n\nThanks"
+  }
+}

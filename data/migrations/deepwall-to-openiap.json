@@ -1,0 +1,76 @@
+{
+  "source": {
+    "slug": "deepwall",
+    "name": "Deepwall"
+  },
+  "target": {
+    "slug": "openiap",
+    "name": "OpenIAP"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "Moving from Deepwall's managed paywall service to OpenIAP means dropping a hosted paywall product for an open cross-platform IAP specification you implement yourself via a conforming library.",
+  "why_switch": [
+    "Eliminate vendor lock-in by adopting a neutral open IAP specification",
+    "Remove an extra third-party SDK from the mobile binary",
+    "Avoid Deepwall subscription fees in favor of an open spec and OSS implementations",
+    "Standardize purchase flows across iOS and Android via a single typed interface",
+    "Own the stack end-to-end if your team prefers to avoid managed paywall services"
+  ],
+  "what_to_export": [
+    "Product IDs and SKUs configured in App Store Connect and Google Play Console",
+    "Subscription group definitions and offer codes",
+    "Paywall variant definitions and copy",
+    "A/B test segment assignments and historical results",
+    "Purchase event history and analytics configuration",
+    "Trigger rules currently driving paywall presentation",
+    "Localization strings for paywall UIs",
+    "Receipt validation logic or webhook handlers"
+  ],
+  "export_method": "Deepwall keeps paywall configuration and A/B tests in its dashboard, so manually export what you can from the dashboard and document remote-config rules. Product IDs themselves live in App Store Connect and Google Play Console — those stay in place. Capture historical purchase and experiment analytics through Deepwall's available export options or via your own analytics if you piped events there. Consult Deepwall's official documentation for the current export workflow.",
+  "import_method": "OpenIAP is a specification, not a service, so you adopt it by integrating an OpenIAP-conforming library for your platform (for example flutter_inapp_purchase or react-native-iap, depending on stack). Wire the library to your existing App Store Connect and Google Play product IDs, then build the paywall UI yourself or with another component. Implement receipt validation server-side or via a separate service. Refer to the OpenIAP spec and the chosen library's docs for current API surface.",
+  "concept_mapping": [
+    {
+      "source": "Deepwall paywall template",
+      "target": "Custom in-app UI",
+      "note": "OpenIAP doesn't render paywalls — you ship your own UI"
+    },
+    {
+      "source": "A/B test framework",
+      "target": "Your own experimentation tool",
+      "note": "Bring an experimentation SDK or remote config separately"
+    },
+    {
+      "source": "Smart trigger rules",
+      "target": "Client-side logic plus remote config",
+      "note": "Implement trigger conditions in app code or a feature-flag service"
+    },
+    {
+      "source": "Purchase flow SDK",
+      "target": "OpenIAP-conforming library",
+      "note": "Library handles platform billing APIs under a unified interface"
+    },
+    {
+      "source": "Server-side receipt handling",
+      "target": "Your backend or third-party validator",
+      "note": "OpenIAP is client-side; receipt validation stays your responsibility"
+    },
+    {
+      "source": "Subscription analytics",
+      "target": "Your analytics stack",
+      "note": "Pipe purchase events from the OpenIAP library into your analytics of choice"
+    }
+  ],
+  "effort": "1-3 weeks plus paywall UI rebuild time",
+  "gotchas": [
+    "OpenIAP is a spec — you still need to choose and integrate a conforming library",
+    "Paywall UI, A/B testing, and analytics are not provided; budget engineering for each",
+    "Server-side receipt validation must be implemented or handled by another service",
+    "Spec is still maturing per its own documentation, so pin library versions carefully",
+    "Historical Deepwall experiment results may not be exportable in a structured form",
+    "Run both stacks in parallel for a release cycle to verify purchase parity"
+  ],
+  "email": {
+    "subject": "Proposal: move IAP off Deepwall to OpenIAP-based stack",
+    "body": "Hi team,\n\nI'm proposing we replace Deepwall with an OpenIAP-conforming library and our own paywall UI. This drops an SDK and a subscription fee, and aligns us with an open spec.\n\nOpenIAP itself is just a spec, so we'd pick a conforming library for our stack. We'll need to rebuild the paywall UI, bring our own A/B testing, and handle receipt validation server-side.\n\nProduct IDs in App Store Connect and Google Play stay unchanged. Estimating 1-3 weeks plus paywall UI work. Flagging that some Deepwall experiment history may not export cleanly.\n\nReady to scope further when you are."
+  }
+}

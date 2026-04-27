@@ -1,0 +1,71 @@
+{
+  "source": {
+    "slug": "sift",
+    "name": "Sift"
+  },
+  "target": {
+    "slug": "osso",
+    "name": "Osso"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "Sift and Osso solve different problems — Sift is fraud and risk scoring, Osso is enterprise SSO (SAML/OIDC) glue — so this is not a like-for-like migration; treat it as decommissioning Sift and adopting Osso for a separate auth need.",
+  "why_switch": [
+    "You actually need enterprise SSO (SAML/OIDC) for B2B customers, not fraud scoring",
+    "Osso abstracts per-tenant IdP configuration without custom code",
+    "Open-source heritage and freemium pricing lower entry cost vs full IdP suites",
+    "Fits SaaS adding enterprise-tier auth as a checkbox feature",
+    "Sift's fraud capabilities are not replaced by Osso — keep or replace separately if still needed"
+  ],
+  "what_to_export": [
+    "List of enterprise customers needing SSO and their IdP types (Okta, Azure AD, Google, etc.)",
+    "Existing user directory (emails, org membership, roles)",
+    "Any current SAML / OIDC metadata or certificates already in use",
+    "Session and login flow definitions in your app",
+    "From Sift: rules, lists, and historical events (only if you still need fraud scoring elsewhere)",
+    "Webhook / event endpoints currently consuming Sift decisions",
+    "Audit log / login event sinks",
+    "Role and permission mappings tied to identity"
+  ],
+  "export_method": "Because Sift and Osso are different categories, there is no direct export from Sift to Osso. From Sift, pull configuration and historical decisions via its APIs and console for archival. For Osso onboarding, gather your customer IdP list and existing auth flow documentation from your own systems. Consult official Sift and Osso docs for current endpoints and onboarding flows.",
+  "import_method": "Integrate Osso into your application's auth layer (typically via OAuth-style redirect plus per-tenant SAML/OIDC connection records you provision via Osso's API or dashboard). Coordinate with each enterprise customer to exchange SAML metadata or OIDC client details. Run a pilot with one customer before broad rollout. If you still need fraud detection, evaluate a dedicated fraud vendor in parallel — do not expect Osso to replace Sift's risk scoring.",
+  "concept_mapping": [
+    {
+      "source": "Sift event scoring",
+      "target": "(no equivalent in Osso)",
+      "note": "Different domain — keep or replace fraud scoring separately."
+    },
+    {
+      "source": "Sift user identity signals",
+      "target": "Osso SSO identity (SAML/OIDC)",
+      "note": "Osso provides authenticated identity, not a trust score."
+    },
+    {
+      "source": "Sift Decisions API",
+      "target": "Your app's authorization layer",
+      "note": "Authorization remains your responsibility post-Osso."
+    },
+    {
+      "source": "Sift Console rules",
+      "target": "Osso connection / tenant config",
+      "note": "Configuration shape is unrelated; recreate based on auth needs."
+    },
+    {
+      "source": "Sift webhooks",
+      "target": "Osso events / logs",
+      "note": "Different payloads; rebuild any downstream consumers."
+    }
+  ],
+  "effort": "2-6 weeks",
+  "gotchas": [
+    "Osso does not replace fraud detection — if you turn off Sift, plan a separate fraud strategy",
+    "Per-tenant IdP onboarding has human latency; budget time for customer back-and-forth",
+    "SAML certificate rotation is a recurring operational cost",
+    "Audit and compliance teams may need to review the new auth path",
+    "Keep Sift running until the SSO rollout is complete to avoid mixing concerns mid-migration",
+    "Confirm Osso's current pricing and feature scope in official docs before committing"
+  ],
+  "email": {
+    "subject": "Decommissioning Sift and adopting Osso for enterprise SSO",
+    "body": "Hi team,\n\nQuick clarifier: Sift and Osso are not in the same category. Sift handles fraud and risk scoring; Osso handles enterprise SSO (SAML/OIDC). This work has two threads:\n\n1) Adopt Osso for SAML/OIDC SSO so we can ship enterprise-tier auth without per-tenant custom code. Pilot with one customer, then roll out.\n2) Decide separately on Sift — either keep it, replace it with another fraud vendor, or accept the gap if fraud is no longer in scope.\n\nEstimated effort for the Osso side: 2-6 weeks depending on customer count. I'll circulate a runbook and customer-onboarding checklist.\n\nThanks,"
+  }
+}

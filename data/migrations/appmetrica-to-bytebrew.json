@@ -1,0 +1,75 @@
+{
+  "source": {
+    "slug": "appmetrica",
+    "name": "AppMetrica"
+  },
+  "target": {
+    "slug": "bytebrew",
+    "name": "ByteBrew"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "Move from Yandex's free MMP to ByteBrew's free game-focused analytics + attribution stack.",
+  "why_switch": [
+    "Reduce vendor and geopolitical exposure tied to Yandex ownership",
+    "Get a stack purpose-built for mobile games (IAP, ad revenue, remote config)",
+    "Unity and Unreal SDKs with quick setup for game studios",
+    "All-in-one telemetry: analytics + attribution + remote config in one free tier",
+    "Avoid uncertain AppMetrica roadmap for Western markets"
+  ],
+  "what_to_export": [
+    "Raw event logs and user-level event streams",
+    "Install and attribution records (campaign, network, click/impression timestamps)",
+    "Crash and ANR reports if you rely on them",
+    "Funnel and cohort definitions for re-creation",
+    "Push notification audiences and segment definitions",
+    "Custom event schemas and parameter dictionaries",
+    "Revenue and IAP events",
+    "User profile and device identifier mappings"
+  ],
+  "export_method": "Use AppMetrica's Logs API and report exports to pull historical raw events, installs, and attribution data into your own storage (S3, BigQuery, etc.) before cutting over. Confirm the exact endpoints and quotas in the official AppMetrica documentation, since SDK and export feature sets evolve.",
+  "import_method": "ByteBrew is primarily designed for forward-looking telemetry collected via its Unity, Unreal, or native SDKs rather than backfill. Integrate the ByteBrew SDK in a new app build and let it begin collecting events. For historical context, keep your AppMetrica export in a warehouse and join it with ByteBrew exports downstream. Consult ByteBrew docs for any supported server-side ingestion paths.",
+  "concept_mapping": [
+    {
+      "source": "AppMetrica events",
+      "target": "ByteBrew custom events",
+      "note": "Re-define event names and parameters in ByteBrew schema"
+    },
+    {
+      "source": "AppMetrica installs / attribution",
+      "target": "ByteBrew attribution + install tracking",
+      "note": "Re-wire networks and postbacks via ByteBrew dashboard"
+    },
+    {
+      "source": "AppMetrica funnels / cohorts",
+      "target": "ByteBrew analytics dashboards",
+      "note": "Manual recreation; feature parity not guaranteed"
+    },
+    {
+      "source": "AppMetrica push notifications",
+      "target": "Third-party push provider",
+      "note": "ByteBrew is growth-focused; pick a dedicated push tool"
+    },
+    {
+      "source": "AppMetrica crash reporting",
+      "target": "Dedicated crash tool (e.g. native or third-party)",
+      "note": "Verify ByteBrew crash coverage in current docs"
+    },
+    {
+      "source": "AppMetrica remote config (if used)",
+      "target": "ByteBrew remote config",
+      "note": "Re-create config keys and A/B test groups"
+    }
+  ],
+  "effort": "1-3 days",
+  "gotchas": [
+    "Historical attribution will not transfer cleanly; treat ByteBrew as a fresh baseline",
+    "Push notifications and crash reporting may need separate vendors",
+    "ByteBrew is young; check current SDK/feature coverage before committing",
+    "Re-onboard ad networks and update postback URLs to ByteBrew",
+    "Validate iOS SKAdNetwork handling on the new SDK before launch"
+  ],
+  "email": {
+    "subject": "Migrating mobile analytics from AppMetrica to ByteBrew",
+    "body": "Hi team,\n\nWe're moving our mobile analytics and attribution from AppMetrica to ByteBrew to consolidate game telemetry and reduce vendor risk.\n\nPlan:\n1. Export raw events, installs, and attribution from AppMetrica into our warehouse for historical reference.\n2. Integrate the ByteBrew SDK in the next app build and recreate our custom events, funnels, and remote config.\n3. Re-wire ad network postbacks to ByteBrew and run both SDKs briefly for validation.\n\nExpected effort: 1-3 days. Historical reports will live in the warehouse; new dashboards will be in ByteBrew.\n\nQuestions welcome."
+  }
+}

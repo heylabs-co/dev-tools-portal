@@ -1,0 +1,71 @@
+{
+  "source": {
+    "slug": "carto",
+    "name": "CARTO"
+  },
+  "target": {
+    "slug": "opencage",
+    "name": "OpenCage"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "Move from CARTO to OpenCage only if your real need is geocoding (address <-> lat/lng) rather than full spatial analytics — OpenCage is a focused geocoding API, not a map/analytics platform.",
+  "why_switch": [
+    "Lower cost and simpler pricing for pure geocoding workloads.",
+    "OSM-aggregated data with clear licensing posture.",
+    "GDPR-friendly EU-based provider.",
+    "Plain REST API with minimal lock-in — easy to swap providers later.",
+    "Good fit when you don't need map rendering or SQL analytics."
+  ],
+  "what_to_export": [
+    "Address lists you currently geocode through CARTO",
+    "Cached geocoded results (lat/lng + address strings)",
+    "Any datasets that only used CARTO for forward/reverse geocoding",
+    "Rate-limit and quota usage history",
+    "API key inventory and where keys are referenced",
+    "Server-side code paths calling CARTO geocoding",
+    "Confidence/score thresholds you rely on",
+    "Audit logs for compliance, if any"
+  ],
+  "export_method": "Pull existing geocoded results out of your CARTO PostGIS tables (SELECT to CSV/JSON). For unprocessed address lists, export them from your application database. CARTO is PostGIS-backed so standard SQL export works; consult CARTO's official docs for the current export UI.",
+  "import_method": "OpenCage is a stateless REST geocoding API, so there is no bulk \"import\" — instead, point your code at the OpenCage forward/reverse geocoding endpoint with your API key and re-geocode addresses as needed (or backfill in batches respecting rate limits). Check OpenCage's official docs for current endpoint URLs, request limits, and response schema.",
+  "concept_mapping": [
+    {
+      "source": "CARTO geocoding function",
+      "target": "OpenCage forward geocoding endpoint",
+      "note": "REST GET with q=address."
+    },
+    {
+      "source": "Reverse lookup via PostGIS",
+      "target": "OpenCage reverse geocoding endpoint",
+      "note": "REST GET with q=lat,lng."
+    },
+    {
+      "source": "CARTO API key",
+      "target": "OpenCage API key",
+      "note": "Single key per project, server-side."
+    },
+    {
+      "source": "PostGIS tables for results",
+      "target": "Your own DB cache",
+      "note": "OpenCage is stateless — you store results."
+    },
+    {
+      "source": "Spatial joins / SQL",
+      "target": "No equivalent",
+      "note": "Do those in your warehouse, not OpenCage."
+    }
+  ],
+  "effort": "4-12 hours",
+  "gotchas": [
+    "OpenCage is geocoding only — if you used CARTO for maps, tiles, or SQL, you'll need separate replacements.",
+    "Respect OpenCage's rate limits when backfilling large address lists.",
+    "Result schema differs from CARTO's — adjust parsers (components, formatted, confidence).",
+    "OSM-derived data quality varies by region; spot-check critical markets.",
+    "Cache aggressively; geocoding the same address twice wastes quota.",
+    "Confirm licensing/attribution requirements in OpenCage's terms."
+  ],
+  "email": {
+    "subject": "Migrating geocoding from CARTO to OpenCage",
+    "body": "Hi team,\n\nWe're planning to move just the geocoding portion of our CARTO usage to OpenCage. We don't need CARTO's full spatial analytics for that workflow, and OpenCage gives us a simpler REST API and clearer pricing.\n\nPlan:\n1. Inventory every place we call CARTO for forward/reverse geocoding.\n2. Export already-geocoded results from CARTO so we don't re-geocode unnecessarily.\n3. Swap calls to OpenCage's REST endpoints with proper rate limiting and caching.\n4. Adjust parsing for OpenCage's response shape (components, confidence, formatted).\n5. Keep CARTO around for any remaining spatial-SQL or map rendering until we replace those separately.\n\nEstimated effort for the geocoding swap alone: 4-12 hours.\n\nThanks"
+  }
+}

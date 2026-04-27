@@ -1,0 +1,77 @@
+{
+  "source": {
+    "slug": "portone",
+    "name": "PortOne"
+  },
+  "target": {
+    "slug": "yuno",
+    "name": "Yuno"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "PortOne and Yuno are both multi-PSP orchestrators, so the move is mostly about replacing Korean-PG depth with broader LatAm/global routing — straightforward in shape, but you will lose PortOne's deep Korean ecosystem coverage.",
+  "why_switch": [
+    "Yuno's orchestration coverage skews global/LatAm, while PortOne's strength is concentrated in Korean PGs",
+    "If your traffic is shifting away from Korea, PortOne's value drops",
+    "Yuno's documented lock-in is low thanks to its orchestration abstraction",
+    "Single API similar to PortOne, so the integration model is familiar",
+    "Consolidating on a single orchestrator reduces ops overhead if you currently run regional stacks"
+  ],
+  "what_to_export": [
+    "List of connected PGs and their credentials",
+    "Customer profiles and saved payment methods",
+    "Transaction history and reconciliation reports",
+    "Subscription/billing schedules",
+    "Refund and dispute history",
+    "Webhook subscriptions and event payload examples",
+    "Checkout configuration (UI, methods, locale)",
+    "Per-PG fee and routing rules",
+    "API key and secret inventory"
+  ],
+  "export_method": "Use PortOne's merchant dashboard and APIs to export transactions, customers, and configuration. Capture per-PG settings separately, since each underlying Korean/global PG may also hold authoritative data. Confirm exact endpoints, formats, and scopes in PortOne's official documentation before scripting bulk pulls.",
+  "import_method": "Provision a Yuno workspace, connect the PSPs you intend to keep (note: not every Korean PG that PortOne supports will necessarily be available as a native Yuno connector — verify in Yuno's docs). Re-create customer objects, re-tokenize stored payment methods through the underlying PSPs where required, and rebuild checkout with Yuno's SDKs. Run the new flow against a small traffic slice first.",
+  "concept_mapping": [
+    {
+      "source": "PortOne PG aggregation",
+      "target": "Yuno PSP connections",
+      "note": "Same concept, different connector catalog"
+    },
+    {
+      "source": "PortOne SDK checkout",
+      "target": "Yuno SDK checkout",
+      "note": "Re-implement on Yuno's SDK; UI not portable"
+    },
+    {
+      "source": "PortOne webhooks",
+      "target": "Yuno webhooks",
+      "note": "Different event schema; re-subscribe and re-map"
+    },
+    {
+      "source": "PortOne customers/payments",
+      "target": "Yuno customers/payments",
+      "note": "Confirm field mapping in Yuno docs"
+    },
+    {
+      "source": "PortOne routing rules",
+      "target": "Yuno routing rules",
+      "note": "Re-author rules; semantics may differ"
+    },
+    {
+      "source": "PortOne Korean PG depth",
+      "target": "(partial)",
+      "note": "Verify connector availability per Korean PG; some may need direct integration"
+    }
+  ],
+  "effort": "2-6 weeks",
+  "gotchas": [
+    "Confirm which Korean PGs (KakaoPay, Toss, NaverPay, KG Inicis, etc.) Yuno supports natively before committing",
+    "Stored payment tokens are usually PSP-scoped; switching orchestrators does not auto-port them",
+    "Localized Korean checkout UX from PortOne will need to be rebuilt — budget design time",
+    "PortOne docs are strongest in Korean; ensure your team has reference material for both sides",
+    "Webhook schemas differ — keep both old and new handlers running during cutover",
+    "Reconciliation outputs change shape; align with finance early"
+  ],
+  "email": {
+    "subject": "Migration plan: PortOne to Yuno",
+    "body": "Team,\n\nProposing we move payments orchestration from PortOne to Yuno. Both are multi-PSP orchestrators, so the integration shape is similar, but PortOne's main strength (Korean PG depth) does not transfer one-to-one.\n\nPlan:\n1. Audit which Korean and global PGs we actually use on PortOne and confirm Yuno coverage.\n2. Export transactions, customers, configuration, and webhook history from PortOne.\n3. Stand up Yuno, connect required PSPs, rebuild checkout on Yuno SDKs.\n4. Cut over a small traffic slice first; run both stacks in parallel.\n5. Decommission PortOne after a clean reconciliation cycle.\n\nEstimated effort: 2-6 weeks depending on PG coverage gaps. I'll verify connector specifics in Yuno's official docs before we commit.\n\nThanks"
+  }
+}

@@ -1,0 +1,76 @@
+{
+  "source": {
+    "slug": "vercel-flags-sdk",
+    "name": "Flags SDK"
+  },
+  "target": {
+    "slug": "ff4j",
+    "name": "FF4J"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "Replace a Next.js/SvelteKit framework SDK with a Java/Spring-only feature-flag library — typically because the stack itself moved off JS to the JVM.",
+  "why_switch": [
+    "Your platform is consolidating on Java/Spring and the Vercel-centric SDK no longer fits",
+    "You want flags evaluated in-process inside JVM services instead of through a JS adapter",
+    "You need an audit trail and RBAC inside the JVM app",
+    "You prefer a single self-hosted library over a separate provider behind Flags SDK",
+    "You want to drop the JS adapter layer and any associated provider costs"
+  ],
+  "what_to_export": [
+    "Flag keys defined via flag() in your Next.js/SvelteKit code",
+    "Default values and option lists",
+    "Targeting/rule definitions from the backing provider",
+    "User attribute schemas referenced in rules",
+    "Per-environment configuration",
+    "Variant definitions for multivariate flags",
+    "Any A/B test setup tied to deployment previews",
+    "Audit history from the backing provider"
+  ],
+  "export_method": "Flags SDK is only a client/framework layer; flag rules typically live in the backing provider (LaunchDarkly, Statsig, ConfigCat, Flipt, etc.). Export from that provider using its native export tooling. From the Flags SDK code, capture the list of flag keys and their declared defaults. Consult the official docs for both Flags SDK and your provider for current export formats.",
+  "import_method": "Add the FF4J Spring Boot starter to your Java services, define each flag programmatically or via XML/YAML using the original key as a string, choose a FeatureStore (JDBC/Redis/Mongo or file), and translate provider targeting rules into FF4J FlippingStrategy implementations. Wire the web console and REST API for ops. Refer to the official FF4J documentation for current setup steps.",
+  "concept_mapping": [
+    {
+      "source": "flag() declaration in TS",
+      "target": "Feature definition in FF4J",
+      "note": "Keys port directly; defaults set in FF4J config"
+    },
+    {
+      "source": "Provider behind Flags SDK",
+      "target": "FF4J FeatureStore",
+      "note": "Backend moves from external SaaS/Flipt to in-process Java"
+    },
+    {
+      "source": "Provider targeting rules",
+      "target": "FlippingStrategy",
+      "note": "Custom rules likely need bespoke FlippingStrategy classes"
+    },
+    {
+      "source": "Edge/server evaluation",
+      "target": "JVM in-process evaluation",
+      "note": "Latency profile changes; revisit caching assumptions"
+    },
+    {
+      "source": "A/B test on Vercel preview",
+      "target": "Not built-in",
+      "note": "Experimentation must be handled outside FF4J"
+    },
+    {
+      "source": "Provider audit log",
+      "target": "FF4J audit trail",
+      "note": "Enable audit store; export historical events from old provider before cutover"
+    }
+  ],
+  "effort": "2-5 days",
+  "gotchas": [
+    "FF4J is Java-only — any remaining Next.js/SvelteKit surface needs a different flag client",
+    "Multivariate flags map awkwardly; FF4J leans toggle-first",
+    "Experimentation tied to Vercel previews is lost; rebuild via your own analytics if needed",
+    "Custom targeting rules must be reimplemented as Java FlippingStrategy classes",
+    "FF4J releases are infrequent; verify the version supports your Spring Boot baseline",
+    "Cost shifts from a SaaS provider to operating a JDBC/Redis FeatureStore yourself"
+  ],
+  "email": {
+    "subject": "Migrating from Flags SDK to FF4J",
+    "body": "Hi team,\n\nAs the platform moves to Java/Spring, I'm proposing we replace Vercel's Flags SDK (and the provider behind it) with FF4J inside the JVM services.\n\nWhy: in-process evaluation, built-in audit trail and RBAC, no separate provider to operate or pay for.\n\nSteps:\n1. Export flag rules from the current provider.\n2. Stand up FF4J via the Spring Boot starter with a JDBC FeatureStore.\n3. Recreate flags by key, port targeting rules into FlippingStrategy classes.\n4. Run both side-by-side until parity is confirmed, then retire Flags SDK.\n\nCaveats: any remaining JS surfaces need their own client, and Vercel-preview-based A/B tests don't carry over. Effort: 2-5 days."
+  }
+}

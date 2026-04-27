@@ -1,0 +1,70 @@
+{
+  "source": {
+    "slug": "boxyhq",
+    "name": "BoxyHQ"
+  },
+  "target": {
+    "slug": "turnkey",
+    "name": "Turnkey"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "BoxyHQ (enterprise SSO/SAML for SaaS) and Turnkey (secure-enclave wallet/key infrastructure) solve different problems, so a direct migration is unlikely without a product change.",
+  "why_switch": [
+    "Your product pivoted from SaaS auth to crypto/fintech key management",
+    "You need hardware-backed signing and policy-driven key custody, which BoxyHQ does not provide",
+    "You want a non-custodial wallet API rather than SSO/SAML federation",
+    "You are consolidating crypto infrastructure under one vendor",
+    "Compliance requires secure-enclave key storage rather than identity federation"
+  ],
+  "what_to_export": [
+    "User identity records (email, external IDs)",
+    "SSO connection metadata (SAML/OIDC) — only if still needed in the new stack",
+    "Directory sync (SCIM) snapshots",
+    "Audit logs",
+    "Tenant/organization mappings",
+    "Existing session/JWT signing keys (for rotation, not import)",
+    "Webhook subscriber configuration",
+    "Custom branding assets"
+  ],
+  "export_method": "Use BoxyHQ's admin tooling and database access (BoxyHQ is open source) to dump SSO connections, directory sync state, users and tenants. Consult BoxyHQ official docs for the exact admin/API endpoints, since identity data structures change between versions.",
+  "import_method": "Turnkey is wallet/key infrastructure rather than an identity provider, so most BoxyHQ data has no direct destination. Recreate user-equivalent entities as Turnkey sub-organizations or end-users via the Turnkey API and SDK; consult Turnkey official docs for the current organization, user, and policy primitives.",
+  "concept_mapping": [
+    {
+      "source": "Tenant",
+      "target": "Sub-organization",
+      "note": "Verify naming and limits in current Turnkey docs"
+    },
+    {
+      "source": "User",
+      "target": "End-user / API user",
+      "note": "Turnkey models humans and API actors explicitly"
+    },
+    {
+      "source": "SSO connection (SAML/OIDC)",
+      "target": "External auth integration",
+      "note": "Not a direct equivalent; Turnkey is not a federation IdP"
+    },
+    {
+      "source": "RBAC role",
+      "target": "Policy",
+      "note": "Turnkey uses programmable policies; rewrite from scratch"
+    },
+    {
+      "source": "Audit log",
+      "target": "Activity log",
+      "note": "Confirm retention and export options in docs"
+    }
+  ],
+  "effort": "1-3 weeks",
+  "gotchas": [
+    "BoxyHQ and Turnkey are not interchangeable — confirm Turnkey actually fits the use case",
+    "No drop-in SAML/SCIM replacement: enterprise SSO needs a separate IdP",
+    "Key material from BoxyHQ session signing should be rotated, not migrated",
+    "Pricing models differ (subscription vs usage); model expected costs before cutover",
+    "Plan a parallel-run period to validate signing flows under real load"
+  ],
+  "email": {
+    "subject": "Cancellation: BoxyHQ subscription",
+    "body": "Hi BoxyHQ team,\n\nWe are winding down our use of BoxyHQ as our product needs have shifted toward wallet and key infrastructure (we are moving to Turnkey). Please confirm the cancellation date, final invoice, and the data export options available before account closure.\n\nThanks for the support so far.\n\nBest regards"
+  }
+}

@@ -1,0 +1,76 @@
+{
+  "source": {
+    "slug": "lucide",
+    "name": "Lucide"
+  },
+  "target": {
+    "slug": "feather-icons",
+    "name": "Feather Icons"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "Move back from the Lucide fork to its upstream Feather Icons — a smaller, more minimal set that may be appropriate for legacy projects but loses Lucide's active maintenance and broader catalog.",
+  "why_switch": [
+    "Stay aligned with an existing Feather-based design system",
+    "Smaller catalog (~280 icons) enforces visual restraint",
+    "MIT license with no behavioral changes from the original Feather aesthetic",
+    "Removes Lucide-only icons that don't match a strict minimal style",
+    "Simpler API surface for teams that don't need framework-specific packages"
+  ],
+  "what_to_export": [
+    "List of every Lucide icon name used in the codebase",
+    "Wrapper components or hooks that import Lucide icons",
+    "Design tokens mapping semantic names to Lucide components",
+    "Icon size, stroke-width, and color conventions",
+    "Accessibility props (aria-label, role) on icon usages",
+    "Figma icon component mappings",
+    "Bundler/tree-shaking configuration for Lucide",
+    "Catalog of Lucide-only icons not present in Feather"
+  ],
+  "export_method": "Grep your codebase for Lucide imports (e.g. from 'lucide-react', 'lucide-vue-next') and produce a unique list of icon names. Cross-reference each name against the official Feather catalog — Lucide is a superset, so many names overlap, but Feather has ~280 icons vs Lucide's 1000+, so some will need substitutes or custom SVGs.",
+  "import_method": "Install Feather Icons via its official package per the docs (e.g. feather-icons or react-feather per project). Replace Lucide imports with the equivalent Feather component, keeping size/stroke conventions. For icons that exist in Lucide but not in Feather, either pick the closest Feather icon, ship a custom SVG, or keep that surface on Lucide alongside Feather temporarily.",
+  "concept_mapping": [
+    {
+      "source": "lucide-react named import",
+      "target": "react-feather (or equivalent) named import",
+      "note": "Confirm package name in Feather docs before installing."
+    },
+    {
+      "source": "1000+ Lucide icons",
+      "target": "~280 Feather icons",
+      "note": "Plan for missing-icon substitutes."
+    },
+    {
+      "source": "Lucide framework packages (Vue/Svelte/Angular)",
+      "target": "Feather official + community wrappers",
+      "note": "Coverage is thinner; consult Feather docs for current options."
+    },
+    {
+      "source": "Lucide stroke-width prop",
+      "target": "Feather stroke-width attribute",
+      "note": "Both inherit from the underlying SVG."
+    },
+    {
+      "source": "Lucide-exclusive icon",
+      "target": "Custom SVG or closest Feather match",
+      "note": "Document substitutions for design review."
+    },
+    {
+      "source": "ISC license",
+      "target": "MIT license",
+      "note": "Both permissive; verify with your legal/compliance process."
+    }
+  ],
+  "effort": "2-6 hours",
+  "gotchas": [
+    "Feather has ~280 icons vs Lucide's 1000+ — expect missing icons",
+    "Feather maintenance is slow; you may inherit unfixed bugs",
+    "Framework wrappers for Feather are less polished than Lucide's first-party packages",
+    "Switching back loses Lucide-exclusive icons added since the fork",
+    "Stroke-width and visual weight should match your existing Lucide usage",
+    "Consider whether this move is actually worth it vs staying on Lucide"
+  ],
+  "email": {
+    "subject": "Considering a move from Lucide back to Feather Icons",
+    "body": "Hey team,\n\nI'm scoping a swap from Lucide to its upstream Feather Icons. The motivation is mostly alignment with an existing Feather-based design system / minimalism, not technical superiority — Lucide is the more actively maintained fork.\n\nPlan: inventory every Lucide icon name in use, cross-reference Feather's ~280-icon catalog, and flag any Lucide-only icons we'd need to replace with custom SVGs or closest matches. Estimated effort: 2-6 hours, plus design review.\n\nBefore I start, want to confirm we're okay with the smaller catalog and slower upstream maintenance. Pushback welcome.\n\nThanks"
+  }
+}

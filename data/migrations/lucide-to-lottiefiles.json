@@ -1,0 +1,66 @@
+{
+  "source": {
+    "slug": "lucide",
+    "name": "Lucide"
+  },
+  "target": {
+    "slug": "lottiefiles",
+    "name": "LottieFiles"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Lucide and LottieFiles solve different problems: Lucide ships static SVG icons, LottieFiles delivers animated JSON motion graphics. Migrating means deciding which surfaces should switch from static icons to motion, then sourcing or producing Lottie files for each.",
+  "why_switch": [
+    "Add motion to interactions where static icons feel flat",
+    "Use lightweight JSON animations instead of GIF/video",
+    "Tap LottieFiles marketplace and editor for production assets",
+    "Centralize motion handoff between designers and engineers",
+    "Ship onboarding and empty states with richer feedback"
+  ],
+  "what_to_export": [
+    "List of Lucide icons currently used per surface",
+    "Component wrappers and import paths for each icon",
+    "Sizing, color, and stroke conventions",
+    "Accessibility labels (aria-label) per icon usage",
+    "Theming tokens applied to icon strokes/fills",
+    "Animation requirements for replaced surfaces",
+    "Brand motion guidelines if any",
+    "Performance budgets for animated assets"
+  ],
+  "export_method": "Lucide is a static SVG icon library, so there is nothing to export from a service. Inventory current usage by grepping the codebase for lucide-react (or lucide-vue/svelte/angular) imports and listing every icon name used. For each occurrence record file path, framework, size prop, color/stroke, and any aria-label. Group results by UI surface (nav, empty states, buttons, toasts) and mark which surfaces are candidates for motion. Capture screenshots of current static states so designers can plan animated replacements. If your design system maps tokens to Lucide names, export that mapping to CSV or JSON so each token can be reassigned to a Lottie asset where appropriate.",
+  "import_method": "LottieFiles consumes Lottie JSON files (typically authored in After Effects with the Bodymovin/LottieFiles plugin or in the LottieFiles web editor). Create a LottieFiles account and a workspace, upload or build the JSON files for each surface chosen above, then embed them via the official Lottie web player or framework SDK (lottie-react, lottie-web, or the dotLottie player). Replace the relevant Lucide component with the Lottie player component, passing the JSON URL or imported asset and matching the previous size. Keep accessibility labels by adding role=\"img\" and aria-label on the player wrapper. Surfaces that should remain static can stay on Lucide; treat this as additive rather than full replacement.",
+  "concept_mapping": [
+    {
+      "source": "Lucide icon component",
+      "target": "Lottie player + JSON file",
+      "note": "Requires authoring or sourcing animation per icon"
+    },
+    {
+      "source": "stroke/color props",
+      "target": "Lottie color layers",
+      "note": "Edited inside JSON or via player color filters"
+    },
+    {
+      "source": "size prop",
+      "target": "player width/height",
+      "note": "Lottie scales without quality loss"
+    },
+    {
+      "source": "aria-label",
+      "target": "role=\"img\" + aria-label on wrapper",
+      "note": "Players are not labeled by default"
+    }
+  ],
+  "effort": "1-3 weeks",
+  "gotchas": [
+    "LottieFiles is not a drop-in icon library; every animated replacement needs an authored or sourced Lottie file",
+    "Marketplace assets vary in quality and licensing terms — confirm commercial use before shipping",
+    "Lottie players add JS weight; budget for the runtime cost on low-end devices",
+    "Color theming inside Lottie JSON is layer-based, not a CSS prop; dark mode parity needs explicit handling",
+    "Accessibility is the integrator's job: add role=\"img\" and aria-label, and respect prefers-reduced-motion",
+    "Keep Lucide installed for surfaces that should stay static — wholesale replacement rarely makes sense"
+  ],
+  "email": {
+    "subject": "Switching select UI surfaces from Lucide icons to LottieFiles animations",
+    "body": "Hi team,\n\nWe are planning to introduce motion to a small set of UI surfaces (onboarding, empty states, success toasts) by replacing static Lucide icons with Lottie animations served via LottieFiles. Lucide will remain our default icon library for the rest of the product.\n\nOver the next 14 days we will inventory current Lucide usage, agree which surfaces should become animated, source or author Lottie JSON files, and ship the player component behind a feature flag. Accessibility (role=\"img\", aria-label, prefers-reduced-motion) and bundle size will be reviewed before rollout.\n\nIf you maintain any of the affected screens, please flag motion or performance constraints we should respect. We will share the surface list and a short demo before merging.\n\nThanks,\nYour customer"
+  }
+}

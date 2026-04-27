@@ -1,0 +1,76 @@
+{
+  "source": {
+    "slug": "lucide",
+    "name": "Lucide"
+  },
+  "target": {
+    "slug": "iconify",
+    "name": "Iconify"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "Switch from a single curated Lucide set to Iconify's universal API spanning 200k+ icons across many sets — useful when you need access to multiple icon families without bundling each one.",
+  "why_switch": [
+    "Access to 200k+ icons across 150+ sets via one API",
+    "On-demand loading avoids bundling every icon variant up front",
+    "Framework components for React, Vue, Svelte, plus a Figma plugin",
+    "Mix and match brand logos, mdi, heroicons, etc. without separate packages",
+    "Open-source core if you want to self-host the icon API"
+  ],
+  "what_to_export": [
+    "List of every Lucide icon name in use across the codebase",
+    "Design tokens mapping semantic names to icon components",
+    "Wrapper component(s) currently rendering Lucide icons",
+    "Stroke-width, size, and color conventions",
+    "Accessibility props on icon usages",
+    "Bundler/tree-shaking configuration tied to Lucide",
+    "Any Figma icon library bindings",
+    "List of additional sets you actually want from Iconify"
+  ],
+  "export_method": "Grep for Lucide imports (lucide-react, lucide-vue-next, etc.) and collect the full set of icon names. Map each Lucide icon to its Iconify equivalent — Lucide icons are mirrored in Iconify under the lucide prefix (e.g. lucide:home), but always confirm the exact prefix and name in the official Iconify icon catalog before relying on it.",
+  "import_method": "Install the Iconify component for your framework per its official docs (e.g. @iconify/react, @iconify/vue) and render icons as <Icon icon=\"lucide:home\" /> or equivalent. Update your wrapper to accept a string name instead of a component. Decide whether to use Iconify's hosted API or to bundle commonly used icons offline — both are documented options. Keep accessibility props applied at the wrapper level.",
+  "concept_mapping": [
+    {
+      "source": "Named import <Home />",
+      "target": "<Icon icon=\"lucide:home\" />",
+      "note": "Component-based vs string-based; refactor wrapper API."
+    },
+    {
+      "source": "Single Lucide set",
+      "target": "Many sets via prefixes (mdi:, heroicons:, ph:)",
+      "note": "Pick prefixes deliberately to avoid style drift."
+    },
+    {
+      "source": "Compile-time tree-shaking",
+      "target": "Runtime on-demand fetch (or offline bundle)",
+      "note": "Choose strategy per Iconify docs based on perf needs."
+    },
+    {
+      "source": "stroke-width prop",
+      "target": "SVG attributes or set-specific props",
+      "note": "Behavior depends on the chosen icon set."
+    },
+    {
+      "source": "ISC license",
+      "target": "Iconify framework MIT + per-set licenses",
+      "note": "Verify each set's license before use."
+    },
+    {
+      "source": "Lucide Figma library",
+      "target": "Iconify Figma plugin",
+      "note": "Re-link components; consult plugin docs."
+    }
+  ],
+  "effort": "3-8 hours",
+  "gotchas": [
+    "Switching from imports to string names is a real refactor across the codebase",
+    "Each Iconify set has its own license — review before using brand or paid sets",
+    "Runtime icon fetching adds a small latency hit unless you bundle offline",
+    "Mixing visual styles across sets can break design consistency",
+    "SSR setups need correct Iconify configuration to avoid hydration mismatches",
+    "If you only need one icon family, sticking with Lucide is usually simpler"
+  ],
+  "email": {
+    "subject": "Evaluating a switch from Lucide to Iconify",
+    "body": "Hey team,\n\nI'm scoping a move from Lucide to Iconify. The win is access to 200k+ icons across many sets through one API — useful as we add brand logos, product-specific glyphs, and material symbols without bundling separate libraries. The cost is a refactor from named imports to string-based icon names plus a careful look at on-demand loading behavior.\n\nPlan: enumerate every Lucide icon in use, map each to its Iconify lucide:* equivalent, refactor the wrapper, and decide on runtime API vs offline bundling per Iconify's official docs. Estimated effort: 3-8 hours.\n\nOpen to staying on Lucide if folks don't see value in the broader catalog.\n\nThanks"
+  }
+}

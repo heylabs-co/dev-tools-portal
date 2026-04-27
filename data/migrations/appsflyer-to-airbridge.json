@@ -1,0 +1,76 @@
+{
+  "source": {
+    "slug": "appsflyer",
+    "name": "AppsFlyer"
+  },
+  "target": {
+    "slug": "airbridge",
+    "name": "Airbridge"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "Switch from AppsFlyer's per-install pricing to Airbridge's flat-rate subscription with comparable MMP capabilities.",
+  "why_switch": [
+    "More predictable cost via subscription vs. $0.05-0.07/install metering",
+    "Airbridge publishes pricing from $199/month with a 15K-install free tier",
+    "Strong APAC coverage and incrementality features",
+    "Comparable feature set: deep linking, web-to-app, SKAdNetwork support",
+    "Lower lock-in score on our scoring model"
+  ],
+  "what_to_export": [
+    "Raw install and in-app event logs",
+    "Attribution and re-engagement records",
+    "Campaign, network, and partner configurations",
+    "Postback / S2S endpoint configurations",
+    "Deep link and OneLink-style universal link mappings",
+    "Cohort, audience, and segment definitions",
+    "SKAdNetwork conversion value schema",
+    "Fraud rules and exclusion lists"
+  ],
+  "export_method": "Use AppsFlyer's data export options (Pull/Push API, Data Locker) to land raw installs, in-app events, and re-attributions into your warehouse or S3. Verify current export endpoints, retention windows, and rate limits in AppsFlyer's official documentation before scheduling the export.",
+  "import_method": "Integrate the Airbridge SDK in a new app build and recreate campaign, partner, and postback configuration in the Airbridge console. For history, keep the AppsFlyer export in cold storage and join it with Airbridge data in your warehouse. Run both SDKs in parallel for one to two weeks to reconcile attribution before cutting over. Refer to the Airbridge docs for supported partner integrations and any S2S ingestion paths.",
+  "concept_mapping": [
+    {
+      "source": "AppsFlyer SDK events",
+      "target": "Airbridge SDK events",
+      "note": "Map event names and parameters; recheck currency/revenue keys"
+    },
+    {
+      "source": "OneLink (deep links)",
+      "target": "Airbridge deep links",
+      "note": "Re-create universal links and validate iOS/Android routing"
+    },
+    {
+      "source": "AppsFlyer partner integrations",
+      "target": "Airbridge partner integrations",
+      "note": "Re-enable each ad network from Airbridge's partner catalog"
+    },
+    {
+      "source": "Data Locker / Pull API",
+      "target": "Airbridge raw data export",
+      "note": "Confirm available export channels in Airbridge docs"
+    },
+    {
+      "source": "SKAdNetwork conversion model",
+      "target": "Airbridge SKAN conversion model",
+      "note": "Re-define conversion values; do not assume parity"
+    },
+    {
+      "source": "Audiences",
+      "target": "Airbridge audiences",
+      "note": "Recreate manually; segment logic may differ"
+    }
+  ],
+  "effort": "1-3 weeks",
+  "gotchas": [
+    "Run dual SDKs for at least one full attribution window to reconcile counts",
+    "Each ad network needs reconfiguration on the partner side, not just in Airbridge",
+    "Historical LTV reports stay in AppsFlyer; plan a warehouse-side join",
+    "Mind iOS App Store update timing for the SDK swap",
+    "Validate fraud filtering parity before disabling AppsFlyer billing",
+    "Confirm pricing and limits with Airbridge sales for your install volume"
+  ],
+  "email": {
+    "subject": "Migrating MMP from AppsFlyer to Airbridge",
+    "body": "Hi team,\n\nWe're planning to move our mobile attribution from AppsFlyer to Airbridge to get more predictable pricing and reduce per-install metering risk.\n\nPlan:\n1. Export raw installs, events, and re-attributions from AppsFlyer (Data Locker / Pull API) into our warehouse.\n2. Integrate Airbridge SDK in the next release and reconfigure partners, deep links, and SKAN conversion values.\n3. Run both SDKs in parallel for 1-2 weeks to reconcile attribution.\n4. Cut over once numbers match within tolerance.\n\nExpected effort: 1-3 weeks. We'll keep AppsFlyer historical data in cold storage for reporting.\n\nLet me know concerns before we kick off."
+  }
+}

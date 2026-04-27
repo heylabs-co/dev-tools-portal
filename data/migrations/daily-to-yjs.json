@@ -1,0 +1,81 @@
+{
+  "source": {
+    "slug": "daily",
+    "name": "Daily"
+  },
+  "target": {
+    "slug": "yjs",
+    "name": "Yjs"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "Daily is a managed real-time video/audio call API; Yjs is an open-source CRDT library for collaborative state. They solve different problems, so a 1:1 swap rarely makes sense. Treat this as moving the collaborative-data layer of your app to Yjs while keeping (or replacing separately) the audio/video media layer that Daily provided.",
+  "why_switch": [
+    "Eliminate per-connection SaaS costs by running an OSS CRDT in-process",
+    "Remove vendor lock-in on real-time data sync — Yjs documents are portable and offline-first",
+    "Lower-level control over conflict resolution and data model rather than a closed call API",
+    "Self-hosting friendly — pair Yjs with any WebSocket transport you already operate",
+    "Strong ecosystem of editor bindings (ProseMirror, Tiptap, CodeMirror, Monaco)"
+  ],
+  "what_to_export": [
+    "List of active rooms / sessions and their participants",
+    "Any persisted chat or shared-state messages stored alongside Daily rooms",
+    "Recording metadata and storage references (recordings stay on Daily/your storage)",
+    "Webhook endpoints and event subscriptions you rely on",
+    "Access tokens / meeting tokens issuance logic",
+    "Custom branding, prebuilt-UI configuration, and domain settings",
+    "User identity mappings used for participant tokens",
+    "Client SDK integration points in your frontend code"
+  ],
+  "export_method": "There is no direct export path because Daily and Yjs cover different concerns. Use Daily's REST API and dashboard to retrieve room lists, recordings metadata, and webhook configuration, and snapshot any auxiliary collaborative state (chat, shared docs) you stored yourself. Recordings remain in their existing storage and are not migrated to Yjs.",
+  "import_method": "Yjs has no import endpoint — you bootstrap a Y.Doc per collaborative session in your app and replicate it over a transport (y-websocket, y-webrtc, or a custom provider). Seed initial state by writing your existing data into the Y.Doc on first load, then point clients at the new provider. For audio/video, keep Daily, replace it with WebRTC directly, or pick a separate media provider — Yjs does not handle media streams.",
+  "concept_mapping": [
+    {
+      "source": "Room",
+      "target": "Y.Doc (one document per shared session)",
+      "note": "A Yjs document is the unit of shared state; rooms in Daily map roughly to one Y.Doc per collaboration scope."
+    },
+    {
+      "source": "Participant / meeting token",
+      "target": "Awareness state + your own auth on the WebSocket provider",
+      "note": "Yjs Awareness tracks presence/cursors; authentication is handled by the transport layer you choose."
+    },
+    {
+      "source": "Daily REST API for room CRUD",
+      "target": "Application code that creates/loads Y.Docs",
+      "note": "There is no managed control plane — your backend decides when a doc exists and who can connect."
+    },
+    {
+      "source": "Daily client SDK (call object / prebuilt)",
+      "target": "yjs + a provider (y-websocket, y-webrtc, etc.) plus an editor binding",
+      "note": "Client integration moves from a call SDK to a CRDT + transport pairing."
+    },
+    {
+      "source": "Webhooks (recording.ready, participant events)",
+      "target": "Y.Doc observers and provider events",
+      "note": "Server-side observers on a persisted Y.Doc replace event webhooks for state changes; media events have no equivalent."
+    },
+    {
+      "source": "Recording",
+      "target": "Not provided",
+      "note": "Yjs does not record audio/video. Keep Daily or another media tool for recording."
+    },
+    {
+      "source": "Audio/video media",
+      "target": "Not provided",
+      "note": "Yjs is data-only. Pair with WebRTC or another media SDK if you still need calls."
+    }
+  ],
+  "effort": "1-4 weeks for the collaborative-data layer; longer if you also need to replace the audio/video stack",
+  "gotchas": [
+    "Yjs does not handle audio or video — do not plan a straight swap if you still need calls",
+    "You are responsible for hosting and scaling the WebSocket / persistence layer",
+    "Authentication and authorization must be implemented on the transport, not in Yjs itself",
+    "Large documents need a persistence backend (e.g. y-leveldb, y-redis) or clients will reload full state on every connect",
+    "Awareness state is ephemeral — do not store anything in it you need to keep",
+    "Editor bindings vary in maturity; pick one that matches your existing editor or expect to write glue code"
+  ],
+  "email": {
+    "subject": "Moving our collaboration layer from Daily to Yjs",
+    "body": "Hi team,\n\nWe are planning to move the collaborative-state portion of our product from Daily to Yjs. The two tools cover different things: Daily handles audio/video calls, while Yjs is an open-source CRDT for shared application state. The goal of this migration is to own our collaborative-data layer, remove per-connection SaaS costs on that layer, and gain offline-first behavior through CRDTs.\n\nScope of the migration:\n- Replace Daily-backed shared state (chat, cursors, shared documents) with Y.Docs synced over a WebSocket provider we host.\n- Keep audio/video on Daily for now, or evaluate a separate media stack in a follow-up.\n- Implement auth on the transport layer and add a persistence backend for large documents.\n\nExpected effort is 1-4 weeks for the data layer. I will share a rollout plan with a feature flag and a fallback to Daily during the cutover.\n\nLet me know if you have concerns or constraints I should fold in.\n\nThanks"
+  }
+}

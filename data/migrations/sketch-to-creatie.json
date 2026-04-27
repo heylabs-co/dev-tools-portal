@@ -1,0 +1,75 @@
+{
+  "source": {
+    "slug": "sketch",
+    "name": "Sketch"
+  },
+  "target": {
+    "slug": "creatie",
+    "name": "Creatie"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Sketch is a Mac-native vector design tool; Creatie is a browser-based AI-native product design platform. Migration means moving design files, components, and tokens off the .sketch format into Creatie, accepting that some plugin-driven workflows won't carry over.",
+  "why_switch": [
+    "Cross-platform browser-based access for distributed teams",
+    "Built-in AI generation for UI screens and icons",
+    "Real-time multiplayer collaboration without bolt-on sync",
+    "Combined design, prototyping, and developer handoff",
+    "Move off Mac-only constraint"
+  ],
+  "what_to_export": [
+    "All .sketch source files organized by project",
+    "Reusable symbols and component libraries",
+    "Design tokens (colors, typography, spacing) and any plugin exports",
+    "Shared text and layer styles",
+    "Prototyping links and flows",
+    "Plugin-generated artifacts (icon sets, token JSON)",
+    "Developer handoff specs currently consumed downstream",
+    "Image and asset libraries embedded in files"
+  ],
+  "export_method": "Open each .sketch file in Sketch and export what travels well: PNG/SVG asset exports for any rasterized or vector content, and SVG exports for symbols where possible. For design tokens, run your existing token plugin (or the built-in JSON export) to produce a tokens file you can re-import elsewhere. For text and layer styles, document them as a style sheet (name, value) since they will need to be recreated as Creatie styles. Save a copy of every .sketch file in cloud storage as a long-term archive even after migration — Sketch files can also be opened in some other tools as a fallback. Many design tools accept .sketch as an import format directly; if Creatie does not, exporting screens to PDF or SVG and rebuilding the component library natively in Creatie may be the most reliable path. Verify what import paths Creatie currently supports before committing to an approach.",
+  "import_method": "Create a Creatie workspace and project structure that mirrors your Sketch project hierarchy. Import support for .sketch files varies — check Creatie's current docs for the supported path before mass-importing. If direct import is supported, upload files in batches and audit each for fidelity (typography, auto-layout, symbols). If not, recreate the foundation natively: paste in design tokens, rebuild text and layer styles, then rebuild key components from screenshots or SVG exports. Use Creatie's AI generation for new screens going forward and migrate the design system gradually rather than all at once. Set up developer handoff once components are stable so engineers can switch their inspection target. Keep Sketch licensed for at least one cycle as a fallback while migration is in flight.",
+  "concept_mapping": [
+    {
+      "source": "Sketch document (.sketch)",
+      "target": "Creatie project",
+      "note": "Import path depends on Creatie's current support"
+    },
+    {
+      "source": "Symbols and libraries",
+      "target": "Creatie components",
+      "note": "May require manual rebuild"
+    },
+    {
+      "source": "Text/layer styles",
+      "target": "Creatie styles",
+      "note": "Recreate by name and value"
+    },
+    {
+      "source": "Plugin-driven token export",
+      "target": "Creatie design tokens",
+      "note": "Plugins do not carry over"
+    },
+    {
+      "source": "Sketch developer handoff mode",
+      "target": "Creatie developer handoff"
+    },
+    {
+      "source": "Sketch prototype links",
+      "target": "Creatie prototype flows",
+      "note": "Re-link by hand"
+    }
+  ],
+  "effort": "2-6 weeks",
+  "gotchas": [
+    "Plugin ecosystem does not carry over — anything driven by a Sketch JS plugin will need a Creatie equivalent or replacement workflow",
+    "Symbol overrides and nested component logic may not survive automated import; expect cleanup",
+    "Prototype links and interactions almost always need to be rewired manually",
+    "Typography and font availability differ between local Mac and a browser tool — confirm fonts before committing",
+    "Developer handoff URLs will change, so update any docs, tickets, or design system references that point at Sketch Cloud",
+    "Keep Sketch licensed during the transition to handle edge cases and legacy files"
+  ],
+  "email": {
+    "subject": "Migrating design system from Sketch to Creatie",
+    "body": "Hi team,\n\nWe are starting a 14-day pilot to migrate our design files and component library from Sketch to Creatie. The motivation is browser-based access for our distributed team, real-time collaboration, and Creatie's AI-native workflow for new screens.\n\nDuring the pilot we will: inventory Sketch files, export design tokens and SVG assets, rebuild a small but representative slice of the design system in Creatie, and run a developer handoff dry-run with engineering. Sketch will stay licensed for the full transition window so nothing breaks for in-flight work.\n\nIf you maintain a Sketch plugin workflow or rely on a specific symbol library, please flag it early — plugins do not carry over and we will need to plan replacements.\n\nThanks,\nYour customer"
+  }
+}

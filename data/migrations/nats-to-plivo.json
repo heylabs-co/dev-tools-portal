@@ -1,0 +1,71 @@
+{
+  "source": {
+    "slug": "nats",
+    "name": "NATS"
+  },
+  "target": {
+    "slug": "plivo",
+    "name": "Plivo"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "NATS (open-source pub/sub) and Plivo (hosted SMS/voice/WhatsApp API) are different categories, so this only makes sense as a refactor of any NATS-driven flows that were really trying to reach end users via SMS or voice.",
+  "why_switch": [
+    "Plivo provides managed SMS, voice, and WhatsApp APIs out of the box",
+    "Public per-message pricing and a freemium starting tier",
+    "Strong SDKs and API docs",
+    "No broker to operate for the messaging-to-users path",
+    "Global carrier connectivity NATS cannot provide on its own"
+  ],
+  "what_to_export": [
+    "NATS subjects/consumers tied to user-facing SMS or voice notifications",
+    "Phone number lists and any consent records",
+    "Message templates / copy",
+    "Routing logic by country or carrier",
+    "Authentication and credentials in use",
+    "Monitoring, retries, and dead-letter handling logic",
+    "Compliance docs (opt-in, opt-out)",
+    "Internal flows that must remain on NATS"
+  ],
+  "export_method": "NATS has no vendor export — drain or replay JetStream streams via the NATS CLI or client libraries if relevant, and capture subject/consumer topology from your own configuration and IaC. Consult NATS's official docs for current tooling.",
+  "import_method": "On Plivo, create an account, buy or port the numbers you need, generate API credentials, and call Plivo's SMS or Voice API from the services that previously published to NATS for end-user messaging. Configure webhooks for delivery receipts and inbound messages. Consult Plivo's official docs for current setup steps.",
+  "concept_mapping": [
+    {
+      "source": "Subject / topic",
+      "target": "API endpoint",
+      "note": "Synchronous request"
+    },
+    {
+      "source": "Publisher",
+      "target": "Plivo SDK client",
+      "note": "Direct call"
+    },
+    {
+      "source": "Subscriber",
+      "target": "Webhook handler",
+      "note": "Delivery and inbound events"
+    },
+    {
+      "source": "JetStream durability",
+      "target": "n/a",
+      "note": "Build your own persistence/retry layer"
+    },
+    {
+      "source": "Self-hosted broker",
+      "target": "Hosted comms API",
+      "note": "Per-message pricing replaces infra cost"
+    }
+  ],
+  "effort": "1-3 days (for the user-facing SMS/voice slice)",
+  "gotchas": [
+    "Different categories — internal pub/sub should stay on NATS",
+    "Telecom compliance (opt-in, opt-out, sender ID rules) varies by country",
+    "Per-message cost can dominate at scale",
+    "No broker-style replay; design retries and idempotency yourself",
+    "Number provisioning and porting can take time",
+    "Latency and ordering guarantees differ from a message bus"
+  ],
+  "email": {
+    "subject": "Moving user-facing SMS/voice from NATS-driven flows to Plivo",
+    "body": "Hi team,\n\nProposal: where NATS is currently used to drive user-facing SMS or voice notifications, switch those flows to Plivo. Internal pub/sub stays on NATS.\n\nScope: audit the relevant subjects, set up a Plivo account and numbers, wire SMS/voice API calls and delivery webhooks, and add retries/idempotency on our side. Estimated 1-3 days.\n\nWill coordinate compliance review (opt-in/opt-out) before cutover.\n\nThanks"
+  }
+}

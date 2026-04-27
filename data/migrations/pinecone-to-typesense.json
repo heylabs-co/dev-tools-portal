@@ -1,0 +1,81 @@
+{
+  "source": {
+    "slug": "pinecone",
+    "name": "Pinecone"
+  },
+  "target": {
+    "slug": "typesense",
+    "name": "Typesense"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "Pinecone is a managed vector DB; Typesense is a typo-tolerant keyword search engine with optional vector search. Migration is only viable if your use case is product/doc search rather than pure semantic similarity. Re-index source documents into Typesense collections; keep embeddings only if you need hybrid/vector search.",
+  "why_switch": [
+    "Open-source core — self-host or use managed cloud, no vendor lock-in",
+    "Lower entry price and simpler billing for small/medium workloads",
+    "Built-in typo tolerance, faceting, and ranking out of the box",
+    "InstantSearch / Algolia-compatible adapter for fast frontend wiring",
+    "Avoid proprietary vector format — store source documents, re-embed if needed"
+  ],
+  "what_to_export": [
+    "Source documents (the original text/records you embedded)",
+    "Vector embeddings per record (if reusing for hybrid search)",
+    "Metadata fields used for filtering",
+    "Index configuration (dimensions, metric, namespaces)",
+    "Per-record IDs to preserve referential integrity",
+    "Sparse vectors / hybrid search config (if used)",
+    "Access patterns and query templates",
+    "Any reranking or boosting rules"
+  ],
+  "export_method": "Pinecone has no full-index dump. Use the official client to list/fetch vectors in batches (fetch by ID or paginate via metadata filters), or — preferred — re-export from the original source-of-truth (DB, CMS, S3) that produced the embeddings.",
+  "import_method": "Create a Typesense collection with a schema matching your fields; for hybrid search add a float[] field with the embedding dimension. Bulk-import via the documents import API (JSONL). Use Typesense's built-in embedding generation if you want it to manage vectors.",
+  "concept_mapping": [
+    {
+      "source": "Index",
+      "target": "Collection",
+      "note": "Typesense collections are schema-defined"
+    },
+    {
+      "source": "Namespace",
+      "target": "Separate collection or filter field",
+      "note": "No native namespace concept"
+    },
+    {
+      "source": "Vector + metadata record",
+      "target": "Document with float[] field + scalar fields",
+      "note": "Schema is explicit"
+    },
+    {
+      "source": "topK similarity query",
+      "target": "vector_query parameter on search",
+      "note": "Combines with keyword search for hybrid"
+    },
+    {
+      "source": "Metadata filter",
+      "target": "filter_by clause",
+      "note": "SQL-like syntax"
+    },
+    {
+      "source": "Sparse-dense hybrid",
+      "target": "Hybrid search (vector + keyword)",
+      "note": "Different scoring model — re-tune"
+    },
+    {
+      "source": "Serverless index",
+      "target": "Cloud cluster or self-hosted node",
+      "note": "Capacity is provisioned, not per-request"
+    }
+  ],
+  "effort": "1-3 weeks for a small/medium app; longer if hybrid relevance tuning is critical",
+  "gotchas": [
+    "Not a drop-in replacement: pure ANN/semantic-only workloads may not fit Typesense's keyword-first model",
+    "Recall and ranking will differ — budget time for relevance tuning and A/B testing",
+    "No built-in namespace primitive; plan multi-tenant isolation explicitly",
+    "Embedding dimensions are fixed at collection creation — schema changes mean re-indexing",
+    "Self-hosted ops (snapshots, HA, scaling) are on you unless you use Typesense Cloud",
+    "Cost profile flips above the free tier — model your record count and QPS before committing"
+  ],
+  "email": {
+    "subject": "Moving our search from Pinecone to Typesense",
+    "body": "Hi team,\n\nI'm planning to migrate our search workload from Pinecone to Typesense. Main drivers: open-source core, lower lock-in, simpler pricing at our scale, and built-in typo tolerance/faceting that fits most of our queries.\n\nPlan: re-export source documents from our system of record, define a Typesense collection schema, bulk-import via the documents API, and run shadow queries to compare relevance before cutover. We'll keep embeddings for hybrid search where semantic recall matters.\n\nRisks I'm tracking: relevance tuning differences, no native namespaces, and self-host vs. Typesense Cloud trade-off. Targeting 1-3 weeks end-to-end.\n\nHappy to walk through the cutover plan."
+  }
+}

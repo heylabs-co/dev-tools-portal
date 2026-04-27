@@ -1,0 +1,72 @@
+{
+  "source": {
+    "slug": "baremetrics",
+    "name": "Baremetrics"
+  },
+  "target": {
+    "slug": "avo",
+    "name": "Avo"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "Replace Baremetrics' Stripe-derived SaaS metrics with Avo's analytics governance — note these tools serve different purposes and you may still need a metrics layer.",
+  "why_switch": [
+    "Avo focuses on event schema governance, useful if product analytics matter more than revenue dashboards",
+    "Baremetrics is tightly coupled to Stripe data; Avo decouples tracking from any single source",
+    "Avo has a freemium tier vs. Baremetrics' $129/mo entry price",
+    "If product event quality is the actual problem, Avo addresses it; Baremetrics doesn't",
+    "Tracking plan discipline pays off across teams beyond just SaaS finance metrics"
+  ],
+  "what_to_export": [
+    "Stripe connection and any synced billing data references",
+    "MRR/ARR/churn/LTV definitions and segment splits",
+    "Customer property schema (plan, segment, country, etc.)",
+    "Saved dashboards and reports",
+    "Forecast and goal configurations",
+    "Annotations and notes",
+    "Team members, roles, permissions",
+    "Integration/destination configurations",
+    "Historical metric snapshots if you need an archive"
+  ],
+  "export_method": "Pull historical metric data and configurations via Baremetrics' export options or its API; document key metric definitions manually. For the underlying revenue truth, your Stripe (or other billing) data remains the source — keep that connection regardless of destination.",
+  "import_method": "Create an Avo workspace and define a tracking plan focused on product events that matter. Connect Avo to your analytics destination(s) and integrate Avo's tooling per the official docs. Note that Avo is not a SaaS-metrics dashboard — if you still need MRR/churn views, plan a separate metrics layer (warehouse + BI, or another SaaS-metrics tool).",
+  "concept_mapping": [
+    {
+      "source": "Stripe-derived MRR/ARR",
+      "target": "Not covered by Avo",
+      "note": "Keep a separate metrics layer"
+    },
+    {
+      "source": "Customer segments",
+      "target": "User properties in tracking plan",
+      "note": "Define ownership in Avo"
+    },
+    {
+      "source": "Churn cohorts",
+      "target": "Built in analytics destination",
+      "note": "Driven by events Avo governs"
+    },
+    {
+      "source": "Revenue dashboards",
+      "target": "BI tool over warehouse",
+      "note": "Avo doesn't dashboard revenue"
+    },
+    {
+      "source": "Annotations",
+      "target": "Stored in destination tool or separately",
+      "note": "Migrate manually"
+    }
+  ],
+  "effort": "1-3 weeks (longer if also standing up a separate metrics layer)",
+  "gotchas": [
+    "Avo is not a Baremetrics replacement for revenue dashboards — different categories",
+    "Don't lose Stripe historical context; export before canceling",
+    "Plan for a separate BI/metrics tool if SaaS finance views matter",
+    "Tracking plan migrations require engineering effort to instrument",
+    "Verify Baremetrics contract terms and cancellation timing",
+    "Communicate clearly with finance/ops who rely on Baremetrics dashboards"
+  ],
+  "email": {
+    "subject": "Moving off Baremetrics — restructuring our analytics stack",
+    "body": "Team,\n\nWe're sunsetting Baremetrics and moving product analytics governance to Avo. Note these are different categories of tools — Avo enforces event schema, it does not replace SaaS revenue dashboards.\n\nFor revenue/MRR/churn, we'll keep Stripe as the source of truth and decide separately on a BI or metrics layer. I'll export Baremetrics dashboards and metric definitions before we cancel.\n\nLet me know which Baremetrics views you rely on so we plan replacements.\n\nThanks"
+  }
+}

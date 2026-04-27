@@ -1,0 +1,76 @@
+{
+  "source": {
+    "slug": "convert",
+    "name": "Convert"
+  },
+  "target": {
+    "slug": "togglz",
+    "name": "Togglz"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Convert is a paid SaaS A/B testing and personalization platform; Togglz is an open-source Java library for feature toggles. Migration means dropping experimentation tooling and adopting an in-process JVM toggle library wired into your application code.",
+  "why_switch": [
+    "Eliminate the $599/mo Convert subscription for teams that only need feature flags",
+    "Move flag evaluation in-process to remove network dependency on a SaaS",
+    "Adopt a permissive Apache 2.0 OSS library you can audit and self-host",
+    "Use type-safe Java enums for flag definitions instead of dashboard strings",
+    "Keep flag state inside your own database for full data ownership"
+  ],
+  "what_to_export": [
+    "List of active flags and their human-readable names",
+    "Per-flag targeting and segmentation rules",
+    "Rollout percentages and bucket allocations",
+    "Environment-specific overrides (dev/staging/prod)",
+    "Flag descriptions, owners, and ticket references",
+    "Historical experiment results you want to archive",
+    "User segments and audience definitions",
+    "Any goal/metric definitions tied to experiments"
+  ],
+  "export_method": "Convert exposes flag and experiment data through its dashboard and reporting interface. Use the Convert UI to inventory all running and recent experiments, then export configuration and results to CSV or JSON where the dashboard supports it. For anything not covered by self-serve export, request an export from Convert support before cancelling. Capture screenshots of targeting trees and audience definitions, since complex segmentation may not survive a structured export. Save raw experiment results separately if you intend to keep historical analysis after the SaaS subscription ends. Treat the export as a one-time snapshot — once cancelled, regaining access is typically not free.",
+  "import_method": "Togglz has no import tool — flags are defined in Java source. For each Convert flag, add a value to a Java enum implementing Togglz's Feature interface, annotated with metadata (label, default state, activation strategies). Choose a state repository (in-memory, JDBC, Redis, or filesystem) and a UserProvider for context. For percentage rollouts use the GradualActivationStrategy; for user/segment targeting use UsernameActivationStrategy or a custom ActivationStrategy. Wire the FeatureManager via Spring Boot starter or programmatic builder. Deploy the Togglz admin console behind authentication so non-engineers can flip flags at runtime. Re-create environment overrides via per-environment state repositories or property files. Validate each flag end-to-end in staging before flipping production traffic.",
+  "concept_mapping": [
+    {
+      "source": "Experiment / A/B test",
+      "target": "Feature enum + GradualActivationStrategy",
+      "note": "Togglz handles toggling; statistical analysis must be added externally"
+    },
+    {
+      "source": "Variation",
+      "target": "Active vs inactive feature state",
+      "note": "Multi-arm experiments require custom strategies or external splitter"
+    },
+    {
+      "source": "Audience / segment",
+      "target": "Custom ActivationStrategy",
+      "note": "You implement matching logic against your user model"
+    },
+    {
+      "source": "Goal / metric",
+      "target": "External analytics (e.g. existing pipeline)",
+      "note": "Togglz does not measure conversions"
+    },
+    {
+      "source": "Dashboard toggle",
+      "target": "Togglz admin console",
+      "note": "Self-host behind auth"
+    },
+    {
+      "source": "API key",
+      "target": "n/a — in-process library",
+      "note": "No remote evaluation calls"
+    }
+  ],
+  "effort": "1-3 weeks",
+  "gotchas": [
+    "Togglz is JVM-only; non-Java services that called Convert will need a different solution or a thin Togglz-backed HTTP wrapper",
+    "Statistical experimentation (significance testing, lift, CIs) is not part of Togglz — plan a separate analytics path",
+    "Multi-variant tests do not map cleanly; you may need custom strategies or to flatten experiments to single-toggle rollouts",
+    "Privacy-first cookieless tracking that Convert provided does not transfer; instrumentation must be re-implemented",
+    "Convert dashboard users will lose self-serve experiment creation — engineers must redeploy or use the Togglz console",
+    "Historical experiment data is locked to Convert once the subscription ends, so export everything you need first"
+  ],
+  "email": {
+    "subject": "Heads up: we're moving feature flags off Convert to Togglz",
+    "body": "Hi team,\n\nWe're planning to move our feature flagging from Convert to Togglz, an open-source Java library, over the next 14 days. The goal is simpler ops, lower cost, and tighter integration with our JVM stack.\n\nWhat changes for you:\n- Flag toggles will move from the Convert dashboard to a self-hosted Togglz admin console.\n- Flag definitions will live in our Java codebase as enums; new flags require a small PR.\n- Experiment analytics will be handled by our existing analytics pipeline rather than Convert.\n\nWe'll run both systems in parallel for a short overlap, then sunset Convert. Please export anything you need from Convert (experiment results, audience definitions) before the cutover.\n\nIf any current experiment must keep running on Convert, reply by end of week so we can plan the timing.\n\nThanks,\nYour customer"
+  }
+}

@@ -1,0 +1,76 @@
+{
+  "source": {
+    "slug": "courier",
+    "name": "Courier"
+  },
+  "target": {
+    "slug": "clevertap",
+    "name": "CleverTap"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "Move from Courier's notification routing API to CleverTap's mobile engagement platform with built-in analytics and segmentation.",
+  "why_switch": [
+    "Need built-in analytics and behavioral segmentation alongside messaging",
+    "Want native mobile SDKs with retention dashboards out of the box",
+    "Prefer a single platform for engagement + analytics rather than stitching tools",
+    "Looking for stronger in-app messaging templates and campaign UI",
+    "Need enterprise support with SLAs"
+  ],
+  "what_to_export": [
+    "Templates per channel (email, push, SMS, in-app)",
+    "User profiles, identifiers, and channel tokens",
+    "User attributes / properties",
+    "Subscription preferences",
+    "Routing and fallback rules",
+    "Lists and audiences",
+    "Brand / styling assets",
+    "Tenant / environment configuration"
+  ],
+  "export_method": "Pull users, profiles, preferences, templates, and lists from the Courier API and store as JSON. Verify endpoints in Courier's official API docs. There is no native bulk export, so script per-resource pulls with pagination.",
+  "import_method": "Integrate the CleverTap SDKs into your apps to capture users and events, then upload historical user attributes via CleverTap's REST API. Recreate templates and campaigns in the CleverTap dashboard. Confirm exact endpoint names and payload shapes in CleverTap's official documentation before automating.",
+  "concept_mapping": [
+    {
+      "source": "Courier User Profile",
+      "target": "CleverTap User Profile",
+      "note": "Map identity and channel tokens; CleverTap uses Identity + Device IDs"
+    },
+    {
+      "source": "Courier Notification template",
+      "target": "CleverTap Campaign / Template",
+      "note": "Templates are tied to campaigns in CleverTap; rebuild content"
+    },
+    {
+      "source": "Courier Routing rules",
+      "target": "CleverTap Journeys",
+      "note": "Multi-channel fallback logic must be redesigned in Journeys"
+    },
+    {
+      "source": "Courier Tags / properties",
+      "target": "CleverTap User Properties / Events",
+      "note": "Behavioral data should go to Events for segmentation"
+    },
+    {
+      "source": "Courier Lists",
+      "target": "CleverTap Segments",
+      "note": "Static lists vs dynamic segments — choose intent first"
+    },
+    {
+      "source": "Courier Brands",
+      "target": "CleverTap Template assets",
+      "note": "Recreate styles inline in CleverTap templates"
+    }
+  ],
+  "effort": "20-60 hours",
+  "gotchas": [
+    "Lock-in increases — CleverTap stores rich behavioral data that is harder to extract later",
+    "Push tokens must be re-registered via CleverTap SDK; you cannot transfer APNs/FCM tokens directly",
+    "Pricing jumps from freemium to subscription starting at $75 — re-budget early",
+    "Identity unification rules differ; plan how anonymous-to-known merges should behave",
+    "Preference management is platform-specific; recheck unsubscribe and compliance flows",
+    "Run dual-send during cutover to confirm deliverability before turning Courier off"
+  ],
+  "email": {
+    "subject": "Migrating from Courier to CleverTap",
+    "body": "Hi team,\n\nWe're moving notifications from Courier to CleverTap to consolidate engagement and analytics on one platform.\n\nPlan:\n- Export users, templates, preferences, and routing config from Courier\n- Integrate CleverTap SDKs and start capturing live events\n- Upload historical attributes via CleverTap's API\n- Rebuild campaigns and journeys in CleverTap\n- Dual-send for a short window, then cut over\n\nEffort: roughly 20-60 hours. Detailed checklist to follow.\n\nThanks"
+  }
+}

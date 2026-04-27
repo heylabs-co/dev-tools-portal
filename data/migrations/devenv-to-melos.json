@@ -1,0 +1,75 @@
+{
+  "source": {
+    "slug": "devenv",
+    "name": "Devenv"
+  },
+  "target": {
+    "slug": "melos",
+    "name": "Melos"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "These tools solve different problems — Devenv reproduces dev environments, Melos manages Dart/Flutter monorepo packages — so this is a reframing, not a true migration, and only makes sense if the project is Flutter-centric.",
+  "why_switch": [
+    "Project is Dart/Flutter and needs versioning + changelog automation",
+    "Coordinated publishing of Flutter plugins to pub.dev",
+    "Run scripts across multiple Dart packages with filtering",
+    "Idiomatic Dart/Flutter tooling instead of generic Nix shell",
+    "Drop Nix dependency if reproducible env was the only reason to keep Devenv"
+  ],
+  "what_to_export": [
+    "List of Dart/Flutter SDK versions pinned in devenv.nix",
+    "Workspace package layout (paths to each pubspec.yaml)",
+    "Scripts defined in devenv.nix you want to keep",
+    "CI commands that activated the Devenv shell",
+    "Pre-commit hooks relevant to Dart code",
+    "Any non-Dart tools used (linters, formatters)",
+    "pub.dev publishing credentials / workflow"
+  ],
+  "export_method": "There is no automated path. Inventory devenv.nix entries by hand. For Dart/Flutter SDK pinning, decide whether to keep Nix/Devenv solely for SDK install or switch to fvm / asdf / Hermit / official Flutter installer. Melos itself does not manage SDK versions — confirm current behavior in the official Melos docs.",
+  "import_method": "Install Melos following the official guide (typically dart pub global activate melos). Add a melos.yaml at the repo root listing your packages and scripts. Run melos bootstrap to link local packages. Move cross-package commands previously in devenv.nix scripts into melos.yaml scripts. Keep your SDK manager (fvm/asdf/Hermit) separate. Verify current syntax and capabilities against official Melos documentation.",
+  "concept_mapping": [
+    {
+      "source": "devenv.nix scripts",
+      "target": "melos.yaml scripts",
+      "note": "Cross-package scripts move here; one-off shell scripts stay as scripts"
+    },
+    {
+      "source": "languages.dart / flutter",
+      "target": "External SDK manager",
+      "note": "Use fvm, asdf, or official installer; Melos doesn't pin the SDK"
+    },
+    {
+      "source": "Reproducible environment",
+      "target": "(partial)",
+      "note": "Melos only manages packages; reproducibility is on you"
+    },
+    {
+      "source": "services.postgres / redis",
+      "target": "(no equivalent)",
+      "note": "Run separately via Docker Compose or similar"
+    },
+    {
+      "source": "Workspace concept",
+      "target": "melos.yaml packages",
+      "note": "Glob patterns over pubspec.yaml locations"
+    },
+    {
+      "source": "CI shell activation",
+      "target": "melos bootstrap + melos run",
+      "note": "CI runs melos commands directly"
+    }
+  ],
+  "effort": "3-8 hours",
+  "gotchas": [
+    "Melos is Dart/Flutter only — non-Dart tooling needs another home",
+    "Melos does not replace Devenv's reproducibility — pair it with an SDK manager",
+    "Service orchestration has no Melos equivalent",
+    "Versioning behavior depends on Melos config; review release flow before flipping CI",
+    "If team uses non-Flutter languages too, you may end up running both tools",
+    "Validate exact melos.yaml schema against current official docs"
+  ],
+  "email": {
+    "subject": "Proposal: adopt Melos for our Flutter monorepo workflow",
+    "body": "Hi team,\n\nDevenv reproduces our toolchain, but for our Flutter monorepo we still lack first-class versioning, changelogs, and coordinated pub.dev publishing. Melos is purpose-built for this.\n\nThe two tools aren't substitutes — Melos handles package orchestration, Devenv handles environment reproduction. Plan: keep an SDK manager for Flutter pinning, drop Devenv if we don't need its services, adopt Melos for workspace scripts and releases. Estimated 3-8 hours.\n\nThoughts?\n\nThanks"
+  }
+}

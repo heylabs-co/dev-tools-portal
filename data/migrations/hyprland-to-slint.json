@@ -1,0 +1,75 @@
+{
+  "source": {
+    "slug": "hyprland",
+    "name": "Hyprland"
+  },
+  "target": {
+    "slug": "slint",
+    "name": "Slint"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "These tools solve different problems — Hyprland is a Linux Wayland compositor and Slint is a cross-platform declarative GUI toolkit — so most users will not migrate but instead replace use-cases on a feature-by-feature basis.",
+  "why_switch": [
+    "You no longer need a desktop compositor and instead want to build native GUI apps",
+    "You want a portable UI toolkit that runs on Linux, macOS, Windows, embedded, and web",
+    "You prefer a declarative UI language with live preview over compositor scripting",
+    "You want bindings for Rust, C++, JavaScript, and Python rather than compositor IPC",
+    "Your project shifted from a Linux desktop environment to a shipped GUI product"
+  ],
+  "what_to_export": [
+    "Hyprland config (hyprland.conf) for reference only",
+    "List of custom keybindings and workflows",
+    "Plugin list and any custom plugin source",
+    "Window rules and workspace layouts",
+    "Animation and decoration preferences",
+    "Monitor/display configuration",
+    "Startup applications and exec-once entries",
+    "Any scripts that interact with hyprctl"
+  ],
+  "export_method": "Hyprland stores everything in plain-text config files under ~/.config/hypr/. Copy hyprland.conf and any sourced files. There is no proprietary export — your config IS the export. Consult official Hyprland wiki for the current config schema.",
+  "import_method": "Slint does not import compositor configs. You build a Slint application from scratch using the .slint declarative language and bindings for Rust, C++, JS, or Python. Start with the official Slint getting-started guide and the slint-ui/slint repo examples. There is no automated migration path between these tools.",
+  "concept_mapping": [
+    {
+      "source": "hyprland.conf",
+      "target": ".slint files",
+      "note": "Both are declarative text but for entirely different domains — translate by hand only where concepts overlap."
+    },
+    {
+      "source": "hyprctl IPC commands",
+      "target": "Slint API calls from host language",
+      "note": "Slint is controlled from Rust/C++/JS/Python — not via IPC sockets."
+    },
+    {
+      "source": "Window rules",
+      "target": "Slint window properties",
+      "note": "Set via Window {} component properties; consult Slint docs for current property names."
+    },
+    {
+      "source": "Plugins",
+      "target": "Custom Slint components",
+      "note": "Reusable UI pieces are authored as components, not loaded as plugins."
+    },
+    {
+      "source": "Animations block",
+      "target": "Slint animate/transitions",
+      "note": "Slint has built-in animation primitives; check official docs for syntax."
+    },
+    {
+      "source": "Keybindings",
+      "target": "App-level shortcuts",
+      "note": "Implemented in host code, not in the .slint file."
+    }
+  ],
+  "effort": "Not directly comparable — rebuilding a workflow takes 1-3 days; full app development is open-ended.",
+  "gotchas": [
+    "These tools are not substitutes — confirm Slint actually solves your problem before starting",
+    "Slint dual-licensing (GPL + commercial) may matter for closed-source projects — check current license terms",
+    "No automated migration tooling exists between the two",
+    "Slint's ecosystem is smaller than mature toolkits like Qt — verify needed widgets exist",
+    "Embedded targets need MCU-specific Slint setup; consult official docs"
+  ],
+  "email": {
+    "subject": "Moving from Hyprland to Slint — heads up",
+    "body": "Hi team,\n\nQuick note: Hyprland (Wayland compositor) and Slint (GUI toolkit) solve different problems, so this isn't a like-for-like migration. We're treating it as a use-case shift rather than a port. I'll archive the hyprland.conf for reference and bootstrap a Slint project from the official examples. Will share a plan once I scope the work.\n\nThanks"
+  }
+}

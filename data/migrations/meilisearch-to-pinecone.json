@@ -1,0 +1,86 @@
+{
+  "source": {
+    "slug": "meilisearch",
+    "name": "Meilisearch"
+  },
+  "target": {
+    "slug": "pinecone",
+    "name": "Pinecone"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "Meilisearch is a lexical/typo-tolerant search engine; Pinecone is a managed vector database. Migration is not a drop-in swap — you must generate embeddings for each document and rethink ranking. Plan for re-indexing and query-layer rewrites.",
+  "why_switch": [
+    "Need semantic/AI search over keyword matching for RAG and embedding-based retrieval",
+    "Want fully managed scaling without operating self-hosted clusters",
+    "Mature SDKs and tight integration with LLM/AI workflows",
+    "Sub-50ms similarity search across high-dimensional embeddings",
+    "Offload index ops, replication, and tuning to a managed service"
+  ],
+  "what_to_export": [
+    "Document corpus (raw text and metadata used for indexing)",
+    "Index settings (filterable, sortable, searchable attributes)",
+    "Synonyms and stop-words lists",
+    "Ranking rules and custom relevancy config",
+    "Tenant tokens / API keys mapping for re-issue",
+    "Faceting and filter schemas",
+    "Saved queries or analytics baselines for relevance comparison",
+    "User/session metadata used for personalization (if any)"
+  ],
+  "export_method": "Use Meilisearch's documents endpoint to dump each index as JSON/NDJSON (or take a Meilisearch dump). Persist index settings separately. Embeddings are not stored in Meilisearch by default — you will need to generate them downstream.",
+  "import_method": "For each document, generate vector embeddings with your chosen model, then upsert vectors plus metadata into a Pinecone index. Recreate filterable fields as Pinecone metadata. Replace lexical queries with embedding-based similarity queries (optionally hybrid with sparse vectors).",
+  "concept_mapping": [
+    {
+      "source": "Index",
+      "target": "Index (with chosen dimension and metric)",
+      "note": "Pinecone index is bound to a vector dimension and similarity metric — pick once, hard to change later."
+    },
+    {
+      "source": "Document",
+      "target": "Vector record (id + values + metadata)",
+      "note": "Original text typically lives in metadata; the vector replaces the searchable body."
+    },
+    {
+      "source": "Searchable attributes",
+      "target": "Embedding input fields",
+      "note": "Decide which fields to concatenate before embedding; there is no per-field weighting at query time."
+    },
+    {
+      "source": "Filterable attributes",
+      "target": "Metadata filters",
+      "note": "Keep types simple (string, number, bool, list) for filter compatibility."
+    },
+    {
+      "source": "Ranking rules / typo tolerance",
+      "target": "Vector similarity + optional hybrid sparse",
+      "note": "Lexical relevancy and typo tolerance do not map directly; consider hybrid search or a re-ranker."
+    },
+    {
+      "source": "Synonyms",
+      "target": "Handled by the embedding model",
+      "note": "Embeddings absorb most synonym handling; explicit synonym lists are not a Pinecone concept."
+    },
+    {
+      "source": "Facets / distribution",
+      "target": "Client-side aggregation over filtered results",
+      "note": "Pinecone is not an aggregation engine — facet counts must be precomputed or done elsewhere."
+    },
+    {
+      "source": "Multi-tenant tokens",
+      "target": "Namespaces + API keys",
+      "note": "Use namespaces per tenant for isolation within a single index."
+    }
+  ],
+  "effort": "1-3 weeks for a small/medium corpus; longer if relevance tuning or hybrid search is required",
+  "gotchas": [
+    "Paradigm shift: lexical to vector — relevance behavior will differ and needs evaluation",
+    "Embedding cost and latency are now part of every write and query",
+    "Pinecone metadata filters have size and type constraints; large text fields should not live in metadata",
+    "Index dimension and metric are fixed at creation — choose the embedding model first",
+    "Faceting, typo tolerance, and ranking rules from Meilisearch have no direct equivalent",
+    "Re-indexing the full corpus is required; budget for embedding generation throughput"
+  ],
+  "email": {
+    "subject": "Moving search from Meilisearch to Pinecone",
+    "body": "Hi team,\n\nWe're planning to migrate our search stack from Meilisearch to Pinecone to support semantic/AI search and offload ops to a managed service. This is not a like-for-like swap: Meilisearch is lexical, Pinecone is a vector database, so we'll re-index the corpus through an embedding model and rewrite the query layer.\n\nPlan: export documents and index settings from Meilisearch, pick an embedding model and dimension, create the Pinecone index, upsert vectors with metadata, and validate relevance against a saved query set before cutover. Expect 1-3 weeks depending on corpus size and relevance tuning.\n\nLet me know concerns or constraints before we start."
+  }
+}

@@ -1,0 +1,75 @@
+{
+  "source": {
+    "slug": "convert",
+    "name": "Convert"
+  },
+  "target": {
+    "slug": "ff4j",
+    "name": "FF4J"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "Replace Convert's SaaS A/B and flag platform with FF4J, a self-hosted Apache 2.0 Java feature toggle library with many storage backends and a Spring Boot starter.",
+  "why_switch": [
+    "Drop Convert's monthly subscription in favor of free OSS",
+    "Keep flag evaluation entirely inside your JVM services",
+    "Choose from 20+ database backends for flag persistence",
+    "Built-in audit trail and REST API for compliance reviews",
+    "Reduce SaaS lock-in for a runtime-critical dependency"
+  ],
+  "what_to_export": [
+    "List of feature flags / experiments and their keys",
+    "Current on/off states per environment",
+    "Targeting and segmentation rules",
+    "Rollout percentages for gradual releases",
+    "Variation definitions for any A/B tests",
+    "User/audience definitions used in targeting",
+    "Audit history for compliance, if required",
+    "Goals or success metrics tied to experiments"
+  ],
+  "export_method": "Use Convert's dashboard or API (consult official Convert docs for the current export endpoint) to retrieve experiments, variations, and audience rules. If a bulk export is unavailable, script their REST API or copy definitions manually. Capture which experiments are pure flags vs. A/B tests, since FF4J handles flagging well but is not an experimentation platform on its own.",
+  "import_method": "Add the ff4j-core dependency and the Spring Boot starter if you use Spring. Configure a FeatureStore backed by your database of choice (JDBC, Redis, MongoDB, etc., per the official FF4J docs). Declare each flag with a string key, attach FlippingStrategy implementations for targeting and percentage rollouts, and expose the web console / REST API for runtime management. Wrap conditional code paths with ff4j.check(\"flagKey\") or annotation-based @Flip.",
+  "concept_mapping": [
+    {
+      "source": "Convert experiment/flag",
+      "target": "Feature (string key)",
+      "note": "FF4J flags are identified by string keys"
+    },
+    {
+      "source": "Audience / targeting",
+      "target": "FlippingStrategy",
+      "note": "Built-in strategies plus custom Java implementations"
+    },
+    {
+      "source": "Variation",
+      "target": "Property on Feature",
+      "note": "FF4J properties hold typed config values"
+    },
+    {
+      "source": "Dashboard",
+      "target": "FF4J web console",
+      "note": "Bundled console plus REST API"
+    },
+    {
+      "source": "Storage",
+      "target": "FeatureStore impl",
+      "note": "JDBC, Redis, Mongo, in-memory, etc."
+    },
+    {
+      "source": "Audit log",
+      "target": "FF4J audit trail",
+      "note": "Persisted events for compliance"
+    }
+  ],
+  "effort": "2-5 days",
+  "gotchas": [
+    "FF4J is Java-only; polyglot stacks need a separate solution per language",
+    "Experimentation/analytics features are limited compared to Convert's A/B suite",
+    "UI feels dated by 2026 standards; budget UX expectations accordingly",
+    "Release cadence has been slow recently; pin versions and review CVEs",
+    "Secure the admin console and REST API before exposing them"
+  ],
+  "email": {
+    "subject": "Moving feature flags from Convert to FF4J",
+    "body": "Hi team,\n\nWe're moving feature flagging from Convert to FF4J so we drop the subscription and keep evaluation inside our JVM stack. Plan: export flags, audiences, and targeting from Convert, then recreate them as FF4J Features with FlippingStrategy rules backed by our existing database. We'll wire the Spring Boot starter for the admin console and REST API. Note: pure A/B experimentation analytics aren't FF4J's strength, so we'll decide separately whether to keep Convert for active experiments or pair FF4J with another analytics tool. Effort estimate: 2-5 days.\n\nThanks"
+  }
+}

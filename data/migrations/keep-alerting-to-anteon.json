@@ -1,0 +1,76 @@
+{
+  "source": {
+    "slug": "keep-alerting",
+    "name": "Keep"
+  },
+  "target": {
+    "slug": "anteon",
+    "name": "Anteon"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "Move from Keep's open-source AIOps alert aggregation to Anteon's Kubernetes-focused observability platform.",
+  "why_switch": [
+    "Anteon offers a hosted option, reducing self-host ops burden.",
+    "Integrated logs/metrics/traces in one platform vs alert-only Keep.",
+    "K8s eBPF agent provides deep cluster visibility.",
+    "Commercial support available.",
+    "Useful if your need has shifted from alert correlation to full-stack observability."
+  ],
+  "what_to_export": [
+    "List of connected alert sources and their credentials",
+    "Alert deduplication rules",
+    "Correlation policies and groupings",
+    "Routing/suppression rules",
+    "Notification channel configs (Slack, PagerDuty, etc.)",
+    "Workflows/automation definitions",
+    "User/team/RBAC settings",
+    "Audit history and recent alert payloads worth keeping"
+  ],
+  "export_method": "Keep stores configuration in its database and exposes APIs/UI for rule management. Use the Keep API or back up the underlying database to pull rules, workflows, and integration configs. Refer to keephq.dev documentation for the current export approach.",
+  "import_method": "Anteon installs as a hosted SaaS or self-hosted (open-core) deployment with K8s agents. Provision a workspace, install the agent into each cluster, and recreate alert/correlation logic inside Anteon's rules engine. Reconnect notification channels and integrations. Consult Anteon's official docs for exact install and configuration steps.",
+  "concept_mapping": [
+    {
+      "source": "Keep providers (50+ tools)",
+      "target": "Anteon integrations",
+      "note": "Recreate connections to upstream tools per Anteon's supported integrations list."
+    },
+    {
+      "source": "Keep deduplication rules",
+      "target": "Anteon alert rules / grouping",
+      "note": "Confirm exact equivalents in Anteon docs; semantics differ."
+    },
+    {
+      "source": "Keep correlation / AIOps",
+      "target": "Anteon alerting (limited AIOps)",
+      "note": "Anteon is observability-centric; AIOps depth may not match Keep."
+    },
+    {
+      "source": "Keep workflows",
+      "target": "Anteon webhooks / external runbook tools",
+      "note": "Workflow automation may need an external tool (n8n, etc.)."
+    },
+    {
+      "source": "Self-hosted Keep",
+      "target": "Anteon SaaS or self-host",
+      "note": "Choose deployment model based on data residency needs."
+    },
+    {
+      "source": "Free OSS",
+      "target": "Subscription pricing",
+      "note": "Anteon billing is usage-based — model your data volumes first."
+    }
+  ],
+  "effort": "8-24 hours",
+  "gotchas": [
+    "Anteon is not primarily an AIOps alert manager — feature parity for correlation is unlikely.",
+    "Pricing is usage-based; estimate ingest before committing.",
+    "If Keep's 50+ provider catalog matters, verify each integration exists in Anteon.",
+    "Self-host Keep config won't import; rules must be re-authored.",
+    "Plan a dual-run period to validate alert noise and routing.",
+    "AGPL-3.0 self-host option for Anteon — review license if you customize."
+  ],
+  "email": {
+    "subject": "Migrating from Keep to Anteon",
+    "body": "Hi team,\n\nConsidering a move from Keep to Anteon. The driver is consolidating logs, metrics, traces, and alerts into one platform with a hosted option, instead of running Keep alongside our other observability stack.\n\nCaveat: Anteon is observability-first, not an AIOps alert correlator. We'll need to verify that key Keep features (deduplication, correlation, workflows) have acceptable equivalents — or keep Keep for that layer.\n\nWork: export Keep rules and integrations; provision Anteon; install agents; re-author alerts; reconnect Slack/PagerDuty; run in parallel before cutover.\n\nEstimated effort: 8-24 hours, plus parallel-run.\n\nWill follow up with a comparison doc and pricing estimate.\n\nThanks."
+  }
+}

@@ -1,0 +1,76 @@
+{
+  "source": {
+    "slug": "prove",
+    "name": "Prove"
+  },
+  "target": {
+    "slug": "veriff",
+    "name": "Veriff"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "Replace Prove's phone-driven US KYC with Veriff's document + selfie verification platform that has public entry pricing and broader geographic coverage.",
+  "why_switch": [
+    "Document and biometric coverage across many countries, not US-centric",
+    "Public entry-tier pricing instead of contact-sales only",
+    "Trial available to validate flows before commitment",
+    "Solid SDKs for web, iOS and Android",
+    "Less dependence on US carrier data and phone possession"
+  ],
+  "what_to_export": [
+    "Verification records and decision reasons",
+    "Identity attributes you persist (name, DOB, address, document refs)",
+    "Webhook event history",
+    "User-to-verification ID mapping",
+    "Audit logs",
+    "Decision thresholds and step-up rules",
+    "Retention and deletion records",
+    "Any dashboard-defined workflows"
+  ],
+  "export_method": "Open an export request with Prove account management and capture webhook-derived records into your own datastore in parallel. Treat your internal database as the source of truth during cutover. Consult Prove's official documentation for the current export procedure.",
+  "import_method": "Integrate Veriff's hosted flow or in-context SDK on your sign-up screens, route new users to Veriff while leaving Prove for already-verified users until re-verification is required, and persist webhook outcomes against your existing user IDs. Consult Veriff's official docs for current endpoint paths and SDK versions.",
+  "concept_mapping": [
+    {
+      "source": "Prove verification",
+      "target": "Veriff session",
+      "note": "Different naming, similar lifecycle: created → completed → decision"
+    },
+    {
+      "source": "Pre-Fill autofill",
+      "target": "Document OCR autofill",
+      "note": "Source of truth becomes the document, not the phone"
+    },
+    {
+      "source": "Phone possession",
+      "target": "Liveness + selfie match",
+      "note": "Possession proof shifts to device + face"
+    },
+    {
+      "source": "Decision rules",
+      "target": "Veriff verification configuration",
+      "note": "Reconfigure thresholds in the dashboard"
+    },
+    {
+      "source": "Webhook events",
+      "target": "Veriff decision webhook",
+      "note": "Different signature scheme — re-test handlers"
+    },
+    {
+      "source": "Custom contract pricing",
+      "target": "Subscription tier",
+      "note": "Pick tier based on monthly verification volume"
+    }
+  ],
+  "effort": "3-6 weeks",
+  "gotchas": [
+    "Phone-based anti-fraud signals are not directly reproducible in Veriff",
+    "Drop-off rates depend heavily on SDK placement — instrument funnel before and after",
+    "Confirm regional data residency matches compliance requirements",
+    "Webhook signing and replay protection differ — rewrite handlers carefully",
+    "Subscription tiers can throttle features; validate the right plan for your volume",
+    "Existing Prove records must remain accessible per regulatory retention rules"
+  ],
+  "email": {
+    "subject": "Notice of non-renewal — Prove",
+    "body": "Hello Prove team,\n\nWe are moving our identity verification to a different provider and will not be renewing our current contract.\n\nPlease share the effective end date, the process to export our verification records and logs, and the timeline for data deletion post-termination.\n\nThanks for the partnership.\n\nBest regards,"
+  }
+}

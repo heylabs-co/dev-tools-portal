@@ -1,0 +1,76 @@
+{
+  "source": {
+    "slug": "lottiefiles",
+    "name": "LottieFiles"
+  },
+  "target": {
+    "slug": "phosphor-icons",
+    "name": "Phosphor Icons"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "Replace decorative Lottie animations with static Phosphor icons (six weights, 1200+ icons) where motion isn't essential — primarily a scope reduction, not a swap.",
+  "why_switch": [
+    "Static SVG icons load instantly and ship no runtime player",
+    "Phosphor's six weight variants cover most decorative uses Lottie filled",
+    "MIT licensed and free across web, React, Vue, and Flutter",
+    "Removes dependency on the LottieFiles platform/subscription",
+    "Easier to keep accessible and consistent than animated assets"
+  ],
+  "what_to_export": [
+    "Inventory of every Lottie animation and where it renders",
+    "Classification: decorative, status, loading, full illustration",
+    "Source .json files plus After Effects originals",
+    "Brand colors and sizes applied to each animation",
+    "Accessibility metadata (reduced-motion, alt text)",
+    "Lottie player configuration (autoplay, loop, speed)",
+    "List of animations to keep as motion vs replace with static",
+    "Mapping spreadsheet from each Lottie to a Phosphor candidate"
+  ],
+  "export_method": "Walk every Lottie surface and decide whether motion is meaningful or decorative. For decorative ones, pick a Phosphor icon and weight that conveys the same idea. Export the .json sources from your LottieFiles workspace via the official UI for archival. Keep before/after screenshots for design review.",
+  "import_method": "Install the Phosphor package for your stack (e.g. @phosphor-icons/react, @phosphor-icons/vue, phosphor_flutter) per its official docs and import only the icons you actually use. Replace each chosen Lottie surface with the corresponding Phosphor component, set weight and color, and remove the Lottie JSON + player dependency once nothing references them. Keep Lottie isolated to surfaces where motion is required.",
+  "concept_mapping": [
+    {
+      "source": "Lottie loading animation",
+      "target": "Phosphor CircleNotch + CSS spin",
+      "note": "Pair with a CSS keyframe rotation."
+    },
+    {
+      "source": "Lottie success checkmark",
+      "target": "Phosphor Check or CheckCircle",
+      "note": "Add a brief CSS transition if motion is desired."
+    },
+    {
+      "source": "Lottie illustration",
+      "target": "Phosphor not a substitute",
+      "note": "Use illustrations or keep Lottie for hero scenes."
+    },
+    {
+      "source": "Lottie style variant",
+      "target": "Phosphor weight prop",
+      "note": "thin/light/regular/bold/fill/duotone."
+    },
+    {
+      "source": "Lottie player config",
+      "target": "CSS animation properties",
+      "note": "Re-implement motion via CSS where needed."
+    },
+    {
+      "source": "LottieFiles Figma plugin",
+      "target": "Phosphor Figma library",
+      "note": "Consult Phosphor docs for current Figma assets."
+    }
+  ],
+  "effort": "4-12 hours",
+  "gotchas": [
+    "Phosphor is icons, not animations — only swap where motion isn't essential",
+    "Heavy illustrations and brand motion will still need Lottie or another tool",
+    "Importing many weights of the same icon inflates bundle size — pick a default",
+    "Removing the Lottie player requires verifying no leftover imports remain",
+    "Get design sign-off per swap; static icons can read very differently",
+    "Some Lottie concepts (mascots, full scenes) have no icon equivalent at all"
+  ],
+  "email": {
+    "subject": "Replacing decorative Lottie animations with Phosphor icons",
+    "body": "Hey team,\n\nI'd like to trim our LottieFiles surface area by replacing decorative animations with static Phosphor icons where motion isn't meaningful. Phosphor gives us six weight variants and 1200+ icons under MIT, which covers most of our 'icon-shaped Lottie' cases without the player overhead.\n\nApproach: inventory every Lottie usage, mark each as keep/replace, then map the replace bucket to Phosphor components. Anything load-bearing in motion (loaders, brand scenes) stays on Lottie. Estimated effort: 4-12 hours.\n\nLet me know which animations you consider non-negotiable before I start.\n\nThanks"
+  }
+}

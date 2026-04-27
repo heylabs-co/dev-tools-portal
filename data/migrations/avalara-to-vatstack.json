@@ -1,0 +1,76 @@
+{
+  "source": {
+    "slug": "avalara",
+    "name": "Avalara"
+  },
+  "target": {
+    "slug": "vatstack",
+    "name": "Vatstack"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "Avalara is a full tax compliance suite; Vatstack is a focused VAT validation and rate lookup API — only migrate if you can offload filing/remittance elsewhere and just need VAT data primitives.",
+  "why_switch": [
+    "Only need VAT number validation and rate lookups, not full filing",
+    "Want simpler usage-based pricing instead of Avalara's subscription tiers",
+    "Lower lock-in: stateless API instead of stored compliance state",
+    "Faster developer onboarding for a narrowly scoped need",
+    "Already handling filing/remittance through accounting or another vendor"
+  ],
+  "what_to_export": [
+    "List of customer VAT IDs and validation history",
+    "Country-by-country VAT rate configurations in use",
+    "Product taxability assumptions (B2B vs B2C, digital vs physical)",
+    "Historical transactions tied to VAT determinations",
+    "Exemption certificates and B2B reverse-charge flags",
+    "API integration points calling AvaTax",
+    "Filing artifacts (returns, remittances) for archival",
+    "Webhook / event consumers"
+  ],
+  "export_method": "Export customers, VAT IDs, transactions, and filing history from Avalara via its admin UI exports and API. Snapshot AvaTax configuration that you'll re-implement in your own code when the engine is gone, since Vatstack will not store taxability rules. Refer to Avalara's official documentation for current export options.",
+  "import_method": "There is no direct importer; Vatstack is a stateless lookup API. You'll integrate Vatstack's VAT validation and rates endpoints inline at checkout/invoice time and move filing/remittance to your accounting stack or a dedicated provider. Read Vatstack's developer docs to confirm endpoint paths and request shapes — do not assume parity with AvaTax.",
+  "concept_mapping": [
+    {
+      "source": "Avalara tax calculation",
+      "target": "Your code + Vatstack rate lookup",
+      "note": "You compute totals; Vatstack supplies the rate."
+    },
+    {
+      "source": "AvaTax customer with VAT ID",
+      "target": "Vatstack VAT validation call",
+      "note": "Validate at customer create / invoice time."
+    },
+    {
+      "source": "Exemption certificate",
+      "target": "Manual flag + reverse-charge logic",
+      "note": "You own this state now."
+    },
+    {
+      "source": "Avalara filing / remittance",
+      "target": "External accounting or filer",
+      "note": "Vatstack does not file or remit."
+    },
+    {
+      "source": "Tax code",
+      "target": "Your taxability rules",
+      "note": "Implement product-level rules in your app."
+    },
+    {
+      "source": "AvaTax SDK call",
+      "target": "Vatstack REST call",
+      "note": "Rewrite integration; auth and payloads differ."
+    }
+  ],
+  "effort": "1-3 weeks",
+  "gotchas": [
+    "Vatstack is not a tax engine — you become responsible for determination logic",
+    "Filing and remittance must be handled outside Vatstack",
+    "Edge cases (mixed B2B/B2C, distance selling thresholds) need manual handling",
+    "Smaller vendor — evaluate SLA and roadmap fit before committing",
+    "Keep historical Avalara filings archived for audits",
+    "Confirm exact endpoints and rate-limit behavior in Vatstack's official docs"
+  ],
+  "email": {
+    "subject": "Plan: replacing Avalara with Vatstack + in-house logic",
+    "body": "Hi team,\n\nFor our use case we don't need a full tax engine — we need reliable VAT number validation and rate lookups, plus simple in-house determination. The plan is to replace Avalara with Vatstack and move filing/remittance to our accounting stack.\n\nWe'll export customers, VAT IDs, transactions, and filing history from Avalara, then integrate Vatstack's validation and rate endpoints inline. Taxability rules we currently lean on AvaTax for will be re-implemented in our own code.\n\nEstimated effort is 1-3 weeks. Main risk is owning more determination logic ourselves; I'll outline the test cases before we cut over.\n\nThanks"
+  }
+}

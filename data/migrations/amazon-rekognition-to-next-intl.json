@@ -1,0 +1,70 @@
+{
+  "source": {
+    "slug": "amazon-rekognition",
+    "name": "Amazon Rekognition"
+  },
+  "target": {
+    "slug": "next-intl",
+    "name": "next-intl"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "Rekognition is a vision API and next-intl is a Next.js i18n library; treat this as adopting next-intl for localization, not a direct replacement for Rekognition.",
+  "why_switch": [
+    "next-intl is free, open source, and designed for the Next.js App Router.",
+    "Type-safe message keys and strong DX for Next.js teams.",
+    "Server and client component support out of the box.",
+    "No per-request costs.",
+    "Better fit when the actual goal is application localization."
+  ],
+  "what_to_export": [
+    "Hardcoded user-facing strings in pages and components",
+    "Existing translation files (if any)",
+    "Supported locale list",
+    "Routing/locale strategy (subpath vs. domain)",
+    "Default and fallback locales",
+    "Date, number, and currency formatting rules",
+    "Pluralization rules in use",
+    "Sample pages per locale for QA"
+  ],
+  "export_method": "Inventory hardcoded strings via grep or an extractor script and collect them keyed by component or route. If translations live elsewhere, export them as JSON keyed by locale. Consult next-intl official docs for the expected file layout.",
+  "import_method": "Install next-intl, configure the middleware and i18n routing for your locale list, and place messages JSON files in the recommended directory. Replace hardcoded strings with the useTranslations hook (or getTranslations on the server) and configure formats for dates and numbers. Consult next-intl official docs for App Router specifics.",
+  "concept_mapping": [
+    {
+      "source": "Rekognition API call",
+      "target": "n/a",
+      "note": "Different domain."
+    },
+    {
+      "source": "AWS SDK client",
+      "target": "next-intl provider/middleware",
+      "note": "Setup is at the framework level, not per-request."
+    },
+    {
+      "source": "IAM key",
+      "target": "n/a",
+      "note": "No auth needed."
+    },
+    {
+      "source": "Region",
+      "target": "Locale",
+      "note": "Conceptual mapping only."
+    },
+    {
+      "source": "Per-call latency",
+      "target": "Build/runtime overhead",
+      "note": "Negligible at runtime; data shape matters more."
+    }
+  ],
+  "effort": "4-16 hours depending on app size",
+  "gotchas": [
+    "App Router vs. Pages Router setup differs — follow the right guide.",
+    "Server components and client components access translations differently.",
+    "Middleware-based locale routing can conflict with custom redirects.",
+    "next-intl does not translate; you still need a translation source.",
+    "If image analysis is the real need, this migration won't help."
+  ],
+  "email": {
+    "subject": "Migrating from Amazon Rekognition to next-intl",
+    "body": "Hi team,\n\nFlagging that Rekognition (vision) and next-intl (Next.js i18n) solve different problems. If localization is the goal, the plan is to install next-intl, configure i18n routing and middleware, and migrate hardcoded strings into per-locale JSON. Estimated effort: a few hours to a couple of days. If we still need vision, that's a separate decision.\n\nThanks"
+  }
+}

@@ -1,0 +1,76 @@
+{
+  "source": {
+    "slug": "cloudinary",
+    "name": "Cloudinary"
+  },
+  "target": {
+    "slug": "bytescale",
+    "name": "Bytescale"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "Move from Cloudinary to Bytescale, a similar upload-and-transform API with simpler subscription pricing and a smaller surface area.",
+  "why_switch": [
+    "Simpler, more predictable subscription pricing",
+    "Comparable upload + on-the-fly transformation feature set for image use cases",
+    "Lighter platform may be a better fit for teams not using Cloudinary's advanced features",
+    "Lower lock-in profile — uploaded files remain accessible as standard URLs",
+    "Faster to onboard for small/medium media workloads"
+  ],
+  "what_to_export": [
+    "All original assets from the Cloudinary Media Library",
+    "Folder structure and public IDs",
+    "Tags and metadata attached to assets",
+    "Upload preset configurations",
+    "Active transformation recipes used in production URLs",
+    "Signed URL / access control configuration",
+    "List of asset URLs currently embedded in apps, CMS, emails",
+    "Any derived assets you cannot regenerate"
+  ],
+  "export_method": "Use Cloudinary's Admin API or CLI to list and download originals in batches, capturing public_id, folder, tags, and metadata into a manifest. For very large libraries, contact Cloudinary support for bulk export options. Refer to Cloudinary's official documentation for current export procedures.",
+  "import_method": "Create a Bytescale account, generate API keys, and use Bytescale's official upload API/SDK to push assets while preserving your folder layout. Re-implement your transformation recipes using Bytescale's URL parameters per their docs. Update application code and content references to point to the new Bytescale URLs.",
+  "concept_mapping": [
+    {
+      "source": "Cloudinary public_id",
+      "target": "Bytescale file path",
+      "note": "Map originals 1:1, preserve folder semantics"
+    },
+    {
+      "source": "URL transformations",
+      "target": "Bytescale URL parameters",
+      "note": "Different syntax — rewrite per Bytescale docs"
+    },
+    {
+      "source": "Upload presets",
+      "target": "Bytescale upload rules",
+      "note": "Reconfigure equivalents in Bytescale dashboard"
+    },
+    {
+      "source": "Signed delivery URLs",
+      "target": "Bytescale signed URLs",
+      "note": "Use Bytescale signing per their docs"
+    },
+    {
+      "source": "Tags / metadata",
+      "target": "Bytescale tags / metadata",
+      "note": "Re-attach during upload via API"
+    },
+    {
+      "source": "Auto format/quality",
+      "target": "Bytescale equivalents",
+      "note": "Verify exact parameter names in current docs"
+    }
+  ],
+  "effort": "1-2 weeks",
+  "gotchas": [
+    "Transformation URL syntax differs — every transformed URL in your codebase must be rewritten",
+    "Verify advanced Cloudinary features (AI tagging, video manipulation) have equivalents before committing",
+    "Smaller vendor footprint means fewer integrations and SDKs — check yours is supported",
+    "Plan for a dual-write or redirect period to avoid broken images during cutover",
+    "Confirm bandwidth and storage limits on the Bytescale plan you choose",
+    "Test responsive image breakpoints carefully after migration"
+  ],
+  "email": {
+    "subject": "Cancelling Cloudinary subscription — moving to Bytescale",
+    "body": "Hi Cloudinary team,\n\nWe're switching our media handling to Bytescale and would like to wind down our Cloudinary subscription at the end of the current billing cycle. Please confirm the cancellation procedure and any data retention timeline once the account is closed.\n\nAlso, could you confirm the recommended approach for a full bulk export of our originals?\n\nThanks for the service.\n\nBest regards"
+  }
+}

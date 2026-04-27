@@ -1,0 +1,76 @@
+{
+  "source": {
+    "slug": "amplitude",
+    "name": "Amplitude"
+  },
+  "target": {
+    "slug": "avo",
+    "name": "Avo"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "Amplitude and Avo solve different problems — Amplitude is your analytics warehouse, Avo is your tracking-plan governance layer in front of it. The 'migration' is usually adoption of Avo to govern the events you still send to Amplitude (or its replacement), not a like-for-like swap.",
+  "why_switch": [
+    "Avo specializes in analytics governance and tracking-plan management — features Amplitude does not center on",
+    "If your pain is event quality, schema drift, or cross-team tracking-plan ownership, Avo is the right tool",
+    "Amplitude's high-water-mark annual event commits do not scale down within the cycle; reducing event volume via better governance can save money",
+    "Avo can sit upstream of multiple analytics destinations, reducing dependence on any one warehouse",
+    "Developer-first workflow (typed event APIs, schema-as-code) suits engineering teams"
+  ],
+  "what_to_export": [
+    "Current tracking plan / event taxonomy",
+    "List of source platforms (web, iOS, Android, server) and SDKs in use",
+    "Event definitions, properties, and types",
+    "User and group property schemas",
+    "Saved cohorts, funnels, and dashboards (for reference)",
+    "Warehouse export jobs and destinations",
+    "Identity resolution rules",
+    "Existing dashboards and reports for re-creation in your destination of choice"
+  ],
+  "export_method": "Use Amplitude's official APIs and warehouse export to pull historical event data, user/group properties, and your existing schema. Cohorts, funnels, and dashboards are typically captured as documentation rather than imported into Avo, since Avo governs the tracking plan rather than displaying analytics. For exact API endpoints and export options, consult Amplitude's official documentation.",
+  "import_method": "Adopt Avo by importing your existing Amplitude tracking plan and codifying it as the source of truth. Connect Avo to your destinations (Amplitude itself can remain a destination, or you can route to alternatives). Migrate instrumentation to Avo's typed event APIs progressively, prioritizing high-traffic events first. Follow Avo's official onboarding documentation for current SDK and import options.",
+  "concept_mapping": [
+    {
+      "source": "Amplitude event taxonomy",
+      "target": "Avo tracking plan",
+      "note": "Tracking plan becomes the governed source of truth"
+    },
+    {
+      "source": "Amplitude SDKs",
+      "target": "Avo-generated SDK functions",
+      "note": "Avo emits typed wrappers that send to your destinations"
+    },
+    {
+      "source": "Amplitude user/group properties",
+      "target": "Avo user/group property definitions",
+      "note": "Re-declare in Avo's schema"
+    },
+    {
+      "source": "Amplitude cohorts/funnels",
+      "target": "(remain in your analytics destination)",
+      "note": "Avo does not replace analysis features — keep them in Amplitude or your new destination"
+    },
+    {
+      "source": "Amplitude warehouse export",
+      "target": "Destination-of-choice warehouse export",
+      "note": "Decide whether to keep Amplitude as a destination or move analysis elsewhere"
+    },
+    {
+      "source": "Amplitude dashboards",
+      "target": "(no equivalent in Avo)",
+      "note": "Avo is governance, not visualization"
+    }
+  ],
+  "effort": "2-6 weeks",
+  "gotchas": [
+    "Avo is governance, not analysis — you still need an analytics destination for funnels, cohorts, and dashboards",
+    "Amplitude's annual event commit will not refund based on reduced volume mid-cycle — time the move with renewal",
+    "Re-instrumenting via Avo's typed APIs touches every client and server emitting events — sequence rollout carefully",
+    "Historical Amplitude data cannot be retroactively re-shaped by Avo; only future events flow through the new plan",
+    "If you keep Amplitude as a destination, double-counting during migration is a real risk — gate by environment",
+    "Stakeholders accustomed to Amplitude UI need a path forward (keep Amplitude, or pick a new destination explicitly)"
+  ],
+  "email": {
+    "subject": "Migration plan: Amplitude to Avo",
+    "body": "Team,\n\nProposing we adopt Avo for tracking-plan governance. Important framing: Avo does not replace Amplitude's analysis features — it sits upstream and governs event quality. We will need to decide whether to keep Amplitude as the analytics destination or pick an alternative.\n\nPlan:\n1. Export Amplitude tracking plan, event definitions, and user/group schemas.\n2. Codify the plan in Avo and connect destinations (Amplitude can stay).\n3. Migrate instrumentation to Avo's typed APIs starting with high-traffic events.\n4. Decide on Amplitude's role going forward; align with the renewal date to avoid wasted commit.\n5. Decommission ungoverned event paths once parity is verified.\n\nEstimated effort: 2-6 weeks for governance rollout. Specifics will be checked against Amplitude and Avo official docs.\n\nThanks"
+  }
+}

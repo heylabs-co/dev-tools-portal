@@ -1,0 +1,77 @@
+{
+  "source": {
+    "slug": "100ms",
+    "name": "100ms"
+  },
+  "target": {
+    "slug": "stream",
+    "name": "Stream"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "Move from 100ms to Stream by re-architecting around Stream's chat/video/feeds APIs — note the product mix differs, so confirm Stream covers your specific use case before committing.",
+  "why_switch": [
+    "Stream covers chat, activity feeds, and video in a single vendor — useful if you already need more than just rooms",
+    "Strong, broad SDK coverage across web and mobile platforms",
+    "Public, transparent subscription pricing",
+    "US-headquartered vendor with mature enterprise tooling",
+    "Active development and ecosystem"
+  ],
+  "what_to_export": [
+    "Room/session IDs and configuration metadata from 100ms",
+    "Recordings and any stored media artifacts",
+    "Webhook endpoint definitions and subscribed events",
+    "Role/permission definitions for participants",
+    "Token-issuance logic from your backend",
+    "Custom UI assets used in 100ms prebuilt components",
+    "User/account mappings if you plan to seed Stream users",
+    "API key inventory (for rotation, not reuse)",
+    "Usage history for billing reconciliation"
+  ],
+  "export_method": "Pull room and session metadata via 100ms's official REST API and dashboard. Confirm recordings are intact in your storage bucket. Capture webhook configuration manually. Backend code (token mint, webhook handlers) is the canonical business logic and should be treated as the source of truth for the rebuild.",
+  "import_method": "On Stream, provision an app, generate API keys, and implement server-side user provisioning and token issuance against Stream's official SDKs. Choose the relevant Stream product (Video, Chat, or Feeds) for each use case you are migrating. Swap the 100ms client SDK for Stream's per-platform SDK. Reconfigure webhooks to your handler using Stream's event schema and validate recording flows where applicable.",
+  "concept_mapping": [
+    {
+      "source": "Room",
+      "target": "Call (Stream Video) or Channel (Stream Chat)",
+      "note": "Pick the matching Stream product for your use case; re-create entities fresh"
+    },
+    {
+      "source": "Peer / participant token",
+      "target": "User token",
+      "note": "Mint per user via Stream's server SDK; signing keys are vendor-specific"
+    },
+    {
+      "source": "Role / template",
+      "target": "Roles / permissions",
+      "note": "Stream has its own permission model; map by intent, not by name"
+    },
+    {
+      "source": "Prebuilt UI",
+      "target": "Stream UI components / kits",
+      "note": "Stream ships UI components per platform; expect to rebuild composition"
+    },
+    {
+      "source": "Recording",
+      "target": "Recording (Stream Video)",
+      "note": "Available in Stream Video; verify formats and storage destinations in their docs"
+    },
+    {
+      "source": "Webhooks",
+      "target": "Webhooks",
+      "note": "Rewrite handler against Stream's event payloads"
+    }
+  ],
+  "effort": "2-4 weeks",
+  "gotchas": [
+    "Stream's product surface is broader (chat/feeds/video) — pick the right product per use case before scoping",
+    "Token formats are not portable; rewrite backend mint",
+    "If you depended on 100ms-specific room semantics, verify Stream's call lifecycle matches your assumptions",
+    "Mobile setup (permissions, native modules) must be re-validated",
+    "Pricing dimensions differ — confirm with Stream's official pricing page for your workload",
+    "Run both vendors in parallel during cutover to validate quality"
+  ],
+  "email": {
+    "subject": "Migrating from 100ms to Stream",
+    "body": "Hi team,\n\nI'm exploring a migration from 100ms to Stream. Stream covers chat, feeds, and video in one platform, which fits our roadmap if we plan to expand beyond plain video rooms.\n\nScope involves re-architecting room/session logic onto Stream's relevant product (Video for calls, Chat for messaging), rebuilding token issuance, swapping client SDKs, and reconfiguring webhooks. Estimating 2-4 weeks plus parallel-run time. I'll confirm exact features and pricing from Stream's official docs before locking the plan.\n\nLet me know if you want to review.\n\nThanks"
+  }
+}

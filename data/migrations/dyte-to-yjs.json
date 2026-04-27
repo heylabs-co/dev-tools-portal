@@ -1,0 +1,81 @@
+{
+  "source": {
+    "slug": "dyte",
+    "name": "Dyte"
+  },
+  "target": {
+    "slug": "yjs",
+    "name": "Yjs"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "Dyte is a managed video/audio SDK with some real-time messaging primitives; Yjs is an open-source CRDT library for collaborative state. This is not a drop-in swap: you keep Dyte (or another media SDK) for A/V, and adopt Yjs only for the collaborative-data layer (shared documents, cursors, presence-as-state). Treat the move as adding Yjs alongside, then retiring any Dyte channels you were using purely for app state.",
+  "why_switch": [
+    "Eliminate vendor lock-in on collaborative state — Yjs is MIT-licensed and runs anywhere",
+    "Offline-first and conflict-free merging via CRDTs, which a generic pub/sub SDK does not provide",
+    "Self-host the transport (y-websocket, y-webrtc, or any provider) instead of paying per-connection",
+    "Rich ecosystem of editor bindings (ProseMirror, TipTap, CodeMirror, Monaco, Slate, Quill)",
+    "Predictable cost: no per-connection or per-message metering on the data plane"
+  ],
+  "what_to_export": [
+    "Inventory of Dyte channels/rooms used for non-A/V data (presence, cursors, shared state)",
+    "Message schemas and event types currently broadcast through Dyte",
+    "Any persisted message history you want to keep (export from your own DB, not Dyte)",
+    "User/identity mapping used for participants in Dyte rooms",
+    "Permission/auth model for who can read or write each channel",
+    "Client-side code paths that subscribe, publish, or listen to Dyte SDK events",
+    "Server-side webhook handlers and access-token issuance logic",
+    "List of A/V features (video calls, recording, livestream) that must stay on Dyte"
+  ],
+  "export_method": "Dyte does not provide a generic 'export collaborative state' endpoint because most ephemeral state lives on clients. Audit your own application database for any data you mirrored from Dyte, and capture room/participant configs via the Dyte REST API where you store them. For collaborative editing state, there is typically nothing to export — you reconstruct it as a Yjs document on first load.",
+  "import_method": "Install yjs and a provider (y-websocket is the common starting point: run y-websocket-server or host your own). Wrap each shared piece of state in a Y.Doc with Y.Map / Y.Array / Y.Text. For editors, install the relevant binding (e.g. y-prosemirror, y-codemirror.next). Seed the initial Y.Doc from your existing database on first connection, then let CRDT sync handle subsequent edits. Keep Dyte for video/audio rooms; remove only the data-channel usage you replace.",
+  "concept_mapping": [
+    {
+      "source": "Dyte room / channel",
+      "target": "Y.Doc (one per logical document or room)",
+      "note": "A Y.Doc is the unit of sync; pick a stable room/document id."
+    },
+    {
+      "source": "Broadcast message / event",
+      "target": "Mutation on a Y.Map / Y.Array / Y.Text",
+      "note": "State diffs replace explicit messages; observers fire on change."
+    },
+    {
+      "source": "Presence / participant list",
+      "target": "Awareness protocol (provider.awareness)",
+      "note": "Awareness is ephemeral, not persisted in the Y.Doc."
+    },
+    {
+      "source": "Connection token / auth",
+      "target": "Provider-level auth (e.g. token in WebSocket URL, custom server check)",
+      "note": "Yjs itself has no auth; enforce on your provider/server."
+    },
+    {
+      "source": "Server-side recording / persistence",
+      "target": "Persistence adapter (y-leveldb, y-redis, custom)",
+      "note": "Snapshot Y.Doc updates server-side to durable storage."
+    },
+    {
+      "source": "Dyte SDK client",
+      "target": "yjs + provider client (y-websocket / y-webrtc / y-indexeddb)",
+      "note": "Combine with y-indexeddb for offline cache."
+    },
+    {
+      "source": "Webhook on message",
+      "target": "Server-side observer on shared Y.Doc",
+      "note": "Run a Node process that subscribes and reacts to updates."
+    }
+  ],
+  "effort": "1-3 weeks for a single-document collab feature; 4-8 weeks if you need self-hosted transport, persistence, auth, and editor bindings across multiple surfaces.",
+  "gotchas": [
+    "Yjs replaces the data layer only — you still need a media SDK (Dyte or alternative) for video/audio",
+    "Awareness state (cursors, selections) is ephemeral; do not store it in the Y.Doc",
+    "Y.Doc updates grow over time — plan for snapshot/compaction in long-lived documents",
+    "Auth is your responsibility: a raw y-websocket server has no access control by default",
+    "Conflict resolution is automatic but semantic: design schemas so concurrent edits produce sensible results",
+    "Garbage collection of deleted content is enabled by default; disable if you need full history"
+  ],
+  "email": {
+    "subject": "Moving collaborative state from Dyte to Yjs",
+    "body": "Hey team,\n\nWe're separating our real-time stack: Dyte (or another media vendor) stays for video and audio, and we're adopting Yjs for everything that's actually shared application state — documents, cursors, presence, collaborative lists.\n\nWhy: Yjs is an open-source CRDT library, so we drop per-connection pricing on the data plane, get offline-first sync for free, and stop coupling our app state to a specific vendor's SDK. Editor integrations (ProseMirror, TipTap, CodeMirror, Monaco) are first-class.\n\nPlan: stand up a y-websocket provider, port one feature at a time to a Y.Doc, keep Dyte rooms purely for A/V. I'll share the migration checklist and a list of channels we can retire once each feature is moved over.\n\nLet me know if you want to review the design before we start."
+  }
+}

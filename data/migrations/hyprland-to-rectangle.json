@@ -1,0 +1,76 @@
+{
+  "source": {
+    "slug": "hyprland",
+    "name": "Hyprland"
+  },
+  "target": {
+    "slug": "rectangle",
+    "name": "Rectangle"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "Switching from Hyprland to Rectangle means moving from a Linux Wayland compositor to a macOS window manager — you change OS and keep only the spirit of keyboard-driven window control.",
+  "why_switch": [
+    "You are moving your daily driver to macOS",
+    "Rectangle gives keyboard and drag-to-snap window control without OS-level config",
+    "Free and open source, with no telemetry",
+    "Stable releases and simple onboarding",
+    "Optional Pro tier for cascade and custom grids"
+  ],
+  "what_to_export": [
+    "Hyprland keybind list from hyprland.conf",
+    "Workspace and monitor layout conventions",
+    "Animation and gesture preferences (for reference)",
+    "Launcher and bar shortcuts",
+    "Per-window rules",
+    "Multi-monitor arrangement",
+    "Plugin-driven workflows you depend on",
+    "Backup of dotfiles for future Linux use"
+  ],
+  "export_method": "Open hyprland.conf and copy out the bind = lines plus any windowrule and monitor entries. Translate each keybind into the action you want on macOS (move to half, quarter, next display, etc.). There is no machine-readable migration path between Hyprland and Rectangle — treat the export as a human-readable shortcut sheet you'll use to configure Rectangle.",
+  "import_method": "Install Rectangle on macOS via the official site or Homebrew. Open Preferences and rebind shortcuts to match your Hyprland muscle memory as closely as possible. Configure drag-to-snap zones, then grant the Accessibility permission so Rectangle can move windows. For workflows Rectangle cannot match (true tiling, scripted layouts), evaluate Yabai or Amethyst as complements per their official docs.",
+  "concept_mapping": [
+    {
+      "source": "Hyprland keybind",
+      "target": "Rectangle shortcut",
+      "note": "Map action by action; semantics differ"
+    },
+    {
+      "source": "Workspaces",
+      "target": "macOS Spaces",
+      "note": "Rectangle does not manage Spaces directly"
+    },
+    {
+      "source": "Tiling layout",
+      "target": "Half/quarter snap presets",
+      "note": "Rectangle is snap-based, not true tiling"
+    },
+    {
+      "source": "windowrule",
+      "target": "No direct equivalent",
+      "note": "Use third-party tools (Hammerspoon) for per-app rules"
+    },
+    {
+      "source": "Plugins",
+      "target": "Not supported",
+      "note": "Rectangle has no plugin system"
+    },
+    {
+      "source": "Animations",
+      "target": "macOS-controlled",
+      "note": "Rectangle does not customize animations"
+    }
+  ],
+  "effort": "2-6 hours",
+  "gotchas": [
+    "Rectangle is macOS-only — this requires switching OS, not just apps",
+    "True tiling behavior is not available; consider Yabai for stricter tiling",
+    "Accessibility permission must be granted on first launch",
+    "Workspace concepts differ significantly between Hyprland and macOS Spaces",
+    "Plugin-based Hyprland workflows do not have one-to-one replacements",
+    "Custom grids and cascade need Rectangle Pro — verify on the official site"
+  ],
+  "email": {
+    "subject": "Moving from Hyprland to Rectangle on macOS",
+    "body": "Hey,\n\nI'm switching my main machine to macOS and replacing my Hyprland setup with Rectangle for window management. Rectangle covers keyboard snapping and drag zones, which gets me most of what I used Hyprland for day to day.\n\nI'm keeping the hyprland.conf in dotfiles for any future Linux box. For workflows Rectangle can't match (true tiling, scripted layouts), I'll evaluate Yabai as a follow-up.\n\nThanks"
+  }
+}

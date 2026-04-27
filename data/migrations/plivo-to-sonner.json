@@ -1,0 +1,64 @@
+{
+  "source": {
+    "slug": "plivo",
+    "name": "Plivo"
+  },
+  "target": {
+    "slug": "sonner",
+    "name": "Sonner"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "Plivo (hosted SMS/voice/WhatsApp API) and Sonner (open-source React toast UI library) are not substitutes — a 'migration' only applies if Plivo was being used to drive in-app feedback rather than actual telecom messaging.",
+  "why_switch": [
+    "Sonner is free and open source — no per-message cost",
+    "Zero vendor lock-in for in-app notification UI",
+    "Tiny API and excellent DX for React apps",
+    "No telecom compliance overhead for purely in-app feedback",
+    "Removes a paid dependency for UI-only use cases"
+  ],
+  "what_to_export": [
+    "Inventory of Plivo call sites that drive in-app UI feedback (if any)",
+    "Notification copy and microcopy guidelines",
+    "Branding and styling tokens for toasts",
+    "Accessibility requirements (ARIA, timing, motion)",
+    "i18n strings",
+    "Client-side success/error state machines",
+    "List of Plivo integrations that should stay (real SMS/voice flows)"
+  ],
+  "export_method": "Sonner stores nothing — there is no data export. Audit the codebase for places where Plivo was being invoked purely for UI-style feedback and capture the copy and trigger events. Consult Plivo's and Sonner's official docs for current capabilities.",
+  "import_method": "Install Sonner in your React app per its official docs, mount the Toaster component, and replace the relevant client-side notification calls with Sonner's toast API. Leave real SMS/voice flows on Plivo. Consult Sonner's official docs for current install and usage steps.",
+  "concept_mapping": [
+    {
+      "source": "Plivo API call (for UI feedback)",
+      "target": "toast(message)",
+      "note": "Client-side only"
+    },
+    {
+      "source": "Delivery status",
+      "target": "toast.success / toast.error",
+      "note": "Visual state only"
+    },
+    {
+      "source": "Webhook",
+      "target": "n/a",
+      "note": "No server side"
+    },
+    {
+      "source": "Template",
+      "target": "JSX/React component",
+      "note": "Style with your design system"
+    }
+  ],
+  "effort": "1-3 hours (only if Plivo was used for UI feedback)",
+  "gotchas": [
+    "Different categories — do not remove Plivo if you actually need SMS, voice, or WhatsApp",
+    "Sonner is browser-only; it cannot reach a phone number",
+    "Toasts auto-dismiss — don't use them for critical confirmations",
+    "Mind accessibility (ARIA live regions, reduced motion)",
+    "Keep server-side audit logs that Plivo previously provided"
+  ],
+  "email": {
+    "subject": "Switching in-app Plivo feedback to Sonner toasts",
+    "body": "Hi team,\n\nWhere Plivo is being used purely for in-app user feedback, we should move those spots to Sonner — a free open-source React toast library. Real SMS/voice/WhatsApp flows stay on Plivo.\n\nScope: audit UI-only call sites, install Sonner, mount the Toaster, swap calls for toast.success / toast.error. Estimated 1-3 hours.\n\nThanks"
+  }
+}

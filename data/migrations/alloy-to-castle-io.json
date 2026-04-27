@@ -1,0 +1,63 @@
+{
+  "source": {
+    "slug": "alloy",
+    "name": "Alloy"
+  },
+  "target": {
+    "slug": "castle-io",
+    "name": "Castle"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Migrating from Alloy to Castle shifts you from a fintech-focused identity decisioning platform to a developer-first ATO and signup abuse API. Expect to rebuild KYC and credit underwriting logic outside Castle, while keeping risk scoring and policy enforcement on Castle's API.",
+  "why_switch": [
+    "Castle has public freemium pricing, Alloy is enterprise-only",
+    "Castle is purpose-built for SaaS account takeover and signup abuse",
+    "Castle exposes a developer-first API with webhooks and policies",
+    "Lower up-front commitment vs Alloy's enterprise contracts",
+    "Faster integration for login and signup flows"
+  ],
+  "what_to_export": [
+    "Workflow definitions and decision rules",
+    "KYC and onboarding configuration",
+    "User and applicant records used in decisions",
+    "Historical decision and outcome logs",
+    "Webhook endpoints and event subscriptions",
+    "API keys and integration credentials",
+    "Custom data source connections",
+    "Audit logs for compliance retention"
+  ],
+  "export_method": "Alloy does not document a self-serve bulk-export endpoint publicly, so plan to export through whatever interfaces your contract exposes. Typical paths: (1) ask your Alloy account manager for a one-time data export of applicants, decisions, and audit logs in CSV or JSON; (2) use the Alloy dashboard to download per-workflow reports where available; (3) re-run the Alloy API for any applicant or evaluation lookups you have IDs for and persist the responses to your own storage. Document each workflow and rule manually since rule logic typically does not export cleanly. Capture webhook configurations and any custom data source mappings before disconnecting. Keep audit logs for the retention window required by your regulator (often 5-7 years for KYC). Run exports in parallel with continued production traffic so you have a complete cutover snapshot.",
+  "import_method": "Castle integrates via a JS SDK on the client and a REST API on the server. Start by creating a Castle account, generating API keys, and installing the Castle.js script on login, signup, and sensitive action pages. On the backend, send risk events to Castle's API for each tracked action and consume the returned risk score and policy decision. Recreate Alloy rule logic as Castle policies or in your own decision layer that reads Castle scores. Configure webhooks for asynchronous risk verdicts. Backfill historical user identifiers if you want continuity in device or user reputation. Run Castle in shadow mode alongside Alloy first: send events to both, compare verdicts, tune thresholds, then cut over once approval rates and fraud catch are acceptable. Keep KYC and credit underwriting on a separate provider since Castle does not cover those domains.",
+  "concept_mapping": [
+    {
+      "source": "Workflow",
+      "target": "Policy",
+      "note": "Alloy workflows orchestrate decisions; Castle policies codify rules on risk scores"
+    },
+    {
+      "source": "Decision outcome",
+      "target": "Risk score + policy verdict"
+    },
+    {
+      "source": "Webhook event",
+      "target": "Webhook event"
+    },
+    {
+      "source": "Applicant record",
+      "target": "User identifier in Castle events"
+    }
+  ],
+  "effort": "2-6 weeks",
+  "gotchas": [
+    "Castle does not cover KYC, identity verification, or credit underwriting; you will need a separate provider for those if Alloy was handling them",
+    "Castle's data network is smaller than enterprise fraud platforms, so tune thresholds carefully during shadow mode",
+    "Bot mitigation in Castle is lighter than dedicated WAF or bot-management tools",
+    "You must build and maintain rule tuning in-house; there is no managed analyst service equivalent",
+    "Alloy export formats are not standardized; budget engineering time to parse whatever your contract returns",
+    "Compliance retention obligations from KYC use cases survive the migration, so archive Alloy data securely before disconnecting"
+  ],
+  "email": {
+    "subject": "Notice: migrating our fraud and risk stack off Alloy",
+    "body": "Hi team,\n\nWe are migrating our fraud and risk tooling from Alloy to Castle over the next 14 days. Castle gives us a developer-first API, transparent pricing, and a better fit for our SaaS account takeover and signup abuse use cases.\n\nWhat to expect:\n- We will run both systems in parallel for the first week to compare verdicts and tune thresholds.\n- Webhook endpoints will change; we will share the new URLs and signing keys before cutover.\n- Any KYC or credit underwriting workflows currently on Alloy will move to a dedicated provider, not Castle.\n- Historical Alloy data will be archived for our compliance retention window.\n\nPlease flag any integrations or downstream consumers that depend on Alloy decisions so we can include them in the cutover plan. Reach out with questions before the end of the week.\n\nThanks,\nYour customer"
+  }
+}

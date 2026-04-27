@@ -1,0 +1,75 @@
+{
+  "source": {
+    "slug": "auth0",
+    "name": "Auth0"
+  },
+  "target": {
+    "slug": "cerbos",
+    "name": "Cerbos"
+  },
+  "generated_at": "2026-04-26T12:50:00Z",
+  "tldr": "Auth0 handles authentication; Cerbos handles authorization — this is a partial migration where Cerbos replaces Auth0's RBAC/permissions layer, not the login flow.",
+  "why_switch": [
+    "Cerbos is Apache-2.0 OSS with human-readable YAML policies — easy to review in PRs",
+    "Decouples authorization from your identity provider, so swapping auth later is cheaper",
+    "Supports RBAC and ABAC out of the box with low-latency policy evaluation",
+    "REST and gRPC SDKs make it embeddable in any backend stack",
+    "Centralized policy decisions are auditable independently from auth events"
+  ],
+  "what_to_export": [
+    "Auth0 Roles and their assigned permissions",
+    "Auth0 Permissions (scopes/resource definitions)",
+    "User-to-role assignments",
+    "Custom rules or actions that contain authorization logic",
+    "Tenant/organization-scoped permission sets if using B2B",
+    "RBAC enforcement points in your application code",
+    "Any externalized policy data currently held in app_metadata"
+  ],
+  "export_method": "Pull roles, permissions, and assignments via the Auth0 Management API. Inventory authorization logic that lives inside Auth0 Rules or Actions — this often hides behavior that needs to move into Cerbos policies or your application. Document each enforcement point in your services so each one can be retargeted at Cerbos. Consult Auth0's official docs for exact Management API endpoints.",
+  "import_method": "Model your roles and permissions as Cerbos resource policies in YAML, version-controlled in a Git repo. Run the Cerbos PDP (Policy Decision Point) as a sidecar or central service, then call its check API from your application using the official Cerbos SDK for your language. Keep authentication on Auth0 for now — pass the authenticated principal (user ID, roles, attributes) into each Cerbos check call. Validate with Cerbos' policy testing framework before rollout.",
+  "concept_mapping": [
+    {
+      "source": "Auth0 Role",
+      "target": "Cerbos role in derived_roles or principal context",
+      "note": "Roles become inputs to policy decisions, not stored objects"
+    },
+    {
+      "source": "Auth0 Permission",
+      "target": "Cerbos action on a resource policy",
+      "note": "Permissions become (resource, action) pairs in YAML"
+    },
+    {
+      "source": "Auth0 Rule/Action with auth logic",
+      "target": "Cerbos resource policy rule",
+      "note": "Move conditional logic into policy expressions"
+    },
+    {
+      "source": "User app_metadata used for ABAC",
+      "target": "Principal attributes in Cerbos check",
+      "note": "Pass attributes at request time"
+    },
+    {
+      "source": "Resource metadata",
+      "target": "Cerbos resource attributes",
+      "note": "Send per-request resource data with the check call"
+    },
+    {
+      "source": "Auth0 RBAC enforcement (token scopes)",
+      "target": "Cerbos check at the API boundary",
+      "note": "Scopes can still be issued from Auth0; final allow/deny moves to Cerbos"
+    }
+  ],
+  "effort": "1-2 weeks",
+  "gotchas": [
+    "Cerbos is authorization only — keep Auth0 (or another IdP) for login, MFA, and SSO",
+    "Every API endpoint that does its own permission check needs updating to call Cerbos",
+    "Policy data freshness: decide between embedded attributes vs. fetching at decision time",
+    "Latency budget — co-locate the Cerbos PDP with your services or use the embedded engine",
+    "Test coverage: write Cerbos policy tests before retiring the old logic",
+    "If you used Auth0 Organizations for multi-tenant authz, model the tenant as a principal/resource attribute"
+  ],
+  "email": {
+    "subject": "Splitting authn (Auth0) from authz (Cerbos)",
+    "body": "Hi team,\n\nProposing we move authorization out of Auth0 and into Cerbos. Auth0 stays for login/MFA/SSO; Cerbos owns the allow/deny decisions.\n\nWhy: YAML policies live in Git, get reviewed in PRs, and aren't tied to a vendor's RBAC model. Also unblocks future IdP changes without rewriting permissions.\n\nPlan:\n1. Inventory current authz logic in Auth0 Rules/Actions and in our services.\n2. Translate roles + permissions into Cerbos resource policies with tests.\n3. Add Cerbos check calls behind a feature flag.\n4. Cut over per service.\n\nRough effort: 1-2 weeks. Will circle back with the policy schema for review.\n\nThanks"
+  }
+}

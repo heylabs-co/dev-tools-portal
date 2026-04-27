@@ -1,0 +1,75 @@
+{
+  "source": {
+    "slug": "bucket",
+    "name": "Bucket"
+  },
+  "target": {
+    "slug": "vercel-flags-sdk",
+    "name": "Flags SDK"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "Replace Bucket's hosted feature management with Vercel's open-source Flags SDK as the framework integration layer in Next.js or SvelteKit.",
+  "why_switch": [
+    "Free, MIT-licensed, framework-native integration for Next.js/SvelteKit",
+    "Edge-compatible flag evaluation without extra latency",
+    "Provider-agnostic: swap providers later without rewriting calls",
+    "Cleaner server/edge ergonomics than a generic SDK",
+    "Decouples your app code from a single flag vendor"
+  ],
+  "what_to_export": [
+    "All flag keys and current values per environment",
+    "Targeting rules (user attributes, percentage rollouts)",
+    "Default values and fallbacks",
+    "Flag descriptions and ownership notes",
+    "Environment overrides (dev/staging/prod)",
+    "Any A/B experiment splits in use",
+    "Stale or archived flags to retire instead of migrate",
+    "Identity / context fields used for targeting"
+  ],
+  "export_method": "Use Bucket's dashboard or API (consult official Bucket docs for the supported export path) to pull every flag, its variations, and targeting logic. If no bulk export is available, script the REST API or transcribe flags manually. Capture identity attributes you currently target on so you can reproduce them in your Flags SDK identify() function.",
+  "import_method": "Note that Flags SDK is a client/framework layer, not a flag store, so you still need a backing provider. Decide whether to use a supported adapter (LaunchDarkly, Statsig, Optimizely, Hypertune, ConfigCat, DevCycle, Flipt) or a custom static/edge-config provider. Define each flag with the flag() helper in your codebase, wire identify() to your auth context, and call the flag in server components, route handlers, or middleware. Consult the official Flags SDK docs at flags-sdk.dev for current adapter setup.",
+  "concept_mapping": [
+    {
+      "source": "Bucket flag",
+      "target": "flag() definition",
+      "note": "Each flag is a typed JS export"
+    },
+    {
+      "source": "Bucket SDK call",
+      "target": "await myFlag()",
+      "note": "Server-side or edge invocation in Next.js/SvelteKit"
+    },
+    {
+      "source": "User targeting",
+      "target": "identify() function",
+      "note": "Returns the evaluation context per request"
+    },
+    {
+      "source": "Flag store",
+      "target": "Adapter / provider",
+      "note": "Choose LaunchDarkly, Statsig, Edge Config, etc."
+    },
+    {
+      "source": "Environment",
+      "target": "Deployment env vars",
+      "note": "Per-environment provider keys"
+    },
+    {
+      "source": "Dashboard UI",
+      "target": "Provider dashboard",
+      "note": "Flags SDK does not ship its own dashboard"
+    }
+  ],
+  "effort": "4-12 hours",
+  "gotchas": [
+    "Flags SDK is glue, not a backend; you must pick or build a provider",
+    "Best DX assumes Vercel hosting; other hosts work but lose some integrations",
+    "Limited value outside Next.js or SvelteKit",
+    "Some adapters can lag upstream provider features; verify parity before switching",
+    "Edge runtime restrictions may affect your custom adapter or identify() code"
+  ],
+  "email": {
+    "subject": "Moving feature flags from Bucket to Vercel Flags SDK",
+    "body": "Hi team,\n\nWe're moving feature flags off Bucket and onto Vercel's open-source Flags SDK so flag calls are framework-native and we keep provider choice open. Plan: export every flag and its targeting rules from Bucket, pick a backing provider (or use Edge Config for static cases), then redeclare flags using the SDK's flag() helper and wire identify() to our auth context. We can roll over Next.js routes one at a time. Effort estimate: 4-12 hours.\n\nThanks"
+  }
+}

@@ -1,0 +1,75 @@
+{
+  "source": {
+    "slug": "ink-narrative",
+    "name": "Ink"
+  },
+  "target": {
+    "slug": "love2d",
+    "name": "LÖVE"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "Ink is a narrative scripting language, LÖVE is a Lua 2D game framework — moving means rebuilding your dialogue runtime in Lua on top of LÖVE rather than swapping equivalents.",
+  "why_switch": [
+    "You want a single Lua-based stack instead of separate scripting + engine layers",
+    "LÖVE gives you full game-loop control beyond just narrative",
+    "Both are free and open-source with permissive licenses",
+    "Plain-text scripts still version well in Git, just authored differently",
+    "Avoids dependency on Inkle's runtime if you want everything in one language"
+  ],
+  "what_to_export": [
+    "All .ink source files",
+    "Compiled JSON output from the Inky / Ink compiler",
+    "Asset references (images, audio) keyed in Ink scripts",
+    "External function bindings used from your engine layer",
+    "Variables, lists, and global state definitions",
+    "Choice and knot/stitch structure documentation",
+    "Localization tables tied to Ink content",
+    "Playtest notes and branch coverage data"
+  ],
+  "export_method": "Ink stories are already plain text plus a compiled JSON runtime, so 'export' largely means committing the .ink files and the compiled JSON to your repo and inventorying any external function bindings used by your current engine integration. Consult the official Ink documentation for the latest compiler invocation and JSON format.",
+  "import_method": "On the LÖVE side you need a Lua-side narrative runtime. Options include writing a small interpreter for the Ink JSON format, porting your scripts to a native Lua dialogue library, or hand-rolling state-machine dialogue in Lua. None ship with LÖVE — verify any third-party Lua Ink runtime against current maintenance status before depending on it. Wire choices and text rendering into LÖVE's love.draw and love.update loop.",
+  "concept_mapping": [
+    {
+      "source": "Ink knot / stitch",
+      "target": "Lua table / function entry",
+      "note": "Model each knot as a node in a Lua table keyed by name."
+    },
+    {
+      "source": "Ink choice",
+      "target": "Lua list of choice descriptors",
+      "note": "Render via love.graphics; track selection in app state."
+    },
+    {
+      "source": "Ink variables and lists",
+      "target": "Lua tables",
+      "note": "Save/load through LÖVE's love.filesystem."
+    },
+    {
+      "source": "Ink EXTERNAL functions",
+      "target": "Lua functions registered with your runtime",
+      "note": "Map each external binding 1:1 in code."
+    },
+    {
+      "source": "Inky editor playtest",
+      "target": "LÖVE love run + dev console",
+      "note": "You lose Inky's writer-friendly preview; consider keeping Inky for authoring only."
+    },
+    {
+      "source": "Ink JSON runtime (Inkle)",
+      "target": "Custom or third-party Lua Ink runtime",
+      "note": "Confirm licence and maintenance of any third-party runtime in official sources."
+    }
+  ],
+  "effort": "1-4 weeks",
+  "gotchas": [
+    "Writers lose the Inky preview/play loop unless you keep Inky alongside as an authoring tool",
+    "Edge cases in Ink (lists, threads, tunnels) may not be supported by minimal Lua runtimes",
+    "Save/load semantics must be implemented yourself in LÖVE",
+    "Performance is rarely an issue but very large stories should be loaded lazily",
+    "If you previously relied on a Unity/Godot Ink plugin, that integration is irrelevant on LÖVE"
+  ],
+  "email": {
+    "subject": "Moving narrative stack from Ink to LÖVE",
+    "body": "Hi team,\n\nWe're considering moving our narrative pipeline from Ink to a Lua/LÖVE-only setup so the whole game runs in one language and one engine.\n\nReality check: Ink is a scripting language and LÖVE is a 2D framework — they are not direct swaps. We will need a Lua-side dialogue runtime, either a custom interpreter for the Ink JSON format or a hand-rolled dialogue system. Writers can keep Inky as their authoring tool if helpful.\n\nPlan:\n1) Inventory current .ink files, externals, and assets.\n2) Choose a Lua runtime strategy and prototype it on one chapter.\n3) Port remaining content and validate branches against existing playtest notes.\n4) Cut over once parity is proven.\n\nEstimated effort: 1-4 weeks depending on scope. I'll share a more detailed plan once we pick the runtime approach.\n\nThanks,"
+  }
+}

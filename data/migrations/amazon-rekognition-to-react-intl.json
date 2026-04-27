@@ -1,0 +1,70 @@
+{
+  "source": {
+    "slug": "amazon-rekognition",
+    "name": "Amazon Rekognition"
+  },
+  "target": {
+    "slug": "react-intl",
+    "name": "react-intl"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "Rekognition is a vision API and react-intl is an i18n library — this is an adoption, not a one-to-one migration.",
+  "why_switch": [
+    "react-intl is free, open source, and the de facto React i18n choice.",
+    "Full ICU MessageFormat support for plurals and selects.",
+    "No usage-based fees.",
+    "Battle-tested in large production apps.",
+    "Aligns better with localization needs than a vision API."
+  ],
+  "what_to_export": [
+    "Hardcoded user-facing strings in React components",
+    "Existing translation catalogs (if any)",
+    "Supported locale list",
+    "Default and fallback locales",
+    "Date/number/currency formatting needs",
+    "Pluralization rules",
+    "RTL language requirements (if any)",
+    "Sample components for QA per locale"
+  ],
+  "export_method": "Run the FormatJS/react-intl extractor (or a manual grep) over the codebase to collect translatable strings into a base catalog. If translations exist in other systems, export them as JSON keyed by message ID. Consult the react-intl official docs for extractor configuration.",
+  "import_method": "Install react-intl and the FormatJS CLI, wrap the app in IntlProvider with the active locale and messages, and replace hardcoded strings with FormattedMessage or intl.formatMessage. Add a build step to compile/extract messages and load locale data on demand. Consult react-intl official docs for the exact setup.",
+  "concept_mapping": [
+    {
+      "source": "Rekognition API call",
+      "target": "n/a",
+      "note": "Different domain."
+    },
+    {
+      "source": "AWS SDK",
+      "target": "react-intl runtime",
+      "note": "Library, not a service."
+    },
+    {
+      "source": "IAM auth",
+      "target": "n/a",
+      "note": "No auth."
+    },
+    {
+      "source": "Region",
+      "target": "Locale",
+      "note": "Conceptual mapping only."
+    },
+    {
+      "source": "Confidence threshold",
+      "target": "Fallback locale chain",
+      "note": "Different concept; loosely analogous."
+    }
+  ],
+  "effort": "4-16 hours depending on string volume",
+  "gotchas": [
+    "ICU syntax for plurals/selects has a learning curve.",
+    "Locale data must be loaded for each supported locale; lazy-load to control bundle size.",
+    "react-intl does not translate — you still need translators or MT.",
+    "Server-side rendering requires passing the active locale and messages explicitly.",
+    "Not a vision-API replacement — keep Rekognition or pick a vision tool if needed."
+  ],
+  "email": {
+    "subject": "Migrating from Amazon Rekognition to react-intl",
+    "body": "Hi team,\n\nRekognition and react-intl address different problems. Assuming localization is the actual goal, the plan is to install react-intl, wrap the app in IntlProvider, extract strings into per-locale JSON, and replace hardcoded text with FormattedMessage. Estimated effort: a few hours to a couple of days. We'll keep or replace any vision functionality separately.\n\nThanks"
+  }
+}

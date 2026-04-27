@@ -1,0 +1,76 @@
+{
+  "source": {
+    "slug": "vercel-flags-sdk",
+    "name": "Flags SDK"
+  },
+  "target": {
+    "slug": "togglz",
+    "name": "Togglz"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "Replace a JS/TS framework flag SDK with a Java/Spring enum-based toggle library — usually triggered by a stack shift from Next.js to the JVM.",
+  "why_switch": [
+    "Your platform consolidated on Java/Spring and the Next.js-centric SDK no longer fits",
+    "You want type-safe Java enum flags evaluated in-process",
+    "You'd rather drop the SaaS provider sitting behind Flags SDK",
+    "You prefer a long-standing, conservative library with a built-in admin console",
+    "You want zero external dependencies in the flag-evaluation path"
+  ],
+  "what_to_export": [
+    "Flag keys defined via flag() in your Next.js/SvelteKit code",
+    "Default values and option lists",
+    "Targeting/rule definitions from the backing provider",
+    "User attribute schemas used in rules",
+    "Per-environment configurations",
+    "Variant definitions for multivariate flags",
+    "Existing A/B test setup tied to Vercel previews",
+    "Audit history from the backing provider"
+  ],
+  "export_method": "Flags SDK itself is a thin framework layer; flag rules live in the backing provider (LaunchDarkly, Statsig, ConfigCat, Flipt, etc.). Use that provider's native export tooling to dump rules and segments, and read the flag() declarations in your code to enumerate keys and defaults. Consult the official docs of both Flags SDK and your provider for current export formats.",
+  "import_method": "Add the Togglz dependency to your Java/Spring Boot project, declare flags as values of an enum implementing Togglz's Feature interface, and pick a StateRepository (in-memory, JDBC, Redis, etc.). Translate each provider rule to a Togglz ActivationStrategy with the appropriate parameters. Enable the Togglz admin console for runtime management. Refer to the official Togglz documentation for current setup steps.",
+  "concept_mapping": [
+    {
+      "source": "flag() declaration in TS",
+      "target": "Java enum constant",
+      "note": "Convert string keys to valid Java identifiers"
+    },
+    {
+      "source": "Provider behind Flags SDK",
+      "target": "Togglz StateRepository",
+      "note": "Backend moves from external SaaS/Flipt to in-process JVM"
+    },
+    {
+      "source": "Provider targeting rules",
+      "target": "ActivationStrategy",
+      "note": "Built-in strategies cover common cases; custom rules need a custom strategy"
+    },
+    {
+      "source": "Edge/server evaluation",
+      "target": "JVM in-process evaluation",
+      "note": "Latency profile and caching assumptions change"
+    },
+    {
+      "source": "Multivariate flag",
+      "target": "Not first-class",
+      "note": "Togglz is on/off-first; emulate variants in app code or pick another tool"
+    },
+    {
+      "source": "A/B test on Vercel preview",
+      "target": "Not built-in",
+      "note": "Experimentation must be handled outside Togglz"
+    }
+  ],
+  "effort": "2-5 days",
+  "gotchas": [
+    "Togglz is Java/JVM only — any remaining JS surface needs a separate flag client",
+    "Multivariate flags map poorly; redesign before cutover or keep them on the old provider",
+    "Custom targeting rules must be reimplemented as Java ActivationStrategy classes",
+    "Togglz releases are infrequent; check version compatibility with your Spring Boot baseline",
+    "Vercel-preview-based experimentation is lost; rebuild via your own analytics if needed",
+    "Admin-console authentication must be configured before exposing in production"
+  ],
+  "email": {
+    "subject": "Migrating from Flags SDK to Togglz",
+    "body": "Hi team,\n\nWith the platform shifting to Java/Spring, I'm proposing we replace Vercel's Flags SDK (and the provider behind it) with Togglz inside the JVM services.\n\nWhy: type-safe enum flags, in-process evaluation, built-in admin console, no SaaS provider in the path.\n\nSteps:\n1. Export flag rules from the current provider behind Flags SDK.\n2. Add Togglz to the Spring Boot app and pick a StateRepository (JDBC default).\n3. Recreate each flag as an enum constant with the appropriate ActivationStrategy.\n4. Run both side-by-side until parity is confirmed, then retire Flags SDK.\n\nCaveats: multivariate flags need a redesign, JS surfaces still need their own client, and Vercel-preview A/B tests don't carry over. Effort: 2-5 days."
+  }
+}

@@ -1,0 +1,76 @@
+{
+  "source": {
+    "slug": "anteon",
+    "name": "Anteon"
+  },
+  "target": {
+    "slug": "qryn",
+    "name": "Qryn"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "Replace Anteon with Qryn, an open-source polyglot observability backend on ClickHouse exposing Loki, Prometheus, Tempo, and Datadog-compatible APIs.",
+  "why_switch": [
+    "Open-source (AGPL-3.0) with no per-GB ingest billing.",
+    "Single ClickHouse backend for logs, metrics, and traces.",
+    "API-compatible with Loki, Prometheus, Tempo, Datadog — minimizes client changes.",
+    "Strong cost efficiency via ClickHouse compression.",
+    "Avoid Anteon's pricing spikes on heavy ingest."
+  ],
+  "what_to_export": [
+    "Alert rules and thresholds",
+    "Dashboards and saved queries",
+    "Notification channel configs",
+    "Retention policies",
+    "User/team/RBAC settings",
+    "Integration tokens and webhook URLs",
+    "Service/resource attribute conventions",
+    "Historical telemetry you want to keep"
+  ],
+  "export_method": "Anteon lacks a single documented export bundle. Use its API or self-hosted DB to pull configuration; archive logs/metrics/traces to object storage if you need historical data. See Anteon's official docs for current export options.",
+  "import_method": "Qryn deploys via Docker, Helm, or directly on a ClickHouse cluster (see qryn.dev docs). Point your existing OpenTelemetry, Loki, Prometheus remote_write, or Datadog-format clients at Qryn's compatible endpoints. Recreate dashboards in Grafana using Qryn's Loki/Prometheus/Tempo data sources. Rebuild alert rules in Alertmanager or Grafana alerting.",
+  "concept_mapping": [
+    {
+      "source": "Anteon storage",
+      "target": "ClickHouse via Qryn",
+      "note": "Single store for logs, metrics, traces."
+    },
+    {
+      "source": "Anteon ingest endpoints",
+      "target": "Qryn Loki/Prom/Tempo/Datadog APIs",
+      "note": "Existing OTel/Loki/Prom clients can usually re-point with config change."
+    },
+    {
+      "source": "Anteon dashboards",
+      "target": "Grafana over Qryn data sources",
+      "note": "Rebuild; do not assume direct portability."
+    },
+    {
+      "source": "Anteon alerts",
+      "target": "Alertmanager or Grafana alerting",
+      "note": "Re-author rules against PromQL/LogQL."
+    },
+    {
+      "source": "K8s eBPF features",
+      "target": "Bring-your-own collector",
+      "note": "Qryn is a backend; pair with Beyla/Cilium/eBPF agents if needed."
+    },
+    {
+      "source": "Hosted SaaS billing",
+      "target": "ClickHouse + Qryn ops cost",
+      "note": "No ingest fees; you operate ClickHouse."
+    }
+  ],
+  "effort": "16-40 hours",
+  "gotchas": [
+    "Qryn is a backend, not a full collection agent — you still need OTel/Loki/Prom shippers.",
+    "ClickHouse operations expertise required (sizing, replication, retention).",
+    "API compatibility is high but not 100%; test critical queries early.",
+    "AGPL-3.0 — review license obligations if you plan to embed/modify it.",
+    "Plan a parallel-run window: dual-write or dual-collect during cutover.",
+    "Smaller managed-service ecosystem than Grafana Cloud."
+  ],
+  "email": {
+    "subject": "Migrating from Anteon to Qryn",
+    "body": "Hi team,\n\nLooking to swap Anteon for Qryn. Qryn is an open-source ClickHouse-backed observability stack with Loki, Prometheus, Tempo, and Datadog-compatible APIs — meaning fewer client changes and no per-GB ingest fees.\n\nKey work: stand up ClickHouse + Qryn; re-point existing collectors to Qryn endpoints; rebuild Grafana dashboards and Alertmanager rules; verify query parity for our top dashboards before cutover.\n\nCaveats: AGPL-3.0 license to review, and we'll own ClickHouse ops.\n\nEstimated effort: 16-40 hours plus a parallel-run window.\n\nWill share a detailed plan and pilot tenant.\n\nThanks."
+  }
+}

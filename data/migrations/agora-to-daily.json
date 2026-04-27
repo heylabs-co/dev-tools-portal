@@ -1,0 +1,75 @@
+{
+  "source": {
+    "slug": "agora",
+    "name": "Agora"
+  },
+  "target": {
+    "slug": "daily",
+    "name": "Daily"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "Replace Agora's audio/video SDK with Daily by recreating rooms, swapping client SDKs, and reissuing meeting tokens.",
+  "why_switch": [
+    "Simpler room-based abstraction vs Agora's channels and tokens",
+    "WebRTC-first stack with predictable browser behaviour",
+    "Recording and live streaming exposed via REST",
+    "Cleaner pricing with public subscription tiers",
+    "Strong React/React Native and JS SDKs"
+  ],
+  "what_to_export": [
+    "List of active channels/rooms and their participants",
+    "Token-issuing logic on your server",
+    "Recording storage paths and retention policy",
+    "Client SDK versions per platform",
+    "Any custom signaling or RTM messages",
+    "Live streaming/CDN endpoints",
+    "Webhook handlers for call events",
+    "Quality and bandwidth metrics for sizing"
+  ],
+  "export_method": "Most state is ephemeral session data. Export your room/channel inventory from your own database, plus any recordings stored on Agora to your own storage before cancellation. If you use Agora RTM for chat alongside RTC, plan that data migration separately.",
+  "import_method": "Create a Daily account, install the daily-js or daily-react SDK on clients, and switch your token issuance to Daily's REST API. Recreate rooms via API as users join, or pre-create them for known sessions. Run both providers behind a feature flag and cut traffic over per cohort.",
+  "concept_mapping": [
+    {
+      "source": "Channel",
+      "target": "Room",
+      "note": "1:1 conceptual mapping"
+    },
+    {
+      "source": "RTC token",
+      "target": "Meeting token",
+      "note": "Issued via Daily REST API"
+    },
+    {
+      "source": "RTM (signaling)",
+      "target": "App messages / chat",
+      "note": "Different API; rebuild custom signaling"
+    },
+    {
+      "source": "Cloud recording",
+      "target": "Recording API",
+      "note": "Different storage and webhook flow"
+    },
+    {
+      "source": "Live streaming push",
+      "target": "Live streaming",
+      "note": "Confirm output formats match your CDN"
+    },
+    {
+      "source": "SDKs (Unity, Flutter, etc.)",
+      "target": "Web/RN/iOS/Android SDKs",
+      "note": "Verify platform parity before commitment"
+    }
+  ],
+  "effort": "2-6 weeks",
+  "gotchas": [
+    "Platform coverage differs; check Unity/Flutter parity if you need them",
+    "Recording file formats and storage hooks differ",
+    "Token TTL and permission model is not identical",
+    "Bitrate and codec defaults can change perceived quality",
+    "Custom signaling on Agora RTM needs a replacement design"
+  ],
+  "email": {
+    "subject": "Cancelling Agora account",
+    "body": "Hi Agora team,\n\nWe're migrating our real-time video workload to Daily. Please confirm the cancellation date and any final billing for our account.\n\nThanks."
+  }
+}

@@ -1,0 +1,75 @@
+{
+  "source": {
+    "slug": "braze",
+    "name": "Braze"
+  },
+  "target": {
+    "slug": "apprise",
+    "name": "Apprise"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "Replace Braze with the open-source Apprise notification library — only viable for transactional/notification use cases, not full lifecycle marketing.",
+  "why_switch": [
+    "Eliminate per-MAU SaaS costs in favor of OSS",
+    "Self-hosted, no vendor lock-in",
+    "Simple, scriptable notification API across many backends",
+    "Full control over delivery infrastructure",
+    "Good fit for ops/dev notifications and basic transactional sends"
+  ],
+  "what_to_export": [
+    "List of users and their preferred notification channels",
+    "Device tokens or webhook endpoints relevant to notifications",
+    "Email and SMS contact info (if you'll route via Apprise backends)",
+    "Subscription/consent state",
+    "Transactional message templates",
+    "Triggering events from your backend that should fire notifications",
+    "Segment criteria you intend to recreate in your own code"
+  ],
+  "export_method": "Use Braze's user and subscription export capabilities per their official documentation to pull contact info, device data, and consent state. Capture transactional template content from the dashboard. Note that journey/Canvas logic will not translate — only the notification trigger points are relevant.",
+  "import_method": "Install Apprise (Python library / CLI) per its official README and configure the notification backends you need (e.g. APNs, FCM, email, SMS providers, webhooks) using Apprise's URL-based configuration. Move trigger logic into your own backend services so they call Apprise when events occur. You will own segmentation, scheduling, A/B testing, and analytics.",
+  "concept_mapping": [
+    {
+      "source": "Canvas / Journey",
+      "target": "Custom backend logic",
+      "note": "Apprise doesn't orchestrate journeys — your code does"
+    },
+    {
+      "source": "Segments",
+      "target": "Database queries in your app",
+      "note": "Define and run segments in your own data layer"
+    },
+    {
+      "source": "Push Tokens",
+      "target": "Apprise APNs/FCM URLs",
+      "note": "Configure per Apprise's documented URL syntax"
+    },
+    {
+      "source": "Templates / Liquid",
+      "target": "Your templating engine",
+      "note": "Render strings yourself before passing to Apprise"
+    },
+    {
+      "source": "Subscription Groups",
+      "target": "Application-level preferences",
+      "note": "Manage opt-in state in your own DB"
+    },
+    {
+      "source": "Analytics / Reporting",
+      "target": "Your own logging/analytics",
+      "note": "Apprise doesn't track opens, clicks, or deliverability"
+    }
+  ],
+  "effort": "2-12 weeks",
+  "gotchas": [
+    "Apprise is a notification library, not a marketing platform — segmentation, journeys, A/B testing, and analytics are your responsibility",
+    "No built-in deliverability dashboards or opt-out flows",
+    "Push at scale requires you to operate APNs/FCM credentials and handle token lifecycle",
+    "Compliance (GDPR/CAN-SPAM) becomes the team's burden — no vendor guardrails",
+    "Loss of Liquid/templating sophistication — rewrite into your stack",
+    "Best suited to transactional/devops notifications, not marketing campaigns; reconsider if you need lifecycle messaging"
+  ],
+  "email": {
+    "subject": "Evaluating Braze → Apprise (OSS) migration",
+    "body": "Hi team,\n\nWe're scoping a move from Braze to the open-source Apprise notification library to eliminate SaaS costs and own our notification stack.\n\nImportant caveat: Apprise is a notification library, not a marketing platform. It handles delivery across many backends, but segmentation, journeys, templating, A/B testing, and analytics would move into our own services.\n\nProposed scope:\n1) Identify which Braze use cases are truly transactional vs lifecycle marketing.\n2) For transactional flows, integrate Apprise and move trigger logic into our backend.\n3) Decide separately whether lifecycle marketing stays on a SaaS or is rebuilt internally.\n4) Migrate consent/contact data and re-implement opt-out flows ourselves.\n\nEstimated effort: 2-12 weeks depending on how much we choose to absorb. I'll share a detailed scoping doc.\n\nThanks"
+  }
+}

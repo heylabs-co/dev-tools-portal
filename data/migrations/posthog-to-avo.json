@@ -1,0 +1,77 @@
+{
+  "source": {
+    "slug": "posthog",
+    "name": "PostHog"
+  },
+  "target": {
+    "slug": "avo",
+    "name": "Avo"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "Add Avo for tracking plan governance; PostHog often stays as the destination since these tools complement each other.",
+  "why_switch": [
+    "Avo enforces a defined tracking plan to reduce schema drift",
+    "Better data quality before events hit PostHog (or any destination)",
+    "Type-safe event firing via Avo's Codegen reduces instrumentation bugs",
+    "Centralized event documentation owned by product + engineering",
+    "Realistically: this is often a complement to PostHog, not a replacement"
+  ],
+  "what_to_export": [
+    "List of events and their properties from PostHog",
+    "Custom event and action definitions",
+    "Person/user property schema",
+    "Saved insights, funnels, paths, retention (for reference)",
+    "Cohort definitions",
+    "Feature flags and experiments (stay in PostHog)",
+    "Dashboards and shared views",
+    "Team members, roles, permissions",
+    "Session replay configurations (stay in PostHog)"
+  ],
+  "export_method": "PostHog supports SQL/HogQL access to events and a project export option; pull the event and property schema using whichever is current per the official PostHog docs. For property and event documentation, capture names, types, and descriptions as the input to Avo's plan.",
+  "import_method": "Create an Avo workspace, define the tracking plan from the PostHog schema, and connect Avo's destination integration to PostHog (or whatever destination you use). Integrate Avo Inspector/Codegen into the codebase per the official Avo docs to enforce the plan at instrumentation time.",
+  "concept_mapping": [
+    {
+      "source": "PostHog events",
+      "target": "Defined events in tracking plan",
+      "note": "Curate the canonical list"
+    },
+    {
+      "source": "Event properties",
+      "target": "Typed properties in plan",
+      "note": "Add ownership and descriptions"
+    },
+    {
+      "source": "Person properties",
+      "target": "User properties in plan",
+      "note": "Define identity rules"
+    },
+    {
+      "source": "Insights/funnels",
+      "target": "Stay in PostHog",
+      "note": "Avo doesn't analyze"
+    },
+    {
+      "source": "Feature flags",
+      "target": "Stay in PostHog",
+      "note": "Out of Avo's scope"
+    },
+    {
+      "source": "Session replay",
+      "target": "Stays in PostHog",
+      "note": "Out of Avo's scope"
+    }
+  ],
+  "effort": "1-3 weeks (mostly engineering time for instrumentation)",
+  "gotchas": [
+    "Avo is governance, not a PostHog replacement — usually you keep both",
+    "Don't double-instrument; route everything through Avo to PostHog",
+    "Existing PostHog events with messy names will need normalization",
+    "Engineering must adopt Codegen/Inspector for the plan to actually be enforced",
+    "Confirm Avo's PostHog destination integration is current per Avo's docs",
+    "Communicate that PostHog isn't going away if teams worry about losing replays/flags"
+  ],
+  "email": {
+    "subject": "Adding Avo on top of PostHog for event governance",
+    "body": "Team,\n\nWe're adding Avo as our tracking plan governance layer. PostHog stays — it remains our analytics destination, with feature flags and session replay continuing there.\n\nAvo will enforce event names, properties, and types before events reach PostHog, cutting down on schema drift. I'll export the current PostHog schema, draft an initial Avo plan, and circulate for review. Engineering will then integrate Avo's Codegen.\n\nFlag any concerns about workflow changes.\n\nThanks"
+  }
+}

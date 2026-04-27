@@ -1,0 +1,76 @@
+{
+  "source": {
+    "slug": "flagd",
+    "name": "flagd"
+  },
+  "target": {
+    "slug": "bucket",
+    "name": "Bucket"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "flagd is a self-hosted OpenFeature-compliant flag daemon configured via files; Bucket is a hosted feature management SaaS with a polished dashboard. Migration trades operational ownership for a managed product and means re-creating flags, targeting, and SDK wiring inside Bucket.",
+  "why_switch": [
+    "Stop running and on-calling a self-hosted flag daemon",
+    "Get a polished UI for non-engineers to manage flags",
+    "Built-in feature-management workflows beyond raw evaluation",
+    "Reduce operational scope and free up platform engineering time",
+    "Centralize flag state instead of distributing config files"
+  ],
+  "what_to_export": [
+    "All flagd flag definitions (JSON/YAML configs)",
+    "Targeting rules and segment logic per flag",
+    "Default variants and variant payloads",
+    "Environment-specific configuration files",
+    "Rollout percentages and shard keys",
+    "Flag descriptions, owners, and ticket references",
+    "Custom evaluator extensions or sync providers in use",
+    "OpenTelemetry trace context fields you depend on"
+  ],
+  "export_method": "flagd's source of truth is its flag configuration files (JSON or YAML), typically loaded via file, HTTP, gRPC, or Kubernetes sync providers. Collect every config file across every environment from your repo or sync source. Treat these files as the export — they already contain flags, variants, defaults, and targeting rules in a portable format. Inventory any custom sync providers, evaluator overrides, or operator setups so they can be replaced or retired. Snapshot the full set of files at the cutover commit so you can diff against the migrated state in Bucket and confirm parity flag-by-flag.",
+  "import_method": "Bucket has no native flagd importer, so re-create flags through its UI or API. For each flagd flag, create a corresponding feature in Bucket with the same key, default value, and variant set. Translate flagd targeting rules into Bucket's segmentation model — user attributes, company attributes, and rollout percentages. Replace the flagd OpenFeature provider in your services with Bucket's SDK or, if you want to keep OpenFeature, with a Bucket OpenFeature provider where one is available. Update identify calls to pass the user/company context Bucket expects. Validate each flag in a staging environment before swapping production traffic, and keep flagd running in parallel until parity is confirmed. Decommission flagd's daemon, sync providers, and any custom operators only after a full bake period.",
+  "concept_mapping": [
+    {
+      "source": "flagd flag (JSON/YAML)",
+      "target": "Bucket feature",
+      "note": "Re-create via UI or API; key naming should match to minimize code churn"
+    },
+    {
+      "source": "Variants",
+      "target": "Bucket variations",
+      "note": "Verify payload typing parity"
+    },
+    {
+      "source": "Targeting rules (JsonLogic etc.)",
+      "target": "Bucket segments and rules",
+      "note": "Logical operators differ; re-test edge cases"
+    },
+    {
+      "source": "Sync provider (file/HTTP/gRPC/k8s)",
+      "target": "Bucket-managed config",
+      "note": "Sync infrastructure goes away"
+    },
+    {
+      "source": "OpenFeature evaluation API",
+      "target": "Bucket SDK or Bucket OpenFeature provider",
+      "note": "Keeping OpenFeature reduces call-site changes"
+    },
+    {
+      "source": "OTel trace spans",
+      "target": "Bucket's tracking/events",
+      "note": "Telemetry shape will change; instrument accordingly"
+    }
+  ],
+  "effort": "1-3 weeks",
+  "gotchas": [
+    "Going from self-hosted to SaaS means user data leaves your perimeter — review privacy and compliance posture before cutover",
+    "JsonLogic-style targeting rules in flagd may not map 1:1 to Bucket's rule engine; validate complex predicates carefully",
+    "Bucket pricing scales with usage; high-QPS workloads can be materially more expensive than free flagd",
+    "OpenTelemetry tracing of every evaluation goes away unless Bucket exposes equivalent telemetry",
+    "Custom sync providers and operator setups for flagd have no SaaS equivalent and must be retired",
+    "Local-only zero-latency evaluation may be replaced by network calls; benchmark hot paths"
+  ],
+  "email": {
+    "subject": "Migrating feature flags from self-hosted flagd to Bucket",
+    "body": "Hi team,\n\nWe're planning to move our feature flagging from self-hosted flagd to Bucket, a managed feature-management platform, over the next 14 days. The aim is a friendlier UI for non-engineers and less infrastructure for us to operate.\n\nWhat changes for you:\n- Flag definitions will move out of our Git-managed config files into the Bucket dashboard.\n- Services will swap the flagd OpenFeature provider for Bucket's SDK (or its OpenFeature provider where applicable).\n- Targeting rules will be re-implemented in Bucket and validated before switchover.\n\nWe'll run both systems in parallel during the overlap and decommission flagd only after parity is confirmed. Please flag any rule or workflow in flagd you depend on so we can verify it survives the migration.\n\nThanks,\nYour customer"
+  }
+}

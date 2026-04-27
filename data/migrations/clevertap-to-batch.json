@@ -1,0 +1,82 @@
+{
+  "source": {
+    "slug": "clevertap",
+    "name": "CleverTap"
+  },
+  "target": {
+    "slug": "batch",
+    "name": "Batch"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "Swap CleverTap's mobile engagement suite for Batch, a comparable mobile push and in-app platform with stronger EU/GDPR posture.",
+  "why_switch": [
+    "EU-based vendor with GDPR-native data residency",
+    "Freemium tier vs. CleverTap's paid-only entry",
+    "Comparable mobile push, segmentation, and A/B testing",
+    "Simpler transactional API",
+    "Public-facing pricing tiers"
+  ],
+  "what_to_export": [
+    "User profiles and external IDs",
+    "Custom attributes / user properties",
+    "Push tokens (APNs, FCM)",
+    "Push templates and copy",
+    "In-app message content",
+    "Segments and audience definitions",
+    "Campaign trigger logic",
+    "Subscription state per channel",
+    "Event taxonomy and naming"
+  ],
+  "export_method": "Use CleverTap's REST and Data Export APIs to pull user profiles, events, and subscription state; export templates and campaigns through the CleverTap dashboard. For richer historical event data, request a bulk export through CleverTap support if your plan includes it. Verify token formats and platform credentials are captured.",
+  "import_method": "Provision a Batch project, configure APNs and FCM credentials, then install Batch's mobile SDKs (iOS/Android) replacing CleverTap's SDK calls. Import user attributes via Batch's profile API and recreate templates and campaigns in the Batch dashboard. Re-author segments using Batch's audience tooling. Always confirm endpoints and SDK shapes against current Batch docs.",
+  "concept_mapping": [
+    {
+      "source": "CleverTap profile",
+      "target": "Batch profile / installation",
+      "note": "Map external_id and attributes; verify naming rules."
+    },
+    {
+      "source": "Campaign",
+      "target": "Batch campaign",
+      "note": "Recreate manually in the Batch dashboard."
+    },
+    {
+      "source": "Segment",
+      "target": "Batch audience",
+      "note": "Audience definitions differ — re-author rather than copy-paste."
+    },
+    {
+      "source": "In-app message",
+      "target": "Batch in-app messaging",
+      "note": "Re-design layouts; templating differs."
+    },
+    {
+      "source": "Push template",
+      "target": "Batch push template",
+      "note": "Re-test personalization tokens."
+    },
+    {
+      "source": "Subscription state",
+      "target": "Batch opt-in state",
+      "note": "Re-import per channel; do not assume defaults."
+    },
+    {
+      "source": "Analytics",
+      "target": "Batch analytics + your own warehouse",
+      "note": "History does not transfer."
+    }
+  ],
+  "effort": "3-6 weeks",
+  "gotchas": [
+    "SDK swap requires app store releases — coordinate with mobile release cadence.",
+    "Web push support on Batch is secondary to mobile; verify if you rely on it.",
+    "Pricing scales aggressively at higher volumes — model your MAU before committing.",
+    "Smaller ecosystem than CleverTap — fewer third-party integrations.",
+    "Run both SDKs in parallel briefly to validate delivery before sunsetting CleverTap.",
+    "Analytics history will not transfer; export benchmarks beforehand."
+  ],
+  "email": {
+    "subject": "Migrating from CleverTap to Batch",
+    "body": "Hi team,\n\nProposing a move from CleverTap to Batch. Batch is an EU-based mobile push and in-app platform with GDPR-native data residency, freemium entry, and comparable feature coverage for our mobile use case.\n\nPlan: export profiles, attributes, push tokens, templates, and segments from CleverTap; install Batch SDKs in iOS/Android; recreate templates and campaigns; run both SDKs in parallel briefly before cutover.\n\nEstimated effort: 3-6 weeks. Main risks: SDK swap requiring app store releases, weaker web push, pricing scaling, and analytics history not transferring.\n\nLet me know if you want to review the cutover checklist."
+  }
+}

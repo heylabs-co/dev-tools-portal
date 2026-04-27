@@ -1,0 +1,78 @@
+{
+  "source": {
+    "slug": "airship",
+    "name": "Airship"
+  },
+  "target": {
+    "slug": "clevertap",
+    "name": "CleverTap"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "Replace Airship with CleverTap by re-instrumenting mobile SDKs, importing user profiles and events, and rebuilding segments, journeys, and templates.",
+  "why_switch": [
+    "Built-in analytics and segmentation alongside messaging",
+    "Strong mobile retention features (RFM, cohorts) under one roof",
+    "Multi-channel: push, in-app, SMS, email, web in a single suite",
+    "Active SDK release cadence",
+    "Consolidate analytics + engagement to reduce tooling sprawl"
+  ],
+  "what_to_export": [
+    "User profiles with external/customer IDs",
+    "iOS/Android device tokens and platform metadata",
+    "Custom user attributes",
+    "Tags and named user mappings",
+    "Custom event definitions and recent event history",
+    "Audience/segment definitions",
+    "Push and in-app templates",
+    "Automation/journey definitions",
+    "Opt-in/consent state",
+    "Campaign performance baselines for comparison"
+  ],
+  "export_method": "Pull users, devices, tags, and events from Airship using its data export and reporting paths; consult Airship's official documentation for the current supported methods and quotas. Save outputs as CSV/JSON. Document campaign and journey logic from the Airship dashboard since structural exports are typically limited.",
+  "import_method": "Integrate the CleverTap SDKs in iOS and Android per CleverTap's official integration docs, mapping your external IDs to CleverTap Identity. Backfill historical user profiles and events using CleverTap's server-side APIs as documented. Recreate segments, journeys, push templates, and in-app campaigns in the CleverTap dashboard.",
+  "concept_mapping": [
+    {
+      "source": "Named User",
+      "target": "Identity (external ID)",
+      "note": "Use the same stable ID to preserve cross-device identity"
+    },
+    {
+      "source": "Tags",
+      "target": "User Properties / Segments",
+      "note": "Booleans modeled as properties; rebuild segments from rules"
+    },
+    {
+      "source": "Channels (tokens)",
+      "target": "Devices",
+      "note": "Re-registered on SDK install"
+    },
+    {
+      "source": "Custom Events",
+      "target": "Events",
+      "note": "Re-emit from client and/or backfill via API"
+    },
+    {
+      "source": "Automation / Journeys",
+      "target": "Journeys",
+      "note": "Rebuild step-by-step; trigger semantics differ"
+    },
+    {
+      "source": "In-App Messages",
+      "target": "In-App Notifications",
+      "note": "Recreate templates; layout primitives differ"
+    }
+  ],
+  "effort": "3-8 weeks",
+  "gotchas": [
+    "Device tokens are not portable — collected fresh by the CleverTap SDK",
+    "Identity merges can produce duplicate profiles if external IDs aren't consistent",
+    "Historical event backfill has volume and time-window limits — check CleverTap docs",
+    "Journeys rarely port 1:1; budget time for QA and parity testing",
+    "Pricing tiers scale with MAUs and channels — validate cost model early",
+    "Consent/opt-in state must be explicitly migrated and re-verified"
+  ],
+  "email": {
+    "subject": "Airship → CleverTap migration plan",
+    "body": "Hi team,\n\nProposing we migrate mobile messaging from Airship to CleverTap. CleverTap consolidates analytics, segmentation, and multi-channel messaging, which should reduce tool sprawl.\n\nApproach:\n1) Export users, devices, tags, and events from Airship.\n2) Add the CleverTap SDKs to iOS and Android with our existing external IDs.\n3) Backfill profiles and events via CleverTap's server APIs.\n4) Rebuild segments, journeys, push, and in-app templates.\n5) Dual-run for a release cycle, then cut over.\n\nEstimated effort: 3-8 weeks depending on journey complexity. Detailed checklist (identity, consent, segment parity, cost modeling) to follow.\n\nThanks"
+  }
+}

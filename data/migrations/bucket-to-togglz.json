@@ -1,0 +1,75 @@
+{
+  "source": {
+    "slug": "bucket",
+    "name": "Bucket"
+  },
+  "target": {
+    "slug": "togglz",
+    "name": "Togglz"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "Move from Bucket's hosted feature management to Togglz, a self-hosted Apache 2.0 Java feature toggle library backed by enums.",
+  "why_switch": [
+    "Eliminate per-seat/monthly subscription cost in favor of free OSS",
+    "Keep flag evaluation in-process inside your JVM application",
+    "Type-safe flag definitions via Java enums",
+    "Long-standing, predictable Java/Spring ecosystem fit",
+    "Reduce vendor lock-in for a critical runtime dependency"
+  ],
+  "what_to_export": [
+    "List of all flag keys and their human-readable names",
+    "Default on/off state per flag",
+    "Targeting/segmentation rules (user attributes, percentages)",
+    "Environment-specific overrides (dev/staging/prod)",
+    "Rollout percentages for gradual releases",
+    "Flag descriptions and ownership metadata",
+    "Audit log of recent flag changes (if needed for compliance)",
+    "Currently archived/stale flags to drop during migration"
+  ],
+  "export_method": "Use Bucket's dashboard or API (consult official Bucket docs for the current export endpoint or CSV/JSON download) to retrieve all flags, their states, and targeting rules. If no bulk export exists, script a fetch against their REST API or copy flag definitions manually for small flag sets. Capture environment-by-environment so you can map each Togglz FeatureManager configuration cleanly.",
+  "import_method": "In Togglz, declare each flag as a value in a Java enum implementing Feature, then configure activation strategies (UsernameActivationStrategy, GradualRolloutStrategy, etc.) in your FeatureManager. Persist state through one of Togglz's StateRepository implementations (JDBC, Redis, file, in-memory). For Spring Boot, use the togglz-spring-boot-starter and the admin console to set runtime states matching your exported Bucket configuration.",
+  "concept_mapping": [
+    {
+      "source": "Flag (Bucket)",
+      "target": "Feature enum value",
+      "note": "One enum constant per flag; type-checked at compile time"
+    },
+    {
+      "source": "Targeting rule",
+      "target": "ActivationStrategy",
+      "note": "Map percentage/user rules to built-in or custom strategies"
+    },
+    {
+      "source": "Environment",
+      "target": "Spring profile + StateRepository",
+      "note": "Use separate repositories or profiles per environment"
+    },
+    {
+      "source": "Dashboard toggle",
+      "target": "Togglz admin console",
+      "note": "Web console ships with the Spring Boot starter"
+    },
+    {
+      "source": "SDK call",
+      "target": "MyFeatures.FLAG.isActive()",
+      "note": "Replace SDK lookups with enum-method calls"
+    },
+    {
+      "source": "Audit history",
+      "target": "Togglz auditing (optional)",
+      "note": "Wire logging or DB persistence for change history"
+    }
+  ],
+  "effort": "1-3 days",
+  "gotchas": [
+    "Togglz is JVM-only; non-Java services in your stack won't be served by it",
+    "No first-class experimentation/A-B analytics, build separately if needed",
+    "Admin console must be secured before production exposure",
+    "Strategies are evaluated in-process, so config drift across instances is possible without a shared StateRepository",
+    "Migrating large flag sets benefits from a script that generates the enum and a SQL seed file"
+  ],
+  "email": {
+    "subject": "Moving feature flags from Bucket to Togglz",
+    "body": "Hi team,\n\nWe're moving our feature flags from Bucket to Togglz to drop the subscription and keep flag evaluation in-process inside our JVM apps. Plan: export all flags, states, and targeting rules from Bucket, then declare them as a Java enum and configure Togglz activation strategies behind a shared StateRepository. The Spring Boot starter gives us a web console for runtime toggling. I'll cut over environments one at a time and keep both systems live during the switch. Effort estimate: 1-3 days.\n\nThanks"
+  }
+}

@@ -1,0 +1,78 @@
+{
+  "source": {
+    "slug": "checkout-com",
+    "name": "Checkout.com"
+  },
+  "target": {
+    "slug": "2checkout",
+    "name": "2Checkout"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "Migrate from Checkout.com's global PSP to 2Checkout for SaaS/e-commerce billing with merchant-of-record handling.",
+  "why_switch": [
+    "Want a merchant-of-record model that absorbs global tax compliance",
+    "Simpler fit for SaaS subscriptions and digital goods than Checkout.com's gateway-only role",
+    "Reduce dependence on usage-based custom pricing negotiations",
+    "Consolidate billing, tax, and checkout into one vendor",
+    "Lower operational overhead for smaller-scale merchants"
+  ],
+  "what_to_export": [
+    "Customer records and billing addresses",
+    "Stored card tokens (via PCI-compliant processor transfer)",
+    "Subscription schedules and plan definitions",
+    "Historical transactions, refunds, and chargebacks",
+    "Webhook endpoint configuration and event subscriptions",
+    "Product catalog and pricing tiers",
+    "Tax/VAT configuration and exemption rules",
+    "Settlement and payout reports",
+    "Fraud rules and risk thresholds",
+    "API key and integration inventory"
+  ],
+  "export_method": "Use Checkout.com's API and dashboard exports to pull customers, transactions, and reporting. For stored cards, initiate a PCI-compliant processor-to-processor token migration with Checkout.com support — they document this process; confirm steps with their official migration team before scheduling. Archive raw reports as CSV/JSON for reconciliation.",
+  "import_method": "Onboard with 2Checkout, then import customers, products, and subscriptions via their merchant API or CSV upload. Coordinate the card vault transfer with both vendors. Re-implement checkout integration against 2Checkout's API, update webhook endpoints, and dual-run for a billing cycle. Verify exact import endpoints and field names in current 2Checkout official documentation.",
+  "concept_mapping": [
+    {
+      "source": "Checkout.com customer source",
+      "target": "2Checkout stored payment method",
+      "note": "Requires vault-to-vault transfer, not API copy"
+    },
+    {
+      "source": "Checkout.com payment",
+      "target": "2Checkout order/transaction",
+      "note": "Status enums differ — remap"
+    },
+    {
+      "source": "Checkout.com webhook",
+      "target": "2Checkout IPN",
+      "note": "Event names and payload schemas differ"
+    },
+    {
+      "source": "Checkout.com Hub dashboard",
+      "target": "2Checkout merchant control panel",
+      "note": "Reporting fields and grouping differ"
+    },
+    {
+      "source": "Usage-based pricing",
+      "target": "Merchant-negotiated pricing",
+      "note": "Get a written 2Checkout quote before commit"
+    },
+    {
+      "source": "Gateway model",
+      "target": "Merchant-of-record model",
+      "note": "Tax responsibility shifts; re-check finance/legal implications"
+    }
+  ],
+  "effort": "3-8 weeks",
+  "gotchas": [
+    "Vault-to-vault token migration must be PCI-compliant; never export raw PANs yourself",
+    "2Checkout's public SDK repos appear inactive — confirm current SDK status with support",
+    "Pricing is opaque on 2Checkout; insist on a written rate card",
+    "Merchant-of-record changes invoicing and tax semantics — coordinate with finance",
+    "Subscription lifecycle (trials, proration, dunning) rarely maps 1:1",
+    "Run parallel processing for a full billing cycle before decommissioning Checkout.com"
+  ],
+  "email": {
+    "subject": "Migration plan: Checkout.com to 2Checkout",
+    "body": "Hi team,\n\nProposing we move from Checkout.com to 2Checkout. Main driver is the merchant-of-record model — it offloads global tax handling that we currently manage ourselves on Checkout.com.\n\nMigration steps: export customers/transactions, coordinate a PCI-compliant card vault transfer with both vendors, re-implement checkout integration against 2Checkout, dual-run for one billing cycle, then cut over. Estimated 3-8 weeks.\n\nCaveats before commit: 2Checkout pricing isn't public (need a written quote) and their SDK repos look stale (need confirmation they're actively maintained).\n\nOK to proceed?"
+  }
+}

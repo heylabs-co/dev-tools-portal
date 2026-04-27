@@ -1,0 +1,81 @@
+{
+  "source": {
+    "slug": "amazon-s3",
+    "name": "Amazon S3"
+  },
+  "target": {
+    "slug": "cloudinary",
+    "name": "Cloudinary"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "Move raw object storage to a media-aware platform: Cloudinary handles upload, on-the-fly transformation, CDN delivery, and AI tagging — best when you want managed media features rather than DIY processing on top of S3.",
+  "why_switch": [
+    "You want on-the-fly image and video transformations without managing a pipeline",
+    "You need built-in CDN delivery tied to media assets",
+    "You want AI tagging and auto-format/quality features out of the box",
+    "You prefer fewer moving parts than S3 + Lambda + CloudFront",
+    "You want SDK-driven uploads instead of pre-signed URL plumbing"
+  ],
+  "what_to_export": [
+    "Bucket inventory (object keys, sizes, content types)",
+    "Source files (originals) for each asset",
+    "Bucket and object metadata you rely on",
+    "Existing public URL patterns (for redirect mapping)",
+    "Lifecycle and versioning policies (for reference)",
+    "ACL/permission model (to translate to Cloudinary access controls)",
+    "Any CloudFront/CDN config tied to S3",
+    "Tag taxonomy if you classify assets"
+  ],
+  "export_method": "Use the official AWS CLI (aws s3 sync or aws s3 cp --recursive) or AWS S3 Batch Operations to enumerate and pull originals to a staging location. For very large buckets, consult the official AWS docs on S3 Inventory and Batch Operations rather than driving everything client-side.",
+  "import_method": "Upload to Cloudinary via the official upload API or SDKs (cloudinary npm, server SDKs in other languages). For bulk migration, Cloudinary documents an auto-upload/fetch URL feature that pulls remote sources on first request — check current Cloudinary docs for exact behavior, limits, and naming. Preserve your folder structure via the public_id field.",
+  "concept_mapping": [
+    {
+      "source": "Bucket",
+      "target": "Cloudinary cloud / folder",
+      "note": "Cloudinary uses a single 'cloud' per account with folders inside; consult official docs for current structure."
+    },
+    {
+      "source": "Object key",
+      "target": "public_id",
+      "note": "Set public_id on upload to preserve paths."
+    },
+    {
+      "source": "Pre-signed URL",
+      "target": "Signed delivery URL",
+      "note": "Cloudinary supports signed URLs — check docs for the current signing scheme."
+    },
+    {
+      "source": "Lambda image processing",
+      "target": "URL-based transformations",
+      "note": "Replace custom processing with Cloudinary transformation parameters in the URL."
+    },
+    {
+      "source": "CloudFront distribution",
+      "target": "Cloudinary built-in CDN",
+      "note": "Delivery is integrated; no separate CDN to manage."
+    },
+    {
+      "source": "Storage class (Standard/IA/Glacier)",
+      "target": "Cloudinary plans",
+      "note": "Cloudinary doesn't expose tiered storage classes the same way — review pricing page."
+    },
+    {
+      "source": "S3 ACLs",
+      "target": "Cloudinary access modes",
+      "note": "Public/authenticated access is plan- and setting-dependent — consult docs."
+    }
+  ],
+  "effort": "1-3 weeks for a moderate bucket (hundreds of GB, app code updates included); larger or media-heavy migrations longer.",
+  "gotchas": [
+    "Cloudinary URL transforms create lock-in — URLs become tightly coupled to the provider",
+    "Egress from S3 is billed — plan migration windows to control cost",
+    "Pricing model changes (storage + transformations + bandwidth) — model your usage on Cloudinary's official pricing page",
+    "Update all app code that built S3 URLs or used the AWS SDK",
+    "If you used S3 Versioning, replicate that policy with Cloudinary's versioning features — check current behavior",
+    "Existing public URLs need redirects until clients update"
+  ],
+  "email": {
+    "subject": "Migrating media assets from S3 to Cloudinary",
+    "body": "Hi team,\n\nWe're moving image and video assets from S3 to Cloudinary so we can drop our custom transform pipeline. Plan: inventory the bucket, bulk-upload via Cloudinary's API (preserving paths through public_id), update SDK calls, and add redirects for the old URL patterns. Expect a 1-3 week window. I'll share a checklist before kickoff.\n\nThanks"
+  }
+}

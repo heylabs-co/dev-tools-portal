@@ -1,0 +1,75 @@
+{
+  "source": {
+    "slug": "clevertap",
+    "name": "CleverTap"
+  },
+  "target": {
+    "slug": "apprise",
+    "name": "Apprise"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "Drop CleverTap's full mobile engagement suite for Apprise, a free OSS notification library — only viable if you can give up segmentation, analytics, and the dashboard.",
+  "why_switch": [
+    "Free and open source — no licensing cost",
+    "Single library covering many notification backends (push, email, chat services, etc.)",
+    "Eliminates vendor lock-in entirely",
+    "Lightweight, easy to embed in scripts and services",
+    "No data residency concerns — runs in your own infra"
+  ],
+  "what_to_export": [
+    "User identifiers and contact endpoints (push tokens, emails, phone numbers)",
+    "Subscription/opt-in state per channel",
+    "Active push templates and copy",
+    "In-app message content",
+    "Campaign trigger logic for re-implementation",
+    "Event taxonomy",
+    "Recent analytics for benchmarking post-cutover"
+  ],
+  "export_method": "Use CleverTap's REST/Data Export APIs to pull profiles, events, and subscription state; export templates and campaign definitions from the dashboard. Coordinate with CleverTap support for any bulk historical exports your plan supports. Verify push token format for each platform before disconnecting SDKs.",
+  "import_method": "Apprise is a library, not a managed service — there is no platform to import into. Add Apprise to your backend (Python is the canonical implementation; bindings/wrappers exist for other ecosystems — verify in the official repo). Configure backend URLs/credentials per channel and call Apprise from your own application logic where you previously called CleverTap. You will need to build segmentation, scheduling, and analytics yourself or pair Apprise with other tools.",
+  "concept_mapping": [
+    {
+      "source": "CleverTap user profile",
+      "target": "Application-managed contact record",
+      "note": "Apprise has no profile concept — store users in your own DB."
+    },
+    {
+      "source": "Push campaign",
+      "target": "Apprise notify() call",
+      "note": "You orchestrate timing and audience yourself."
+    },
+    {
+      "source": "In-app message",
+      "target": "Not supported",
+      "note": "Apprise targets external delivery channels; build in-app UI separately."
+    },
+    {
+      "source": "Segmentation",
+      "target": "Application-side logic",
+      "note": "Query your own DB to build recipient lists."
+    },
+    {
+      "source": "Analytics dashboard",
+      "target": "Not provided",
+      "note": "Pair with your own logging/analytics stack."
+    },
+    {
+      "source": "Templates",
+      "target": "Strings/templates in your code",
+      "note": "Use any templating library you prefer."
+    }
+  ],
+  "effort": "4-10 weeks",
+  "gotchas": [
+    "Apprise is not a CleverTap replacement on its own — you lose segmentation, analytics, dashboards, and scheduling.",
+    "In-app messaging must be rebuilt entirely; Apprise does not handle in-app UI.",
+    "You take on operational responsibility for delivery, retries, and monitoring.",
+    "Push notifications still require valid APNs/FCM credentials configured in your backend.",
+    "Confirm exact channel/backend support in the official Apprise repo — feature lists change.",
+    "Strongly consider a fuller managed alternative if you need analytics/journeys."
+  ],
+  "email": {
+    "subject": "Considering CleverTap to Apprise migration",
+    "body": "Hi team,\n\nFlagging a possible move from CleverTap to Apprise. Apprise is a free, open-source notification library — major cost savings, but it is intentionally minimal.\n\nReality check: Apprise only handles the send. We would need to rebuild segmentation, scheduling, analytics, and in-app messaging ourselves or with separate tools. This is a fit only if our needs are simple notification fan-out.\n\nEstimated effort: 4-10 weeks depending on what we rebuild. Main risks: feature loss (in-app, dashboards, journeys), operational ownership, and team learning curve.\n\nWant to discuss whether this is the right trade or whether a managed alternative makes more sense?"
+  }
+}

@@ -1,0 +1,78 @@
+{
+  "source": {
+    "slug": "nium",
+    "name": "Nium"
+  },
+  "target": {
+    "slug": "yuno",
+    "name": "Yuno"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "Moving from Nium's global payouts/issuing infrastructure to Yuno's multi-PSP checkout orchestration is less a migration than a re-platforming: the two products solve different problems, so plan an integration-side rebuild rather than a like-for-like swap.",
+  "why_switch": [
+    "Yuno is positioned as merchant-side payment orchestration with multi-PSP routing, while Nium is infrastructure for cross-border payouts/issuing",
+    "If your real need is card acceptance and routing optimization, Yuno fits better than Nium",
+    "Yuno reports lower lock-in via its orchestration abstraction layer",
+    "Single API across PSPs can simplify checkout maintenance versus stitching together Nium plus separate PSPs",
+    "May reduce engineering surface area if you currently use Nium for use cases it was not designed for"
+  ],
+  "what_to_export": [
+    "List of payment methods and PSPs currently in use",
+    "Stored customer/payer records and their payment method tokens (where portable)",
+    "Transaction history and reconciliation reports",
+    "Webhook subscriptions and event handlers",
+    "Refund/dispute history",
+    "Recurring payment / subscription mandates",
+    "API credentials inventory and rotation plan",
+    "FX and fee configuration documentation",
+    "KYC/onboarding records for end-customers (where applicable)",
+    "Reporting exports for finance/accounting"
+  ],
+  "export_method": "Use Nium's official APIs and merchant dashboard exports to pull transaction, customer, and balance data. Because Nium and Yuno serve different layers of the stack, treat the export primarily as a finance/reporting handoff rather than a data import. Coordinate with Nium account management for any bulk historical exports and confirm token portability for stored payment instruments — consult official docs for exact scopes and formats.",
+  "import_method": "Yuno is implemented as a new orchestration layer in front of your PSPs. Provision a Yuno workspace, connect the PSPs you want routed (which may or may not include Nium for payouts), and rebuild checkout against Yuno's SDKs/APIs. Historical Nium data is generally kept in your warehouse for finance, not re-imported into Yuno. Follow Yuno's official onboarding documentation for current connector and SDK options.",
+  "concept_mapping": [
+    {
+      "source": "Nium payout API",
+      "target": "(no direct equivalent)",
+      "note": "Yuno focuses on payment acceptance/orchestration, not cross-border payouts"
+    },
+    {
+      "source": "Nium issuing (cards)",
+      "target": "(no direct equivalent)",
+      "note": "Card issuing is out of Yuno's stated orchestration scope"
+    },
+    {
+      "source": "Nium collections",
+      "target": "Yuno PSP connections",
+      "note": "Collections become PSP-specific connectors configured inside Yuno"
+    },
+    {
+      "source": "Nium FX corridors",
+      "target": "Per-PSP FX handling",
+      "note": "FX is now governed by the underlying PSP rather than the orchestrator"
+    },
+    {
+      "source": "Nium customer/beneficiary records",
+      "target": "Yuno customer objects",
+      "note": "Re-create on Yuno; verify field-level mapping in Yuno docs"
+    },
+    {
+      "source": "Nium webhooks",
+      "target": "Yuno webhooks",
+      "note": "Re-subscribe and re-implement handlers per Yuno's event schema"
+    }
+  ],
+  "effort": "3-8 weeks",
+  "gotchas": [
+    "Nium and Yuno are not feature-parity products — do not assume a one-to-one swap",
+    "If you rely on Nium for payouts or card issuing, Yuno will not replace those workflows",
+    "Stored card/token portability between providers is rarely automatic; expect re-tokenization or PCI-scoped migration via your PSP",
+    "Compliance and licensing footprints differ — re-verify which entity is the regulated party for each flow",
+    "Reconciliation reports change shape; finance teams need lead time to adapt",
+    "Run the old and new stacks in parallel during cutover to catch routing or webhook regressions"
+  ],
+  "email": {
+    "subject": "Migration plan: Nium to Yuno",
+    "body": "Team,\n\nProposing we move our payments orchestration from Nium to Yuno. The two are not direct equivalents — Nium is global payouts/issuing infrastructure while Yuno is merchant-side multi-PSP orchestration — so this is more of a re-platforming than a swap.\n\nPlan:\n1. Inventory current Nium usage (payouts, issuing, collections) and identify which flows actually belong in Yuno.\n2. Export transaction, customer, and reconciliation data from Nium for finance retention.\n3. Stand up Yuno, connect required PSPs, rebuild checkout via Yuno SDKs.\n4. Run both stacks in parallel during cutover; cap traffic on Yuno gradually.\n5. Decommission Nium flows we no longer need; keep Nium for any payout/issuing flows Yuno does not cover.\n\nEstimated effort: 3-8 weeks depending on how many Nium flows we still need separately. I'll confirm specifics against Nium and Yuno official docs before we kick off.\n\nThanks"
+  }
+}

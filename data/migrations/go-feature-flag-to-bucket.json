@@ -1,0 +1,76 @@
+{
+  "source": {
+    "slug": "go-feature-flag",
+    "name": "GO Feature Flag"
+  },
+  "target": {
+    "slug": "bucket",
+    "name": "Bucket"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "GO Feature Flag is a self-hosted, OpenFeature-native flag service driven by Git/S3/HTTP-stored configs; Bucket is a managed feature-management SaaS with a hosted UI. Migration trades operational ownership for a managed product and re-creates flags, rules, and SDK wiring inside Bucket.",
+  "why_switch": [
+    "Drop the operational burden of running and scaling a self-hosted flag service",
+    "Provide a polished UI for product/PM users to toggle features",
+    "Centralize flag governance instead of managing config files in Git/S3",
+    "Reduce relay-proxy and SDK operational complexity",
+    "Get an integrated feature-management workflow out of the box"
+  ],
+  "what_to_export": [
+    "All GO Feature Flag config files (YAML/JSON)",
+    "Per-flag targeting rules and rollout strategies",
+    "Variant definitions and payloads",
+    "Environment-specific overrides",
+    "Relay proxy configuration and exporter settings",
+    "Flag descriptions, owners, and ticket references",
+    "Custom retrievers, exporters, or notifiers in use",
+    "User attribute schema used for targeting"
+  ],
+  "export_method": "GO Feature Flag stores its source of truth in flag configuration files retrieved from Git, S3, HTTP, Kubernetes, or local disk. Collect every config file across every environment — these already contain flags, variants, default rules, and rollout strategies in a portable format. Inventory the relay-proxy configuration, retriever and exporter setup, and any custom notifier or evaluator extensions so they can be migrated or retired. Snapshot all files and infra config at a known commit so you can diff against the post-migration state in Bucket and confirm flag-by-flag parity.",
+  "import_method": "Bucket does not have a native GO Feature Flag importer, so re-create flags through Bucket's UI or its API. For each GO Feature Flag entry, create a corresponding feature in Bucket with the same key, default, and variants. Translate rule expressions and rollout strategies into Bucket's segmentation and rule model — user/company attributes plus percentage rollouts. Replace the GO Feature Flag OpenFeature provider in services with Bucket's SDK, or with a Bucket OpenFeature provider where available, to keep call sites stable. Update identify calls to pass the user/company context Bucket expects. Run both systems in parallel in staging, validate each flag, then cut traffic and decommission the relay proxy and config retrievers.",
+  "concept_mapping": [
+    {
+      "source": "GO Feature Flag YAML config",
+      "target": "Bucket feature",
+      "note": "Re-create via UI/API; preserve flag keys to minimize code change"
+    },
+    {
+      "source": "Variations",
+      "target": "Bucket variations",
+      "note": "Verify typed payload parity"
+    },
+    {
+      "source": "Targeting rules / progressive rollouts",
+      "target": "Bucket segments and rules",
+      "note": "Rule semantics differ; re-test edge cases"
+    },
+    {
+      "source": "Retriever (Git/S3/HTTP/K8s)",
+      "target": "Bucket-managed config",
+      "note": "Retriever infrastructure goes away"
+    },
+    {
+      "source": "Relay proxy",
+      "target": "Bucket SDKs / edge",
+      "note": "Polyglot SDKs talk directly to Bucket"
+    },
+    {
+      "source": "Exporters (data files, Kafka, etc.)",
+      "target": "Bucket events/integrations",
+      "note": "Re-route analytics; some sinks may need bridges"
+    }
+  ],
+  "effort": "1-3 weeks",
+  "gotchas": [
+    "Self-hosted to SaaS means user data leaves your perimeter — confirm privacy and compliance constraints first",
+    "Rule expressions and progressive rollout shapes may not map 1:1; validate complex predicates carefully",
+    "High-QPS workloads on Bucket can cost materially more than the free OSS option",
+    "Local zero-latency evaluation via the relay proxy is replaced by network calls; benchmark hot paths",
+    "Custom retrievers, exporters, and notifiers have no direct SaaS equivalent and must be retired or bridged",
+    "OpenFeature compatibility depends on Bucket's provider availability; otherwise call sites change"
+  ],
+  "email": {
+    "subject": "Moving feature flags from GO Feature Flag to Bucket",
+    "body": "Hi team,\n\nWe're planning to migrate from self-hosted GO Feature Flag to Bucket, a managed feature-management platform, over the next 14 days. The motivation is less infrastructure to operate and a better UI for non-engineers.\n\nWhat changes for you:\n- Flag definitions will move out of our Git/S3 config files into the Bucket dashboard.\n- Services will swap the GO Feature Flag OpenFeature provider for Bucket's SDK (or its OpenFeature provider where available).\n- Relay proxy and config retrievers will be decommissioned after cutover.\n\nWe'll run both systems in parallel during the overlap and only retire GO Feature Flag once parity is confirmed in production. Please flag any rule, retriever, or exporter you rely on so we can verify it survives the move.\n\nThanks,\nYour customer"
+  }
+}

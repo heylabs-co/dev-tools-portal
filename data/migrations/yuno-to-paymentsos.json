@@ -1,0 +1,76 @@
+{
+  "source": {
+    "slug": "yuno",
+    "name": "Yuno"
+  },
+  "target": {
+    "slug": "paymentsos",
+    "name": "PaymentsOS"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "Yuno-to-PaymentsOS swaps a newer LatAm/global orchestrator for a battle-tested PayU-backed enterprise platform — similar concepts, but expect an enterprise sales cycle and a more legacy-feeling developer experience.",
+  "why_switch": [
+    "PaymentsOS is an established enterprise orchestrator with a long smart-routing track record",
+    "Backing by PayU offers scale and operational stability for global enterprises",
+    "Mature ops tooling and reporting suit risk-averse finance teams",
+    "If you need stable, proven multi-PSP routing over fast iteration, PaymentsOS is the conservative pick",
+    "Good PSP coverage for global enterprise needs"
+  ],
+  "what_to_export": [
+    "List of connected PSPs and routing rules in Yuno",
+    "Customer profiles and saved payment methods",
+    "Transaction history and reconciliation reports",
+    "Recurring/subscription mandates",
+    "Refund and dispute history",
+    "Webhook subscriptions and event payload examples",
+    "Checkout configuration",
+    "API key and credential inventory"
+  ],
+  "export_method": "Use Yuno's official APIs and dashboard to extract transaction history, customer data, payment methods, and configuration. Capture routing rules as documentation since they will be re-authored on PaymentsOS. For exact endpoints, scopes, and formats, consult Yuno's official documentation.",
+  "import_method": "PaymentsOS onboarding is enterprise-led — expect a sales-led setup with a solutions team. Provision your PaymentsOS environment, configure PSP connections that match your Yuno setup, and rebuild checkout against PaymentsOS's APIs. Stored card tokens are generally PSP-scoped, so coordinate portability with each underlying PSP. Follow PaymentsOS's official integration documentation for current API and SDK guidance.",
+  "concept_mapping": [
+    {
+      "source": "Yuno PSP connections",
+      "target": "PaymentsOS PSP connections",
+      "note": "Same concept, different connector catalog and config UI"
+    },
+    {
+      "source": "Yuno SDK checkout",
+      "target": "PaymentsOS APIs",
+      "note": "Re-build checkout; SDK ergonomics differ"
+    },
+    {
+      "source": "Yuno routing rules",
+      "target": "PaymentsOS smart routing",
+      "note": "Re-author rules; semantics may differ"
+    },
+    {
+      "source": "Yuno webhooks",
+      "target": "PaymentsOS webhooks",
+      "note": "Different event schema; re-subscribe and re-map"
+    },
+    {
+      "source": "Yuno customers/payments",
+      "target": "PaymentsOS customers/payments",
+      "note": "Field mapping per PaymentsOS docs"
+    },
+    {
+      "source": "Yuno reporting",
+      "target": "PaymentsOS reporting",
+      "note": "Reconciliation output formats differ"
+    }
+  ],
+  "effort": "4-10 weeks",
+  "gotchas": [
+    "PaymentsOS sales cycle is enterprise-only — factor procurement/legal lead time",
+    "Developer experience is reported to trail newer entrants; budget more integration time",
+    "PaymentsOS roadmap velocity is less visible publicly — confirm feature commitments in writing",
+    "Stored payment tokens are PSP-scoped; orchestrator swap does not port them",
+    "Reconciliation and reporting shapes change; coordinate finance early",
+    "Confirm PSP connector parity with your current Yuno set before committing"
+  ],
+  "email": {
+    "subject": "Migration plan: Yuno to PaymentsOS",
+    "body": "Team,\n\nProposing we evaluate moving from Yuno to PaymentsOS. Both are multi-PSP orchestrators, but PaymentsOS is enterprise-led and PayU-backed — appealing if we want a more conservative, proven stack, less appealing if we value modern DX and rapid iteration.\n\nPlan:\n1. Confirm enterprise procurement appetite; PaymentsOS has a sales-led cycle.\n2. Inventory Yuno PSPs, routing rules, customers, and webhooks.\n3. Stand up PaymentsOS, configure equivalent PSPs, rebuild checkout against its APIs.\n4. Run both stacks in parallel through at least one reconciliation cycle.\n5. Decommission Yuno once finance signs off.\n\nEstimated effort: 4-10 weeks including procurement. Specifics verified against PaymentsOS official docs.\n\nThanks"
+  }
+}

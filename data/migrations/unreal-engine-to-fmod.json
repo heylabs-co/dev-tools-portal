@@ -1,0 +1,76 @@
+{
+  "source": {
+    "slug": "unreal-engine",
+    "name": "Unreal Engine"
+  },
+  "target": {
+    "slug": "fmod",
+    "name": "FMOD"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "This is not an engine swap — it's adopting FMOD as the audio middleware inside Unreal, replacing Unreal's built-in audio system with FMOD's event-driven workflow.",
+  "why_switch": [
+    "FMOD's event-driven authoring is friendlier to dedicated audio designers and composers",
+    "Adaptive music and parameterised mixing are first-class in FMOD vs hand-rolling in Unreal audio",
+    "Cross-platform parity for audio behavior across Switch, mobile, console, and PC",
+    "Free for indie revenue under FMOD's published indie threshold — verify current limit in their docs",
+    "Live update during playtests speeds iteration"
+  ],
+  "what_to_export": [
+    "Master list of every sound, music cue, and ambience used in the project",
+    "Source WAV / lossless audio assets (not the cooked Unreal versions)",
+    "Mix snapshots and bus / submix structure from Unreal's audio mixer",
+    "Sound class / sound mix definitions",
+    "Cue triggers — which Blueprints / C++ classes call which sounds",
+    "Attenuation and spatialisation settings",
+    "Reverb and zone setups",
+    "Localization mapping for VO assets"
+  ],
+  "export_method": "Gather original source audio from your DAW / asset library — not the Unreal-imported assets. Document every Blueprint/C++ call site that triggers a sound (search for PlaySound, PlaySoundAtLocation, AudioComponent, etc. in the Unreal project). Export mix bus structure and attenuation settings as notes; there is no automated cross-tool migration. Consult the official Unreal Engine and FMOD documentation for current integration plugin versions.",
+  "import_method": "Install the FMOD Studio integration plugin for Unreal, build your event hierarchy in FMOD Studio, replace Unreal's audio cue calls with FMOD event posts in Blueprints/C++, and reroute spatialisation through FMOD's listener and emitter components. Keep Unreal's built-in audio for UI sounds initially if useful, then migrate fully once the FMOD pipeline is proven. Verify the integration plugin version matches your Unreal Engine version.",
+  "concept_mapping": [
+    {
+      "source": "Unreal Sound Cue / Wave",
+      "target": "FMOD Event",
+      "note": "FMOD events wrap multiple sources, parameters, and logic per cue."
+    },
+    {
+      "source": "Sound Class / Sound Mix",
+      "target": "FMOD bus / VCA / snapshot",
+      "note": "Recreate hierarchy in FMOD Studio mixer."
+    },
+    {
+      "source": "PlaySound / AudioComponent (Blueprint/C++)",
+      "target": "FMOD Event Instance Post",
+      "note": "Replace call sites; FMOD plugin exposes Blueprint nodes."
+    },
+    {
+      "source": "Attenuation Settings asset",
+      "target": "FMOD 3D event distance settings",
+      "note": "Define per event in FMOD Studio."
+    },
+    {
+      "source": "Concurrency limits",
+      "target": "FMOD max instances / stealing rules",
+      "note": "Set in event properties."
+    },
+    {
+      "source": "Reverb Volume",
+      "target": "FMOD snapshot / reverb send",
+      "note": "Drive via parameter from gameplay state."
+    }
+  ],
+  "effort": "2-8 weeks",
+  "gotchas": [
+    "Confirm the FMOD Studio Unreal integration version supports your engine version before committing",
+    "Audio designers need FMOD Studio installed and trained — schedule ramp-up time",
+    "Indie pricing thresholds change — verify current limits in FMOD's official pricing page",
+    "Live update / network profiling requires consistent build setup across team machines",
+    "Plan a parallel period where built-in audio still works for UI while events migrate",
+    "Final mix needs full re-validation; QA passes are non-trivial"
+  ],
+  "email": {
+    "subject": "Adopting FMOD for audio in our Unreal project",
+    "body": "Hi team,\n\nProposal: replace Unreal's built-in audio with FMOD as our audio middleware. To be clear, this is not an engine change — Unreal stays — we're swapping the audio layer.\n\nWhy: FMOD gives our composers/sound designers an event-driven authoring tool, faster iteration via live update, and consistent cross-platform behavior. Pricing remains friendly at our revenue scale (we'll re-confirm against FMOD's current published terms).\n\nPlan:\n1) Install the FMOD Studio integration plugin matching our Unreal version.\n2) Inventory every sound, mix bus, attenuation, and call site in the project.\n3) Build the event hierarchy in FMOD Studio.\n4) Replace audio calls in Blueprints/C++ in vertical slices, validating each.\n5) Migrate the final mix and decommission built-in audio paths.\n\nEstimated effort: 2-8 weeks depending on cue count. I'll send a more detailed runbook before we start.\n\nThanks,"
+  }
+}

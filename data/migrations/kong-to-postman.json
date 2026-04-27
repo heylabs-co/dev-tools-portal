@@ -1,0 +1,70 @@
+{
+  "source": {
+    "slug": "kong",
+    "name": "Kong"
+  },
+  "target": {
+    "slug": "postman",
+    "name": "Postman"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "Kong (an API gateway) and Postman (an API development and testing platform) solve different problems, so this is not a drop-in migration — most teams keep an API gateway and use Postman alongside it rather than replacing one with the other.",
+  "why_switch": [
+    "Team is shifting focus from runtime API gateway concerns to API design, testing, and documentation",
+    "Want collaborative collections, mock servers, and schema-driven workflows",
+    "Need shared workspaces for API contracts rather than self-hosted gateway config",
+    "Looking to consolidate API testing and documentation into one tool",
+    "Replacing in-house gateway operations with managed SaaS for API lifecycle"
+  ],
+  "what_to_export": [
+    "Kong service and route definitions (declarative config / decK YAML if used)",
+    "Plugin configurations (auth, rate limiting, transformations)",
+    "Consumer and credential records",
+    "Custom plugins or Lua scripts",
+    "OpenAPI/Swagger specs for your services",
+    "Existing test scripts or curl collections",
+    "Environment-specific variables and secrets references",
+    "Logs and metrics dashboards tied to Kong"
+  ],
+  "export_method": "Kong's open-source core supports declarative config export, commonly via the decK CLI which can dump current state to YAML. Keep OpenAPI specs under version control. Postman does not consume Kong config directly, so the export step is mostly about preserving your gateway configuration so it can stay running while you adopt Postman for API design and testing. Consult Kong's official docs for the exact export commands for your version.",
+  "import_method": "In Postman, create a workspace and import OpenAPI specs to generate collections, then build environments and tests around them. Existing curl-based or Newman test runs can be ported into Postman collections. Verify the current OpenAPI import behavior and collaboration features in Postman's official docs.",
+  "concept_mapping": [
+    {
+      "source": "Kong services / routes",
+      "target": "Postman collections / requests",
+      "note": "Different layer: gateway config vs. client-side requests"
+    },
+    {
+      "source": "OpenAPI specs behind Kong",
+      "target": "Postman API definitions",
+      "note": "Imports cleanly via OpenAPI; check current Postman support"
+    },
+    {
+      "source": "Kong consumers / credentials",
+      "target": "Postman environments / auth helpers",
+      "note": "Auth is configured per request/environment in Postman"
+    },
+    {
+      "source": "Kong plugins (rate limit, auth)",
+      "target": "Stays in gateway",
+      "note": "Postman does not replace runtime gateway features"
+    },
+    {
+      "source": "Newman / curl tests",
+      "target": "Postman collections + Collection Runner",
+      "note": "Verify scripting compatibility in Postman docs"
+    }
+  ],
+  "effort": "3-10 hours",
+  "gotchas": [
+    "Postman is not an API gateway — do not turn off Kong assuming Postman replaces it",
+    "Plugin behavior (auth, rate limiting) has no Postman equivalent at runtime",
+    "Postman pricing scales per user; large teams should model seat costs",
+    "Mock servers and monitors in Postman have their own usage limits — check current plans",
+    "Treat this as 'add Postman' rather than 'remove Kong' unless the underlying gateway need is also going away"
+  ],
+  "email": {
+    "subject": "Adopting Postman for API design and testing alongside Kong",
+    "body": "Hi team,\n\nWe are bringing Postman in to standardize our API design, testing, and documentation work. Kong continues to handle runtime gateway concerns — this is not a replacement.\n\nNext steps: import our OpenAPI specs into Postman workspaces, port existing test scripts into collections, and align everyone on shared environments. Please share any custom test runs you have so we can fold them in.\n\nThanks!"
+  }
+}

@@ -1,0 +1,76 @@
+{
+  "source": {
+    "slug": "prove",
+    "name": "Prove"
+  },
+  "target": {
+    "slug": "didit",
+    "name": "Didit"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "Move from Prove's phone-centric US identity stack to Didit's document + biometric KYC API with a free tier and public pricing.",
+  "why_switch": [
+    "Public, predictable pricing with a free tier vs. Prove's contact-sales model",
+    "Document scan, NFC chip read and selfie biometrics for global coverage, not just US carrier data",
+    "Less dependence on US phone-number signals for non-US users",
+    "Faster self-serve onboarding without enterprise procurement",
+    "Lower transparency lock-in (clearer plan tiers and exits)"
+  ],
+  "what_to_export": [
+    "Verification records (status, timestamps, decision reasons)",
+    "Identity attributes you store server-side (name, DOB, address, document IDs)",
+    "Phone-possession and Pre-Fill audit logs you rely on for compliance",
+    "Webhook payload history for reconciliation",
+    "User-to-verification mapping table",
+    "Risk/decision rules and thresholds documented in plain text",
+    "PII retention and deletion records for regulators",
+    "Any custom workflow configurations defined in the Prove dashboard"
+  ],
+  "export_method": "Use Prove's account-management or support channel to request a structured export of verification records and audit logs; in parallel, capture data you already store from webhook events into your own database. Treat your internal store as the system of record before cutting over. Consult Prove's official documentation and your contract for exact export endpoints and retention obligations.",
+  "import_method": "Stand up Didit alongside Prove using its hosted verification flow and API. Run new sign-ups through Didit while letting existing users continue under Prove until re-verification is needed or naturally expires. Map your internal user IDs to Didit session IDs and store decision payloads from webhooks. Consult Didit's official docs for current endpoint paths and SDK setup.",
+  "concept_mapping": [
+    {
+      "source": "Prove Pre-Fill (phone-driven autofill)",
+      "target": "Document scan + selfie capture",
+      "note": "Different input model — collect identity from the document, not the carrier"
+    },
+    {
+      "source": "Phone possession check",
+      "target": "Liveness / biometric match",
+      "note": "Possession proof shifts from SIM to device + face"
+    },
+    {
+      "source": "SIM swap signal",
+      "target": "Not a 1:1 equivalent",
+      "note": "Compensate with device fingerprinting or a separate fraud signal vendor"
+    },
+    {
+      "source": "Verification record",
+      "target": "Verification session",
+      "note": "Both expose status + decision; field names differ"
+    },
+    {
+      "source": "Webhook event",
+      "target": "Webhook event",
+      "note": "Rebuild handlers against Didit's payload schema"
+    },
+    {
+      "source": "Custom decision rules",
+      "target": "Plan-level configuration",
+      "note": "Re-express thresholds in Didit's dashboard"
+    }
+  ],
+  "effort": "2-6 weeks",
+  "gotchas": [
+    "Phone-possession and SIM-swap signals do not have a direct equivalent — plan a compensating control",
+    "Re-verifying the entire user base is usually unnecessary; prefer forward-only cutover",
+    "Regulatory retention rules may force you to keep Prove records read-only for years",
+    "Webhook secrets, IP allowlists and signature schemes differ — re-test end-to-end",
+    "Free tier limits can change; validate volume against current published pricing",
+    "Confirm regional data residency matches your compliance posture before go-live"
+  ],
+  "email": {
+    "subject": "Notice of non-renewal — Prove",
+    "body": "Hello Prove team,\n\nWe are migrating our identity verification stack to a different provider and will not be renewing our current Prove agreement at the end of the term.\n\nPlease confirm: (1) the effective end date and any wind-down steps, (2) the process to export our verification records and audit logs, and (3) data deletion timelines and certifications once the contract ends.\n\nThanks for the partnership.\n\nBest regards,"
+  }
+}

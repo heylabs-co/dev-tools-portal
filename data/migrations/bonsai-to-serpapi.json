@@ -1,0 +1,81 @@
+{
+  "source": {
+    "slug": "bonsai",
+    "name": "Bonsai"
+  },
+  "target": {
+    "slug": "serpapi",
+    "name": "SerpApi"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "Bonsai is managed Elasticsearch/OpenSearch hosting; SerpApi is a hosted search-engine results (SERP) scraping API for Google, Bing, etc. They are not drop-in replacements. Migrate only if your real need is third-party SERP data rather than indexing your own content. Otherwise pick a different target (e.g. Algolia, Typesense, Meilisearch, OpenSearch Service).",
+  "why_switch": [
+    "Need live Google/Bing/Yahoo/DuckDuckGo result data instead of indexing your own corpus",
+    "Want to drop the ops cost of running and tuning Elasticsearch indexes",
+    "Use case is SEO monitoring, rank tracking, or competitive research rather than site search",
+    "Prefer a pure usage-based REST API with no cluster sizing, shards, or backups to manage",
+    "Bonsai costs scale faster than expected once free-tier limits are hit"
+  ],
+  "what_to_export": [
+    "List of indexes and their mappings (field types, analyzers)",
+    "Index settings (shards, replicas, custom analyzers, synonyms)",
+    "Documents (full JSON dump per index)",
+    "Saved query templates and search application configs",
+    "Ingest pipelines and any scripted fields",
+    "API keys, role mappings, and IP allowlists",
+    "Snapshot repository configuration",
+    "Dashboards/visualizations if Kibana/OpenSearch Dashboards is used"
+  ],
+  "export_method": "Use Elasticsearch/OpenSearch native APIs against your Bonsai cluster URL: GET /_mapping and GET /_settings for schema, the snapshot API or elasticdump for documents, and copy auth/network config from the Bonsai dashboard. Bonsai provides standard ES-compatible endpoints, so any ES client works.",
+  "import_method": "SerpApi has no index to import into — it queries external search engines on demand. 'Migration' means rewriting your application code: replace Elasticsearch queries with SerpApi HTTP calls (engine, q, location, and other params per the SerpApi docs) and parse the structured JSON response. If you still need to search your own content, stand up a separate index (OpenSearch, Algolia, Typesense, Meilisearch) and only use SerpApi for external SERP data.",
+  "concept_mapping": [
+    {
+      "source": "Index",
+      "target": "Engine (google, bing, yahoo, etc.)",
+      "note": "Bonsai indexes hold your data; SerpApi engines target a public search engine"
+    },
+    {
+      "source": "Document",
+      "target": "Organic result item in JSON response",
+      "note": "You do not own the documents on SerpApi"
+    },
+    {
+      "source": "Query DSL (match, bool, filter)",
+      "target": "Query string params (q, location, hl, gl, num)",
+      "note": "No DSL — relevance is controlled by the upstream engine"
+    },
+    {
+      "source": "Mapping / analyzers",
+      "target": "Not applicable",
+      "note": "No schema; results are whatever the SERP returns"
+    },
+    {
+      "source": "Cluster sizing / shards",
+      "target": "Plan / monthly searches quota",
+      "note": "Capacity is measured in API calls, not nodes"
+    },
+    {
+      "source": "API key (per cluster)",
+      "target": "API key (per account)",
+      "note": "Single account-level key for all engines"
+    },
+    {
+      "source": "Snapshots / backups",
+      "target": "Cache / archive of past responses",
+      "note": "You must persist responses yourself if you need history"
+    }
+  ],
+  "effort": "1-3 weeks if the use case truly is SERP data; otherwise treat as a re-architecture and budget 4-8+ weeks because you also need a new search backend.",
+  "gotchas": [
+    "SerpApi is not a search index — you cannot store or search your own documents on it",
+    "Pricing is per successful API call; bursty traffic can spike costs unlike Bonsai's flat tiers",
+    "Result schemas differ per engine (google vs bing vs yahoo) — write engine-specific parsers",
+    "Rate limits and concurrent-request limits depend on plan; build retry/backoff",
+    "SERP results change constantly; cache responses if you need stable data for tests or analytics",
+    "Legal/compliance: confirm you may store and redistribute scraped SERP content for your use case"
+  ],
+  "email": {
+    "subject": "Moving off Bonsai — checking if SerpApi fits",
+    "body": "Hi team,\n\nWe're evaluating leaving Bonsai (managed Elasticsearch). Before we commit to SerpApi, I want to flag that the two products solve different problems: Bonsai indexes our own content, SerpApi returns live results from Google/Bing/etc. If our real need is searching internal data, SerpApi alone won't replace Bonsai and we should also pick an indexed-search target (Algolia, Typesense, Meilisearch, or self-hosted OpenSearch).\n\nProposed steps:\n1. Snapshot all Bonsai indexes (mappings, settings, documents) via the standard ES APIs.\n2. Classify each query: 'our data' vs 'public SERP data'.\n3. Move public-SERP queries to SerpApi; route internal-search queries to a new indexed backend.\n4. Run both stacks in parallel for one billing cycle, then cut over and decommission Bonsai.\n\nLet me know if you want me to scope option B (single indexed-search target) instead.\n\nThanks"
+  }
+}

@@ -1,0 +1,75 @@
+{
+  "source": {
+    "slug": "tkc",
+    "name": "TKC"
+  },
+  "target": {
+    "slug": "fonoa",
+    "name": "Fonoa"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "Move from TKC's Japan-centric CPA/ERP tax stack to Fonoa's API-first global VAT/GST and e-invoicing platform when expanding beyond Japan.",
+  "why_switch": [
+    "Need multi-country VAT/GST coverage instead of Japan-only e-tax filing",
+    "Want a modern REST API and developer-friendly docs over a CPA-driven workflow",
+    "Looking for real-time tax determination and invoice validation across jurisdictions",
+    "Prefer subscription pricing transparency over fully custom enterprise contracts",
+    "Reducing reliance on a JP-specific ERP for an internationally-selling SaaS"
+  ],
+  "what_to_export": [
+    "Customer master records (legal name, address, tax ID/VAT number)",
+    "Product/service catalog with current tax codes and rates",
+    "Historical invoices and credit notes (for archival/audit)",
+    "Tax registration list per country/jurisdiction",
+    "Exemption certificates and B2B/B2C classification flags",
+    "Filing/return history relevant to JP e-tax submissions",
+    "Mappings between TKC accounting codes and chart of accounts",
+    "Open AR balances and reconciliation data"
+  ],
+  "export_method": "TKC is a Japan-focused CPA/ERP suite without a documented public self-serve export API outside its certified e-tax pipelines. Plan to extract data via your accounting firm's TKC console or scheduled CSV/database exports arranged with TKC support, and consult official TKC documentation or your CPA partner for the exact procedure on your edition. Treat invoice archives as immutable and keep a verifiable copy for JP tax retention rules.",
+  "import_method": "On the Fonoa side, use the official Fonoa documentation to onboard: register your tenant, configure your tax registrations, and upload customer/product reference data through whatever ingestion mechanism Fonoa exposes for your plan. Wire your billing/checkout system to Fonoa's tax determination and e-invoicing endpoints as documented in their developer portal, and run parallel calculations against historical invoices to validate parity before cutover.",
+  "concept_mapping": [
+    {
+      "source": "TKC certified JP e-tax filing",
+      "target": "Fonoa e-invoicing/compliance flows",
+      "note": "Coverage and certification differ per country — confirm JP support specifics in Fonoa's docs"
+    },
+    {
+      "source": "TKC accounting/ERP modules",
+      "target": "External ERP/billing + Fonoa as tax layer",
+      "note": "Fonoa is a tax API, not a full ERP; you keep accounting elsewhere"
+    },
+    {
+      "source": "CPA-driven manual filing workflows",
+      "target": "API-driven automation with human review",
+      "note": "Reassign reviewer roles around new automation"
+    },
+    {
+      "source": "Custom JP pricing contract",
+      "target": "Subscription tiers",
+      "note": "Confirm current entry tier and overages on Fonoa pricing page"
+    },
+    {
+      "source": "JP-specific tax codes",
+      "target": "Fonoa tax codes/categories",
+      "note": "Build a mapping table; do not assume 1:1"
+    },
+    {
+      "source": "Local file/CSV exports",
+      "target": "REST API ingestion",
+      "note": "Expect a transformation step in the middle"
+    }
+  ],
+  "effort": "3-8 weeks",
+  "gotchas": [
+    "JP e-tax certification and retention requirements may still need a local solution alongside Fonoa — verify in official docs",
+    "Country coverage is not universal; check whether every market you need is supported before signing",
+    "Tax-code mapping is the most error-prone step — run shadow calculations before cutover",
+    "Historical invoice immutability: keep original TKC archives for the full statutory retention window",
+    "Operational handoff from CPA-led process to engineering-led automation requires new ownership and runbooks"
+  ],
+  "email": {
+    "subject": "Migrating from TKC to Fonoa — plan and asks",
+    "body": "Hi team,\n\nWe're scoping a move from TKC to Fonoa for tax automation as we expand beyond Japan. TKC stays great for JP CPA workflows, but we need a modern multi-country VAT/GST and e-invoicing API.\n\nPlan:\n1. Export customers, products, tax registrations, exemption flags, and historical invoices from TKC (via our CPA/TKC support).\n2. Stand up a Fonoa tenant per their official docs, configure registrations, and load reference data.\n3. Run shadow tax calculations against historical invoices to confirm parity.\n4. Cut over checkout/billing to Fonoa endpoints, keep JP e-tax filing path intact until we confirm Fonoa coverage.\n\nAsks: confirm retention requirements with our CPA, and assign an engineering owner for the integration. Estimated effort 3-8 weeks.\n\nThanks"
+  }
+}

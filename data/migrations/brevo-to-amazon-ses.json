@@ -1,0 +1,81 @@
+{
+  "source": {
+    "slug": "brevo",
+    "name": "Brevo"
+  },
+  "target": {
+    "slug": "amazon-ses",
+    "name": "Amazon SES"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "Move transactional email from Brevo to Amazon SES for lower per-message cost and tighter integration with an existing AWS footprint, accepting that you give up Brevo's marketing/CRM tooling.",
+  "why_switch": [
+    "SES per-message pricing is typically lower at higher transactional volumes",
+    "Native fit with AWS IAM, CloudWatch, SNS, and Lambda",
+    "SMTP-compatible, reducing app-side changes",
+    "Strong deliverability infrastructure when DNS is configured correctly"
+  ],
+  "what_to_export": [
+    "Verified senders and authenticated domains in Brevo",
+    "DKIM/SPF/DMARC DNS records currently set for Brevo",
+    "Transactional email templates",
+    "Marketing lists, segments, and contact attributes",
+    "Suppression / unsubscribe list",
+    "Webhook configurations for delivery, bounce, open, click",
+    "API keys and the code paths that call them",
+    "Bounce and complaint history",
+    "Automation workflows (note these have no SES equivalent)"
+  ],
+  "export_method": "Use Brevo's official APIs/dashboards to export contacts, templates, and suppression lists, and capture your current DNS records. Consult the Brevo documentation for the up-to-date export endpoints and limits. Download enough event history to satisfy any audit or deliverability needs.",
+  "import_method": "In AWS, verify your sending domain in SES and publish the SES-issued DKIM CNAMEs alongside your existing SPF/DMARC. Import the suppression list via the SES account-level suppression API, re-create templates using SES template syntax, and configure event publishing through a configuration set into SNS, CloudWatch, or Firehose. Request a sending limit increase before cutover and warm up traffic gradually. Refer to the official Amazon SES documentation for current commands and limits.",
+  "concept_mapping": [
+    {
+      "source": "Verified sender / domain",
+      "target": "SES verified identity",
+      "note": "Re-verify; new DKIM CNAMEs"
+    },
+    {
+      "source": "Transactional template",
+      "target": "SES email template",
+      "note": "Templating syntax differs; re-author"
+    },
+    {
+      "source": "Suppression list",
+      "target": "SES account-level suppression list",
+      "note": "Import via SES API"
+    },
+    {
+      "source": "Webhook",
+      "target": "Configuration set + SNS/CloudWatch destination",
+      "note": "Bounce/complaint events flow through SNS"
+    },
+    {
+      "source": "API key",
+      "target": "IAM user + access key (or SMTP credentials)",
+      "note": "Scope IAM policy to SES actions only"
+    },
+    {
+      "source": "Marketing automation / CRM",
+      "target": "n/a",
+      "note": "SES is delivery only — replace with another tool if needed"
+    },
+    {
+      "source": "Contacts and segments",
+      "target": "Your own datastore",
+      "note": "SES does not store contact lists"
+    }
+  ],
+  "effort": "2-5 days",
+  "gotchas": [
+    "SES starts in sandbox mode — request production access early",
+    "SES is delivery-only: marketing automations, segments, and CRM features in Brevo have no built-in equivalent",
+    "Reputation and IP warm-up are required; do not switch all traffic at once",
+    "DKIM keys must be regenerated and re-published — keep both vendors live during transition",
+    "Bounce and complaint handling logic must be rewritten against SES's SNS payloads",
+    "Confirm SES regional availability matches your compliance requirements"
+  ],
+  "email": {
+    "subject": "Migrating from Brevo to Amazon SES",
+    "body": "Hi team,\n\nWe're planning to move transactional email from Brevo to Amazon SES to reduce per-message cost and tighten integration with our AWS stack.\n\nScope: transactional sending only. We'll need a separate plan for any marketing automations and CRM features currently living in Brevo, since SES does not cover those.\n\nSteps: verify the domain in SES, publish DKIM/SPF/DMARC, import templates and the suppression list, wire up SNS-based bounce/complaint handling, request a sending limit increase, and warm up traffic gradually while running both providers in parallel.\n\nEstimated effort: 2-5 days plus warm-up. I'll circulate a runbook before we start.\n\nThanks"
+  }
+}

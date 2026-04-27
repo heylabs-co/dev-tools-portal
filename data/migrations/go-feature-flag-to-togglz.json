@@ -1,0 +1,75 @@
+{
+  "source": {
+    "slug": "go-feature-flag",
+    "name": "GO Feature Flag"
+  },
+  "target": {
+    "slug": "togglz",
+    "name": "Togglz"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "Move from a polyglot, OpenFeature-native flag service to a Java-only, enum-based in-process toggle library scoped to one JVM app.",
+  "why_switch": [
+    "You consolidated on a single Java/Spring Boot stack and no longer need 15+ language SDKs",
+    "You prefer type-safe flag definitions via Java enums over string keys",
+    "You want to drop the relay-proxy operational footprint and run flags in-process",
+    "You value a long-standing, conservative library with a stable Apache 2.0 license",
+    "Your team prefers a built-in admin console over Git/S3/HTTP-backed config files"
+  ],
+  "what_to_export": [
+    "Flag keys and their default values",
+    "Targeting/rule definitions (segments, percentages, attribute matches)",
+    "Variant definitions for any multivariate flags",
+    "Per-environment overrides (dev/staging/prod)",
+    "Rollout percentage configuration",
+    "User segment / cohort definitions",
+    "Audit history of flag changes (if retained)",
+    "Any custom evaluation logic or conditions"
+  ],
+  "export_method": "GO Feature Flag stores flag definitions as YAML/JSON in Git, S3, or an HTTP endpoint. Pull the current configuration file directly from your retriever and treat it as the source of truth. If you use the relay proxy, capture the same source file rather than scraping the proxy. Consult the official GO Feature Flag documentation for the exact retriever in use.",
+  "import_method": "Add the Togglz dependency to your Java/Spring Boot project, define flags as values of a Java enum implementing Togglz's Feature interface, and choose a state repository (in-memory, JDBC, Redis, etc.). Recreate each flag by mapping its key to an enum constant and porting activation strategies via Togglz's strategy parameters. Verify behavior locally, then enable the Togglz admin console for runtime flips. Refer to the official Togglz documentation for current setup steps.",
+  "concept_mapping": [
+    {
+      "source": "Flag key (string)",
+      "target": "Java enum constant",
+      "note": "Togglz is type-safe; rename keys to valid Java identifiers if needed"
+    },
+    {
+      "source": "Targeting rules",
+      "target": "ActivationStrategy",
+      "note": "Map percentage/user/attribute rules to built-in or custom strategies"
+    },
+    {
+      "source": "Variants",
+      "target": "Not first-class",
+      "note": "Togglz is primarily on/off; emulate variants in app code or pick another tool"
+    },
+    {
+      "source": "YAML/JSON in Git/S3",
+      "target": "StateRepository (JDBC/Redis/file)",
+      "note": "Pick a backend that fits your ops model"
+    },
+    {
+      "source": "Relay proxy SDKs (polyglot)",
+      "target": "JVM library only",
+      "note": "Non-Java services lose flag access — keep them on a separate solution"
+    },
+    {
+      "source": "OpenFeature provider",
+      "target": "Direct Togglz API",
+      "note": "If you need OpenFeature, check whether a community provider exists"
+    }
+  ],
+  "effort": "1-3 days",
+  "gotchas": [
+    "Togglz is Java/JVM only — any non-JVM service must be migrated separately or kept on GO Feature Flag",
+    "Multivariate/JSON flags are not a first-class Togglz concept; plan a workaround before cutover",
+    "Togglz releases are infrequent; verify the current version supports your Spring Boot baseline",
+    "Admin-console authentication must be configured before exposing it in production",
+    "Audit trails differ between the two — export historical change logs before decommissioning"
+  ],
+  "email": {
+    "subject": "Migrating from GO Feature Flag to Togglz",
+    "body": "Hi team,\n\nWe're planning to move our feature flags from GO Feature Flag to Togglz now that the stack is Java/Spring-only. Togglz gives us type-safe enum flags, a built-in admin console, and removes the relay-proxy from our infra.\n\nMigration sketch:\n1. Export current flag definitions from our GO Feature Flag retriever (Git/S3 file).\n2. Recreate each flag as a Togglz enum constant with the appropriate ActivationStrategy.\n3. Pick a StateRepository (JDBC is the likely default) and wire the admin console.\n4. Run both side-by-side in staging, then cut over per service.\n\nMultivariate flags will need a workaround since Togglz is on/off-first. Effort estimate: 1-3 days. Happy to walk through the plan."
+  }
+}

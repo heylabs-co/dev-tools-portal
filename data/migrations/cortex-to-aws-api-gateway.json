@@ -1,0 +1,76 @@
+{
+  "source": {
+    "slug": "cortex",
+    "name": "Cortex"
+  },
+  "target": {
+    "slug": "aws-api-gateway",
+    "name": "AWS API Gateway"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Cortex is a proprietary internal developer portal centered on service catalog and scorecards, while AWS API Gateway is a managed runtime for publishing APIs. A migration in this direction usually replaces only the API-publishing surface that Cortex documents, not the catalog itself.",
+  "why_switch": [
+    "Eliminate per-seat IDP cost for teams that mainly need API hosting",
+    "Move from contact-sales pricing to public AWS pricing",
+    "Use a managed AWS-native API runtime with IAM and CloudWatch",
+    "Reduce dependency on a single proprietary IDP vendor",
+    "Standardize on infrastructure as code for API definitions"
+  ],
+  "what_to_export": [
+    "Service catalog entities and metadata via the Cortex API",
+    "API definitions and OpenAPI specs attached to each service",
+    "Scorecards, rules, and exemptions per service",
+    "On-call, ownership, and team mappings",
+    "Integrations and credentials configured in Cortex",
+    "Custom dashboards and saved queries",
+    "Audit log of recent changes for reference",
+    "Documentation and links stored in Cortex"
+  ],
+  "export_method": "Use the Cortex API or admin export tooling to pull the full service catalog as JSON or YAML. For each service, capture metadata, ownership, on-call references, and any attached OpenAPI documents. Save scorecard definitions, rules, and current scores so you can reproduce the model elsewhere if you keep an IDP later. Generic if uncertain: Cortex stores structured records, so a paginated GET against the catalog endpoints plus a snapshot of scorecard configs is sufficient. Store everything in Git so it is versioned and reviewable. Capture integration settings (Slack, Jira, cloud accounts) as documentation rather than as live credentials. Avoid screen-scraping the UI — prefer the official API or terraform provider if available. Keep the existing Cortex tenant read-only during migration so on-call references stay correct.",
+  "import_method": "In AWS API Gateway, create an HTTP or REST API per OpenAPI document exported from Cortex. Import via the AWS CLI, CloudFormation, Terraform, or CDK so the configuration lives in code. Map each route to its backend (Lambda, ALB, VPC link, or HTTP endpoint), and define stages for dev, staging, and prod. Configure authorizers (IAM, Cognito, JWT, or Lambda) based on the auth notes captured during export. Apply throttling and usage plans where Cortex previously documented expected traffic. Recreate ownership and on-call data in your incident system rather than in API Gateway, since API Gateway has no native catalog. If you still need a portal layer, point an open-source IDP or simple internal site at the new API Gateway resources. Validate by replaying representative requests through the new endpoints before changing DNS or client configuration.",
+  "concept_mapping": [
+    {
+      "source": "Service entity",
+      "target": "API Gateway API + tags",
+      "note": "API Gateway is not a catalog; metadata moves to tags or an external store"
+    },
+    {
+      "source": "API spec",
+      "target": "Imported REST/HTTP API",
+      "note": "OpenAPI import supported"
+    },
+    {
+      "source": "Scorecard",
+      "target": "External tool (custom dashboard, IDP)",
+      "note": "No equivalent in API Gateway"
+    },
+    {
+      "source": "On-call mapping",
+      "target": "PagerDuty/Opsgenie config",
+      "note": "Rebuild outside API Gateway"
+    },
+    {
+      "source": "Integration",
+      "target": "AWS service or external SaaS",
+      "note": "Recreate per integration"
+    },
+    {
+      "source": "Per-seat plan",
+      "target": "Per-request AWS pricing",
+      "note": "Different cost shape"
+    }
+  ],
+  "effort": "2-6 weeks",
+  "gotchas": [
+    "API Gateway does not replace the IDP layer — scorecards, ownership, and catalog views need a separate solution if you still want them.",
+    "Cortex API rate limits can slow large exports; paginate and resume rather than running one giant pull.",
+    "AWS-only deployment trades vendor lock-in from Cortex for cloud lock-in to AWS.",
+    "Per-request pricing can spike under noisy traffic; configure throttling and usage plans early.",
+    "OpenAPI documents stored in Cortex may be out of date relative to actual code — validate against running services before importing.",
+    "Authorizer setup is easy to misconfigure; test auth flows in a non-prod stage before wiring DNS."
+  ],
+  "email": {
+    "subject": "Plan: replacing Cortex-managed APIs with AWS API Gateway",
+    "body": "Hi team,\n\nOver the next 14 days we are moving the APIs currently documented in Cortex onto AWS API Gateway. The driver is cost predictability, fewer proprietary integrations, and a managed AWS-native runtime.\n\nPlan:\n\n- Days 1 to 4: export the Cortex catalog, OpenAPI specs, and scorecards into Git.\n- Days 5 to 9: provision matching APIs, stages, and authorizers in API Gateway via Terraform.\n- Days 10 to 12: dual-run, replay key traffic, and validate authn and quotas.\n- Days 13 to 14: switch DNS, monitor CloudWatch, and freeze old endpoints.\n\nCortex itself will remain read-only for at least 30 days so historical scorecards and ownership info are still accessible. If a specific service, scorecard, or integration matters for your team, reply with the name and we will confirm coverage.\n\nThanks,\nYour customer"
+  }
+}

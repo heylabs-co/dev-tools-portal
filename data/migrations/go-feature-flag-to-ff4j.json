@@ -1,0 +1,76 @@
+{
+  "source": {
+    "slug": "go-feature-flag",
+    "name": "GO Feature Flag"
+  },
+  "target": {
+    "slug": "ff4j",
+    "name": "FF4J"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "GO Feature Flag is a polyglot, OpenFeature-native self-hosted flag service; FF4J is a Java/Spring in-process toggle library with many database backends. Migration narrows scope to the JVM, replaces a relay-proxy architecture with embedded flag evaluation, and re-creates flags inside FF4J's storage backend.",
+  "why_switch": [
+    "Tighter Spring Boot integration with starter, REST API, and web console",
+    "Built-in audit trail of flag changes useful for compliance reviews",
+    "20+ database backends for flag persistence reuse existing infra",
+    "Eliminate the relay-proxy hop for Java services that don't need polyglot",
+    "In-process evaluation removes a network dependency"
+  ],
+  "what_to_export": [
+    "All GO Feature Flag YAML/JSON config files",
+    "Per-flag targeting rules and rollout strategies",
+    "Variant payloads and default values",
+    "Environment-specific overrides",
+    "Flag descriptions, owners, and ticket references",
+    "User attribute schema used in targeting",
+    "Relay proxy and retriever configuration to retire",
+    "Custom exporters/notifiers to replicate or drop"
+  ],
+  "export_method": "GO Feature Flag's source of truth is its config files loaded via Git, S3, HTTP, Kubernetes, or local disk. Collect every config across every environment — these files already encode flags, variants, defaults, and rollout strategies. Inventory relay-proxy configuration, retrievers, exporters, and any custom evaluator or notifier code so you can decide whether to migrate, replicate, or retire each piece. Snapshot the bundle at a known commit so you can diff against the FF4J state after migration and verify parity flag-by-flag.",
+  "import_method": "FF4J has no native importer for GO Feature Flag configs. Pick an FF4J store (JDBC, Redis, MongoDB, in-memory, etc.) and bootstrap it via the Spring Boot starter or a programmatic FF4j builder. For each GO Feature Flag entry, create a Feature in FF4J with the same key, description, and default state, then attach FlippingStrategy implementations to express targeting and rollout (e.g. PonderationStrategy for percentages, ExpressionFlipStrategy for boolean expressions, custom strategies for user-attribute matching). Map user context via FF4J's FlippingExecutionContext on each evaluation. Replace GO Feature Flag SDK calls with ff4j.check(...) at call sites; for non-Java services that previously used the relay proxy, decide whether to keep them on a thin FF4J-backed REST endpoint or move them to a different solution. Mount the FF4J web console behind authentication and verify each flag in staging before cutover.",
+  "concept_mapping": [
+    {
+      "source": "YAML config flag",
+      "target": "FF4J Feature in chosen store",
+      "note": "Re-create via console, REST API, or seed migration"
+    },
+    {
+      "source": "Variations",
+      "target": "Boolean Feature + custom strategy",
+      "note": "FF4J is boolean-first; multi-variant requires custom logic or property attachments"
+    },
+    {
+      "source": "Targeting rules",
+      "target": "FlippingStrategy (Ponderation/Expression/custom)",
+      "note": "Re-implement complex rules as Java strategies"
+    },
+    {
+      "source": "Retriever (Git/S3/HTTP/K8s)",
+      "target": "FF4J store backend",
+      "note": "Persistence model is fundamentally different"
+    },
+    {
+      "source": "Relay proxy + polyglot SDKs",
+      "target": "FF4J REST API",
+      "note": "Non-Java consumers must call REST or move off FF4J"
+    },
+    {
+      "source": "OpenFeature provider",
+      "target": "FF4J client API",
+      "note": "Call sites change unless you wrap FF4J behind your own provider"
+    }
+  ],
+  "effort": "2-4 weeks",
+  "gotchas": [
+    "FF4J is JVM-only; non-Java services lose first-class SDKs and must use the REST API or migrate elsewhere",
+    "Multi-variant flags don't map cleanly to FF4J's boolean-first model and may need custom strategies",
+    "Targeting rule semantics differ; re-test edge cases rather than assuming behavioral parity",
+    "FF4J release cadence is slower than GO Feature Flag — assess project activity for your support expectations",
+    "Storage choice (JDBC vs Mongo vs Redis) affects performance and HA; pick one your ops team already runs",
+    "OpenFeature compatibility is not first-class with FF4J, so abstractions in code may need a thin shim"
+  ],
+  "email": {
+    "subject": "Migrating Java services from GO Feature Flag to FF4J",
+    "body": "Hi team,\n\nWe're planning to move our Java services from GO Feature Flag to FF4J over the next 14 days. The goal is tighter Spring Boot integration, a built-in audit trail, and reusing one of our existing databases as the flag store instead of running the relay proxy.\n\nWhat changes for you:\n- Java services will evaluate flags in-process via FF4J instead of calling the relay proxy.\n- Flag management moves to FF4J's web console (behind SSO) and REST API.\n- Non-Java services that rely on GO Feature Flag will be reviewed case-by-case — some may stay on it, others may move to FF4J's REST API.\n\nWe'll run both systems in parallel for an overlap, validate each flag, and only then retire the relay proxy and config retrievers. Please flag any rule or integration you rely on so we can preserve behavior.\n\nThanks,\nYour customer"
+  }
+}

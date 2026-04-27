@@ -1,0 +1,75 @@
+{
+  "source": {
+    "slug": "please-build",
+    "name": "Please Build"
+  },
+  "target": {
+    "slug": "melos",
+    "name": "Melos"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "Move from Please's polyglot build targets to Melos workspace scripts when your monorepo is Dart/Flutter rather than multi-language.",
+  "why_switch": [
+    "Melos is purpose-built for Dart and Flutter monorepos and integrates with pub.dev publishing",
+    "Smaller config surface than Please for Dart-only workspaces",
+    "Native handling of multi-package versioning and changelogs",
+    "Active maintenance inside the Flutter plugin ecosystem",
+    "Avoids the Bazel-style learning curve when polyglot builds are not needed"
+  ],
+  "what_to_export": [
+    "List of build targets and their dependencies from BUILD files",
+    "Custom build rules and macros",
+    "Test target definitions and tags",
+    "Remote cache configuration and credentials",
+    "CI commands invoking plz build/test",
+    "Per-package version metadata",
+    "Generated artifacts and their consumers",
+    "Repo-level config (.plzconfig)"
+  ],
+  "export_method": "Inventory your Please workspace by walking BUILD files and recording targets, dependencies, and entry points. Capture .plzconfig and any custom rules under build_defs/. Export the package layout (paths, owners, language) into a spreadsheet or YAML you can map to Melos packages. Consult the official Please docs for accurate target/rule semantics before scripting any extractor.",
+  "import_method": "Initialize Melos at the repo root with a melos.yaml that lists each Dart/Flutter package under packages:. Convert previously declared Please commands into Melos scripts (scripts:) that wrap dart/flutter invocations. For versioning and changelogs, use Melos's built-in version command per the official Melos docs. Re-run analyze/test through melos run to validate parity.",
+  "concept_mapping": [
+    {
+      "source": "BUILD target",
+      "target": "Package entry in melos.yaml",
+      "note": "Melos works at package granularity, not per-target"
+    },
+    {
+      "source": "plz build/test",
+      "target": "melos run <script>",
+      "note": "Wrap dart/flutter commands inside scripts"
+    },
+    {
+      "source": "Custom build_defs rule",
+      "target": "Dart build_runner or shell script",
+      "note": "Melos has no rule system; use ecosystem tools"
+    },
+    {
+      "source": "Remote cache",
+      "target": "No direct equivalent",
+      "note": "Rely on Dart/Flutter tool caches and CI artifact cache"
+    },
+    {
+      "source": "Hermetic deps",
+      "target": "pubspec.yaml + melos bootstrap",
+      "note": "Bootstrap links local packages and resolves pub deps"
+    },
+    {
+      "source": "Polyglot targets (Go/Java)",
+      "target": "Out of scope",
+      "note": "Melos covers Dart/Flutter only; keep non-Dart code in a separate build"
+    }
+  ],
+  "effort": "1-3 days",
+  "gotchas": [
+    "Melos does not provide hermetic, content-addressed builds — expect different reproducibility guarantees",
+    "Any non-Dart code in your Please workspace will need a separate build path",
+    "No remote build cache equivalent; CI duration may change",
+    "Versioning conventions differ — review the Melos versioning docs before first release",
+    "Changelog generation depends on conventional commits"
+  ],
+  "email": {
+    "subject": "Migrating our monorepo from Please to Melos",
+    "body": "Team,\n\nFor our Dart/Flutter packages we are moving the build orchestration from Please to Melos. Please was useful for polyglot targets, but our active code is now Dart/Flutter, where Melos is the idiomatic tool: package versioning, changelogs, and pub publishing are first-class.\n\nPlan: inventory current Please targets, map each Dart package into melos.yaml, convert plz commands into Melos scripts, and validate analyze/test parity in CI. Anything non-Dart stays on its own build path for now.\n\nI'll share the migration doc and the cutover window once the dry run passes.\n\nThanks"
+  }
+}

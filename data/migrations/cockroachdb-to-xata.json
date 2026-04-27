@@ -1,0 +1,76 @@
+{
+  "source": {
+    "slug": "cockroachdb",
+    "name": "CockroachDB"
+  },
+  "target": {
+    "slug": "xata",
+    "name": "Xata"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "Both CockroachDB and Xata speak Postgres, so the data and SQL itself port relatively well — the real work is reworking distributed-SQL features (multi-region, serializable txns) that Xata may not match one-for-one.",
+  "why_switch": [
+    "Want a fully managed serverless DBaaS rather than running CockroachDB clusters or Serverless tiers",
+    "Looking for simpler, transparent freemium pricing for smaller workloads",
+    "Team values Xata's branching, search, and developer-friendly SDK/CLI",
+    "Don't need CockroachDB's multi-region distributed write topology",
+    "Prefer a Postgres-compatible product without managing CRDB-specific operational concerns"
+  ],
+  "what_to_export": [
+    "Schema (DDL) for all databases and tables",
+    "Table data via pg_dump / SQL dump or CSV",
+    "Indexes and constraints",
+    "Sequences and default values",
+    "Stored procedures / functions, if any",
+    "Roles, grants, and connection-string identities",
+    "Multi-region / locality configuration (CRDB-specific)",
+    "Backup files and any change data capture sinks"
+  ],
+  "export_method": "CockroachDB is PostgreSQL-wire-compatible and supports pg_dump-compatible exports as well as its own BACKUP / EXPORT statements. For a portable migration, dumping schema and data to SQL or CSV is usually the cleanest path. Confirm the current recommended export commands in the official CockroachDB docs.",
+  "import_method": "In Xata, recreate the schema using their CLI / SDK or by running DDL, then load CSV or SQL data via Xata's supported import tooling. Because Xata is Postgres-backed, much of the SQL transfers directly. Verify the current import paths and any size limits in Xata's official documentation.",
+  "concept_mapping": [
+    {
+      "source": "CRDB database / table",
+      "target": "Xata database / table",
+      "note": "Schema usually transfers with minor type adjustments"
+    },
+    {
+      "source": "Indexes",
+      "target": "Postgres indexes in Xata",
+      "note": "Standard Postgres index types should map directly"
+    },
+    {
+      "source": "Multi-region locality / partitioning",
+      "target": "Single-region Xata deployment",
+      "note": "Confirm Xata's regional options; CRDB-style geo-partitioning is not a given"
+    },
+    {
+      "source": "Serializable distributed transactions",
+      "target": "Standard Postgres transactions",
+      "note": "Verify isolation levels available in Xata before relying on serializable semantics"
+    },
+    {
+      "source": "BACKUP / RESTORE",
+      "target": "Xata backups",
+      "note": "Different backup model — check Xata docs for retention and restore"
+    },
+    {
+      "source": "CRDB SQL extensions",
+      "target": "Postgres-compatible SQL",
+      "note": "Replace CRDB-only syntax with standard Postgres"
+    }
+  ],
+  "effort": "1-3 weeks",
+  "gotchas": [
+    "CRDB-specific SQL (e.g. AS OF SYSTEM TIME, locality clauses) needs to be removed or rewritten",
+    "Multi-region writes are a CRDB strength; do not assume Xata offers the same topology — check current docs",
+    "Isolation level differences can change app behavior under contention",
+    "Validate current Xata storage / row / connection limits against your CRDB workload",
+    "Pricing shape changes from CRDB Serverless RU-style to Xata plan limits — rebaseline cost",
+    "Tooling around schema migrations may differ; pick a migration tool that targets vanilla Postgres"
+  ],
+  "email": {
+    "subject": "Migrating from CockroachDB to Xata",
+    "body": "Hi team,\n\nWe are planning to move our database off CockroachDB onto Xata to simplify operations and pricing. Both speak Postgres, so the schema and most queries should port without major rewrites.\n\nThe real work is around CRDB-specific features: multi-region locality, serializable semantics, and any custom SQL. Near-term we will dump schema and data, identify CRDB-only syntax, and prototype one service on Xata before committing. Please flag any queries that depend on CRDB-specific behavior.\n\nThanks!"
+  }
+}

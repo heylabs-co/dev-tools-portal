@@ -1,0 +1,76 @@
+{
+  "source": {
+    "slug": "xata",
+    "name": "Xata"
+  },
+  "target": {
+    "slug": "questdb",
+    "name": "QuestDB"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Xata is a general-purpose serverless Postgres; QuestDB is a time-series database with a SQL surface and ingestion-optimized storage. This migration only makes sense for time-series workloads inside your Xata data, and it is not a one-to-one move: schema, query patterns, and indexing strategy all need to be rethought.",
+  "why_switch": [
+    "Optimize storage and queries for high-throughput time-series data",
+    "Use QuestDB's ingestion path for fast appends and downsampling",
+    "Run window and time-bucket queries with native SQL extensions",
+    "Self-host or use managed QuestDB for cost control",
+    "Reduce general-purpose database load by isolating metrics/events"
+  ],
+  "what_to_export": [
+    "Time-series tables (events, metrics, logs)",
+    "Timestamp column and any required partition keys",
+    "Numeric and tag/dimension columns",
+    "Schema definitions for the tables you are migrating",
+    "Indexes that map to QuestDB symbol columns",
+    "Continuous aggregates or materialized rollups",
+    "Retention or archival rules in effect",
+    "Row counts and time ranges per table"
+  ],
+  "export_method": "Identify only the tables that are genuinely time-series; leave transactional tables on Postgres. From Xata, get a Postgres connection string and export each candidate table ordered by timestamp: COPY (SELECT * FROM events ORDER BY ts) TO STDOUT WITH CSV HEADER > events.csv. For large tables, chunk by time range to keep file sizes manageable and to allow partial re-runs. Capture the DDL separately so you can translate it. Maintain a manifest of files with row counts, min/max timestamps, and checksums. If continuous writes happen during export, plan a cutover with a short read-only window or stream new rows separately and merge after initial load. Verify CSV integrity (no embedded newlines without quoting) before loading.",
+  "import_method": "Create a QuestDB instance (managed cloud or self-hosted). Translate the source DDL: pick a designated timestamp column, choose PARTITION BY (DAY/MONTH) sized to your retention, and use SYMBOL types for low-cardinality string dimensions instead of TEXT. Create tables with CREATE TABLE ... TIMESTAMP(ts) PARTITION BY DAY. Load data with the recommended path for your volume: small datasets via the REST imp endpoint or web console CSV import; larger datasets via the InfluxDB Line Protocol over TCP/HTTP for streaming-style ingestion. Validate by comparing row counts and time-range aggregates between source and QuestDB. Update applications to use QuestDB drivers (Postgres-wire SQL is supported for queries; ILP for writes). Rewrite analytical queries to use SAMPLE BY, LATEST ON, and ASOF JOIN where appropriate. Keep the original Xata data read-only until QuestDB is verified.",
+  "concept_mapping": [
+    {
+      "source": "Postgres TIMESTAMP column",
+      "target": "Designated TIMESTAMP column",
+      "note": "QuestDB requires one designated timestamp"
+    },
+    {
+      "source": "TEXT dimension column",
+      "target": "SYMBOL column",
+      "note": "For low-cardinality, indexed lookups"
+    },
+    {
+      "source": "B-tree index on time",
+      "target": "Partitioning + designated timestamp",
+      "note": "Time pruning is automatic by partition"
+    },
+    {
+      "source": "Materialized view rollup",
+      "target": "SAMPLE BY query or downsampled table",
+      "note": "Compute or persist aggregates"
+    },
+    {
+      "source": "INSERT via SQL",
+      "target": "InfluxDB Line Protocol (ILP)",
+      "note": "Recommended for high-throughput writes"
+    },
+    {
+      "source": "JOINs across many tables",
+      "target": "Limited / ASOF JOIN patterns",
+      "note": "QuestDB is optimized for time-series, not heavy relational joins"
+    }
+  ],
+  "effort": "2-6 weeks",
+  "gotchas": [
+    "QuestDB is not a drop-in Postgres replacement; only migrate time-series data.",
+    "Choosing the wrong PARTITION BY granularity hurts ingest and query performance.",
+    "Large TEXT cardinality as SYMBOL leads to memory pressure; profile before committing.",
+    "Transactions and constraints behave differently from Postgres; rewrite write paths accordingly.",
+    "Tooling and ORM support is narrower; expect to write more raw SQL.",
+    "Backups and HA models differ from a managed Postgres service; design the operational story up front."
+  ],
+  "email": {
+    "subject": "Time-series workloads moving from Xata to QuestDB in 14 days",
+    "body": "Hi,\n\nWe are migrating our time-series data (metrics and event streams) from Xata to QuestDB over the next 14 days. The rest of the application database is unaffected.\n\nWhat to expect:\n- No change to product features.\n- A short read-only window on the time-series tables during final sync; the exact time will be announced 48 hours in advance.\n- Faster dashboards and analytical queries once QuestDB is live.\n\nWhat does not change:\n- Your account, transactional data, and integrations.\n- Pricing and support terms.\n\nIf your team queries our metrics tables directly, reply so we can share the new connection details and updated query patterns where they differ.\n\nThanks for your patience as we tune the platform for scale.\n\nYour customer success team"
+  }
+}

@@ -1,0 +1,76 @@
+{
+  "source": {
+    "slug": "cloudinary",
+    "name": "Cloudinary"
+  },
+  "target": {
+    "slug": "api-video",
+    "name": "api.video"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "If your media is mostly video, api.video is a video-specialized platform with upload, encoding, streaming, player, webhooks, and analytics — narrower than Cloudinary but more focused on the video workflow.",
+  "why_switch": [
+    "Your workload is video-first and Cloudinary's image features are unused",
+    "You want a video-native player, webhooks, and analytics out of the box",
+    "You prefer a vendor focused exclusively on video infrastructure",
+    "You want simpler pricing scoped to video use cases",
+    "You need streaming-oriented features more than image transformations"
+  ],
+  "what_to_export": [
+    "Original video assets (mp4 or source masters)",
+    "Asset metadata (titles, descriptions, tags)",
+    "Existing public/secure URLs for redirects",
+    "Custom poster images / thumbnails",
+    "Webhook endpoints currently consuming Cloudinary events",
+    "Player embed configurations",
+    "Captions / subtitle files",
+    "Folder/taxonomy structure"
+  ],
+  "export_method": "Pull originals from Cloudinary using their official Admin API (resources endpoint) or the media library export — confirm current endpoints in Cloudinary docs. Download the highest-quality source files; do not rely on transformed derivatives as the master.",
+  "import_method": "Upload to api.video via their official API or SDKs (e.g. @api.video/nodejs-client). Each upload returns a videoId and a player URL; map your old Cloudinary public_ids to api.video videoIds. Re-attach captions and metadata via the appropriate endpoints — consult api.video's official docs for the current schema.",
+  "concept_mapping": [
+    {
+      "source": "Cloudinary public_id",
+      "target": "api.video videoId",
+      "note": "Maintain a mapping table so old links can redirect."
+    },
+    {
+      "source": "Cloudinary video transformations",
+      "target": "api.video encoding profiles",
+      "note": "Transcoding is automatic; check docs for delivery format options."
+    },
+    {
+      "source": "Cloudinary player",
+      "target": "api.video player",
+      "note": "Replace embed code; api.video provides its own player."
+    },
+    {
+      "source": "Cloudinary upload widget",
+      "target": "api.video upload SDK / delegated upload",
+      "note": "Confirm current upload patterns in official docs."
+    },
+    {
+      "source": "Notifications / webhooks",
+      "target": "api.video webhooks",
+      "note": "Re-register endpoints in api.video dashboard."
+    },
+    {
+      "source": "Analytics",
+      "target": "api.video analytics",
+      "note": "Different data model — verify the metrics you need are available."
+    }
+  ],
+  "effort": "1-3 weeks for a video-heavy library, longer if you have thousands of assets or complex player customizations.",
+  "gotchas": [
+    "api.video is video-only — image assets need a different home",
+    "Player and CDN are tied to api.video — switching again later means re-embedding",
+    "Bandwidth and storage pricing differs — model on the official pricing page",
+    "Old Cloudinary URLs won't resolve after switch; plan redirects or maintain dual delivery during cutover",
+    "Captions/subtitles formats may need conversion — consult docs",
+    "Verify region/CDN coverage matches your audience"
+  ],
+  "email": {
+    "subject": "Moving video assets from Cloudinary to api.video",
+    "body": "Hi,\n\nSince our usage is mostly video, we're consolidating onto api.video. Plan: pull originals from Cloudinary, re-upload via api.video's API, swap player embeds, and re-register webhooks. We'll keep a Cloudinary->api.video ID map for redirects. Targeting a 1-3 week migration window.\n\nThanks"
+  }
+}

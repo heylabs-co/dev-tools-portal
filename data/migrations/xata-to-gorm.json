@@ -1,0 +1,76 @@
+{
+  "source": {
+    "slug": "xata",
+    "name": "Xata"
+  },
+  "target": {
+    "slug": "gorm",
+    "name": "GORM"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Xata is a managed serverless Postgres platform; GORM is an open-source Go ORM, not a database, so this migration is really about moving off Xata's managed service to a self-hosted (or third-party) Postgres accessed through GORM. Plan for two parallel tracks: relocate the data, then introduce GORM as the new data-access layer in your Go services.",
+  "why_switch": [
+    "Eliminate per-database vendor pricing by self-hosting Postgres behind GORM",
+    "Standardize a Go-first data access layer with idiomatic models and migrations",
+    "Reduce lock-in: GORM works with any Postgres/MySQL/SQLite backend",
+    "Gain finer control over schema, indexes, and connection pooling",
+    "Open-source stack with permissive licensing and large community"
+  ],
+  "what_to_export": [
+    "Postgres schema (tables, types, constraints, indexes)",
+    "Row-level data per table",
+    "Sequence current values and identity columns",
+    "Views, materialized views, and stored functions if used",
+    "Roles, grants, and row-level security policies",
+    "File attachment metadata and any binary blobs",
+    "Full-text search indexes or configurations",
+    "Database branches you want to preserve as separate environments"
+  ],
+  "export_method": "Use a standard Postgres-compatible export. From Xata, obtain a Postgres connection string for the database/branch you want to move and run pg_dump against it: pg_dump --no-owner --no-privileges --format=custom -d \"$XATA_PG_URL\" -f xata.dump. For very large databases, dump per-schema or per-table to parallelize. If a direct Postgres connection is not available for your workspace, fall back to the Xata CLI or HTTP API to export each table to CSV/JSON, plus a separately captured schema definition. Verify row counts per table after export and store the dump in a secure location. Keep the source database read-only during cutover by pausing writers, or take an online dump and replay a final delta with logical replication if downtime must be minimized.",
+  "import_method": "Provision a target Postgres instance (managed service or self-hosted) sized for your workload. Restore the schema and data with pg_restore --no-owner --no-privileges -d \"$NEW_PG_URL\" xata.dump (or psql for plain-SQL dumps). Then introduce GORM in your Go service: go get gorm.io/gorm and the Postgres driver gorm.io/driver/postgres, open a connection with gorm.Open(postgres.Open(dsn), &gorm.Config{}), and define struct models that match the existing tables. Use struct tags to map column names, primary keys, and indexes; avoid AutoMigrate on production data and instead generate migrations from your existing schema. Replace Xata SDK calls with GORM queries (First, Find, Where, Create, Updates, Transaction). Validate query parity by running a representative test suite against both old and new endpoints before flipping traffic.",
+  "concept_mapping": [
+    {
+      "source": "Xata workspace/database",
+      "target": "Postgres database",
+      "note": "1:1 conceptual mapping at the Postgres layer"
+    },
+    {
+      "source": "Xata branch",
+      "target": "Separate Postgres database or schema",
+      "note": "Branching is not a GORM/Postgres native primitive"
+    },
+    {
+      "source": "Xata SDK / REST API",
+      "target": "GORM query API in Go",
+      "note": "Re-implement data access in Go"
+    },
+    {
+      "source": "Xata schema editor",
+      "target": "SQL migrations + GORM struct tags",
+      "note": "Manage schema as code"
+    },
+    {
+      "source": "Xata file attachments",
+      "target": "Object storage + foreign key",
+      "note": "GORM does not handle blobs; store files in S3-compatible storage"
+    },
+    {
+      "source": "Xata full-text search",
+      "target": "Postgres FTS or external engine",
+      "note": "Use tsvector/tsquery or Meilisearch/Elastic"
+    }
+  ],
+  "effort": "1-3 weeks",
+  "gotchas": [
+    "GORM is not a database; you still need a Postgres host. Confirm hosting choice before starting.",
+    "Xata-specific column types or extensions may not exist on your target Postgres; review extensions before restore.",
+    "AutoMigrate can drift from existing schema. Prefer explicit SQL migrations on production.",
+    "File attachments and search are platform features, not pure Postgres. Replan these as separate services.",
+    "Connection pooling differs: configure sql.DB SetMaxOpenConns/SetMaxIdleConns explicitly under GORM.",
+    "Branch-based workflows in Xata require a new strategy (per-environment databases or schema-per-branch)."
+  ],
+  "email": {
+    "subject": "Heads-up: we are migrating off Xata in the next 14 days",
+    "body": "Hi,\n\nWe are moving our database off Xata to a self-hosted Postgres accessed via GORM in our Go services. Cutover will happen within the next 14 days.\n\nWhat changes for you:\n- The application URL and features stay the same.\n- A short read-only window is expected during final data sync; we will announce the exact timestamp 48 hours before.\n- Any direct Xata API tokens you hold will stop working after cutover. If you rely on them, please reply so we can issue replacements against the new database.\n\nWhat does not change:\n- Your data, accounts, and integrations.\n- Pricing and SLAs on our side.\n\nIf you have questions or custom integrations to coordinate, reply to this email and we will work through them with you.\n\nThank you for your patience as we improve the platform.\n\nYour customer success team"
+  }
+}

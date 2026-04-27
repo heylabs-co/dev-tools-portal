@@ -1,0 +1,77 @@
+{
+  "source": {
+    "slug": "courier",
+    "name": "Courier"
+  },
+  "target": {
+    "slug": "airship",
+    "name": "Airship"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "Move from Courier's developer-first multi-channel notification API to Airship's mature mobile engagement platform with native iOS/Android/Web SDKs.",
+  "why_switch": [
+    "Need first-party mobile SDKs (iOS, Android, Web) rather than an API-first abstraction",
+    "Want a more enterprise-grade audience and segmentation model",
+    "Prefer a long-standing vendor with established mobile push expertise",
+    "Looking for richer in-app messaging UI and journey tooling on mobile",
+    "Consolidate channels under one provider with stronger SLAs"
+  ],
+  "what_to_export": [
+    "Notification templates (per channel: email, push, SMS, in-app)",
+    "User profiles with identifiers and channel tokens",
+    "Subscription / preference data per user",
+    "Routing rules and channel priority logic",
+    "Tags, properties, and custom user attributes",
+    "Brand assets (logos, colors) used in templates",
+    "Tenant / environment configuration",
+    "Webhook and integration credentials (regenerate at target)",
+    "Historical send logs (for reference, if needed)"
+  ],
+  "export_method": "Use the Courier API to list and export users, profiles, lists, templates (notifications), and brands as JSON. There is no single one-click bulk export, so script the dump per resource and store backups locally. Consult Courier's official API reference for the exact endpoints and pagination before scripting.",
+  "import_method": "Recreate templates in Airship's Message Center / template builder (or via Airship's REST API if available for your plan), then re-register devices through the Airship SDKs in your apps. Migrate user attributes via Airship's Named User and Custom Events APIs. Validate via test sends to a staging audience before pointing production traffic. Verify the exact endpoints in Airship's official docs.",
+  "concept_mapping": [
+    {
+      "source": "Courier User Profile",
+      "target": "Airship Named User + Channel",
+      "note": "Airship separates the persistent user (Named User) from device channels"
+    },
+    {
+      "source": "Courier Notification (template)",
+      "target": "Airship Message / Template",
+      "note": "Template syntax differs; rebuild rather than auto-translate"
+    },
+    {
+      "source": "Courier Routing rules",
+      "target": "Airship Journey / Automation",
+      "note": "Multi-channel fallback logic must be reimplemented in Airship's flow tools"
+    },
+    {
+      "source": "Courier Tags / Profile data",
+      "target": "Airship Tags / Attributes",
+      "note": "Map 1:1 where possible; long-form data goes to Attributes"
+    },
+    {
+      "source": "Courier Brands",
+      "target": "Airship Branding / Templates",
+      "note": "Recreate visual styles inside Airship templates"
+    },
+    {
+      "source": "Courier Lists",
+      "target": "Airship Lists / Segments",
+      "note": "Static lists vs dynamic segments — choose per use case"
+    }
+  ],
+  "effort": "20-60 hours",
+  "gotchas": [
+    "Mobile push tokens must be re-registered via Airship SDK; you cannot transfer APNs/FCM tokens 1:1",
+    "User identity model differs (Named User vs Courier user_id) — plan an alias strategy",
+    "Template syntax is not portable; expect to rebuild content per channel",
+    "Preference center / subscription semantics differ; double-check unsubscribe handling for compliance",
+    "Pricing model jumps from freemium API to paid subscription — re-estimate budget early",
+    "Run dual-send during cutover to verify deliverability before turning Courier off"
+  ],
+  "email": {
+    "subject": "Migrating from Courier to Airship",
+    "body": "Hi team,\n\nWe're planning to migrate our notifications stack from Courier to Airship. The goal is to lean on Airship's first-party mobile SDKs and mature audience tooling.\n\nHigh-level plan:\n- Export templates, users, preferences, and routing config from Courier via its API\n- Rebuild templates and journeys in Airship\n- Integrate Airship SDKs in iOS/Android/Web and re-register channels\n- Run dual-send for a short window to validate deliverability\n- Cut over and decommission Courier\n\nEstimated effort is 20-60 hours depending on template count and journey complexity. I'll share a detailed checklist next.\n\nThanks"
+  }
+}

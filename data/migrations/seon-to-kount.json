@@ -1,0 +1,62 @@
+{
+  "source": {
+    "slug": "seon",
+    "name": "SEON"
+  },
+  "target": {
+    "slug": "kount",
+    "name": "Kount"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "SEON to Kount moves you from API-based machine learning fraud scoring to a Mastercard-backed fraud and identity trust platform with a shared merchant network. Expect similar event-driven integration shape but different rule semantics and pricing structure.",
+  "why_switch": [
+    "Kount offers a Mastercard-backed merchant network",
+    "Public entry pricing at $0.07 per event",
+    "Free tier for getting started",
+    "Strong fit for CNP and high-value transactions",
+    "More transparent pricing than SEON's custom model"
+  ],
+  "what_to_export": [
+    "SEON rules and rule sets",
+    "User and event records",
+    "Webhook endpoints and subscriptions",
+    "API keys and credentials",
+    "Score and verdict logs",
+    "Custom field and event schema definitions",
+    "Custom data source connections",
+    "Audit logs for compliance retention"
+  ],
+  "export_method": "SEON's bulk-export shape varies by plan, so confirm with your account manager what is available. In general, export historical events, scores, and verdicts via the SEON API for ranges or IDs you control, and supplement with dashboard exports where supported. Rebuild rule sets as a design doc with each rule's trigger, conditions, weights, and actions, since rule logic does not export portably across platforms. Save webhook URLs, signing keys, and custom field definitions. Mine your own application logs for the richest user-event mappings since you usually own the most complete copy there. Keep audit logs in long-term storage for the retention window your regulator requires. Run the export in parallel with live traffic, verify counts, and only then disconnect.",
+  "import_method": "Kount integrates with a client-side data collector on checkout, login, and signup pages and a server-side scoring API that returns a risk score and recommended action. Provision a Kount account, generate API credentials, install the data collector on the same pages where the SEON collector runs, and instrument backend services to send transaction or event payloads. Recreate SEON rule sets as Kount rules or in your own decisioning layer that consumes Kount scores. Configure webhooks for asynchronous verdicts and case management. Backfill user or session identifiers if you want reputation continuity. Run Kount in shadow mode alongside SEON for at least a week, compare verdicts on real traffic, tune thresholds, and only cut over once approval and catch rates are acceptable for your vertical.",
+  "concept_mapping": [
+    {
+      "source": "SEON ruleset",
+      "target": "Kount rules / policy"
+    },
+    {
+      "source": "SEON score",
+      "target": "Kount risk score"
+    },
+    {
+      "source": "Webhook event",
+      "target": "Webhook or async callback"
+    },
+    {
+      "source": "User identifier",
+      "target": "Customer or transaction identifier"
+    }
+  ],
+  "effort": "4-10 weeks",
+  "gotchas": [
+    "Rule semantics differ; expect to rewrite rule sets rather than translate them mechanically",
+    "Lock-in with Kount is rated higher than SEON; integration tends to be deeper",
+    "Kount pricing tiers above entry are opaque; negotiate volume",
+    "Real-time scoring adds latency on the critical path",
+    "Validate merchant network value for your vertical during shadow mode",
+    "Reputation built up in SEON does not transfer; rebuild via shadow mode comparisons"
+  ],
+  "email": {
+    "subject": "Migrating fraud scoring from SEON to Kount",
+    "body": "Hi team,\n\nWe are moving our fraud scoring from SEON to Kount over the next 14 days. Kount gives us a Mastercard-backed merchant network and more transparent entry pricing for our payment and CNP use cases.\n\nWhat to expect:\n- The Kount data collector will be installed on checkout, login, and signup pages, replacing the SEON collector there.\n- Backend services will call Kount's scoring API and consume the recommended action.\n- SEON rule sets will be reimplemented as Kount rules or in our own decisioning layer.\n- We will run both systems in parallel for the first week and compare verdicts before cutover.\n\nPlease flag any service that depends on SEON webhooks or scores so we can route it to the new pipeline. Reach out with questions before the end of the week.\n\nThanks,\nYour customer"
+  }
+}

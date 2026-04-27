@@ -1,0 +1,81 @@
+{
+  "source": {
+    "slug": "brevo",
+    "name": "Brevo"
+  },
+  "target": {
+    "slug": "plivo",
+    "name": "Plivo"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "Move transactional messaging from Brevo to Plivo to consolidate SMS and voice (and email where supported) on a developer-first API, accepting the loss of Brevo's marketing automation and CRM tooling.",
+  "why_switch": [
+    "Single API for SMS and voice (and email coverage where available) instead of layered tools",
+    "Public per-message pricing and developer-focused SDKs",
+    "Lower friction for engineering-heavy use cases like OTP, alerts, and IVR",
+    "Drops Brevo features you may not be using (marketing automations, CRM)"
+  ],
+  "what_to_export": [
+    "Verified senders / authenticated domains in Brevo",
+    "DKIM/SPF/DMARC DNS records",
+    "Transactional and marketing templates",
+    "Contact lists and segments",
+    "Suppression / unsubscribe list",
+    "Webhook configurations and handlers",
+    "API keys and the code paths that use them",
+    "SMS sender IDs / short codes / long codes",
+    "Automation workflows (note these have no Plivo equivalent)"
+  ],
+  "export_method": "Use Brevo's official APIs and dashboards to export contacts, templates, suppression lists, and webhook configs — consult the current Brevo documentation. Capture your DNS records and inventory every code path that calls Brevo. Download enough delivery history to cover any audit needs.",
+  "import_method": "Create a Plivo account, generate API credentials, and re-create senders/numbers per Plivo's documentation. Re-author templates, import the suppression list, and wire up webhooks for delivery and inbound events. Do an end-to-end staging test before flipping production traffic, and warm up gradually if volume is significant.",
+  "concept_mapping": [
+    {
+      "source": "Verified sender / domain",
+      "target": "Plivo sender / verified domain",
+      "note": "Re-verify; new DKIM keys if email is in scope"
+    },
+    {
+      "source": "Transactional template",
+      "target": "Plivo template",
+      "note": "Templating syntax differs; re-author"
+    },
+    {
+      "source": "Suppression list",
+      "target": "Suppression list",
+      "note": "Import via Plivo's documented mechanism"
+    },
+    {
+      "source": "Webhook",
+      "target": "Plivo webhook URL",
+      "note": "Adapt payload schema and signature verification"
+    },
+    {
+      "source": "API key",
+      "target": "Plivo Auth ID + Auth Token",
+      "note": "Rotate and store securely"
+    },
+    {
+      "source": "SMS sender ID / number",
+      "target": "Plivo number / sender ID",
+      "note": "Provision new numbers; consider porting where supported"
+    },
+    {
+      "source": "Marketing automation / CRM",
+      "target": "n/a",
+      "note": "Plivo is a comms API, not an automation platform"
+    }
+  ],
+  "effort": "2-5 days",
+  "gotchas": [
+    "Confirm Plivo's current product coverage for email vs SMS/voice in your region before committing",
+    "Phone numbers and sender IDs may need to be re-provisioned or ported, with regulatory review",
+    "Marketing automations and CRM-style features in Brevo will not move — replace separately if needed",
+    "Webhook signature schemes differ; verification code must be rewritten",
+    "Reputation and DKIM keys do not transfer; warm up new sending channels gradually",
+    "Run both providers in parallel during cutover to avoid dropped messages"
+  ],
+  "email": {
+    "subject": "Migrating from Brevo to Plivo",
+    "body": "Hi team,\n\nWe're planning to consolidate transactional messaging on Plivo and move off Brevo. Scope is SMS, voice, and (where Plivo covers it) email. Brevo's marketing automation and CRM features are out of scope and will need a separate decision if we're fully sunsetting Brevo.\n\nPlan: export senders, templates, suppression lists, and DNS from Brevo; re-create them on Plivo; provision or port numbers; rewrite webhook handlers against Plivo's payload schema; run both providers in parallel and warm up before full cutover.\n\nEstimated effort: 2-5 days plus any warm-up and number-porting wait time. Runbook to follow.\n\nThanks"
+  }
+}

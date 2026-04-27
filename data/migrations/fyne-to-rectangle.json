@@ -1,0 +1,70 @@
+{
+  "source": {
+    "slug": "fyne",
+    "name": "Fyne"
+  },
+  "target": {
+    "slug": "rectangle",
+    "name": "Rectangle"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "These tools solve different problems — Fyne is a Go GUI toolkit, Rectangle is a macOS window manager — so this is a workflow shift, not a code port.",
+  "why_switch": [
+    "You want keyboard and drag-to-snap window management on macOS, not to build GUI apps",
+    "Rectangle is free, open source, and zero-config to get started",
+    "Native-feeling drag zones and shortcuts on macOS",
+    "Pro version offers cascade and custom grids",
+    "No telemetry, no account required"
+  ],
+  "what_to_export": [
+    "List of Fyne apps you maintain (kept separate)",
+    "Existing macOS window-management shortcuts you rely on",
+    "Multi-monitor layout preferences",
+    "Any prior window manager config (Spectacle, Magnet, Yabai)",
+    "Per-app window position habits",
+    "Hotkey conflicts with other apps",
+    "Backup of current macOS keyboard shortcut settings",
+    "Display arrangement notes"
+  ],
+  "export_method": "There is nothing to extract from Fyne for use in Rectangle. Instead, document the macOS window-management workflow you want to keep: shortcuts, snap zones, multi-monitor behavior. If you previously used Spectacle, you can keep its shortcut map as a reference — Rectangle was modeled on Spectacle and supports importing its shortcut layout per the official Rectangle docs.",
+  "import_method": "Install Rectangle from the official site or Homebrew. On first launch, choose either the recommended or Spectacle-compatible shortcut preset. Adjust drag-to-snap zones in Preferences and grant the Accessibility permission required for window control. Your Fyne apps continue to build and run unchanged; Rectangle just manages their windows.",
+  "concept_mapping": [
+    {
+      "source": "Fyne window",
+      "target": "Window managed by Rectangle",
+      "note": "Rectangle moves and resizes any standard macOS window"
+    },
+    {
+      "source": "In-app shortcuts (Fyne)",
+      "target": "Global shortcuts (Rectangle)",
+      "note": "Different scopes; watch for collisions"
+    },
+    {
+      "source": "Cross-platform deployment",
+      "target": "macOS only",
+      "note": "Rectangle is macOS-specific"
+    },
+    {
+      "source": "Custom layouts",
+      "target": "Pro version grids/cascade",
+      "note": "Free version covers halves and quarters"
+    },
+    {
+      "source": "Automation",
+      "target": "No public scripting API",
+      "note": "Use Yabai/Hammerspoon if you need scripting"
+    }
+  ],
+  "effort": "1-3 hours",
+  "gotchas": [
+    "Rectangle is not a GUI toolkit; Fyne app code does not migrate",
+    "Accessibility permission must be granted or shortcuts silently fail",
+    "Hotkey collisions with apps and macOS Mission Control are common",
+    "Multi-monitor behavior may need manual preference tweaks",
+    "Free version lacks custom grids — verify Pro features in the official docs before relying on them"
+  ],
+  "email": {
+    "subject": "Switching my Mac to Rectangle for window management",
+    "body": "Hey,\n\nI'm setting up Rectangle as the window manager on my Mac so I get keyboard snapping and drag zones without buying Magnet. This is unrelated to our Fyne apps — those keep shipping from the same Go codebase.\n\nIf you want the same setup, install via Homebrew, grant Accessibility permission, and pick the default shortcut preset.\n\nThanks"
+  }
+}

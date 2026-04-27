@@ -1,0 +1,70 @@
+{
+  "source": {
+    "slug": "fyne",
+    "name": "Fyne"
+  },
+  "target": {
+    "slug": "hyprland",
+    "name": "Hyprland"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "These tools solve different problems — Fyne is a Go GUI toolkit, Hyprland is a Linux Wayland compositor — so this is a workflow shift, not a code port.",
+  "why_switch": [
+    "You want a tiling, keyboard-driven Linux desktop rather than building cross-platform GUI apps",
+    "Hyprland gives a customizable Wayland environment with smooth animations",
+    "Strong plugin ecosystem for window management workflows",
+    "Active community and frequent releases",
+    "Free and open source"
+  ],
+  "what_to_export": [
+    "List of Fyne apps you currently ship or maintain",
+    "App build and packaging scripts",
+    "Asset and icon files",
+    "Keyboard shortcut conventions used inside your apps",
+    "User preferences/config files your apps read",
+    "Test scripts and CI steps",
+    "Installer/distribution configuration",
+    "Documentation pointing users at the apps"
+  ],
+  "export_method": "Treat this as two separate concerns. For Fyne: keep the Go source under version control and document build commands so the apps remain maintainable. For Hyprland: there is nothing to export from Fyne into Hyprland — instead capture your current desktop workflow (shortcuts, app launchers, monitor layout) as notes you will reproduce in hyprland.conf. Consult the official Hyprland wiki for current configuration syntax.",
+  "import_method": "Install Hyprland on a supported Linux distribution following the official Hyprland wiki. Build a hyprland.conf with monitor, input, keybind, and animation sections. Pair Hyprland with the launcher, bar, and notification daemon of your choice. Your existing Fyne apps continue to run as Wayland or XWayland clients — no code change needed unless you hit toolkit-specific Wayland bugs.",
+  "concept_mapping": [
+    {
+      "source": "Fyne app window",
+      "target": "Hyprland-managed client window",
+      "note": "Hyprland tiles or floats it like any other app"
+    },
+    {
+      "source": "Fyne theming",
+      "target": "Compositor + GTK/Qt theme",
+      "note": "Hyprland does not theme app internals"
+    },
+    {
+      "source": "Fyne keyboard shortcuts (in-app)",
+      "target": "Hyprland keybinds (global)",
+      "note": "Different scopes — both can coexist"
+    },
+    {
+      "source": "Cross-platform deployment",
+      "target": "Linux only",
+      "note": "Hyprland is Linux/Wayland"
+    },
+    {
+      "source": "Fyne packaging",
+      "target": "Distro packaging",
+      "note": "Unrelated to Hyprland"
+    }
+  ],
+  "effort": "4-12 hours",
+  "gotchas": [
+    "Hyprland is not a GUI toolkit; you cannot port Fyne app code to it",
+    "Some Go/Fyne apps may behave differently under Wayland — test XWayland fallback",
+    "Hyprland config syntax changes between versions; pin a release",
+    "Fractional scaling and HiDPI need explicit configuration",
+    "Screen sharing and color management depend on portals being installed"
+  ],
+  "email": {
+    "subject": "Switching my Linux desktop to Hyprland",
+    "body": "Hey,\n\nQuick note: I'm moving my Linux workstation to Hyprland for a tiling, keyboard-driven workflow. This is independent of the Fyne apps we ship — those keep building from the same Go source and run as Wayland clients on Hyprland.\n\nI'll capture my hyprland.conf and shortcut cheat sheet in the team wiki so anyone can replicate the setup.\n\nThanks"
+  }
+}

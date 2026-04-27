@@ -1,0 +1,75 @@
+{
+  "source": {
+    "slug": "airbridge",
+    "name": "Airbridge"
+  },
+  "target": {
+    "slug": "apptrove",
+    "name": "Apptrove"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "Move your MMP from Airbridge to Apptrove (Trackier) when you want a budget-friendlier attribution stack with bundled fraud prevention, accepting a smaller partner catalog and brand.",
+  "why_switch": [
+    "Apptrove typically has a lower price point than Tier-1 MMPs.",
+    "Fraud prevention bundled with attribution rather than as a separate add-on.",
+    "Good fit for app marketers focused on India, MENA, and LATAM growth.",
+    "Reasonable feature parity for core install and in-app event tracking."
+  ],
+  "what_to_export": [
+    "Raw install, in-app event, and postback data for required retention",
+    "Tracking link / campaign URL inventory and naming conventions",
+    "Custom event names, parameters, and revenue mapping",
+    "Integrated ad networks and partner-specific settings",
+    "Postback URLs and auth tokens for downstream systems",
+    "Deferred deep linking configuration and routes",
+    "Fraud rules / exclusion criteria",
+    "API credentials used by BI or data warehouse pipelines"
+  ],
+  "export_method": "Use Airbridge's dashboard or data export APIs to pull raw events, tracking link definitions, and partner configurations. Document your event taxonomy, attribution windows, and deep link routes — these become the spec you rebuild on Apptrove. For specific export endpoints and limits, refer to Airbridge's official documentation.",
+  "import_method": "Sign up for Apptrove, register your apps, and integrate the Apptrove SDK on iOS, Android, and any web surfaces, ideally in parallel with Airbridge for a validation period. Rebuild tracking links, set up partner integrations one by one, configure postbacks, and re-implement deferred deep links. Validate test installs and revenue events before pointing paid traffic at Apptrove. Use Apptrove's official docs for exact SDK and API specifics.",
+  "concept_mapping": [
+    {
+      "source": "Airbridge tracking link",
+      "target": "Apptrove tracking link",
+      "note": "URL parameters and macros differ; rebuild per partner."
+    },
+    {
+      "source": "Airbridge event",
+      "target": "Apptrove in-app event",
+      "note": "Re-map names and revenue parameters."
+    },
+    {
+      "source": "Airbridge partner integration",
+      "target": "Apptrove partner integration",
+      "note": "Catalog is smaller; verify each network is supported before cutover."
+    },
+    {
+      "source": "Postbacks (Airbridge)",
+      "target": "Postbacks (Apptrove)",
+      "note": "Schema differs; update receivers."
+    },
+    {
+      "source": "Deferred deep links",
+      "target": "Apptrove deferred deep links",
+      "note": "Reimplement routing rules and test on fresh installs."
+    },
+    {
+      "source": "Fraud rules",
+      "target": "Apptrove fraud suite",
+      "note": "Bundled but with different signals; re-tune thresholds."
+    }
+  ],
+  "effort": "2-5 weeks",
+  "gotchas": [
+    "Confirm every ad network you rely on is supported on Apptrove before committing.",
+    "Historical attribution data does not move between MMPs.",
+    "Run both SDKs in parallel during validation to catch event-mapping drift.",
+    "SKAN 4 / iOS privacy features may have feature gaps — check current support.",
+    "Smaller brand may mean fewer co-marketing assets and partner integrations available.",
+    "Documentation quality varies across modules — pilot small flows first."
+  ],
+  "email": {
+    "subject": "Plan: migrate MMP from Airbridge to Apptrove",
+    "body": "Hi team,\n\nI'm proposing we move our mobile attribution from Airbridge to Apptrove. The case is cost plus bundled fraud prevention; the trade-off is a smaller partner catalog.\n\nWork includes SDK swap on iOS and Android, rebuilding tracking links and event taxonomy, re-integrating each ad network, and re-implementing deferred deep links. Before we commit, I'll confirm every active ad partner is supported on Apptrove.\n\nEstimated effort: 2-5 weeks with parallel SDK validation. Historical reports will stay on Airbridge.\n\nThanks"
+  }
+}

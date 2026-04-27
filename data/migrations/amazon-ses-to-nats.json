@@ -1,0 +1,76 @@
+{
+  "source": {
+    "slug": "amazon-ses",
+    "name": "Amazon SES"
+  },
+  "target": {
+    "slug": "nats",
+    "name": "NATS"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "Amazon SES is a transactional email service and NATS is an open-source pub/sub messaging system — these are not interchangeable; only consider this if you're moving internal eventing off email and onto a real message broker.",
+  "why_switch": [
+    "NATS is the right tool for service-to-service eventing; SES was likely being misused for that.",
+    "Open-source CNCF project — no per-message vendor billing.",
+    "Self-hostable for full data control, or use a managed offering.",
+    "Low-latency pub/sub, request/reply, and JetStream persistence.",
+    "Excellent client libraries across many languages."
+  ],
+  "what_to_export": [
+    "List of internal notification flows currently sent as email but really meant as events",
+    "Event payload schemas (currently embedded in email bodies)",
+    "Producer services and where they call SES",
+    "Consumer services that parse those emails today",
+    "Retention / replay requirements (informs JetStream config)",
+    "Authentication and ACL needs",
+    "Throughput estimates (events per second)",
+    "Cross-region or HA requirements"
+  ],
+  "export_method": "There's no SES → NATS data export. Audit your codebase for SendEmail calls that are really inter-service notifications, document the event payload, and capture sample messages for testing. For genuine human-facing email, keep SES; do not migrate it to NATS.",
+  "import_method": "Stand up a NATS cluster (self-hosted or managed) and integrate official NATS clients into producers and consumers. Define subjects, decide whether you need core NATS or JetStream for persistence, and refer to the NATS docs for security (NKEYs, JWT, TLS) and operations.",
+  "concept_mapping": [
+    {
+      "source": "SendEmail to internal address",
+      "target": "nats publish to subject",
+      "note": "Replace only where recipient is a service."
+    },
+    {
+      "source": "Recipient inbox parsing job",
+      "target": "NATS subscriber",
+      "note": "Subscribe to the subject and process events."
+    },
+    {
+      "source": "SES suppression / bounce",
+      "target": "Not applicable",
+      "note": "Use dead-letter / DLQ patterns in NATS instead."
+    },
+    {
+      "source": "Configuration sets / event destinations",
+      "target": "JetStream streams + consumers",
+      "note": "Different model; consult NATS docs."
+    },
+    {
+      "source": "Per-email pricing",
+      "target": "Infra cost (self-hosted or managed)",
+      "note": "Different cost shape."
+    },
+    {
+      "source": "DKIM / SPF identity",
+      "target": "NATS NKEYs / JWT auth",
+      "note": "Different security model."
+    }
+  ],
+  "effort": "1-4 weeks",
+  "gotchas": [
+    "Domain mismatch: do not migrate human-facing email to NATS — keep SES (or another email provider) for that.",
+    "NATS requires running infra (or paying for a managed cluster); plan ops capacity.",
+    "Persistence requires JetStream; default core NATS is at-most-once.",
+    "Security model is very different — design auth (NKEYs/JWT, TLS) early.",
+    "Observability is your responsibility; wire up metrics and tracing.",
+    "Idempotency and replay semantics need explicit design when moving from email to streaming."
+  ],
+  "email": {
+    "subject": "Splitting internal events from SES — proposing NATS",
+    "body": "Hi team,\n\nWe're using SES for some 'emails' that are really service-to-service signals. Proposal: move those internal flows onto NATS (CNCF pub/sub) and keep SES for actual user-facing email.\n\nFirst step: I'll inventory the SendEmail calls and tag the ones that are eventing in disguise. Then we can scope a NATS pilot for one flow before broader rollout.\n\nThanks"
+  }
+}

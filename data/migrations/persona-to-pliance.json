@@ -1,0 +1,81 @@
+{
+  "source": {
+    "slug": "persona",
+    "name": "Persona"
+  },
+  "target": {
+    "slug": "pliance",
+    "name": "Pliance"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "Move from Persona's broad identity platform to Pliance when the priority shifts to EU/Nordic AML — sanctions, PEP, CDD, and ongoing monitoring with GDPR-aligned hosting.",
+  "why_switch": [
+    "Need deeper AML coverage (sanctions, PEP, CDD, ongoing monitoring) than IDV-first tooling",
+    "EU/Nordic regulatory fit and GDPR-aligned hosting matter more than US-style flexibility",
+    "Want a developer-first AML API with detailed docs and SDKs",
+    "Consolidating screening/monitoring under one Nordic provider",
+    "Custom EU-fintech contract may suit your volumes better than per-verification pricing"
+  ],
+  "what_to_export": [
+    "Verified user records with KYC status and timestamps",
+    "AML/screening hits and dispositions",
+    "Ongoing monitoring history",
+    "Document/biometric outcomes (metadata, not necessarily raw artifacts)",
+    "Decisioning rules currently configured in Persona",
+    "Webhook event history",
+    "Operator audit logs and case notes",
+    "Mapping between Persona inquiry IDs and your internal user IDs"
+  ],
+  "export_method": "Persona supports API-based export of identity verification data per their documented data-portability story; use it to extract verification records, decisions, and audit logs. Treat PII as production-sensitive and coordinate with your DPO on retention and lawful basis for transferring data to a new processor. Capture rules and thresholds as a written spec rather than attempting a literal port.",
+  "import_method": "Provision a Pliance tenant per their official documentation, configure jurisdictions and screening lists, and load customers into CDD/screening via their documented APIs. Re-screen all migrated users against sanctions/PEP/adverse-media to set a fresh baseline, then enable ongoing monitoring. Decide whether you still need a separate IDV/document/biometric vendor alongside Pliance — Pliance is AML-focused, not IDV-focused.",
+  "concept_mapping": [
+    {
+      "source": "Persona IDV + KYB + custom rules",
+      "target": "Pliance AML (CDD/PEP/sanctions/monitoring)",
+      "note": "Different scope; you may keep an IDV vendor alongside Pliance"
+    },
+    {
+      "source": "Persona inquiry-based flows",
+      "target": "Pliance customer/case model",
+      "note": "Model is different; map entities deliberately"
+    },
+    {
+      "source": "Pay per successful verification",
+      "target": "Custom EU contract",
+      "note": "Get a quote based on expected volumes"
+    },
+    {
+      "source": "Persona ongoing monitoring (where used)",
+      "target": "Pliance ongoing monitoring",
+      "note": "Re-baseline screening on import"
+    },
+    {
+      "source": "Persona rule engine",
+      "target": "Pliance rules/case management",
+      "note": "Re-author rules using Pliance primitives"
+    },
+    {
+      "source": "Persona webhooks/SDKs",
+      "target": "Pliance webhooks/SDKs",
+      "note": "Re-implement event handlers; new payload schema"
+    },
+    {
+      "source": "Global coverage",
+      "target": "EU/Nordic-strong, weaker US coverage",
+      "note": "Validate every region you serve before cutover"
+    }
+  ],
+  "effort": "4-10 weeks",
+  "gotchas": [
+    "Pliance is AML-focused, not a full IDV replacement — you may need a doc/biometric vendor alongside",
+    "EU/Nordic strength comes with thinner US coverage; verify per region",
+    "PII transfer between processors needs DPO sign-off and updated DPAs",
+    "Re-screening on import surfaces new alerts — staff case management before cutover",
+    "Custom pricing means TCO comparison only becomes real after a quote",
+    "Audit-trail continuity for regulators: keep Persona archives for the retention window"
+  ],
+  "email": {
+    "subject": "Persona -> Pliance migration plan (EU AML focus)",
+    "body": "Hi team,\n\nProposing we shift our compliance stack from Persona to Pliance, with a focus on EU/Nordic AML — sanctions, PEP, CDD, and ongoing monitoring.\n\nPlan:\n1. DPO/legal review of PII transfer and updated DPAs.\n2. Export verification records, decisions, and audit logs from Persona per their docs.\n3. Document rules/thresholds as a spec (not a literal port).\n4. Stand up Pliance per their official docs; load CDD data, configure screening lists.\n5. Re-screen migrated users to establish a baseline; enable ongoing monitoring; wire alerts into case management.\n6. Decide if we keep an IDV/document vendor alongside Pliance for non-AML checks.\n\nEffort 4-10 weeks. Pricing custom — we'll need a quote.\n\nThanks"
+  }
+}

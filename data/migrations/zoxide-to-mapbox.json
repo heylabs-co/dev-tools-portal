@@ -1,0 +1,70 @@
+{
+  "source": {
+    "slug": "zoxide",
+    "name": "zoxide"
+  },
+  "target": {
+    "slug": "mapbox",
+    "name": "Mapbox"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "These tools serve different purposes — zoxide is a shell directory-jump CLI, Mapbox is a maps/geocoding platform — so a 'migration' only applies if a category mismatch was recorded; otherwise treat as a fresh Mapbox adoption.",
+  "why_switch": [
+    "Mapbox provides production map tiles, navigation SDK, and geocoding — capabilities zoxide does not offer.",
+    "If you mistakenly tagged zoxide for location work, Mapbox is a real fit for delivery, store locator, or routing apps.",
+    "Mapbox has strong SDKs across web, iOS, and Android.",
+    "Generous free tier to prototype before committing.",
+    "Vector tiles enable custom styling that no CLI tool can deliver."
+  ],
+  "what_to_export": [
+    "Any address or POI lists in your application database",
+    "Existing map style or branding requirements",
+    "Geocoding query logs (for sizing the Mapbox plan)",
+    "Lat/lng coordinates currently stored",
+    "Routing requirements (modes: driving, walking, cycling)",
+    "Map UI requirements (zoom levels, basemap layers)",
+    "User-facing language / locale needs",
+    "List of allowed referrer domains / mobile bundle IDs"
+  ],
+  "export_method": "There is nothing to export from zoxide itself — its database is a local shell history of visited directories and is unrelated to maps. Pull the relevant data from your app: addresses, coordinates, and any map configuration you intend to render in Mapbox.",
+  "import_method": "Sign up for a Mapbox account, generate an access token, and integrate the appropriate SDK (Mapbox GL JS for web, Mapbox Maps SDK for mobile) following the official Mapbox docs. For geocoding, use the Mapbox Geocoding API. Re-create map styles in Mapbox Studio if custom branding is needed.",
+  "concept_mapping": [
+    {
+      "source": "zoxide directory jumping (z command)",
+      "target": "No equivalent",
+      "note": "Different problem domain."
+    },
+    {
+      "source": "Local frecency database",
+      "target": "No equivalent",
+      "note": "Mapbox has no shell concept."
+    },
+    {
+      "source": "App addresses / coordinates",
+      "target": "Mapbox Geocoding API",
+      "note": "Consult Mapbox docs for current endpoints."
+    },
+    {
+      "source": "Map rendering needs",
+      "target": "Mapbox GL JS or Mobile SDK",
+      "note": "Choose per platform."
+    },
+    {
+      "source": "Routing",
+      "target": "Mapbox Directions API",
+      "note": "Verify pricing and rate limits."
+    }
+  ],
+  "effort": "2-5 days",
+  "gotchas": [
+    "Category mismatch: this pair likely reflects a tagging error — zoxide is a shell tool, not a maps service.",
+    "Mapbox pricing scales with map loads and API calls; monitor usage from day one.",
+    "Access token scoping matters — use restricted tokens for client-side code.",
+    "Mobile SDKs add binary size and may require license disclosures.",
+    "Custom styles take time to design; budget for Mapbox Studio work."
+  ],
+  "email": {
+    "subject": "Adopting Mapbox for our location features",
+    "body": "Hi team,\n\nThe previous tool we had tagged for this workflow (zoxide) is actually a shell utility, not a maps service. For real maps and geocoding I propose adopting Mapbox: tiles, geocoding, and directions in one platform with a free tier to prototype.\n\nI'll spin up a token and a small proof-of-concept this week. Happy to align on which features we actually need (display map, search address, routing) before scoping further.\n\nThanks"
+  }
+}

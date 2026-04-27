@@ -1,0 +1,78 @@
+{
+  "source": {
+    "slug": "airship",
+    "name": "Airship"
+  },
+  "target": {
+    "slug": "batch",
+    "name": "Batch"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "Move mobile push and in-app messaging from Airship to Batch by re-instrumenting SDKs, re-importing user data, and rebuilding segments and campaigns.",
+  "why_switch": [
+    "EU/GDPR data residency posture often cited for Batch",
+    "Freemium entry vs Airship's paid-only subscription",
+    "Lighter, mobile-first focus if you don't need email/SMS in one suite",
+    "Simpler campaign UI for teams primarily running push and in-app",
+    "Reduce vendor lock-in tied to Airship's audience model"
+  ],
+  "what_to_export": [
+    "User profiles with stable external/customer IDs",
+    "Device tokens and platform metadata (iOS/Android)",
+    "Custom user attributes/traits",
+    "Tags and named user identifiers",
+    "Audience/segment definitions",
+    "Campaign and automation message content",
+    "In-app message templates and assets",
+    "Event/trigger schemas used in journeys",
+    "Opt-in/opt-out and consent state",
+    "Historical message logs for reference (if needed)"
+  ],
+  "export_method": "Use Airship's data export and reporting capabilities to extract user, device, tag, and event data; consult Airship's official documentation for the supported export pathways and any required permissions. For campaign and template content, copy from the dashboard or the Airship API where available. Store exports as CSV/JSON for transformation before import.",
+  "import_method": "Install the Batch mobile SDKs in your iOS and Android apps following Batch's official integration docs, then map your user identifiers and attributes to Batch's user/custom-data model. Recreate segments, push templates, and in-app campaigns in Batch's dashboard. Use Batch's APIs (transactional and data) per their documentation to backfill any user attributes and trigger transactional sends.",
+  "concept_mapping": [
+    {
+      "source": "Named User",
+      "target": "Custom User ID",
+      "note": "Stable external ID for cross-device identity"
+    },
+    {
+      "source": "Tags",
+      "target": "Custom Attributes / Audiences",
+      "note": "Re-model boolean tags as attributes or audience rules"
+    },
+    {
+      "source": "Channels (device tokens)",
+      "target": "Installations / Devices",
+      "note": "Re-registered automatically on SDK install"
+    },
+    {
+      "source": "Automation / Journeys",
+      "target": "Campaigns / Triggers",
+      "note": "Rebuild flows; trigger semantics differ"
+    },
+    {
+      "source": "In-App Messages",
+      "target": "In-App Messages",
+      "note": "Recreate templates; layout primitives differ"
+    },
+    {
+      "source": "Custom Events",
+      "target": "Custom Events",
+      "note": "Re-emit from app code via Batch SDK"
+    }
+  ],
+  "effort": "2-6 weeks",
+  "gotchas": [
+    "Device tokens must be re-collected via the new SDK; legacy tokens may not be transferable",
+    "Users will receive duplicate pushes during the dual-run period if not gated",
+    "Segment logic rarely maps 1:1 — expect manual rebuild and QA",
+    "Consent and opt-in state must be migrated carefully to stay GDPR-compliant",
+    "Web push and email/SMS coverage in Batch is narrower than Airship's full suite",
+    "Pricing scales with MAUs/sends — model costs before committing"
+  ],
+  "email": {
+    "subject": "Migrating from Airship to Batch — plan and timeline",
+    "body": "Hi team,\n\nWe're planning a migration of our mobile push and in-app messaging stack from Airship to Batch. The goal is to consolidate on an EU-friendly mobile-first platform and simplify our campaign tooling.\n\nHigh-level plan:\n1) Export user profiles, device metadata, tags, and campaign content from Airship.\n2) Integrate Batch SDKs into iOS and Android, mapping our external IDs and attributes.\n3) Rebuild segments, templates, and triggered campaigns in Batch.\n4) Run both platforms in parallel for one release cycle, then cut over.\n\nEstimated effort: 2-6 weeks depending on campaign volume. I'll share a detailed checklist and risks (duplicate sends, consent state, segment parity) in the planning doc.\n\nThanks"
+  }
+}

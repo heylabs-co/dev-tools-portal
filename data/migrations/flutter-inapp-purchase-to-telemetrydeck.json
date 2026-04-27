@@ -1,0 +1,76 @@
+{
+  "source": {
+    "slug": "flutter-inapp-purchase",
+    "name": "flutter_inapp_purchase"
+  },
+  "target": {
+    "slug": "telemetrydeck",
+    "name": "TelemetryDeck"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "These tools solve different problems: flutter_inapp_purchase handles purchases, TelemetryDeck handles privacy-focused analytics — so this is an additive integration, not a replacement.",
+  "why_switch": [
+    "Add privacy-first, GDPR-friendly product analytics on top of your existing IAP layer",
+    "Track subscription metrics with a tool designed for that use case",
+    "Lower analytics cost vs. heavier platforms when your needs are signal-based",
+    "Keep purchase logic in flutter_inapp_purchase while sending events to TelemetryDeck",
+    "Avoid collecting personal data while still measuring conversion"
+  ],
+  "what_to_export": [
+    "List of purchase-related events you currently track (or want to track)",
+    "Subscription lifecycle hooks (start, renew, cancel, refund)",
+    "User cohort or segmentation logic if any",
+    "Conversion funnel definitions",
+    "Existing analytics destinations and their event names",
+    "Privacy policy commitments and consent flow",
+    "Product ID list to map onto signal payloads",
+    "Any RevenueCat configuration if it sits in between"
+  ],
+  "export_method": "flutter_inapp_purchase exposes purchase events to your Dart code; there is nothing to export from the library itself. Instead, inventory the analytics events you currently emit (or want to emit) around purchase flows. If you already pipe events to another analytics tool, document the event schema so you can mirror it into TelemetryDeck signals.",
+  "import_method": "Add the TelemetryDeck SDK for Flutter alongside flutter_inapp_purchase and emit signals from your purchase callbacks (purchase initiated, completed, failed, restored, subscription renewed). Configure TelemetryDeck following its official documentation for signal naming and payload structure. If you use RevenueCat as a middle layer, TelemetryDeck advertises a RevenueCat integration — consult their official docs for the current setup.",
+  "concept_mapping": [
+    {
+      "source": "Purchase completion callback",
+      "target": "TelemetryDeck signal",
+      "note": "Send a signal with product ID and outcome"
+    },
+    {
+      "source": "Subscription renewal event",
+      "target": "TelemetryDeck signal",
+      "note": "Emit on renewal hook from your backend or library"
+    },
+    {
+      "source": "Restore purchases flow",
+      "target": "TelemetryDeck signal",
+      "note": "Track restoration attempts and outcomes separately"
+    },
+    {
+      "source": "Product catalog",
+      "target": "Signal payload field",
+      "note": "Pass product ID as a payload key for grouping in dashboards"
+    },
+    {
+      "source": "User identifier",
+      "target": "Anonymous user hash",
+      "note": "TelemetryDeck is privacy-first; avoid sending PII"
+    },
+    {
+      "source": "Funnel analytics",
+      "target": "Signal sequences",
+      "note": "Build funnels by querying signal sequences in dashboards"
+    }
+  ],
+  "effort": "4-12 hours for initial integration",
+  "gotchas": [
+    "These are complementary tools, not substitutes — keep flutter_inapp_purchase for purchases",
+    "TelemetryDeck is intentionally minimal; deep funnel analysis may require a different tool",
+    "Avoid sending PII to honor TelemetryDeck's privacy posture",
+    "Subscription state is best confirmed server-side; analytics signals should not drive billing logic",
+    "Verify GDPR consent flow still works after adding the SDK",
+    "Cross-platform coverage may be more limited than larger analytics platforms — check current docs"
+  ],
+  "email": {
+    "subject": "Adding TelemetryDeck analytics on top of flutter_inapp_purchase",
+    "body": "Hi team,\n\nQuick note: these aren't replacements for each other — flutter_inapp_purchase keeps doing purchases, and we'd add TelemetryDeck for privacy-first analytics on subscription metrics.\n\nPlan: emit TelemetryDeck signals from our existing purchase callbacks (initiated, completed, failed, restored, renewed) without sending PII. About 4-12 hours for initial integration.\n\nFlag: TelemetryDeck is intentionally minimal — if we need deep funnel analysis later, we may need something else. I'll consult their official docs for signal conventions."
+  }
+}

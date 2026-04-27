@@ -1,0 +1,76 @@
+{
+  "source": {
+    "slug": "devenv",
+    "name": "Devenv"
+  },
+  "target": {
+    "slug": "hermit",
+    "name": "Hermit"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "Move from Nix-powered full dev environments (Devenv) to Hermit's lightweight per-project hermetic CLI tool pinning, accepting a narrower scope in exchange for less Nix complexity.",
+  "why_switch": [
+    "Avoid Nix learning curve and macOS/Linux-only friction",
+    "Simpler YAML-based tool pinning vs devenv.nix",
+    "Smaller surface area: just CLI tools, no full environment graph",
+    "Easier onboarding for teams uncomfortable with Nix errors",
+    "Cash App-backed maintenance for the core tool manager"
+  ],
+  "what_to_export": [
+    "List of language toolchains pinned in devenv.nix (Go, Node, Python versions)",
+    "List of CLI utilities (ripgrep, jq, kubectl, etc.) installed via Devenv",
+    "Service definitions (Postgres, Redis, Caddy) — note these will NOT migrate",
+    "Pre-commit hooks configured via Devenv",
+    "Custom scripts defined under scripts in devenv.nix",
+    "Environment variables set in devenv.nix",
+    "direnv / .envrc integration files",
+    "CI configuration that invokes devenv shell"
+  ],
+  "export_method": "There is no automated exporter. Manually inventory devenv.nix: extract languages.<name>.enable + version, packages list, scripts, and env vars into a plain list. Treat services (Postgres/Redis) as a separate migration concern since Hermit does not orchestrate services — consult official Hermit docs for current scope.",
+  "import_method": "Initialize Hermit in the repo root following the official Hermit getting-started guide (typically a curl-based bootstrap). Use hermit install <package>@<version> for each CLI tool you previously had in devenv.nix. Commit the resulting bin/ directory and activation scripts. Replace devenv shell invocations in CI with sourcing the Hermit activation script. Verify exact commands and current package catalog against the official Hermit docs.",
+  "concept_mapping": [
+    {
+      "source": "devenv.nix packages",
+      "target": "hermit install <pkg>",
+      "note": "One-to-one for tools present in Hermit's catalog; otherwise no equivalent"
+    },
+    {
+      "source": "languages.<x>.enable",
+      "target": "hermit install <runtime>@<version>",
+      "note": "Pin runtime version explicitly"
+    },
+    {
+      "source": "services.postgres / redis",
+      "target": "(no equivalent)",
+      "note": "Hermit does not orchestrate services — use Docker Compose or similar separately"
+    },
+    {
+      "source": "scripts.<name>",
+      "target": "Makefile / shell scripts",
+      "note": "Hermit has no script runner; move to project tooling of choice"
+    },
+    {
+      "source": "direnv integration",
+      "target": "Hermit shell activation",
+      "note": "Hermit provides its own activation; consult docs for direnv coexistence"
+    },
+    {
+      "source": "pre-commit hooks",
+      "target": "Configure pre-commit separately",
+      "note": "Install pre-commit via Hermit then configure normally"
+    }
+  ],
+  "effort": "4-12 hours",
+  "gotchas": [
+    "Hermit does not replace service orchestration — plan a parallel solution before cutover",
+    "Tool catalog is smaller than nixpkgs; some packages may be unavailable",
+    "Reproducibility model differs: Hermit pins binaries, Devenv pins via Nix store hashes",
+    "Windows still relies on WSL — same constraint as Devenv",
+    "Custom scripts from devenv.nix need a new home (Make, just, npm scripts)",
+    "Verify all tool names and commands against the current official Hermit documentation"
+  ],
+  "email": {
+    "subject": "Proposal: replace Devenv with Hermit for our toolchain pinning",
+    "body": "Hi team,\n\nI want to propose moving our dev tooling from Devenv to Hermit. Devenv has served us well for pinned toolchains, but the Nix layer adds onboarding friction and we don't actually use the service-orchestration features much.\n\nHermit gives us per-project hermetic CLI installs without Nix. Trade-offs: no service orchestration, smaller package catalog. We'd keep services in Docker Compose. Estimated effort 4-12 hours plus team ramp.\n\nWorth a spike?\n\nThanks"
+  }
+}

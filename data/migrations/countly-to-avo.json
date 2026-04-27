@@ -1,0 +1,72 @@
+{
+  "source": {
+    "slug": "countly",
+    "name": "Countly"
+  },
+  "target": {
+    "slug": "avo",
+    "name": "Avo"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "Move from Countly's self-hostable analytics backend to Avo's governance layer — note these solve different problems and you may still need a destination tool.",
+  "why_switch": [
+    "Avo enforces a tracking plan, improving data quality across whatever destination you use",
+    "Reduces ad-hoc event sprawl that often happens with flexible backends like Countly",
+    "Avo has a freemium tier for evaluating governance workflows",
+    "Decouples instrumentation from any one analytics tool",
+    "Works alongside (not necessarily instead of) Countly or another backend"
+  ],
+  "what_to_export": [
+    "List of events and their property schemas from Countly",
+    "User properties and identity model",
+    "Custom event definitions and segment rules",
+    "Saved views, funnels, retention reports (for reference)",
+    "Dashboards and shared widgets",
+    "Team members, roles, permissions",
+    "SDK/integration configurations across platforms",
+    "Historical event data (if you self-host, you already control the database)",
+    "A/B test definitions if used"
+  ],
+  "export_method": "If self-hosted, you can dump the underlying database directly; if using Countly Cloud, use the documented export options. Document each event and property as the schema input for Avo. Consult Countly's official docs for current export procedures.",
+  "import_method": "Set up an Avo workspace and define the tracking plan from the exported Countly schema. Connect Avo to your chosen analytics destination(s) and integrate Avo's Inspector/Codegen per the official Avo docs so engineering instruments events to spec.",
+  "concept_mapping": [
+    {
+      "source": "Countly events",
+      "target": "Tracked events in plan",
+      "note": "Curate, don't bulk-import"
+    },
+    {
+      "source": "Event segmentations",
+      "target": "Properties on plan",
+      "note": "Add types and ownership"
+    },
+    {
+      "source": "User profiles",
+      "target": "User properties",
+      "note": "Define identity rules clearly"
+    },
+    {
+      "source": "Funnels/retention",
+      "target": "Built in destination tool",
+      "note": "Avo governs schema, not analysis"
+    },
+    {
+      "source": "Self-hosted backend",
+      "target": "Avo SaaS + your destination",
+      "note": "Different deployment model"
+    }
+  ],
+  "effort": "1-3 weeks",
+  "gotchas": [
+    "Avo isn't a Countly replacement; you'll still need a destination for analysis",
+    "If self-hosting was the reason for Countly, Avo is SaaS — verify that's acceptable",
+    "Curate which events to bring forward; don't lift-and-shift everything",
+    "Plan engineering time for SDK swap to whatever destination you pick",
+    "Decommission Countly only after the new pipeline is verified end-to-end",
+    "Historical Countly data stays in your DB; it won't move into Avo"
+  ],
+  "email": {
+    "subject": "Countly → Avo plan",
+    "body": "Team,\n\nWe're introducing Avo as our analytics governance layer. Note Avo doesn't replace an analytics backend — it enforces event schema and emits to whatever destination we choose.\n\nI'll export the current Countly event schema, draft the initial Avo tracking plan, and circulate for review. Engineering will then integrate Avo into the codebase. We'll keep Countly running until the new pipeline is verified.\n\nFlag any Countly events or reports you depend on.\n\nThanks"
+  }
+}

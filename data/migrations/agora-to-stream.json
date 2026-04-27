@@ -1,0 +1,75 @@
+{
+  "source": {
+    "slug": "agora",
+    "name": "Agora"
+  },
+  "target": {
+    "slug": "stream",
+    "name": "Stream"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "Switch from Agora's RTC platform to Stream's Video and Chat APIs, remapping channels to Stream calls and re-issuing user tokens.",
+  "why_switch": [
+    "Bundled chat plus video from a single vendor",
+    "Higher-level call abstractions instead of raw RTC primitives",
+    "Strong SDK coverage across web, iOS, Android, React Native",
+    "Built-in moderation and reactions for chat",
+    "Public subscription pricing"
+  ],
+  "what_to_export": [
+    "Channel/room inventory and naming conventions",
+    "Token-issuing logic and user identity model",
+    "Recording files and retention policy",
+    "Client SDK versions per platform",
+    "Custom signaling and RTM message flows",
+    "Webhook handlers for call events",
+    "Live streaming endpoints",
+    "Concurrent participant and bandwidth metrics"
+  ],
+  "export_method": "Most call state is ephemeral. Export your room inventory from your own database, pull recordings from Agora's cloud storage to your bucket, and document any RTM messaging flows. User identities should already live in your own auth system.",
+  "import_method": "Create a Stream app with Video enabled, install Stream's Video SDK on clients, and issue user tokens server-side. Map Agora channels to Stream calls and recreate them as sessions begin. If you also use Agora RTM for chat, replace it with Stream Chat in the same migration. Run both stacks in parallel during cutover.",
+  "concept_mapping": [
+    {
+      "source": "Channel",
+      "target": "Call",
+      "note": "Stream calls cover the same room concept"
+    },
+    {
+      "source": "RTC token",
+      "target": "User token",
+      "note": "JWT issued by your server"
+    },
+    {
+      "source": "RTM (signaling)",
+      "target": "Stream Chat",
+      "note": "Use Stream Chat for messaging-style signaling"
+    },
+    {
+      "source": "Cloud recording",
+      "target": "Recording",
+      "note": "Verify storage hooks and formats"
+    },
+    {
+      "source": "Live streaming",
+      "target": "Livestreaming",
+      "note": "Confirm output protocols match your CDN"
+    },
+    {
+      "source": "Roles/permissions",
+      "target": "Call permissions",
+      "note": "Different role model; remap before cutover"
+    }
+  ],
+  "effort": "3-6 weeks",
+  "gotchas": [
+    "Platform parity may differ; verify Unity/Flutter coverage",
+    "Pricing scales with MAU and call minutes — model both",
+    "Recording formats and storage hooks differ from Agora",
+    "RTM-style signaling needs a redesign on Stream primitives",
+    "Permission and role models do not map 1:1"
+  ],
+  "email": {
+    "subject": "Cancelling Agora account",
+    "body": "Hi Agora team,\n\nWe're migrating our real-time video and signaling workload to Stream. Please confirm the cancellation date and any final billing on our account.\n\nThanks."
+  }
+}

@@ -1,0 +1,76 @@
+{
+  "source": {
+    "slug": "cortex",
+    "name": "Cortex"
+  },
+  "target": {
+    "slug": "eventual-ai",
+    "name": "Eventual"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Cortex is an internal developer portal focused on catalog and scorecards, while Eventual (built on Daft) is a Python-native distributed query engine for multimodal data. These tools solve unrelated problems, so this migration is realistic only if Cortex is being used to drive data integrations that should instead live in Daft pipelines.",
+  "why_switch": [
+    "Replace IDP-driven data flows with a real query engine",
+    "Open-source Daft removes per-seat IDP licensing for that surface",
+    "Native handling of images, video, and audio at scale",
+    "Python-first API better matches data and ML team workflows",
+    "Reduce reliance on Cortex for non-catalog responsibilities"
+  ],
+  "what_to_export": [
+    "Service catalog entries that drive any data ingestion logic",
+    "Custom integrations or scripts run from Cortex hooks",
+    "Configuration and credentials for downstream data targets",
+    "Schedules and triggers managed inside Cortex",
+    "Ownership metadata needed for routing pipeline failures",
+    "Sample input and output records for each integration",
+    "Audit logs of recent runs for validation",
+    "Documentation describing each pipeline's intent"
+  ],
+  "export_method": "Use the Cortex API to enumerate every service entity that participates in data movement. For each, capture its configuration, ownership, and any scripts or webhooks that fire from Cortex. Store these as JSON or YAML in Git. If Cortex is hosting glue code via integrations, copy the underlying code into a normal repository so it can run outside the IDP. Generic if uncertain: assume only the metadata is structured — actual pipeline logic likely lives in user-supplied scripts that you must lift into a standalone runtime. Pull representative input and output records, plus recent audit logs, so you can validate parity later. Document schedules as plain cron expressions you can reproduce in Airflow, Prefect, or another scheduler. Avoid keeping production secrets in the export — recreate credentials in the new environment.",
+  "import_method": "Set up Daft locally or on Ray/Kubernetes per the Eventual/Daft documentation. Re-implement each former Cortex-driven pipeline as a Python job that builds a Daft DataFrame, applies transformations, and writes outputs to object storage or downstream systems. Run jobs from a real scheduler (cron, Airflow, Prefect, Dagster) instead of Cortex hooks. For ownership and on-call, route Daft job failures through your existing alerting stack rather than Cortex. Validate parity by replaying recent inputs through the new pipeline and diffing the outputs against the records exported earlier. Keep Cortex available read-only during migration so any catalog or scorecard data referenced by humans is still reachable. Once Daft jobs match historical outputs, retire the corresponding Cortex hooks.",
+  "concept_mapping": [
+    {
+      "source": "Service entity",
+      "target": "Daft pipeline + repo",
+      "note": "Daft has no catalog; metadata lives elsewhere"
+    },
+    {
+      "source": "Custom integration script",
+      "target": "Daft job in Python",
+      "note": "Re-host script as a normal Python module"
+    },
+    {
+      "source": "Schedule",
+      "target": "Airflow/Prefect/cron",
+      "note": "Daft does not schedule itself"
+    },
+    {
+      "source": "Scorecard",
+      "target": "External quality dashboards",
+      "note": "Not represented in Daft"
+    },
+    {
+      "source": "Webhook",
+      "target": "Job trigger or event bus",
+      "note": "Rebuild outside Cortex"
+    },
+    {
+      "source": "Ownership",
+      "target": "On-call tool config",
+      "note": "Move to PagerDuty/Opsgenie"
+    }
+  ],
+  "effort": "3-6 weeks",
+  "gotchas": [
+    "Cortex and Eventual barely overlap in scope; ensure you actually need a query engine before starting this migration.",
+    "Daft is a younger engine than Spark or Ray, so some connectors may need to be written by hand.",
+    "Hidden business logic inside Cortex integration scripts is the main migration risk — extract and review every script.",
+    "Schedules and retries must be re-implemented in a real workflow tool; Daft will not retry failed jobs on its own.",
+    "Ownership and alerting were free in Cortex; recreate them explicitly so failures are still routed.",
+    "Cost and runtime profiles change from per-seat IDP to compute-time on a cluster — model expected workloads."
+  ],
+  "email": {
+    "subject": "Heads up: replacing Cortex-driven data flows with Eventual",
+    "body": "Hi team,\n\nOver the next 14 days we are moving the data movement logic currently driven from Cortex onto Eventual, which is built on the open-source Daft engine. Cortex itself will remain available read-only for catalog and scorecard reference; only the pipeline pieces are moving.\n\nPlan:\n\n- Days 1 to 4: enumerate every Cortex hook, script, and schedule that touches data and export them to Git.\n- Days 5 to 9: rebuild each pipeline as a Daft job orchestrated by our existing scheduler.\n- Days 10 to 12: dual-run, diff outputs against historical records, and confirm alerting routes.\n- Days 13 to 14: cut over and freeze the old Cortex hooks.\n\nIf your team relies on a specific Cortex integration or schedule, reply with the name so we can confirm coverage. Cortex will stay live read-only for at least 30 days after cutover.\n\nThanks,\nYour customer"
+  }
+}

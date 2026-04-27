@@ -1,0 +1,76 @@
+{
+  "source": {
+    "slug": "mapbox",
+    "name": "Mapbox"
+  },
+  "target": {
+    "slug": "opencage",
+    "name": "OpenCage"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "Move only the geocoding slice of your Mapbox usage to OpenCage for cost and simplicity — Mapbox tiles, navigation, and SDKs have no OpenCage equivalent.",
+  "why_switch": [
+    "Lower per-request cost for high-volume geocoding.",
+    "GDPR-friendly EU provider.",
+    "Plain REST API — easy to integrate and easy to leave.",
+    "OSM-aggregated data with clear licensing posture.",
+    "Decouples geocoding cost from Mapbox map session pricing."
+  ],
+  "what_to_export": [
+    "Address lists currently sent to Mapbox geocoding",
+    "Cached geocoded results (lat/lng + formatted address)",
+    "Reverse-geocoding call sites",
+    "Any country/proximity biasing rules",
+    "Mapbox tokens and where they appear",
+    "Usage and quota history from Mapbox dashboard",
+    "Tests around geocoding accuracy",
+    "Logging tied to Mapbox geocoding requests"
+  ],
+  "export_method": "Mapbox does not warehouse your geocoded results — pull them from your own database. Use the Mapbox account dashboard for usage history to size an OpenCage plan. Consult Mapbox's official docs for current usage-export and audit options.",
+  "import_method": "OpenCage is stateless and has no bulk import; just point your geocoding code at OpenCage's forward/reverse endpoints with your API key, and backfill historical addresses in batches respecting rate limits. Refer to OpenCage's official docs for current endpoint URLs, parameters, and quotas.",
+  "concept_mapping": [
+    {
+      "source": "Mapbox geocoding (forward)",
+      "target": "OpenCage forward geocoding",
+      "note": "REST GET with q=address."
+    },
+    {
+      "source": "Mapbox geocoding (reverse)",
+      "target": "OpenCage reverse geocoding",
+      "note": "REST GET with q=lat,lng."
+    },
+    {
+      "source": "Mapbox access token",
+      "target": "OpenCage API key",
+      "note": "Use server-side only."
+    },
+    {
+      "source": "Mapbox tiles / Studio styles",
+      "target": "Not provided",
+      "note": "Stays on Mapbox or another renderer."
+    },
+    {
+      "source": "Navigation SDK",
+      "target": "Not provided",
+      "note": "Out of scope for OpenCage."
+    },
+    {
+      "source": "Proximity / country biasing",
+      "target": "OpenCage params",
+      "note": "Param names differ; map carefully."
+    }
+  ],
+  "effort": "1-3 days",
+  "gotchas": [
+    "OpenCage replaces geocoding only — keep Mapbox (or another renderer) for tiles, styles, and navigation.",
+    "Move geocoding behind your backend; don't expose OpenCage keys client-side.",
+    "Response shape differs; update components/formatted/confidence handling.",
+    "Watch rate limits on lower OpenCage tiers during backfills.",
+    "Cache results aggressively to control cost.",
+    "Re-check attribution and OSM licensing requirements."
+  ],
+  "email": {
+    "subject": "Moving geocoding from Mapbox to OpenCage",
+    "body": "Hi team,\n\nProposal: move just our geocoding workload from Mapbox to OpenCage. Mapbox tiles, styles, and navigation stay where they are — this is a targeted change to cut geocoding cost and reduce client-side coupling.\n\nPlan:\n1. Inventory every forward/reverse geocoding call site.\n2. Move calls server-side and swap to OpenCage.\n3. Update response parsing and biasing params.\n4. Spot-check accuracy across our priority markets.\n5. Keep Mapbox for rendering until/unless we revisit that separately.\n\nEstimated effort: 1-3 days.\n\nThanks"
+  }
+}

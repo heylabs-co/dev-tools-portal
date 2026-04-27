@@ -1,0 +1,81 @@
+{
+  "source": {
+    "slug": "togglz",
+    "name": "Togglz"
+  },
+  "target": {
+    "slug": "ff4j",
+    "name": "FF4J"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "Sideways move between two mature Java feature-flag libraries: from enum-based, type-safe Togglz to string-keyed FF4J with broader storage backends and an audit trail.",
+  "why_switch": [
+    "You want string-based flag keys you can create at runtime instead of compile-time enums",
+    "You need a built-in audit trail for compliance review",
+    "You want fine-grained RBAC for flag management",
+    "You prefer FF4J's broader catalog of database backends (20+)",
+    "You want a REST API for flag management out of the box"
+  ],
+  "what_to_export": [
+    "Enum class names and constants used as flag keys",
+    "Activation strategy IDs and parameters per flag",
+    "Group/feature-set memberships if used",
+    "Current state (enabled/disabled) per environment",
+    "User/role mappings tied to admin-console access",
+    "Custom ActivationStrategy implementations",
+    "StateRepository contents (current persisted states)",
+    "Any metadata/labels attached to flags"
+  ],
+  "export_method": "If your Togglz state lives in JDBC or Redis, dump the underlying table/keys to capture current flag states. The flag definitions themselves live in Java enum source code — extract them by reading the enum class. Capture activation-strategy IDs and parameters for each flag. Refer to the official Togglz documentation for the exact StateRepository schema in your version.",
+  "import_method": "Add the FF4J Spring Boot starter (or core JAR), define each flag in FF4J's configuration (XML, YAML, or programmatic FeatureStore population) using the original key as a string. Map each Togglz ActivationStrategy to an FF4J FlippingStrategy or predicate. Choose a FeatureStore matching your storage need (JDBC, Redis, MongoDB, etc.). Wire the FF4J web console and REST API and validate flag evaluation parity. Consult the official FF4J documentation for current setup steps.",
+  "concept_mapping": [
+    {
+      "source": "Java enum constant",
+      "target": "String flag uid",
+      "note": "Convert enum names to string keys; case/format conventions may differ"
+    },
+    {
+      "source": "ActivationStrategy",
+      "target": "FlippingStrategy / predicate",
+      "note": "Most built-ins (gradual, username, server IP) have direct equivalents"
+    },
+    {
+      "source": "FeatureGroup",
+      "target": "Feature group / category metadata",
+      "note": "Verify naming in current FF4J version"
+    },
+    {
+      "source": "StateRepository",
+      "target": "FeatureStore",
+      "note": "JDBC/Redis options exist on both; schema differs"
+    },
+    {
+      "source": "Togglz admin console",
+      "target": "FF4J web console",
+      "note": "Both ship a console; auth must be reconfigured"
+    },
+    {
+      "source": "No first-class audit",
+      "target": "Built-in audit trail",
+      "note": "Enable audit store to log flag changes"
+    },
+    {
+      "source": "@FeaturesAreActive checks",
+      "target": "FF4J ff4j.check() / @Flip",
+      "note": "Replace call sites; consider an abstraction layer during migration"
+    }
+  ],
+  "effort": "1-3 days",
+  "gotchas": [
+    "Both libraries are Java-only; this is not a polyglot solution",
+    "Activation strategies don't map 1:1 — review each custom strategy carefully",
+    "FF4J releases are infrequent; verify Spring Boot version compatibility before committing",
+    "Web-console and REST-API endpoints differ — update any internal tooling that integrates",
+    "Database schemas are not compatible; do not try to point FF4J at a Togglz table",
+    "Plan a dual-evaluation period (both libraries on, traffic compared) to catch behavior drift"
+  ],
+  "email": {
+    "subject": "Migrating from Togglz to FF4J",
+    "body": "Hi team,\n\nProposing we move our Java feature flags from Togglz to FF4J. The drivers are: built-in audit trail for compliance, fine-grained RBAC, broader storage backends, and a REST API.\n\nApproach:\n1. Inventory current Togglz enums, strategies, and state-repo contents.\n2. Stand up FF4J with the Spring Boot starter and a matching FeatureStore.\n3. Recreate each flag as a string-keyed feature with the equivalent FlippingStrategy.\n4. Run both in parallel under a thin abstraction, diff results, then cut over.\n\nLow risk since both are JVM-local. Effort: 1-3 days."
+  }
+}

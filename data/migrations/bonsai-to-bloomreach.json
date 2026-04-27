@@ -1,0 +1,81 @@
+{
+  "source": {
+    "slug": "bonsai",
+    "name": "Bonsai"
+  },
+  "target": {
+    "slug": "bloomreach",
+    "name": "Bloomreach"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "Move from raw managed Elasticsearch/OpenSearch (Bonsai) to a commerce-focused search and merchandising platform (Bloomreach). Expect to remap your custom index schema and query DSL to Bloomreach's product catalog, attributes, and search APIs, and to rebuild any custom relevance tuning as merchandising rules.",
+  "why_switch": [
+    "Need built-in merchandising, ranking rules, and personalization without building them on top of raw Elasticsearch",
+    "Want commerce-specific features (facets, recommendations, A/B testing) out of the box",
+    "Reduce operational burden of tuning relevance and synonyms manually",
+    "Consolidate search, recommendations, and content onto one commerce platform",
+    "Bonsai cluster sizing and index ops becoming costly relative to value for an e-commerce use case"
+  ],
+  "what_to_export": [
+    "Index mappings and analyzers for each Bonsai index",
+    "Full document corpus (products, content) via scroll/_search",
+    "Synonym and stopword dictionaries",
+    "Query templates and stored search queries used by clients",
+    "Boost, function_score, and relevance config from app code",
+    "Facet/aggregation definitions",
+    "Index alias and routing configuration",
+    "Snapshot of cluster settings and any custom plugins relied on"
+  ],
+  "export_method": "Use Elasticsearch/OpenSearch APIs against the Bonsai cluster URL: GET /_mapping and /_settings per index, scroll API or elasticdump to dump documents to NDJSON, and pull synonym/stopword files from your config repo. Capture query/boost logic from application code rather than the cluster.",
+  "import_method": "Model your catalog as Bloomreach products/content using their ingestion APIs or feed format, then configure search profiles, ranking, and merchandising rules in the Bloomreach console. Re-implement query logic via Bloomreach's search API rather than porting Elasticsearch query DSL directly.",
+  "concept_mapping": [
+    {
+      "source": "Elasticsearch index",
+      "target": "Bloomreach catalog / search profile",
+      "note": "One index typically maps to a catalog or content type"
+    },
+    {
+      "source": "Document / _source",
+      "target": "Product or content item",
+      "note": "Schema must conform to Bloomreach's expected attributes"
+    },
+    {
+      "source": "Mapping / analyzers",
+      "target": "Attribute config + language settings",
+      "note": "Custom analyzers usually replaced by platform defaults"
+    },
+    {
+      "source": "Query DSL (bool, function_score)",
+      "target": "Search API query + ranking rules",
+      "note": "Boosts move from query-time code to merchandising rules"
+    },
+    {
+      "source": "Synonyms / stopwords files",
+      "target": "Dictionaries in admin console",
+      "note": "Re-upload via UI or API where supported"
+    },
+    {
+      "source": "Aggregations / facets",
+      "target": "Facet configuration on attributes",
+      "note": "Declared per attribute, not per query"
+    },
+    {
+      "source": "Index aliases",
+      "target": "Catalog versions / environments",
+      "note": "Use staging vs production catalogs for cutover"
+    }
+  ],
+  "effort": "3-8 weeks depending on catalog size, custom relevance logic, and number of client integrations",
+  "gotchas": [
+    "Elasticsearch query DSL does not port 1:1 — plan to rewrite, not translate",
+    "Custom analyzers, plugins, or scripted scoring on Bonsai usually have no direct equivalent",
+    "Bloomreach is commerce-oriented; non-commerce use cases (logs, generic docs search) may not fit",
+    "Pricing model shifts from cluster size to commerce platform subscription — model TCO before committing",
+    "Relevance tuning will need re-validation; expect a parallel-run period with click/conversion metrics",
+    "Data residency and PII handling differ from a raw ES cluster — review compliance requirements"
+  ],
+  "email": {
+    "subject": "Migration plan: Bonsai to Bloomreach",
+    "body": "Hi team,\n\nProposing we migrate our search stack from Bonsai (managed Elasticsearch) to Bloomreach to get commerce-grade merchandising, ranking, and personalization without building it ourselves.\n\nPlan: export index mappings, documents, synonyms, and query/boost logic from Bonsai; remodel the catalog into Bloomreach's product schema; rebuild relevance as merchandising rules; cut over per surface with a parallel-run period.\n\nEstimated effort: 3-8 weeks. Main risks: query DSL doesn't port directly, custom analyzers/plugins won't survive, and TCO shifts from cluster size to platform subscription.\n\nWill share a detailed cutover and rollback plan before we start.\n\nThanks"
+  }
+}

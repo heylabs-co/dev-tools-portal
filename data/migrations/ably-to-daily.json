@@ -1,0 +1,77 @@
+{
+  "source": {
+    "slug": "ably",
+    "name": "Ably"
+  },
+  "target": {
+    "slug": "daily",
+    "name": "Daily"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "Note: Ably is pub/sub messaging and Daily is video/audio — this is not a like-for-like swap. Only migrate if your real Ably use case is voice/video rooms; otherwise reconsider the target.",
+  "why_switch": [
+    "Daily is a fit if your underlying need is real-time audio/video calls, not generic pub/sub messaging",
+    "Lower entry pricing relative to Ably's $29/mo tier",
+    "Mature web and mobile SDKs with prebuilt UI",
+    "Public, transparent pricing",
+    "Single-vendor solution if you can drop pub/sub messaging entirely"
+  ],
+  "what_to_export": [
+    "List of channels and their configurations",
+    "Subscriber/publisher integration points across services",
+    "Auth/token issuance logic from your backend",
+    "Webhook and integration rules configured in Ably",
+    "Persisted channel history retention settings",
+    "Presence usage patterns and member metadata schema",
+    "API key inventory (for rotation)",
+    "Usage history for billing reconciliation",
+    "List of client apps using the Ably SDK"
+  ],
+  "export_method": "Use Ably's official dashboard and REST API to inventory channels, integration rules, and history settings. Treat your backend (token mint, message-producer code) as canonical business logic. Persisted channel history can be pulled via Ably's history API per their official docs. There is no documented one-click bulk export covering all configuration — script extraction and capture dashboard config manually.",
+  "import_method": "Daily does not provide a generic pub/sub primitive — only proceed if your traffic on Ably is genuinely call/room oriented. Provision a Daily account, generate API keys, and implement server-side room creation and meeting token issuance against Daily's official REST API. Swap clients to Daily's per-platform SDKs. If you have non-call pub/sub workloads, plan a separate target for those (this guide does not cover that path).",
+  "concept_mapping": [
+    {
+      "source": "Channel (pub/sub)",
+      "target": "Room (call session)",
+      "note": "Conceptually different — only maps if the channel was used to coordinate a call"
+    },
+    {
+      "source": "Token request / capability token",
+      "target": "Meeting token",
+      "note": "Both are short-lived backend-minted tokens; claim shapes differ entirely"
+    },
+    {
+      "source": "Presence",
+      "target": "Participant list in room",
+      "note": "Daily exposes participants in a call; not a general presence service"
+    },
+    {
+      "source": "Message publish/subscribe",
+      "target": "Custom data / app messages on call",
+      "note": "Daily exposes per-call app messages; not a substitute for global pub/sub"
+    },
+    {
+      "source": "Integration rules / webhooks",
+      "target": "Webhooks",
+      "note": "Rewrite handler against Daily's event payload"
+    },
+    {
+      "source": "Channel history",
+      "target": "(no direct equivalent)",
+      "note": "Daily is not a message store; persist history yourself if needed"
+    }
+  ],
+  "effort": "2-6 weeks (longer if your Ably usage is broader than calls)",
+  "gotchas": [
+    "These are different product categories — confirm fit before starting",
+    "If you rely on persisted message history, presence at scale, or MQTT/SSE protocols, Daily is not a replacement",
+    "Token formats and capability models are not portable",
+    "Latency, fan-out and delivery-guarantee characteristics differ; load test before cutover",
+    "Pricing dimensions are different (messages/peers vs. participant minutes) — verify on Daily's official pricing page",
+    "Run both vendors in parallel during cutover and watch for dropped events"
+  ],
+  "email": {
+    "subject": "Considering moving Ably real-time workloads to Daily",
+    "body": "Hi team,\n\nFlagging a possible migration from Ably to Daily. Important caveat: Ably is pub/sub messaging and Daily is video/audio infrastructure, so this only makes sense if our real Ably workload is call/room coordination. For other pub/sub use cases we'd need a different target.\n\nIf the fit holds, scope is rebuilding server-side room creation and tokens against Daily's API, swapping clients, and reconfiguring webhooks. Estimating 2-6 weeks depending on how much of our Ably surface is actually call-shaped. I'll confirm details from each vendor's official docs before locking the plan.\n\nLet me know if you want to review use-case fit first.\n\nThanks"
+  }
+}

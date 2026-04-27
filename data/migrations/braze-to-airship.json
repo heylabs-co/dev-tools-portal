@@ -1,0 +1,78 @@
+{
+  "source": {
+    "slug": "braze",
+    "name": "Braze"
+  },
+  "target": {
+    "slug": "airship",
+    "name": "Airship"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "Migrate from Braze to Airship by swapping SDKs, re-importing user profiles and tags, and rebuilding Canvases as Airship Journeys.",
+  "why_switch": [
+    "Mature iOS/Android/Web SDKs with broad platform coverage",
+    "Lower entry pricing tier than Braze's typical enterprise model",
+    "Reduce dependence on Braze's Canvas-centric model",
+    "SMS/email/push under one Airship account if needed",
+    "Contractual or commercial fit with Airship"
+  ],
+  "what_to_export": [
+    "User profiles keyed by external ID",
+    "Device tokens and platform info",
+    "Custom user attributes",
+    "Subscription groups / channels and consent state",
+    "Custom events used by Canvases",
+    "Segment definitions",
+    "Canvas (journey) logic and content",
+    "Push and in-app message templates",
+    "Content Cards / Feed content (if used)",
+    "Campaign performance baselines"
+  ],
+  "export_method": "Use Braze's data export capabilities (e.g. user export and event/segment exports) per Braze's official documentation to pull profiles, attributes, events, and subscription state. Document Canvas flows and template content from the dashboard since structural exports are limited. Save outputs as JSON/CSV ready for transformation.",
+  "import_method": "Install Airship's iOS/Android/Web SDKs following Airship's official setup docs and identify users via Named User. Backfill custom attributes, tags, and events using Airship's server-side APIs as documented. Recreate segments and Journeys in Airship; rebuild push and in-app templates from the exported content.",
+  "concept_mapping": [
+    {
+      "source": "External ID",
+      "target": "Named User",
+      "note": "Use the same stable identifier to preserve identity"
+    },
+    {
+      "source": "Custom Attributes",
+      "target": "Custom Attributes / Tags",
+      "note": "Booleans often map to tags; scalars stay as attributes"
+    },
+    {
+      "source": "Subscription Groups",
+      "target": "Subscription Lists",
+      "note": "Re-import consent and channel preferences explicitly"
+    },
+    {
+      "source": "Canvas",
+      "target": "Journey",
+      "note": "Rebuild step-by-step; trigger and branching semantics differ"
+    },
+    {
+      "source": "Custom Events",
+      "target": "Custom Events",
+      "note": "Re-emit from clients and/or backfill via API"
+    },
+    {
+      "source": "Content Cards",
+      "target": "Message Center / In-App",
+      "note": "Closest equivalent depends on use case"
+    }
+  ],
+  "effort": "4-10 weeks",
+  "gotchas": [
+    "Push tokens must be re-collected by the new SDK — coordinate cutover",
+    "Canvas → Journey is a manual rebuild; trigger windows and exits behave differently",
+    "Subscription state must migrate cleanly to avoid sending to unsubscribed users",
+    "Content Cards have no perfect equivalent — design choice required",
+    "Braze Liquid templating won't work in Airship; rewrite templates",
+    "Dual-running risks duplicate sends — gate with feature flags"
+  ],
+  "email": {
+    "subject": "Braze → Airship migration plan",
+    "body": "Hi team,\n\nWe're planning to migrate engagement messaging from Braze to Airship. The goal is to leverage Airship's mature SDKs and a more flexible commercial model.\n\nApproach:\n1) Export user profiles, attributes, events, and subscription state from Braze.\n2) Integrate Airship SDKs (iOS/Android/Web) using our existing external IDs as Named Users.\n3) Backfill attributes, tags, and events via Airship APIs.\n4) Rebuild Canvases as Airship Journeys, plus push and in-app templates.\n5) Dual-run for one release cycle, then cut over.\n\nEstimated effort: 4-10 weeks depending on Canvas complexity. I'll send a detailed checklist covering identity, consent, templating, and parity testing.\n\nThanks"
+  }
+}

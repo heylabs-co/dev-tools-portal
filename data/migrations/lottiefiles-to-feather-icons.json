@@ -1,0 +1,76 @@
+{
+  "source": {
+    "slug": "lottiefiles",
+    "name": "LottieFiles"
+  },
+  "target": {
+    "slug": "feather-icons",
+    "name": "Feather Icons"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "Replace heavyweight Lottie animations with simple static Feather SVG icons where motion is not essential — a scope reduction more than a like-for-like swap.",
+  "why_switch": [
+    "Static SVG icons load instantly with zero runtime cost",
+    "Removes dependency on Lottie player libraries and JSON assets",
+    "MIT-licensed minimal aesthetic fits developer-facing UIs",
+    "Eliminates LottieFiles subscription/marketplace dependency",
+    "Easier to make accessible than animated graphics"
+  ],
+  "what_to_export": [
+    "Inventory of every Lottie animation in the product and where it renders",
+    "Purpose tag for each animation (decorative, status, loading, illustration)",
+    "Source .json files and the originating After Effects compositions",
+    "Branding/color tokens applied to the animations",
+    "Accessibility metadata (reduced-motion handling, alt text)",
+    "Player configuration (autoplay, loop, speed)",
+    "Performance notes on slow devices",
+    "List of animations you actually want to keep as motion vs replace with static"
+  ],
+  "export_method": "Audit each Lottie usage and classify whether motion is load-bearing. For the ones that aren't, choose a Feather icon that conveys the same meaning. Export the JSON files from your LottieFiles workspace via its official UI for archival. Keep a spreadsheet of replacements with before/after screenshots so design can sign off.",
+  "import_method": "Install Feather via its official package (e.g. feather-icons or react-feather per docs) and replace each Lottie component with the chosen <FeatherIcon /> at the same size and color. Delete unused Lottie JSON files and the player dependency once nothing references them. For animations you must retain (e.g. critical loaders), keep Lottie isolated to that surface rather than removing it wholesale.",
+  "concept_mapping": [
+    {
+      "source": "Lottie loading animation",
+      "target": "Feather Loader icon + CSS spin",
+      "note": "Pair with a CSS keyframe rotation for movement."
+    },
+    {
+      "source": "Lottie success checkmark",
+      "target": "Feather Check or CheckCircle",
+      "note": "Use a brief CSS transition for entrance instead of full animation."
+    },
+    {
+      "source": "Lottie illustration",
+      "target": "Feather is not a replacement",
+      "note": "Keep illustration as Lottie/SVG/raster — Feather only covers UI icons."
+    },
+    {
+      "source": "LottieFiles marketplace asset",
+      "target": "Feather catalog (~280 icons)",
+      "note": "Coverage is much smaller; consult Feather's official catalog."
+    },
+    {
+      "source": "Lottie player config (loop, autoplay)",
+      "target": "CSS animation properties",
+      "note": "Re-implement movement via CSS or framework primitives."
+    },
+    {
+      "source": "Reduced-motion handling",
+      "target": "prefers-reduced-motion CSS",
+      "note": "Static icons inherently respect motion preferences."
+    }
+  ],
+  "effort": "3-10 hours",
+  "gotchas": [
+    "Feather Icons is not a Lottie replacement — only swap where motion isn't essential",
+    "Feather has ~280 icons; some Lottie concepts won't have a clean equivalent",
+    "Marketing illustrations and complex motion will still need Lottie or another tool",
+    "Feather maintenance has been slow; consider Lucide if you want active updates",
+    "Removing Lottie player from the bundle requires verifying no leftover imports",
+    "Get design sign-off on each replacement to avoid silent UX regressions"
+  ],
+  "email": {
+    "subject": "Trimming Lottie use in favor of static Feather icons",
+    "body": "Hey team,\n\nI want to audit our LottieFiles usage and replace decorative animations with static Feather Icons where motion isn't load-bearing. The goal is faster loads, smaller bundle, and simpler accessibility — not removing Lottie entirely.\n\nMy plan: build a spreadsheet of every Lottie surface, mark each as 'keep' or 'replace', and pair the replace items with a Feather equivalent. Anything decorative becomes a Feather SVG; critical motion (e.g. brand illustrations) stays on Lottie. Estimated effort: 3-10 hours.\n\nFlag any animations you consider untouchable before I start, please.\n\nThanks"
+  }
+}

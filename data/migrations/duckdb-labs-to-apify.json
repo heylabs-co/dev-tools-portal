@@ -1,0 +1,76 @@
+{
+  "source": {
+    "slug": "duckdb-labs",
+    "name": "DuckDB Labs"
+  },
+  "target": {
+    "slug": "apify",
+    "name": "Apify"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "DuckDB Labs provides commercial support and consultancy around the DuckDB analytical engine, while Apify is a managed web scraping and data extraction platform. These products do not really overlap, so a migration in this direction means replacing local DuckDB-based ingestion or scraping scripts with managed Actors and Apify datasets.",
+  "why_switch": [
+    "Move ad-hoc DuckDB ingestion scripts to a managed scraping platform",
+    "Stop maintaining custom scrapers and proxies in-house",
+    "Use Apify proxy and anti-bot features instead of rolling your own",
+    "Schedule and monitor crawls without standing up infrastructure",
+    "Keep results portable as JSON, CSV, or Parquet for later DuckDB use"
+  ],
+  "what_to_export": [
+    "DuckDB SQL files and view definitions used for ingestion",
+    "Source URLs, sitemaps, or seeds used by current scrapers",
+    "Schemas of result tables that downstream systems consume",
+    "Sample input rows and credentials for any APIs being hit",
+    "Schedules or cron jobs that currently trigger ingestion",
+    "Dependent reports, dashboards, or notebooks reading the data",
+    "Proxy or rate-limit settings used today",
+    "Recent output samples for parity validation"
+  ],
+  "export_method": "Treat DuckDB as the staging area, not a vendor with built-in export. Snapshot all .duckdb files plus the SQL scripts, view definitions, and Python notebooks that define ingestion logic into Git. Export current result tables as Parquet or CSV using DuckDB's COPY ... TO command so you have a clean baseline to compare against later. Generic if uncertain: any DuckDB engagement is essentially open-source code plus your own files, so a normal Git plus object-storage backup is enough. Document scrape sources, headers, cookies, and proxy behaviour from the existing scripts since these will need to be re-expressed as Apify Actors. Capture schedules from cron, Airflow, or whatever currently triggers ingestion. Keep DuckDB Labs support contacts as a reference but expect no migration tooling from them.",
+  "import_method": "In Apify, create an Actor per logical scraper. Use the Apify CLI (apify create) to scaffold a Node or Python project, then port the existing crawl logic into the Actor's main handler — Crawlee is the natural fit for Node, while the Apify Python SDK works for Python scrapers. Configure the Actor input schema to capture the source URLs, filters, and credentials previously hard-coded in DuckDB ingestion scripts. Use Apify proxy and request queues to replace any custom proxy and dedup logic. Write each Actor's output to a named Apify dataset so you can later export it as Parquet, JSON, or CSV. Recreate schedules using Apify's scheduler instead of cron. For downstream analytics, point DuckDB at the exported dataset files (read_parquet, read_json) so existing reports continue to work. Validate row counts and key fields against the baseline before retiring the old scripts.",
+  "concept_mapping": [
+    {
+      "source": "DuckDB ingestion script",
+      "target": "Apify Actor",
+      "note": "Crawl logic re-hosted in managed runtime"
+    },
+    {
+      "source": "DuckDB table",
+      "target": "Apify dataset",
+      "note": "Materialize as Parquet/CSV for downstream DuckDB"
+    },
+    {
+      "source": "Custom proxy code",
+      "target": "Apify proxy + request queue",
+      "note": "Managed by platform"
+    },
+    {
+      "source": "Cron job",
+      "target": "Apify schedule",
+      "note": "Native scheduler"
+    },
+    {
+      "source": "Local file output",
+      "target": "Dataset export",
+      "note": "Files in Apify storage, downloadable"
+    },
+    {
+      "source": "DuckDB Labs support",
+      "target": "Apify support tier",
+      "note": "Different vendor, different contract"
+    }
+  ],
+  "effort": "1-3 weeks",
+  "gotchas": [
+    "Apify is a scraping platform, not an analytical engine — analytical workloads should still run in DuckDB or another OLAP engine after extraction.",
+    "Per-Actor compute units and proxy traffic are billed; model expected volumes before moving heavy crawls over.",
+    "DuckDB-native features like window functions and complex SQL must be re-implemented downstream of Apify, not inside Actors.",
+    "Apify free-tier proxies are limited to platform use; budget for residential or datacenter proxy add-ons for serious scraping.",
+    "Long-running jobs may hit Actor timeouts; design crawls to be resumable via the request queue.",
+    "Datasets are flat — nested DuckDB schemas should be flattened or stored as JSON columns before export."
+  ],
+  "email": {
+    "subject": "Plan: moving our DuckDB-based ingestion onto Apify",
+    "body": "Hi team,\n\nOver the next 14 days we are moving the scrape and ingestion logic currently running through local DuckDB scripts onto Apify. DuckDB itself will remain in place for analytics and reporting; only the extraction layer is moving.\n\nPlan:\n\n- Days 1 to 3: snapshot existing scripts, schemas, and recent outputs into Git and object storage.\n- Days 4 to 9: rebuild each scraper as an Apify Actor with proper input schema and dataset outputs.\n- Days 10 to 12: dual-run, compare row counts and key fields against the DuckDB baseline.\n- Days 13 to 14: cut over schedules to Apify and freeze the old cron jobs.\n\nDownstream reports will keep reading from DuckDB, but pointed at Parquet files exported from Apify datasets. If a specific source, schedule, or table matters for your team, reply with the name and we will confirm coverage. The old scripts will stay disabled but available for at least 30 days.\n\nThanks,\nYour customer"
+  }
+}

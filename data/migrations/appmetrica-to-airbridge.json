@@ -1,0 +1,74 @@
+{
+  "source": {
+    "slug": "appmetrica",
+    "name": "AppMetrica"
+  },
+  "target": {
+    "slug": "airbridge",
+    "name": "Airbridge"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "Move from Yandex's free AppMetrica to Airbridge when you need a Western-friendly MMP with a richer partner catalog and want to retire geopolitical/data-residency concerns.",
+  "why_switch": [
+    "Reduce vendor risk tied to Yandex ownership for EU/US apps.",
+    "Broader Western ad-network and partner integrations on Airbridge.",
+    "Better SKAN / iOS privacy tooling for modern attribution.",
+    "Published subscription pricing with a free tier for getting started."
+  ],
+  "what_to_export": [
+    "Raw event and install logs from AppMetrica for required retention",
+    "Crash reporting data, if you plan to keep it elsewhere",
+    "Push notification audiences and campaign history (if used)",
+    "Custom event taxonomy and parameter definitions",
+    "Funnel and cohort definitions used in reporting",
+    "Tracking URL inventory and partner mappings",
+    "API tokens used by BI/data pipelines"
+  ],
+  "export_method": "Use AppMetrica's dashboard and export APIs to download raw events, install data, and crash reports for the retention window you need. Document funnels, cohorts, and event taxonomy as a spec for the new platform. Note that AppMetrica's data export is more limited than commercial MMPs — pull what you can and accept that some aggregated views won't be portable. Consult AppMetrica's official documentation for current export options.",
+  "import_method": "Create an Airbridge account, register your apps, and integrate the Airbridge SDK on iOS, Android, and web in parallel with AppMetrica. Rebuild the event taxonomy, configure attribution windows, set up tracking links per ad partner, and configure postbacks to your downstream systems. Plan a separate path for crash reporting and push notifications if you used AppMetrica for those — Airbridge is attribution-focused. Verify SDK and API specifics in Airbridge's official docs.",
+  "concept_mapping": [
+    {
+      "source": "AppMetrica event",
+      "target": "Airbridge in-app event",
+      "note": "Re-map names, parameters, and revenue fields."
+    },
+    {
+      "source": "AppMetrica tracker",
+      "target": "Airbridge tracking link",
+      "note": "Different URL structure and macros."
+    },
+    {
+      "source": "AppMetrica crash reporting",
+      "target": "Separate tool (e.g. Sentry, Crashlytics)",
+      "note": "Airbridge does not replace crash reporting — pick a dedicated tool."
+    },
+    {
+      "source": "AppMetrica push",
+      "target": "Separate push platform",
+      "note": "Plan a dedicated push provider; not a 1:1 swap."
+    },
+    {
+      "source": "Funnels / cohorts",
+      "target": "Airbridge analytics views",
+      "note": "Definitions don't migrate; rebuild manually."
+    },
+    {
+      "source": "Partner integrations",
+      "target": "Airbridge partner catalog",
+      "note": "Mostly Western-focused; verify your networks are supported."
+    }
+  ],
+  "effort": "2-6 weeks",
+  "gotchas": [
+    "AppMetrica bundles attribution + crash + push; replacing it usually means multiple new tools.",
+    "Historical events and funnels are not portable between platforms.",
+    "Run both SDKs in parallel during validation to compare attribution counts.",
+    "Confirm each Western ad network you use is supported on Airbridge.",
+    "Data residency and compliance posture changes when moving off Yandex — re-review with legal.",
+    "Sanctions/policy concerns may force a hard cutover rather than gradual migration."
+  ],
+  "email": {
+    "subject": "Migration plan: AppMetrica to Airbridge",
+    "body": "Hi team,\n\nI'd like to move our mobile attribution off AppMetrica and onto Airbridge. Main drivers: reducing Yandex-related vendor risk and getting a stronger Western partner catalog plus modern SKAN tooling.\n\nNote that AppMetrica also covers crash reporting and push notifications. Airbridge is attribution-focused, so we'll need to pick separate tools for those (e.g., Sentry/Crashlytics for crashes, a dedicated push provider).\n\nExpected effort: 2-6 weeks with parallel SDKs for validation. Historical analytics stay on AppMetrica. I'll circulate a checklist with the chosen crash + push tools shortly.\n\nThanks"
+  }
+}

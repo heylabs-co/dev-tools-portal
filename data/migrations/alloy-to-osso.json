@@ -1,0 +1,54 @@
+{
+  "source": {
+    "slug": "alloy",
+    "name": "Alloy"
+  },
+  "target": {
+    "slug": "osso",
+    "name": "Osso"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Osso is an enterprise SSO integration layer for SAML and OIDC, not a fraud or risk product, so it does not replace Alloy. Use this guide only if your real need is enterprise SSO; otherwise pick a fraud-focused alternative.",
+  "why_switch": [
+    "Osso targets enterprise SSO, not fraud detection",
+    "Open-source heritage and freemium pricing",
+    "Simplifies SAML and OIDC for B2B SaaS",
+    "Lower scope and complexity than full IdP stacks",
+    "Only relevant if SSO was the real underlying need"
+  ],
+  "what_to_export": [
+    "User identity and tenant records",
+    "Workflow definitions used for auth flows",
+    "Webhook endpoints",
+    "API keys and integration credentials",
+    "Audit logs",
+    "IdP or directory configuration if any",
+    "Tenant to customer mappings",
+    "Per-tenant configuration values"
+  ],
+  "export_method": "Because Osso is not a fraud platform, only the identity and tenant-related slices of an Alloy deployment are relevant here. Coordinate with your Alloy account manager for an export of user identifiers, tenant mappings, and any audit logs that touch authentication. Pull supporting data via dashboard reports or the Alloy API where possible. Workflow definitions usually do not export to a portable format, so document any auth-adjacent flows by hand. Keep KYC, credit, and fraud decision data in a separate archive because it does not move to Osso. Capture webhook URLs and credentials before terminating the contract. Run the export in parallel with live traffic so the cutover snapshot is consistent, and validate row counts on each batch.",
+  "import_method": "Osso is integrated by configuring an OIDC client in your application against Osso, then onboarding each enterprise tenant's SAML or OIDC connection through Osso's admin surface. Provision an Osso instance (managed or self-hosted), create OAuth client credentials, and replace your existing auth callbacks with the Osso OIDC endpoints. For each enterprise customer, configure their IdP through Osso so users land back in your app via OIDC. SCIM directory sync can be added if you need user provisioning. Important: Alloy fraud, KYC, and credit logic does not migrate to Osso. Choose a dedicated fraud or KYC provider for those flows and integrate them separately. Run a pilot tenant on Osso first, validate signed assertions and group claims, then roll out to remaining customers in waves.",
+  "concept_mapping": [
+    {
+      "source": "User identity record",
+      "target": "User profile from OIDC token"
+    },
+    {
+      "source": "Tenant configuration",
+      "target": "Osso enterprise account"
+    }
+  ],
+  "effort": "2-6 weeks",
+  "gotchas": [
+    "Osso is not a fraud or risk tool; if you need fraud detection, do not migrate to Osso",
+    "KYC, credit underwriting, and decisioning workflows from Alloy will not move to Osso at all",
+    "SAML edge cases (encrypted assertions, custom name IDs) often surface only in production, so test per IdP",
+    "SCIM provisioning requires reconciling existing user records to avoid duplicates",
+    "Self-hosted vs managed Osso choice changes your operational footprint significantly",
+    "Compliance obligations from any KYC data must be handled outside this migration"
+  ],
+  "email": {
+    "subject": "Heads up: separating SSO onto Osso, replacing Alloy fraud separately",
+    "body": "Hi team,\n\nOver the next 14 days we are moving our enterprise SSO integration onto Osso. Osso simplifies SAML and OIDC onboarding for our enterprise customers and is a better fit than continuing to use Alloy as an auth layer.\n\nImportant context:\n- Osso replaces only the SSO and tenant configuration parts of our current setup.\n- Fraud detection, KYC, and credit underwriting that ran on Alloy will move to a dedicated fraud provider, not Osso.\n- Existing OAuth callbacks will repoint to Osso's OIDC endpoints; we will share the new URLs before cutover.\n- We will pilot Osso with one tenant first and roll out the rest in waves.\n\nPlease flag any service that depends on Alloy auth flows so we can route it correctly. Reach out with questions this week.\n\nThanks,\nYour customer"
+  }
+}

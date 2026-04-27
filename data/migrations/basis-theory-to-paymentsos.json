@@ -1,0 +1,78 @@
+{
+  "source": {
+    "slug": "basis-theory",
+    "name": "Basis Theory"
+  },
+  "target": {
+    "slug": "paymentsos",
+    "name": "PaymentsOS"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "Move from Basis Theory's portable card vault to PaymentsOS's full enterprise orchestration platform with smart routing.",
+  "why_switch": [
+    "Need full multi-PSP routing, retry, and failover instead of building it on top of a vault",
+    "Want unified analytics and reconciliation across PSPs out of the box",
+    "Prefer a battle-tested enterprise orchestrator backed by PayU",
+    "Reduce internal engineering burden of running an orchestration layer",
+    "Consolidate tokenization, routing, and reporting into one vendor"
+  ],
+  "what_to_export": [
+    "Tokenized card vault (via PCI-compliant transfer)",
+    "Token metadata and aliases",
+    "PSP configurations and credentials currently routed through Basis Theory",
+    "Application/tenant structure and access controls",
+    "Webhook subscriptions and reactor/proxy configurations",
+    "Audit logs for compliance retention",
+    "Customer-to-token mappings",
+    "Encryption keys and key rotation history (per Basis Theory guidance)",
+    "Integration points (services that call the vault)",
+    "Compliance reports and PCI evidence"
+  ],
+  "export_method": "Use Basis Theory's Tokens API and management console to enumerate tokens, metadata, and proxy/reactor definitions. Token values themselves cannot be exported in cleartext — coordinate a PCI-compliant vault-to-vault migration with both Basis Theory and PaymentsOS support. Archive logs and configs as JSON. Confirm the exact migration handshake with Basis Theory's official docs/support.",
+  "import_method": "Engage PaymentsOS sales/onboarding to provision your account and connect your PSPs. Import the vault via the agreed processor-to-processor transfer; do not move raw PANs yourself. Re-create routing rules, retry policies, and webhook subscriptions in PaymentsOS. Re-point your application to PaymentsOS APIs and dual-run with Basis Theory for at least one billing cycle. Verify endpoints and resource shapes against PaymentsOS official docs.",
+  "concept_mapping": [
+    {
+      "source": "Basis Theory token",
+      "target": "PaymentsOS payment method / token",
+      "note": "Vault-to-vault transfer required, not API copy"
+    },
+    {
+      "source": "Basis Theory reactor",
+      "target": "PaymentsOS routing logic",
+      "note": "PaymentsOS handles routing natively; reactors may not be needed"
+    },
+    {
+      "source": "Basis Theory proxy",
+      "target": "PaymentsOS PSP integration",
+      "note": "Most PSP connections are first-class in PaymentsOS"
+    },
+    {
+      "source": "Basis Theory application",
+      "target": "PaymentsOS business unit / app",
+      "note": "Recreate tenancy structure"
+    },
+    {
+      "source": "Custom orchestration code",
+      "target": "PaymentsOS rules engine",
+      "note": "Replace bespoke routing logic with declarative rules"
+    },
+    {
+      "source": "Freemium metered pricing",
+      "target": "Custom enterprise pricing",
+      "note": "Get a written PaymentsOS quote — pricing is not public"
+    }
+  ],
+  "effort": "4-10 weeks",
+  "gotchas": [
+    "Vault-to-vault transfers are PCI-sensitive and require coordination with both vendors",
+    "PaymentsOS sales cycle is enterprise-only — onboarding takes time",
+    "PaymentsOS developer experience reportedly trails newer entrants; budget extra integration time",
+    "You will lose the option to swap orchestrators trivially — orchestration logic becomes vendor-managed",
+    "Re-implementing routing rules requires careful parity testing against current behavior",
+    "Confirm SLAs, data residency, and PCI scope responsibilities before committing"
+  ],
+  "email": {
+    "subject": "Migration plan: Basis Theory to PaymentsOS",
+    "body": "Hi team,\n\nI want to move from Basis Theory to PaymentsOS. Today we use Basis Theory as the vault and built our own orchestration on top — that's not a great use of engineering time. PaymentsOS gives us routing, retry, failover, and reporting as a product.\n\nPlan: enumerate tokens and configs in Basis Theory, coordinate a PCI-compliant vault-to-vault transfer with both vendors, recreate routing rules in PaymentsOS, dual-run for a billing cycle, then cut over. Estimated 4-10 weeks.\n\nThings I want to confirm before commit: written enterprise quote from PaymentsOS, SLA terms, PCI scope responsibilities, and a hands-on dev review since their DX reputedly trails newer orchestrators.\n\nThoughts?"
+  }
+}

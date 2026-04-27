@@ -1,0 +1,76 @@
+{
+  "source": {
+    "slug": "amazon-ses",
+    "name": "Amazon SES"
+  },
+  "target": {
+    "slug": "lob",
+    "name": "Lob"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "Amazon SES sends email; Lob's specialty is direct (physical) mail — only switch if you actually need to replace email with postal mail; for transactional email Lob is not a like-for-like replacement.",
+  "why_switch": [
+    "Lob is a fit if your use case has shifted from email to physical mail (postcards, letters, checks).",
+    "If you specifically need address verification + postal delivery in one API, Lob covers it.",
+    "Lob provides templated print-and-mail workflows that SES cannot offer.",
+    "Compliance/audit trails for regulated postal correspondence.",
+    "If email deliverability is no longer a constraint, consolidating to a print provider may simplify ops."
+  ],
+  "what_to_export": [
+    "Verified sender identities and domains (DKIM, SPF, DMARC) — only relevant if email continues",
+    "Suppression list (bounces, complaints, unsubscribes)",
+    "Email templates and merge variables",
+    "Configuration sets and event publishing destinations (SNS, Kinesis Firehose, etc.)",
+    "IP pool / dedicated IP settings",
+    "Sending statistics and quota usage history",
+    "Recipient address book (mailing addresses for Lob)",
+    "Attachment / asset library used in templates"
+  ],
+  "export_method": "Use the AWS SES console and the AWS SDK/CLI to list identities, configuration sets, templates, and the suppression list. Export configuration and template bodies to JSON or your repo. Pull sending statistics via GetSendStatistics. Treat addresses for postal mail as a separate dataset built from your CRM, not from SES.",
+  "import_method": "Sign up at Lob, get an API key, and integrate the Lob API/SDK to create postcards, letters, or other postal objects. Refer to the official Lob docs for current endpoints and templating. Note: Lob is not an email provider — if you still need email, keep SES (or pick another email vendor) alongside Lob.",
+  "concept_mapping": [
+    {
+      "source": "SendEmail / SendRawEmail",
+      "target": "Lob 'create' endpoints for postcards/letters",
+      "note": "Different medium; consult Lob docs."
+    },
+    {
+      "source": "Email template",
+      "target": "Lob HTML template",
+      "note": "Re-author for print dimensions and bleed."
+    },
+    {
+      "source": "Suppression list",
+      "target": "No direct equivalent",
+      "note": "Maintain do-not-mail list app-side."
+    },
+    {
+      "source": "Bounce / complaint events",
+      "target": "Lob delivery / return events",
+      "note": "Different event taxonomy; verify in Lob docs."
+    },
+    {
+      "source": "DKIM / SPF identity",
+      "target": "N/A",
+      "note": "Postal mail has no DNS auth."
+    },
+    {
+      "source": "Per-message billing",
+      "target": "Per-piece billing",
+      "note": "Cost model differs significantly."
+    }
+  ],
+  "effort": "1-3 weeks",
+  "gotchas": [
+    "Domain mismatch: SES = digital email, Lob = physical mail. Only migrate workflows where postal output is actually wanted.",
+    "Postal mail has SLAs measured in days, not seconds — adjust UX and notifications.",
+    "Address verification is critical; budget time to clean your address data.",
+    "Print artwork has strict size/bleed requirements — templates must be re-designed.",
+    "Cost per piece for physical mail is much higher than per-email; recheck unit economics.",
+    "Compliance for printed content (regulated industries) differs from email rules."
+  ],
+  "email": {
+    "subject": "Evaluating Lob for postal mail (separate from SES email)",
+    "body": "Hi team,\n\nNote: Lob is a direct-mail (postal) API, not an email replacement for SES. Proposing we evaluate Lob only for use cases that genuinely need physical mail — printed letters, postcards, or compliance correspondence.\n\nI'll keep SES in place for transactional email and prototype Lob in parallel for the postal flows. Will share a cost-per-piece comparison and a small end-to-end test.\n\nThanks"
+  }
+}

@@ -1,0 +1,76 @@
+{
+  "source": {
+    "slug": "cloudinary",
+    "name": "Cloudinary"
+  },
+  "target": {
+    "slug": "imgix",
+    "name": "Imgix"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "Move from Cloudinary's combined storage+transform platform to Imgix, which transforms and delivers images that you keep in your own origin storage (e.g. S3).",
+  "why_switch": [
+    "Lower lock-in: your originals live in your own bucket, Imgix only transforms/delivers",
+    "URL-based transformation API with strong real-time format negotiation (WebP/AVIF)",
+    "Cleaner separation of storage and delivery concerns",
+    "Often simpler billing for transform/CDN-only workloads",
+    "Easier to swap delivery providers later because originals are portable"
+  ],
+  "what_to_export": [
+    "All original assets from the Cloudinary Media Library",
+    "Folder structure and public IDs",
+    "Active transformation recipes / named transformations",
+    "Tags and metadata",
+    "Signed URL configuration",
+    "List of asset URLs referenced in production",
+    "Upload preset configurations (to recreate ingest pipeline)",
+    "Any derived assets you depend on"
+  ],
+  "export_method": "Use Cloudinary's Admin API or CLI to bulk-download originals into your own object storage (typically S3 or compatible). Maintain a manifest of public_id to new origin path. Consult Cloudinary's official docs for current bulk export procedures.",
+  "import_method": "Upload originals to a supported origin (commonly S3 or compatible object storage), then create an Imgix Source pointing at that origin. Rewrite transformed URLs from Cloudinary syntax to Imgix's URL parameter syntax per their official docs. Update application/CMS references to the new Imgix delivery domain.",
+  "concept_mapping": [
+    {
+      "source": "Cloudinary storage",
+      "target": "Your origin bucket (e.g. S3)",
+      "note": "Imgix reads from your origin, doesn't store originals"
+    },
+    {
+      "source": "URL transformations (e.g. w_300,c_fill)",
+      "target": "Imgix URL parameters (e.g. w=300&fit=crop)",
+      "note": "Different syntax — rewrite all transformed URLs"
+    },
+    {
+      "source": "Auto format/quality",
+      "target": "auto=format,compress",
+      "note": "Imgix supports automatic format/quality via params"
+    },
+    {
+      "source": "Signed URLs",
+      "target": "Imgix secure URLs",
+      "note": "Configure signing key per Imgix docs"
+    },
+    {
+      "source": "Upload via Cloudinary API",
+      "target": "Direct upload to your origin",
+      "note": "Replace with your own ingest pipeline"
+    },
+    {
+      "source": "Video manipulation",
+      "target": "Verify in Imgix docs",
+      "note": "If you rely on Cloudinary video, check Imgix coverage"
+    }
+  ],
+  "effort": "1-3 weeks",
+  "gotchas": [
+    "You now own the origin storage — provision and secure it before migration",
+    "Every transformed URL in your codebase needs a syntax rewrite",
+    "Video features differ from Cloudinary — validate before cutover",
+    "Cache invalidation strategy changes when Imgix sits in front of your origin",
+    "Plan a parallel-running window to catch any missed URL references",
+    "Confirm pricing model for transformations and origin fetches at your scale"
+  ],
+  "email": {
+    "subject": "Cancelling Cloudinary subscription — moving to Imgix",
+    "body": "Hi Cloudinary team,\n\nWe're moving our image delivery to Imgix backed by our own origin storage. Please let me know how to cancel our subscription at the end of the current billing cycle, and the recommended approach for a full bulk export of our originals via the Admin API.\n\nThanks for the service.\n\nBest regards"
+  }
+}

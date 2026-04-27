@@ -1,0 +1,71 @@
+{
+  "source": {
+    "slug": "nats",
+    "name": "NATS"
+  },
+  "target": {
+    "slug": "lob",
+    "name": "Lob"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "NATS and Lob solve different problems — NATS is an open-source pub/sub and message-queue system, Lob is a hosted direct-mail API — so this is not a like-for-like migration but a refactor of any messaging code that was actually trying to send notifications to end users.",
+  "why_switch": [
+    "Lob exposes a managed REST API with SDKs — no broker to operate",
+    "Direct-mail and address-verification capabilities NATS does not provide",
+    "Public, transparent subscription pricing",
+    "Removes the ops burden of running NATS clusters (only relevant if that's the real cost)",
+    "Better fit if the underlying need is reaching end users, not internal pub/sub"
+  ],
+  "what_to_export": [
+    "Inventory of NATS subjects and consumers that map to user-facing notifications",
+    "Message payload schemas",
+    "Recipient / address data sources used by those flows",
+    "Templates or copy used for outbound communications",
+    "Authentication and account configuration",
+    "Monitoring and dashboards tied to NATS",
+    "Retention / replay requirements (JetStream, if used)",
+    "List of internal flows that must stay on NATS"
+  ],
+  "export_method": "NATS does not offer a vendor 'export' — replay or drain JetStream streams via the NATS CLI or client libraries if needed, and capture subject/consumer topology from your own configuration. Consult NATS's official docs for current tooling.",
+  "import_method": "On Lob, create an account, generate API keys, and call its REST API or SDK from the services that previously published to NATS for user-facing messaging. Keep internal pub/sub on NATS where appropriate. Consult Lob's official docs for current setup steps.",
+  "concept_mapping": [
+    {
+      "source": "Subject / topic",
+      "target": "API endpoint / resource",
+      "note": "Synchronous request vs pub/sub"
+    },
+    {
+      "source": "Publisher",
+      "target": "API client",
+      "note": "Direct call instead of fire-and-forget"
+    },
+    {
+      "source": "Subscriber",
+      "target": "Webhook handler",
+      "note": "Lob delivers events back via webhooks"
+    },
+    {
+      "source": "JetStream replay",
+      "target": "n/a",
+      "note": "Lob is not a stream store"
+    },
+    {
+      "source": "Self-hosted broker",
+      "target": "Hosted API",
+      "note": "No infra to run"
+    }
+  ],
+  "effort": "1-3 days (only for the user-facing slice)",
+  "gotchas": [
+    "Categories differ — do NOT replace internal microservice pub/sub with Lob",
+    "Lob is request/response, not streaming; you lose backpressure and replay semantics",
+    "Per-message costs replace the fixed cost of running NATS",
+    "Latency and ordering guarantees are not equivalent",
+    "If you were using JetStream for durability, design a new persistence story before cutover",
+    "Plan a hybrid: NATS for internal events, Lob only where end-user mail is needed"
+  ],
+  "email": {
+    "subject": "Refactoring user-facing notifications from NATS to Lob",
+    "body": "Hi team,\n\nWe're scoping a partial move from NATS to Lob — only for the flows where NATS was being used to drive end-user messaging. Internal pub/sub stays on NATS.\n\nScope: identify the user-facing subjects and consumers, design a request/response path against Lob's API, and wire webhooks back into our handlers. Estimated 1-3 days.\n\nFlagging up front: these are different categories, so this is a refactor, not a swap. Details in the ticket.\n\nThanks"
+  }
+}

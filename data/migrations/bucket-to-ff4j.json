@@ -1,0 +1,77 @@
+{
+  "source": {
+    "slug": "bucket",
+    "name": "Bucket"
+  },
+  "target": {
+    "slug": "ff4j",
+    "name": "FF4J"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Bucket is a hosted feature-flag SaaS; FF4J is a self-hosted open-source Java feature-toggle library. Migration means moving flag definitions out of Bucket's UI/API and recreating them in FF4J's chosen storage backend, then swapping SDK calls in code.",
+  "why_switch": [
+    "Move from SaaS subscription to free open-source library",
+    "Self-host flag state in your existing database",
+    "Use the Spring Boot starter, web console, and audit trail",
+    "Reduce vendor lock-in for a Java/JVM stack",
+    "Choose from 20+ supported backends for storage"
+  ],
+  "what_to_export": [
+    "List of all flags with names, descriptions, and current state",
+    "Targeting rules (user attributes, segments, percentages)",
+    "Environment-specific overrides (dev, staging, prod)",
+    "Flag dependency relationships if any",
+    "Audit history of recent changes for compliance",
+    "User segments and attribute schemas",
+    "API keys, webhooks, and integrations to replace",
+    "Code references to Bucket SDK calls per service"
+  ],
+  "export_method": "Export flags from Bucket via whatever administrative export is available (UI export, API listing, or CLI). Record per flag: name, description, default value, type (boolean, string, number), targeting rules, percentage rollouts, and per-environment state. If Bucket exposes an audit log, snapshot it for compliance archives. Map Bucket's user/segment model into attributes you can re-create in FF4J's property model. Inventory every code path that calls the Bucket SDK — class, method, flag name, default value — so you can plan the SDK swap. If a direct export endpoint is not available, paginate through their API and serialize results to a JSON or YAML file you control. Keep the Bucket account active in read-only mode until FF4J is fully cut over so you have a fallback for definitions and audit data.",
+  "import_method": "Stand up FF4J in your Java service: add the ff4j-core dependency (and ff4j-spring-boot-starter if on Spring Boot) and pick a storage backend from the 20+ supported options (relational DB, Redis, Mongo, etc.). Configure the FF4J store and load flags either via the bundled XML/YAML configuration or through the FF4J admin REST API by replaying your exported list. Recreate user/property providers so targeting works equivalently. Replace Bucket SDK calls with FF4J's check API (FF4j.check(\"flag-name\") or FeatureToggle annotations on Spring beans). Stand up the FF4J web console for non-engineering changes and configure RBAC. Run both systems in parallel for one release cycle, comparing flag evaluation outcomes, then cut over by removing the Bucket SDK and decommissioning the account.",
+  "concept_mapping": [
+    {
+      "source": "Bucket flag",
+      "target": "FF4J feature",
+      "note": "Name, description, enabled state"
+    },
+    {
+      "source": "Bucket SDK check",
+      "target": "FF4j.check(name) / @FeatureToggle",
+      "note": "Java/Spring API"
+    },
+    {
+      "source": "Targeting rules",
+      "target": "FF4J flipping strategy",
+      "note": "Implement per-flag strategy class"
+    },
+    {
+      "source": "User segments",
+      "target": "FF4J property store + custom strategy"
+    },
+    {
+      "source": "Bucket audit log",
+      "target": "FF4J audit trail"
+    },
+    {
+      "source": "Bucket admin UI",
+      "target": "FF4J web console (Spring Boot starter)"
+    },
+    {
+      "source": "SaaS hosted state",
+      "target": "Self-hosted store (DB/Redis/Mongo/etc.)"
+    }
+  ],
+  "effort": "2-4 weeks",
+  "gotchas": [
+    "FF4J is Java-only — any non-JVM service currently calling Bucket needs a different solution",
+    "Targeting rules in Bucket may not map cleanly to FF4J flipping strategies; complex rules become custom Java strategy classes",
+    "Self-hosting shifts ops burden: you now own uptime, backups, and schema migrations for the flag store",
+    "FF4J 2.0.0 was released in early 2023; release cadence is slower than SaaS competitors — verify current activity before committing",
+    "Audit history from Bucket likely cannot be ingested into FF4J's audit trail; archive separately for compliance",
+    "Run both systems in parallel for at least one release to catch evaluation mismatches before cutover"
+  ],
+  "email": {
+    "subject": "Migrating feature flags from Bucket to self-hosted FF4J",
+    "body": "Hi team,\n\nWe are planning a 14-day migration from Bucket (hosted feature flag SaaS) to FF4J, the open-source Java feature toggle library, for our JVM services. The drivers are eliminating the SaaS subscription, self-hosting flag state in our existing database, and reducing vendor dependencies.\n\nThe plan: export all flags and targeting rules from Bucket, stand up FF4J with a chosen backend (likely our existing relational DB), recreate flags via the admin REST API, swap SDK calls module-by-module, and run both systems in parallel for one release before cutover. The FF4J web console will replace the Bucket UI for non-engineering changes.\n\nA call-out: FF4J is Java-only. If you own any non-JVM service that currently uses Bucket, please raise it now so we can plan a separate path.\n\nThanks,\nYour customer"
+  }
+}

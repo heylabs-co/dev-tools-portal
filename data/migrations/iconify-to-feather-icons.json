@@ -1,0 +1,70 @@
+{
+  "source": {
+    "slug": "iconify",
+    "name": "Iconify"
+  },
+  "target": {
+    "slug": "feather-icons",
+    "name": "Feather Icons"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Iconify is a multi-set icon framework with 200k+ icons and an on-demand API; Feather Icons is a small, opinionated 280-icon SVG set. Migrating means narrowing your icon vocabulary down to what Feather covers and swapping the rendering layer for plain SVG imports.",
+  "why_switch": [
+    "Adopt a single, minimalist icon style across the UI",
+    "Remove runtime icon API dependency in favor of static SVGs",
+    "Smaller bundle footprint with a curated set",
+    "MIT-licensed icons with predictable provenance",
+    "Easier offline and SSR rendering with inline SVGs"
+  ],
+  "what_to_export": [
+    "List of all Iconify icon names referenced in code",
+    "Icon set prefixes used (e.g. mdi, ph, lucide)",
+    "Custom sizes, colors, and stroke widths applied",
+    "Component wrappers that render icons",
+    "Theme tokens mapped to icon names",
+    "Figma assets linked to Iconify icons",
+    "Per-icon usage counts to prioritize replacements"
+  ],
+  "export_method": "Run a code search across the repo for Iconify references: usages of <Icon icon=\"...\"/>, the iconify-icon web component, and any helper that resolves icon names. Produce a deduplicated list of icon names with usage counts and the file/line where they appear. Capture any custom props (size, color, rotate, flip, stroke). Export design-side mappings from Figma if your team uses the Iconify plugin. Save the result as a CSV or JSON manifest with columns: icon_name, set_prefix, usage_count, files. Cross-reference each entry against the Feather catalog (about 280 icons) and mark exact matches, near-matches, and gaps. Record gaps explicitly so a designer can decide whether to substitute, drop, or commission a custom SVG before the codemod runs.",
+  "import_method": "Install Feather in the project (the official package or the framework wrapper you prefer, such as a React component package). For each Iconify reference, replace it with the equivalent Feather icon: import individual icons as components or render inline SVGs from the Feather sprite. Centralize the mapping in a single icon module so future swaps stay simple. Apply a codemod or scripted find-and-replace driven by the manifest from the export step. Re-create custom sizing/coloring with Feather's standard props (size, color, stroke-width, className). For gaps where Feather has no equivalent, decide per icon: substitute the closest Feather glyph, hide the affordance, or add a one-off custom SVG outside the icon system. Run the app, audit visual diffs page by page, and tighten alignment because Feather's grid and stroke weight differ from many Iconify sets. Remove Iconify dependencies and runtime endpoints once the swap is verified.",
+  "concept_mapping": [
+    {
+      "source": "<Icon icon=\"mdi:home\" />",
+      "target": "<Home />",
+      "note": "Direct component import from Feather package"
+    },
+    {
+      "source": "Iconify on-demand API",
+      "target": "Local SVG sprite or per-icon import",
+      "note": "No runtime fetch"
+    },
+    {
+      "source": "Icon name string token",
+      "target": "Imported component reference",
+      "note": "Type-safe at build time"
+    },
+    {
+      "source": "Multi-set design tokens",
+      "target": "Single Feather token namespace",
+      "note": "Collapse to one set"
+    },
+    {
+      "source": "Iconify Figma plugin",
+      "target": "Feather Figma library or SVG drop-ins",
+      "note": "Manual pairing for designers"
+    }
+  ],
+  "effort": "1-3 days",
+  "gotchas": [
+    "Feather only has ~280 icons; many Iconify usages will not have a direct equivalent.",
+    "Stroke weight and grid differ; expect visual rework next to text and buttons.",
+    "Maintenance on Feather is slow; consider whether Lucide is a better target before committing.",
+    "Custom rotation/flip props from Iconify need to be reapplied via CSS transforms.",
+    "Accessibility attributes (aria-label, role) must be re-added per Feather usage.",
+    "Bundle strategy matters: per-icon imports vs sprite vs all-in-one, pick one and enforce it."
+  ],
+  "email": {
+    "subject": "Icon system change: moving from Iconify to Feather Icons in 14 days",
+    "body": "Hi,\n\nWe are simplifying our icon system. Within the next 14 days we will move from Iconify to Feather Icons across our product UI.\n\nWhat you will notice:\n- A more consistent, minimalist icon style.\n- Slightly different glyphs in places where Feather does not have an exact match for a previous icon.\n- Faster page loads thanks to dropping the runtime icon API.\n\nWhat does not change:\n- Features, navigation, and product behavior.\n- Pricing and support terms.\n\nIf your team embeds our UI in any way, you may want to refresh screenshots after the rollout. Reply if you need assets, the updated icon list, or a coordinated cutover window.\n\nThanks for the feedback that pushed us to tighten this up.\n\nYour customer success team"
+  }
+}

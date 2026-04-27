@@ -1,0 +1,65 @@
+{
+  "source": {
+    "slug": "zoxide",
+    "name": "zoxide"
+  },
+  "target": {
+    "slug": "opencage",
+    "name": "OpenCage"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "These tools serve different domains — zoxide is a shell directory-jumper, OpenCage is a geocoding API — so this isn't a true migration; treat it as adopting OpenCage for geocoding needs from scratch.",
+  "why_switch": [
+    "OpenCage solves geocoding; zoxide does not address location at all.",
+    "OpenCage offers a free trial tier suitable for prototyping.",
+    "OSM-backed data with transparent pricing reduces lock-in.",
+    "Simple REST API — easy to call from any language.",
+    "GDPR-aware vendor based in the UK."
+  ],
+  "what_to_export": [
+    "Address strings stored in your app",
+    "Lat/lng pairs needing reverse geocoding",
+    "Existing locale / language preferences",
+    "Allowed query rate (for plan sizing)",
+    "Any cached geocoding data you'd like to seed",
+    "Webhook or pipeline endpoints that consume geocoding results",
+    "List of API consumers (services, jobs)",
+    "Error-handling and fallback policies"
+  ],
+  "export_method": "Nothing meaningful to export from zoxide — its data is a local shell directory-frecency database. Pull addresses and coordinates from your application database instead.",
+  "import_method": "Create an OpenCage account, generate an API key, and call the Geocoding API for forward and reverse geocoding. Persist results in your own datastore as needed. Refer to the OpenCage docs for current endpoints, parameters, and rate limits.",
+  "concept_mapping": [
+    {
+      "source": "z <dir> jump command",
+      "target": "No equivalent",
+      "note": "Different domain."
+    },
+    {
+      "source": "App addresses",
+      "target": "OpenCage forward geocoding",
+      "note": "Consult OpenCage docs."
+    },
+    {
+      "source": "App lat/lng",
+      "target": "OpenCage reverse geocoding",
+      "note": "Consult OpenCage docs."
+    },
+    {
+      "source": "API auth",
+      "target": "OpenCage API key",
+      "note": "Store securely server-side."
+    }
+  ],
+  "effort": "0.5-2 days",
+  "gotchas": [
+    "Category mismatch — this pairing exists because of a data tagging issue, not a real product overlap.",
+    "OpenCage has no maps rendering, routing, or SDKs beyond REST — keep scope realistic.",
+    "Result ranking can differ across providers; test edge cases (ambiguous addresses).",
+    "Watch the rate limits on the free tier during testing.",
+    "Persist results to avoid repeated billable calls."
+  ],
+  "email": {
+    "subject": "Adopting OpenCage for our geocoding needs",
+    "body": "Hi team,\n\nQuick note: the prior entry suggesting we 'migrate from zoxide' here is a tagging artifact — zoxide is a shell tool, unrelated to geocoding. What I do propose is adopting OpenCage as our geocoding API: OSM-backed, transparent pricing, simple REST.\n\nI'll wire up a small spike against a sample of our addresses and share accuracy / latency numbers.\n\nThanks"
+  }
+}

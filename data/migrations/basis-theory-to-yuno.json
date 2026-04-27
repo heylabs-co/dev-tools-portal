@@ -1,0 +1,78 @@
+{
+  "source": {
+    "slug": "basis-theory",
+    "name": "Basis Theory"
+  },
+  "target": {
+    "slug": "yuno",
+    "name": "Yuno"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "Move from Basis Theory's portable card vault to Yuno's multi-PSP payments orchestration with built-in routing.",
+  "why_switch": [
+    "Need smart routing and conversion optimization across PSPs out of the box",
+    "Strong fit for LatAm/global PSP coverage that Yuno specializes in",
+    "Reduce in-house orchestration code by adopting a unified API",
+    "Centralize PSP analytics rather than wiring vault to bespoke routing",
+    "Keep relatively low lock-in via the orchestration abstraction"
+  ],
+  "what_to_export": [
+    "Tokenized card vault (via PCI-compliant transfer)",
+    "Token metadata and aliases",
+    "PSP credentials and configuration in use",
+    "Application/tenant structure",
+    "Webhook subscriptions and reactor/proxy definitions",
+    "Customer-to-token mappings",
+    "Audit logs for compliance retention",
+    "Integration touchpoints in your codebase",
+    "Encryption key rotation history (per Basis Theory guidance)",
+    "Reconciliation reports for historical transactions"
+  ],
+  "export_method": "Enumerate tokens and configs through Basis Theory's API and console. Raw card data cannot be self-exported — coordinate a PCI-compliant vault-to-vault transfer with both Basis Theory and Yuno. Archive proxy/reactor definitions and webhook configs as JSON. Confirm the exact handshake with Basis Theory's official migration guidance.",
+  "import_method": "Onboard with Yuno, connect the PSPs you already use, then coordinate the card vault transfer. Re-create routing logic in Yuno's rules and re-implement client/server integration against Yuno's unified API. Update webhook endpoints. Dual-run with Basis Theory for at least one billing cycle to validate parity. Verify endpoints in current Yuno official docs.",
+  "concept_mapping": [
+    {
+      "source": "Basis Theory token",
+      "target": "Yuno payment method / token",
+      "note": "Vault-to-vault transfer required"
+    },
+    {
+      "source": "Basis Theory reactor",
+      "target": "Yuno routing rule",
+      "note": "Use Yuno's native routing instead of custom reactors"
+    },
+    {
+      "source": "Basis Theory proxy",
+      "target": "Yuno PSP connector",
+      "note": "PSP integrations are first-class in Yuno"
+    },
+    {
+      "source": "Custom orchestration code",
+      "target": "Yuno unified API",
+      "note": "Replace bespoke logic with Yuno SDK calls"
+    },
+    {
+      "source": "Application/tenant",
+      "target": "Yuno account/merchant",
+      "note": "Recreate hierarchy"
+    },
+    {
+      "source": "Freemium metered pricing",
+      "target": "Yuno pricing (confirm)",
+      "note": "Yuno pricing is not transparent — request a quote"
+    }
+  ],
+  "effort": "4-10 weeks",
+  "gotchas": [
+    "PCI-compliant vault-to-vault migration is mandatory; never move raw PANs yourself",
+    "Yuno pricing is opaque — get a written rate card before committing",
+    "Routing-rule parity with your current custom logic needs careful test coverage",
+    "Confirm Yuno's PSP coverage matches every processor you use today",
+    "Webhook payload shapes differ; downstream consumers need updates",
+    "Plan a full dual-run cycle before decommissioning Basis Theory"
+  ],
+  "email": {
+    "subject": "Migration plan: Basis Theory to Yuno",
+    "body": "Hi team,\n\nI'd like to consolidate from Basis Theory to Yuno. Today we run Basis Theory as a portable vault plus our own orchestration on top — Yuno gives us multi-PSP routing, retries, and a unified API as a product, with strong LatAm coverage.\n\nPlan: enumerate tokens/configs, coordinate a PCI-compliant vault transfer with both vendors, rebuild routing rules in Yuno, dual-run for one billing cycle, cut over. Estimated 4-10 weeks.\n\nBefore commit: written quote from Yuno (their pricing isn't public), confirmation that all our current PSPs are first-class in their connector list, and an integration spike to validate DX.\n\nOK to move forward?"
+  }
+}

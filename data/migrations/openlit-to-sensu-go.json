@@ -1,0 +1,78 @@
+{
+  "source": {
+    "slug": "openlit",
+    "name": "OpenLIT"
+  },
+  "target": {
+    "slug": "sensu-go",
+    "name": "Sensu Go"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "Move from OpenLIT's OTel-native LLM observability to Sensu Go's event-driven monitoring pipeline for hybrid infrastructure.",
+  "why_switch": [
+    "Need event-driven monitoring across hybrid cloud and on-prem rather than LLM-focused tracing",
+    "Want agent-based check execution and pipeline-as-code over OTel SDK instrumentation",
+    "Prefer a longer-tenured project (since 2017) with Sumo Logic backing",
+    "Standardize infra and app monitoring on one tool rather than splitting GenAI observability separately",
+    "Reduce reliance on OTel collector pipelines tailored to LLM workloads"
+  ],
+  "what_to_export": [
+    "Dashboards and saved views from the OpenLIT UI",
+    "Alert rules and thresholds",
+    "OTel collector configuration files",
+    "Instrumentation snippets currently embedded in app code",
+    "Historical traces and metrics (if retention required)",
+    "User accounts and role assignments",
+    "Service and resource naming conventions",
+    "Notification/integration credentials (Slack, PagerDuty, etc.)",
+    "Custom evaluators or prompt-quality definitions",
+    "Cost and token-usage reports for archival"
+  ],
+  "export_method": "Snapshot the self-hosted OpenLIT database (ClickHouse-backed in typical deployments — verify with your install) and export dashboards/configs from the OpenLIT UI or filesystem. For traces, keep the existing OTel collector running long enough to dual-write or archive a window of data to object storage. Consult OpenLIT's official docs for the supported export commands at your version.",
+  "import_method": "Stand up Sensu Go backend and agents per official docs, then translate monitoring intent into Sensu checks, handlers, and pipelines as YAML/JSON resources applied via sensuctl. Configure runtime assets for portable check execution and wire handlers to your existing notification channels. Any LLM-specific telemetry that Sensu does not natively model should be emitted via custom checks or kept in a parallel OTel pipeline.",
+  "concept_mapping": [
+    {
+      "source": "OTel trace / span",
+      "target": "Sensu event",
+      "note": "Sensu is event-driven, not span-based — model meaningful signals as check results"
+    },
+    {
+      "source": "OpenLIT instrumentation SDK",
+      "target": "Sensu agent + check",
+      "note": "Replace in-app SDK calls with agent-side checks or pushed events"
+    },
+    {
+      "source": "Dashboard",
+      "target": "External viz (Grafana, Sumo)",
+      "note": "Sensu Go focuses on pipeline; visualization is typically delegated"
+    },
+    {
+      "source": "Alert rule",
+      "target": "Handler + filter",
+      "note": "Sensu uses handlers triggered by event filters"
+    },
+    {
+      "source": "Collector config",
+      "target": "Pipeline (as code)",
+      "note": "Express transformations and routing as Sensu pipeline resources"
+    },
+    {
+      "source": "LLM token/cost metric",
+      "target": "Custom check output",
+      "note": "No native LLM model in Sensu — emit as custom metrics"
+    }
+  ],
+  "effort": "1-3 weeks",
+  "gotchas": [
+    "Sensu Go is not LLM-aware — GenAI-specific dashboards and evals will need to be rebuilt or kept elsewhere",
+    "Trace-level detail does not map cleanly to Sensu's event model; expect lossy translation",
+    "Release cadence on Sensu Go is slower (release_frequency_days ~201) — plan upgrade windows accordingly",
+    "Self-hosting both systems during migration doubles infra cost temporarily",
+    "Retention and storage layout differ; budget time for capacity sizing on Sensu",
+    "Confirm licensing (MIT core vs commercial features) before relying on enterprise capabilities"
+  ],
+  "email": {
+    "subject": "Migration plan: OpenLIT to Sensu Go",
+    "body": "Hi team,\n\nProposing we move our observability stack from OpenLIT to Sensu Go. OpenLIT served us well for LLM-specific tracing, but we need event-driven monitoring across our hybrid infrastructure, and Sensu's pipeline-as-code model fits better.\n\nPlan: export dashboards, alert rules, and OTel configs from OpenLIT; stand up Sensu Go backend + agents; translate checks, handlers, and pipelines as code; keep a parallel OTel collector for any LLM-specific telemetry Sensu does not natively model. Estimated effort 1-3 weeks.\n\nMain risks: lossy mapping from spans to events, and rebuilding GenAI-specific views outside Sensu. I will consult official docs for both products before each step.\n\nThoughts?"
+  }
+}

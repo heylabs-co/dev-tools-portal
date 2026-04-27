@@ -1,0 +1,76 @@
+{
+  "source": {
+    "slug": "cloudinary",
+    "name": "Cloudinary"
+  },
+  "target": {
+    "slug": "backblaze-b2",
+    "name": "Backblaze B2"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "Move from Cloudinary's all-in-one media platform to Backblaze B2's S3-compatible object storage, typically paired with a separate CDN/transformation layer.",
+  "why_switch": [
+    "Lower per-GB storage cost on B2's flat published rate vs Cloudinary's tiered subscription",
+    "S3-compatible API reduces vendor lock-in compared to Cloudinary's proprietary URL transforms",
+    "Free egress to Cloudflare CDN partners can cut bandwidth bills dramatically",
+    "Simpler pricing model — easier to forecast at scale",
+    "Decoupling storage from transformation gives you flexibility to swap CDN/processor later"
+  ],
+  "what_to_export": [
+    "All original (master) image and video assets from your Cloudinary Media Library",
+    "Folder structure and asset organization",
+    "Public IDs and URL paths used by your application",
+    "Tags, metadata, and contextual data attached to assets",
+    "Upload presets and transformation recipes (for re-implementation)",
+    "Access control / signed URL configuration",
+    "Delivery URLs currently referenced in your app or CMS",
+    "Backup of any derived/transformed assets you depend on"
+  ],
+  "export_method": "Use Cloudinary's Admin API or the official CLI to enumerate and download originals in bulk; for large libraries, request a full backup or use their search API with pagination. Preserve folder structure and public_id mappings in a manifest CSV so you can recreate paths on B2. Consult Cloudinary's official docs for current bulk export procedures.",
+  "import_method": "Create a B2 bucket, generate application keys, and use the B2 CLI, rclone, or any S3-compatible tool (since B2 supports the S3 API) to upload assets while preserving paths from your manifest. For large transfers consider rclone with parallel transfers. Front the bucket with a CDN (e.g. Cloudflare) and a separate image transformation layer if you need on-the-fly resizing.",
+  "concept_mapping": [
+    {
+      "source": "Cloudinary public_id",
+      "target": "B2 object key",
+      "note": "Map 1:1 in your migration manifest"
+    },
+    {
+      "source": "Folders",
+      "target": "Key prefixes",
+      "note": "B2 has flat keys; use slashes in keys to mimic folders"
+    },
+    {
+      "source": "URL transformations (w_300,c_fill)",
+      "target": "External transformation service",
+      "note": "B2 has no built-in transforms; pair with a CDN/image service"
+    },
+    {
+      "source": "Upload presets",
+      "target": "Server-side upload logic",
+      "note": "Reimplement in your backend or upload tool"
+    },
+    {
+      "source": "Signed URLs",
+      "target": "B2 presigned URLs (S3-compat)",
+      "note": "Use S3 SDK signing with B2 endpoint"
+    },
+    {
+      "source": "Auto-format / auto-quality",
+      "target": "CDN/image-service feature",
+      "note": "Re-create via the chosen delivery layer"
+    }
+  ],
+  "effort": "1-3 weeks",
+  "gotchas": [
+    "B2 has no built-in image/video transformations — you must add a CDN/image processor separately",
+    "URL changes will require updating every reference in your app, database, CMS, and emails",
+    "Old Cloudinary URLs in cached/SEO contexts may need redirects",
+    "Egress is free only to specific CDN partners — verify your delivery path",
+    "Large libraries can take days to transfer; plan a sync window with delta re-uploads",
+    "Video streaming features (adaptive bitrate, HLS) are not provided by B2 alone"
+  ],
+  "email": {
+    "subject": "Cancelling Cloudinary subscription — moving to Backblaze B2",
+    "body": "Hi Cloudinary team,\n\nWe're migrating our media storage from Cloudinary to Backblaze B2 to simplify our cost model and reduce vendor lock-in. Please let me know the steps to cancel our subscription at the end of the current billing cycle and confirm any data retention policy after closure.\n\nCould you also confirm the recommended approach for a full export of our originals via the Admin API?\n\nThanks for the service.\n\nBest regards"
+  }
+}

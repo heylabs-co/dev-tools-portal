@@ -1,0 +1,76 @@
+{
+  "source": {
+    "slug": "amazon-ses",
+    "name": "Amazon SES"
+  },
+  "target": {
+    "slug": "plivo",
+    "name": "Plivo"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "Move transactional email off Amazon SES to Plivo if you want a single multi-channel API for SMS, voice, and (where supported) email.",
+  "why_switch": [
+    "Consolidate SMS, voice, and messaging behind a single vendor instead of stitching SES + a separate SMS provider",
+    "Plivo has predictable per-message pricing and a public pricing page",
+    "Strong SDKs and developer experience reduce integration time",
+    "Less coupling to the AWS account/IAM model if you want to leave AWS"
+  ],
+  "what_to_export": [
+    "List of verified sending domains and addresses",
+    "DKIM/SPF/DMARC DNS records currently configured for SES",
+    "Suppression list (bounces, complaints, manual unsubscribes)",
+    "Configuration sets and event destinations (CloudWatch, SNS, Kinesis Firehose)",
+    "IAM users / API credentials referenced by your senders",
+    "Email templates (transactional and marketing)",
+    "Sending identities and any custom MAIL FROM domains",
+    "Webhook / event handlers for bounces and complaints",
+    "Historical send logs needed for compliance"
+  ],
+  "export_method": "From the AWS console or CLI, list verified identities, configuration sets, templates, and the account-level suppression list. Save DNS records (DKIM CNAMEs, SPF, DMARC, custom MAIL FROM) and any IAM policies tied to SES. Pull bounce/complaint history from your CloudWatch / SNS / S3 destination, since SES itself does not retain a long-term log. Consult the official Amazon SES documentation for the exact CLI commands and current export options.",
+  "import_method": "Create a Plivo account, then re-create your sending identities and re-publish the corresponding DNS records on your domain. Re-upload templates and import your suppression list using Plivo's official tooling (consult Plivo's docs for the current import path). Wire up webhooks for delivery, bounce, and unsubscribe events. Run a low-volume warm-up before cutting full traffic over.",
+  "concept_mapping": [
+    {
+      "source": "Verified identity (domain/email)",
+      "target": "Sender / verified domain",
+      "note": "Re-verify on Plivo; DKIM keys are provider-specific"
+    },
+    {
+      "source": "Configuration set",
+      "target": "Application / app config",
+      "note": "Re-create event routing in Plivo"
+    },
+    {
+      "source": "SES suppression list",
+      "target": "Suppression list",
+      "note": "Import via Plivo's documented mechanism"
+    },
+    {
+      "source": "SES template",
+      "target": "Template",
+      "note": "Re-author; check templating syntax differences"
+    },
+    {
+      "source": "SNS / CloudWatch events",
+      "target": "Webhook URL",
+      "note": "Point Plivo events at your existing handlers, adapt payloads"
+    },
+    {
+      "source": "IAM user + access key",
+      "target": "Plivo Auth ID + Auth Token",
+      "note": "Rotate and store securely"
+    }
+  ],
+  "effort": "1-3 days",
+  "gotchas": [
+    "Reputation does not transfer between providers — warm up new sending IPs/domains gradually",
+    "DKIM keys must be re-issued on Plivo and re-published in DNS; keep SES records live during dual-send",
+    "Webhook payload schemas differ; bounce/complaint handling code will need adaptation",
+    "Verify Plivo's current product coverage for email vs SMS/voice in your region before cutover",
+    "Account-level sending limits and dedicated IPs need to be re-requested",
+    "Run SES and Plivo in parallel during cutover to avoid dropping mail"
+  ],
+  "email": {
+    "subject": "Migrating from Amazon SES to Plivo",
+    "body": "Hi team,\n\nWe're planning to move transactional messaging off Amazon SES onto Plivo so we can consolidate SMS, voice, and email under one API and pricing page.\n\nPlanned steps: export verified identities, DNS (DKIM/SPF/DMARC), templates, and the suppression list from SES; re-create them on Plivo; warm up sending; then dual-send before fully cutting over. Webhook handlers will need small changes to match Plivo's event schema.\n\nEstimated effort: 1-3 days of engineering plus warm-up time. I'll share a runbook and rollback plan before we start.\n\nThanks"
+  }
+}

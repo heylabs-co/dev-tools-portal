@@ -1,0 +1,70 @@
+{
+  "source": {
+    "slug": "iconify",
+    "name": "Iconify"
+  },
+  "target": {
+    "slug": "lottiefiles",
+    "name": "LottieFiles"
+  },
+  "generated_at": "2026-04-25T00:00:00Z",
+  "tldr": "Iconify and LottieFiles serve different jobs: Iconify ships static SVG icons; LottieFiles ships JSON-based motion animations. A direct migration is not realistic, so this guide treats it as augmenting or selectively replacing static iconography with Lottie animations where motion is genuinely useful.",
+  "why_switch": [
+    "Add lightweight motion to onboarding, empty states, and feedback",
+    "Standardize animation handoff between designers and engineers",
+    "Use a JSON format that scales without quality loss",
+    "Reuse animations across web and mobile via shared SDKs",
+    "Centralize motion assets in a versioned marketplace and library"
+  ],
+  "what_to_export": [
+    "List of Iconify icons used in places where motion would help",
+    "Component wrappers and their props",
+    "Sizes and color tokens currently applied to those icons",
+    "Animation requirements per surface (loop, on-hover, on-mount)",
+    "Performance budgets per page where animation will land",
+    "Accessibility requirements (reduced-motion, labels)",
+    "Designer-side source files in After Effects or Figma if any"
+  ],
+  "export_method": "Audit the codebase for Iconify usages and split them into two groups: keep-as-static (the vast majority) and candidates-for-motion (loaders, success/error states, onboarding, empty states, hero illustrations). For the motion group, capture intent: what should animate, when it should play, and how long. Document accessibility needs, especially prefers-reduced-motion fallbacks. For each candidate, record the current static icon name, the surface it appears on, and a brief description of the desired motion. Hand this manifest to design so they can produce After Effects compositions or Figma motion specs that map 1:1 to the candidates. Do not attempt to migrate Iconify's full catalog; Lottie is not an icon library.",
+  "import_method": "On the design side, produce Lottie JSON files via After Effects with the Bodymovin/Lottie exporter, the LottieFiles editor, or Figma plugins. Store source files and exported JSON in the LottieFiles workspace for review and versioning. On the engineering side, install the appropriate Lottie player for your stack (lottie-web, lottie-react, dotlottie player, or lottie-react-native for mobile). Replace the targeted Iconify components with a Lottie player pointing to the exported JSON or .lottie bundle, configured with loop, autoplay, and trigger props as required. Keep the rest of the icon system on Iconify; only motion-bearing surfaces switch. Implement a reduced-motion guard that renders a static fallback (the original Iconify icon or a still frame) when the user prefers reduced motion. Lazy-load animations to protect first paint, and measure performance on low-end devices before shipping broadly.",
+  "concept_mapping": [
+    {
+      "source": "Static SVG icon",
+      "target": "Lottie JSON animation",
+      "note": "Different format and rendering path"
+    },
+    {
+      "source": "<Icon icon=\"mdi:loading\" />",
+      "target": "<Lottie animationData={...} loop autoplay />",
+      "note": "Replace only where motion is needed"
+    },
+    {
+      "source": "Iconify on-demand API",
+      "target": "LottieFiles asset hosting or self-hosted JSON",
+      "note": "Choose hosting per asset"
+    },
+    {
+      "source": "Color/size props",
+      "target": "Lottie color overrides and renderer scaling",
+      "note": "Color overrides require careful AE setup"
+    },
+    {
+      "source": "Figma Iconify plugin",
+      "target": "Figma + LottieFiles plugin or AE workflow",
+      "note": "Different design pipeline"
+    }
+  ],
+  "effort": "1-4 weeks",
+  "gotchas": [
+    "Lottie is not an icon system; do not try to replace the full Iconify catalog.",
+    "Animation file size and CPU cost can hurt low-end devices; budget per surface.",
+    "Color theming in Lottie requires explicit support in the AE source, not a CSS swap.",
+    "Accessibility: respect prefers-reduced-motion and provide static fallbacks.",
+    "Marketplace asset quality and licenses vary; review per asset before shipping.",
+    "Shipping pipeline now includes designer-produced JSON; add review and version control."
+  ],
+  "email": {
+    "subject": "Adding motion: introducing LottieFiles animations in the next 14 days",
+    "body": "Hi,\n\nOver the next 14 days we are introducing motion to a few key surfaces in our product, powered by LottieFiles. Most of our existing iconography will stay in place; only specific moments such as onboarding, loading, and success states will gain animation.\n\nWhat to expect:\n- Subtle, tasteful animations on selected screens.\n- Static fallbacks for users who prefer reduced motion.\n- No change in core product behavior or pricing.\n\nWhat does not change:\n- Your account, data, and integrations.\n- Existing icons everywhere except the surfaces called out above.\n\nIf your team embeds our UI, you may want to refresh marketing screenshots once the rollout is complete. Reply if you would like preview access or a coordinated launch.\n\nThanks for the feedback that shaped this update.\n\nYour customer success team"
+  }
+}

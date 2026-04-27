@@ -1,0 +1,77 @@
+{
+  "source": {
+    "slug": "boxyhq",
+    "name": "BoxyHQ"
+  },
+  "target": {
+    "slug": "clerk",
+    "name": "Clerk"
+  },
+  "generated_at": "2026-04-26T12:50:00Z",
+  "tldr": "Move from self-hosted BoxyHQ Jackson SSO to Clerk's hosted auth platform to get drop-in React UI and offload SSO operations.",
+  "why_switch": [
+    "Clerk ships prebuilt React components (SignIn, UserButton) — much faster UI work",
+    "Hosted service eliminates the operational burden of running Jackson and its database",
+    "Generous free tier suits early-stage products before scale costs matter",
+    "First-class Next.js integration with middleware and server helpers",
+    "Built-in MFA, social login, and organization features without extra services"
+  ],
+  "what_to_export": [
+    "User accounts and profile metadata from your application database",
+    "Password hashes if you store them alongside Jackson-issued sessions",
+    "SAML SSO connection metadata (entityID, IdP certs, ACS URLs) per tenant",
+    "SCIM provisioning configuration per directory",
+    "Tenant/organization records and member assignments",
+    "Roles or custom claims used by your app",
+    "Active session list (so you can plan a forced re-login)",
+    "MFA enrollment data (re-enrollment likely required)"
+  ],
+  "export_method": "Because BoxyHQ Jackson is a SAML/OIDC bridge rather than a full user store, most user data lives in your application database — export it directly. Pull SAML connection metadata from Jackson's admin API or database. Document SCIM directory tokens so you can rotate them on the new IdP. Consult Clerk's official import documentation for the exact user import format and any password hash schemes Clerk accepts.",
+  "import_method": "Create a Clerk application, then bulk-import users via Clerk's user import workflow (refer to Clerk's official docs for the current format and supported password hash algorithms). Configure SAML SSO connections in the Clerk dashboard per organization. Wire your frontend to Clerk's React components and replace your existing login UI. For Next.js apps, install @clerk/nextjs middleware. Validate one tenant end-to-end before mass cutover.",
+  "concept_mapping": [
+    {
+      "source": "Jackson SSO Connection",
+      "target": "Clerk SAML Connection (per Organization)",
+      "note": "Re-upload IdP metadata in the Clerk dashboard"
+    },
+    {
+      "source": "Jackson tenant/product",
+      "target": "Clerk Organization",
+      "note": "Map B2B tenants to Clerk Organizations"
+    },
+    {
+      "source": "Jackson Directory Sync (SCIM)",
+      "target": "Clerk SCIM provisioning",
+      "note": "Confirm SCIM availability on your Clerk plan"
+    },
+    {
+      "source": "Your app's user table",
+      "target": "Clerk User",
+      "note": "Imported via Clerk's user import — keep your DB ID in publicMetadata"
+    },
+    {
+      "source": "Custom login UI",
+      "target": "Clerk SignIn / SignUp components",
+      "note": "Significant frontend simplification"
+    },
+    {
+      "source": "Your session management",
+      "target": "Clerk sessions",
+      "note": "Clerk issues and verifies its own session tokens"
+    }
+  ],
+  "effort": "1-2 weeks",
+  "gotchas": [
+    "Password hash compatibility — verify Clerk supports your current hash format before exporting",
+    "Users may need to reset passwords if hashes can't be imported as-is",
+    "MFA factors typically need re-enrollment after migration",
+    "Re-issue SAML metadata to every enterprise customer's IdP — schedule windows in advance",
+    "SCIM tokens must be regenerated and shared with each IdP admin",
+    "Cost model flips from infra+ops (BoxyHQ) to per-MAU (Clerk) — model your steady-state pricing first",
+    "Frontend rewrite to Clerk components is non-trivial if you have heavy login customization"
+  ],
+  "email": {
+    "subject": "Moving SSO from BoxyHQ Jackson to Clerk",
+    "body": "Hi team,\n\nPlanning to migrate auth from self-hosted BoxyHQ Jackson to Clerk. Main wins: prebuilt React components, hosted SSO/SCIM, and we drop the Jackson + DB infra we're maintaining today.\n\nPlan:\n1. Spin up Clerk app + Organizations matching our tenants.\n2. Import users (verify password hash compatibility first).\n3. Re-issue SAML metadata to enterprise customers per tenant.\n4. Replace our login UI with Clerk components and ship behind a flag.\n\nEffort estimate: 1-2 weeks. Open items: hash format compatibility, SCIM plan tier, and re-enrollment plan for MFA. Will follow up with a runbook.\n\nThanks"
+  }
+}

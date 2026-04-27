@@ -1,0 +1,81 @@
+{
+  "source": {
+    "slug": "cloudinary",
+    "name": "Cloudinary"
+  },
+  "target": {
+    "slug": "azure-blob-storage",
+    "name": "Azure Blob Storage"
+  },
+  "generated_at": "2026-04-26T00:00:00Z",
+  "tldr": "Move from a managed media platform to raw object storage on Azure: cheaper per-GB and lower lock-in, but you take on transformations, CDN, and tagging yourself.",
+  "why_switch": [
+    "You want lower per-GB storage costs and standard object-storage semantics",
+    "You're standardizing on Azure for the rest of your stack",
+    "You don't need on-the-fly transformations, or you're moving them in-house",
+    "You want geo-redundancy and tiered storage (hot/cool/archive)",
+    "You need WORM / immutability policies for compliance"
+  ],
+  "what_to_export": [
+    "Original (master) asset files",
+    "Asset metadata and tags",
+    "Folder/path structure (Cloudinary public_ids)",
+    "Existing delivery URLs for redirects",
+    "Transformation presets (to reimplement or drop)",
+    "Webhook subscriptions",
+    "Access control settings (signed URLs, restrictions)",
+    "CDN configuration tied to Cloudinary"
+  ],
+  "export_method": "Use Cloudinary's official Admin API to enumerate assets and download originals to a staging location — consult Cloudinary docs for the current pagination and download patterns. Avoid downloading transformed derivatives; preserve the master.",
+  "import_method": "Upload to an Azure Blob Storage container using the official Azure SDK or AzCopy. Use container/path naming that mirrors your Cloudinary folder structure. Configure access tier (Hot/Cool/Archive) per asset based on access patterns. Consult the official Azure docs for current AzCopy syntax and authentication options.",
+  "concept_mapping": [
+    {
+      "source": "Cloud / folder",
+      "target": "Storage account / container",
+      "note": "Each Azure storage account hosts multiple containers; map folders to containers or blob prefixes."
+    },
+    {
+      "source": "public_id",
+      "target": "Blob name (with prefix)",
+      "note": "Use the public_id path as the blob name to preserve structure."
+    },
+    {
+      "source": "On-the-fly transformations",
+      "target": "External processing",
+      "note": "Azure Blob doesn't transform images — pair with Azure Functions, a CDN with image processing, or a third-party service."
+    },
+    {
+      "source": "Cloudinary CDN",
+      "target": "Azure Front Door / CDN",
+      "note": "Stand up a CDN in front of the container; consult Azure docs for current options and pricing."
+    },
+    {
+      "source": "Signed URL",
+      "target": "Shared Access Signature (SAS)",
+      "note": "SAS tokens grant time-limited access; verify scopes in official docs."
+    },
+    {
+      "source": "Auto-tagging / AI",
+      "target": "Azure AI Vision (separate service)",
+      "note": "Not built into Blob Storage — integrate separately if needed."
+    },
+    {
+      "source": "Versioning",
+      "target": "Blob versioning / soft delete",
+      "note": "Enable on the container; consult docs for retention behavior."
+    }
+  ],
+  "effort": "2-6 weeks depending on asset volume, transformation complexity to replace, and CDN setup.",
+  "gotchas": [
+    "You lose Cloudinary's transformation pipeline — plan a replacement before cutover",
+    "Cloudinary egress for the migration may be metered",
+    "URL structure changes — every embed and link needs updating or redirecting",
+    "Azure Blob has its own pricing dimensions (storage tier, operations, egress, redundancy) — model carefully",
+    "Archive tier has rehydration latency and cost — don't put hot assets there",
+    "Choose redundancy (LRS/ZRS/GRS) deliberately; cross-region adds cost"
+  ],
+  "email": {
+    "subject": "Migrating media from Cloudinary to Azure Blob Storage",
+    "body": "Hi team,\n\nWe're moving media assets from Cloudinary to Azure Blob Storage to consolidate on Azure and cut storage cost. Plan: pull originals via Cloudinary's Admin API, upload via AzCopy preserving paths, stand up a CDN, and replace transformations with our own pipeline (or drop them where unused). Expect 2-6 weeks. I'll circulate a detailed cutover plan before we start.\n\nThanks"
+  }
+}

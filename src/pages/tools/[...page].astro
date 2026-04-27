@@ -74,6 +74,8 @@ const categoryCount = allCategories.length;
               lockInLevel={entry.data.scores?.lock_in?.level}
               pricingModel={entry.data.pricing?.model}
               hasFree={entry.data.pricing?.has_free_tier}
+              hasHwm={isHwm}
+              hwmReason={(entry.data.pricing as any)?.high_water_mark_reason}
             />
           </div>
         );

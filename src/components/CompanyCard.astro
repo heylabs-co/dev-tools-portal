@@ -10,9 +10,11 @@ interface Props {
   lockInLevel?: 'low' | 'medium' | 'high';
   pricingModel?: string;
   hasFree?: boolean;
+  hasHwm?: boolean;
+  hwmReason?: string;
 }
 
-const { slug, name, description, logo, category, lockInLevel, pricingModel, hasFree } = Astro.props;
+const { slug, name, description, logo, category, lockInLevel, pricingModel, hasFree, hasHwm, hwmReason } = Astro.props;
 
 const initial = name.charAt(0).toUpperCase();
 ---
@@ -69,6 +71,17 @@ const initial = name.charAt(0).toUpperCase();
         tabindex="0"
       >
         Free tier
+      </span>
+    )}
+
+    {hasHwm && (
+      <span
+        class="tip inline-flex items-center gap-1 rounded-full bg-rose-50 dark:bg-rose-950/40 px-2 py-0.5 text-[11px] font-semibold text-rose-700 dark:text-rose-300 cursor-help"
+        data-tip={hwmReason ?? 'High water mark pricing — bill stays at peak usage or reserved capacity and does not scale down within the billing cycle.'}
+        tabindex="0"
+      >
+        <span class="h-1.5 w-1.5 rounded-full bg-rose-500"></span>
+        HWM
       </span>
     )}
   </div>

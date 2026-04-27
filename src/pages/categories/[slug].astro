@@ -85,6 +85,8 @@ const heading = data.seo?.h1 ?? data.name;
             lockInLevel={company.data.scores?.lock_in?.level}
             pricingModel={company.data.pricing?.model}
             hasFree={company.data.pricing?.has_free_tier}
+            hasHwm={company.data.pricing?.high_water_mark === true}
+            hwmReason={(company.data.pricing as any)?.high_water_mark_reason}
           />
         </div>
       ))}

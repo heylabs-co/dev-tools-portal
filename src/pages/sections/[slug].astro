@@ -124,6 +124,8 @@ const pageDescription = `${section.description} Browse ${sectionCats.length} cat
               lockInLevel={c.data.scores?.lock_in?.level}
               pricingModel={c.data.pricing?.model}
               hasFree={c.data.pricing?.has_free_tier}
+              hasHwm={c.data.pricing?.high_water_mark === true}
+              hwmReason={(c.data.pricing as any)?.high_water_mark_reason}
             />
           ))}
         </div>

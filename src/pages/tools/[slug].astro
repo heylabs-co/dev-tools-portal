@@ -131,6 +131,49 @@ if (hwm) {
       .slice(0, 5);
   }
 }
+
+// Cross-link tool page → related VS Code extensions and MCP servers.
+function extractGithubOrg(repo: string | undefined | null): string | null {
+  if (!repo) return null;
+  let path = repo;
+  if (repo.startsWith('http')) {
+    try { path = new URL(repo).pathname.replace(/^\//, ''); } catch { return null; }
+  }
+  const org = path.split('/')[0];
+  return org ? org.toLowerCase() : null;
+}
+
+let relatedExtensions: Array<{ slug: string; name: string; installs?: string }> = [];
+let relatedMcpServers: Array<{ slug: string; name: string; official: boolean }> = [];
+{
+  const nameLC = d.name.trim().toLowerCase();
+  const slugify = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+
+  const allExtensions = await getCollection('extensions');
+  relatedExtensions = allExtensions
+    .filter((e) => {
+      const pub = e.data.publisher;
+      if (!pub) return false;
+      return slugify(pub) === d.slug || pub.trim().toLowerCase() === nameLC;
+    })
+    .map((e) => ({ slug: e.data.slug, name: e.data.name, installs: e.data.installs }))
+    .sort((a, b) => a.name.localeCompare(b.name))
+    .slice(0, 8);
+
+  const allMcpServers = await getCollection('mcpServers');
+  relatedMcpServers = allMcpServers
+    .filter((m) => {
+      const org = extractGithubOrg(m.data.github_repo);
+      if (!org) return false;
+      if (org === d.slug) return true;
+      // Official-only secondary match: org starts with slug (e.g. "awslabs" for "aws")
+      if (m.data.official && org.startsWith(d.slug) && d.slug.length >= 3) return true;
+      return false;
+    })
+    .map((m) => ({ slug: m.data.slug, name: m.data.name, official: m.data.official ?? false }))
+    .sort((a, b) => (a.official === b.official ? a.name.localeCompare(b.name) : a.official ? -1 : 1))
+    .slice(0, 8);
+}
 ---
 
 <BaseLayout title={pageTitle} description={pageDescription}>
@@ -551,6 +594,53 @@ if (hwm) {
                 </div>
               </div>
               <svg class="h-4 w-4 shrink-0 opacity-40 transition-opacity duration-150 group-hover:opacity-100" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" style="color: var(--color-muted);">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+              </svg>
+            </a>
+          ))}
+        </div>
+      </section>
+    )}
+
+    <!-- VS Code Extensions & MCP Servers from this publisher -->
+    {(relatedExtensions.length > 0 || relatedMcpServers.length > 0) && (
+      <section class="mt-12">
+        <h2 class="flex items-center gap-3 text-lg font-semibold" style="color: var(--color-text);">
+          <span class="block w-1 h-6 rounded-full bg-teal-500 dark:bg-teal-400"></span>
+          Extensions & MCP Servers
+        </h2>
+        <p class="mt-2 text-sm" style="color: var(--color-muted);">
+          Official integrations from {d.name} in the catalog.
+        </p>
+        <div class="mt-5 grid grid-cols-1 gap-3 sm:grid-cols-2">
+          {relatedExtensions.map((ext) => (
+            <a
+              href={`/extensions/${ext.slug}/`}
+              class="group flex items-center gap-3 rounded-xl border p-4 transition-all hover:-translate-y-0.5 hover:shadow-md"
+              style="border-color: var(--color-border); background-color: var(--color-surface);"
+            >
+              <span class="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-100 dark:bg-blue-900/40 text-[10px] font-bold text-blue-700 dark:text-blue-300 shrink-0">VS</span>
+              <div class="min-w-0 flex-1">
+                <div class="text-sm font-semibold truncate transition-colors group-hover:text-[#5E6AD2] dark:group-hover:text-[#818CF8]" style="color: var(--color-text);">{ext.name}</div>
+                {ext.installs && <div class="text-xs mt-0.5" style="color: var(--color-muted);">{ext.installs} installs</div>}
+              </div>
+              <svg class="h-4 w-4 shrink-0 opacity-40 group-hover:opacity-100" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" style="color: var(--color-muted);">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+              </svg>
+            </a>
+          ))}
+          {relatedMcpServers.map((mcp) => (
+            <a
+              href={`/mcp-servers/${mcp.slug}/`}
+              class="group flex items-center gap-3 rounded-xl border p-4 transition-all hover:-translate-y-0.5 hover:shadow-md"
+              style="border-color: var(--color-border); background-color: var(--color-surface);"
+            >
+              <span class="flex h-8 w-8 items-center justify-center rounded-lg bg-violet-100 dark:bg-violet-900/40 text-[10px] font-bold text-violet-700 dark:text-violet-300 shrink-0">MCP</span>
+              <div class="min-w-0 flex-1">
+                <div class="text-sm font-semibold truncate transition-colors group-hover:text-[#5E6AD2] dark:group-hover:text-[#818CF8]" style="color: var(--color-text);">{mcp.name}</div>
+                {mcp.official && <div class="text-xs mt-0.5" style="color: var(--color-muted);">Official</div>}
+              </div>
+              <svg class="h-4 w-4 shrink-0 opacity-40 group-hover:opacity-100" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" style="color: var(--color-muted);">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
               </svg>
             </a>

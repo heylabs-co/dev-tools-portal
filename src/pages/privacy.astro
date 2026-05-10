@@ -1,0 +1,137 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const title = 'Privacy Policy';
+const description = 'How tool.news handles your data, what cookies we use, and how to opt out.';
+const lastUpdated = '2026-05-10';
+---
+
+<BaseLayout {title} {description}>
+  <article class="mx-auto max-w-3xl px-4 py-12 lg:px-6 lg:py-16" style="color: var(--color-text);">
+    <header class="mb-10">
+      <h1 class="text-3xl font-bold tracking-tight sm:text-4xl">Privacy Policy</h1>
+      <p class="mt-2 text-sm" style="color: var(--color-muted);">Last updated: {lastUpdated}</p>
+    </header>
+
+    <div class="prose-lg space-y-8 leading-relaxed">
+      <section>
+        <p>
+          tool.news is a free, open catalog of developer tools published by HeyLabs. We try to collect the
+          minimum amount of data needed to keep the site online and improve it. This page tells you exactly
+          what is collected, by whom, and how to turn it off.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="text-xl font-semibold" style="color: var(--color-text);">1. What we collect</h2>
+        <ul class="mt-3 list-disc space-y-2 pl-6" style="color: var(--color-text-secondary);">
+          <li>
+            <strong>Cloudflare network logs.</strong> Our hosting provider (Cloudflare) automatically logs
+            requests for security and abuse protection: IP address, user-agent, request path, response status.
+            These logs are retained by Cloudflare and not under our direct control. We do not store them
+            ourselves.
+          </li>
+          <li>
+            <strong>Cloudflare Web Analytics.</strong> Anonymous, cookie-free pageview counts and Core Web
+            Vitals from real visits, used to understand traffic and page performance. No personal identifiers
+            are collected.
+          </li>
+          <li>
+            <strong>Microsoft Clarity (only if you accept cookies).</strong> Anonymous session replays and
+            click heatmaps so we can see how people use the catalog and fix usability problems. Clarity
+            assigns a random ID and stores it in a cookie. We never see your name, email, or precise
+            location, and we mask all input field contents by default.
+          </li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 class="text-xl font-semibold" style="color: var(--color-text);">2. What we do NOT collect</h2>
+        <ul class="mt-3 list-disc space-y-2 pl-6" style="color: var(--color-text-secondary);">
+          <li>We have no user accounts, so we don&rsquo;t collect names, emails, or passwords.</li>
+          <li>We have no advertising network. We don&rsquo;t track you across other sites.</li>
+          <li>We do not sell, rent, or share personal information with third parties for advertising.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 class="text-xl font-semibold" style="color: var(--color-text);">3. Cookies we use</h2>
+        <p style="color: var(--color-text-secondary);">
+          On first visit you&rsquo;ll see a banner asking whether to allow analytics cookies. If you decline,
+          no cookies are set and Microsoft Clarity does not load. If you accept, the following cookies are set
+          by Clarity:
+        </p>
+        <ul class="mt-3 list-disc space-y-2 pl-6" style="color: var(--color-text-secondary);">
+          <li><code>_clck</code> — anonymous user ID, kept 1 year</li>
+          <li><code>_clsk</code> — session ID, kept 1 day</li>
+          <li>A handful of related session-management cookies, all set by clarity.ms</li>
+        </ul>
+        <p class="mt-3" style="color: var(--color-text-secondary);">
+          We also use <code>localStorage</code> to remember your cookie choice so we don&rsquo;t pester you on
+          every visit. That entry is purely client-side and never leaves your browser.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="text-xl font-semibold" style="color: var(--color-text);">4. Your rights (GDPR)</h2>
+        <p style="color: var(--color-text-secondary);">
+          If you&rsquo;re in the EU, EEA, or UK, you have the right to access, correct, or delete personal
+          data we hold about you, to object to processing, and to lodge a complaint with your local data
+          protection authority. Because we don&rsquo;t hold accounts, the most useful right here is to
+          withdraw consent for Microsoft Clarity at any time using the &ldquo;Your Privacy Choices&rdquo;
+          link in the footer.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="text-xl font-semibold" style="color: var(--color-text);">5. Your rights (California, CCPA / CPRA)</h2>
+        <p style="color: var(--color-text-secondary);">
+          California residents have the right to know what personal information is collected, to request
+          deletion, and to opt out of the sale or sharing of personal information. We do not sell your data,
+          and we do not share it for cross-context behavioral advertising. To opt out of Microsoft Clarity
+          tracking entirely, click <strong>Your Privacy Choices</strong> in the footer and choose
+          &ldquo;Decline.&rdquo;
+        </p>
+      </section>
+
+      <section>
+        <h2 class="text-xl font-semibold" style="color: var(--color-text);">6. Data retention</h2>
+        <p style="color: var(--color-text-secondary);">
+          Cloudflare Web Analytics retains aggregated data for up to 6 months under our free plan. Microsoft
+          Clarity retains anonymous session data for up to 13 months per Microsoft&rsquo;s
+          <a
+            href="https://learn.microsoft.com/en-us/clarity/setup-and-installation/data"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="underline underline-offset-2"
+            style="color: var(--color-text);"
+          >data policy</a>.
+          We do not export or join this data with any other system we run.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="text-xl font-semibold" style="color: var(--color-text);">7. Changes to this policy</h2>
+        <p style="color: var(--color-text-secondary);">
+          We&rsquo;ll update this page when our data practices change. The &ldquo;last updated&rdquo; date at
+          the top reflects the most recent change.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="text-xl font-semibold" style="color: var(--color-text);">8. Contact</h2>
+        <p style="color: var(--color-text-secondary);">
+          Questions or requests: visit
+          <a
+            href="https://heylabs.co"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="underline underline-offset-2"
+            style="color: var(--color-text);"
+          >heylabs.co</a>
+          for contact details.
+        </p>
+      </section>
+    </div>
+  </article>
+</BaseLayout>

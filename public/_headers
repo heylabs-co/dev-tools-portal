@@ -1,0 +1,45 @@
+# Astro hashed bundles — content-addressable, safe for 1y immutable
+/_astro/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Self-hosted fonts — content-addressable by filename
+/fonts/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Pagefind static index — content-hashed chunks
+/pagefind/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Logos and OG images — refreshed by build, 30d browser cache
+/logos/*
+  Cache-Control: public, max-age=2592000
+
+# Single-file site assets
+/favicon.ico
+  Cache-Control: public, max-age=86400
+/favicon.svg
+  Cache-Control: public, max-age=86400
+/og-default.svg
+  Cache-Control: public, max-age=86400
+/og-tool.svg
+  Cache-Control: public, max-age=86400
+
+# Static JSON snapshots regenerated each build, news-worker every 6h
+/api/*
+  Cache-Control: public, max-age=300, s-maxage=21600
+
+# llms.txt — refreshed each build
+/llms.txt
+  Cache-Control: public, max-age=86400
+
+# robots / sitemap — short cache so search engines pick up changes quickly
+/robots.txt
+  Cache-Control: public, max-age=3600
+/sitemap*.xml
+  Cache-Control: public, max-age=3600
+
+# Default for every other path (HTML pages)
+# Browser keeps 5 min so quick fixes propagate; edge holds 1 day.
+# CF Cache Rules in the dashboard override this for matching routes.
+/*
+  Cache-Control: public, max-age=300, s-maxage=86400

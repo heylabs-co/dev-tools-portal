@@ -6,7 +6,7 @@ const toolCount = companies.length;
 ---
 
 <footer style="border-top: 1px solid var(--color-border);">
-  <div class="mx-auto flex max-w-6xl flex-col gap-8 px-4 py-12 lg:px-6 sm:flex-row sm:items-start sm:justify-between">
+  <div class="mx-auto flex max-w-6xl flex-col gap-8 px-4 pb-6 pt-12 lg:px-6 sm:flex-row sm:items-start sm:justify-between">
     <!-- Left: logo + tagline -->
     <div class="flex flex-col gap-3">
       <a href="/" class="flex items-center gap-2.5">
@@ -40,5 +40,14 @@ const toolCount = companies.length;
         <a href="https://github.com/heylabs-co/dev-tools-portal/issues/new?template=add-tool.yml" target="_blank" rel="noopener noreferrer" class="text-sm transition-colors duration-150" style="color: var(--color-text-secondary);" onmouseenter="this.style.color='var(--color-text)'" onmouseleave="this.style.color='var(--color-text-secondary)'">Add Your Tool</a>
       </div>
     </nav>
+  </div>
+
+  <div class="mx-auto flex max-w-6xl flex-wrap items-center gap-x-4 gap-y-2 px-4 pb-8 text-xs lg:px-6" style="color: var(--color-muted);">
+    <button
+      type="button"
+      onclick="window.__cookieConsent && window.__cookieConsent.show()"
+      class="cursor-pointer underline-offset-2 hover:underline"
+      style="background: none; border: none; padding: 0; color: inherit; font: inherit;"
+    >Your Privacy Choices</button>
   </div>
 </footer>

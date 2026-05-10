@@ -78,13 +78,47 @@ const pageUrl = canonical || new URL(Astro.url.pathname, siteUrl).href;
       }
     </script>
 
-    <!-- Microsoft Clarity -->
+    <!-- Cookie consent + Microsoft Clarity (gated) -->
     <script is:inline>
-      (function(c,l,a,r,i,t,y){
-          c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-          t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-          y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-      })(window, document, "clarity", "script", "wovo3ql7tt");
+      (function () {
+        var KEY = 'cookie-consent';
+        var CLARITY_ID = 'wovo3ql7tt';
+        var clarityLoaded = false;
+
+        function loadClarity() {
+          if (clarityLoaded) return;
+          clarityLoaded = true;
+          (function (c, l, a, r, i, t, y) {
+            c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments); };
+            t = l.createElement(r); t.async = 1; t.src = 'https://www.clarity.ms/tag/' + i;
+            y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
+          })(window, document, 'clarity', 'script', CLARITY_ID);
+        }
+
+        window.__cookieConsent = {
+          accept: function () {
+            try { localStorage.setItem(KEY, 'accepted'); } catch (e) {}
+            var b = document.getElementById('cookie-banner');
+            if (b) b.hidden = true;
+            loadClarity();
+            if (window.clarity) window.clarity('consent');
+          },
+          decline: function () {
+            try { localStorage.setItem(KEY, 'declined'); } catch (e) {}
+            var b = document.getElementById('cookie-banner');
+            if (b) b.hidden = true;
+            if (window.clarity) window.clarity('consent', false);
+          },
+          show: function () {
+            var b = document.getElementById('cookie-banner');
+            if (b) b.hidden = false;
+          },
+        };
+
+        try {
+          if (localStorage.getItem(KEY) === 'accepted') loadClarity();
+        } catch (e) {}
+      })();
     </script>
   </head>
   <body
@@ -96,5 +130,46 @@ const pageUrl = canonical || new URL(Astro.url.pathname, siteUrl).href;
       <slot />
     </main>
     <Footer />
+
+    <!-- Cookie consent banner (shown on first visit, re-openable from footer) -->
+    <div
+      id="cookie-banner"
+      hidden
+      role="dialog"
+      aria-modal="true"
+      aria-label="Cookie consent"
+      class="fixed bottom-0 left-0 right-0 z-50"
+      style="background-color: var(--color-bg); border-top: 1px solid var(--color-border); box-shadow: 0 -4px 20px rgba(0,0,0,0.08);"
+    >
+      <div class="mx-auto flex max-w-6xl flex-col gap-3 px-4 py-4 sm:flex-row sm:items-center sm:justify-between lg:px-6">
+        <p class="text-sm leading-relaxed" style="color: var(--color-text-secondary);">
+          We use analytics cookies (Microsoft Clarity) to see anonymous session replays and click heatmaps so we can improve the catalog. No ads, no selling data.
+        </p>
+        <div class="flex shrink-0 gap-2">
+          <button
+            type="button"
+            onclick="window.__cookieConsent.decline()"
+            class="rounded-md px-4 py-2 text-sm font-medium transition-colors"
+            style="background-color: transparent; border: 1px solid var(--color-border); color: var(--color-text-secondary);"
+          >Decline</button>
+          <button
+            type="button"
+            autofocus
+            onclick="window.__cookieConsent.accept()"
+            class="rounded-md px-4 py-2 text-sm font-medium text-white transition-colors"
+            style="background-color: var(--color-accent);"
+          >Accept</button>
+        </div>
+      </div>
+    </div>
+
+    <script is:inline>
+      try {
+        if (localStorage.getItem('cookie-consent') === null) {
+          var b = document.getElementById('cookie-banner');
+          if (b) b.hidden = false;
+        }
+      } catch (e) {}
+    </script>
   </body>
 </html>

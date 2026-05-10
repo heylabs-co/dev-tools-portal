@@ -25,19 +25,13 @@ const pageUrl = canonical || new URL(Astro.url.pathname, siteUrl).href;
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
-    <!-- Preconnect to Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-
-    <!-- Preload Inter (via Tailwind) + JetBrains Mono -->
+    <!-- Self-hosted Inter (variable). Preload regular weights only -->
     <link
       rel="preload"
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
-      as="style"
-    />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+      href="/fonts/InterVariable.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
     />
 
     <!-- Theme color -->
@@ -85,14 +79,28 @@ const pageUrl = canonical || new URL(Astro.url.pathname, siteUrl).href;
         var CLARITY_ID = 'wovo3ql7tt';
         var clarityLoaded = false;
 
+        function injectClarityScript() {
+          var l = document;
+          var t = l.createElement('script');
+          t.async = 1;
+          t.src = 'https://www.clarity.ms/tag/' + CLARITY_ID;
+          var y = l.getElementsByTagName('script')[0];
+          y.parentNode.insertBefore(t, y);
+        }
+
         function loadClarity() {
           if (clarityLoaded) return;
           clarityLoaded = true;
-          (function (c, l, a, r, i, t, y) {
-            c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments); };
-            t = l.createElement(r); t.async = 1; t.src = 'https://www.clarity.ms/tag/' + i;
-            y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
-          })(window, document, 'clarity', 'script', CLARITY_ID);
+          // Set up the queue synchronously so consent calls are recorded
+          // even if the script tag is injected later via requestIdleCallback.
+          window.clarity = window.clarity || function () {
+            (window.clarity.q = window.clarity.q || []).push(arguments);
+          };
+          if ('requestIdleCallback' in window) {
+            requestIdleCallback(injectClarityScript, { timeout: 2000 });
+          } else {
+            setTimeout(injectClarityScript, 1000);
+          }
         }
 
         window.__cookieConsent = {
@@ -122,7 +130,7 @@ const pageUrl = canonical || new URL(Astro.url.pathname, siteUrl).href;
     </script>
   </head>
   <body
-    class="min-h-screen flex flex-col animate-fade-in"
+    class="min-h-screen flex flex-col"
     style="background-color: var(--color-bg); color: var(--color-text); font-family: 'Inter', system-ui, sans-serif;"
   >
     <Header />

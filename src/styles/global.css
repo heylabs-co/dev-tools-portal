@@ -1,7 +1,23 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: optional;
+  src: url('/fonts/InterVariable.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-style: italic;
+  font-weight: 100 900;
+  font-display: optional;
+  src: url('/fonts/InterVariable-Italic.woff2') format('woff2');
+}
+
 @theme {
-  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+  --font-mono: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
 }
 
 :root {
@@ -81,23 +97,9 @@ html {
   scrollbar-color: var(--color-scrollbar-thumb) var(--color-scrollbar-track);
 }
 
-/* Page fade-in.
- * NOTE: opacity-only — DO NOT add `transform` here. A `transform` on <body>
- * (even `translateY(0)`) makes it the containing block for `position: fixed`
- * descendants, breaking modals (they anchor to the document instead of the
- * viewport). */
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-.animate-fade-in {
-  animation: fadeIn 300ms ease-out both;
-}
-
 /* Code font utility */
 .font-code {
-  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
 }
 
 /* CSS-only tooltip via data-tip="…". Native title= is unreliable (slow,

@@ -3,7 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
 const title = 'Privacy Policy';
 const description = 'How tool.news handles your data, what cookies we use, and how to opt out.';
-const lastUpdated = '2026-05-10';
+const lastUpdated = '2026-05-27';
 ---
 
 <BaseLayout {title} {description}>
@@ -37,10 +37,17 @@ const lastUpdated = '2026-05-10';
             are collected.
           </li>
           <li>
-            <strong>Microsoft Clarity (only if you accept cookies).</strong> Anonymous session replays and
-            click heatmaps so we can see how people use the catalog and fix usability problems. Clarity
-            assigns a random ID and stores it in a cookie. We never see your name, email, or precise
-            location, and we mask all input field contents by default.
+            <strong>Microsoft Clarity.</strong> Anonymous session replays and click heatmaps so we can see
+            how people use the catalog and fix usability problems. Clarity assigns a random ID and stores
+            it in a cookie. We never see your name, email, or precise location, and we mask text input
+            field contents by default. You can opt out globally at
+            <a
+              href="https://clarity.microsoft.com/dataprotection"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="underline underline-offset-2"
+              style="color: var(--color-text);"
+            >clarity.microsoft.com/dataprotection</a>.
           </li>
         </ul>
       </section>
@@ -57,9 +64,7 @@ const lastUpdated = '2026-05-10';
       <section>
         <h2 class="text-xl font-semibold" style="color: var(--color-text);">3. Cookies we use</h2>
         <p style="color: var(--color-text-secondary);">
-          On first visit you&rsquo;ll see a banner asking whether to allow analytics cookies. If you decline,
-          no cookies are set and Microsoft Clarity does not load. If you accept, the following cookies are set
-          by Clarity:
+          Microsoft Clarity sets the following anonymous cookies when you visit:
         </p>
         <ul class="mt-3 list-disc space-y-2 pl-6" style="color: var(--color-text-secondary);">
           <li><code>_clck</code> — anonymous user ID, kept 1 year</li>
@@ -67,8 +72,15 @@ const lastUpdated = '2026-05-10';
           <li>A handful of related session-management cookies, all set by clarity.ms</li>
         </ul>
         <p class="mt-3" style="color: var(--color-text-secondary);">
-          We also use <code>localStorage</code> to remember your cookie choice so we don&rsquo;t pester you on
-          every visit. That entry is purely client-side and never leaves your browser.
+          To opt out, block third-party cookies for <code>clarity.ms</code> in your browser, or visit
+          <a
+            href="https://clarity.microsoft.com/dataprotection"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="underline underline-offset-2"
+            style="color: var(--color-text);"
+          >clarity.microsoft.com/dataprotection</a>
+          to opt out of Clarity across every site that uses it.
         </p>
       </section>
 
@@ -77,9 +89,8 @@ const lastUpdated = '2026-05-10';
         <p style="color: var(--color-text-secondary);">
           If you&rsquo;re in the EU, EEA, or UK, you have the right to access, correct, or delete personal
           data we hold about you, to object to processing, and to lodge a complaint with your local data
-          protection authority. Because we don&rsquo;t hold accounts, the most useful right here is to
-          withdraw consent for Microsoft Clarity at any time using the &ldquo;Your Privacy Choices&rdquo;
-          link in the footer.
+          protection authority. Because we don&rsquo;t hold accounts, the most useful right here is to opt
+          out of Microsoft Clarity using the methods listed in section 3.
         </p>
       </section>
 
@@ -89,8 +100,7 @@ const lastUpdated = '2026-05-10';
           California residents have the right to know what personal information is collected, to request
           deletion, and to opt out of the sale or sharing of personal information. We do not sell your data,
           and we do not share it for cross-context behavioral advertising. To opt out of Microsoft Clarity
-          tracking entirely, click <strong>Your Privacy Choices</strong> in the footer and choose
-          &ldquo;Decline.&rdquo;
+          tracking entirely, use any of the methods listed in section 3.
         </p>
       </section>
 

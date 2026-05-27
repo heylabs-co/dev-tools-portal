@@ -38,8 +38,12 @@
 /sitemap*.xml
   Cache-Control: public, max-age=3600
 
-# Default for every other path (HTML pages)
-# Browser keeps 5 min so quick fixes propagate; edge holds 1 day.
-# CF Cache Rules in the dashboard override this for matching routes.
+# Default for every other path (HTML pages).
+# Browser keeps 5 min so quick fixes propagate. CDN-Cache-Control is
+# CDN-only and force-caches at the edge even when Pages' default
+# Cache-Control would skip it. SWR lets the edge serve stale instantly
+# while it revalidates in the background — keeps p75 LCP low after
+# any cache miss.
 /*
-  Cache-Control: public, max-age=300, s-maxage=86400
+  Cache-Control: public, max-age=300, s-maxage=86400, stale-while-revalidate=2592000
+  CDN-Cache-Control: public, max-age=86400, stale-while-revalidate=2592000

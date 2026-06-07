@@ -3,6 +3,13 @@ name: Build & Deploy to Cloudflare Pages
 on:
   push:
     branches: [main]
+  schedule:
+    # Bot data commits push with the built-in GITHUB_TOKEN, which by design does
+    # NOT trigger on:push workflows — so without a schedule the live site never
+    # picks up bot data updates (update-data every 6h, trending daily 06:00 UTC).
+    # Rebuild twice a day, shortly after the data pipelines land fresh data.
+    - cron: '0 7 * * *'   # after 06:00 trending + 06:00 tool-data
+    - cron: '0 19 * * *'  # after 18:00 tool-data
   workflow_dispatch: {}
 
 concurrency:

@@ -259,6 +259,17 @@ async function main() {
   for (const r of [...searchResults, ...dailyResults, ...weeklyResults]) merge(r);
   const all = Array.from(allMap.values());
 
+  // Fail loudly instead of silently committing empty data. An invalid/expired
+  // GITHUB_TOKEN returns 401 on every call, leaving all three sources empty —
+  // without this guard the script would overwrite trending.json with empty
+  // arrays (only updated_at bumping) and the outage stays hidden for days.
+  if (all.length === 0) {
+    throw new Error(
+      'No repos from any source (Search API + trending scrape all returned 0) — ' +
+        'likely an invalid or expired GITHUB_TOKEN. Refusing to overwrite trending.json.',
+    );
+  }
+
   // Hot: scraped from daily trending, sorted by stars gained today.
   const hot = all
     .filter((r) => (r.stars_today ?? 0) > 0)

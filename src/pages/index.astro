@@ -230,15 +230,6 @@ function relTime(iso: string | null): string {
 
       <div class="flex flex-wrap gap-2 text-xs">
         <a
-          href="https://t.me/toolnewshq"
-          target="_blank"
-          rel="noopener"
-          class="inline-flex items-center gap-1.5 rounded-full bg-[#2AABEE]/10 px-3 py-1.5 font-medium text-[#2AABEE] hover:bg-[#2AABEE]/20"
-        >
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/></svg>
-          Subscribe on TG
-        </a>
-        <a
           href="https://x.com/toolnewsHQ"
           target="_blank"
           rel="noopener"
@@ -261,8 +252,7 @@ function relTime(iso: string | null): string {
     <ol id="home-news" class="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-2">
       {initialNews.length === 0 && (
         <li class="col-span-full rounded-lg border border-dashed border-gray-200 bg-white p-8 text-center text-sm text-gray-500 dark:border-gray-800 dark:bg-gray-900 dark:text-gray-400">
-          Feed warming up. Check back in a few minutes — or
-          <a href="https://t.me/toolnewshq" target="_blank" rel="noopener" class="underline underline-offset-2">subscribe on Telegram</a>.
+          Feed warming up. Check back in a few minutes.
         </li>
       )}
       {initialNews.map((item, idx) => {
